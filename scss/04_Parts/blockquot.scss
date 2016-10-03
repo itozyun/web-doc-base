@@ -1,0 +1,67 @@
+
+/*  blockquote
+--------------------------------------------------------------------------------------*/
+.mB blockquote {
+    padding    : 1em;
+    margin     : 1em;
+	background : $COLOR_BdM_casual_fill;
+}
+
+.mB blockquote p {
+	margin-left  : 0;
+	margin-right : 0;
+}
+
+	/* //_{#can-content */
+	.mB blockquote:before {
+		content     : attr(title);
+		display     : block;
+		font-size   : 0.875em;
+		line-height : 1.2;
+		color       : $COLOR_BdM_link;
+	}
+	.mB blockquote:after {
+		content     : attr(cite);
+		display     : block;
+		font-size   : 0.875em;
+		line-height : 1.2;
+		text-align  : right;
+		word-break  : break-all; /*  iOS4用効果あり */
+		/* word-wrap   : break-all; 効果なし */
+		color       : $COLOR_BdM_casual_text;
+	}
+	/* //_}#can-content */
+
+
+/* //_{#can-mq */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.mB blockquote {
+		margin-left  : 0;
+		margin-right : 0;
+		background : $COLOR_WTC_casual_fill;
+		color      : $COLOR_WTC_text;
+	}
+		.mB blockquote:before {
+			color : $COLOR_WTC_link;
+		}
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	.mB blockquote {
+		background : none;
+	    border     : 1px solid $COLOR_PRT_casual_fill;
+	}
+}
+/* //_>bottom50 */
+
+

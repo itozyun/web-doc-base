@@ -1,0 +1,19 @@
+{
+  "name": "web-doc-base",
+  "version": "1.0.0",
+  "description": "2カラムのWeb文書で再利用するための、クロスブラウザなHTML,css,js",
+  "keywords": [
+    "web-document",
+    "html5",
+    "scss",
+    "js"
+  ],
+  "author": "itozyun",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2"
+  }
+}

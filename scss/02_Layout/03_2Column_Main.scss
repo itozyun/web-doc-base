@@ -1,0 +1,20 @@
+/* //_{#can-mq */
+    [data-lmc] {
+        @include clearfix;
+    }
+
+/* //_<bottom10 */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 96em) {
+        .lM1 {
+            float : left;
+            width : 50% - $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+        }
+        .lM2 {
+            float : right;
+            width : 50% - $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+        }
+}
+/* //_>bottom10 */
+/* //_}#can-mq */

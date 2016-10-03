@@ -1,0 +1,18 @@
+/*  PicaThumbnail
+--------------------------------------------------------------------------------------*/
+/* //_{@modern */
+#jM a[href] > img {
+	transition : width 0.3s ease-in-out;
+}
+/* //_}@modern */
+
+.jL img {
+	width       : 100%;
+	height      : auto;
+	margin      : 0 0 1em;
+}
+
+a:focus img, a:active img {
+    outline     : 1px solid $COLOR_ACCENT;
+	background  : $COLOR_ACCENT;
+}

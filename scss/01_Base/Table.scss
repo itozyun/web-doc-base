@@ -1,0 +1,67 @@
+/*  Table
+--------------------------------------------------------------------------------------*/
+	/* tables still need 'cellspacing="0"' in the markup */
+	table {
+		border-style      : solid;
+		border-width      : 1px 0 0 1px;
+		border-collapse   : collapse;
+		empty-cells       : show;
+		border-spacing    : 0;
+	/* //_{@ie5win,@ie55 */
+		table-layout      : fixed;
+	/* //_}@ie5win,@ie55 */
+	}
+
+	th, td {
+		padding           : 0.5em 0.3em;
+		border-style      : solid;
+		border-width      : 0 1px 1px 0;
+	}
+	
+	thead th {
+		font-weight : normal;
+	}
+
+	.fat tbody th, .fat tbody td {
+		vertical-align    : top;
+	}
+
+	/*  Table
+--------------------------------------------------------------------------------------*/
+	table, th, td {
+		border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 50%) mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%);
+	}
+	/* //_{@ie5win,@ie55 */
+	table {
+		color      : $COLOR_BdM_text;
+	}
+	/* //_}@ie5win,@ie55 */
+	thead th {
+		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 50%);
+		color      : $COLOR_BdM_text;
+	}
+	th {
+		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 80%);
+	}
+
+	/* //_{^#ie6-win */
+	tr:hover td {
+		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 90%);
+	}
+	
+	tbody tr:hover th {
+		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 70%);
+	}
+	/* //_}^#ie6-win */
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	th { background : mix($COLOR_WTC_fill, $COLOR_WTC_text, 90%); }
+	tr:hover td { background : mix($COLOR_WTC_fill, $COLOR_WTC_text, 85%); }
+	tbody tr:hover th { background :mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%); }
+}
+/* //_>bottom40 */
+/* //_}#can-mq */

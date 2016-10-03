@@ -1,0 +1,21 @@
+/*  note
+--------------------------------------------------------------------------------------*/
+.note, dl.note {
+	margin-left : 25%;
+}
+dl.note dd {
+	margin-left : 1em;
+}
+
+dd p, dd blockquote {
+	margin-left  : 0;
+	margin-right : 0;
+}
+
+/* //_{#can-mq */
+@media handheld, only screen and (min-width: 0) {
+	.mB dl.note {
+		margin-left : 25%;
+	}
+}
+/* //_}#can-mq */

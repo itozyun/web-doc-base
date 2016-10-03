@@ -1,0 +1,101 @@
+/* [module] LinkList
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *
+ *  div.mL
+ *   div
+ *    a
+--------------------------------------------------------------------------------------*/
+
+@mixin linkCommon {
+	/* //_{#ie6,@ie55
+	 * ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
+		* { zoom : 1; }
+	/* //_}#ie6,@ie55 */
+
+	a {
+		@include fill;
+
+		/* href がない場合 current カラーになる */
+		cursor             : pointer;
+		page-break-inside  : avoid;
+	}
+}
+@mixin linkCommon_watch {
+	a {
+		@include fill_watch;
+	}
+}
+
+
+.mL { @include linkCommon; @include stackableModule;}
+
+	.mL a {
+		line-height : 1.1;
+		display     : block;
+		padding     : 1em 0.5em 0.8em;
+	}
+
+/*  layout Sub
+--------------------------------------------------------------------------------------*/
+.lS .mL {
+	text-align : right;
+}
+
+/* //_{#can-mq */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+/* //_<bottom10 */
+@media only screen and (min-width: 96em) {
+	.mL a {
+		page-break-inside  : avoid;
+	}
+}
+/* //_>bottom10 */
+/* //_}#can-mq */
+
+/* //_<bottom20 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {
+	.lS .mL {
+		text-align : left;
+	}
+}
+/* //_>bottom20 */
+
+/* //_{#can-mq */
+
+/* //_<bottom25 */
+/*  Tablet small
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	.lS2 .mL {
+		text-align : right;
+	}
+}
+/* //_>bottom25 */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.mL {
+		text-align : center !important;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.mL a {
+    	padding : 0.5em 0;
+	}
+
+	.mL { @include linkCommon_watch; }
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+

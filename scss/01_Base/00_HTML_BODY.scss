@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+	/*  viewport
+	--------------------------------------------------------------------------------------
+		@-ms-viewport{
+			width    : device-width;
+			zoom     : 1;
+			min-zoom : 1;
+		}*/
+
+	/*  html & body
+	--------------------------------------------------------------------------------------*/	
+		html {
+			font-size                : 100%; /* 1 */
+			/* //_{@modern */
+			-webkit-text-size-adjust : 100%; /* 2 */
+			   -moz-text-size-adjust : 100%; /* 2 */
+			    -ms-text-size-adjust : 100%; /* 2 */
+			        /* text-size-adjust : 100%; 2 */
+			/* //_}@modern */
+		}
+	
+		html,
+		body {
+			margin      : 0;
+			/* //_{@modern */
+			padding     : 0;/* opera 8 */
+			/* //_}@modern */
+			border      : 0;
+			height      : 100%; /* js */
+		}
+		/* //_{@ie5win,@ie55 */
+		*,
+		/* //_}@ie5win,@ie55 */
+		body, input {
+			line-height : 1.8;
+		}
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	body {
+		font-size : 0.825em;
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */
+

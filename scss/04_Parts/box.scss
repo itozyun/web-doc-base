@@ -1,0 +1,82 @@
+
+/*  box
+--------------------------------------------------------------------------------------*/
+.box {
+	@include clearfix;
+	
+	margin      : 0 1em;
+}
+.box img,
+.box embed,
+.box object,
+.box iframe,
+.box video {
+	float       : left;
+	padding     : 1px 0 0 1px;
+	margin      : 0 1em 1em 0;
+}
+
+.box p, .box dl {
+	margin-top      : 0;
+	margin-left     : 0;
+	margin-right    : 0;
+}
+/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない 
+#Bm a[href*=javascript：] {
+	display : block;
+	float   : left;
+}*/
+/* .Lg のときは block, float を切る ie では無い方がよい 
+.mB a.Lg,
+.e8- #Bm a[href*=javascript：] {
+	display : inline;
+	float   : none;
+}
+#Bm a[href*=javascript：]:focus {
+	outline    : 0;
+	background : inherit;
+} */
+
+
+/* //_{#can-mq */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.box {
+		margin       : 0 0.5em;
+	}
+
+	.box img,
+	.box embed,
+	.box object,
+	.box iframe,
+	.box video {
+		margin-right : 0.5em;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.box {
+		margin       : 0;
+	}
+
+	.box img,
+	.box embed,
+	.box object,
+	.box iframe,
+	.box video {
+		float       : none;
+		display     : block;
+		margin      : 0 auto 1em;
+	}
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+

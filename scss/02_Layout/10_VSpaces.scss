@@ -1,0 +1,29 @@
+
+#lB .lM {
+    padding-bottom : 4em;
+}
+
+#lB .lSi {
+    padding-bottom : 1em;
+}
+
+#lE .lM, #lE .lSi {
+    padding-bottom : 0;
+}
+#lE .lSi {
+    padding-top : 4em;
+}
+
+@mixin stackableModule {
+    padding-bottom : 1em;
+}
+/* //_<bottom20 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+    #lE .lSi {
+        padding-top : 0;
+    }
+}
+/* //_>bottom20 */
+

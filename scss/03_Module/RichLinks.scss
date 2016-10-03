@@ -1,0 +1,209 @@
+/* [module] RichLinkList
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *
+ *  div.mLt
+ *  div.mLts
+ *    div
+ *      a
+ *        img
+ *        h3
+ *        span, b, blockquot, p
+--------------------------------------------------------------------------------------*/
+.mLt {
+	@include stackableModule;
+}
+	.mLts {
+		@include linkCommon;
+		line-height : 1.4;
+	}
+		.mLts div {
+			border-width : 0 0 1px;
+			border-style : solid;
+			
+			@include border-color;
+		}
+		.mLts .mLts1 {
+			border-width : 1px 0;
+		}
+			.mLts a {
+				@include clearfix;
+				page-break-inside  : avoid;
+			}
+
+				.mLts img {
+					float      : left;
+					display    : block;
+				}
+
+				.mLts h3 {
+					font-size : 1.1em;
+					padding   : 0;
+					margin    : 0 0 0.4em;
+				}
+
+				.mLts span, .mLts b {
+					display     : block;
+					font-size   : 0.875em;
+					font-weight : normal;
+				}
+				.mLts p {
+					display     : block;
+					padding     : 0 0 1em;
+					/* //_{@ie6,@ie7 */
+					padding     : 0;
+					/* //_}@ie6,@ie7 */
+					margin      : 0;
+				}
+
+	.mLts span, .mLts p {
+		color      : $COLOR_BdM_text;
+	}
+	.lS .mLts span, .lS .mLts p {
+		color      : $COLOR_BdS_text;
+	}
+	.fillbg .mLts span, .fillbg .mLts p {
+		color      : $COLOR_FtS_text;
+	}
+	.fillbg .lM .mLts span, .fillbg .lM .mLts p {
+		color      : $COLOR_FtM_text;
+	}
+
+
+/*  layout Main
+--------------------------------------------------------------------------------------*/
+	.lM .mLts a {
+		padding : 1em 0.5em 0;
+		/* //_{@ie6,@ie7 */
+		padding : 1em 0.5em;
+		/* //_}@ie6,@ie7 */
+	}
+		.lM .mLts img {
+			width      : 4.5em;
+			height     : 4.5em;
+			margin     : 0 0.8em 0.8em 0;
+		}
+		.lM .mLts h3 {
+			font-size : 1.5em;
+		}
+		.lM .mLts span, .lM .mLts b {
+		    margin      : 0 0 0.7em;	
+		}
+	
+/*  layout Sub
+--------------------------------------------------------------------------------------*/
+.lS .mLts a {
+	padding : 0.5em 0.5em 0;
+	/* //_{@ie6,@ie7 */
+	padding : 0.5em;
+	/* //_}@ie6,@ie7 */
+}
+		.lS .mLts img {
+			float      : right;
+			width      : 3.2em;
+			height     : 3.2em;
+			margin     : 0 0 0.5em 0.5em;
+		}
+
+		.lS .mLts span, .lS .mLts b {
+			padding     : 0 0 0.56em;
+			/* //_{@ie6,@ie7 */
+			padding     : 0;
+			/* //_}@ie6,@ie7 */
+		}
+
+/* //_{#can-mq */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+/* //_<bottom10 */
+@media only screen and (min-width: 96em) {
+	.lMf .mLts {
+		display      : table;
+		table-layout : fixed;
+		margin       : 1em 0;
+	}
+	.lMf .mLts div {
+		display        : table-cell;
+		vertical-align : top;
+		border-width   : 0;
+	}
+	.lMf .mLts div {
+		width : 33.3%;
+	}
+
+
+	/* .lM2 .mLts div {
+		width : 50%;
+	}
+		.lM2 .mLts a, */
+		.lMf .mLts a {
+			padding-left  : $WSXGA_COLUMN_GAP_EM / 2;
+			padding-right : $WSXGA_COLUMN_GAP_EM / 2;
+		}
+		/* .lM2 .mLts div:first-of-type a, */
+		.lMf .mLts div:first-of-type a {
+			padding-left  : 0;
+		}
+		/* .lM2 .mLts div:last-of-type a, */
+		.lMf .mLts div:last-of-type a {
+			padding-right : 0;
+		}
+			.lM .mLts span {
+				font-size : 1em;
+			}
+}
+/* //_>bottom10 */
+/* //_}#can-mq */
+
+/* //_<bottom20 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {
+	.lS .mLts img {
+		float        : left;
+		margin-left  : 0;
+		margin-right : 0.5em;
+		width        : 2.6em;
+		height       : 2.6em;			
+	}
+	.mLts b {
+		font-size   : 1em;
+	}
+}
+/* //_>bottom20 */
+
+
+/* //_{#can-mq */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.lM .mLts a {
+		padding-left  : 1%;
+		padding-right : 1%;
+	}
+	
+	.lS .mLts span {
+		font-size : 1em;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.lM .mLts div {
+		line-height : 1.4;
+	}
+		.lM .mLts a {
+			padding-left  : 0;
+			padding-right : 0;
+		}
+
+	.mLts { @include linkCommon_watch; }
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+

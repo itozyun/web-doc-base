@@ -1,0 +1,332 @@
+/* .lX
+ *    .lXi
+ * .lW
+ *   .lM
+ *     .lMi | .lMi[data-lmc="1"]
+ *             .lM1, .lM2
+ *   .lS
+ *     .lSi | .lSi[data-lsc="1"]
+ *             .lS1, ls2
+ *
+ * 1. display:table-layout
+ *    * ie8&9
+ *    * media-query 対応ブラウザ, Safari3-を除く
+ *       但し Iron 8.0.5 で ヘッダ内の search-box に[shift+tab]でフォーカスを移した際にレイアウトが乱れるのでヘッダを除外
+ * 2. float-layout
+ *    * 上記以外のブラウザ 
+ *
+--------------------------------------------------------------------------------------*/
+body {
+	background  : $COLOR_FtS_fill;
+	color       : $COLOR_FtM_text;
+}
+
+/* //_{^+coloredHeader */
+#lH,
+/* //_}^+coloredHeader */
+#lB {
+	background : $COLOR_BdM_fill;
+	color      : $COLOR_BdM_text;
+}
+
+	#lB .lS, #lB .lSi {
+		background : $COLOR_BdS_fill;
+	}
+	#lF {
+		background : $COLOR_FtM_fill;
+	}
+	#lF .lS, #lF .lO {
+		background : $COLOR_FtS_fill;
+	}
+
+/* //_{+coloredHeader */
+	#lH .lO {
+		background : $COLOR_HdX_fill;
+		color      : $COLOR_HdX_text;
+	}
+	#lH {
+		background : $COLOR_HdM_fill;
+		color      : $COLOR_HdM_text;
+	}
+	#lH .lS {
+		background : $COLOR_HdS_fill;
+		color      : $COLOR_HdS_text;
+	}
+/* //_}+coloredHeader */
+
+	#lE {
+		background : $COLOR_FtM_fill;
+		color      : $COLOR_FtM_text;
+	}
+	#lE .lS, #lE .lSi {
+		background : none;
+		color      : $COLOR_FtM_text;
+	}
+
+/*  wrapper
+--------------------------------------------------------------------------------------*/	
+.lW {
+	/* //_{^#ie89 */
+		@include clearfix;
+	/* //_}^#ie89 */
+}
+
+.lW, .lX {
+	width     : 98%;
+	/* //_{^#ie6-win */
+	max-width : $PC_MAX_WIDTH_EM;
+	/* //_}^#ie6-win */
+	margin    : 0 auto;
+}
+
+/*  main
+--------------------------------------------------------------------------------------*/	
+	.lM {
+		/* //_{^#ie89 */
+		width        : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+		float        : left;
+		/* //_}^#ie89 */
+	}
+		.lMi {
+			padding-left : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+		}
+
+/*  sub
+--------------------------------------------------------------------------------------*/
+	.lS {
+		width : 100% * $PC_SUB_COLUMN_RATIO;
+		/* //_{^#ie89 */
+		float : right;
+		/* //_}^#ie89 */
+	}
+		.lSi {
+			/* //_{@ie6 */
+			width         : 82%;
+			/* //_}@ie6 */
+			/* //_{#ie55- */
+			width         : 100%;
+			/* //_}#ie55- */
+			padding-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+			padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+		}
+
+/*  x-column
+--------------------------------------------------------------------------------------*/
+	.lXi {
+		padding-left  : 100% * $PC_COLUMN_GAP_RATIO;
+		padding-right : 100% * $PC_COLUMN_GAP_RATIO;
+	}
+/*
+ * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
+ */
+
+/*  float-layout -> table-layout
+--------------------------------------------------------------------------------------*/
+	/* //_{#ie89 
+	 * ie8 で header と main の sub の幅がずれるので、header も table-layout とする */
+	.lW {
+		display      : table;
+		table-layout : fixed;
+	}
+		.lM, .lS {
+			display        : table-cell;
+			vertical-align : top; /* Safari 3.2, ie8 で大切 */
+		}
+		.lM {
+			width : 100% * $PC_MAIN_COLUMN_RATIO;
+		}
+			.lMi {
+				padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+			}
+	/* //_}#ie89 */
+
+
+/* //_{@modern */
+/*  メディアクエリをサポートするブラウザだけ table-layout にする
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 951px) { /* Tablet も併せて変更 */
+	/* Iron 8.0.5 で search-box に[shift+tab]でフォーカスを移した際にレイアウトが乱れるので Header に table-layout は行わない */
+	#lB .lW, #lF .lW {
+		display      : table;
+		table-layout : fixed;
+	}
+		#lB .lM, #lB .lS,
+		#lF .lM, #lF .lS {
+			float          : none;
+			display        : table-cell;
+			vertical-align : top; /* Safari 3.2, ie8 で大切 */
+		}	
+			.lM {
+				width : 100% * $PC_MAIN_COLUMN_RATIO;
+			}
+				.lMi {
+					padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+				}
+
+	/* Safari 3.2 table レイアウトがおかしい */
+	.safari3- .lW, .safari3- .lM, .safari3- .lS {
+		display : block;
+	}
+		.safari3- .lM {
+			float : left;
+			width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+		}
+			.safari3- .lMi {
+				padding-right : 0;
+			}
+		.safari3- .lS {
+			float : right;
+		}
+}
+/* //_}@modern */
+
+/* //_{#can-mq */
+/* //_<bottom15 */
+/*  Full HD 
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 126em) {
+	.lW, .lX {
+		width     : 96%;
+		max-width : $WQXGA_MAX_WIDTH_EM;
+	}
+		.lM {
+			width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
+		}
+			.lMi {
+				padding-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO;
+				padding-right : $WQXGA_COLUMN_GAP_EM;
+			}
+				.lMh {
+					margin-left  : 50%;
+					padding-left : $WQXGA_COLUMN_GAP_EM / 2;
+				}
+		.lS {
+			width : 100% * $WQXGA_SUB_COLUMN_RATIO;
+		}
+			.lSi {
+				padding-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+				padding-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+			}
+		.lXi {
+			padding-left  : $WQXGA_COLUMN_GAP_PCT;
+			padding-right : $WQXGA_COLUMN_GAP_PCT;
+		}
+}
+/* //_>bottom15 */
+
+/* //_<bottom10 */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 96em) {
+	.lW, .lX {
+		width     : 96%;
+		max-width : $WSXGA_MAX_WIDTH_EM;
+	}
+		.lM {
+			width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
+		}
+			.lMi {
+				padding-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+				padding-right : $WSXGA_COLUMN_GAP_EM;
+			}
+				.lMh {
+					margin-left  : 50%;
+					padding-left : $WSXGA_COLUMN_GAP_EM / 2;
+				}
+		.lS {
+			width : 100% * $WSXGA_SUB_COLUMN_RATIO;
+		}
+			.lSi {
+				padding-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+				padding-right : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+			}
+		.lXi {
+			padding-left  : $WSXGA_COLUMN_GAP_PCT;
+			padding-right : $WSXGA_COLUMN_GAP_PCT;
+		}
+}
+/* //_>bottom10 */
+/* //_}#can-mq */
+
+/* //_<bottom20 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+/* single */
+	.lW, .lX {
+		width     : 100%;
+		max-width : 100%;
+		display   : block;
+	}
+		.lM, .lS {
+			float   : none;
+			width   : auto;
+			display : block;
+		}
+			.lMi, .lSi, .lXi {
+				padding-left  : $TABLET_H_SPACE;
+				padding-right : $TABLET_H_SPACE;
+			}
+}
+/* //_>bottom20 */
+
+/* //_{#can-mq */
+/* //_<bottom25 */
+/*  Fablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	.lMi, .lSi, .lXi {
+		padding-left  : $FABLET_H_SPACE;
+		padding-right : $FABLET_H_SPACE;
+	}
+}
+/* //_>bottom25 */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.lMi, .lSi, .lXi {
+		padding-left  : $PHONE_H_SPACE;
+		padding-right : $PHONE_H_SPACE;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	#lH {
+		background : $COLOR_WTC_fill;
+		color      : $COLOR_WTC_text;
+	}
+	#lB {
+		background : $COLOR_WTC_fill;
+	}
+	
+	#lB .lM {
+		color      : $COLOR_WTC_text;
+	}
+
+	.lMi, .lSi, .lXi {
+		padding-left  : 0;
+		padding-right : 0;
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	body, #lH, #lE, #lB, #lF .lX {
+		background : $COLOR_PRT_fill;
+		color      : $COLOR_PRT_text;
+	}
+	#lH .lS, #lB .lS, #lF .lW {
+		display : none;
+	}
+}
+/* //_>bottom50 */

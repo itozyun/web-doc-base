@@ -1,0 +1,83 @@
+/* //_{#can-mq */
+[data-lsc] {
+	@include clearfix;
+}
+
+/* //_<bottom15 */
+/*  Full HD 
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 126em) {
+/* 2column */
+	[data-lsc] {
+		padding : 0 0 2em;
+	}
+		.lS1 {
+			float        : left;
+			width        : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 1.5;
+			margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+		}
+		.lS2 {
+			float        : right;
+			width        : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 1.5;
+			margin-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+		}
+}
+/* //_>bottom15 */
+
+/* //_<bottom21 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 950px) {
+/* 2column */
+	[data-lsc] {
+		padding : 0 0 2em;
+		border-top   : 1px solid $COLOR_BdS_casual_fill;
+	}
+		.lS1 {
+			float       : left;
+			width       : 50% - $TABLET_H_SPACE * 1.5;
+			margin-left : $TABLET_H_SPACE;
+		}
+		.lS2 {
+			float        : right;
+			width        : 50% - $TABLET_H_SPACE * 1.5;
+			margin-right : $TABLET_H_SPACE;
+		}
+}
+/* //_>bottom21 */
+
+/* //_<bottom25 */
+/*  Tablet small
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	[data-lsc] {
+		padding : 0 0 2em;
+	}
+		.lS1 {
+			width       : 50% - $FABLET_H_SPACE * 1.5;
+			margin-left : $FABLET_H_SPACE;
+		}
+		.lS2 {
+			width        : 50% - $FABLET_H_SPACE * 1.5;
+			margin-right : $FABLET_H_SPACE;
+		}
+}
+/* //_>bottom25 */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+/* clear 2column */
+	.lS1, .lS2 {
+		float        : none;
+		width        : auto;
+		margin-left  : 0;
+		margin-right : 0;
+	}
+}
+/* //_>bottom30 */
+
+/* //_}#can-mq */
+
+

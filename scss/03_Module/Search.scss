@@ -1,0 +1,65 @@
+/* [module] SearchBox
+ *  出現位置は #lH .lSi 下で固定
+ *
+ *  form.mS
+ *    input[type=text]
+ *    input[type=submit].btn
+--------------------------------------------------------------------------------------*/
+.mS {
+	position   : relative;
+    display    : block;
+    height     : 1.8em;
+    margin     : 0;
+    padding    : 0 3em 0 0.5em;
+}
+	.mS input {
+		padding     : 0;
+	    border      : 0;
+	    margin      : 0;
+	    display     : block;
+	}
+	.mSt {
+	    width       : 100%;
+	    height      : 1.75em; /* 少し小さく */
+		line-height : 1.75;
+	}
+	.mSt:focus {
+		color       : darken( $COLOR_ACCENT, 30% );
+	}
+	.mS .btn {
+	    width       : 3em;
+	    height      : 1.8em;
+	    position    : absolute;
+	    top         : 0;
+	    right       : 0;
+	}
+
+.mS, .mSt {
+	background : $COLOR_HdS_casual_fill;
+}
+
+
+/* //_{#ie7-win */
+.mS * {
+	zoom : 1;
+}
+/* //_}#ie7-win */
+
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	/* //_{^+coloredHeader */
+	.mS, .mSt {
+		background : $COLOR_WTC_casual_fill;
+		color      : $COLOR_WTC_text;
+	}
+	.mSt:focus {
+	    color : $COLOR_ACCENT;
+	}
+	/* //_}^+coloredHeader */
+}
+/* //_>bottom40 */
+/* //_}#can-mq */

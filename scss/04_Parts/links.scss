@@ -1,0 +1,69 @@
+/*  links
+--------------------------------------------------------------------------------------*/
+.links {
+	@extend pre;
+
+	margin      : 1em 2em;
+}
+
+	.links a {
+		padding-left : 1em;
+
+		/* //_{@modern,@ie9,@ie8 */
+		position     : relative;
+		display      : inline-block;
+		/* //_}@modern,@ie9,@ie8 */
+
+		/* //_{@ie7,@ie6,@ie55 */
+			display : block;
+			zoom    : 1;
+		/* //_}@ie7,@ie6,@ie55 */
+
+		/* //_{@ie5win */
+			display : block;
+			height  : 1em;
+		/* //_}@ie5win */
+	}
+	
+	/* //_{#can-content */
+	.links a[href]:before {
+		content         : ">";
+    	position        : relative;
+    	left            : -0.5em;
+    	width           : 1em;
+    	height          : 1.4em; /* for iOS8 */
+    	line-height     : 1.4; /* for iOS8 */
+    	text-align      : center;
+    	font-weight     : bold;
+	}
+	.links a[href*="web.archive."]:before {
+		content     : "*";
+	}
+	/* //_}#can-content */
+
+
+/* //_{#can-mq */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.links {
+		margin-left  : 1em;
+		margin-right : 0.5em;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.links {
+		margin-left  : 0.5em;
+		margin-right : 0;
+	}
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */

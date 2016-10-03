@@ -1,0 +1,279 @@
+/* [module] PostBody
+ *  出現位置は #lB .lMi 下で固定
+ *
+ *  div.mB
+--------------------------------------------------------------------------------------*/
+.mB {
+	margin-bottom : 2em;
+    margin-top : 2em;
+}
+
+.mB a { @include hideUnderLineOnHover }
+
+.mB a:visited { color : $COLOR_BdM_visited; }
+.mB a:visited:hover { color : $COLOR_BdM_visited_hover; }
+
+p, pre, dl, ul, ol {
+	margin : 1em;
+}
+table {
+	width      : 100%;
+/* //_{@ie5win,ie55 */
+	width      : auto;
+/* //_}@ie5win,ie55 */
+	margin     : 1em 0;
+}
+
+/* //_{+from-h2-at-post */
+	.mB h3 {
+		@include h3-main-content;
+
+		background : $COLOR_BdM_flip_fill;
+		color      : $COLOR_BdM_flip_text;
+	}
+	h4, h6 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%); }
+
+	h5 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 10%) }
+/* //_}+from-h2-at-post */
+
+/* //_{+from-h1-at-post */
+	.mB h2 {
+		@include h2-main-content;
+
+		background : $COLOR_BdM_flip_fill;
+		color      : $COLOR_BdM_flip_text;
+	}
+	.mB h3 {
+		@include h3-main-content;
+	}
+	h3, h5, h6 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%); }
+
+	h4 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 10%) }
+/* //_}+from-h1-at-post */
+
+/*  Object
+--------------------------------------------------------------------------------------*/
+.mB img,
+.mB embed,
+.mB object,
+.mB iframe,
+.mB video {
+	max-width : 100%;
+	display   : block;
+	margin    : 1em auto;
+	/* width     : auto;
+	height    : auto; */
+}
+
+
+/* //_{#can-mq */
+
+/* //_<bottom10 */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 96em) {
+	.mB {
+		-webkit-column-count : 2;
+		-webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
+		   -moz-column-count : 2;
+		   -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
+		        column-count : 2;
+		        column-gap   : $WSXGA_COLUMN_GAP_EM;
+	}
+	.mB>*:first-child {
+		margin-top : 0;
+	}
+
+	/* //_{+from-h2-at-post */
+		.mB h3, .mB h4 {
+			text-align : center;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.mB h2, .mB h3 {
+			text-align : center;
+		}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom10 */
+/* //_}#can-mq */
+
+/* //_<bottom20 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {
+	/* //_{+from-h2-at-post */
+		.mB h3, .mB h4 {
+			text-align : center;
+		}
+		.mB h3 {
+			padding-left  : $TABLET_H_SPACE/2;
+			padding-right : $TABLET_H_SPACE/2;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.mB h2, .mB h3 {
+			text-align : center;
+		}
+		.mB h2 {
+			padding-left  : $TABLET_H_SPACE/2;
+			padding-right : $TABLET_H_SPACE/2;
+		}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom20 */
+
+/* //_{#can-mq */
+/* //_<bottom25 */
+/*  Fablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	/* //_{+from-h2-at-post */
+		.mB h3 {
+			padding-left  : $FABLET_H_SPACE/2;
+			padding-right : $FABLET_H_SPACE/2;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.mB h2 {
+			padding-left  : $FABLET_H_SPACE/2;
+			padding-right : $FABLET_H_SPACE/2;
+		}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom25 */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.mB {
+		line-height : 1.6;
+	}
+
+	/* //_{+from-h2-at-post */
+		.mB h3 {
+			padding-left  : $PHONE_H_SPACE/2;
+			padding-right : $PHONE_H_SPACE/2;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.mB h2 {
+			padding-left  : $PHONE_H_SPACE/2;
+			padding-right : $PHONE_H_SPACE/2;
+		}
+	/* //_}+from-h1-at-post */
+
+	p, pre, dl, ul, ol {
+		margin-left  : 0.5em;
+		margin-right : 0.5em;
+	}
+}
+/* //_>bottom30 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.mB {
+		line-height : 1.4;
+	}
+	/* //_{+from-h2-at-post */
+		.mB h3 {
+			background    : mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%);
+			color         : $COLOR_WTC_text;
+			padding-left  : 0;
+			padding-right : 0;
+		}
+		.mB h4 {
+			border-color : mix($COLOR_WTC_fill, $COLOR_WTC_text, 60%);
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.mB h2 {
+			background    : mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%);
+			color         : $COLOR_WTC_text;
+			padding-left  : 0;
+			padding-right : 0;
+		}
+		.mB h3 {
+			border-color : mix($COLOR_WTC_fill, $COLOR_WTC_text, 60%);
+		}
+	/* //_}+from-h1-at-post */
+
+	p, pre, dl, ul, ol {
+		margin-left  : 0;
+		margin-right : 0;
+	}
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+
+/* //_<bottom20  */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media print, handheld, only screen and (max-width: 950px) {/* Outline も併せて変更 */
+	/* //_{+from-h2-at-post */
+	.mH h2, .mB h3 {
+		letter-spacing : 0;
+	}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+	.mH h1, .mB h2 {
+		letter-spacing : 0;
+	}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom20  */
+
+/* //_{#can-mq */
+/* //_<bottom30  */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	/* //_{+from-h2-at-post */
+	.mH h2 {
+		font-size         : 1.5em;
+	}
+	.mB h3 {
+		font-size         : 1.25em;
+	}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+	.mH h1 {
+		font-size         : 1.5em;
+	}
+	.mB h2 {
+		font-size         : 1.25em;
+	}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom30  */
+/* //_}#can-mq */
+
+
+/* //_{#can-content */
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	.mB a:link:after {
+		content     : " ("attr(href)") ";
+		font-size   : 0.875em;
+		color       : $COLOR_PRT_link;
+	}
+	.mB a[href*=javascript：]:after {
+		display     : none;
+	}
+}
+/* //_>bottom50 */
+/* //_}#can-content */
+

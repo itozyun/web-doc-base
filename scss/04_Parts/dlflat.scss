@@ -1,0 +1,19 @@
+/* //_{+dlflat */
+/*  Flatten
+--------------------------------------------------------------------------------------*/
+.flat5 dt,
+.flat10 dt {
+	display      : block;
+	float        : left;
+	clear        : left;
+	margin-right : 1em;
+}
+
+.flat5 dd {
+	margin-left : 5em;
+}
+.flat10 dd {
+	margin-left : 10em;
+}
+/* //_}+dlflat */
+

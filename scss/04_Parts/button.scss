@@ -1,0 +1,106 @@
+
+.btn, .btn:visited {
+    @include noUnderLineAlways;
+
+    display    : block;
+    /* //_{@ie6 */
+    zoom       : 1;
+    /* //_}@ie6 */
+	cursor     : pointer;
+    text-align : center;
+
+    background : $COLOR_BdM_casual_text;
+    color      : $COLOR_BdM_fill;
+}
+.btn:link {
+    background : $COLOR_BdM_link;
+    color      : $COLOR_BdM_fill;
+}
+.btn:active, .btn:focus, .btn:hover {
+    background : $COLOR_ACCENT !important;
+    color      : #fff  !important;
+}
+.btn:active:hover, .btn:focus:hover {
+    background : $COLOR_BdM_flip_fill !important;
+    color      : #fff !important;
+}
+
+/* //_{#can-mq */
+/*  Watch !important 指定があるので移動しない
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+    .btn, .btn:visited {
+        background : $COLOR_WTC_casual_text;
+        color      : $COLOR_WTC_fill;
+    }
+    .btn:link {
+        background : $COLOR_WTC_link;
+        color      : $COLOR_WTC_fill;
+    }
+    .btn:active:hover, .btn:focus:hover {
+        background : $COLOR_WTC_flip_fill !important;
+    }
+}
+/* //_}#can-mq */
+
+.lS .btn, .lS .btn:visited {
+    background : $COLOR_BdS_casual_text;
+    color      : $COLOR_BdS_fill;
+}
+.lS .btn:link {
+    background : $COLOR_BdS_link;
+    color      : $COLOR_BdS_fill;
+}
+.lS .btn:active:hover, .lS .btn:focus:hover {
+    background : $COLOR_BdS_flip_fill !important;
+}
+
+/* //_{+coloredHeader */
+#lH .btn, #lH .btn:visited {
+    background : $COLOR_HdM_casual_text;
+    color      : $COLOR_HdM_fill;
+}
+#lH .btn:link {
+    background : $COLOR_HdM_link;
+    color      : $COLOR_BdM_fill;
+}
+#lH .btn:active:hover, #lH .btn:focus:hover {
+    background : $COLOR_HdM_flip_fill !important;
+}
+
+#lH .lS .btn, #lH .lS .btn:visited {
+    background : $COLOR_HdS_casual_text;
+    color      : $COLOR_HdS_fill;
+}
+#lH .lS .btn:link {
+    background : $COLOR_HdS_link;
+    color      : $COLOR_HdS_fill;
+}
+#lH .lS .btn:active:hover, #lH .lS .btn:focus:hover {
+    background : $COLOR_BdS_flip_fill !important;
+}
+/* //_}+coloredHeader */
+
+.fillbg .btn, .fillbg .btn:visited {
+    background : $COLOR_FtS_casual_text;
+    color      : $COLOR_FtS_fill;
+}
+.fillbg .btn:link {
+    background : $COLOR_FtS_link;
+    color      : $COLOR_FtS_fill;
+}
+.fillbg .btn:active:hover, .fillbg .btn:focus:hover {
+    background : $COLOR_FtS_flip_fill !important;
+}
+
+.fillbg .lM .btn, .fillbg .lM .btn:visited {
+    background : $COLOR_FtM_casual_text;
+    color      : $COLOR_FtM_fill;
+}
+.fillbg .lM .btn:link {
+    background : $COLOR_FtM_link;
+    color      : $COLOR_FtM_fill;
+}
+.fillbg .lM .btn:active:hover, .fillbg .lM .btn:focus:hover {
+    background : $COLOR_FtM_flip_fill !important;
+}

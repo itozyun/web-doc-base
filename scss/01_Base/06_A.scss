@@ -1,0 +1,249 @@
+/* a タグの下線
+--------------------------------------------------------------------------------------*/
+
+/* 下線なし -> hover -> 下線あり */
+a:link, a:focus, a:active { text-decoration : none; }
+a:hover { text-decoration : none; } /* link の無い a には下線をつけない */
+a:link:hover, a:visited:hover { text-decoration : underline; }
+a:focus:hover, a:active:hover { text-decoration : underline !important; }
+
+/* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
+@mixin hideUnderLineOnHover {
+    &:link { text-decoration : underline; }
+    &:hover, &:focus, &:active { text-decoration : none; }
+}
+
+/* ずっと下線なし*/
+@mixin noUnderLineAlways {
+    text-decoration : none !important;
+}
+
+/* a タグの色 [Header|Body] > Main > A
+--------------------------------------------------------------------------------------*/
+a {
+	color        : $COLOR_BdM_casual_text;
+}
+a:link          {
+	color        : $COLOR_BdM_link;
+	border-color : $COLOR_BdM_fill;
+}
+a:visited       {
+	color        : $COLOR_BdM_text; /* 訪問済のリンクは黒になる, .mB のみ紫に */
+	border-color : $COLOR_BdM_fill;
+}
+a:link:hover    {
+	color        : $COLOR_BdM_hover;
+	border-color : $COLOR_BdM_hover;
+}
+a:visited:hover {
+	color        : $COLOR_BdM_visited_hover;
+	border-color : $COLOR_BdM_visited_hover;
+}
+
+a:active, a:focus {
+    background : $COLOR_ACCENT !important;
+    color      : #fff        !important;
+}
+a:active *, a:focus * {
+	color      : #fff !important;
+}
+
+/* a タグの色 [Header|Body] > Sub > A
+--------------------------------------------------------------------------------------*/
+.lS a {
+	@if $COLOR_BdM_casual_text != $COLOR_BdS_casual_text { color : $COLOR_BdM_casual_text; }
+}
+.lS a:link          {
+	color        : $COLOR_BdS_link;
+	border-color : $COLOR_BdS_fill;
+}
+.lS a:visited       {
+	color        : $COLOR_BdS_text;
+	border-color : $COLOR_BdS_fill;
+}
+.lS a:link:hover    {
+	color        : $COLOR_BdS_hover;
+	border-color : $COLOR_BdS_hover;
+}
+.lS a:visited:hover {
+	color        : $COLOR_BdS_visited_hover;
+	border-color : $COLOR_BdS_visited_hover;
+}
+
+/*  .fillbg > Sub > A
+--------------------------------------------------------------------------------------*/
+.fillbg a {
+	color : $COLOR_FtS_casual_text;
+}
+.fillbg a:link {
+	color        : $COLOR_FtS_link;
+	border-color : $COLOR_FtS_fill;
+}
+.fillbg a:visited {
+	color        : $COLOR_FtS_text;
+	border-color : $COLOR_FtS_fill;
+}
+.fillbg a:link:hover {
+	color        : $COLOR_FtS_hover;
+	border-color : $COLOR_FtS_hover;
+}
+.fillbg a:visited:hover {
+	color        : $COLOR_FtS_visited_hover;
+	border-color : $COLOR_FtS_visited_hover;
+}
+
+/*  .fillbg > Main > A
+--------------------------------------------------------------------------------------*/
+.fillbg .lM a {
+	@if $COLOR_FtM_casual_text != $COLOR_FtS_casual_text { color : $COLOR_FtM_casual_text; }
+}
+.fillbg .lM a:link {
+	color        : $COLOR_FtM_link;
+	border-color : $COLOR_FtM_fill;
+}
+.fillbg .lM a:visited {
+	color        : $COLOR_FtM_text;
+	border-color : $COLOR_FtM_fill;
+}
+.fillbg .lM a:link:hover {
+	color        : $COLOR_FtM_hover;
+	border-color : $COLOR_FtM_hover;
+}
+.fillbg .lM a:visited:hover {
+	color        : $COLOR_FtM_visited_hover;
+	border-color : $COLOR_FtM_visited_hover;
+}
+
+@mixin fill {
+	@include noUnderLineAlways;
+
+	/* href がない場合 current カラーになる */
+	background : $COLOR_BdM_flip_fill;
+	color      : $COLOR_BdM_flip_text;
+
+	&:link {
+		background : none;
+		color      : $COLOR_BdM_link;
+	}
+	&:visited {
+		background : none;
+		color      : $COLOR_BdM_text;
+	}
+	&:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
+		background : $COLOR_BdM_casual_fill;
+		color      : $COLOR_BdM_text;
+	}
+
+	.lS & {
+		background : $COLOR_BdS_flip_fill;
+		color      : $COLOR_BdS_flip_text;
+	}
+	.lS &:link {
+		background : none;
+		color      : $COLOR_BdS_link;
+	}
+	.lS &:visited {
+		background : none;
+		color      : $COLOR_BdS_text;
+	}
+	.lS &:link:hover, .lS &:visited:hover {
+		background : $COLOR_BdS_casual_fill;
+		color      : $COLOR_BdS_text;
+	}
+
+	.fillbg & {
+		background : $COLOR_FtS_flip_fill;
+		color      : $COLOR_FtS_flip_text;
+	}
+	.fillbg &:link {
+		background : none;
+		color      : $COLOR_FtS_link;
+	}
+	.fillbg &:visited {
+		background : none;
+		color      : $COLOR_FtS_text;
+	}
+	.fillbg &:link:hover, .fillbg &:visited:hover {
+		background : $COLOR_FtS_casual_fill;
+		color      : $COLOR_FtS_text;
+	}
+
+	.fillbg .lM & {
+		background : $COLOR_FtM_flip_fill;
+		color      : $COLOR_FtM_flip_text;
+	}
+	.fillbg .lM &:link {
+		background : none;
+		color      : $COLOR_FtM_link;
+	}
+	.fillbg .lM &:visited {
+		background : none;
+		color      : $COLOR_FtM_text;
+	}
+	.fillbg .lM &:link:hover, .fillbg .lM &:visited:hover {
+		background : $COLOR_FtM_casual_fill;
+		color      : $COLOR_FtM_text;
+	}
+}
+
+@mixin fill_watch {
+	/* href がない場合 current カラーになる */
+	background : $COLOR_WTC_flip_fill;
+	color      : $COLOR_WTC_flip_text;
+
+	&:link {
+		background : none;
+		color      : $COLOR_WTC_link;
+	}
+	&:visited {
+		background : none;
+		color      : $COLOR_WTC_text;
+	}
+	&:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
+		background : $COLOR_WTC_casual_fill;
+		color      : $COLOR_WTC_text;
+	}
+}
+
+@mixin border-color {
+	border-color : $COLOR_BdM_casual_fill;
+
+	.lS & {
+		border-color : $COLOR_BdS_casual_fill;
+	}
+	.fillbg & {
+		border-color : $COLOR_FtS_casual_fill;
+	}
+	.fillbg .lM & {
+		border-color : $COLOR_FtM_casual_fill;
+	}
+}
+
+/* //_{@modern */
+a:link {
+	background : rgba( 255, 255, 255, 0 );
+	transition : 0.3s background ease-in, 0.3s color ease-in, 0.3s border-color ease-in;
+}
+/* //_}@modern */
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	a:link          { color : $COLOR_WTC_link;  border-color : $COLOR_WTC_fill; }
+	a:visited       { color : $COLOR_WTC_text;  border-color : $COLOR_WTC_fill; }
+	a:hover         { color : $COLOR_WTC_hover; border-color : $COLOR_WTC_hover; }
+	a:visited:hover { color : $COLOR_WTC_visited_hover; border-color : $COLOR_WTC_visited_hover }
+}
+/* //_>bottom40 */
+/* //_}#can-mq */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	a:link    { color : $COLOR_PRT_link; }
+	a:visited { color : $COLOR_PRT_visited; }
+}
+/* //_>bottom50 */
