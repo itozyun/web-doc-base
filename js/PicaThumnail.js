@@ -27,7 +27,6 @@
 				ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
 				if( 0 <= 'jpg png gif bmp'.indexOf( ext.substr( 0, 3 ) ) || 0 <= 'jpeg webp'.indexOf( ext.substr( 0, 4 ) ) ){
 					link.onclick = onClickThumbnail;
-					link.setAttribute( 'href', 'javascript：void("' + link + '");' );
 					IMGS.push( {
 						a           : link,
 						small       : img.src,

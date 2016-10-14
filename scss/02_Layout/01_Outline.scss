@@ -260,8 +260,14 @@ body {
 	}
 		.lM, .lS {
 			float   : none;
-			width   : auto;
+		/* //_{^@ie9 */
 			display : block;
+			width   : auto;
+		/* //_}^@ie9 */
+		/* //_{@ie9 */
+			display : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
+			width   : 100%; /* auto は不可 */
+		/* //_}@ie9 */
 		}
 			.lMi, .lSi, .lXi {
 				padding-left  : $TABLET_H_SPACE;

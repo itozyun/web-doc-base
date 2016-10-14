@@ -8,7 +8,7 @@
 		preonload   = onload,
 		preonscroll = onscroll,
 		preonresize = onresize,
-		preonunload = unload,
+		preonunload = onunload,
 		emptyFunc   = new Function,
 	/*
 	 * positionFixed
@@ -198,7 +198,7 @@
 	
 	// unload
 	onunload = function( e ){
-		if( preonunload ) onunload( e );
+		if( preonunload ) preonunload( e );
 		onload = onscroll = onresize = onunload = emptyFunc;
 		onload = onscroll = onresize = onunload = null;
 	};

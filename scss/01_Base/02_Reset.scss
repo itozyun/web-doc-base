@@ -64,7 +64,7 @@
 	
 		/* //_{@ie9 */
 		svg {
-			overflow: hidden;
+			overflow : hidden;
 		}
 		/* //_}@ie9 */
 
@@ -96,7 +96,7 @@
 		/* http://e2designer.seesaa.net/article/152168876.html */
 		/* http://perishablepress.com/press/2010/06/01/wrapping-content/ */
 		/* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
-		pre {
+		@mixin pre-wrap {
 			white-space : pre;           /* CSS 2.0 */
 		/* //_{@modern */
 			white-space : -pre-wrap;     /* Opera 4-6 */
@@ -109,6 +109,10 @@
 			/* white-space : pre-line;      CSS 3.0 */
 			word-wrap   : break-word;    /* IE 5.5+ */
 			word-break  : break-all;
+		}
+
+		pre {
+			@include pre-wrap;
 		}
 		
 		/* remember to highlight inserts somehow! */

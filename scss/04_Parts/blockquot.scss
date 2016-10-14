@@ -34,6 +34,16 @@
 
 
 /* //_{#can-mq */
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.mB blockquote {
+		margin  : 0.5em;
+		padding : 0.5em;
+	}
+}
+/* //_>bottom30 */
 
 /* //_<bottom40 */
 /*  Watch

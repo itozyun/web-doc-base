@@ -4,13 +4,13 @@
  *  div.mB
 --------------------------------------------------------------------------------------*/
 .mB {
+    margin-top    : 3.5em;
 	margin-bottom : 2em;
-    margin-top : 2em;
 }
 
 .mB a { @include hideUnderLineOnHover }
 
-.mB a:visited { color : $COLOR_BdM_visited; }
+.mB a:visited       { color : $COLOR_BdM_visited; }
 .mB a:visited:hover { color : $COLOR_BdM_visited_hover; }
 
 p, pre, dl, ul, ol {

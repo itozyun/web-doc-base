@@ -1,13 +1,14 @@
 /*  links
 --------------------------------------------------------------------------------------*/
 .links {
-	@extend pre;
+	@include pre-wrap;
 
-	margin      : 1em 2em;
+	margin : 1em 2em;
 }
 
 	.links a {
 		padding-left : 1em;
+		line-height  : 1.2;
 
 		/* //_{@modern,@ie9,@ie8 */
 		position     : relative;
@@ -51,6 +52,7 @@
 	.links {
 		margin-left  : 1em;
 		margin-right : 0.5em;
+		line-height  : 3;
 	}
 }
 /* //_>bottom30 */

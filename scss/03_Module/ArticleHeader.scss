@@ -3,29 +3,31 @@
  *
  *  div.mH
  *    h1 | h2
+ *    div
  *    +ArticleLabels
  *    +SocialButtons
 --------------------------------------------------------------------------------------*/
-.mH {
-	line-height    : 1.4;
-	padding-bottom : 1em;
-}
+	.mH {
+		color  : $COLOR_FtM_casual_text;
+	}
 
-	/* //_{+from-h2-at-post */
-		.mH h2 {
-			@include h2-main-content;
+/* //_{+from-h2-at-post */
+	.mH h2 {
+		@include h2-main-content;
 
-			text-align : left;
-		}
-	/* //_}+from-h2-at-post */
+		color      : $COLOR_FtM_text;
+		text-align : left;
+	}
+/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
-		.mH h1 {
-			@include h1-main-content;
+/* //_{+from-h1-at-post */
+	.mH h1 {
+		@include h1-main-content;
 
-			text-align : left;
-		}
-	/* //_}+from-h1-at-post */
+		color      : $COLOR_FtM_text;
+		text-align : left;
+	}
+/* //_}+from-h1-at-post */
 
 /* //_{#can-mq */
 /* //_<bottom10 */
@@ -57,6 +59,19 @@
 }
 /* //_>bottom20 */
 
+/* //_{#can-mq */
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.mH {
+		text-align : center;
+	}
+}
+/* //_>bottom30 */
+/* //_}#can-mq */
+
+
 /* =====================================================================================
  * //_{+ArticleLabels
  *
@@ -64,8 +79,6 @@
  *   a
 --------------------------------------------------------------------------------------*/
 .mHl {
-	@include clearfix;
-
 	margin-top : 0.5em;
 	color      : $COLOR_FtM_fill; /* , を消す */
 }
@@ -79,7 +92,7 @@
 			height      : 2em;
 			line-height : 2;
 			padding     : 0 1em;
-			margin      : 0.5em 0;
+			margin      : 0.5em 0 1em;
 
 			background : $COLOR_FtM_casual_fill;
 			color      : $COLOR_FtM_link;
@@ -99,9 +112,13 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
+	.mHl {
+		line-height : 0;
+	}
 	.mHl a {
 		display     : block;
 	    text-align  : center;
+		margin      : 0.5em 0;
 	}
 }
 /* //_>bottom30 */
@@ -144,16 +161,20 @@
  * .mSB
  *   a
 --------------------------------------------------------------------------------------*/
+.mSB {
+	margin-top : 0.5em;
+	color      : $COLOR_FtM_fill; /* , を消す */
+}
+
     .mSB a {
         @include noUnderLineAlways;
 
         display     : inline-block;
-        height      : 1.8em;
-		line-height : 1.8;
+		height      : 2em;
+		line-height : 2;
         padding     : 0 1em;
-        margin      : 0 0.3em 1em 0;
+        margin      : 0.5em 0 1em 0;
         cursor      : pointer;
-        text-align  : center;
     }
 
 #lE {
@@ -201,6 +222,21 @@
         color      : $COLOR_FtM_flip_text;
     }
 }
+
+/* //_{#can-mq */
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.mSB {
+		line-height : 0;
+	}
+	.mSB a {
+		margin      : 0.5em 0;
+	}
+}
+/* //_>bottom30 */
+/* //_}#can-mq */
 
 /* //_<bottom50 */
 /*  Print
