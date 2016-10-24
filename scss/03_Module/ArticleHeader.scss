@@ -92,7 +92,7 @@
 			height      : 2em;
 			line-height : 2;
 			padding     : 0 1em;
-			margin      : 0.5em 0 1em;
+			margin      : 0 0 0.5em;
 
 			background : $COLOR_FtM_casual_fill;
 			color      : $COLOR_FtM_link;
@@ -122,21 +122,6 @@
 	}
 }
 /* //_>bottom30 */
-
-/* //_<bottom40 */
-/*  Watch
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
-	.mHl a, .mHl a:visited {
-		background : $COLOR_WTC_casual_fill;
-		color      : $COLOR_WTC_text !important;
-	}
-	.mHl a:hover {
-		background : $COLOR_WTC_flip_fill;
-		color      : $COLOR_WTC_flip_text !important;
-	}
-}
-/* //_>bottom40 */
 /* //_}#can-mq */
 
 /* //_<bottom50 */
@@ -173,7 +158,7 @@
 		height      : 2em;
 		line-height : 2;
         padding     : 0 1em;
-        margin      : 0.5em 0 1em 0;
+        margin      : 0 0 0.5em;
         cursor      : pointer;
     }
 

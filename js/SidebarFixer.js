@@ -44,6 +44,7 @@
 		
 			return true;
 		})(),
+		// !table-cell
 		root, body, elmSide, elmMain, elmWrap,
 		resizeTimerID, hasScroll, transformProp;
 	
@@ -90,6 +91,8 @@
 						style[ '-moz-' + transf ] !== undef ? '-moz-' + transf : 
 						style[ '-webkit-' + transf ] !== undef ? '-webkit-' + transf : '';
 		
+		if( !transformProp && !positionFixed ) elmSide.style.position = 'relative';
+
 		fixSidebar();
 	};
 	
@@ -136,7 +139,7 @@
 						css = TRANSF_TRANSL_0 + ( scrlY - mainY ) + 'px)';
 					} else
 					if( positionFixed ){
-						css = POS_FIXED_WIDTH + elmSide.offsetWidth + PX;
+						css = POS_FIXED_WIDTH + elmSide.offsetWidth + PX + ';top:0';
 					} else {
 						css = POS_RELATIVE_TOP + ( scrlY - mainY ) + PX;
 					};
@@ -158,7 +161,7 @@
 					css = TRANSF_TRANSL_0 + ( scrlY - mainY - ( sideH - winH ) ) + 'px) translateZ(0)'; /* Z() は Android 3.1　用 */
 				} else
 				if( positionFixed ){
-					css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;bottom:0;top:auto';
+					css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;bottom:0';
 				} else {
 					css = POS_RELATIVE_TOP + ( scrlY - mainY - ( sideH - winH ) ) + PX;
 				};

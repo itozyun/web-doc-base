@@ -206,6 +206,9 @@ table {
 		}
 	/* //_}+from-h1-at-post */
 
+	.mB a:visited       { color : $COLOR_WTC_visited; }
+	.mB a:visited:hover { color : $COLOR_WTC_visited_hover; }
+
 	p, pre, dl, ul, ol {
 		margin-left  : 0;
 		margin-right : 0;

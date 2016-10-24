@@ -34,10 +34,16 @@
 	    right       : 0;
 	}
 
+/* //_{+coloredHeader */
 .mS, .mSt {
 	background : $COLOR_HdS_casual_fill;
 }
-
+/* //_}+coloredHeader */
+/* //_{^+coloredHeader */
+.mS, .mSt {
+	background : $COLOR_BdS_casual_fill;
+}
+/* //_}^+coloredHeader */
 
 /* //_{#ie7-win */
 .mS * {
