@@ -109,12 +109,14 @@ h2:after {
 /* //_{#can-mq */
 
 /* //_<bottom25 */
-/*  Tablet small
+/*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
+	.lM2 h2,
 	.lS2 h2 {
 		text-align : right;
 	}
+	.lM2 h2:after,
 	.lS2 h2:after {
 		left  : auto;
 		right : 0;

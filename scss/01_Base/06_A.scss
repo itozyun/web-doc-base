@@ -243,7 +243,7 @@ a:link {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	a:link    { color : $COLOR_PRT_link; }
-	a:visited { color : $COLOR_PRT_visited; }
+	a:link   , .fillbg a:link   , .fillbg .lM a:link    { color : $COLOR_PRT_link; }
+	a:visited, .fillbg a:visited, .fillbg .lM a:visited { color : $COLOR_PRT_visited; }
 }
 /* //_>bottom50 */

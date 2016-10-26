@@ -1,0 +1,118 @@
+.Subscribe {
+	@include stackableModule;
+}
+
+	.Subscribe div {
+		margin : 1em 1em 0;
+		color  : $COLOR_BdM_fill; /* , を消す */
+	}
+        .fillbg .Subscribe div {
+            color  : $COLOR_FtS_fill; /* , を消す */
+        }
+        .lS .Subscribe div {
+            text-align : right;
+        }
+        .lS .Subscribe div,
+        #lF .Subscribe div {
+            margin : 0.6em 0.5em 0;
+        }
+
+        .Subscribe a {
+            @include noUnderLineAlways;
+
+            display     : inline-block;
+            height      : 2em;
+            line-height : 2;
+            padding     : 0 1em;
+            margin      : 0 0 0.5em;
+            cursor      : pointer;
+        }
+
+#lF {
+    .atom {
+        background : #DD6502;
+        color      : #DD6502;
+    }
+    .rss {
+        background : #DD8902;
+        color      : #DD8902;
+    }
+    .ldr {
+        background : #FF6565;
+        color      : #FF6565;
+    }
+    .nv {
+        background : #0EBB00;
+        color      : #0EBB00;
+    }
+    .fl {
+        background : #53BB45;
+        color      : #53BB45;
+    }
+    .stm {
+        background : #8BC53F;
+        color      : #8BC53F;
+    }
+    /* .bl {
+        background : #008ACE;
+        color      : #008ACE;
+    } */
+    .fs {
+        background : #333;
+        color      : #333;
+    }
+    .bb {
+        background : #008ACE;
+        color      : #008ACE;
+    }
+
+    .Subscribe a:link {
+        color      : #fff;
+    }
+    .Subscribe a:visited {
+        background : $COLOR_FtS_fill;
+    }
+    .Subscribe a:hover {
+        background : $COLOR_FtS_fill;
+        color      : $COLOR_ACCENT;
+    }
+    .Subscribe a:active:hover, .Subscribe a:focus:hover {
+        background : $COLOR_FtS_flip_fill;
+        color      : $COLOR_FtS_flip_text;
+    }
+}
+/* //_{#can-mq */
+
+/* //_<bottom21 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 950px) {
+    #lF .lS .Subscribe div {
+        text-align : left;
+    }
+}
+/* //_>bottom21 */
+
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+	.Subscribe {
+		line-height : 0;
+	}
+	.Subscribe a {
+		margin : 0.5em 0;
+	}
+}
+/* //_>bottom30 */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.Subscribe div {
+        margin : 0.6em 0 0;
+		color  : $COLOR_WTC_fill; /* , を消す */
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */

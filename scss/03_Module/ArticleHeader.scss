@@ -71,6 +71,32 @@
 /* //_>bottom30 */
 /* //_}#can-mq */
 
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	.mH {
+		color  : $COLOR_PRT_text;
+	}
+/* //_{+from-h2-at-post */
+	.mH h2 {
+		color  : $COLOR_PRT_text;
+	}
+/* //_}+from-h2-at-post */
+
+/* //_{+from-h1-at-post */
+	.mH h1 {
+		color  : $COLOR_PRT_text;
+	}
+/* //_}+from-h1-at-post */
+	.AHead-cita:after {
+		content   : " ("attr(href)") ";
+		font-size : 0.875em;
+		color     : $COLOR_PRT_link;
+	}
+}
+/* //_>bottom50 */
+
 
 /* =====================================================================================
  * //_{+ArticleLabels
@@ -115,11 +141,11 @@
 	.mHl {
 		line-height : 0;
 	}
-	.mHl a {
-		display     : block;
-	    text-align  : center;
-		margin      : 0.5em 0;
-	}
+		.mHl a {
+			display     : block;
+			text-align  : center;
+			margin      : 0.5em 0;
+		}
 }
 /* //_>bottom30 */
 /* //_}#can-mq */
@@ -135,102 +161,12 @@
 			padding    : 0;
 			background : none;
 		}
+		.mHl a:link {
+			color : $COLOR_PRT_link;
+		}
+		.mHl a:visited {
+			color : $COLOR_PRT_visited;
+		}
 }
 /* //_>bottom50 */
 /* //_}+ArticleLabels */
-
-
-/* =====================================================================================
- * //_{+SocialButtons
- * 
- * .mSB
- *   a
---------------------------------------------------------------------------------------*/
-.mSB {
-	margin-top : 0.5em;
-	color      : $COLOR_FtM_fill; /* , を消す */
-}
-
-    .mSB a {
-        @include noUnderLineAlways;
-
-        display     : inline-block;
-		height      : 2em;
-		line-height : 2;
-        padding     : 0 1em;
-        margin      : 0 0 0.5em;
-        cursor      : pointer;
-    }
-
-#lE {
-    .tw {
-        background : #1B95E0;
-        color      : #1B95E0;
-    }
-    .fb {
-        background : #3B5999;
-        color      : #3B5999;
-    }
-    .gp {
-        background : #dd4b39;
-        color      : #dd4b39;
-    }
-    .hb {
-        background : #008FDE;
-        color      : #008FDE;
-    }
-    .pt {
-        background : #BD081C;
-        color      : #BD081C;
-    }
-    .pk {
-        background : #EE4056;
-        color      : #EE4056;
-    }
-    .ln {
-        background : #00C300;
-        color      : #00C300;
-    }
-
-    .mSB a:link {
-        color      : #fff;
-    }
-    .mSB a:visited {
-        background : $COLOR_FtM_fill;
-    }
-    .mSB a:hover {
-        background : $COLOR_FtM_fill;
-        color      : $COLOR_ACCENT;
-    }
-    .mSB a:active:hover, .mSB a:focus:hover {
-        background : $COLOR_FtM_flip_fill;
-        color      : $COLOR_FtM_flip_text;
-    }
-}
-
-/* //_{#can-mq */
-/* //_<bottom30 */
-/*  Phone
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
-	.mSB {
-		line-height : 0;
-	}
-	.mSB a {
-		margin      : 0.5em 0;
-	}
-}
-/* //_>bottom30 */
-/* //_}#can-mq */
-
-/* //_<bottom50 */
-/*  Print
---------------------------------------------------------------------------------------*/
-@media print {
-	.mSB {
-        display : none;
-    }
-}
-/* //_>bottom50 */
-
-/* //_}+SocialButtons */

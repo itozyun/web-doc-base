@@ -127,20 +127,20 @@ table {
 
 /* //_{#can-mq */
 /* //_<bottom25 */
-/*  Fablet
+/*  PHABLET
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
 	/* //_{+from-h2-at-post */
 		.mB h3 {
-			padding-left  : $FABLET_H_SPACE/2;
-			padding-right : $FABLET_H_SPACE/2;
+			padding-left  : $PHABLET_H_SPACE/2;
+			padding-right : $PHABLET_H_SPACE/2;
 		}
 	/* //_}+from-h2-at-post */
 
 	/* //_{+from-h1-at-post */
 		.mB h2 {
-			padding-left  : $FABLET_H_SPACE/2;
-			padding-right : $FABLET_H_SPACE/2;
+			padding-left  : $PHABLET_H_SPACE/2;
+			padding-right : $PHABLET_H_SPACE/2;
 		}
 	/* //_}+from-h1-at-post */
 }

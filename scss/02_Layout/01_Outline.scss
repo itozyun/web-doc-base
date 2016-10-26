@@ -18,7 +18,7 @@
 --------------------------------------------------------------------------------------*/
 body {
 	background  : $COLOR_FtS_fill;
-	color       : $COLOR_FtM_text;
+	color       : $COLOR_FtS_text;
 }
 
 /* //_{^+coloredHeader */
@@ -29,14 +29,21 @@ body {
 	color      : $COLOR_BdM_text;
 }
 
-	#lB .lS, #lB .lSi {
+	#lB .lS
+	/* //_{#ie7-win */
+	, #lB .lSi
+	/* //_}#ie7-win */
+	{
 		background : $COLOR_BdS_fill;
+		color      : $COLOR_BdS_text;
 	}
-	#lF {
+	.fillbg {
 		background : $COLOR_FtM_fill;
+		color      : $COLOR_FtM_text;
 	}
-	#lF .lS, #lF .lO {
+	.fillbg .lS, .fillbg .lO {
 		background : $COLOR_FtS_fill;
+		color      : $COLOR_FtS_text;
 	}
 
 /* //_{+coloredHeader */
@@ -54,13 +61,8 @@ body {
 	}
 /* //_}+coloredHeader */
 
-	#lE {
-		background : $COLOR_FtM_fill;
-		color      : $COLOR_FtM_text;
-	}
 	#lE .lS, #lE .lSi {
 		background : none;
-		color      : $COLOR_FtM_text;
 	}
 
 /*  wrapper
@@ -265,8 +267,9 @@ body {
 			width   : auto;
 		/* //_}^@ie9 */
 		/* //_{@ie9 */
-			display : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
-			width   : 100%; /* auto は不可 */
+			display      : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
+			width        : 100%;  /* auto は不可 */
+			table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
 		/* //_}@ie9 */
 		}
 			.lMi, .lSi, .lXi {
@@ -278,12 +281,12 @@ body {
 
 /* //_{#can-mq */
 /* //_<bottom25 */
-/*  Fablet
+/*  PHABLET
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
 	.lMi, .lSi, .lXi {
-		padding-left  : $FABLET_H_SPACE;
-		padding-right : $FABLET_H_SPACE;
+		padding-left  : $PHABLET_H_SPACE;
+		padding-right : $PHABLET_H_SPACE;
 	}
 }
 /* //_>bottom25 */
@@ -327,7 +330,12 @@ body {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	body, #lH, #lE, #lB, #lF .lX {
+	body, #lH, #lE, #lB,
+	.fillbg, .fillbg .lS, .fillbg .lO
+/* //_{+coloredHeader */
+	, #lH .lO, #lH, #lH .lS
+/* //_}+coloredHeader */
+	 {
 		background : $COLOR_PRT_fill;
 		color      : $COLOR_PRT_text;
 	}

@@ -1,20 +1,20 @@
-/* //_{#can-mq */
-    [data-lmc] {
-        @include clearfix;
-    }
-
-/* //_<bottom10 */
-/*  Full HD
---------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
-        .lM1 {
-            float : left;
-            width : 50% - $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
-        }
-        .lM2 {
-            float : right;
-            width : 50% - $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
-        }
+/* //_{@ie8,@ie9,@modern */
+[data-lmc] {
+    @include clearfix;
 }
-/* //_>bottom10 */
-/* //_}#can-mq */
+/* //_}@ie8,@ie9,@modern */
+
+/* //_{#ie7-win */
+#lF .lMi {
+    @include clearfix;
+}
+/* //_}#ie7-win */
+    .lM1 {
+        float : left;
+        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+    }
+    .lM2 {
+        float : right;
+        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+    }
+ 

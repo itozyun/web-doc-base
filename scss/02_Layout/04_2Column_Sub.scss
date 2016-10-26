@@ -29,15 +29,20 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 950px) {
 /* 2column */
+	[data-lmc],
 	[data-lsc] {
-		padding : 0 0 2em;
-		border-top   : 1px solid $COLOR_BdS_casual_fill;
+		padding    : 0 0 2em;
 	}
+	[data-lsc] {
+		border-top : 1px solid $COLOR_BdS_casual_fill;
+	}
+		.lM1,
 		.lS1 {
 			float       : left;
 			width       : 50% - $TABLET_H_SPACE * 1.5;
 			margin-left : $TABLET_H_SPACE;
 		}
+		.lM2,
 		.lS2 {
 			float        : right;
 			width        : 50% - $TABLET_H_SPACE * 1.5;
@@ -47,19 +52,22 @@
 /* //_>bottom21 */
 
 /* //_<bottom25 */
-/*  Tablet small
+/*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
+	[data-lmc],
 	[data-lsc] {
 		padding : 0 0 2em;
 	}
+		.lM1,
 		.lS1 {
-			width       : 50% - $FABLET_H_SPACE * 1.5;
-			margin-left : $FABLET_H_SPACE;
+			width       : 50% - $PHABLET_H_SPACE * 1.5;
+			margin-left : $PHABLET_H_SPACE;
 		}
+		.lM2,
 		.lS2 {
-			width        : 50% - $FABLET_H_SPACE * 1.5;
-			margin-right : $FABLET_H_SPACE;
+			width        : 50% - $PHABLET_H_SPACE * 1.5;
+			margin-right : $PHABLET_H_SPACE;
 		}
 }
 /* //_>bottom25 */
@@ -69,6 +77,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 /* clear 2column */
+	.lM1, .lM2,
 	.lS1, .lS2 {
 		float        : none;
 		width        : auto;
