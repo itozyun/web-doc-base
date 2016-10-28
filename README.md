@@ -32,14 +32,17 @@ This project has been referred to the next project.
 
 1. [blogger-base](https://github.com/itozyun/blogger-base) "Blogger テンプレート用共通プロジェクト"
 2. [gariban](https://github.com/itozyun/gariban) "超軽量な無料 Blogger テンプレート"
-3. [OutCloud](http://outcloud.blogspot.com/) "itozyun　のブログです"
+3. [OutCloud](http://outcloud.blogspot.com/) "itozyun のブログです"
 
 ## How the CSS build - CSS のビルドの方法
 
-1. Install [iz-preprosessor](https://marketplace.visualstudio.com/items?itemName=itozyun.iz-preprocessor) to Visual Studio Code
+1. CSS is written in SCSS + iz-preprosessor Expanded Comments
+2. Install [iz-preprosessor](https://marketplace.visualstudio.com/items?itemName=itozyun.iz-preprocessor) to Visual Studio Code
+3. Generate the browser-specific .scss by iz-preprosessor
+4. Compile the generated .scss
 
 
 1. CSS は SCSS + iz-preprosessor 拡張コメントで書かれています
-2. VS Code 拡張の iz-preprosessor をインストールします
+2. VS Code 拡張の [iz-preprosessor](https://marketplace.visualstudio.com/items?itemName=itozyun.iz-preprocessor) をインストールします
 3. iz-preprosessor でブラウザ別の .scss を生成します
 4. 出来た .scss をコンパイルします
