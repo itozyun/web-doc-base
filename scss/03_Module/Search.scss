@@ -51,19 +51,14 @@
 }
 /* //_}#ie7-win */
 
-
 /* //_{#can-mq */
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
 	/* //_{^+coloredHeader */
-	.mS, .mSt {
+	.mS {
 		background : $COLOR_WTC_casual_fill;
-		color      : $COLOR_WTC_text;
-	}
-	.mSt:focus {
-	    color : $COLOR_ACCENT;
 	}
 	/* //_}^+coloredHeader */
 }

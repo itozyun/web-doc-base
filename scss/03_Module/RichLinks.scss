@@ -28,6 +28,7 @@
 			.mLts a {
 				@include clearfix;
 				page-break-inside  : avoid;
+				break-inside       : avoid;
 			}
 
 				.mLts img {

@@ -322,6 +322,13 @@ body {
 		padding-left  : 0;
 		padding-right : 0;
 	}
+
+	form * {
+		color  : $COLOR_WTC_text;
+	}
+	form :focus {
+	    color : $COLOR_ACCENT;
+	}
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

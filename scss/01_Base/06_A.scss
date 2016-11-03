@@ -27,6 +27,14 @@ a:link          {
 	color        : $COLOR_BdM_link;
 	border-color : $COLOR_BdM_fill;
 }
+
+/* //_{@modern */
+a:link, a:visited {
+	background : rgba( 255, 255, 255, 0 );
+	transition : 0.3s background ease-in, 0.3s color ease-in, 0.3s border-color ease-in;
+}
+/* //_}@modern */
+
 a:visited       {
 	color        : $COLOR_BdM_text; /* 訪問済のリンクは黒になる, .mB のみ紫に */
 	border-color : $COLOR_BdM_fill;
@@ -218,13 +226,6 @@ a:active *, a:focus * {
 		border-color : $COLOR_FtM_casual_fill;
 	}
 }
-
-/* //_{@modern */
-a:link {
-	background : rgba( 255, 255, 255, 0 );
-	transition : 0.3s background ease-in, 0.3s color ease-in, 0.3s border-color ease-in;
-}
-/* //_}@modern */
 
 /* //_{#can-mq */
 /* //_<bottom40 */

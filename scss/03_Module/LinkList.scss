@@ -18,6 +18,7 @@
 		/* href がない場合 current カラーになる */
 		cursor             : pointer;
 		page-break-inside  : avoid;
+		break-inside       : avoid;
 	}
 }
 @mixin linkCommon_watch {
@@ -48,6 +49,7 @@
 @media only screen and (min-width: 96em) {
 	.mL a {
 		page-break-inside  : avoid;
+		break-inside       : avoid;
 	}
 }
 /* //_>bottom10 */

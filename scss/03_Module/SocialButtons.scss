@@ -113,6 +113,9 @@
         color        : $COLOR_WTC_fill; /* , を消す */
 		border-color : $COLOR_WTC_casual_fill;
 	}
+    .SocialButtons a:link {
+        background   : $COLOR_WTC_fill;
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

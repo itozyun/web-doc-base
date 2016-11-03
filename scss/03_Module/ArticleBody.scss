@@ -273,7 +273,10 @@ table {
 		font-size   : 0.875em;
 		color       : $COLOR_PRT_link;
 	}
-	.mB a[href*=javascript：]:after {
+	.mB a[href$=".jpeg"]:after,
+	.mB a[href$=".jpg"]:after,
+	.mB a[href$=".gif"]:after,
+	.mB a[href$=".png"]:after {
 		display     : none;
 	}
 }
