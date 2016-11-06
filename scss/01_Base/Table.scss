@@ -2,8 +2,7 @@
 --------------------------------------------------------------------------------------*/
 	/* tables still need 'cellspacing="0"' in the markup */
 	table {
-		border-style      : solid;
-		border-width      : 1px 0 0 1px;
+		border            : 0;
 		border-collapse   : collapse;
 		empty-cells       : show;
 		border-spacing    : 0;
@@ -12,14 +11,22 @@
 	/* //_}@ie5win,@ie55 */
 	}
 
-	th, td {
-		padding           : 0.5em 0.3em;
-		border-style      : solid;
-		border-width      : 0 1px 1px 0;
+	th {
+		font-weight  : normal;
+		padding      : 0.5em;
 	}
-	
-	thead th {
-		font-weight : normal;
+	td {
+		padding      : 0.5em 0;
+	}
+
+	thead th, thead td {
+		border-style : solid;
+		border-width : 0 0 1px 0;
+	}
+
+	tbody th, tbody td {
+		border-style : solid;
+		border-width : 0 0.5em 1px 0;
 	}
 
 	.fat tbody th, .fat tbody td {
@@ -28,40 +35,122 @@
 
 	/*  Table
 --------------------------------------------------------------------------------------*/
-	table, th, td {
-		border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 50%) mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%);
+	th {
+		background   : $COLOR_BdM_casual_fill;
+		border-color : $COLOR_BdM_fill;
+	}
+	td {
+		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_BdM_casual_fill;
 	}
 	/* //_{@ie5win,@ie55 */
 	table {
-		color      : $COLOR_BdM_text;
+		color        : $COLOR_BdM_text;
 	}
 	/* //_}@ie5win,@ie55 */
-	thead th {
-		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 50%);
-		color      : $COLOR_BdM_text;
-	}
-	th {
-		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 80%);
+	thead th, thead td {
+		background   : $COLOR_BdM_casual_text;
+		border-color : $COLOR_BdM_fill;
+		color        : $COLOR_BdM_fill;
 	}
 
 	/* //_{^#ie6-win */
-	tr:hover td {
-		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 90%);
+	tbody tr:hover td {
+		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_ACCENT;
+		color        : $COLOR_ACCENT;
 	}
-	
 	tbody tr:hover th {
-		background : mix($COLOR_BdM_fill, $COLOR_BdM_text, 70%);
+		background   : $COLOR_ACCENT;
+		color        : #fff;
 	}
 	/* //_}^#ie6-win */
+
+	blockquote {
+		th, thead td {
+			background   : $COLOR_BdM_flip_fill;
+			border-color : $COLOR_BdM_casual_fill;
+			color        : $COLOR_BdM_casual_fill;
+		}
+		td {
+			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
+		}
+
+		/* //_{^#ie6-win */
+		tbody tr:hover td {
+			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_ACCENT;
+		}
+		/* //_}^#ie6-win */
+	}
 
 /* //_{#can-mq */
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	th { background : mix($COLOR_WTC_fill, $COLOR_WTC_text, 90%); }
-	tr:hover td { background : mix($COLOR_WTC_fill, $COLOR_WTC_text, 85%); }
-	tbody tr:hover th { background :mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%); }
+	th {
+		background   : $COLOR_WTC_casual_fill;
+		border-color : $COLOR_WTC_fill;
+	}
+	td {
+		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
+	}
+	thead th, thead td {
+		background   : $COLOR_WTC_casual_text;
+		border-color : $COLOR_WTC_fill;
+		color        : $COLOR_WTC_fill;
+	}
+
+	th {
+		padding      : 0.5em 0.2em;
+	}
+	tbody th, tbody td {
+		border-right-width : 0.2em;
+	}
+
+	tbody tr:hover td {
+		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;
+	}
+
+	blockquote {
+		th, thead td {
+			background   : $COLOR_WTC_flip_fill;
+			border-color : $COLOR_WTC_casual_fill;
+			color        : $COLOR_WTC_casual_fill;
+		}
+		td {
+			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
+		}
+
+		tbody tr:hover td {
+			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_ACCENT;
+		}
+	}
 }
 /* //_>bottom40 */
 /* //_}#can-mq */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	th {
+		border-color : #fff;
+	}
+	td {
+		border-color : #fff #fff $COLOR_BdM_casual_fill;
+	}
+	thead th, thead td {
+		border-color : #fff;
+		color        : #fff;
+	}
+
+	blockquote {
+		th, thead td {
+			border-color : #fff;
+			color        : #fff;
+		}
+		td {
+			border-color : #fff #fff $COLOR_BdM_casual_text;
+		}
+	}
+}
+/* //_>bottom50 */

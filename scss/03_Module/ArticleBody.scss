@@ -28,27 +28,21 @@ table {
 	.mB h3 {
 		@include h3-main-content;
 
-		background : $COLOR_BdM_flip_fill;
-		color      : $COLOR_BdM_flip_text;
+		border-color : $COLOR_ACCENT;
+		color        : $COLOR_ACCENT;
 	}
-	h4, h6 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%); }
-
-	h5 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 10%) }
 /* //_}+from-h2-at-post */
 
 /* //_{+from-h1-at-post */
 	.mB h2 {
 		@include h2-main-content;
 
-		background : $COLOR_BdM_flip_fill;
-		color      : $COLOR_BdM_flip_text;
+		border-color : $COLOR_ACCENT;
+		color        : $COLOR_ACCENT;
 	}
 	.mB h3 {
 		@include h3-main-content;
 	}
-	h3, h5, h6 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 60%); }
-
-	h4 { border-color : mix($COLOR_BdM_fill, $COLOR_BdM_text, 10%) }
 /* //_}+from-h1-at-post */
 
 /*  Object
@@ -184,25 +178,23 @@ table {
 	}
 	/* //_{+from-h2-at-post */
 		.mB h3 {
-			background    : mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%);
-			color         : $COLOR_WTC_text;
 			padding-left  : 0;
 			padding-right : 0;
 		}
 		.mB h4 {
-			border-color : mix($COLOR_WTC_fill, $COLOR_WTC_text, 60%);
+			border-color : $COLOR_WTC_flip_fill;
+			color        : $COLOR_WTC_flip_fill;
 		}
 	/* //_}+from-h2-at-post */
 
 	/* //_{+from-h1-at-post */
 		.mB h2 {
-			background    : mix($COLOR_WTC_fill, $COLOR_WTC_text, 70%);
-			color         : $COLOR_WTC_text;
 			padding-left  : 0;
 			padding-right : 0;
 		}
 		.mB h3 {
-			border-color : mix($COLOR_WTC_fill, $COLOR_WTC_text, 60%);
+			border-color : $COLOR_WTC_flip_fill;
+			color        : $COLOR_WTC_flip_fill;
 		}
 	/* //_}+from-h1-at-post */
 
