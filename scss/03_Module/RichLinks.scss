@@ -49,7 +49,9 @@
 				}
 				.mLts p {
 					display     : block;
+					/* //_{#ie55-,@ie8,@ie9,@modern */
 					padding     : 0 0 1em;
+					/* //_}#ie55-,@ie8,@ie9,@modern */
 					/* //_{@ie6,@ie7 */
 					padding     : 0;
 					/* //_}@ie6,@ie7 */
@@ -73,7 +75,9 @@
 /*  layout Main
 --------------------------------------------------------------------------------------*/
 	.lM .mLts a {
+		/* //_{#ie55-,@ie8,@ie9,@modern */
 		padding : 1em 0.5em 0;
+		/* //_}#ie55-,@ie8,@ie9,@modern */
 		/* //_{@ie6,@ie7 */
 		padding : 1em 0.5em;
 		/* //_}@ie6,@ie7 */
@@ -93,7 +97,9 @@
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
 .lS .mLts a {
+	/* //_{#ie55-,@ie8,@ie9,@modern */
 	padding : 0.5em 0.5em 0;
+	/* //_}#ie55-,@ie8,@ie9,@modern */
 	/* //_{@ie6,@ie7 */
 	padding : 0.5em;
 	/* //_}@ie6,@ie7 */
@@ -106,9 +112,11 @@
 		}
 
 		.lS .mLts span, .lS .mLts b {
-			padding     : 0 0 0.56em;
+			/* //_{#ie55-,@ie8,@ie9,@modern */
+			padding : 0 0 0.56em;
+			/* //_}#ie55-,@ie8,@ie9,@modern */
 			/* //_{@ie6,@ie7 */
-			padding     : 0;
+			padding : 0;
 			/* //_}@ie6,@ie7 */
 		}
 

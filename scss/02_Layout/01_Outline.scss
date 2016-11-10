@@ -30,13 +30,11 @@ body {
 }
 
 	#lB .lS
-	/* //_{#ie7-win */
-	, #lB .lSi
-	/* //_}#ie7-win */
 	{
 		background : $COLOR_BdS_fill;
 		color      : $COLOR_BdS_text;
 	}
+
 	.fillbg {
 		background : $COLOR_FtM_fill;
 		color      : $COLOR_FtM_text;
@@ -90,7 +88,12 @@ body {
 		/* //_}^#ie89 */
 	}
 		.lMi {
+			/* //_{@ie6 */ /* maring でないと :hover でレイアウトがガタつく */
+			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+			/* //_}@ie6 */
+			/* //_{^@ie6 */
 			padding-left : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+			/* //_}^@ie6 */
 		}
 
 /*  sub
@@ -108,8 +111,14 @@ body {
 			/* //_{#ie55- */
 			width         : 100%;
 			/* //_}#ie55- */
+			/* //_{@ie6 */ /* maring でないと :hover でレイアウトがガタつく */
+			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+			margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+			/* //_}@ie6 */
+			/* //_{^@ie6 */
 			padding-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
 			padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+			/* //_}^@ie6 */
 		}
 
 /*  x-column

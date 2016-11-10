@@ -2,9 +2,21 @@
 --------------------------------------------------------------------------------------*/
 /* //_{@modern */
 #jM a[href] > img {
-	transition : width 0.3s ease-in-out;
+-webkit-transition-property : width;
+
+	-webkit-transition :       0.5s ease-in-out;
+	   -moz-transition : width 0.3s ease-in-out;
+	    -ms-transition : width 0.3s ease-in-out;
+		 -o-transition : width 0.3s ease-in-out;
+		    transition : width 0.3s ease-in-out;
 }
 /* //_}@modern */
+
+/* //_{@ie9 */
+#jM a[href] > img {
+	    -ms-transition : width 0.3s ease-in-out;
+}
+/* //_}@ie9 */
 
 .jL img {
 	width       : 100%;

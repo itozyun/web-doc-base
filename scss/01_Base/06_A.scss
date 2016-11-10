@@ -2,14 +2,17 @@
 --------------------------------------------------------------------------------------*/
 
 /* 下線なし -> hover -> 下線あり */
-a:link, a:focus, a:active { text-decoration : none; }
+/* //_{#ie6-win */
+a,
+/* //_}#ie6-win */
+a:link, a:visited, a:focus, a:active { text-decoration : none; }
 a:hover { text-decoration : none; } /* link の無い a には下線をつけない */
 a:link:hover, a:visited:hover { text-decoration : underline; }
 a:focus:hover, a:active:hover { text-decoration : underline !important; }
 
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
 @mixin hideUnderLineOnHover {
-    &:link { text-decoration : underline; }
+    &:link, &:visited { text-decoration : underline; }
     &:hover, &:focus, &:active { text-decoration : none; }
 }
 

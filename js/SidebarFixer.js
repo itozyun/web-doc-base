@@ -5,10 +5,10 @@
 
 	var
 	// memory
-		preonload   = onload,
-		preonscroll = onscroll,
-		preonresize = onresize,
-		preonunload = onunload,
+		preonload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
+		preonscroll = window.onscroll,
+		preonresize = window.onresize,
+		preonunload = window.onunload,
 		emptyFunc   = new Function,
 	/*
 	 * positionFixed
@@ -21,7 +21,8 @@
 				// Rendering engine is Webkit, and capture major version
 				wkversion = parseFloat( ua.split( 'AppleWebKit/' )[ 1 ] ),
 				ffversion = parseFloat( ua.split( 'Fennec/' )[ 1 ] ),
-				omversion = parseFloat( ua.split( 'Opera Mobi/' )[ 1 ] );
+				omversion = parseFloat( ua.split( 'Opera Mobi/' )[ 1 ] ),
+				ieversion = parseFloat( ua.split( 'MSIE ' )[ 1 ] );
 		
 			if(
 				// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
@@ -37,16 +38,15 @@
 				// MeeGo
 				( ua.indexOf( "MeeGo" ) > -1 && ua.indexOf( "NokiaBrowser/8.5.0" ) > -1 ) ||
 				// IE6-
-				( parseFloat( ua.split( 'MSIE ' )[ 1 ] ) < 7 )
+				( 0 < ieversion && ieversion < 7 )
 				) {
 				return false;
 			};
-		
 			return true;
 		})(),
 		// !table-cell
 		root, body, elmSide, elmMain, elmWrap,
-		resizeTimerID, hasScroll, transformProp;
+		resizeTimerID, hasScroll, transformProp, can3D;
 	
 	function getFinite(){
 		var args = arguments, i = 0, l = args.length;
@@ -59,6 +59,7 @@
 
 	onload = function(e){
 		var transf = 'transform',
+			perspe = 'perspective',
 			style, undef;
 		
 		body  = document.body;
@@ -91,34 +92,47 @@
 						style[ '-moz-' + transf ] !== undef ? '-moz-' + transf : 
 						style[ '-webkit-' + transf ] !== undef ? '-webkit-' + transf : '';
 		
-		if( !transformProp && !positionFixed ) elmSide.style.position = 'relative';
+		can3D         = style[ perspe ] !== undef ||
+						style[ '-moz-' + perspe ] !== undef ||
+						style[ '-webkit-' + perspe ] !== undef;
+
+		if( !transformProp ){
+			if( !positionFixed ){
+				// elmMain への relative 設定は ie6 で必要! 
+				// 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない.
+				elmSide.style.position = elmMain.style.position = 'relative';
+			}
+		};
 
 		fixSidebar();
 	};
 	
 	function fixSidebar(){
-		var elm = elmMain,
-			POS_RELATIVE_TOP = 'position:relative;top:',
-			POS_FIXED_WIDTH  = 'position:fixed;width:',
-			TRANSF_TRANSL_0  = transformProp + ':translate(0,',
-			PX = 'px', mainY = 0, css = '',
-			winW, winH, mainH, sideH, scrlY;//, log;
+			// transform pos:fixed が使えない場合、塗りのために width を指定するので pos:relative でなくレイアウトコストの低い pos:absolute を使用
+		var POS_ABSOLUT_TOP = 'position:absolute;left:0;width:100%;top:',
+			POS_FIXED_WIDTH = 'position:fixed;width:',
+			TRANSF_TRANSL_0 = transformProp + ':translate' + ( can3D ? '3D(0,' : '(0,' ), /* 3D は Android 3.1 用 */
+			TRANSF_TRANSL_Z = can3D ? 'px,0)' : 'px)',
+			PX    = 'px', 
+			// window の幅
+			winW  = getFinite( window.innerWidth, root.offsetWidth ),
+			// window の高さ
+			winH  = getFinite( window.innerHeight, root.offsetHeight ),
+			elm   = elmMain,
+			mainH = elm.offsetHeight,
+			sideH = elmWrap.offsetHeight,
+			mainY = 0,
+			css   = '',
+			scrlY;//, log;
 		
 		resizeTimerID = 0;
 
-		// window の幅
-		winW  = getFinite( window.innerWidth, root.offsetWidth );
-		// window の高さ
-		winH  = getFinite( window.innerHeight, root.offsetHeight );
-		mainH = elmMain.offsetHeight;
-		sideH = elmWrap.offsetHeight;
-		
 		// elmSide.offsetTop === elmMain.offsetTop ならマルチカラム
-		if( elmSide.offsetTop === elmMain.offsetTop && sideH < mainH ){
+		if( sideH < mainH && elmSide.offsetTop === elm.offsetTop ){
 
 			// sidebar の y
 			while( elm ){
-				mainY += elm.offsetTop  || 0;
+				mainY += elm.offsetTop || 0;
 				elm    = elm.offsetParent || elm.parentElement;
 			};
 	
@@ -134,19 +148,26 @@
 					//log += '^';
 				} else
 				if( scrlY <= mainY + mainH - sideH ){
-					// 天に貼り付けする
+					// ViewPort の天に貼り付けする
 					if( transformProp ){
-						css = TRANSF_TRANSL_0 + ( scrlY - mainY ) + 'px)';
+						css = TRANSF_TRANSL_0 + ( scrlY - mainY ) + TRANSF_TRANSL_Z;
 					} else
 					if( positionFixed ){
-						css = POS_FIXED_WIDTH + elmSide.offsetWidth + PX + ';top:0';
+						css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;top:0';
 					} else {
-						css = POS_RELATIVE_TOP + ( scrlY - mainY ) + PX;
+						css = POS_ABSOLUT_TOP + ( scrlY - mainY ) + PX;
 					};
 					//log += '_';
 				} else {
 					// 底に貼り付けする
-					css = POS_RELATIVE_TOP + ( mainH - sideH ) + PX;
+					if( transformProp ){
+						css = TRANSF_TRANSL_0 + ( mainH - sideH ) + TRANSF_TRANSL_Z;
+					} else
+					if( positionFixed ){
+						css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;bottom:' + ( winH - ( mainY + mainH - scrlY ) ) + PX;
+					} else {
+						css = POS_ABSOLUT_TOP + ( mainH - sideH ) + PX;
+					};
 					//log += '-';
 				};
 			} else
@@ -158,19 +179,22 @@
 			if( scrlY + winH <= mainY + mainH ){
 				// 底に貼り付けする
 				if( transformProp ){
-					css = TRANSF_TRANSL_0 + ( scrlY - mainY - ( sideH - winH ) ) + 'px) translateZ(0)'; /* Z() は Android 3.1　用 */
+					css = TRANSF_TRANSL_0 + ( scrlY - mainY - ( sideH - winH ) ) + TRANSF_TRANSL_Z;
 				} else
 				if( positionFixed ){
 					css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;bottom:0';
 				} else {
-					css = POS_RELATIVE_TOP + ( scrlY - mainY - ( sideH - winH ) ) + PX;
+					css = POS_ABSOLUT_TOP + ( scrlY - mainY - ( sideH - winH ) ) + PX;
 				};
 				//log += '_';
 			} else {
 				if( transformProp ){
-					css = TRANSF_TRANSL_0 + ( mainH - sideH ) + 'px)';
+					css = TRANSF_TRANSL_0 + ( mainH - sideH ) + TRANSF_TRANSL_Z;
+				} else
+				if( positionFixed ){
+					css = POS_FIXED_WIDTH + elmSide.offsetWidth + 'px;bottom:' + ( winH - ( mainY + mainH - scrlY ) ) + PX;
 				} else {
-					css = POS_RELATIVE_TOP + ( mainH - sideH ) + PX;
+					css = POS_ABSOLUT_TOP + ( mainH - sideH ) + PX;
 				};
 				//log += '-';
 			};
@@ -180,7 +204,7 @@
 
 		elmWrap.style.cssText = css;
 
-		//document.title = log + ';' + css;
+		//document.title = css;
 		//console.log( 'mainY:' + mainY + ' scrlY:' + scrlY + ' winH:' + winH + ' sideH:' + sideH );
 	};
 
@@ -189,7 +213,7 @@
 
 	onscroll = function( e ){
 		if( preonscroll ) preonscroll( e );
-		
+		//document.title = 'scroll ' + !!root;
 		root && fixSidebar();
 	};
 

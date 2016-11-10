@@ -72,15 +72,14 @@
 			font-style : normal;
 		}
 
-		
 		input {
 			font-size : 1em;
 			/* //_{@modern */
 			-webkit-border-radius : 0;			    
-			 -khtml-border-radius : 0;			    
+			 /* -khtml-border-radius : 0; */			    
 			   -moz-border-radius : 0;			    
 			    -ms-border-radius : 0;			    
-			     -o-border-radius : 0;			    
+		      /* -o-border-radius : 0; */	    
 		            border-radius : 0;
 			-webkit-appearance    : none;
 			/* //_}@modern */
