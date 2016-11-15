@@ -13,12 +13,10 @@
 	/* //_}#ie6,@ie55 */
 
 	a {
-		@include fill;
-
 		/* href がない場合 current カラーになる */
+		@include fill;
+		@include unbreak-inside;
 		cursor             : pointer;
-		page-break-inside  : avoid;
-		break-inside       : avoid;
 	}
 }
 @mixin linkCommon_watch {
@@ -48,8 +46,7 @@
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
 	.mL a {
-		page-break-inside  : avoid;
-		break-inside       : avoid;
+		@include unbreak-inside;
 	}
 }
 /* //_>bottom10 */

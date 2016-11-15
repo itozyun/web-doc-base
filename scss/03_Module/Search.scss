@@ -23,9 +23,6 @@
 	    height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
 		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
 	}
-	.mSt:focus {
-		color       : darken( $COLOR_ACCENT, 30% );
-	}
 	.mS .btn {
 	    width       : 3em;
 	    height      : $BASE_LINE_HEIGHT_EM;
@@ -45,11 +42,11 @@
 }
 /* //_}^+coloredHeader */
 
-/* //_{#ie7-win */
+/* //_{@ie55,@ie6,@ie7 */
 .mS * {
 	zoom : 1;
 }
-/* //_}#ie7-win */
+/* //_}@ie55,@ie6,@ie7 */
 
 /* //_{#can-mq */
 /* //_<bottom40 */
@@ -57,7 +54,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
 	/* //_{^+coloredHeader */
-	.mS {
+	.mS, .mSt {
 		background : $COLOR_WTC_casual_fill;
 	}
 	/* //_}^+coloredHeader */

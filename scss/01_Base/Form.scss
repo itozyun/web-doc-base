@@ -1,0 +1,50 @@
+
+input {
+    font-size : 1em;
+    /* //_{@modern */
+    -webkit-border-radius : 0;		    
+       -moz-border-radius : 0;			    
+        -ms-border-radius : 0;			    
+            border-radius : 0;
+    -webkit-appearance    : none;
+    /* //_}@modern */
+}
+
+/* //_{@modern */
+input::-moz-focus-inner /* , button::-moz-focus-inner */ {
+    border      : 0;
+}
+/* //_}@modern */
+
+textarea {
+    /* //_{@modern */
+    resize           : vertical;
+    background-image : none; /* Android Firefox */
+    /* //_}@modern */
+}
+
+form :focus {
+    color      : darken( $COLOR_ACCENT, 30% );
+}
+
+/* //_{@modern */
+form :invalid {
+    color      : $COLOR_WARN;
+    box-shadow : none; /* firefox45 */
+}
+/* //_}@modern */
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	form * {
+		color  : $COLOR_WTC_text;
+	}
+	form :focus {
+	    color : $COLOR_ACCENT;
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */

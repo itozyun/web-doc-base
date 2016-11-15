@@ -1,16 +1,26 @@
+
+@mixin unbreak-inside {
+        break-inside      : avoid;
+        page-break-inside : avoid;
+}
+
+@mixin unbreak-after {
+	/* //_{@modern */
+	  -moz-break-after         : avoid;
+	column-break-after         : avoid;
+	-webkit-column-break-after : avoid;
+	-webkit-region-break-after : avoid;
+	/* //_}@modern */
+	break-after                : avoid;
+	page-break-after           : avoid;
+}
+
 /*  Typography
 --------------------------------------------------------------------------------------*/
 	h1, h2, h3, h4, h5, h6 {
 		line-height        : 1.2;
-		break-after        : avoid;
-		/* //_{@modern */
-		-moz-break-after   : avoid;
-		break-after        : avoid;
-		break-inside       : avoid;
-		column-break-after : avoid;
-		-webkit-column-break-after : avoid;
-		-webkit-region-break-after : avoid;
-		/* //_}@modern */
+		@include unbreak-inside;
+		@include unbreak-after;
 	}
 
 	/* //_{+from-h2-at-post */
@@ -144,21 +154,9 @@
 		margin-bottom : 0;
 	}
 
-	dl, ul, ol {
-		/* //_{@modern */
-		page-break-inside  : avoid;
-		break-inside       : avoid;
-		/* //_}@modern */
-	}
-
-	dt {
-		/* //_{@modern */
-		-moz-break-after   : avoid;
-		break-after        : avoid;
-		column-break-after : avoid;
-		-webkit-column-break-after : avoid;
-		-webkit-region-break-after : avoid;
-		/* //_}@modern */
+	dl, ul, ol, tr, dt {
+		@include unbreak-inside;
+		@include unbreak-after;
 	}
 
 	strong {
@@ -221,10 +219,7 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	h1, h2, h3, h4, h5, h6  {
-		page-break-after  : avoid;
-		page-break-inside : avoid;
-	}
+
 }
 /* //_>bottom50 */
 

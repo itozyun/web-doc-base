@@ -1,0 +1,71 @@
+/*
+ * http://webcommu.net/phone-table-scroll/
+ */
+.hscroll {
+    /* //_{@modern */
+    overflow   : auto;
+    /* //_}@modern */
+    overflow-x : auto;
+    overflow-y : hidden;
+}
+
+.mB .hscroll {
+    margin : 1em 0;
+}
+
+    .hscroll table {
+        /* //_{@modern */
+        width        : 99%;
+        margin       : 0 0.5% 0.5em;
+        /* //_}@modern */
+        /* //_{#ie8-win,@ie9 */
+        width        : 99%;
+        margin       : 0 0 0.5em;
+        /* //_}#ie8-win,@ie9 */
+	/* //_{@ie5win,@ie55 */
+		table-layout : auto;
+	/* //_}@ie5win,@ie55 */
+    }
+    .hscroll pre {
+        margin      : 0 0 0.5em;
+        white-space : pre;
+    }
+
+/* //_{@modern */
+.hscroll::-webkit-scrollbar {
+    height : 5px;
+}
+.hscroll::-webkit-scrollbar-track {
+    background : #F1F1F1;
+}
+.hscroll::-webkit-scrollbar-thumb {
+    background : #BCBCBC;
+}
+/* //_}@modern */
+
+/* //_{#can-mq */
+/* //_<bottom21 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 950px) {
+    .hscroll table {
+        white-space  : nowrap;
+    }
+}
+/* //_>bottom21 */
+/* //_}#can-mq */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+    .hscroll table {
+        width        : 100%;
+        margin       : 0;
+    }
+    .hscroll pre {
+        margin      : 0;
+        white-space : pre-wrap;
+    }
+}
+/* //_>bottom50 */

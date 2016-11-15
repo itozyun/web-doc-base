@@ -71,26 +71,6 @@
 		dfn, cite, code, var, samp, kbd, q {
 			font-style : normal;
 		}
-
-		input {
-			font-size : 1em;
-			/* //_{@modern */
-			-webkit-border-radius : 0;			    
-			 /* -khtml-border-radius : 0; */			    
-			   -moz-border-radius : 0;			    
-			    -ms-border-radius : 0;			    
-		      /* -o-border-radius : 0; */	    
-		            border-radius : 0;
-			-webkit-appearance    : none;
-			/* //_}@modern */
-		}
-		
-		/* //_{@modern */
-		input::-moz-focus-inner /* , button::-moz-focus-inner */ {
-			border      : 0;
-		}
-		/* //_}@modern */
-
 		
 		/* http://e2designer.seesaa.net/article/152168876.html */
 		/* http://perishablepress.com/press/2010/06/01/wrapping-content/ */

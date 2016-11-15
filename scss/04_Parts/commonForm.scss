@@ -1,0 +1,83 @@
+/* [parts] commonForm
+ *
+ * form.commonForm
+ *   .commonForm-pair
+ *     label
+ *     div.commonForm-wrap
+ *       input[type=text]|textarea
+ *    .commonForm-send
+ *       input[type=submit].btn
+--------------------------------------------------------------------------------------*/
+.commonForm {
+    display : block;
+}
+
+    .commonForm-pair {
+        @include clearfix;
+        @include unbreak-inside;
+
+        margin-bottom : 1em;
+    }
+        .commonForm label {
+            display : block;
+            float   : left;
+            width   : 7em;
+            padding : 0.2em 0;
+        }
+
+        .commonForm-wrap {
+            margin-left : 8em;
+            /* //_{@modern */
+            padding     : 0.2em 0.5em;
+            /* //_}@modern */
+            background  : $COLOR_BdM_casual_fill;
+        }
+
+            .commonForm-wrap * {
+                width      : 100%;
+                padding    : 0;
+                border     : 0;
+                background : $COLOR_BdM_casual_fill;
+            }
+
+            .commonForm-wrap textarea {
+                margin : 0;
+                border : 0;
+            }
+
+        .commonForm-send {
+            text-align : right;
+        }
+            .commonForm-send .btn {
+                /* //_{@ie8,@ie9,@modern */
+                display : inline-block;
+                /* //_}@ie8,@ie9,@modern */
+                padding : 0 1em;
+            }
+
+/* //_{#can-mq */
+/* //_<bottom30 */
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 479px) {
+    .commonForm label {
+        float   : none;
+        width   : auto;
+    }
+
+    .commonForm-wrap {
+        margin-left : 0;
+    }
+}
+/* //_>bottom30 */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+    .commonForm-wrap,
+    .commonForm-wrap * {
+        background : $COLOR_WTC_casual_fill;
+    }
+}
+/* //_>bottom40 */
+/* //_}#can-mq */

@@ -9,7 +9,6 @@ h2 {
 	margin       : 0;
 	border-width : 0 0 1px;
 	border-style : solid;
-	@include border-color;
 
 	padding      : 1.5em 0.45em 0.5em;
 	font-size    : 1.1em;
@@ -147,12 +146,6 @@ h2:after {
 	.lM h2, .lS h2 {
 		padding-left  : 0;
 		padding-right : 0;
-	}
-
-	h2 {
-		@if $COLOR_BdM_casual_fill != $COLOR_WTC_casual_fill {
-			border-color : $COLOR_WTC_casual_fill;
-		}
 	}
 
 	/* //_{#can-content */

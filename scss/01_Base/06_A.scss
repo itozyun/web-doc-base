@@ -216,20 +216,6 @@ a:active *, a:focus * {
 	}
 }
 
-@mixin border-color {
-	border-color : $COLOR_BdM_casual_fill;
-
-	.lS & {
-		border-color : $COLOR_BdS_casual_fill;
-	}
-	.fillbg & {
-		border-color : $COLOR_FtS_casual_fill;
-	}
-	.fillbg .lM & {
-		border-color : $COLOR_FtM_casual_fill;
-	}
-}
-
 /* //_{#can-mq */
 /* //_<bottom40 */
 /*  Watch

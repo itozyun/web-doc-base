@@ -19,16 +19,13 @@
 		.mLts div {
 			border-width : 0 0 1px;
 			border-style : solid;
-			
-			@include border-color;
 		}
 		.mLts .mLts1 {
 			border-width : 1px 0;
 		}
 			.mLts a {
 				@include clearfix;
-				page-break-inside  : avoid;
-				break-inside       : avoid;
+				@include unbreak-inside;
 			}
 
 				.mLts img {

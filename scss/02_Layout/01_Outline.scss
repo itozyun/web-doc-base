@@ -63,6 +63,44 @@ body {
 		background : none;
 	}
 
+	* {
+		border-color : $COLOR_BdM_casual_fill;
+	}
+
+	.lS * {
+		border-color : $COLOR_BdS_casual_fill;
+	}
+	.fillbg * {
+		border-color : $COLOR_FtS_casual_fill;
+	}
+	.fillbg .lM * {
+		border-color : $COLOR_FtM_casual_fill;
+	}
+
+/* //_{#can-mq */
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	* {
+		border-color : $COLOR_WTC_casual_fill;
+	}
+
+	#lH {
+		background : $COLOR_WTC_fill;
+		color      : $COLOR_WTC_text;
+	}
+	#lB {
+		background : $COLOR_WTC_fill;
+	}
+	
+	#lB .lM {
+		color      : $COLOR_WTC_text;
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */
+
 /*  wrapper
 --------------------------------------------------------------------------------------*/	
 .lW {
@@ -315,28 +353,9 @@ body {
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	#lH {
-		background : $COLOR_WTC_fill;
-		color      : $COLOR_WTC_text;
-	}
-	#lB {
-		background : $COLOR_WTC_fill;
-	}
-	
-	#lB .lM {
-		color      : $COLOR_WTC_text;
-	}
-
 	.lMi, .lSi, .lXi {
 		padding-left  : 0;
 		padding-right : 0;
-	}
-
-	form * {
-		color  : $COLOR_WTC_text;
-	}
-	form :focus {
-	    color : $COLOR_ACCENT;
 	}
 }
 /* //_>bottom40 */
