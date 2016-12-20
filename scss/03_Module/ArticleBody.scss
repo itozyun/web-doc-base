@@ -51,7 +51,8 @@ table {
 .mB embed,
 .mB object,
 .mB iframe,
-.mB video {
+.mB video,
+.mB .caption {
 	max-width : 100%;
 	display   : block;
 	margin    : 1em auto;

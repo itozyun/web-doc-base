@@ -97,3 +97,9 @@
 		/* remember to highlight inserts somehow! */
 		ins { text-decoration: none; }
 		del { text-decoration: line-through; }
+
+		/* //_{@ie9,@modern */
+		figure {
+			margin : 0;
+		}
+		/* //_}@ie9,@modern */

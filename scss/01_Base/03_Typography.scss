@@ -1,15 +1,15 @@
 
 @mixin unbreak-inside {
-        break-inside      : avoid;
-        page-break-inside : avoid;
+	break-inside      : avoid;
+	page-break-inside : avoid;
 }
 
 @mixin unbreak-after {
 	/* //_{@modern */
-	  -moz-break-after         : avoid;
-	column-break-after         : avoid;
 	-webkit-column-break-after : avoid;
 	-webkit-region-break-after : avoid;
+	  -moz-break-after         : avoid;
+	column-break-after         : avoid;
 	/* //_}@modern */
 	break-after                : avoid;
 	page-break-after           : avoid;

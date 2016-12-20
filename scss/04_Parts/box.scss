@@ -6,6 +6,12 @@
 	
 	margin      : 0 1em;
 }
+.box p, .box dl {
+	margin-top      : 0;
+	margin-left     : 0;
+	margin-right    : 0;
+}
+
 blockquote .box {
 	margin-top  : 1em;
 }
@@ -15,32 +21,36 @@ blockquote .box {
 .box object,
 .box iframe,
 .box video {
-	float       : left;
-	padding     : 1px 0 0 1px;
-	margin      : 0 1em 1em 0;
+	padding : 1px 0 0 1px;
 }
 
-.box p, .box dl {
-	margin-top      : 0;
-	margin-left     : 0;
-	margin-right    : 0;
-}
-/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない 
-#Bm a[href*=javascript：] {
-	display : block;
+.box img,
+.box embed,
+.box object,
+.box iframe,
+.box video,
+.box .caption {
 	float   : left;
-}*/
-/* .Lg のときは block, float を切る ie では無い方がよい 
-.mB a.Lg,
-.e8- #Bm a[href*=javascript：] {
-	display : inline;
-	float   : none;
+	margin  : 0 1em 1em 0;
 }
-#Bm a[href*=javascript：]:focus {
-	outline    : 0;
-	background : inherit;
-} */
 
+
+/* object with caption
+ *  .box
+ *    .caption[style=width:XXpx]
+ *       figure
+ *         img|emned|
+ *         figcaption
+ */
+.caption {
+	word-break    : break-all;
+	text-align    : center;
+	line-height   : 1.2;
+	font-size     : 0.875em;
+}
+.box .caption * {
+	float        : none;
+}
 
 /* //_{#can-mq */
 
@@ -56,7 +66,8 @@ blockquote .box {
 	.box embed,
 	.box object,
 	.box iframe,
-	.box video {
+	.box video,
+	.box .caption {
 		margin-right : 0.5em;
 	}
 }
@@ -74,7 +85,8 @@ blockquote .box {
 	.box embed,
 	.box object,
 	.box iframe,
-	.box video {
+	.box video,
+	.box .caption {
 		float       : none;
 		display     : block;
 		margin      : 0 auto 1em;

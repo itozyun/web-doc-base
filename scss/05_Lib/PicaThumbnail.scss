@@ -1,22 +1,25 @@
 /*  PicaThumbnail
 --------------------------------------------------------------------------------------*/
-/* //_{@modern */
-#jM a[href] > img {
+
+#jM a[href] > img, #jM .caption {
+	/* //_{@modern */
 -webkit-transition-property : width;
 
-	-webkit-transition :       0.5s ease-in-out;
-	   -moz-transition : width 0.3s ease-in-out;
-	    -ms-transition : width 0.3s ease-in-out;
-		 -o-transition : width 0.3s ease-in-out;
-		    transition : width 0.3s ease-in-out;
+		 -webkit-transition :       0.5s ease-in-out;
+		    -moz-transition : width 0.3s ease-in-out;
+			  -o-transition : width 0.3s ease-in-out;
+				 transition : width 0.3s ease-in-out;
+		/* //_}@modern */
+		/* //_{@ie9 */
+			 /* -ms-transition : width 0.3s ease-in-out; */
+		/* //_}@ie9 */
 }
-/* //_}@modern */
 
-/* //_{@ie9 */
-#jM a[href] > img {
-	    -ms-transition : width 0.3s ease-in-out;
+.caption {
+	/* //_{@modern */
+	width       : 100%; /* for animation */
+	/* //_}@modern */
 }
-/* //_}@ie9 */
 
 .jL img {
 	width       : 100%;
@@ -28,3 +31,24 @@ a:focus img, a:active img {
     outline     : 1px solid $COLOR_ACCENT;
 	background  : $COLOR_ACCENT;
 }
+
+.js-picaThumb-small {
+	display : table; /* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない */
+}
+
+/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない 
+#Bm a[href*=javascript：] {
+	display : block;
+	float   : left;
+}*/
+/* .Lg のときは block, float を切る ie では無い方がよい 
+.mB a.Lg,
+.e8- #Bm a[href*=javascript：] {
+	display : inline;
+	float   : none;
+}
+#Bm a[href*=javascript：]:focus {
+	outline    : 0;
+	background : inherit;
+} */
+

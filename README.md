@@ -24,7 +24,7 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 
 This project has been referred to the next project.
 
-1. [blogger-base](https://github.com/itozyun/blogger-base) "common project for Blogger templete"
+1. [blogger-base](https://github.com/itozyun/blogger-base) "Common project for Blogger templete"
 2. [gariban](https://github.com/itozyun/gariban) "Ultralight free Blogger templete"
 3. [OutCloud](http://outcloud.blogspot.com/) "itozyun's blog"
 

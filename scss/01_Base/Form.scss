@@ -17,6 +17,7 @@ input::-moz-focus-inner /* , button::-moz-focus-inner */ {
 /* //_}@modern */
 
 textarea {
+    overflow         : auto;
     /* //_{@modern */
     resize           : vertical;
     background-image : none; /* Android Firefox */

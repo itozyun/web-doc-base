@@ -88,29 +88,29 @@
 			font-size : 1.5em;
 		}
 		.lM .mLts span, .lM .mLts b {
-		    margin      : 0 0 0.7em;	
+		    margin    : 0 0 0.7em;	
 		}
 	
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
-.lS .mLts a {
-	/* //_{#ie55-,@ie8,@ie9,@modern */
-	padding : 0.5em 0.5em 0;
-	/* //_}#ie55-,@ie8,@ie9,@modern */
-	/* //_{@ie6,@ie7 */
-	padding : 0.5em;
-	/* //_}@ie6,@ie7 */
-}
+	.lS .mLts a {
+		/* //_{#ie55-,@ie8,@ie9,@modern */
+		padding : 0.8em 0.5em 0;
+		/* //_}#ie55-,@ie8,@ie9,@modern */
+		/* //_{@ie6,@ie7 */
+		padding : 0.8em 0.5em;
+		/* //_}@ie6,@ie7 */
+	}
 		.lS .mLts img {
 			float      : right;
 			width      : 3.2em;
 			height     : 3.2em;
-			margin     : 0 0 0.5em 0.5em;
+			margin     : 0 0 0.8em 0.5em;
 		}
 
 		.lS .mLts span, .lS .mLts b {
 			/* //_{#ie55-,@ie8,@ie9,@modern */
-			padding : 0 0 0.56em;
+			padding : 0 0 0.914em; /* 0.8em/0.875; */
 			/* //_}#ie55-,@ie8,@ie9,@modern */
 			/* //_{@ie6,@ie7 */
 			padding : 0;
@@ -164,10 +164,15 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
+.lS .mLts a {
+	padding : 0.5em 0.5em 0;
+}
+	.lS .mLts span, .lS .mLts b {
+		padding : 0 0 0.57em; /* 0.5em / 0.875; */
+	}
 	.lS .mLts img {
 		float        : left;
-		margin-left  : 0;
-		margin-right : 0.5em;
+		margin       : 0 0.5em 0.5em 0;
 		width        : 2.6em;
 		height       : 2.6em;			
 	}

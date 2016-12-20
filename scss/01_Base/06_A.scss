@@ -33,8 +33,8 @@ a:link          {
 
 /* //_{@modern */
 a:link, a:visited {
-	background : rgba( 255, 255, 255, 0 );
-	transition : 0.3s background ease-in, 0.3s color ease-in, 0.3s border-color ease-in;
+	background-color : rgba( 255, 255, 255, 0 );
+	transition       : 0.3s background-color ease-in, 0.3s color ease-in, 0.3s border-color ease-in;
 }
 /* //_}@modern */
 
@@ -52,8 +52,8 @@ a:visited:hover {
 }
 
 a:active, a:focus {
-    background : $COLOR_ACCENT !important;
-    color      : #fff        !important;
+    background-color : $COLOR_ACCENT !important;
+    color            : #fff        !important;
 }
 a:active *, a:focus * {
 	color      : #fff !important;
@@ -133,16 +133,18 @@ a:active *, a:focus * {
 	color      : $COLOR_BdM_flip_text;
 
 	&:link {
-		background : none;
-		color      : $COLOR_BdM_link;
+		background-color : none;
+		background-color : transparent;
+		color            : $COLOR_BdM_link;
 	}
 	&:visited {
-		background : none;
-		color      : $COLOR_BdM_text;
+		background-color : none;
+		background-color : transparent;
+		color            : $COLOR_BdM_text;
 	}
 	&:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-		background : $COLOR_BdM_casual_fill;
-		color      : $COLOR_BdM_text;
+		background-color : $COLOR_BdM_casual_fill;
+		color            : $COLOR_BdM_text;
 	}
 
 	.lS & {
@@ -199,20 +201,22 @@ a:active *, a:focus * {
 
 @mixin fill_watch {
 	/* href がない場合 current カラーになる */
-	background : $COLOR_WTC_flip_fill;
-	color      : $COLOR_WTC_flip_text;
+	background-color : $COLOR_WTC_flip_fill;
+	color            : $COLOR_WTC_flip_text;
 
 	&:link {
-		background : none;
-		color      : $COLOR_WTC_link;
+		background-color : none;
+		background-color : transparent;
+		color            : $COLOR_WTC_link;
 	}
 	&:visited {
-		background : none;
-		color      : $COLOR_WTC_text;
+		background-color : none;
+		background-color : transparent;
+		color            : $COLOR_WTC_text;
 	}
 	&:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-		background : $COLOR_WTC_casual_fill;
-		color      : $COLOR_WTC_text;
+		background-color : $COLOR_WTC_casual_fill;
+		color            : $COLOR_WTC_text;
 	}
 }
 

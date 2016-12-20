@@ -9,6 +9,10 @@
     overflow-y : hidden;
 }
 
+.hscroll pre {
+    overflow-x : auto;
+}
+
 .mB .hscroll {
     margin : 1em 0;
 }

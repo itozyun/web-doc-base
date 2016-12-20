@@ -16,90 +16,7 @@
  *    * 上記以外のブラウザ 
  *
 --------------------------------------------------------------------------------------*/
-body {
-	background  : $COLOR_FtS_fill;
-	color       : $COLOR_FtS_text;
-}
 
-/* //_{^+coloredHeader */
-#lH,
-/* //_}^+coloredHeader */
-#lB {
-	background : $COLOR_BdM_fill;
-	color      : $COLOR_BdM_text;
-}
-
-	#lB .lS
-	{
-		background : $COLOR_BdS_fill;
-		color      : $COLOR_BdS_text;
-	}
-
-	.fillbg {
-		background : $COLOR_FtM_fill;
-		color      : $COLOR_FtM_text;
-	}
-	.fillbg .lS, .fillbg .lO {
-		background : $COLOR_FtS_fill;
-		color      : $COLOR_FtS_text;
-	}
-
-/* //_{+coloredHeader */
-	#lH .lO {
-		background : $COLOR_HdX_fill;
-		color      : $COLOR_HdX_text;
-	}
-	#lH {
-		background : $COLOR_HdM_fill;
-		color      : $COLOR_HdM_text;
-	}
-	#lH .lS {
-		background : $COLOR_HdS_fill;
-		color      : $COLOR_HdS_text;
-	}
-/* //_}+coloredHeader */
-
-	#lE .lS, #lE .lSi {
-		background : none;
-	}
-
-	* {
-		border-color : $COLOR_BdM_casual_fill;
-	}
-
-	.lS * {
-		border-color : $COLOR_BdS_casual_fill;
-	}
-	.fillbg * {
-		border-color : $COLOR_FtS_casual_fill;
-	}
-	.fillbg .lM * {
-		border-color : $COLOR_FtM_casual_fill;
-	}
-
-/* //_{#can-mq */
-/* //_<bottom40 */
-/*  Watch
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
-	* {
-		border-color : $COLOR_WTC_casual_fill;
-	}
-
-	#lH {
-		background : $COLOR_WTC_fill;
-		color      : $COLOR_WTC_text;
-	}
-	#lB {
-		background : $COLOR_WTC_fill;
-	}
-	
-	#lB .lM {
-		color      : $COLOR_WTC_text;
-	}
-}
-/* //_>bottom40 */
-/* //_}#can-mq */
 
 /*  wrapper
 --------------------------------------------------------------------------------------*/	
@@ -114,15 +31,17 @@ body {
 	/* //_{^#ie6-win */
 	max-width : $PC_MAX_WIDTH_EM;
 	/* //_}^#ie6-win */
+	/* //_{^@ie5win */
 	margin    : 0 auto;
+	/* //_}^@ie5win */
 }
 
 /*  main
 --------------------------------------------------------------------------------------*/	
 	.lM {
 		/* //_{^#ie89 */
-		width        : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
-		float        : left;
+		width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+		float : left;
 		/* //_}^#ie89 */
 	}
 		.lMi {
@@ -144,10 +63,10 @@ body {
 	}
 		.lSi {
 			/* //_{@ie6 */
-			width         : 82%;
+			width        : 82%;
 			/* //_}@ie6 */
 			/* //_{#ie55- */
-			width         : 100%;
+			width        : 100%;
 			/* //_}#ie55- */
 			/* //_{@ie6 */ /* maring でないと :hover でレイアウトがガタつく */
 			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
@@ -366,7 +285,7 @@ body {
 --------------------------------------------------------------------------------------*/
 @media print {
 	body, #lH, #lE, #lB,
-	.fillbg, .fillbg .lS, .fillbg .lO
+	.fillbg, .fillbg .lM
 /* //_{+coloredHeader */
 	, #lH .lO, #lH, #lH .lS
 /* //_}+coloredHeader */

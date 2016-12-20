@@ -29,10 +29,10 @@
 					link.onclick = onClickThumbnail;
 					IMGS.push( {
 						a           : link,
-						small       : img.src,
-						link        : href,
-						img         : img,
-						smallWidth  : img.style.width = img.offsetWidth + 'px',
+						thumbUrl    : img.src,
+						thumbWidth  : img.style.width = img.offsetWidth + 'px',
+						originalUrl : href,
+						elmImg      : img,
 						replaced    : false,
 						clazz       : _
 					} );
@@ -42,27 +42,34 @@
 	};
 
 	function onClickThumbnail( e ){
-		var i = IMGS.length, _ = '', src, obj, parent, tag, w, elms, size, n, c;
+		var i = IMGS.length, _ = '',
+			parent = this, src, obj, tag, w, elms, size, n, c;
 		
 		for( ; i; ){
 			obj = IMGS[ --i ];
 			if( obj.a === this ){
 				
-				img = obj.img;
+				img = obj.elmImg;
 				
 				if( obj.replaced ){
 					// Large -> small
-					img.style.width = obj.smallWidth;
-					img.setAttribute( 'src', obj.small );
+					img.style.width = obj.thumbWidth;
+					img.setAttribute( 'src', obj.thumbUrl );
 					this.className = obj.clazz;
+					if( obj.caption ) obj.caption.style.cssText = obj.captionCSS;
 				} else {
 					// small -> Large
-					if( obj.link ){
-						src = obj.link;
-						delete obj.link;
+					if( obj.originalUrl ){
+						src = obj.originalUrl;
+						delete obj.originalUrl;
 						
-						while( parent = this.parentNode || this.parentElement ){
+						while( parent = parent.parentNode || parent.parentElement ){
 							tag = parent.tagName.toUpperCase();
+							if( 0 <= ( ' ' + parent.className + ' ' ).indexOf( ' caption ' ) ){
+								obj.caption    = parent;
+								obj.captionCSS = parent.style.cssText;
+								continue;
+							};
 							if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
 						};
 						
@@ -87,8 +94,11 @@
 					
 					obj.clazz = c = this.getAttribute( 'className' ) || _;
 					this.className = ( c ? c + ' ' : _ ) + 'jL';
-					img.style.width = _;	
+					img.style.width = _;
 					img.setAttribute( 'src', obj.large );
+					if( obj.caption ){
+						obj.caption.style.cssText = 'float:none;margin-right:0';
+					};
 				};
 
 				obj.replaced = !obj.replaced;
