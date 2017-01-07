@@ -50,6 +50,9 @@
  * MaxWidthFix で作られたタグ(div.e6C)と div.lW を組み合わせてセンタリングだけを行う.
  * http://blog.xicolotic.info/css/advent-calendar-2015-css1/
  */
+	.e6L, .e6R, .e6BR {
+		display : none;
+	}
 	.e6C {
 		text-align : center;
 	}

@@ -22,6 +22,11 @@
 		@include unbreak-inside;
 		@include unbreak-after;
 	}
+	/* //_{@ie5win */
+	h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+		line-height        : 1.2;
+	}
+	/* //_}@ie5win */
 
 	/* //_{+from-h2-at-post */
 	h1, h2, h3, h6 {

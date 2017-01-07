@@ -25,7 +25,7 @@ textarea {
 }
 
 form :focus {
-    color      : darken( $COLOR_ACCENT, 30% );
+    color      : $COLOR_ACCENT;
 }
 
 /* //_{@modern */

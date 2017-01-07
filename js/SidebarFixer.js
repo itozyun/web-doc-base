@@ -22,8 +22,17 @@
 				wkversion = parseFloat( ua.split( 'AppleWebKit/' )[ 1 ] ),
 				ffversion = parseFloat( ua.split( 'Fennec/' )[ 1 ] ),
 				omversion = parseFloat( ua.split( 'Opera Mobi/' )[ 1 ] ),
-				ieversion = parseFloat( ua.split( 'MSIE ' )[ 1 ] );
-		
+				jsVersion = eval( '/*@cc_on@_jscript_version+@*/0' ),
+				ieversion = jsVersion && Math.min(
+					jsVersion === 3   ? 4 :
+					jsVersion === 5   ? 5 :
+					jsVersion === 5.1 ? 5.01 :
+					jsVersion === 5.5 ? 5.5  :
+					jsVersion === 5.6 ? 6  :
+					jsVersion === 5.7 ? ( !window.XMLHttpRequest ? 6 : 7 ) :
+					jsVersion === 5.8 ? 8 : jsVersion,
+					document.documentMode ); // ie11 ie5 mode で ua が MSIE 7 になっている...
+
 			if(
 				// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
 				( ( platform.indexOf( "iPhone" ) > -1 || platform.indexOf( "iPad" ) > -1  || platform.indexOf( "iPod" ) > -1 ) && wkversion < 534 ) ||

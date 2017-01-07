@@ -197,6 +197,42 @@ a:active *, a:focus * {
 		background : $COLOR_FtM_casual_fill;
 		color      : $COLOR_FtM_text;
 	}
+
+	/* //_{+coloredHeader */
+	#lH & {
+		background : $COLOR_HdS_flip_fill;
+		color      : $COLOR_HdS_flip_text;
+	}
+	#lH &:link {
+		background : none;
+		color      : $COLOR_HdS_link;
+	}
+	#lH &:visited {
+		background : none;
+		color      : $COLOR_HdS_text;
+	}
+	#lH &:link:hover, #lH &:visited:hover {
+		background : $COLOR_HdS_casual_fill;
+		color      : $COLOR_HdS_text;
+	}
+
+	#lH .lM & {
+		background : $COLOR_HdM_flip_fill;
+		color      : $COLOR_HdM_flip_text;
+	}
+	#lH .lM &:link {
+		background : none;
+		color      : $COLOR_HdM_link;
+	}
+	#lH .lM &:visited {
+		background : none;
+		color      : $COLOR_HdM_text;
+	}
+	#lH .lM &:link:hover, #lH .lM &:visited:hover {
+		background : $COLOR_HdM_casual_fill;
+		color      : $COLOR_HdM_text;
+	}
+	/* //_}+coloredHeader */
 }
 
 @mixin fill_watch {

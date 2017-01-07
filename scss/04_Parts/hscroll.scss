@@ -5,12 +5,11 @@
     /* //_{@modern */
     overflow   : auto;
     /* //_}@modern */
+/* //_{@ie5win,@ie55 */
+    width      : 100%;
+/* //_}@ie5win,@ie55 */
     overflow-x : auto;
     overflow-y : hidden;
-}
-
-.hscroll pre {
-    overflow-x : auto;
 }
 
 .mB .hscroll {
@@ -33,6 +32,7 @@
     .hscroll pre {
         margin      : 0 0 0.5em;
         white-space : pre;
+        overflow    : auto;
     }
 
 /* //_{@modern */

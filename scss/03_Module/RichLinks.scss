@@ -16,6 +16,11 @@
 		@include linkCommon;
 		line-height : 1.4;
 	}
+	/* //_{@ie5win */
+	.mLts * {
+		line-height : 1.4;
+	}
+	/* //_}@ie5win */
 		.mLts div {
 			border-width : 0 0 1px;
 			border-style : solid;

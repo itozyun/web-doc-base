@@ -16,6 +16,10 @@ blockquote .box {
 	margin-top  : 1em;
 }
 
+.box ul, .box ol {
+	list-style-position : inside;
+}
+
 .box img,
 .box embed,
 .box object,
@@ -48,6 +52,12 @@ blockquote .box {
 	line-height   : 1.2;
 	font-size     : 0.875em;
 }
+/* //_{@ie5win */
+.caption * {
+	line-height        : 1.2;
+}
+/* //_}@ie5win */
+
 .box .caption * {
 	float        : none;
 }
