@@ -34,6 +34,10 @@
         white-space : pre;
         overflow    : auto;
     }
+    /* //_{@ie5win */
+        .hscroll pre code,
+        .hscroll pre samp { width : auto; }
+    /* //_}@ie5win */
 
 /* //_{@modern */
 .hscroll::-webkit-scrollbar {

@@ -8,7 +8,7 @@ Super project for itozyun's Web document projects.
 2. Written based on the SMACSS
 3. Build for each browsers (modern, ie9, ie8, ie7, ie6, ie55)
 4. Responsive Web Design for the 7 types of device (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Watch)
-5. Print to save ink (@media print)
+5. Reduce ink to print (@media print)
 6. Legacy Browser Support
 
 itozyun の Web ドキュメント・プロジェクトの親プロジェクトです。

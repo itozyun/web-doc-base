@@ -101,7 +101,12 @@
 		pre {
 			@include pre-wrap;
 		}
-		
+
+		/* //_{@ie5win */
+			pre code,
+			pre samp { width : 100%; }
+		/* //_}@ie5win */
+
 		/* remember to highlight inserts somehow! */
 		ins { text-decoration: none; }
 		del { text-decoration: line-through; }

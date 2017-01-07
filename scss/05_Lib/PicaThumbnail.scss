@@ -27,6 +27,13 @@
 	margin      : 0 0 1em;
 }
 
+/* //_{@ie5win */
+.jL img {
+	float   : none;
+	clear   : both;
+}
+/* //_}@ie5win */
+
 a:focus img, a:active img {
     outline     : 1px solid $COLOR_ACCENT;
 	background  : $COLOR_ACCENT;
