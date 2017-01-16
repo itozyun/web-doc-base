@@ -16,12 +16,24 @@
 	.mB blockquote:before {
 		content     : attr(title);
 		display     : block;
+	}
+	.mB blockquote:after {
+		content     : attr(cite);
+	}
+	/* //_}#can-content */
+
+	/* //_{#can-content */
+	.mB blockquote:before,
+	/* //_}#can-content */
+	.mB blockquote div {
 		font-size   : 0.875em;
 		line-height : 1.2;
 		color       : $COLOR_BdM_link;
 	}
-	.mB blockquote:after {
-		content     : attr(cite);
+	/* //_{#can-content */
+	.mB blockquote:after,
+	/* //_}#can-content */
+	.mB blockquote cite {
 		display     : block;
 		font-size   : 0.875em;
 		line-height : 1.2;
@@ -30,7 +42,6 @@
 		/* word-wrap   : break-all; 効果なし */
 		color       : $COLOR_BdM_casual_text;
 	}
-	/* //_}#can-content */
 
 
 /* //_{#can-mq */
@@ -55,7 +66,8 @@
 		background : $COLOR_WTC_casual_fill;
 		color      : $COLOR_WTC_text;
 	}
-		.mB blockquote:before {
+		.mB blockquote:before,
+		.mB blockquote div {
 			color : $COLOR_WTC_link;
 		}
 }

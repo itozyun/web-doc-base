@@ -47,6 +47,9 @@ table {
 
 /*  Object
 --------------------------------------------------------------------------------------*/
+.mB img {
+	height    : auto;
+}
 .mB img,
 .mB embed,
 .mB object,
@@ -54,7 +57,6 @@ table {
 .mB video,
 .mB .caption {
 	max-width : 100%;
-	height    : auto;
 	display   : block;
 	margin    : 1em auto;
 }

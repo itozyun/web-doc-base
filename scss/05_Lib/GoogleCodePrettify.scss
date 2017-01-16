@@ -43,6 +43,16 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 /* //_{#can-mq */
 
+/* //_<bottom25 */
+/*  PHABLET
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	.hscroll .mB pre.prettyprint {
+		margin-left  : 0;
+		margin-right : 0;
+	}
+}
+/* //_>bottom25 */
 /* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
