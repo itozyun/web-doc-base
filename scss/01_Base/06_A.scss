@@ -8,7 +8,7 @@ a,
 a:link, a:visited, a:focus, a:active { text-decoration : none; }
 a:hover { text-decoration : none; } /* link の無い a には下線をつけない */
 a:link:hover, a:visited:hover { text-decoration : underline; }
-a:focus:hover, a:active:hover { text-decoration : underline !important; }
+a:focus:hover, a:link:active:hover, a:visited:active:hover { text-decoration : underline !important; }
 
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
 @mixin hideUnderLineOnHover {
@@ -51,11 +51,11 @@ a:visited:hover {
 	border-color : $COLOR_BdM_visited_hover;
 }
 
-a:active, a:focus {
+a:link:active, a:visited:active, a:focus {
     background-color : $COLOR_ACCENT !important;
     color            : #fff        !important;
 }
-a:active *, a:focus * {
+a:link:active *, a:visited:active *, a:focus * {
 	color      : #fff !important;
 }
 

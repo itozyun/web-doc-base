@@ -37,6 +37,9 @@
     	text-align      : center;
     	font-weight     : bold;
 	}
+	.links a[href^="/"]:not([href^="//"]):before {
+		content     : "+";
+	}
 	.links a[href*="web.archive."]:before {
 		content     : "*";
 	}

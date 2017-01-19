@@ -29,9 +29,9 @@
 			border      : 0;
 			height      : 100%; /* js */
 		}
-		/* //_{@ie5win,@ie55 */
+		/* //_{@ie5win */
 		*,
-		/* //_}@ie5win,@ie55 */
+		/* //_}@ie5win */
 		body, input {
 			line-height : $BASE_LINE_HEIGHT;
 		}
