@@ -19,6 +19,7 @@ a:focus:hover, a:link:active:hover, a:visited:active:hover { text-decoration : u
 /* ずっと下線なし*/
 @mixin noUnderLineAlways {
     text-decoration : none !important;
+	&:link:active:hover, &:visited:active:hover { text-decoration : none !important; }
 }
 
 /* a タグの色 [Header|Body] > Main > A
