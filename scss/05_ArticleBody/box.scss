@@ -4,7 +4,7 @@
 .box {
 	@include clearfix;
 	
-	margin      : 0 1em;
+	margin      : 0 2%;
 }
 .box p, .box dl {
 	margin-top      : 0;
@@ -35,7 +35,7 @@ blockquote .box {
 .box video,
 .box .caption {
 	float   : left;
-	margin  : 0 1em 1em 0;
+	margin  : 0 2% 1em 0;
 }
 
 
@@ -64,24 +64,15 @@ blockquote .box {
 
 /* //_{#can-mq */
 
-/* //_<bottom30 */
-/*  Phone
+/* //_<bottom10 */
+/*  Full HD
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@media only screen and (min-width: 96em) {
 	.box {
-		margin       : 0 0.5em;
-	}
-
-	.box img,
-	.box embed,
-	.box object,
-	.box iframe,
-	.box video,
-	.box .caption {
-		margin-right : 0.5em;
+		margin      : 0 1%;
 	}
 }
-/* //_>bottom30 */
+/* //_>bottom10 */
 
 /* //_<bottom40 */
 /*  Watch

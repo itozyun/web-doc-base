@@ -1,29 +1,29 @@
 /* [module] SearchBox
  *  出現位置は #lH .lSi 下で固定
  *
- *  form.mS
+ *  form.Search
  *    input[type=text]
  *    input[type=submit].btn
 --------------------------------------------------------------------------------------*/
-.mS {
+.Search {
 	position   : relative;
     display    : block;
     height     : $BASE_LINE_HEIGHT_EM;
     margin     : 0;
     padding    : 0 3em 0 0.5em;
 }
-	.mS input {
+	.Search input {
 		padding     : 0;
 	    border      : 0;
 	    margin      : 0;
 	    display     : block;
 	}
-	.mSt {
+	.Search-txt {
 	    width       : 100%;
 	    height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
 		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
 	}
-	.mS .btn {
+	.Search .btn {
 	    width       : 3em;
 	    height      : $BASE_LINE_HEIGHT_EM;
 	    position    : absolute;
@@ -32,18 +32,18 @@
 	}
 
 /* //_{+coloredHeader */
-.mS, .mSt {
+.Search, .Search-txt {
 	background : $COLOR_HdS_casual_fill;
 }
 /* //_}+coloredHeader */
 /* //_{^+coloredHeader */
-.mS, .mSt {
+.Search, .Search-txt {
 	background : $COLOR_BdS_casual_fill;
 }
 /* //_}^+coloredHeader */
 
 /* //_{@ie55,@ie6,@ie7 */
-.mS * {
+.Search * {
 	zoom : 1;
 }
 /* //_}@ie55,@ie6,@ie7 */
@@ -54,7 +54,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
 	/* //_{^+coloredHeader */
-	.mS, .mSt {
+	.Search, .Search-txt {
 		background : $COLOR_WTC_casual_fill;
 	}
 	/* //_}^+coloredHeader */

@@ -5,31 +5,13 @@
 	font-size   : 0.75em;
 	line-height : 1;
 }
-.mB .aa {
-	margin      : 1.33em;
-}
 
 /* //_{#can-mq */
-
-/* //_<bottom30 */
-/*  Phone
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
-	.mB .aa {
-		margin-left  : 0.67em;
-		margin-right : 0.67em;
-	}
-}
-/* //_>bottom30 */
 
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.mB .aa {
-		margin-left  : 0;
-		margin-right : 0;
-	}
 	.aa {
 		background : $COLOR_WTC_casual_fill;
 	}

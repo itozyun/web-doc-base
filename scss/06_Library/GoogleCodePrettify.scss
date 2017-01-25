@@ -9,11 +9,7 @@
 
 pre.prettyprint {
 	font-size   : 0.875em;
-	margin      : 1.23em;
 	padding     : 1.23em;
-}
-blockquote pre.prettyprint {
-	margin      : 1.23em 0;
 }
 
 /* //_{^#ie55- */
@@ -40,43 +36,6 @@ li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
 li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 /* //_}^#ie55- */
-
-/* //_{#can-mq */
-
-/* //_<bottom25 */
-/*  PHABLET
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
-	.hscroll .mB pre.prettyprint {
-		margin-left  : 0;
-		margin-right : 0;
-	}
-}
-/* //_>bottom25 */
-/* //_<bottom30 */
-/*  Phone
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
-	.mB pre.prettyprint {
-		margin-left  : 0.615em;
-		margin-right : 0.615em;
-	}
-}
-/* //_>bottom30 */
-
-/* //_<bottom40 */
-/*  Watch
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
-	.mB pre.prettyprint {
-		margin-left  : 0;
-		margin-right : 0;
-	}
-}
-/* //_>bottom40 */
-
-/* //_}#can-mq */
-
 
 /* //_<bottom50 */
 @media print {

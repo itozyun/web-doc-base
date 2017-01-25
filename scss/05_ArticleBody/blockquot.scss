@@ -1,39 +1,38 @@
 
 /*  blockquote
 --------------------------------------------------------------------------------------*/
-.mB blockquote {
+.aBodyRoot blockquote {
     padding    : 1em;
-    margin     : 1em;
 	background : $COLOR_BdM_casual_fill;
 }
 
-.mB blockquote p {
+.aBodyRoot blockquote p {
 	margin-left  : 0;
 	margin-right : 0;
 }
 
 	/* //_{#can-content */
-	.mB blockquote:before {
+	.aBodyRoot blockquote:before {
 		content     : attr(title);
 		display     : block;
 	}
-	.mB blockquote:after {
+	.aBodyRoot blockquote:after {
 		content     : attr(cite);
 	}
 	/* //_}#can-content */
 
 	/* //_{#can-content */
-	.mB blockquote:before,
+	.aBodyRoot blockquote:before,
 	/* //_}#can-content */
-	.mB blockquote div {
+	.aBodyRoot blockquote .bqLink {
 		font-size   : 0.875em;
 		line-height : 1.2;
 		color       : $COLOR_BdM_link;
 	}
 	/* //_{#can-content */
-	.mB blockquote:after,
+	.aBodyRoot blockquote:after,
 	/* //_}#can-content */
-	.mB blockquote cite {
+	.aBodyRoot blockquote cite {
 		display     : block;
 		font-size   : 0.875em;
 		line-height : 1.2;
@@ -49,8 +48,7 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.mB blockquote {
-		margin  : 0.5em;
+	.aBodyRoot blockquote {
 		padding : 0.5em;
 	}
 }
@@ -60,14 +58,12 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.mB blockquote {
-		margin-left  : 0;
-		margin-right : 0;
+	.aBodyRoot blockquote {
 		background : $COLOR_WTC_casual_fill;
 		color      : $COLOR_WTC_text;
 	}
-		.mB blockquote:before,
-		.mB blockquote div {
+		.aBodyRoot blockquote:before,
+		.aBodyRoot blockquote .bqLink {
 			color : $COLOR_WTC_link;
 		}
 }
@@ -79,7 +75,7 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.mB blockquote {
+	.aBodyRoot blockquote {
 		background : none;
 	    border     : 1px solid $COLOR_PRT_casual_fill;
 	}

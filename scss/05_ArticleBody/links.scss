@@ -3,7 +3,7 @@
 .links {
 	@include pre-wrap;
 
-	margin : 1em 2em;
+	margin : 1em 4%;
 }
 
 	.links a {
@@ -53,8 +53,8 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 	.links {
-		margin-left  : 1em;
-		margin-right : 0.5em;
+		margin-left  : 2%;
+		margin-right : 1%;
 		line-height  : 3;
 	}
 }
@@ -65,7 +65,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
 	.links {
-		margin-left  : 0.5em;
+		margin-left  : 1%;
 		margin-right : 0;
 	}
 }

@@ -1,7 +1,7 @@
 /* [module] LinkList
  *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
  *
- *  div.mL
+ *  div.LinkList
  *   div
  *    a
 --------------------------------------------------------------------------------------*/
@@ -26,9 +26,9 @@
 }
 
 
-.mL { @include linkCommon; @include stackableModule;}
+.LinkList { @include linkCommon; @include stackableModule;}
 
-	.mL a {
+	.LinkList a {
 		line-height : 1.1;
 		display     : block;
 		padding     : 1em 0.5em 0.8em;
@@ -36,7 +36,7 @@
 
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
-.lS .mL {
+.lS .LinkList {
 	text-align : right;
 }
 
@@ -45,7 +45,7 @@
 --------------------------------------------------------------------------------------*/
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
-	.mL a {
+	.LinkList a {
 		@include unbreak-inside;
 	}
 }
@@ -56,7 +56,7 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
-	.lS .mL {
+	.lS .LinkList {
 		text-align : left;
 	}
 }
@@ -68,8 +68,8 @@
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
-	.lM2 .mL,
-	.lS2 .mL {
+	.lM2 .LinkList,
+	.lS2 .LinkList {
 		text-align : right;
 	}
 }
@@ -79,7 +79,7 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.mL {
+	.LinkList {
 		text-align : center !important;
 	}
 }
@@ -89,11 +89,11 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.mL a {
+	.LinkList a {
     	padding : 0.5em 0;
 	}
 
-	.mL { @include linkCommon_watch; }
+	.LinkList { @include linkCommon_watch; }
 }
 /* //_>bottom40 */
 

@@ -223,8 +223,12 @@
 /* single */
 	.lW, .lX {
 		width     : 100%;
+		/* //_{^#ie6-win */
 		max-width : 100%;
+		/* //_}^#ie6-win */
+		/* //_{@ie8,@ie9,@modern */
 		display   : block;
+		/* //_}@ie8,@ie9,@modern */
 	}
 		.lM, .lS {
 			float   : none;

@@ -1,18 +1,18 @@
 /* [module] ArticleHeader
  *  出現位置は #lE .lMi 下で固定
  *
- *  div.mH
+ *  div.AHead
  *    h1 | h2
  *    div
  *    +ArticleLabels
  *    +SocialButtons
 --------------------------------------------------------------------------------------*/
-	.mH {
+	.AHead {
 		color  : $COLOR_FtM_casual_text;
 	}
 
 /* //_{+from-h2-at-post */
-	.mH h2 {
+	.AHead h2 {
 		@include h2-main-content;
 
 		color      : $COLOR_FtM_text;
@@ -21,7 +21,7 @@
 /* //_}+from-h2-at-post */
 
 /* //_{+from-h1-at-post */
-	.mH h1 {
+	.AHead h1 {
 		@include h1-main-content;
 
 		color      : $COLOR_FtM_text;
@@ -35,11 +35,11 @@
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
 	/* //_{+from-h2-at-post */
-		.mH h2 { text-align : center; }
+		.AHead h2 { text-align : center; }
 	/* //_}+from-h2-at-post */
 
 	/* //_{+from-h1-at-post */
-		.mH h1 { text-align : center; }
+		.AHead h1 { text-align : center; }
 	/* //_}+from-h1-at-post */
 }
 /* //_>bottom10 */
@@ -50,23 +50,53 @@
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
 	/* //_{+from-h2-at-post */
-		.mH h2 { text-align : center; }
+		.AHead h2 { text-align : center; }
 	/* //_}+from-h2-at-post */
 
 	/* //_{+from-h1-at-post */
-		.mH h1 { text-align : center; }
+		.AHead h1 { text-align : center; }
 	/* //_}+from-h1-at-post */
 }
 /* //_>bottom20 */
+
+/* //_<bottom25 */
+/*  PHABLET
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 740px) {
+	/* //_{+from-h2-at-post */
+	.AHead h2 {
+		letter-spacing : 0;
+	}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+	.AHead h1 {
+		letter-spacing : 0;
+	}
+	/* //_}+from-h1-at-post */
+}
+/* //_>bottom25 */
 
 /* //_{#can-mq */
 /* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.mH {
+	.AHead {
 		text-align : center;
 	}
+
+	/* //_{+from-h2-at-post */
+	.AHead h2 {
+		font-size     : 1.5em;
+	}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+	.AHead h1 {
+		font-size     : 1.5em;
+	}
+	/* //_}+from-h1-at-post */
 }
 /* //_>bottom30 */
 /* //_}#can-mq */
@@ -75,17 +105,17 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.mH {
+	.AHead {
 		color  : $COLOR_PRT_text;
 	}
 /* //_{+from-h2-at-post */
-	.mH h2 {
+	.AHead h2 {
 		color  : $COLOR_PRT_text;
 	}
 /* //_}+from-h2-at-post */
 
 /* //_{+from-h1-at-post */
-	.mH h1 {
+	.AHead h1 {
 		color  : $COLOR_PRT_text;
 	}
 /* //_}+from-h1-at-post */
@@ -101,15 +131,15 @@
 /* =====================================================================================
  * //_{+ArticleLabels
  *
- * .mHl
+ * .AHead-labels
  *   a
 --------------------------------------------------------------------------------------*/
-.mHl {
+.AHead-labels {
 	margin-top : 0.5em;
 	color      : $COLOR_FtM_fill; /* , を消す */
 }
 
-		.mHl a {
+		.AHead-labels a {
 			@include noUnderLineAlways;
 
 			/* //_{^#ie7-win */
@@ -124,11 +154,11 @@
 			color      : $COLOR_FtM_link;
 		}
 
-		.mHl a:visited {
+		.AHead-labels a:visited {
 			background : $COLOR_FtM_casual_fill;
 			color      : $COLOR_FtM_text;
 		}
-		.mHl a:hover {
+		.AHead-labels a:hover {
 			background : $COLOR_FtM_flip_fill;
 			color      : $COLOR_FtM_flip_text;
 		}
@@ -138,10 +168,10 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.mHl {
+	.AHead-labels {
 		line-height : 0;
 	}
-		.mHl a {
+		.AHead-labels a {
 			display     : block;
 			text-align  : center;
 			margin      : 0.5em 0;
@@ -154,17 +184,17 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.mHl {
+	.AHead-labels {
 		color : $COLOR_PRT_text;
 	}
-		.mHl a, .mHl a:visited {
+		.AHead-labels a, .AHead-labels a:visited {
 			padding    : 0;
 			background : none;
 		}
-		.mHl a:link {
+		.AHead-labels a:link {
 			color : $COLOR_PRT_link;
 		}
-		.mHl a:visited {
+		.AHead-labels a:visited {
 			color : $COLOR_PRT_visited;
 		}
 }

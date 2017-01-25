@@ -42,10 +42,9 @@
 
 		/* //_{#can-content */
 		&:after {
-			content : none;
-			/* //_{@modern */
+			/* content : none; */
+
 			display : none; /* for iOS4 */
-			/* //_}@modern */
 		}
 		/* //_}#can-content */
 	}
@@ -104,10 +103,9 @@
 
 		/* //_{#can-content */
 		&:after {
-			content : none;
-			/* //_{@modern */
+			/* content : none; */
+
 			display : none; /* for iOS4 content : none だけでは消えない */
-			/* //_}@modern */
 		}
 		/* //_}#can-content */
 	}

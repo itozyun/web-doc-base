@@ -36,22 +36,23 @@ main = window.onload = function( e ){
 
         if( title && cite ){
             elm.removeAttribute( 'title' );
-            create( title, cite, true );
+            create( title, cite, true, 'bqLink' );
         } else if( cite ){
             elm.removeAttribute( 'cite' );
             create( window.decodeURI ? window.decodeURI( cite ) : cite, cite );
         };
     };
 
-    function create( title, cite, add1st ){
+    function create( title, cite, add1st, className ){
         var tag    = add1st ? 'div' : 'cite',
             link   = createUrl( cite ),
             target = isExternalUrl( link ) ? ' href="_blank" rel="nofollow"' : '';
 
         if( w3cDOM ){
             elmCite = document.createElement( tag );
-            elmCite.innerHTML = '<a' + target + ' hidefocus="true" href="' + link + '">' + title + '</a>';
             add1st ? elm.insertBefore( elmCite, elm.firstChild ) : elm.appendChild( elmCite );
+            elmCite.innerHTML = '<a' + target + ' hidefocus="true" href="' + link + '">' + title + '</a>';
+            if( className ) elmCite.className = className;
         } else {
             elm.insertAdjustmentHTML(
                 add1st ? 'AfterStart' : 'BeforeEnd',

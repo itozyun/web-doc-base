@@ -40,7 +40,7 @@ a:link, a:visited {
 /* //_}@modern */
 
 a:visited       {
-	color        : $COLOR_BdM_text; /* 訪問済のリンクは黒になる, .mB のみ紫に */
+	color        : $COLOR_BdM_text; /* 訪問済のリンクは黒になる, .aBodyRoot のみ紫に */
 	border-color : $COLOR_BdM_fill;
 }
 a:link:hover    {

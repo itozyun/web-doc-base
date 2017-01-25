@@ -1,55 +1,55 @@
 /* [module] RichLinkList
  *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
  *
- *  div.mLt
- *  div.mLts
- *    div
- *      a
- *        img
- *        h3
- *        span, b, blockquot, p
+ *  div.RichLink
+ *    div.RichLink-sep
+ *      div
+ *        a
+ *          img
+ *          h3, b
+ *          span, p
 --------------------------------------------------------------------------------------*/
-.mLt {
+.RichLink {
 	@include stackableModule;
 }
-	.mLts {
+	.RichLink-sep {
 		@include linkCommon;
 		line-height : 1.4;
 	}
 	/* //_{@ie5win */
-	.mLts * {
+	.RichLink-sep * {
 		line-height : 1.4;
 	}
 	/* //_}@ie5win */
-		.mLts div {
+		.RichLink-sep div {
 			border-width : 0 0 1px;
 			border-style : solid;
 		}
-		.mLts .mLts1 {
+		.RichLink-1st {
 			border-width : 1px 0;
 		}
-			.mLts a {
+			.RichLink a {
 				@include clearfix;
 				@include unbreak-inside;
 			}
 
-				.mLts img {
+				.RichLink img {
 					float      : left;
 					display    : block;
 				}
 
-				.mLts h3 {
+				.RichLink h3 {
 					font-size   : 1.1em;
 					padding     : 0;
 					margin      : 0 0 0.4em;
 				}
 
-				.mLts span, .mLts b {
+				.RichLink span, .RichLink b {
 					display     : block;
 					font-size   : 0.875em;
 					font-weight : normal;
 				}
-				.mLts p {
+				.RichLink p {
 					display     : block;
 					/* //_{#ie55-,@ie8,@ie9,@modern */
 					padding     : 0 0 1em;
@@ -60,23 +60,23 @@
 					margin      : 0;
 				}
 
-	.mLts span, .mLts p {
+	.RichLink span, .RichLink p {
 		color      : $COLOR_BdM_text;
 	}
-	.lS .mLts span, .lS .mLts p {
+	.lS .RichLink span, .lS .RichLink p {
 		color      : $COLOR_BdS_text;
 	}
-	.fillbg .mLts span, .fillbg .mLts p {
+	.fillbg .RichLink span, .fillbg .RichLink p {
 		color      : $COLOR_FtS_text;
 	}
-	.fillbg .lM .mLts span, .fillbg .lM .mLts p {
+	.fillbg .lM .RichLink span, .fillbg .lM .RichLink p {
 		color      : $COLOR_FtM_text;
 	}
 
 
 /*  layout Main
 --------------------------------------------------------------------------------------*/
-	.lM .mLts a {
+	.lM .RichLink a {
 		/* //_{#ie55-,@ie8,@ie9,@modern */
 		padding : 1em 0.5em 0;
 		/* //_}#ie55-,@ie8,@ie9,@modern */
@@ -84,21 +84,21 @@
 		padding : 1em 0.5em;
 		/* //_}@ie6,@ie7 */
 	}
-		.lM .mLts img {
+		.lM .RichLink img {
 			width      : 4.5em;
 			height     : 4.5em;
 			margin     : 0 0.8em 0.8em 0;
 		}
-		.lM .mLts h3 {
+		.lM .RichLink h3 {
 			font-size : 1.5em;
 		}
-		.lM .mLts span, .lM .mLts b {
+		.lM .RichLink span, .lM .RichLink b {
 		    margin    : 0 0 0.7em;	
 		}
 	
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
-	.lS .mLts a {
+	.lS .RichLink a {
 		/* //_{#ie55-,@ie8,@ie9,@modern */
 		padding : 0.8em 0.5em 0;
 		/* //_}#ie55-,@ie8,@ie9,@modern */
@@ -106,14 +106,14 @@
 		padding : 0.8em 0.5em;
 		/* //_}@ie6,@ie7 */
 	}
-		.lS .mLts img {
+		.lS .RichLink img {
 			float      : right;
 			width      : 3.2em;
 			height     : 3.2em;
 			margin     : 0 0 0.8em 0.5em;
 		}
 
-		.lS .mLts span, .lS .mLts b {
+		.lS .RichLink span, .lS .RichLink b {
 			/* //_{#ie55-,@ie8,@ie9,@modern */
 			padding : 0 0 0.914em; /* 0.8em/0.875; */
 			/* //_}#ie55-,@ie8,@ie9,@modern */
@@ -127,38 +127,29 @@
 --------------------------------------------------------------------------------------*/
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
-	.lMf .mLts {
+	.lMf .RichLink-sep {
 		display      : table;
 		table-layout : fixed;
 		margin       : 1em 0;
 	}
-	.lMf .mLts div {
+	.lMf .RichLink-sep div {
 		display        : table-cell;
 		vertical-align : top;
 		border-width   : 0;
+		width          : 33.3%;
 	}
-	.lMf .mLts div {
-		width : 33.3%;
-	}
-
-
-	/* .lM2 .mLts div {
-		width : 50%;
-	}
-		.lM2 .mLts a, */
-		.lMf .mLts a {
+		.lMf .RichLink a {
 			padding-left  : $WSXGA_COLUMN_GAP_EM / 2;
 			padding-right : $WSXGA_COLUMN_GAP_EM / 2;
 		}
-		/* .lM2 .mLts div:first-of-type a, */
-		.lMf .mLts div:first-of-type a {
+
+		.lMf .RichLink div:first-of-type a {
 			padding-left  : 0;
 		}
-		/* .lM2 .mLts div:last-of-type a, */
-		.lMf .mLts div:last-of-type a {
+		.lMf .RichLink div:last-of-type a {
 			padding-right : 0;
 		}
-			.lM .mLts span {
+			.lM .RichLink span {
 				font-size : 1em;
 			}
 }
@@ -169,19 +160,19 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
-.lS .mLts a {
+.lS .RichLink a {
 	padding : 0.5em 0.5em 0;
 }
-	.lS .mLts span, .lS .mLts b {
+	.lS .RichLink span, .lS .RichLink b {
 		padding : 0 0 0.57em; /* 0.5em / 0.875; */
 	}
-	.lS .mLts img {
+	.lS .RichLink img {
 		float        : left;
 		margin       : 0 0.5em 0.5em 0;
 		width        : 2.6em;
 		height       : 2.6em;			
 	}
-	.mLts b {
+	.RichLink b {
 		font-size   : 1em;
 	}
 }
@@ -194,12 +185,12 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.lM .mLts a {
+	.lM .RichLink a {
 		padding-left  : 1%;
 		padding-right : 1%;
 	}
 	
-	.lS .mLts span {
+	.lS .RichLink span {
 		font-size : 1em;
 	}
 }
@@ -209,17 +200,17 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.lM .mLts div {
+	.lM .RichLink-sep div {
 		line-height : 1.4;
 	}
-		.lM .mLts a {
+		.lM .RichLink a {
 			padding-left  : 0;
 			padding-right : 0;
 		}
 
-	.mLts { @include linkCommon_watch; }
+	.RichLink-sep { @include linkCommon_watch; }
 
-		.mLts span, .mLts p {
+		.RichLink span, .RichLink p {
 			color      : $COLOR_WTC_text;
 		}
 }
