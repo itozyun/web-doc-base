@@ -6,6 +6,19 @@
 	background : $COLOR_BdM_casual_fill;
 }
 
+	/* //_{+from-h2-at-post */
+		.aBodyRoot blockquote h6 {
+			border-color : $COLOR_BdM_flip_fill;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.aBodyRoot blockquote h5 {
+			border-color : $COLOR_BdM_flip_fill;
+		}
+	/* //_}+from-h1-at-post */
+
+
 .aBodyRoot blockquote p {
 	margin-left  : 0;
 	margin-right : 0;
@@ -24,7 +37,7 @@
 	/* //_{#can-content */
 	.aBodyRoot blockquote:before,
 	/* //_}#can-content */
-	.aBodyRoot blockquote .bqLink {
+	.aBodyRoot blockquote .js-bqLink {
 		font-size   : 0.875em;
 		line-height : 1.2;
 		color       : $COLOR_BdM_link;
@@ -32,7 +45,7 @@
 	/* //_{#can-content */
 	.aBodyRoot blockquote:after,
 	/* //_}#can-content */
-	.aBodyRoot blockquote cite {
+	.aBodyRoot blockquote .js-bqCite {
 		display     : block;
 		font-size   : 0.875em;
 		line-height : 1.2;
@@ -62,8 +75,20 @@
 		background : $COLOR_WTC_casual_fill;
 		color      : $COLOR_WTC_text;
 	}
+	/* //_{+from-h2-at-post */
+		.aBodyRoot blockquote h6 {
+			border-color : $COLOR_WTC_flip_fill;
+		}
+	/* //_}+from-h2-at-post */
+
+	/* //_{+from-h1-at-post */
+		.aBodyRoot blockquote h5 {
+			border-color : $COLOR_WTC_flip_fill;
+		}
+	/* //_}+from-h1-at-post */
+
 		.aBodyRoot blockquote:before,
-		.aBodyRoot blockquote .bqLink {
+		.aBodyRoot blockquote .js-bqLink {
 			color : $COLOR_WTC_link;
 		}
 }

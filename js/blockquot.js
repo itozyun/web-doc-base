@@ -36,27 +36,28 @@ main = window.onload = function( e ){
 
         if( title && cite ){
             elm.removeAttribute( 'title' );
-            create( title, cite, true, 'bqLink' );
+            create( title, cite, 'js-bqLink', true );
         } else if( cite ){
             elm.removeAttribute( 'cite' );
-            create( window.decodeURI ? window.decodeURI( cite ) : cite, cite );
+            create( window.decodeURI ? window.decodeURI( cite ) : cite, cite, 'js-bqCite' );
         };
     };
 
-    function create( title, cite, add1st, className ){
-        var tag    = add1st ? 'div' : 'cite',
-            link   = createUrl( cite ),
-            target = isExternalUrl( link ) ? ' href="_blank" rel="nofollow"' : '';
+    function create( title, cite, className, add1st ){
+        var tag  = add1st ? 'div' : 'cite',
+            link = createUrl( cite );
+        
+        link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
         if( w3cDOM ){
             elmCite = document.createElement( tag );
             add1st ? elm.insertBefore( elmCite, elm.firstChild ) : elm.appendChild( elmCite );
-            elmCite.innerHTML = '<a' + target + ' hidefocus="true" href="' + link + '">' + title + '</a>';
+            elmCite.innerHTML = link;
             if( className ) elmCite.className = className;
         } else {
             elm.insertAdjustmentHTML(
                 add1st ? 'AfterStart' : 'BeforeEnd',
-                '<' + tag + '><a' + target + ' hidefocus="true" href="' + link + '">' + title + '</a></' + tag + '>'
+                '<' + tag + ( className ? ' class="' + className + '">' : '>' ) + link + '</' + tag + '>'
             );
         };
     };
