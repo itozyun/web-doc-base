@@ -2,15 +2,17 @@
  *  出現位置は #lH .lSi 下で固定
  *
  *  form.Search
- *    input[type=text]
+ *    input[type=text].Search-txt
  *    input[type=submit].btn
 --------------------------------------------------------------------------------------*/
+$SEARCH_BTN_WIDTH : 3em;
+
 .Search {
 	position   : relative;
     display    : block;
     height     : $BASE_LINE_HEIGHT_EM;
     margin     : 0;
-    padding    : 0 3em 0 0.5em;
+    padding    : 0 $SEARCH_BTN_WIDTH 0 0.5em;
 }
 	.Search input {
 		padding     : 0;
@@ -24,11 +26,15 @@
 		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
 	}
 	.Search .btn {
-	    width       : 3em;
+	    width       : $SEARCH_BTN_WIDTH;
 	    height      : $BASE_LINE_HEIGHT_EM;
 	    position    : absolute;
 	    top         : 0;
 	    right       : 0;
+		/* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
+		overflow        : hidden;
+		white-space     : nowrap;
+		text-overflow   : ellipsis;
 	}
 
 /* //_{+coloredHeader */
