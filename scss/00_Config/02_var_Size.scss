@@ -19,6 +19,10 @@ $WQXGA_COLUMN_GAP_PCT    : 2% !default;
 $WQXGA_COLUMN_GAP_EM     : 2.6em !default;
 $WQXGA_MAX_WIDTH_EM      : 150em !default;
 
-$TABLET_H_SPACE      : 6% !default;
-$PHABLET_H_SPACE     : 3% !default;
-$PHONE_H_SPACE       : 1% !default;
+$TABLET_H_SPACE          : 6% !default;
+$PHABLET_H_SPACE         : 3% !default;
+$PHONE_H_SPACE           : 1% !default;
+
+$CONTENT_MARGIN_LR       : 2% !default;
+$CONTENT_MARGIN_LR_WSXGA : $CONTENT_MARGIN_LR / 2;
+

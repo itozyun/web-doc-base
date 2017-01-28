@@ -13,7 +13,7 @@
 }
 
 .hscroll {
-    margin : 1em 2%;
+    margin : 1em $CONTENT_MARGIN_LR;
 }
 
     .hscroll table {
@@ -57,7 +57,7 @@
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
     .hscroll {
-        margin : 1em 1%;
+        margin : 1em $CONTENT_MARGIN_LR_WSXGA;
     }
 }
 /* //_>bottom10 */

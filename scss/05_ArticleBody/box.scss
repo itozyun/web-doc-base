@@ -4,7 +4,7 @@
 .box {
 	@include clearfix;
 	
-	margin      : 0 2%;
+	margin      : 0 $CONTENT_MARGIN_LR;
 }
 .box p, .box dl {
 	margin-top      : 0;
@@ -35,31 +35,7 @@ blockquote .box {
 .box video,
 .box .caption {
 	float   : left;
-	margin  : 0 2% 1em 0;
-}
-
-
-/* object with caption
- *  .box
- *    .caption[style=width:XXpx]
- *       figure
- *         img|emned|
- *         figcaption
- */
-.caption {
-	word-break    : break-all;
-	text-align    : center;
-	line-height   : 1.2;
-	font-size     : 0.875em;
-}
-/* //_{@ie5win */
-.caption * {
-	line-height        : 1.2;
-}
-/* //_}@ie5win */
-
-.box .caption * {
-	float        : none;
+	margin  : 0 $CONTENT_MARGIN_LR 1em 0;
 }
 
 /* //_{#can-mq */
@@ -69,7 +45,15 @@ blockquote .box {
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
 	.box {
-		margin      : 0 1%;
+		margin      : 0 $CONTENT_MARGIN_LR_WSXGA;
+	}
+	.box img,
+	.box embed,
+	.box object,
+	.box iframe,
+	.box video,
+	.box .caption {
+		margin-right  : $CONTENT_MARGIN_LR_WSXGA;
 	}
 }
 /* //_>bottom10 */

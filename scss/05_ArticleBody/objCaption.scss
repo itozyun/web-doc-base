@@ -1,0 +1,22 @@
+/* object with caption
+ *  div.box
+ *    div.caption[style=width:XXpx]
+ *       figure
+ *         img|emned|
+ *         figcaption
+ */
+.caption {
+	word-break    : break-all;
+	text-align    : center;
+	line-height   : 1.2;
+	font-size     : 0.875em;
+}
+/* //_{@ie5win */
+.caption * {
+	line-height   : 1.2;
+}
+/* //_}@ie5win */
+
+.box .caption * {
+	float        : none;
+}
