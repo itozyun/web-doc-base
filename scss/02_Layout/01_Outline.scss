@@ -45,12 +45,7 @@
 		/* //_}^#ie89 */
 	}
 		.lMi {
-			/* //_{@ie6 */ /* maring でないと :hover でレイアウトがガタつく */
 			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-			/* //_}@ie6 */
-			/* //_{^@ie6 */
-			padding-left : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-			/* //_}^@ie6 */
 		}
 
 /*  sub
@@ -68,14 +63,8 @@
 			/* //_{#ie55- */
 			width        : 100%;
 			/* //_}#ie55- */
-			/* //_{@ie6 */ /* maring でないと :hover でレイアウトがガタつく */
 			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
 			margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-			/* //_}@ie6 */
-			/* //_{^@ie6 */
-			padding-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-			padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-			/* //_}^@ie6 */
 		}
 
 /*  x-column
@@ -104,7 +93,7 @@
 			width : 100% * $PC_MAIN_COLUMN_RATIO;
 		}
 			.lMi {
-				padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+				margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
 			}
 	/* //_}#ie89 */
 
@@ -113,38 +102,23 @@
 /*  メディアクエリをサポートするブラウザだけ table-layout にする
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 951px) { /* Tablet も併せて変更 */
-	/* Iron 8.0.5 で search-box に[shift+tab]でフォーカスを移した際にレイアウトが乱れるので Header に table-layout は行わない */
-	#lB .lW, #lF .lW {
-		display      : table;
-		table-layout : fixed;
-	}
-		#lB .lM, #lB .lS,
-		#lF .lM, #lF .lS {
-			float          : none;
-			display        : table-cell;
-			vertical-align : top; /* Safari 3.2, ie8 で大切 */
-		}	
+		.lW {
+			display      : table;
+			table-layout : fixed;
+		}
+			.lM, .lS {
+				float          : none;
+				display        : table-cell;
+				vertical-align : top; /* Safari 3.2, ie8 で大切 */
+			}
+
 			.lM {
 				width : 100% * $PC_MAIN_COLUMN_RATIO;
 			}
 				.lMi {
-					padding-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+					/* padding-right だと Safari 3.2 table レイアウトが狂う */
+					margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
 				}
-
-	/* Safari 3.2 table レイアウトがおかしい */
-	.safari3- .lW, .safari3- .lM, .safari3- .lS {
-		display : block;
-	}
-		.safari3- .lM {
-			float : left;
-			width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
-		}
-			.safari3- .lMi {
-				padding-right : 0;
-			}
-		.safari3- .lS {
-			float : right;
-		}
 }
 /* //_}@modern */
 
@@ -161,8 +135,8 @@
 			width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
 		}
 			.lMi {
-				padding-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO;
-				padding-right : $WQXGA_COLUMN_GAP_EM;
+				margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO;
+				margin-right : $WQXGA_COLUMN_GAP_EM;
 			}
 				.lMh {
 					margin-left  : 50%;
@@ -194,8 +168,8 @@
 			width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
 		}
 			.lMi {
-				padding-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
-				padding-right : $WSXGA_COLUMN_GAP_EM;
+				margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+				margin-right : $WSXGA_COLUMN_GAP_EM;
 			}
 				.lMh {
 					margin-left  : 50%;
@@ -242,6 +216,10 @@
 			table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
 		/* //_}@ie9 */
 		}
+			.lMi {
+				margin-left  : 0;
+				margin-right : 0;
+			}
 			.lMi, .lSi, .lXi {
 				padding-left  : $TABLET_H_SPACE;
 				padding-right : $TABLET_H_SPACE;
