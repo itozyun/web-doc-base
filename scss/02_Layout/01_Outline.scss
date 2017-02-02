@@ -124,7 +124,7 @@
 
 /* //_{#can-mq */
 /* //_<bottom15 */
-/*  Full HD 
+/*  WQXGA
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 126em) {
 	.lW, .lX {
@@ -146,8 +146,8 @@
 			width : 100% * $WQXGA_SUB_COLUMN_RATIO;
 		}
 			.lSi {
-				padding-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
-				padding-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+				margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+				margin-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
 			}
 		.lXi {
 			padding-left  : $WQXGA_COLUMN_GAP_PCT;
@@ -157,7 +157,7 @@
 /* //_>bottom15 */
 
 /* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
 	.lW, .lX {
@@ -179,8 +179,8 @@
 			width : 100% * $WSXGA_SUB_COLUMN_RATIO;
 		}
 			.lSi {
-				padding-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
-				padding-right : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+				margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+				margin-right : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
 			}
 		.lXi {
 			padding-left  : $WSXGA_COLUMN_GAP_PCT;
@@ -216,7 +216,7 @@
 			table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
 		/* //_}@ie9 */
 		}
-			.lMi {
+			.lMi, .lSi {
 				margin-left  : 0;
 				margin-right : 0;
 			}
