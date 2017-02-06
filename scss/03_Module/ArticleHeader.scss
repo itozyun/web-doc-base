@@ -20,14 +20,14 @@
 	}
 /* //_}+from-h2-at-post */
 
-/* //_{+from-h1-at-post */
+/* //_{+^+from-h2-at-post */
 	.AHead h1 {
 		@include h1-main-content;
 
 		color      : $COLOR_FtM_text;
 		text-align : left;
 	}
-/* //_}+from-h1-at-post */
+/* //_}+^+from-h2-at-post */
 
 /* //_{#can-mq */
 /* //_<bottom10 */
@@ -38,9 +38,9 @@
 		.AHead h2 { text-align : center; }
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 		.AHead h1 { text-align : center; }
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -53,9 +53,9 @@
 		.AHead h2 { text-align : center; }
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 		.AHead h1 { text-align : center; }
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 }
 /* //_>bottom20 */
 
@@ -69,11 +69,11 @@
 	}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 	.AHead h1 {
 		letter-spacing : 0;
 	}
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 }
 /* //_>bottom25 */
 
@@ -92,11 +92,11 @@
 	}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 	.AHead h1 {
 		font-size     : 1.5em;
 	}
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 }
 /* //_>bottom30 */
 /* //_}#can-mq */
@@ -114,11 +114,11 @@
 	}
 /* //_}+from-h2-at-post */
 
-/* //_{+from-h1-at-post */
+/* //_{+^+from-h2-at-post */
 	.AHead h1 {
 		color  : $COLOR_PRT_text;
 	}
-/* //_}+from-h1-at-post */
+/* //_}+^+from-h2-at-post */
 	.AHead-cita:after {
 		content   : " ("attr(href)") ";
 		font-size : 0.875em;

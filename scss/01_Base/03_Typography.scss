@@ -81,7 +81,7 @@
 	}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 	h1, h2, h3, h5, h6 {
 		font-weight        : normal;
 	}
@@ -137,7 +137,7 @@
 		font-size      : 1em;
 		margin         : 1.5em 0 0.8em 1em;
 	}
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 
 	ul, ol,
 	li ol, li ul {
@@ -225,11 +225,11 @@
 		}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+from-h1-at-post */
+	/* //_{+^+from-h2-at-post */
 		h4 {
 			border-color : $COLOR_WTC_flip_fill;
 		}
-	/* //_}+from-h1-at-post */
+	/* //_}+^+from-h2-at-post */
 
 	p, pre, dl, ul, ol, table, blockquote {
 		margin-left  : 0;
