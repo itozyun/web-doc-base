@@ -24,7 +24,8 @@ var html       = document.documentElement,
 
     iOS        = fromString( sys, 'iP' ),
     WebOS      = window[ "palmGetResource" ],
-    WinPhone   = findString( dua, 'Windows Phone' ) || findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
+    WinPhone   = getNumber( dua, 'Windows Phone' ),
+	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
     Win        = fromString( sys, 'Win' ),
     Mac        = fromString( sys, 'Mac' ),
     PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
@@ -171,7 +172,14 @@ var html       = document.documentElement,
 				break;
 		};
     } else if( WinPhone ){
-        ua[ 'WinPhone' ] = verEdge || verMSIE;
+        ua[ 'WinPhone' ] = WinPhone;
+    } else if( Edge && sys === 'ARM' ){
+        ua[ 'WinPhone' ] = 10;
+	} else if( wpPCMode ){
+		ua[ 'WinPhone' ] = verMSIE === 11 ? 8.1 :
+						   verMSIE === 10 ? 8   :
+						   verMSIE ===  9 ? 7.5 :
+						   verMSIE ===  7 ? 7   : '?';
     } else if( Win ){
 		switch( sys ){
 			case 'WinCE' :
