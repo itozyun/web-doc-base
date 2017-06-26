@@ -41,6 +41,7 @@ This project has been referred to the next project.
 3. Generate the browser-specific .scss by iz-preprosessor
 4. Compile the generated .scss
 
+---
 
 1. CSS は SCSS + iz-preprosessor 拡張コメントで書かれています
 2. VS Code 拡張の [iz-preprosessor](https://marketplace.visualstudio.com/items?itemName=itozyun.iz-preprocessor) をインストールします

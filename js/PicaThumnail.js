@@ -59,8 +59,7 @@
 					if( obj.caption ) obj.caption.style.cssText = obj.captionCSS;
 				} else {
 					// small -> Large
-					if( obj.originalUrl ){
-						src = obj.originalUrl;
+					if( src = obj.originalUrl ){
 						delete obj.originalUrl;
 						
 						while( parent = parent.parentNode || parent.parentElement ){

@@ -19,7 +19,7 @@
 	thead td {
 		padding      : 0.5em 0.25em;
 	}
-	tbody td {
+	tbody td, tfoot td {
 		padding      : 0.5em 0;
 	}
 
@@ -32,7 +32,7 @@
 		border-style : solid;
 		border-width : 0 0 1px;
 	}
-	tbody td {
+	tbody td, tfoot th, tfoot td {
 		border-style : solid;
 		border-width : 0 0.5em 1px;
 	}
@@ -41,13 +41,13 @@
 		vertical-align    : top;
 	}
 
-	/*  Table
+/*  th, td
 --------------------------------------------------------------------------------------*/
-	th {
+	tbody th {
 		background   : $COLOR_BdM_casual_fill;
 		border-color : $COLOR_BdM_fill;
 	}
-	td {
+	tbody td, tfoot th, tfoot td {
 		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_BdM_casual_fill;
 	}
 	/* //_{@ie5win,@ie55 */
@@ -73,12 +73,12 @@
 	/* //_}^#ie6-win */
 
 	blockquote {
-		th, thead td {
+		thead th, tbody th, thead td {
 			background   : $COLOR_BdM_flip_fill;
 			border-color : $COLOR_BdM_casual_fill;
 			color        : $COLOR_BdM_casual_fill;
 		}
-		td {
+		tbody td, tfoot th, tfoot td {
 			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
 		}
 
@@ -94,11 +94,11 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	th {
+	tbody th {
 		background   : $COLOR_WTC_casual_fill;
 		border-color : $COLOR_WTC_fill;
 	}
-	td {
+	tbody td {
 		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
 	}
 	thead th, thead td {
@@ -121,12 +121,12 @@
 	}
 
 	blockquote {
-		th, thead td {
+		thead th, thead td, tbody th {
 			background   : $COLOR_WTC_flip_fill;
 			border-color : $COLOR_WTC_casual_fill;
 			color        : $COLOR_WTC_casual_fill;
 		}
-		td {
+		tbody td, tfoot th, tfoot td {
 			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
 		}
 

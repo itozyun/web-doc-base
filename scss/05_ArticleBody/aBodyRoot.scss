@@ -12,7 +12,7 @@
 	}
 /* //_}+from-h2-at-post */
 
-/* //_{+^+from-h2-at-post */
+/* //_{^+from-h2-at-post */
 	.aBodyRoot h2 {
 		@include h2-main-content;
 
@@ -22,7 +22,7 @@
 	.aBodyRoot h3 {
 		@include h3-main-content;
 	}
-/* //_}+^+from-h2-at-post */
+/* //_}^+from-h2-at-post */
 
 /*  Object
 --------------------------------------------------------------------------------------*/
@@ -55,11 +55,11 @@
 		}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 		.aBodyRoot h2, .aBodyRoot h3 {
 			text-align : center;
 		}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -78,7 +78,7 @@
 		}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 		.aBodyRoot h2, .aBodyRoot h3 {
 			text-align : center;
 		}
@@ -86,7 +86,7 @@
 			padding-left  : $TABLET_H_SPACE/2;
 			padding-right : $TABLET_H_SPACE/2;
 		}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 }
 /* //_>bottom20 */
 
@@ -101,11 +101,11 @@
 	}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 	.aBodyRoot h2 {
 		letter-spacing : 0;
 	}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 
 	/* //_{+from-h2-at-post */
 		.aBodyRoot h3 {
@@ -114,12 +114,12 @@
 		}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 		.aBodyRoot h2 {
 			padding-left  : $PHABLET_H_SPACE/2;
 			padding-right : $PHABLET_H_SPACE/2;
 		}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 }
 /* //_>bottom25 */
 
@@ -139,13 +139,13 @@
 	}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 	.aBodyRoot h2 {
 		font-size     : 1.25em;
 		padding-left  : $PHONE_H_SPACE/2;
 		padding-right : $PHONE_H_SPACE/2;
 	}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 }
 /* //_>bottom30 */
 
@@ -167,7 +167,7 @@
 		}
 	/* //_}+from-h2-at-post */
 
-	/* //_{+^+from-h2-at-post */
+	/* //_{^+from-h2-at-post */
 		.aBodyRoot h2 {
 			padding-left  : 0;
 			padding-right : 0;
@@ -176,7 +176,7 @@
 			border-color : $COLOR_WTC_flip_fill;
 			color        : $COLOR_WTC_flip_fill;
 		}
-	/* //_}+^+from-h2-at-post */
+	/* //_}^+from-h2-at-post */
 
 	.aBodyRoot a:visited       { color : $COLOR_WTC_visited; }
 	.aBodyRoot a:visited:hover { color : $COLOR_WTC_visited_hover; }

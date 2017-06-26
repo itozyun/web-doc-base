@@ -71,7 +71,7 @@ main = window.onload = function( e ){
 			};
 			// ISBN-10
 			if( cite.length === 10 ){
-				return 'http://www.amazon.co.jp/exec/obidos/ASIN/' + cite + '/itozyun-22/ref=nosim/';
+				return 'http://www.amazon.co.jp/exec/obidos/ASIN/' + cite;// + '/itozyun-22/ref=nosim/';
 			};	
 		};
 		return cite;
