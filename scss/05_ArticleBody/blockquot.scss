@@ -63,14 +63,14 @@
 /*  Full HD
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
-	.aBodyRoot blockquote {
-    	padding : $CONTENT_MARGIN_LR_WSXGA/2;
+	/* .aBodyRoot blockquote {
+    	padding : $CONTENT_MARGIN_LR_WSXGA $CONTENT_MARGIN_LR_WSXGA/2;
 
 		p, pre, dl, ul, ol, blockquote, .box, .hscroll {
 			margin-left  : $CONTENT_MARGIN_LR_WSXGA/2;
 			margin-right : $CONTENT_MARGIN_LR_WSXGA/2;
 		}
-	}
+	} */
 }
 /* //_>bottom10 */
 
