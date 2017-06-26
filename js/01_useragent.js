@@ -173,13 +173,15 @@ var html       = document.documentElement,
 		};
     } else if( WinPhone ){
         ua[ 'WinPhone' ] = WinPhone;
-    } else if( Edge && sys === 'ARM' ){
+    } else if( verEdge && sys === 'ARM' ){
         ua[ 'WinPhone' ] = 10;
+		ua[ 'PCMode'   ] = true;
 	} else if( wpPCMode ){
 		ua[ 'WinPhone' ] = verMSIE === 11 ? 8.1 :
 						   verMSIE === 10 ? 8   :
 						   verMSIE ===  9 ? 7.5 :
 						   verMSIE ===  7 ? 7   : '?';
+		ua[ 'PCMode'   ] = true;
     } else if( Win ){
 		switch( sys ){
 			case 'WinCE' :
@@ -354,6 +356,9 @@ var html       = document.documentElement,
 		} else {
 			ua[ 'AOSP' ] = Android;
 		};
+
+		if( pcMode ) ua[ 'PCMode' ] = true;
+
     } else
 // Blink Chrome & Blink Opera
 	if( isBlink && verBlinkOp ){
