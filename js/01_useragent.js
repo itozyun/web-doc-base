@@ -22,9 +22,43 @@ var html       = document.documentElement,
 	screenW    = screen.width,
 	screenH    = screen.height,
 
+    isTouch     = window.ontouchstart !== undefined,
+
+    /**
+     * http://help.dottoro.com/ljifbjwf.php
+     * version method (opera)
+     *   window.opera.buildNumber();
+     *   window.opera.version();
+     * 
+     * kquery.js
+     *   opera.versionは8から実装
+     */
+    isPrsto   = window.opera,
+    verOpera  = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
+
+    /**
+     * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
+     * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
+     */
+    isOpMin   = ( '' + window.operamini ) === '[object OperaMini]',
+    isUCSpeed   = findString( dua, 'UCWEB' ),
+
+    isTrident = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
+    isEdge    = !isTrident && html[ 'msContentZoomFactor' ],
+    isBlink   = window.chrome,
+
+    isSafari  = findString( dua, 'Safari' ),
+    isIris    = findString( dua.toLowerCase(), 'iris' ),
+    /**
+     * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
+     * -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
+     */
+    isGecko   = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
+    isKHTML   = findString( dav, 'Konqueror' ),
+
     iOS        = fromString( sys, 'iP' ),
     WebOS      = window[ "palmGetResource" ],
-    WinPhone   = getNumber( dua, 'Windows Phone' ),
+    WinPhone   = getNumber( dua, 'Windows Phone' ) || getNumber( dav, 'Windows Phone OS ' ),
 	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
     Win        = fromString( sys, 'Win' ),
     Mac        = fromString( sys, 'Mac' ),
@@ -46,7 +80,7 @@ var html       = document.documentElement,
 // Sony Reader Mozilla/5.0 (Linux; U; ja-jp; EBRD1101; EXT) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
     SonyReader = findString( dua, 'EBRD' ),
     Mylo       = tv === 2 && findString( dua, 'Sony/COM2/' ),
-    Android    = findString( sys, 'Android' ),
+    Android    = findString( sys, 'Android' ) || /* Android2.3.5 Firefox3.1 */ isGecko && findString( dav, 'Android' ),
     Linux      = findString( sys, 'Linux' ),
     MeeGo,
 	FireFoxOS,
@@ -54,7 +88,7 @@ var html       = document.documentElement,
 	Solaris, // ua SunOS
     // (Ubuntu|Linux|(Free|Net|Open)BSD)
 
-    verAndroid = getNumber( sys, 'Android ' ) || getNumber( dua, 'Android ' ),
+    verAndroid = getNumber( sys, 'Android ' ) || getNumber( dav, 'Android ' ) || getNumber( dua, 'Android ' ),
 
     verSafari  = getNumber( dav, 'Version/' ),
     verTrident = getNumber( dav, 'Trident/' ),
@@ -86,41 +120,8 @@ var html       = document.documentElement,
                   getNumber( dua, 'Navigator/' ),   // NN
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
-
-    isTouch     = window.ontouchstart !== undefined,
-
-    /**
-     * http://help.dottoro.com/ljifbjwf.php
-     * version method (opera)
-     *   window.opera.buildNumber();
-     *   window.opera.version();
-     * 
-     * kquery.js
-     *   opera.versionは8から実装
-     */
-    isPrsto   = window.opera,
-    verOpera  = isPrsto && ( isPrsto.version ? isPrsto.version() : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
-
-    /**
-     * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
-     * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
-     */
-    isOpMin   = ( '' + window.operamini ) === '[object OperaMini]',
-    isUCSpeed   = findString( dua, 'UCWEB' ),
-
-    isTrident = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
-    isEdge    = !isTrident && html[ 'msContentZoomFactor' ],
-    isBlink   = window.chrome,
-
-    isSafari  = findString( dua, 'Safari' ),
-    isIris    = findString( dua.toLowerCase(), 'iris' ),
-    /**
-     * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
-     * -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
-     */
-    isGecko   = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
-    isKHTML   = findString( dav, 'Konqueror' ),
     v, pcMode, dpRatio;
+	// iOS FxiOS, CriOS, Coast
 
 // system 判定
     if( Kobo ){
@@ -253,6 +254,14 @@ var html       = document.documentElement,
         } else if( Android ){
             ua[ 'Android' ] = '2.2+';
         };
+		if( !findString( dua, 'Android;' ) ) ua[ 'PCMode' ] = true;
+	} else if( Android && isPrsto ){
+		if( verAndroid ){
+			ua[ 'Android' ] = verAndroid;
+		} else {
+			ua[ 'Android' ] = '2+';
+			ua[ 'PCMode'  ] = true;
+		};
 // Android other | Linux
     } else if( Android || Linux ){
         if( verAndroid ){
@@ -267,7 +276,7 @@ var html       = document.documentElement,
             // Audio でタッチが必要か？の判定にとても困る...
             // ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？
 			if( window[ 'Int8Array' ] ){
-				ua[ 'Android' ] =
+				ua[ 'Android' ] = verAndroid =
 					!navigator[ 'connection' ] ? 4.4 :
 					Number.isFinite && ( window.history && window.history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
 					Number.isFinite ? 4.1 : 4;
@@ -276,7 +285,7 @@ var html       = document.documentElement,
 					// 535.19 = 4.1
 					// 537.36 = 4.4.2-5.x
 			} else {
-				ua[ 'Android' ] =
+				ua[ 'Android' ] = verAndroid =
 					verWebKit < 529    ? 1.5 : // <= 528.5
 					verWebKit < 531    ? 2.0 : // 530 2.0~2.1
 									   // 533 2.2~2.3
@@ -339,11 +348,11 @@ var html       = document.documentElement,
 		};
     } else
 // AOSP | Chrome WebView Wrapped Browser
-    if( Android && ( verChrome || verVersion || pcMode ) ){
+    if( verAndroid && ( verChrome || verVersion || pcMode ) ){
 		// Android3.1 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
 		if( verChrome && !verVersion && !pcMode ){
 			// Android 標準ブラウザ Chrome WebView ブラウザ		
-			ua[ 'CrWV' ] = Android;
+			ua[ 'CrWV' ] = verAndroid;
 		} else
 		// http://uupaa.hatenablog.com/entry/2014/04/15/163346
 		// Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
@@ -352,9 +361,9 @@ var html       = document.documentElement,
 		// CustomElement の有無で判定
 		if( document[ 'registerElement' ] ){
 			// UA を AOSP に偽装した Chrome WebView
-			ua[ 'CrWV' ] = Android;
+			ua[ 'CrWV' ] = verAndroid;
 		} else {
-			ua[ 'AOSP' ] = Android;
+			ua[ 'AOSP' ] = verAndroid;
 		};
 
 		if( pcMode ) ua[ 'PCMode' ] = true;
