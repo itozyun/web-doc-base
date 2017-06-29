@@ -120,6 +120,7 @@ var html       = document.documentElement,
                   getNumber( dua, 'Navigator/' ),   // NN
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
+	noeqPCMode  = isTouch && ( verWebKit || isGecko ) && ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && findString( dua, 'Linux x86_64' ),
     v, pcMode, dpRatio;
 	// iOS FxiOS, CriOS, Coast
 
@@ -254,7 +255,7 @@ var html       = document.documentElement,
         } else if( Android ){
             ua[ 'Android' ] = '2.2+';
         };
-		if( !findString( dua, 'Android;' ) ) ua[ 'PCMode' ] = true;
+		if( noeqPCMode ) ua[ 'PCMode' ] = true;
 	} else if( Android && isPrsto ){
 		if( verAndroid ){
 			ua[ 'Android' ] = verAndroid;
@@ -266,16 +267,18 @@ var html       = document.documentElement,
     } else if( Android || Linux ){
         if( verAndroid ){
             ua[ 'Android' ] = verAndroid;
-        } else if( ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && isTouch && verWebKit ){
+        } else if( noeqPCMode ){
 			// https://ja.wikipedia.org/wiki/WebKit
 			// http://www.au.kddi.com/developer/android/kishu/ua/
 			// webkit version to Android version...
-			pcMode = !isBlink || verWebKit < 534.3; // 4.0 & 3.x には chrome がいる...
-
+			pcMode = true; // !isBlink || verWebKit < 534.3; // 4.0 & 3.x には chrome がいる...
+			// AOSP の判定は Version/ の有無. 但し「デスクトップ版で見る」場合、Version/ が居なくなる...
             // PC版で見る、にチェックが付いている場合、ユーザーエージェント文字列にも platform にも Android の文字列が存在しない(標準ブラウザ&Chrome)
             // Audio でタッチが必要か？の判定にとても困る...
-            // ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？
-			if( window[ 'Int8Array' ] ){
+            // ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？	
+			if( ( isBlink && verChrome && 534.3 <= verWebKit ) || verBlinkOp ){
+				ua[ 'Android' ] = '4+';
+			} else if( window[ 'Int8Array' ] ){
 				ua[ 'Android' ] = verAndroid =
 					!navigator[ 'connection' ] ? 4.4 :
 					Number.isFinite && ( window.history && window.history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
@@ -288,7 +291,7 @@ var html       = document.documentElement,
 				ua[ 'Android' ] = verAndroid =
 					verWebKit < 529    ? 1.5 : // <= 528.5
 					verWebKit < 531    ? 2.0 : // 530 2.0~2.1
-									   // 533 2.2~2.3
+									// 533 2.2~2.3
 					verWebKit < 534    ? ( window.HTMLAudioElement ? 2.3 : 2.2 ) : 3;
 			};
         } else {
@@ -347,35 +350,32 @@ var html       = document.documentElement,
 			ua[ 'NN' ] = verNetscape;
 		};
     } else
-// AOSP | Chrome WebView Wrapped Browser
-    if( verAndroid && ( verChrome || verVersion || pcMode ) ){
-		// Android3.1 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
-		if( verChrome && !verVersion && !pcMode ){
-			// Android 標準ブラウザ Chrome WebView ブラウザ		
-			ua[ 'CrWV' ] = verAndroid;
-		} else
-		// http://uupaa.hatenablog.com/entry/2014/04/15/163346
-		// Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
-		// また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
-		// http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
-		// CustomElement の有無で判定
-		if( document[ 'registerElement' ] ){
-			// UA を AOSP に偽装した Chrome WebView
-			ua[ 'CrWV' ] = verAndroid;
-		} else {
-			ua[ 'AOSP' ] = verAndroid;
-		};
-
-		if( pcMode ) ua[ 'PCMode' ] = true;
-
-    } else
-// Blink Chrome & Blink Opera
-	if( isBlink && verBlinkOp ){
+// Blink Opera
+	if( /* isBlink && */ verBlinkOp ){
 		ua[ 'Opera' ] = verBlinkOp;
 		ua[ 'Blink' ] = verChrome;
+		if( pcMode ) ua[ 'PCMode' ] = true;
 	} else
+// AOSP | Chrome WebView Wrapped Browser
+// Android3.1 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
+// http://uupaa.hatenablog.com/entry/2014/04/15/163346
+// Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
+// また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
+// http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
+// CustomElement の有無で判定
+    if( verAndroid && ( verChrome || document[ 'registerElement' ] ) && ( verVersion || pcMode ) ){
+		// Android 標準ブラウザ Chrome WebView ブラウザ
+		ua[ 'CrWV' ] = verAndroid;
+		if( pcMode ) ua[ 'PCMode' ] = true;
+	} else
+	if( verAndroid && ( verVersion || pcMode ) ){
+		ua[ 'AOSP' ] = verAndroid;
+		if( pcMode ) ua[ 'PCMode' ] = true;
+    } else
+// Blink Chrome
 	if( isBlink ){
 		ua[ 'Blink' ] = verChrome;
+		if( pcMode ) ua[ 'PCMode' ] = true;
 	} else
 	if( isKHTML ){
 		ua[ 'Khtml' ] = tv;
