@@ -22,7 +22,7 @@ var html       = document.documentElement,
 	screenW    = screen.width,
 	screenH    = screen.height,
 
-    isTouch     = window.ontouchstart !== undefined,
+    isTouch    = window.ontouchstart !== undefined,
 
     /**
      * http://help.dottoro.com/ljifbjwf.php
