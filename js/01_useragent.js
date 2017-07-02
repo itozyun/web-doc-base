@@ -116,6 +116,7 @@ var html       = document.documentElement,
                   getNumber( dua, 'Navigator/' ),   // NN
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
+	maybeAOSP   = isBlink && verWebKit <= 534.3, // 4.0 & 3.x には chrome がいる... 534~534.3
 	maybePCMode = isTouch && ( verWebKit || isGecko ) && ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && findString( dua, 'Linux x86_64' ),
     v, pcMode, dpRatio;
 	// iOS FxiOS, CriOS, Coast
@@ -266,12 +267,12 @@ var html       = document.documentElement,
 		// https://ja.wikipedia.org/wiki/WebKit
 		// http://www.au.kddi.com/developer/android/kishu/ua/
 		// webkit version to Android version...
-		pcMode = true; // !isBlink || verWebKit < 534.3; // 4.0 & 3.x には chrome がいる...
+		pcMode = true;
 		// AOSP の判定は Version/ の有無. 但し「デスクトップ版で見る」場合、Version/ が居なくなる...
 		// PC版で見る、にチェックが付いている場合、ユーザーエージェント文字列にも platform にも Android の文字列が存在しない(標準ブラウザ&Chrome)
 		// Audio でタッチが必要か？の判定にとても困る...
 		// ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？	
-		if( isBlink || verBlinkOp ){
+		if( ( isBlink && !maybeAOSP ) || verBlinkOp ){
 			ua[ 'Android' ] = verAndroid = '4+';
 		} else if( document[ 'registerElement' ] ){
 			ua[ 'Android' ] = verAndroid = '4.4+';
@@ -353,8 +354,8 @@ var html       = document.documentElement,
 		if( pcMode ) ua[ 'PCMode' ] = true;
 	} else
 // AOSP | Chrome WebView Wrapped Browser
-// Android3.1 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
-    if( verAndroid && isBlink && verWebKit < 534.3 ){
+// Android3.x-4.0 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
+    if( verAndroid && maybeAOSP ){
 		ua[ 'AOSP' ] = verAndroid;
 		if( pcMode ) ua[ 'PCMode' ] = true;
 	} else
