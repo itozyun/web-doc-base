@@ -2,7 +2,6 @@
  * 途中でサイドバーの要素が変化する -> 知りません
  */
 ;(function( window, document, navigator, parseFloat, mainID, sidebarID, wrapperID ){
-
 	var
 	// memory
 		preonload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
@@ -10,49 +9,32 @@
 		preonresize = window.onresize,
 		preonunload = window.onunload,
 		emptyFunc   = new Function,
+
+		ua          = window[ 'ua' ],
 	/*
 	 * positionFixed
 	 *   original :
 	 *     https://github.com/jquery/jquery-mobile/blob/d04308f591d4d0e58443d6a645d0cc1f599888d2/js/support.js
 	 */
-		positionFixed = (function(){
-			var ua        = navigator.userAgent,
-				platform  = navigator.platform,
+		positionFixed =
 				// Rendering engine is Webkit, and capture major version
-				wkversion = parseFloat( ua.split( 'AppleWebKit/' )[ 1 ] ),
-				ffversion = parseFloat( ua.split( 'Fennec/' )[ 1 ] ),
-				omversion = parseFloat( ua.split( 'Opera Mobi/' )[ 1 ] ),
-				jsVersion = eval( '/*@cc_on@_jscript_version+@*/0' ),
-				ieversion = jsVersion && Math.min(
-					jsVersion === 3   ? 4 :
-					jsVersion === 5   ? 5 :
-					jsVersion === 5.1 ? 5.01 :
-					jsVersion === 5.5 ? 5.5  :
-					jsVersion === 5.6 ? 6  :
-					jsVersion === 5.7 ? ( !window.XMLHttpRequest ? 6 : 7 ) :
-					jsVersion === 5.8 ? 8 : jsVersion,
-					document.documentMode ); // ie11 ie5 mode で ua が MSIE 7 になっている...
-
-			if(
+				// omversion = parseFloat( userAgent.split( 'Opera Mobi/' )[ 1 ] );
+			!(
 				// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
-				( ( platform.indexOf( "iPhone" ) > -1 || platform.indexOf( "iPad" ) > -1  || platform.indexOf( "iPod" ) > -1 ) && wkversion < 534 ) ||
+				( ua[ 'iOS' ] < 5 ) ||
 				// Opera Mini
-				( window.operamini && ({}).toString.call( window.operamini ) === "[object OperaMini]" ) || omversion < 7458	||
+				// ( ua[ 'OperaMin' ] || omversion < 7458 ) ||
 				//Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
-				( ua.indexOf( "Android" ) > -1 && wkversion < 533 ) ||
+				( ua[ 'AOSP' ] < 2.2 ) ||
 				// Firefox Mobile before 6.0 -
-				( ffversion < 6 ) ||
+				( ua[ 'Fennec' ] < 6 ) ||
 				// WebOS less than 3
-				( window[ "palmGetResource" ] && wkversion < 534 )	||
+				( ua[ 'WebOS' ] && ua[ 'WebKit' ] < 534 ) ||
 				// MeeGo
-				( ua.indexOf( "MeeGo" ) > -1 && ua.indexOf( "NokiaBrowser/8.5.0" ) > -1 ) ||
+				( ua[ 'MeeGo' ] ) ||
 				// IE6-
-				( 0 < ieversion && ieversion < 7 )
-				) {
-				return false;
-			};
-			return true;
-		})(),
+				( ua[ 'IE' ] < 7 )
+			),
 		// !table-cell
 		root, body, elmSide, elmMain, elmWrap,
 		resizeTimerID, hasScroll, transformProp, can3D;

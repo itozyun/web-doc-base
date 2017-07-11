@@ -1,4 +1,4 @@
-(function( window, document, Function, rootID ){
+(function( window, document, emptyFunction, rootID ){
 	var tempOnload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
 		tempOnUnload = window.onunload,
 		w3cDOM       = !!document.getElementsByTagName,
@@ -8,31 +8,31 @@
 	onload = function( e ){
 		var root  = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
 			links = w3cDOM ? root.getElementsByTagName( 'A' ) : root.all.tags( 'A' ),
-			i = -1, _ = '', link, img, tag, href, ext;
+			i = -1, _ = '', elmA, elmImg, tag, href, ext;
 		
 		if( tempOnload ) tempOnload( e );
 		tempOnload = null;
 		
 		if( onload === arguments.callee ){
-			onload = new Function();
+			onload = emptyFunction;
 			onload = null;
 		};
 		
-		for( ; link = links[ ++i ]; ){
-			img = link.children.length === 1 && link.children[ 0 ];
-			tag = img && img.tagName;
+		for( ; elmA = links[ ++i ]; ){
+			elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
+			tag    = elmImg && elmImg.tagName;
 			if( tag === 'IMG' || tag === 'img' ){
-				href = link.getAttribute( 'href' );
+				href = elmA.getAttribute( 'href' );
 				ext  = href.split( '?' ).join( _ ).split( '#' ).join( _ ).split( '.' );
 				ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
 				if( 0 <= 'jpg png gif bmp'.indexOf( ext.substr( 0, 3 ) ) || 0 <= 'jpeg webp'.indexOf( ext.substr( 0, 4 ) ) ){
-					link.onclick = onClickThumbnail;
+					elmA.onclick = elmImg.onclick = onClickThumbnail;
 					IMGS.push( {
-						a           : link,
-						thumbUrl    : img.src,
-						thumbWidth  : img.style.width = img.offsetWidth + 'px',
+						elmA        : elmA,
+						thumbUrl    : elmImg.src,
+						thumbWidth  : elmImg.style.width = elmImg.offsetWidth + 'px',
 						originalUrl : href,
-						elmImg      : img,
+						elmImg      : elmImg,
 						replaced    : false,
 						clazz       : _
 					} );
@@ -42,20 +42,22 @@
 	};
 
 	function onClickThumbnail( e ){
-		var i = IMGS.length, _ = '',
-			parent = this, src, obj, tag, w, elms, size, n, c;
+		var i = IMGS.length,
+			_ = '',
+			elmImg = this,
+			parent, src, obj, tag, w, elms, size, n, c;
 		
 		for( ; i; ){
 			obj = IMGS[ --i ];
-			if( obj.a === this ){
+			if( obj.elmImg === elmImg ){
 				
-				img = obj.elmImg;
+				elmA = parent = obj.elmA;
 				
 				if( obj.replaced ){
 					// Large -> small
-					img.style.width = obj.thumbWidth;
-					img.setAttribute( 'src', obj.thumbUrl );
-					this.className = obj.clazz;
+					elmImg.style.width = obj.thumbWidth;
+					elmImg.setAttribute( 'src', obj.thumbUrl );
+					elmA.className = obj.clazz;
 					if( obj.caption ) obj.caption.style.cssText = obj.captionCSS;
 				} else {
 					// small -> Large
@@ -91,10 +93,10 @@
 						obj.large = src;
 					};
 					
-					obj.clazz = c = this.getAttribute( 'className' ) || _;
-					this.className = ( c ? c + ' ' : _ ) + 'jL';
-					img.style.width = _;
-					img.setAttribute( 'src', obj.large );
+					obj.clazz = c = elmA.getAttribute( 'className' ) || _;
+					elmA.className = ( c ? c + ' ' : _ ) + 'jL';
+					elmImg.style.width = _;
+					elmImg.setAttribute( 'src', obj.large );
 					if( obj.caption ){
 						obj.caption.style.cssText = 'float:none;margin-right:0';
 					};
@@ -124,20 +126,20 @@
 	};
 	
 	onunload = function(){
-		var i = -1, f = new Function, obj;
+		var i = -1, obj;
 		
 		if( tempOnUnload ) tempOnUnload();
 		tempUnOnload = null;
 		
 		if( onunload === arguments.callee ){
-			onunload = f;
+			onunload = emptyFunction;
 			onunload = null;
 		};
 		
 		for( ; obj = IMGS[ ++i ]; ){
-			obj.a.onclick = f;
-			obj.a.onclick = null;
+			obj.elmA.onclick = obj.elmImg.onclick = emptyFunction;
+			obj.elmA.onclick = obj.elmImg.onclick = null;
 		};
-		html.onclick = f;
+		html.onclick = emptyFunction;
 	};
-})( window, document, Function, 'jM' );
+})( window, document, new Function, 'jM' );

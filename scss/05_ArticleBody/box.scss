@@ -12,6 +12,10 @@
 	margin-right    : 0;
 }
 
+.box > p:first-of-type {
+	margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 3;
+}
+
 .box ul, .box ol {
 	list-style-position : inside;
 }

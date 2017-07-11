@@ -24,6 +24,9 @@
 .jL img {
 	width       : 100%;
 	height      : auto;
+	margin      : 0 auto 1em; /* auto は中央配置で transition させるため */
+}
+.box .jL img {
 	margin      : 0 0 1em;
 }
 

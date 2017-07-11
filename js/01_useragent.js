@@ -1,7 +1,5 @@
 
-var ua = {};
-
-(function(){
+//(function( window, document, navigator, screen, parseFloat, Number ){
 
 function getNumber( str1, str2 ){
     return parseFloat( str1.split( str2 )[ 1 ] );
@@ -13,7 +11,8 @@ function findString( str1, str2 ){
     return 0 <= str1.indexOf( str2 );
 };
 
-var html       = document.documentElement,
+var ua         = window[ 'ua' ] = {},
+	html       = document.documentElement,
     dua        = navigator.userAgent,
     dav        = navigator.appVersion,
     tv         = parseFloat(dav),
@@ -21,9 +20,20 @@ var html       = document.documentElement,
 	docMode    = document.documentMode,
 	screenW    = screen.width,
 	screenH    = screen.height,
+	history    = window.history,
 
     isTouch    = window.ontouchstart !== undefined,
 
+	NINTENDO_  = 'Nintendo ',
+	WIN_PHONE  = 'Windows Phone',
+	ANDROID    = 'Android',
+	ANDROID_   = ANDROID + ' ',
+	PC_MODE    = 'PCMode',
+	VERSION_   = 'Version/',
+	I_PHONE    = 'iPhone',
+	LINUX      = 'Linux',
+	SAFARI     = 'Safari',
+	NETSCAPE   = 'Netscape',
     /**
      * http://help.dottoro.com/ljifbjwf.php
      * version method (opera)
@@ -40,14 +50,16 @@ var html       = document.documentElement,
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
-    isOpMin   = ( '' + window.operamini ) === '[object OperaMini]',
+	// Rendering engine is Webkit, and capture major version
+	// omversion = parseFloat( userAgent.split( 'Opera Mobi/' )[ 1 ] );
+    isOpMin   = ( '' + window[ 'operamini' ] ) === '[object OperaMini]',
     isUCSpeed = findString( dua, 'UCWEB' ),
 
     isTrident = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
     isEdge    = !isTrident && html[ 'msContentZoomFactor' ],
     isBlink   = !isEdge && window.chrome,
 
-    isSafari  = findString( dua, 'Safari' ),
+    isSafari  = findString( dua, SAFARI ),
     isIris    = findString( dua.toLowerCase(), 'iris' ),
     /**
      * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
@@ -58,7 +70,7 @@ var html       = document.documentElement,
 
     iOS        = fromString( sys, 'iP' ),
     WebOS      = window[ "palmGetResource" ],
-    WinPhone   = getNumber( dua, 'Windows Phone' ) || getNumber( dav, 'Windows Phone OS ' ),
+    WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' ),
 	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
     Win        = fromString( sys, 'Win' ),
     Mac        = fromString( sys, 'Mac' ),
@@ -68,11 +80,11 @@ var html       = document.documentElement,
 	PSVita     = getNumber( dua, 'PlayStation Vita' ),
 // http://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
     NDS        = sys === 'Nitro',
-	NDSi       = sys === 'Nintendo DSi',
-	N3DS       = sys === 'Nintendo 3DS',
-	NewN3DS    = sys === 'New Nintendo 3DS' || ( findString( dua, 'iPhone OS 6_0' ) && screenW === 320 && screenH === 240 ),
-    Wii        = sys === 'Nintendo Wii',
-	WiiU       = sys === 'Nintendo WiiU',
+	NDSi       = sys === NINTENDO_ + 'DSi',
+	N3DS       = sys === NINTENDO_ + '3DS',
+	NewN3DS    = sys === 'New ' + NINTENDO_ + '3DS' || ( findString( dua, I_PHONE + ' OS 6_0' ) && screenW === 320 && screenH === 240 ),
+    Wii        = sys === NINTENDO_ + 'Wii',
+	WiiU       = sys === NINTENDO_ + 'WiiU',
 // Kobo Mozilla/5.0 (Linux; U; Android 2.0; en-us;) AppleWebKit/533.1 (KHTML, like Gecko) Verson/4.0 Mobile Safari/533.1 (Kobo Touch)
     Kobo       = findString( dua, 'Kobo' ),
 // Kindle paperwhite Mozilla/5.0 (X11; U; Linux armv7l like Android; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/533.2+ Kindle/3.0+
@@ -80,17 +92,18 @@ var html       = document.documentElement,
 // Sony Reader Mozilla/5.0 (Linux; U; ja-jp; EBRD1101; EXT) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
     SonyReader = findString( dua, 'EBRD' ),
     Mylo       = tv === 2 && findString( dua, 'Sony/COM2/' ),
-    Android    = findString( sys, 'Android' ) || /* Android2.3.5 Firefox3.1 */ isGecko && findString( dav, 'Android' ),
-    Linux      = findString( sys, 'Linux' ),
-    MeeGo,
+    Android    = findString( sys, ANDROID ) || /* Android2.3.5 Firefox3.1 */ isGecko && findString( dav, ANDROID ),
+    Linux      = findString( sys, LINUX ),
+    MeeGo      = findString( dua, 'MeeGo' ) && findString( dua, 'NokiaBrowser/8.5.0' ),
 	FireFoxOS,
 	BlackBerry, XBox,
 	Solaris, // ua SunOS
     // (Ubuntu|Linux|(Free|Net|Open)BSD)
 
-    verAndroid = getNumber( sys, 'Android ' ) || getNumber( dav, 'Android ' ) || getNumber( dua, 'Android ' ),
+    verAndroid = getNumber( sys, ANDROID_ ) || getNumber( dav, ANDROID_ ) || getNumber( dua, ANDROID_ ),
 
-    verSafari  = getNumber( dav, 'Version/' ),
+	verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ),
+    verSafari  = verVersion,
     verTrident = getNumber( dav, 'Trident/' ),
     verEdge    = getNumber( dav, 'Edge/' ),
     verMSIE    =
@@ -101,7 +114,6 @@ var html       = document.documentElement,
         window.attachEvent    ? 5 : 4,
 
     verGecko   = getNumber( dua, 'rv:' ),
-    verVersion = getNumber( dua, 'Version/' ),
     verWebKit  = getNumber( dua, 'AppleWebKit/' ),
     verChrome  = getNumber( dua, 'Chrome/' ),
     verBlinkOp = getNumber( dua, 'OPR/' ),
@@ -111,13 +123,13 @@ var html       = document.documentElement,
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20070321 Netscape/8.1.3
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6
-    verNetscape = getNumber( dua, 'Netscape6/' ) || // NN6
-                  getNumber( dua, 'Netscape/'  ) || // NN7-8
+    verNetscape = getNumber( dua, NETSCAPE + '6/' ) || // NN6
+                  getNumber( dua, NETSCAPE + '/'  ) || // NN7-8
                   getNumber( dua, 'Navigator/' ),   // NN
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
 	maybeAOSP   = isBlink && verWebKit <= 534.3, // 4.0 & 3.x には chrome がいる... 534~534.3
-	maybePCMode = isTouch && ( verWebKit || isGecko ) && ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && findString( dua, 'Linux x86_64' ),
+	maybePCMode = isTouch && ( verWebKit || isGecko ) && ( sys === LINUX + ' armv7l' || sys === LINUX + ' i686' ) && findString( dua, LINUX + ' x86_64' ),
     v, pcMode, dpRatio;
 	// iOS FxiOS, CriOS, Coast
 
@@ -148,7 +160,9 @@ var html       = document.documentElement,
     } else if( PS3 ){
         ua[ 'PS3' ] = true;
     } else if( WebOS ){
-
+		ua[ 'WebOS' ] = true;
+	} else if( MeeGo ){
+		ua[ 'MeeGo' ] = true;
     } else if( iOS ){
 		dpRatio = window.devicePixelRatio === 1;
 		ua[ 'iOS' ] = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
@@ -157,9 +171,9 @@ var html       = document.documentElement,
 		v = screenW === screenH * 1.5 || screenW * 1.5 === screenH;
 
 		switch( sys ){
-			case 'iPhone' :
-			case 'iPhone Simulator' :
-				ua[ 'iPhone' ] = v ? ( dpRatio ? '<=3GS' : '<=4s' ) : '5<=';
+			case I_PHONE :
+			case I_PHONE + ' Simulator' :
+				ua[ I_PHONE ] = v ? ( dpRatio ? '<=3GS' : '<=4s' ) : '5<=';
 				break;
 			case 'iPad' :
 			case 'iPad Simulator' :
@@ -174,13 +188,13 @@ var html       = document.documentElement,
         ua[ 'WinPhone' ] = WinPhone;
     } else if( verEdge && sys === 'ARM' ){
         ua[ 'WinPhone' ] = 10;
-		ua[ 'PCMode'   ] = true;
+		ua[ PC_MODE    ] = true;
 	} else if( wpPCMode ){
 		ua[ 'WinPhone' ] = verMSIE === 11 ? 8.1 :
 						   verMSIE === 10 ? 8   :
 						   verMSIE ===  9 ? 7.5 :
 						   verMSIE ===  7 ? 7   : '?';
-		ua[ 'PCMode'   ] = true;
+		ua[ PC_MODE   ] = true;
     } else if( Win ){
 		switch( sys ){
 			case 'WinCE' :
@@ -245,24 +259,24 @@ var html       = document.documentElement,
         // 相互運用性向上のため、Android 4 以前のバージョンでブラウザが動作している場合は 4.4 と出力します。
         // Android バージョン 4 以降では実際のバージョン番号が出力されます。
         // なお、Gecko エンジンはすべての Android バージョンに対して同じ機能を提供しています。	
-        if( findString( dua, 'Android 4.4;' ) ){
-            ua[ 'Android' ] = '2.3+';
+        if( findString( dua, ANDROID_ + '4.4;' ) ){
+            ua[ ANDROID ] = '2.3+';
         } else if( 4 <= verAndroid ){
-            ua[ 'Android' ] = verAndroid;
+            ua[ ANDROID ] = verAndroid;
         } else if( Android ){
-            ua[ 'Android' ] = '2.2+';
+            ua[ ANDROID ] = '2.2+';
         };
-		if( maybePCMode ) ua[ 'PCMode' ] = true;
+		if( maybePCMode ) ua[ PC_MODE ] = true;
 	} else if( Android && isPrsto ){
 		if( verAndroid ){
-			ua[ 'Android' ] = verAndroid;
+			ua[ ANDROID ] = verAndroid;
 		} else {
-			ua[ 'Android' ] = '1.6+';
-			ua[ 'PCMode'  ] = true;
+			ua[ ANDROID ] = '1.6+';
+			ua[ PC_MODE  ] = true;
 		};
 // Android other | Linux
 	} else if( verAndroid ){
-		ua[ 'Android' ] = verAndroid;
+		ua[ ANDROID ] = verAndroid;
     } else if( Linux && maybePCMode ){
 		// https://ja.wikipedia.org/wiki/WebKit
 		// http://www.au.kddi.com/developer/android/kishu/ua/
@@ -273,27 +287,27 @@ var html       = document.documentElement,
 		// Audio でタッチが必要か？の判定にとても困る...
 		// ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？	
 		if( ( isBlink && !maybeAOSP ) || verBlinkOp ){
-			ua[ 'Android' ] = verAndroid = '4+';
+			ua[ ANDROID ] = verAndroid = '4+';
 		} else if( document[ 'registerElement' ] ){
-			ua[ 'Android' ] = verAndroid = '4.4+';
+			ua[ ANDROID ] = verAndroid = '4.4+';
 		} else if( window[ 'Int8Array' ] ){
-			ua[ 'Android' ] = verAndroid =
+			ua[ ANDROID ] = verAndroid =
 				!navigator[ 'connection' ] ? 4.4 :
-				Number.isFinite && ( window.history && window.history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
+				Number.isFinite && ( history && history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
 				Number.isFinite ? 4.1 : 4;
 				// 534 - 3.x~4.x , 534.13=3.x
 				// 534.30 = 4.0-4.1
 				// 535.19 = 4.1
 				// 537.36 = 4.4.2-5.x
 		} else {
-			ua[ 'Android' ] = verAndroid =
+			ua[ ANDROID ] = verAndroid =
 				verWebKit < 529    ? 1.5 : // <= 528.5
 				verWebKit < 531    ? 2.0 : // 530 2.0~2.1
 								// 533 2.2~2.3
 				verWebKit < 534    ? ( window.HTMLAudioElement ? 2.3 : 2.2 ) : 3;
 		};
 	} else {
-		ua[ 'Linux' ] = true;
+		ua[ LINUX ] = true;
 	};
 
 // browser 判定
@@ -351,18 +365,18 @@ var html       = document.documentElement,
 	if( /* isBlink && */ verBlinkOp ){
 		ua[ 'Opera' ] = verBlinkOp;
 		ua[ 'Blink' ] = verChrome;
-		if( pcMode ) ua[ 'PCMode' ] = true;
+		if( pcMode ) ua[ PC_MODE ] = true;
 	} else
 // AOSP | Chrome WebView Wrapped Browser
 // Android3.x-4.0 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
     if( verAndroid && maybeAOSP ){
 		ua[ 'AOSP' ] = verAndroid;
-		if( pcMode ) ua[ 'PCMode' ] = true;
+		if( pcMode ) ua[ PC_MODE ] = true;
 	} else
 // Blink Chrome
 	if( isBlink ){
 		ua[ 'Blink' ] = verChrome;
-		if( pcMode ) ua[ 'PCMode' ] = true;
+		if( pcMode ) ua[ PC_MODE ] = true;
 	} else
 // http://uupaa.hatenablog.com/entry/2014/04/15/163346
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
@@ -372,11 +386,11 @@ var html       = document.documentElement,
     if( verAndroid && document[ 'registerElement' ] ){
 		// Android 標準ブラウザ Chrome WebView ブラウザ
 		ua[ 'CrWV' ] = verAndroid;
-		if( pcMode ) ua[ 'PCMode' ] = true;
+		if( pcMode ) ua[ PC_MODE ] = true;
 	} else
 	if( verAndroid && ( verVersion || pcMode ) ){
 		ua[ 'AOSP' ] = verAndroid;
-		if( pcMode ) ua[ 'PCMode' ] = true;
+		if( pcMode ) ua[ PC_MODE ] = true;
     } else
 	if( isKHTML ){
 		ua[ 'Khtml' ] = tv;
@@ -392,10 +406,10 @@ var html       = document.documentElement,
         } else
 		if( isSafari ){
 			if( verSafari ){
-				ua[ 'Safari' ] = verSafari;
+				ua[ SAFARI ] = verSafari;
 			} else
 			if( verWebKit <= 528.16 ){
-				ua[ 'Safari' ] = verWebKit <   73    ? 0.8 :
+				ua[ SAFARI ] = verWebKit <   73    ? 0.8 :
 								 verWebKit <   85    ? 0.9 :
 								 verWebKit <  100    ? 1 :
 								 verWebKit <  125    ? 1.1 :
@@ -407,4 +421,4 @@ var html       = document.documentElement,
 			};
 		};
 	};
-})();
+//})( window, document, navigator, screen, parseFloat, Number );
