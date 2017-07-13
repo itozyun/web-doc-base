@@ -12,9 +12,11 @@
 	margin-right    : 0;
 }
 
+/* //_{#can-1stOfType */
 .box > p:first-of-type {
 	margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 3;
 }
+/* //_}#can-1stOfType */
 
 .box ul, .box ol {
 	list-style-position : inside;

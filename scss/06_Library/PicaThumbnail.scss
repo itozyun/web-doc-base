@@ -24,16 +24,21 @@
 .jL img {
 	width       : 100%;
 	height      : auto;
+	/* //_{^@ie5win */
 	margin      : 0 auto 1em; /* auto は中央配置で transition させるため */
+	/* //_}^@ie5win */
 }
+/* //_{^@ie5win */
 .box .jL img {
 	margin      : 0 0 1em;
 }
+/* //_}^@ie5win */
 
 /* //_{@ie5win */
 .jL img {
 	float   : none;
 	clear   : both;
+	margin  : 0 0 1em;
 }
 /* //_}@ie5win */
 
