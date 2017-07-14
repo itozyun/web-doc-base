@@ -130,7 +130,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 	.aBodyRoot {
-		line-height : 1.6;
+		line-height : $PHONE_LINE_HEIGHT;
 	}
 
 	/* //_{+from-h2-at-post */
@@ -156,7 +156,7 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
 	.aBodyRoot {
-		line-height : 1.4;
+		line-height : $WATCH_LINE_HEIGHT;
 	}
 	/* //_{+from-h2-at-post */
 		.aBodyRoot h3 {

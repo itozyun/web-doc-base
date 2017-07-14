@@ -47,9 +47,19 @@ a:focus img, a:link:active img, a:visited:active img {
 	background  : $COLOR_ACCENT;
 }
 
+/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない */
+/*
 .js-picaThumb-small {
-	display : table; /* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない */
+	display : table; 
 }
+.picaThumb {
+	display : inline-block;
+	margin  : 0 auto 1em;
+}
+.picaThumb img {
+	margin  : 0;
+}
+*/
 
 /* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない 
 #Bm a[href*=javascript：] {
