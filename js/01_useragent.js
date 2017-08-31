@@ -289,12 +289,17 @@ var ua         = window[ 'ua' ] = {},
 		if( ( isBlink && !maybeAOSP ) || verBlinkOp ){
 			ua[ ANDROID ] = verAndroid = '4+';
 		} else if( document[ 'registerElement' ] ){
-			ua[ ANDROID ] = verAndroid = '4.4+';
+			// http://caniuse.com/#feat=document-execcommand
+			// Android 5+ で非対応に
+			ua[ ANDROID ] = verAndroid = document.execCommand ? 4.4 : 5;
+
 		} else if( window[ 'Int8Array' ] ){
 			ua[ ANDROID ] = verAndroid =
 				!navigator[ 'connection' ] ? 4.4 :
-				Number.isFinite && ( history && history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
-				Number.isFinite ? 4.1 : 4;
+				( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3, 4.1 には searchBoxJavaBridge_ と chrome が存在 */
+				document.execCommand && Number.isNaN ? 4.1 : 4;
+				// Number.isFinite && ( history && history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
+				// Number.isFinite ? 4.1 : 4;
 				// 534 - 3.x~4.x , 534.13=3.x
 				// 534.30 = 4.0-4.1
 				// 535.19 = 4.1

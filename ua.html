@@ -66,11 +66,28 @@
         '<h1>Short URL</h1>' +
         '<a href="https://goo.gl/PFu3uN">https://goo.gl/PFu3uN</a>'
     );
+
+    var str = [], k, prop, l, n;
+    
+    for( k in window ){
+        prop = window[ k ];
+        if( prop && 0 < ' object function'.indexOf( typeof prop ) ){
+            n = 0;
+            for( l in prop ) ++n;
+            if( n ) k += '[' + n + ']';
+        };
+        str.push( k );
+    };
+
+    print(
+        '<h1>window ' + str.length +'</h1>' +
+        '<textarea readonly>' + str.sort().join( '\n' ) + '</textarea>'
+    );
 })();
+
 </script>
 </head>
-<body size='1'>
-</body>
+<body size='1'></body>
 </html>
 
 
