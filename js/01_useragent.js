@@ -45,7 +45,7 @@ var ua         = window[ 'ua' ] = {},
      */
     isPrsto   = window.opera,
     verOpera  = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
-
+	isOPR     = window[ 'opr' ],
     /**
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
@@ -68,12 +68,6 @@ var ua         = window[ 'ua' ] = {},
     isGecko   = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
     isKHTML   = findString( dav, 'Konqueror' ),
 
-    iOS        = fromString( sys, 'iP' ),
-    WebOS      = window[ "palmGetResource" ],
-    WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' ),
-	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
-    Win        = fromString( sys, 'Win' ),
-    Mac        = fromString( sys, 'Mac' ),
     PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
 // https://github.com/chitoku-k/SystemInfo/blob/master/systeminfo.js
 	PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ].sysGetEnv('x-psp-browser'), 'system=' ),
@@ -82,9 +76,16 @@ var ua         = window[ 'ua' ] = {},
     NDS        = sys === 'Nitro',
 	NDSi       = sys === NINTENDO_ + 'DSi',
 	N3DS       = sys === NINTENDO_ + '3DS',
-	NewN3DS    = sys === 'New ' + NINTENDO_ + '3DS' || ( findString( dua, I_PHONE + ' OS 6_0' ) && screenW === 320 && screenH === 240 ),
+	New3DS     = sys === 'New ' + NINTENDO_ + '3DS' || ( findString( dua, I_PHONE + ' OS 6_0' ) && screenW === 320 && screenH === 240 ),
     Wii        = sys === NINTENDO_ + 'Wii',
 	WiiU       = sys === NINTENDO_ + 'WiiU',
+	
+    iOS        = !New3DS && fromString( sys, 'iP' ),
+    WebOS      = window[ 'palmGetResource' ],
+    WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' ),
+	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
+    Win        = fromString( sys, 'Win' ),
+    Mac        = fromString( sys, 'Mac' ),
 // Kobo Mozilla/5.0 (Linux; U; Android 2.0; en-us;) AppleWebKit/533.1 (KHTML, like Gecko) Verson/4.0 Mobile Safari/533.1 (Kobo Touch)
     Kobo       = findString( dua, 'Kobo' ),
 // Kindle paperwhite Mozilla/5.0 (X11; U; Linux armv7l like Android; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/533.2+ Kindle/3.0+
@@ -116,7 +117,7 @@ var ua         = window[ 'ua' ] = {},
     verGecko   = getNumber( dua, 'rv:' ),
     verWebKit  = getNumber( dua, 'AppleWebKit/' ),
     verChrome  = getNumber( dua, 'Chrome/' ),
-    verBlinkOp = getNumber( dua, 'OPR/' ),
+    verOPR     = getNumber( dua, 'OPR/' ),
     verFennec  = getNumber( dua, 'Fennec/' ),
 
 // Netscape Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4.1) Gecko/20020508 Netscape6/6.2.3
@@ -131,7 +132,7 @@ var ua         = window[ 'ua' ] = {},
 	maybeAOSP   = isBlink && verWebKit <= 534.3, // 4.0 & 3.x には chrome がいる... 534~534.3
 	maybePCMode = isTouch && ( verWebKit || isGecko ) && ( sys === LINUX + ' armv7l' || sys === LINUX + ' i686' ) && findString( dua, LINUX + ' x86_64' ),
     v, pcMode, dpRatio;
-	// iOS FxiOS, CriOS, Coast
+	// FxiOS, CriOS, Coast
 
 // system 判定
     if( Kobo ){
@@ -154,11 +155,15 @@ var ua         = window[ 'ua' ] = {},
     } else if( N3DS ){
         ua[ 'N3DS' ] = true;
         // ua[ 'Opera' ] = verOpera;
-    } else if( NewN3DS ){
-        ua[ 'NewN3DS' ] = true;
+    } else if( New3DS ){
+        ua[ 'New3DS' ] = true;
         // ua[ 'Opera' ] = verOpera;
     } else if( PS3 ){
         ua[ 'PS3' ] = true;
+    } else if( PSP ){
+        ua[ 'PSP' ] = PSP;
+    } else if( PSVita ){
+        ua[ 'PSVita' ] = PSVita;
     } else if( WebOS ){
 		ua[ 'WebOS' ] = true;
 	} else if( MeeGo ){
@@ -173,15 +178,15 @@ var ua         = window[ 'ua' ] = {},
 		switch( sys ){
 			case I_PHONE :
 			case I_PHONE + ' Simulator' :
-				ua[ I_PHONE ] = v ? ( dpRatio ? '<=3GS' : '<=4s' ) : '5<=';
+				ua[ I_PHONE ] = v ? ( dpRatio ? '3GS-' : '4|4s' ) : '5+';
 				break;
 			case 'iPad' :
 			case 'iPad Simulator' :
-				ua[ 'iPad' ] = dpRatio ? '<=2|<=1min' : '3<=|2min<=';
+				ua[ 'iPad' ] = dpRatio ? '2-|1min-' : '3+|2min+';
 				break;
 			case 'iPod' :
 			// case 'iPod Simulator' : // 必要??
-				ua[ 'iPod' ] = v ? ( dpRatio ? '<=3' : '<=4' ) : '5<=';
+				ua[ 'iPod' ] = v ? ( dpRatio ? '3-' : '4' ) : '5+';
 				break;
 		};
     } else if( WinPhone ){
@@ -243,8 +248,7 @@ var ua         = window[ 'ua' ] = {},
 		ua[ 'Mac' ] = true;
 		switch( sys ){
 			case 'MacPowerPC' :
-				ua[ 'MacPPC' ] = true;
-				break;
+				sys = 'MacPPC';
 			case 'MacPPC' :
 			case 'Mac68K' :
 			case 'MacIntel' :
@@ -272,7 +276,7 @@ var ua         = window[ 'ua' ] = {},
 			ua[ ANDROID ] = verAndroid;
 		} else {
 			ua[ ANDROID ] = '1.6+';
-			ua[ PC_MODE  ] = true;
+			ua[ PC_MODE ] = true;
 		};
 // Android other | Linux
 	} else if( verAndroid ){
@@ -286,7 +290,7 @@ var ua         = window[ 'ua' ] = {},
 		// PC版で見る、にチェックが付いている場合、ユーザーエージェント文字列にも platform にも Android の文字列が存在しない(標準ブラウザ&Chrome)
 		// Audio でタッチが必要か？の判定にとても困る...
 		// ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？	
-		if( ( isBlink && !maybeAOSP ) || verBlinkOp ){
+		if( ( isBlink && !maybeAOSP ) || isOPR || verOPR ){
 			ua[ ANDROID ] = verAndroid = '4+';
 		} else if( document[ 'registerElement' ] ){
 			// http://caniuse.com/#feat=document-execcommand
@@ -297,7 +301,7 @@ var ua         = window[ 'ua' ] = {},
 			ua[ ANDROID ] = verAndroid =
 				!navigator[ 'connection' ] ? 4.4 :
 				( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3, 4.1 には searchBoxJavaBridge_ と chrome が存在 */
-				document.execCommand && Number.isNaN ? 4.1 : 4;
+				/* document.execCommand && */ Number.isNaN ? 4.1 : 4;
 				// Number.isFinite && ( history && history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
 				// Number.isFinite ? 4.1 : 4;
 				// 534 - 3.x~4.x , 534.13=3.x
@@ -341,6 +345,9 @@ var ua         = window[ 'ua' ] = {},
 		};
         ua[ 'IE' ] = verMSIE;
 
+		if( ua[ 'Mac' ] ){
+			ua[ 'MacIE' ] = verMSIE;
+		};
 		// TODO ModernUI IE
     } else
 // edge
@@ -367,8 +374,8 @@ var ua         = window[ 'ua' ] = {},
 		};
     } else
 // Blink Opera
-	if( /* isBlink && */ verBlinkOp ){
-		ua[ 'Opera' ] = verBlinkOp;
+	if( /* isBlink && */ isOPR || verOPR ){
+		ua[ 'OPR'   ] = verOPR;
 		ua[ 'Blink' ] = verChrome;
 		if( pcMode ) ua[ PC_MODE ] = true;
 	} else
