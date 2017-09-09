@@ -11,7 +11,7 @@ function findString( str1, str2 ){
     return 0 <= str1.indexOf( str2 );
 };
 
-var ua         = window[ 'ua' ] = {},
+var ua         = {},
 	html       = document.documentElement,
     dua        = navigator.userAgent,
     dav        = navigator.appVersion,
@@ -70,7 +70,7 @@ var ua         = window[ 'ua' ] = {},
 
     PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
 // https://github.com/chitoku-k/SystemInfo/blob/master/systeminfo.js
-	PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ].sysGetEnv('x-psp-browser'), 'system=' ),
+	PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ][ 'sysGetEnv' ]('x-psp-browser'), 'system=' ),
 	PSVita     = getNumber( dua, 'PlayStation Vita' ),
 // http://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
     NDS        = sys === 'Nitro',
