@@ -1,0 +1,73 @@
+/* [module] SearchResult
+ *  出現位置は #lB .lMi 下で固定
+ *
+ *  div.SearchResult
+ *    h2, p
+ *    div role=list (.SearchResult-multi)
+ *      div role=listitem
+ *        h3, cite, p
+--------------------------------------------------------------------------------------*/
+.SearchResult {
+	margin-bottom : 2em;
+}
+	.SearchResult div div {
+		@include unbreak-inside;
+		margin      : 0 0.5em;
+		line-height : 1.2;
+	}
+		.SearchResult h3 {
+			margin-bottom : 0;
+		}
+			.SearchResult a:visited {
+				color : #1a0dab;
+			}
+		.SearchResult cite {
+			color      : #006621;
+			word-break : break-all;
+		}
+		.SearchResult div p {
+			margin : 0.2em 0 0;
+			color  : #545454;
+		}
+			.SearchResult div span {
+				color : #808080;
+			}
+
+/* //_{#can-mq */
+/* //_<bottom10 */
+/*  Full HD
+--------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 96em) {
+	.SearchResult-multi {
+		-webkit-column-count : 2;
+		-webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
+		   -moz-column-count : 2;
+		   -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
+		        column-count : 2;
+		        column-gap   : $WSXGA_COLUMN_GAP_EM;
+	}
+	.SearchResult-multi div:first-child h3 {
+		margin-top : 0;
+	}
+}
+/* //_>bottom10 */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+	.SearchResult a:visited {
+		color : $COLOR_WTC_link;
+	}
+	.SearchResult div p {
+		color : #808080;
+	}
+	.SearchResult div span {
+		color : #545454;
+	}
+	.SearchResult div div {
+		margin : 0;
+	}
+}
+/* //_>bottom40 */
+/* //_}#can-mq */
