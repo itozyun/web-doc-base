@@ -1,6 +1,3 @@
-
-//(function( window, document, navigator, screen, parseFloat, Number ){
-
 function getNumber( str1, str2 ){
     return parseFloat( str1.split( str2 )[ 1 ] );
 };
@@ -34,6 +31,8 @@ var ua         = {},
 	LINUX      = 'Linux',
 	SAFARI     = 'Safari',
 	NETSCAPE   = 'Netscape',
+
+	verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ),
     /**
      * http://help.dottoro.com/ljifbjwf.php
      * version method (opera)
@@ -50,10 +49,10 @@ var ua         = {},
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
-	// Rendering engine is Webkit, and capture major version
-	// omversion = parseFloat( userAgent.split( 'Opera Mobi/' )[ 1 ] );
-    isOpMin   = ( '' + window[ 'operamini' ] ) === '[object OperaMini]',
-    isUCSpeed = findString( dua, 'UCWEB' ),
+	isOpMin   = window[ 'operamini' ],
+	verOpMin  = isOpMin && ( isOpMin.version ? parseFloat( isOpMin.version() ) : Math.max( getNumber( dua, 'Opera Mobi/' ), verVersion, tv ) ),
+	isUCWEB   = findString( dua, 'UCWEB' ),
+	verUC2    = getNumber( dua, ' U2/' ),
 
     isTrident = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
     isEdge    = !isTrident && html[ 'msContentZoomFactor' ],
@@ -80,9 +79,11 @@ var ua         = {},
     Wii        = sys === NINTENDO_ + 'Wii',
 	WiiU       = sys === NINTENDO_ + 'WiiU',
 	
-    iOS        = !New3DS && fromString( sys, 'iP' ),
+	iOS        = !New3DS && fromString( sys, 'iP' )
+					|| fromString( dua, '; iPh OS ' ), // UC Browser
     WebOS      = window[ 'palmGetResource' ],
-    WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' ),
+	WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' )
+					|| getNumber( dua, '; wds' ), // UC Browser
 	wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
     Win        = fromString( sys, 'Win' ),
     Mac        = fromString( sys, 'Mac' ),
@@ -101,9 +102,9 @@ var ua         = {},
 	Solaris, // ua SunOS
     // (Ubuntu|Linux|(Free|Net|Open)BSD)
 
-    verAndroid = getNumber( sys, ANDROID_ ) || getNumber( dav, ANDROID_ ) || getNumber( dua, ANDROID_ ),
+	verAndroid = getNumber( sys, ANDROID_ ) || getNumber( dav, ANDROID_ ) || getNumber( dua, ANDROID_ )
+					|| getNumber( dua, '; Adr ' ), // Android for UC Browser Speed mode
 
-	verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ),
     verSafari  = verVersion,
     verTrident = getNumber( dav, 'Trident/' ),
     verEdge    = getNumber( dav, 'Edge/' ),
@@ -326,11 +327,11 @@ var ua         = {},
     } else
 // Opera Mini
     if( isOpMin ){
-        ua[ 'OperaMin' ] = verOpera;
+        ua[ 'OperaMin' ] = verOpMin;
     } else
 // UC Browser Speed Mode
-    if( isUCSpeed ){
-        ua[ 'UCSpeed' ];
+    if( isUCWEB ){
+		ua[ 'UCWEB' ] = verUC2;
     } else
 // Prsto Opera
     if( isPrsto ){
@@ -433,4 +434,3 @@ var ua         = {},
 			};
 		};
 	};
-//})( window, document, navigator, screen, parseFloat, Number );

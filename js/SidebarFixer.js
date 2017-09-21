@@ -17,13 +17,13 @@
 	 *     https://github.com/jquery/jquery-mobile/blob/d04308f591d4d0e58443d6a645d0cc1f599888d2/js/support.js
 	 */
 		positionFixed =
-				// Rendering engine is Webkit, and capture major version
-				// omversion = parseFloat( userAgent.split( 'Opera Mobi/' )[ 1 ] );
 			!(
 				// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
 				( ua[ 'iOS' ] < 5 ) ||
 				// Opera Mini
-				// ( ua[ 'OperaMin' ] || omversion < 7458 ) ||
+				( ua[ 'OperaMin' ] < 7458 ) ||
+				// UC Browser speed mode on
+				( ua[ 'UCWEB' ] ) ||
 				//Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
 				( ua[ 'AOSP' ] < 2.2 ) ||
 				// Firefox Mobile before 6.0 -
