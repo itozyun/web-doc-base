@@ -18,12 +18,13 @@ $SEARCH_BTN_WIDTH : 3em;
 		padding     : 0;
 	    border      : 0;
 	    margin      : 0;
-	    display     : block;
+		display     : block;
+		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
 	}
+
 	.Search-txt {
 	    width       : 100%;
 	    height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
-		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
 	}
 	.Search .btn {
 	    width       : $SEARCH_BTN_WIDTH;

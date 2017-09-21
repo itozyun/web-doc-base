@@ -11,9 +11,12 @@
 		line-height  : 1.2;
 
 		/* //_{@modern,@ie9,@ie8 */
-		position     : relative;
 		display      : inline-block;
 		/* //_}@modern,@ie9,@ie8 */
+		
+		/* //_{#can-content */
+		position     : relative;
+		/* //_}#can-content */
 
 		/* //_{@ie7,@ie6,@ie55 */
 			display : block;

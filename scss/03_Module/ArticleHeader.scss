@@ -145,9 +145,14 @@
 			/* //_{^#ie7-win */
 			display     : inline-block;
 			/* //_}^#ie7-win */
+			/* //_{@ie6,@ie7,@ie55 */
+			zoom        : 1;
+			/* //_}@ie6,@ie7,@ie55 */
+			/* //_{@ie5win */
 			height      : 2em;
-			line-height : 2;
-			padding     : 0 1em;
+			/* //_}@ie5win */
+			line-height : 1.2;
+			padding     : 0.5em 1em;
 			margin      : 0 0 0.5em;
 
 			background : $COLOR_FtM_casual_fill;
@@ -164,8 +169,8 @@
 		}
 
 /* //_{#can-mq */
-/* //_<bottom30 */
-/*  Phone
+/* //_<bottom40 */
+/*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 	.AHead-labels {
@@ -177,7 +182,7 @@
 			margin      : 0.5em 0;
 		}
 }
-/* //_>bottom30 */
+/* //_>bottom40 */
 /* //_}#can-mq */
 
 /* //_<bottom50 */

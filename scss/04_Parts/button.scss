@@ -2,18 +2,27 @@
 .btn, .btn:visited {
     @include noUnderLineAlways;
 
-    display    : block;
+    /* //_{@modern,@ie9,@ie8 */
+    display     : inline-block;
+    /* //_}@modern,@ie9,@ie8 */
+    /* //_{^#ie55- */
+    height      : 1em;
+    /* //_}^#ie55- */
+
     /* //_{@ie6 */
-    zoom       : 1;
+    zoom        : 1;
     /* //_}@ie6 */
-	cursor     : pointer;
-    text-align : center;
+	cursor      : pointer;
+    text-align  : center;
 
-    border     : 0;
+    line-height : 1;
 
-    background : $COLOR_BdM_casual_text;
-    color      : $COLOR_BdM_fill;
+    border      : 0;
+
+    background  : $COLOR_BdM_casual_text;
+    color       : $COLOR_BdM_fill;
 }
+
 .btn:link {
     background : $COLOR_BdM_link;
     color      : $COLOR_BdM_fill;

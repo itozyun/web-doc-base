@@ -14,7 +14,9 @@
 }
 	.RichLink-sep {
 		@include linkCommon;
+		/* //_{^@ie5win */
 		line-height : 1.4;
+		/* //_}^@ie5win */
 	}
 	/* //_{@ie5win */
 	.RichLink-sep * {
@@ -138,7 +140,7 @@
 		border-width   : 0;
 		width          : 33.3%;
 	}
-		.lMf .RichLink a {
+		/* .lMf .RichLink a {
 			padding-left  : $WSXGA_COLUMN_GAP_EM / 2;
 			padding-right : $WSXGA_COLUMN_GAP_EM / 2;
 		}
@@ -148,7 +150,7 @@
 		}
 		.lMf .RichLink-sep div:last-of-type a {
 			padding-right : 0;
-		}
+		} */
 			.lM .RichLink span {
 				font-size : 1em;
 			}
