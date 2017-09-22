@@ -3,7 +3,7 @@
  *
  *  div.RichLink
  *    div.RichLink-sep
- *      div
+ *      div (.RichLink-1st)
  *        a
  *          img
  *          h3, b
@@ -27,7 +27,7 @@
 			border-width : 0 0 1px;
 			border-style : solid;
 		}
-		.RichLink-1st {
+		.RichLink .RichLink-1st {
 			border-width : 1px 0;
 		}
 			.RichLink a {
