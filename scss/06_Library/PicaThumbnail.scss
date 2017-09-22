@@ -9,10 +9,7 @@
 		    -moz-transition : width 0.3s ease-in-out;
 			  -o-transition : width 0.3s ease-in-out;
 				 transition : width 0.3s ease-in-out;
-		/* //_}@modern */
-		/* //_{@ie9 */
-			 /* -ms-transition : width 0.3s ease-in-out; */
-		/* //_}@ie9 */
+	/* //_}@modern */
 }
 
 .caption {
@@ -27,12 +24,26 @@
 	/* //_{^@ie5win */
 	margin      : 0 auto 1em; /* auto は中央配置で transition させるため */
 	/* //_}^@ie5win */
+	/* //_{@modern,@ie9,@ie8 */
+	box-sizing  : border-box;
+	/* //_}@modern,@ie9,@ie8 */
 }
-/* //_{^@ie5win */
+/* //_{#ie7-win */
+	/* box-sizing が使えないための処置 a.jL 側でアウトラインを表示 */
+	.aBodyRoot .jL img {
+		padding : 0;
+	}
+	.jL {
+		display : block;
+		padding : 1px;
+	}
+/* //_}#ie7-win */
+
+/* //_{@modern */
 .box .jL img {
-	margin      : 0 0 1em;
+	margin      : 0 0 1em; /* 中央配置指定を上書き 左から transition */
 }
-/* //_}^@ie5win */
+/* //_}@modern */
 
 /* //_{@ie5win */
 .jL img {
@@ -41,11 +52,6 @@
 	margin  : 0 0 1em;
 }
 /* //_}@ie5win */
-
-a:focus img, a:link:active img, a:visited:active img {
-    outline     : 1px solid $COLOR_ACCENT;
-	background  : $COLOR_ACCENT;
-}
 
 /* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない */
 /*

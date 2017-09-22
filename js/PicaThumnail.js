@@ -3,7 +3,8 @@
 		tempOnUnload = window.onunload,
 		w3cDOM       = !!document.getElementsByTagName,
 		html         = document.documentElement || w3cDOM ? document.getElementsByTagName( 'html' )[ 0 ] : document.all.tags( 'HTML' )[ 0 ],
-		IMGS         = [], safariPreventDefault;
+		IMGS         = [], safariPreventDefault,
+		MARGIN_LR    = 2;
 	
 	onload = function( e ){
 		var root  = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
@@ -74,7 +75,7 @@
 							if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
 						};
 						
-						w = parent.offsetWidth;
+						w = parent.offsetWidth - MARGIN_LR - 1;
 						if( 1600 < w ) w = 1600;
 						
 						if( 0 < src.indexOf( '.bp.blogspot.com/' ) ){

@@ -44,6 +44,14 @@
 	/* //_}^@ie5win */
 }
 
+.aBodyRoot a img {
+	padding : 1px;
+}
+
+a:focus img, a:link:active img, a:visited:active img {
+	/* outline     : 1px solid $COLOR_ACCENT; */
+	background  : $COLOR_ACCENT;
+}
 
 /* //_{#can-mq */
 

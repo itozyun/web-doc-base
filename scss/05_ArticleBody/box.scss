@@ -26,14 +26,6 @@
 .box embed,
 .box object,
 .box iframe,
-.box video {
-	padding : 1px 0 0 1px;
-}
-
-.box img,
-.box embed,
-.box object,
-.box iframe,
 .box video,
 .box .caption {
 	float   : left;
@@ -48,14 +40,6 @@
 @media only screen and (min-width: 96em) {
 	.box {
 		margin      : 1em $CONTENT_MARGIN_LR_WSXGA 0;
-	}
-	.box img,
-	.box embed,
-	.box object,
-	.box iframe,
-	.box video,
-	.box .caption {
-		/* margin-right  : $CONTENT_MARGIN_LR_WSXGA; */
 	}
 }
 /* //_>bottom10 */
