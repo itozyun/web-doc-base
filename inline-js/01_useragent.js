@@ -69,7 +69,7 @@ var ua         = {},
 
     PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
 // https://github.com/chitoku-k/SystemInfo/blob/master/systeminfo.js
-	PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ][ 'sysGetEnv' ]('x-psp-browser'), 'system=' ),
+	PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ][ 'sysGetEnv' ]( 'x-psp-browser' ), 'system=' ),
 	PSVita     = getNumber( dua, 'PlayStation Vita' ),
 // http://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
     NDS        = sys === 'Nitro',
@@ -301,10 +301,8 @@ var ua         = {},
 		} else if( window[ 'Int8Array' ] ){
 			ua[ ANDROID ] = verAndroid =
 				!navigator[ 'connection' ] ? 4.4 :
-				( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3, 4.1 には searchBoxJavaBridge_ と chrome が存在 */
-				/* document.execCommand && */ Number.isNaN ? 4.1 : 4;
-				// Number.isFinite && ( history && history.pushState ) ? 4.2/* & 4.3 */ : // ここに 4.1, 4.0 も入ってくる...
-				// Number.isFinite ? 4.1 : 4;
+				( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3. 4.1 には searchBoxJavaBridge_ と chrome が存在 */
+				Number.isNaN ? 4.1 : 4;
 				// 534 - 3.x~4.x , 534.13=3.x
 				// 534.30 = 4.0-4.1
 				// 535.19 = 4.1
@@ -316,7 +314,7 @@ var ua         = {},
 								// 533 2.2~2.3
 				verWebKit < 534    ? ( window.HTMLAudioElement ? 2.3 : 2.2 ) : 3;
 		};
-	} else {
+	} else if( Linux ){
 		ua[ LINUX ] = true;
 	};
 
@@ -345,6 +343,13 @@ var ua         = {},
 			ua[ 'IEHost' ] = verTrident;
 		};
         ua[ 'IE' ] = verMSIE;
+
+		if( 10 <= verMSIE && 8 <= ua[ 'Windows' ] && ua[ 'Windows' ] < 9 ){
+			if( window.screenY === 0 && ( window.innerHeight + 1 ) !== window.outerHeight &&
+				window.external && window.external.msAddSiteMode ){
+				ua[ 'ModernIE' ] = verMSIE;
+			};
+		};
 
 		if( ua[ 'Mac' ] ){
 			ua[ 'MacIE' ] = verMSIE;

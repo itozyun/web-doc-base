@@ -83,9 +83,10 @@
 						style[ '-moz-' + transf ] !== undef ? '-moz-' + transf : 
 						style[ '-webkit-' + transf ] !== undef ? '-webkit-' + transf : '';
 		
-		can3D         = style[ perspe ] !== undef ||
+		can3D         = !( ua[ 'IE' ] && ua[ 'Windows' ] < 10 ) && (
+						style[ perspe ] !== undef ||
 						style[ '-moz-' + perspe ] !== undef ||
-						style[ '-webkit-' + perspe ] !== undef;
+						style[ '-webkit-' + perspe ] !== undef );
 
 		if( !transformProp ){
 			if( !positionFixed ){
