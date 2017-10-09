@@ -344,9 +344,9 @@ var ua         = {},
 		};
         ua[ 'IE' ] = verMSIE;
 
+		// https://stackoverflow.com/questions/8751479/detect-metro-ui-version-of-ie
 		if( 10 <= verMSIE && 8 <= ua[ 'Windows' ] && ua[ 'Windows' ] < 9 ){
-			if( window.screenY === 0 && ( window.innerHeight + 1 ) !== window.outerHeight &&
-				window.external && window.external.msAddSiteMode ){
+			if( window.screenY === 0 && ( window.innerHeight + 1 ) !== window.outerHeight ){
 				ua[ 'ModernIE' ] = verMSIE;
 			};
 		};
