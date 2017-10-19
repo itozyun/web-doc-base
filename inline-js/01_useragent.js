@@ -17,7 +17,6 @@ var ua         = {},
 	docMode    = document.documentMode,
 	screenW    = screen.width,
 	screenH    = screen.height,
-	history    = window.history,
 
     isTouch    = window.ontouchstart !== undefined,
 
@@ -50,7 +49,7 @@ var ua         = {},
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
 	isOpMin   = window[ 'operamini' ],
-	verOpMin  = isOpMin && ( isOpMin.version ? parseFloat( isOpMin.version() ) : Math.max( getNumber( dua, 'Opera Mobi/' ), verVersion, tv ) ),
+	verOpMin  = isOpMin && Math.max( /* isOpMin.version && parseFloat( isOpMin.version() ), */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
 	isUCWEB   = findString( dua, 'UCWEB' ),
 	verUC2    = getNumber( dua, ' U2/' ),
 

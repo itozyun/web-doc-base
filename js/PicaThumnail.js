@@ -1,10 +1,13 @@
+;
+!( ua[ 'OperaMini' ] || ua[ 'UCWEB' ] ) &&
 (function( window, document, emptyFunction, rootID ){
 	var tempOnload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
 		tempOnUnload = window.onunload,
 		w3cDOM       = !!document.getElementsByTagName,
 		html         = document.documentElement || w3cDOM ? document.getElementsByTagName( 'html' )[ 0 ] : document.all.tags( 'HTML' )[ 0 ],
-		IMGS         = [], safariPreventDefault,
-		MARGIN_LR    = 2;
+		IMGS         = [],
+		MARGIN_LR    = 2,
+		safariPreventDefault;
 	
 	onload = function( e ){
 		var root  = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
@@ -18,7 +21,7 @@
 			onload = emptyFunction;
 			onload = null;
 		};
-		
+
 		for( ; elmA = links[ ++i ]; ){
 			elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
 			tag    = elmImg && elmImg.tagName;
@@ -31,10 +34,10 @@
 					IMGS.push( {
 						elmA        : elmA,
 						thumbUrl    : elmImg.src,
-						thumbWidth  : elmImg.style.width = elmImg.offsetWidth + 'px',
+						thumbWidth  : elmImg.style.width = ( elmImg.offsetWidth - MARGIN_LR ) + 'px',
 						originalUrl : href,
 						elmImg      : elmImg,
-						replaced    : false,
+						// replaced    : false,
 						clazz       : _
 					} );
 				};
@@ -118,11 +121,13 @@
 		};
 	};
 	
-	html.onclick = function( e ){
-		if( safariPreventDefault && e ){
-			safariPreventDefault = false;
-			e.preventDefault();
-			return false;
+	if( ua[ 'WebKit' ] < 525.13 ){ // Safari3-
+		html.onclick = function( e ){
+			if( safariPreventDefault && e ){
+				safariPreventDefault = false;
+				e.preventDefault();
+				return false;
+			};
 		};
 	};
 	

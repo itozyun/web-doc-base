@@ -1,7 +1,9 @@
 /*
  * 途中でサイドバーの要素が変化する -> 知りません
  */
-;(function( window, document, navigator, parseFloat, mainID, sidebarID, wrapperID ){
+;
+!( ua[ 'OperaMin' ] || ua[ 'UCWEB' ] ) &&
+(function( window, document, navigator, parseFloat, mainID, sidebarID, wrapperID ){
 	var
 	// memory
 		preonload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
@@ -21,9 +23,10 @@
 				// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
 				( ua[ 'iOS' ] < 5 ) ||
 				// Opera Mini
-				( ua[ 'OperaMin' ] < 7458 ) ||
+				// https://www.tobymackenzie.com/blog/2017/05/11/opera-mini-supporting-fixed-position/
+				//( ua[ 'OperaMin' ] ) ||
 				// UC Browser speed mode on
-				( ua[ 'UCWEB' ] ) ||
+				//( ua[ 'UCWEB' ] ) ||
 				//Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
 				( ua[ 'AOSP' ] < 2.2 ) ||
 				// Firefox Mobile before 6.0 -
