@@ -57,12 +57,13 @@ m+'">');g.ua=a})(window,document,navigator,screen,parseFloat);
             '<dd>' + ( window.chrome ? 'chrome' : '-' ) +
             '<dt>window.opr' +
             '<dd>' + ( window.opr ? 'opr' : '-' ) +
+            '<dt>Opera Mini' +
+            '<dd>' +
+                'Opera Mini/:' + parseFloat( navigator.userAgent.split( 'Opera Mini/' )[ 1 ] ) + ',' +
+                'Version/:' + parseFloat( navigator.userAgent.split( 'Version/' )[ 1 ] ) + ',' +
+                'win.operamini.version():' + ( window[ 'operamini' ] && window[ 'operamini' ].version && window[ 'operamini' ].version() ) +
             '<dt>window.searchBoxJavaBridge_' +
             '<dd>' + ( window.searchBoxJavaBridge_ ? 'searchBoxJavaBridge_' : '-' ) +
-            ( ua[ 'IE' ] < 9 ? '' : (
-                '<dt>window.external.msAddSiteMode' +
-                '<dd>' + ( window.external && window.external.msAddSiteMode ? 'msAddSiteMode' : '-' ) )
-            ) +
         '</dl>' +
 
         '<h1>Short URL</h1>' +
