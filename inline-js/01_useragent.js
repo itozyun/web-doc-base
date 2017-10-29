@@ -1,5 +1,5 @@
 function getNumber( str1, str2 ){
-    return parseFloat( str1.split( str2 )[ 1 ] );
+    return parseFloat( str1.split( str2 )[ 1 ] ) | 0;
 };
 function fromString( str1, str2 ){
 	return str1.indexOf( str2 ) === 0;
@@ -12,7 +12,7 @@ var ua         = {},
 	html       = document.documentElement,
     dua        = navigator.userAgent,
     dav        = navigator.appVersion,
-    tv         = parseFloat(dav) || 0,
+    tv         = parseFloat(dav) | 0,
     sys        = navigator.platform,
 	docMode    = document.documentMode,
 	screenW    = screen.width,
@@ -31,7 +31,7 @@ var ua         = {},
 	SAFARI     = 'Safari',
 	NETSCAPE   = 'Netscape',
 
-	verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ) || 0,
+	verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ),
     /**
      * http://help.dottoro.com/ljifbjwf.php
      * version method (opera)
@@ -42,14 +42,14 @@ var ua         = {},
      *   opera.versionは8から実装
      */
     isPrsto   = window.opera,
-    verOpera  = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ) || 0, verVersion, tv ) ),
+    verOpera  = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
 	isOPR     = window[ 'opr' ],
     /**
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
 	isOpMin   = window[ 'operamini' ],
-	verOpMin  = isOpMin && Math.max( isOpMin.version ? ( parseFloat( isOpMin.version() ) || 0 ) : 0, getNumber( dua, 'Opera Mini/' ) || 0, getNumber( dua, 'Opera Mobi/' ) || 0, verVersion ),
+	verOpMin  = isOpMin && Math.max( /* isOpMin.version && parseFloat( isOpMin.version() ) | 0, */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
 	isUCWEB   = findString( dua, 'UCWEB' ),
 	verUC2    = getNumber( dua, ' U2/' ),
 

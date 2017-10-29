@@ -36,9 +36,9 @@
 						thumbUrl    : elmImg.src,
 						thumbWidth  : elmImg.style.width = ( elmImg.offsetWidth - MARGIN_LR ) + 'px',
 						originalUrl : href,
-						elmImg      : elmImg,
+						elmImg      : elmImg //,
 						// replaced    : false,
-						clazz       : _
+						// clazz       : _
 					} );
 				};
 			};
@@ -49,7 +49,7 @@
 		var i = IMGS.length,
 			_ = '',
 			elmImg = this,
-			parent, src, obj, tag, w, elms, size, n, c;
+			parent, elmA, elmCap, src, obj, tag, w, elms, size, n, c;
 		
 		for( ; i; ){
 			obj = IMGS[ --i ];
@@ -60,9 +60,9 @@
 				if( obj.replaced ){
 					// Large -> small
 					elmImg.style.width = obj.thumbWidth;
-					elmImg.setAttribute( 'src', obj.thumbUrl );
+					elmImg.src = obj.thumbUrl;
 					elmA.className = obj.clazz;
-					if( obj.caption ) obj.caption.style.cssText = obj.captionCSS;
+					if( elmCap = obj.caption ) elmCap.style.cssText = obj.captionCSS;
 				} else {
 					// small -> Large
 					if( src = obj.originalUrl ){
@@ -97,12 +97,12 @@
 						obj.large = src;
 					};
 					
-					obj.clazz = c = elmA.getAttribute( 'className' ) || _;
+					obj.clazz = c = elmA.className;
 					elmA.className = ( c ? c + ' ' : _ ) + 'jL';
 					elmImg.style.width = _;
-					elmImg.setAttribute( 'src', obj.large );
-					if( obj.caption ){
-						obj.caption.style.cssText = 'float:none;margin-right:0';
+					elmImg.src = obj.large;
+					if( elmCap = obj.caption ){
+						elmCap.style.cssText = 'float:none;margin-right:0';
 					};
 				};
 
