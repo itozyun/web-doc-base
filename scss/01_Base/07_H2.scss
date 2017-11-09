@@ -17,6 +17,7 @@ h2 {
 /* //_{#can-content */
 h2:after {
 	content     : ".";
+	speak       : none;
 	display     : block;
 	height      : 1px;
 	font-size   : 0.1em;

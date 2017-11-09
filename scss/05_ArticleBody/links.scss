@@ -32,6 +32,7 @@
 	/* //_{#can-content */
 	.links a[href]:before {
 		content         : ">";
+		speak           : none;
     	position        : relative;
     	left            : -0.5em;
     	width           : 1em;
