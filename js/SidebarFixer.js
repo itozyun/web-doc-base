@@ -4,6 +4,7 @@
 ;
 !( ua[ 'OperaMin' ] || ua[ 'UCWEB' ] ) &&
 (function( window, document, navigator, parseFloat, mainID, sidebarID, wrapperID ){
+	"use strict";
 	var
 	// memory
 		preonload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
@@ -40,18 +41,9 @@
 			),
 		// !table-cell
 		root, body, elmSide, elmMain, elmWrap,
-		resizeTimerID, hasScroll, transformProp, can3D;
-	
-	function getFinite(){
-		var args = arguments, i = 0, l = args.length;
-		
-		for( ; i < l; ++i ){
-			if( isFinite( args[ i ] ) ) return args[ i ];
-		};
-		return 0;
-	};
-
-	onload = function(e){
+		resizeTimerID, hasScroll, transformProp, can3D,
+		init = onload =
+	function( e ){
 		var transf = 'transform',
 			perspe = 'perspective',
 			style, undef;
@@ -59,12 +51,12 @@
 		body  = document.body;
 		style = body.style;
 		
-		if( preonload ) preonload(e);
+		if( preonload ) preonload( e );
 		preonload = null;
 
-		if( onload === arguments.callee ){
+		if( onload === init ){
 			onload = emptyFunc;
-			onload = null;
+			onload = init = null;
 		};
 		
 		root    = document.compatMode !== 'CSS1Compat' ? body : document.documentElement || body;
@@ -121,6 +113,15 @@
 			scrlY;//, log;
 		
 		resizeTimerID = 0;
+
+		function getFinite(){
+			var args = arguments, i = 0, l = args.length;
+			
+			for( ; i < l; ++i ){
+				if( isFinite( args[ i ] ) ) return args[ i ];
+			};
+			return 0;
+		};
 
 		// elmSide.offsetTop === elmMain.offsetTop ならマルチカラム
 		if( sideH < mainH && elmSide.offsetTop === elm.offsetTop ){

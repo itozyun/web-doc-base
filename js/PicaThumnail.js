@@ -1,15 +1,16 @@
 ;
 !( ua[ 'OperaMini' ] || ua[ 'UCWEB' ] ) &&
 (function( window, document, emptyFunction, rootID ){
+	"use strict";
 	var tempOnload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
 		tempOnUnload = window.onunload,
 		w3cDOM       = !!document.getElementsByTagName,
 		html         = document.documentElement || w3cDOM ? document.getElementsByTagName( 'html' )[ 0 ] : document.all.tags( 'HTML' )[ 0 ],
 		IMGS         = [],
 		MARGIN_LR    = 2,
-		safariPreventDefault;
-	
-	onload = function( e ){
+		safariPreventDefault,
+		init = onload =
+	function( e ){
 		var root  = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
 			links = w3cDOM ? root.getElementsByTagName( 'A' ) : root.all.tags( 'A' ),
 			i = -1, _ = '', elmA, elmImg, tag, href, ext;
@@ -17,9 +18,9 @@
 		if( tempOnload ) tempOnload( e );
 		tempOnload = null;
 		
-		if( onload === arguments.callee ){
+		if( onload === init ){
 			onload = emptyFunction;
-			onload = null;
+			onload = init = null;
 		};
 
 		for( ; elmA = links[ ++i ]; ){
@@ -30,15 +31,17 @@
 				ext  = href.split( '?' ).join( _ ).split( '#' ).join( _ ).split( '.' );
 				ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
 				if( 0 <= 'jpg png gif bmp'.indexOf( ext.substr( 0, 3 ) ) || 0 <= 'jpeg webp'.indexOf( ext.substr( 0, 4 ) ) ){
-					elmA.onclick = elmImg.onclick = onClickThumbnail;
+					elmA.onkeydown = elmImg.onclick = onClickThumbnail;
 					IMGS.push( {
 						elmA        : elmA,
 						thumbUrl    : elmImg.src,
 						thumbWidth  : elmImg.style.width = ( elmImg.offsetWidth - MARGIN_LR ) + 'px',
 						originalUrl : href,
 						elmImg      : elmImg //,
-						// replaced    : false,
-						// clazz       : _
+						// replaced   : false,
+						// clazz      : _,
+						// caption    : elmCap,
+						// captionCSS : ''
 					} );
 				};
 			};
@@ -46,15 +49,21 @@
 	};
 
 	function onClickThumbnail( e ){
-		var i = IMGS.length,
-			_ = '',
-			elmImg = this,
-			parent, elmA, elmCap, src, obj, tag, w, elms, size, n, c;
+		var ev  = e || event,
+			key = ev.keyCode || ev.witch,
+			i   = IMGS.length,
+			_   = '',
+			elmImg,
+			parent, elmA, elmCap, src, obj, tag, w, elms, l, size, n, c;
+
+		if( ev.type === 'keydown' && key !== 13 ){
+			return;
+		};
 		
 		for( ; i; ){
 			obj = IMGS[ --i ];
-			if( obj.elmImg === elmImg ){
-				
+			if( obj.elmImg === this || obj.elmA === this ){
+				elmImg = obj.elmImg;
 				elmA = parent = obj.elmA;
 				
 				if( obj.replaced ){
@@ -69,13 +78,13 @@
 						delete obj.originalUrl;
 						
 						while( parent = parent.parentNode || parent.parentElement ){
-							tag = parent.tagName.toUpperCase();
 							if( 0 <= ( ' ' + parent.className + ' ' ).indexOf( ' caption ' ) ){
 								obj.caption    = parent;
 								obj.captionCSS = parent.style.cssText;
-								continue;
+							} else {
+								tag = parent.tagName.toUpperCase();
+								if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
 							};
-							if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
 						};
 						
 						w = parent.offsetWidth - MARGIN_LR - 1;
@@ -107,6 +116,7 @@
 				};
 
 				obj.replaced = !obj.replaced;
+				break;
 			};
 		};
 		
@@ -116,14 +126,14 @@
 			safariPreventDefault = true;
 			return false;
 		} else {
-			event.cancelBubble = true;
-			return event.returnValue = false;
+			ev.cancelBubble = true;
+			return ev.returnValue = false;
 		};
 	};
 	
 	if( ua[ 'WebKit' ] < 525.13 ){ // Safari3-
 		html.onclick = function( e ){
-			if( safariPreventDefault && e ){
+			if( safariPreventDefault ){
 				safariPreventDefault = false;
 				e.preventDefault();
 				return false;
@@ -131,20 +141,22 @@
 		};
 	};
 	
-	onunload = function(){
+	onunload = terminate;
+	
+	function terminate(){
 		var i = -1, obj;
 		
 		if( tempOnUnload ) tempOnUnload();
-		tempUnOnload = null;
+		tempOnUnload = null;
 		
-		if( onunload === arguments.callee ){
+		if( onunload === terminate ){
 			onunload = emptyFunction;
 			onunload = null;
 		};
 		
 		for( ; obj = IMGS[ ++i ]; ){
-			obj.elmA.onclick = obj.elmImg.onclick = emptyFunction;
-			obj.elmA.onclick = obj.elmImg.onclick = null;
+			obj.elmA.onkeydown = obj.elmImg.onclick = emptyFunction;
+			obj.elmA.onkeydown = obj.elmImg.onclick = null;
 		};
 		html.onclick = emptyFunction;
 	};

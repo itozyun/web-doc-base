@@ -15,8 +15,8 @@
 (function(window, document, rootID){
 "use strict"
 var tempOnload = window.onload,
-
-main = window.onload = function( e ){
+    init = onload =
+function( e ){
     var w3cDOM     = !!document.getElementsByTagName,
 		root       = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
 		elmTargets = w3cDOM ? root.getElementsByTagName( 'blockquote' ) : root.all.tags( 'blockquote' ),
@@ -25,9 +25,9 @@ main = window.onload = function( e ){
 	if( tempOnload ) tempOnload( e );
 	tempOnload = null;
 	
-	if( onload === main ){
+	if( onload === init ){
 		onload = new Function();
-		onload = null;
+		onload = init = null;
 	};
 
     for( ; elm = elmTargets[ ++i ]; ){
@@ -45,7 +45,8 @@ main = window.onload = function( e ){
 
     function create( title, cite, className, add1st ){
         var tag  = add1st ? 'div' : 'cite',
-            link = createUrl( cite );
+            link = createUrl( cite ),
+            elmCite;
         
         link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
