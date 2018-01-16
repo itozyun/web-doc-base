@@ -170,7 +170,27 @@ var ua         = {},
 		ua[ 'MeeGo' ] = true;
     } else if( iOS ){
 		dpRatio = window.devicePixelRatio === 1;
-		ua[ 'iOS' ] = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
+		v       = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
+
+		if( v != v ){
+			ua[ PC_MODE ] = true;
+			v =
+				navigator[ 'mediaDevices' ]    ? 11.2 :
+				widnow[ 'HTMLMeterElement'   ] ? 10.3 :
+				widnow[ 'Proxy'              ] ? 10.2 :
+				window[ 'HTMLPictureElement' ] ?  9.3 :
+				Number[ 'isNaN'              ] ?  9.2 :
+				// http://uupaa.hatenablog.com/entry/2015/03/03/223344
+				window[ 'SharedWorker'       ] ?
+					( window[ 'performance' ] && window[ 'performance' ][ 'now' ] ? 8.0 : 8.4 ) :
+				document.execCommand           ?  7.1 :
+				window[ 'webkitURL'          ] ?  6.1 :
+				window[ 'Worker'             ] ?  5.1 :
+				window[ 'Int8Array'          ] ?  4.3 :
+				window[ 'HTMLAudioElement'   ] ?  4.1 : 3.2;
+		};
+
+		ua[ 'iOS' ] = v;
 
 		// 4:3 model
 		v = screenW === screenH * 1.5 || screenW * 1.5 === screenH;
@@ -182,7 +202,7 @@ var ua         = {},
 				break;
 			case 'iPad' :
 			case 'iPad Simulator' :
-				ua[ 'iPad' ] = dpRatio ? '2-|1min-' : '3+|2min+';
+				ua[ 'iPad' ] = dpRatio ? '2-|1min-' : '3+|2min+';  
 				break;
 			case 'iPod' :
 			// case 'iPod Simulator' : // 必要??
