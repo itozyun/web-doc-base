@@ -172,7 +172,7 @@ var ua         = {},
 		dpRatio = window.devicePixelRatio === 1;
 		v       = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
 
-		if( v != v ){
+		if( !v ){ // 0:iOS11.0+ or NaN:iOS10.x-
 			ua[ PC_MODE ] = true;
 			v =
 				navigator[ 'mediaDevices' ]    ? 11.2 :
