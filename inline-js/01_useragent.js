@@ -1,5 +1,6 @@
-function getNumber( str1, str2 ){
-    return parseFloat( str1.split( str2 )[ 1 ] ) | 0;
+function getNumber( str1, str2, v ){
+	v = parseFloat( str1.split( str2 )[ 1 ] );
+    return 0 <= v ? v : 0;
 };
 function fromString( str1, str2 ){
 	return str1.indexOf( str2 ) === 0;
