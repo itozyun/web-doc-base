@@ -11,7 +11,7 @@
 	/* //_}@ie5win,@ie55 */
 	}
 
-	table
+	tr
 	/* //_{@ie5win,@ie55 */
 		*
 	/* //_}@ie5win,@ie55 */
@@ -23,12 +23,11 @@
 		font-weight  : normal;
 		padding      : 0.5em;
 	}
-
+	td {
+		padding      : 0.5em 0;
+	}
 	thead td {
 		padding      : 0.5em 0.25em;
-	}
-	tbody td, tfoot td {
-		padding      : 0.5em 0;
 	}
 
 	thead th, thead td {
@@ -55,7 +54,7 @@
 		background   : $COLOR_BdM_casual_fill;
 		border-color : $COLOR_BdM_fill;
 	}
-	tbody td, tfoot th, tfoot td {
+	td, tfoot th {
 		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_BdM_casual_fill;
 	}
 	/* //_{@ie5win,@ie55 */
@@ -65,16 +64,16 @@
 	/* //_}@ie5win,@ie55 */
 	thead th, thead td {
 		background   : $COLOR_BdM_casual_text;
-		border-color : $COLOR_BdM_fill;
+		border-color : $COLOR_BdM_casual_fill;
 		color        : $COLOR_BdM_fill;
 	}
 
 	/* //_{^#ie6-win */
-	tbody tr:hover td {
+	tbody :hover td {
 		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_ACCENT;
 		color        : $COLOR_ACCENT;
 	}
-	tbody tr:hover th {
+	tbody :hover th {
 		background   : $COLOR_ACCENT;
 		color        : #fff;
 	}
@@ -86,12 +85,12 @@
 			border-color : $COLOR_BdM_casual_fill;
 			color        : $COLOR_BdM_casual_fill;
 		}
-		tbody td, tfoot th, tfoot td {
+		td, tfoot th {
 			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
 		}
 
 		/* //_{^#ie6-win */
-		tbody tr:hover td {
+		tbody :hover td {
 			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_ACCENT;
 		}
 		/* //_}^#ie6-win */
@@ -106,25 +105,25 @@
 		background   : $COLOR_WTC_casual_fill;
 		border-color : $COLOR_WTC_fill;
 	}
-	tbody td {
+	td {
 		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
 	}
 	thead th, thead td {
 		background   : $COLOR_WTC_casual_text;
-		border-color : $COLOR_WTC_fill;
+		border-color : $COLOR_WTC_casual_fill;
 		color        : $COLOR_WTC_fill;
 	}
-	th {
+	/* th {
 		padding      : 0.5em 0.2em;
 	}
 	thead td {
 		padding      : 0.5em 0.1em;
 	}
-	tbody td {
+	tbody td, tfoot th, tfoot td {
 		border-width : 0 0.2em 1px;
-	}
+	} */
 
-	tbody tr:hover td {
+	tbody :hover td {
 		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;
 	}
 
@@ -134,11 +133,11 @@
 			border-color : $COLOR_WTC_casual_fill;
 			color        : $COLOR_WTC_casual_fill;
 		}
-		tbody td, tfoot th, tfoot td {
+		td, tfoot th {
 			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
 		}
 
-		tbody tr:hover td {
+		tbody :hover td {
 			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_ACCENT;
 		}
 	}
@@ -150,7 +149,7 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	th {
+	tbody th {
 		border-color : #fff;
 	}
 	td {
@@ -162,7 +161,7 @@
 	}
 
 	blockquote {
-		th, thead td {
+		tr th, thead td {
 			border-color : #fff;
 			color        : #fff;
 		}
