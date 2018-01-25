@@ -177,8 +177,8 @@ var ua         = {},
 			ua[ PC_MODE ] = true;
 			v =
 				navigator[ 'mediaDevices' ]    ? 11.2 :
-				widnow[ 'HTMLMeterElement'   ] ? 10.3 :
-				widnow[ 'Proxy'              ] ? 10.2 :
+				window[ 'HTMLMeterElement'   ] ? 10.3 :
+				window[ 'Proxy'              ] ? 10.2 :
 				window[ 'HTMLPictureElement' ] ?  9.3 :
 				Number[ 'isNaN'              ] ?  9.2 :
 				// http://uupaa.hatenablog.com/entry/2015/03/03/223344
