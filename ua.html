@@ -24,12 +24,14 @@ a.Android="2.3+":4<=k?a.Android=k:B&&(a.Android="2.2+"),y&&(a.PCMode=!0)):B&&t?k
 h?3:525.25>=h?3.1:3.2)));A=a.iOS;p=a.AOSP;var n;6>A?(n="minimum-scale=1,",n=5>A?n+"maximum-scale=1":n+"initial-scale=1"):p&&(n="width=device-width,target-densitydpi=medium-dpi,",n=3>p?n+"user-scalable=no":n+"initial-scale=1,minimum-scale=1");n&&m.write('<meta name="viewport" content="'+n+'">');e.ua=a})(window,document,navigator,screen,parseFloat);
 </script>
 <script>
-(function(){
+(function(ua){
     function print(html){
         document.write(html);
     };
 
     var k, ary = [];
+
+    ua = ua || {};
 
     for( k in ua ){
         ary[ ary.length ] = k + ( ua[ k ] !== true ? '=' + ua[ k ] : '' );
@@ -86,7 +88,7 @@ h?3:525.25>=h?3.1:3.2)));A=a.iOS;p=a.AOSP;var n;6>A?(n="minimum-scale=1,",n=5>A?
         '<h1>window ' + ary.length +'</h1>' +
         '<textarea readonly>' + ary.sort().join( '\n' ) + '</textarea>'
     );
-})();
+})(ua);
 
 </script>
 </head>
