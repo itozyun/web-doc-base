@@ -142,9 +142,9 @@ var ua         = {},
         ua[ 'KindlePW' ] = true;
     } else if( SonyReader ){
         ua[ 'SonyReader' ] = true;
-    } else  if( WiiU ){
+    } else if( WiiU ){
         ua[ 'WiiU' ] = true;
-    } else  if( Wii ){
+    } else if( Wii ){
         ua[ 'Wii' ] = true;
         // ua[ 'Opera' ] = verOpera;
     } else if( NDS ){
@@ -164,7 +164,10 @@ var ua         = {},
     } else if( PSP ){
         ua[ 'PSP' ] = PSP;
     } else if( PSVita ){
-        ua[ 'PSVita' ] = PSVita;
+		ua[ 'PSVita' ] = PSVita;
+    } else if( Mylo ){
+		ua[ 'Mylo' ] = 2;
+		verNetFront = 3.4;
     } else if( WebOS ){
 		ua[ 'WebOS' ] = true;
 	} else if( MeeGo ){
@@ -173,10 +176,12 @@ var ua         = {},
 		dpRatio = window.devicePixelRatio === 1;
 		v       = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
 
-		if( !v ){ // 0:iOS11.0+ or NaN:iOS10.x-
+		if( !v ){
 			ua[ PC_MODE ] = true;
 			v =
-				navigator[ 'mediaDevices' ]    ? 11.2 :
+				// navigator[ 'mediaDevices'    ] ? 11.2 : // WebView では無効
+				// https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc/issues/250#issuecomment-336240953
+				window[ 'WebAssembly'        ] ? 11.2 :
 				window[ 'HTMLMeterElement'   ] ? 10.3 :
 				window[ 'Proxy'              ] ? 10.2 :
 				window[ 'HTMLPictureElement' ] ?  9.3 :
@@ -339,6 +344,12 @@ var ua         = {},
 	};
 
 // browser 判定
+	if( verNetFront ){
+        ua[ 'NetFront' ] = verNetFront;
+	} else
+	if( ver_iCab ){
+		ua[ 'iCab' ] = ver_iCab;
+	} else
 // PS3 Sony Browser
     if( PS3 ){
         ua[ 'Sony' ] = PS3;
@@ -374,7 +385,6 @@ var ua         = {},
 		if( ua[ 'Mac' ] ){
 			ua[ 'MacIE' ] = verMSIE;
 		};
-		// TODO ModernUI IE
     } else
 // edge
     if( isEdge ){
