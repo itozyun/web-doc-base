@@ -5,7 +5,7 @@
 	var tempOnload   = window.onload, // window. を付けないと Win XP + Opera10.10 でエラーに
 		tempOnUnload = window.onunload,
 		w3cDOM       = !!document.getElementsByTagName,
-		html         = document.documentElement || w3cDOM ? document.getElementsByTagName( 'html' )[ 0 ] : document.all.tags( 'HTML' )[ 0 ],
+		html         = document.documentElement || w3cDOM && document.getElementsByTagName( 'html' )[ 0 ],
 		IMGS         = [],
 		MARGIN_LR    = 2,
 		safariPreventDefault,

@@ -62,17 +62,30 @@
 					margin      : 0;
 				}
 
-	.RichLink span, .RichLink p {
+	.RichLink p {
 		color      : $COLOR_BdM_text;
 	}
-	.lS .RichLink span, .lS .RichLink p {
+	.lS .RichLink p {
 		color      : $COLOR_BdS_text;
 	}
-	.fillbg .RichLink span, .fillbg .RichLink p {
+	.fillbg .RichLink p {
 		color      : $COLOR_FtS_text;
 	}
-	.fillbg .lM .RichLink span, .fillbg .lM .RichLink p {
+	.fillbg .lM .RichLink p {
 		color      : $COLOR_FtM_text;
+	}
+
+	.RichLink span {
+		color      : $COLOR_BdM_casual_text;
+	}
+	.lS .RichLink span {
+		color      : $COLOR_BdS_casual_text;
+	}
+	.fillbg .RichLink span {
+		color      : $COLOR_FtS_casual_text;
+	}
+	.fillbg .lM .RichLink span {
+		color      : $COLOR_FtM_casual_text;
 	}
 
 
@@ -87,32 +100,32 @@
 		/* //_}@ie6,@ie7 */
 	}
 		.lM .RichLink img {
-			width      : 4.5em;
-			height     : 4.5em;
-			margin     : 0 0.8em 0.8em 0;
+			/* width      : 4.5em;
+			height     : 4.5em; */
+			height     : auto;
+			margin     : 0 1.2em 1em 0;
 		}
 		.lM .RichLink h3 {
 			font-size : 1.5em;
 		}
 		.lM .RichLink span, .lM .RichLink b {
-		    margin    : 0 0 0.7em;	
+		    margin    : 0 0 0.8em; /* 1em - .2em */
 		}
 	
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
 	.lS .RichLink a {
 		/* //_{#ie55-,@ie8,@ie9,@modern */
-		padding : 0.8em 0.5em 0;
+		padding : 1em 0.5em 0;
 		/* //_}#ie55-,@ie8,@ie9,@modern */
 		/* //_{@ie6,@ie7 */
-		padding : 0.8em 0.5em;
+		padding : 1em 0.5em;
 		/* //_}@ie6,@ie7 */
 	}
 		.lS .RichLink img {
 			float      : right;
-			width      : 3.2em;
-			height     : 3.2em;
-			margin     : 0 0 0.8em 0.5em;
+			/* width      : 3.2em; */
+			margin     : 0 0 1em 1em;
 		}
 
 		.lS .RichLink span, .lS .RichLink b {
@@ -163,16 +176,15 @@
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
 .lS .RichLink a {
-	padding : 0.5em 0.5em 0;
+	padding : 0.7em 0.5em 0;
 }
 	.lS .RichLink span, .lS .RichLink b {
 		padding : 0 0 0.57em; /* 0.5em / 0.875; */
 	}
 	.lS .RichLink img {
-		float        : left;
-		margin       : 0 0.5em 0.5em 0;
 		width        : 2.6em;
-		height       : 2.6em;			
+		float        : left;
+		margin       : 0 0.5em 0.7em 0;
 	}
 	.RichLink b {
 		font-size   : 1em;
@@ -202,18 +214,17 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.lM .RichLink-sep div {
-		line-height : 1.4;
-	}
+	.RichLink-sep { @include linkCommon_watch; }
+
 		.lM .RichLink a {
 			padding-left  : 0;
 			padding-right : 0;
 		}
-
-	.RichLink-sep { @include linkCommon_watch; }
-
-		.RichLink span, .RichLink p {
+		.RichLink p {
 			color      : $COLOR_WTC_text;
+		}
+		.RichLink span {
+			color      : $COLOR_WTC_casual_text;
 		}
 }
 /* //_>bottom40 */
