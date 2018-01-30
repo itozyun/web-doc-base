@@ -1,0 +1,201 @@
+@mixin icon-base {
+    /* //_{#can-content */
+    position     : relative;
+    padding-left : 1.2em;
+
+    &:before, &:after {
+        content       : ".";
+        text-indent   : -1em;
+        overflow      : hidden;
+        display       : block;
+        position      : absolute;
+        border-style  : solid;
+        border-width  : 0;
+        margin-top    : .1em;
+    }
+    /* //_}#can-content */
+}
+
+.ico-clock {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0;
+        left          : 0;
+        width         : 0.7em;
+        height        : 0.7em;
+        border-radius : .5em;
+        border-color  : $COLOR_BdM_casual_text;
+        border-width  : .15em;
+    }
+    &:after {
+        top           : 0.2em;
+        left          : 0.43em;
+        width         : 0.23em;
+        height        : 0.23em;
+        border-color  : $COLOR_BdM_casual_text;
+        border-width  : 0 0 .14em .14em;
+    }
+    /* //_}#can-content */
+}
+
+.ico-label {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0.2em;
+        left          : 0;
+        width         : 0.7em;
+        height        : 0.6em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0.2em;
+        left          : 0.7em;
+        width         : 0;
+        height        : 0;
+        border-color  : transparent $COLOR_BdM_casual_text;
+        border-width  : 0.3em 0 0.3em 0.3em;
+    }
+    /* //_}#can-content */
+}
+.ico-author {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0;
+        left          : 0.3em;
+        width         : 0.45em;
+        height        : 0.45em;
+        border-radius : .225em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0.5em;
+        left          : 0;
+        width         : 1em;
+        height        : 0.5em;
+        border-radius : .3em .3em 0 0;
+        background    : $COLOR_BdM_casual_text;
+    }
+    /* //_}#can-content */
+}
+
+.ico-flag {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0;
+        left          : 0;
+        width         : 0.1em;
+        height        : 1em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0;
+        left          : 0.2em;
+        width         : 0.8em;
+        height        : 0.7em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    /* //_}#can-content */
+}
+
+.ico-pen {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0;
+        left          : 0.25em;
+        width         : 0.5em;
+        height        : 0.7em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0.75em;
+        left          : 0.25em;
+        width         : 0;
+        height        : 0;
+        border-color  : $COLOR_BdM_casual_text transparent;
+        border-width  : .25em .25em 0 .25em;
+    }
+    /* //_}#can-content */
+}
+
+.ico-chain {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0.05em;
+        left          : 0.05em;
+        width         : 0.3em;
+        height        : 0.3em;
+        border-color  : $COLOR_BdM_casual_text;
+        border-radius : .2em;
+        border-width  : 0.2em 0 0.2em 0.2em;
+    }
+    &:after {
+        top           : 0.3em;
+        left          : 0.3em;
+        width         : 0.3em;
+        height        : 0.3em;
+        border-color  : $COLOR_BdM_casual_text;
+        border-radius : .2em;
+        border-width  : 0.2em 0.2em 0.2em 0;
+    }
+    /* //_}#can-content */
+}
+
+.ico-dram {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0.2em;
+        left          : 0.1em;
+        width         : 0.8em;
+        height        : 0.8em;
+        border-radius : 0 0 .4em .4em / 0 0 .2em .2em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0;
+        left          : 0.1em;
+        width         : 0.8em;
+        height        : 0.3em;
+        border-color  : $COLOR_BdM_fill;
+        border-width  : 0 0 .05em;
+        border-radius : .4em / .25em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    /* //_}#can-content */
+}
+
+.ico-comment {
+    /* //_{#can-content */
+    @include icon-base;
+
+    &:before {
+        top           : 0;
+        left          : 0;
+        width         : 1em;
+        height        : 0.7em;
+        border-radius : 0.2em;
+        background    : $COLOR_BdM_casual_text;
+    }
+    &:after {
+        top           : 0.7em;
+        left          : 0.4em;
+        width         : 0;
+        height        : 0;
+        border-color  : $COLOR_BdM_casual_text transparent;
+        border-width  : 0.3em .15em 0 .15em;
+    }
+    /* //_}#can-content */
+}
