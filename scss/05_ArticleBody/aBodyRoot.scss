@@ -26,24 +26,6 @@
 
 /*  Object
 --------------------------------------------------------------------------------------*/
-.aBodyRoot img {
-	height    : auto;
-}
-.aBodyRoot img,
-.aBodyRoot embed,
-.aBodyRoot object,
-.aBodyRoot iframe,
-.aBodyRoot video,
-.aBodyRoot .caption {
-    /* //_{^#ie6-win */
-	max-width : 100%;
-    /* //_}^#ie6-win */
-	display   : block;
-	/* //_{^@ie5win */
-	margin    : 1em auto;
-	/* //_}^@ie5win */
-}
-
 .aBodyRoot a img {
 	padding : 1px;
 }

@@ -13,18 +13,17 @@
 		margin : 1em 1em 0;
 		color  : $COLOR_FtS_fill; /* , を消す */
 	}
-        .lS .Subscribe div {
+        .Subscribe div {
             text-align : right;
-        }
-        .lS .Subscribe div,
-        #lF .Subscribe div {
-            margin : 0.6em 0.5em 0;
+            margin     : 0.6em 0.5em 0;
         }
 
         .Subscribe a {
             @include noUnderLineAlways;
 
-            display      : inline-block;
+			/* //_{^#ie7-win */
+            display     : inline-block;
+            /* //_}^#ie7-win */
             height       : 2em;
             line-height  : 2;
             padding      : 0 1em;
@@ -99,7 +98,7 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 950px) {
-    #lF .lS .Subscribe div {
+    .Subscribe div {
         text-align : left;
     }
 }
@@ -110,8 +109,11 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 	.Subscribe {
-		line-height : 0;
-	}
+        line-height : 0;
+    }
+    .Subscribe div {
+        text-align : center;
+    }
 	.Subscribe a {
 		margin : 0.5em 0;
 	}

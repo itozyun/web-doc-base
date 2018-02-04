@@ -1,4 +1,31 @@
 
+/*
+ * https://qiita.com/tmiame/items/8816d970eacaf450911f
+ * Mixin for placeholder
+ * @include placeholderColor(#00ff00);
+ */
+ @mixin placeholderColor($color) {
+    /* //_{@modern */
+    &:placeholder-shown {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color:$color;
+    }
+    &:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color:$color;
+    }
+    /* //_}@modern */
+}
+
 input {
     font-size : 1em;
     /* //_{@modern */

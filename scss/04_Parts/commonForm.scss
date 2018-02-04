@@ -38,6 +38,7 @@
                 padding    : 0;
                 border     : 0;
                 background : $COLOR_BdM_casual_fill;
+                @include placeholderColor( $COLOR_BdS_casual_text );
             }
 
             .commonForm-wrap textarea {

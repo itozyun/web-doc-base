@@ -109,7 +109,7 @@
 			font-size : 1.5em;
 		}
 		.lM .RichLink span, .lM .RichLink b {
-		    margin    : 0 0 0.8em; /* 1em - .2em */
+		    padding   : 0 0 0.8em; /* 1em - .2em */
 		}
 	
 /*  layout Sub
@@ -203,12 +203,22 @@
 		padding-left  : 1%;
 		padding-right : 1%;
 	}
-	
 	.lS .RichLink span {
 		font-size : 1em;
 	}
 }
 /* //_>bottom30 */
+
+/* //_<bottom35 */
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 319px) {
+	.lM .RichLink img {
+		float  : none;
+		margin : 0 auto 1em;
+	}
+}
+/* //_>bottom35 */
 
 /* //_<bottom40 */
 /*  Watch

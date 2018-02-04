@@ -194,6 +194,21 @@
 		@include unbreak-inside;
 	}
 
+	img {
+		height    : auto;
+	}
+	img,
+	embed,
+	object,
+	iframe,
+	video {
+		/* //_{^#ie6-win */
+		max-width : 100%;
+		/* //_}^#ie6-win */
+	/* //_{^@ie5win */
+		margin    : 1em auto;
+		/* //_}^@ie5win */
+	}
 /* //_{#can-mq */
 /* //_<bottom10 */
 /*  Full HD

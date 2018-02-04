@@ -24,7 +24,10 @@ $SEARCH_BTN_WIDTH : 3em;
 
 	.Search-txt {
 	    width       : 100%;
-	    height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
+		height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
+	}
+	.Search-txt:focus {
+		color : inherit;
 	}
 	.Search .btn {
 	    width       : $SEARCH_BTN_WIDTH;
@@ -40,12 +43,20 @@ $SEARCH_BTN_WIDTH : 3em;
 
 /* //_{+coloredHeader */
 .Search, .Search-txt {
+	color      : $COLOR_HdS_text;
 	background : $COLOR_HdS_casual_fill;
+}
+.Search-txt {
+	@include placeholderColor( $COLOR_HdS_casual_text );
 }
 /* //_}+coloredHeader */
 /* //_{^+coloredHeader */
 .Search, .Search-txt {
+	color      : $COLOR_BdS_text;
 	background : $COLOR_BdS_casual_fill;
+}
+.Search-txt {
+	@include placeholderColor( $COLOR_BdS_casual_text );
 }
 /* //_}^+coloredHeader */
 
@@ -62,7 +73,11 @@ $SEARCH_BTN_WIDTH : 3em;
 @media handheld, only screen and (max-width: 240px) {
 	/* //_{^+coloredHeader */
 	.Search, .Search-txt {
+		color      : $COLOR_WTC_text;
 		background : $COLOR_WTC_casual_fill;
+	}
+	.Search-txt {
+		@include placeholderColor( $COLOR_WTC_casual_text );
 	}
 	/* //_}^+coloredHeader */
 }
