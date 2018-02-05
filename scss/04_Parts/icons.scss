@@ -5,6 +5,7 @@
 
     &:before, &:after {
         content       : ".";
+        speak         : none;
         text-indent   : -1em;
         overflow      : hidden;
         display       : block;
@@ -14,6 +15,62 @@
         margin-top    : .1em;
     }
     /* //_}#can-content */
+}
+@mixin icon-background {
+    & {
+        background    : $COLOR_BdM_casual_text;
+    }
+    .lS & {
+        background    : $COLOR_BdS_casual_text;
+    }
+    .fillbg & {
+        background    : $COLOR_FtS_casual_text;
+    }
+    .fillbg .lM & {
+        background    : $COLOR_FtM_casual_text;
+    }
+}
+@mixin icon-border {
+    & {
+        border-color    : $COLOR_BdM_casual_text;
+    }
+    .lS & {
+        border-color    : $COLOR_BdS_casual_text;
+    }
+    .fillbg & {
+        border-color    : $COLOR_FtS_casual_text;
+    }
+    .fillbg .lM & {
+        border-color    : $COLOR_FtM_casual_text;
+    }
+}
+@mixin icon-border-fill-transparent {
+    & {
+        border-color    : $COLOR_BdM_casual_text transparent;
+    }
+    .lS & {
+        border-color    : $COLOR_BdS_casual_text transparent;
+    }
+    .fillbg & {
+        border-color    : $COLOR_FtS_casual_text transparent;
+    }
+    .fillbg .lM & {
+        border-color    : $COLOR_FtM_casual_text transparent;
+    }
+}
+@mixin icon-border-transparent-fill {
+    & {
+        border-color    : transparent $COLOR_BdM_casual_text;
+    }
+    .lS & {
+        border-color    : transparent $COLOR_BdS_casual_text;
+    }
+    .fillbg & {
+        border-color    : transparent $COLOR_FtS_casual_text;
+    }
+    .fillbg .lM & {
+        border-color    : transparent $COLOR_FtM_casual_text;
+    }
 }
 
 .ico-clock {
@@ -25,8 +82,12 @@
         left          : 0;
         width         : 0.7em;
         height        : 0.7em;
+        /* //_{@modern */
+        -webkit-border-radius : .5em;
+        -moz-border-radius    : .5em;
+        /* //_}@modern */
         border-radius : .5em;
-        border-color  : $COLOR_BdM_casual_text;
+        @include icon-border;
         border-width  : .15em;
     }
     &:after {
@@ -34,7 +95,7 @@
         left          : 0.43em;
         width         : 0.23em;
         height        : 0.23em;
-        border-color  : $COLOR_BdM_casual_text;
+        @include icon-border;
         border-width  : 0 0 .14em .14em;
     }
     /* //_}#can-content */
@@ -49,18 +110,19 @@
         left          : 0;
         width         : 0.7em;
         height        : 0.6em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     &:after {
         top           : 0.2em;
         left          : 0.7em;
         width         : 0;
         height        : 0;
-        border-color  : transparent $COLOR_BdM_casual_text;
+        @include icon-border-transparent-fill;
         border-width  : 0.3em 0 0.3em 0.3em;
     }
     /* //_}#can-content */
 }
+
 .ico-author {
     /* //_{#can-content */
     @include icon-base;
@@ -70,16 +132,25 @@
         left          : 0.3em;
         width         : 0.45em;
         height        : 0.45em;
+        /* //_{@modern */
+        -webkit-border-radius : .225em;
+        -moz-border-radius    : .225em;
+        /* //_}@modern */
         border-radius : .225em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     &:after {
         top           : 0.5em;
-        left          : 0;
-        width         : 1em;
+        left          : 0.1em;
+        width         : 0.8em;
         height        : 0.5em;
+        /* //_{@modern */
+        -webkit-border-top-right-radius : .3em;
+        -webkit-border-top-left-radius  : .3em;
+        -moz-border-radius    : .3em .3em 0 0;
+        /* //_}@modern */
         border-radius : .3em .3em 0 0;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     /* //_}#can-content */
 }
@@ -93,14 +164,14 @@
         left          : 0;
         width         : 0.1em;
         height        : 1em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     &:after {
         top           : 0;
         left          : 0.2em;
         width         : 0.8em;
         height        : 0.7em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     /* //_}#can-content */
 }
@@ -114,14 +185,14 @@
         left          : 0.25em;
         width         : 0.5em;
         height        : 0.7em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     &:after {
         top           : 0.75em;
         left          : 0.25em;
         width         : 0;
         height        : 0;
-        border-color  : $COLOR_BdM_casual_text transparent;
+        @include icon-border-fill-transparent;
         border-width  : .25em .25em 0 .25em;
     }
     /* //_}#can-content */
@@ -136,7 +207,11 @@
         left          : 0.05em;
         width         : 0.3em;
         height        : 0.3em;
-        border-color  : $COLOR_BdM_casual_text;
+        @include icon-border;
+        /* //_{@modern */
+        -webkit-border-radius : 0.2em;
+        -moz-border-radius    : 0.2em;
+        /* //_}@modern */
         border-radius : .2em;
         border-width  : 0.2em 0 0.2em 0.2em;
     }
@@ -145,7 +220,11 @@
         left          : 0.3em;
         width         : 0.3em;
         height        : 0.3em;
-        border-color  : $COLOR_BdM_casual_text;
+        @include icon-border;
+        /* //_{@modern */
+        -webkit-border-radius : 0.2em;
+        -moz-border-radius    : 0.2em;
+        /* //_}@modern */
         border-radius : .2em;
         border-width  : 0.2em 0.2em 0.2em 0;
     }
@@ -161,18 +240,27 @@
         left          : 0.1em;
         width         : 0.8em;
         height        : 0.8em;
+        /* //_{@modern */
+        -webkit-border-bottom-right-radius : .4em .2em;
+        -webkit-border-bottom-left-radius  : .4em .2em;
+        -moz-border-radius    : 0 0 .4em .4em / 0 0 .2em .2em;
+        /* //_}@modern */
         border-radius : 0 0 .4em .4em / 0 0 .2em .2em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     &:after {
         top           : 0;
         left          : 0.1em;
         width         : 0.8em;
         height        : 0.3em;
-        border-color  : $COLOR_BdM_fill;
+        @include icon-border;
         border-width  : 0 0 .05em;
+        /* //_{@modern */
+        -webkit-border-radius : .4em .25em;
+        -moz-border-radius    : .4em / .25em;
+        /* //_}@modern */
         border-radius : .4em / .25em;
-        background    : $COLOR_BdM_casual_text;
+        @include icon-background;
     }
     /* //_}#can-content */
 }
@@ -182,20 +270,109 @@
     @include icon-base;
 
     &:before {
-        top           : 0;
-        left          : 0;
-        width         : 1em;
-        height        : 0.7em;
-        border-radius : 0.2em;
-        background    : $COLOR_BdM_casual_text;
+        top                   : 0;
+        left                  : 0;
+        width                 : 1em;
+        height                : 0.7em;
+        /* //_{@modern */
+        -webkit-border-radius : 0.2em;
+        -moz-border-radius    : 0.2em;
+        /* //_}@modern */
+        border-radius         : 0.2em;
+        @include icon-background;
     }
     &:after {
         top           : 0.7em;
         left          : 0.4em;
         width         : 0;
         height        : 0;
-        border-color  : $COLOR_BdM_casual_text transparent;
+        @include icon-border-fill-transparent;
         border-width  : 0.3em .15em 0 .15em;
     }
     /* //_}#can-content */
 }
+
+
+
+/* //_{#can-mq */
+
+/* //_<bottom40 */
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 240px) {
+    .ico-clock {
+        &:before {
+            border-color : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-label {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : transparent $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-author {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            background : $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-flag {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            background : $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-pen {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text transparent;
+        }
+    }
+    
+    .ico-chain {
+        &:before {
+            border-color : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-dram {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            background : $COLOR_WTC_casual_text;
+        }
+    }
+    
+    .ico-comment {
+        &:before {
+            background : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text transparent;
+        }
+    }
+}
+/* //_>bottom40 */
+
+/* //_}#can-mq */
+
