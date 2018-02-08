@@ -56,8 +56,9 @@
 
 		if( onload === init ){
 			onload = emptyFunc;
-			onload = init = null;
+			onload = null;
 		};
+		init = null;
 		
 		root    = document.compatMode !== 'CSS1Compat' ? body : document.documentElement || body;
 		elmSide = window[ sidebarID ] || document[ sidebarID ];
@@ -210,13 +211,16 @@
 	onscroll = function( e ){
 		if( preonscroll ) preonscroll( e );
 		//document.title = 'scroll ' + !!root;
-		root && fixSidebar();
+		!init && root && fixSidebar();
 	};
 
 	onresize = function( e ){
 		if( preonresize ) preonresize( e );
-		if( resizeTimerID ) clearTimeout( resizeTimerID );
-		resizeTimerID = setTimeout( fixSidebar, 100 );
+		
+		if( !init ){
+			if( resizeTimerID ) clearTimeout( resizeTimerID );
+			resizeTimerID = setTimeout( fixSidebar, 100 );
+		};
 	};
 	
 	// unload

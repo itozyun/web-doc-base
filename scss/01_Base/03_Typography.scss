@@ -208,6 +208,9 @@
 	/* //_{^@ie5win */
 		margin    : 1em auto;
 		/* //_}^@ie5win */
+		a & {
+			display : block; /* focus 時の塗りを適切にする */
+		}
 	}
 /* //_{#can-mq */
 /* //_<bottom10 */

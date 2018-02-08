@@ -37,7 +37,6 @@
 
 				.RichLink img {
 					float      : left;
-					display    : block;
 				}
 
 				.RichLink h3 {
@@ -147,25 +146,17 @@
 		table-layout : fixed;
 		margin       : 1em 0;
 	}
-	.lMf .RichLink-sep div {
-		display        : table-cell;
-		vertical-align : top;
-		border-width   : 0;
-		width          : 33.3%;
-	}
-		/* .lMf .RichLink a {
-			padding-left  : $WSXGA_COLUMN_GAP_EM / 2;
-			padding-right : $WSXGA_COLUMN_GAP_EM / 2;
+		.lMf .RichLink-sep div {
+			display        : table-cell;
+			vertical-align : top;
+			border-width   : 0;
+			width          : 33.3%;
 		}
-
-		.lMf .RichLink-sep div:first-of-type a {
-			padding-left  : 0;
+		.lM .RichLink a {
+			padding : 1em;
 		}
-		.lMf .RichLink-sep div:last-of-type a {
-			padding-right : 0;
-		} */
 			.lM .RichLink span {
-				font-size : 1em;
+				font-size : 1em 1em 0;
 			}
 }
 /* //_>bottom10 */
