@@ -32,7 +32,7 @@
 		}
 			.RichLink a {
 				@include clearfix;
-				@include unbreak-inside;
+				/* @include unbreak-inside; */
 			}
 
 				.RichLink img {

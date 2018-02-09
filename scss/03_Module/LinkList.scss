@@ -46,7 +46,7 @@
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
 	.LinkList a {
-		@include unbreak-inside;
+		/* @include unbreak-inside; */
 	}
 }
 /* //_>bottom10 */

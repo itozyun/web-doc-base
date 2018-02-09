@@ -16,6 +16,10 @@
     margin : 1em $CONTENT_MARGIN_LR;
 }
 
+blockquote .hscroll, .note .hscroll {
+    margin : 1em 0;
+}
+
     .hscroll table {
         /* //_{@modern */
         width        : 99%;

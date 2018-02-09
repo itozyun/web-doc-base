@@ -119,11 +119,6 @@
 		color  : $COLOR_PRT_text;
 	}
 /* //_}^+from-h2-at-post */
-	.AHead-cita:after {
-		content   : " ("attr(href)") ";
-		font-size : 0.875em;
-		color     : $COLOR_PRT_link;
-	}
 }
 /* //_>bottom50 */
 
@@ -132,41 +127,45 @@
  * //_{+ArticleLabels
  *
  * .AHead-labels
+ *   i.ico-label
  *   a
 --------------------------------------------------------------------------------------*/
 .AHead-labels {
 	margin-top : 0.5em;
 	color      : $COLOR_FtM_fill; /* , を消す */
 }
+	
+	.AHead-labels i {
+		display : none;
+	}
+	.AHead-labels a {
+		@include noUnderLineAlways;
 
-		.AHead-labels a {
-			@include noUnderLineAlways;
+		/* //_{^#ie7-win */
+		display     : inline-block;
+		/* //_}^#ie7-win */
+		/* //_{@ie6,@ie7,@ie55 */
+		zoom        : 1;
+		/* //_}@ie6,@ie7,@ie55 */
+		/* //_{@ie5win */
+		height      : 2em;
+		/* //_}@ie5win */
+		line-height : 1.2;
+		padding     : 0.5em 1em;
+		margin      : 0 0 0.5em;
 
-			/* //_{^#ie7-win */
-			display     : inline-block;
-			/* //_}^#ie7-win */
-			/* //_{@ie6,@ie7,@ie55 */
-			zoom        : 1;
-			/* //_}@ie6,@ie7,@ie55 */
-			/* //_{@ie5win */
-			height      : 2em;
-			/* //_}@ie5win */
-			line-height : 1.2;
-			padding     : 0.5em 1em;
-			margin      : 0 0 0.5em;
+		background : $COLOR_FtM_casual_fill;
+		color      : $COLOR_FtM_link;
+	}
 
-			background : $COLOR_FtM_casual_fill;
-			color      : $COLOR_FtM_link;
-		}
-
-		.AHead-labels a:visited {
-			background : $COLOR_FtM_casual_fill;
-			color      : $COLOR_FtM_text;
-		}
-		.AHead-labels a:hover {
-			background : $COLOR_FtM_flip_fill;
-			color      : $COLOR_FtM_flip_text;
-		}
+	.AHead-labels a:visited {
+		background : $COLOR_FtM_casual_fill;
+		color      : $COLOR_FtM_text;
+	}
+	.AHead-labels a:hover {
+		background : $COLOR_FtM_flip_fill;
+		color      : $COLOR_FtM_flip_text;
+	}
 
 /* //_{#can-mq */
 /* //_<bottom40 */
@@ -190,10 +189,15 @@
 --------------------------------------------------------------------------------------*/
 @media print {
 	.AHead-labels {
-		color : $COLOR_PRT_text;
+		margin : 0;
+		color  : $COLOR_PRT_text;
 	}
+		.AHead-labels i {
+			display : inline;
+		}
 		.AHead-labels a, .AHead-labels a:visited {
 			padding    : 0;
+			margin     : 0;
 			background : none;
 		}
 		.AHead-labels a:link {

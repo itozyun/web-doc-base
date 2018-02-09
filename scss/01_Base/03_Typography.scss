@@ -172,8 +172,11 @@
 		margin-right : 0;
 	}
 
-	dl, ul, ol, tr, dt {
+	li, dd, dt, tr {
 		@include unbreak-inside;
+	}
+
+	dt, thead {
 		@include unbreak-after;
 	}
 

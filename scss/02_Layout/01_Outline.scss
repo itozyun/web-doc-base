@@ -220,14 +220,22 @@
 				margin-left  : 0;
 				margin-right : 0;
 			}
-			.lMi, .lSi, .lXi {
-				padding-left  : $TABLET_H_SPACE;
-				padding-right : $TABLET_H_SPACE;
-			}
 }
 /* //_>bottom20 */
 
 /* //_{#can-mq */
+
+/* //_<bottom21 */
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@media handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+	.lMi, .lSi, .lXi {
+		padding-left  : $TABLET_H_SPACE;
+		padding-right : $TABLET_H_SPACE;
+	}
+}
+/* //_>bottom21 */
+
 /* //_<bottom25 */
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
@@ -267,7 +275,7 @@
 --------------------------------------------------------------------------------------*/
 @media print {
 	body, #lH, #lE, #lB,
-	.fillbg, .fillbg .lM, .fillbg .lO
+	.fillbg, .fillbg .lM, .fillbg .lO, .fillbg .lS
 /* //_{+coloredHeader */
 	, #lH .lO, #lH, #lH .lS
 /* //_}+coloredHeader */
@@ -277,6 +285,10 @@
 	}
 	#lH .lS, #lB .lS, #lF .lW {
 		display : none;
+	}
+	.lMi, .lSi, .lXi {
+		padding-left  : 0;
+		padding-right : 0;
 	}
 }
 /* //_>bottom50 */

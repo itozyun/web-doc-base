@@ -19,6 +19,7 @@
 }
 
 .jL img {
+	float       : none; /* 無いと続くテキストの位置文字目が消える Win10 + Firefox58 */
 	width       : 100%;
 	height      : auto;
 	/* //_{^@ie5win */
@@ -41,45 +42,13 @@
 
 /* //_{@modern */
 .box .jL img {
-	margin      : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+	margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
 }
 /* //_}@modern */
 
 /* //_{@ie5win */
-.jL img {
-	float   : none;
+.box .jL img {
 	clear   : both;
 	margin  : 0 0 1em;
 }
 /* //_}@ie5win */
-
-/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない */
-/*
-.js-picaThumb-small {
-	display : table; 
-}
-.picaThumb {
-	display : inline-block;
-	margin  : 0 auto 1em;
-}
-.picaThumb img {
-	margin  : 0;
-}
-*/
-
-/* focus 時の高さ確保用, 高さが無い場合、必ずしも画面内に画像が現れない 
-#Bm a[href*=javascript：] {
-	display : block;
-	float   : left;
-}*/
-/* .Lg のときは block, float を切る ie では無い方がよい 
-.aBodyRoot a.Lg,
-.e8- #Bm a[href*=javascript：] {
-	display : inline;
-	float   : none;
-}
-#Bm a[href*=javascript：]:focus {
-	outline    : 0;
-	background : inherit;
-} */
-

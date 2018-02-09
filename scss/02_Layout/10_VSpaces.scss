@@ -1,12 +1,3 @@
-
-#lB .lM {
-    padding-bottom : 4em;
-}
-
-#lB .lSi {
-    padding-bottom : 1em;
-}
-
 #lE .lW {
     padding-bottom : 2.5em;
 }
@@ -15,6 +6,14 @@
 }
 #lE .lSi {
     padding-top : 4em;
+}
+
+#lB .lM {
+    padding-bottom : 4em;
+}
+
+#lB .lSi {
+    padding-bottom : 1em;
 }
 
 @mixin stackableModule {
@@ -29,4 +28,17 @@
     }
 }
 /* //_>bottom20 */
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+    #lE .lW {
+        padding-bottom : 0;
+    }
+    #lB .lM {
+        padding-bottom : 2em;
+    }
+}
+/* //_>bottom50 */
 

@@ -189,9 +189,15 @@ a:focus img, a:link:active img, a:visited:active img {
 		color       : $COLOR_PRT_link;
 	}
 	.aBodyRoot a[href$=".jpeg"]:after,
+	.aBodyRoot a[href$=".JPEG"]:after,
+	.aBodyRoot a[href$=".JPG"]:after,
 	.aBodyRoot a[href$=".jpg"]:after,
 	.aBodyRoot a[href$=".gif"]:after,
-	.aBodyRoot a[href$=".png"]:after {
+	.aBodyRoot a[href$=".GIF"]:after,
+	.aBodyRoot a[href$=".png"]:after,
+	.aBodyRoot a[href$=".PNG"]:after,
+	.aBodyRoot a[href^="mailto:"]:after,
+	.aBodyRoot a[href^="tel:"]:after {
 		display     : none;
 	}
 }

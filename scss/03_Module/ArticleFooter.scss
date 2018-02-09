@@ -1,10 +1,29 @@
 /* [module] ArticleFooter
- *  出現位置は #lB .lMf 下で固定
+ *  出現位置は #lB .lMh 下で固定
  *
  * .AFoot
 --------------------------------------------------------------------------------------*/
 .AFoot {
-    margin        : 4em 0;
-	border-width  : 1px 0 0;
+    margin        : 4em 0 0;
+}
+
+/* //_{#can-1stOfType */
+	.AFoot > div:first-of-type {
+		border-width  : 1px 0;
+	}
+/* //_}#can-1stOfType */
+
+@mixin article-footer-item {
+	border-width  : 0 0 1px;
 	border-style  : solid;
 }
+
+/* //_<bottom50 */
+/*  Print
+--------------------------------------------------------------------------------------*/
+@media print {
+	.AFoot {
+		margin : 1em 0;
+	}
+}
+/* //_>bottom50 */
