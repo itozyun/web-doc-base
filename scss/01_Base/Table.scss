@@ -113,15 +113,6 @@
 		border-color : $COLOR_WTC_casual_fill;
 		color        : $COLOR_WTC_fill;
 	}
-	/* th {
-		padding      : 0.5em 0.2em;
-	}
-	thead td {
-		padding      : 0.5em 0.1em;
-	}
-	tbody td, tfoot th, tfoot td {
-		border-width : 0 0.2em 1px;
-	} */
 
 	tbody :hover td {
 		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;

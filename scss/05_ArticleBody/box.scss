@@ -6,10 +6,15 @@
 	
 	margin      : 1em $CONTENT_MARGIN_LR 0;
 }
-.box p, .box dl, .box ul, .box ol {
+
+.box p, .box dl, .box ul, .box ol,
+li .box, dd .box, tr .box, .note .box {
 	margin-top      : 0;
 	margin-left     : 0;
 	margin-right    : 0;
+}
+.box ul, .box ol {
+	list-style-position : inside;
 }
 
 /* //_{#can-1stOfType */
@@ -17,10 +22,6 @@
 	margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
 }
 /* //_}#can-1stOfType */
-
-.box ul, .box ol {
-	list-style-position : inside;
-}
 
 .box img,
 .box embed,
@@ -30,11 +31,6 @@
 .box .caption {
 	float   : left;
 	margin  : 0 $CONTENT_MARGIN_LR 1em 0;
-}
-
-li .box, dd .box, tr .box, .note .box {
-	margin-left  : 0;
-	margin-right : 0;
 }
 
 /* //_{#can-mq */

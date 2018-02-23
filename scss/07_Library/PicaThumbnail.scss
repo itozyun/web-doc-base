@@ -19,7 +19,7 @@
 }
 
 .jL img {
-	float       : none; /* 無いと続くテキストの位置文字目が消える Win10 + Firefox58 */
+	float       : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
 	width       : 100%;
 	height      : auto;
 	/* //_{^@ie5win */

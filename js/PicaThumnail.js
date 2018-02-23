@@ -12,7 +12,7 @@
 		init = onload =
 	function( e ){
 		var root  = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
-			links = w3cDOM ? root.getElementsByTagName( 'A' ) : root.all.tags( 'A' ),
+			links = w3cDOM ? root.getElementsByTagName( 'A' ) : root.all[ 'tags' ]( 'A' ),
 			i = -1, _ = '', elmA, elmImg, tag, href, ext;
 		
 		if( tempOnload ) tempOnload( e );
