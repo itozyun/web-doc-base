@@ -176,7 +176,7 @@
 		@include unbreak-inside;
 	}
 
-	dt, thead {
+	dt, thead, caption {
 		@include unbreak-after;
 	}
 

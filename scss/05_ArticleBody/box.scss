@@ -21,6 +21,9 @@ li .box, dd .box, tr .box, .note .box {
 .box > p:first-of-type {
 	margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
 }
+tr .box > p:first-of-type {
+	margin-top : 0;
+}
 /* //_}#can-1stOfType */
 
 .box img,
@@ -49,11 +52,9 @@ li .box, dd .box, tr .box, .note .box {
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	/* //_{#can-1stOfType */
 	.box > p:first-of-type {
 		margin-top : ( - $PHONE_LINE_HEIGHT_EM + 1em ) / 4;
 	}
-	/* //_}#can-1stOfType */
 }
 /* //_>bottom30 */
 
@@ -81,11 +82,9 @@ li .box, dd .box, tr .box, .note .box {
 		margin       : 1em 0 0;
 	}
 
-	/* //_{#can-1stOfType */
 	.box > p:first-of-type {
 		margin-top : ( - $WATCH_LINE_HEIGHT_EM + 1em ) / 4;
 	}
-	/* //_}#can-1stOfType */
 }
 /* //_>bottom40 */
 
