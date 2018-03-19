@@ -8,22 +8,22 @@
 }
 
 /* //_{#can-1stOfType */
-	.AFoot > div:first-of-type {
-		border-width  : 1px 0;
-	}
+    .AFoot > div:first-of-type {
+        border-width  : 1px 0;
+    }
 /* //_}#can-1stOfType */
 
 @mixin article-footer-item {
-	border-width  : 0 0 1px;
-	border-style  : solid;
+    border-width  : 0 0 1px;
+    border-style  : solid;
 }
 
 /* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.AFoot {
-		margin : 1em 0;
-	}
+    .AFoot {
+        margin : 1em 0;
+    }
 }
 /* //_>bottom50 */

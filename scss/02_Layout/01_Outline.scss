@@ -19,106 +19,106 @@
 
 
 /*  wrapper
---------------------------------------------------------------------------------------*/	
+--------------------------------------------------------------------------------------*/    
 .lW {
-	/* //_{^#ie89 */
-		@include clearfix;
-	/* //_}^#ie89 */
+    /* //_{^#ie89 */
+        @include clearfix;
+    /* //_}^#ie89 */
 }
 
 .lW, .lX {
-	width     : 98%;
-	/* //_{^#ie6-win */
-	max-width : $PC_MAX_WIDTH_EM;
-	/* //_}^#ie6-win */
-	/* //_{^@ie5win */
-	margin    : 0 auto;
-	/* //_}^@ie5win */
+    width     : 98%;
+    /* //_{^#ie6-win */
+    max-width : $PC_MAX_WIDTH_EM;
+    /* //_}^#ie6-win */
+    /* //_{^@ie5win */
+    margin    : 0 auto;
+    /* //_}^@ie5win */
 }
 
 /*  main
---------------------------------------------------------------------------------------*/	
-	.lM {
-		/* //_{^#ie89 */
-		width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
-		float : left;
-		/* //_}^#ie89 */
-	}
-		.lMi {
-			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-		}
+--------------------------------------------------------------------------------------*/    
+    .lM {
+        /* //_{^#ie89 */
+        width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+        float : left;
+        /* //_}^#ie89 */
+    }
+        .lMi {
+            margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+        }
 
 /*  sub
 --------------------------------------------------------------------------------------*/
-	.lS {
-		width : 100% * $PC_SUB_COLUMN_RATIO;
-		/* //_{^#ie89 */
-		float : right;
-		/* //_}^#ie89 */
-	}
-		.lSi {
-			/* //_{@ie6 */
-			width        : 82%;
-			/* //_}@ie6 */
-			/* //_{#ie55- */
-			width        : 100%;
-			/* //_}#ie55- */
-			margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-			margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-		}
+    .lS {
+        width : 100% * $PC_SUB_COLUMN_RATIO;
+        /* //_{^#ie89 */
+        float : right;
+        /* //_}^#ie89 */
+    }
+        .lSi {
+            /* //_{@ie6 */
+            width        : 82%;
+            /* //_}@ie6 */
+            /* //_{#ie55- */
+            width        : 100%;
+            /* //_}#ie55- */
+            margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+            margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+        }
 
 /*  x-column
 --------------------------------------------------------------------------------------*/
-	.lXi {
-		padding-left  : 100% * $PC_COLUMN_GAP_RATIO;
-		padding-right : 100% * $PC_COLUMN_GAP_RATIO;
-	}
+    .lXi {
+        padding-left  : 100% * $PC_COLUMN_GAP_RATIO;
+        padding-right : 100% * $PC_COLUMN_GAP_RATIO;
+    }
 /*
  * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
  */
 
 /*  float-layout -> table-layout
 --------------------------------------------------------------------------------------*/
-	/* //_{#ie89 
-	 * ie8 で header と main の sub の幅がずれるので、header も table-layout とする */
-	.lW {
-		display      : table;
-		table-layout : fixed;
-	}
-		.lM, .lS {
-			display        : table-cell;
-			vertical-align : top; /* Safari 3.2, ie8 で大切 */
-		}
-		.lM {
-			width : 100% * $PC_MAIN_COLUMN_RATIO;
-		}
-			.lMi {
-				margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-			}
-	/* //_}#ie89 */
+    /* //_{#ie89 
+     * ie8 で header と main の sub の幅がずれるので、header も table-layout とする */
+    .lW {
+        display      : table;
+        table-layout : fixed;
+    }
+        .lM, .lS {
+            display        : table-cell;
+            vertical-align : top; /* Safari 3.2, ie8 で大切 */
+        }
+        .lM {
+            width : 100% * $PC_MAIN_COLUMN_RATIO;
+        }
+            .lMi {
+                margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+            }
+    /* //_}#ie89 */
 
 
 /* //_{@modern */
 /*  メディアクエリをサポートするブラウザだけ table-layout にする
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 951px) { /* Tablet も併せて変更 */
-		.lW {
-			display      : table;
-			table-layout : fixed;
-		}
-			.lM, .lS {
-				float          : none;
-				display        : table-cell;
-				vertical-align : top; /* Safari 3.2, ie8 で大切 */
-			}
+        .lW {
+            display      : table;
+            table-layout : fixed;
+        }
+            .lM, .lS {
+                float          : none;
+                display        : table-cell;
+                vertical-align : top; /* Safari 3.2, ie8 で大切 */
+            }
 
-			.lM {
-				width : 100% * $PC_MAIN_COLUMN_RATIO;
-			}
-				.lMi {
-					/* padding-right だと Safari 3.2 table レイアウトが狂う */
-					margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-				}
+            .lM {
+                width : 100% * $PC_MAIN_COLUMN_RATIO;
+            }
+                .lMi {
+                    /* padding-right だと Safari 3.2 table レイアウトが狂う */
+                    margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+                }
 }
 /* //_}@modern */
 
@@ -127,32 +127,32 @@
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 126em) {
-	.lW, .lX {
-		width     : 96%;
-		max-width : $WQXGA_MAX_WIDTH_EM;
-	}
-		.lM {
-			width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
-		}
-			.lMi {
-				margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO;
-				margin-right : $WQXGA_COLUMN_GAP_EM;
-			}
-				.lMh {
-					margin-left  : 50%;
-					padding-left : $WQXGA_COLUMN_GAP_EM / 2;
-				}
-		.lS {
-			width : 100% * $WQXGA_SUB_COLUMN_RATIO;
-		}
-			.lSi {
-				margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
-				margin-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
-			}
-		.lXi {
-			padding-left  : $WQXGA_COLUMN_GAP_PCT;
-			padding-right : $WQXGA_COLUMN_GAP_PCT;
-		}
+    .lW, .lX {
+        width     : 96%;
+        max-width : $WQXGA_MAX_WIDTH_EM;
+    }
+        .lM {
+            width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
+        }
+            .lMi {
+                margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO;
+                margin-right : $WQXGA_COLUMN_GAP_EM;
+            }
+                .lMh {
+                    margin-left  : 50%;
+                    padding-left : $WQXGA_COLUMN_GAP_EM / 2;
+                }
+        .lS {
+            width : 100% * $WQXGA_SUB_COLUMN_RATIO;
+        }
+            .lSi {
+                margin-left  : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+                margin-right : $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+            }
+        .lXi {
+            padding-left  : $WQXGA_COLUMN_GAP_PCT;
+            padding-right : $WQXGA_COLUMN_GAP_PCT;
+        }
 }
 /* //_>bottom15 */
 
@@ -160,32 +160,32 @@
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
-	.lW, .lX {
-		width     : 96%;
-		max-width : $WSXGA_MAX_WIDTH_EM;
-	}
-		.lM {
-			width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
-		}
-			.lMi {
-				margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
-				margin-right : $WSXGA_COLUMN_GAP_EM;
-			}
-				.lMh {
-					margin-left  : 50%;
-					padding-left : $WSXGA_COLUMN_GAP_EM / 2;
-				}
-		.lS {
-			width : 100% * $WSXGA_SUB_COLUMN_RATIO;
-		}
-			.lSi {
-				margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
-				margin-right : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
-			}
-		.lXi {
-			padding-left  : $WSXGA_COLUMN_GAP_PCT;
-			padding-right : $WSXGA_COLUMN_GAP_PCT;
-		}
+    .lW, .lX {
+        width     : 96%;
+        max-width : $WSXGA_MAX_WIDTH_EM;
+    }
+        .lM {
+            width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
+        }
+            .lMi {
+                margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+                margin-right : $WSXGA_COLUMN_GAP_EM;
+            }
+                .lMh {
+                    margin-left  : 50%;
+                    padding-left : $WSXGA_COLUMN_GAP_EM / 2;
+                }
+        .lS {
+            width : 100% * $WSXGA_SUB_COLUMN_RATIO;
+        }
+            .lSi {
+                margin-left  : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+                margin-right : $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+            }
+        .lXi {
+            padding-left  : $WSXGA_COLUMN_GAP_PCT;
+            padding-right : $WSXGA_COLUMN_GAP_PCT;
+        }
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -195,31 +195,31 @@
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
 /* single */
-	.lW, .lX {
-		width     : 100%;
-		/* //_{^#ie6-win */
-		max-width : 100%;
-		/* //_}^#ie6-win */
-		/* //_{@ie8,@ie9,@modern */
-		display   : block;
-		/* //_}@ie8,@ie9,@modern */
-	}
-		.lM, .lS {
-			float   : none;
-		/* //_{^@ie9 */
-			display : block;
-			width   : auto;
-		/* //_}^@ie9 */
-		/* //_{@ie9 */
-			display      : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
-			width        : 100%;  /* auto は不可 */
-			table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
-		/* //_}@ie9 */
-		}
-			.lMi, .lSi {
-				margin-left  : 0;
-				margin-right : 0;
-			}
+    .lW, .lX {
+        width     : 100%;
+        /* //_{^#ie6-win */
+        max-width : 100%;
+        /* //_}^#ie6-win */
+        /* //_{@ie8,@ie9,@modern */
+        display   : block;
+        /* //_}@ie8,@ie9,@modern */
+    }
+        .lM, .lS {
+            float   : none;
+        /* //_{^@ie9 */
+            display : block;
+            width   : auto;
+        /* //_}^@ie9 */
+        /* //_{@ie9 */
+            display      : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
+            width        : 100%;  /* auto は不可 */
+            table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
+        /* //_}@ie9 */
+        }
+            .lMi, .lSi {
+                margin-left  : 0;
+                margin-right : 0;
+            }
 }
 /* //_>bottom20 */
 
@@ -229,10 +229,10 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
-	.lMi, .lSi, .lXi {
-		padding-left  : $TABLET_H_SPACE;
-		padding-right : $TABLET_H_SPACE;
-	}
+    .lMi, .lSi, .lXi {
+        padding-left  : $TABLET_H_SPACE;
+        padding-right : $TABLET_H_SPACE;
+    }
 }
 /* //_>bottom21 */
 
@@ -240,10 +240,10 @@
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
-	.lMi, .lSi, .lXi {
-		padding-left  : $PHABLET_H_SPACE;
-		padding-right : $PHABLET_H_SPACE;
-	}
+    .lMi, .lSi, .lXi {
+        padding-left  : $PHABLET_H_SPACE;
+        padding-right : $PHABLET_H_SPACE;
+    }
 }
 /* //_>bottom25 */
 
@@ -251,10 +251,10 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.lMi, .lSi, .lXi {
-		padding-left  : $PHONE_H_SPACE;
-		padding-right : $PHONE_H_SPACE;
-	}
+    .lMi, .lSi, .lXi {
+        padding-left  : $PHONE_H_SPACE;
+        padding-right : $PHONE_H_SPACE;
+    }
 }
 /* //_>bottom30 */
 
@@ -262,10 +262,10 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.lMi, .lSi, .lXi {
-		padding-left  : 0;
-		padding-right : 0;
-	}
+    .lMi, .lSi, .lXi {
+        padding-left  : 0;
+        padding-right : 0;
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */
@@ -274,21 +274,21 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	body, #lH, #lE, #lB,
-	.fillbg, .fillbg .lM, .fillbg .lO, .fillbg .lS
+    body, #lH, #lE, #lB,
+    .fillbg, .fillbg .lM, .fillbg .lO, .fillbg .lS
 /* //_{+coloredHeader */
-	, #lH .lO, #lH, #lH .lS
+    , #lH .lO, #lH, #lH .lS
 /* //_}+coloredHeader */
-	 {
-		background : $COLOR_PRT_fill;
-		color      : $COLOR_PRT_text;
-	}
-	#lH .lS, #lB .lS, #lF .lW {
-		display : none;
-	}
-	.lMi, .lSi, .lXi {
-		padding-left  : 0;
-		padding-right : 0;
-	}
+     {
+        background : $COLOR_PRT_fill;
+        color      : $COLOR_PRT_text;
+    }
+    #lH .lS, #lB .lS, #lF .lW {
+        display : none;
+    }
+    .lMi, .lSi, .lXi {
+        padding-left  : 0;
+        padding-right : 0;
+    }
 }
 /* //_>bottom50 */

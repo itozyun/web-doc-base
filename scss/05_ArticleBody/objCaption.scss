@@ -6,25 +6,25 @@
  *         figcaption
  */
 .caption {
-	word-break    : break-all;
-	text-align    : center;
-	line-height   : 1.2;
-	font-size     : 0.875em;
-	/* //_{^#ie6-win */
-	max-width     : 100%;
-	/* //_}^#ie6-win */
-	/* //_{^@ie5win */
-	margin        : 1em auto;
-	/* //_}^@ie5win */
+    word-break    : break-all;
+    text-align    : center;
+    line-height   : 1.2;
+    font-size     : 0.875em;
+    /* //_{^#ie6-win */
+    max-width     : 100%;
+    /* //_}^#ie6-win */
+    /* //_{^@ie5win */
+    margin        : 1em auto;
+    /* //_}^@ie5win */
 
-	@include unbreak-inside;
+    @include unbreak-inside;
 }
 /* //_{@ie5win */
 .caption * {
-	line-height   : 1.2;
+    line-height   : 1.2;
 }
 /* //_}@ie5win */
 
 .box .caption * {
-	float        : none;
+    float        : none;
 }

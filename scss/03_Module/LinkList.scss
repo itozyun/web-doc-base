@@ -7,37 +7,37 @@
 --------------------------------------------------------------------------------------*/
 
 @mixin linkCommon {
-	/* //_{#ie6,@ie55
-	 * ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
-		* { zoom : 1; }
-	/* //_}#ie6,@ie55 */
+    /* //_{#ie6,@ie55
+     * ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
+        * { zoom : 1; }
+    /* //_}#ie6,@ie55 */
 
-	a {
-		/* href がない場合 current カラーになる */
-		@include fill;
-		@include unbreak-inside;
-		cursor             : pointer;
-	}
+    a {
+        /* href がない場合 current カラーになる */
+        @include fill;
+        @include unbreak-inside;
+        cursor             : pointer;
+    }
 }
 @mixin linkCommon_watch {
-	a {
-		@include fill_watch;
-	}
+    a {
+        @include fill_watch;
+    }
 }
 
 
 .LinkList { @include linkCommon; @include stackableModule;}
 
-	.LinkList a {
-		line-height : 1.1;
-		display     : block;
-		padding     : 1em 0.5em 0.8em;
-	}
+    .LinkList a {
+        line-height : 1.1;
+        display     : block;
+        padding     : 1em 0.5em 0.8em;
+    }
 
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
 .lS .LinkList {
-	text-align : right;
+    text-align : right;
 }
 
 /* //_{#can-mq */
@@ -45,9 +45,9 @@
 --------------------------------------------------------------------------------------*/
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
-	.LinkList a {
-		/* @include unbreak-inside; */
-	}
+    .LinkList a {
+        /* @include unbreak-inside; */
+    }
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -56,9 +56,9 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
-	.lS .LinkList {
-		text-align : left;
-	}
+    .lS .LinkList {
+        text-align : left;
+    }
 }
 /* //_>bottom20 */
 
@@ -68,10 +68,10 @@
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
-	.lM2 .LinkList,
-	.lS2 .LinkList {
-		text-align : right;
-	}
+    .lM2 .LinkList,
+    .lS2 .LinkList {
+        text-align : right;
+    }
 }
 /* //_>bottom25 */
 
@@ -79,12 +79,12 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.LinkList {
-		text-align : center !important;
-	}
-		.LinkList a {
-			display : inline-block;
-		}
+    .LinkList {
+        text-align : center !important;
+    }
+        .LinkList a {
+            display : inline-block;
+        }
 }
 /* //_>bottom30 */
 
@@ -92,11 +92,11 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.LinkList a {
-    	padding : 0.5em 0;
-	}
+    .LinkList a {
+        padding : 0.5em 0;
+    }
 
-	.LinkList { @include linkCommon_watch; }
+    .LinkList { @include linkCommon_watch; }
 }
 /* //_>bottom40 */
 

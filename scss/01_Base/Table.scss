@@ -1,133 +1,151 @@
 /*  Table
 --------------------------------------------------------------------------------------*/
-	/* tables still need 'cellspacing="0"' in the markup */
-	table {
-		border            : 0;
-		border-collapse   : collapse;
-		empty-cells       : show;
-		border-spacing    : 0;
-	/* //_{@ie5win,@ie55 */
-		table-layout      : fixed;
-	/* //_}@ie5win,@ie55 */
-	}
+    /* tables still need 'cellspacing="0"' in the markup */
+    table {
+        border            : 0;
+        border-collapse   : collapse;
+        empty-cells       : show;
+        border-spacing    : 0;
+    /* //_{@ie5win,@ie55 */
+        table-layout      : fixed;
+    /* //_}@ie5win,@ie55 */
+    }
 
-	tr
-	/* //_{@ie5win,@ie55 */
-		*
-	/* //_}@ie5win,@ie55 */
-	{
-		line-height  : 1.2;
-	}
+    tr
+    /* //_{@ie5win,@ie55 */
+        *
+    /* //_}@ie5win,@ie55 */
+    {
+        line-height  : 1.2;
+    }
 
-	th {
-		font-weight  : normal;
-		padding      : 0.5em;
-	}
-	td {
-		padding      : 0.5em 0;
-	}
-	thead td {
-		padding      : 0.5em 0.25em;
-	}
+    th {
+        font-weight  : normal;
+        padding      : 0.5em;
+    }
+    td {
+        padding      : 0.5em 0;
+    }
+    thead td {
+        padding      : 0.5em 0.25em;
+    }
 
-	thead th, thead td {
-		border-style : solid;
-		border-width : 0 0 1px 0;
-	}
+    thead th, thead td {
+        border-style : solid;
+        border-width : 0 0 1px 0;
+    }
 
-	tbody th {
-		border-style : solid;
-		border-width : 0 0 1px;
-	}
-	tbody td, tfoot th, tfoot td {
-		border-style : solid;
-		border-width : 0 0.5em 1px;
-	}
+    tbody th {
+        border-style : solid;
+        border-width : 0 0 1px;
+    }
+    tbody td, tfoot th, tfoot td {
+        border-style : solid;
+        border-width : 0 0.5em 1px;
+    }
 
 /*  th, td
 --------------------------------------------------------------------------------------*/
-	tbody th {
-		background   : $COLOR_BdM_casual_fill;
-		border-color : $COLOR_BdM_fill;
-	}
-	td, tfoot th {
-		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_BdM_casual_fill;
-	}
-	/* //_{@ie5win,@ie55 */
-	table {
-		color        : $COLOR_BdM_text;
-	}
-	/* //_}@ie5win,@ie55 */
-	thead th, thead td {
-		background   : $COLOR_BdM_casual_text;
-		border-color : $COLOR_BdM_casual_fill;
-		color        : $COLOR_BdM_fill;
-	}
+    tbody th {
+        background   : $COLOR_BdM_casual_fill;
+        border-color : $COLOR_BdM_fill;
+    }
+    td, tfoot th {
+        border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_BdM_casual_fill;
+    }
+    /* //_{@ie5win,@ie55 */
+    table {
+        color        : $COLOR_BdM_text;
+    }
+    /* //_}@ie5win,@ie55 */
+    thead th, thead td {
+        background   : $COLOR_BdM_casual_text;
+        border-color : $COLOR_BdM_casual_fill;
+        color        : $COLOR_BdM_fill;
+    }
+    thead a:link, thead a:visited {
+        color        : $COLOR_BdM_fill;
+    }
+    thead a:link:active,
+    thead a:visited:active,
+    thead a:focus {
+        background   : #fff;
+        color        : $COLOR_ACCENT;
+    }
 
-	/* //_{^#ie6-win */
-	tbody :hover td {
-		border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_ACCENT;
-		color        : $COLOR_ACCENT;
-	}
-	tbody :hover th {
-		background   : $COLOR_ACCENT;
-		color        : #fff;
-	}
-	/* //_}^#ie6-win */
+    /* //_{^#ie6-win */
+    tbody :hover td {
+        border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_ACCENT;
+        color        : $COLOR_ACCENT;
+    }
+    tbody :hover th {
+        background   : $COLOR_ACCENT;
+        color        : #fff;
+    }
+    tbody :hover a:link, tbody :hover a:visited {
+        color        : #fff;
+    }
+    tbody :hover a:link:active,
+    tbody :hover a:visited:active,
+    tbody :hover a:focus {
+        background   : #fff;
+        color        : $COLOR_ACCENT;
+    }
+    /* //_}^#ie6-win */
 
-	blockquote {
-		thead th, tbody th, thead td {
-			background   : $COLOR_BdM_flip_fill;
-			border-color : $COLOR_BdM_casual_fill;
-			color        : $COLOR_BdM_casual_fill;
-		}
-		td, tfoot th {
-			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
-		}
+    blockquote {
+        thead th, tbody th, thead td {
+            background   : $COLOR_BdM_flip_fill;
+            border-color : $COLOR_BdM_casual_fill;
+            color        : $COLOR_BdM_casual_fill;
+        }
+        td, tfoot th {
+            border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
+        }
 
-		/* //_{^#ie6-win */
-		tbody :hover td {
-			border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_ACCENT;
-		}
-		/* //_}^#ie6-win */
-	}
+        /* //_{^#ie6-win */
+        tbody :hover td {
+            border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_ACCENT;
+        }
+        /* //_}^#ie6-win */
+    }
 
 /* //_{#can-mq */
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	tbody th {
-		background   : $COLOR_WTC_casual_fill;
-		border-color : $COLOR_WTC_fill;
-	}
-	td {
-		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
-	}
-	thead th, thead td {
-		background   : $COLOR_WTC_casual_text;
-		border-color : $COLOR_WTC_casual_fill;
-		color        : $COLOR_WTC_fill;
-	}
+    tbody th {
+        background   : $COLOR_WTC_casual_fill;
+        border-color : $COLOR_WTC_fill;
+    }
+    td {
+        border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
+    }
+    thead th, thead td {
+        background   : $COLOR_WTC_casual_text;
+        border-color : $COLOR_WTC_casual_fill;
+        color        : $COLOR_WTC_fill;
+    }
 
-	tbody :hover td {
-		border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;
-	}
+    tbody :hover td {
+        border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;
+    }
 
-	blockquote {
-		thead th, thead td, tbody th {
-			background   : $COLOR_WTC_flip_fill;
-			border-color : $COLOR_WTC_casual_fill;
-			color        : $COLOR_WTC_casual_fill;
-		}
-		td, tfoot th {
-			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
-		}
+    blockquote {
+        thead th, thead td, tbody th {
+            background   : $COLOR_WTC_flip_fill;
+            border-color : $COLOR_WTC_casual_fill;
+            color        : $COLOR_WTC_casual_fill;
+        }
+        td, tfoot th {
+            border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
+        }
 
-		tbody :hover td {
-			border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_ACCENT;
-		}
-	}
+        tbody :hover td {
+            border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_ACCENT;
+        }
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */
@@ -136,25 +154,25 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	tbody th {
-		border-color : #fff;
-	}
-	td {
-		border-color : #fff #fff $COLOR_BdM_casual_fill;
-	}
-	thead th, thead td {
-		border-color : #fff;
-		color        : #fff;
-	}
+    tbody th {
+        border-color : #fff;
+    }
+    td {
+        border-color : #fff #fff $COLOR_BdM_casual_fill;
+    }
+    thead th, thead td {
+        border-color : #fff;
+        color        : #fff;
+    }
 
-	blockquote {
-		tr th, thead td {
-			border-color : #fff;
-			color        : #fff;
-		}
-		td {
-			border-color : #fff #fff $COLOR_BdM_casual_text;
-		}
-	}
+    blockquote {
+        tr th, thead td {
+            border-color : #fff;
+            color        : #fff;
+        }
+        td {
+            border-color : #fff #fff $COLOR_BdM_casual_text;
+        }
+    }
 }
 /* //_>bottom50 */

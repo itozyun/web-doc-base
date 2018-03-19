@@ -8,61 +8,61 @@
 $SEARCH_BTN_WIDTH : 3em;
 
 .Search {
-	position   : relative;
+    position   : relative;
     display    : block;
     height     : $BASE_LINE_HEIGHT_EM;
     margin     : 0;
     padding    : 0 $SEARCH_BTN_WIDTH 0 0.5em;
 }
-	.Search input {
-		padding     : 0;
-	    border      : 0;
-	    margin      : 0;
-		display     : block;
-		line-height : ( $BASE_LINE_HEIGHT - 0.05 );
-	}
+    .Search input {
+        padding     : 0;
+        border      : 0;
+        margin      : 0;
+        display     : block;
+        line-height : ( $BASE_LINE_HEIGHT - 0.05 );
+    }
 
-	.Search-txt {
-	    width       : 100%;
-		height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
-	}
-	.Search-txt:focus {
-		color : inherit;
-	}
-	.Search .btn {
-	    width       : $SEARCH_BTN_WIDTH;
-	    height      : $BASE_LINE_HEIGHT_EM;
-	    position    : absolute;
-	    top         : 0;
-	    right       : 0;
-		/* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
-		overflow        : hidden;
-		white-space     : nowrap;
-		text-overflow   : ellipsis;
-	}
+    .Search-txt {
+        width       : 100%;
+        height      : 1em * ( $BASE_LINE_HEIGHT - 0.05 ); /* 少し小さく */
+    }
+    .Search-txt:focus {
+        color : inherit;
+    }
+    .Search .btn {
+        width       : $SEARCH_BTN_WIDTH;
+        height      : $BASE_LINE_HEIGHT_EM;
+        position    : absolute;
+        top         : 0;
+        right       : 0;
+        /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
+        overflow        : hidden;
+        white-space     : nowrap;
+        text-overflow   : ellipsis;
+    }
 
 /* //_{+coloredHeader */
 .Search, .Search-txt {
-	color      : $COLOR_HdS_text;
-	background : $COLOR_HdS_casual_fill;
+    color      : $COLOR_HdS_text;
+    background : $COLOR_HdS_casual_fill;
 }
 .Search-txt {
-	@include placeholderColor( $COLOR_HdS_casual_text );
+    @include placeholderColor( $COLOR_HdS_casual_text );
 }
 /* //_}+coloredHeader */
 /* //_{^+coloredHeader */
 .Search, .Search-txt {
-	color      : $COLOR_BdS_text;
-	background : $COLOR_BdS_casual_fill;
+    color      : $COLOR_BdS_text;
+    background : $COLOR_BdS_casual_fill;
 }
 .Search-txt {
-	@include placeholderColor( $COLOR_BdS_casual_text );
+    @include placeholderColor( $COLOR_BdS_casual_text );
 }
 /* //_}^+coloredHeader */
 
 /* //_{@ie55,@ie6,@ie7 */
 .Search * {
-	zoom : 1;
+    zoom : 1;
 }
 /* //_}@ie55,@ie6,@ie7 */
 
@@ -71,15 +71,15 @@ $SEARCH_BTN_WIDTH : 3em;
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	/* //_{^+coloredHeader */
-	.Search, .Search-txt {
-		color      : $COLOR_WTC_text;
-		background : $COLOR_WTC_casual_fill;
-	}
-	.Search-txt {
-		@include placeholderColor( $COLOR_WTC_casual_text );
-	}
-	/* //_}^+coloredHeader */
+    /* //_{^+coloredHeader */
+    .Search, .Search-txt {
+        color      : $COLOR_WTC_text;
+        background : $COLOR_WTC_casual_fill;
+    }
+    .Search-txt {
+        @include placeholderColor( $COLOR_WTC_casual_text );
+    }
+    /* //_}^+coloredHeader */
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

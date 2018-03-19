@@ -10,154 +10,154 @@
  *          span, p
 --------------------------------------------------------------------------------------*/
 .RichLink {
-	@include stackableModule;
+    @include stackableModule;
 }
-	.RichLink-sep {
-		@include linkCommon;
-		/* //_{^@ie5win */
-		line-height : 1.4;
-		/* //_}^@ie5win */
-	}
-	/* //_{@ie5win */
-	.RichLink-sep * {
-		line-height : 1.4;
-	}
-	/* //_}@ie5win */
-		.RichLink-sep div {
-			border-width : 0 0 1px;
-			border-style : solid;
-		}
-		.RichLink .RichLink-1st {
-			border-width : 1px 0;
-		}
-			.RichLink a {
-				@include clearfix;
-				/* @include unbreak-inside; */
-			}
+    .RichLink-sep {
+        @include linkCommon;
+        /* //_{^@ie5win */
+        line-height : 1.4;
+        /* //_}^@ie5win */
+    }
+    /* //_{@ie5win */
+    .RichLink-sep * {
+        line-height : 1.4;
+    }
+    /* //_}@ie5win */
+        .RichLink-sep div {
+            border-width : 0 0 1px;
+            border-style : solid;
+        }
+        .RichLink .RichLink-1st {
+            border-width : 1px 0;
+        }
+            .RichLink a {
+                @include clearfix;
+                /* @include unbreak-inside; */
+            }
 
-				.RichLink img {
-					float      : left;
-				}
+                .RichLink img {
+                    float      : left;
+                }
 
-				.RichLink h3 {
-					font-size   : 1.1em;
-					padding     : 0;
-					margin      : 0 0 0.4em;
-				}
+                .RichLink h3 {
+                    font-size   : 1.1em;
+                    padding     : 0;
+                    margin      : 0 0 0.4em;
+                }
 
-				.RichLink span, .RichLink b {
-					display     : block;
-					font-size   : 0.875em;
-					font-weight : normal;
-				}
-				.RichLink p {
-					display     : block;
-					/* //_{#ie55-,@ie8,@ie9,@modern */
-					padding     : 0 0 1em;
-					/* //_}#ie55-,@ie8,@ie9,@modern */
-					/* //_{@ie6,@ie7 */
-					padding     : 0;
-					/* //_}@ie6,@ie7 */
-					margin      : 0;
-				}
+                .RichLink span, .RichLink b {
+                    display     : block;
+                    font-size   : 0.875em;
+                    font-weight : normal;
+                }
+                .RichLink p {
+                    display     : block;
+                    /* //_{#ie55-,@ie8,@ie9,@modern */
+                    padding     : 0 0 1em;
+                    /* //_}#ie55-,@ie8,@ie9,@modern */
+                    /* //_{@ie6,@ie7 */
+                    padding     : 0;
+                    /* //_}@ie6,@ie7 */
+                    margin      : 0;
+                }
 
-	.RichLink p {
-		color      : $COLOR_BdM_text;
-	}
-	.lS .RichLink p {
-		color      : $COLOR_BdS_text;
-	}
-	.fillbg .RichLink p {
-		color      : $COLOR_FtS_text;
-	}
-	.fillbg .lM .RichLink p {
-		color      : $COLOR_FtM_text;
-	}
+    .RichLink p {
+        color      : $COLOR_BdM_text;
+    }
+    .lS .RichLink p {
+        color      : $COLOR_BdS_text;
+    }
+    .fillbg .RichLink p {
+        color      : $COLOR_FtS_text;
+    }
+    .fillbg .lM .RichLink p {
+        color      : $COLOR_FtM_text;
+    }
 
-	.RichLink span {
-		color      : $COLOR_BdM_casual_text;
-	}
-	.lS .RichLink span {
-		color      : $COLOR_BdS_casual_text;
-	}
-	.fillbg .RichLink span {
-		color      : $COLOR_FtS_casual_text;
-	}
-	.fillbg .lM .RichLink span {
-		color      : $COLOR_FtM_casual_text;
-	}
+    .RichLink span {
+        color      : $COLOR_BdM_casual_text;
+    }
+    .lS .RichLink span {
+        color      : $COLOR_BdS_casual_text;
+    }
+    .fillbg .RichLink span {
+        color      : $COLOR_FtS_casual_text;
+    }
+    .fillbg .lM .RichLink span {
+        color      : $COLOR_FtM_casual_text;
+    }
 
 
 /*  layout Main
 --------------------------------------------------------------------------------------*/
-	.lM .RichLink a {
-		/* //_{#ie55-,@ie8,@ie9,@modern */
-		padding : 1em 0.5em 0;
-		/* //_}#ie55-,@ie8,@ie9,@modern */
-		/* //_{@ie6,@ie7 */
-		padding : 1em 0.5em;
-		/* //_}@ie6,@ie7 */
-	}
-		.lM .RichLink img {
-			/* width      : 4.5em;
-			height     : 4.5em; */
-			height     : auto;
-			margin     : 0 1.2em 1em 0;
-		}
-		.lM .RichLink h3 {
-			font-size : 1.5em;
-		}
-		.lM .RichLink span, .lM .RichLink b {
-		    padding   : 0 0 0.8em; /* 1em - .2em */
-		}
-	
+    .lM .RichLink a {
+        /* //_{#ie55-,@ie8,@ie9,@modern */
+        padding : 1em 0.5em 0;
+        /* //_}#ie55-,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7 */
+        padding : 1em 0.5em;
+        /* //_}@ie6,@ie7 */
+    }
+        .lM .RichLink img {
+            /* width      : 4.5em;
+            height     : 4.5em; */
+            height     : auto;
+            margin     : 0 1.2em 1em 0;
+        }
+        .lM .RichLink h3 {
+            font-size : 1.5em;
+        }
+        .lM .RichLink span, .lM .RichLink b {
+            padding   : 0 0 0.8em; /* 1em - .2em */
+        }
+    
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
-	.lS .RichLink a {
-		/* //_{#ie55-,@ie8,@ie9,@modern */
-		padding : 1em 0.5em 0;
-		/* //_}#ie55-,@ie8,@ie9,@modern */
-		/* //_{@ie6,@ie7 */
-		padding : 1em 0.5em;
-		/* //_}@ie6,@ie7 */
-	}
-		.lS .RichLink img {
-			float      : right;
-			/* width      : 3.2em; */
-			margin     : 0 0 1em 1em;
-		}
+    .lS .RichLink a {
+        /* //_{#ie55-,@ie8,@ie9,@modern */
+        padding : 1em 0.5em 0;
+        /* //_}#ie55-,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7 */
+        padding : 1em 0.5em;
+        /* //_}@ie6,@ie7 */
+    }
+        .lS .RichLink img {
+            float      : right;
+            /* width      : 3.2em; */
+            margin     : 0 0 1em 1em;
+        }
 
-		.lS .RichLink span, .lS .RichLink b {
-			/* //_{#ie55-,@ie8,@ie9,@modern */
-			padding : 0 0 0.914em; /* 0.8em/0.875; */
-			/* //_}#ie55-,@ie8,@ie9,@modern */
-			/* //_{@ie6,@ie7 */
-			padding : 0;
-			/* //_}@ie6,@ie7 */
-		}
+        .lS .RichLink span, .lS .RichLink b {
+            /* //_{#ie55-,@ie8,@ie9,@modern */
+            padding : 0 0 0.914em; /* 0.8em/0.875; */
+            /* //_}#ie55-,@ie8,@ie9,@modern */
+            /* //_{@ie6,@ie7 */
+            padding : 0;
+            /* //_}@ie6,@ie7 */
+        }
 
 /* //_{#can-mq */
 /*  Full HD
 --------------------------------------------------------------------------------------*/
 /* //_<bottom10 */
 @media only screen and (min-width: 96em) {
-	.lMf .RichLink-sep {
-		display      : table;
-		table-layout : fixed;
-		margin       : 1em 0;
-	}
-		.lMf .RichLink-sep div {
-			display        : table-cell;
-			vertical-align : top;
-			border-width   : 0;
-			width          : 33.3%;
-		}
-		.lM .RichLink a {
-			padding : 1em;
-		}
-			.lM .RichLink span {
-				font-size : 1em 1em 0;
-			}
+    .lMf .RichLink-sep {
+        display      : table;
+        table-layout : fixed;
+        margin       : 1em 0;
+    }
+        .lMf .RichLink-sep div {
+            display        : table-cell;
+            vertical-align : top;
+            border-width   : 0;
+            width          : 33.3%;
+        }
+        .lM .RichLink a {
+            padding : 1em;
+        }
+            .lM .RichLink span {
+                font-size : 1em 1em 0;
+            }
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -167,19 +167,19 @@
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
 .lS .RichLink a {
-	padding : 0.7em 0.5em 0;
+    padding : 0.7em 0.5em 0;
 }
-	.lS .RichLink span, .lS .RichLink b {
-		padding : 0 0 0.57em; /* 0.5em / 0.875; */
-	}
-	.lS .RichLink img {
-		width        : 2.6em;
-		float        : left;
-		margin       : 0 0.5em 0.7em 0;
-	}
-	.RichLink b {
-		font-size   : 1em;
-	}
+    .lS .RichLink span, .lS .RichLink b {
+        padding : 0 0 0.57em; /* 0.5em / 0.875; */
+    }
+    .lS .RichLink img {
+        width        : 2.6em;
+        float        : left;
+        margin       : 0 0.5em 0.7em 0;
+    }
+    .RichLink b {
+        font-size   : 1em;
+    }
 }
 /* //_>bottom20 */
 
@@ -190,13 +190,13 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.lM .RichLink a {
-		padding-left  : 1%;
-		padding-right : 1%;
-	}
-	.lS .RichLink span {
-		font-size : 1em;
-	}
+    .lM .RichLink a {
+        padding-left  : 1%;
+        padding-right : 1%;
+    }
+    .lS .RichLink span {
+        font-size : 1em;
+    }
 }
 /* //_>bottom30 */
 
@@ -204,10 +204,10 @@
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 319px) {
-	.lM .RichLink img {
-		float  : none;
-		margin : 0 auto 1em;
-	}
+    .lM .RichLink img {
+        float  : none;
+        margin : 0 auto 1em;
+    }
 }
 /* //_>bottom35 */
 
@@ -215,18 +215,18 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.RichLink-sep { @include linkCommon_watch; }
+    .RichLink-sep { @include linkCommon_watch; }
 
-		.lM .RichLink a {
-			padding-left  : 0;
-			padding-right : 0;
-		}
-		.RichLink p {
-			color      : $COLOR_WTC_text;
-		}
-		.RichLink span {
-			color      : $COLOR_WTC_casual_text;
-		}
+        .lM .RichLink a {
+            padding-left  : 0;
+            padding-right : 0;
+        }
+        .RichLink p {
+            color      : $COLOR_WTC_text;
+        }
+        .RichLink span {
+            color      : $COLOR_WTC_casual_text;
+        }
 }
 /* //_>bottom40 */
 

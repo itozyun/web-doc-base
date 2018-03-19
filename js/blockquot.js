@@ -18,17 +18,17 @@ var tempOnload = window.onload,
     init = onload =
 function( e ){
     var w3cDOM     = !!document.getElementsByTagName,
-		root       = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
-		elmTargets = w3cDOM ? root.getElementsByTagName( 'blockquote' ) : root.all.tags( 'blockquote' ),
+        root       = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
+        elmTargets = w3cDOM ? root.getElementsByTagName( 'blockquote' ) : root.all.tags( 'blockquote' ),
         elm, i = -1, title, cite;
 
-	if( tempOnload ) tempOnload( e );
-	tempOnload = null;
-	
-	if( onload === init ){
-		onload = new Function();
-		onload = init = null;
-	};
+    if( tempOnload ) tempOnload( e );
+    tempOnload = null;
+    
+    if( onload === init ){
+        onload = new Function();
+        onload = init = null;
+    };
 
     for( ; elm = elmTargets[ ++i ]; ){
         title = elm.getAttribute( 'title' );
@@ -65,32 +65,32 @@ function( e ){
 
     function createUrl( cite ){
         if( cite.indexOf( 'urn:isbn:' ) === 0 ){
-			cite = cite.substr( 9 ).toUpperCase().split('-').join('');
-			// ISBN-13
-			if( cite.length === 13 ){
-				cite = toISBN10( cite );
-			};
-			// ISBN-10
-			if( cite.length === 10 ){
-				return 'http://www.amazon.co.jp/exec/obidos/ASIN/' + cite;// + '/itozyun-22/ref=nosim/';
-			};	
-		};
-		return cite;
+            cite = cite.substr( 9 ).toUpperCase().split('-').join('');
+            // ISBN-13
+            if( cite.length === 13 ){
+                cite = toISBN10( cite );
+            };
+            // ISBN-10
+            if( cite.length === 10 ){
+                return 'http://www.amazon.co.jp/exec/obidos/ASIN/' + cite;// + '/itozyun-22/ref=nosim/';
+            };    
+        };
+        return cite;
     };
 
-	function toISBN10( isbn13 ){
-		var isbn10 = isbn13.toString().slice(3,-1);
-		var digit = 0;
-		for(var i = 0; i < 9; i++){
-			digit += Number(isbn10.charAt(i)) * (10 - i);
-		}
-		digit = (11 - (digit % 11)) %11;
-		digit = digit === 10 ? 'X' : digit.toString();
-		return isbn10 + digit;
-	};
+    function toISBN10( isbn13 ){
+        var isbn10 = isbn13.toString().slice(3,-1);
+        var digit = 0;
+        for(var i = 0; i < 9; i++){
+            digit += Number(isbn10.charAt(i)) * (10 - i);
+        }
+        digit = (11 - (digit % 11)) %11;
+        digit = digit === 10 ? 'X' : digit.toString();
+        return isbn10 + digit;
+    };
 
     function isExternalUrl( url ){
-		return url.indexOf( 'http' ) === 0;
+        return url.indexOf( 'http' ) === 0;
     };
 };
 })(window, document, 'jM');

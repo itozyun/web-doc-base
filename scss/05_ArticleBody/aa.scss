@@ -2,10 +2,10 @@
 
 /* //_{+aa */
 .aa {
-	speak       : none;
-	padding     : 2em 1em;
-	font-size   : 0.75em;
-	line-height : 1;
+    speak       : none;
+    padding     : 2em 1em;
+    font-size   : 0.75em;
+    line-height : 1;
 }
 
 /* //_{#can-mq */
@@ -14,9 +14,9 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.aa {
-		background : $COLOR_WTC_casual_fill;
-	}
+    .aa {
+        background : $COLOR_WTC_casual_fill;
+    }
 }
 /* //_>bottom40 */
 
@@ -26,11 +26,11 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.aa {
-		background : none;
-	    border     : 1px solid $COLOR_PRT_casual_fill;
-		color      : $COLOR_PRT_text;
-	}
+    .aa {
+        background : none;
+        border     : 1px solid $COLOR_PRT_casual_fill;
+        color      : $COLOR_PRT_text;
+    }
 }
 /* //_>bottom50 */
 /* //_}+aa */

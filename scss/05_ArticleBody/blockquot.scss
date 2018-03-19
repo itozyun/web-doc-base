@@ -3,59 +3,59 @@
 --------------------------------------------------------------------------------------*/
 blockquote {
     padding    : $CONTENT_MARGIN_LR $CONTENT_MARGIN_LR/2;
-	background : $COLOR_BdM_casual_fill;
+    background : $COLOR_BdM_casual_fill;
 }
 
-	/* //_{+from-h2-at-post */
-		blockquote h4, blockquote h6 {
-			border-color : $COLOR_BdM_flip_fill;
-		}
-	/* //_}+from-h2-at-post */
+    /* //_{+from-h2-at-post */
+        blockquote h4, blockquote h6 {
+            border-color : $COLOR_BdM_flip_fill;
+        }
+    /* //_}+from-h2-at-post */
 
-	/* //_{^+from-h2-at-post */
-		blockquote h3, blockquote h5 {
-			border-color : $COLOR_BdM_flip_fill;
-		}
-	/* //_}^+from-h2-at-post */
+    /* //_{^+from-h2-at-post */
+        blockquote h3, blockquote h5 {
+            border-color : $COLOR_BdM_flip_fill;
+        }
+    /* //_}^+from-h2-at-post */
 
 
-	blockquote {
-		p, pre, dl, ul, ol, blockquote, .box, .hscroll {
-			margin-left  : $CONTENT_MARGIN_LR/2;
-			margin-right : $CONTENT_MARGIN_LR/2;
-		}
-	}
+    blockquote {
+        p, pre, dl, ul, ol, blockquote, .box, .hscroll {
+            margin-left  : $CONTENT_MARGIN_LR/2;
+            margin-right : $CONTENT_MARGIN_LR/2;
+        }
+    }
 
-	/* //_{#can-content */
-	blockquote:before {
-		content     : attr(title);
-		display     : block;
-	}
-	blockquote:after {
-		content     : attr(cite);
-	}
-	/* //_}#can-content */
+    /* //_{#can-content */
+    blockquote:before {
+        content     : attr(title);
+        display     : block;
+    }
+    blockquote:after {
+        content     : attr(cite);
+    }
+    /* //_}#can-content */
 
-	/* //_{#can-content */
-	blockquote:before,
-	/* //_}#can-content */
-	.js-bqLink {
-		font-size   : 0.875em;
-		line-height : 1.2;
-		color       : $COLOR_BdM_link;
-	}
-	/* //_{#can-content */
-	blockquote:after,
-	/* //_}#can-content */
-	.js-bqCite {
-		display     : block;
-		font-size   : 0.875em;
-		line-height : 1.2;
-		text-align  : right;
-		word-break  : break-all; /*  iOS4用効果あり */
-		/* word-wrap   : break-all; 効果なし */
-		color       : $COLOR_BdM_casual_text;
-	}
+    /* //_{#can-content */
+    blockquote:before,
+    /* //_}#can-content */
+    .js-bqLink {
+        font-size   : 0.875em;
+        line-height : 1.2;
+        color       : $COLOR_BdM_link;
+    }
+    /* //_{#can-content */
+    blockquote:after,
+    /* //_}#can-content */
+    .js-bqCite {
+        display     : block;
+        font-size   : 0.875em;
+        line-height : 1.2;
+        text-align  : right;
+        word-break  : break-all; /*  iOS4用効果あり */
+        /* word-wrap   : break-all; 効果なし */
+        color       : $COLOR_BdM_casual_text;
+    }
 
 
 /* //_{#can-mq */
@@ -63,14 +63,14 @@ blockquote {
 /*  Full HD
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
-	/* blockquote {
-    	padding : $CONTENT_MARGIN_LR_WSXGA $CONTENT_MARGIN_LR_WSXGA/2;
+    /* blockquote {
+        padding : $CONTENT_MARGIN_LR_WSXGA $CONTENT_MARGIN_LR_WSXGA/2;
 
-		p, pre, dl, ul, ol, blockquote, .box, .hscroll {
-			margin-left  : $CONTENT_MARGIN_LR_WSXGA/2;
-			margin-right : $CONTENT_MARGIN_LR_WSXGA/2;
-		}
-	} */
+        p, pre, dl, ul, ol, blockquote, .box, .hscroll {
+            margin-left  : $CONTENT_MARGIN_LR_WSXGA/2;
+            margin-right : $CONTENT_MARGIN_LR_WSXGA/2;
+        }
+    } */
 }
 /* //_>bottom10 */
 
@@ -78,26 +78,26 @@ blockquote {
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	blockquote {
-		background : $COLOR_WTC_casual_fill;
-		color      : $COLOR_WTC_text;
-	}
-	/* //_{+from-h2-at-post */
-		blockquote h6 {
-			border-color : $COLOR_WTC_flip_fill;
-		}
-	/* //_}+from-h2-at-post */
+    blockquote {
+        background : $COLOR_WTC_casual_fill;
+        color      : $COLOR_WTC_text;
+    }
+    /* //_{+from-h2-at-post */
+        blockquote h6 {
+            border-color : $COLOR_WTC_flip_fill;
+        }
+    /* //_}+from-h2-at-post */
 
-	/* //_{^+from-h2-at-post */
-		blockquote h5 {
-			border-color : $COLOR_WTC_flip_fill;
-		}
-	/* //_}^+from-h2-at-post */
+    /* //_{^+from-h2-at-post */
+        blockquote h5 {
+            border-color : $COLOR_WTC_flip_fill;
+        }
+    /* //_}^+from-h2-at-post */
 
-		blockquote:before,
-		.js-bqLink {
-			color : $COLOR_WTC_link;
-		}
+        blockquote:before,
+        .js-bqLink {
+            color : $COLOR_WTC_link;
+        }
 }
 /* //_>bottom40 */
 
@@ -107,15 +107,15 @@ blockquote {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	blockquote {
-		background : none;
-	    border     : 1px solid $COLOR_PRT_casual_fill;
-	}
-	/* //_{#can-content */
-	.js-bqLink a:after {
-		display    : none;
-	}
-	/* //_}#can-content */
+    blockquote {
+        background : none;
+        border     : 1px solid $COLOR_PRT_casual_fill;
+    }
+    /* //_{#can-content */
+    .js-bqLink a:after {
+        display    : none;
+    }
+    /* //_}#can-content */
 }
 /* //_>bottom50 */
 

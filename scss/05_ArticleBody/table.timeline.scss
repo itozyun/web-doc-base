@@ -123,7 +123,7 @@
         padding-bottom : .5em;
     }
 
-	blockquote {
+    blockquote {
         .tl thead th, .tl thead td,
         .tl td,
         .tl tfoot th, .tl tfoot td {
@@ -137,7 +137,7 @@
             border-color : $COLOR_BdM_casual_fill;
         }
         /* //_}#can-content */
-	}
+    }
 
 /* //_{#can-mq */
 /* //_<bottom40 */
@@ -156,7 +156,7 @@
         border-color : $COLOR_WTC_casual_fill;
     }
 
-	blockquote {
+    blockquote {
         .tl thead th, .tl thead td,
         .tl td, .tl tbody td:before,
         .tl tfoot th, .tl tfoot td {
@@ -165,7 +165,7 @@
         .tl tbody td:after {
             border-color : $COLOR_WTC_casual_fill;
         }
-	}
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

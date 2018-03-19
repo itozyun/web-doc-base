@@ -1,53 +1,53 @@
 /*  links
 --------------------------------------------------------------------------------------*/
 .links {
-	@include pre-wrap;
+    @include pre-wrap;
 
-	margin : 1em 4%;
+    margin : 1em 4%;
 }
 
-	.links a {
-		padding-left : 1em;
-		line-height  : 1.2;
+    .links a {
+        padding-left : 1em;
+        line-height  : 1.2;
 
-		/* //_{@modern,@ie9,@ie8 */
-		display      : inline-block;
-		/* //_}@modern,@ie9,@ie8 */
-		
-		/* //_{#can-content */
-		position     : relative;
-		/* //_}#can-content */
+        /* //_{@modern,@ie9,@ie8 */
+        display      : inline-block;
+        /* //_}@modern,@ie9,@ie8 */
+        
+        /* //_{#can-content */
+        position     : relative;
+        /* //_}#can-content */
 
-		/* //_{@ie7,@ie6,@ie55 */
-			display : block;
-			zoom    : 1;
-		/* //_}@ie7,@ie6,@ie55 */
+        /* //_{@ie7,@ie6,@ie55 */
+            display : block;
+            zoom    : 1;
+        /* //_}@ie7,@ie6,@ie55 */
 
-		/* //_{@ie5win */
-			display : block;
-			height  : 1em;
-		/* //_}@ie5win */
-	}
-	
-	/* //_{#can-content */
-	.links a[href]:before {
-		content         : ">";
-		speak           : none;
-    	position        : relative;
-    	left            : -0.5em;
-    	width           : 1em;
-    	height          : 1.4em; /* for iOS8 */
-    	line-height     : 1.4; /* for iOS8 */
-    	text-align      : center;
-    	font-weight     : bold;
-	}
-	.links a[href^="/"]:not([href^="//"]):before {
-		content     : "+";
-	}
-	.links a[href*="web.archive."]:before {
-		content     : "*";
-	}
-	/* //_}#can-content */
+        /* //_{@ie5win */
+            display : block;
+            height  : 1em;
+        /* //_}@ie5win */
+    }
+    
+    /* //_{#can-content */
+    .links a[href]:before {
+        content         : ">";
+        speak           : none;
+        position        : relative;
+        left            : -0.5em;
+        width           : 1em;
+        height          : 1.4em; /* for iOS8 */
+        line-height     : 1.4; /* for iOS8 */
+        text-align      : center;
+        font-weight     : bold;
+    }
+    .links a[href^="/"]:not([href^="//"]):before {
+        content     : "+";
+    }
+    .links a[href*="web.archive."]:before {
+        content     : "*";
+    }
+    /* //_}#can-content */
 
 
 /* //_{#can-mq */
@@ -56,11 +56,11 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.links {
-		margin-left  : 2%;
-		margin-right : 1%;
-		line-height  : 3;
-	}
+    .links {
+        margin-left  : 2%;
+        margin-right : 1%;
+        line-height  : 3;
+    }
 }
 /* //_>bottom30 */
 
@@ -68,10 +68,10 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.links {
-		margin-left  : 1%;
-		margin-right : 0;
-	}
+    .links {
+        margin-left  : 1%;
+        margin-right : 0;
+    }
 }
 /* //_>bottom40 */
 

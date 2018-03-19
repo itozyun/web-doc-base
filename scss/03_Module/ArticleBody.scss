@@ -13,17 +13,17 @@
 /*  Full HD
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 96em) {
-	.ABody {
-		-webkit-column-count : 2;
-		-webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
-		   -moz-column-count : 2;
-		   -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
-		        column-count : 2;
-		        column-gap   : $WSXGA_COLUMN_GAP_EM;
-	}
-	.ABody .aBodyRoot > *:first-child {
-		margin-top : 0;
-	}
+    .ABody {
+        -webkit-column-count : 2;
+        -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
+           -moz-column-count : 2;
+           -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
+                column-count : 2;
+                column-gap   : $WSXGA_COLUMN_GAP_EM;
+    }
+    .ABody .aBodyRoot > *:first-child {
+        margin-top : 0;
+    }
 }
 /* //_>bottom10 */
 /* //_}#can-mq */
@@ -32,8 +32,8 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.ABody {
-		margin : 0;
-	}
+    .ABody {
+        margin : 0;
+    }
 }
 /* //_>bottom50 */

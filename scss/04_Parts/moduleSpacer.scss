@@ -6,7 +6,7 @@
     margin : 1em 1em 0;
 
 /* //_{#ie7-win */
-	word-break : break-all;
+    word-break : break-all;
 /* //_}#ie7-win */
 }
 
@@ -23,9 +23,9 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.mspacer {
-		margin : 1em 0.5em 0;
-	}
+    .mspacer {
+        margin : 1em 0.5em 0;
+    }
 }
 /* //_>bottom30 */
 /* //_<bottom40 */
@@ -33,8 +33,8 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
     .mspacer, #lF .mspacer {
-		margin : 0.6em 0 0;
-	}
+        margin : 0.6em 0 0;
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

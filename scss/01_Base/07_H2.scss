@@ -2,53 +2,53 @@
 /*  下線付き h2
 --------------------------------------------------------------------------------------*/
 h2 {
-	/* //_{#can-content */
-	position     : relative;
-	/* //_}#can-content */
+    /* //_{#can-content */
+    position     : relative;
+    /* //_}#can-content */
 
-	margin       : 0;
-	border-width : 0 0 1px;
-	border-style : solid;
+    margin       : 0;
+    border-width : 0 0 1px;
+    border-style : solid;
 
-	padding      : 1.5em 0.45em 0.5em;
-	font-size    : 1.1em;
+    padding      : 1.5em 0.45em 0.5em;
+    font-size    : 1.1em;
 }
 
 /* //_{#can-content */
 h2:after {
-	content     : ".";
-	speak       : none;
-	display     : block;
-	height      : 1px;
-	font-size   : 0.1em;
-	line-height : 0;
-	position    : absolute;
-	overflow    : hidden;
-	bottom      : -1px;
-	width       : 70em;
-	max-width   : 33%;
+    content     : ".";
+    speak       : none;
+    display     : block;
+    height      : 1px;
+    font-size   : 0.1em;
+    line-height : 0;
+    position    : absolute;
+    overflow    : hidden;
+    bottom      : -1px;
+    width       : 70em;
+    max-width   : 33%;
 
-	background : $COLOR_BdM_accent;
-	color      : $COLOR_BdM_accent;
+    background : $COLOR_BdM_accent;
+    color      : $COLOR_BdM_accent;
 }
 
 .lS h2:after {
-	@if $COLOR_BdM_accent != $COLOR_BdS_accent {
-		background : $COLOR_BdS_accent;
-		color      : $COLOR_BdS_accent;
-	}
+    @if $COLOR_BdM_accent != $COLOR_BdS_accent {
+        background : $COLOR_BdS_accent;
+        color      : $COLOR_BdS_accent;
+    }
 }
 .fillbg h2:after {
-	@if $COLOR_BdM_accent != $COLOR_FtS_accent {
-		background : $COLOR_FtS_accent;
-		color      : $COLOR_FtS_accent;
-	}
+    @if $COLOR_BdM_accent != $COLOR_FtS_accent {
+        background : $COLOR_FtS_accent;
+        color      : $COLOR_FtS_accent;
+    }
 }
 .fillbg .lM h2:after {
-	@if $COLOR_FtM_accent != $COLOR_FtS_accent {
-		background : $COLOR_FtM_accent;
-		color      : $COLOR_FtM_accent;
-	}
+    @if $COLOR_FtM_accent != $COLOR_FtS_accent {
+        background : $COLOR_FtM_accent;
+        color      : $COLOR_FtM_accent;
+    }
 }
 
 /* //_}#can-content */
@@ -61,8 +61,8 @@ h2:after {
 
 /* //_{#can-content */
 .wn:after {
-	background : $COLOR_WARN !important;
-	color      : $COLOR_WARN !important;
+    background : $COLOR_WARN !important;
+    color      : $COLOR_WARN !important;
 }
 /* //_}#can-content */
 
@@ -70,7 +70,7 @@ h2:after {
 --------------------------------------------------------------------------------------*/
 /* //_{#can-content */
 .lM h2:after {
-	left  : 0;
+    left  : 0;
 }
 /* //_}#can-content */
 
@@ -82,9 +82,9 @@ h2:after {
 
 /* //_{#can-content */
 .lS h2:after {
-	right     : 0;
+    right     : 0;
 /* //_{@ie8 */
-	font-size : 1px;
+    font-size : 1px;
 /* //_}@ie8 */
 }
 /* //_}#can-content */
@@ -93,15 +93,15 @@ h2:after {
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
-	.lS h2 {
-		text-align   : left;
-	}
-	/* //_{#can-content */
-	.lS h2:after {
-		left  : 0;
-		right : auto;
-	}
-	/* //_}#can-content */
+    .lS h2 {
+        text-align   : left;
+    }
+    /* //_{#can-content */
+    .lS h2:after {
+        left  : 0;
+        right : auto;
+    }
+    /* //_}#can-content */
 }
 /* //_>bottom20 */
 
@@ -112,15 +112,15 @@ h2:after {
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
-	.lM2 h2,
-	.lS2 h2 {
-		text-align : right;
-	}
-	.lM2 h2:after,
-	.lS2 h2:after {
-		left  : auto;
-		right : 0;
-	}
+    .lM2 h2,
+    .lS2 h2 {
+        text-align : right;
+    }
+    .lM2 h2:after,
+    .lS2 h2:after {
+        left  : auto;
+        right : 0;
+    }
 }
 /* //_>bottom25 */
 
@@ -128,15 +128,15 @@ h2:after {
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.lM h2, .lS h2 {
-		text-align    : center;
-	}
-	
-	.lM h2:after, .lS h2:after {
-		width : 33%;
-		left  : 33%;
-		right : auto;
-	}
+    .lM h2, .lS h2 {
+        text-align    : center;
+    }
+    
+    .lM h2:after, .lS h2:after {
+        width : 33%;
+        left  : 33%;
+        right : auto;
+    }
 }
 /* //_>bottom30 */
 
@@ -144,19 +144,19 @@ h2:after {
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.lM h2, .lS h2 {
-		padding-left  : 0;
-		padding-right : 0;
-	}
+    .lM h2, .lS h2 {
+        padding-left  : 0;
+        padding-right : 0;
+    }
 
-	/* //_{#can-content */
-	h2:after {
-		@if $COLOR_BdM_accent != $COLOR_WTC_accent {
-			background : $COLOR_WTC_accent;
-			color      : $COLOR_WTC_accent;
-		}
-	}
-	/* //_}#can-content */
+    /* //_{#can-content */
+    h2:after {
+        @if $COLOR_BdM_accent != $COLOR_WTC_accent {
+            background : $COLOR_WTC_accent;
+            color      : $COLOR_WTC_accent;
+        }
+    }
+    /* //_}#can-content */
 }
 /* //_>bottom40 */
 
@@ -167,9 +167,9 @@ h2:after {
 --------------------------------------------------------------------------------------*/
 @media print {
 /* //_{#can-content */
-	h2:after {
-		display : none;
-	}
+    h2:after {
+        display : none;
+    }
 /* //_}#can-content */
 }
 /* //_>bottom50 */

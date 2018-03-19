@@ -29,9 +29,9 @@
 input {
     font-size : 1em;
     /* //_{@modern */
-    -webkit-border-radius : 0;		    
-       -moz-border-radius : 0;			    
-        -ms-border-radius : 0;			    
+    -webkit-border-radius : 0;            
+       -moz-border-radius : 0;                
+        -ms-border-radius : 0;                
             border-radius : 0;
     -webkit-appearance    : none;
     /* //_}@modern */
@@ -67,12 +67,12 @@ form :invalid {
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	form * {
-		color  : $COLOR_WTC_text;
-	}
-	form :focus {
-	    color : $COLOR_ACCENT;
-	}
+    form * {
+        color  : $COLOR_WTC_text;
+    }
+    form :focus {
+        color : $COLOR_ACCENT;
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

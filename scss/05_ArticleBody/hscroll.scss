@@ -17,9 +17,9 @@
 }
 
 li .hscroll, dd .hscroll, tr .hscroll, .note .hscroll {
-	margin-top      : 0;
-	margin-left     : 0;
-	margin-right    : 0;
+    margin-top      : 0;
+    margin-left     : 0;
+    margin-right    : 0;
 }
 
     .hscroll table {
@@ -31,9 +31,9 @@ li .hscroll, dd .hscroll, tr .hscroll, .note .hscroll {
         width        : 99%;
         margin       : 0 0 0.5em;
         /* //_}#ie8-win,@ie9 */
-	/* //_{@ie5win,@ie55 */
-		table-layout : auto;
-	/* //_}@ie5win,@ie55 */
+    /* //_{@ie5win,@ie55 */
+        table-layout : auto;
+    /* //_}@ie5win,@ie55 */
     }
     .hscroll pre {
         margin      : 0 0 0.5em;

@@ -1,50 +1,50 @@
 /*  font-family
---------------------------------------------------------------------------------------*/	
+--------------------------------------------------------------------------------------*/    
 
 /* //_{@modern,@ie9,@ie8
  * http://loconet.web2.jp/blog/archives/2007/02/cssfontfamily.html
  */
-		body, textarea, input {
-			font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
-				"ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-		}
+        body, textarea, input {
+            font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
+                "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+        }
 /* //_}@modern,@ie9,@ie8 */
 
 /* //_{@modern
  * Firefox OS2.2(シミュレータ) で Roboto がいると日本語を正しく表示できない... 2.1-は問題無し
  * http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
  */
-	@-moz-document url-prefix() {
-		body, textarea, input {
-			font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana, "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
-			"ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-		}
-	}
+    @-moz-document url-prefix() {
+        body, textarea, input {
+            font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana, "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
+            "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+        }
+    }
 /* //_}@modern */
-	
+    
 /* //_{@ie7 */
-		body, textarea, input {
-			font-family : "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-		}
+        body, textarea, input {
+            font-family : "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+        }
 /* //_}@ie7 */
 
 /* //_{#ie6-win */
-		body, textarea, input {
-			font-family : "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; /* ie6-, MacIE5- */
-		}
+        body, textarea, input {
+            font-family : "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; /* ie6-, MacIE5- */
+        }
 /* //_}#ie6-win */
 
-		/**
-		 * Bump up IE to get to 13px equivalent for these fixed-width elements
-		 */
+        /**
+         * Bump up IE to get to 13px equivalent for these fixed-width elements
+         */
 /* //_{@modern,@ie9,@ie8,@ie7 */
-		pre, code, kbd, samp, tt {
-			font-family : monospace, serif;
-		}
+        pre, code, kbd, samp, tt {
+            font-family : monospace, serif;
+        }
 /* //_}@modern,@ie9,@ie8,@ie7 */
 
 /* //_{#ie6-win */
-		/* pre, */ code, kbd, samp, tt {
-			font-family : 'courier new', monospace;
-		}
+        /* pre, */ code, kbd, samp, tt {
+            font-family : 'courier new', monospace;
+        }
 /* //_}#ie6-win */

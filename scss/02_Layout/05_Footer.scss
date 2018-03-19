@@ -5,9 +5,9 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media print, handheld, only screen and (max-width: 950px) {
-	#lF .lX {
-		border-top : 1px solid $COLOR_FtS_casual_fill;
-	}
+    #lF .lX {
+        border-top : 1px solid $COLOR_FtS_casual_fill;
+    }
 }
 /* //_>bottom20 */
 
@@ -15,8 +15,8 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	#lF .lX {
-		border-top : 0.15em solid $COLOR_PRT_text;
-	}
+    #lF .lX {
+        border-top : 0.15em solid $COLOR_PRT_text;
+    }
 }
 /* //_>bottom50 */

@@ -6,13 +6,13 @@
  *     a
 --------------------------------------------------------------------------------------*/
 .Subscribe {
-	@include stackableModule;
+    @include stackableModule;
 }
 
-	.Subscribe div {
-		margin : 1em 1em 0;
-		color  : $COLOR_FtS_fill; /* , を消す */
-	}
+    .Subscribe div {
+        margin : 1em 1em 0;
+        color  : $COLOR_FtS_fill; /* , を消す */
+    }
         .Subscribe div {
             text-align : right;
             margin     : 0.6em 0.5em 0;
@@ -21,7 +21,7 @@
         .Subscribe a {
             @include noUnderLineAlways;
 
-			/* //_{^#ie7-win */
+            /* //_{^#ie7-win */
             display     : inline-block;
             /* //_}^#ie7-win */
             height       : 2em;
@@ -108,25 +108,25 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.Subscribe {
+    .Subscribe {
         line-height : 0;
     }
     .Subscribe div {
         text-align : center;
     }
-	.Subscribe a {
-		margin : 0.5em 0;
-	}
+    .Subscribe a {
+        margin : 0.5em 0;
+    }
 }
 /* //_>bottom30 */
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.Subscribe div {
+    .Subscribe div {
         margin : 0.6em 0 0;
-		color  : $COLOR_WTC_fill; /* , を消す */
-	}
+        color  : $COLOR_WTC_fill; /* , を消す */
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

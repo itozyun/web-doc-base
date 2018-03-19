@@ -1,6 +1,6 @@
 /* //_{#can-mq */
 [data-lsc] {
-	@include clearfix;
+    @include clearfix;
 }
 
 /* //_<bottom15 */
@@ -8,17 +8,17 @@
 --------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 126em) {
 /* 2column */
-	[data-lsc] {
-		padding-bottom : 2em;
-	}
-		.lS1 {
-			float : left;
-			width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
-		}
-		.lS2 {
-			float : right;
-			width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
-		}
+    [data-lsc] {
+        padding-bottom : 2em;
+    }
+        .lS1 {
+            float : left;
+            width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
+        .lS2 {
+            float : right;
+            width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
 }
 /* //_>bottom15 */
 
@@ -27,24 +27,24 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 950px) {
 /* 2column */
-	[data-lmc],
-	[data-lsc] {
-		padding-bottom : 2em;
-	}
-	[data-lsc] {
-		border-width : 1px 0 0;
-		border-style : solid;
-	}
-		.lM1,
-		.lS1 {
-			float : left;
-			width : 50% - $TABLET_H_SPACE * 0.5;
-		}
-		.lM2,
-		.lS2 {
-			float : right;
-			width : 50% - $TABLET_H_SPACE * 0.5;
-		}
+    [data-lmc],
+    [data-lsc] {
+        padding-bottom : 2em;
+    }
+    [data-lsc] {
+        border-width : 1px 0 0;
+        border-style : solid;
+    }
+        .lM1,
+        .lS1 {
+            float : left;
+            width : 50% - $TABLET_H_SPACE * 0.5;
+        }
+        .lM2,
+        .lS2 {
+            float : right;
+            width : 50% - $TABLET_H_SPACE * 0.5;
+        }
 }
 /* //_>bottom21 */
 
@@ -52,18 +52,18 @@
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 740px) {
-	[data-lmc],
-	[data-lsc] {
-		padding-bottom : 2em;
-	}
-		.lM1,
-		.lS1 {
-			width : 50% - $PHABLET_H_SPACE * 0.5;
-		}
-		.lM2,
-		.lS2 {
-			width : 50% - $PHABLET_H_SPACE * 0.5;
-		}
+    [data-lmc],
+    [data-lsc] {
+        padding-bottom : 2em;
+    }
+        .lM1,
+        .lS1 {
+            width : 50% - $PHABLET_H_SPACE * 0.5;
+        }
+        .lM2,
+        .lS2 {
+            width : 50% - $PHABLET_H_SPACE * 0.5;
+        }
 }
 /* //_>bottom25 */
 
@@ -72,13 +72,13 @@
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
 /* clear 2column */
-	.lM1, .lM2,
-	.lS1, .lS2 {
-		float        : none;
-		width        : auto;
-		margin-left  : 0;
-		margin-right : 0;
-	}
+    .lM1, .lM2,
+    .lS1, .lS2 {
+        float        : none;
+        width        : auto;
+        margin-left  : 0;
+        margin-right : 0;
+    }
 }
 /* //_>bottom30 */
 

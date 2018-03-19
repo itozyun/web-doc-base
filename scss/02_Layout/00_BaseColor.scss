@@ -6,8 +6,8 @@
 }
 
 body, .fillbg .lS, .fillbg .lO {
-	background  : $COLOR_FtS_fill;
-	color       : $COLOR_FtS_text;
+    background  : $COLOR_FtS_fill;
+    color       : $COLOR_FtS_text;
 }
 
 
@@ -15,70 +15,70 @@ body, .fillbg .lS, .fillbg .lO {
 #lH,
 /* //_}^+coloredHeader */
 #lB {
-	background : $COLOR_BdM_fill;
-	color      : $COLOR_BdM_text;
+    background : $COLOR_BdM_fill;
+    color      : $COLOR_BdM_text;
 }
 
-	#lB .lS {
-		background : $COLOR_BdS_fill;
-		color      : $COLOR_BdS_text;
-	}
+    #lB .lS {
+        background : $COLOR_BdS_fill;
+        color      : $COLOR_BdS_text;
+    }
 
-	#lE .lS {
-		background : none;
-	}
+    #lE .lS {
+        background : none;
+    }
 
 /* //_{+coloredHeader */
-	#lH .lO {
-		background : $COLOR_HdX_fill;
-		color      : $COLOR_HdX_text;
-	}
-	#lH {
-		background : $COLOR_HdM_fill;
-		color      : $COLOR_HdM_text;
-	}
-	#lH .lS {
-		background : $COLOR_HdS_fill;
-		color      : $COLOR_HdS_text;
-	}
+    #lH .lO {
+        background : $COLOR_HdX_fill;
+        color      : $COLOR_HdX_text;
+    }
+    #lH {
+        background : $COLOR_HdM_fill;
+        color      : $COLOR_HdM_text;
+    }
+    #lH .lS {
+        background : $COLOR_HdS_fill;
+        color      : $COLOR_HdS_text;
+    }
 /* //_}+coloredHeader */
 
-	* {
-		border-color : $COLOR_BdM_casual_fill;
-	}
+    * {
+        border-color : $COLOR_BdM_casual_fill;
+    }
 
-	.lS * {
-		border-color : $COLOR_BdS_casual_fill;
-	}
-	.fillbg * {
-		border-color : $COLOR_FtS_casual_fill;
-	}
-	.fillbg .lM * {
-		border-color : $COLOR_FtM_casual_fill;
-	}
+    .lS * {
+        border-color : $COLOR_BdS_casual_fill;
+    }
+    .fillbg * {
+        border-color : $COLOR_FtS_casual_fill;
+    }
+    .fillbg .lM * {
+        border-color : $COLOR_FtM_casual_fill;
+    }
 
 /* //_{#can-mq */
 /* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	* {
-		border-color : $COLOR_WTC_casual_fill;
-	}
+    * {
+        border-color : $COLOR_WTC_casual_fill;
+    }
 
-	/* //_{^+coloredHeader */
-	#lH {
-		background : $COLOR_WTC_fill;
-		color      : $COLOR_WTC_text;
-	}
-	/* //_}^+coloredHeader */
-	#lB {
-		background : $COLOR_WTC_fill;
-	}
-	
-	#lB .lM {
-		color      : $COLOR_WTC_text;
-	}
+    /* //_{^+coloredHeader */
+    #lH {
+        background : $COLOR_WTC_fill;
+        color      : $COLOR_WTC_text;
+    }
+    /* //_}^+coloredHeader */
+    #lB {
+        background : $COLOR_WTC_fill;
+    }
+    
+    #lB .lM {
+        color      : $COLOR_WTC_text;
+    }
 }
 /* //_>bottom40 */
 /* //_}#can-mq */

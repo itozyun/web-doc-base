@@ -11,15 +11,15 @@
     @include article-footer-item;
 
     padding       : 1em 0 0.5em;
-	color         : $COLOR_BdM_fill; /* , を消す */
+    color         : $COLOR_BdM_fill; /* , を消す */
 }
 
     .SocialButtons a {
         @include noUnderLineAlways;
 
         display      : inline-block;
-		height       : 2em;
-		line-height  : 2;
+        height       : 2em;
+        line-height  : 2;
         padding      : 0 1em;
         border-width : 1px;
         border-style : solid;
@@ -84,30 +84,30 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 950px) {
-	.SocialButtons {
-		text-align : center;
-	}
+    .SocialButtons {
+        text-align : center;
+    }
 }
 /* //_>bottom21 */
 /* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 479px) {
-	.SocialButtons {
-		line-height : 0;
-	}
-	.SocialButtons a {
-		margin      : 0.5em 0;
-	}
+    .SocialButtons {
+        line-height : 0;
+    }
+    .SocialButtons a {
+        margin      : 0.5em 0;
+    }
 }
 /* //_>bottom30 */
 /* //_<bottom40 */
 /*  Watch 
 -------------------------------------------------------------------------------------*/
 @media handheld, only screen and (max-width: 240px) {
-	.SocialButtons {
+    .SocialButtons {
         color        : $COLOR_WTC_fill; /* , を消す */
-	}
+    }
     .SocialButtons a:link {
         background   : $COLOR_WTC_fill;
     }
@@ -119,9 +119,9 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @media print {
-	.SocialButtons {
-		display : none;
-	}
+    .SocialButtons {
+        display : none;
+    }
 }
 /* //_>bottom50 */
 

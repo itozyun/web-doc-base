@@ -3,32 +3,32 @@
  *   https://github.com/Compass/compass/tree/d5df161d0df7edc686e576b22412f437dd0590cc/core/stylesheets/compass/utilities/general
 --------------------------------------------------------------------------------------*/
 
-	@mixin clearfix {
-		/* //_{@modern,@ie9,@ie8,@ie7 */
-			display  : block;
-			overflow : hidden;
-		/* //_}@modern,@ie9,@ie8,@ie7 */
+    @mixin clearfix {
+        /* //_{@modern,@ie9,@ie8,@ie7 */
+            display  : block;
+            overflow : hidden;
+        /* //_}@modern,@ie9,@ie8,@ie7 */
 
-		/* //_{#ie6-win */
-			display  : block;
-			height   : 1%;
-			overflow : visible;
-		/* //_}#ie6-win */
+        /* //_{#ie6-win */
+            display  : block;
+            height   : 1%;
+            overflow : visible;
+        /* //_}#ie6-win */
 
-		/* //_{@ie5mac */
-			display  : inline-block;
-		/* //_}@ie5mac */
+        /* //_{@ie5mac */
+            display  : inline-block;
+        /* //_}@ie5mac */
 
-			/* //_{#can-content */
-				&:after {
-					content     : ".";
-					speak       : none;
-					display     : block;
-					visibility  : hidden;   
-					height      : 0.1px;   
-					font-size   : 0.1em;   
-					line-height : 0;
-					clear       : both;
-				}
-			/* //_}#can-content */
-	}
+            /* //_{#can-content */
+                &:after {
+                    content     : ".";
+                    speak       : none;
+                    display     : block;
+                    visibility  : hidden;   
+                    height      : 0.1px;   
+                    font-size   : 0.1em;   
+                    line-height : 0;
+                    clear       : both;
+                }
+            /* //_}#can-content */
+    }

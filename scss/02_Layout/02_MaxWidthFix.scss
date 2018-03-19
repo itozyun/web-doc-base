@@ -6,42 +6,42 @@
  *    <div class="lW" />
  *  <!--[if lte IE 6]></div><br clear="all"></div><![endif]-->
 --------------------------------------------------------------------------------------*/
-	.e6L {
-		float        : left;
-		height       : 1px;
-		width        : 50%;
-		margin-right : -$PC_MAX_WIDTH_EM/2;
-	}
-	.e6R {
-		float        : right;
-		height       : 1px;
-		width        : 50%;
-		margin-left  : -$PC_MAX_WIDTH_EM/2;
-	}
-	.e6C {
-		overflow : hidden;
-		margin   : 0 !important;
-		float    : left;
-	}
-		.e6C .lW {
-			overflow : hidden;
-			width    : 100%;
-		}
-		.e6BR {
-			clear         : both;
-			height        : 1px;
-			line-height   : 1px;
-			display       : block;
-			margin-bottom : -1px;
-		}
+    .e6L {
+        float        : left;
+        height       : 1px;
+        width        : 50%;
+        margin-right : -$PC_MAX_WIDTH_EM/2;
+    }
+    .e6R {
+        float        : right;
+        height       : 1px;
+        width        : 50%;
+        margin-left  : -$PC_MAX_WIDTH_EM/2;
+    }
+    .e6C {
+        overflow : hidden;
+        margin   : 0 !important;
+        float    : left;
+    }
+        .e6C .lW {
+            overflow : hidden;
+            width    : 100%;
+        }
+        .e6BR {
+            clear         : both;
+            height        : 1px;
+            line-height   : 1px;
+            display       : block;
+            margin-bottom : -1px;
+        }
 
-	#lH
-	/* //_{@ie55 */
-	, #lB
-	/* //_}@ie55 */
-	{
-		width : 100%;
-	}
+    #lH
+    /* //_{@ie55 */
+    , #lB
+    /* //_}@ie55 */
+    {
+        width : 100%;
+    }
 /* //_}@ie55,@ie6 */
 
 
@@ -50,14 +50,14 @@
  * MaxWidthFix で作られたタグ(div.e6C)と div.lW を組み合わせてセンタリングだけを行う.
  * http://blog.xicolotic.info/css/advent-calendar-2015-css1/
  */
-	.e6L, .e6R, .e6BR {
-		display : none;
-	}
-	.e6C {
-		text-align : center;
-	}
-	.lW {
-		text-align : left;
-	}
+    .e6L, .e6R, .e6BR {
+        display : none;
+    }
+    .e6C {
+        text-align : center;
+    }
+    .lW {
+        text-align : left;
+    }
 /* //_}@ie5win */
 
