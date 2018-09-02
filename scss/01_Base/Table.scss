@@ -63,51 +63,65 @@
         border-color : $COLOR_BdM_casual_fill;
         color        : $COLOR_BdM_fill;
     }
-    thead a:link, thead a:visited {
-        color        : $COLOR_BdM_fill;
-    }
-    thead a:link:active,
-    thead a:visited:active,
-    thead a:focus {
-        background   : #fff;
-        color        : $COLOR_ACCENT;
+    .aBodyRoot thead {
+        a:link, a:link:hover,
+        a:visited, a:visited:hover {
+            color        : $COLOR_BdM_fill;
+        }        
     }
 
     /* //_{^#ie6-win */
+    tbody :hover th {
+        background   : $COLOR_ACCENT;
+        color        : #fff;
+        a:link, a:visited {
+            color    : #fff;
+        }
+    }
+    tfoot :hover th,
+    tfoot :hover td,
     tbody :hover td {
         border-color : $COLOR_BdM_fill $COLOR_BdM_fill $COLOR_ACCENT;
         color        : $COLOR_ACCENT;
     }
-    tbody :hover th {
-        background   : $COLOR_ACCENT;
-        color        : #fff;
-    }
-    tbody :hover a:link, tbody :hover a:visited {
-        color        : #fff;
-    }
-    tbody :hover a:link:active,
-    tbody :hover a:visited:active,
-    tbody :hover a:focus {
-        background   : #fff;
-        color        : $COLOR_ACCENT;
+    tbody, tfoot {
+        & :hover a:link:active,
+        & :hover a:visited:active,
+        & :hover a:focus {
+            background   : #fff;
+            color        : $COLOR_ACCENT;
+        }        
     }
     /* //_}^#ie6-win */
 
     blockquote {
-        thead th, tbody th, thead td {
+        thead th, thead td {
             background   : $COLOR_BdM_flip_fill;
             border-color : $COLOR_BdM_casual_fill;
-            color        : $COLOR_BdM_casual_fill;
+        }
+        tbody th {
+            background   : $COLOR_BdM_casual_text;
+            border-color : $COLOR_BdM_casual_fill;
+            color        : $COLOR_BdM_fill;
         }
         td, tfoot th {
             border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_BdM_casual_text;
         }
 
         /* //_{^#ie6-win */
-        tbody :hover td {
+        tbody :hover td,
+        tfoot :hover th,
+        tfoot :hover td {
             border-color : $COLOR_BdM_casual_fill $COLOR_BdM_casual_fill $COLOR_ACCENT;
         }
         /* //_}^#ie6-win */
+
+        thead, tbody {
+            th a:link   , th a:link:hover,
+            th a:visited, th a:visited:hover {
+                color : $COLOR_BdM_fill !important;
+            }            
+        }
     }
 
 /* //_{#can-mq */
@@ -119,7 +133,8 @@
         background   : $COLOR_WTC_casual_fill;
         border-color : $COLOR_WTC_fill;
     }
-    td {
+    td,
+    tfoot th, tfoot td {
         border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_WTC_casual_fill;
     }
     thead th, thead td {
@@ -127,23 +142,44 @@
         border-color : $COLOR_WTC_casual_fill;
         color        : $COLOR_WTC_fill;
     }
+    .aBodyRoot thead {
+        a:link, a:link:hover,
+        a:visited, a:visited:hover {
+            color        : $COLOR_WTC_fill;
+        }
+    }
 
-    tbody :hover td {
+    tbody :hover td,
+    tfoot :hover th,
+    tfoot :hover td {
         border-color : $COLOR_WTC_fill $COLOR_WTC_fill $COLOR_ACCENT;
     }
 
     blockquote {
-        thead th, thead td, tbody th {
+        thead th, thead td {
             background   : $COLOR_WTC_flip_fill;
             border-color : $COLOR_WTC_casual_fill;
-            color        : $COLOR_WTC_casual_fill;
+        }
+        tbody th {
+            background   : $COLOR_WTC_casual_text;
+            border-color : $COLOR_WTC_casual_fill;
+            color        : $COLOR_WTC_fill;
         }
         td, tfoot th {
             border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_WTC_casual_text;
         }
 
-        tbody :hover td {
+        tbody :hover td,
+        tfoot :hover th,
+        tfoot :hover td {
             border-color : $COLOR_WTC_casual_fill $COLOR_WTC_casual_fill $COLOR_ACCENT;
+        }
+
+        thead, tbody {
+            th a:link, th a:link:hover,
+            th a:visited, th a:visited:hover {
+                color : $COLOR_WTC_fill !important;
+            }
         }
     }
 }
@@ -158,7 +194,7 @@
         border-color : #fff;
     }
     td {
-        border-color : #fff #fff $COLOR_BdM_casual_fill;
+        border-color : #fff #fff $COLOR_PRT_casual_fill;
     }
     thead th, thead td {
         border-color : #fff;
@@ -171,7 +207,7 @@
             color        : #fff;
         }
         td {
-            border-color : #fff #fff $COLOR_BdM_casual_text;
+            border-color : #fff #fff $COLOR_PRT_casual_text;
         }
     }
 }

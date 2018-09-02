@@ -13,7 +13,9 @@ a:focus:hover, a:link:active:hover, a:visited:active:hover { text-decoration : u
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
 @mixin hideUnderLineOnHover {
     &:link, &:visited { text-decoration : underline; }
-    &:hover, &:focus, &:active { text-decoration : none; }
+    &:link:hover , &:visited:hover,
+    &:link:focus , &:visited:focus,
+    &:link:active, &:visited:active { text-decoration : none; }
 }
 
 /* ずっと下線なし*/
