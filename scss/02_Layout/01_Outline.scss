@@ -10,8 +10,7 @@
  *
  * 1. display:table-layout
  *    * ie8&9
- *    * media-query 対応ブラウザ, Safari3-を除く
- *       但し Iron 8.0.5 で ヘッダ内の search-box に[shift+tab]でフォーカスを移した際にレイアウトが乱れるのでヘッダを除外
+ *    * media-query 対応ブラウザ
  * 2. float-layout
  *    * 上記以外のブラウザ 
  *
@@ -79,8 +78,7 @@
 
 /*  float-layout -> table-layout
 --------------------------------------------------------------------------------------*/
-    /* //_{#ie89 
-     * ie8 で header と main の sub の幅がずれるので、header も table-layout とする */
+    /* //_{#ie89 */
     .lW {
         display      : table;
         table-layout : fixed;
