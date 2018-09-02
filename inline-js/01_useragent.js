@@ -67,9 +67,13 @@ var ua         = {},
     isGecko   = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
     isKHTML   = findString( dav, 'Konqueror' ),
 
+    isYahooAdr = findString( dav, 'YJApp-ANDROID' ), // Android 7, Y!browser 2.5.56
+    isEdgeAdr  = findString( dav, 'EdgA/' ),
+
     PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
 // https://github.com/chitoku-k/SystemInfo/blob/master/systeminfo.js
-    PSP        = window[ 'pspext' ] && getNumber( window[ 'pspext' ][ 'sysGetEnv' ]( 'x-psp-browser' ), 'system=' ),
+// http://www.jp.playstation.com/psp/dl/pdf/InternetBrowser_ContentGuideline-J_500.pdf
+    PSP        = findString( dav, 'PSP' ),
     PSVita     = getNumber( dua, 'PlayStation Vita' ),
 // http://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
     NDS        = sys === 'Nitro',
@@ -81,6 +85,7 @@ var ua         = {},
     
     iOS        = !New3DS && fromString( sys, 'iP' )
                     || fromString( dua, '; iPh OS ' ), // UC Browser
+                    // || fromString( dua, 'EdgiOS' ),
     WebOS      = window[ 'palmGetResource' ],
     WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' )
                     || getNumber( dua, '; wds' ), // UC Browser
@@ -94,11 +99,15 @@ var ua         = {},
 // Sony Reader Mozilla/5.0 (Linux; U; ja-jp; EBRD1101; EXT) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
     SonyReader = findString( dua, 'EBRD' ),
     Mylo       = tv === 2 && findString( dua, 'Sony/COM2/' ),
-    Android    = findString( sys, ANDROID ) || /* Android2.3.5 Firefox3.1 */ isGecko && findString( dav, ANDROID ),
+    Android    = findString( sys, ANDROID ) ||
+        ( isGecko && findString( dav, ANDROID ) ) || /* Android2.3.5 Firefox3.1 */
+        isYahooAdr,
     Linux      = findString( sys, LINUX ),
     MeeGo      = findString( dua, 'MeeGo' ) && findString( dua, 'NokiaBrowser/8.5.0' ),
+    XBoxOne    = findString( dua, 'Xbox One' ),
+    XBox360    = !XBoxOne && findString( dua, 'Xbox' ),
     FireFoxOS,
-    BlackBerry, XBox,
+    BlackBerry,
     Solaris, // ua SunOS
     // (Ubuntu|Linux|(Free|Net|Open)BSD)
 
@@ -131,7 +140,9 @@ var ua         = {},
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
     maybeAOSP   = isBlink && verWebKit <= 534.3, // 4.0 & 3.x には chrome がいる... 534~534.3
-    maybePCMode = isTouch && ( verWebKit || isGecko ) && ( sys === LINUX + ' armv7l' || sys === LINUX + ' i686' ) && findString( dua, LINUX + ' x86_64' ),
+    maybePCMode =
+        ( isTouch && ( verWebKit || isGecko ) && ( sys === LINUX + ' armv7l' || sys === LINUX + ' i686' ) && findString( dua, LINUX + ' x86_64' ) ) ||
+        ( !verAndroid && isYahooAdr ),
     v, pcMode, dpRatio;
     // FxiOS, CriOS, Coast
 
@@ -155,16 +166,18 @@ var ua         = {},
         // ua[ 'Opera' ] = verOpera;
     } else if( N3DS ){
         ua[ 'N3DS' ] = true;
-        // ua[ 'Opera' ] = verOpera;
     } else if( New3DS ){
         ua[ 'New3DS' ] = true;
-        // ua[ 'Opera' ] = verOpera;
     } else if( PS3 ){
         ua[ 'PS3' ] = true;
     } else if( PSP ){
         ua[ 'PSP' ] = PSP;
     } else if( PSVita ){
         ua[ 'PSVita' ] = PSVita;
+    } else if( XBox360 ){
+        ua[ 'XBox360' ] = true;
+    } else if( XBoxOne ){
+        ua[ 'XBoxOne' ] = true;
     } else if( Mylo ){
         ua[ 'Mylo' ] = 2;
         verNetFront = 3.4;
@@ -458,14 +471,14 @@ var ua         = {},
             } else
             if( verWebKit <= 528.16 ){
                 ua[ SAFARI ] = verWebKit <   73    ? 0.8 :
-                                 verWebKit <   85    ? 0.9 :
-                                 verWebKit <  100    ? 1 :
-                                 verWebKit <  125    ? 1.1 :
-                                 verWebKit <  312    ? 1.2 :
-                                 verWebKit <  412    ? 1.3 :
-                                 verWebKit <= 419.3  ? 2 :
-                                 verWebKit <= 525.13 ? 3 :
-                                 verWebKit <= 525.25 ? 3.1 : 3.2;
+                               verWebKit <   85    ? 0.9 :
+                               verWebKit <  100    ? 1 :
+                               verWebKit <  125    ? 1.1 :
+                               verWebKit <  312    ? 1.2 :
+                               verWebKit <  412    ? 1.3 :
+                               verWebKit <= 419.3  ? 2 :
+                               verWebKit <= 525.13 ? 3 :
+                               verWebKit <= 525.25 ? 3.1 : 3.2;
             };
         };
     };
