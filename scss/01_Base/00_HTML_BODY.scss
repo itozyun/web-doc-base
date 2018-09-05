@@ -36,15 +36,10 @@
             line-height : $BASE_LINE_HEIGHT;
         }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     body {
         font-size : 0.825em;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
-

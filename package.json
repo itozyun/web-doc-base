@@ -9,11 +9,5 @@
     "js"
   ],
   "author": "itozyun",
-  "license": "MIT",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2"
-  }
+  "license": "MIT"
 }

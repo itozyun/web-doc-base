@@ -1,12 +1,10 @@
-/* //_{#can-mq */
 [data-lsc] {
     @include clearfix;
 }
 
-/* //_<bottom15 */
-/*  Full HD 
+/*  WQXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 126em) {
+@include media(WQXGA) {
 /* 2column */
     [data-lsc] {
         padding-bottom : 2em;
@@ -20,12 +18,10 @@
             width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
         }
 }
-/* //_>bottom15 */
 
-/* //_<bottom21 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 950px) {
+@include media(tablet) {
 /* 2column */
     [data-lmc],
     [data-lsc] {
@@ -46,12 +42,10 @@
             width : 50% - $TABLET_H_SPACE * 0.5;
         }
 }
-/* //_>bottom21 */
 
-/* //_<bottom25 */
 /*  Phablet
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
+@include media(phablet) {
     [data-lmc],
     [data-lsc] {
         padding-bottom : 2em;
@@ -65,12 +59,10 @@
             width : 50% - $PHABLET_H_SPACE * 0.5;
         }
 }
-/* //_>bottom25 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
 /* clear 2column */
     .lM1, .lM2,
     .lS1, .lS2 {
@@ -80,8 +72,3 @@
         margin-right : 0;
     }
 }
-/* //_>bottom30 */
-
-/* //_}#can-mq */
-
-

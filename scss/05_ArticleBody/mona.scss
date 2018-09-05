@@ -5,30 +5,30 @@
 @mixin mona {
     line-height : 1.125;
 
-    /* IE */
-    /* //_{#ie6-win */
-        font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
-    /* //_}#ie6-win */
+/* IE */
+/* //_{#ie6-win */
+    font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
+/* //_}#ie6-win */
 
-    /* //_{@ie7,@ie8 */
-        font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
-    /* //_}@ie7,@ie8 */
+/* //_{@ie7,@ie8 */
+    font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
+/* //_}@ie7,@ie8 */
 
-    /* //_{@modern */
-    /* Opera */
+/* //_{@modern */
     font-family:"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","MS Pｺﾞｼｯｸ","MS PGothic",sans-serif;
 
     /* firefox */
     :-moz-read-only & {
         font-family:Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,sans-serif;
     }
+/* //_}@modern */
+
     /* safari */
-    @media screen and (-webkit-min-device-pixel-ratio:0){
+    @include media(onlySafari) {
         & {
             font-family:"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif;
         }
     }
-    /* //_}@modern */
 }
 
 .mona {
@@ -38,16 +38,13 @@
     padding : 2em 1em;
 }
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     .mona {
         background : none;
         border     : 1px solid $COLOR_PRT_casual_fill;
         color      : $COLOR_PRT_text;
     }
 }
-/* //_>bottom50 */
-
 /* //_}+mona */

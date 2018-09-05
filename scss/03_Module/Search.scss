@@ -66,11 +66,9 @@ $SEARCH_BTN_WIDTH : 3em;
 }
 /* //_}@ie55,@ie6,@ie7 */
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     /* //_{^+coloredHeader */
     .Search, .Search-txt {
         color      : $COLOR_WTC_text;
@@ -81,5 +79,3 @@ $SEARCH_BTN_WIDTH : 3em;
     }
     /* //_}^+coloredHeader */
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

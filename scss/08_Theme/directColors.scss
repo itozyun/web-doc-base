@@ -82,11 +82,9 @@ hr {
     /* //_}@modern */
 }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     hr {
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+50,f8fbf8+100&0+0,1+50,0+100 */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -103,5 +101,3 @@ hr {
         /* //_}@modern */
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

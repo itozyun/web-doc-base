@@ -53,11 +53,9 @@
                 padding : 0.5em 1em;
             }
 
-/* //_{#can-mq */
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .commonForm label {
         float   : none;
         width   : auto;
@@ -67,15 +65,12 @@
         margin-left : 0;
     }
 }
-/* //_>bottom30 */
-/* //_<bottom40 */
+
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .commonForm-wrap,
     .commonForm-wrap * {
         background : $COLOR_WTC_casual_fill;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

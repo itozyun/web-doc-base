@@ -215,11 +215,10 @@
             display : block; /* focus 時の塗りを適切にする */
         }
     }
-/* //_{#can-mq */
-/* //_<bottom10 */
-/*  Full HD
+
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     p, pre, dl, ul, ol, table, blockquote {
         margin-left  : $CONTENT_MARGIN_LR_WSXGA;
         margin-right : $CONTENT_MARGIN_LR_WSXGA;
@@ -228,22 +227,18 @@
         width : 100% - $CONTENT_MARGIN_LR_WSXGA * 2;
     }
 }
-/* //_>bottom10 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     dd {
         margin-left : 1em;
     }
 }
-/* //_>bottom30 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     /* //_{+from-h2-at-post */
         h5 {
             border-color : $COLOR_WTC_flip_fill;
@@ -265,14 +260,3 @@
         margin-left : 0.5em;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
-
-/* //_<bottom50 */
-/*  Print
---------------------------------------------------------------------------------------*/
-@media print {
-
-}
-/* //_>bottom50 */
-

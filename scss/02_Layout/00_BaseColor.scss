@@ -57,11 +57,9 @@ body, .fillbg .lS, .fillbg .lO {
         border-color : $COLOR_FtM_casual_fill;
     }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     * {
         border-color : $COLOR_WTC_casual_fill;
     }
@@ -80,5 +78,3 @@ body, .fillbg .lS, .fillbg .lO {
         color      : $COLOR_WTC_text;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

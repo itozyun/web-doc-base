@@ -19,20 +19,18 @@
 @mixin stackableModule {
     padding-bottom : 1em;
 }
-/* //_<bottom20 */
+
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media print, handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+@include media(tabet_print) {
     #lE .lSi {
         padding-top : 0;
     }
 }
-/* //_>bottom20 */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     #lE .lW {
         padding-bottom : 0;
     }
@@ -40,5 +38,3 @@
         padding-bottom : 2em;
     }
 }
-/* //_>bottom50 */
-

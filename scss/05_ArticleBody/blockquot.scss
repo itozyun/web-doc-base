@@ -52,17 +52,14 @@ blockquote {
         font-size   : 0.875em;
         line-height : 1.2;
         text-align  : right;
-        word-break  : break-all; /*  iOS4用効果あり */
+        word-break  : break-all; /* 長いurl iOS4用効果あり */
         /* word-wrap   : break-all; 効果なし */
         color       : $COLOR_BdM_casual_text;
     }
 
-
-/* //_{#can-mq */
-/* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     /* blockquote {
         padding : $CONTENT_MARGIN_LR_WSXGA $CONTENT_MARGIN_LR_WSXGA/2;
 
@@ -72,12 +69,10 @@ blockquote {
         }
     } */
 }
-/* //_>bottom10 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     blockquote {
         background : $COLOR_WTC_casual_fill;
         color      : $COLOR_WTC_text;
@@ -99,14 +94,10 @@ blockquote {
             color : $COLOR_WTC_link;
         }
 }
-/* //_>bottom40 */
 
-/* //_}#can-mq */
-
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     blockquote {
         background : none;
         border     : 1px solid $COLOR_PRT_casual_fill;
@@ -117,6 +108,3 @@ blockquote {
     }
     /* //_}#can-content */
 }
-/* //_>bottom50 */
-
-

@@ -1,118 +1,109 @@
-
-
-/* -------------------------------------------------------------------------------------
- * 
- *  Reset, Base
- *  
+/*  reset
 --------------------------------------------------------------------------------------*/
+    /* remember to define focus styles! */
+    :focus,
+    a:focus,
+    a:active,
+    a:hover {
+        outline : 0;
+    }
 
-
-    /*  reset
-    --------------------------------------------------------------------------------------*/
-        /* remember to define focus styles! */
-        :focus,
-        a:focus,
-        a:active,
-        a:hover {
-            outline : 0;
-        }
+    /* abbr[title] {
+        border-bottom : 1px dotted;
+    } */
     
-        /* abbr[title] {
-            border-bottom : 1px dotted;
-        } */
-        
-        /* b, */
-        strong, em, dt {
-            font-weight : bold;
-        }
-        
-        blockquote, q {
-            quotes : none;
-        }
-        
-        /* //_{#can-content */
-        q:before,
-        q:after {
-            content: '';
-            content: none;
-        }
-        /* //_}#can-content */
-        
-        small, sub, sup {
-            font-size: 75%;
-        }
-        
-        sub,
-        sup {
-            line-height    : 0;
-            position       : relative;
-            vertical-align : baseline;
-        }
-        
-        sup {
-            top: -0.5em;
-        }
-        
-        sub {
-            bottom: -0.25em;
-        }
-        
-        img {
-            border                 : 0; /* 1 */
-            -ms-interpolation-mode : bicubic; /* 2 */
-        }
+    /* b, */
+    strong, em, dt {
+        font-weight : bold;
+    }
     
-        /* //_{@ie9 */
-        svg {
-            overflow : hidden;
-        }
-        /* //_}@ie9 */
+    blockquote, q {
+        quotes : none;
+    }
+    
+    /* //_{#can-content */
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+    /* //_}#can-content */
+    
+    small, sub, sup {
+        font-size: 75%;
+    }
+    
+    sub,
+    sup {
+        line-height    : 0;
+        position       : relative;
+        vertical-align : baseline;
+    }
+    
+    sup {
+        top: -0.5em;
+    }
+    
+    sub {
+        bottom: -0.25em;
+    }
+    
+    img {
+        border                 : 0; /* 1 */
+        -ms-interpolation-mode : bicubic; /* 2 */
+    }
 
-        dfn, cite, code, var, samp, kbd, q {
-            font-style : normal;
-        }
-        
-        /* http://e2designer.seesaa.net/article/152168876.html */
-        /* http://perishablepress.com/press/2010/06/01/wrapping-content/ */
-        /* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
-        @mixin pre-wrap {
-        /* //_{@modern */
-            white-space : pre;           /* CSS 2.0 */
-            white-space : -pre-wrap;     /* Opera 4-6 */
-            white-space : -o-pre-wrap;   /* Opera 7 */
-            white-space : -moz-pre-wrap; /* Firefox 1.0-2.0 */
-            white-space : -webkit-pre-wrap; /* Chrome, Safari */
-        /* //_}@modern */
-            /* white-space : -hp-pre-wrap;  HP Printers */
-        /* //_{@ie8,@ie9,@modern */        
-            white-space : pre-wrap;      /* CSS 2.1, ie8+ */
-        /* //_}@ie8,@ie9,@modern */
+    /* //_{@ie9 */
+    svg {
+        overflow : hidden;
+    }
+    /* //_}@ie9 */
 
-            /* white-space : pre-line;      CSS 3.0 */
+    dfn, cite, code, var, samp, kbd, q {
+        font-style : normal;
+    }
+    
+    /* http://e2designer.seesaa.net/article/152168876.html */
+    /* http://perishablepress.com/press/2010/06/01/wrapping-content/ */
+    /* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
+    @mixin pre-wrap {
+    /* //_{@modern */
+        white-space : pre;           /* CSS 2.0 */
+        white-space : -pre-wrap;     /* Opera 4-6 */
+        white-space : -o-pre-wrap;   /* Opera 7 */
+        white-space : -moz-pre-wrap; /* Firefox 1.0-2.0 */
+        white-space : -webkit-pre-wrap; /* Chrome, Safari */
+    /* //_}@modern */
+        /* white-space : -hp-pre-wrap;  HP Printers */
+    /* //_{@ie8,@ie9,@modern */        
+        white-space : pre-wrap;      /* CSS 2.1, ie8+ */
+    /* //_}@ie8,@ie9,@modern */
 
-        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-            word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
-        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-        /* //_{#ie8-win,@ie9,@modern */
-            word-break  : break-all;     /* IE 5+ */
-        /* //_}#ie8-win,@ie9,@modern */
-        }
+        /* white-space : pre-line;      CSS 3.0 */
 
-        pre {
-            @include pre-wrap;
-        }
+    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_{#ie8-win,@ie9,@modern */
+        word-break  : break-all;     /* IE 5+ */
+    /* //_}#ie8-win,@ie9,@modern */
+    }
 
-        /* //_{@ie5win */
-            pre code,
-            pre samp { width : 100%; }
-        /* //_}@ie5win */
+    pre {
+        @include pre-wrap;
+    }
 
-        /* remember to highlight inserts somehow! */
-        ins { text-decoration: none; }
-        del { text-decoration: line-through; }
+    /* //_{@ie5win */
+        pre code,
+        pre samp { width : 100%; }
+    /* //_}@ie5win */
 
-        /* //_{@ie9,@modern */
-        figure {
-            margin : 0;
-        }
-        /* //_}@ie9,@modern */
+    /* remember to highlight inserts somehow! */
+    ins { text-decoration: none; }
+    del { text-decoration: line-through; }
+
+    /* //_{@ie9,@modern */
+    figure {
+        margin : 0;
+    }
+    /* //_}@ie9,@modern */

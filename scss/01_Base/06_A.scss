@@ -236,47 +236,41 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_HdM_text;
     }
     /* //_}+coloredHeader */
+
+    @include media(watch){
+        /* href がない場合 current カラーになる */
+        background-color : $COLOR_WTC_flip_fill;
+        color            : $COLOR_WTC_flip_text;
+
+        &:link {
+            background-color : none;
+            background-color : transparent;
+            color            : $COLOR_WTC_link;
+        }
+        &:visited {
+            background-color : none;
+            background-color : transparent;
+            color            : $COLOR_WTC_text;
+        }
+        &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
+            background-color : $COLOR_WTC_casual_fill;
+            color            : $COLOR_WTC_text;
+        }        
+    }
 }
 
-@mixin fill_watch {
-    /* href がない場合 current カラーになる */
-    background-color : $COLOR_WTC_flip_fill;
-    color            : $COLOR_WTC_flip_text;
-
-    &:link {
-        background-color : none;
-        background-color : transparent;
-        color            : $COLOR_WTC_link;
-    }
-    &:visited {
-        background-color : none;
-        background-color : transparent;
-        color            : $COLOR_WTC_text;
-    }
-    &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-        background-color : $COLOR_WTC_casual_fill;
-        color            : $COLOR_WTC_text;
-    }
-}
-
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     a:link          { color : $COLOR_WTC_link;  border-color : $COLOR_WTC_fill; }
     a:visited       { color : $COLOR_WTC_text;  border-color : $COLOR_WTC_fill; }
     a:hover         { color : $COLOR_WTC_hover; border-color : $COLOR_WTC_hover; }
     a:visited:hover { color : $COLOR_WTC_visited_hover; border-color : $COLOR_WTC_visited_hover }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     a:link   , .fillbg a:link   , .fillbg .lM a:link    { color : $COLOR_PRT_link; }
     a:visited, .fillbg a:visited, .fillbg .lM a:visited { color : $COLOR_PRT_visited; }
 }
-/* //_>bottom50 */

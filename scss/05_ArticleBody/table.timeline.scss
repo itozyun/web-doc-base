@@ -139,11 +139,9 @@
         /* //_}#can-content */
     }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .tl thead th, .tl thead td, .tl tbody th {
         color : $COLOR_WTC_text;
     }
@@ -167,5 +165,3 @@
         }
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

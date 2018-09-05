@@ -1,4 +1,6 @@
-
+/* [parts] button
+ *
+--------------------------------------------------------------------------------------*/
 .btn, .btn:visited {
     @include noUnderLineAlways;
 
@@ -44,10 +46,9 @@
 }
 /* //_}@ie9,@modern */
 
-/* //_{#can-mq */
-/*  Watch !important 指定があるので移動しない
+/*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .btn, .btn:visited
     /* //_{^+coloredHeader */
     , #lH .btn, #lH .btn:visited
@@ -84,7 +85,6 @@
     }
     /* //_}@ie9,@modern */
 }
-/* //_}#can-mq */
 
 .lS .btn, .lS .btn:visited {
     background : $COLOR_BdS_casual_text;

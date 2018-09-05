@@ -62,11 +62,9 @@ form :invalid {
 }
 /* //_}@modern */
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     form * {
         color  : $COLOR_WTC_text;
     }
@@ -74,5 +72,3 @@ form :invalid {
         color : $COLOR_ACCENT;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

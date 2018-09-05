@@ -18,12 +18,10 @@
     border-style  : solid;
 }
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     .AFoot {
         margin : 1em 0;
     }
 }
-/* //_>bottom50 */

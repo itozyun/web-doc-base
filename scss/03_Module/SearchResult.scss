@@ -33,11 +33,9 @@
                 color : #808080;
             }
 
-/* //_{#can-mq */
-/* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     .SearchResult-multi {
         -webkit-column-count : 2;
         -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
@@ -50,12 +48,10 @@
         margin-top : 0;
     }
 }
-/* //_>bottom10 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .SearchResult a:visited {
         color : $COLOR_WTC_link;
     }
@@ -69,5 +65,3 @@
         margin : 0;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

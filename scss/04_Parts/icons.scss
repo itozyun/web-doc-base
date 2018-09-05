@@ -1,3 +1,7 @@
+/* [parts] icon
+ *    Pure CSS icon
+ *      http://outcloud.blogspot.com/2018/02/PureCssIcon.html
+--------------------------------------------------------------------------------------*/
 @mixin icon-base {
     /* //_{#can-content */
     position     : relative;
@@ -29,6 +33,14 @@
     .fillbg .lM & {
         border-color    : $COLOR_FtM_casual_text;
     }
+    @include media(watch) {
+        &:before {
+            border-color : $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text;
+        }
+    }
 }
 @mixin icon-border-fill-transparent {
     & {
@@ -43,6 +55,14 @@
     .fillbg .lM & {
         border-color    : $COLOR_FtM_casual_text transparent;
     }
+    @include media(watch) {
+        &:before {
+            border-color : $COLOR_WTC_casual_text transparent;
+        }
+        &:after {
+            border-color : $COLOR_WTC_casual_text transparent;
+        }
+    }
 }
 @mixin icon-border-transparent-fill {
     & {
@@ -56,6 +76,14 @@
     }
     .fillbg .lM & {
         border-color    : transparent $COLOR_FtM_casual_text;
+    }
+    @include media(watch) {
+        &:before {
+            border-color : transparent $COLOR_WTC_casual_text;
+        }
+        &:after {
+            border-color : transparent $COLOR_WTC_casual_text;
+        }
     }
 }
 
@@ -292,88 +320,3 @@
     }
     /* //_}#can-content */
 }
-
-
-
-/* //_{#can-mq */
-
-/* //_<bottom40 */
-/*  Watch
---------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
-    .ico-clock {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-label {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : transparent $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-author {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-flag {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-pen {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text transparent;
-        }
-    }
-    
-    .ico-chain {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-sylinder {
-        &:before {
-            border-color : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text;
-        }
-    }
-    
-    .ico-comment {
-        &:before {
-            background : $COLOR_WTC_casual_text;
-        }
-        &:after {
-            border-color : $COLOR_WTC_casual_text transparent;
-        }
-    }
-}
-/* //_>bottom40 */
-
-/* //_}#can-mq */
-

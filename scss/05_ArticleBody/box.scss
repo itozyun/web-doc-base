@@ -7,61 +7,54 @@
     margin      : 1em $CONTENT_MARGIN_LR 0;
 }
 
-.box p, .box dl, .box ul, .box ol,
-li .box, dd .box, tr .box, .note .box {
-    margin-top      : 0;
-    margin-left     : 0;
-    margin-right    : 0;
-}
-.box ul, .box ol {
-    list-style-position : inside;
-}
+    .box p, .box dl, .box ul, .box ol,
+    li .box, dd .box, tr .box, .note .box {
+        margin-top      : 0;
+        margin-left     : 0;
+        margin-right    : 0;
+    }
+    .box ul, .box ol {
+        list-style-position : inside;
+    }
 
-/* //_{#can-1stOfType */
-.box > p:first-of-type {
-    margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
-}
-tr .box > p:first-of-type {
-    margin-top : 0;
-}
-/* //_}#can-1stOfType */
+    /* //_{#can-1stOfType */
+    .box > p:first-of-type {
+        margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
+    }
+    tr .box > p:first-of-type {
+        margin-top : 0;
+    }
+    /* //_}#can-1stOfType */
 
-.box img,
-.box embed,
-.box object,
-.box iframe,
-.box video,
-.box .caption {
-    float   : left;
-    margin  : 0 $CONTENT_MARGIN_LR 1em 0;
-}
+    .box img,
+    .box embed,
+    .box object,
+    .box iframe,
+    .box video,
+    .box .caption {
+        float   : left;
+        margin  : 0 $CONTENT_MARGIN_LR 1em 0;
+    }
 
-/* //_{#can-mq */
-
-/* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     .box {
         margin      : 1em $CONTENT_MARGIN_LR_WSXGA 0;
     }
 }
-/* //_>bottom10 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .box > p:first-of-type {
         margin-top : ( - $PHONE_LINE_HEIGHT_EM + 1em ) / 4;
     }
 }
-/* //_>bottom30 */
 
-/* //_<bottom35 */
 /*  Phone-
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 319px) {
+@include media(smallphone) {
     .box img,
     .box embed,
     .box object,
@@ -72,12 +65,10 @@ tr .box > p:first-of-type {
         margin      : 0 auto 1em;
     }
 }
-/* //_>bottom35 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .box {
         margin       : 1em 0 0;
     }
@@ -86,7 +77,3 @@ tr .box > p:first-of-type {
         margin-top : ( - $WATCH_LINE_HEIGHT_EM + 1em ) / 4;
     }
 }
-/* //_>bottom40 */
-
-/* //_}#can-mq */
-

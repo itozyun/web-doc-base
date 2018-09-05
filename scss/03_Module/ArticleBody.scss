@@ -7,12 +7,9 @@
     margin : 3.5em 0 2em;
 }
 
-/* //_{#can-mq */
-
-/* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     .ABody {
         -webkit-column-count : 2;
         -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
@@ -25,15 +22,11 @@
         margin-top : 0;
     }
 }
-/* //_>bottom10 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     .ABody {
         margin : 0;
     }
 }
-/* //_>bottom50 */

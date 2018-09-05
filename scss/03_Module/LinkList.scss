@@ -5,7 +5,6 @@
  *   div
  *    a
 --------------------------------------------------------------------------------------*/
-
 @mixin linkCommon {
     /* //_{#ie6,@ie55
      * ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
@@ -19,14 +18,11 @@
         cursor             : pointer;
     }
 }
-@mixin linkCommon_watch {
-    a {
-        @include fill_watch;
-    }
+
+.LinkList {
+    @include linkCommon;
+    @include stackableModule;
 }
-
-
-.LinkList { @include linkCommon; @include stackableModule;}
 
     .LinkList a {
         line-height : 1.1;
@@ -40,45 +36,34 @@
     text-align : right;
 }
 
-/* //_{#can-mq */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-/* //_<bottom10 */
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     .LinkList a {
         /* @include unbreak-inside; */
     }
 }
-/* //_>bottom10 */
-/* //_}#can-mq */
 
-/* //_<bottom20 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media print, handheld, only screen and (max-width: 950px) {
+@include media(tablet_print) {
     .lS .LinkList {
         text-align : left;
     }
 }
-/* //_>bottom20 */
 
-/* //_{#can-mq */
-
-/* //_<bottom25 */
 /*  Phablet
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
+@include media(phablet) {
     .lM2 .LinkList,
     .lS2 .LinkList {
         text-align : right;
     }
 }
-/* //_>bottom25 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .LinkList {
         text-align : center !important;
     }
@@ -86,19 +71,11 @@
             display : inline-block;
         }
 }
-/* //_>bottom30 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .LinkList a {
         padding : 0.5em 0;
     }
-
-    .LinkList { @include linkCommon_watch; }
 }
-/* //_>bottom40 */
-
-/* //_}#can-mq */
-

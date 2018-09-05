@@ -13,23 +13,25 @@
     } /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
 /* //_}#ie7-win,@ie9 */
     
-/* //_{@modern */
+
     /* ie10 & 11 */
-    @media all and (-ms-high-contrast:none){
+    @include media(onlyIE10) {
         p, blockquote { text-align : justify; }
     }
-    
+
+    @include media(onlyOpera) { /* Opera 10 以上 */
+        p, blockquote { text-align : justify; }
+    }
+
     /* .contents-container, x:-moz-any-link {
         text-align : justify;
     } ff */
-    
+/* //_{@modern */    
     /* ff2+ */
-    body:empty p, body:empty blockquote, x:-moz-any-link{
+    body:empty p, body:empty blockquote, x:-moz-any-link {
         text-align : justify;
     }
-
-    @media not aural and (1) { /* Opera 10 以上 */
-        p, blockquote { text-align : justify; }
-    }
 /* //_}@modern */
+
+
 

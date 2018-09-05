@@ -95,36 +95,33 @@
             }
     /* //_}#ie89 */
 
-
 /* //_{@modern */
 /*  メディアクエリをサポートするブラウザだけ table-layout にする
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 951px) { /* Tablet も併せて変更 */
-        .lW {
-            display      : table;
-            table-layout : fixed;
+@include media(pc) { /* Tablet も併せて変更 */
+    .lW {
+        display      : table;
+        table-layout : fixed;
+    }
+        .lM, .lS {
+            float          : none;
+            display        : table-cell;
+            vertical-align : top; /* Safari 3.2, ie8 で大切 */
         }
-            .lM, .lS {
-                float          : none;
-                display        : table-cell;
-                vertical-align : top; /* Safari 3.2, ie8 で大切 */
-            }
 
-            .lM {
-                width : 100% * $PC_MAIN_COLUMN_RATIO;
+        .lM {
+            width : 100% * $PC_MAIN_COLUMN_RATIO;
+        }
+            .lMi {
+                /* padding-right だと Safari 3.2 table レイアウトが狂う */
+                margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
             }
-                .lMi {
-                    /* padding-right だと Safari 3.2 table レイアウトが狂う */
-                    margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-                }
 }
 /* //_}@modern */
 
-/* //_{#can-mq */
-/* //_<bottom15 */
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 126em) {
+@include media(WQXGA) {
     .lW, .lX {
         width     : 96%;
         max-width : $WQXGA_MAX_WIDTH_EM;
@@ -152,12 +149,10 @@
             padding-right : $WQXGA_COLUMN_GAP_PCT;
         }
 }
-/* //_>bottom15 */
 
-/* //_<bottom10 */
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     .lW, .lX {
         width     : 96%;
         max-width : $WSXGA_MAX_WIDTH_EM;
@@ -185,13 +180,10 @@
             padding-right : $WSXGA_COLUMN_GAP_PCT;
         }
 }
-/* //_>bottom10 */
-/* //_}#can-mq */
 
-/* //_<bottom20 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media print, handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+@include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
 /* single */
     .lW, .lX {
         width     : 100%;
@@ -219,59 +211,46 @@
                 margin-right : 0;
             }
 }
-/* //_>bottom20 */
 
-/* //_{#can-mq */
-
-/* //_<bottom21 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 950px) {/* float-layout -> table-layout も併せて変更 */
+@include media(tablet) {
     .lMi, .lSi, .lXi {
         padding-left  : $TABLET_H_SPACE;
         padding-right : $TABLET_H_SPACE;
     }
 }
-/* //_>bottom21 */
 
-/* //_<bottom25 */
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
+@include media(phablet) {
     .lMi, .lSi, .lXi {
         padding-left  : $PHABLET_H_SPACE;
         padding-right : $PHABLET_H_SPACE;
     }
 }
-/* //_>bottom25 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .lMi, .lSi, .lXi {
         padding-left  : $PHONE_H_SPACE;
         padding-right : $PHONE_H_SPACE;
     }
 }
-/* //_>bottom30 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .lMi, .lSi, .lXi {
         padding-left  : 0;
         padding-right : 0;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     body, #lH, #lE, #lB,
     .fillbg, .fillbg .lM, .fillbg .lO, .fillbg .lS
 /* //_{+coloredHeader */
@@ -289,4 +268,3 @@
         padding-right : 0;
     }
 }
-/* //_>bottom50 */

@@ -124,11 +124,9 @@
         }
     }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     tbody th {
         background   : $COLOR_WTC_casual_fill;
         border-color : $COLOR_WTC_fill;
@@ -183,13 +181,10 @@
         }
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     tbody th {
         border-color : #fff;
     }
@@ -211,4 +206,3 @@
         }
     }
 }
-/* //_>bottom50 */

@@ -89,10 +89,9 @@ h2:after {
 }
 /* //_}#can-content */
 
-/* //_<bottom20 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media print, handheld, only screen and (max-width: 950px) {
+@include media(tablet_print) {
     .lS h2 {
         text-align   : left;
     }
@@ -103,15 +102,10 @@ h2:after {
     }
     /* //_}#can-content */
 }
-/* //_>bottom20 */
 
-
-/* //_{#can-mq */
-
-/* //_<bottom25 */
 /*  Phablet
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
+@include media(phablet) {
     .lM2 h2,
     .lS2 h2 {
         text-align : right;
@@ -122,12 +116,10 @@ h2:after {
         right : 0;
     }
 }
-/* //_>bottom25 */
 
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .lM h2, .lS h2 {
         text-align    : center;
     }
@@ -138,39 +130,29 @@ h2:after {
         right : auto;
     }
 }
-/* //_>bottom30 */
 
-/* //_<bottom40 */
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .lM h2, .lS h2 {
         padding-left  : 0;
         padding-right : 0;
     }
 
-    /* //_{#can-content */
     h2:after {
         @if $COLOR_BdM_accent != $COLOR_WTC_accent {
             background : $COLOR_WTC_accent;
             color      : $COLOR_WTC_accent;
         }
     }
-    /* //_}#can-content */
 }
-/* //_>bottom40 */
 
-/* //_}#can-mq */
-
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
 /* //_{#can-content */
     h2:after {
         display : none;
     }
 /* //_}#can-content */
 }
-/* //_>bottom50 */
-

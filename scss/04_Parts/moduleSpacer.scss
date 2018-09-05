@@ -1,7 +1,6 @@
 /* [parts] moduleSpacer
  *  module 配下の要素をラップし適切な余白を与える
 --------------------------------------------------------------------------------------*/
-
 .mspacer {
     margin : 1em 1em 0;
 
@@ -18,23 +17,18 @@
     margin : 0.6em 0 0 !important;
 }
 
-/* //_{#can-mq */
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .mspacer {
         margin : 1em 0.5em 0;
     }
 }
-/* //_>bottom30 */
-/* //_<bottom40 */
+
 /*  Watch
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 240px) {
+@include media(watch) {
     .mspacer, #lF .mspacer {
         margin : 0.6em 0 0;
     }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */

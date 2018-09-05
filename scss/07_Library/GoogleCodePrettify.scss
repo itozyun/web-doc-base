@@ -1,8 +1,8 @@
 /* //_{+GoogleCodePrettify */
-
+/*  Google Code Prettify
+--------------------------------------------------------------------------------------*/
 .prettyprint {
     /* @include unbreak-inside; */
-
     background-color  : #333;
     color             : #fff;
 }
@@ -37,12 +37,11 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 /* //_}^#ie55- */
 
-/* //_<bottom50 */
-@media print {
+@include media(print) {
  .prettyprint {
     background : none;
     border     : 1px solid $COLOR_PRT_casual_fill;
-  }    
+  }
 /* //_{^#ie55- */    
   code .str { color: #060; }
   code .kwd { color: #006; font-weight: bold; }
@@ -56,8 +55,6 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   code .atv { color: #060; }
 /* //_}^#ie55- */
 }
-/* //_>bottom50 */
-
 /* //_}+GoogleCodePrettify */
 
 

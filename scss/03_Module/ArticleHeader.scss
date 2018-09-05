@@ -5,7 +5,6 @@
  *    h1 | h2
  *    div
  *    +ArticleLabels
- *    +SocialButtons
 --------------------------------------------------------------------------------------*/
     .AHead {
         color  : $COLOR_FtM_casual_text;
@@ -29,11 +28,9 @@
     }
 /* //_}^+from-h2-at-post */
 
-/* //_{#can-mq */
-/* //_<bottom10 */
-/*  Full HD
+/*  WSXGA
 --------------------------------------------------------------------------------------*/
-@media only screen and (min-width: 96em) {
+@include media(WSXGA) {
     /* //_{+from-h2-at-post */
         .AHead h2 { text-align : center; }
     /* //_}+from-h2-at-post */
@@ -42,13 +39,10 @@
         .AHead h1 { text-align : center; }
     /* //_}^+from-h2-at-post */
 }
-/* //_>bottom10 */
-/* //_}#can-mq */
 
-/* //_<bottom20 */
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@media print, handheld, only screen and (max-width: 950px) {
+@include media(tabet_print) {
     /* //_{+from-h2-at-post */
         .AHead h2 { text-align : center; }
     /* //_}+from-h2-at-post */
@@ -57,12 +51,10 @@
         .AHead h1 { text-align : center; }
     /* //_}^+from-h2-at-post */
 }
-/* //_>bottom20 */
 
-/* //_<bottom25 */
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 740px) {
+@include media(phablet) {
     /* //_{+from-h2-at-post */
     .AHead h2 {
         letter-spacing : 0;
@@ -75,36 +67,32 @@
     }
     /* //_}^+from-h2-at-post */
 }
-/* //_>bottom25 */
 
-/* //_{#can-mq */
-/* //_<bottom30 */
 /*  Phone
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(phone) {
     .AHead {
         text-align : center;
     }
 
     /* //_{+from-h2-at-post */
     .AHead h2 {
-        font-size     : 1.5em;
+        text-align : center;
+        font-size  : 1.5em;
     }
     /* //_}+from-h2-at-post */
 
     /* //_{^+from-h2-at-post */
     .AHead h1 {
-        font-size     : 1.5em;
+        text-align : center;
+        font-size  : 1.5em;
     }
     /* //_}^+from-h2-at-post */
 }
-/* //_>bottom30 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     .AHead {
         color  : $COLOR_PRT_text;
     }
@@ -120,8 +108,6 @@
     }
 /* //_}^+from-h2-at-post */
 }
-/* //_>bottom50 */
-
 
 /* =====================================================================================
  * //_{+ArticleLabels
@@ -167,27 +153,22 @@
         color      : $COLOR_FtM_flip_text;
     }
 
-/* //_{#can-mq */
-/* //_<bottom40 */
-/*  Watch
+/*  Phone-
 --------------------------------------------------------------------------------------*/
-@media handheld, only screen and (max-width: 479px) {
+@include media(smallphone) {
     .AHead-labels {
         line-height : 0;
     }
         .AHead-labels a {
             display     : block;
             text-align  : center;
-            margin      : 0.5em 0;
+            margin      : 0.5em;
         }
 }
-/* //_>bottom40 */
-/* //_}#can-mq */
 
-/* //_<bottom50 */
 /*  Print
 --------------------------------------------------------------------------------------*/
-@media print {
+@include media(print) {
     .AHead-labels {
         margin : 0;
         color  : $COLOR_PRT_text;
@@ -207,5 +188,4 @@
             color : $COLOR_PRT_visited;
         }
 }
-/* //_>bottom50 */
 /* //_}+ArticleLabels */

@@ -1,0 +1,103 @@
+$MEDIAQUERY_TABLET_MAX_PX : 950;
+
+/* //_{#can-mq */
+$MEDIAQUERY_TABLET_AND_PRINT : 'print, handheld, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
+$NO_MEDIA_QUERY : 0;
+/* //_}#can-mq */
+
+/* //_{^#can-mq */
+$MEDIAQUERY_TABLET_AND_PRINT : 'print';
+$NO_MEDIA_QUERY : 1;
+/* //_}^#can-mq */
+
+$COMMENT_OUT : (
+    'WQXGA'        : $NO_MEDIA_QUERY,
+    'WSXGA'        : $NO_MEDIA_QUERY,
+    'pc'           : $NO_MEDIA_QUERY,
+    'tablet_print' : 0,
+    'tablet'       : $NO_MEDIA_QUERY,
+    'phablet'      : $NO_MEDIA_QUERY,
+    'phone'        : $NO_MEDIA_QUERY,
+    'smallphone'   : $NO_MEDIA_QUERY,
+    'watch'        : $NO_MEDIA_QUERY,
+    'print'        : 0,
+    'onlyOpera'    : $NO_MEDIA_QUERY,
+    'onlyIE10'     : $NO_MEDIA_QUERY,
+    'onlySafari'   : $NO_MEDIA_QUERY
+) !default;
+
+@mixin media($media) {
+    @if map-get($COMMENT_OUT, $media) == 0 {
+        @if $media == 'pc' {
+            @media only screen and (min-width: #{$MEDIAQUERY_TABLET_MAX_PX + 1}px){
+                @content;
+            }
+        }
+        @else if $media == 'WSXGA' {
+            @media only screen and (min-width: 96em){
+                @content;
+            }
+        }
+        @else if $media == 'WQXGA' {
+            @media only screen and (min-width: 126em){
+                @content;
+            }
+        }
+        @else if $media == 'tablet_print' {
+            @media #{$MEDIAQUERY_TABLET_AND_PRINT} {
+                @content;
+            }
+        }
+        @else if $media == 'tablet' {
+            @media handheld, projection,tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px) {
+                @content;
+            }
+        }
+        @else if $media == 'phablet' {
+            @media handheld, projection,tv, only screen and (max-width: 740px) {
+                @content;
+            }
+        }
+        @else if $media == 'phone' {
+            @media handheld, projection,tv, only screen and (max-width: 479px) {
+                @content;
+            }
+        }
+        @else if $media == 'smallphone' {
+            @media handheld, projection,tv, only screen and (max-width: 319px) {
+                @content;
+            }
+        }
+        @else if $media == 'watch' {
+            @media handheld, only screen and (max-width: 240px) {
+                @content;
+            }
+        }
+        @else if $media == 'print' {
+            @media print {
+                @content;
+            }
+        }
+        @else if $media == 'onlyIE10' {
+            @media all and (-ms-high-contrast:none) {
+                @content;
+            }
+        }
+        @else if $media == 'onlyOpera' {
+            @media not aural and (1) {
+                @content;
+            }
+        }
+        @else if $media == 'onlySafari' {
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+                @content;
+            }
+        }
+        @else {
+            @media media and (error-arg: #{$media}){
+
+            }
+        }
+    }
+
+}
