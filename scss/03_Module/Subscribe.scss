@@ -2,7 +2,7 @@
  *  出現位置は #lF .lSi 下で固定
  *
  * .Subscribe
- *   div
+ *   div.mspacer
  *     a
 --------------------------------------------------------------------------------------*/
 .Subscribe {
@@ -10,13 +10,9 @@
 }
 
     .Subscribe div {
-        margin : 1em 1em 0;
-        color  : $COLOR_FtS_fill; /* , を消す */
+        color      : $COLOR_FtS_fill; /* , を消す */
+        text-align : right;
     }
-        .Subscribe div {
-            text-align : right;
-            margin     : 0.6em 0.5em 0;
-        }
 
         .Subscribe a {
             @include noUnderLineAlways;
@@ -24,9 +20,8 @@
             /* //_{^#ie7-win */
             display     : inline-block;
             /* //_}^#ie7-win */
-            height       : 2em;
-            line-height  : 2;
-            padding      : 0 1em;
+            line-height  : 1;
+            padding      : 0.5em 1em;
             border-width : 1px;
             border-style : solid;
             margin       : 0 0 0.5em;
@@ -106,19 +101,18 @@
     .Subscribe {
         line-height : 0;
     }
-    .Subscribe div {
-        text-align : center;
-    }
-    .Subscribe a {
-        margin : 0.5em 0;
-    }
+        .Subscribe div {
+            text-align : center;
+        }
+            .Subscribe a {
+                margin : 0.5em 0;
+            }
 }
 
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     .Subscribe div {
-        margin : 0.6em 0 0;
         color  : $COLOR_WTC_fill; /* , を消す */
     }
 }
