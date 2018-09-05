@@ -1,0 +1,230 @@
+/* //_{+chat
+ *  Chat
+ *  div.chat
+ *    div.chatTitle
+ *    p / h2~h6
+ *    div.chatR / .chatL
+ *      span / p
+--------------------------------------------------------------------------------------*/
+.chat {
+    background     : #7493C2;
+    color          : #fff;
+    text-align     : center;
+    padding-bottom : 1em;
+    margin         : 1em 0;
+}
+    .chatTitle {
+        @include unbreak-after;
+        background : #273248;
+        padding    : 1em $CONTENT_MARGIN_LR;
+    }
+    .chat p,
+    .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
+        @include unbreak-inside;
+        @include unbreak-after;
+        line-height : 1.2;
+        font-size   : 1em;
+        color       : #fff;
+        background  : #5D769E;
+        margin      : 1em $CONTENT_MARGIN_LR;
+        padding     : .4em $CONTENT_MARGIN_LR;
+    /* //_{@modern,@ie9,@ie8 */
+        display     : inline-block;
+    /* //_}@modern,@ie9,@ie8 */
+    /* //_{@modern */
+        -webkit-border-radius : .4em;            
+           -moz-border-radius : .4em;
+    /* //_}@modern */
+    /* //_{@modern,@ie9 */                        
+                border-radius : .4em;
+    /* //_}@modern,@ie9 */
+    }
+    .chatL, .chatR {
+        position   : relative;
+        margin     : 1em 0;
+        text-align : left;
+    }
+    .chatL {
+        padding    : 0 20% 0 4em;
+    }
+    .chatR {
+        padding    : 0 4em 0 20%;
+    }
+        .chatR p, .chatL p {
+            margin     : .4em 0;
+            display    : block;
+            text-align : left;
+            color      : #111;
+        /* //_{#can-content */
+            position   : relative;
+        /* //_}#can-content */
+        }
+    /* //_{#can-content */
+        .chatR p:after, .chatL p:after {
+            content      : ".";
+            display      : block;
+            speak        : none;
+            position     : absolute;
+            top          : .4em;
+            width        : 0;
+            height       : 0;
+            overflow     : hidden;
+            border-style : solid;
+        }
+        .chatL p:after {
+            border-color : transparent #fff;
+            border-width : .3em .6em .3em 0;
+            left         : -0.5em;
+        }
+        .chatR p:after {
+            border-color : transparent #85E445;
+            border-width : .3em 0 .3em 0.6em;
+            right        : -0.5em;
+        }
+    /* //_}#can-content */
+
+        .chatL p, .chatL .chatMember { 
+            background : #fff;
+        }
+        .chatR p, .chatR .chatMember {
+            background : #85E445;
+        }
+
+        .chatMember {
+            @include unbreak-after;
+            position    : absolute;
+            top         : -0.414em;
+            overflow    : hidden;
+            text-align  : center !important;
+            width       : 2em;
+            height      : 1em;
+            line-height : 1;
+            padding     : 0.914em 0.414em;
+            color       : #111;
+        /* //_{@modern */
+            -webkit-border-radius : 1.414em;          
+               -moz-border-radius : 1.414em;
+        /* //_}@modern */
+        /* //_{@modern,@ie9 */                        
+                    border-radius : 1.414em;
+        /* //_}@modern,@ie9 */
+        }
+
+        .chatL .chatMember { 
+            left : 0.4em;
+        }
+        .chatR .chatMember {
+            right : 0.4em;
+        }
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .chatL {
+        padding    : 0 9% 0 4em;
+    }
+    .chatR {
+        padding    : 0 4em 0 9%;
+    }
+}
+
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@include media(smallphone) {
+    .chatMember {
+        position : static;
+        display  : inline-block;
+    }
+    .chatL {
+        padding  : 0 9% 0 $CONTENT_MARGIN_LR;
+    }
+    .chatR {
+        text-align : right;
+        padding    : 0 $CONTENT_MARGIN_LR 0 9%;
+    }
+    .chatR p, .chatL p {
+        margin     : 0 0 .4em;
+    }
+    .chatL p:after, .chatR p:after {
+        top          : -.3em;
+        border-width : 0 .2em .4em;
+    }
+    .chatL p:after {
+        border-color : #fff transparent;
+        left         : 1.214em;
+    }
+    .chatR p:after {
+        border-color : #85E445 transparent;
+        right        : 1.214em;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .chat {
+        background     : #fff;
+        color          : $COLOR_PRT_text;
+        border-bottom  : 1px solid $COLOR_PRT_casual_text;
+    }
+        .chatTitle {
+            background    : #fff;
+            border-top    : 1px solid $COLOR_PRT_casual_text;
+            border-bottom : 1px solid $COLOR_PRT_casual_text;
+        }
+        .chat p,
+        .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
+            color       : $COLOR_PRT_text;
+            background  : #fff;
+            border      : 1px solid $COLOR_PRT_casual_fill;
+        }
+
+        .chatR p, .chatL p {
+            color      : $COLOR_PRT_text;
+            background : #fff;
+            border      : 1px solid $COLOR_PRT_casual_fill;
+        }
+
+        /* //_{#can-content */
+            .chatR p:before, .chatL p:before {
+                content      : ".";
+                display      : block;
+                speak        : none;
+                position     : absolute;
+                top          : 5px;
+                width        : 0;
+                height       : 0;
+                overflow     : hidden;
+                border-style : solid;
+            }
+            .chatL p:before {
+                border-color : transparent $COLOR_PRT_casual_fill;
+                border-width : 3px 7px 3px 0;
+                left         : -7px;
+            }
+            .chatR p:before {
+                border-color : transparent $COLOR_PRT_casual_fill;
+                border-width : 3px 0 3px 7px;
+                right        : -7px;
+            }
+            .chatL p:after, .chatR p:after {
+                top          : 5px;
+                border-color : transparent #fff;
+            }
+            .chatL p:after {
+                border-width : 3px 7px 3px 0;
+                left         : -6px;
+            }
+            .chatR p:after {
+                border-width : 3px 0 3px 7px;
+                right        : -6px;
+            }
+        /* //_}#can-content */
+
+        .chatMember { 
+            background : #fff !important;
+            color      : $COLOR_PRT_text;
+            border     : 1px solid $COLOR_PRT_casual_fill;
+        }
+}
+/* //_}+chat */
