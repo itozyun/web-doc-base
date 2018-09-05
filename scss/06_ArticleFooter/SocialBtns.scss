@@ -1,35 +1,34 @@
 /* =====================================================================================
- * //_{+SocialButtons
+ * //_{+SocialBtns
  */
 
-/* [ArticleFooter Item] SocialButtons
+/* [ArticleFooter Item] SocialBtns
  *
- * .SocialButtons
+ * .SocialBtns
  *   a
 --------------------------------------------------------------------------------------*/
-.SocialButtons {
+.SocialBtns {
     @include article-footer-item;
 
     padding       : 1em 0 0.5em;
     color         : $COLOR_BdM_fill; /* , を消す */
 }
 
-    .SocialButtons a {
+    .SocialBtns a {
         @include noUnderLineAlways;
 
     /* //_{@modern,@ie9,@ie8 */
         display      : inline-block;
     /* //_}@modern,@ie9,@ie8 */
-        height       : 2em;
-        line-height  : 2;
-        padding      : 0 1em;
+        line-height  : 1;
+        padding      : .5em 1em;
         border-width : 1px;
         border-style : solid;
         margin       : 0 0 0.5em;
         cursor       : pointer;
     }
 
-.SocialButtons {
+.SocialBtns {
     .tw {
         background   : #1B95E0;
         border-color : #1B95E0;
@@ -66,25 +65,25 @@
         color        : #00C300;
     }
 }
-    .SocialButtons a:link {
+    .SocialBtns a:link {
         background : $COLOR_BdM_fill;
     }
-    .SocialButtons a:visited {
+    .SocialBtns a:visited {
         color      : #fff;
     }
 
-    .SocialButtons a:hover {
+    .SocialBtns a:hover {
         background : $COLOR_ACCENT;
         color      : #fff;
     }
-    .SocialButtons a:active, .SocialButtons a:focus {
+    .SocialBtns a:active, .SocialBtns a:focus {
         border-color : $COLOR_BdM_text;
     }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
-    .SocialButtons {
+    .SocialBtns {
         text-align : center;
     }
 }
@@ -92,10 +91,10 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    .SocialButtons {
+    .SocialBtns {
         line-height : 0;
     }
-    .SocialButtons a {
+    .SocialBtns a {
         margin      : 0.5em 0;
     }
 }
@@ -103,10 +102,10 @@
 /*  Watch 
 -------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .SocialButtons {
+    .SocialBtns {
         color        : $COLOR_WTC_fill; /* , を消す */
     }
-    .SocialButtons a:link {
+    .SocialBtns a:link {
         background   : $COLOR_WTC_fill;
     }
 }
@@ -114,8 +113,8 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    .SocialButtons {
+    .SocialBtns {
         display : none;
     }
 }
-/* //_}+SocialButtons */
+/* //_}+SocialBtns */
