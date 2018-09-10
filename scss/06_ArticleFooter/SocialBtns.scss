@@ -65,19 +65,20 @@
         color        : #00C300;
     }
 }
-    .SocialBtns a:link {
+    .SocialBtns a:link { /* a は詳細度を上げるため */
         background : $COLOR_BdM_fill;
     }
     .SocialBtns a:visited {
         color      : #fff;
     }
 
-    .SocialBtns a:hover {
+    .SocialBtns a:link:hover, .SocialBtns a:visited:hover {
         background : $COLOR_ACCENT;
         color      : #fff;
     }
-    .SocialBtns a:active, .SocialBtns a:focus {
-        border-color : $COLOR_BdM_text;
+    .SocialBtns a:link:active, .SocialBtns a:visited:active,
+    .SocialBtns a:link:focus , .SocialBtns a:visited:focus {
+        background : $COLOR_BdM_text;
     }
 
 /*  Tablet

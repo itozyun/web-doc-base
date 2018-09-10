@@ -137,23 +137,21 @@ a:link:active *, a:visited:active *, a:focus * {
 @mixin fill {
     @include noUnderLineAlways;
 
-    /* href がない場合 current カラーになる */
+    /* href がない場合 current を示す塗りになる */
     background : $COLOR_BdM_flip_fill;
     color      : $COLOR_BdM_flip_text;
 
     &:link {
-        background-color : none;
-        background-color : transparent;
-        color            : $COLOR_BdM_link;
+        background : $COLOR_BdM_fill;
+        color      : $COLOR_BdM_link;
     }
     &:visited {
-        background-color : none;
-        background-color : transparent;
-        color            : $COLOR_BdM_text;
+        background : $COLOR_BdM_fill;
+        color      : $COLOR_BdM_text;
     }
     &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-        background-color : $COLOR_BdM_casual_fill;
-        color            : $COLOR_BdM_text;
+        background : $COLOR_BdM_casual_fill;
+        color      : $COLOR_BdM_text;
     }
 
     .lS & {
@@ -161,11 +159,11 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_BdS_flip_text;
     }
     .lS &:link {
-        background : none;
+        background : $COLOR_BdS_fill;
         color      : $COLOR_BdS_link;
     }
     .lS &:visited {
-        background : none;
+        background : $COLOR_BdS_fill;
         color      : $COLOR_BdS_text;
     }
     .lS &:link:hover, .lS &:visited:hover {
@@ -178,11 +176,11 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_FtS_flip_text;
     }
     .fillbg &:link {
-        background : none;
+        background : $COLOR_FtS_fill;
         color      : $COLOR_FtS_link;
     }
     .fillbg &:visited {
-        background : none;
+        background : $COLOR_FtS_fill;
         color      : $COLOR_FtS_text;
     }
     .fillbg &:link:hover, .fillbg &:visited:hover {
@@ -195,11 +193,11 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_FtM_flip_text;
     }
     .fillbg .lM &:link {
-        background : none;
+        background : $COLOR_FtM_fill;
         color      : $COLOR_FtM_link;
     }
     .fillbg .lM &:visited {
-        background : none;
+        background : $COLOR_FtM_fill;
         color      : $COLOR_FtM_text;
     }
     .fillbg .lM &:link:hover, .fillbg .lM &:visited:hover {
@@ -213,11 +211,11 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_HdS_flip_text;
     }
     #lH &:link {
-        background : none;
+        background : $COLOR_HdS_fill;
         color      : $COLOR_HdS_link;
     }
     #lH &:visited {
-        background : none;
+        background : $COLOR_HdS_fill;
         color      : $COLOR_HdS_text;
     }
     #lH &:link:hover, #lH &:visited:hover {
@@ -230,11 +228,11 @@ a:link:active *, a:visited:active *, a:focus * {
         color      : $COLOR_HdM_flip_text;
     }
     #lH .lM &:link {
-        background : none;
+        background : $COLOR_HdM_fill;
         color      : $COLOR_HdM_link;
     }
     #lH .lM &:visited {
-        background : none;
+        background : $COLOR_HdM_fill;
         color      : $COLOR_HdM_text;
     }
     #lH .lM &:link:hover, #lH .lM &:visited:hover {
@@ -245,22 +243,20 @@ a:link:active *, a:visited:active *, a:focus * {
 
     @include media(watch){
         /* href がない場合 current カラーになる */
-        background-color : $COLOR_WTC_flip_fill;
-        color            : $COLOR_WTC_flip_text;
+        background : $COLOR_WTC_flip_fill;
+        color      : $COLOR_WTC_flip_text;
 
         &:link {
-            background-color : none;
-            background-color : transparent;
-            color            : $COLOR_WTC_link;
+            background : $COLOR_WTC_fill;
+            color      : $COLOR_WTC_link;
         }
         &:visited {
-            background-color : none;
-            background-color : transparent;
-            color            : $COLOR_WTC_text;
+            background : $COLOR_WTC_fill;
+            color      : $COLOR_WTC_text;
         }
         &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-            background-color : $COLOR_WTC_casual_fill;
-            color            : $COLOR_WTC_text;
+            background : $COLOR_WTC_casual_fill;
+            color      : $COLOR_WTC_text;
         }        
     }
 }

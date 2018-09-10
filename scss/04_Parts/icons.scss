@@ -24,6 +24,9 @@
     & {
         border-color    : $COLOR_BdM_casual_text;
     }
+    :focus &, :active & {
+        border-color    : $COLOR_BdM_fill;
+    }
     .lS & {
         border-color    : $COLOR_BdS_casual_text;
     }
@@ -46,6 +49,9 @@
     & {
         border-color    : $COLOR_BdM_casual_text transparent;
     }
+    :focus &, :active & {
+        border-color    : $COLOR_BdM_fill transparent;
+    }
     .lS & {
         border-color    : $COLOR_BdS_casual_text transparent;
     }
@@ -67,6 +73,9 @@
 @mixin icon-border-transparent-fill {
     & {
         border-color    : transparent $COLOR_BdM_casual_text;
+    }
+    :focus &, :active & {
+        border-color    : transparent $COLOR_BdM_fill;
     }
     .lS & {
         border-color    : transparent $COLOR_BdS_casual_text;
