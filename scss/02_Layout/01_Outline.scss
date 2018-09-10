@@ -16,69 +16,69 @@
  *
 --------------------------------------------------------------------------------------*/
 
-
-/*  wrapper
---------------------------------------------------------------------------------------*/    
-.lW {
-    /* //_{^#ie89 */
-        @include clearfix;
-    /* //_}^#ie89 */
-}
-
-.lW, .lX {
-    width     : 98%;
-    /* //_{^#ie6-win */
-    max-width : $PC_MAX_WIDTH_EM;
-    /* //_}^#ie6-win */
-    /* //_{^@ie5win */
-    margin    : 0 auto;
-    /* //_}^@ie5win */
-}
-
-/*  main
---------------------------------------------------------------------------------------*/    
-    .lM {
+/* //_{^+mobileOnly */
+    /*  wrapper
+    --------------------------------------------------------------------------------------*/    
+    .lW {
         /* //_{^#ie89 */
-        width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
-        float : left;
+            @include clearfix;
         /* //_}^#ie89 */
     }
-        .lMi {
-            margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-        }
 
-/*  sub
---------------------------------------------------------------------------------------*/
-    .lS {
-        width : 100% * $PC_SUB_COLUMN_RATIO;
-        /* //_{^#ie89 */
-        float : right;
-        /* //_}^#ie89 */
+    .lW, .lX {
+        width     : 98%;
+        /* //_{^#ie6-win */
+        max-width : $PC_MAX_WIDTH_EM;
+        /* //_}^#ie6-win */
+        /* //_{^@ie5win */
+        margin    : 0 auto;
+        /* //_}^@ie5win */
     }
-        .lSi {
-            /* //_{@ie6 */
-            width        : 82%;
-            /* //_}@ie6 */
-            /* //_{#ie55- */
-            width        : 100%;
-            /* //_}#ie55- */
-            margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
-            margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+
+    /*  main
+    --------------------------------------------------------------------------------------*/    
+        .lM {
+            /* //_{^#ie89 */
+            width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+            float : left;
+            /* //_}^#ie89 */
         }
+            .lMi {
+                margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+            }
 
-/*  x-column
---------------------------------------------------------------------------------------*/
-    .lXi {
-        padding-left  : 100% * $PC_COLUMN_GAP_RATIO;
-        padding-right : 100% * $PC_COLUMN_GAP_RATIO;
-    }
-/*
- * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
- */
+    /*  sub
+    --------------------------------------------------------------------------------------*/
+        .lS {
+            width : 100% * $PC_SUB_COLUMN_RATIO;
+            /* //_{^#ie89 */
+            float : right;
+            /* //_}^#ie89 */
+        }
+            .lSi {
+                /* //_{@ie6 */
+                width        : 82%;
+                /* //_}@ie6 */
+                /* //_{#ie55- */
+                width        : 100%;
+                /* //_}#ie55- */
+                margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+                margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+            }
 
-/*  float-layout -> table-layout
---------------------------------------------------------------------------------------*/
-    /* //_{#ie89 */
+    /*  x-column
+    --------------------------------------------------------------------------------------*/
+        .lXi {
+            padding-left  : 100% * $PC_COLUMN_GAP_RATIO;
+            padding-right : 100% * $PC_COLUMN_GAP_RATIO;
+        }
+    /*
+    * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
+    */
+
+    /* //_{#ie89
+     *  float-layout -> table-layout
+    --------------------------------------------------------------------------------------*/
     .lW {
         display      : table;
         table-layout : fixed;
@@ -94,6 +94,7 @@
                 margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
             }
     /* //_}#ie89 */
+/* //_}^+mobileOnly */
 
 /* //_{@modern */
 /*  メディアクエリをサポートするブラウザだけ table-layout にする
@@ -183,8 +184,8 @@
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
+/* //_{^+mobileOnly */
 @include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
-/* single */
     .lW, .lX {
         width     : 100%;
         /* //_{^#ie6-win */
@@ -211,6 +212,26 @@
                 margin-right : 0;
             }
 }
+/* //_}^+mobileOnly */
+
+/* //_{+mobileOnly */
+    .lW {
+        overflow : hidden; /* この指定が無いと塗りがはみ出る */
+    }
+        .lM, .lS {
+        /* //_{@ie9 */
+            display      : table;
+            width        : 100%;
+            table-layout : fixed;
+        /* //_}@ie9 */
+        }
+            .lMi, .lSi, .lXi {
+                max-width : $TABLET_MAX_WIDTH_EM;
+                /* //_{^@ie5win */
+                    margin    : 0 auto;
+                /* //_}^@ie5win */
+            }
+/* //_}+mobileOnly */
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/

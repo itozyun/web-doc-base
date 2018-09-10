@@ -1,20 +1,21 @@
-/* //_{@ie8,@ie9,@modern */
-[data-lmc] {
-    @include clearfix;
-}
-/* //_}@ie8,@ie9,@modern */
-
-/* //_{#ie7-win */
-#lF .lMi {
-    @include clearfix;
-}
-/* //_}#ie7-win */
-    .lM1 {
-        float : left;
-        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
-    }
-    .lM2 {
-        float : right;
-        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
-    }
- 
+/* //_{^+mobileOnly */
+    /* //_{@ie8,@ie9,@modern */
+        [data-lmc] {
+            @include clearfix;
+        }
+        /* //_}@ie8,@ie9,@modern */
+        
+        /* //_{#ie7-win */
+        #lF .lMi {
+            @include clearfix;
+        }
+        /* //_}#ie7-win */
+            .lM1 {
+                float : left;
+                width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+            }
+            .lM2 {
+                float : right;
+                width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+            }
+/* //_}^+mobileOnly */

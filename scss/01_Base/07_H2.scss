@@ -76,9 +76,11 @@ h2:after {
 
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
+/* //_{^+mobileOnly */
 .lS h2 {
     text-align : right;
 }
+/* //_}^+mobileOnly */
 
 /* //_{#can-content */
 .lS h2:after {
@@ -92,9 +94,11 @@ h2:after {
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet_print) {
+    /* //_{^+mobileOnly */    
     .lS h2 {
         text-align   : left;
     }
+    /* //_}^+mobileOnly */
     /* //_{#can-content */
     .lS h2:after {
         left  : 0;

@@ -23,11 +23,25 @@
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
 /* 2column */
+/* //_{+mobileOnly */
+    /* //_{@ie8,@ie9,@modern */
+        [data-lmc] {
+            @include clearfix;
+        }
+    /* //_}@ie8,@ie9,@modern */
+        
+    /* //_{#ie7-win */
+        .lMi, .lSi {
+            @include clearfix;
+        }
+    /* //_}#ie7-win */
+/* //_}+mobileOnly */
+
     [data-lmc],
     [data-lsc] {
         padding-bottom : 2em;
     }
-    [data-lsc] {
+    #lB .lS {
         border-width : 1px 0 0;
         border-style : solid;
     }

@@ -1,35 +1,57 @@
 $MEDIAQUERY_TABLET_MAX_PX : 950;
+$MEDIAQUERY_TABLET        : 'handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
 
 /* //_{#can-mq */
-$MEDIAQUERY_TABLET_AND_PRINT : 'print, handheld, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
-$NO_MEDIA_QUERY : 0;
+$MEDIAQUERY_TABLET_AND_PRINT : 'print, handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
+$NO_MEDIA_QUERY              : 1;
 /* //_}#can-mq */
 
 /* //_{^#can-mq */
 $MEDIAQUERY_TABLET_AND_PRINT : 'print';
-$NO_MEDIA_QUERY : 1;
+$NO_MEDIA_QUERY              : 0;
 /* //_}^#can-mq */
+
+/* //_{+mobileOnly */
+$COMMENT_OUT : (
+    'WQXGA'        : 0,
+    'WSXGA'        : 0,
+    'pc'           : 0,
+    'tablet_print' : 2,
+    'tablet'       : 2,
+    'phablet'      : $NO_MEDIA_QUERY,
+    'phone'        : $NO_MEDIA_QUERY,
+    'smallphone'   : $NO_MEDIA_QUERY,
+    'watch'        : 1,
+    'print'        : 1,
+    'onlyOpera'    : $NO_MEDIA_QUERY,
+    'onlyIE10'     : $NO_MEDIA_QUERY,
+    'onlySafari'   : $NO_MEDIA_QUERY
+);
+/* //_}+mobileOnly */
 
 $COMMENT_OUT : (
     'WQXGA'        : $NO_MEDIA_QUERY,
     'WSXGA'        : $NO_MEDIA_QUERY,
     'pc'           : $NO_MEDIA_QUERY,
-    'tablet_print' : 0,
+    'tablet_print' : 1,
     'tablet'       : $NO_MEDIA_QUERY,
     'phablet'      : $NO_MEDIA_QUERY,
     'phone'        : $NO_MEDIA_QUERY,
     'smallphone'   : $NO_MEDIA_QUERY,
     'watch'        : $NO_MEDIA_QUERY,
-    'print'        : 0,
+    'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
     'onlyIE10'     : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 ) !default;
 
 @mixin media($media) {
-    @if map-get($COMMENT_OUT, $media) == 0 {
+    @if map-get($COMMENT_OUT, $media) == 2 {
+        @content;
+    }
+    @else if map-get($COMMENT_OUT, $media) == 1 {
         @if $media == 'pc' {
-            @media only screen and (min-width: #{$MEDIAQUERY_TABLET_MAX_PX + 1}px){
+            @media only screen and (min-width: #{$MEDIAQUERY_TABLET_MAX_PX / 16 + .001}em){
                 @content;
             }
         }
@@ -49,22 +71,22 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'tablet' {
-            @media handheld, projection,tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px) {
+            @media #{$MEDIAQUERY_TABLET} {
                 @content;
             }
         }
         @else if $media == 'phablet' {
-            @media handheld, projection,tv, only screen and (max-width: 740px) {
+            @media handheld, projection, tv, only screen and (max-width: 740px) {
                 @content;
             }
         }
         @else if $media == 'phone' {
-            @media handheld, projection,tv, only screen and (max-width: 479px) {
+            @media handheld, projection, tv, only screen and (max-width: 479px) {
                 @content;
             }
         }
         @else if $media == 'smallphone' {
-            @media handheld, projection,tv, only screen and (max-width: 319px) {
+            @media handheld, projection, tv, only screen and (max-width: 319px) {
                 @content;
             }
         }

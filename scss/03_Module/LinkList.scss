@@ -15,7 +15,7 @@
         /* href がない場合 current カラーになる */
         @include fill;
         @include unbreak-inside;
-        cursor             : pointer;
+        cursor : pointer;
     }
 }
 
@@ -32,25 +32,21 @@
 
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
-.lS .LinkList {
-    text-align : right;
-}
-
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .LinkList a {
-        /* @include unbreak-inside; */
+    /* //_{^+mobileOnly */
+    .lS .LinkList {
+        text-align : right;
     }
-}
+    /* //_}^+mobileOnly */
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
+/* //_{^+mobileOnly */
 @include media(tablet_print) {
     .lS .LinkList {
         text-align : left;
-    }
+    }    
 }
+/* //_}^+mobileOnly */
 
 /*  Phablet
 --------------------------------------------------------------------------------------*/

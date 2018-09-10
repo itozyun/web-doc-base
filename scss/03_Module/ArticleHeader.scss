@@ -52,6 +52,16 @@
     /* //_}^+from-h2-at-post */
 }
 
+/* //_{+mobileOnly */
+    /* //_{+from-h2-at-post */
+        .AHead h2 { text-align : center; }
+    /* //_}+from-h2-at-post */
+
+    /* //_{^+from-h2-at-post */
+        .AHead h1 { text-align : center; }
+    /* //_}^+from-h2-at-post */
+/* //_}+mobileOnly */
+
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
