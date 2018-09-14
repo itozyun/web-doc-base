@@ -1,8 +1,8 @@
 .tl {
-    border-collapse   : collapse;
+    /* border-collapse   : collapse;
     empty-cells       : show;
     border-spacing    : 0;
-    line-height       : 1.4;
+    @include lineHeight(1.4, 1); */
 }
     .tl th, .tl td {
         background : none !important;

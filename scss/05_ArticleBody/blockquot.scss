@@ -57,19 +57,6 @@ blockquote {
         color       : $COLOR_BdM_casual_text;
     }
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    /* blockquote {
-        padding : $CONTENT_MARGIN_LR_WSXGA $CONTENT_MARGIN_LR_WSXGA/2;
-
-        p, pre, dl, ul, ol, blockquote, .box, .hscroll {
-            margin-left  : $CONTENT_MARGIN_LR_WSXGA/2;
-            margin-right : $CONTENT_MARGIN_LR_WSXGA/2;
-        }
-    } */
-}
-
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {

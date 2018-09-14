@@ -117,7 +117,7 @@ $COMMENT_OUT : (
         }
         @else {
             @media media and (error-arg: #{$media}){
-
+                @content;
             }
         }
     }

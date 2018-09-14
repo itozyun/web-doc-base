@@ -11,6 +11,9 @@
     @include article-footer-item;
 
     padding       : 1em 0 0.5em;
+    /* //_{#ie7-win */
+    padding      : 1em 0;
+    /* //_}#ie7-win */
     color         : $COLOR_BdM_fill; /* , を消す */
 }
 
@@ -20,8 +23,8 @@
     /* //_{@modern,@ie9,@ie8 */
         display      : inline-block;
     /* //_}@modern,@ie9,@ie8 */
-        line-height  : 1;
         padding      : .5em 1em;
+        line-height  : 1;
         border-width : 1px;
         border-style : solid;
         margin       : 0 0 0.5em;

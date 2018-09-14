@@ -36,6 +36,14 @@
             line-height : $BASE_LINE_HEIGHT;
         }
 
+        /* //_{^+mobileOnly */
+            /* //_{@ie5win */
+            body {
+                overflow-x : hidden;
+            }
+            /* //_}@ie5win */ 
+        /* //_}^+mobileOnly */
+
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {

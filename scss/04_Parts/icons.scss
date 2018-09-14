@@ -6,7 +6,10 @@
     /* //_{#can-content */
     position     : relative;
     padding-left : 1.2em;
-
+    /* //_{@modern */
+        display        : inline-block; /* 3DSはインライン要素でpaddingが効かない、DSiでrelativeが効かない */
+        vertical-align : text-top;
+    /* //_}@modern */
     &:before, &:after {
         content       : ".";
         speak         : none;
