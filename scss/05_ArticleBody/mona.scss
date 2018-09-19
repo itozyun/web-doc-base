@@ -3,7 +3,7 @@
 /* http://b4t.jp/823 */
 
 @mixin mona {
-    line-height : 1.125;
+    @include lineHeight(1.125, 0);
 
 /* IE */
 /* //_{#ie6-win */

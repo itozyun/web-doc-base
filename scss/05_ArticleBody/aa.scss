@@ -5,7 +5,7 @@
     speak       : none;
     padding     : 2em 1em;
     font-size   : 0.75em;
-    line-height : 1;
+    @include lineHeight(1, 0);
 }
 
 /*  Watch

@@ -9,20 +9,15 @@
  *          h3, b
  *          div, p
 --------------------------------------------------------------------------------------*/
+$RICHLINK_TEXT_SIZE : 0.875;
+
 .RichLink {
     @include stackableModule;
 }
     .RichLink-sep {
         @include linkCommon;
-        /* //_{^@ie5win */
-        line-height : 1.4;
-        /* //_}^@ie5win */
+        @include lineHeight(1.4, 1);
     }
-    /* //_{@ie5win */
-    .RichLink-sep * {
-        line-height : 1.4;
-    }
-    /* //_}@ie5win */
         .RichLink-sep div {
             border-width : 0 0 1px;
             border-style : solid;
@@ -50,7 +45,7 @@
 
                 .RichLink a div, .RichLink b {
                     display     : block;
-                    font-size   : 0.875em;
+                    font-size   : 1em * $RICHLINK_TEXT_SIZE;
                     font-weight : normal;
                 }
 
@@ -109,8 +104,6 @@
         /* //_}@ie6,@ie7 */
     }
         .lM .RichLink img {
-            /* width      : 4.5em;
-            height     : 4.5em; */
             height     : auto;
             margin     : 0 1.2em 1em 0;
         }
@@ -139,7 +132,7 @@
 
         .lS .RichLink a div, .lS .RichLink b {
             /* //_{#ie55-,@ie8,@ie9,@modern */
-            padding : 0 0 0.914em; /* 0.8em/0.875; */
+            padding : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
             /* //_}#ie55-,@ie8,@ie9,@modern */
             /* //_{@ie6,@ie7 */
             padding : 0;
@@ -153,13 +146,14 @@
         display      : table;
         table-layout : fixed;
         margin       : 1em 0;
-    }
-        .lMf .RichLink-sep div {
+
+        & > div {
             display        : table-cell;
             vertical-align : top;
             border-width   : 0;
             width          : 33.3%;
         }
+    }
         .lM .RichLink a {
             padding : 1em;
         }
@@ -175,7 +169,7 @@
         padding : 0.7em 0.5em 0;
     }
         .lS .RichLink a div, .lS .RichLink b {
-            padding : 0 0 0.57em; /* 0.5em / 0.875; */
+            padding : 0 0 0.5em / $RICHLINK_TEXT_SIZE;
         }
         .lS .RichLink img {
             width        : 2.6em;
@@ -194,6 +188,9 @@
         padding-left  : 1%;
         padding-right : 1%;
     }
+    .lM .RichLink h3 {
+        font-size : 1.3em;
+    }
     .lS .RichLink a div {
         font-size : 1em;
     }
@@ -202,6 +199,9 @@
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
+    .lM .RichLink h3 {
+        font-size : 1.1em;
+    }
     .lM .RichLink img {
         float  : none;
         margin : 0 auto 1em;

@@ -7,17 +7,17 @@
         empty-cells       : show;
         border-spacing    : 0;
     /* //_{@ie5win,@ie55 */
-        table-layout      : fixed;
+        table-layout      : fixed; /* fixed 指定が無いと table がカラムをはみ出す */
     /* //_}@ie5win,@ie55 */
+    /* //_{^@ie5win */
+        line-height       : 1.2;
+    /* //_}^@ie5win */
     }
-
-    tr
-    /* //_{@ie5win,@ie55 */
-        *
-    /* //_}@ie5win,@ie55 */
-    {
-        line-height  : 1.2;
+/* //_{@ie5win */
+    tr * {
+        line-height       : 1.2;
     }
+/* //_}@ie5win */
 
     th {
         font-weight  : normal;

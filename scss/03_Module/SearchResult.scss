@@ -9,11 +9,14 @@
 --------------------------------------------------------------------------------------*/
 .SearchResult {
     margin-bottom : 2em;
+    @include lineHeight(1.2, 1);
 }
+    .SearchResult p {
+        margin : 0.5em;
+    }
     .SearchResult div div {
         @include unbreak-inside;
-        margin      : 0 0.5em;
-        line-height : 1.2;
+        margin : 0 0.5em;
     }
         .SearchResult h3 {
             margin-bottom : 0;

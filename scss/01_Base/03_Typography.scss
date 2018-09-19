@@ -18,15 +18,10 @@
 /*  Typography
 --------------------------------------------------------------------------------------*/
     h1, .h1, h2, h3, h4, h5, h6 {
-        line-height        : 1.2;
+        @include lineHeight(1.2, 0)
         @include unbreak-inside;
         @include unbreak-after;
     }
-    /* //_{@ie5win */
-    h1 *, .h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
-        line-height        : 1.2;
-    }
-    /* //_}@ie5win */
 
     /* //_{+from-h2-at-post */
     h1, h2, h3, h6 {
@@ -43,7 +38,6 @@
         /* //_{#can-content */
         &:after {
             /* content : none; */
-
             display : none; /* for iOS4 */
         }
         /* //_}#can-content */
@@ -146,7 +140,7 @@
         /* //_}@modern */
         padding-left        : 2em;
         /* //_{@ie5win,@ie55 */
-        margin-left         : 0; /* old ie */
+        margin-left         : 0;
         /* //_}@ie5win,@ie55 */
     }
     li ul, dd ul {

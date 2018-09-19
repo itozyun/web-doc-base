@@ -1,0 +1,19 @@
+
+/* //_{@ie5win */
+$VALID_LINEHEIGHT : 0;
+/* //_}@ie5win */
+
+$VALID_LINEHEIGHT : 1 !default;
+
+@mixin lineHeight($height, $onlyChildren) {
+    @if $VALID_LINEHEIGHT == 1 or $onlyChildren == 0 {
+        & {
+            line-height : $height;
+        }
+    }
+    @if $VALID_LINEHEIGHT == 0 {
+        * {
+            line-height : $height;
+        }
+    }
+}

@@ -22,7 +22,7 @@
     .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
         @include unbreak-inside;
         @include unbreak-after;
-        line-height : 1.2;
+        @include lineHeight(1.2, 0);
         font-size   : 1em;
         color       : #fff;
         background  : #5D769E;
