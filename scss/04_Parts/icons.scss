@@ -27,7 +27,7 @@
     & {
         border-color    : $COLOR_BdM_casual_text;
     }
-    :focus &, :active & {
+    a:focus &, :active & { /* :focus だけでは ie11- で body:focus に反応してしまう */
         border-color    : $COLOR_BdM_fill;
     }
     .lS & {
@@ -52,7 +52,7 @@
     & {
         border-color    : $COLOR_BdM_casual_text transparent;
     }
-    :focus &, :active & {
+    a:focus &, :active & {
         border-color    : $COLOR_BdM_fill transparent;
     }
     .lS & {
@@ -77,7 +77,7 @@
     & {
         border-color    : transparent $COLOR_BdM_casual_text;
     }
-    :focus &, :active & {
+    a:focus &, :active & {
         border-color    : transparent $COLOR_BdM_fill;
     }
     .lS & {
