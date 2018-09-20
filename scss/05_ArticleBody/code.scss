@@ -1,0 +1,25 @@
+/* //_{+it
+--------------------------------------------------------------------------------------*/
+code, var {
+    background : $COLOR_BdM_casual_fill;
+    padding    : .1em .4em;
+
+    blockquote & {
+        background : $COLOR_BdM_casual_text;
+        color      : $COLOR_BdM_fill;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    code, var {
+        background : $COLOR_WTC_casual_fill;
+    
+        blockquote & {
+            background : $COLOR_WTC_casual_text;
+            color      : $COLOR_WTC_fill;
+        }
+    }
+}
+/* //_}+it */

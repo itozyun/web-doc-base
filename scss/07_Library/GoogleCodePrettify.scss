@@ -1,11 +1,20 @@
 /* //_{+GoogleCodePrettify */
 /*  Google Code Prettify
 --------------------------------------------------------------------------------------*/
-.prettyprint {
+.prettyprint
+/* //_{+it */
+, .prettyprint code
+/* //_}+it */
+{
     /* @include unbreak-inside; */
     background : #333;
     color      : #fff;
 }
+/* //_{+it */
+  .prettyprint code {
+      padding    : 0;
+  }
+/* //_}+it */
 
 pre.prettyprint {
     font-size   : 0.875em;
@@ -38,8 +47,14 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 /* //_}^#ie55- */
 
 @include media(print) {
- .prettyprint {
+ .prettyprint
+/* //_{+it */
+  , .prettyprint code
+/* //_}+it */
+  {
     background : #fff;
+  }
+  .prettyprint {
     border     : 1px solid $COLOR_PRT_casual_fill;
   }
 /* //_{^#ie55- */    

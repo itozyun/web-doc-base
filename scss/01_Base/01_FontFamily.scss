@@ -34,17 +34,17 @@
         }
 /* //_}#ie6-win */
 
-        /**
-         * Bump up IE to get to 13px equivalent for these fixed-width elements
-         */
-/* //_{@modern,@ie9,@ie8,@ie7 */
-        pre, code, kbd, samp, tt {
-            font-family : monospace, serif;
-        }
-/* //_}@modern,@ie9,@ie8,@ie7 */
 
-/* //_{#ie6-win */
-        /* pre, */ code, kbd, samp, tt {
-            font-family : 'courier new', monospace;
-        }
-/* //_}#ie6-win */
+/* //_{+it */
+    /* //_{@modern,@ie9,@ie8,@ie7 */
+            pre, code, var, kbd, samp /* , tt */ {
+                font-family : SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
+            }
+    /* //_}@modern,@ie9,@ie8,@ie7 */
+
+    /* //_{#ie6-win */
+            /* pre, */ code, var, kbd, samp /* , tt */ {
+                font-family : 'Courier New', monospace;
+            }
+    /* //_}#ie6-win */
+/* //_}+it */
