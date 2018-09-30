@@ -2,7 +2,7 @@
  *  module 配下の要素をラップし適切な余白を与える
 --------------------------------------------------------------------------------------*/
 .mspacer {
-    margin : 1em 1em 0;
+    margin : 1em;
 
 /* //_{#ie7-win */
     word-break : break-all;
@@ -10,18 +10,18 @@
 }
 
 #lF .lM .mspacer {
-    margin : 0.6em 0.5em 0;
+    margin : 0.6em 0.5em;
 }
 
 .lS .mspacer {
-    margin : 0.6em 0 0;
+    margin : 0.6em 0;
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
     .mspacer {
-        margin : 1em 0.5em 0 !important;
+        margin : 1em 0.5em !important;
     }
 }
 
@@ -29,6 +29,6 @@
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     .mspacer {
-        margin : 0.6em 0 0 !important;
+        margin : 0.6em 0 !important;
     }
 }

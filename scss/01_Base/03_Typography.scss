@@ -23,59 +23,6 @@
         @include unbreak-after;
     }
 
-    /* //_{+from-h2-at-post */
-    h1, h2, h3, h6 {
-        font-weight        : normal;
-    }
-
-    @mixin h2-main-content {
-        font-size      : 2em;
-        padding        : 0;
-        border         : 0;
-        margin         : 2em 0;
-        letter-spacing : 2px;
-
-        /* //_{#can-content */
-        &:after {
-            /* content : none; */
-            display : none; /* for iOS4 */
-        }
-        /* //_}#can-content */
-    }
-
-    @mixin h3-main-content {
-        font-size      : 1.5em;
-        margin         : 2em 0 1em;
-        border-width   : 0.2em 0 0;
-        border-style   : solid;
-        padding        : 0.8em 0 0;
-        letter-spacing : 1px;
-    }
-
-    h4 {
-        font-size      : 1.25em;
-        letter-spacing : 1px;
-        border-width   : 0.1em 0 0;
-        border-style   : solid;
-        padding        : 0.8em 0 0;
-        margin         : 2.4em 0 1.2em;
-    }
-    h5 {
-        font-size      : 1em;
-        border-left    : 0.5em solid $COLOR_BdM_flip_fill;
-        padding        : 0 0 0 0.5em;
-        margin         : 1.5em 0 0.8em;
-    }
-    h6 {
-        font-size      : 1em;
-        border-width   : 0 0 0 0.3em;
-        border-style   : solid;
-        padding        : 0 0 0 0.6em;
-        margin         : 1.5em 0 0.8em 0.1em;
-    }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
     h1, h2, h3, h5, h6 {
         font-weight        : normal;
     }
@@ -131,7 +78,6 @@
         font-size      : 1em;
         margin         : 1.5em 0 0.8em 1em;
     }
-    /* //_}^+from-h2-at-post */
 
     ul, ol,
     li ol, li ul {
@@ -233,17 +179,9 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    /* //_{+from-h2-at-post */
-        h5 {
-            border-color : $COLOR_WTC_flip_fill;
-        }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
-        h4 {
-            border-color : $COLOR_WTC_flip_fill;
-        }
-    /* //_}^+from-h2-at-post */
+    h4 {
+        border-color : $COLOR_WTC_flip_fill;
+    }
 
     p, pre, dl, ul, ol, table, blockquote {
         margin-left  : 0;

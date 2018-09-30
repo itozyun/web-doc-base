@@ -10,72 +10,35 @@
         color  : $COLOR_FtM_casual_text;
     }
 
-/* //_{+from-h2-at-post */
-    .AHead h2 {
-        @include h2-main-content;
-
-        color      : $COLOR_FtM_text;
-        text-align : left;
-    }
-/* //_}+from-h2-at-post */
-
-/* //_{^+from-h2-at-post */
     .AHead h1 {
         @include h1-main-content;
 
         color      : $COLOR_FtM_text;
         text-align : left;
     }
-/* //_}^+from-h2-at-post */
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
-    /* //_{+from-h2-at-post */
-        .AHead h2 { text-align : center; }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
-        .AHead h1 { text-align : center; }
-    /* //_}^+from-h2-at-post */
+    .AHead h1 { text-align : center; }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tabet_print) {
-    /* //_{+from-h2-at-post */
-        .AHead h2 { text-align : center; }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
-        .AHead h1 { text-align : center; }
-    /* //_}^+from-h2-at-post */
+    .AHead h1 { text-align : center; }
 }
 
 /* //_{+mobileOnly */
-    /* //_{+from-h2-at-post */
-        .AHead h2 { text-align : center; }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
-        .AHead h1 { text-align : center; }
-    /* //_}^+from-h2-at-post */
+    .AHead h1 { text-align : center; }
 /* //_}+mobileOnly */
 
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    /* //_{+from-h2-at-post */
-    .AHead h2 {
-        letter-spacing : 0;
-    }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
     .AHead h1 {
         letter-spacing : 0;
     }
-    /* //_}^+from-h2-at-post */
 }
 
 /*  Phone
@@ -85,19 +48,10 @@
         text-align : center;
     }
 
-    /* //_{+from-h2-at-post */
-    .AHead h2 {
-        text-align : center;
-        font-size  : 1.5em;
-    }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
     .AHead h1 {
         text-align : center;
         font-size  : 1.5em;
     }
-    /* //_}^+from-h2-at-post */
 }
 
 /*  Print
@@ -106,17 +60,10 @@
     .AHead {
         color  : $COLOR_PRT_text;
     }
-/* //_{+from-h2-at-post */
-    .AHead h2 {
-        color  : $COLOR_PRT_text;
-    }
-/* //_}+from-h2-at-post */
 
-/* //_{^+from-h2-at-post */
     .AHead h1 {
         color  : $COLOR_PRT_text;
     }
-/* //_}^+from-h2-at-post */
 }
 
 /* =====================================================================================

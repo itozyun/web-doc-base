@@ -9,18 +9,10 @@ blockquote {
         border-width : 1px;
     }
 }
-    /* //_{+from-h2-at-post */
-        blockquote h4, blockquote h6 {
-            border-color : $COLOR_BdM_flip_fill;
-        }
-    /* //_}+from-h2-at-post */
 
-    /* //_{^+from-h2-at-post */
-        blockquote h3, blockquote h5 {
-            border-color : $COLOR_BdM_flip_fill;
-        }
-    /* //_}^+from-h2-at-post */
-
+    blockquote h3, blockquote h5 {
+        border-color : $COLOR_BdM_flip_fill;
+    }
 
     blockquote {
         p, pre, dl, ul, ol, blockquote, .box, .hscroll {
@@ -67,17 +59,9 @@ blockquote {
         background : $COLOR_WTC_casual_fill;
         color      : $COLOR_WTC_text;
     }
-    /* //_{+from-h2-at-post */
-        blockquote h6 {
-            border-color : $COLOR_WTC_flip_fill;
-        }
-    /* //_}+from-h2-at-post */
-
-    /* //_{^+from-h2-at-post */
         blockquote h5 {
             border-color : $COLOR_WTC_flip_fill;
         }
-    /* //_}^+from-h2-at-post */
 
         blockquote:before,
         .js-bqLink {
