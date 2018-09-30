@@ -62,6 +62,12 @@ form :invalid {
 }
 /* //_}@modern */
 
+textarea, input {
+    @include highContrast {
+        border-width : 1px;
+    }
+}
+
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {

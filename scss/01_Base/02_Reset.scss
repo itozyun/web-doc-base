@@ -6,7 +6,15 @@
     a:active,
     a:hover {
         outline : 0;
+        
     }
+    a:focus,
+    a:active {
+        @include highContrast {
+            outline : 2px solid;
+        }
+    }
+
 
     /* abbr[title] {
         border-bottom : 1px dotted;

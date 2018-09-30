@@ -23,6 +23,11 @@
 
     background  : $COLOR_BdM_casual_text;
     color       : $COLOR_BdM_fill;
+
+    @include highContrast {
+        border-style : solid;
+        border-width : 1px;
+    }
 }
 
 .btn:link {

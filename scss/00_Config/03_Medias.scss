@@ -24,7 +24,7 @@ $COMMENT_OUT : (
     'watch'        : 1,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
-    'onlyIE10'     : $NO_MEDIA_QUERY,
+    'ie10_edge'    : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 );
 /* //_}+mobileOnly */
@@ -41,7 +41,7 @@ $COMMENT_OUT : (
     'watch'        : $NO_MEDIA_QUERY,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
-    'onlyIE10'     : $NO_MEDIA_QUERY,
+    'ie10_edge'    : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 ) !default;
 
@@ -51,7 +51,7 @@ $COMMENT_OUT : (
     }
     @else if map-get($COMMENT_OUT, $media) == 1 {
         @if $media == 'pc' {
-            @media only screen and (min-width: #{$MEDIAQUERY_TABLET_MAX_PX / 16 + .001}em){
+            @media only screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / 16}em){
                 @content;
             }
         }
@@ -100,8 +100,15 @@ $COMMENT_OUT : (
                 @content;
             }
         }
-        @else if $media == 'onlyIE10' {
-            @media all and (-ms-high-contrast:none) {
+        /**
+         * -ms-high-contrast を CSS ハックに使ってはいけない、ただひとつの理由
+         *   https://jeffreyfrancesco.org/weblog/2017042601/
+         */
+        @else if $media == 'ie10_edge' {
+            @media (-ms-high-contrast:none) {
+                @content;
+            }
+            @media (-ms-high-contrast:active) {
                 @content;
             }
         }
@@ -121,5 +128,13 @@ $COMMENT_OUT : (
             }
         }
     }
+}
 
+@mixin highContrast {
+    @media (-ms-high-contrast:active) {
+        & { @content; }
+    }
+    @at-root .highContrast & {
+        @content;
+    }
 }

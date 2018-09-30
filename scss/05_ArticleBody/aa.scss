@@ -6,6 +6,10 @@
     padding     : 2em 1em;
     font-size   : 0.75em;
     @include lineHeight(1, 0);
+    @include highContrast {
+            border-style : solid;
+            border-width : 1px;
+    }
 }
 
 /*  Watch

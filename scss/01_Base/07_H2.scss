@@ -30,7 +30,12 @@ h2:after {
 
     background : $COLOR_BdM_accent;
     color      : $COLOR_BdM_accent;
+
+    @include highContrast {
+        display : none;
+    }    
 }
+
 
 .lS h2:after {
     @if $COLOR_BdM_accent != $COLOR_BdS_accent {
@@ -96,7 +101,7 @@ h2:after {
 @include media(tablet_print) {
     /* //_{^+mobileOnly */    
     .lS h2 {
-        text-align   : left;
+        text-align : left;
     }
     /* //_}^+mobileOnly */
     /* //_{#can-content */
@@ -125,7 +130,7 @@ h2:after {
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
     .lM h2, .lS h2 {
-        text-align    : center;
+        text-align : center;
     }
     
     .lM h2:after, .lS h2:after {

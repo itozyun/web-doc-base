@@ -78,6 +78,9 @@
     .SocialBtns a:link:hover, .SocialBtns a:visited:hover {
         background : $COLOR_ACCENT;
         color      : #fff;
+        @include highContrast {
+            text-decoration : underline !important;
+        }
     }
     .SocialBtns a:link:active, .SocialBtns a:visited:active,
     .SocialBtns a:link:focus , .SocialBtns a:visited:focus {

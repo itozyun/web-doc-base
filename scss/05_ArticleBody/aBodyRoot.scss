@@ -22,6 +22,12 @@
     .aBodyRoot h3 {
         @include h3-main-content;
     }
+        /* //_{#can-content */
+        .aBodyRoot h2:after {
+            /* content : none; */
+            display : none; /* for iOS4 content : none だけでは消えない */
+        }
+        /* //_}#can-content */
 /* //_}^+from-h2-at-post */
 
 /*  Object
@@ -31,8 +37,11 @@
     }
 
     a:focus img, a:link:active img, a:visited:active img {
-        /* outline     : 1px solid $COLOR_ACCENT; */
         background  : $COLOR_ACCENT;
+        @include highContrast {
+            padding : 0;
+            border  : 1px solid $COLOR_ACCENT;
+        }
     }
 
 /*  WSXGA

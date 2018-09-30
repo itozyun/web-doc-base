@@ -84,6 +84,9 @@
         border-color : $COLOR_FtS_fill !important;
         background   : $COLOR_ACCENT;
         color        : #fff !important;
+        @include highContrast {
+            text-decoration : underline !important;
+        }
     }
     .Subscribe div a:active, .Subscribe div a:focus {
         border-color : $COLOR_FtS_text;

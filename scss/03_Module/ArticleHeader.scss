@@ -161,6 +161,17 @@
     .AHead-labels a:hover {
         background : $COLOR_FtM_flip_fill;
         color      : $COLOR_FtM_flip_text;
+
+        @include highContrast {
+            text-decoration : underline !important;
+        }
+    }
+    .AHead-labels a:focus, .AHead-labels a:active {
+        @include highContrast {
+            padding      : 0.4em 0.9em;
+            border-style : solid;
+            border-width : .05em;
+        }
     }
 
 /*  Phone-

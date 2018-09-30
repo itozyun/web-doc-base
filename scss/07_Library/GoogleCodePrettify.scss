@@ -46,6 +46,16 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 /* //_}^#ie55- */
 
+/*  HighContrast
+--------------------------------------------------------------------------------------*/
+.prettyprint {
+  @include highContrast {
+  
+      border-style : solid;
+      border-width : 1px;
+  }
+}
+
 @include media(print) {
  .prettyprint
 /* //_{+it */

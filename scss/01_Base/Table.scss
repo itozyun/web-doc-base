@@ -1,6 +1,7 @@
 /*  Table
+ *    ie5 は <p> に続く <table> の前に </p> が必要
 --------------------------------------------------------------------------------------*/
-    /* tables still need 'cellspacing="0"' in the markup */
+    /* Need 'cellspacing="0"' in the markup for MacIE5 */
     table {
         border            : 0;
         border-collapse   : collapse;
@@ -12,7 +13,13 @@
     /* //_{^@ie5win */
         line-height       : 1.2;
     /* //_}^@ie5win */
+        @include highContrast {
+            border-style   : solid;
+            border-width   : 1px 0 0;
+            border-spacing : 2px;
+        }
     }
+
 /* //_{@ie5win */
     tr * {
         line-height       : 1.2;
@@ -20,12 +27,23 @@
 /* //_}@ie5win */
 
     th {
-        font-weight  : normal;
-        padding      : 0.5em;
+        font-weight : normal;
+        text-align  : left;
+        padding     : 0.5em;
+        @include highContrast {
+            font-weight  : bold; 
+            border-style : solid;
+            border-width : 0 0 1px;
+        }        
     }
+
     td {
-        padding      : 0.5em 0;
+        padding : 0.5em 0;
+        @include highContrast {
+            padding : 0.5em 0.25em;
+        }        
     }
+
     thead td {
         padding      : 0.5em 0.25em;
     }
@@ -42,6 +60,9 @@
     tbody td, tfoot th, tfoot td {
         border-style : solid;
         border-width : 0 0.5em 1px;
+        @include highContrast {
+            border-width : 0 0 1px;
+        }
     }
 
 /*  th, td
