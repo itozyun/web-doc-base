@@ -1,34 +1,21 @@
 /**
- * emu + ie5 で css が読み込まれない問題の対策
+ * ie11 の ie5 モード で css が読み込まれない問題の対策
  */
-document.documentMode === 5 && (function(window, document){
-var
-tempOnload = window.onload,
-main = window.onload = function( e ){
-    var scripts, script, link, head, src, mob;
+if( ua[ 'IEHost' ] && ua[ 'IE' ] < 5.5 ){
+    g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
+    function(){
+        var scripts = getElementsByTagName('script'),
+            script  = scripts[ scripts.length - 1 ],
+            src     = script.src.split( '/' ),
+            link    = document.createElement( 'link' ),
+            mob;
 
-    if( tempOnload ) tempOnload( e );
-    tempOnload = null;
-    
-    if( onload === main ){
-        onload = new Function();
-        onload = null;
+        --src.length;
+        mob = 0 <= ( '&' + location.search.substr( 1 ) + '&' ).indexOf( '&m=1&' ) ? '/m_' : '/';
+
+        g_head.appendChild( link );
+        link.href = src.join( '/' ) + mob + 'ie5win.css';
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
     };
-
-    scripts = document.getElementsByTagName('script');
-    script  = scripts[ scripts.length - 1 ];
-    src = script.src.split( '/' );
-
-    --src.length;
-
-    mob = 0 <= ( '&' + location.search.substr( 1 ) + '&' ).indexOf( '&m=1&' ) ? '/m_' : '/';
-
-    link = document.createElement( 'link' );
-    head = document.getElementsByTagName('head')[ 0 ];
-    head.appendChild( link );
-    link.href = src.join( '/' ) + mob + 'ie5win.css';
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
 };
-
-})(window, document);

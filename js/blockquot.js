@@ -1,34 +1,16 @@
-/**
- * http://unformedbuilding.com/articles/blockquote-and-jquery/
- */
 /*
-  Name: jQuery.prettyQuote.js
-  Version: 1.2
-  Required: jQuery.js (tested on jQuery 1.4.2)
-  Copy: Copyright (c) Unformed Building (http://unformedbuilding.com/)
-  Author: Matori/ub-pnr (pnr.matori@gmail.com)
-  Lisence: MIT
-  Date: 2010-09-17
-  Modified: 2010-09-28
+ * Original:
+ *  jQuery.prettyQuote.js
+ *  http://unformedbuilding.com/articles/blockquote-and-jquery/
 */
+var BLOCKQUOT_ROOT_ID = 'jM';
 
-(function(window, document, rootID){
-"use strict"
-var tempOnload = window.onload,
-    init = onload =
+g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
 function( e ){
-    var w3cDOM     = !!document.getElementsByTagName,
-        root       = w3cDOM ? document.getElementById( rootID ) : document.all[ rootID ],
-        elmTargets = w3cDOM ? root.getElementsByTagName( 'blockquote' ) : root.all.tags( 'blockquote' ),
-        elm, i = -1, title, cite;
+    "use strict";
 
-    if( tempOnload ) tempOnload( e );
-    tempOnload = null;
-    
-    if( onload === init ){
-        onload = new Function();
-        onload = init = null;
-    };
+    var elmTargets = getElementsByTagName( 'blockquote', getElementById( BLOCKQUOT_ROOT_ID ) ),
+        elm, i = -1, title, cite;
 
     for( ; elm = elmTargets[ ++i ]; ){
         title = elm.getAttribute( 'title' );
@@ -50,7 +32,7 @@ function( e ){
         
         link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
-        if( w3cDOM ){
+        if( g_w3cDOM ){
             elmCite = document.createElement( tag );
             add1st ? elm.insertBefore( elmCite, elm.firstChild ) : elm.appendChild( elmCite );
             elmCite.innerHTML = link;
@@ -82,7 +64,7 @@ function( e ){
         var isbn10 = isbn13.toString().slice(3,-1);
         var digit = 0;
         for(var i = 0; i < 9; i++){
-            digit += Number(isbn10.charAt(i)) * (10 - i);
+            digit += (isbn10.charAt(i) - 0) * (10 - i);
         }
         digit = (11 - (digit % 11)) %11;
         digit = digit === 10 ? 'X' : digit.toString();
@@ -93,4 +75,3 @@ function( e ){
         return url.indexOf( 'http' ) === 0;
     };
 };
-})(window, document, 'jM');

@@ -1,5 +1,6 @@
-if (navigator.cookieEnabled) {
-    (function( document ){
+"use strict";
+if(navigator.cookieEnabled){
+    (function(){
         var c = document.cookie.split( '; ' ),
             d = new Date( 0 ).toGMTString(),
             kv, i = -1, k;
@@ -8,5 +9,5 @@ if (navigator.cookieEnabled) {
             k = kv.split( '=' )[0];
             document.cookie = k + "=;expires=" + d + ';domain=.geocities.jp;path=/';
         };
-    })( document );
+    })();
 };

@@ -9,59 +9,36 @@
  *  // OK!(noway to turn off image)
  *   iOS   : Safari, Opera mini, Firefox, Chrome
  */
-(function(){
+g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
+function(){
     "use strict";
-var tempOnload = window.onload,
-    main = onload = function( e ){
-        var /* create image */
-            img  = new Image,
-            currentTime = new Date - 0,
-            src  = currentTime + '.' + currentTime + '?time=' + currentTime,
-            imgs = document.images,
-            i    = imgs.length,
-            body = document.body,
-            cn   = body.className;
 
-        // if( tempOnload ) tempOnload( e );
-        // tempOnload = null;
-        
-        if( onload === main ){
-            onload = new Function;
-            onload = null;
-        };
-        main = null;
+    var imgs = document.images,
+        i    = imgs.length,
+        img;
 
-        function disabledActionRun(){
-            cn = body.className;
-            body.className += ( cn ? ' ' : '' ) + 'img-disabled';
-        };
-
-        if ( ua[ 'Prsto' ] ){ // opera
-            img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==?time=' + currentTime;
-            img.complete || disabledActionRun();
-        } else if( ( 9 <= ua[ 'IE' ] ) || ua[ 'Edge' ] || ua[ 'Blink' ] || ua[ 'Gecko' ] ){// other
-            if( i ){
-                for( ; i; ){
-                    img = imgs[ --i ];
-                    if( img.naturalWidth ){
-                        return;
-                    };
-                };
-                disabledActionRun();
-            };
-        } else if( ua[ 'IE' ] ){// other
-            if( i ){
-                for( ; i; ){
-                    img = imgs[ --i ];
-                    if( img.complete ){
-                        return;
-                    };
-                };
-                disabledActionRun();
-            };
-        } else {
-            img.src = src;
-            img.complete && disabledActionRun();
+    function disabledActionRun( img ){
+        var parent = img.parentElement || img.parentNode,
+            cn = parent.className;
+    
+        if( ( ' ' + cn + ' ' ).indexOf( ' aBodyRoot ' ) === -1 ){
+            parent.className = cn + ( cn ? ' ' : '' ) + 'img-disabled';
+        // } else {
+        //    img.style.display = 'none';
         };
     };
-})();
+
+    if( i ){
+        if( ua[ 'IE' ] < 9 ){// other
+            for( ; i; ){
+                img = imgs[ --i ];
+                img.complete || disabledActionRun( img );
+            };
+        } else {
+            for( ; i; ){
+                img = imgs[ --i ];
+                img.naturalWidth || disabledActionRun( img );
+            };
+        };
+    };
+};

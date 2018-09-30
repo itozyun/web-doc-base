@@ -12,12 +12,6 @@
     /* //_}@modern */
 }
 
-.caption {
-    /* //_{@modern */
-    width       : 100%; /* for animation */
-    /* //_}@modern */
-}
-
 .jL img {
     float       : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
     width       : 100%;
@@ -52,3 +46,13 @@
     margin  : 0 0 1em;
 }
 /* //_}@ie5win */
+
+//
+.pica:focus, .pica:active {
+    @include highContrast {
+        outline : 0;
+    }
+}
+.pica img {
+    display : block;
+}
