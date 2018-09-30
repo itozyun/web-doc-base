@@ -9,30 +9,19 @@ function findString( str1, str2 ){
     return 0 <= str1.indexOf( str2 );
 };
 
-var ua         = {},
-    html       = document.documentElement,
-    dua        = navigator.userAgent,
-    dav        = navigator.appVersion,
-    tv         = parseFloat(dav) | 0,
-    sys        = navigator.platform,
-    docMode    = document.documentMode,
-    screenW    = screen.width,
-    screenH    = screen.height,
+var ua           = {},
+    html         = document.documentElement,
+    dua          = navigator.userAgent,
+    dav          = navigator.appVersion,
+    tv           = parseFloat(dav) | 0,
+    sys          = navigator.platform,
+    docMode      = document.documentMode,
+    screenW      = screen.width,
+    screenH      = screen.height,
 
-    isTouch    = window.ontouchstart !== undefined,
+    isTouch      = window.ontouchstart !== undefined,
 
-    NINTENDO_  = 'Nintendo ',
-    WIN_PHONE  = 'Windows Phone',
-    ANDROID    = 'Android',
-    ANDROID_   = ANDROID + ' ',
-    PC_MODE    = 'PCMode',
-    VERSION_   = 'Version/',
-    I_PHONE    = 'iPhone',
-    LINUX      = 'Linux',
-    SAFARI     = 'Safari',
-    NETSCAPE   = 'Netscape',
-
-    verVersion = getNumber( dav, VERSION_ ) || getNumber( dua, VERSION_ ),
+    verVersion   = getNumber( dav, 'Version/' ) || getNumber( dua, 'Version/' ),
     /**
      * http://help.dottoro.com/ljifbjwf.php
      * version method (opera)
@@ -42,76 +31,77 @@ var ua         = {},
      * kquery.js
      *   opera.versionは8から実装
      */
-    isPrsto   = window.opera,
-    verOpera  = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
-    isOPR     = window[ 'opr' ],
+    isPrsto     = window.opera,
+    verOpera    = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
+    isOPR       = window[ 'opr' ],
     /**
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
-    isOpMin   = window[ 'operamini' ],
-    verOpMin  = isOpMin && Math.max( /* isOpMin.version && parseFloat( isOpMin.version() ) | 0, */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
-    isUCWEB   = findString( dua, 'UCWEB' ),
-    verUC2    = getNumber( dua, ' U2/' ),
+    isOpMin     = window[ 'operamini' ],
+    verOpMin    = isOpMin && Math.max( /* isOpMin.version && parseFloat( isOpMin.version() ) | 0, */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
+    isUCWEB     = findString( dua, 'UCWEB' ),
+    verUC2      = getNumber( dua, ' U2/' ),
 
-    isTrident = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
-    isEdge    = !isTrident && html[ 'msContentZoomFactor' ],
-    isBlink   = !isEdge && window.chrome,
+    isTrident   = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
+    isEdge      = !isTrident && html[ 'msContentZoomFactor' ],
+    isBlink     = !isEdge && window.chrome,
 
-    isSafari  = findString( dua, SAFARI ),
-    isIris    = findString( dua.toLowerCase(), 'iris' ),
+    isSafari    = findString( dua, 'Safari' ),
+    isIris      = findString( dua.toLowerCase(), 'iris' ),
     /**
      * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
      * -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
      */
-    isGecko   = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
-    isKHTML   = findString( dav, 'Konqueror' ),
+    isGecko      = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
+    isKHTML      = findString( dav, 'Konqueror' ),
 
-    isYahooAdr = findString( dav, 'YJApp-ANDROID' ), // Android 7, Y!browser 2.5.56
-    isEdgeAdr  = findString( dav, 'EdgA/' ),
+    isYahooAdr   = findString( dav, 'YJApp-ANDROID' ), // Android 7, Y!browser 2.5.56
+    isEdgeAdr    = findString( dav, 'EdgA/' ),
 
-    PS3        = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
+    verPS3       = getNumber( dua.toUpperCase(), 'PLAYSTATION 3' ),
 // https://github.com/chitoku-k/SystemInfo/blob/master/systeminfo.js
 // http://www.jp.playstation.com/psp/dl/pdf/InternetBrowser_ContentGuideline-J_500.pdf
-    PSP        = findString( dav, 'PSP' ),
-    PSVita     = getNumber( dua, 'PlayStation Vita' ),
+    isPSP        = findString( dav, 'PSP' ),
+    verPSVita    = getNumber( dua, 'PlayStation Vita' ),
 // http://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
-    NDS        = sys === 'Nitro',
-    NDSi       = sys === NINTENDO_ + 'DSi',
-    N3DS       = sys === NINTENDO_ + '3DS',
-    New3DS     = sys === 'New ' + NINTENDO_ + '3DS' || ( findString( dua, I_PHONE + ' OS 6_0' ) && screenW === 320 && screenH === 240 ),
-    Wii        = sys === NINTENDO_ + 'Wii',
-    WiiU       = sys === NINTENDO_ + 'WiiU',
+    isNDS        = sys === 'Nitro',
+    isNDSi       = sys === 'Nintendo DSi',
+    isN3DS       = sys === 'Nintendo 3DS',
+    isNew3DS     = sys === 'New Nintendo 3DS' || ( findString( dua, 'iPhone OS 6_0' ) && screenW === 320 && screenH === 240 ),
+    isWii        = sys === 'Nintendo Wii',
+    isWiiU       = sys === 'Nintendo WiiU',
     
-    iOS        = !New3DS && fromString( sys, 'iP' )
+    isiOS        = !isNew3DS && fromString( sys, 'iP' )
                     || fromString( dua, '; iPh OS ' ), // UC Browser
                     // || fromString( dua, 'EdgiOS' ),
-    WebOS      = window[ 'palmGetResource' ],
-    WinPhone   = getNumber( dua, WIN_PHONE ) || getNumber( dav, WIN_PHONE + ' OS ' )
+                    // FxiOS, CriOS, Coast
+    isWebOS      = window[ 'palmGetResource' ],
+    verWP        = getNumber( dua, 'Windows Phone' ) || getNumber( dav, 'Windows Phone OS ' )
                     || getNumber( dua, '; wds' ), // UC Browser
-    wpPCMode   = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
-    Win        = fromString( sys, 'Win' ),
-    Mac        = fromString( sys, 'Mac' ),
+    wpPCMode     = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
+    isWin        = fromString( sys, 'Win' ),
+    isMac        = fromString( sys, 'Mac' ),
 // Kobo Mozilla/5.0 (Linux; U; Android 2.0; en-us;) AppleWebKit/533.1 (KHTML, like Gecko) Verson/4.0 Mobile Safari/533.1 (Kobo Touch)
-    Kobo       = findString( dua, 'Kobo' ),
+    isKobo       = findString( dua, 'Kobo' ),
 // Kindle paperwhite Mozilla/5.0 (X11; U; Linux armv7l like Android; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/533.2+ Kindle/3.0+
-    Kindle     = findString( dua, 'Kindle' ), // Kindle Fire|KFOT|KFTT|KFJW
+    isKindle     = findString( dua, 'Kindle' ), // Kindle Fire|KFOT|KFTT|KFJW
 // Sony Reader Mozilla/5.0 (Linux; U; ja-jp; EBRD1101; EXT) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
-    SonyReader = findString( dua, 'EBRD' ),
-    Mylo       = tv === 2 && findString( dua, 'Sony/COM2/' ),
-    Android    = findString( sys, ANDROID ) ||
-        ( isGecko && findString( dav, ANDROID ) ) || /* Android2.3.5 Firefox3.1 */
+    isSonyReader = findString( dua, 'EBRD' ),
+    isMylo       = tv === 2 && findString( dua, 'Sony/COM2/' ),
+    isAndroid    = findString( sys, 'Android' ) ||
+        ( isGecko && findString( dav, 'Android' ) ) || /* Android2.3.5 Firefox3.1 */
         isYahooAdr,
-    Linux      = findString( sys, LINUX ),
-    MeeGo      = findString( dua, 'MeeGo' ) && findString( dua, 'NokiaBrowser/8.5.0' ),
-    XBoxOne    = findString( dua, 'Xbox One' ),
-    XBox360    = !XBoxOne && findString( dua, 'Xbox' ),
-    FireFoxOS,
-    BlackBerry,
-    Solaris, // ua SunOS
+    isLinux      = findString( sys, 'Linux' ),
+    isMeeGo      = findString( dua, 'MeeGo' ) && findString( dua, 'NokiaBrowser/8.5.0' ),
+    isXBoxOne    = findString( dua, 'Xbox One' ),
+    isXBox360    = !isXBoxOne && findString( dua, 'Xbox' ),
+    isFireFoxOS,
+    isBlackBerry,
+    isSolaris, // ua SunOS
     // (Ubuntu|Linux|(Free|Net|Open)BSD)
 
-    verAndroid = getNumber( sys, ANDROID_ ) || getNumber( dav, ANDROID_ ) || getNumber( dua, ANDROID_ )
+    verAndroid = getNumber( sys, 'Android ' ) || getNumber( dav, 'Android ' ) || getNumber( dua, 'Android ' )
                     || getNumber( dua, '; Adr ' ), // Android for UC Browser Speed mode
 
     verSafari  = verVersion,
@@ -134,63 +124,62 @@ var ua         = {},
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20070321 Netscape/8.1.3
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 Navigator/9.0.0.6
-    verNetscape = getNumber( dua, NETSCAPE + '6/' ) || // NN6
-                  getNumber( dua, NETSCAPE + '/'  ) || // NN7-8
+    verNetscape = getNumber( dua, 'Netscape6/' ) || // NN6
+                  getNumber( dua, 'Netscape/'  ) || // NN7-8
                   getNumber( dua, 'Navigator/' ),   // NN
     verNetFront = getNumber( dua, 'NetFront/' ),
     ver_iCab    = getNumber( dua, 'iCab' ),
     maybeAOSP   = isBlink && verWebKit <= 534.3, // 4.0 & 3.x には chrome がいる... 534~534.3
     maybePCMode =
-        ( isTouch && ( verWebKit || isGecko ) && ( sys === LINUX + ' armv7l' || sys === LINUX + ' i686' ) && findString( dua, LINUX + ' x86_64' ) ) ||
+        ( isTouch && ( verWebKit || isGecko ) && ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && findString( dua, 'Linux x86_64' ) ) ||
         ( !verAndroid && isYahooAdr ),
-    v, pcMode, dpRatio;
-    // FxiOS, CriOS, Coast
+    v, surelyPcMode, pcMode, dpRatio;
 
 // system 判定
-    if( Kobo ){
+    if( isKobo ){
         ua[ 'Kobo' ] = true;
-    } else if( Kindle ){
+    } else if( isKindle ){
         ua[ 'KindlePW' ] = true;
-    } else if( SonyReader ){
+    } else if( isSonyReader ){
         ua[ 'SonyReader' ] = true;
-    } else if( WiiU ){
+    } else if( isWiiU ){
         ua[ 'WiiU' ] = true;
-    } else if( Wii ){
+    } else if( isWii ){
         ua[ 'Wii' ] = true;
         // ua[ 'Opera' ] = verOpera;
-    } else if( NDS ){
+    } else if( isNDS ){
         ua[ 'NDS' ] = true;
         // ua[ 'Opera' ] = verOpera;
-    } else if( NDSi ){
+    } else if( isNDSi ){
         ua[ 'NDSi' ] = true;
         // ua[ 'Opera' ] = verOpera;
-    } else if( N3DS ){
+    } else if( isN3DS ){
         ua[ 'N3DS' ] = true;
-    } else if( New3DS ){
+    } else if( isNew3DS ){
         ua[ 'New3DS' ] = true;
-    } else if( PS3 ){
+    } else if( verPS3 ){
         ua[ 'PS3' ] = true;
-    } else if( PSP ){
-        ua[ 'PSP' ] = PSP;
-    } else if( PSVita ){
-        ua[ 'PSVita' ] = PSVita;
-    } else if( XBox360 ){
+    } else if( isPSP ){
+        ua[ 'PSP' ] = true;
+    } else if( verPSVita ){
+        ua[ 'PSVita' ] = verPSVita;
+    } else if( isXBox360 ){
         ua[ 'XBox360' ] = true;
-    } else if( XBoxOne ){
+    } else if( isXBoxOne ){
         ua[ 'XBoxOne' ] = true;
-    } else if( Mylo ){
+    } else if( isMylo ){
         ua[ 'Mylo' ] = 2;
         verNetFront = 3.4;
-    } else if( WebOS ){
+    } else if( isWebOS ){
         ua[ 'WebOS' ] = true;
-    } else if( MeeGo ){
+    } else if( isMeeGo ){
         ua[ 'MeeGo' ] = true;
-    } else if( iOS ){
+    } else if( isiOS ){
         dpRatio = window.devicePixelRatio === 1;
         v       = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
 
         if( !v ){
-            ua[ PC_MODE ] = true;
+            pcMode = true;
             v =
                 // navigator[ 'mediaDevices'    ] ? 11.2 : // WebView では無効
                 // https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc/issues/250#issuecomment-336240953
@@ -215,9 +204,9 @@ var ua         = {},
         v = screenW === screenH * 1.5 || screenW * 1.5 === screenH;
 
         switch( sys ){
-            case I_PHONE :
-            case I_PHONE + ' Simulator' :
-                ua[ I_PHONE ] = v ? ( dpRatio ? '3GS-' : '4|4s' ) : '5+';
+            case 'iPhone' :
+            case 'iPhone Simulator' :
+                ua[ 'iPhone' ] = v ? ( dpRatio ? '3GS-' : '4|4s' ) : '5+';
                 break;
             case 'iPad' :
             case 'iPad Simulator' :
@@ -228,18 +217,18 @@ var ua         = {},
                 ua[ 'iPod' ] = v ? ( dpRatio ? '3-' : '4' ) : '5+';
                 break;
         };
-    } else if( WinPhone ){
-        ua[ 'WinPhone' ] = WinPhone;
+    } else if( verWP ){
+        ua[ 'WinPhone' ] = verWP;
     } else if( verEdge && sys === 'ARM' ){
         ua[ 'WinPhone' ] = 10;
-        ua[ PC_MODE    ] = true;
+        pcMode = true;
     } else if( wpPCMode ){
         ua[ 'WinPhone' ] = verMSIE === 11 ? 8.1 :
                            verMSIE === 10 ? 8   :
                            verMSIE ===  9 ? 7.5 :
                            verMSIE ===  7 ? 7   : '?';
-        ua[ PC_MODE   ] = true;
-    } else if( Win ){
+        pcMode = true;
+    } else if( isWin ){
         switch( sys ){
             case 'WinCE' :
                 ua[ sys ] = true;
@@ -283,7 +272,7 @@ var ua         = {},
                 ua[ 'Windows' ] = v;
                 break;
         };
-    } else if( Mac ){
+    } else if( isMac ){
         ua[ 'Mac' ] = true;
         switch( sys ){
             case 'MacPowerPC' :
@@ -294,7 +283,7 @@ var ua         = {},
                 ua[ sys ] = true;
         };
 // Android Fennec
-    } else if( Android && isGecko ){
+    } else if( isAndroid && isGecko ){
         // PCモードの Android Firefox では platform に Android 0.0.0 が存在
         // Fennec41- 用
         // https://developer.mozilla.org/ja/docs/Gecko_user_agent_string_reference
@@ -302,42 +291,43 @@ var ua         = {},
         // 相互運用性向上のため、Android 4 以前のバージョンでブラウザが動作している場合は 4.4 と出力します。
         // Android バージョン 4 以降では実際のバージョン番号が出力されます。
         // なお、Gecko エンジンはすべての Android バージョンに対して同じ機能を提供しています。    
-        if( findString( dua, ANDROID_ + '4.4;' ) ){
-            ua[ ANDROID ] = '2.3+';
+        if( findString( dua, 'Android 4.4;' ) ){
+            v = '2.3+';
         } else if( 4 <= verAndroid ){
-            ua[ ANDROID ] = verAndroid;
-        } else if( Android ){
-            ua[ ANDROID ] = '2.2+';
+            v = verAndroid;
+        } else if( isAndroid ){
+            v = '2.2+';
         };
-        if( maybePCMode ) ua[ PC_MODE ] = true;
-    } else if( Android && isPrsto ){
+        if( maybePCMode ) pcMode = true;
+    } else if( isAndroid && isPrsto ){
         if( verAndroid ){
-            ua[ ANDROID ] = verAndroid;
+            v = verAndroid;
         } else {
-            ua[ ANDROID ] = '1.6+';
-            ua[ PC_MODE ] = true;
+            v = '1.6+';
+            pcMode = true;
         };
+        ua[ 'Android' ] = v;
 // Android other | Linux
     } else if( verAndroid ){
-        ua[ ANDROID ] = verAndroid;
-    } else if( Linux && maybePCMode ){
+        ua[ 'Android' ] = verAndroid;
+    } else if( isLinux && maybePCMode ){
         // https://ja.wikipedia.org/wiki/WebKit
         // http://www.au.kddi.com/developer/android/kishu/ua/
         // webkit version to Android version...
-        pcMode = true;
+        surelyPcMode = true;
         // AOSP の判定は Version/ の有無. 但し「デスクトップ版で見る」場合、Version/ が居なくなる...
         // PC版で見る、にチェックが付いている場合、ユーザーエージェント文字列にも platform にも Android の文字列が存在しない(標準ブラウザ&Chrome)
         // Audio でタッチが必要か？の判定にとても困る...
         // ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？    
         if( ( isBlink && !maybeAOSP ) || isOPR || verOPR ){
-            ua[ ANDROID ] = verAndroid = '4+';
+            v = verAndroid = '4+';
         } else if( document[ 'registerElement' ] ){
             // http://caniuse.com/#feat=document-execcommand
             // Android 5+ で非対応に
-            ua[ ANDROID ] = verAndroid = document.execCommand ? 4.4 : 5;
+            v = verAndroid = document.execCommand ? 4.4 : 5;
 
         } else if( window[ 'Int8Array' ] ){
-            ua[ ANDROID ] = verAndroid =
+            v = verAndroid =
                 !navigator[ 'connection' ] ? 4.4 :
                 ( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3. 4.1 には searchBoxJavaBridge_ と chrome が存在 */
                 Number.isNaN ? 4.1 : 4;
@@ -346,14 +336,15 @@ var ua         = {},
                 // 535.19 = 4.1
                 // 537.36 = 4.4.2-5.x
         } else {
-            ua[ ANDROID ] = verAndroid =
+            v = verAndroid =
                 verWebKit < 529    ? 1.5 : // <= 528.5
                 verWebKit < 531    ? 2.0 : // 530 2.0~2.1
                                 // 533 2.2~2.3
                 verWebKit < 534    ? ( window.HTMLAudioElement ? 2.3 : 2.2 ) : 3;
         };
-    } else if( Linux ){
-        ua[ LINUX ] = true;
+        ua[ 'Android' ] = v;
+    } else if( isLinux ){
+        ua[ 'Linux' ] = true;
     };
 
 // browser 判定
@@ -364,8 +355,8 @@ var ua         = {},
         ua[ 'iCab' ] = ver_iCab;
     } else
 // PS3 Sony Browser
-    if( PS3 ){
-        ua[ 'Sony' ] = PS3;
+    if( verPS3 ){
+        ua[ 'Sony' ] = verPS3;
     } else
 // Opera Mini
     if( isOpMin ){
@@ -414,7 +405,7 @@ var ua         = {},
              */
             ua[ 'Fennec' ] = verFennec;
         } else
-        if( Android ){
+        if( isAndroid ){
             ua[ 'Fennec' ] = verGecko;
         } else
     //Firefox
@@ -426,18 +417,18 @@ var ua         = {},
     if( /* isBlink && */ isOPR || verOPR ){
         ua[ 'OPR'   ] = verOPR;
         ua[ 'Blink' ] = verChrome;
-        if( pcMode ) ua[ PC_MODE ] = true;
+        if( surelyPcMode ) pcMode = true;
     } else
 // AOSP | Chrome WebView Wrapped Browser
 // Android3.x-4.0 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
     if( verAndroid && maybeAOSP ){
         ua[ 'AOSP' ] = verAndroid;
-        if( pcMode ) ua[ PC_MODE ] = true;
+        if( surelyPcMode ) pcMode = true;
     } else
 // Blink Chrome
     if( isBlink ){
         ua[ 'Blink' ] = verChrome;
-        if( pcMode ) ua[ PC_MODE ] = true;
+        if( surelyPcMode ) pcMode = true;
     } else
 // http://uupaa.hatenablog.com/entry/2014/04/15/163346
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
@@ -447,11 +438,11 @@ var ua         = {},
     if( verAndroid && document[ 'registerElement' ] ){
         // Android 標準ブラウザ Chrome WebView ブラウザ
         ua[ 'CrWV' ] = verAndroid;
-        if( pcMode ) ua[ PC_MODE ] = true;
+        if( surelyPcMode ) pcMode = true;
     } else
-    if( verAndroid && ( verVersion || pcMode ) ){
+    if( verAndroid && ( verVersion || surelyPcMode ) ){
         ua[ 'AOSP' ] = verAndroid;
-        if( pcMode ) ua[ PC_MODE ] = true;
+        if( surelyPcMode ) pcMode = true;
     } else
     if( isKHTML ){
         ua[ 'Khtml' ] = tv;
@@ -467,18 +458,21 @@ var ua         = {},
         } else
         if( isSafari ){
             if( verSafari ){
-                ua[ SAFARI ] = verSafari;
+                v = verSafari;
             } else
             if( verWebKit <= 528.16 ){
-                ua[ SAFARI ] = verWebKit <   73    ? 0.8 :
-                               verWebKit <   85    ? 0.9 :
-                               verWebKit <  100    ? 1 :
-                               verWebKit <  125    ? 1.1 :
-                               verWebKit <  312    ? 1.2 :
-                               verWebKit <  412    ? 1.3 :
-                               verWebKit <= 419.3  ? 2 :
-                               verWebKit <= 525.13 ? 3 :
-                               verWebKit <= 525.25 ? 3.1 : 3.2;
+                v = verWebKit <   73    ? 0.8 :
+                    verWebKit <   85    ? 0.9 :
+                    verWebKit <  100    ? 1 :
+                    verWebKit <  125    ? 1.1 :
+                    verWebKit <  312    ? 1.2 :
+                    verWebKit <  412    ? 1.3 :
+                    verWebKit <= 419.3  ? 2 :
+                    verWebKit <= 525.13 ? 3 :
+                    verWebKit <= 525.25 ? 3.1 : 3.2;
             };
+            ua[ 'Safari' ] = v;
         };
     };
+
+    if( pcMode ) ua[ 'PCMode' ] = true;

@@ -6,7 +6,11 @@ var iOS  = ua[ 'iOS' ],
     AOSP = ua[ 'AOSP' ],
     meta;
 
-if( iOS < 6 ){
+if( ua[ 'N3DS' ] ){
+    meta = 'width=320'
+} else if( ua[ 'New3DS' ] ){
+    meta = 'width=320,initial-scale=1,minimum-scale=1';
+} else if( iOS < 6 ){
     meta = 'minimum-scale=1,';
     if( iOS < 5 ){
         meta += 'maximum-scale=1';
@@ -20,6 +24,8 @@ if( iOS < 6 ){
     } else {
         meta += 'initial-scale=1,minimum-scale=1';
     };
+} else if( ua[ 'Gecko' ] && ua[ 'PCMode' ] ){
+    document.documentElement.className += ' fennecPcMode';
 };
 
 if( meta ) document.write( '<meta name="viewport" content="' + meta + '">' );

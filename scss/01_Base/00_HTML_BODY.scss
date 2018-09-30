@@ -44,6 +44,14 @@
             /* //_}@ie5win */ 
         /* //_}^+mobileOnly */
 
+        /* //_{@modern */
+        @media screen and (orientation: portrait){
+            .fennecPcMode {
+                font-size : 1.2em;
+            }
+        }
+        /* //_}@modern */
+
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
