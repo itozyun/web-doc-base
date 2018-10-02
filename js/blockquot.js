@@ -21,10 +21,16 @@ function( e ){
             create( title, cite, 'js-bqLink', true );
         } else if( cite ){
             elm.removeAttribute( 'cite' );
-            create( window.decodeURI ? window.decodeURI( cite ) : cite, cite, 'js-bqCite' );
+            create( window.decodeURI ? decodeURI( cite ) : cite, cite, 'js-bqCite' );
         };
     };
 
+/**
+ * @param {string} title
+ * @param {string} cite
+ * @param {string} className
+ * @param {boolean=} add1st
+ */
     function create( title, cite, className, add1st ){
         var tag  = add1st ? 'div' : 'cite',
             link = createUrl( cite ),

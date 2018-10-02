@@ -151,3 +151,51 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('../MyBlog.github.io/'));
 });
 ~~~
+
+## How the Javascript build - Javascript のビルドの方法
+
+### build_inline-js.bat
+
+~~~bat
+@echo off
+
+type nul > R:\temp.js
+
+echo (function(window,document,navigator,screen,parseFloat,undefined){; >> R:\temp.js
+type inline-js\01_useragent.js                                          >> R:\temp.js
+type inline-js\02_dynamicViewPort.js                                    >> R:\temp.js
+echo window["ua"]=ua;                                                   >> R:\temp.js
+echo })(window,document,navigator,screen,parseFloat);                   >> R:\temp.js
+
+java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/inline.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs inline-js/__externs.js --compilation_level ADVANCED
+REM --formatting pretty_print
+
+del R:\temp.js
+~~~
+
+### build_js.bat
+
+~~~bat
+@echo off
+
+type nul > R:\temp.js
+
+echo (function(ua,window,document,parseFloat,undefined){; >> R:\temp.js
+type ..\\web-doc-base\js\_global.js                       >> R:\temp.js
+type ..\\web-doc-base\js\_util.js                         >> R:\temp.js
+type ..\\web-doc-base\js\commentCleaner.js                >> R:\temp.js
+type ..\\web-doc-base\js\checkHighContrast.js             >> R:\temp.js
+type ..\\web-doc-base\js\detectImageTurnedOff.js          >> R:\temp.js
+type ..\\web-doc-base\js\PicaThumnail.js                  >> R:\temp.js
+type ..\\web-doc-base\js\SidebarFixer.js                  >> R:\temp.js
+type ..\\web-doc-base\js\ie5.js                           >> R:\temp.js
+type ..\\web-doc-base\js\blockquot.js                     >> R:\temp.js
+echo })(ua,window,document,parseFloat);                   >> R:\temp.js
+
+java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/min.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs ../web-doc-base/js/__externs.js --compilation_level ADVANCED
+REM --compilation_level WHITESPACE_ONLY --formatting pretty_print
+
+type ..\\web-doc-base\js\GoogleCodePrettify.js >> dist/min.js
+
+del R:\temp.js
+~~~

@@ -1,3 +1,8 @@
+/**
+ * @param {string} str1 
+ * @param {string} str2 
+ * @param {*=} v 
+ */
 function getNumber( str1, str2, v ){
     v = parseFloat( str1.split( str2 )[ 1 ] );
     return 0 <= v ? v : 0;
@@ -18,11 +23,14 @@ var ua           = {},
     docMode      = document.documentMode,
     screenW      = screen.width,
     screenH      = screen.height,
+    HTMLAudioElement = window.HTMLAudioElement,
+    performance  = window[ 'performance' ],
+    Int8Array    = window[ 'Int8Array' ],
 
     isTouch      = window.ontouchstart !== undefined,
 
     verVersion   = getNumber( dav, 'Version/' ) || getNumber( dua, 'Version/' ),
-    /**
+    /*
      * http://help.dottoro.com/ljifbjwf.php
      * version method (opera)
      *   window.opera.buildNumber();
@@ -34,7 +42,7 @@ var ua           = {},
     isPrsto     = window.opera,
     verOpera    = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
     isOPR       = window[ 'opr' ],
-    /**
+    /*
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
@@ -49,7 +57,7 @@ var ua           = {},
 
     isSafari    = findString( dua, 'Safari' ),
     isIris      = findString( dua.toLowerCase(), 'iris' ),
-    /**
+    /*
      * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
      * -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
      */
@@ -190,12 +198,12 @@ var ua           = {},
                 Number[ 'isNaN'              ] ?  9.2 :
                 // http://uupaa.hatenablog.com/entry/2015/03/03/223344
                 window[ 'SharedWorker'       ] ?
-                    ( window[ 'performance' ] && window[ 'performance' ][ 'now' ] ? 8.0 : 8.4 ) :
+                    ( performance && performance[ 'now' ] ? 8.0 : 8.4 ) :
                 document.execCommand           ?  7.1 :
                 window[ 'webkitURL'          ] ?  6.1 :
                 window[ 'Worker'             ] ?  5.1 :
-                window[ 'Int8Array'          ] ?  4.3 :
-                window[ 'HTMLAudioElement'   ] ?  4.1 : 3.2;
+                Int8Array                      ?  4.3 :
+                HTMLAudioElement               ?  4.1 : 3.2;
         };
 
         ua[ 'iOS' ] = v;
@@ -326,7 +334,7 @@ var ua           = {},
             // Android 5+ で非対応に
             v = verAndroid = document.execCommand ? 4.4 : 5;
 
-        } else if( window[ 'Int8Array' ] ){
+        } else if( Int8Array ){
             v = verAndroid =
                 !navigator[ 'connection' ] ? 4.4 :
                 ( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3. 4.1 には searchBoxJavaBridge_ と chrome が存在 */
@@ -337,10 +345,10 @@ var ua           = {},
                 // 537.36 = 4.4.2-5.x
         } else {
             v = verAndroid =
-                verWebKit < 529    ? 1.5 : // <= 528.5
-                verWebKit < 531    ? 2.0 : // 530 2.0~2.1
-                                // 533 2.2~2.3
-                verWebKit < 534    ? ( window.HTMLAudioElement ? 2.3 : 2.2 ) : 3;
+                verWebKit < 529 ? 1.5 : // <= 528.5
+                verWebKit < 531 ? 2.0 : // 530 2.0~2.1
+                                        // 533 2.2~2.3
+                verWebKit < 534 ? ( HTMLAudioElement ? 2.3 : 2.2 ) : 3;
         };
         ua[ 'Android' ] = v;
     } else if( isLinux ){
@@ -381,7 +389,7 @@ var ua           = {},
 
         // https://stackoverflow.com/questions/8751479/detect-metro-ui-version-of-ie
         if( 10 <= verMSIE && 8 <= ua[ 'Windows' ] && ua[ 'Windows' ] < 9 ){
-            if( window.screenY === 0 && ( window.innerHeight + 1 ) !== window.outerHeight ){
+            if( screenY === 0 && ( innerHeight + 1 ) !== outerHeight ){
                 ua[ 'ModernIE' ] = verMSIE;
             };
         };
@@ -400,7 +408,7 @@ var ua           = {},
     /** TODO PC版 Fennec もある */
     //Fennec
         if( verFennec ){
-            /**
+            /*
              * Mozilla/5.0 (Android; Linux armv7l; rv:9.0) Gecko/20111216 Firefox/9.0 Fennec/9.0
              */
             ua[ 'Fennec' ] = verFennec;

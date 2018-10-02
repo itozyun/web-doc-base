@@ -97,7 +97,11 @@ if( !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
     };
 };
 
-function SIDEBAR_FIXER_getFinite(){
+/**
+ * @param {...number} arg
+ * @return {number}
+ */
+function SIDEBAR_FIXER_getFinite( arg ){
     var args = arguments, i = 0, l = args.length;
         
     for( ; i < l; ++i ){
@@ -106,6 +110,9 @@ function SIDEBAR_FIXER_getFinite(){
     return 0;
 };
 
+/**
+ * @param {number=} wheelDeltaY
+ */
 function SIDEBAR_FIXER_fix( wheelDeltaY ){
         // transform pos:fixed が使えない場合、塗りのために width を指定するので pos:relative でなくレイアウトコストの低い pos:absolute を使用
     var POS_ABSOLUT_TOP = 'position:absolute;left:0;width:100%;top:',
@@ -119,17 +126,20 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
         mainY = 0,
         css   = '',
         sidebarY = 0,
-        scrollY = SIDEBAR_FIXER_getFinite( window.pageYOffset, window.scrollTop, SIDEBAR_FIXER_elmRoot.scrollTop, g_body.scrollTop ),
-        sidebarIsLower,
+        scrollY = SIDEBAR_FIXER_getFinite( window.pageYOffset, SIDEBAR_FIXER_elmRoot.scrollTop, g_body.scrollTop ),
+        isMultiColumn  = SIDEBAR_FIXER_elmSide.offsetTop === elm.offsetTop,
+        sidebarIsLower = sideH < mainH,
         outOnViewPort,
         outsideViewPort,
         topInViewPort,
         btmInViewPort,
-        allInViewPort,
-        scrollLimit;//, log;
+        mainInViewPort,
+        visibleHeight,
+        sideInViewPort,
+        scrollLimit,
+        nocancelWheel;
 
     function createPositioning( y ){
-        // 底に貼り付けする
         sidebarY = y;
         if( SIDEBAR_FIXER_transformProp ){
             css = TRANSF_TRANSL_0 + y + TRANSF_TRANSL_Z;
@@ -148,54 +158,54 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
         };
     };
 
-    // SIDEBAR_FIXER_elmSide.offsetTop === SIDEBAR_FIXER_elmMain.offsetTop ならマルチカラム
-    if( SIDEBAR_FIXER_elmSide.offsetTop === elm.offsetTop ){
+    if( isMultiColumn ){
         while( elm ){
             mainY += elm.offsetTop || 0;
             elm    = elm.offsetParent || elm.parentElement;
         };
-        sidebarIsLower  = sideH < mainH;
         outOnViewPort   = mainY + mainH <= scrollY;
         outsideViewPort = scrollY + winH <= mainY;
         topInViewPort   = ( scrollY < mainY ) && ( mainY < scrollY + winH );
         btmInViewPort   = ( scrollY < mainY + mainH ) && ( mainY + mainH < scrollY + winH );
-        allInViewPort   = topInViewPort && btmInViewPort,
+        mainInViewPort  = topInViewPort && btmInViewPort,
         visibleHeight   = ( mainY + mainH - scrollY ) < winH ? ( mainY + mainH - scrollY ) : winH;
+        sideInViewPort  = sideH <= visibleHeight;
 
         if( !wheelDeltaY ){
             if( sidebarIsLower ){
                 if( topInViewPort || outsideViewPort ){
                     createPositioning( 0 );
-                    console.log( 'A ' + sidebarY );
-                } else if( sideH <= visibleHeight ){
+                    //console.log( 'A ' + sidebarY );
+                } else if( sideInViewPort ){
                     createPositioning( scrollY - mainY );
-                    console.log( 'B ' + sidebarY );
+                    //console.log( 'B ' + sidebarY );
                 } else if( btmInViewPort || outOnViewPort ){
                     createPositioning( mainH - sideH );
                 } else {
                     scrollLimit = scrollY + winH - mainY - sideH;
                     scrollLimit = scrollLimit < 0 ? 0 : scrollLimit;
                     createPositioning( scrollLimit );
-                    console.log( 'C ' + sidebarY + ' limit:' + scrollLimit );
+                    //console.log( 'C ' + sidebarY + ' limit:' + scrollLimit );
                 };
             };
         } else {
             // マウスが sidebar にホバーしている
-            if( /* !allInViewPort && */ visibleHeight < sideH ){
+            if( sideInViewPort ){
+                nocancelWheel = true;
+                //console.log( 'mainInViewPort:' + mainInViewPort + ' sideH <= visibleHeight:' + visibleHeight );
+            } else {
                 sidebarY = SIDEBAR_FIXER_sidebarY - wheelDeltaY * 60;
                 if( 0 < wheelDeltaY ){
                     scrollLimit = scrollY + winH - mainY - sideH;
                     scrollLimit = mainH - sideH < scrollLimit ? mainH - sideH : scrollLimit;
                     sidebarY    = sidebarY < scrollLimit ? scrollLimit : sidebarY;
-                    console.log( '↓ ' + sidebarY + ' limit:' + scrollLimit );
+                    //console.log( '↓ ' + sidebarY + ' limit:' + scrollLimit );
                 } else {
                     scrollLimit = scrollY - mainY < 0 ? 0 : scrollY - mainY;
                     sidebarY    = scrollLimit < sidebarY ? scrollLimit : sidebarY;
-                    console.log( '↑ ' + sidebarY + ' limit:' + scrollLimit );
+                    //console.log( '↑ ' + sidebarY + ' limit:' + scrollLimit );
                 };
                 createPositioning( sidebarY );
-            } else {
-                return true;
             };
         };
     };
@@ -205,7 +215,7 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
 
     SIDEBAR_FIXER_sidebarY = sidebarY;
 
-    return !allInViewPort;
+    return isMultiColumn && !mainInViewPort && !nocancelWheel;
 };
 
 function SIDEBAR_FIXER_onwheel( _event ){

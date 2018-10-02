@@ -10,6 +10,11 @@ var g_loadEventCallbacks   = [],
     g_head   = getElementsByTagName( 'head' )[ 0 ],
     g_body   = document.body;
 
+/**
+ * @param {string} tag
+ * @param {HTMLDocument|HTMLElement=} opt_root
+ * @return {HTMLCollection}
+ */
 function getElementsByTagName( tag, opt_root ){
     opt_root = opt_root || document;
 
