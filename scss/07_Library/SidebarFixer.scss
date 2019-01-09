@@ -1,17 +1,26 @@
-#jF {
-    background : $COLOR_BdS_fill;
-
+/* //_{^+mobileOnly */
     /* //_{@modern */
+    #jsSidebarFixer {
         /* http://blog.webcreativepark.net/2012/10/19-161432.html */
         -webkit-backface-visibility : hidden;
            -moz-backface-visibility : hidden;
                 backface-visibility : hidden;
-
+        /* clean-css ignore:start */
         -webkit-transition-property : transform;
-    
         -webkit-transition          :           0.3s ease-in;
+        /* clean-css ignore:end */
            -moz-transition          : transform 0.3s ease-in;
              -o-transition          : transform 0.3s ease-in;
                 transition          : transform 0.3s ease-in;
+    }
     /* //_}@modern */
-}
+
+    /* //_{#ie8-win */
+    .lW {
+        overflow : hidden; /* modern では clearfix で hidden になっている */
+    }
+    #jsMain, #jsSide {
+        position : relative;
+    }
+    /* //_}#ie8-win */
+/* //_}^+mobileOnly */

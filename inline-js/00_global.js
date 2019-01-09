@@ -1,0 +1,1 @@
+var g_iOS, g_AOSP, g_Gecko, g_New3DS, g_N3DS;

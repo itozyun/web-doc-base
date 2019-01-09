@@ -1,56 +1,30 @@
-[data-lsc] {
+.lSi {
     @include clearfix;
 }
 
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
 @include media(WQXGA) {
-/* 2column */
-    [data-lsc] {
-        padding-bottom : 2em;
+    .lS1 {
+        float : left;
+        width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
     }
-        .lS1 {
-            float : left;
-            width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
-        }
-        .lS2 {
-            float : right;
-            width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
-        }
+    .lS2 {
+        float : right;
+        width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+    }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
-/* 2column */
-/* //_{+mobileOnly */
-    /* //_{@ie8,@ie9,@modern */
-        [data-lmc] {
-            @include clearfix;
-        }
-    /* //_}@ie8,@ie9,@modern */
-        
-    /* //_{#ie7-win */
-        .lMi, .lSi {
-            @include clearfix;
-        }
-    /* //_}#ie7-win */
-/* //_}+mobileOnly */
-
-    [data-lmc],
-    [data-lsc] {
-        padding-bottom : 2em;
-    }
     #lB .lS {
         border-width : 1px 0 0;
-        border-style : solid;
     }
-        .lM1,
         .lS1 {
             float : left;
             width : 50% - $TABLET_H_SPACE * 0.5;
         }
-        .lM2,
         .lS2 {
             float : right;
             width : 50% - $TABLET_H_SPACE * 0.5;
@@ -60,25 +34,6 @@
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    [data-lmc],
-    [data-lsc] {
-        padding-bottom : 2em;
-    }
-        .lM1,
-        .lS1 {
-            width : 50% - $PHABLET_H_SPACE * 0.5;
-        }
-        .lM2,
-        .lS2 {
-            width : 50% - $PHABLET_H_SPACE * 0.5;
-        }
-}
-
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-/* clear 2column */
-    .lM1, .lM2,
     .lS1, .lS2 {
         float        : none;
         width        : auto;

@@ -1,0 +1,216 @@
+/* [module] RichLinkList
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *
+ * lM
+ *  div.RichLink
+ *    div.RichLink-sep
+ *      a (.RichLink-1st) role=listitem
+ *        div.RichLink-item
+ *          img
+ *          h3
+ *            medal[-*]
+ *          div, p
+ * lS
+ *  div.RichLink
+ *    div.RichLink-sep
+ *      a role=listitem
+ *       div.RichLink-item
+ *          img
+ *          b
+--------------------------------------------------------------------------------------*/
+$RICHLINK_TEXT_SIZE : 0.875;
+
+.RichLink {
+    @include stackableModule;
+    @include highContrast {
+        padding-top : 2px;
+    }
+}
+    .RichLink-sep {
+        @extend %linkCommon;
+        @include lineHeight(1.4, 1);
+    }
+        .RichLink-item {
+            @include clearfix;
+            /* //_{#ie55-,@ie8,@ie9,@modern */
+            padding : 1em 0.5em 0;
+            /* //_}#ie55-,@ie8,@ie9,@modern */
+            /* //_{@ie6,@ie7 */
+            padding : 1em 0.5em;
+            /* //_}@ie6,@ie7 */
+        }
+        :link .RichLink-item, :visited .RichLink-item {
+            border-width : 0 0 1px;
+            @include highContrast {
+                border-width : 0;
+            }
+        }
+        :link .RichLink-1st, :visited .RichLink-1st {
+            border-width : 1px 0;
+        }
+            .RichLink img {
+                float        : left;
+                border-width : 0;
+            }
+
+            .RichLink h3 {
+                font-size   : 1.1em;
+                padding     : 0;
+                margin      : 0 0 0.4em;
+            }
+
+            .RichLink-item div, .RichLink b {
+                display     : block;
+                font-size   : 1em * $RICHLINK_TEXT_SIZE;
+                font-weight : normal;
+            }
+
+            /* //_{@modern,@ie9,@ie8 */
+                .RichLink span {
+                    display : inline-block;
+                }
+            /* //_}@modern,@ie9,@ie8 */
+
+            .RichLink p {
+                display     : block;
+                /* //_{#ie55-,@ie8,@ie9,@modern */
+                padding     : 0 0 1em;
+                /* //_}#ie55-,@ie8,@ie9,@modern */
+                /* //_{@ie6,@ie7 */
+                padding     : 0;
+                /* //_}@ie6,@ie7 */
+                margin      : 0;
+            }
+
+    .baseColor .RichLink-item div {
+        color  : $COLOR_Default_casual_fill;
+    }
+    :link, :visited {
+        .baseColor & .RichLink-item div {
+            color  : $COLOR_Default_casual_text;
+        }
+    }
+    .RichLink-item div {
+        color  : $COLOR_Ribbon_casual_fill;
+    }
+    :link, :visited {
+        .RichLink-item div {
+            color  : $COLOR_Ribbon_casual_text;
+        }
+    }
+
+
+/*  layout Main
+--------------------------------------------------------------------------------------*/
+    .lM .RichLink img {
+        height    : auto;
+        margin    : 0 1em 1em 0;
+    }
+    .RichLink h3 {
+        font-size : 1.5em;
+    }
+    .RichLink-item div {
+        padding   : 0 0 0.8em; /* 1em - .2em */
+    }
+    
+/*  layout Sub
+--------------------------------------------------------------------------------------*/
+    .lS .RichLink img {
+        float  : right;
+        margin : 0 0 1em 0.6em;
+    }
+
+    .RichLink b {
+        /* //_{#ie55-,@ie8,@ie9,@modern */
+        padding : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
+        /* //_}#ie55-,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7 */
+        padding : 0;
+        /* //_}@ie6,@ie7 */
+    }
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .lMf .RichLink-sep {
+        display      : table;
+        table-layout : fixed;
+        margin       : 1em 0;
+
+        a {
+            display        : table-cell;
+            vertical-align : top;
+            width          : 33.3%;
+        }
+    }
+        .lM .RichLink-item {
+            border-width : 0;
+            padding      : 1em;
+        }
+            .RichLink-item div {
+                font-size : 1em;
+            }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet_print) {
+    .lS .RichLink a {
+        padding : 0.7em 0.5em 0;
+    }
+        .lS .RichLink div, .RichLink b {
+            padding : 0 0 0.5em / $RICHLINK_TEXT_SIZE;
+        }
+        .lS .RichLink img {
+            float        : left;
+            margin       : 0 0.5em 0.6em 0;
+        }
+        .RichLink b {
+            font-size : 1em;
+        }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .lM .RichLink a {
+        padding-left  : 1%;
+        padding-right : 1%;
+    }
+    .lM .RichLink h3 {
+        font-size : 1.3em;
+    }
+    .lS .RichLink div {
+        font-size : 1em;
+    }
+}
+
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@include media(smallphone) {
+    .lM .RichLink h3 {
+        font-size : 1.1em;
+    }
+    .lM .RichLink img {
+        float  : none;
+        margin : 0 auto 1em;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .lM .RichLink a {
+        padding-left  : 0;
+        padding-right : 0;
+    }
+
+    .baseColor .RichLink-item div {
+        color  : $COLOR_Watch_casual_fill;
+    }
+    :link, :visited {
+        .baseColor & .RichLink-item div {
+            color  : $COLOR_Watch_casual_text;
+        }
+    }
+}

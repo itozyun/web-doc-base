@@ -1,9 +1,43 @@
 hr {
-    border : 0;
-    height : 1px;
-    margin : 2em 1em;
+    height       : 1px;
+    border-width : 0 0 1px; /* for high contrast mode */
+/* //_{#can-transparent */
+    border-color : transparent;
+/* //_}#can-transparent */
+/* //_{^#can-transparent */
+    border-color : $COLOR_Default_fill;
+    blockquote & {
+        border-color : $COLOR_Default_casual_fill;
+    }
+/* //_}^#can-transparent */
 }
 
 tr hr {
-    margin : 1em;
+    margin : 1em 9%;
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    /* //_{^#can-transparent */
+    hr {
+        border-color : $COLOR_Watch_fill;
+        blockquote & {
+            border-color : $COLOR_Watch_casual_fill;
+        }
+    }
+    /* //_}^#can-transparent */
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    /* //_{^#can-transparent */
+    hr {
+        border-color : #fff;
+        blockquote & {
+            border-color : #fff;
+        }
+    }
+    /* //_}^#can-transparent */
 }

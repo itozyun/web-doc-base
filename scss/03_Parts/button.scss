@@ -1,0 +1,129 @@
+/* [parts] button
+ *
+ * .btn:link | input[type=submit].btn
+--------------------------------------------------------------------------------------*/
+@mixin createButton( $link, $visited, $fill, $opt_need_bgcolor_for_Watch : 0 ){
+    &:link {
+        background   : $link;
+        border-color : $link;
+        color        : $fill;
+    }
+    &:visited {
+        background   : $fill;
+        border-color : $visited;
+        color        : $visited;
+    }
+
+    &:link:active, &:visited:active
+    /* //_{#can-focus-psedo-class */
+    , &:link:focus, &:visited:focus
+    /* //_}#can-focus-psedo-class */
+    {
+        /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+            border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
+        /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+
+        /* //_{#ie7-win */
+            /* //_{@ie5win,@ie55 */
+                border-color : $COLOR_ACCENT;
+            /* //_}@ie5win,@ie55 */
+            color        : $COLOR_ACCENT;
+            border-style : dotted;
+            outline      : 0;
+        /* //_}#ie7-win */
+    }
+
+    @if $opt_need_bgcolor_for_Watch == 1 {
+        @include media(watch) {
+            &:link {
+                color : $COLOR_Watch_fill;
+            }
+            &:visited {
+                background : $COLOR_Watch_fill;
+            }
+            &:link:active, &:visited:active
+            /* //_{#can-focus-psedo-class */
+            , &:link:focus, &:visited:focus
+            /* //_}#can-focus-psedo-class */
+            {
+                border-color : $COLOR_Watch_fill;
+            }          
+        }
+    }
+}
+
+%btnBase {
+    /* //_{#can-inline-block */
+    display      : inline-block;
+    /* //_}#can-inline-block */
+    border-width : 2px;
+    cursor       : pointer;
+    text-align   : center;
+    line-height  : 1;
+    padding      : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+    /* //_{@modern,@ie9 */
+    vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
+    /* //_}@modern,@ie9 */
+    
+    /* //_{@ie6,@ie7 */
+    zoom        : 1;
+    /* //_}@ie6,@ie7 */
+
+    /* //_{@ie5win,@ie55 */
+    height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    /* //_}@ie5win,@ie55 */
+
+    &:link:hover, &:visited:hover {
+        text-decoration : underline;
+    }
+
+    /* //_{^#ie7-win */
+        // IE7 以下にはデザインが適用されない
+        &:active
+        /* //_{#can-focus-psedo-class */
+        , &:focus
+        /* //_}#can-focus-psedo-class */
+        {
+            border-color : $COLOR_ACCENT; /* input.btn に対して適用, a:link には上書きされる */
+            color        : $COLOR_ACCENT;
+            border-style : dotted;
+            outline      : 0;
+        }
+    /* //_}^#ie7-win */
+}
+
+.btn {
+    @extend %btnBase;
+    @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_text, $COLOR_Ribbon_fill );
+}
+
+input.btn {
+/* //_{@ie6,@ie7 */
+    height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+/* //_}@ie6,@ie7 */  
+}
+
+/* //_{@modern */
+/* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
+ * iOSでのデフォルトスタイルをリセット */
+input.btn::-webkit-search-decoration {
+    display : none;
+}
+input.btn:focus {
+    outline-offset : -2px;
+}
+/* //_}@modern */
+
+/* //_<bottom50 */
+.baseColor .btn {
+    @include createButton( $COLOR_Default_link, $COLOR_Default_text, $COLOR_Default_fill );
+}
+/* //_>bottom50 */
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .baseColor .btn {
+        @include createButton( $COLOR_Watch_link, $COLOR_Watch_text, $COLOR_Watch_fill );
+    }
+}

@@ -26,15 +26,40 @@
     /* //_}@modern */
 }
 
+textarea, input {
+    border-width : $INPUT_BORDER_WIDTH;
+    /* //_{@modern */
+         /* padding-left : 1px;1px : 0pxだとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
+    /* //_}@modern */
+    padding      : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
+    @include placeholderColor( $COLOR_Default_casual_text );
+}
+
 input {
-    font-size : 1em;
+    font-size             : 1em;
+    line-height           : 1;
+    /* //_{#can-box-sizing */
+    /* //_{@modern */
+    -webkit-box-sizing    : content-box;
+    /* //_}@modern */
+            box-sizing    : content-box;
+    /* //_}#can-box-sizing */
     /* //_{@modern */
     -webkit-border-radius : 0;            
        -moz-border-radius : 0;                
         -ms-border-radius : 0;                
             border-radius : 0;
     -webkit-appearance    : none;
+            appearance    : none;
+    margin                : 0;
     /* //_}@modern */
+
+/* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+    height                : 1em;
+/* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+/* //_{@ie55,@ie5win */
+    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+/* //_}@ie55,@ie5win */
 }
 
 /* //_{@modern */
@@ -44,16 +69,24 @@ input::-moz-focus-inner /* , button::-moz-focus-inner */ {
 /* //_}@modern */
 
 textarea {
+    font-size        : 1em; /* for Edge, IE11- */
     overflow         : auto;
     /* //_{@modern */
     resize           : vertical;
     background-image : none; /* Android Firefox */
     /* //_}@modern */
+    margin           : 0;
 }
 
+/* //_{#can-focus-psedo-class */
 form :focus {
-    color      : $COLOR_ACCENT;
+    color        : $COLOR_ACCENT;
+    border-color : $COLOR_ACCENT;
+    @include highContrast {
+        border-style : dotted;
+    }
 }
+/* //_}#can-focus-psedo-class */
 
 /* //_{@modern */
 form :invalid {
@@ -62,19 +95,16 @@ form :invalid {
 }
 /* //_}@modern */
 
-textarea, input {
-    @include highContrast {
-        border-width : 1px;
-    }
-}
-
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     form * {
-        color  : $COLOR_WTC_text;
+        color : $COLOR_Watch_text;
     }
     form :focus {
         color : $COLOR_ACCENT;
+    }
+    textarea, input {
+        @include placeholderColor( $COLOR_Watch_casual_text );
     }
 }

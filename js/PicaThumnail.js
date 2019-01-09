@@ -1,37 +1,40 @@
 "use strict";
-var PICA_THUMBNAIL_ROOT_ID   = 'jM',
-    PICA_THUMBNAIL_IMGS      = [],
-    PICA_THUMBNAIL_MARGIN_LR = 2,
+var PICA_THUMBNAIL_IMGS      = [],
+    PICA_THUMBNAIL_MARGIN_LR = 4, // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
     PICA_THUMBNAIL_safariPreventDefault;
 
 if( !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function(){
-        var links = getElementsByTagName( 'A', getElementById( PICA_THUMBNAIL_ROOT_ID ) ),
-            i = -1, _ = '', elmA, elmImg, tag, href, ext;
+        var links = DOM_getElementsByTagName( 'A', g_elmMain ),
+            i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
 
         for( ; elmA = links[ ++i ]; ){
-            elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
-            tag    = elmImg && elmImg.tagName;
-            if( tag === 'IMG' || tag === 'img' ){
-                href = elmA.getAttribute( 'href' );
-                ext  = href.split( '?' ).join( _ ).split( '#' ).join( _ ).split( '.' );
-                ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
-                if( 0 <= 'jpg png gif bmp'.indexOf( ext.substr( 0, 3 ) ) || 0 <= 'jpeg webp'.indexOf( ext.substr( 0, 4 ) ) ){
-                    elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
-                    elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
-                    elmA.className += ' pica';
-                    PICA_THUMBNAIL_IMGS.push( {
-                        elmA        : elmA,
-                        thumbUrl    : elmImg.src,
-                        thumbWidth  : elmImg.style.width = ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px',
-                        originalUrl : href,
-                        elmImg      : elmImg //,
-                        // replaced   : false,
-                        // clazz      : _,
-                        // caption    : elmCap,
-                        // captionCSS : ''
-                    } );
+            if( !DOM_hasClassName( elmA, 'img-disabled' ) ){
+                elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
+                tag    = elmImg && DOM_getTagName( elmImg );
+                if( tag === 'IMG' ){
+                    href = DOM_getAttribute( elmA, 'href' );
+                    ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
+                    ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
+                    if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
+                        elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
+                        elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
+                        thumbWidth     = ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
+                        DOM_setStyle( elmImg, 'width', thumbWidth );
+                        DOM_addClassName( elmA, 'jsPica' );
+                        PICA_THUMBNAIL_IMGS.push( {
+                            elmA        : elmA,
+                            thumbUrl    : elmImg.src,
+                            thumbWidth  : thumbWidth,
+                            originalUrl : href,
+                            elmImg      : elmImg //,
+                            // replaced   : false,
+                            // clazz      : _,
+                            // elmCap     : elmCap,
+                            // captionCSS : ''
+                        } );
+                    };
                 };
             };
         };
@@ -77,21 +80,24 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                 
                 if( obj.replaced ){
                     // Large -> small
-                    elmImg.style.width = obj.thumbWidth;
+                    DOM_setStyle( elmImg, 'width', obj.thumbWidth );
                     elmImg.src = obj.thumbUrl;
-                    elmA.className = obj.clazz;
-                    if( elmCap = obj.caption ) elmCap.style.cssText = obj.captionCSS;
+                    DOM_setClassName( elmA, obj.clazz );
+                    if( elmCap = obj.elmCap ){
+                        DOM_setCssText( elmCap, obj.captionCSS );
+                        DOM_setClassName( elmCap, 'caption' );
+                    };
                 } else {
                     // small -> Large
                     if( src = obj.originalUrl ){
                         delete obj.originalUrl;
                         
-                        while( parent = parent.parentNode || parent.parentElement ){
-                            if( 0 <= ( ' ' + parent.className + ' ' ).indexOf( ' caption ' ) ){
-                                obj.caption    = parent;
+                        while( parent = DOM_getParentElement( parent ) ){
+                            if( DOM_hasClassName( parent, 'caption' ) ){
+                                obj.elmCap     = parent;
                                 obj.captionCSS = parent.style.cssText;
                             } else {
-                                tag = parent.tagName.toUpperCase();
+                                tag = DOM_getTagName( parent );
                                 if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
                             };
                         };
@@ -115,12 +121,13 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                         obj.large = src;
                     };
                     
-                    obj.clazz = c = elmA.className;
-                    elmA.className = ( c ? c + ' ' : _ ) + 'jL';
-                    elmImg.style.width = _;
+                    obj.clazz = c = DOM_getClassName( elmA );
+                    DOM_addClassName( elmA, 'jsPicaLarge' );
+                    DOM_setStyle( elmImg, 'width', _ );
                     elmImg.src = obj.large;
-                    if( elmCap = obj.caption ){
-                        elmCap.style.cssText = 'float:none;margin-right:0';
+                    if( elmCap = obj.elmCap ){
+                        DOM_setCssText( elmCap, '' );
+                        DOM_addClassName( elmCap, 'jsCapLarge' );
                     };
                 };
 

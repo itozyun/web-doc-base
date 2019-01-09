@@ -1,113 +1,54 @@
 $COLOR_ACCENT : #3079ed !default;
 $COLOR_WARN   : red !default;
 
-/*  ヘッダー用カラー
---------------------------------------------------------------------------------------*/
-$COLOR_HdX_fill          : #E2E2E2 !default;
-$COLOR_HdX_text          : #040919 !default;
-
-$COLOR_HdM_fill          : #98C1D6 !default;
-$COLOR_HdM_text          : $COLOR_HdX_text !default;
-$COLOR_HdM_casual_fill   : #319ACE !default;
-$COLOR_HdM_casual_text   : $COLOR_HdM_text !default;
-$COLOR_HdM_flip_fill     : #010F3D !default;
-$COLOR_HdM_flip_text     : #fff !default;
-
-$COLOR_HdM_link          : #24c !default;
-
-$COLOR_HdS_fill          : $COLOR_HdM_flip_fill !default;
-$COLOR_HdS_text          : $COLOR_HdX_text !default;
-$COLOR_HdS_casual_fill   : #ddd !default;
-$COLOR_HdS_casual_text   : $COLOR_HdM_casual_text  !default;
-$COLOR_HdS_flip_fill     : $COLOR_HdM_flip_fill !default;
-$COLOR_HdS_flip_text     : $COLOR_HdM_flip_text !default;
-
-$COLOR_HdS_link          : #24c !default;
+$COLOR_Sidebar_fill : #f1f4f1 !default;
 
 /*  白系統のボディーメイン用カラー
 --------------------------------------------------------------------------------------*/
-$COLOR_BdM_fill          : #f8fbf8 !default;
-$COLOR_BdM_text          : #111 !default;
-$COLOR_BdM_casual_fill   : #ddd !default;
-$COLOR_BdM_casual_text   : #777 !default;
-$COLOR_BdM_flip_fill     : $COLOR_BdM_text !default;
-$COLOR_BdM_flip_text     : $COLOR_BdM_fill !default;
-$COLOR_BdM_accent        : $COLOR_ACCENT !default;
+$COLOR_Default_fill          : #f8fbf8 !default;
+$COLOR_Default_text          : #111 !default;
+$COLOR_Default_casual_fill   : #ddd !default;
+$COLOR_Default_casual_text   : #777 !default;
+$COLOR_Default_accent        : $COLOR_ACCENT !default;
 
-$COLOR_BdM_link          : #24c !default;
-$COLOR_BdM_visited       : #717 !default;
-$COLOR_BdM_hover         : $COLOR_ACCENT !default;
-$COLOR_BdM_visited_hover : #419 !default;
-
-/*  白系統のボディーサブ用カラー
---------------------------------------------------------------------------------------*/
-$COLOR_BdS_fill          : #f1f4f1 !default;
-$COLOR_BdS_text          : $COLOR_BdM_text !default;
-$COLOR_BdS_casual_fill   : $COLOR_BdM_casual_fill !default;
-$COLOR_BdS_casual_text   : $COLOR_BdM_casual_text !default;
-$COLOR_BdS_flip_fill     : $COLOR_BdS_text !default;
-$COLOR_BdS_flip_text     : $COLOR_BdS_fill !default;
-$COLOR_BdS_accent        : $COLOR_ACCENT !default;
-
-$COLOR_BdS_link          : $COLOR_BdM_link !default;
-$COLOR_BdS_visited       : $COLOR_BdS_text !default;
-$COLOR_BdS_hover         : $COLOR_BdM_hover !default;
-$COLOR_BdS_visited_hover : $COLOR_BdM_visited_hover !default;
+$COLOR_Default_link          : #24c !default;
+$COLOR_Default_visited       : #717 !default;
+$COLOR_Default_hover         : $COLOR_ACCENT !default;
+$COLOR_Default_visited_hover : #419 !default;
 
 /*  黒系統のフッターメイン用カラー
 --------------------------------------------------------------------------------------*/
-$COLOR_FtM_fill          : #1a1a1a !default;
-$COLOR_FtM_text          : #fff !default;
-$COLOR_FtM_casual_fill   : #2a2a2a !default;
-$COLOR_FtM_casual_text   : #bbb !default;
-$COLOR_FtM_flip_fill     : $COLOR_FtM_text !default;
-$COLOR_FtM_flip_text     : $COLOR_FtM_fill !default;
-$COLOR_FtM_accent        : $COLOR_ACCENT !default;
+$COLOR_Ribbon_fill          : #1a1a1a !default;
+$COLOR_Ribbon_text          : #fff !default;
+$COLOR_Ribbon_casual_fill   : #2a2a2a !default;
+$COLOR_Ribbon_casual_text   : #bbb !default;
+$COLOR_Ribbon_accent        : $COLOR_ACCENT !default;
 
-$COLOR_FtM_link          : #bbe !default;
-$COLOR_FtM_visited       : $COLOR_FtM_text !default;
-$COLOR_FtM_hover         : $COLOR_ACCENT !default;
-$COLOR_FtM_visited_hover : #b3f !default;
-
-/*  黒系統のフッターサブ用カラー
---------------------------------------------------------------------------------------*/
-$COLOR_FtS_fill          : #111 !default;
-$COLOR_FtS_text          : $COLOR_FtM_text !default;
-$COLOR_FtS_casual_fill   : #222 !default;
-$COLOR_FtS_casual_text   : $COLOR_FtS_text !default;
-$COLOR_FtS_flip_fill     : $COLOR_FtS_text !default;
-$COLOR_FtS_flip_text     : $COLOR_FtS_fill !default;
-$COLOR_FtS_accent        : $COLOR_ACCENT !default;
-
-$COLOR_FtS_link          : $COLOR_FtM_link !default;
-$COLOR_FtS_visited       : $COLOR_FtS_text !default;
-$COLOR_FtS_hover         : $COLOR_FtM_hover !default;
-$COLOR_FtS_visited_hover : $COLOR_FtM_visited_hover !default;
+$COLOR_Ribbon_link          : #bbe !default;
+$COLOR_Ribbon_visited       : $COLOR_Ribbon_text !default;
+$COLOR_Ribbon_hover         : $COLOR_ACCENT !default;
+$COLOR_Ribbon_visited_hover : #b3f !default;
 
 /*  WATCH 用メイン用カラー
 --------------------------------------------------------------------------------------*/
-$COLOR_WTC_fill          : #000 !default;
-$COLOR_WTC_text          : #fff !default;
-$COLOR_WTC_casual_fill   : #222 !default;
-$COLOR_WTC_casual_text   : #aaa !default;
-$COLOR_WTC_flip_fill     : $COLOR_WTC_text !default;
-$COLOR_WTC_flip_text     : $COLOR_WTC_fill !default;
-$COLOR_WTC_accent        : $COLOR_ACCENT !default;
+$COLOR_Watch_fill          : #000 !default;
+$COLOR_Watch_text          : #fff !default;
+$COLOR_Watch_casual_fill   : #222 !default;
+$COLOR_Watch_casual_text   : #aaa !default;
+$COLOR_Watch_accent        : $COLOR_ACCENT !default;
 
-$COLOR_WTC_link          : $COLOR_FtM_link !default;
-$COLOR_WTC_visited       : #eae !default;
-$COLOR_WTC_hover         : $COLOR_FtM_hover !default;
-$COLOR_WTC_visited_hover : $COLOR_FtM_visited_hover !default;
+$COLOR_Watch_link          : $COLOR_Ribbon_link !default;
+$COLOR_Watch_visited       : #eae !default;
+$COLOR_Watch_hover         : $COLOR_Ribbon_hover !default;
+$COLOR_Watch_visited_hover : $COLOR_Ribbon_visited_hover !default;
 
 /*  印刷用カラー
 --------------------------------------------------------------------------------------*/
-$COLOR_PRT_fill          : #fff !default;
-$COLOR_PRT_text          : #000 !default;
-$COLOR_PRT_casual_fill   : #ccc !default;
-$COLOR_PRT_casual_text   : #666 !default;
-$COLOR_PRT_flip_fill     : $COLOR_PRT_text !default;
-$COLOR_PRT_flip_text     : $COLOR_PRT_fill !default;
-$COLOR_PRT_accent        : $COLOR_ACCENT !default;
+$COLOR_Print_fill          : #fff !default;
+$COLOR_Print_text          : #000 !default;
+$COLOR_Print_casual_fill   : #ccc !default;
+$COLOR_Print_casual_text   : #666 !default;
+$COLOR_Print_accent        : $COLOR_ACCENT !default;
 
-$COLOR_PRT_link          : #006 !default;
-$COLOR_PRT_visited       : #606 !default;
+$COLOR_Print_link          : #006 !default;
+$COLOR_Print_visited       : #606 !default;

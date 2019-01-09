@@ -1,281 +1,146 @@
 /* a タグの下線
 --------------------------------------------------------------------------------------*/
 
-/* 下線なし -> hover -> 下線あり */
-/* //_{#ie6-win */
-a,
-/* //_}#ie6-win */
-a:link, a:visited, a:focus, a:active { text-decoration : none; }
-a:hover { text-decoration : none; } /* link の無い a には下線をつけない */
-a:link:hover, a:visited:hover { text-decoration : underline; }
-a:focus:hover, a:link:active:hover, a:visited:active:hover { text-decoration : underline !important; }
-
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
-@mixin hideUnderLineOnHover {
-    &:link, &:visited { text-decoration : underline; }
-    &:link:hover , &:visited:hover,
-    &:link:focus , &:visited:focus,
-    &:link:active, &:visited:active { text-decoration : none; }
-}
-
-/* ずっと下線なし*/
-@mixin noUnderLineAlways {
-    text-decoration : none !important;
-
-    &:link:active:hover, &:visited:active:hover {
-        text-decoration : none !important;
-    }
-}
-
-/* a タグの色 [Header|Body] > Main > A
---------------------------------------------------------------------------------------*/
 a {
-    color        : $COLOR_BdM_casual_text;
+    /* //_{#ie6-win */
+    &, /* link の無い a には下線をつけない */
+    /* //_}#ie6-win */
+    &:hover, &:active
+    /* //_{#can-focus-psedo-class */
+    , &:focus
+    /* //_}#can-focus-psedo-class */
+    { text-decoration : none; }
 }
-a:link          {
-    color        : $COLOR_BdM_link;
-    border-color : $COLOR_BdM_fill;
+:link, :visited {
+    text-decoration : underline;
 }
 
-/* //_{@modern */
-a:link, a:visited {
-    background-color : rgba( 255, 255, 255, 0 );
-/* clean-css ignore:start */
-    -webkit-transition-property : background-color, color, border-color;
-    -webkit-transition          : 0.3s ease-in;
-/* clean-css ignore:end */
-       -moz-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
-         -o-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
-            transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+/* 記事の外では 下線なし -> hover -> 下線あり */
+.lMi, .lMh, .lS, .lX {
+    :link, :visited { text-decoration : none; }
+    :link:hover, :visited:hover { text-decoration : underline; }
+    /* //_{#can-focus-psedo-class */
+    a:focus:hover,
+    /* //_}#can-focus-psedo-class */
+    a:active:hover { text-decoration : underline; }    
 }
+
+/*  transition
+--------------------------------------------------------------------------------------*/
+/* //_{@modern */
+    :link, :visited {
+        background-color : transparent;
+    }
+    :link, :link *,
+    :visited, :visited * {
+    /* clean-css ignore:start */
+        -webkit-transition-property : background-color, color, border-color;
+        -webkit-transition          : 0.3s ease-in;
+    /* clean-css ignore:end */
+           -moz-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+             -o-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+                transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+    }
 /* //_}@modern */
 
-a:visited       {
-    color        : $COLOR_BdM_text; /* 訪問済のリンクは黒になる, .aBodyRoot のみ紫に */
-    border-color : $COLOR_BdM_fill;
+/* a タグの色
+--------------------------------------------------------------------------------------*/
+a {
+    color        : $COLOR_Default_casual_text;
+    border-color : $COLOR_Default_fill;
 }
-a:link:hover    {
-    color        : $COLOR_BdM_hover;
-    border-color : $COLOR_BdM_hover;
+:link          {
+    color        : $COLOR_Default_link;
+    
 }
-a:visited:hover {
-    color        : $COLOR_BdM_visited_hover;
-    border-color : $COLOR_BdM_visited_hover;
+:visited       {
+    color        : $COLOR_Default_visited;
+}
+:link:hover    {
+    color        : $COLOR_Default_hover;
+    border-color : $COLOR_Default_hover;
+}
+:visited:hover {
+    color        : $COLOR_Default_visited_hover;
+    border-color : $COLOR_Default_visited_hover;
+}    
+
+/* .aBodyRoot の外では訪問済のリンクは黒になる */
+.lMi, .lMh, .lS, .lX {
+    :visited       { color : $COLOR_Default_text; }
+    :visited:hover { color : $COLOR_Default_visited_hover; }
 }
 
-a:link:active, a:visited:active, a:focus {
+.ribbon {
+    a {
+        color        : $COLOR_Ribbon_casual_text;
+        border-color : $COLOR_Ribbon_fill;
+    }
+    :link          {
+        color        : $COLOR_Ribbon_link;
+    }
+    :visited       {
+        color        : $COLOR_Ribbon_visited;
+    }
+    :link:hover    {
+        color        : $COLOR_Ribbon_hover;
+        border-color : $COLOR_Ribbon_hover;
+    }
+    :visited:hover {
+        color        : $COLOR_Ribbon_visited_hover;
+        border-color : $COLOR_Ribbon_visited_hover;
+    }   
+}
+
+/* :active, :focus 時の配色は同じ
+--------------------------------------------------------------------------------------*/
+a:active
+/* //_{#can-focus-psedo-class */
+, a:focus
+/* //_}#can-focus-psedo-class */
+{
     background-color : $COLOR_ACCENT !important;
     color            : #fff        !important;
-}
-a:link:active *, a:visited:active *, a:focus * {
-    color      : #fff !important;
-}
 
-/* a タグの色 [Header|Body] > Sub > A
---------------------------------------------------------------------------------------*/
-.lS a {
-    @if $COLOR_BdM_casual_text != $COLOR_BdS_casual_text { color : $COLOR_BdM_casual_text; }
-}
-.lS a:link          {
-    color        : $COLOR_BdS_link;
-    border-color : $COLOR_BdS_fill;
-}
-.lS a:visited       {
-    color        : $COLOR_BdS_text;
-    border-color : $COLOR_BdS_fill;
-}
-.lS a:link:hover    {
-    color        : $COLOR_BdS_hover;
-    border-color : $COLOR_BdS_hover;
-}
-.lS a:visited:hover {
-    color        : $COLOR_BdS_visited_hover;
-    border-color : $COLOR_BdS_visited_hover;
-}
-
-/*  .fillbg > Sub > A
---------------------------------------------------------------------------------------*/
-.fillbg a {
-    color : $COLOR_FtS_casual_text;
-}
-.fillbg a:link {
-    color        : $COLOR_FtS_link;
-    border-color : $COLOR_FtS_fill;
-}
-.fillbg a:visited {
-    color        : $COLOR_FtS_text;
-    border-color : $COLOR_FtS_fill;
-}
-.fillbg a:link:hover {
-    color        : $COLOR_FtS_hover;
-    border-color : $COLOR_FtS_hover;
-}
-.fillbg a:visited:hover {
-    color        : $COLOR_FtS_visited_hover;
-    border-color : $COLOR_FtS_visited_hover;
-}
-
-/*  .fillbg > Main > A
---------------------------------------------------------------------------------------*/
-.fillbg .lM a {
-    @if $COLOR_FtM_casual_text != $COLOR_FtS_casual_text { color : $COLOR_FtM_casual_text; }
-}
-.fillbg .lM a:link {
-    color        : $COLOR_FtM_link;
-    border-color : $COLOR_FtM_fill;
-}
-.fillbg .lM a:visited {
-    color        : $COLOR_FtM_text;
-    border-color : $COLOR_FtM_fill;
-}
-.fillbg .lM a:link:hover {
-    color        : $COLOR_FtM_hover;
-    border-color : $COLOR_FtM_hover;
-}
-.fillbg .lM a:visited:hover {
-    color        : $COLOR_FtM_visited_hover;
-    border-color : $COLOR_FtM_visited_hover;
-}
-
-@mixin fill {
-    @include noUnderLineAlways;
-
-    /* href がない場合 current を示す塗りになる */
-    background : $COLOR_BdM_flip_fill;
-    color      : $COLOR_BdM_flip_text;
-
-    &:link {
-        background : $COLOR_BdM_fill;
-        color      : $COLOR_BdM_link;
-    }
-    &:visited {
-        background : $COLOR_BdM_fill;
-        color      : $COLOR_BdM_text;
-    }
-    &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-        background : $COLOR_BdM_casual_fill;
-        color      : $COLOR_BdM_text;
-    }
-
-    .lS & {
-        background : $COLOR_BdS_flip_fill;
-        color      : $COLOR_BdS_flip_text;
-    }
-    .lS &:link {
-        background : $COLOR_BdS_fill;
-        color      : $COLOR_BdS_link;
-    }
-    .lS &:visited {
-        background : $COLOR_BdS_fill;
-        color      : $COLOR_BdS_text;
-    }
-    .lS &:link:hover, .lS &:visited:hover {
-        background : $COLOR_BdS_casual_fill;
-        color      : $COLOR_BdS_text;
-    }
-
-    .fillbg & {
-        background : $COLOR_FtS_flip_fill;
-        color      : $COLOR_FtS_flip_text;
-    }
-    .fillbg &:link {
-        background : $COLOR_FtS_fill;
-        color      : $COLOR_FtS_link;
-    }
-    .fillbg &:visited {
-        background : $COLOR_FtS_fill;
-        color      : $COLOR_FtS_text;
-    }
-    .fillbg &:link:hover, .fillbg &:visited:hover {
-        background : $COLOR_FtS_casual_fill;
-        color      : $COLOR_FtS_text;
-    }
-
-    .fillbg .lM & {
-        background : $COLOR_FtM_flip_fill;
-        color      : $COLOR_FtM_flip_text;
-    }
-    .fillbg .lM &:link {
-        background : $COLOR_FtM_fill;
-        color      : $COLOR_FtM_link;
-    }
-    .fillbg .lM &:visited {
-        background : $COLOR_FtM_fill;
-        color      : $COLOR_FtM_text;
-    }
-    .fillbg .lM &:link:hover, .fillbg .lM &:visited:hover {
-        background : $COLOR_FtM_casual_fill;
-        color      : $COLOR_FtM_text;
-    }
-
-    /* //_{+coloredHeader */
-    #lH & {
-        background : $COLOR_HdS_flip_fill;
-        color      : $COLOR_HdS_flip_text;
-    }
-    #lH &:link {
-        background : $COLOR_HdS_fill;
-        color      : $COLOR_HdS_link;
-    }
-    #lH &:visited {
-        background : $COLOR_HdS_fill;
-        color      : $COLOR_HdS_text;
-    }
-    #lH &:link:hover, #lH &:visited:hover {
-        background : $COLOR_HdS_casual_fill;
-        color      : $COLOR_HdS_text;
-    }
-
-    #lH .lM & {
-        background : $COLOR_HdM_flip_fill;
-        color      : $COLOR_HdM_flip_text;
-    }
-    #lH .lM &:link {
-        background : $COLOR_HdM_fill;
-        color      : $COLOR_HdM_link;
-    }
-    #lH .lM &:visited {
-        background : $COLOR_HdM_fill;
-        color      : $COLOR_HdM_text;
-    }
-    #lH .lM &:link:hover, #lH .lM &:visited:hover {
-        background : $COLOR_HdM_casual_fill;
-        color      : $COLOR_HdM_text;
-    }
-    /* //_}+coloredHeader */
-
-    @include media(watch){
-        /* href がない場合 current カラーになる */
-        background : $COLOR_WTC_flip_fill;
-        color      : $COLOR_WTC_flip_text;
-
-        &:link {
-            background : $COLOR_WTC_fill;
-            color      : $COLOR_WTC_link;
-        }
-        &:visited {
-            background : $COLOR_WTC_fill;
-            color      : $COLOR_WTC_text;
-        }
-        &:link:hover, &:visited:hover { /* visited:hover は ie11- で必要 */
-            background : $COLOR_WTC_casual_fill;
-            color      : $COLOR_WTC_text;
-        }        
+    & * {
+        color : #fff !important;
     }
 }
 
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    a:link          { color : $COLOR_WTC_link;  border-color : $COLOR_WTC_fill; }
-    a:visited       { color : $COLOR_WTC_text;  border-color : $COLOR_WTC_fill; }
-    a:hover         { color : $COLOR_WTC_hover; border-color : $COLOR_WTC_hover; }
-    a:visited:hover { color : $COLOR_WTC_visited_hover; border-color : $COLOR_WTC_visited_hover }
+    a {
+        color        : $COLOR_Watch_casual_text;
+        border-color : $COLOR_Watch_fill;
+    }
+    :link          {
+        color        : $COLOR_Watch_link;
+        
+    }
+    :visited       {
+        color        : $COLOR_Watch_visited;
+    }
+    :link:hover    {
+        color        : $COLOR_Watch_hover;
+        border-color : $COLOR_Watch_hover;
+    }
+    :visited:hover {
+        color        : $COLOR_Watch_visited_hover;
+        border-color : $COLOR_Watch_visited_hover;
+    }
+
+    /* .aBodyRoot の外では訪問済のリンクは黒になる */
+    .lMi, .lMh, .lS, .lX {
+        :visited       { color : $COLOR_Watch_text; }
+        :visited:hover { color : $COLOR_Watch_visited_hover; }
+    }
 }
 
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    a:link   , .fillbg a:link   , .fillbg .lM a:link    { color : $COLOR_PRT_link; }
-    a:visited, .fillbg a:visited, .fillbg .lM a:visited { color : $COLOR_PRT_visited; }
+    :link    { color : $COLOR_Print_link; }
+    :visited { color : $COLOR_Print_visited; }
 }

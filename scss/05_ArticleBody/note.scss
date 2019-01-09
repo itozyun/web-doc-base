@@ -1,7 +1,11 @@
 /*  note
 --------------------------------------------------------------------------------------*/
 .note, dl.note {
-    margin-left : 25% !important;
+    @include hMargin(1, 1em, 1em);
+    padding-left : 25%;
+    * {
+        margin-right : 0 !important;
+    }
 }
 dl.note dd {
     margin-left : 1em;

@@ -2,32 +2,26 @@
 /*  blockquote
 --------------------------------------------------------------------------------------*/
 blockquote {
-    padding    : $CONTENT_MARGIN_LR $CONTENT_MARGIN_LR/2;
-    background : $COLOR_BdM_casual_fill;
+    @include hMargin(1, 1em, 1em);
+    padding      : 1em;
+    border-width : 1px;
+    background   : $COLOR_Default_casual_fill;
     @include highContrast {
         border-style : dotted;
-        border-width : 1px;
     }
 }
 
-    blockquote h3, blockquote h5 {
-        border-color : $COLOR_BdM_flip_fill;
-    }
-
-    blockquote {
-        p, pre, dl, ul, ol, blockquote, .box, .hscroll {
-            margin-left  : $CONTENT_MARGIN_LR/2;
-            margin-right : $CONTENT_MARGIN_LR/2;
-        }
+    blockquote h3 {
+        border-color : $COLOR_Default_text;
     }
 
     /* //_{#can-content */
     blockquote:before {
-        content     : attr(title);
-        display     : block;
+        content : attr(title);
+        display : block;
     }
     blockquote:after {
-        content     : attr(cite);
+        content : attr(cite);
     }
     /* //_}#can-content */
 
@@ -35,37 +29,47 @@ blockquote {
     blockquote:before,
     /* //_}#can-content */
     .js-bqLink {
+        @include hMargin(2, 0, 0);
         font-size   : 0.875em;
         line-height : 1.2;
-        color       : $COLOR_BdM_link;
+        color       : $COLOR_Default_link;
     }
     /* //_{#can-content */
     blockquote:after,
     /* //_}#can-content */
     .js-bqCite {
+        @include hMargin(2, 0, 0);
         display     : block;
         font-size   : 0.875em;
         line-height : 1.2;
         text-align  : right;
         word-break  : break-all; /* 長いurl iOS4用効果あり */
         /* word-wrap   : break-all; 効果なし */
-        color       : $COLOR_BdM_casual_text;
+        color       : $COLOR_Default_casual_text;
     }
+
+/* Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet) {
+    blockquote {
+        padding : 1em 1px;
+    }
+}
 
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     blockquote {
-        background : $COLOR_WTC_casual_fill;
-        color      : $COLOR_WTC_text;
+        background : $COLOR_Watch_casual_fill;
+        color      : $COLOR_Watch_text;
     }
-        blockquote h5 {
-            border-color : $COLOR_WTC_flip_fill;
+        blockquote h3 {
+            border-color : $COLOR_Watch_text;
         }
 
         blockquote:before,
         .js-bqLink {
-            color : $COLOR_WTC_link;
+            color : $COLOR_Watch_link;
         }
 }
 
@@ -74,11 +78,11 @@ blockquote {
 @include media(print) {
     blockquote {
         background : none;
-        border     : 1px solid $COLOR_PRT_casual_fill;
+        margin     : 1em 0;
     }
     /* //_{#can-content */
     .js-bqLink a:after {
-        display    : none;
+        display : none; /* for iOS4 content : none だけでは消えない */
     }
     /* //_}#can-content */
 }

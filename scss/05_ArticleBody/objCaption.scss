@@ -5,24 +5,27 @@
  *         img|emned|
  *         figcaption
  */
+$CaptionedObjectFontSize : 0.875em;
+
 .caption {
-    word-break    : break-all;
-    text-align    : center;
+    word-break : break-all;
+    text-align : center;
     @include lineHeight(1.2, 0);
-    font-size     : 0.875em;
+    font-size  : 0.875em;
     /* //_{@modern */
-    width       : 100%; /* for animation */
+    width      : 100%; /* for animation */
     /* //_}@modern */
-    /* //_{^#ie6-win */
-    max-width     : 100%;
-    /* //_}^#ie6-win */
-    /* //_{^@ie5win */
-    margin        : 1em auto;
-    /* //_}^@ie5win */
+    /* //_{#can-max-min */
+    max-width  : 100%;
+    /* //_}#can-max-min */
 
     @include unbreak-inside;
+
+    img, .box & img {
+        margin : 0 0 .5em;
+    }
 }
 
 .box .caption * {
-    float        : none;
+    float : none;
 }

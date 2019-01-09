@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
     #lF .lX {
-        border-top : 1px solid $COLOR_FtS_casual_fill;
+        border-width : 1px 0 0;
     }
 }
 
@@ -13,6 +13,6 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     #lF .lX {
-        border-top : 0.15em solid $COLOR_PRT_text;
+        border-top : 0.15em solid $COLOR_Print_text;
     }
 }

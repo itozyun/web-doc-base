@@ -18,69 +18,77 @@
 /*  Typography
 --------------------------------------------------------------------------------------*/
     h1, .h1, h2, h3, h4, h5, h6 {
-        @include lineHeight(1.2, 0)
+        @include lineHeight(1.2, 0);
         @include unbreak-inside;
         @include unbreak-after;
     }
 
     h1, h2, h3, h5, h6 {
-        font-weight        : normal;
-    }
-
-    @mixin h1-main-content {
-        font-size      : 2em;
-        padding        : 0;
-        margin         : 2em 0;
-        letter-spacing : 2px;
-    }
-
-    @mixin h2-main-content {
-        font-size      : 1.5em;
-        margin         : 2em 0 1em;
-        border-width   : 0.2em 0 0;
-        border-style   : solid;
-        padding        : 0.8em 0 0;
-        letter-spacing : 1px;
-
-        /* //_{#can-content */
-        &:after {
-            /* content : none; */
-
-            display : none; /* for iOS4 content : none だけでは消えない */
-        }
-        /* //_}#can-content */
-    }
-
-    @mixin h3-main-content {
-        font-weight    : bold;
-        font-size      : 1.25em;
-        letter-spacing : 1px;
-        border-width   : 0.1em 0 0;
-        border-style   : solid;
-        padding        : 0.8em 0 0;
-        margin         : 2.4em 0 1.2em;
+        font-weight : normal;
     }
 
     h4 {
         font-size      : 1em;
-        border-left    : 0.5em solid $COLOR_BdM_flip_fill;
-        padding        : 0 0 0 0.5em;
-        margin         : 1.5em 0 0.8em;
+        border-width   : 0 0 0 0.7em;
+        border-color   : $COLOR_Default_text;
+        padding        : 0 0 0 0.3em;
     }
     h5 {
         font-size      : 1em;
-        border-width   : 0 0 0 0.3em;
-        border-style   : solid;
-        padding        : 0 0 0 0.6em;
-        margin         : 1.5em 0 0.8em 0.1em;
+        border-width   : 0 0 0 0.5em;
+        border-color   : $COLOR_Default_casual_text;
+        padding        : 0 0 0 0.5em;
     }
     h6 {
         font-size      : 1em;
-        margin         : 1.5em 0 0.8em 1em;
+        border-width   : 0 0 0 0.3em;
+        border-color   : $COLOR_Default_casual_text;
+        color          : $COLOR_Default_casual_text;
+        padding        : 0 0 0 0.7em;
     }
 
-    ul, ol,
-    li ol, li ul {
+    strong, em {
+        font-style : normal;
+    }
+
+    /* //_{#can-attr-selector */
+    q[title], q[cite] {
+        border-bottom : 1px dotted;
+    }
+    /* //_}#can-attr-selector */
+
+    dfn,
+    /* //_{#can-attr-selector */
+    abbr[title],
+    /* //_}#can-attr-selector */
+    acronym {
+        border-bottom : 1px dotted;
+        cursor        : help;
+    }
+
+    img, iframe
+    , embed, object, video {
+        @include unbreak-inside;
+
+        /* //_{#can-max-min */
+        max-width : 100%;
+        /* //_}#can-max-min */
+        /* //_{#can-margin-auto */
+        margin    : 1em auto;
+        /* //_}#can-margin-auto */
+        /* //_{^#can-margin-auto */
+        margin    : 1em 0;
+        /* //_}^#can-margin-auto */
+        a & {
+            display : block; /* focus 時の塗りを適切にする */
+        }
+    }
+
+    img {
+        height    : auto;
+    }
+
+    ul, ol {
         /* //_{@modern */
         list-style-position : outside; /* android opera12 ?? */
         /* //_}@modern */
@@ -88,28 +96,9 @@
         /* //_{@ie5win,@ie55 */
         margin-left         : 0;
         /* //_}@ie5win,@ie55 */
-    }
-    li ul, dd ul {
-        padding-left  : 1em;
-    }
-    li ol, li ul,
-    dd ol, dd ul,
-    dd dl, li dl {
-        margin-top    : 0;
-        margin-bottom : 0;
-    }
-
-    p, pre, dl, ul, ol, table, blockquote {
-        margin : 1em $CONTENT_MARGIN_LR;
-    }
-    table {
-        width : 100% - $CONTENT_MARGIN_LR * 2;
-    }
-
-    li p, li pre, li dl, li table, li blockquote,
-    dd p, dd pre, dd dl, dd table, dd blockquote {
-        margin-left  : 0;
-        margin-right : 0;
+        li &, dd & {
+            padding-left  : 1em;
+        }
     }
 
     li, dd, dt, tr {
@@ -119,54 +108,6 @@
     dt, thead, caption {
         @include unbreak-after;
     }
-
-    strong, em {
-        font-style : normal;
-    }
-
-    dfn,
-    /* //_{^#ie7-win */
-    abbr[title],
-    /* //_}^#ie7-win */
-    acronym {
-        border-bottom : 1px dotted;
-        cursor        : help;
-    }
-
-    img, embed, object, iframe, video {
-        @include unbreak-inside;
-    }
-
-    img {
-        height    : auto;
-    }
-    img,
-    embed,
-    object,
-    iframe,
-    video {
-        /* //_{^#ie6-win */
-        max-width : 100%;
-        /* //_}^#ie6-win */
-    /* //_{^@ie5win */
-        margin    : 1em auto;
-        /* //_}^@ie5win */
-        a & {
-            display : block; /* focus 時の塗りを適切にする */
-        }
-    }
-
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    p, pre, dl, ul, ol, table, blockquote {
-        margin-left  : $CONTENT_MARGIN_LR_WSXGA;
-        margin-right : $CONTENT_MARGIN_LR_WSXGA;
-    }
-    table {
-        width : 100% - $CONTENT_MARGIN_LR_WSXGA * 2;
-    }
-}
 
 /*  Phone
 --------------------------------------------------------------------------------------*/
@@ -180,14 +121,15 @@
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     h4 {
-        border-color : $COLOR_WTC_flip_fill;
+        border-color : $COLOR_Watch_text;
     }
-
-    p, pre, dl, ul, ol, table, blockquote {
-        margin-left  : 0;
-        margin-right : 0;
+    h5 {
+        border-color : $COLOR_Watch_casual_text;
     }
-
+    h6 {
+        border-color : $COLOR_Watch_casual_text;
+        color        : $COLOR_Watch_casual_text;
+    }
     dd {
         margin-left : 0.5em;
     }

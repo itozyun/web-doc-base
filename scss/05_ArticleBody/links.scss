@@ -2,8 +2,7 @@
 --------------------------------------------------------------------------------------*/
 .links {
     @include pre-wrap;
-
-    margin : 1em 4%;
+    @include hMargin(1, 1em, 1em);
 }
 
     .links a {
@@ -48,22 +47,3 @@
         content     : "*";
     }
     /* //_}#can-content */
-
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .links {
-        margin-left  : 2%;
-        margin-right : 1%;
-        line-height  : 3;
-    }
-}
-
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .links {
-        margin-left  : 1%;
-        margin-right : 0;
-    }
-}

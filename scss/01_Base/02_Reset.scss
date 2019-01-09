@@ -1,24 +1,21 @@
 /*  reset
 --------------------------------------------------------------------------------------*/
     /* remember to define focus styles! */
+    /* //_{#can-focus-psedo-class */
     :focus,
-    a:focus,
-    a:active,
-    a:hover {
+    /* //_}#can-focus-psedo-class */
+    :active {
         outline : 0;
-        
     }
+
+    /* //_{#can-focus-psedo-class */
     a:focus,
+    /* //_}#can-focus-psedo-class */
     a:active {
         @include highContrast {
             outline : 2px solid;
         }
     }
-
-
-    /* abbr[title] {
-        border-bottom : 1px dotted;
-    } */
     
     /* b, */
     strong, em, dt {
@@ -32,8 +29,8 @@
     /* //_{#can-content */
     q:before,
     q:after {
-        content: '';
-        content: none;
+        content : '';
+        content : none;
     }
     /* //_}#can-content */
     
@@ -57,7 +54,7 @@
     }
     
     img {
-        border                 : 0; /* 1 */
+        /* border              : 0;  1 */
         -ms-interpolation-mode : bicubic; /* 2 */
     }
 
@@ -76,7 +73,6 @@
     /* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
     @mixin pre-wrap {
     /* //_{@modern */
-        white-space : pre;           /* CSS 2.0 */
         white-space : -pre-wrap;     /* Opera 4-6 */
         white-space : -o-pre-wrap;   /* Opera 7 */
         white-space : -moz-pre-wrap; /* Firefox 1.0-2.0 */
@@ -98,6 +94,10 @@
     }
 
     pre {
+    /* //_{@modern */
+        white-space : pre;           /* CSS 2.0 */
+    /* //_}@modern */
+
         @include pre-wrap;
     }
 
@@ -107,8 +107,8 @@
     /* //_}@ie5win */
 
     /* remember to highlight inserts somehow! */
-    ins { text-decoration: none; }
-    del { text-decoration: line-through; }
+    ins { text-decoration : none; }
+    del { text-decoration : line-through; }
 
     /* //_{@ie9,@modern */
     figure {

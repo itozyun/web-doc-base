@@ -17,7 +17,6 @@
         overflow      : hidden;
         display       : block;
         position      : absolute;
-        border-style  : solid;
         border-width  : 0;
         margin-top    : .1em;
     }
@@ -25,76 +24,58 @@
 }
 @mixin icon-border {
     & {
-        border-color    : $COLOR_BdM_casual_text;
+        border-color    : $COLOR_Default_casual_text;
     }
-    a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう */
-        border-color    : $COLOR_BdM_fill;
+    a:focus &, :active & { /* :focus だけでは ie11- で body:focus に反応してしまう */
+        border-color    : $COLOR_Default_fill;
     }
-    .lS & {
-        border-color    : $COLOR_BdS_casual_text;
-    }
-    .fillbg & {
-        border-color    : $COLOR_FtS_casual_text;
-    }
-    .fillbg .lM & {
-        border-color    : $COLOR_FtM_casual_text;
+    .ribbon & {
+        border-color    : $COLOR_Ribbon_casual_text;
     }
     @include media(watch) {
         &:before {
-            border-color : $COLOR_WTC_casual_text;
+            border-color : $COLOR_Watch_casual_text;
         }
         &:after {
-            border-color : $COLOR_WTC_casual_text;
+            border-color : $COLOR_Watch_casual_text;
         }
     }
 }
 @mixin icon-border-fill-transparent {
     & {
-        border-color    : $COLOR_BdM_casual_text transparent;
+        border-color    : $COLOR_Default_casual_text transparent;
     }
-    a:focus &, a:active & {
-        border-color    : $COLOR_BdM_fill transparent;
+    a:focus &, :active & {
+        border-color    : $COLOR_Default_fill transparent;
     }
-    .lS & {
-        border-color    : $COLOR_BdS_casual_text transparent;
-    }
-    .fillbg & {
-        border-color    : $COLOR_FtS_casual_text transparent;
-    }
-    .fillbg .lM & {
-        border-color    : $COLOR_FtM_casual_text transparent;
+    .ribbon & {
+        border-color    : $COLOR_Ribbon_casual_text transparent;
     }
     @include media(watch) {
         &:before {
-            border-color : $COLOR_WTC_casual_text transparent;
+            border-color : $COLOR_Watch_casual_text transparent;
         }
         &:after {
-            border-color : $COLOR_WTC_casual_text transparent;
+            border-color : $COLOR_Watch_casual_text transparent;
         }
     }
 }
 @mixin icon-border-transparent-fill {
     & {
-        border-color    : transparent $COLOR_BdM_casual_text;
+        border-color    : transparent $COLOR_Default_casual_text;
     }
-    a:focus &, a:active & {
-        border-color    : transparent $COLOR_BdM_fill;
+    a:focus &, :active & {
+        border-color    : transparent $COLOR_Default_fill;
     }
-    .lS & {
-        border-color    : transparent $COLOR_BdS_casual_text;
-    }
-    .fillbg & {
-        border-color    : transparent $COLOR_FtS_casual_text;
-    }
-    .fillbg .lM & {
-        border-color    : transparent $COLOR_FtM_casual_text;
+    .ribbon & {
+        border-color    : transparent $COLOR_Ribbon_casual_text;
     }
     @include media(watch) {
         &:before {
-            border-color : transparent $COLOR_WTC_casual_text;
+            border-color : transparent $COLOR_Watch_casual_text;
         }
         &:after {
-            border-color : transparent $COLOR_WTC_casual_text;
+            border-color : transparent $COLOR_Watch_casual_text;
         }
     }
 }

@@ -18,14 +18,22 @@
  *  //#ie[@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9]
  *
  *  //#can-mq[@modern,@ie9]
+ *  //#can-svg[@modern,@ie9]
  *  //#can-content[@modern,@ie9,@ie8]
+ *  //#can-attr-selector[@modern,@ie9,@ie8]
+ *  //#can-max-min[@modern,@ie9,@ie8,@ie7]
+ *  //#can-margin-auto[@modern,@ie9,@ie8,@ie7,@ie6,@ie55]
+ *  //#can-hover-pseudo-class[@modern,@ie9,@ie8,@ie7]
+ *  //#can-focus-psedo-class[@modern,@ie9,@ie8,@ie5mac]
+ *  //#can-empty-pseudo-class[@modern,@ie9]
+ *  //#can-inline-block[@modern,@ie9,@ie8,@ie5mac]
+ *  //#can-box-sizing[@modern,@ie9,@ie8]
  *  //#can-1stChild[@modern,@ie9,@ie8,@ie7,@ie5mac]
  *  //#can-1stOfType[@modern,@ie9,@ie8]
  *  //#can-transparent[@modern,@ie9,@ie8,@ie7]
  *
  * 3.Options
  *  //+mobileOnly
- *  //+coloredHeader
  *  //+SocialBtns
  *  //+aa
  *  //+dlflat
@@ -33,5 +41,6 @@
  *  //+ArticleLabels
  *  //+GoogleCodePrettify
  *  //+it
+ *  //+graph
  */
 

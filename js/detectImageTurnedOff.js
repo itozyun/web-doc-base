@@ -1,13 +1,4 @@
 /**
- * JavaScript: How to find out when images are turned off in browser?
- * https://stackoverflow.com/questions/1896904/javascript-how-to-find-out-when-images-are-turned-off-in-browser
- *  // tested in: ff 2+, opera 9+, chrome, safari 4+, ie 6+
- * 
- * itozyun's test
- *  // OK!
- *   Win10 : ie11(ie5~10 mode), Chrome63, Firefox58
- *  // OK!(noway to turn off image)
- *   iOS   : Safari, Opera mini, Firefox, Chrome
  */
 g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
 function(){
@@ -17,27 +8,23 @@ function(){
         i    = imgs.length,
         img;
 
-    function disabledActionRun( img ){
-        var parent = img.parentElement || img.parentNode,
-            cn = parent.className;
+    function disabledActionRun( result ){
+        var parent = DOM_getParentElement( img );
     
-        if( ( ' ' + cn + ' ' ).indexOf( ' aBodyRoot ' ) === -1 ){
-            parent.className = cn + ( cn ? ' ' : '' ) + 'img-disabled';
-        // } else {
-        //    img.style.display = 'none';
+        if( !DOM_hasClassName( parent, 'aBodyRoot' ) ){
+            DOM_addClassName( parent, result ? 'img-loaded' : 'img-disabled' );
+        } else {
+            result || DOM_getAttribute( img, 'alt' ) || DOM_setStyle( img, 'display', 'none' );
         };
     };
 
     if( i ){
-        if( ua[ 'IE' ] < 9 ){// other
-            for( ; i; ){
-                img = imgs[ --i ];
-                img.complete || disabledActionRun( img );
-            };
-        } else {
-            for( ; i; ){
-                img = imgs[ --i ];
-                img.naturalWidth || disabledActionRun( img );
+        for( ; i; ){
+            img = imgs[ --i ];
+            if( ua[ 'IE' ] < 9 ){// other
+                disabledActionRun( img.complete );
+            } else {
+                disabledActionRun( img.naturalWidth );
             };
         };
     };

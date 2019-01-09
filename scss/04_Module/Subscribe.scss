@@ -1,0 +1,38 @@
+/* [module] Subscribe
+ *  出現位置は #lF .lSi 下で固定
+ *
+ * .Subscribe
+ *   div.mspacer
+ *     a
+--------------------------------------------------------------------------------------*/
+.Subscribe {
+    @include stackableModule;
+
+    div {
+        color : $COLOR_Ribbon_fill; /* , を消す */
+    }
+        a {
+            @extend %btnBase;
+            margin : 0 0 0.5em;
+        }
+        .atom {
+            @include createButton( #DD6502, #DD6502, $COLOR_Ribbon_fill );
+        }
+        .rss {
+            @include createButton( #DD8902, #DD8902, $COLOR_Ribbon_fill );
+        }
+        .fl {
+            @include createButton( #53BB45, #53BB45, $COLOR_Ribbon_fill );
+        }
+        .stm {
+            @include createButton( #8BC53F, #8BC53F, $COLOR_Ribbon_fill );
+        }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .Subscribe div {
+        text-align : center;
+    }
+}

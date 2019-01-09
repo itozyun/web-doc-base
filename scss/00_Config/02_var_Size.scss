@@ -1,6 +1,6 @@
 
-$BASE_LINE_HEIGHT     : 1.9 !default;
-$BASE_LINE_HEIGHT_EM  : 1em * $BASE_LINE_HEIGHT;
+$BASE_LINE_HEIGHT      : 1.9 !default;
+$BASE_LINE_HEIGHT_EM   : 1em * $BASE_LINE_HEIGHT;
 
 $PHONE_LINE_HEIGHT     : 1.6 !default;
 $PHONE_LINE_HEIGHT_EM  : 1em * $PHONE_LINE_HEIGHT;
@@ -8,10 +8,10 @@ $PHONE_LINE_HEIGHT_EM  : 1em * $PHONE_LINE_HEIGHT;
 $WATCH_LINE_HEIGHT     : 1.4 !default;
 $WATCH_LINE_HEIGHT_EM  : 1em * $WATCH_LINE_HEIGHT;
 
-$PC_SUB_COLUMN_RATIO  : 0.3 !default;
-$PC_MAIN_COLUMN_RATIO : 1 - $PC_SUB_COLUMN_RATIO;
-$PC_COLUMN_GAP_RATIO  : 0.027 !default;
-$PC_MAX_WIDTH_EM      : 70em !default;
+$PC_SUB_COLUMN_RATIO   : 0.3 !default;
+$PC_MAIN_COLUMN_RATIO  : 1 - $PC_SUB_COLUMN_RATIO;
+$PC_COLUMN_GAP_RATIO   : 0.027 !default;
+$PC_MAX_WIDTH_EM       : 70em !default;
 
 $WSXGA_SUB_COLUMN_RATIO  : 0.2 !default;
 $WSXGA_MAIN_COLUMN_RATIO : 1 - $WSXGA_SUB_COLUMN_RATIO;
@@ -26,10 +26,19 @@ $WQXGA_COLUMN_GAP_EM     : 2.6em !default;
 $WQXGA_MAX_WIDTH_EM      : 150em !default;
 
 $TABLET_MAX_WIDTH_EM     : 50em !default;
-$TABLET_H_SPACE          : 6% !default;
-$PHABLET_H_SPACE         : 3% !default;
+$TABLET_H_SPACE          : 3% !default;
+$PHABLET_H_SPACE         : 2% !default;
 $PHONE_H_SPACE           : 1% !default;
 
 $CONTENT_MARGIN_LR       : 2% !default;
 $CONTENT_MARGIN_LR_WSXGA : $CONTENT_MARGIN_LR / 2;
 
+$BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
+
+/* //_{#ie7-win */
+$INPUT_BORDER_WIDTH   : 0.1em !default;
+$FORM_ITEM_PADDING_LR : 0.4em !default;
+/* //_}#ie7-win */
+
+$INPUT_BORDER_WIDTH   : 2px !default;
+$FORM_ITEM_PADDING_LR : 8px !default;

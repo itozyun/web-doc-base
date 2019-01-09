@@ -6,13 +6,16 @@
 --------------------------------------------------------------------------------------*/
 .AFoot {
     border-width  : 1px 0 0;
-    border-style  : solid;
-    margin        : 4em 0 0;
+    @include highContrast {
+        border-style : dotted;
+    }
 }
 
 @mixin article-footer-item {
     border-width  : 0 0 1px;
-    border-style  : solid;
+    @include highContrast {
+        border-style : dotted;
+    }
 }
 
 /*  Print

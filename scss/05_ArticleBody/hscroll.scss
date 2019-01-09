@@ -3,14 +3,18 @@
  */
 .hscroll {
 /* //_{@modern */
-    overflow   : auto;
+    overflow      : auto;
 /* //_}@modern */
-    overflow-x : auto;
-    overflow-y : hidden;
+    overflow-x    : auto;
+    overflow-y    : hidden;
 /* //_{@ie5win,@ie55 */
-    width      : 100%;
+    width         : 100%;
 /* //_}@ie5win,@ie55 */
-    margin     : 1em $CONTENT_MARGIN_LR;
+    margin        : 1em 0;
+
+    li &, dd &, tr &, .note & {
+        margin-top : 0;
+    }
 }
 
 /* //_{@modern */
@@ -25,15 +29,10 @@
     }
 /* //_}@modern */
 
-li .hscroll, dd .hscroll, tr .hscroll, .note .hscroll {
-    margin : 0 0 1em;
-}
-
     .hscroll table {
-        width  : 99%;
-        margin : 0 0 0.5em;
+        margin-bottom : 0.5em;
         /* //_{@ie5win,@ie55 */
-            table-layout : auto;
+            /* table-layout : auto; */
         /* //_}@ie5win,@ie55 */
     }
     .hscroll pre {
@@ -46,14 +45,6 @@ li .hscroll, dd .hscroll, tr .hscroll, .note .hscroll {
         .hscroll pre samp { width : auto; }
     /* //_}@ie5win */
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .hscroll {
-        margin : 1em $CONTENT_MARGIN_LR_WSXGA;
-    }
-}
-
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
@@ -62,31 +53,25 @@ li .hscroll, dd .hscroll, tr .hscroll, .note .hscroll {
     }
 }
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .hscroll {
-        margin : 1em 0;
-    }
-}
-
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-
     .hscroll {
-        /* //_{@modern */
-            overflow   : visible;
-        /* //_}@modern */
+    /* //_{@modern */
+        overflow   : visible;
+    /* //_}@modern */
         overflow-x : visible;
         overflow-y : visible;
     }
         .hscroll table {
-            width        : 100%;
-            margin       : 0;
+            width       : 100%;
+            margin      : 0;
+        /* //_{+mobileOnly */
+            white-space : normal;
+        /* //_}+mobileOnly */
         }
         .hscroll pre {
             margin      : 0;
-            white-space : pre-wrap;
+            @include pre-wrap;
         }
 }

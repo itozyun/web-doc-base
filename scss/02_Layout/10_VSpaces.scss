@@ -1,10 +1,10 @@
 #lE .lW {
     padding-bottom : 2.5em;
 }
-#lE .lM, #lE .lSi {
+#lE .lM, #lE .lS {
     padding-bottom : 0;
 }
-#lE .lSi {
+#lE .lS {
     padding-top : 4em;
 }
 
@@ -12,19 +12,35 @@
     padding-bottom : 4em;
 }
 
-#lB .lSi {
+#lB .lS {
     padding-bottom : 1em;
 }
 
-@mixin stackableModule {
-    padding-bottom : 1em;
+@mixin stackableModule( $top : 0, $LR : 0 ) {
+    padding : $top $LR 1em;
+}
+
+/*  WQXGA
+--------------------------------------------------------------------------------------*/
+@include media(WQXGA) {
+    #lB .lS {
+        padding-bottom : 2em;
+    }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@include media(tabet_print) {
-    #lE .lSi {
+@include media(tablet_print) {
+    #lE .lS {
         padding-top : 0;
+    }
+}
+
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    #lB .lS {
+        padding-bottom : 2em;
     }
 }
 

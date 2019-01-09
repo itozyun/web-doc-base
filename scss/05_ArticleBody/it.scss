@@ -1,12 +1,13 @@
 /* //_{+it
 --------------------------------------------------------------------------------------*/
 code, var {
-    background : $COLOR_BdM_casual_fill;
+    background : $COLOR_Default_casual_fill;
     padding    : .1em .4em;
+    margin     : 0 .1em;
 
     blockquote & {
-        background : $COLOR_BdM_casual_text;
-        color      : $COLOR_BdM_fill;
+        background : $COLOR_Default_casual_text;
+        color      : $COLOR_Default_fill;
     }
 }
 
@@ -14,11 +15,11 @@ code, var {
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     code, var {
-        background : $COLOR_WTC_casual_fill;
+        background : $COLOR_Watch_casual_fill;
     
         blockquote & {
-            background : $COLOR_WTC_casual_text;
-            color      : $COLOR_WTC_fill;
+            background : $COLOR_Watch_casual_text;
+            color      : $COLOR_Watch_fill;
         }
     }
 }

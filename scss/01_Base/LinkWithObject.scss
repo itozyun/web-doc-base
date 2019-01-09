@@ -1,0 +1,41 @@
+/*  :link > img
+--------------------------------------------------------------------------------------*/
+:link img, :visited img {
+    border-color : $COLOR_Default_fill;
+    border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+
+    .ribbon & {
+        border-color : $COLOR_Ribbon_fill;
+    }
+}
+
+/* //_{#can-focus-psedo-class */
+:link:focus img, :visited:focus img,
+/* //_}#can-focus-psedo-class */
+:link:active img, :visited:active img {
+    @include highContrast {
+        border-style : dotted;
+    }
+}
+
+/* //_{#can-focus-psedo-class */
+:link:focus img,
+:visited:focus img,
+/* //_}#can-focus-psedo-class */
+:link:active img,
+:visited:active img {
+    border-color : $COLOR_ACCENT !important;
+}
+
+:link:hover img, :visited:hover img {
+    position : relative;
+    top      : 2px;
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    :link img, :visited img {
+        border-color : $COLOR_Watch_fill;
+    }
+}

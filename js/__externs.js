@@ -9,21 +9,26 @@ var ua = {};
 var event;
 
 /**
- * @type {?function(!Event)}
+ * @type {SVGSVGElement} 
+ */
+var SVGSVGElement;
+
+/**
+ * @type {?function(!Event)|null}
  */
 function onload(){};
 
 /**
- * @type {?function(!Event)}
+ * @type {?function(!Event)|null}
  */
 function onunload(){};
 
 /**
- * @type {?function(!Event)}
+ * @type {?function(!Event)|null}
  */
 function onscroll(){};
 
 /**
- * @type {?function(!Event)}
+ * @type {?function(!Event)|null}
  */
 function onresize(){};

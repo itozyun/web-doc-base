@@ -1,80 +1,45 @@
 /* Base color
 --------------------------------------------------------------------------------------*/
-.fillbg {
-    background : $COLOR_FtM_fill;
-    color      : $COLOR_FtM_text;
+body {
+    background : $COLOR_Ribbon_fill;
+    color      : $COLOR_Default_text;
+}
+.baseColor {
+    background : $COLOR_Default_fill;
+    
+}
+.ribbon {
+    color      : $COLOR_Ribbon_text;
 }
 
-body, .fillbg .lS, .fillbg .lO {
-    background  : $COLOR_FtS_fill;
-    color       : $COLOR_FtS_text;
+* {
+    border-color : $COLOR_Default_casual_fill;
+}
+.ribbon * {
+    border-color : $COLOR_Ribbon_casual_fill;
 }
 
-
-/* //_{^+coloredHeader */
-#lH,
-/* //_}^+coloredHeader */
-#lB {
-    background : $COLOR_BdM_fill;
-    color      : $COLOR_BdM_text;
-}
-
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet) {
     #lB .lS {
-        background : $COLOR_BdS_fill;
-        color      : $COLOR_BdS_text;
+        background : $COLOR_Sidebar_fill;
     }
-
-    #lE .lS {
-        background : none;
-    }
-
-/* //_{+coloredHeader */
-    #lH .lO {
-        background : $COLOR_HdX_fill;
-        color      : $COLOR_HdX_text;
-    }
-    #lH {
-        background : $COLOR_HdM_fill;
-        color      : $COLOR_HdM_text;
-    }
-    #lH .lS {
-        background : $COLOR_HdS_fill;
-        color      : $COLOR_HdS_text;
-    }
-/* //_}+coloredHeader */
-
-    * {
-        border-color : $COLOR_BdM_casual_fill;
-    }
-
-    .lS * {
-        border-color : $COLOR_BdS_casual_fill;
-    }
-    .fillbg * {
-        border-color : $COLOR_FtS_casual_fill;
-    }
-    .fillbg .lM * {
-        border-color : $COLOR_FtM_casual_fill;
-    }
+}
 
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     * {
-        border-color : $COLOR_WTC_casual_fill;
+        border-color : $COLOR_Watch_casual_fill;
     }
-
-    /* //_{^+coloredHeader */
-    #lH {
-        background : $COLOR_WTC_fill;
-        color      : $COLOR_WTC_text;
+    body {
+        color      : $COLOR_Watch_text;
     }
-    /* //_}^+coloredHeader */
-    #lB {
-        background : $COLOR_WTC_fill;
+    .baseColor {
+        background : $COLOR_Watch_fill;
     }
-    
-    #lB .lM {
-        color      : $COLOR_WTC_text;
+    #lB .lS {
+        background : $COLOR_Watch_fill;
     }
 }

@@ -2,7 +2,7 @@
 /* role="image" */
 /* http://b4t.jp/823 */
 
-@mixin mona {
+%mona {
     @include lineHeight(1.125, 0);
 
 /* IE */
@@ -32,23 +32,20 @@
 }
 
 .mona {
-    @include mona;
-
-    speak   : none;
-    padding : 2em 1em;
-    @include highContrast {
-        border-style : solid;
-        border-width : 1px;
-    }
+    @extend %mona;
+    @include hPadding(1, 1em, 1em);
+    
+    speak          : none;
+    margin         : 1em 0;
+    border-width   : 1px;
 }
 
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .mona {
-        background : none;
-        border     : 1px solid $COLOR_PRT_casual_fill;
-        color      : $COLOR_PRT_text;
+        background : #fff;
+        color      : $COLOR_Print_text;
     }
 }
 /* //_}+mona */

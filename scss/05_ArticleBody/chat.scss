@@ -23,14 +23,14 @@
         @include unbreak-inside;
         @include unbreak-after;
         @include lineHeight(1.2, 0);
-        font-size   : 1em;
-        color       : #fff;
-        background  : #5D769E;
-        margin      : 1em $CONTENT_MARGIN_LR;
-        padding     : .4em $CONTENT_MARGIN_LR;
-    /* //_{@modern,@ie9,@ie8 */
-        display     : inline-block;
-    /* //_}@modern,@ie9,@ie8 */
+        font-size  : 1em;
+        color      : #fff;
+        background : #5D769E;
+        margin     : 1em $CONTENT_MARGIN_LR;
+        padding    : .4em $CONTENT_MARGIN_LR;
+    /* //_{#can-inline-block */
+        display    : inline-block;
+    /* //_}#can-inline-block */
     /* //_{@modern */
         -webkit-border-radius : .4em;            
            -moz-border-radius : .4em;
@@ -69,7 +69,6 @@
             width        : 0;
             height       : 0;
             overflow     : hidden;
-            border-style : solid;
         }
         .chatL p:after {
             border-color : transparent #fff;
@@ -164,25 +163,24 @@
 @include media(print) {
     .chat {
         background     : #fff;
-        color          : $COLOR_PRT_text;
-        border-bottom  : 1px solid $COLOR_PRT_casual_text;
+        color          : $COLOR_Print_text;
+        border-width   : 0 0 1px;
     }
         .chatTitle {
             background    : #fff;
-            border-top    : 1px solid $COLOR_PRT_casual_text;
-            border-bottom : 1px solid $COLOR_PRT_casual_text;
+            border-width  : 1px 0;
         }
         .chat p,
         .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
-            color       : $COLOR_PRT_text;
-            background  : #fff;
-            border      : 1px solid $COLOR_PRT_casual_fill;
+            color        : $COLOR_Print_text;
+            background   : #fff;
+            border-width : 1px;
         }
 
         .chatR p, .chatL p {
-            color      : $COLOR_PRT_text;
-            background : #fff;
-            border      : 1px solid $COLOR_PRT_casual_fill;
+            color        : $COLOR_Print_text;
+            background   : #fff;
+            border-width : 1px;
         }
 
         /* //_{#can-content */
@@ -195,15 +193,14 @@
                 width        : 0;
                 height       : 0;
                 overflow     : hidden;
-                border-style : solid;
             }
             .chatL p:before {
-                border-color : transparent $COLOR_PRT_casual_fill;
+                border-color : transparent $COLOR_Print_casual_fill;
                 border-width : 3px 7px 3px 0;
                 left         : -7px;
             }
             .chatR p:before {
-                border-color : transparent $COLOR_PRT_casual_fill;
+                border-color : transparent $COLOR_Print_casual_fill;
                 border-width : 3px 0 3px 7px;
                 right        : -7px;
             }
@@ -222,9 +219,9 @@
         /* //_}#can-content */
 
         .chatMember { 
-            background : #fff !important;
-            color      : $COLOR_PRT_text;
-            border     : 1px solid $COLOR_PRT_casual_fill;
+            background   : #fff !important;
+            color        : $COLOR_Print_text;
+            border-width : 1px;
         }
 }
 /* //_}+chat */

@@ -1,0 +1,94 @@
+@mixin hMargin($ratio, $marginTop, $marginBottom, $parentHasMarginForPC : 0){
+    /* //_{^+mobileOnly */
+    @if 1 < $ratio {
+        & {
+            margin  : $marginTop 0 $marginBottom;
+        }
+    } @else if $parentHasMarginForPC == 1 {
+        & {
+            margin  : $marginTop 0 $marginBottom;
+        }
+    } @else {
+        & {
+            margin  : $marginTop 1em $marginBottom;
+        } 
+    }
+    /* //_}^+mobileOnly */
+
+    @include media(tablet) {
+        & {
+            margin  : $marginTop #{$TABLET_H_SPACE / $ratio} $marginBottom;
+        }
+    }
+
+    @include media(phablet) {
+        & {
+            margin  : $marginTop #{$PHABLET_H_SPACE / $ratio} $marginBottom;
+        }
+    }
+
+    @include media(phone) {
+        & {
+            margin  : $marginTop #{$PHONE_H_SPACE / $ratio} $marginBottom;
+        }
+    }
+
+    @include media(watch) {
+        & {
+            margin  : $marginTop 0 $marginBottom;
+        }
+    }
+}
+
+
+h4, h5, h6 {
+    @include hMargin(2, 1.5em, 0.8em);
+}
+
+p,  /* hr, */  pre, ul, ol, dl,
+table,
+img, iframe {
+    @include hMargin(1, 1em, 1em);
+}
+
+hr {
+    @include hMargin(.5, 2em, 2em);
+}
+
+@mixin hPadding($ratio, $paddingTop, $paddingBottom){
+    & {
+        padding : $paddingTop 1em / $ratio $paddingBottom;
+    }
+    li &, dd &, tr &, .note & {
+        padding : $paddingTop 1em / $ratio $paddingBottom;
+    }
+
+    @include media(tablet) {
+        & {
+            padding : $paddingTop #{$TABLET_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(phablet) {
+        & {
+            padding : $paddingTop #{$PHABLET_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(phone) {
+        & {
+            padding : $paddingTop #{$PHONE_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(watch) {
+        & {
+            padding : $paddingTop 2px $paddingBottom;
+        }
+    }
+    @include media(print) {
+        & {
+            margin  : 1em $TABLET_H_SPACE;
+        }
+    }   
+}

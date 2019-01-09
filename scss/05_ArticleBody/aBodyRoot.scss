@@ -1,78 +1,8 @@
-.aBodyRoot a { @include hideUnderLineOnHover }
-
-.aBodyRoot a:visited       { color : $COLOR_BdM_visited; }
-.aBodyRoot a:visited:hover { color : $COLOR_BdM_visited_hover; }
-
-    .aBodyRoot h2 {
-        @include h2-main-content;
-
-        border-color : $COLOR_ACCENT;
-        color        : $COLOR_ACCENT;
-    }
-    .aBodyRoot h3 {
-        @include h3-main-content;
-    }
-        /* //_{#can-content */
-        .aBodyRoot h2:after {
-            /* content : none; */
-            display : none; /* for iOS4 content : none だけでは消えない */
-        }
-        /* //_}#can-content */
-
-/*  Object
---------------------------------------------------------------------------------------*/
-    .aBodyRoot a img {
-        padding : 1px;
-    }
-
-    a:focus img, a:link:active img, a:visited:active img {
-        background  : $COLOR_ACCENT;
-        @include highContrast {
-            padding : 0;
-            border  : 1px solid $COLOR_ACCENT;
-        }
-    }
-
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .aBodyRoot h2, .aBodyRoot h3 {
-        text-align : center;
-    }
-}
-
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    .aBodyRoot h2, .aBodyRoot h3 {
-        text-align : center;
-    }
-    .aBodyRoot h2 {
-        padding-left  : $TABLET_H_SPACE/2;
-        padding-right : $TABLET_H_SPACE/2;
-    }
-}
-
-/*  PHABLET
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .aBodyRoot h2 {
-        letter-spacing : 0;
-        padding-left   : $PHABLET_H_SPACE/2;
-        padding-right  : $PHABLET_H_SPACE/2;
-    }
-}
-
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
     .aBodyRoot {
         line-height : $PHONE_LINE_HEIGHT;
-    }
-    .aBodyRoot h2 {
-        font-size     : 1.25em;
-        padding-left  : $PHONE_H_SPACE/2;
-        padding-right : $PHONE_H_SPACE/2;
     }
 }
 
@@ -82,39 +12,32 @@
     .aBodyRoot {
         line-height : $WATCH_LINE_HEIGHT;
     }
-        .aBodyRoot h2 {
-            padding-left  : 0;
-            padding-right : 0;
-        }
-        .aBodyRoot h3 {
-            border-color : $COLOR_WTC_flip_fill;
-            color        : $COLOR_WTC_flip_fill;
-        }
-
-        .aBodyRoot a:visited       { color : $COLOR_WTC_visited; }
-        .aBodyRoot a:visited:hover { color : $COLOR_WTC_visited_hover; }
 }
 
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     /* //_{#can-content */
-    .aBodyRoot a:link:after {
+    .aBodyRoot :link:after {
         content     : " ("attr(href)") ";
         font-size   : 0.875em;
-        color       : $COLOR_PRT_link;
+        color       : $COLOR_Print_link;
     }
-    .aBodyRoot a[href$=".jpeg"]:after,
-    .aBodyRoot a[href$=".JPEG"]:after,
-    .aBodyRoot a[href$=".JPG"]:after,
-    .aBodyRoot a[href$=".jpg"]:after,
-    .aBodyRoot a[href$=".gif"]:after,
-    .aBodyRoot a[href$=".GIF"]:after,
-    .aBodyRoot a[href$=".png"]:after,
-    .aBodyRoot a[href$=".PNG"]:after,
-    .aBodyRoot a[href^="mailto:"]:after,
-    .aBodyRoot a[href^="tel:"]:after {
-        display     : none;
+    a[href$=".jpeg"]:after,
+    a[href$=".JPEG"]:after,
+    a[href$=".JPG"]:after,
+    a[href$=".jpg"]:after,
+    a[href$=".gif"]:after,
+    a[href$=".GIF"]:after,
+    a[href$=".png"]:after,
+    a[href$=".PNG"]:after
+    /* //_{^@ie8 */
+    ,
+    a[href^="mailto:"]:after,
+    a[href^="tel:"]:after
+    /* //_}^@ie8 */
+    {
+        display : none; /* for iOS4 content : none だけでは消えない */
     }
     /* //_}#can-content */
 }

@@ -2,138 +2,62 @@
 /*  下線付き h2
 --------------------------------------------------------------------------------------*/
 h2 {
-    /* //_{#can-content */
-    position     : relative;
-    /* //_}#can-content */
-
     margin       : 0;
     border-width : 0 0 1px;
-    border-style : solid;
-
     padding      : 1.5em 0.45em 0.5em;
     font-size    : 1.1em;
-}
+    /* //_{^#can-content */
+    font-weight  : bold;
+    /* //_}^#can-content */
 
-/* //_{#can-content */
-h2:after {
-    content     : ".";
-    speak       : none;
-    display     : block;
-    height      : 1px;
-    font-size   : 0.1em;
-    line-height : 0;
-    position    : absolute;
-    overflow    : hidden;
-    bottom      : -1px;
-    width       : 70em;
-    max-width   : 33%;
-
-    background : $COLOR_BdM_accent;
-    color      : $COLOR_BdM_accent;
-
-    @include highContrast {
-        display : none;
-    }    
-}
-
-
-.lS h2:after {
-    @if $COLOR_BdM_accent != $COLOR_BdS_accent {
-        background : $COLOR_BdS_accent;
-        color      : $COLOR_BdS_accent;
+    /* //_{#can-content */
+    position     : relative;
+    
+    &:after {
+        content      : ".";
+        speak        : none;
+        display      : block;
+        width        : 5em;
+        height       : 0;
+        font-size    : 0.1em;
+        line-height  : 0;
+        position     : absolute;
+        left         : 0;
+        bottom       : -1px;
+        overflow     : hidden;
+        border-width : 1px 0 0;
+        border-color : $COLOR_Default_accent;
     }
-}
-.fillbg h2:after {
-    @if $COLOR_BdM_accent != $COLOR_FtS_accent {
-        background : $COLOR_FtS_accent;
-        color      : $COLOR_FtS_accent;
-    }
-}
-.fillbg .lM h2:after {
-    @if $COLOR_FtM_accent != $COLOR_FtS_accent {
-        background : $COLOR_FtM_accent;
-        color      : $COLOR_FtM_accent;
-    }
-}
 
-/* //_}#can-content */
+    .ribbon &:after {
+        @if $COLOR_Default_accent != $COLOR_Ribbon_accent {
+            border-color : $COLOR_Ribbon_accent;
+        }
+    }
+    /* //_}#can-content */
+}
 
 /*  warning
 --------------------------------------------------------------------------------------*/
 .wn {
     color : $COLOR_WARN !important;
-}
 
-/* //_{#can-content */
-.wn:after {
-    background : $COLOR_WARN !important;
-    color      : $COLOR_WARN !important;
-}
-/* //_}#can-content */
-
-/*  layout Main
---------------------------------------------------------------------------------------*/
-/* //_{#can-content */
-.lM h2:after {
-    left  : 0;
-}
-/* //_}#can-content */
-
-/*  layout Sub
---------------------------------------------------------------------------------------*/
-/* //_{^+mobileOnly */
-.lS h2 {
-    text-align : right;
-}
-/* //_}^+mobileOnly */
-
-/* //_{#can-content */
-.lS h2:after {
-    right     : 0;
-/* //_{@ie8 */
-    font-size : 1px;
-/* //_}@ie8 */
-}
-/* //_}#can-content */
-
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    /* //_{^+mobileOnly */    
-    .lS h2 {
-        text-align : left;
-    }
-    /* //_}^+mobileOnly */
     /* //_{#can-content */
-    .lS h2:after {
-        left  : 0;
-        right : auto;
+    &:after {
+        background : $COLOR_WARN !important;
+        color      : $COLOR_WARN !important;
     }
-    /* //_}#can-content */
+    /* //_}#can-content */    
 }
 
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .lM2 h2,
-    .lS2 h2 {
-        text-align : right;
-    }
-    .lM2 h2:after,
-    .lS2 h2:after {
-        left  : auto;
-        right : 0;
-    }
-}
-
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .lM h2, .lS h2 {
+    h2 {
         text-align : center;
     }
     
-    .lM h2:after, .lS h2:after {
+    h2:after {
         width : 33%;
         left  : 33%;
         right : auto;
@@ -143,15 +67,15 @@ h2:after {
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .lM h2, .lS h2 {
+    h2 {
         padding-left  : 0;
         padding-right : 0;
     }
 
     h2:after {
-        @if $COLOR_BdM_accent != $COLOR_WTC_accent {
-            background : $COLOR_WTC_accent;
-            color      : $COLOR_WTC_accent;
+        @if $COLOR_Default_accent != $COLOR_Watch_accent {
+            background : $COLOR_Watch_accent;
+            color      : $COLOR_Watch_accent;
         }
     }
 }
@@ -161,7 +85,7 @@ h2:after {
 @include media(print) {
 /* //_{#can-content */
     h2:after {
-        display : none;
+        display : none; /* for iOS4 content : none だけでは消えない */
     }
 /* //_}#can-content */
 }

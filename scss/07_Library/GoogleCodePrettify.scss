@@ -12,13 +12,18 @@
 }
 /* //_{+it */
   .prettyprint code {
-      padding    : 0;
+      padding  : 0;
   }
 /* //_}+it */
 
 pre.prettyprint {
-    font-size   : 0.875em;
-    padding     : 1.23em;
+    @include hPadding(0.875, 1.23em, 1.23em);
+    @include lineHeight(1.2, 0);
+
+    margin         : 1.23em 0;
+    font-size      : 0.875em;
+    border-width   : 1px;
+    border-color   : #333;
 }
 
 /* //_{^#ie55- */
@@ -46,16 +51,6 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 /* //_}^#ie55- */
 
-/*  HighContrast
---------------------------------------------------------------------------------------*/
-.prettyprint {
-  @include highContrast {
-  
-      border-style : solid;
-      border-width : 1px;
-  }
-}
-
 @include media(print) {
  .prettyprint
 /* //_{+it */
@@ -65,7 +60,7 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
     background : #fff;
   }
   .prettyprint {
-    border     : 1px solid $COLOR_PRT_casual_fill;
+    border-width : 1px;
   }
 /* //_{^#ie55- */    
   code .str { color: #060; }

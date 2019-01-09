@@ -1,0 +1,135 @@
+/* [module] ArticleHeader
+ *  出現位置は #lE .lMi | #lB .lMi
+ *
+ *  div.AHead
+ *    h1
+ *    div
+ *    +ArticleLabels
+--------------------------------------------------------------------------------------*/
+    .AHead {
+        color : $COLOR_Ribbon_casual_text;
+    }
+
+    .AHead h1 {
+        font-size      : 2em;
+        padding        : 0;
+        margin         : 2em 0;
+
+        color          : $COLOR_Ribbon_text;
+        /* //_{^+mobileOnly */
+        text-align     : left;
+        /* //_}^+mobileOnly */
+    }
+
+    .lMz .AHead h1 {
+        color : $COLOR_Default_text;
+    }
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .AHead h1 { text-align : center; }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet_print) {
+    .AHead h1 { text-align : center; }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .AHead {
+        text-align : center;
+    }
+
+    .AHead h1 {
+        text-align : center;
+        font-size  : 1.5em;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .lMz .AHead h1 {
+        color : $COLOR_Watch_text;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .AHead {
+        color  : $COLOR_Print_casual_text;
+    }
+
+    .AHead h1, .lMz .AHead h1 {
+        color  : $COLOR_Print_text;
+    }
+}
+
+/* =====================================================================================
+ * //_{+ArticleLabels
+ *
+ * .AHead-labels
+ *   i.ico-label
+ *   a
+--------------------------------------------------------------------------------------*/
+.AHead-labels {
+    margin-top     : 0.5em;
+    color          : $COLOR_Ribbon_fill; /* , を消す */
+    vertical-align : middle; /* ie11 のガタツキを修正 */
+}
+    .AHead-labels i {
+        display : none;
+    }
+        .AHead-labels i {
+            display : none;
+        }
+    .AHead-labels a {
+        @extend %btnBase;
+        @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+        margin : 0 0 0.5em;
+    }
+
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@include media(smallphone) {
+    .AHead-labels {
+        line-height : 0;
+    }
+        .AHead-labels a {
+            display     : block;
+            text-align  : center;
+            margin      : 0.5em;
+        }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .AHead-labels {
+        position : relative;
+        padding  : 0 0 0 1.5em;
+        color    : $COLOR_Print_text;
+    }
+        .AHead-labels i {
+            position : absolute;
+            top      : 0.5em;
+            left     : 0;
+            display  : block;
+        }
+        .AHead-labels a {
+        /* //_{#can-inline-block */
+            display      : inline;
+        /* //_}#can-inline-block */
+            line-height  : $BASE_LINE_HEIGHT;
+            border-width : 0;
+            padding      : 0;
+            margin       : 0;
+            background   : none;
+        }
+}
+/* //_}+ArticleLabels */

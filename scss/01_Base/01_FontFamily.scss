@@ -1,14 +1,21 @@
 /*  font-family
 --------------------------------------------------------------------------------------*/    
+/* https://tokunagakazuya.tk/vk3l */
 
-/* //_{@modern,@ie9,@ie8
+/* //_{@modern,@ie9
  * http://loconet.web2.jp/blog/archives/2007/02/cssfontfamily.html
  */
         body, textarea, input {
-            font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
-                "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+            font-family :
+                -apple-system, BlinkMacSystemFont, Avenir , "Open Sans" ,
+                "Helvetica Neue" , Helvetica , Arial , Verdana ,
+                Roboto ,
+                "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
+                "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+                "Meiryo UI", "メイリオ", Meiryo,
+                "M+ 1p", "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
         }
-/* //_}@modern,@ie9,@ie8 */
+/* //_}@modern,@ie9 */
 
 /* //_{@modern
  * Firefox OS2.2(シミュレータ) で Roboto がいると日本語を正しく表示できない... 2.1-は問題無し
@@ -16,20 +23,31 @@
  */
     @-moz-document url-prefix() {
         body, textarea, input {
-            font-family : Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana, "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,
-            "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+            font-family :
+                -apple-system, BlinkMacSystemFont, Avenir , "Open Sans" ,
+                "Helvetica Neue" , Helvetica , Arial , Verdana ,
+                "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
+                "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+                "Meiryo UI", "メイリオ", Meiryo,
+                "M+ 1p", "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
         }
     }
 /* //_}@modern */
-    
-/* //_{@ie7 */
-        body, textarea, input {
+
+/* //_{@ie7,@ie8 */
+        body {
+            font-family : "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ ゴシック" , "MS Gothic" , sans-serif;
+        }
+        textarea, input {
             font-family : "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
         }
-/* //_}@ie7 */
+/* //_}@ie7,@ie8 */
 
 /* //_{#ie6-win */
-        body, textarea, input {
+        body {
+            font-family : "ＭＳ ゴシック" , "MS Gothic" , sans-serif; /* ie6-, MacIE5- */
+        }
+        textarea, input {
             font-family : "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; /* ie6-, MacIE5- */
         }
 /* //_}#ie6-win */

@@ -1,0 +1,132 @@
+/* [module] LinkList
+ *  出現位置は [#lB] [.lMi|.lSi] 下
+ *
+ *  div.LinkList
+ *   div
+ *    a
+--------------------------------------------------------------------------------------*/
+%linkCommon {
+    /* //_{#ie6,@ie55
+     * ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
+        * { zoom : 1; }
+    /* //_}#ie6,@ie55 */
+    a {
+        @include unbreak-inside;
+        display : block;
+        cursor  : pointer;
+        text-decoration : none !important;
+
+        /* href がない場合 current を示す塗りになる */
+        background       : $COLOR_Default_text;
+        color            : $COLOR_Default_fill;
+    }
+    :link {
+        background       : $COLOR_Default_fill;
+        color            : $COLOR_Default_link;
+    }
+    :visited {
+        background       : $COLOR_Default_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
+        color            : $COLOR_Default_text;
+    }
+    :link:hover, :visited:hover {
+        background : $COLOR_Default_casual_fill;
+        color      : $COLOR_Default_text;
+    }
+
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        .lS & :link, .lS & :visited {
+            background : $COLOR_Sidebar_fill;
+        }
+        .lS & :link:hover, .lS & :visited:hover {
+            background : $COLOR_Default_casual_fill;
+        }
+    }
+
+    .ribbon & a {
+        background : $COLOR_Ribbon_text;
+        color      : $COLOR_Ribbon_fill;
+    }
+    .ribbon & :link {
+        background       : $COLOR_Ribbon_fill;
+        color            : $COLOR_Ribbon_link;
+    }
+    .ribbon & :visited {
+        background       : $COLOR_Ribbon_fill;
+        color            : $COLOR_Ribbon_text;
+    }
+    .ribbon & :link:hover, .ribbon & :visited:hover {
+        background : $COLOR_Ribbon_casual_fill;
+        color      : $COLOR_Ribbon_text;
+    }
+    @include media(watch){
+        /* href がない場合 current カラーになる */
+        a {
+            background : $COLOR_Watch_text;
+            color      : $COLOR_Watch_fill;            
+        }
+        & :link {
+            background       : $COLOR_Watch_fill;
+            color            : $COLOR_Watch_link;
+        }
+        & :visited {
+            background       : $COLOR_Watch_fill;
+            color            : $COLOR_Watch_text;
+        }
+        & :link:hover, & :visited:hover {
+            background : $COLOR_Watch_casual_fill;
+            color      : $COLOR_Watch_text;
+        }
+
+        .lS & :link, .lS & :visited {
+            background : $COLOR_Watch_fill;
+        }
+        .lS & :link:hover, .lS & :visited:hover {
+            background : $COLOR_Watch_casual_fill;
+        }
+    }
+
+    @include highContrast {
+        padding : 0 2px;
+    }
+}
+
+.LinkList {
+    @extend %linkCommon;
+    @include stackableModule;
+    @include highContrast {
+        padding-top : 2px;
+    }
+    a {
+        line-height : 1.1;
+        padding     : 1em 0.5em 0.8em;
+
+        &:active:hover
+        /* //_{#can-focus-psedo-class */
+        , &:focus:hover
+        /* //_}#can-focus-psedo-class */
+        {
+            text-decoration : underline !important;
+        }
+    }
+}
+
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .LinkList {
+        text-align : center !important;
+        a {
+            display : inline-block;
+        }
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .LinkList a {
+        padding : 0.5em 0;
+    }
+}

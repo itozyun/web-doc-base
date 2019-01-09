@@ -1,21 +1,40 @@
+    .lMi {
+        @include clearfix;
+    }
+        .lM1 {
+            float : left;
+        }
+        .lM2 {
+            float : right;
+        }
 /* //_{^+mobileOnly */
-    /* //_{@ie8,@ie9,@modern */
-        [data-lmc] {
-            @include clearfix;
-        }
-        /* //_}@ie8,@ie9,@modern */
-        
-        /* //_{#ie7-win */
-        #lF .lMi {
-            @include clearfix;
-        }
-        /* //_}#ie7-win */
-            .lM1 {
-                float : left;
-                width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
-            }
-            .lM2 {
-                float : right;
-                width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
-            }
+    .lM1 {
+        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+    }
+    .lM2 {
+        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+    }
 /* //_}^+mobileOnly */
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet) {
+    .lM1 {
+        width : 50% - $TABLET_H_SPACE * 0.5;
+    }
+    .lM2 {
+        width : 50% - $TABLET_H_SPACE * 0.5;
+    }
+}
+    
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+/* clear 2column */
+    .lM1, .lM2 {
+        float        : none;
+        width        : auto;
+        margin-left  : 0;
+        margin-right : 0;
+    }
+}

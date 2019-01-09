@@ -2,7 +2,7 @@
  *  出現位置は #lB .lMi 下で固定
  *
  *  div.SearchResult
- *    h2, p
+ *    p
  *    div role=list (.SearchResult-multi)
  *      div role=listitem
  *        h3, cite, p
@@ -21,7 +21,7 @@
         .SearchResult h3 {
             margin-bottom : 0;
         }
-            .SearchResult a:visited {
+            .SearchResult :visited {
                 color : #1a0dab;
             }
         .SearchResult cite {
@@ -55,8 +55,8 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .SearchResult a:visited {
-        color : $COLOR_WTC_link;
+    .SearchResult :visited {
+        color : $COLOR_Watch_link;
     }
     .SearchResult div p {
         color : #808080;

@@ -1,0 +1,17 @@
+li, dd {
+    ol, ul, dl {
+        margin-top    : 0;
+        margin-bottom : 0;
+    }
+    p, pre, dl, blockquote, table {
+        margin-left  : 0;
+        margin-right : 0;
+    }
+}
+
+tr {
+    p, pre, dl, blockquote {
+        margin-left  : 0;
+        margin-right : 0;
+    }
+}

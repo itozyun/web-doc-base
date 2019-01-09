@@ -3,24 +3,22 @@
  *  jQuery.prettyQuote.js
  *  http://unformedbuilding.com/articles/blockquote-and-jquery/
 */
-var BLOCKQUOT_ROOT_ID = 'jM';
-
 g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
 function( e ){
     "use strict";
 
-    var elmTargets = getElementsByTagName( 'blockquote', getElementById( BLOCKQUOT_ROOT_ID ) ),
+    var elmTargets = DOM_getElementsByTagName( 'blockquote', g_elmMain ),
         elm, i = -1, title, cite;
 
     for( ; elm = elmTargets[ ++i ]; ){
-        title = elm.getAttribute( 'title' );
-        cite  = elm.getAttribute( 'cite' );
+        title = DOM_getAttribute( elm, 'title' );
+        cite  = DOM_getAttribute( elm, 'cite' );
 
         if( title && cite ){
-            elm.removeAttribute( 'title' );
+            DOM_removeAttribute( elm, 'title' );
             create( title, cite, 'js-bqLink', true );
         } else if( cite ){
-            elm.removeAttribute( 'cite' );
+            DOM_removeAttribute( elm, 'cite' );
             create( window.decodeURI ? decodeURI( cite ) : cite, cite, 'js-bqCite' );
         };
     };
@@ -39,10 +37,10 @@ function( e ){
         link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
         if( g_w3cDOM ){
-            elmCite = document.createElement( tag );
-            add1st ? elm.insertBefore( elmCite, elm.firstChild ) : elm.appendChild( elmCite );
-            elmCite.innerHTML = link;
-            if( className ) elmCite.className = className;
+            elmCite = DOM_createElement( tag );
+            add1st ? DOM_insertBefore( elmCite, DOM_getFirstChild( elm ) ) : DOM_appendChild( elm, elmCite );
+            DOM_setHTML( elmCite, link );
+            if( className ) DOM_setClassName( elmCite, className );
         } else {
             elm.insertAdjustmentHTML(
                 add1st ? 'AfterStart' : 'BeforeEnd',

@@ -1,0 +1,100 @@
+/* [module] ArticleBody
+ *  出現位置は #lB .lMi 下で固定
+ *
+ *  div.ABody
+--------------------------------------------------------------------------------------*/
+.ABody {
+    margin : 3.5em 0 2em;
+}
+
+/*  h2, h3
+--------------------------------------------------------------------------------------*/
+.ABody h2 {
+    @include hMargin(2, 2em, 1em);
+    font-size      : 1.5em;
+    border-width   : 0.2em 0 0;
+    padding        : 0.8em 0 0;
+    border-color   : $COLOR_ACCENT;
+    color          : $COLOR_ACCENT;
+    /* //_{#can-content */
+    &:after {
+        display : none; /* for iOS4 content : none だけでは消えない */
+    }
+    /* //_}#can-content */
+}
+.ABody h3 {
+    @include hMargin(2, 2.4em, 1.2em);
+    font-weight    : bold;
+    font-size      : 1.25em;
+    border-width   : 0.2em 0 0;
+    padding        : 0.8em 0 0;
+}
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .ABody {
+        -webkit-column-count : 2;
+        -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
+           -moz-column-count : 2;
+           -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
+                column-count : 2;
+                column-gap   : $WSXGA_COLUMN_GAP_EM;
+    }
+        .ABody .aBodyRoot > *:first-child {
+            margin-top : 0;
+        }
+        .ABody h2, .ABody h3 {
+            text-align : center;
+        }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet_print) {
+    .ABody h2, .ABody h3 {
+        text-align : center;
+    }
+    .ABody h2, .ABody h3 {
+        padding-left  : $TABLET_H_SPACE/2;
+        padding-right : $TABLET_H_SPACE/2;
+    }
+}
+
+/*  PHABLET
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .ABody h2, .ABody h3 {
+        padding-left   : $PHABLET_H_SPACE/2;
+        padding-right  : $PHABLET_H_SPACE/2;
+    }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .ABody h2 {
+        font-size     : 1.25em;
+    }
+    .ABody h2, .ABody h3 {
+        padding-left  : $PHONE_H_SPACE/2;
+        padding-right : $PHONE_H_SPACE/2;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .ABody h2, .ABody h3 {
+        padding-left  : 0;
+        padding-right : 0;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .ABody {
+        margin : 0;
+    }
+}

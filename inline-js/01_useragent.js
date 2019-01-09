@@ -23,9 +23,10 @@ var ua           = {},
     docMode      = document.documentMode,
     screenW      = screen.width,
     screenH      = screen.height,
-    HTMLAudioElement = window.HTMLAudioElement,
-    performance  = window[ 'performance' ],
-    Int8Array    = window[ 'Int8Array' ],
+    MathMax      = Math.max,
+    AudioElement = window.HTMLAudioElement,
+    performance  = window.performance,
+    Int8Array    = window.Int8Array,
 
     isTouch      = window.ontouchstart !== undefined,
 
@@ -40,19 +41,19 @@ var ua           = {},
      *   opera.versionは8から実装
      */
     isPrsto     = window.opera,
-    verOpera    = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : Math.max( getNumber( dua, 'Opera' ), verVersion, tv ) ),
-    isOPR       = window[ 'opr' ],
+    verOpera    = isPrsto && ( isPrsto.version ? parseFloat( isPrsto.version() ) : MathMax( getNumber( dua, 'Opera' ), verVersion, tv ) ),
+    isOPR       = window.opr,
     /*
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
      * インドネシアの特殊なブラウザ事情(Opera Mini,UC Browser Mini)
      */
-    isOpMin     = window[ 'operamini' ],
-    verOpMin    = isOpMin && Math.max( /* isOpMin.version && parseFloat( isOpMin.version() ) | 0, */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
+    isOpMin     = window.operamini,
+    verOpMin    = isOpMin && MathMax( /* isOpMin.version && parseFloat( isOpMin.version() ) | 0, */ getNumber( dua, 'Opera Mini/' ), getNumber( dua, 'Opera Mobi/' ), verVersion ),
     isUCWEB     = findString( dua, 'UCWEB' ),
     verUC2      = getNumber( dua, ' U2/' ),
 
     isTrident   = !isPrsto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
-    isEdge      = !isTrident && html[ 'msContentZoomFactor' ],
+    isEdge      = !isTrident && html.msContentZoomFactor,
     isBlink     = !isEdge && window.chrome,
 
     isSafari    = findString( dua, 'Safari' ),
@@ -61,7 +62,7 @@ var ua           = {},
      * https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
      * -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
      */
-    isGecko      = html && html.style[ 'MozAppearance' ] !== undefined, // window.Components
+    isGecko      = html && html.style.MozAppearance !== undefined, // window.Components
     isKHTML      = findString( dav, 'Konqueror' ),
 
     isYahooAdr   = findString( dav, 'YJApp-ANDROID' ), // Android 7, Y!browser 2.5.56
@@ -84,7 +85,7 @@ var ua           = {},
                     || fromString( dua, '; iPh OS ' ), // UC Browser
                     // || fromString( dua, 'EdgiOS' ),
                     // FxiOS, CriOS, Coast
-    isWebOS      = window[ 'palmGetResource' ],
+    isWebOS      = window.palmGetResource,
     verWP        = getNumber( dua, 'Windows Phone' ) || getNumber( dav, 'Windows Phone OS ' )
                     || getNumber( dua, '; wds' ), // UC Browser
     wpPCMode     = findString( dav, 'ZuneWP' ), // ZuneWP はデスクトップモードで登場する
@@ -141,7 +142,12 @@ var ua           = {},
     maybePCMode =
         ( isTouch && ( verWebKit || isGecko ) && ( sys === 'Linux armv7l' || sys === 'Linux i686' ) && findString( dua, 'Linux x86_64' ) ) ||
         ( !verAndroid && isYahooAdr ),
-    v, surelyPcMode, pcMode, dpRatio;
+    
+    docRegElm    = !verMSIE && document.registerElement,
+    docExecCmd   = !verMSIE && document.execCommand,
+
+    surelyPcMode, isPcMode,
+    v, dpRatio;
 
 // system 判定
     if( isKobo ){
@@ -162,9 +168,9 @@ var ua           = {},
         ua[ 'NDSi' ] = true;
         // ua[ 'Opera' ] = verOpera;
     } else if( isN3DS ){
-        ua[ 'N3DS' ] = true;
+        ua[ 'N3DS' ] = g_N3DS = true;
     } else if( isNew3DS ){
-        ua[ 'New3DS' ] = true;
+        ua[ 'New3DS' ] = g_New3DS = true;
     } else if( verPS3 ){
         ua[ 'PS3' ] = true;
     } else if( isPSP ){
@@ -187,26 +193,26 @@ var ua           = {},
         v       = getNumber( dav.split( '_' ).join( '.' ), 'OS ' );
 
         if( !v ){
-            pcMode = true;
+            isPcMode = true;
             v =
                 // navigator[ 'mediaDevices'    ] ? 11.2 : // WebView では無効
                 // https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc/issues/250#issuecomment-336240953
-                window[ 'WebAssembly'        ] ? 11.2 :
-                window[ 'HTMLMeterElement'   ] ? 10.3 :
-                window[ 'Proxy'              ] ? 10.2 :
-                window[ 'HTMLPictureElement' ] ?  9.3 :
-                Number[ 'isNaN'              ] ?  9.2 :
+                window.WebAssembly         ? 11.2 :
+                window.HTMLMeterElement    ? 10.3 :
+                window.Proxy               ? 10.2 :
+                window.HTMLPictureElement  ?  9.3 :
+                Number.isNaN               ?  9.2 :
                 // http://uupaa.hatenablog.com/entry/2015/03/03/223344
-                window[ 'SharedWorker'       ] ?
-                    ( performance && performance[ 'now' ] ? 8.0 : 8.4 ) :
-                document.execCommand           ?  7.1 :
-                window[ 'webkitURL'          ] ?  6.1 :
-                window[ 'Worker'             ] ?  5.1 :
-                Int8Array                      ?  4.3 :
-                HTMLAudioElement               ?  4.1 : 3.2;
+                window.SharedWorker        ?
+                    ( performance && performance.now ? 8.0 : 8.4 ) :
+                docExecCmd                 ?  7.1 :
+                window.webkitURL           ?  6.1 :
+                window.Worker              ?  5.1 :
+                Int8Array                  ?  4.3 :
+                AudioElement               ?  4.1 : 3.2;
         };
 
-        ua[ 'iOS' ] = v;
+        ua[ 'iOS' ] = g_iOS = v;
 
         // 4:3 model
         v = screenW === screenH * 1.5 || screenW * 1.5 === screenH;
@@ -229,13 +235,13 @@ var ua           = {},
         ua[ 'WinPhone' ] = verWP;
     } else if( verEdge && sys === 'ARM' ){
         ua[ 'WinPhone' ] = 10;
-        pcMode = true;
+        isPcMode = true;
     } else if( wpPCMode ){
         ua[ 'WinPhone' ] = verMSIE === 11 ? 8.1 :
                            verMSIE === 10 ? 8   :
                            verMSIE ===  9 ? 7.5 :
                            verMSIE ===  7 ? 7   : '?';
-        pcMode = true;
+        isPcMode = true;
     } else if( isWin ){
         switch( sys ){
             case 'WinCE' :
@@ -306,13 +312,13 @@ var ua           = {},
         } else if( isAndroid ){
             v = '2.2+';
         };
-        if( maybePCMode ) pcMode = true;
+        if( maybePCMode ) isPcMode = true;
     } else if( isAndroid && isPrsto ){
         if( verAndroid ){
             v = verAndroid;
         } else {
             v = '1.6+';
-            pcMode = true;
+            isPcMode = true;
         };
         ua[ 'Android' ] = v;
 // Android other | Linux
@@ -329,15 +335,15 @@ var ua           = {},
         // ua には Linux x86_64 になっている sys と矛盾する. ATOM CPU の場合は？    
         if( ( isBlink && !maybeAOSP ) || isOPR || verOPR ){
             v = verAndroid = '4+';
-        } else if( document[ 'registerElement' ] ){
+        } else if( docRegElm ){
             // http://caniuse.com/#feat=document-execcommand
             // Android 5+ で非対応に
-            v = verAndroid = document.execCommand ? 4.4 : 5;
+            v = verAndroid = docExecCmd ? 4.4 : 5;
 
         } else if( Int8Array ){
             v = verAndroid =
-                !navigator[ 'connection' ] ? 4.4 :
-                ( !window[ 'searchBoxJavaBridge_' ] && !isBlink ) ? 4.2 : /* & 4.3. 4.1 には searchBoxJavaBridge_ と chrome が存在 */
+                !navigator.connection ? 4.4 :
+                ( !window.searchBoxJavaBridge_ && !isBlink ) ? 4.2 : /* & 4.3. 4.1 には searchBoxJavaBridge_ と chrome が存在 */
                 Number.isNaN ? 4.1 : 4;
                 // 534 - 3.x~4.x , 534.13=3.x
                 // 534.30 = 4.0-4.1
@@ -348,7 +354,7 @@ var ua           = {},
                 verWebKit < 529 ? 1.5 : // <= 528.5
                 verWebKit < 531 ? 2.0 : // 530 2.0~2.1
                                         // 533 2.2~2.3
-                verWebKit < 534 ? ( HTMLAudioElement ? 2.3 : 2.2 ) : 3;
+                verWebKit < 534 ? ( AudioElement ? 2.3 : 2.2 ) : 3;
         };
         ua[ 'Android' ] = v;
     } else if( isLinux ){
@@ -404,7 +410,7 @@ var ua           = {},
     } else
 // Gecko
     if( isGecko ){
-        ua[ 'Gecko' ] = verGecko;        
+        ua[ 'Gecko' ] = g_Gecko = verGecko;        
     /** TODO PC版 Fennec もある */
     //Fennec
         if( verFennec ){
@@ -425,32 +431,32 @@ var ua           = {},
     if( /* isBlink && */ isOPR || verOPR ){
         ua[ 'OPR'   ] = verOPR;
         ua[ 'Blink' ] = verChrome;
-        if( surelyPcMode ) pcMode = true;
+        if( surelyPcMode ) isPcMode = true;
     } else
 // AOSP | Chrome WebView Wrapped Browser
 // Android3.x-4.0 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
     if( verAndroid && maybeAOSP ){
-        ua[ 'AOSP' ] = verAndroid;
-        if( surelyPcMode ) pcMode = true;
+        ua[ 'AOSP' ] = g_AOSP = verAndroid;
+        if( surelyPcMode ) isPcMode = true;
     } else
 // Blink Chrome
     if( isBlink ){
         ua[ 'Blink' ] = verChrome;
-        if( surelyPcMode ) pcMode = true;
+        if( surelyPcMode ) isPcMode = true;
     } else
 // http://uupaa.hatenablog.com/entry/2014/04/15/163346
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
 // また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
 // http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
 // CustomElement の有無で判定
-    if( verAndroid && document[ 'registerElement' ] ){
+    if( verAndroid && docRegElm ){
         // Android 標準ブラウザ Chrome WebView ブラウザ
         ua[ 'CrWV' ] = verAndroid;
-        if( surelyPcMode ) pcMode = true;
+        if( surelyPcMode ) isPcMode = true;
     } else
     if( verAndroid && ( verVersion || surelyPcMode ) ){
-        ua[ 'AOSP' ] = verAndroid;
-        if( surelyPcMode ) pcMode = true;
+        ua[ 'AOSP' ] = g_AOSP = verAndroid;
+        if( surelyPcMode ) isPcMode = true;
     } else
     if( isKHTML ){
         ua[ 'Khtml' ] = tv;
@@ -483,4 +489,4 @@ var ua           = {},
         };
     };
 
-    if( pcMode ) ua[ 'PCMode' ] = true;
+    if( isPcMode ) ua[ 'PCMode' ] = true;

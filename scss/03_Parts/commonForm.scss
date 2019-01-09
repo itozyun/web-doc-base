@@ -3,7 +3,7 @@
  * form.commonForm
  *   .commonForm-pair
  *     label
- *     div.commonForm-wrap
+ *     span.commonForm-wrap
  *       input[type=text]|textarea
  *    .commonForm-send
  *       input[type=submit].btn
@@ -19,39 +19,39 @@
         margin-bottom : 1em;
     }
         .commonForm label {
+        /* //_{^@ie5win */
             display : block;
             float   : left;
             width   : 7em;
-            padding : 0.2em 0;
+            padding : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} 0 0;
+        /* //_}^@ie5win */
         }
 
         .commonForm-wrap {
-            margin-left : 8em;
-            /* //_{@modern */
-            padding     : 0.2em 0.5em;
-            /* //_}@modern */
-            background  : $COLOR_BdM_casual_fill;
+            display : block;
+        /* //_{^@ie5win */
+            margin  : 0 #{($INPUT_BORDER_WIDTH + $FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+        /* //_}^@ie5win */
         }
 
             .commonForm-wrap * {
                 width      : 100%;
-                padding    : 0;
-                border     : 0;
-                background : $COLOR_BdM_casual_fill;
-                @include placeholderColor( $COLOR_BdS_casual_text );
-            }
-
-            .commonForm-wrap textarea {
-                margin : 0;
-                border : 0;
+            /* //_{@ie7 */ /* 上に出来る余白を消す、ie5 はカラムが壊れる */
+                float      : left;
+            /* //_}@ie7 */
             }
 
         .commonForm-send {
             text-align : right;
         }
-            .commonForm-send .btn {
-                padding : 0.5em 1em;
-            }
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .commonForm {
+        max-width : 40em;
+    }
+}
 
 /*  Phone
 --------------------------------------------------------------------------------------*/
@@ -63,14 +63,5 @@
 
     .commonForm-wrap {
         margin-left : 0;
-    }
-}
-
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .commonForm-wrap,
-    .commonForm-wrap * {
-        background : $COLOR_WTC_casual_fill;
     }
 }
