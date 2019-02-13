@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------------*/
 h2 {
     margin       : 0;
-    border-width : 0 0 1px;
+    border-width : 0 0 2px;
     padding      : 1.5em 0.45em 0.5em;
     font-size    : 1.1em;
     /* //_{^#can-content */
@@ -23,9 +23,9 @@ h2 {
         line-height  : 0;
         position     : absolute;
         left         : 0;
-        bottom       : -1px;
+        bottom       : -2px;
         overflow     : hidden;
-        border-width : 1px 0 0;
+        border-width : 2px 0 0;
         border-color : $COLOR_Default_accent;
     }
 

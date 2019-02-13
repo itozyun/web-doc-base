@@ -45,10 +45,16 @@ h4, h5, h6 {
     @include hMargin(2, 1.5em, 0.8em);
 }
 
-p,  /* hr, */  pre, ul, ol, dl,
+p, pre, ul, ol, dl,
 table,
 img, iframe {
     @include hMargin(1, 1em, 1em);
+}
+
+tr blockquote {
+    p, pre {
+        @include hMargin(1, 1em, 1em);
+    }
 }
 
 hr {
@@ -59,7 +65,7 @@ hr {
     & {
         padding : $paddingTop 1em / $ratio $paddingBottom;
     }
-    li &, dd &, tr &, .note & {
+    li &, dl &, tr &, .note & {
         padding : $paddingTop 1em / $ratio $paddingBottom;
     }
 

@@ -22,15 +22,6 @@
         /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
             border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
         /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
-
-        /* //_{#ie7-win */
-            /* //_{@ie5win,@ie55 */
-                border-color : $COLOR_ACCENT;
-            /* //_}@ie5win,@ie55 */
-            color        : $COLOR_ACCENT;
-            border-style : dotted;
-            outline      : 0;
-        /* //_}#ie7-win */
     }
 
     @if $opt_need_bgcolor_for_Watch == 1 {
@@ -90,6 +81,17 @@
             outline      : 0;
         }
     /* //_}^#ie7-win */
+
+    /* //_{#ie7-win */
+        &:link:active, &:visited:active {
+        /* //_{@ie5win,@ie55 */
+            border-color : $COLOR_ACCENT;
+        /* //_}@ie5win,@ie55 */
+            color        : $COLOR_ACCENT;
+            border-style : dotted;
+            outline      : 0;
+        }
+    /* //_}#ie7-win */
 }
 
 .btn {

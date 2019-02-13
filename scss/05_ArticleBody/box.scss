@@ -5,11 +5,11 @@
     @include clearfix;
 
 
-    li &, dd &, tr &, .note & {
+    li &, dl &, tr &, .note & {
         margin-top : 0;
     }
 
-    margin : 1em $CONTENT_MARGIN_LR 0;
+    margin : 1em 1em 0;
 
     /* //_{#can-1stOfType */
     & > p:first-of-type {
@@ -28,18 +28,11 @@
     }
 
     img, .caption, iframe
-    , embed, object, video {
+    //, embed, object, video
+    {
         float  : left;
         margin : 0 1em 1em 0;
     }    
-}
-
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .box {
-        margin : 1em $CONTENT_MARGIN_LR_WSXGA 0;
-    }
 }
 
 /*  Tablet
@@ -49,7 +42,8 @@
         margin : 1em 0 0;
 
         img, .caption, iframe
-        , embed, object, video {
+        //, embed, object, video
+        {
             margin  : 0 1em 1em $TABLET_H_SPACE;
         }
     }
@@ -60,7 +54,8 @@
 @include media(phablet) {
     .box {
         img, .caption, iframe
-        , embed, object, video {
+        //, embed, object, video
+        {
             margin  : 0 1em 1em $PHABLET_H_SPACE;
         }
     }
@@ -74,7 +69,8 @@
     }
     .box {
         img, .caption, iframe
-        , embed, object, video {
+        //, embed, object, video
+        {
             margin  : 0 1em 1em $PHONE_H_SPACE;
         }
     }
@@ -85,7 +81,8 @@
 @include media(smallphone) {
     .box {
         img, .caption, iframe
-        , embed, object, video {
+        //, embed, object, video
+        {
             float  : none;
             margin : 0 auto 1em;
         }

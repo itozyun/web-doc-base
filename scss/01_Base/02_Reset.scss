@@ -54,8 +54,9 @@
     }
     
     img {
-        /* border              : 0;  1 */
-        -ms-interpolation-mode : bicubic; /* 2 */
+        /* //_{@ie7 */
+        -ms-interpolation-mode : bicubic;
+        /* //_}@ie7 */
     }
 
     /* //_{@ie9 */

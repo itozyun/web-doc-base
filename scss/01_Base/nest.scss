@@ -1,17 +1,18 @@
-li, dd {
+li, dd, tr {
     ol, ul, dl {
         margin-top    : 0;
         margin-bottom : 0;
     }
-    p, pre, dl, blockquote, table {
-        margin-left  : 0;
-        margin-right : 0;
+}
+
+li, dd {
+    p, pre, blockquote, table {
+        margin : 0 0 .5em;
     }
 }
 
 tr {
-    p, pre, dl, blockquote {
-        margin-left  : 0;
-        margin-right : 0;
+    p, pre, blockquote {
+        margin : 0 0 .5em;
     }
 }

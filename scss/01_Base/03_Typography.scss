@@ -67,7 +67,8 @@
     }
 
     img, iframe
-    , embed, object, video {
+    // , embed, object, video
+    {
         @include unbreak-inside;
 
         /* //_{#can-max-min */
@@ -81,6 +82,9 @@
         /* //_}^#can-margin-auto */
         a & {
             display : block; /* focus 時の塗りを適切にする */
+        }
+        li &, tr &, dl & {
+            margin-top : 0;
         }
     }
 
@@ -96,7 +100,7 @@
         /* //_{@ie5win,@ie55 */
         margin-left         : 0;
         /* //_}@ie5win,@ie55 */
-        li &, dd & {
+        li &, dl & {
             padding-left  : 1em;
         }
     }

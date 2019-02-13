@@ -23,7 +23,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 .RichLink {
     @include stackableModule;
     @include highContrast {
-        padding-top : 2px;
+        padding : 2px 0;
     }
 }
     .RichLink-sep {

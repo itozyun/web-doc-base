@@ -20,7 +20,7 @@ if( g_N3DS ){
     dynamicViewPort_initScale = dynamicViewPort_miniScale = 1;
 } else if( g_AOSP ){
     dynamicViewPort_deviceWidth = true;
-    dynamicViewPort_meta = 'target-densitydpi=medium-dpi';
+    dynamicViewPort_meta        = 'target-densitydpi=medium-dpi';
     if( g_AOSP < 3 ){
         dynamicViewPort_meta += ',user-scalable=no';
     } else {
@@ -28,7 +28,7 @@ if( g_N3DS ){
     };
 } else if( g_Gecko && isPcMode ){
     dynamicViewPort_deviceWidth = true;
-    dynamicViewPort_initScale   = dynamicViewPort_miniScale = 1.5;
+    dynamicViewPort_initScale   = dynamicViewPort_miniScale = 2;
 };
 
 dynamicViewPort_width = dynamicViewPort_deviceWidth ? 'device-width' : dynamicViewPort_width;

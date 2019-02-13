@@ -1,10 +1,23 @@
 /*  note
 --------------------------------------------------------------------------------------*/
-.note, dl.note {
+.note {
     @include hMargin(1, 1em, 1em);
     padding-left : 25%;
-    * {
-        margin-right : 0 !important;
+
+    p, pre, ul, ol, dl,
+    // table,
+    blockquote,
+    img, iframe,
+    .box {
+        margin-right : 0;
+    }
+    blockquote p,
+    blockquote pre,
+    blockquote ul,
+    blockquote ol,
+    blockquote dl,
+    .box img, .box iframe {
+        margin-right : 1em;
     }
 }
 dl.note dd {

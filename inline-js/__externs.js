@@ -34,7 +34,7 @@ Window.prototype.opr = {};
 Window.prototype.operamini = {};
 
 /**
- * @type {function}
+ * @type {function()}
  */
 Window.prototype.palmGetResource = function(){};
 

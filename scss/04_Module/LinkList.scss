@@ -96,7 +96,7 @@
     @extend %linkCommon;
     @include stackableModule;
     @include highContrast {
-        padding-top : 2px;
+        padding : 2px 0;
     }
     a {
         line-height : 1.1;
