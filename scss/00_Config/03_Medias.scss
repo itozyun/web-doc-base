@@ -22,6 +22,7 @@ $COMMENT_OUT : (
     'phone'        : $NO_MEDIA_QUERY,
     'smallphone'   : $NO_MEDIA_QUERY,
     'watch'        : 1,
+    'dark_theme'   : 1,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
     'ie10_edge'    : $NO_MEDIA_QUERY,
@@ -39,6 +40,7 @@ $COMMENT_OUT : (
     'phone'        : $NO_MEDIA_QUERY,
     'smallphone'   : $NO_MEDIA_QUERY,
     'watch'        : $NO_MEDIA_QUERY,
+    'dark_theme'   : $NO_MEDIA_QUERY,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
     'ie10_edge'    : $NO_MEDIA_QUERY,
@@ -92,6 +94,15 @@ $COMMENT_OUT : (
         }
         @else if $media == 'watch' {
             @media handheld, only screen and (max-width: 240px) {
+                @content;
+            }
+        }
+        @else if $media == 'dark_theme' {
+            @media handheld, only screen and (max-width: 240px)
+            /* //_{@modern */
+            ,(prefers-color-scheme: dark)
+            /* //_}@modern */
+            {
                 @content;
             }
         }

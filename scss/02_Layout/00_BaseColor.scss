@@ -27,9 +27,9 @@ body {
     }
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     * {
         border-color : $COLOR_Watch_casual_fill;
     }

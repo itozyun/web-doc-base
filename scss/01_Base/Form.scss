@@ -45,9 +45,9 @@ input {
             box-sizing    : content-box;
     /* //_}#can-box-sizing */
     /* //_{@modern */
-    -webkit-border-radius : 0;            
-       -moz-border-radius : 0;                
-        -ms-border-radius : 0;                
+    -webkit-border-radius : 0;
+       -moz-border-radius : 0;
+        -ms-border-radius : 0;
             border-radius : 0;
     -webkit-appearance    : none;
             appearance    : none;
@@ -95,15 +95,9 @@ form :invalid {
 }
 /* //_}@modern */
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
-    form * {
-        color : $COLOR_Watch_text;
-    }
-    form :focus {
-        color : $COLOR_ACCENT;
-    }
+@include media(dark_theme) {
     textarea, input {
         @include placeholderColor( $COLOR_Watch_casual_text );
     }

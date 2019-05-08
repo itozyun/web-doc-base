@@ -196,9 +196,9 @@ tbody :hover th {
 }
 /* //_}#can-hover-pseudo-class */
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     @include tableColor( $COLOR_Watch_text, $COLOR_Watch_fill, $COLOR_Watch_casual_text, $COLOR_Watch_casual_fill );
 
     tbody :hover td {

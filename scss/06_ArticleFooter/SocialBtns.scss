@@ -27,9 +27,6 @@
     .fb {
         @include createButton( #3B5999, #3B5999, $COLOR_Default_fill, 1 );
     }
-    .gp {
-        @include createButton( #dd4b39, #dd4b39, $COLOR_Default_fill, 1 );
-    }
     .hb {
         @include createButton( #008FDE, #008FDE, $COLOR_Default_fill, 1 );
     }
@@ -52,9 +49,9 @@
     }
 }
 
-/*  Watch 
--------------------------------------------------------------------------------------*/
-@include media(watch) {
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
     .SocialBtns {
         color      : $COLOR_Watch_fill; /* , を消す */
     }

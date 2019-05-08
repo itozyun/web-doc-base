@@ -124,6 +124,14 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
+    dd {
+        margin-left : 0.5em;
+    }
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
     h4 {
         border-color : $COLOR_Watch_text;
     }
@@ -133,8 +141,5 @@
     h6 {
         border-color : $COLOR_Watch_casual_text;
         color        : $COLOR_Watch_casual_text;
-    }
-    dd {
-        margin-left : 0.5em;
     }
 }

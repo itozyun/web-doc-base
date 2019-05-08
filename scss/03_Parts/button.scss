@@ -25,7 +25,9 @@
     }
 
     @if $opt_need_bgcolor_for_Watch == 1 {
-        @include media(watch) {
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
             &:link {
                 color : $COLOR_Watch_fill;
             }

@@ -1,5 +1,5 @@
 /* [module] ArticleHeader
- *  出現位置は #lE .lMi | #lB .lMi
+ *  出現位置は #lE .lMf | #lB .lMf
  *
  *  div.AHead
  *    h1
@@ -50,9 +50,9 @@
     }
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     .lMz .AHead h1 {
         color : $COLOR_Watch_text;
     }

@@ -204,7 +204,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
         padding-left  : 0;
         padding-right : 0;
     }
+}
 
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
     .baseColor .RichLink-item div {
         color  : $COLOR_Watch_casual_fill;
     }

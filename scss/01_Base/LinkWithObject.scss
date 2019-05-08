@@ -32,9 +32,9 @@
     top      : 2px;
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     :link img, :visited img {
         border-color : $COLOR_Watch_fill;
     }

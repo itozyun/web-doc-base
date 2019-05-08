@@ -78,9 +78,9 @@ hr {
     /* //_}^+mobileOnly */
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     em {
         background : #94943b;
     }

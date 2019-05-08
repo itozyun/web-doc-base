@@ -56,9 +56,9 @@ blockquote {
     }
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     blockquote {
         background : $COLOR_Watch_casual_fill;
         color      : $COLOR_Watch_text;

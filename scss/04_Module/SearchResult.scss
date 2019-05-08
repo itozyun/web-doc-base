@@ -55,6 +55,14 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
+    .SearchResult div div {
+        margin : 0;
+    }
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
     .SearchResult :visited {
         color : $COLOR_Watch_link;
     }
@@ -63,8 +71,5 @@
     }
     .SearchResult div span {
         color : #545454;
-    }
-    .SearchResult div div {
-        margin : 0;
     }
 }

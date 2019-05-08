@@ -11,9 +11,9 @@ code, var {
     }
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     code, var {
         background : $COLOR_Watch_casual_fill;
     

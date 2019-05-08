@@ -32,7 +32,9 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text;
     }
-    @include media(watch) {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         &:before {
             border-color : $COLOR_Watch_casual_text;
         }
@@ -51,7 +53,9 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text transparent;
     }
-    @include media(watch) {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         &:before {
             border-color : $COLOR_Watch_casual_text transparent;
         }
@@ -70,7 +74,9 @@
     .ribbon & {
         border-color    : transparent $COLOR_Ribbon_casual_text;
     }
-    @include media(watch) {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         &:before {
             border-color : transparent $COLOR_Watch_casual_text;
         }

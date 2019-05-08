@@ -159,9 +159,9 @@ blockquote .tl {
     /* //_}#can-content */
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     .tl {
         thead th, thead td, tbody th {
             color : $COLOR_Watch_text;

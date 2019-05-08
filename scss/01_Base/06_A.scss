@@ -108,9 +108,9 @@ a:active
     }
 }
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     a {
         color        : $COLOR_Watch_casual_text;
         border-color : $COLOR_Watch_fill;

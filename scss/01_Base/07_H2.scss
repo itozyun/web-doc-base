@@ -71,7 +71,11 @@ h2 {
         padding-left  : 0;
         padding-right : 0;
     }
+}
 
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
     h2:after {
         @if $COLOR_Default_accent != $COLOR_Watch_accent {
             background : $COLOR_Watch_accent;

@@ -60,7 +60,9 @@
         background : $COLOR_Ribbon_casual_fill;
         color      : $COLOR_Ribbon_text;
     }
-    @include media(watch){
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         /* href がない場合 current カラーになる */
         a {
             background : $COLOR_Watch_text;
@@ -116,8 +118,8 @@
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
     .LinkList {
-        text-align : center !important;
-        a {
+        text-align : center;
+        div {
             display : inline-block;
         }
     }
