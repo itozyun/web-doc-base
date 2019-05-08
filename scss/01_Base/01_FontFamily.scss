@@ -7,9 +7,10 @@
  */
         body, textarea, input {
             font-family :
-                -apple-system, BlinkMacSystemFont, Avenir , "Open Sans" ,
-                "Helvetica Neue" , Helvetica , Arial , Verdana ,
-                Roboto ,
+                -apple-system, BlinkMacSystemFont, Avenir, "Open Sans",
+                "Helvetica Neue", Helvetica, Arial, Verdana,
+                Roboto,
+                "UD Digi Kyokasho NP-R",
                 "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 "Meiryo UI", "メイリオ", Meiryo,
@@ -24,8 +25,9 @@
     @-moz-document url-prefix() {
         body, textarea, input {
             font-family :
-                -apple-system, BlinkMacSystemFont, Avenir , "Open Sans" ,
-                "Helvetica Neue" , Helvetica , Arial , Verdana ,
+                -apple-system, BlinkMacSystemFont, Avenir, "Open Sans",
+                "Helvetica Neue", Helvetica, Arial, Verdana,
+                "UD Digi Kyokasho NK-R",
                 "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 "Meiryo UI", "メイリオ", Meiryo,
@@ -56,7 +58,7 @@
 /* //_{+it */
     /* //_{@modern,@ie9,@ie8,@ie7 */
             pre, code, var, kbd, samp /* , tt */ {
-                font-family : SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
+                font-family : "UD Digi Kyokasho N-R", SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
             }
     /* //_}@modern,@ie9,@ie8,@ie7 */
 
