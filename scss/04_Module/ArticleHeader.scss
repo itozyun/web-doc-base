@@ -80,14 +80,13 @@
 .AHead-labels {
     margin-top     : 0.5em;
     color          : $COLOR_Ribbon_fill; /* , を消す */
+    /* //_{@modern */
     vertical-align : middle; /* ie11 のガタツキを修正 */
+    /* //_}@modern */
 }
     .AHead-labels i {
         display : none;
     }
-        .AHead-labels i {
-            display : none;
-        }
     .AHead-labels a {
         @extend %btnBase;
         @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
@@ -111,16 +110,16 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .AHead-labels {
-        position : relative;
-        padding  : 0 0 0 1.5em;
-        color    : $COLOR_Print_text;
+        color : $COLOR_Print_text;
     }
+        /* //_{#can-content */
         .AHead-labels i {
-            position : absolute;
-            top      : 0.5em;
-            left     : 0;
-            display  : block;
+        /* //_{#can-inline-block */
+            display      : inline-block;
+        /* //_}#can-inline-block */
         }
+        /* //_}#can-content */
+
         .AHead-labels a {
         /* //_{#can-inline-block */
             display      : inline;

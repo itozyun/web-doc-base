@@ -4,24 +4,9 @@
  * .AFoot
  *    articleFooterItem
 --------------------------------------------------------------------------------------*/
-.AFoot {
-    border-width  : 1px 0 0;
-    @include highContrast {
-        border-style : dotted;
-    }
-}
-
 @mixin article-footer-item {
     border-width  : 0 0 1px;
     @include highContrast {
         border-style : dotted;
-    }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .AFoot {
-        margin : 1em 0;
     }
 }

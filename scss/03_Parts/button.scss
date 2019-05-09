@@ -124,9 +124,9 @@ input.btn:focus {
 }
 /* //_>bottom50 */
 
-/*  Watch
+/*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(watch) {
+@include media(dark_theme) {
     .baseColor .btn {
         @include createButton( $COLOR_Watch_link, $COLOR_Watch_text, $COLOR_Watch_fill );
     }

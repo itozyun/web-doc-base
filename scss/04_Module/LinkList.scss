@@ -119,8 +119,11 @@
 @include media(phablet) {
     .LinkList {
         text-align : center;
+        @include stackableModule(.2em);
+
         div {
             display : inline-block;
+            margin  : 2px; /* for highContrast */
         }
     }
 }

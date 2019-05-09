@@ -149,3 +149,7 @@ $COMMENT_OUT : (
         & { @content; }
     }
 }
+
+@include media(print) {
+    .noprint { display : none }
+}

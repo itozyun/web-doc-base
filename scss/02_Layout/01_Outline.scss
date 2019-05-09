@@ -69,6 +69,15 @@
                 /* //_}#ie55- */
                 margin : 0 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
             }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .lSi {
+            /* //_{@ie6 */
+            width  : 100%;
+            /* //_}@ie6 */
+        }
+    }
 
     /*  x-column
     --------------------------------------------------------------------------------------*/
@@ -102,7 +111,7 @@
 /* //_{@modern */
 /*  メディアクエリをサポートするブラウザだけ table-layout にする
 --------------------------------------------------------------------------------------*/
-@include media(pc) { /* Tablet も併せて変更 */
+@include media(pc) {
     .lW {
         display      : table;
         table-layout : fixed;
@@ -195,7 +204,9 @@
         .lM, .lS {
             float   : none;
         /* //_{^@ie9 */
-            display : block;
+            /* //_{@modern */
+            display : block; /* table-cell のリセット */
+            /* //_}@modern */
             width   : auto;
         /* //_}^@ie9 */
         /* //_{@ie9 */
@@ -207,7 +218,8 @@
 }
 /* //_}^+mobileOnly */
 
-/* //_{+mobileOnly */
+/* //_{+mobileOnly
+--------------------------------------------------------------------------------------*/
     .lW {
         overflow : hidden; /* この指定が無いと塗りがはみ出る */
     }
@@ -276,7 +288,17 @@
     #lH .lS, #lB .lS, #lF .lW {
         display : none;
     }
+
     .lMi, .lMz, .lSi, .lXi {
+        /* //_{^+mobileOnly */
         padding : 0;
+        margin  : 0;
+        /* //_}^+mobileOnly */
+
+        /* //_{+mobileOnly */
+            /* //_{#can-max-min */
+                max-width : 100%;
+            /* //_}#can-max-min */
+        /* //_}+mobileOnly */
     }
 }

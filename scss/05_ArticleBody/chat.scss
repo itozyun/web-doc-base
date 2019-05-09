@@ -184,18 +184,14 @@
         border-color   : $COLOR_Print_casual_text;
     }
         .chatTitle {
-            background    : #fff;
+            background : #fff;
         }
         .chat p,
-        .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
+        .chat h2, .chat h3, .chat h4, .chat h5, .chat h6,
+        .chatR p, .chatL p, .chat .chatMember {
             color        : $COLOR_Print_text;
             background   : #fff;
             border-color : $COLOR_Print_casual_text;
-        }
-
-        .chatR p, .chatL p {
-            color        : $COLOR_Print_text;
-            background   : #fff;
         }
 
         /* //_{#can-content */
@@ -210,12 +206,12 @@
                 overflow     : hidden;
             }
             .chatL p:before {
-                border-color : transparent $COLOR_Print_casual_fill;
+                border-color : transparent $COLOR_Print_casual_text;
                 border-width : 3px 7px 3px 0;
                 left         : -7px;
             }
             .chatR p:before {
-                border-color : transparent $COLOR_Print_casual_fill;
+                border-color : transparent $COLOR_Print_casual_text;
                 border-width : 3px 0 3px 7px;
                 right        : -7px;
             }
@@ -232,10 +228,5 @@
                 right        : -6px;
             }
         /* //_}#can-content */
-
-        .chat .chatMember { 
-            background   : #fff;
-            color        : $COLOR_Print_text;
-        }
 }
 /* //_}+chat */
