@@ -13,14 +13,26 @@
              -o-transition          : transform 0.3s ease-in;
                 transition          : transform 0.3s ease-in;
     }
+
+    /* ホバーで色を変えてスクロール可能をあることを知らせる */
+    @include media(pc) {
+        #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+            border-color : $COLOR_Default_text;
+        }
+    }
+    @media (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / 16}em) and (prefers-color-scheme: dark) {
+        #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+            border-color : $COLOR_Ribbon_text;
+        }
+    }
     /* //_}@modern */
 
     /* //_{#ie8-win */
     .lW {
-        overflow : hidden; /* modern では clearfix で hidden になっている */
+        overflow : hidden; /* @modern では clearfix で hidden になっている */
     }
     #jsMain, #jsSide {
-        position : relative;
+        position : relative; /* @modern でも必要ではない…？ieではrelativeが無いと位置が取れない、だったかな？ */
     }
     /* //_}#ie8-win */
 /* //_}^+mobileOnly */

@@ -33,7 +33,11 @@ a {
         background-color : transparent;
     }
     :link, :link *,
-    :visited, :visited * {
+    :visited, :visited *
+    /* //_{^+mobileOnly */
+        , h2 /* SidebarFixer 用 */
+    /* //_}^+mobileOnly */
+    {
     /* clean-css ignore:start */
         -webkit-transition-property : background-color, color, border-color;
         -webkit-transition          : 0.3s ease-in;
