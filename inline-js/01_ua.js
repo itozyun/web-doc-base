@@ -111,11 +111,10 @@ var ua            = {},
     versionAndroidWithUCWEB = getVersionString( strUserAgent, '; Adr ' ), // Android for UC Browser Speed mode
 
     isYahooForAandroid = findString( strAppVersion, 'YJApp-ANDROID' ), // Android 7, Y!browser 2.5.56
-    isEdgeForAandroid  = findString( strAppVersion, 'EdgA/' ),
     
     isAndroid  = findString( strPlatform, 'Android' ) ||
                  ( isGecko && findString( strAppVersion, 'Android' ) ) || /* Android2.3.5 Firefox3.1 */
-                 isYahooForAandroid, // || isEdgeForAandroid
+                 isYahooForAandroid,
     versionAndroid = getVersionString( strPlatform , 'Android ' ) || getVersionString( strAppVersion, 'Android ' ) ||
                      getVersionString( strUserAgent, 'Android ' ) || versionAndroidWithUCWEB,
     maybeLinux  = findString( strPlatform, 'Linux' ), // Linux or Android
@@ -302,6 +301,9 @@ var ua            = {},
 
     docRegElm    = !versionTrident && document.registerElement,
     docExecCmd   = !versionTrident && document.execCommand,
+
+    // Android 5.0 ChromeWebView 37.0.0.0 (Genymotion) で window.opener に触るとセキュリティエラーが発生するのを利用して Android を判定する。
+    maybeChromeWebView = maybeLinux && docRegElm && versionChrome && /* window.CSS || */ (new Function('try{for(var k in opener){}}catch(e){return true}'))(),
 
     surelyPcMode, isPcMode, strVersion,
     v, dpRatio,

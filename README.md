@@ -110,32 +110,32 @@ var gulp     = require('gulp'),
     sass     = require("gulp-sass"),
     cleanCSS = require("gulp-clean-css"),
     plumber  = require("gulp-plumber"),
-    mmq      = require("gulp-merge-media-queries");
+    mmq      = require("gulp-merge-media-queries"),
+    emq      = require('gulp-extract-media-query'),
+    del      = require('del'),
+    rename   = require("gulp-rename"),
+    
+    output   = './MyBlog';
 
-gulp.task('sass', function() {
+gulp.task('sass', function(){
   return gulp.src(['R:/MyBlog/precompiled/*.scss'])
     .pipe(plumber())
     .pipe(sass())
     .pipe(cleanCSS({
-      // https://github.com/jakubpawlowicz/clean-css#optimization-levels
+      //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
       level: {
         1: {
-        // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
+          // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
           roundingPrecision : 3
         },
         2: {
-        // controls duplicate `@font-face` removing; defaults to true
-          removeDuplicateFontRules: true,
-        // controls duplicate `@media` removing; defaults to true
-          removeDuplicateMediaBlocks: true,
-        // controls duplicate rules removing; defaults to true
-          removeDuplicateRules: true,
-        // controls semantic merging; defaults to false
-          mergeSemantically: true,
-        // controls unused at rule removing; defaults to false (available since 4.1.0)
-          removeUnusedAtRules: true,
-        // controls rule restructuring; defaults to false
-          restructureRules: true
+          removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
+          removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
+          removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
+          
+          mergeSemantically: true, // controls semantic merging; defaults to false
+          removeUnusedAtRules: true, // controls unused at rule removing; defaults to false (available since 4.1.0)
+          restructureRules: true // controls rule restructuring; defaults to false
         }
       }
     }))
@@ -148,7 +148,30 @@ gulp.task('sass', function() {
         }
       }
     }))
-    .pipe(gulp.dest('../MyBlog.github.io/'));
+    .pipe(gulp.dest(output))
+});
+
+// high-contrast
+gulp.task('high-contrast', [ 'sass' ], function(){
+    return gulp.src(output + '/*.css')
+    .pipe(emq({
+        match   : 'only screen and (-ms-high-contrast:active)',
+        postfix : '.hc'
+    }))
+    .pipe( rename(
+        function(path){
+            path.basename = path.basename.split( '.hc' ).join( '' );
+        }
+    ))
+    .pipe(gulp.dest(output + '/hc'));
+});
+
+// del
+gulp.task('build', [ 'high-contrast' ], function(){
+    del([
+      './report.csv',
+      output + '/hc/*.hc.css'
+    ]);
 });
 ~~~
 
@@ -159,15 +182,20 @@ gulp.task('sass', function() {
 ~~~bat
 @echo off
 
+REM js ================================================
 type nul > R:\temp.js
 
 echo (function(window,document,navigator,screen,parseFloat,undefined){; >> R:\temp.js
-type inline-js\01_useragent.js                                          >> R:\temp.js
-type inline-js\02_dynamicViewPort.js                                    >> R:\temp.js
+type inline-js\01_ua.js                                                 >> R:\temp.js
+type inline-js\02_uaPlatform.js                                         >> R:\temp.js
+type inline-js\03_uaEngine.js                                           >> R:\temp.js
+type inline-js\04_uaBrand.js                                            >> R:\temp.js
+type inline-js\05_uaFinish.js                                           >> R:\temp.js
+type inline-js\10_dynamicViewPort.js                                    >> R:\temp.js
 echo window["ua"]=ua;                                                   >> R:\temp.js
 echo })(window,document,navigator,screen,parseFloat);                   >> R:\temp.js
 
-java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/inline.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs inline-js/__externs.js --compilation_level ADVANCED
+java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/ua.min.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs inline-js/__externs.js --compilation_level ADVANCED
 REM --formatting pretty_print
 
 del R:\temp.js

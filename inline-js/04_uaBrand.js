@@ -216,18 +216,17 @@ if( !brand ){
     } else if( strVersion = isPresto ? versionPresto : getVersionString( strUserAgent, 'Opera/' ) ){
         brand        = 'Opera';
         brandVersion = strVersion;
-    } else if( isAndroidBrowser ){
-        brand        = engine;
-        brandVersion = engineVersion;
-    } else if( strVersion = getVersionString( strUserAgent, 'CriOS/' ) || ( hasChromeObject && getVersionString( strUserAgent, 'Chrome/' ) ) ){
-        brand        = 'Chrome';
-        brandVersion = strVersion;
     } else if( isTrident ){
         brand        = 'IE';
         brandVersion = engineVersion;
-    } else if( v = window.__opera ){ // iOS Opera Mini off に存在
-        brand        = 'Opera';
-        brandVersion = v.version();
+    } else if( strVersion =
+        getVersionString( strUserAgent, 'CriOS/' ) ||
+        ( hasChromeObject || ( maybeChromeWebView && isAndroidBrowser ) ) && versionChrome ){
+        brand        = 'Chrome';
+        brandVersion = strVersion;
+    } else if( isAndroidBrowser && !isAndroidChromeWebView ){
+        brand        = engine;
+        brandVersion = engineVersion;
     } else if( is_iOSWebView || isAndroidChromeWebView ){
         brand = 'unknown';
     } else if( findString( strUserAgent, 'Safari' ) || verVersion ){

@@ -478,10 +478,10 @@ if( strVersion = getVersionString( strUserAgent, 'Kindle/' ) ){
  */
 // https://developer.amazon.com/ja/docs/fire-tv/user-agent-strings.html
 if( findString( strUserAgent, 'AmazonWebAppPlatform' ) || findString( strUserAgent, '; AFT' ) ){
-    platform        = 'FireTV';
+    platform        = 'FireOS';
     platformVersion = versionAndroid;
     deviceTypeIsTV  = true;
-    isAndroidBased = true;
+    isAndroidBased  = true; // Chrome 等のインストールが可能
 } else
 /*----------------------------------------------------------------------------//
  *  MeeGo
@@ -591,12 +591,12 @@ if( isAndroid && isPresto ){
         v = { min : 1.6 };
         isPcMode = true;
     };
-    platform          = 'Android';
-    platformVersion   = v;
-    brand             = 'OperaMobile';
-    brandVersion      = versionPresto;
-    engine            = 'PrestoMobile';
-    engineVersion     = brandVersion;
+    platform        = 'Android';
+    platformVersion = v;
+    brand           = 'OperaMobile';
+    brandVersion    = versionPresto;
+    engine          = 'PrestoMobile';
+    engineVersion   = brandVersion;
     isAndroid       = true;
     //deviceTypeIsPhone = true;
 } else
@@ -621,11 +621,7 @@ if( maybeLinux && maybePCMode ){
     // Audio でタッチが必要か？の判定にとても困る...
     // ua には Linux x86_64 になっている strPlatform と矛盾する. ATOM CPU の場合は？    
     if( ( hasChromeObject && !maybeAOSP ) || hasOPRObject || versionOPR ){
-        v             = { min : 4 };
-        //engine        = 'ChromiumMobile';
-        //engineVersion = getVersionString( strUserAgent, 'Chrome/' );
-        //brand         = ( hasOPRObject || versionOPR ) ? 'Opera' : 'Chrome';
-        //brandVersion  = ( hasOPRObject || versionOPR ) ? versionOPR || getVersionString( strUserAgent, 'Opera/' ) : engineVersion;
+        v = { min : 4 };
     } else {
         // https://developer.chrome.com/multidevice/webview/overview
         //   The WebView shipped with Android 4.4 (KitKat) is based on the same code as Chrome for Android version 30.
@@ -657,6 +653,15 @@ if( maybeLinux && maybePCMode ){
     platform        = 'Android';
     platformVersion = v;
     isAndroid       = true;
+} else
+/*----------------------------------------------------------------------------//
+ *  Android 5 ChromeWebView PC_MODE
+ */
+if( maybeChromeWebView ){
+    platform        = 'Android';
+    platformVersion = { min : 5 };
+    isAndroid       = true;
+    surelyPcMode    = true;
 } else
 /*----------------------------------------------------------------------------//
  *  Linux

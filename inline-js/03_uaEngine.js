@@ -157,10 +157,10 @@ if( !engine ){
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
 // また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
 // http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
-    if( isAndroid && docRegElm ){
+    if( isAndroidBased && docRegElm ){
         // Android 標準ブラウザ Chrome WebView ブラウザ
         engine           = 'ChromeWebView';
-        engineVersion    = versionAndroid;
+        engineVersion    = parseFloat( platformVersion ) < 5 ? versionAndroid : versionChrome;
         isAndroidBrowser = true;
         if( !( window.requestFileSystem || window.webkitRequestFileSystem ) ){
             isAndroidChromeWebView = true;
