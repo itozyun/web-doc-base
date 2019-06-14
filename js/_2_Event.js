@@ -39,7 +39,7 @@ onscroll = function( e ){
         };
     };
 
-    if( ua[ 'iOS' ] ){
+    if( ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ] ){
         if( Util_resizeTimerID ){
             clearTimeout( Util_resizeTimerID );
             Util_resizeTimerID = setTimeout( Util_resizeEventLazyCallback, 100 );

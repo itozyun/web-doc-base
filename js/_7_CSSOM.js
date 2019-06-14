@@ -3,6 +3,6 @@ function CSSOM_getStyleSheet( elm ){
 };
 
 function CSSOM_getCssRules( styleSheet ){
-    return 9 < ua[ 'IE' ] ? styleSheet.cssRules : styleSheet.rules || styleSheet.cssRules;
+    return ( 9 < ua[ 'Trident' ] || 9 < ua[ 'TridentMobile' ] ) ? styleSheet.cssRules : styleSheet.rules || styleSheet.cssRules;
 };
 

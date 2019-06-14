@@ -8,7 +8,7 @@ var HighContrastStyleSwitcher_elmDiv,
     HighContrastStyleSwitcher_timerID,
     HighContrastStyleSwitcher_isHC;
 
-if( ua[ 'IE' ] < 10 || ( ua[ 'Windows' ] && 44 <= ua[ 'Gecko' ] ) ){
+    if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) < 10 || ( ua[ 'Win32' ] && 44 <= ua[ 'Gecko' ] ) ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function (){
         //Create a test div
@@ -17,7 +17,7 @@ if( ua[ 'IE' ] < 10 || ( ua[ 'Windows' ] && 44 <= ua[ 'Gecko' ] ) ){
         //Set its color style to something unusual
         DOM_setCssText( HighContrastStyleSwitcher_elmDiv, 'color:#123456;position:absolute;top:0;left:0;width:0;height:0;overflow:hidden' );
 
-        if( !ua[ 'IE' ] ){
+        if( !ua[ 'Trident' ] && !ua[ 'TridentMobile' ] ){
             HighContrastStyleSwitcher_test();
         } else if( HighContrastStyleSwitcher_test() ){ // IE
             HighContrastStyleSwitcher_timerID = setInterval( HighContrastStyleSwitcher_test, 1000 );

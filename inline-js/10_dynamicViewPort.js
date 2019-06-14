@@ -6,30 +6,34 @@ var dynamicViewPort_meta = '',
     dynamicViewPort_deviceWidth,
     dynamicViewPort_width,
     dynamicViewPort_initScale,
-    dynamicViewPort_miniScale;
+    dynamicViewPort_miniScale,
+    dynamicViewPort_iOS  = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
+    dynamicViewPort_AOSP = ua[ 'AOSP' ];
 
-if( g_N3DS ){
+if( ua[ 'N3DS' ] ){
     dynamicViewPort_width     = 320;
-} else if( g_New3DS ){
+} else if( ua[ 'New3DS' ] ){
     dynamicViewPort_width     = 320;
     dynamicViewPort_initScale = dynamicViewPort_miniScale = 1;
-} else if( g_iOS < 5 ){
+} else if( dynamicViewPort_iOS < 5 ){
     dynamicViewPort_miniScale = 1;
     dynamicViewPort_meta      = 'maximum-scale=1'
-} else if( g_iOS < 6 ){
+} else if( dynamicViewPort_iOS < 6 ){
     dynamicViewPort_initScale = dynamicViewPort_miniScale = 1;
-} else if( g_AOSP ){
+} else if( dynamicViewPort_AOSP ){
     dynamicViewPort_deviceWidth = true;
     dynamicViewPort_meta        = 'target-densitydpi=medium-dpi';
-    if( g_AOSP < 3 ){
+    if( dynamicViewPort_AOSP < 3 ){
         dynamicViewPort_meta += ',user-scalable=no';
     } else {
         dynamicViewPort_initScale = dynamicViewPort_miniScale = 1;
     };
-} else if( g_Gecko && isPcMode ){
+} else if( isGecko && isPcMode ){
     dynamicViewPort_deviceWidth = true;
     dynamicViewPort_initScale   = dynamicViewPort_miniScale = 2;
 };
+// https://www.nintendo.co.jp/hardware/wiiu/internetbrowser/index.html
+// 
 
 dynamicViewPort_width = dynamicViewPort_deviceWidth ? 'device-width' : dynamicViewPort_width;
 

@@ -8,7 +8,7 @@ var HighContrastModeHelper_elmDiv,
     HighContrastModeHelper_timerID,
     HighContrastModeHelper_isHC;
 
-if( ua[ 'IE' ] === 9 || ( ua[ 'Windows' ] && 44 <= ua[ 'Gecko' ] ) ){
+if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) === 9 || ( ua[ 'Win32' ] && 44 <= ua[ 'Gecko' ] ) ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function (){
         //Create a test div

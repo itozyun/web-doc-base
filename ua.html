@@ -17,17 +17,30 @@ window.onerror = function(errorMsg, url, lineNumber) {
 };
 </script>
 <script>
-(function(g,p,q,u,C,t){function d(a,b,c){c=C(a.split(b)[1]);return 0<=c?c:0}function e(a,b){return 0<=a.indexOf(b)}function K(a,b){b&&(r&&(r+=","),r+=a+b)}var L,D,R,S,T,a={},y=p.documentElement,c=q.userAgent,m=q.appVersion,M=C(m)|0,f=q.platform,l=p.documentMode,N=u.width;u=u.height;var E=Math.max,U=g.HTMLAudioElement,V=g.performance,W=g.Int8Array,F=g.ontouchstart!==t,z=d(m,"Version/")||d(c,"Version/"),v=g.opera,qa=v&&(v.version?C(v.version()):E(d(c,"Opera"),z,M)),X=g.opr,Y=g.operamini;E=Y&&E(d(c,
-"Opera Mini/"),d(c,"Opera Mobi/"),z);var ra=e(c,"UCWEB"),sa=d(c," U2/"),Z=!v&&(p.all||l),aa=!Z&&y.msContentZoomFactor,G=!aa&&g.chrome,ta=e(c,"Safari"),va=e(c.toLowerCase(),"iris");t=y&&y.style.MozAppearance!==t;y=e(m,"Konqueror");var A=e(m,"YJApp-ANDROID"),O=d(c.toUpperCase(),"PLAYSTATION 3"),wa=e(m,"PSP"),ba=d(c,"PlayStation Vita"),xa="Nitro"===f,ya="Nintendo DSi"===f,za="Nintendo 3DS"===f,ca="New Nintendo 3DS"===f||e(c,"iPhone OS 6_0")&&320===N&&240===u,Aa="Nintendo Wii"===f,Ba="Nintendo WiiU"===
-f,Ca=!ca&&0===f.indexOf("iP")||0===c.indexOf("; iPh OS "),Da=g.palmGetResource,da=d(c,"Windows Phone")||d(m,"Windows Phone OS ")||d(c,"; wds"),Ea=e(m,"ZuneWP"),Fa=0===f.indexOf("Win"),Ga=0===f.indexOf("Mac"),Ha=e(c,"Kobo"),Ia=e(c,"Kindle"),Ja=e(c,"EBRD"),Ka=2===M&&e(c,"Sony/COM2/"),H=e(f,"Android")||t&&e(m,"Android")||A,ea=e(f,"Linux"),La=e(c,"MeeGo")&&e(c,"NokiaBrowser/8.5.0"),fa=e(c,"Xbox One"),Ma=!fa&&e(c,"Xbox"),k=d(f,"Android ")||d(m,"Android ")||d(c,"Android ")||d(c,"; Adr "),B=d(m,"Trident/"),
-ha=d(m,"Edge/");l=l?l:g.a?p.getElementsByTagName?7:4:p.compatMode?6:(0).toFixed?5.5:g.attachEvent?5:4;var ia=d(c,"rv:"),h=d(c,"AppleWebKit/"),I=d(c,"Chrome/"),P=d(c,"OPR/"),ja=d(c,"Fennec/"),ka=d(c,"Netscape6/")||d(c,"Netscape/")||d(c,"Navigator/"),Q=d(c,"NetFront/"),la=d(c,"iCab"),ma=G&&534.3>=h,na=F&&(h||t)&&("Linux armv7l"===f||"Linux i686"===f)&&e(c,"Linux x86_64")||!k&&A;F=!l&&p.registerElement;A=!l&&p.execCommand;if(Ha)a.Kobo=!0;else if(Ia)a.KindlePW=!0;else if(Ja)a.SonyReader=!0;else if(Ba)a.WiiU=
-!0;else if(Aa)a.Wii=!0;else if(xa)a.NDS=!0;else if(ya)a.NDSi=!0;else if(za)a.N3DS=T=!0;else if(ca)a.New3DS=S=!0;else if(O)a.PS3=!0;else if(wa)a.PSP=!0;else if(ba)a.PSVita=ba;else if(Ma)a.XBox360=!0;else if(fa)a.XBoxOne=!0;else if(Ka)a.Mylo=2,Q=3.4;else if(Da)a.WebOS=!0;else if(La)a.MeeGo=!0;else if(Ca){q=1===g.devicePixelRatio;var b=d(m.split("_").join("."),"OS ");if(!b){var n=!0;b=g.WebAssembly?11.2:g.HTMLMeterElement?10.3:g.Proxy?10.2:g.HTMLPictureElement?9.3:Number.isNaN?9.2:g.SharedWorker?V&&
-V.now?8:8.4:A?7.1:g.webkitURL?6.1:g.Worker?5.1:W?4.3:U?4.1:3.2}a.iOS=L=b;b=N===1.5*u||1.5*N===u;switch(f){case "iPhone":case "iPhone Simulator":a.iPhone=b?q?"3GS-":"4|4s":"5+";break;case "iPad":case "iPad Simulator":a.iPad=q?"2-|1min-":"3+|2min+";break;case "iPod":a.iPod=b?q?"3-":"4":"5+"}}else if(da)a.WinPhone=da;else if(ha&&"ARM"===f)a.WinPhone=10,n=!0;else if(Ea)a.WinPhone=11===l?8.1:10===l?8:9===l?7.5:7===l?7:"?",n=!0;else if(Fa)switch(f){case "WinCE":a[f]=!0;break;case "Win16":case "Win32":case "Win64":a[f]=
-!0;if(b=c.split("Windows NT 10")[1])switch(b.substr(0,2)){case ".0":b=10;break;default:b="?"}else if(b=c.split("Windows NT ")[1])switch(b.substr(0,3)){case "6.3":b=8.1;break;case "6.2":b=8;break;case "6.1":b=7;break;case "6.0":b="Vista";break;case "5.2":b="2003|XP64";break;case "5.1":b=e(b,"5.1; SV1")?"XPSP2":"XP";break;case "5.0":b=e(b,"5.01")?"2kSP1":2E3;break;case "4.0":b="NT";break;default:b="?"}else if(b=c.split("Windows ")[1])switch(b.substr(0,2)){case "98":b=e(b,"98; Win 9x 4.90")?"ME":"98|98SE";
-break;case "95":b=95;break;case "3.":b=C(b);break;default:b="?"}else b="?";a.Windows=b}else if(Ga)switch(a.Mac=!0,f){case "MacPowerPC":f="MacPPC";case "MacPPC":case "Mac68K":case "MacIntel":a[f]=!0}else if(H&&t)e(c,"Android 4.4;")?b="2.3+":4<=k?b=k:H&&(b="2.2+"),na&&(n=!0);else if(H&&v)k?b=k:(b="1.6+",n=!0),a.Android=b;else if(k)a.Android=k;else if(ea&&na){var w=!0;G&&!ma||X||P?b=k="4+":b=F?k=A?4.4:5:W?k=q.connection?g.searchBoxJavaBridge_||G?Number.isNaN?4.1:4:4.2:4.4:k=529>h?1.5:531>h?2:534>h?U?
-2.3:2.2:3;a.Android=b}else ea&&(a.Linux=!0);Q?a.NetFront=Q:la?a.iCab=la:O?a.Sony=O:Y?a.OperaMin=E:ra?a.UCWEB=sa:v?a.Opera=a.Prsto=qa:Z?(B=B?B+4|0:l,B!==l&&(a.IEHost=B),a.IE=l,10<=l&&8<=a.Windows&&9>a.Windows&&0===screenY&&innerHeight+1!==outerHeight&&(a.ModernIE=l),a.Mac&&(a.MacIE=l)):aa?a.Edge=ha:t?(a.Gecko=R=ia,ja?a.Fennec=ja:H?a.Fennec=ia:ka&&(a.NN=ka)):X||P?(a.OPR=P,a.Blink=I,w&&(n=!0)):k&&ma?(a.AOSP=D=k,w&&(n=!0)):G?(a.Blink=I,w&&(n=!0)):k&&F?(a.CrWV=k,w&&(n=!0)):k&&(z||w)?(a.AOSP=D=k,w&&(n=
-!0)):y?a.Khtml=M:h&&(a.WebKit=h,I?a.Chrome=I:va?a.Iris=h:ta&&(z?b=z:528.16>=h&&(b=73>h?.8:85>h?.9:100>h?1:125>h?1.1:312>h?1.2:412>h?1.3:419.3>=h?2:525.13>=h?3:525.25>=h?3.1:3.2),a.Safari=b));n&&(a.PCMode=!0);var r="",x;if(T)var oa=320;else if(S){oa=320;var J=x=1}else if(5>L)x=1,r="maximum-scale=1";else if(6>L)J=x=1;else if(D){var pa=!0;r="target-densitydpi=medium-dpi";3>D?r+=",user-scalable=no":J=x=1}else R&&n&&(pa=!0,J=x=2);K("width=",pa?"device-width":oa);K("initial-scale=",J);K("minimum-scale=",
-x);r&&p.write('<meta name="viewport" content="'+r+'">');g.ua=a})(window,document,navigator,screen,parseFloat);
+(function(m,D,E,y,z,F){function ba(a,b,c){c=z(a.split(b)[1]);return 0<=c?c:0}function g(a,b){return 0<=a.indexOf(b)}function c(a,b){var c="",d=-1,e;if(a=a.split(b)[1]){for(;e=a.charCodeAt(++d);)if(48<=e&&57>=e||46===e)c+=a.charAt(d);else break;for(d=c.length;d;)if(46===c.charCodeAt(--d))c=c.substr(0,d);else break}return c}function la(a,b){var c=0,d;a=a.split(".");b=b.split(".");for(d=Math.min(a.length,b.length);c<d;++c){var e=z(a[c]);var f=z(b[c]);if(e!==f)return e>f?1:-1}return a.length===b.length?
+0:a.length>b.length?1:-1}function ma(){for(var a=arguments,b=1,c=a.length,d=a[0],e;b<c;++b)0>la(d,e=a[b])&&(d=e);return d}function S(a){return a===a+""?a:a===a-0?""+a:a.min&&a.max?a.min+"~"+a.max:a.min?a.min+"~":"~"+a.max}function T(a){return a===a+""?z(a):a}function ca(a,b){b&&(I&&(I+=","),I+=a+b)}var p={},a=E.userAgent,r=E.appVersion,da=z(r)|0,n=E.platform,U=D.documentElement,t=D.documentMode,ea=y.width,fa=y.height,na=m.HTMLAudioElement,oa=m.performance,pa=m.Int8Array,V=m.ontouchstart!==F,G=c(r,
+"Version/")||c(a,"Version/");y=U&&U.style.MozAppearance!==F;var qa=m.operamini,W=g(a,"UCWEB"),Ba=W&&c(a," U2/"),Ca=W&&c(a,"; wds "),ha=c(a.split("_").join("."),"; iPh OS "),H=g(r,"YJApp-ANDROID"),A=g(n,"Android")||y&&g(r,"Android")||H,v=c(n,"Android ")||c(r,"Android ")||c(a,"Android ")||c(a,"; Adr "),ra=g(n,"Linux"),J=!qa&&m.opera,X=J&&(J.version&&"function"===typeof J.version?J.version():ma(c(a,"Opera "),G,""+da)),sa=m.opr,Q=!J&&(D.all||t);t=Q&&(t?t:m.a?D.getElementsByTagName?7:4:D.compatMode?6:
+(0).toFixed?5.5:m.attachEvent?5:4);var R=!Q&&U.msContentZoomFactor,Da=R&&c(r,"Edge/"),L=!R&&m.chrome,ia=y&&c(a,"Goanna/"),B=!ia&&y&&c(a,"rv:"),q=ba(a,"AppleWebKit/"),N=c(a,"Chrome/"),ja=c(a,"OPR/"),Ea=c(r,"KHTML/"),ta=c(a.toLowerCase(),"iris"),Y=ba(a,"SamsungBrowser/"),va=!Y&&function(){for(var b="GT-I9300 GT-I9305 SHV-E210 SGH-T999L SGH-I747 SGH-N064 SC-06D SGH-N035 SC-03E SCH-J021 SCL21 SCH-R530 SCH-I535 SCH-S960L SCH-S968C GT-I9308 SCH-I939 SHV-E210S GT-I8160 GT-I8260 GT-I8262 SM-G350 SM-G352 SM-G386F SM-G386T1GT-N7000 GT-N7005 SHV-E160 SC-05D SGH-N054 SGH-I717 SGH-T879 GT-I9220 GT-I9228 SCH-I889 GT-N7100 GT-N7105 SCH-I605 SCH-R950 SGH-I317 SGH-T889 SPH-L900 SCH-N719 GT-N7102 GT-N7108 SGH-N025 SC-02E SHV-E250 GT-N5100 GT-N5110 GT-N5120 GT-N8000 GT-N8005 GT-N8010 GT-N8013 GT-N8020 GT-I9100 GT-I9108 GT-I9210 SGH-I777 SGH-I757M SGH-I727 SGH-I927 SGH-T989 SHW-M250 SPH-D710 ISW11SC SC-02C SCH-R760 SCH-I929 GT-I9105 GT-I8190 GT-I8200 SM-G730A GT-P3100 GT-P3110 GT-P3113 SCH-I705 GT-P5100 GT-P5110 GT-P5113 SCH-I915 SM-G3508 SM-G3509 GT-S7580 GT-S7582 GT-S6310 GT-S6312 GT-S6313T".split(" "),
+c,d=b.length;c=b[--d];)if(g(a,c))return 2>z(G)?G:.9;b="SC-02F SGH-N075 GT-S7270 GT-S7272 GT-S7275R GT-I9150 GT-I9152 GT-I9200 GT-I9205 GT-I9500 GT-I9506 SC-04E SGH-N045 GT-I9190 GT-I9192 GT-I9295 GT-I9197 GT-I9198 SGH-I257M SCH-I435 GT-I8666 GT-I8552 GT-I8558 SHV-E500S/L GT-18552B SM-N900 N9000 N9002 SC-01F SCL22 SM-G7100 SM-G7102 SM-G7105 SM-N750 SM-P600 SM-P601 SM-P605 GT-I9301I GT-I9300RWI SGH-T399 SM-P900 SM-P901 SM-P90 SM-P905 GT-I9295 SGH-I537 SHV-E330S GT-I9507V GT-I9505 GT-I9515 SGH-I337 SM-T230 SM-T231 SM-T235 SM-T237 403SC SM-T330NU SM-T331NU SM-T337V SM-T530 SM-T531 SM-T535 M-T320 SM-T321 SM-T325 SM-T520 SM-T525 SM-T900 SM-T905 SM-T700 SM-T705 SM-T707V SM-T800 SM-T805 SM-T807 SM-A300 SM-A5000 SM-A5009 SM-A500F SM-A500F1 SM-A500FQ SM-A500FU SM-A500G SM-A500H SM-A500HQ SM-A500K SM-G850 SM-C115 SM-C111 SM-G750F SM-G7508 SM-G7508Q SM-G750H GT-I9301I SM-900 SC-04F SCL23 SM-G906S SM-G906K SM-G906L SM-G870A SM-N915 SC-02G SM-800".split(" ");
+for(d=b.length;c=b[--d];)if(g(a,c))return G}(),wa=L&&534.3>=q;V=V&&(q||y)&&(0===n.indexOf("Linux armv")||0===n.indexOf("Linux aarch")||"Linux i686"===n)&&g(a,"Linux x86_64")||!v&&H;var M=(H=m.puffinDevice)&&H.clientInfo,Z=(H=M&&"iOS"===M.os&&M.osVersion)&&M.model;M=!t&&D.registerElement;var Fa=!t&&D.execCommand,b,xa;if("Nitro"===n)var f="NDS";else if("Nintendo DSi"===n){f="NDSi";var h=c(r,"Opera/")}else if("New Nintendo 3DS"===n||g(a,"iPhone OS 6_0")&&320===ea&&240===fa){f="New3DS";h=c(a,"NintendoBrowser/");
+var d="NetFrontNX";var e=c(a,"NX/");var k="WebKit";var l=q}else if("Nintendo 3DS"===n)f="N3DS",h=c(a,"Version/"),d="NetFrontNX",e=h,k="WebKit",l=535;else if("Nintendo Swicth"===n)f="Swicth",h=c(r,"NintendoBrowser/"),d="NetFrontNX",e=c(r,"NX/"),k="WebKit",l=q;else if("Nintendo WiiU"===n)f="WiiU",h=c(r,"NintendoBrowser/"),d="NetFrontNX",e=c(r,"NX/"),k="WebKit",l=c(r,"AppleWebKit/");else if("Nintendo Wii"===n)f="Wii",h=c(a,"Wii; U; ; "),d=f,e=h,k="Presto",l=X;else if(b=c(a,"PlayStation Vita "))f="PSVita",
+h=b,d=f,e=b,k="WebKit",l=q;else if(b=c(a,"(PlayStation Portable); "))f="PSP",h=b,d=f,e=b,k="NetFront",l=3.3;else if(b=c(a,"PLAYSTATION 3; ")||c(a,"PLAYSTATION 3 "))f="PS3",h=b,d=f,e=b,0<=la("4.10",b)?(k="WebKit",l=q):(k="Sony",l=b);else if(g(a,"Xbox One"))f="XboxOne",h=1;else if(g(a,"Xbox"))f="Xbox360",h=1;else if(2===da&&g(a,"Sony/COM2/"))f="Mylo",h=2,d="NetFront",e=3.4,k=d,l=e;else if(0===n.indexOf("iP")||ha||H){if(H)switch(h=H,Z.substr(0,4)){case "iPho":var w="iPhone";var K=z(Z.substr(6));break;
+case "iPad":w="iPad";K=z(Z.substr(4));break;case "iPod":w="iPod",K=z(Z.substr(4))}else{ha?h=ha:h=c(r.split("_").join("."),"OS ");if(!h){var C=!0;h=m.PointerEvent?13:m.HTMLDataListElement?12.2:Array.prototype.a?12:E.sendBeacon?11.3:m.WebAssembly?11.2:m.HTMLMeterElement?10.3:m.Proxy?10.2:m.HTMLPictureElement?9.3:Number.isNaN?9.2:m.SharedWorker?oa&&oa.now?8:8.4:Fa?7.1:m.webkitURL?6.1:m.Worker?5.1:pa?4.3:na?4.1:3.2}E=1===m.devicePixelRatio;var u=ea===1.5*fa||1.5*ea===fa;0===n.indexOf("iPhone")?(w="iPhone",
+K=u?E?{max:3}:{min:4,max:5}:{max:6}):0===n.indexOf("iPad")?(w="iPad",K=E?{max:2}:{min:3}):0===n.indexOf("iPod")&&(w="iPod",K=u?E?{max:3}:4:{min:5})}if(H||D.fullscreenEnabled===F&&D.webkitFullscreenEnabled===F){var Ga=!0;k="iOSWebView"}else k="SafariMobile",d="Safari",e=h;f="iOS";l=h}else if(g(a,"Kobo"))f="Kobo",k="AOSP",l=2.2,d=k,e=l,A=!0;else if(g(a,"EBRD"))f="SonyReader",k="AOSP",l=2.2,d=k,e=l;else if(b=c(a,"CrOS x86_64 ")||c(a,"CrOS aarch64 ")||c(a,"CrOS i686 ")||c(a,"CrOS armv7l "))f="ChromeOS",
+h=b;else if(m.onmoztimechange!==F)f="FirefoxOS",h=18.1>B?"1.0.1":19>B?1.1:27>B?1.2:29>B?1.3:31>B?1.4:33>B?2:35>B?2.1:38>B?2.2:45>B?2.5:2.6;else if(m.palmGetResource)f="webOS",h=c(a,"webOS/")||c(a,"WEBOS")||c(a,"hpwOS/"),d=f,e=h,k="WebKit",l=q;else if(b=c(a,"Tizen "))f="Tizen",h=b,d="Samsung",e=Y,k=d,l=e;else if(b=c(a,"Windows Phone ")||c(r,"Windows Phone OS ")||Ca)f="WindowsPhone",h=b;else if(R&&"ARM"===n)f="WindowsPhone",h=10,C=!0;else if(Q&&g(r,"ZuneWP"))f="WindowsPhone",h=11===t?8.1:10===t?8:9===
+t?7.5:7===t?7:"?",C=!0;else if(g(a,"FOMA;"))f="FeaturePhone";else if(g(a,"SoftBank;"))f="FeaturePhone";else if(g(a,"KFMUWI")){f="FireOS";h=6.3;var x=!0}else if(g(a,"KFKAWI"))f="FireOS",h=6,x=!0;else if(g(a,"KFSUWI")||g(a,"KFAUWI")||g(a,"KFDOWI"))f="FireOS",h=5,x=!0;else if(g(a,"KFGIWI"))f="FireOS",h=5,x=!0;else if(g(a,"KFARWI")||g(a,"KFSAWA")||g(a,"KFSAWI"))f="FireOS",h=5<=z(v)?5:4,x=!0;else if(g(a,"KFSOWI")||g(a,"KFTHWA")||g(a,"KFTHWI")||g(a,"KFAPWA")||g(a,"KFAPWI"))f="FireOS",h=3,x=!0;else if(g(a,
+"KFOT")||g(a,"KFTT")||g(a,"KFJWA")||g(a,"KFJWI"))f="FireOS",h=2,x=!0;else if(g(a,"Kindle Fire"))f="FireOS",h=1,x=!0;else if(b=c(a,"Kindle/"))f="Kindle",h=b,k="AOSP",l=2.2,d=k,e=l;else if(g(a,"AmazonWebAppPlatform")||g(a,"; AFT"))f="FireTV",h=v,x=!0;else if(g(a,"MeeGo"))f="MeeGo";else if(g(a,"Maemo"))f="Maemo";else if(0===a.indexOf("Windows Mobile;")||ta)f="WindowsMobile";else if("WinCE"===n)f=n;else if("Win16"===n||"Win32"===n||"Win64"===n)f=n,h=c(a,"Windows NT ")||c(a,"Windows ");else if(0===n.indexOf("Mac")){f=
+"MacPowerPC"===n?"MacPPC":n;if(b=c(a.split("_").join("."),"Mac OS X "))h=b;var ya=!0}else if(g(a,"BlackBerry")||g(a,"BB10"))f="BlackBerry",h=G;else if(g(a,"SunOS")||g(a,"Sun Solaris"))f="SunOS";else if(g(a,"FreeBSD"))f="FreeBSD";else if(g(a,"OpenBSD"))f="OpenBSD";else if(g(a,"NetBSD"))f="NetBSD";else if(A&&y)g(a,"Android 4.4;")?u={min:2.3}:4<=z(v)?u=v:u={min:2.2},f="Android",h=u,k="Fennec",l=B,A=!0,V&&(C=!0);else if(A&&J)v?u=v:(u={min:1.6},C=!0),f="Android",h=u,d="OperaMobile",e=X,k="PrestoMobile",
+l=e,A=!0;else if(v)f="Android",h=v,A=!0;else if(ra&&V){var O=!0;L&&!wa||sa||ja?u={min:4}:(u=v=U.style.touchAction!==F?{min:5}:M?4.4:pa?E.connection?m.searchBoxJavaBridge_||L?Number.isNaN?4.1:4:4.2:4.4:534<=q?3:533<=q?na?2.3:2.2:530<=q?2:1.5,va&&(k="Samsung",l=va));f="Android";h=u;A=!0}else ra&&(g(a,"Ubuntu")?f="Ubuntu":(b=c(a,"Mint/"))?(f="Mint",h=b):(b=c(a,"Fedora/"))?(f="Fedora",h=b):f=g(a,"Gentoo")?"Gentoo":"Linux");if(!k)if(x=x||A,J)k="Presto",l=X;else if(Q){(u=ba(r,"Trident/")+4)&&u!==t&&(d=
+"IEHost",e=u);10<=t&&6.2<=h&&7>h&&0===screenY&&innerHeight+1!==outerHeight&&(d="ModernIE",e=t);switch(f){case "WinCE":case "WindowsMobile":case "WindowsPhone":k="TridentMobile";break;default:ya&&5<=t?(k="Tasman",d="MacIE",e=t):(k="Trident",ya&&(d="MacIE",e=t))}l=t}else if(R)k="EdgeHTML",l=Da;else if(ia)k="Goanna",l=ia;else if(y)k="Gecko",l=B;else if(sa||ja)d="Opera",e=ja,k=x?"ChromiumMobile":"Chromium",l=N,O&&(C=!0);else if(Y)k="Samsung",l=Y;else if(b=c(a,"NetFront/"))k="NetFront",l=b;else if(b=c(a,
+"iCab"))k="iCab",l=b;else if(b=ma(c(a,"Opera Mini/"),c(a,"Opera Mobi/"))||qa&&G)k="OperaMini",l=b,f||(g(a,"iPhone")?w="iPhone":g(a,"iPad")?w="iPad":g(a,"iPod")&&(w="iPod"),w&&(f="iOS"));else if(W)k="UCWEB",l=Ba;else if(Ea)k="KHTML",l=da;else if(A&&wa){k="AOSP";l=v;var ka=!0;O&&(C=!0)}else L?(k=x?"ChromiumMobile":"Chromium",l=N,O&&(C=!0)):A&&M?(k="ChromeWebView",l=v,ka=!0,m.requestFileSystem||m.webkitRequestFileSystem||(xa=!0),O&&(C=!0)):A&&(G||O)?(k="AOSP",l=v,ka=!0,O&&(C=!0)):N?(k=x?"ChromiumMobile":
+"Chromium",l=N):q&&(k="WebKit",l=q);if(!d)if(b=R&&c(a,"Edge/")||c(a,"EdgA/")||c(a,"EdgiOS/")||c(a,"Edg/"))d="Edge",e=b;else if(b=c(r,"Coast/"))d="Coast",e=b;else if(b=c(a.toLowerCase(),"ybrowser/"))d="Yahoo",e=b;else if(!W&&(b=c(a,"UCBrowser/")))d="UC",e=b;else if(b=c(a,"SilK/"))d="Silk",e=b;else if(b=c(a,"Vivaldi/"))d="Vivaldi",e=b;else if(b=c(a,"QQBrowser/"))d="QQ",e=b;else if(b=c(a,"YaBrowser/"))d="Yandex",e=b;else if(b=c(a,"coc_coc_browser/"))d="coccoc",e=b;else if(b=c(a,"Camino/"))d="Camino",
+e=b;else if(g(a,"SE 2.X MetaSr 1.0"))d="Sogou";else if(b=c(a,"Focus/"))d="Focus",e=b;else if(b=c(a,"Klar/"))d="Klar",e=b;else if(b=c(a,"AOLBUILD/")||c(a,"AOL/")||c(a,"AOL "))d="AOL",e=b;else if(b=c(a,"IceDragon/"))d="IceDragon",e=b;else if(b=c(a,"Iceweasel/"))d="Iceweasel",e=b;else if(b=c(a,"TenFourFox/"))d="ITenFourFox",e=b;else if(b=c(a,"Waterfox/"))d="Waterfox",e=b;else if(b=c(a,"GNUzilla/"))d="GNUzilla",e=b;else if(b=c(a,"SeaMonkey/"))d="SeaMonkey",e=b;else if(b=c(a,"PaleMoon/"))d="PaleMoon",
+e=b;else if(b=c(a,"Basilisk/"))d="Basilisk",e=b;else if((b=c(a,"Maxthon/")||c(a,"Maxthon ")||c(a,"MXiOS/"))||g(a,"Maxthon"))d="Maxthon",e=b||1;else if(g(a,"Avant Browser;"))d="Avant";else if(b=c(a,"Lunascape/"))d="Lunascape",e=b;else if(b=c(a,"Konqueror/"))d="Konqueror",e=b;else if(b=c(a,"Midori/"))d="Midori",e=b;else if(b=c(a,"OmniWeb/"))d="OmniWeb",e=b;else if(b=c(a,"Roccat/"))d="Roccat",e=b;else if(b=c(a,"Epiphany/"))d="Epiphany",e=b;else if(b=c(a,"WebPositive/"))d="WebPositive",e=b;else if((b=
+c(a,"Iron/"))||g(a," Iron "))d="Iron",e=b||L&&N;else if(b=c(a,"Comodo Dragon/"))d="ComodoDragon",e=b;else if((b=c(a,"Brave/"))||g(a," Brave "))d="Brave",e=b||L&&N;else if(b=c(a,"Rockmelt/"))d="Rockmelt",e=b;else if((b=c(a,"Sleipnir/"))||m.FNRBrowser)d="Sleipnir",b&&(e=b);else if(b=c(a,"Puffin/"))d="Puffin",e=b;else if(b=c(a,"Dooble/"))d="Dooble",e=b;else if(b=c(a,"Flock/"))d="Flock",e=b;else if(b=c(a,"Galeon/"))d="Galeon",e=b;else if(b=c(a,"Falkon/"))d="Falkon",e=b;else if(b=c(a,"Iceape/"))d="Iceape",
+e=b;else if(b=c(a,"K-Meleon/"))d="KMeleon",e=b;else if(b=c(a,"Netscape6/")||c(a,"Netscape/")||c(a,"Navigator/"))d="NN",e=b;else if(ta)d="Iris",e=b;else if(b=c(r,"Line/"))d="LINE",e=b;else if(b=c(a,"QtWebEngine/"))d="QtWebEngine",e=b;else if(b=c(a,"QtWebKit/"))d="QtWebKit",e=b;else if(b=c(a,"FxiOS/")||y&&(c(a,"Firefox/")||c(r,"rv:")))d="Firefox",e=b;else if(b=J?X:c(a,"Opera/"))d="Opera",e=b;else if(ka)d=k,e=l;else if(b=c(a,"CriOS/")||L&&c(a,"Chrome/"))d="Chrome",e=b;else if(Q)d="IE",e=l;else if(u=
+m.__opera)d="Opera",e=u.version();else if(Ga||xa)d="unknown";else if(g(a,"Safari")||G)d="Safari",e=G||(73>q?.8:85>q?.9:100>q?1:125>q?1.1:312>q?1.2:412>q?1.3:419.3>=q?2:525.13>=q?3:525.25>=q?3.1:3.2);f&&(p.PLATFORM=f,h?(p.PLATFORM_VERSION=S(h),p[f]=T(h)):p[f]=!0);k&&(p.ENGINE=k,l?(p.ENGINE_VERSION=S(l),p[k]=T(l)):p[k]=!0,d||(d=k,e=l));d&&(p.BRAND=d,e?(p.BRAND_VERSION=S(e),p[d]=T(e)):p[d]=!0);w&&(p.DEVICE=w,K?(p.DEVICE_VERSION=S(K),p[w]=T(K)):p[w]=!0);C&&(p.PC_MODE=!0);var I="",P;F=p.SafariMobile||
+p.iOSWebView;h=p.AOSP;if(p.N3DS)var za=320;else if(p.New3DS){za=320;var aa=P=1}else if(5>F)P=1,I="maximum-scale=1";else if(6>F)aa=P=1;else if(h){var Aa=!0;I="target-densitydpi=medium-dpi";3>h?I+=",user-scalable=no":aa=P=1}else y&&C&&(Aa=!0,aa=P=2);ca("width=",Aa?"device-width":za);ca("initial-scale=",aa);ca("minimum-scale=",P);I&&D.write('<meta name="viewport" content="'+I+'">');m.ua=p})(window,document,navigator,screen,parseFloat);
 </script>
 <script>
 (function(ua){
@@ -35,17 +48,49 @@ x);r&&p.write('<meta name="viewport" content="'+r+'">');g.ua=a})(window,document
         document.write(html);
     };
 
-    var k, ary = [];
+    var k, ary = [
+        '<table border=1 cellspacing=0>' +
+            '<thead>' +
+                '<tr>' +
+                    '<th><th>value<th>version<th>Full version string' +
+            '<tbody>'
+    ];
 
     ua = ua || {};
 
-    for( k in ua ){
-        ary[ ary.length ] = k + ( ua[ k ] !== true ? '=' + ua[ k ] : '' );
+    if( ua.ENGINE ){
+        ary.push(
+            '<tr>' +
+                '<th>ua.ENGINE<td>' + ua.ENGINE + '<td align=right>' + ua[ ua.ENGINE ] + '<td>' + ua.ENGINE_VERSION
+        );
+    };
+    if( ua.BRAND ){
+        ary.push(
+            '<tr>' +
+                '<th>ua.BRAND<td>' + ua.BRAND + '<td align=right>' + ua[ ua.BRAND ] + '<td>' + ua.BRAND_VERSION
+        );
+    };
+    if( ua.PLATFORM ){
+        ary.push(
+            '<tr>' +
+                '<th>ua.PLATFORM<td>' + ua.PLATFORM + '<td align=right>' + ua[ ua.PLATFORM ] + '<td>' + ua.PLATFORM_VERSION
+        );
+    };
+    if( ua.DEVICE ){
+        ary.push(
+            '<tr>' +
+                '<th>ua.DEVICE<td>' + ua.DEVICE + '<td align=right>' + ua[ ua.DEVICE ] + '<td>' + ua.DEVICE_VERSION
+        );
+    };
+    if( ua.PC_MODE ){
+        ary.push(
+            '<tr>' +
+                '<th>ua.PC_MODE<td colspan=3>○'
+        );
     };
 
     print(
-        '<h1>ua</h1>' +
-        '<p>' + ary.join( ' , ' )
+        '<h1>ua</h1>' + ary.join( '' ) + '</table>'
     );
 
     print(
@@ -63,15 +108,18 @@ x);r&&p.write('<meta name="viewport" content="'+r+'">');g.ua=a})(window,document
             '<dd>' + navigator.appVersion +
             '<dt>window.chrome' +
             '<dd>' + ( window.chrome ? 'chrome' : '-' ) +
-            '<dt>window.opr' +
+            '<dt>Opera' +
+            '<dd>win.opera:' + ( window[ 'opera' ] ? 'opera' : '-' ) +
+            '<dt>OPR' +
             '<dd>' + ( window.opr ? 'opr' : '-' ) +
-            //'<dt>Opera Mini' +
-            //'<dd>' +
-            //    'Opera Mini/:' + parseFloat( navigator.userAgent.split( 'Opera Mini/' )[ 1 ] ) + ',' +
-            //    'Version/:' + parseFloat( navigator.userAgent.split( 'Version/' )[ 1 ] ) + ',' +
-            //    'win.operamini.version():' + ( window[ 'operamini' ] && window[ 'operamini' ].version && window[ 'operamini' ].version() ) +
-            //'<dt>window.searchBoxJavaBridge_' +
-            //'<dd>' + ( window.searchBoxJavaBridge_ ? 'searchBoxJavaBridge_' : '-' ) +
+            '<dt>Opera Mini' +
+            '<dd>win.operamini:' + ( window[ 'operamini' ] ? 'operamini' : '-' ) +
+            '<dt>window.searchBoxJavaBridge_' +
+            '<dd>' + ( window.searchBoxJavaBridge_ ? 'searchBoxJavaBridge_' : '-' ) +
+            '<dt>window.puffinDevice' +
+            '<dd>' + ( window.puffinDevice ? JSON.stringify( puffinDevice ) : '-' ) +
+            '<dt>document.fullscreenEnabled' +
+            '<dd>' + document.fullscreenEnabled + ' -webkit : ' + document.webkitFullscreenEnabled +
         '</dl>' +
 
         '<h1>Short URL</h1>' +
@@ -81,13 +129,19 @@ x);r&&p.write('<meta name="viewport" content="'+r+'">');g.ua=a})(window,document
     var ary = [], k, prop, n, j;
     
     for( k in window ){
-        prop = window[ k ];
-        if( prop && 0 < ' object function'.indexOf( typeof prop ) ){
-            n = 0;
-            for( j in prop ) ++n;
-            if( n ) k += '[' + n + ']';
+        if( k !== 'PropertyIterator' ){
+            prop = window[ k ];
+            if( prop !== ua && k !== 'localStorage' && k !== 'sessionStorage' ){
+                if( prop && ( 0 < ' object function'.indexOf( typeof prop ) ) ){
+                    n = 0;
+                    for( j in prop ) ++n;
+                    if( n ) k += '[' + n + ']';
+                } else {
+                    k = k + '=' + prop;
+                };
+                ary.push( k );
+            };
         };
-        ary.push( k );
     };
 
     print(
@@ -101,9 +155,5 @@ x);r&&p.write('<meta name="viewport" content="'+r+'">');g.ua=a})(window,document
     textarea { width : 100%; height : 70%; font-size : 12px }
 </style>
 </head>
-<body size='1'></body>
+<body size='1'><noscript>Javascript disabled!</noscript></body>
 </html>
-
-
-
-
