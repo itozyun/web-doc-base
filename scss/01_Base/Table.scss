@@ -85,7 +85,8 @@ table {
     }
 
     thead th, thead td {
-        border-width : 0 0 1px 0;
+        padding      : 0.5em 0.5em 0.5em 0.4em;
+        border-width : 0 0 1px 0.1em;
     }
 
     tbody th, tfoot th {
@@ -122,7 +123,7 @@ table {
     }
     thead th, thead td {
         background   : $casual_text;
-        border-color : $casual_fill;
+        border-color : $casual_fill mix( $casual_text, $casual_fill, 90% );
         color        : $fill;
     }
     thead {
@@ -138,7 +139,7 @@ table {
         }
         thead th, thead td {
             background   : $text;
-            border-color : $casual_fill;
+            border-color : $casual_fill mix( $text, $casual_fill, 90% );
         }
         tbody th {
             background   : $casual_text;
@@ -222,6 +223,8 @@ tbody :hover th {
         background   : $COLOR_Print_casual_text;
         border-color : $COLOR_Print_text;
         color        : $COLOR_Print_text;
+        padding      : 0.5em;
+        border-width : 0 0 1px;
     }    
     tbody th {
         background   : $COLOR_Print_casual_fill;
@@ -254,6 +257,8 @@ tbody :hover th {
             background   : $COLOR_Print_casual_text;
             border-color : $COLOR_Print_text;
             color        : $COLOR_Print_text;
+            padding      : 0.5em;
+            border-width : 0 0 1px;
         }
         tbody th {
             background   : $COLOR_Print_casual_fill;
