@@ -157,6 +157,7 @@ var ua            = {},
     versionOPR    = getVersionString( strUserAgent, 'OPR/' ),
     versionKHTML  = getVersionString( strAppVersion, 'KHTML/' ),
     versionIris   = getVersionString( strUserAgent.toLowerCase(), 'iris' ),
+    versionFxiOS  = getVersionString( strUserAgent, 'FxiOS/' ),
 
     // https://issuetracker.google.com/issues/36957795
     //  Canvas clearRect failing to clear
@@ -312,4 +313,4 @@ var ua            = {},
     deviceTypeIsMediaPlayer, deviceTypeIsEBookReader,
     deviceTypeIsPhone, deviceTypeIsTablet,
     deviceTypeIsPC,
-    isMac, isTridentMobile, isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;
+    isMac, isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;

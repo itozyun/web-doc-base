@@ -53,7 +53,16 @@ if( !brand ){
 // https://developer.mozilla.org/ja/docs/Web/HTTP/Gecko_user_agent_string_reference
 // バージョン 6 より前では、 Focus for Android は Android WebView によって実現されていたため、以下の UA 文字列形式を使用していました。
 // Mozilla/5.0 (Linux; <Android Version> <Build Tag etc.>) AppleWebKit/<WebKit Rev> (KHTML, like Gecko) Version/4.0 Focus/<focusversion> Chrome/<Chrome Rev> Mobile Safari/<WebKit Rev>
-    if( strVersion = getVersionString( strUserAgent, 'Focus/' ) ){
+
+    if( strVersion =
+        getVersionString( strUserAgent, 'Focus/' ) ||
+        // https://apps.apple.com/jp/app/firefox-focus-e3-83-97-e3-83-a9-e3-82-a4-e3-83-90-e3/id1055677337
+        // iOS 12.2, Focus 8.1.2, (iOS 11.0以降)
+        // https://en.wikipedia.org/wiki/Firefox_for_iOS#cite_note-10
+        // Focus : FxiOS が 8.x にも拘わらず、iOS のバージョンが 11 以上、を使って判定
+        // Firefox : FxiOS が 9.x 移行が、iSO 11+ 対応を持って判定
+        ( parseFloat( versionFxiOS ) < 9 && is_iOSWebView && 11 <= parseFloat( platformVersion ) && versionFxiOS )
+    ){
         brand        = 'Focus';
         brandVersion = strVersion;
     } else
@@ -210,10 +219,13 @@ if( !brand ){
     } else if( strVersion = getVersionString( strUserAgent, 'QtWebKit/' ) ){
         brand         = 'QtWebKit';
         brandVersion  = strVersion;
-    } else if( strVersion = getVersionString( strUserAgent, 'FxiOS/' ) || ( isGecko && ( getVersionString( strUserAgent, 'Firefox/' ) || getVersionString( strAppVersion, 'rv:' ) ) ) ){
+    } else if(
+        versionFxiOS ||
+        ( isGecko && ( getVersionString( strUserAgent, 'Firefox/' ) || getVersionString( strAppVersion, 'rv:' ) ) )
+    ){
         brand        = 'Firefox';
         brandVersion = strVersion;
-    } else if( strVersion = isPresto ? versionPresto : getVersionString( strUserAgent, 'Opera/' ) ){
+    } else if( strVersion = versionPresto || versionOPR || getVersionString( strUserAgent, 'Opera/' ) ){
         brand        = 'Opera';
         brandVersion = strVersion;
     } else if( isTrident ){

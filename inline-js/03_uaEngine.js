@@ -4,7 +4,7 @@ if( !engine ){
  *  Presto
  */
     if( isPresto ){
-        engine        = 'Presto';
+        engine        = isAndroidBased || deviceTypeIsPDA || deviceTypeIsPhone || deviceTypeIsTablet ? 'PrestoMobile' : 'Presto';
         engineVersion = versionPresto;
     } else
 /*----------------------------------------------------------------------------//
@@ -26,25 +26,18 @@ if( !engine ){
             };
         };
 
-        switch( platform ){
-            case 'WinCE' :
-            case 'WindowsMobile' :
-            case 'WindowsPhone' :
-                engine          = 'TridentMobile';
-                isTridentMobile = true;
-                break;
-            default :
-                if( isMac && 5 <= versionTrident ){
-                    engine       = 'Tasman';
-                    brand        = 'MacIE';
-                    brandVersion = versionTrident;
-                } else {
-                    engine = 'Trident';
-                    if( isMac ){
-                        brand        = 'MacIE';
-                        brandVersion = versionTrident;
-                    };
-                };
+        if( deviceTypeIsPDA || deviceTypeIsPhone || deviceTypeIsTablet || deviceTypeIsMediaPlayer ){ // TODO device:MS Zune
+            engine = 'TridentMobile';
+        } else if( isMac && 5 <= versionTrident ){
+            engine       = 'Tasman';
+            brand        = 'MacIE';
+            brandVersion = versionTrident;
+        } else {
+            engine = 'Trident';
+            if( isMac ){
+                brand        = 'MacIE';
+                brandVersion = versionTrident;
+            };
         };
         engineVersion = versionTrident; 
     } else
@@ -52,7 +45,7 @@ if( !engine ){
  *  EdgeHTML
  */
     if( isEdgeHTML ){
-        engine        = 'EdgeHTML';
+        engine        = 'EdgeHTML'; // TODO EdgeHTMLMobile
         engineVersion = versionEdge;
     } else
 /*----------------------------------------------------------------------------//
@@ -66,18 +59,8 @@ if( !engine ){
  *  Gecko
  */
     if( isGecko ){
-        engine        = 'Gecko';
+        engine        = isAndroidBased ? 'Fennec' : 'Gecko';
         engineVersion = versionGecko;
-    } else
-/*----------------------------------------------------------------------------//
- *  
- */
-    if( hasOPRObject || versionOPR ){
-        brand         = 'Opera';
-        brandVersion  = versionOPR;
-        engine        = isAndroidBased ? 'ChromiumMobile' : 'Chromium';
-        engineVersion = versionChrome;
-        if( surelyPcMode ) isPcMode = true;
     } else
 /*----------------------------------------------------------------------------//
  *  Samsung Browser
@@ -145,7 +128,7 @@ if( !engine ){
 /*----------------------------------------------------------------------------//
  *  Chromium or ChromiumMobile
  */
-    if( hasChromeObject ){
+    if( hasChromeObject || hasOPRObject || versionOPR ){
         engine        = isAndroidBased ? 'ChromiumMobile' : 'Chromium';
         engineVersion = versionChrome;
         if( surelyPcMode ) isPcMode = true;
@@ -157,10 +140,11 @@ if( !engine ){
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
 // また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
 // http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
-    if( isAndroidBased && docRegElm ){
+    if( isAndroid && docRegElm ){
         // Android 標準ブラウザ Chrome WebView ブラウザ
         engine           = 'ChromeWebView';
-        engineVersion    = parseFloat( platformVersion ) < 5 ? versionAndroid : versionChrome;
+        engineVersion    = parseFloat( versionAndroid ) < 5 ? versionAndroid : versionChrome; // Android 4.4.4- では Android の Version を。5.0+ では Chrome のバージョンを使用。
+        // TODO PCモードでは Chrome/11 とあり得ない値が入っている
         isAndroidBrowser = true;
         if( !( window.requestFileSystem || window.webkitRequestFileSystem ) ){
             isAndroidChromeWebView = true;
