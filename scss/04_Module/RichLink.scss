@@ -162,12 +162,20 @@ $RICHLINK_TEXT_SIZE : 0.875;
             padding : 0 0 0.5em / $RICHLINK_TEXT_SIZE;
         }
         .lS .RichLink img {
-            float        : left;
-            margin       : 0 0.5em 0.6em 0;
+            float  : left;
+            margin : 0 0.5em 0.6em 0;
         }
         .RichLink b {
             font-size : 1em;
         }
+}
+
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .RichLink h3 {
+        font-size : 1.3em;
+    }
 }
 
 /*  Phone
@@ -177,8 +185,8 @@ $RICHLINK_TEXT_SIZE : 0.875;
         padding-left  : 1%;
         padding-right : 1%;
     }
-    .lM .RichLink h3 {
-        font-size : 1.3em;
+    .RichLink h3 {
+        font-size : 1.1em;
     }
     .lS .RichLink div {
         font-size : 1em;
@@ -188,9 +196,14 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
-    .lM .RichLink h3 {
-        font-size : 1.1em;
-    }
+    .RichLink h3 {
+        font-size : 1em;
+    } 
+}
+
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@include media(smallphone) {
     .lM .RichLink img {
         float  : none;
         margin : 0 auto 1em;

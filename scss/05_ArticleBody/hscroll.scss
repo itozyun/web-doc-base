@@ -4,7 +4,11 @@
 .hscroll {
 /* //_{@modern */
     overflow      : auto;
+    // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
+    //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
+    -webkit-overflow-scrolling : touch;
 /* //_}@modern */
+
     overflow-x    : auto;
     overflow-y    : hidden;
 /* //_{@ie5win,@ie55 */
