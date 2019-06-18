@@ -231,7 +231,8 @@ if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin 
     };
 
     if( !versioniOSWithPuffin && // iPad iOS12.2 Puffin5.2.2 で fullscreenEnabled が存在の模様
-        ( document.fullscreenEnabled !== undefined || document.webkitFullscreenEnabled !== undefined ) ){
+        // ホーム画面から起動したWebページは navigator.standalone === true になっている。fullscreen API は無い。
+        ( navigator.standalone || document.fullscreenEnabled !== undefined || document.webkitFullscreenEnabled !== undefined ) ){
         // https://github.com/uupaa/WebApp2/blob/master/app/assets/modules/UserAgent.js
         // _isWebView_iOS(options)
         engine       = 'SafariMobile';

@@ -303,8 +303,8 @@ var ua            = {},
     docRegElm    = !versionTrident && document.registerElement,
     docExecCmd   = !versionTrident && document.execCommand,
 
-    // Android 5.0 ChromeWebView 37.0.0.0 (Genymotion) で window.opener に触るとセキュリティエラーが発生するのを利用して Android を判定する。
-    maybeChromeWebView = maybeLinux && docRegElm && versionChrome && /* window.CSS || */ (new Function('try{for(var k in opener){}}catch(e){return true}'))(),
+    // Android 4.4.4~6.x ChromeWebView 33.0.0.0 (Genymotion) PC_MODE の場合、Chrome/のバージョンは常に 11.0.696.34 になる
+    maybeChromeWebView = maybeLinux && docRegElm && versionChrome === '11.0.696.34',
 
     surelyPcMode, isPcMode, strVersion,
     v, dpRatio,
