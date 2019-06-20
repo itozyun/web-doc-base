@@ -219,9 +219,7 @@ if( !brand ){
     } else if( strVersion = getVersionString( strUserAgent, 'QtWebKit/' ) ){
         brand         = 'QtWebKit';
         brandVersion  = strVersion;
-    } else if(
-        versionFxiOS ||
-        ( isGecko && ( getVersionString( strUserAgent, 'Firefox/' ) || getVersionString( strAppVersion, 'rv:' ) ) )
+    } else if( strVersion = versionFxiOS || ( isGecko && ( versionFirefox || engineVersion ) )
     ){
         brand        = 'Firefox';
         brandVersion = strVersion;

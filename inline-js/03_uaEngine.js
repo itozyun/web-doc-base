@@ -60,7 +60,7 @@ if( !engine ){
  */
     if( isGecko ){
         engine        = isAndroidBased ? 'Fennec' : 'Gecko';
-        engineVersion = versionGecko;
+        engineVersion = versionGecko || versionFirefox;
     } else
 /*----------------------------------------------------------------------------//
  *  Samsung Browser

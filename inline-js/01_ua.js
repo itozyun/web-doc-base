@@ -149,8 +149,9 @@ var ua            = {},
 
 // https://developers.whatismybrowser.com/useragents/parse/987005-pale-moon-windows-goanna
 // TODO Goanna/20161201 になっている時がある…
-    versionGoanna = isGecko && getVersionString( strUserAgent, 'Goanna/' ),
-    versionGecko  = !versionGoanna && isGecko && getVersionString( strUserAgent, 'rv:' ),
+    versionGoanna  = isGecko && getVersionString( strUserAgent, 'Goanna/' ),
+    versionGecko   = !versionGoanna && isGecko && getVersionString( strUserAgent, 'rv:' ),
+    versionFirefox = getVersionString( strUserAgent, 'Firefox/' ), // Android9 + Firefox67.0 + PC_MOEDE で rv: が存在しない！
 
     versionWebKit = getNumber( strUserAgent, 'AppleWebKit/' ),
     versionChrome = getVersionString( strUserAgent, 'Chrome/' ),
