@@ -68,12 +68,12 @@ if( !engine ){
     if( verSamsung ){
         engine        = 'Samsung';
         engineVersion = verSamsung;
-        // TODO if( surelyPcMode ) isPcMode = true;
+        if( surelyPcMode ) isPcMode = true;
     } else
 /*----------------------------------------------------------------------------//
  *  NetFront
  */
-    if( strVersion = getVersionString( strUserAgent, 'NetFront/' ) ){
+    if( strVersion = versionNetFront || getVersionString( strUserAgent, 'NetFront/' ) ){
         engine        = 'NetFront';
         engineVersion = strVersion;
     } else

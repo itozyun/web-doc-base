@@ -12,6 +12,10 @@ if( !brand ){
     } else if( strVersion = getVersionString( strAppVersion, 'Coast/' ) ){
         brand        = 'Coast';
         brandVersion = strVersion;
+    } else if( strVersion = getVersionString( strAppVersion, 'OPT/' ) ){
+        brand        = 'OperaTouch';
+        brandVersion = strVersion;
+        isPcMode     = isPcMode || !findString( strAppVersion, 'Mobile/' );
     } else 
 // https://himenaotaro.hatenablog.com/entry/20151011/1444564265
 // YJApp-IOS ユーザエージェント(User Agent)
@@ -194,6 +198,10 @@ if( !brand ){
         brand        = 'KMeleon';
         brandVersion = strVersion;
     } else
+    if( strVersion = versionNX || getVersionString( strAppVersion, 'NX/' ) ){
+        brand        = 'NetFrontNX';
+        brandVersion = strVersion;
+    } else
 // Netscape Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4.1) Gecko/20020508 Netscape6/6.2.3
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
 // Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20070321 Netscape/8.1.3
@@ -214,21 +222,23 @@ if( !brand ){
         brand        = 'LINE';
         brandVersion = strVersion;
     } else if( strVersion = getVersionString( strUserAgent, 'QtWebEngine/' ) ){
-        brand         = 'QtWebEngine';
-        brandVersion  = strVersion;
+        brand        = 'QtWebEngine';
+        brandVersion = strVersion;
     } else if( strVersion = getVersionString( strUserAgent, 'QtWebKit/' ) ){
-        brand         = 'QtWebKit';
-        brandVersion  = strVersion;
-    } else if( strVersion = versionFxiOS || ( isGecko && ( versionFirefox || engineVersion ) )
-    ){
+        brand        = 'QtWebKit';
+        brandVersion = strVersion;
+    } else if( strVersion = versionFxiOS || ( isGecko && ( versionFirefox || engineVersion ) ) ){
         brand        = 'Firefox';
         brandVersion = strVersion;
-    } else if( strVersion = versionPresto || versionOPR || getVersionString( strUserAgent, 'Opera/' ) ){
+    } else if( strVersion = versionPresto || versionOPR || versionOpera ){
         brand        = 'Opera';
         brandVersion = strVersion;
     } else if( isTrident ){
         brand        = 'IE';
         brandVersion = engineVersion;
+    } else if( verSamsung ){
+        brand        = engine;
+        brandVersion = verSamsung;
     } else if( strVersion =
         getVersionString( strUserAgent, 'CriOS/' ) ||
         ( hasChromeObject || ( maybeChromeWebView && isAndroidBrowser ) ) && versionChrome ){

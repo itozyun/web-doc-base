@@ -13,7 +13,7 @@ if( strPlatform === 'Nintendo DSi' ){
     // https://ja.wikipedia.org/wiki/%E3%83%8B%E3%83%B3%E3%83%86%E3%83%B3%E3%83%89%E3%83%BCDSi%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%BC
     // https://developers.whatismybrowser.com/useragents/explore/operating_platform/nintendo-dsi/
     platform         = 'NDSi';
-    platformVersion  = getVersionString( strAppVersion, 'Opera/' ); // Opera/9.50 ... Opera/507
+    platformVersion  = versionOpera; // Opera/9.50 ... Opera/507
     deviceTypeIsGame = true;
 } else
 /*----------------------------------------------------------------------------//
@@ -24,8 +24,6 @@ if( strPlatform === 'New Nintendo 3DS' || ( findString( strUserAgent, 'iPhone OS
     platformVersion  = getVersionString( strUserAgent, 'NintendoBrowser/' );
     engine           = 'WebKit';
     engineVersion    = versionWebKit;
-    brand            = 'NetFrontNX';
-    brandVersion     = getVersionString( strUserAgent, 'NX/' );
     deviceTypeIsGame = true;
 } else
 /*----------------------------------------------------------------------------//
@@ -36,8 +34,7 @@ if( strPlatform === 'Nintendo 3DS' ){
     platformVersion  = getVersionString( strUserAgent, 'Version/' );
     engine           = 'WebKit';
     engineVersion    = 535; // 534:2.0.0-2J - 9.5.0-22J, 9.5.0-23J -
-    brand            = 'NetFrontNX';
-    brandVersion     = platformVersion;
+    versionNX        = platformVersion;
     deviceTypeIsGame = true;
 } else
 /*----------------------------------------------------------------------------//
@@ -48,8 +45,6 @@ if( strPlatform === 'Nintendo Swicth' ){
     platformVersion  = getVersionString( strAppVersion, 'NintendoBrowser/' );
     engine           = 'WebKit';
     engineVersion    = versionWebKit;
-    brand            = 'NetFrontNX';
-    brandVersion     = getVersionString( strAppVersion, 'NX/' );
     deviceTypeIsGame = true;
 } else
 /*----------------------------------------------------------------------------//
@@ -59,8 +54,6 @@ if( strPlatform === 'Nintendo WiiU' ){
     // https://www.nintendo.co.jp/hardware/wiiu/internetbrowser/index.html
     platform         = 'WiiU';
     platformVersion  = getVersionString( strAppVersion, 'NintendoBrowser/' );
-    brand            = 'NetFrontNX';
-    brandVersion     = getVersionString( strAppVersion, 'NX/' );
     engine           = 'WebKit';
     // https://blog.gutyan.jp/entry/2015/01/31/NintendoBrowser
     // UブラウザにはNew3DS以上のUA切替機能がある。
@@ -106,8 +99,7 @@ if( strVersion = getVersionString( strUserAgent, '(PlayStation Portable); ' ) ){
     // User-Agent: Mozilla/4.0 (PSP (PlayStation Portable); 2.00)
     platform         = 'PSP';
     platformVersion  = strVersion;
-    engine           = 'NetFront';
-    engineVersion    = 3.3; // 多分
+    versionNetFront  = 3.3; // 多分
     brand            = platform;
     brandVersion     = strVersion;
     deviceTypeIsGame = true;
@@ -151,10 +143,9 @@ if( findString( strUserAgent, 'Xbox' ) ){
 if( appVersion === 2 && findString( strUserAgent, 'Sony/COM2/' ) ){
     platform         = 'Mylo';
     platformVersion  = 2;
-    engine           = 'NetFront';
-    engineVersion    = 3.4;
-    brand            = engine;
-    brandVersion     = engineVersion;
+    versionNetFront  = 3.4;
+    brand            = platform;
+    brandVersion     = 2;
     deviceTypeIsPDA  = true;
 } else
 /*----------------------------------------------------------------------------//
@@ -291,15 +282,15 @@ if( window.onmoztimechange !== undefined ){
     // This API is available on Firefox OS for internal applications only.
     platform        = 'FirefoxOS';
     platformVersion = versionGecko < 18.1 ? '1.0.1' :
-                    versionGecko < 19   ? 1.1 :
-                    versionGecko < 27   ? 1.2 :
-                    versionGecko < 29   ? 1.3 :
-                    versionGecko < 31   ? 1.4 :
-                    versionGecko < 33   ? 2.0 :
-                    versionGecko < 35   ? 2.1 :
-                    versionGecko < 38   ? 2.2 :
-                    versionGecko < 45   ? 2.5 :
-                                          2.6; // Gecko 45
+                      versionGecko < 19   ? 1.1 :
+                      versionGecko < 27   ? 1.2 :
+                      versionGecko < 29   ? 1.3 :
+                      versionGecko < 31   ? 1.4 :
+                      versionGecko < 33   ? 2.0 :
+                      versionGecko < 35   ? 2.1 :
+                      versionGecko < 38   ? 2.2 :
+                      versionGecko < 45   ? 2.5 :
+                                            2.6; // Gecko 45
     // https://developer.mozilla.org/ja/docs/Web/HTTP/Gecko_user_agent_string_reference#Firefox_OS
     if( findString( strUserAgent, 'Mobile' ) ){
         deviceTypeIsPhone = true;
@@ -617,7 +608,10 @@ if( maybeLinux && maybePCMode ){
     // AOSP の判定は Version/ の有無. 但し「デスクトップ版で見る」場合、Version/ が居なくなる...
     // PC版で見る、にチェックが付いている場合、ユーザーエージェント文字列にも platform にも Android の文字列が存在しない(標準ブラウザ&Chrome)
     // Audio でタッチが必要か？の判定にとても困る...
-    // ua には Linux x86_64 になっている strPlatform と矛盾する. ATOM CPU の場合は？    
+    // ua には Linux x86_64 になっている strPlatform と矛盾する. ATOM CPU の場合は？
+    if( verSamsung ){ // SamsungBrowser/2.0+ が Android4.4.4 から登場する
+        v = { min : 4.4 };
+    } else
     if( ( hasChromeObject && !maybeAOSP ) || hasOPRObject || versionOPR ){
         v = { min : 4 };
     } else {

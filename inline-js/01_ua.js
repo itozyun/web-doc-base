@@ -152,6 +152,7 @@ var ua            = {},
     versionGoanna  = isGecko && getVersionString( strUserAgent, 'Goanna/' ),
     versionGecko   = !versionGoanna && isGecko && getVersionString( strUserAgent, 'rv:' ),
     versionFirefox = getVersionString( strUserAgent, 'Firefox/' ), // Android9 + Firefox67.0 + PC_MOEDE で rv: が存在しない！
+    versionOpera   = getVersionString( strUserAgent, 'Opera/' ),
 
     versionWebKit = getNumber( strUserAgent, 'AppleWebKit/' ),
     versionChrome = getVersionString( strUserAgent, 'Chrome/' ),
@@ -314,4 +315,5 @@ var ua            = {},
     deviceTypeIsMediaPlayer, deviceTypeIsEBookReader,
     deviceTypeIsPhone, deviceTypeIsTablet,
     deviceTypeIsPC,
+    versionNetFront, versionNX,
     isMac, isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;
