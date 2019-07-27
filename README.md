@@ -24,16 +24,16 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 
 ## Functions provided by Javascript - Javascript によって提供される機能
 
-1. User Agent detection [Demo](https://itozyun.github.io/web-doc-base/ua.html) [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/01_useragent.js)
-2. Optimal viewport based on user agent judgment [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/02_dynamicViewPort.js)
+1. User Agent detection [Demo](https://itozyun.github.io/web-doc-base/ua.html) [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/)
+2. Optimal viewport based on user agent judgment [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/10_dynamicViewPort.js)
 3. Adjustment of sidebar [src](https://github.com/itozyun/web-doc-base/blob/master/js/SidebarFixer.js)
 4. Click thumbnail image to enlarge [src](https://github.com/itozyun/web-doc-base/blob/master/js/PicaThumnail.js)
 5. Extension of blockquote [src](https://github.com/itozyun/web-doc-base/blob/master/js/blockquot.js)
 
 ---
 
-1. ユーザーエージェント判定 [Demo](https://itozyun.github.io/web-doc-base/ua.html) [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/01_useragent.js)
-2. ユーザーエージェント判定を元にした最適な viewport [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/02_dynamicViewPort.js)
+1. ユーザーエージェント判定 [Demo](https://itozyun.github.io/web-doc-base/ua.html) [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/)
+2. ユーザーエージェント判定を元にした最適な viewport [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/10_dynamicViewPort.js)
 3. サイドバーの追従 [src](https://github.com/itozyun/web-doc-base/blob/master/js/SidebarFixer.js)
 4. サムネイル画像をクリックで拡大 [src](https://github.com/itozyun/web-doc-base/blob/master/js/PicaThumnail.js)
 5. blockquote の拡張 [src](https://github.com/itozyun/web-doc-base/blob/master/js/blockquot.js)
@@ -111,14 +111,11 @@ var gulp     = require('gulp'),
     cleanCSS = require("gulp-clean-css"),
     plumber  = require("gulp-plumber"),
     mmq      = require("gulp-merge-media-queries"),
-    emq      = require('gulp-extract-media-query'),
-    del      = require('del'),
-    rename   = require("gulp-rename"),
-    
-    output   = './MyBlog';
+    name     = 'MyBlog',
+    output   = './public';
 
 gulp.task('sass', function(){
-  return gulp.src(['R:/MyBlog/precompiled/*.scss'])
+  return gulp.src(['R:/' + name + '/precompiled/*.scss'])
     .pipe(plumber())
     .pipe(sass())
     .pipe(cleanCSS({
@@ -148,31 +145,88 @@ gulp.task('sass', function(){
         }
       }
     }))
-    .pipe(gulp.dest(output))
+    .pipe(gulp.dest(output));
 });
 
 // high-contrast
-gulp.task('high-contrast', [ 'sass' ], function(){
+gulp.task( 'hc', function(){
     return gulp.src(output + '/*.css')
-    .pipe(emq({
-        match   : 'only screen and (-ms-high-contrast:active)',
-        postfix : '.hc'
+    .pipe(mqo({
+        match  : 'only screen and (-ms-high-contrast:active)',
+        folder : 'hc'
     }))
-    .pipe( rename(
-        function(path){
-            path.basename = path.basename.split( '.hc' ).join( '' );
-        }
-    ))
     .pipe(gulp.dest(output + '/hc'));
 });
 
-// del
-gulp.task('build', [ 'high-contrast' ], function(){
-    del([
-      './report.csv',
-      output + '/hc/*.hc.css'
-    ]);
-});
+gulp.task('make', gulp.series( 'sass', 'hc' ) );
+
+/* -------------------------------------------------------
+ *  media-query-operator
+ */
+var gutil       = require('gulp-util');
+var Transform   = require('stream').Transform;
+var Path        = require('path');
+var postcss     = require('postcss');
+
+function mqo( opts ){
+    var stream = new Transform( { objectMode : true } );
+
+    opts = opts || {};
+
+    function parsePath( path ){
+        var extname = Path.extname( path );
+        return {
+            dirname  : Path.dirname( path ),
+            basename : Path.basename( path, extname ),
+            extname  : extname
+        };
+    };
+
+    stream._transform = function( file, encoding, cb ){
+        if( file.isNull() ){
+            return cb(null, file);
+        };
+        if( file.isStream() ){
+            return cb( new gutil.PluginError( 'mqo', 'Streaming not supported' ) );
+        };
+        if( file.isBuffer() ){
+            var css        = postcss.parse( String( file.contents ) ),
+                parsedFile = parsePath( file.relative ),
+                matchCount = 0,
+                newCss     = postcss.parse('@charset "UTF-8"');
+
+            // let's loop through all rules and extract all @media print
+            css.walkAtRules( function( rule ){
+                //rule.name.match(/^media/) && console.log(rule.params)
+                if( rule.name.match( /^media/ ) && ( rule.params === opts.match ) ){
+                    // add the rule to the new css
+                    var newRule = rule.clone();
+
+                    newRule.walkRules( function( r ){
+                        newCss.append( r );
+                    } );
+                    rule.remove();
+                    matchCount++;
+                };
+            });
+
+            // push old file
+            this.push(file);
+
+            if( matchCount ){
+                //push new file
+                this.push(new gutil.File({
+                    cwd      : '/',
+                    base     : '/' + opts.folder + '/',
+                    path     : '/' + opts.folder + '/' + parsedFile.basename + parsedFile.extname,
+                    contents : Buffer.from(newCss.toString())
+                }));
+            };
+            cb();
+        };
+    };
+    return stream;
+};
 ~~~
 
 ## How the Javascript build - Javascript のビルドの方法
