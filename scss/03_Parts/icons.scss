@@ -26,7 +26,7 @@
     & {
         border-color    : $COLOR_Default_casual_text;
     }
-    a:focus &, :active & { /* :focus だけでは ie11- で body:focus に反応してしまう */
+    a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
         border-color    : $COLOR_Default_fill;
     }
     .ribbon & {
@@ -47,7 +47,7 @@
     & {
         border-color    : $COLOR_Default_casual_text transparent;
     }
-    a:focus &, :active & {
+    a:focus &, a:active & {
         border-color    : $COLOR_Default_fill transparent;
     }
     .ribbon & {
@@ -68,7 +68,7 @@
     & {
         border-color    : transparent $COLOR_Default_casual_text;
     }
-    a:focus &, :active & {
+    a:focus &, a:active & {
         border-color    : transparent $COLOR_Default_fill;
     }
     .ribbon & {
