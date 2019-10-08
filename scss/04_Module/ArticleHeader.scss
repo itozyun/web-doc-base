@@ -90,6 +90,10 @@
     .AHead-labels a {
         @extend %btnBase;
         @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+        &:link:hover { /* .ribbon :link:hover の上書き */
+            border-color : $COLOR_Ribbon_link;
+            color        : $COLOR_Ribbon_fill;
+        }
         margin : 0 0 0.5em;
     }
 
