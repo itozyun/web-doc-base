@@ -27,9 +27,22 @@
     }
     /* //_}@modern */
 
+    /* //_{@ie9 */
+    // sidebar が header, footer に重なる問題の解決
+    .lS {
+        overflow : hidden;
+    }
+    /* //_}@ie9 */
+
     /* //_{#ie8-win */
     .lW {
         overflow : hidden; /* @modern では clearfix で hidden になっている */
+        /* //_{@ie7 */
+            // sidebar が header, footer に重なる問題の解決
+            // https://klutche.org/archives/1061/
+            // 【CSS】IE7の野郎でoverflow:auto内のposition:relative要素がはみ出るバグの対処法
+            position : relative;
+        /* //_}@ie7 */
     }
     #jsMain, #jsSide {
         position : relative; /* @modern でも必要ではない…？ieではrelativeが無いと位置が取れない、だったかな？ */

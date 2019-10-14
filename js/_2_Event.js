@@ -65,7 +65,7 @@ function Util_resizeEventLazyCallback(){
     var i = Util_resizeTimerID = 0, l = g_resizeEventCallbacks.length;
 
     for( ; i < l; ++i ){
-        g_scrollEventCallbacks[ i ]();
+        g_resizeEventCallbacks[ i ]();
     };
 };
 

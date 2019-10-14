@@ -6,6 +6,7 @@
 var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_ID_WRAPPER = 'jsSidebarFixer', // jsSidebarFixer
     SIDEBAR_FIXER_IDS_WHEEL  = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
+    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= ua[ 'Trident' ] || 10 <= ua[ 'TridentMobile' ] || ua[ 'EdgeHTML' ] || ua[ 'Chromium' ],
     /*
      * positionFixed
      *   original :
@@ -13,14 +14,14 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
      */
     /* SIDEBAR_FIXER_positionFixed =
             !(
-                // iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
+                // iOS 4.3 and older : Platform is iPhone/Pad/Touch and WebKit version is less than 534 (ios5)
                 ( ua[ 'iOS' ] < 5 ) ||
                 // Opera Mini
                 // https://www.tobymackenzie.com/blog/2017/05/11/opera-mini-supporting-fixed-position/
-                //( ua[ 'OperaMin' ] ) ||
+                //( ua[ 'OperaMini' ] ) ||
                 // UC Browser speed mode on
                 //( ua[ 'UCWEB' ] ) ||
-                //Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
+                //Android lte 2.1: Platform is Android and WebKit version is less than 533 (Android 2.2)
                 ( ua[ 'AOSP' ] < 2.2 ) ||
                 // Firefox Mobile before 6.0 -
                 ( ua[ 'Fennec' ] < 6 ) ||
@@ -29,7 +30,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
                 // MeeGo
                 ( ua[ 'MeeGo' ] ) ||
                 // IE6-
-                ( ua[ 'IE' ] < 7 )
+                ( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) < 7 )
             ), */
     SIDEBAR_FIXER_elmRoot,
     SIDEBAR_FIXER_elmSide,
@@ -37,12 +38,14 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_elmWrap,
     SIDEBAR_FIXER_transformProp,
     SIDEBAR_FIXER_sidebarY = 0,
-    SIDEBAR_FIXER_can3D;
+    SIDEBAR_FIXER_lastScrollY = 0,
+    SIDEBAR_FIXER_can3D,
+    SIDEBAR_FIXER_skipScroll;
 
-if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
+if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
 
     g_scrollEventCallbacks[ g_scrollEventCallbacks.length ] =
-    g_resizeEventCallbacks[ g_resizeEventCallbacks.length ] = SIDEBAR_FIXER_fix;
+    g_resizeEventCallbacks[ g_resizeEventCallbacks.length ] = SIDEBAR_FIXER_onscroll;
 
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function(){
@@ -61,6 +64,14 @@ if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
         DOM_insertBefore( SIDEBAR_FIXER_elmWrap, DOM_getFirstChild( SIDEBAR_FIXER_elmSide ) );
         SIDEBAR_FIXER_elmWrap.id = SIDEBAR_FIXER_ID_WRAPPER;
 
+        if( ua[ 'Trident' ] || ua[ 'TridentMobile' ] || ua[ 'Tasman' ] ){
+            SIDEBAR_FIXER_elmWrap.onfocusin = SIDEBAR_FIXER_onfocus;
+        } else if( ua[ 'Gecko' ] || ua[ 'Fennec' ] || ua[ 'Goanna' ] || ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ] ){
+            document.addEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
+        } else {
+            SIDEBAR_FIXER_elmWrap.addEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
+        };
+
         while( 1 < DOM_getChildNodes( SIDEBAR_FIXER_elmSide ).length ){
             DOM_appendChild( SIDEBAR_FIXER_elmWrap, DOM_getChildNodes( SIDEBAR_FIXER_elmSide )[ 1 ] );
         };
@@ -68,14 +79,18 @@ if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
         while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
             elm = DOM_getElementById( id );
             if( Type_notUndefined( elm.onwheel ) ){
-                elm.onwheel = SIDEBAR_FIXER_onwheel;
+                if( g_passiveSupported ){
+                    elm.addEventListener( 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
+                } else {
+                    elm.onwheel = SIDEBAR_FIXER_onwheel;
+                };
             } else if( Type_notUndefined( elm.onMozMousePixelScroll ) ){
                 elm.onMozMousePixelScroll = SIDEBAR_FIXER_onwheel;
             } else if( Type_notUndefined( elm.onDOMMouseScroll ) ){
                 elm.onDOMMouseScroll = SIDEBAR_FIXER_onwheel;
-            } else if( Type_notUndefined( elm.onmousewheel ) || ua[ 'Prsto' ] ){
+            } else if( Type_notUndefined( elm.onmousewheel ) || ua[ 'Presto' ] || ua[ 'PrestoMobile' ] ){
                 elm.onmousewheel = SIDEBAR_FIXER_onwheel;
-            };            
+            };
         };
 
         SIDEBAR_FIXER_transformProp =
@@ -85,7 +100,7 @@ if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
             Type_notUndefined( style[ '-moz-' + transf ] ) ? '-moz-' + transf : 
             Type_notUndefined( style[ '-webkit-' + transf ] ) ? '-webkit-' + transf : '';
         
-        SIDEBAR_FIXER_can3D = !ua[ 'IE' ] && !ua[ 'Edge' ]  && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
+        SIDEBAR_FIXER_can3D = !ua[ 'Trident' ] && !ua[ 'EdgeHTML' ] && !ua[ 'EdgeMobile' ] && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
             Type_notUndefined( style[ perspe ] ) ||
             Type_notUndefined( style[ '-moz-' + perspe ] ) ||
             Type_notUndefined( style[ '-webkit-' + perspe ] ) );
@@ -93,12 +108,12 @@ if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
         /* if( !SIDEBAR_FIXER_transformProp ){
             if( !SIDEBAR_FIXER_positionFixed ){
                 // elmMain への relative 設定は ie6 で必要! 
-                // 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない.
+                // 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない. -> CSSへ
                 SIDEBAR_FIXER_elmSide.style.position = SIDEBAR_FIXER_elmMain.style.position = 'relative';
             };
         }; */
 
-        SIDEBAR_FIXER_fix();
+        SIDEBAR_FIXER_onscroll();
     };
 
     g_unloadEventCallbacks[ g_unloadEventCallbacks.length ] =
@@ -107,8 +122,20 @@ if( !g_isMobile && !ua[ 'OperaMin' ] && !ua[ 'UCWEB' ] ){
 
             while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
                 elm = DOM_getElementById( id );
+                if( g_passiveSupported ){
+                    elm.removeEventListener( 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
+                };
                 elm.onwheel = elm.onMozMousePixelScroll = elm.onDOMMouseScroll = elm.onmousewheel = g_emptyFunction;
                 elm.onwheel = elm.onMozMousePixelScroll = elm.onDOMMouseScroll = elm.onmousewheel = null;
+            };
+
+            if( ua[ 'Trident' ] || ua[ 'TridentMobile' ] || ua[ 'Tasman' ] ){
+                SIDEBAR_FIXER_elmWrap.onfocusin = g_emptyFunction;
+                SIDEBAR_FIXER_elmWrap.onfocusin = null;
+            } else if( ua[ 'Gecko' ] || ua[ 'Fennec' ] || ua[ 'Goanna' ] ){
+                document.removeEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
+            } else {
+                SIDEBAR_FIXER_elmWrap.removeEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
             };
         };
 };
@@ -126,10 +153,30 @@ function SIDEBAR_FIXER_getFinite( arg ){
     return 0;
 };
 
+function SIDEBAR_FIXER_onscroll(){
+    if( SIDEBAR_FIXER_skipScroll && !SIDEBAR_FIXER_AFTER_SCROLL ){
+        SIDEBAR_FIXER_skipScroll = false;
+    } else {
+        SIDEBAR_FIXER_lastScrollY = SIDEBAR_FIXER_getFinite( window.pageYOffset, SIDEBAR_FIXER_elmRoot.scrollTop, g_body.scrollTop );
+        if( SIDEBAR_FIXER_skipScroll ){
+            //console.log( '.fix after scroll ' + SIDEBAR_FIXER_lastScrollY, SIDEBAR_FIXER_skipScroll[ 0 ], SIDEBAR_FIXER_skipScroll[ 1 ] );
+            SIDEBAR_FIXER_fix( SIDEBAR_FIXER_lastScrollY, 0, SIDEBAR_FIXER_skipScroll[ 0 ], SIDEBAR_FIXER_skipScroll[ 1 ] );
+            // SIDEBAR_FIXER_scrollY( SIDEBAR_FIXER_lastScrollY );
+            SIDEBAR_FIXER_skipScroll = false;
+        } else {
+            //console.log( 'scroll ' + SIDEBAR_FIXER_lastScrollY );
+            SIDEBAR_FIXER_fix( SIDEBAR_FIXER_lastScrollY );
+        };
+    };
+};
+
 /**
+ * @param {number} scrollY
  * @param {number|boolean=} wheelDeltaY
+ * @param {number|boolean=} focusedElementY
+ * @param {number|boolean=} focusedElementHeight
  */
-function SIDEBAR_FIXER_fix( wheelDeltaY ){
+function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElementHeight ){
         // transform pos:fixed が使えない場合、塗りのために width を指定するので pos:relative でなくレイアウトコストの低い pos:absolute を使用
     var POS_ABSOLUT_TOP = 'position:absolute;left:0;width:100%;top:',
         // POS_FIXED_WIDTH = 'position:fixed;width:',
@@ -142,7 +189,6 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
         mainY = 0,
         css   = '',
         sidebarY = 0,
-        scrollY = SIDEBAR_FIXER_getFinite( window.pageYOffset, SIDEBAR_FIXER_elmRoot.scrollTop, g_body.scrollTop ),
         isMultiColumn  = SIDEBAR_FIXER_elmSide.offsetTop === elm.offsetTop,
         sidebarIsLower = sideH < mainH,
         outOnViewPort,
@@ -153,7 +199,8 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
         visibleHeight,
         sideInViewPort,
         scrollLimit,
-        nocancelWheel;
+        nocancelWheel,
+        focusedElementT, focusedElementB;
 
     function createPositioning( y ){
         sidebarY = y;
@@ -175,15 +222,31 @@ function SIDEBAR_FIXER_fix( wheelDeltaY ){
             mainY += elm.offsetTop || 0;
             elm    = elm.offsetParent || elm.parentElement;
         };
-        outOnViewPort   = mainY + mainH <= scrollY;
-        outsideViewPort = scrollY + winH <= mainY;
-        topInViewPort   = ( scrollY < mainY ) && ( mainY < scrollY + winH );
-        btmInViewPort   = ( scrollY < mainY + mainH ) && ( mainY + mainH < scrollY + winH );
-        mainInViewPort  = topInViewPort && btmInViewPort,
-        visibleHeight   = ( mainY + mainH - scrollY ) < winH ? ( mainY + mainH - scrollY ) : winH;
-        sideInViewPort  = sideH <= visibleHeight;
+        outOnViewPort   = mainY + mainH <= scrollY; // メインカラムはビューポートより上
+        outsideViewPort = scrollY + winH <= mainY;  // メインカラムはビューポートより下
+        topInViewPort   = ( scrollY < mainY ) && ( mainY < scrollY + winH ); // メインカラムの始点はビューポート内
+        btmInViewPort   = ( scrollY < mainY + mainH ) && ( mainY + mainH < scrollY + winH ); // メインカラムの終点はビューポート内
+        mainInViewPort  = topInViewPort && btmInViewPort, // メインカラムはビューポート内に収まる
+        visibleHeight   = ( mainY + mainH - scrollY ) < winH ? ( mainY + mainH - scrollY ) : winH; // メインカラムのビューポート内分の高さ、最大はビューポートの高さと同じ
+        sideInViewPort  = sideH <= visibleHeight; // サイドバーの高さはメインカラムの可視の高さに収まる
 
-        if( !wheelDeltaY ){
+        if( 0 <= focusedElementY ){
+            if( !sideInViewPort ){
+                focusedElementT = focusedElementY + mainY + SIDEBAR_FIXER_sidebarY;
+                focusedElementB = focusedElementHeight + focusedElementT;
+                if( scrollY + visibleHeight < focusedElementB ){
+                    createPositioning( scrollY + visibleHeight - mainY - focusedElementY - focusedElementHeight );
+                } else if( focusedElementT < scrollY ){
+                    createPositioning( scrollY - mainY - focusedElementY );
+                } else {
+                    console.log( 'Focused Element in ViewPort ' );
+                    return;
+                };
+            } else {
+                console.log( 'Sidebar in ViewPort ' );
+                return;
+            };
+        } else if( !wheelDeltaY ){
             if( sidebarIsLower ){
                 if( topInViewPort || outsideViewPort ){
                     createPositioning( 0 );
@@ -235,10 +298,10 @@ function SIDEBAR_FIXER_onwheel( _event ){
     // TODO axis
     // https://w3g.jp/blog/tools/wheelevent_crossbrowser
     // ホイール系イベント2014年版クロスブラウザ
-    var e  = _event || event,
+    var e        = _event || event,
         hitChild = this !== e.target,
         deltaY   = hitChild && SIDEBAR_FIXER_getFinite( e.deltaY, e.wheelDeltaY / 120, e.wheelDelta / -120,  e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 3 ) ),
-        cancel   = hitChild && deltaY && SIDEBAR_FIXER_fix( deltaY );
+        cancel   = hitChild && deltaY && SIDEBAR_FIXER_fix( SIDEBAR_FIXER_lastScrollY, deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 );
 
     if( cancel ){
         if( _event ){
@@ -249,4 +312,31 @@ function SIDEBAR_FIXER_onwheel( _event ){
             return e.returnValue = false;
         };
     };
+};
+
+function SIDEBAR_FIXER_onfocus( _event ){
+    var e   = _event || event,
+        elm = e.srcElement || e.target,
+        _el = elm,
+        y   = 0;
+
+    if( SIDEBAR_FIXER_elmWrap.contains( elm ) ){
+        while( SIDEBAR_FIXER_elmWrap !== elm && SIDEBAR_FIXER_elmWrap.contains( elm ) ){
+            y   += elm.offsetTop || 0;
+            elm  = elm.offsetParent;
+        };
+
+        if( !SIDEBAR_FIXER_AFTER_SCROLL ){
+            // Chrome 77, 表示ボックス外の要素へのfocusの際に表示ボックスが拡大する．この際は、scroll位置の再取得をする．
+            SIDEBAR_FIXER_fix( SIDEBAR_FIXER_lastScrollY, 0, y, _el.offsetHeight );
+            SIDEBAR_FIXER_skipScroll = true;
+            SIDEBAR_FIXER_scrollY( SIDEBAR_FIXER_lastScrollY );
+        } else {
+            SIDEBAR_FIXER_skipScroll = [ y, _el.offsetHeight ];
+        };
+    };
+};
+
+function SIDEBAR_FIXER_scrollY( scrollY ){
+    window.scrollTo( SIDEBAR_FIXER_getFinite( window.pageXOffset, SIDEBAR_FIXER_elmRoot.scrollLeft, g_body.scrollLeft ), scrollY );
 };
