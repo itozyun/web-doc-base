@@ -143,7 +143,6 @@ var ua            = {},
         window.attachEvent    ? 5 : 4 ),
  
     isEdgeHTML  = !isTrident && html.msContentZoomFactor,
-    versionEdge = isEdgeHTML && getVersionString( strAppVersion, 'Edge/' ),
 
     hasChromeObject = !isEdgeHTML && window.chrome, // AOSP 4.1 にもいる！
 
@@ -316,4 +315,6 @@ var ua            = {},
     deviceTypeIsPhone, deviceTypeIsTablet,
     deviceTypeIsPC,
     versionNetFront, versionNX,
-    isMac, isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;
+    isMac,
+    isWindowsPhone, isFireOS,
+    isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;

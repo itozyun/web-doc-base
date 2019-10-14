@@ -218,6 +218,8 @@ if( !brand ){
         // Mozilla/5.0 (Windows NT; U; en) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Iris/1.1.7 Safari/525.20
         brand        = 'Iris';
         brandVersion = strVersion;
+    } else if( findString( strAppVersion, 'FBAN/' ) ){
+        brand        = 'Facebook';
     } else if( strVersion = getVersionString( strAppVersion, 'Line/' ) ){
         brand        = 'LINE';
         brandVersion = strVersion;

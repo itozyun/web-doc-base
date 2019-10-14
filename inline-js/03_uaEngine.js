@@ -45,8 +45,8 @@ if( !engine ){
  *  EdgeHTML
  */
     if( isEdgeHTML ){
-        engine        = 'EdgeHTML'; // TODO EdgeHTMLMobile
-        engineVersion = versionEdge;
+        engine        = isWindowsPhone ? 'EdgeMobile' : 'EdgeHTML';
+        engineVersion = getVersionString( strAppVersion, 'Edge/' );
     } else
 /*----------------------------------------------------------------------------//
  *  Goannna
