@@ -1,0 +1,26 @@
+/** //_{+blog **/
+/* [module] Article Description
+ *  出現位置は #lE .lSi 下で固定
+ *
+--------------------------------------------------------------------------------------*/
+.ADesc {
+    margin : 4em 0 2.5em;
+
+    p {
+        margin : 0 0.5em 1em;
+        color  : $COLOR_Ribbon_casual_text;
+    }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet_print) {
+    .ADesc {
+        margin : 0 0 2.5em;
+
+        p {
+            margin : 1em 0 0;
+        }
+    }
+}
+/** //_}+blog **/

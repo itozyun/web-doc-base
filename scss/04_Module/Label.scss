@@ -1,0 +1,69 @@
+/** //_{+blog **/
+/* [module] Label
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *
+--------------------------------------------------------------------------------------*/
+.Label {
+    @include stackableModule;
+}
+
+    .Label div {
+        color : $COLOR_Default_fill; /* , を消す */
+    
+    /* //_{#ie7-win,@ie8,@ie9 */
+        text-justify : inter-ideograph;
+        line-break   : normal;
+    /* //_}#ie7-win,@ie8,@ie9 */
+    /* //_{#ie7-win,@ie9,@modern */
+        text-align   : justify;
+        /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
+    /* //_}#ie7-win,@ie9,@modern */
+    }
+    .ribbon .Label div {
+        color : $COLOR_Ribbon_fill; /* , を消す */
+    }
+
+        .Label a {
+        /* //_{#can-inline-block */
+            display : inline-block;
+            margin  : 0 0 1em;
+        /* //_}#can-inline-block */
+
+        /* //_{^#can-inline-block */
+            line-height : 2.8;
+        /* //_}^#can-inline-block */
+
+            border-width : 0 0 1px;
+
+            &:link:hover, &:visited:hover { /* 詳細度の為に a: が必要 */
+                text-decoration : none;
+            }
+        }
+
+        .lS .Label a,
+        #lF .Label a {
+        /* //_{#can-inline-block */
+            margin : 0 0 0.6em;
+        /* //_}#can-inline-block */
+
+        /* //_{^#can-inline-block */
+            line-height : 2.4;
+        /* //_}^#can-inline-block */
+        }
+
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .Label div {
+        text-align : center;
+    }
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    .Label div {
+        color : $COLOR_Watch_fill; /* , を消す */
+    }
+}
+/** //_}+blog **/

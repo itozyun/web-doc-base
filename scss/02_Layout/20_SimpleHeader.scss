@@ -1,0 +1,29 @@
+
+/** //_{+simpleHeader **/
+    #lH .lMi, #lH .lSi { /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
+        padding-top    : 1em;
+        padding-bottom : 1em;
+    }
+    #lE, #lF {
+        border-width : 1px 0 0;
+    }
+
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        #lH .lMi {
+            padding-bottom : 0;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        #lH {
+            font-size : 0.875em;
+        }
+        #lH .lMi {
+            padding : .5em 0;
+        }
+    }
+/** //_}+simpleHeader **/

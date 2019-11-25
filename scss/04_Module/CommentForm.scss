@@ -1,0 +1,28 @@
+/** //_{+blog **/
+/* [module] Comment form
+ *  出現位置は #lB .lMh 下で固定
+ *
+ *  div.CmtForm
+--------------------------------------------------------------------------------------*/
+/* //_{@modern,@ie9 */
+.CmtForm { 
+    padding    : 1em 0;
+    text-align : center;
+}
+
+    .CmtForm iframe {
+        width  : 100%;
+        margin : 0;
+        height : 400px;
+    }
+/* //_}@modern,@ie9 */
+
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .CmtForm {
+        display : none;
+    }
+}
+/** //_}+blog **/

@@ -1,0 +1,69 @@
+/* [module] Header
+ *  出現位置は #lH .lMi 下で固定
+ *
+--------------------------------------------------------------------------------------*/
+
+/** //_{+simpleHeader **/
+
+/*  [module] Header
+--------------------------------------------------------------------------------------*/
+.Header {
+    @include lineHeight(1, 1);
+}
+
+    .Header h1, .h1 {
+        display     : inline;
+        font-size   : 1.5em;
+        @include lineHeight(1, 0);
+        padding     : 0;
+        margin      : 0 0.5em 0 0;
+    }
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .Header {
+        text-align : center;
+    }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet) {
+    .Header {
+        text-align : center;
+    }
+        .Header h1, .h1 {
+            display   : block;
+            margin    : 0 0 0.5em;
+        }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .Header h1, .h1 {
+        font-size : 1.2em;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .Header {
+        text-align : left;
+    }
+        .h1 {
+            font-size : 1em;
+        }
+        .Header h1 {
+            display    : block;
+            text-align : center;
+            margin     : 0 0 0.5em;
+        }
+        .Header h1+span {
+            display    : block;
+            text-align : center;
+        }
+}
+/** //_}+simpleHeader **/
