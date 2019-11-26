@@ -50,7 +50,7 @@ blockquote {
 
 /* Tablet
 --------------------------------------------------------------------------------------*/
-@include media(tablet) {
+@include media(tablet_print) {
     blockquote {
         padding : 1em 1px;
     }

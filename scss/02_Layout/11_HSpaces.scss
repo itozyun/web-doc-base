@@ -15,7 +15,7 @@
     }
     /* //_}^+mobileOnly */
 
-    @include media(tablet) {
+    @include media(tablet_print) {
         & {
             margin  : $marginTop #{$TABLET_H_SPACE / $ratio} $marginBottom;
         }
@@ -69,7 +69,7 @@ hr {
         padding : $paddingTop 1em / $ratio $paddingBottom;
     }
 
-    @include media(tablet) {
+    @include media(tablet_print) {
         & {
             padding : $paddingTop #{$TABLET_H_SPACE} $paddingBottom;
         }
@@ -90,11 +90,6 @@ hr {
     @include media(watch) {
         & {
             padding : $paddingTop 2px $paddingBottom;
-        }
-    }
-    @include media(print) {
-        & {
-            margin  : 1em $TABLET_H_SPACE;
         }
     }   
 }

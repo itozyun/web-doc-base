@@ -43,13 +43,13 @@ $SEARCH_BTN_WIDTH : 3em;
     .Search-txt {
         display  : block;
         width    : 100%;
-        /* //_{^#ie7-win */
+        /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
         left     : -#{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
-        /* //_}^#ie7-win */
+        /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
 
-        /* //_{#ie7-win */
+        /* //_{@ie5win,@ie55 */
         left     : #{$INPUT_BORDER_WIDTH / 2};
-        /* //_}#ie7-win */
+        /* //_}@ie5win,@ie55 */
 
         /* //_{@modern */
         &:invalid {

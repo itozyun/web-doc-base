@@ -1,18 +1,18 @@
 li, dd, tr {
-    ol, ul, dl {
+    ol, ul {
         margin-top    : 0;
         margin-bottom : 0;
     }
 }
 
 li, dd {
-    p, pre, blockquote, table {
+    p, pre, blockquote, dl, table {
         margin : 0 0 .5em;
     }
 }
 
 tr {
-    p, pre, blockquote {
+    p, pre, blockquote, dl {
         margin : 0 0 .5em;
     }
 }
