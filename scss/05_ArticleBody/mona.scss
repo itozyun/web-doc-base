@@ -34,8 +34,7 @@
 .mona {
     @extend %mona;
     @include hPadding(1, 1em, 1em);
-    
-    speak          : none;
+
     margin         : 1em 0;
     border-width   : 1px;
 }
