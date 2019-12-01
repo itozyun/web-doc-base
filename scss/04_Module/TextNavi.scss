@@ -4,18 +4,20 @@
  *
 --------------------------------------------------------------------------------------*/
 .TxtNavi {
-    padding     : 0.5em 0;
+    padding     : 1em 0;
+    line-height : 1.2;
     text-align  : right;
     color       : $COLOR_Default_fill; /* , を消す */
-}
-    .TxtNavi a {
+
+    a {
         /* //_{#can-inline-block */
-        display     : inline-block;
+        display : inline-block;
         /* //_}#can-inline-block */
         /* //_{@ie6,@ie7,@ie55 */
-        zoom        : 1;
+        zoom    : 1;
         /* //_}@ie6,@ie7,@ie55 */
     }
+}
 
 .ribbon .TxtNavi {
     color : $COLOR_Ribbon_fill; /* , を消す */

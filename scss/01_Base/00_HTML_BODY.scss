@@ -64,3 +64,11 @@
         font-size : 0.75em;
     }
 }
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    body, input {
+        line-height : $PRINT_LINE_HEIGHT; /* for paper save */
+    }
+}
