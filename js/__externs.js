@@ -9,11 +9,6 @@ var ua = {};
 var event;
 
 /**
- * @type {SVGSVGElement} 
- */
-var SVGSVGElement;
-
-/**
  * @type {?function(!Event)|null}
  */
 function onload(){};

@@ -11,7 +11,7 @@ function DOM_createElementNS( ns, tagName ){
 
 /**
  * @param {string} tag
- * @param {HTMLDocument|HTMLElement=} opt_root
+ * @param {HTMLDocument|HTMLElement|?=} opt_root MS DOM のメソッドを使う際は ? を追加。
  * @return {HTMLCollection}
  */
 function DOM_getElementsByTagName( tag, opt_root ){

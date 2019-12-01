@@ -42,7 +42,7 @@ function( e ){
             DOM_setHTML( elmCite, link );
             if( className ) DOM_setClassName( elmCite, className );
         } else {
-            elm.insertAdjustmentHTML(
+            elm.insertAdjacentHTML(
                 add1st ? 'AfterStart' : 'BeforeEnd',
                 '<' + tag + ( className ? ' class="' + className + '">' : '>' ) + link + '</' + tag + '>'
             );

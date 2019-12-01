@@ -6,10 +6,10 @@ var Util_tempOnLoad   = window.onload, // window. を付けないと Win XP + Op
     Util_tempOnResize = window.onresize,
     Util_resizeTimerID;
 
-onload   = Util_init;
-onunload = Util_kill;
-
-function Util_init( e ){
+/**
+ * @type {?function()|null}
+ */
+var Util_init = function( e ){
     var i = 0, l = g_loadEventCallbacks.length, ret;
 
     if( Util_tempOnLoad ) ret = Util_tempOnLoad( e );
@@ -27,6 +27,35 @@ function Util_init( e ){
 
     return ret;
 };
+
+/**
+ * @type {?function()|null}
+ */
+var Util_kill = function( e ){
+    var i = 0, l = g_unloadEventCallbacks.length, ret;
+
+    if( Util_tempOnUnload ) ret = Util_tempOnUnload( e );
+    Util_tempOnUnload = null;
+
+    if( onunload === Util_kill ){
+        onunload = g_emptyFunction;
+        //onunload = null;
+    };
+
+    if( Util_resizeTimerID ) clearTimeout( Util_resizeTimerID );
+
+    for( ; i < l; ++i ){
+        g_unloadEventCallbacks[ i ]();
+    };
+
+    onscroll = onresize = g_emptyFunction;
+    onscroll = onresize = Util_tempOnUnload = Util_tempOnScroll = Util_tempOnResize = Util_kill = g_unloadEventCallbacks = null;
+
+    return ret;
+};
+
+onload   = Util_init;
+onunload = Util_kill;
 
 onscroll = function( e ){
     var i = 0, l = g_scrollEventCallbacks.length, ret;
@@ -67,27 +96,4 @@ function Util_resizeEventLazyCallback(){
     for( ; i < l; ++i ){
         g_resizeEventCallbacks[ i ]();
     };
-};
-
-function Util_kill( e ){
-    var i = 0, l = g_unloadEventCallbacks.length, ret;
-
-    if( Util_tempOnUnload ) ret = Util_tempOnUnload( e );
-    Util_tempOnUnload = null;
-
-    if( onunload === Util_kill ){
-        onunload = g_emptyFunction;
-        onunload = null;
-    };
-
-    if( Util_resizeTimerID ) clearTimeout( Util_resizeTimerID );
-
-    for( ; i < l; ++i ){
-        g_unloadEventCallbacks[ i ]();
-    };
-
-    onscroll = onresize = g_emptyFunction;
-    onscroll = onresize = Util_tempOnUnload = Util_tempOnScroll = Util_tempOnResize = Util_kill = g_unloadEventCallbacks = null;
-
-    return ret;
 };
