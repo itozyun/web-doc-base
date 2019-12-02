@@ -1,3 +1,27 @@
+/* a タグの下線
+--------------------------------------------------------------------------------------*/
+/* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
+.aBodyRoot {
+    /* //_{#ie6-win */
+    a, /* link の無い a には下線をつけない */
+    /* //_}#ie6-win */
+    :link:hover, :visited:hover, a:active
+    /* //_{#can-focus-psedo-class */
+    , a:focus
+    /* //_}#can-focus-psedo-class */
+    { text-decoration : none; }
+
+    :link, :visited {
+        text-decoration : underline;
+    }
+}
+
+/* .aBodyRoot 内では訪問済のリンクは紫になる */
+.aBodyRoot {
+    :visited       { color : $COLOR_Default_visited; }
+    :visited:hover { color : $COLOR_Default_visited_hover; }
+}
+
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
@@ -11,6 +35,16 @@
 @include media(watch) {
     .aBodyRoot {
         line-height : $WATCH_LINE_HEIGHT;
+    }
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    /* .aBodyRoot 内では訪問済のリンクは紫になる */
+    .aBodyRoot {
+        :visited       { color : $COLOR_Watch_visited; }
+        :visited:hover { color : $COLOR_Watch_visited_hover; }
     }
 }
 

@@ -1,30 +1,21 @@
 /* a タグの下線
 --------------------------------------------------------------------------------------*/
-
-/* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
-a {
-    /* //_{#ie6-win */
-    &, /* link の無い a には下線をつけない */
-    /* //_}#ie6-win */
-    &:hover, &:active
-    /* //_{#can-focus-psedo-class */
-    , &:focus
-    /* //_}#can-focus-psedo-class */
-    { text-decoration : none; }
-}
-:link, :visited {
-    text-decoration : underline;
-}
-
 /* 記事の外では 下線なし -> hover -> 下線あり */
-.lMi, .lMh, .lS, .lX {
-    :link, :visited { text-decoration : none; }
-    :link:hover, :visited:hover { text-decoration : underline; }
-    /* //_{#can-focus-psedo-class */
-    a:focus:hover,
-    /* //_}#can-focus-psedo-class */
-    a:active:hover { text-decoration : underline; }    
-}
+/* //_{#ie6-win */
+a, /* link の無い a には下線をつけない */
+/* //_}#ie6-win */
+:link, :visited
+/* //_{#can-focus-psedo-class */
+a:focus,
+/* //_}#can-focus-psedo-class */
+a:active
+{ text-decoration : none; }
+
+:link:hover, :visited:hover,
+/* //_{#can-focus-psedo-class */
+a:focus:hover,
+/* //_}#can-focus-psedo-class */
+a:active:hover { text-decoration : underline; }
 
 /*  transition
 --------------------------------------------------------------------------------------*/
@@ -56,10 +47,9 @@ a {
 }
 :link          {
     color        : $COLOR_Default_link;
-    
 }
 :visited       {
-    color        : $COLOR_Default_visited;
+    color        : $COLOR_Default_text;
 }
 :link:hover    {
     color        : $COLOR_Default_hover;
@@ -68,16 +58,10 @@ a {
 :visited:hover {
     color        : $COLOR_Default_visited_hover;
     border-color : $COLOR_Default_visited_hover;
-}    
-
-/* .aBodyRoot の外では訪問済のリンクは黒になる */
-.lMi, .lMh, .lS, .lX {
-    :visited       { color : $COLOR_Default_text; }
-    :visited:hover { color : $COLOR_Default_visited_hover; }
 }
 
 .ribbon {
-    a {
+    a              {
         color        : $COLOR_Ribbon_casual_text;
         border-color : $COLOR_Ribbon_fill;
     }
@@ -94,7 +78,7 @@ a {
     :visited:hover {
         color        : $COLOR_Ribbon_visited_hover;
         border-color : $COLOR_Ribbon_visited_hover;
-    }   
+    }
 }
 
 /* :active, :focus 時の配色は同じ
@@ -133,12 +117,6 @@ a:active
     :visited:hover {
         color        : $COLOR_Watch_visited_hover;
         border-color : $COLOR_Watch_visited_hover;
-    }
-
-    /* .aBodyRoot の外では訪問済のリンクは黒になる */
-    .lMi, .lMh, .lS, .lX {
-        :visited       { color : $COLOR_Watch_text; }
-        :visited:hover { color : $COLOR_Watch_visited_hover; }
     }
 }
 
