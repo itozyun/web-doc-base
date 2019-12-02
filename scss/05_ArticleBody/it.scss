@@ -5,7 +5,7 @@ code, var {
     padding    : .1em .4em;
     margin     : 0 .1em;
 
-    blockquote & {
+    blockquote &, tbody th & {
         background : $COLOR_Default_casual_text;
         color      : $COLOR_Default_fill;
     }
@@ -23,7 +23,7 @@ pre code, pre var {
     code, var {
         background : $COLOR_Watch_casual_fill;
     
-        blockquote & {
+        blockquote &, tbody th & {
             background : $COLOR_Watch_casual_text;
             color      : $COLOR_Watch_fill;
         }

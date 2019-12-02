@@ -36,10 +36,10 @@
     /*  Tablet
     --------------------------------------------------------------------------------------*/
     @include media(tablet) {
-        .lS & :link, .lS & :visited {
+        #lB .lS & :link, #lB .lS & :visited {
             background : $COLOR_Sidebar_fill;
         }
-        .lS & :link:hover, .lS & :visited:hover {
+        #lB .lS & :link:hover, #lB .lS & :visited:hover {
             background : $COLOR_Default_casual_fill;
         }
     }
@@ -81,10 +81,10 @@
             color      : $COLOR_Watch_text;
         }
 
-        .lS & :link, .lS & :visited {
+        #lB .lS & :link, #lB .lS & :visited {
             background : $COLOR_Watch_fill;
         }
-        .lS & :link:hover, .lS & :visited:hover {
+        #lB .lS & :link:hover, #lB .lS & :visited:hover {
             background : $COLOR_Watch_casual_fill;
         }
     }
