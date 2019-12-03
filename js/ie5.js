@@ -1,7 +1,7 @@
 /**
  * ie11 の ie5 モード で css が読み込まれない問題の対策
  */
-if( ua[ 'IEHost' ] && ua[ 'Trident' ] < 5.5 ){
+if( ua[ 'IEHost' ] && g_Trident < 5.5 ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] = function(){
         var link = DOM_createElement( 'link' );
 

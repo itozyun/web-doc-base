@@ -8,7 +8,7 @@ var HighContrastModeHelper_elmDiv,
     HighContrastModeHelper_timerID,
     HighContrastModeHelper_isHC;
 
-if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) === 9 || ( ua[ 'Win32' ] && 44 <= ua[ 'Gecko' ] ) ){
+if( g_Trident === 9 || ( ua[ 'Win32' ] && 44 <= g_Gecko ) ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function (){
         //Create a test div
@@ -17,7 +17,7 @@ if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) === 9 || ( ua[ 'Win32' ] && 44 
         //Set its color style to something unusual
         DOM_setCssText( HighContrastModeHelper_elmDiv, 'color:#123456;position:absolute;top:0;left:0;width:0;height:0;overflow:hidden' );
 
-        if( ua[ 'Gecko' ] ){
+        if( !g_Trident ){
             HighContrastModeHelper_test();
         } else if( HighContrastModeHelper_test() ){ // IE
             HighContrastModeHelper_timerID = setInterval( HighContrastModeHelper_test, 1000 );

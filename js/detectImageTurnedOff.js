@@ -21,7 +21,7 @@ function(){
     if( i ){
         for( ; i; ){
             img = imgs[ --i ];
-            if( ua[ 'Trident' ] < 9 || ua[ 'TridentMobile' ] < 9 ){// other
+            if( g_Trident < 9 ){// other
                 disabledActionRun( img.complete );
             } else {
                 disabledActionRun( img.naturalWidth );

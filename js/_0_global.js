@@ -17,8 +17,15 @@ var g_loadEventCallbacks   = [],
     g_ELEMENT_MAIN_ID = 'jsMain',
     g_elmMain,
 
+    g_Trident  = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
+    g_Tasman   = ua[ 'Tasman' ],
+    g_EdgeHTML = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
+    g_Presto   = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
+    g_Gecko    = ua[ 'Gecko' ],
+    g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
+
 // https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
-    g_passiveSupported = !ua[ 'Trident' ] && !ua[ 'TridentMobile' ] && !ua[ 'Tasman' ] && (new Function(
+    g_passiveSupported = !g_Trident && !g_Tasman && (new Function(
         'try{' +
             'var r,o=Object.defineProperty({},"passive",{' +
                 'get:function(){r=!0}' +

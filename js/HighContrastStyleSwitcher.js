@@ -82,7 +82,7 @@ var HighContrastStyleSwitcher_test = function(){
     };
 };
 
-if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) < 10 || ( ua[ 'Win32' ] && 44 <= ua[ 'Gecko' ] ) ){
+if( g_Trident < 10 || ( ua[ 'Win32' ] && 44 <= g_Gecko ) ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function (){
         //Create a test div
@@ -93,7 +93,7 @@ if( ( ua[ 'Trident' ] || ua[ 'TridentMobile' ] ) < 10 || ( ua[ 'Win32' ] && 44 <
 
         // https://news.softpedia.com/news/this-is-the-new-dark-mode-in-mozilla-firefox-70-527932.shtml
         // This Is the New Dark Mode in Mozilla Firefox 70
-        if( ua[ 'Gecko' ] < 60 ){
+        if( g_Gecko < 60 ){
             HighContrastStyleSwitcher_test();
         } else if( HighContrastStyleSwitcher_test() ){ // IE9- or Gecko70+
             HighContrastStyleSwitcher_timerID = setInterval( HighContrastStyleSwitcher_test, 1000 );

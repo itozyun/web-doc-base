@@ -6,7 +6,8 @@
 var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_ID_WRAPPER = 'jsSidebarFixer', // jsSidebarFixer
     SIDEBAR_FIXER_IDS_WHEEL  = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
-    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= ua[ 'Trident' ] || 10 <= ua[ 'TridentMobile' ] || ua[ 'EdgeHTML' ] || ua[ 'Chromium' ],
+    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ],
+    SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || ua[ 'Fennec' ] || ua[ 'Goanna' ] || g_EdgeHTML,
     /*
      * positionFixed
      *   original :
@@ -15,7 +16,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     /* SIDEBAR_FIXER_positionFixed =
             !(
                 // iOS 4.3 and older : Platform is iPhone/Pad/Touch and WebKit version is less than 534 (ios5)
-                ( ua[ 'iOS' ] < 5 ) ||
+                ( ua[ 'SafariMobile' ] < 5 || ua[ 'iOSWebView' ] < 5 ) ||
                 // Opera Mini
                 // https://www.tobymackenzie.com/blog/2017/05/11/opera-mini-supporting-fixed-position/
                 //( ua[ 'OperaMini' ] ) ||
@@ -42,7 +43,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_can3D,
     SIDEBAR_FIXER_skipScroll;
 
-if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
+if( !g_isMobile && !g_ServerSideRendering ){
 
     g_scrollEventCallbacks[ g_scrollEventCallbacks.length ] =
     g_resizeEventCallbacks[ g_resizeEventCallbacks.length ] = SIDEBAR_FIXER_onscroll;
@@ -64,9 +65,9 @@ if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
         DOM_insertBefore( SIDEBAR_FIXER_elmWrap, DOM_getFirstChild( SIDEBAR_FIXER_elmSide ) );
         SIDEBAR_FIXER_elmWrap.id = SIDEBAR_FIXER_ID_WRAPPER;
 
-        if( ua[ 'Trident' ] || ua[ 'TridentMobile' ] || ua[ 'Tasman' ] ){
+        if( g_Trident || g_Tasman ){
             SIDEBAR_FIXER_elmWrap.onfocusin = SIDEBAR_FIXER_onfocus;
-        } else if( ua[ 'Gecko' ] || ua[ 'Fennec' ] || ua[ 'Goanna' ] || ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ] ){
+        } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
             document.addEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
         } else {
             SIDEBAR_FIXER_elmWrap.addEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
@@ -88,7 +89,7 @@ if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
                 elm.onMozMousePixelScroll = SIDEBAR_FIXER_onwheel;
             } else if( Type_notUndefined( elm.onDOMMouseScroll ) ){
                 elm.onDOMMouseScroll = SIDEBAR_FIXER_onwheel;
-            } else if( Type_notUndefined( elm.onmousewheel ) || ua[ 'Presto' ] || ua[ 'PrestoMobile' ] ){
+            } else if( Type_notUndefined( elm.onmousewheel ) || g_Presto ){
                 elm.onmousewheel = SIDEBAR_FIXER_onwheel;
             };
         };
@@ -100,7 +101,7 @@ if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
             Type_notUndefined( style[ '-moz-' + transf ] ) ? '-moz-' + transf : 
             Type_notUndefined( style[ '-webkit-' + transf ] ) ? '-webkit-' + transf : '';
         
-        SIDEBAR_FIXER_can3D = !ua[ 'Trident' ] && !ua[ 'EdgeHTML' ] && !ua[ 'EdgeMobile' ] && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
+        SIDEBAR_FIXER_can3D = !g_Trident && !g_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
             Type_notUndefined( style[ perspe ] ) ||
             Type_notUndefined( style[ '-moz-' + perspe ] ) ||
             Type_notUndefined( style[ '-webkit-' + perspe ] ) );
@@ -129,10 +130,10 @@ if( !g_isMobile && !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
                 elm.onwheel = elm.onMozMousePixelScroll = elm.onDOMMouseScroll = elm.onmousewheel = null;
             };
 
-            if( ua[ 'Trident' ] || ua[ 'TridentMobile' ] || ua[ 'Tasman' ] ){
+            if( g_Trident || g_Tasman  ){
                 SIDEBAR_FIXER_elmWrap.onfocusin = g_emptyFunction;
                 SIDEBAR_FIXER_elmWrap.onfocusin = null;
-            } else if( ua[ 'Gecko' ] || ua[ 'Fennec' ] || ua[ 'Goanna' ] ){
+            } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
                 document.removeEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
             } else {
                 SIDEBAR_FIXER_elmWrap.removeEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
@@ -239,11 +240,11 @@ function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElemen
                 } else if( focusedElementT < scrollY ){
                     createPositioning( scrollY - mainY - focusedElementY );
                 } else {
-                    console.log( 'Focused Element in ViewPort ' );
+                    //console.log( 'Focused Element in ViewPort ' );
                     return;
                 };
             } else {
-                console.log( 'Sidebar in ViewPort ' );
+                //console.log( 'Sidebar in ViewPort ' );
                 return;
             };
         } else if( !wheelDeltaY ){

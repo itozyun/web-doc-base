@@ -3,7 +3,7 @@ g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
 function( removeCommentNodes, removalMetaTagNames ){
     g_elmMain = DOM_getElementById( g_ELEMENT_MAIN_ID );
 
-    removeCommentNodes  = !( ua[ 'Presto' ] < 8 || ua[ 'Trident' ] < 5 || ua[ 'TridentMobile' ] < 5 || ua[ 'Tasman' ] );
+    removeCommentNodes  = !( g_Presto < 8 || g_Trident < 5 || g_Tasman );
     removalMetaTagNames = [ 'og:', 'twitter:', 'fb:' ];
     walkTree( g_html );
 

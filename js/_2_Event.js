@@ -7,7 +7,7 @@ var Util_tempOnLoad   = window.onload, // window. を付けないと Win XP + Op
     Util_resizeTimerID;
 
 /**
- * @type {?function()|null}
+ * @type {?function(!Event)|null}
  */
 var Util_init = function( e ){
     var i = 0, l = g_loadEventCallbacks.length, ret;
@@ -29,7 +29,7 @@ var Util_init = function( e ){
 };
 
 /**
- * @type {?function()|null}
+ * @type {?function(!Event)|null}
  */
 var Util_kill = function( e ){
     var i = 0, l = g_unloadEventCallbacks.length, ret;

@@ -3,7 +3,7 @@ var PICA_THUMBNAIL_IMGS      = [],
     PICA_THUMBNAIL_MARGIN_LR = 4, // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
     PICA_THUMBNAIL_safariPreventDefault;
 
-if( !ua[ 'OperaMini' ] && !ua[ 'UCWEB' ] ){
+if( !g_ServerSideRendering ){
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function(){
         var links = DOM_getElementsByTagName( 'A', g_elmMain ),
