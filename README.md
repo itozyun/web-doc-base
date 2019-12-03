@@ -231,28 +231,12 @@ function mqo( opts ){
 
 ## How the Javascript build - Javascript のビルドの方法
 
-### build_inline-js.bat
+### How to build ./inline-js/*.js
+
+see ./gulpfile.js.
 
 ~~~bat
-@echo off
-
-REM js ================================================
-type nul > R:\temp.js
-
-echo (function(window,document,navigator,screen,parseFloat,undefined){; >> R:\temp.js
-type inline-js\01_ua.js                                                 >> R:\temp.js
-type inline-js\02_uaPlatform.js                                         >> R:\temp.js
-type inline-js\03_uaEngine.js                                           >> R:\temp.js
-type inline-js\04_uaBrand.js                                            >> R:\temp.js
-type inline-js\05_uaFinish.js                                           >> R:\temp.js
-type inline-js\10_dynamicViewPort.js                                    >> R:\temp.js
-echo window["ua"]=ua;                                                   >> R:\temp.js
-echo })(window,document,navigator,screen,parseFloat);                   >> R:\temp.js
-
-java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/ua.min.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs inline-js/__externs.js --compilation_level ADVANCED
-REM --formatting pretty_print
-
-del R:\temp.js
+gulp js
 ~~~
 
 ### build_js.bat

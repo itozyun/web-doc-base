@@ -70,8 +70,7 @@ function max(){
     return max;
 };
 
-var ua            = {},
-    engine, engineVersion, platform, platformVersion, brand, brandVersion, device, deviceVersion,
+var engine, engineVersion, platform, platformVersion, brand, brandVersion, device, deviceVersion,
     
     strUserAgent  = navigator.userAgent,
     strAppVersion = navigator.appVersion,
@@ -84,7 +83,7 @@ var ua            = {},
     screenH       = screen.height,
     AudioElement  = window.HTMLAudioElement,
     performance   = window.performance,
-    Int8Array     = window.Int8Array,
+    int8Array     = window.Int8Array,
 
     isTouch       = window.ontouchstart !== undefined,
 

@@ -188,7 +188,7 @@ if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin 
                 docExecCmd                 ?  7.1 :
                 window.webkitURL           ?  6.1 :
                 window.Worker              ?  5.1 :
-                Int8Array                  ?  4.3 :
+                int8Array                  ?  4.3 :
                 AudioElement               ?  4.1 : 3.2;
         };
 
@@ -614,7 +614,7 @@ if( maybeLinux && maybePCMode ){
             html.style.touchAction !== undefined ? { min : 5 } : 
             docRegElm ? 4.4 :
             // ＾______Chromium_____
-            Int8Array ? (
+            int8Array ? (
                 !navigator.connection ? 4.4 : // AOSP
                 ( !window.searchBoxJavaBridge_ && !hasChromeObject ) ? 4.2 : /* 4.1- には searchBoxJavaBridge_ と chrome が存在 */
                 Number.isNaN ? 4.1 : 4 ) :

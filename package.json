@@ -1,7 +1,7 @@
 {
   "name": "web-doc-base",
   "version": "1.0.0",
-  "description": "2カラムのWeb文書で再利用するための、クロスブラウザなHTML,css,js",
+  "description": "Super project for itozyun's Web document projects.",
   "keywords": [
     "web-document",
     "html5",
@@ -9,5 +9,18 @@
     "js"
   ],
   "author": "itozyun",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itozyun/web-doc-base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itozyun/web-doc-base/issues"
+  },
+  "homepage": "https://github.com/itozyun/web-doc-base#readme",
+  "devDependencies": {
+    "google-closure-compiler": "^20191111.0.0",
+    "gulp": "^4.0.2",
+    "gulp-cheerio": "^1.0.0"
+  }
 }
