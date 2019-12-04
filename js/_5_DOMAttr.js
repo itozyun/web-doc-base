@@ -1,4 +1,4 @@
-g_assetUrl = DOM_getAttribute( g_scripts[ g_scripts.length - 1 ], 'src' ).split( '/' );
+g_assetUrl = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
 --g_assetUrl.length;
 g_assetUrl = g_assetUrl.join( '/' );
 
