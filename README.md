@@ -42,15 +42,13 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 
 This project has been referred to the next project.
 
-1. [blogger-base](https://github.com/itozyun/blogger-base) "Common project for Blogger templete"
-2. [gariban](https://github.com/itozyun/gariban) "Ultralight free Blogger templete"
-3. [OutCloud](http://outcloud.blogspot.com/) "itozyun's blog"
+1. [gariban](https://github.com/itozyun/gariban) "Ultralight free Blogger templete"
+2. [OutCloud](http://outcloud.blogspot.com/) "itozyun's blog"
 
 プロジェクトは次のプロジェクトに参照されています。
 
-1. [blogger-base](https://github.com/itozyun/blogger-base) "Blogger テンプレート用共通プロジェクト"
-2. [gariban](https://github.com/itozyun/gariban) "超軽量な無料 Blogger テンプレート"
-3. [OutCloud](http://outcloud.blogspot.com/) "itozyun のブログです"
+1. [gariban](https://github.com/itozyun/gariban) "超軽量な無料 Blogger テンプレート"
+2. [OutCloud](http://outcloud.blogspot.com/) "itozyun のブログです"
 
 ## How the CSS build - CSS のビルドの方法
 
