@@ -31,6 +31,9 @@
             margin  : 0;
             display : block;
             width   : 100%;
+        /* //_{#can-max-min */
+            max-width : 100%;
+        /* //_}#can-max-min */
         }
         .Cover .img-loaded div {
             position : absolute;

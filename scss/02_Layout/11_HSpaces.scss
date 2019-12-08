@@ -1,4 +1,4 @@
-@mixin hMargin($ratio, $marginTop, $marginBottom, $parentHasMarginForPC : 0){
+@mixin hMargin($ratio, $marginTop, $marginBottom, $parentHasMarginForPC : 0, $maxWidth : 0){
     /* //_{^+mobileOnly */
     @if 1 < $ratio {
         & {
@@ -49,6 +49,33 @@ p, pre, ul, ol, dl,
 table,
 img, iframe {
     @include hMargin(1, 1em, 1em);
+}
+
+img, iframe {
+/* //_{#can-max-min */
+    max-width : 100%;
+
+    @include media(tablet_print) {
+        & {
+            max-width  : #{100% - $TABLET_H_SPACE * 2};
+        }
+    }
+    @include media(phablet) {
+        & {
+            max-width  : #{100% - $PHABLET_H_SPACE * 2};
+        }
+    }
+    @include media(phone) {
+        & {
+            max-width  : #{100% - $PHONE_H_SPACE * 2};
+        }
+    }
+    @include media(watch) {
+        & {
+            max-width  : 100%;
+        }
+    }
+/* //_}#can-max-min */
 }
 
 tr blockquote {

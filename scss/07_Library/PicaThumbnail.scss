@@ -24,6 +24,9 @@
     .jsPicaLarge img {
         float      : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
         width      : 100%;
+    /* //_{#can-max-min */
+        max-width : 100%;
+    /* //_}#can-max-min */
         height     : auto;
         /* //_{#can-margin-auto */
         margin     : 0 auto 1em; /* auto は中央配置で transition させるため */
