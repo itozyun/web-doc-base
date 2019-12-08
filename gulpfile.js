@@ -1,11 +1,8 @@
-/* -------------------------------------------------------
- *  Closure Compiler
- */
 var gulp = require('gulp'),
     minjs = '';
 
 /* -------------------------------------------------------
- *  Closure Compiler
+ *  gulp js
  */
 gulp.task('createMinJs', function( cb ){
     // https://github.com/google/closure-compiler-npm/tree/master/packages/google-closure-compiler
@@ -59,19 +56,16 @@ gulp.task('createMinJs', function( cb ){
     );
 });
 
-/* -------------------------------------------------------
- *  Closure Compiler
- */
 var cheerio = require('gulp-cheerio');
 
-gulp.task( 'finish', function(){
+gulp.task( 'insertMinJs', function(){
     return gulp.src('./ua.html')
         .pipe(cheerio({
             run: function ($) {
-                $('script[minjs]').text( minjs );
+                $('script').eq(1).text( minjs );
             } //, parserOptions: { xmlMode: true }
         }))
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('js', gulp.series( 'createMinJs', 'finish' ) );
+gulp.task('js', gulp.series( 'createMinJs', 'insertMinJs' ) );

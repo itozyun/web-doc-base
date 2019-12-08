@@ -12,11 +12,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <script>
-window.onerror = function(errorMsg, url, lineNumber) {
-    return alert( errorMsg + ':' + lineNumber + ',' + url );
-};
+    window.onerror = function(errorMsg, url, lineNumber) {
+        return alert( errorMsg + ':' + lineNumber + ',' + url );
+    };
 </script>
-<script minjs>ua={};
+<script>ua={};
 (function(p,m,D,P,Aa,u,Ba,gb){function ha(a,b){var c=u(a.split(b)[1]);return 0<=c?c:0}function f(a,b){return 0<=a.indexOf(b)}function c(a,b){var c="",d=-1,e;if(a=a.split(b)[1]){for(;e=a.charCodeAt(++d);)if(48<=e&&57>=e||46===e)c+=a.charAt(d);else break;for(d=c.length;d;)if(46===c.charCodeAt(--d))c=c.substr(0,d);else break}return c}function Ca(a,b){var c=0,d;a=a.split(".");b=b.split(".");for(d=Math.min(a.length,b.length);c<d;++c){var e=u(a[c]),f=u(b[c]);if(e!==f)return e>f?1:-1}return a.length===b.length?
 0:a.length>b.length?1:-1}function Da(){for(var a=arguments,b=1,c=a.length,d=a[0],e;b<c;++b)0>Ca(d,e=a[b])&&(d=e);return d}function W(a){return a===a+""?a:a===a-0?""+a:a.min&&a.max?a.min+"~"+a.max:a.min?a.min+"~":"~"+a.max}function X(a){return a===a+""?u(a):a}function ia(a,b){b&&(H&&(H+=","),H+=a+b)}var k,l,a=P.userAgent,q=P.appVersion,ja=u(q)|0,n=P.platform,Y=D.documentElement,ka=D.documentMode,la=Aa.width,ma=Aa.height,Ea=m.HTMLAudioElement,Fa=m.performance,Ga=m.Int8Array,$a=void 0!==m.ontouchstart,
 F=c(q,"Version/")||c(a,"Version/"),I=Y&&void 0!==Y.style.MozAppearance,Ha=m.operamini,Z=f(a,"UCWEB"),ab=Z&&c(a," U2/"),bb=Z&&c(a,"; wds "),na=c(a.split("_").join("."),"; iPh OS "),cb=c(a,"; Adr "),Ia=f(q,"YJApp-ANDROID"),C=f(n,"Android")||I&&f(q,"Android")||Ia,v=c(n,"Android ")||c(q,"Android ")||c(a,"Android ")||cb,oa=f(n,"Linux"),M=!Ha&&m.opera,Ja=M&&(M.version&&"function"===typeof M.version?M.version():Da(c(a,"Opera "),F,""+ja)),Ka=m.opr,R=!M&&(D.all||ka),y=R&&(ka?ka:m.a?D.getElementsByTagName?
