@@ -75,7 +75,6 @@ This project has been referred to the next project.
                     "find"   : {
                         "rootPath" : [
                                 "../web-doc-base/scss",
-                                "../blogger-base/scss",
                                 "./scss"
                             ],
                         "include"  : "**.scss"
@@ -87,7 +86,6 @@ This project has been referred to the next project.
                     "find"   : {
                         "rootPath" : [
                                 "../web-doc-base/scss",
-                                "../blogger-base/scss",
                                 "./scss"
                             ],
                         "include"  : "**.scss"
@@ -108,7 +106,7 @@ var gulp     = require('gulp'),
     sass     = require("gulp-sass"),
     cleanCSS = require("gulp-clean-css"),
     plumber  = require("gulp-plumber"),
-    mmq      = require("gulp-merge-media-queries"),
+    gcm      = require("gulp-group-css-media-queries"),
     name     = 'MyBlog',
     output   = './public';
 
@@ -116,7 +114,9 @@ gulp.task('sass', function(){
   return gulp.src(['R:/' + name + '/precompiled/*.scss'])
     .pipe(plumber())
     .pipe(sass())
+    .pipe(gcm())
     .pipe(cleanCSS({
+      compatibility : { properties : { ieFilters : true } },
       //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
       level: {
         1: {
@@ -124,22 +124,8 @@ gulp.task('sass', function(){
           roundingPrecision : 3
         },
         2: {
-          removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
-          removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
-          removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
-          
-          mergeSemantically: true, // controls semantic merging; defaults to false
-          removeUnusedAtRules: true, // controls unused at rule removing; defaults to false (available since 4.1.0)
-          restructureRules: true // controls rule restructuring; defaults to false
-        }
-      }
-    }))
-    .pipe(mmq())
-    .pipe(cleanCSS({ 
-      level: {
-        1: {
-          all: false, // set all values to `false`
-          removeWhitespace: true // controls removing unused whitespace; defaults to `true`
+          all : true,
+          removeUnusedAtRules: false // controls unused at rule removing; defaults to false (available since 4.1.0)
         }
       }
     }))
@@ -237,29 +223,74 @@ see ./gulpfile.js.
 gulp js
 ~~~
 
-### build_js.bat
+### How to build ./js/*.js
 
-~~~bat
-@echo off
+~~~js
+const gulp            = require('gulp'),
+      name            = 'MyBlog',
+      output          = './public',
+      closureCompiler = require('google-closure-compiler').gulp(),
+      globalVariables = 'document,parseFloat,Function,isFinite,setTimeout,clearTimeout';
 
-type nul > R:\temp.js
+gulp.task('compile', function () {
+    return closureCompiler(
+            {
+                js                : [
+                   '../web-doc-base/js/_0_global.js',
+                   '../web-doc-base/js/_1_Type.js',
+                   '../web-doc-base/js/_2_Event.js',
+                   '../web-doc-base/js/_3_DOM.js',
+                   '../web-doc-base/js/_4_DOMStyle.js',
+                   '../web-doc-base/js/_5_DOMAttr.js',
+                   '../web-doc-base/js/_6_DOMClass.js',
+                   '../web-doc-base/js/_7_DOMEvent.js',
+                   '../web-doc-base/js/_8_CSSOM.js',
+                   '../web-doc-base/js/0_nodeCleaner.js',
+                   '../web-doc-base/js/ie5.js',
+                   '../web-doc-base/js/HighContrastStyleSwitcher.js',
+                   '../web-doc-base/js/detectImageTurnedOff.js',
+                   '../web-doc-base/js/PicaThumnail.js',
+                   '../web-doc-base/js/SidebarFixer.js',
+                   '../web-doc-base/js/blockquot.js'
+                ],
+                externs           : [
+                    '../web-doc-base/inline-js/__externs.js',
+                    './node_modules/google-closure-compiler/contrib/externs/svg.js',
+                    '../web-doc-base/js/__externs.js'
+                ],
+                compilation_level : 'ADVANCED',
+                formatting        : 'PRETTY_PRINT',
+                warning_level     : 'VERBOSE',
+                language_in       : 'ECMASCRIPT3',
+                language_out      : 'ECMASCRIPT3',
+                output_wrapper    : '(function(ua,window,' + globalVariables + ',undefined){\n%output%\n})(ua,this,' + globalVariables + ')',
+                js_output_file    : 'temp.js'
+            }
+        )
+        .src()
+        .pipe(gulp.dest( 'R:/' + name ));
+});
 
-echo (function(ua,window,document,parseFloat,undefined){; >> R:\temp.js
-type ..\\web-doc-base\js\_global.js                       >> R:\temp.js
-type ..\\web-doc-base\js\_util.js                         >> R:\temp.js
-type ..\\web-doc-base\js\commentCleaner.js                >> R:\temp.js
-type ..\\web-doc-base\js\checkHighContrast.js             >> R:\temp.js
-type ..\\web-doc-base\js\detectImageTurnedOff.js          >> R:\temp.js
-type ..\\web-doc-base\js\PicaThumnail.js                  >> R:\temp.js
-type ..\\web-doc-base\js\SidebarFixer.js                  >> R:\temp.js
-type ..\\web-doc-base\js\ie5.js                           >> R:\temp.js
-type ..\\web-doc-base\js\blockquot.js                     >> R:\temp.js
-echo })(ua,window,document,parseFloat);                   >> R:\temp.js
+gulp.task( 'finish', function(){
+    return closureCompiler(
+        {
+            js                : [
+                'R:/' + name + '/temp.js',
+                '../web-doc-base/js/GoogleCodePrettify.js'
+            ],
+            externs           : [
+                '../web-doc-base/inline-js/__externs.js',
+                './node_modules/google-closure-compiler/contrib/externs/svg.js',
+                '../web-doc-base/js/__externs.js'
+            ],
+            language_in       : 'ECMASCRIPT3',
+            language_out      : 'ECMASCRIPT3',
+            js_output_file    : 'min.js'
+        }
+    )
+    .src()
+    .pipe(gulp.dest( output ));
+});
 
-java -jar C:\ClosureCompiler\closure-compiler-v20180910.jar --js R:\temp.js --js_output_file dist/min.js --language_in ECMASCRIPT3 --language_out ECMASCRIPT3 --externs ../web-doc-base/js/__externs.js --compilation_level ADVANCED
-REM --compilation_level WHITESPACE_ONLY --formatting pretty_print
-
-type ..\\web-doc-base\js\GoogleCodePrettify.js >> dist/min.js
-
-del R:\temp.js
+gulp.task('javascript', gulp.series( 'compile', 'finish' ) );
 ~~~
