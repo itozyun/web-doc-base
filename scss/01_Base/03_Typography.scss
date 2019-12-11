@@ -1,20 +1,3 @@
-
-@mixin unbreak-inside {
-    break-inside      : avoid;
-    page-break-inside : avoid;
-}
-
-@mixin unbreak-after {
-    /* //_{@modern */
-    -webkit-column-break-after : avoid;
-    -webkit-region-break-after : avoid;
-      -moz-break-after         : avoid;
-    column-break-after         : avoid;
-    /* //_}@modern */
-    break-after                : avoid;
-    page-break-after           : avoid;
-}
-
 /*  Typography
 --------------------------------------------------------------------------------------*/
     h1, .h1, h2, h3, h4, h5, h6 {
