@@ -14,27 +14,32 @@
     .SearchResult p {
         margin : 0.5em;
     }
-    .SearchResult div div {
-        @include unbreak-inside;
-        margin : 0 0.5em;
+        .SearchResult div div {
+            @include unbreak-inside;
+            margin : 0 0.5em;
+        }
+            .SearchResult h3 {
+                margin-bottom : 0;
+            }
+                .SearchResult :visited {
+                    color : #1a0dab;
+                }
+            .SearchResult cite {
+                color      : #006621;
+                word-break : break-all;
+            }
+            .SearchResult div p {
+                margin : 0.2em 0 0;
+                color  : #545454;
+            }
+                .SearchResult div span {
+                    color : #808080;
+                }
+
+
+    .SearchResult-multi {
+        margin : 2em 0;
     }
-        .SearchResult h3 {
-            margin-bottom : 0;
-        }
-            .SearchResult :visited {
-                color : #1a0dab;
-            }
-        .SearchResult cite {
-            color      : #006621;
-            word-break : break-all;
-        }
-        .SearchResult div p {
-            margin : 0.2em 0 0;
-            color  : #545454;
-        }
-            .SearchResult div span {
-                color : #808080;
-            }
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/

@@ -7,23 +7,24 @@
  *    +ArticleLabels
 --------------------------------------------------------------------------------------*/
     .AHead {
+        color : $COLOR_Default_casual_text;
+    }
+        .AHead h1 {
+            font-size      : 2em;
+            padding        : 0;
+            margin         : 2em 0;
+
+            color          : $COLOR_Default_text;
+            /* //_{^+mobileOnly */
+            text-align     : left;
+            /* //_}^+mobileOnly */
+        }
+    .ribbon .AHead {
         color : $COLOR_Ribbon_casual_text;
     }
-
-    .AHead h1 {
-        font-size      : 2em;
-        padding        : 0;
-        margin         : 2em 0;
-
-        color          : $COLOR_Ribbon_text;
-        /* //_{^+mobileOnly */
-        text-align     : left;
-        /* //_}^+mobileOnly */
-    }
-
-    .lMz .AHead h1 {
-        color : $COLOR_Default_text;
-    }
+        .ribbon .AHead h1 {
+            color : $COLOR_Ribbon_text;
+        }
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
@@ -53,20 +54,22 @@
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
-    .lMz .AHead h1 {
-        color : $COLOR_Watch_text;
+    .AHead {
+        color  : $COLOR_Watch_casual_text;
     }
+        .AHead h1 {
+            color : $COLOR_Watch_text;
+        }
 }
 
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .AHead {
-        color  : $COLOR_Print_casual_text;
+        color  : $COLOR_Print_casual_text !important;
     }
-
-    .AHead h1, .lMz .AHead h1 {
-        color  : $COLOR_Print_text;
+    .AHead h1 {
+        color  : $COLOR_Print_text !important;
     }
 }
 
