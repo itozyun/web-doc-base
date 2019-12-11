@@ -25,7 +25,6 @@ $COMMENT_OUT : (
     'dark_theme'   : 1,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
-    'ie10_edge'    : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 );
 /* //_}+mobileOnly */
@@ -43,7 +42,6 @@ $COMMENT_OUT : (
     'dark_theme'   : $NO_MEDIA_QUERY,
     'print'        : 1,
     'onlyOpera'    : $NO_MEDIA_QUERY,
-    'ie10_edge'    : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 ) !default;
 
@@ -108,18 +106,6 @@ $COMMENT_OUT : (
         }
         @else if $media == 'print' {
             @media print {
-                @content;
-            }
-        }
-        /**
-         * -ms-high-contrast を CSS ハックに使ってはいけない、ただひとつの理由
-         *   https://jeffreyfrancesco.org/weblog/2017042601/
-         */
-        @else if $media == 'ie10_edge' {
-            @media (-ms-high-contrast:none) {
-                @content;
-            }
-            @media (-ms-high-contrast:active) {
                 @content;
             }
         }
