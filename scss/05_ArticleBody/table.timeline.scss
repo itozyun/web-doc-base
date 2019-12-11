@@ -52,9 +52,8 @@
 
     /* //_{#can-content */
     tbody td:before, tbody td:after {
-        content       : ".";
+        @include createPusedoContent;
         text-indent   : -1em;
-        overflow      : hidden;
         display       : block;
         position      : absolute;
         border-width  : .3em;

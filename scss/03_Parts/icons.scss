@@ -11,9 +11,8 @@
         vertical-align : text-top;
     /* //_}@modern */
     &:before, &:after {
-        content       : ".";
+        @include createPusedoContent;
         text-indent   : -1em;
-        overflow      : hidden;
         display       : block;
         position      : absolute;
         border-width  : 0;

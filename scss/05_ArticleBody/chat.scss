@@ -67,13 +67,12 @@
         }
     /* //_{#can-content */
         .chatR p:after, .chatL p:after {
-            content      : ".";
+            @include createPusedoContent;
             display      : block;
             position     : absolute;
             top          : .4em;
             width        : 0;
             height       : 0;
-            overflow     : hidden;
         }
         .chatL p:after {
             border-color : transparent #fff;
@@ -195,13 +194,12 @@
 
         /* //_{#can-content */
             .chatR p:before, .chatL p:before {
-                content      : ".";
+                @include createPusedoContent;
                 display      : block;
                 position     : absolute;
                 top          : 5px;
                 width        : 0;
                 height       : 0;
-                overflow     : hidden;
             }
             .chatL p:before {
                 border-color : transparent $COLOR_Print_casual_text;

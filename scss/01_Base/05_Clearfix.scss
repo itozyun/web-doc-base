@@ -3,6 +3,18 @@
  *   https://github.com/Compass/compass/tree/d5df161d0df7edc686e576b22412f437dd0590cc/core/stylesheets/compass/utilities/general
 --------------------------------------------------------------------------------------*/
 
+@mixin createPusedoContent {
+    & {
+        /* //_{@modern */
+        content  : ".";
+        overflow : hidden;
+        /* //_}@modern */
+        /* //_{^@modern */
+        content  : "";
+        /* //_}^@modern */
+    }
+}
+
 @mixin clearfix {
     /* //_{@modern,@ie9,@ie8,@ie7 */
         display  : block;
@@ -16,17 +28,18 @@
     /* //_}#ie6-win */
 
     /* //_{@ie5mac */
-        display  : inline-block;
+        display  : inline-table;
     /* //_}@ie5mac */
 
         /* //_{#can-content */
             &:after {
-                content     : ".";
-                display     : block;
-                visibility  : hidden;   
-                height      : 0.1px;   
-                font-size   : 0.1em;   
+                @include createPusedoContent;
+                /* //_{@modern */
+                height      : 0;
                 line-height : 0;
+                visibility  : hidden;
+                /* //_}@modern */
+                display     : block;
                 clear       : both;
             }
         /* //_}#can-content */
