@@ -67,8 +67,7 @@
         }
     /* //_{#can-content */
         .chatR p:after, .chatL p:after {
-            @include createPusedoContent;
-            display      : block;
+            @include createPusedoBlock;
             position     : absolute;
             top          : .4em;
             width        : 0;
@@ -194,8 +193,7 @@
 
         /* //_{#can-content */
             .chatR p:before, .chatL p:before {
-                @include createPusedoContent;
-                display      : block;
+                @include createPusedoBlock;
                 position     : absolute;
                 top          : 5px;
                 width        : 0;

@@ -3,15 +3,36 @@
  *   https://github.com/Compass/compass/tree/d5df161d0df7edc686e576b22412f437dd0590cc/core/stylesheets/compass/utilities/general
 --------------------------------------------------------------------------------------*/
 
-@mixin createPusedoContent {
+@mixin createPusedoBlock($invisible : 0) {
     & {
         /* //_{@modern */
-        content  : ".";
+        /* http://browserhacks.com/ */
+        /* Firefox <= 3 */
+        @media \0 all { & { content : "." } }
+        /* 2 <= Firefox */
+        @if $invisible == 1 {
+            body:last-child & [firefox-gte2] /* , x:-moz-any-link @see /README.md */ {
+                content : "";
+            }
+        /* https://ka2.org/css-hack-for-opera/ */
+        /* Opera <= 9 */
+            [opera-lte9] /* , x:not(\\) @see /README.md */ { content : " " }
+        } @else {
+            body:last-child & [firefox-gte2] {
+                content : "_";
+            }
+            content : " ";
+        }
         overflow : hidden;
         /* //_}@modern */
         /* //_{^@modern */
-        content  : "";
+        @if $invisible == 1 {
+            content : "";
+        } @else {
+            content : " ";
+        }
         /* //_}^@modern */
+        display  : block;
     }
 }
 
@@ -33,13 +54,12 @@
 
         /* //_{#can-content */
             &:after {
-                @include createPusedoContent;
+                @include createPusedoBlock(1);
                 /* //_{@modern */
                 height      : 0;
                 line-height : 0;
                 visibility  : hidden;
                 /* //_}@modern */
-                display     : block;
                 clear       : both;
             }
         /* //_}#can-content */

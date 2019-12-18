@@ -5,16 +5,20 @@ code, var {
     padding    : .1em .4em;
     margin     : 0 .1em;
 
-    blockquote &, tbody th & {
+    pre & {
+        background : none;
+        padding    : 0;
+        margin     : 0;
+    }
+
+    blockquote &, tbody th &, blockquote .tl tr & {
         background : $COLOR_Default_casual_text;
         color      : $COLOR_Default_fill;
     }
-}
-
-pre code, pre var {
-    background : none;
-    padding    : 0;
-    margin     : 0;
+    thead &, blockquote tbody th &, .tl tr & {
+        background : $COLOR_Default_casual_fill;
+        color      : $COLOR_Default_text;
+    }
 }
 
 /*  Dark theme
@@ -22,14 +26,37 @@ pre code, pre var {
 @include media(dark_theme) {
     code, var {
         background : $COLOR_Watch_casual_fill;
-    
-        blockquote &, tbody th & {
+
+        pre & {
+            background : none;
+        }
+
+        blockquote &, tbody th &, blockquote .tl tr & {
             background : $COLOR_Watch_casual_text;
             color      : $COLOR_Watch_fill;
         }
+        thead &, blockquote tbody th &, .tl tr & {
+            background : $COLOR_Watch_casual_fill;
+            color      : $COLOR_Watch_text;
+        }
     }
-    pre code, pre var {
-        background : none;
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    code, var {
+        background   : none !important;
+        border-width : 1px;
+        border-color : $COLOR_Print_casual_fill;
+
+        blockquote &, tbody th &, thead & {
+            border-color : $COLOR_Print_casual_text;
+        }
+        blockquote &, tbody th &, blockquote .tl tr &,
+        thead &, blockquote tbody th &, .tl tr & {
+            color : $COLOR_Print_text;
+        }
     }
 }
 /* //_}+it */

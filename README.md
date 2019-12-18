@@ -102,21 +102,27 @@ This project has been referred to the next project.
 ### gulpfile.js
 
 ~~~js
-var gulp     = require('gulp'),
-    sass     = require("gulp-sass"),
-    cleanCSS = require("gulp-clean-css"),
-    plumber  = require("gulp-plumber"),
-    gcm      = require("gulp-group-css-media-queries"),
-    name     = 'MyBlog',
-    output   = './public';
+const gulp     = require('gulp'),
+      name     = 'MyBlog',
+      output   = './public';
 
-gulp.task('sass', function(){
-  return gulp.src(['R:/' + name + '/precompiled/*.scss'])
+/* -------------------------------------------------------
+ *  gulp css
+ */
+const sass      = require("gulp-sass"),
+      cleanCSS  = require("gulp-clean-css"),
+      plumber   = require("gulp-plumber"),
+      gcm       = require("gulp-group-css-media-queries"),
+      gutil     = require('gulp-util'),
+      Transform = require('stream').Transform,
+      postcss   = require('postcss');
+
+gulp.task('css', function(){
+  return gulp.src(['R:/' + name + '/precompiled/**/*.scss'])
     .pipe(plumber())
     .pipe(sass())
     .pipe(gcm())
     .pipe(cleanCSS({
-      compatibility : { properties : { ieFilters : true } },
       //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
       level: {
         1: {
@@ -125,92 +131,83 @@ gulp.task('sass', function(){
         },
         2: {
           all : true,
-          removeUnusedAtRules: false // controls unused at rule removing; defaults to false (available since 4.1.0)
+          removeUnusedAtRules: false
         }
       }
     }))
-    .pipe(gulp.dest(output));
-});
+    .pipe(
+    // Creaet CSS for High Contrast mode.
+    // Delete " [firefox-gte2]" and add ",x:-moz-any-link" to .cleardix selector.
+    // Delete " [firefox-gte2]", add ",x:-moz-any-link" and replace the value from "_" to "_".
+    // Delete " [opera-lte9]" and add ",x:not(\\\\)" to .cleardix selector.
+    (function( opts ){
+        var stream = new Transform( { objectMode : true } );
 
-// high-contrast
-gulp.task( 'hc', function(){
-    return gulp.src(output + '/*.css')
-    .pipe(mqo({
+        stream._transform = function( file, encoding, cb ){
+            if( file.isNull() ) return cb(null, file);
+    
+            if( file.isStream() ) return cb( new gutil.PluginError( 'mqo', 'Streaming not supported' ) );
+    
+            if( file.isBuffer() ){
+                let css    = postcss.parse( String( file.contents ) ),
+                    newCss = postcss.parse('@charset "UTF-8"'),
+                    createNewFile, updateCurrentFile;
+    
+                css.walkAtRules( function( rule ){
+                    if( rule.name === 'media' && rule.params === opts.match ){
+                        rule.clone().walkRules( function( r ){
+                            newCss.append( r );
+                        } );
+                        rule.remove();
+                        createNewFile = true;
+                    };
+                });
+    
+                if( createNewFile ){
+                    this.push(new gutil.File({
+                        cwd      : file.cwd,
+                        base     : file.base,
+                        path     : file.base + '/' + opts.folder + '/' + file.basename,
+                        contents : Buffer.from(newCss.toString())
+                    }));
+                };
+    
+                css.walkDecls('content', function( decl, rule ){
+                    rule = decl.parent;
+                    if( decl.value === '""' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
+                        rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
+                        updateCurrentFile = true;
+                    } else if( decl.value === '"_"' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
+                        rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
+                        decl.value = '" "';
+                        updateCurrentFile = true;
+                    } else if( decl.value === '" "' && 0 <= rule.selector.indexOf( ' [opera-lte9]' ) ){
+                        rule.selector = rule.selector.split( ' [opera-lte9]' ).join( '' ) + ',x:not(\\)';
+                        css.append( rule ); // go to last
+                        updateCurrentFile = true;
+                    };
+                });
+    
+                if( updateCurrentFile ){
+                    this.push(new gutil.File({
+                        cwd      : file.cwd,
+                        base     : file.base,
+                        path     : file.path,
+                        contents : Buffer.from(css.toString())
+                    }));
+                } else {
+                    this.push(file);
+                };
+                cb();
+            };
+        };
+        return stream;
+    })({
         match  : 'only screen and (-ms-high-contrast:active)',
         folder : 'hc'
     }))
-    .pipe(gulp.dest(output + '/hc'));
+    .pipe(gulp.dest(output));
 });
-
-gulp.task('make', gulp.series( 'sass', 'hc' ) );
-
-/* -------------------------------------------------------
- *  media-query-operator
- */
-var gutil       = require('gulp-util');
-var Transform   = require('stream').Transform;
-var Path        = require('path');
-var postcss     = require('postcss');
-
-function mqo( opts ){
-    var stream = new Transform( { objectMode : true } );
-
-    opts = opts || {};
-
-    function parsePath( path ){
-        var extname = Path.extname( path );
-        return {
-            dirname  : Path.dirname( path ),
-            basename : Path.basename( path, extname ),
-            extname  : extname
-        };
-    };
-
-    stream._transform = function( file, encoding, cb ){
-        if( file.isNull() ){
-            return cb(null, file);
-        };
-        if( file.isStream() ){
-            return cb( new gutil.PluginError( 'mqo', 'Streaming not supported' ) );
-        };
-        if( file.isBuffer() ){
-            var css        = postcss.parse( String( file.contents ) ),
-                parsedFile = parsePath( file.relative ),
-                matchCount = 0,
-                newCss     = postcss.parse('@charset "UTF-8"');
-
-            // let's loop through all rules and extract all @media print
-            css.walkAtRules( function( rule ){
-                //rule.name.match(/^media/) && console.log(rule.params)
-                if( rule.name.match( /^media/ ) && ( rule.params === opts.match ) ){
-                    // add the rule to the new css
-                    var newRule = rule.clone();
-
-                    newRule.walkRules( function( r ){
-                        newCss.append( r );
-                    } );
-                    rule.remove();
-                    matchCount++;
-                };
-            });
-
-            // push old file
-            this.push(file);
-
-            if( matchCount ){
-                //push new file
-                this.push(new gutil.File({
-                    cwd      : '/',
-                    base     : '/' + opts.folder + '/',
-                    path     : '/' + opts.folder + '/' + parsedFile.basename + parsedFile.extname,
-                    contents : Buffer.from(newCss.toString())
-                }));
-            };
-            cb();
-        };
-    };
-    return stream;
-};
 ~~~
 
 ## How the Javascript build - Javascript のビルドの方法
@@ -228,8 +225,12 @@ gulp js
 ~~~js
 const gulp            = require('gulp'),
       name            = 'MyBlog',
-      output          = './public',
-      closureCompiler = require('google-closure-compiler').gulp(),
+      output          = './public';
+
+/* -------------------------------------------------------
+ *  gulp js
+ */
+const closureCompiler = require('google-closure-compiler').gulp(),
       globalVariables = 'document,parseFloat,Function,isFinite,setTimeout,clearTimeout';
 
 gulp.task('compile', function () {
@@ -243,8 +244,7 @@ gulp.task('compile', function () {
                    '../web-doc-base/js/_4_DOMStyle.js',
                    '../web-doc-base/js/_5_DOMAttr.js',
                    '../web-doc-base/js/_6_DOMClass.js',
-                   '../web-doc-base/js/_7_DOMEvent.js',
-                   '../web-doc-base/js/_8_CSSOM.js',
+                   '../web-doc-base/js/_7_CSSOM.js',
                    '../web-doc-base/js/0_nodeCleaner.js',
                    '../web-doc-base/js/ie5.js',
                    '../web-doc-base/js/HighContrastStyleSwitcher.js',

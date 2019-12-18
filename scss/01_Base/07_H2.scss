@@ -14,8 +14,7 @@ h2 {
     position     : relative;
     
     &:after {
-        @include createPusedoContent;
-        display      : block;
+        @include createPusedoBlock;
         width        : 5em;
         height       : 0;
         font-size    : 0.1em;

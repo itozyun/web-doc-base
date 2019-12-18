@@ -52,9 +52,8 @@
 
     /* //_{#can-content */
     tbody td:before, tbody td:after {
-        @include createPusedoContent;
+        @include createPusedoBlock;
         text-indent   : -1em;
-        display       : block;
         position      : absolute;
         border-width  : .3em;
     }
@@ -129,11 +128,11 @@
     }
 /* //_}#can-hover-pseudo-class */
 
-    thead th, thead td, tbody th {
-        :link {
+    thead, tbody th {
+        :link, :link:hover {
             color : $COLOR_Default_link;
         }
-        :visited {
+        :visited, :visited:hover {
             color : $COLOR_Default_visited;
         }
     }
@@ -155,6 +154,9 @@ blockquote .tl {
         border-color : $COLOR_Default_casual_fill;
     }
     /* //_}#can-content */
+    tbody th :visited {
+        color : $COLOR_Default_visited;
+    }
 }
 
 /*  Dark theme
@@ -173,11 +175,11 @@ blockquote .tl {
             border-color : $COLOR_Watch_casual_fill;
         }
 
-        thead th, thead td, tbody th {
-            :link {
+        thead, tbody th {
+            :link, :link:hover {
                 color : $COLOR_Watch_link;
             }
-            :visited {
+            :visited, :visited:hover {
                 color : $COLOR_Watch_visited;
             }
         }      
@@ -191,6 +193,9 @@ blockquote .tl {
         }
         tbody td:after {
             border-color : $COLOR_Watch_casual_fill;
+        }
+        tbody th :visited {
+            color : $COLOR_Watch_visited;
         }
     }  
 }

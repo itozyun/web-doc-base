@@ -127,12 +127,13 @@ table {
         color        : $fill;
     }
     thead {
-        :link   , :link:hover,
-        :visited, :visited:hover {
+        :link, :link:hover {
+            color : $fill;
+        }
+        .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
             color : $fill;
         }
     }
-
     blockquote {
         table {
             border-color : $text;
@@ -164,7 +165,7 @@ table {
 
         tbody th {
             :link   , :link:hover,
-            :visited, :visited:hover {
+            .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
                 color : $fill;
             }
         }
@@ -220,8 +221,8 @@ tbody :hover th {
     }
 
     thead th, thead td {
-        background   : $COLOR_Print_casual_text;
-        border-color : $COLOR_Print_text;
+        background   : $COLOR_Print_casual_fill;
+        border-color : $COLOR_Print_casual_text;
         color        : $COLOR_Print_text;
         padding      : 0.5em;
         border-width : 0 0 1px;
@@ -254,7 +255,7 @@ tbody :hover th {
             border-color : $COLOR_Print_text;
         }
         thead th, thead td {
-            background   : $COLOR_Print_casual_text;
+            background   : $COLOR_Print_casual_fill;
             border-color : $COLOR_Print_text;
             color        : $COLOR_Print_text;
             padding      : 0.5em;
