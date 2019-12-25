@@ -34,7 +34,7 @@ function( e ){
             link = createUrl( cite ),
             elmCite;
         
-        link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
+        link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow noopener"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
         if( g_w3cDOM ){
             elmCite = DOM_createElement( tag );
