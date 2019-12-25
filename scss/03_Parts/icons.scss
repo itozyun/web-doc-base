@@ -60,6 +60,14 @@
             border-color : $COLOR_Watch_casual_text transparent;
         }
     }
+/* //_{@modern */
+    @media (-ms-high-contrast:active) {
+        & {
+            border-left-color  : transparent !important;
+            border-right-color : transparent !important;
+        }
+    }
+/* //_}@modern */
 }
 @mixin icon-border-transparent-fill {
     & {
@@ -81,6 +89,14 @@
             border-color : transparent $COLOR_Watch_casual_text;
         }
     }
+/* //_{@modern */
+    @media (-ms-high-contrast:active) {
+        & {
+            border-top-color    : transparent !important;
+            border-bottom-color : transparent !important;
+        }
+    }
+/* //_}@modern */
 }
 
 .ico-clock {

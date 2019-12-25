@@ -85,6 +85,15 @@
         }
     /* //_}#can-content */
 
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            .chatL p:after, .chatR p:after {
+                border-top-color    : transparent !important;
+                border-bottom-color : transparent !important;
+            }
+        }
+    /* //_}@modern */
+
         .chatL p, .chatL .chatMember {
             background   : #fff;
             border-color : #fff;

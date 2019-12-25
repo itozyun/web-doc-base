@@ -34,6 +34,11 @@
         /* //_}#can-content */
         border-width   : 0 0 0 .3em;
         border-color   : $COLOR_Default_casual_fill;
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            border-color :#fff;
+        }
+    /* //_}@modern */
         border-style   : solid;
         padding        : .5em 1em;
         vertical-align : top;
@@ -101,6 +106,11 @@
     tfoot td {
         border-width : 1px 0 0 .3em;
         border-style : solid dotted;
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            border-color :#fff;
+        }
+    /* //_}@modern */
     }
     tfoot th, tfoot td {
         border-color   : $COLOR_Default_casual_fill;

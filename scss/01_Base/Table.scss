@@ -99,7 +99,7 @@ table {
         }
     }
 
-/*  th, td
+/*  color
 --------------------------------------------------------------------------------------*/
 @mixin tableColor( $text, $fill, $casual_text, $casual_fill ){
     table {
@@ -111,15 +111,30 @@ table {
     tbody th {
         background   : $casual_fill;
         border-color : $fill;
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            border-color : transparent;
+        }
+    /* //_}@modern */
     }
     td {
         border-color : $fill $fill $casual_fill;
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            border-color : transparent transparent #fff;
+        }
+    /* //_}@modern */
     }
     tfoot th {
         border-color : $casual_text;
     }
     tfoot td {
         border-color : $fill $fill $casual_text;
+    /* //_{@modern */
+        @media (-ms-high-contrast:active) {
+            border-color : transparent transparent #fff;
+        }
+    /* //_}@modern */
     }
     thead th, thead td {
         background   : $casual_text;
