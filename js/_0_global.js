@@ -1,3 +1,8 @@
+/** @define {string} */
+var g_MOBILE_CSS_PREFIX = 'm_',
+/** @define {string} */
+    g_HC_MODE_CSS_DIR   = 'hc';
+
 var g_loadEventCallbacks   = [],
     g_unloadEventCallbacks = [],
     g_resizeEventCallbacks = [],

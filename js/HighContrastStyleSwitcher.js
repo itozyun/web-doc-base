@@ -39,7 +39,7 @@ var HighContrastStyleSwitcher_init = function(){
             DOM_setAttribute( elm, 'type', 'text/css' );
             DOM_setAttribute( elm, 'rel' , 'stylesheet' );
             file = href.split( '/' ).pop();
-            DOM_setAttribute( elm, 'href', g_assetUrl + '/hc/' + file );
+            DOM_setAttribute( elm, 'href', g_assetUrl + '/' + g_HC_MODE_CSS_DIR + '/' + file );
             HighContrastStyleSwitcher_elmStyle = elm;
             return true;
         };

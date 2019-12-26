@@ -22,7 +22,6 @@ gulp.task('createMinJs', function( cb ){
                 './inline-js/10_dynamicViewPort.js'
             ],
             externs           : externs,
-            // define            : 'X_UA_IE=5',
             compilation_level : 'ADVANCED',
             // compilation_level : 'WHITESPACE_ONLY',
             // formatting        : 'PRETTY_PRINT',
@@ -46,7 +45,6 @@ gulp.task('createMinJs', function( cb ){
                 }
             ).run(
                 function(exitCode, _stdOut, stdErr){
-                    // console.log( _stdOut );
                     minjs = _stdOut;
                     console.log(minjs.length + 'bytes.');
                     cb();

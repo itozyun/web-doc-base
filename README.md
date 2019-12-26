@@ -70,23 +70,23 @@ This project has been referred to the next project.
 ~~~js
 const gulp     = require('gulp'),
       name     = 'MyBlog',
-      output   = './public';
+      output   = './public',
+      mobileCssPrefix = 'm_',
+      hcModeCSSDir    = 'hc';
 
 /* -------------------------------------------------------
  *  gulp css
  */
-const sass      = require("gulp-sass"),
-      cleanCSS  = require("gulp-clean-css"),
-      plumber   = require("gulp-plumber"),
-      gcm       = require("gulp-group-css-media-queries"),
-      gutil     = require('gulp-util'),
-      Transform = require('stream').Transform,
-      postcss   = require('postcss'),
-      izpp      = require('gulp-iz-preprocessor');
+const plumber     = require("gulp-plumber"),
+      izpp        = require('gulp-iz-preprocessor'),
+      sass        = require("gulp-sass"),
+      gcm         = require("gulp-group-css-media-queries"),
+      cleanCSS    = require("gulp-clean-css"),
+      finalizeCSS = require("./gulp-finalize-css.js");
 
 gulp.task('css', function(){
     return gulp.src([
-            "../web-doc-base/scss/**/*.scss",
+            "./web-doc-base/scss/**/*.scss",
             "./scss/**/*.scss"
         ])
         .pipe(plumber())
@@ -96,7 +96,7 @@ gulp.task('css', function(){
                 fileType : 'scss',
                 tasks : [
                     { name : 'desktop', imports : [ 'Magazine' ] },
-                    { name : 'mobile',  imports : [ 'mobileOnly' ], prefix : 'm_' }
+                    { name : 'mobile',  imports : [ 'mobileOnly' ], prefix : mobileCssPrefix }
                 ]
             })
         )
@@ -116,69 +116,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(
-        // Creaet CSS for High Contrast mode.
-        // Delete " [firefox-gte2]" and add ",x:-moz-any-link" to .cleardix selector.
-        // Delete " [firefox-gte2]", add ",x:-moz-any-link" and replace the value from "_" to "_".
-        // Delete " [opera-lte9]" and add ",x:not(\\\\)" to .cleardix selector.
-        (function( opts ){
-            var stream = new Transform( { objectMode : true } );
-
-            stream._transform = function( file, encoding, cb ){
-                if( file.isNull() ) return cb(null, file);
-        
-                if( file.isStream() ) return cb( new gutil.PluginError( 'mqo', 'Streaming not supported' ) );
-        
-                if( file.isBuffer() ){
-                    let css    = postcss.parse( file.contents.toString( encoding ) ),
-                        newCss = postcss.parse('@charset "UTF-8"'),
-                        createNewFile, updateCurrentFile;
-        
-                    css.walkAtRules( function( rule ){
-                        if( rule.name === 'media' && rule.params === opts.match ){
-                            rule.clone().walkRules( function( r ){
-                                newCss.append( r );
-                            } );
-                            rule.remove();
-                            createNewFile = true;
-                        };
-                    });
-        
-                    if( createNewFile ){
-                        this.push(new gutil.File({
-                            base     : '/',
-                            path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.folder + '/' + file.basename,
-                            contents : Buffer.from(newCss.toString())
-                        }));
-                    };
-                    css.walkDecls('content', function( decl, rule ){
-                        rule = decl.parent;
-                        if( decl.value === '""' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
-                            rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
-                            updateCurrentFile = true;
-                        } else if( decl.value === '"_"' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
-                            rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
-                            decl.value = '" "';
-                            updateCurrentFile = true;
-                        } else if( decl.value === '" "' && 0 <= rule.selector.indexOf( ' [opera-lte9]' ) ){
-                            rule.selector = rule.selector.split( ' [opera-lte9]' ).join( '' ) + ',x:not(\\)';
-                            css.append( rule ); // go to last
-                            updateCurrentFile = true;
-                        };
-                    });
-        
-                    if( updateCurrentFile ){
-                        file.contents = Buffer.from(css.toString());
-                    };
-                    this.push(file);
-                    cb();
-                };
-            };
-            return stream;
-        })({
-            match  : 'only screen and (-ms-high-contrast:active)',
-            folder : 'hc'
-        }))
+        .pipe(finalizeCSS({ hcdir : hcModeCSSDir }))
         .pipe(gulp.dest(output));
     });
 ~~~
@@ -198,7 +136,9 @@ gulp js
 ~~~js
 const gulp            = require('gulp'),
       name            = 'MyBlog',
-      output          = './public';
+      output          = './public',
+      mobileCssPrefix = 'm_',
+      hcModeCSSDir    = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -211,26 +151,30 @@ gulp.task('compile', function () {
     return closureCompiler(
             {
                 js                : [
-                   '../web-doc-base/js/_0_global.js',
-                   '../web-doc-base/js/_1_Type.js',
-                   '../web-doc-base/js/_2_Event.js',
-                   '../web-doc-base/js/_3_DOM.js',
-                   '../web-doc-base/js/_4_DOMStyle.js',
-                   '../web-doc-base/js/_5_DOMAttr.js',
-                   '../web-doc-base/js/_6_DOMClass.js',
-                   '../web-doc-base/js/_7_CSSOM.js',
-                   '../web-doc-base/js/0_nodeCleaner.js',
-                   '../web-doc-base/js/ie5.js',
-                   '../web-doc-base/js/HighContrastStyleSwitcher.js',
-                   '../web-doc-base/js/detectImageTurnedOff.js',
-                   '../web-doc-base/js/PicaThumnail.js',
-                   '../web-doc-base/js/SidebarFixer.js',
-                   '../web-doc-base/js/blockquot.js'
+                   './web-doc-base/js/_0_global.js',
+                   './web-doc-base/js/_1_Type.js',
+                   './web-doc-base/js/_2_Event.js',
+                   './web-doc-base/js/_3_DOM.js',
+                   './web-doc-base/js/_4_DOMStyle.js',
+                   './web-doc-base/js/_5_DOMAttr.js',
+                   './web-doc-base/js/_6_DOMClass.js',
+                   './web-doc-base/js/_7_CSSOM.js',
+                   './web-doc-base/js/0_nodeCleaner.js',
+                   './web-doc-base/js/ie5.js',
+                   './web-doc-base/js/HighContrastStyleSwitcher.js',
+                   './web-doc-base/js/detectImageTurnedOff.js',
+                   './web-doc-base/js/PicaThumnail.js',
+                   './web-doc-base/js/SidebarFixer.js',
+                   './web-doc-base/js/blockquot.js'
                 ],
                 externs           : [
-                    '../web-doc-base/inline-js/__externs.js',
+                    './web-doc-base/inline-js/__externs.js',
                     './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                    '../web-doc-base/js/__externs.js'
+                    './web-doc-base/js/__externs.js'
+                ],
+                define            : [
+                    'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
+                    'g_HC_MODE_CSS_DIR="' + hcModeCSSDir + '"'
                 ],
                 compilation_level : 'ADVANCED',
                 formatting        : 'PRETTY_PRINT',
@@ -250,12 +194,12 @@ gulp.task( 'finish', function(){
         {
             js                : [
                 tempDir + '/temp.js',
-                '../web-doc-base/js/GoogleCodePrettify.js'
+                './web-doc-base/js/GoogleCodePrettify.js'
             ],
             externs           : [
-                '../web-doc-base/inline-js/__externs.js',
+                './web-doc-base/inline-js/__externs.js',
                 './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                '../web-doc-base/js/__externs.js'
+                './web-doc-base/js/__externs.js'
             ],
             language_in       : 'ECMASCRIPT3',
             language_out      : 'ECMASCRIPT3',
