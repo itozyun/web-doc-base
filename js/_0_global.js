@@ -11,14 +11,9 @@ var g_loadEventCallbacks   = [],
     g_disabledImages = [],
     g_emptyFunction  = new Function(),
 
-    g_scripts  = document.scripts,
-    g_assetUrl,
-    g_isMobile,
-
     g_w3cDOM  = !!document.getElementsByTagName,
     g_body    = document.body,
     g_html, g_head,
-    
     g_ELEMENT_MAIN_ID = 'jsMain',
     g_elmMain,
 
@@ -39,4 +34,16 @@ var g_loadEventCallbacks   = [],
             'removeEventListener("t",o,o);' +
             'return r' +
         '}catch(e){}'
-    ))();
+    ))(),
+
+    g_scripts = document.scripts,
+    g_assetUrl, g_assetDir, g_isMobile;
+
+    g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
+    --g_assetDir.length;
+    g_assetUrl = g_assetDir.join( '/' ); // "http://127.0.0.1:8020/public"
+    
+    if( 0 <= 'http: https:'.indexOf( g_assetDir[ 0 ] ) ){
+        g_assetDir.splice( 0, 3 );
+    };
+    g_assetDir = g_assetDir.join( '/' ); // "public"
