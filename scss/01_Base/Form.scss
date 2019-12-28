@@ -99,6 +99,13 @@ form :invalid {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     textarea, input {
+        background : $COLOR_Watch_fill;
+        color      : $COLOR_Watch_text;
         @include placeholderColor( $COLOR_Watch_casual_text );
     }
+    /* //_{#can-attr-selector */
+    [type="submit"] {
+        background : $COLOR_Watch_casual_fill;
+    }
+    /* //_}#can-attr-selector */
 }

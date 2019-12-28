@@ -121,4 +121,10 @@
         border-color : $COLOR_Watch_casual_text;
         color        : $COLOR_Watch_casual_text;
     }
+
+    /* //_{@modern */
+    img {
+        filter : brightness(85%);
+    }
+    /* //_}@modern */
 }

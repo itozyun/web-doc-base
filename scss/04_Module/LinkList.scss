@@ -35,12 +35,14 @@
 
     /*  Tablet
     --------------------------------------------------------------------------------------*/
-    @include media(tablet) {
-        #lB .lS & :link, #lB .lS & :visited {
-            background : $COLOR_Sidebar_fill;
-        }
-        #lB .lS & :link:hover, #lB .lS & :visited:hover {
-            background : $COLOR_Default_casual_fill;
+    @if $COLOR_Default_fill != $COLOR_Sidebar_fill {
+        @include media(tablet) {
+            #lB .lS & :link, #lB .lS & :visited {
+                background : $COLOR_Sidebar_fill;
+            }
+            #lB .lS & :link:hover, #lB .lS & :visited:hover {
+                background : $COLOR_Default_casual_fill;
+            }
         }
     }
 
@@ -65,27 +67,29 @@
     @include media(dark_theme) {
         /* href がない場合 current カラーになる */
         a {
-            background : $COLOR_Watch_text;
+            background : $COLOR_Watch_casual_text;
             color      : $COLOR_Watch_fill;            
         }
         & :link {
-            background       : $COLOR_Watch_fill;
-            color            : $COLOR_Watch_link;
+            background : $COLOR_Watch_fill;
+            color      : $COLOR_Watch_link;
         }
         & :visited {
-            background       : $COLOR_Watch_fill;
-            color            : $COLOR_Watch_text;
+            background : $COLOR_Watch_fill;
+            color      : $COLOR_Watch_text;
         }
         & :link:hover, & :visited:hover {
             background : $COLOR_Watch_casual_fill;
             color      : $COLOR_Watch_text;
         }
 
-        #lB .lS & :link, #lB .lS & :visited {
-            background : $COLOR_Watch_fill;
-        }
-        #lB .lS & :link:hover, #lB .lS & :visited:hover {
-            background : $COLOR_Watch_casual_fill;
+        @if $COLOR_Default_fill != $COLOR_Sidebar_fill {
+            #lB .lS & :link, #lB .lS & :visited {
+                background : $COLOR_Watch_fill;
+            }
+            #lB .lS & :link:hover, #lB .lS & :visited:hover {
+                background : $COLOR_Watch_casual_fill;
+            }
         }
     }
 
