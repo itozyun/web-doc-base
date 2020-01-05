@@ -1,7 +1,7 @@
 // Creaet CSS for High Contrast mode.
 // Delete " [firefox-gte2]" and add ",x:-moz-any-link" to .cleardix selector.
-// Delete " [firefox-gte2]", add ",x:-moz-any-link" and replace the value from "_" to "_".
-// Delete " [opera-lte9]" and add ",x:not(\\\\)" to .cleardix selector.
+// Delete " [firefox-gte2]", add ",x:-moz-any-link" and replace the value from "_" to " ".
+// Delete " [opera-lte9]" and add ",x:not(\\)" to .cleardix selector.
 
 const TARGET_HC_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active)',
       PluginError = require('plugin-error'),

@@ -72,7 +72,7 @@ const gulp     = require('gulp'),
       name     = 'MyBlog',
       output   = './public',
       mobileCssPrefix = 'm_',
-      hcModeCSSDir    = 'hc';
+      hcModeCssDir    = 'hc';
 
 /* -------------------------------------------------------
  *  gulp css
@@ -82,7 +82,7 @@ const plumber     = require("gulp-plumber"),
       sass        = require("gulp-sass"),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
-      finalizeCSS = require("./gulp-finalize-css.js");
+      finalizeCSS = require("./web-doc-base/gulp-finalize-css.js");
 
 gulp.task('css', function(){
     return gulp.src([
@@ -116,7 +116,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(finalizeCSS({ hcdir : hcModeCSSDir }))
+        .pipe(finalizeCSS({ hcdir : hcModeCssDir }))
         .pipe(gulp.dest(output));
     });
 ~~~
@@ -138,7 +138,7 @@ const gulp            = require('gulp'),
       name            = 'MyBlog',
       output          = './public',
       mobileCssPrefix = 'm_',
-      hcModeCSSDir    = 'hc';
+      hcModeCssDir    = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -174,7 +174,7 @@ gulp.task('compile', function () {
                 ],
                 define            : [
                     'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                    'g_HC_MODE_CSS_DIR="' + hcModeCSSDir + '"'
+                    'g_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
                 ],
                 compilation_level : 'ADVANCED',
                 formatting        : 'PRETTY_PRINT',
