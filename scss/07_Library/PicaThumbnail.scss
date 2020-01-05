@@ -9,7 +9,8 @@
     }
 }
 
-.jsPica img, .caption {
+.jsPica img,
+.jsCap { /* onload 時にアニメーションしないように .caption に .jsCap を付ける。アニメを抑止しないと offsetWidth の取得で誤る。 */
     /* //_{@modern */
         /* clean-css ignore:start */
         -webkit-transition-property : width, margin;
@@ -22,14 +23,13 @@
 }
 
     .jsPicaLarge img {
-        float      : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-        width      : 100%;
+        width     : 100%;
     /* //_{#can-max-min */
         max-width : 100%;
     /* //_}#can-max-min */
-        height     : auto;
+        height    : auto;
         /* //_{#can-margin-auto */
-        margin     : 0 auto 1em; /* auto は中央配置で transition させるため */
+        margin    : 0 auto 1em; /* auto は中央配置で transition させるため */
         /* //_}#can-margin-auto */
 
         /* //_{#can-box-sizing */
@@ -39,48 +39,67 @@
                 box-sizing : border-box;
         /* //_}#can-box-sizing */
 
-        /* //_{@modern */
-        div .box & {
+    /* //_{@modern,@ie9 */
+        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+    /* //_}@modern,@ie9 */
+        .box & {
+            /* //_{@modern */
+            float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
+            /* //_}@modern */
             margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
         }
-        /* //_}@modern */
     }
 
     .jsCapLarge {
-        float  : none;
         /* //_{#can-margin-auto */
         margin : 0 auto 1em; /* auto は中央配置で transition させるため */
         /* //_}#can-margin-auto */
-        /* //_{@modern */
-        div .box & {
+
+    /* //_{@modern,@ie9 */
+        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+    /* //_}@modern,@ie9 */
+        .box & {
+            float  : none;
             margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
         }
-        /* //_}@modern */
     }
 
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
-    /* //_{@modern */
+    /* //_{@modern,@ie9 */
     div .box .jsPicaLarge img,
     div .box .jsCapLarge {
         margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
     }
-    /* //_}@modern */
+    /* //_}@modern,@ie9 */
 }
 
-/* //_{#ie7-win */
+/* //_{@ie6,@ie7 */
     /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
     .jsPicaLarge {
         display : block;
+        zoom    : 1;
+        clear   : both; /* ギャラリーでの回り込みの解除 */
         padding : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        img {
+            border-width : 0;
+        }
+        &:hover {
+            top : 2px;
+            img {
+                top : 0;
+            }
+        }
     }
-/* //_}#ie7-win */
+/* //_}@ie6,@ie7 */
 
-/* //_{@ie5win */
-.box .jsPicaLarge img,
-.box .jsCapLarge {
-    clear   : both;
-    margin  : 0 0 1em;
+/* //_{@ie55,@ie5win */
+.jsPica {
+    display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
 }
-/* //_}@ie5win */
+.jsPicaLarge img,
+.jsCapLarge {
+    clear : both; /* ギャラリーでの回り込みの解除 */
+}
+/* //_}@ie55,@ie5win */

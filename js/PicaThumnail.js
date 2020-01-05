@@ -85,7 +85,7 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                     DOM_setClassName( elmA, obj.clazz );
                     if( elmCap = obj.elmCap ){
                         DOM_setCssText( elmCap, obj.captionCSS );
-                        DOM_setClassName( elmCap, 'caption' );
+                        DOM_setClassName( elmCap, 'caption jsCap' );
                     };
                 } else {
                     // small -> Large
@@ -96,6 +96,7 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                             if( DOM_hasClassName( parent, 'caption' ) ){
                                 obj.elmCap     = parent;
                                 obj.captionCSS = parent.style.cssText;
+                                DOM_addClassName( parent, 'jsCap' );
                             } else {
                                 tag = DOM_getTagName( parent );
                                 if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
