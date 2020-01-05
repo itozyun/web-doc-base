@@ -43,6 +43,14 @@
                 /* //_}@ie55,@ie5win */
             }
         }
+            .Pager a { /* この指定が無いとフォーカス時の塗りが汚い */
+                /* //_{@ie7,@ie6,@ie55 */
+                zoom   : 1;
+                /* //_}@ie7,@ie6,@ie55 */
+                /* //_{@ie5win */
+                height : $BASE_LINE_HEIGHT_EM;
+                /* //_}@ie5win */
+            }
                 .Pager i { /* i を絶対配置にすると、Opera mini で表示されない */
                     /* //_{#can-inline-block */
                     display      : inline-block;
