@@ -30,8 +30,14 @@ $COMMENT_OUT : (
 /* //_}+mobileOnly */
 
 $COMMENT_OUT : (
+    /* //_{^@ie9 */
     'WQXGA'        : $NO_MEDIA_QUERY,
     'WSXGA'        : $NO_MEDIA_QUERY,
+    /* //_}^@ie9 */
+    /* //_{@ie9 */
+    'WQXGA'        : 0,
+    'WSXGA'        : 0,
+    /* //_}@ie9 */
     'pc'           : $NO_MEDIA_QUERY,
     'tablet_print' : 1,
     'tablet'       : $NO_MEDIA_QUERY,
