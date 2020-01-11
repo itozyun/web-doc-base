@@ -1,6 +1,8 @@
 
 @mixin unbreak-inside {
+    /* //_{@modern */
     break-inside      : avoid;
+    /* //_}@modern */
     page-break-inside : avoid;
 }
 
