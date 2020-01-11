@@ -62,7 +62,8 @@
 /* //_{+it */
     /* //_{@modern,@ie9,@ie8,@ie7 */
             pre, code, var, kbd, samp /* , tt */ {
-                font-family : "UD Digi Kyokasho N-R", SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
+                font-family : /* "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう！ */
+                    SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
             }
     /* //_}@modern,@ie9,@ie8,@ie7 */
 
