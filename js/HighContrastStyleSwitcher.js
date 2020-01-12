@@ -82,7 +82,7 @@ var HighContrastStyleSwitcher_test = function(){
     };
 };
 
-if( g_Trident < 10 || ( ua[ 'Win32' ] && 44 <= g_Gecko ) ){
+if( g_Trident < 10 || ( ( ua[ 'Win32' ] || ua[ 'Win64' ] ) && ( 44 <= g_Gecko || g_Goanna ) ) ){ // Goanna 4.3 で文書の onload 時のみハイコントラストモードを反映
     g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
     function (){
         //Create a test div
@@ -93,7 +93,7 @@ if( g_Trident < 10 || ( ua[ 'Win32' ] && 44 <= g_Gecko ) ){
 
         // https://news.softpedia.com/news/this-is-the-new-dark-mode-in-mozilla-firefox-70-527932.shtml
         // This Is the New Dark Mode in Mozilla Firefox 70
-        if( g_Gecko < 60 ){
+        if( g_Gecko < 60 || g_Goanna ){
             HighContrastStyleSwitcher_test();
         } else if( HighContrastStyleSwitcher_test() ){ // IE9- or Gecko70+
             HighContrastStyleSwitcher_timerID = setInterval( HighContrastStyleSwitcher_test, 1000 );

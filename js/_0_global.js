@@ -22,6 +22,7 @@ var g_loadEventCallbacks   = [],
     g_EdgeHTML = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
     g_Presto   = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
     g_Gecko    = ua[ 'Gecko' ],
+    g_Goanna   = ua[ 'Goanna' ],
     g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
 
 // https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
