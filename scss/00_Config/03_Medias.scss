@@ -104,7 +104,7 @@ $COMMENT_OUT : (
         @else if $media == 'dark_theme' {
             @media handheld, only screen and (max-width: 240px)
             /* //_{@modern */
-            ,(prefers-color-scheme: dark)
+            , only screen and (prefers-color-scheme: dark) /* only screen and は Chrome で必要。無いと印刷時にも適用される */
             /* //_}@modern */
             {
                 @content;
@@ -137,9 +137,25 @@ $COMMENT_OUT : (
 }
 
 @mixin highContrast {
+    @media (-ms-high-contrast:active) {
+        & { @content; }
+    }
     @media only screen and (-ms-high-contrast:active) {
         & { @content; }
     }
+}
+
+@mixin highContrastForIE10ToEdge {
+    /* //_{@modern */
+    @if(0 == 0){
+        @media (-ms-high-contrast:active) {
+            & { @content; }
+        }
+    }
+    /* //_}@modern */
+    /* //_{^@modern */
+    @if(1 == 0){ @content; }
+    /* //_}^@modern */
 }
 
 @include media(print) {

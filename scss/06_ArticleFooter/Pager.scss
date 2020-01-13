@@ -96,11 +96,10 @@
                     /* //_{^#can-transparent */
                     border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
                     /* //_}^#can-transparent */
-                    /* //_{@modern */
-                        @media (-ms-high-contrast:active) {
-                            border-color : transparent #fff;
-                        }
-                    /* //_}@modern */
+                    @include highContrastForIE10ToEdge {
+                        border-top-color    : transparent;
+                        border-bottom-color : transparent;
+                    }
                 }
                 .Pager a:active i
                 /* //_{#can-focus-psedo-class */
@@ -127,11 +126,9 @@
                     /* //_{^#can-transparent */
                     border-color : $COLOR_Default_casual_text $COLOR_Default_fill;
                     /* //_}^#can-transparent */
-                    /* //_{@modern */
-                        @media (-ms-high-contrast:active) {
-                            border-color : #fff transparent;
-                        }
-                    /* //_}@modern */
+                    @include highContrastForIE10ToEdge {
+                        border-color : inherit transparent;
+                    }
                 }
                 .Pager-top a:active i
                 /* //_{#can-focus-psedo-class */

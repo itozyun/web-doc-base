@@ -76,23 +76,21 @@
         .chatL p:after {
             border-color : transparent #fff;
             border-width : .3em .6em .3em 0;
-            left         : -0.5em;
+            left         : -0.6em;
         }
         .chatR p:after {
             border-color : transparent #85E445;
             border-width : .3em 0 .3em 0.6em;
-            right        : -0.5em;
+            right        : -0.6em;
         }
     /* //_}#can-content */
 
-    /* //_{@modern */
-        @media (-ms-high-contrast:active) {
+        @include highContrastForIE10ToEdge {
             .chatL p:after, .chatR p:after {
-                border-top-color    : transparent !important;
-                border-bottom-color : transparent !important;
+                border-top-color    : transparent;
+                border-bottom-color : transparent;
             }
         }
-    /* //_}@modern */
 
         .chatL p, .chatL .chatMember {
             background   : #fff;

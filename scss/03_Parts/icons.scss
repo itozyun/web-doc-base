@@ -68,14 +68,12 @@
             border-color : $COLOR_Print_casual_text transparent;
         }
     }
-/* //_{@modern */
-    @media (-ms-high-contrast:active) {
+    @include highContrastForIE10ToEdge {
         & {
             border-left-color  : transparent !important;
             border-right-color : transparent !important;
         }
     }
-/* //_}@modern */
 }
 @mixin icon-border-transparent-fill {
     & {
@@ -101,14 +99,12 @@
             border-color : transparent $COLOR_Print_casual_text;
         }
     }
-/* //_{@modern */
-    @media (-ms-high-contrast:active) {
+    @include highContrastForIE10ToEdge {
         & {
             border-top-color    : transparent !important;
             border-bottom-color : transparent !important;
         }
     }
-/* //_}@modern */
 }
 
 .ico-clock {

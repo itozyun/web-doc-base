@@ -69,13 +69,11 @@
             border-color : transparent $COLOR_Watch_text;
         }
     }
-    /* //_{@modern */
-        @media (-ms-high-contrast:active) {
-            & i {
-                border-top-color    : transparent !important;
-                border-bottom-color : transparent !important;
-            }
+    @include highContrastForIE10ToEdge {
+        & i {
+            border-top-color    : transparent;
+            border-bottom-color : transparent;
         }
-    /* //_}@modern */
+    }
 }
 /** //_}+blog **/

@@ -53,6 +53,11 @@ table {
         }
     }
 
+    /* thead, caption { Firefox Chrome で機能せず
+        @include unbreak-inside;
+        @include unbreak-after;
+    } */
+
 /* //_{@ie5win */
     tr * {
         line-height       : 1.2;
@@ -111,30 +116,25 @@ table {
     tbody th {
         background   : $casual_fill;
         border-color : $fill;
-    /* //_{@modern */
-        @media (-ms-high-contrast:active) {
-            border-color : transparent;
-        }
-    /* //_}@modern */
     }
     td {
         border-color : $fill $fill $casual_fill;
-    /* //_{@modern */
-        @media (-ms-high-contrast:active) {
-            border-color : transparent transparent #fff;
+        @include highContrastForIE10ToEdge {
+            border-top-color   : transparent;
+            border-left-color  : transparent;
+            border-right-color : transparent;
         }
-    /* //_}@modern */
     }
     tfoot th {
         border-color : $casual_text;
     }
     tfoot td {
         border-color : $fill $fill $casual_text;
-    /* //_{@modern */
-        @media (-ms-high-contrast:active) {
-            border-color : transparent transparent #fff;
+        @include highContrastForIE10ToEdge {
+            border-top-color   : transparent;
+            border-left-color  : transparent;
+            border-right-color : transparent;
         }
-    /* //_}@modern */
     }
     thead th, thead td {
         background   : $casual_text;
