@@ -38,6 +38,12 @@ var g_loadEventCallbacks   = [],
     ))(),
 
     g_scripts = document.scripts,
+    g_cssName = ( g_Tasman ? 'ie5mac' :
+                  g_Trident < 5.5 ? 'ie5win' :
+                  g_Trident < 6   ? 'ie55' :
+                  g_Trident < 10  ? 'ie' + ( g_Trident | 0 ) :
+                  'modern'
+                ) + '.css',
     g_assetUrl, g_assetDir, g_isMobile;
 
     g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );

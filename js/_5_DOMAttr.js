@@ -1,5 +1,6 @@
 if( g_MOBILE_CSS_PREFIX ){
     g_isMobile = DOM_getAttribute( g_body, 'mob' ) === '1';
+    g_cssName  = ( g_isMobile ? g_MOBILE_CSS_PREFIX : '' ) + g_cssName;
 };
 
 function DOM_getAttribute( elm, attrName ){

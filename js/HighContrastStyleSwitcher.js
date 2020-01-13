@@ -33,7 +33,7 @@ var HighContrastStyleSwitcher_init = function(){
     function createLink( href ){
         var elm, file;
 
-        if( 0 <= href.indexOf( g_assetDir ) ){
+        if( 0 <= href.indexOf( g_assetDir + '/' + g_cssName ) ){
             elm = DOM_createElement( 'link' );
             DOM_appendChild( g_body, elm ); // TODO 既存styleの後
             DOM_setAttribute( elm, 'type', 'text/css' );
