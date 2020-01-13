@@ -13,18 +13,15 @@
 
     /* ie10 ~ Edge */
     /* https://spyweb.media/2017/12/04/ie-edge-css-hacks/ */
-    _:-ms-lang(x), p, blockquote { text-align : justify; }
+    /* _:-ms-lang(x), p, blockquote { text-align : justify; } 均等割付が綺麗でない */
 
     @include media(onlyOpera) { /* Opera 10 以上 */
         p, blockquote { text-align : justify; }
     }
 
-    /* .contents-container, x:-moz-any-link {
-        text-align : justify;
-    } ff */
 /* //_{@modern */    
     /* ff2+ */
     body:empty p, body:empty blockquote, x:-moz-any-link {
-        text-align : justify;
+        /* text-align : justify; */
     }
 /* //_}@modern */
