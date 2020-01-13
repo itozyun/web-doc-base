@@ -32,11 +32,15 @@
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
-        &:before {
+        & {
             border-color : $COLOR_Watch_casual_text;
         }
-        &:after {
-            border-color : $COLOR_Watch_casual_text;
+    }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        &, .ribbon & {
+            border-color : $COLOR_Print_casual_text;
         }
     }
 }
@@ -53,11 +57,15 @@
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
-        &:before {
+        & {
             border-color : $COLOR_Watch_casual_text transparent;
         }
-        &:after {
-            border-color : $COLOR_Watch_casual_text transparent;
+    }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        &, .ribbon & {
+            border-color : $COLOR_Print_casual_text transparent;
         }
     }
 /* //_{@modern */
@@ -82,11 +90,15 @@
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
-        &:before {
+        & {
             border-color : transparent $COLOR_Watch_casual_text;
         }
-        &:after {
-            border-color : transparent $COLOR_Watch_casual_text;
+    }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        &, .ribbon & {
+            border-color : transparent $COLOR_Print_casual_text;
         }
     }
 /* //_{@modern */

@@ -123,6 +123,7 @@ a:active
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    :link    { color : $COLOR_Print_link; }
-    :visited { color : $COLOR_Print_visited; }
+    a       , .ribbon a        { color : $COLOR_Print_casual_text; }
+    :link   , .ribbon :link    { color : $COLOR_Print_link; }
+    :visited, .ribbon :visited { color : $COLOR_Print_visited; }
 }

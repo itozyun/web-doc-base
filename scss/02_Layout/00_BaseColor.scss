@@ -6,7 +6,6 @@ body {
 }
 .baseColor {
     background : $COLOR_Default_fill;
-    
 }
 .ribbon {
     color      : $COLOR_Ribbon_text;
@@ -41,5 +40,17 @@ body {
     }
     #lB .lS {
         background : $COLOR_Watch_fill;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    body, .baseColor, .ribbon {
+        background : $COLOR_Print_fill;
+        color      : $COLOR_Print_text;
+    }
+    *, .ribbon * {
+        border-color : $COLOR_Print_casual_fill;
     }
 }

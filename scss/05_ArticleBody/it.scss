@@ -58,5 +58,8 @@ code, var {
             color : $COLOR_Print_text;
         }
     }
+    pre code {
+        border : 0;
+    }
 }
 /* //_}+it */

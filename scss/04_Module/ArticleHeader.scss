@@ -135,7 +135,14 @@
             border-width : 0;
             padding      : 0;
             margin       : 0;
-            background   : none;
+        }
+        .AHead-labels a:link {
+            color      : $COLOR_Print_link;
+            background : none;
+        }
+        .AHead-labels a:visited {
+            color      : $COLOR_Print_visited;
+            background : none;
         }
 }
 /* //_}+ArticleLabels */

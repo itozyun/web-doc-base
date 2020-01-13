@@ -281,10 +281,6 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    body, .baseColor {
-        background : $COLOR_Print_fill;
-        color      : $COLOR_Print_text;
-    }
     #lH .lS, #lB .lS, #lF .lW {
         display : none;
     }
