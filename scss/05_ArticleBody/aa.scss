@@ -3,10 +3,9 @@
 /* //_{+aa */
 .aa {
     @include lineHeight(1, 0);
-    @include hPadding(1, 1.33em, 1.33em);
+    @include hPadding(1, 1em, 1em);
 
-    margin       : 1.33em 0;
-    font-size    : 0.8125em;
+    margin       : 1em 0;
     border-width : 1px;
 
     font-family  : monospace;
