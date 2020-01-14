@@ -11,25 +11,15 @@ $MEDIAQUERY_TABLET_AND_PRINT : 'print';
 $NO_MEDIA_QUERY              : 0;
 /* //_}^#can-mq */
 
-/* //_{+mobileOnly */
 $COMMENT_OUT : (
+/* //_{+mobileOnly */
     'WQXGA'        : 0,
     'WSXGA'        : 0,
     'pc'           : 0,
     'tablet_print' : 2,
     'tablet'       : 2,
-    'phablet'      : $NO_MEDIA_QUERY,
-    'phone'        : $NO_MEDIA_QUERY,
-    'smallphone'   : $NO_MEDIA_QUERY,
-    'watch'        : 1,
-    'dark_theme'   : 1,
-    'print'        : 1,
-    'onlyOpera'    : $NO_MEDIA_QUERY,
-    'onlySafari'   : $NO_MEDIA_QUERY
-);
 /* //_}+mobileOnly */
-
-$COMMENT_OUT : (
+/* //_{^+mobileOnly */
     /* //_{^@ie9 */
     'WQXGA'        : $NO_MEDIA_QUERY,
     'WSXGA'        : $NO_MEDIA_QUERY,
@@ -41,12 +31,19 @@ $COMMENT_OUT : (
     'pc'           : $NO_MEDIA_QUERY,
     'tablet_print' : 1,
     'tablet'       : $NO_MEDIA_QUERY,
+/* //_}^+mobileOnly */
     'phablet'      : $NO_MEDIA_QUERY,
     'phone'        : $NO_MEDIA_QUERY,
     'smallphone'   : $NO_MEDIA_QUERY,
     'watch'        : $NO_MEDIA_QUERY,
     'dark_theme'   : $NO_MEDIA_QUERY,
     'print'        : 1,
+    /* //_{@modern */
+    'onlyIE10To11' : 1,
+    /* //_}@modern */
+    /* //_{^@modern */
+    'onlyIE10To11' : 0,
+    /* //_}^@modern */
     'onlyOpera'    : $NO_MEDIA_QUERY,
     'onlySafari'   : $NO_MEDIA_QUERY
 ) !default;
@@ -115,6 +112,12 @@ $COMMENT_OUT : (
                 @content;
             }
         }
+        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
+        @else if $media == 'onlyIE10To11' {
+            @media screen\0 {
+                @content;
+            }
+        }
         @else if $media == 'onlyOpera' {
             @media not aural and (1) {
                 @content;
@@ -156,8 +159,4 @@ $COMMENT_OUT : (
     /* //_{^@modern */
     @if(1 == 0){ @content; }
     /* //_}^@modern */
-}
-
-@include media(print) {
-    .noprint { display : none }
 }
