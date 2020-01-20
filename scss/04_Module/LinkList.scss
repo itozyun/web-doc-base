@@ -92,22 +92,20 @@
             }
         }
     }
-
-    @include highContrast {
-        padding : 0 2px;
-    }
 }
 
 .LinkList {
     @extend %linkCommon;
     @include stackableModule;
     @include highContrast {
-        padding : 2px 0;
+        padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
     }
     a {
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
-
+        @include highContrast {
+            margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
+        }
         &:active:hover
         /* //_{#can-focus-psedo-class */
         , &:focus:hover
@@ -127,7 +125,7 @@
 
         div {
             display : inline-block;
-            margin  : 2px; /* for highContrast */
+            margin  : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH; /* for highContrast */
         }
     }
 }

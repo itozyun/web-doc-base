@@ -13,7 +13,7 @@
     /* //_}#can-focus-psedo-class */
     a:active {
         @include highContrast {
-            outline : 2px solid;
+            outline : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH solid;
         }
     }
     
