@@ -52,17 +52,44 @@ This project has been referred to the next project.
 1. [gariban](https://github.com/itozyun/gariban) "超軽量な無料 Blogger テンプレート"
 2. [OutCloud](http://outcloud.blogspot.com/) "itozyun のブログです"
 
+## How the CSS and Javascript import - CSS と Javascript のインポートの仕方
+
+~~~html
+<!--[if IE 5]>
+<style type="text/css">
+@media tty {
+    i {content : "\";/*" "*/}}; @import '/assets/ie5win.css'; {;}/*";}
+}/* */
+@media tty {
+    i {content : "\";/*" "*/}}@m; @import '/assets/ie55.css'; /*";}
+}/* */
+</style>
+<![endif]-->
+<!--[if IE 6]><link href="/assets/ie6.css" rel="stylesheet" type="text/css"><![endif]-->
+<!--[if (IE 7)|(IEMobile)]><link href="/assets/ie7.css" rel="stylesheet" type="text/css"><![endif]-->
+<!--[if IE 8]><link href="/assets/ie8.css" rel="stylesheet" type="text/css"><![endif]-->
+<!--[if IE 9]><link href="/assets/ie9.css" rel="stylesheet" type="text/css"><![endif]-->
+<!--[if !IE]><!-->
+<style type="text/css">
+/*\*//*/ @import "/assets/ie5mac.css"; /**/ /*\*/
+@import "/assets/modern.css"; /**/
+</style><!--<![endif]-->
+<script src="/assets/min.js"></script>
+~~~
+
 ## How the CSS build - CSS のビルドの方法
 
 1. CSS is written in SCSS + [gulp-iz-preprosessor](https://github.com/itozyun/gulp-iz-preprocessor) expanded comments
 2. Generate the browser-specific .scss by gulp-iz-preprosessor
 3. Compile the generated .scss
+4. Finalize with ./web-doc-base/gulp-finalize-css.js
 
 ---
 
 1. CSS は SCSS + [gulp-iz-preprosessor](https://github.com/itozyun/gulp-iz-preprocessor) 拡張コメントで書かれています
 2. gulp-iz-preprosessor でブラウザ別の .scss を生成します
 3. 出来た .scss をコンパイルします
+4. ./web-doc-base/gulp-finalize-css.js でファイナライズします。
 
 
 ### gulpfile.js
@@ -125,7 +152,7 @@ gulp.task('css', function(){
 
 ### How to build ./inline-js/*.js
 
-see ./gulpfile.js.
+see [./gulpfile.js](https://github.com/itozyun/web-doc-base/blob/master/gulpfile.js).
 
 ~~~bat
 gulp js
@@ -151,21 +178,51 @@ gulp.task('compile', function () {
     return closureCompiler(
             {
                 js                : [
-                   './web-doc-base/js/_0_global.js',
-                   './web-doc-base/js/_1_Type.js',
-                   './web-doc-base/js/_2_Event.js',
-                   './web-doc-base/js/_3_DOM.js',
-                   './web-doc-base/js/_4_DOMStyle.js',
-                   './web-doc-base/js/_5_DOMAttr.js',
-                   './web-doc-base/js/_6_DOMClass.js',
-                   './web-doc-base/js/_7_CSSOM.js',
-                   './web-doc-base/js/0_nodeCleaner.js',
-                   './web-doc-base/js/ie5.js',
-                   './web-doc-base/js/HighContrastStyleSwitcher.js',
-                   './web-doc-base/js/detectImageTurnedOff.js',
-                   './web-doc-base/js/PicaThumnail.js',
-                   './web-doc-base/js/SidebarFixer.js',
-                   './web-doc-base/js/blockquot.js'
+                    '../web-doc-base/js/1_DEFINE/defines.js',
+
+                    '../web-doc-base/js/2_Core/1_globalValiables.js',
+                    '../web-doc-base/js/2_Core/2_packageValiables.js',
+                    '../web-doc-base/js/2_Core/3_Type.js',
+                    '../web-doc-base/js/2_Core/4_builtinArrayMethods.js',
+                    '../web-doc-base/js/2_Core/DebugLogger.js',
+                    '../web-doc-base/js/2_Core/Timer.js',
+ 
+                    '../web-doc-base/js/3_Event/1_globalValiables.js',
+                    '../web-doc-base/js/3_Event/2_packageValiables.js',
+                    '../web-doc-base/js/3_Event/3_core.js',
+                    '../web-doc-base/js/3_Event/highContrustMode.js',
+                    '../web-doc-base/js/3_Event/imageReady.js',
+                    //'../web-doc-base/js/3_Event/prefersColor.js',
+                    //'../web-doc-base/js/3_Event/print.js',
+                    '../web-doc-base/js/3_Event/resize.js',
+                    '../web-doc-base/js/3_Event/scroll.js',
+ 
+                    '../web-doc-base/js/4_DOM/1_globalValiables.js',
+                    '../web-doc-base/js/4_DOM/2_packageValiables.js',
+                    '../web-doc-base/js/4_DOM/3_DOM.js',
+                    '../web-doc-base/js/4_DOM/4_DOMStyle.js',
+                    '../web-doc-base/js/4_DOM/5_DOMAttr.js',
+                    '../web-doc-base/js/4_DOM/6_DOMClass.js',
+                    // '../web-doc-base/js/4_DOM/7_DOMEvent.js',
+                    '../web-doc-base/js/4_DOM/9_nodeCleaner.js',
+ 
+                    '../web-doc-base/js/5_CSSOM/CSSOM.js',
+ 
+                    '../web-doc-base/js/6_CanUse/1_globalValiables.js',
+                    //'../web-doc-base/js/6_CanUse/2_packageValiables.js',
+                    //'../web-doc-base/js/6_CanUse/dataUriTest.js',
+                    //'../web-doc-base/js/6_CanUse/ieFilterTest.js',
+                    //'../web-doc-base/js/6_CanUse/imageTest.js',
+                    //'../web-doc-base/js/6_CanUse/webfontTest.js',
+ 
+                    '../web-doc-base/js/7_Library/blockquot.js',
+                    '../web-doc-base/js/7_Library/detectImageTurnedOff.js',
+                    '../web-doc-base/js/7_Library/HighContrastStyleSwitcher.js',
+                    '../web-doc-base/js/7_Library/ie5.js',
+                    '../web-doc-base/js/7_Library/PicaThumnail.js',
+                    '../web-doc-base/js/7_Library/SidebarFixer.js',
+ 
+                    '../web-doc-base/js/onreachEnd.js'
                 ],
                 externs           : [
                     './web-doc-base/inline-js/__externs.js',

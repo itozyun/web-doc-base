@@ -4,11 +4,11 @@ if( g_MOBILE_CSS_PREFIX ){
 };
 
 function DOM_getAttribute( elm, attrName ){
-    return elm.getAttribute( attrName );
+    return elm.getAttribute( attrName ) || '';
 };
 
 function DOM_hasAttribute( elm, attrName ){
-    return elm.hasAttribute( attrName );
+    return elm.hasAttribute ? elm.hasAttribute( attrName ) : elm.getAttribute( attrName ) != null;
 };
 
 function DOM_setAttribute( elm, attrName, value ){

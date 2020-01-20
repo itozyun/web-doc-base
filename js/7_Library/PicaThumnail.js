@@ -4,41 +4,42 @@ var PICA_THUMBNAIL_IMGS      = [],
     PICA_THUMBNAIL_safariPreventDefault;
 
 if( !g_ServerSideRendering ){
-    g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
-    function(){
-        var links = DOM_getElementsByTagName( 'A', g_elmMain ),
-            i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
+    g_Event_listenLoadEvent(
+        function(){
+            var links = DOM_getElementsByTagName( 'A', g_elmMain ),
+                i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
 
-        for( ; elmA = links[ ++i ]; ){
-            if( !DOM_hasClassName( elmA, 'img-disabled' ) ){
-                elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
-                tag    = elmImg && DOM_getTagName( elmImg );
-                if( tag === 'IMG' ){
-                    href = DOM_getAttribute( elmA, 'href' );
-                    ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
-                    ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
-                    if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
-                        elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
-                        elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
-                        thumbWidth     = ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
-                        DOM_setStyle( elmImg, 'width', thumbWidth );
-                        DOM_addClassName( elmA, 'jsPica' );
-                        PICA_THUMBNAIL_IMGS.push( {
-                            elmA        : elmA,
-                            thumbUrl    : elmImg.src,
-                            thumbWidth  : thumbWidth,
-                            originalUrl : href,
-                            elmImg      : elmImg //,
-                            // replaced   : false,
-                            // clazz      : _,
-                            // elmCap     : elmCap,
-                            // captionCSS : ''
-                        } );
+            for( ; elmA = links[ ++i ]; ){
+                if( !DOM_hasClassName( elmA, 'img-disabled' ) ){
+                    elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
+                    tag    = elmImg && DOM_getTagName( elmImg );
+                    if( tag === 'IMG' ){
+                        href = DOM_getAttribute( elmA, 'href' );
+                        ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
+                        ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
+                        if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
+                            elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
+                            elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
+                            thumbWidth     = ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
+                            DOM_setStyle( elmImg, 'width', thumbWidth );
+                            DOM_addClassName( elmA, 'jsPica' );
+                            PICA_THUMBNAIL_IMGS.push( {
+                                elmA        : elmA,
+                                thumbUrl    : elmImg.src,
+                                thumbWidth  : thumbWidth,
+                                originalUrl : href,
+                                elmImg      : elmImg //,
+                                // replaced   : false,
+                                // clazz      : _,
+                                // elmCap     : elmCap,
+                                // captionCSS : ''
+                            } );
+                        };
                     };
                 };
             };
-        };
-    };
+        }
+    );
 
     if( ua[ 'WebKit' ] < 525.13 ){ // Safari3-
         g_html.onclick = function( e ){
@@ -50,15 +51,17 @@ if( !g_ServerSideRendering ){
         };
     };
 
-    g_unloadEventCallbacks[ g_unloadEventCallbacks.length ] = function(){
-        var i = -1, obj;
-        
-        for( ; obj = PICA_THUMBNAIL_IMGS[ ++i ]; ){
-            obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = g_emptyFunction;
-            obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = null;
-        };
-        g_html.onclick = g_emptyFunction;
-    };
+    g_Event_listenUnloadEvent(
+        function(){
+            var i = -1, obj;
+            
+            for( ; obj = PICA_THUMBNAIL_IMGS[ ++i ]; ){
+                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = g_emptyFunction;
+                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = null;
+            };
+            g_html.onclick = g_emptyFunction;
+        }
+    );
 };
 
 function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){

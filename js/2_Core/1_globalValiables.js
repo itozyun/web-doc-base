@@ -1,15 +1,5 @@
-/** @define {string} */
-var g_MOBILE_CSS_PREFIX = 'm_',
-/** @define {string} */
-    g_HC_MODE_CSS_DIR   = 'hc';
-
-var g_loadEventCallbacks   = [],
-    g_unloadEventCallbacks = [],
-    g_resizeEventCallbacks = [],
-    g_scrollEventCallbacks = [],
-
-    g_disabledImages = [],
-    g_emptyFunction  = new Function(),
+var g_emptyFunction       = new Function(),
+    g_onreachEndCallbacks = [],
 
     g_w3cDOM  = !!document.getElementsByTagName,
     g_body    = document.body,
@@ -17,12 +7,13 @@ var g_loadEventCallbacks   = [],
     g_ELEMENT_MAIN_ID = 'jsMain',
     g_elmMain,
 
-    g_Trident  = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
-    g_Tasman   = ua[ 'Tasman' ],
-    g_EdgeHTML = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
-    g_Presto   = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
-    g_Gecko    = ua[ 'Gecko' ],
-    g_Goanna   = ua[ 'Goanna' ],
+    g_Trident      = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
+    g_Tasman       = ua[ 'Tasman' ],
+    g_EdgeHTML     = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
+    g_Presto       = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
+    g_Gecko        = ua[ 'Gecko' ],
+    g_Goanna       = ua[ 'Goanna' ],
+    g_SafariMobile = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
     g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
 
 // https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
@@ -45,6 +36,12 @@ var g_loadEventCallbacks   = [],
                   'modern'
                 ) + '.css',
     g_assetUrl, g_assetDir, g_isMobile;
+
+var g_Type_notUndefined;
+
+var g_DebugLogger = { log : function(){} };
+
+var g_Timer_set, g_Timer_clear;
 
     g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
     --g_assetDir.length;

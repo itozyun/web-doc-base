@@ -7,7 +7,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_ID_WRAPPER = 'jsSidebarFixer', // jsSidebarFixer
     SIDEBAR_FIXER_IDS_WHEEL  = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
     SIDEBAR_FIXER_AFTER_SCROLL = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ],
-    SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || ua[ 'Fennec' ] || ua[ 'Goanna' ] || g_EdgeHTML,
+    SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || ua[ 'Fennec' ] || g_Goanna || g_EdgeHTML,
     /*
      * positionFixed
      *   original :
@@ -45,79 +45,80 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
 
 if( !g_isMobile && !g_ServerSideRendering ){
 
-    g_scrollEventCallbacks[ g_scrollEventCallbacks.length ] =
-    g_resizeEventCallbacks[ g_resizeEventCallbacks.length ] = SIDEBAR_FIXER_onscroll;
+    g_Event_listenScrollEvent( SIDEBAR_FIXER_onscroll );
+    g_Event_listenResizeEvent( SIDEBAR_FIXER_onscroll );
 
-    g_loadEventCallbacks[ g_loadEventCallbacks.length ] =
-    function(){
-        var transf = 'transform',
-            perspe = 'perspective',
-            style  = g_body.style,
-            i = -1, id, elm;
+    g_Event_listenLoadEvent(
+        function(){
+            var transf = 'transform',
+                perspe = 'perspective',
+                style  = g_body.style,
+                i = -1, id, elm;
 
-        SIDEBAR_FIXER_elmRoot = document.compatMode !== 'CSS1Compat' ? g_body : g_html || g_body;
-        SIDEBAR_FIXER_elmSide = DOM_getElementById( SIDEBAR_FIXER_ID_SIDEBAR );
-        SIDEBAR_FIXER_elmMain = g_elmMain;
-        
-        // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
+            SIDEBAR_FIXER_elmRoot = document.compatMode !== 'CSS1Compat' ? g_body : g_html || g_body;
+            SIDEBAR_FIXER_elmSide = DOM_getElementById( SIDEBAR_FIXER_ID_SIDEBAR );
+            SIDEBAR_FIXER_elmMain = g_elmMain;
+            
+            // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
 
-        SIDEBAR_FIXER_elmWrap = DOM_createElement( 'div' );
-        DOM_insertBefore( SIDEBAR_FIXER_elmWrap, DOM_getFirstChild( SIDEBAR_FIXER_elmSide ) );
-        SIDEBAR_FIXER_elmWrap.id = SIDEBAR_FIXER_ID_WRAPPER;
+            SIDEBAR_FIXER_elmWrap = DOM_createElement( 'div' );
+            DOM_insertBefore( SIDEBAR_FIXER_elmWrap, DOM_getFirstChild( SIDEBAR_FIXER_elmSide ) );
+            SIDEBAR_FIXER_elmWrap.id = SIDEBAR_FIXER_ID_WRAPPER;
 
-        if( g_Trident || g_Tasman ){
-            SIDEBAR_FIXER_elmWrap.onfocusin = SIDEBAR_FIXER_onfocus;
-        } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
-            document.addEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
-        } else {
-            SIDEBAR_FIXER_elmWrap.addEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
-        };
+            if( g_Trident || g_Tasman ){
+                SIDEBAR_FIXER_elmWrap.onfocusin = SIDEBAR_FIXER_onfocus;
+            } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
+                document.addEventListener( 'focus', SIDEBAR_FIXER_onfocus, g_passiveSupported ? { capture : true, passive : false } : true );
+            } else {
+                SIDEBAR_FIXER_elmWrap.addEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
+            };
 
-        while( 1 < DOM_getChildNodes( SIDEBAR_FIXER_elmSide ).length ){
-            DOM_appendChild( SIDEBAR_FIXER_elmWrap, DOM_getChildNodes( SIDEBAR_FIXER_elmSide )[ 1 ] );
-        };
+            while( 1 < DOM_getChildNodes( SIDEBAR_FIXER_elmSide ).length ){
+                DOM_appendChild( SIDEBAR_FIXER_elmWrap, DOM_getChildNodes( SIDEBAR_FIXER_elmSide )[ 1 ] );
+            };
 
-        while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
-            elm = DOM_getElementById( id );
-            if( Type_notUndefined( elm.onwheel ) ){
-                if( g_passiveSupported ){
-                    elm.addEventListener( 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
-                } else {
-                    elm.onwheel = SIDEBAR_FIXER_onwheel;
+            while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
+                elm = DOM_getElementById( id );
+                if( Type_notUndefined( elm.onwheel ) ){
+                    if( g_passiveSupported ){
+                        elm.addEventListener( 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
+                    } else {
+                        elm.onwheel = SIDEBAR_FIXER_onwheel;
+                    };
+                } else if( Type_notUndefined( elm.onMozMousePixelScroll ) ){
+                    elm.onMozMousePixelScroll = SIDEBAR_FIXER_onwheel;
+                } else if( Type_notUndefined( elm.onDOMMouseScroll ) ){
+                    elm.onDOMMouseScroll = SIDEBAR_FIXER_onwheel;
+                } else if( Type_notUndefined( elm.onmousewheel ) || g_Presto ){
+                    elm.onmousewheel = SIDEBAR_FIXER_onwheel;
                 };
-            } else if( Type_notUndefined( elm.onMozMousePixelScroll ) ){
-                elm.onMozMousePixelScroll = SIDEBAR_FIXER_onwheel;
-            } else if( Type_notUndefined( elm.onDOMMouseScroll ) ){
-                elm.onDOMMouseScroll = SIDEBAR_FIXER_onwheel;
-            } else if( Type_notUndefined( elm.onmousewheel ) || g_Presto ){
-                elm.onmousewheel = SIDEBAR_FIXER_onwheel;
             };
-        };
 
-        SIDEBAR_FIXER_transformProp =
-            Type_notUndefined( style[ transf ] ) ? transf : 
-            Type_notUndefined( style[ '-o-' + transf ] ) ? '-o-' + transf : 
-            Type_notUndefined( style[ '-ms-' + transf ] ) ? '-ms-' + transf : 
-            Type_notUndefined( style[ '-moz-' + transf ] ) ? '-moz-' + transf : 
-            Type_notUndefined( style[ '-webkit-' + transf ] ) ? '-webkit-' + transf : '';
-        
-        SIDEBAR_FIXER_can3D = !g_Trident && !g_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
-            Type_notUndefined( style[ perspe ] ) ||
-            Type_notUndefined( style[ '-moz-' + perspe ] ) ||
-            Type_notUndefined( style[ '-webkit-' + perspe ] ) );
+            SIDEBAR_FIXER_transformProp =
+                Type_notUndefined( style[ transf ] ) ? transf : 
+                Type_notUndefined( style[ '-o-' + transf ] ) ? '-o-' + transf : 
+                Type_notUndefined( style[ '-ms-' + transf ] ) ? '-ms-' + transf : 
+                Type_notUndefined( style[ '-moz-' + transf ] ) ? '-moz-' + transf : 
+                Type_notUndefined( style[ '-webkit-' + transf ] ) ? '-webkit-' + transf : '';
+            
+            SIDEBAR_FIXER_can3D = !g_Trident && !g_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
+                Type_notUndefined( style[ perspe ] ) ||
+                Type_notUndefined( style[ '-moz-' + perspe ] ) ||
+                Type_notUndefined( style[ '-webkit-' + perspe ] ) );
 
-        /* if( !SIDEBAR_FIXER_transformProp ){
-            if( !SIDEBAR_FIXER_positionFixed ){
-                // elmMain への relative 設定は ie6 で必要! 
-                // 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない. -> CSSへ
-                SIDEBAR_FIXER_elmSide.style.position = SIDEBAR_FIXER_elmMain.style.position = 'relative';
-            };
-        }; */
+            /* if( !SIDEBAR_FIXER_transformProp ){
+                if( !SIDEBAR_FIXER_positionFixed ){
+                    // elmMain への relative 設定は ie6 で必要! 
+                    // 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない. -> CSSへ
+                    SIDEBAR_FIXER_elmSide.style.position = SIDEBAR_FIXER_elmMain.style.position = 'relative';
+                };
+            }; */
 
-        SIDEBAR_FIXER_onscroll();
-    };
+            SIDEBAR_FIXER_onscroll();
+        }
+    );
 
-    g_unloadEventCallbacks[ g_unloadEventCallbacks.length ] =
+    g_Event_listenResizeEvent(
         function(){
             var i = -1, id, elm;
 
@@ -138,7 +139,8 @@ if( !g_isMobile && !g_ServerSideRendering ){
             } else {
                 SIDEBAR_FIXER_elmWrap.removeEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus );
             };
-        };
+        }
+    );
 };
 
 /**
