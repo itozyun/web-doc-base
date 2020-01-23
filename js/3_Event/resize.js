@@ -1,5 +1,5 @@
 var Event_resizeEventCallbacks = [],
-    Event_tempOnResize     = window.onresize,
+    Event_tempOnResize         = window.onresize,
     Event_resizeTimerID;
 
 onresize = function( e ){
@@ -29,6 +29,7 @@ function Event_resizeEventLazyCallback(){
 g_Event_listenUnloadEvent(
     function(){
         if( Event_resizeTimerID ) clearTimeout( Event_resizeTimerID );
+        onresize = Event_tempOnResize = g_emptyFunction;
     }
 );
 

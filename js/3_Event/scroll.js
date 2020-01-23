@@ -1,5 +1,5 @@
 var Event_scrollEventCallbacks = [],
-    Event_tempOnScroll     = window.onscroll;
+    Event_tempOnScroll         = window.onscroll;
 
 onscroll = function( e ){
     var ret;
@@ -11,6 +11,12 @@ onscroll = function( e ){
     };
     return ret;
 };
+
+g_Event_listenUnloadEvent(
+    function(){
+        onscroll = Event_tempOnScroll = g_emptyFunction;
+    }
+);
 
 g_Event_listenScrollEvent = function( callback ){
     Event_scrollEventCallbacks.push( callback );

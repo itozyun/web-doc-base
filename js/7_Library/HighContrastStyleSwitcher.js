@@ -20,6 +20,10 @@ var HighContrastStyleSwitcher_init = function(){
             href  : g_assetUrl + '/' + g_HC_MODE_CSS_DIR + '/' + g_cssName
         }
     );
+
+    if( g_CanUse_cssTransform || ( 5.5 <= g_Trident && g_Trident < 9 && g_CanUse_iefilter ) ){
+        DOM_addClassName( g_body, 'jsCanRotate' );
+    };
 };
 
 g_Event_listenHighContrustModeChange(

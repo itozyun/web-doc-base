@@ -22,7 +22,8 @@ var WEBFONT_TEST_PREFIX = 'bad_' + ( new Date() - 0 ) + '_';
 
 function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_testInterval ){
     var INTERVAL = 5000,
-        INTERVAL_EMBEDED_WEBFONT = 100;
+        INTERVAL_EMBEDED_WEBFONT = 100,
+        TEST_STRING = 'mmmmmmmmmmlli';
 
     var testInterval = opt_testInterval || INTERVAL,
         startTime, canDataUri,
@@ -131,7 +132,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
         };
 
         if( mesureWebFont( targetWebFontName ) ){
-            g_DebugLogger.log( '[webFontTest] testWebFont mesurement success!' );
+            g_DebugLogger.log( '[webFontTest] testWebFont mesurement success : ' + result );
             callback( result );
         } else if( checkTime( testInterval ) ){
             g_DebugLogger.log( '[webFontTest] testWebFont timeout!' );
@@ -187,7 +188,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
             },
         //we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
-            'mmmmmmmmmmlli'
+            TEST_STRING
         );
         defaultWidth = {};
     
@@ -219,14 +220,16 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
                 w = span.offsetWidth;
                 span.innerHTML = opt_ligTest[ chr ];
                 canLig = w === span.offsetWidth ? 1 : 0;
+                span.innerHTML = TEST_STRING;
                 if( !canLig ) break;
             };
         };
         DOM_remove( span );
-        return result = detected + canLig;
+        return ( result = detected + canLig );
     };
 
     function testDataUriComplete( _canDataUri ){
+        g_DebugLogger.log( '[webFontTest] testDataUriComplete : ' + _canDataUri );
         if( canDataUri = _canDataUri ){
             testDataUriWebFont( true );
         } else {

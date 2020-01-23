@@ -55,18 +55,26 @@ function Timer_clear( uid ){
 
 function Timer_reset(){
     if( timerClearID ){
-        clearTimeout( timerClearID );
+        Timer_remove();
         timerClearID = setTimeout( Timer_on, TIMER_INTERVAL );
+    };
+};
+
+function Timer_remove(){
+    if( timerClearID ){
+        timerClearID = clearTimeout( timerClearID );
     };
 };
 
 g_Timer_set   = Timer_set;
 g_Timer_clear = Timer_clear;
 
-if( g_SafariMobile ){
-    g_onreachEndCallbacks.push(
-        function(){
+
+g_onreachEndCallbacks.push(
+    function(){
+        if( g_SafariMobile ){
             g_Event_listenScrollEvent( Timer_reset );
-        }
-    );
-};
+        };
+        g_Event_listenUnloadEvent( Timer_remove );
+    }
+);

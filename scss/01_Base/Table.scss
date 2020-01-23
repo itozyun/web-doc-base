@@ -119,22 +119,12 @@ table {
     }
     td {
         border-color : $fill $fill $casual_fill;
-        @include highContrastForIE10ToEdge {
-            border-top-color   : transparent;
-            border-left-color  : transparent;
-            border-right-color : transparent;
-        }
     }
     tfoot th {
         border-color : $casual_text;
     }
     tfoot td {
         border-color : $fill $fill $casual_text;
-        @include highContrastForIE10ToEdge {
-            border-top-color   : transparent;
-            border-left-color  : transparent;
-            border-right-color : transparent;
-        }
     }
     thead th, thead td {
         background   : $casual_text;
@@ -188,6 +178,21 @@ table {
 }
 
 @include tableColor( $COLOR_Default_text, $COLOR_Default_fill, $COLOR_Default_casual_text, $COLOR_Default_casual_fill );
+
+td {
+    @include highContrastForIE10ToEdge {
+        border-top-color   : transparent;
+        border-left-color  : transparent;
+        border-right-color : transparent;
+    }
+}
+tfoot td {
+    @include highContrastForIE10ToEdge {
+        border-top-color   : transparent;
+        border-left-color  : transparent;
+        border-right-color : transparent;
+    }
+}
 
 /* //_{#can-hover-pseudo-class */
 tbody :hover th {

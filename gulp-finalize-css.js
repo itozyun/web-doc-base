@@ -4,6 +4,7 @@
 // Delete " [opera-lte9]" and add ",x:not(\\)" to .cleardix selector.
 
 const TARGET_HC_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active)',
+      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active) and (max-width:319px)',
       PluginError = require('plugin-error'),
       Transform   = require('stream').Transform,
       PostCSS     = require('postcss'),
@@ -20,7 +21,7 @@ module.exports = function( options ){
 
         if( file.isBuffer() ){
             let css = PostCSS.parse( file.contents.toString( encoding ) ),
-                newCss, createNewFile, updateCurrentFile;
+                newCss, rulesAddToEnd = [], createNewFile, updateCurrentFile;
 
             if( opts.hcdir ){
                 newCss = PostCSS.parse('@charset "UTF-8"');
@@ -33,9 +34,18 @@ module.exports = function( options ){
                         rule.remove();
                         createNewFile = true;
                     };
+                    if( rule.name === 'media' && rule.params === TARGET_HC_SMALLPHONE_MEDIA_QUERY ){
+                        rule.params = '(max-width:319px)';
+                        rulesAddToEnd.push( rule.clone() );
+                        rule.remove();
+                        createNewFile = true;
+                    };
                 });
 
                 if( createNewFile ){
+                    while( rulesAddToEnd.length ){
+                        newCss.append( rulesAddToEnd.shift() );
+                    };
                     this.push(new Vinyl({
                         base     : '/',
                         path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.hcdir + '/' + file.basename,

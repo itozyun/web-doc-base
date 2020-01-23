@@ -4,12 +4,14 @@
 var CANIUSE_dataUriTestResult;
 
 function dataUriTest( callback ){
-    if( !Type_notUndefined( CANIUSE_dataUriTestResult ) ){
+    if( g_Type_notUndefined( CANIUSE_dataUriTestResult ) ){
+        g_DebugLogger.log( '[dataUriTest] already done : ' + CANIUSE_dataUriTestResult );
         g_Timer_set( callback, CANIUSE_dataUriTestResult );
-    } else if( g_Trident < 7 ){
+    } else if( g_Trident < 8 ){
+        g_DebugLogger.log( '[dataUriTest] trident < 8 : false' );
         g_Timer_set( callback, false );
     } else {
-        g_DebugLogger.log( '[dataUriTest]' );
+        g_DebugLogger.log( '[dataUriTest] start!' );
 
         var datauri = new Image();
         

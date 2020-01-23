@@ -3,6 +3,7 @@ var g_emptyFunction       = new Function(),
 
     g_w3cDOM  = !!document.getElementsByTagName,
     g_body    = document.body,
+    g_style   = g_body.style,
     g_html, g_head,
     g_ELEMENT_MAIN_ID = 'jsMain',
     g_elmMain,
@@ -28,6 +29,8 @@ var g_emptyFunction       = new Function(),
         '}catch(e){}'
     ))(),
 
+    g_jsGte15 = g_Trident < 5.5,
+
     g_scripts = document.scripts,
     g_cssName = ( g_Tasman ? 'ie5mac' :
                   g_Trident < 5.5 ? 'ie5win' :
@@ -41,7 +44,8 @@ var g_Type_notUndefined;
 
 var g_DebugLogger = { log : function(){} };
 
-var g_Timer_set, g_Timer_clear;
+var g_Timer_set    , g_Timer_clear,
+    g_LoopTimer_set, g_LoopTimer_clear;
 
     g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
     --g_assetDir.length;

@@ -54,6 +54,12 @@ This project has been referred to the next project.
 
 ## How the CSS and Javascript import - CSS と Javascript のインポートの仕方
 
+Javascript and CSS are placed in the same directory.
+
+---
+
+Javascript と CSS は同じディレクトリに配置します。
+
 ~~~html
 <!--[if IE 5]>
 <style type="text/css">
@@ -70,7 +76,7 @@ This project has been referred to the next project.
 <!--[if IE 8]><link href="/assets/ie8.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if IE 9]><link href="/assets/ie9.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if !IE]><!-->
-<style type="text/css">
+<style type="text/css" media="screen,handheld,projection,tv,print">
 /*\*//*/ @import "/assets/ie5mac.css"; /**/ /*\*/
 @import "/assets/modern.css"; /**/
 </style><!--<![endif]-->
@@ -113,8 +119,8 @@ const plumber     = require("gulp-plumber"),
 
 gulp.task('css', function(){
     return gulp.src([
-            "./web-doc-base/scss/**/*.scss",
-            "./scss/**/*.scss"
+            './web-doc-base/scss/**/*.scss',
+            './scss/**/*.scss'
         ])
         .pipe(plumber())
         .pipe(
@@ -178,51 +184,54 @@ gulp.task('compile', function () {
     return closureCompiler(
             {
                 js                : [
-                    '../web-doc-base/js/1_DEFINE/defines.js',
+                    './web-doc-base/js/1_DEFINE/defines.js',
 
-                    '../web-doc-base/js/2_Core/1_globalValiables.js',
-                    '../web-doc-base/js/2_Core/2_packageValiables.js',
-                    '../web-doc-base/js/2_Core/3_Type.js',
-                    '../web-doc-base/js/2_Core/4_builtinArrayMethods.js',
-                    '../web-doc-base/js/2_Core/DebugLogger.js',
-                    '../web-doc-base/js/2_Core/Timer.js',
+                    './web-doc-base/js/2_Core/1_globalValiables.js',
+                    './web-doc-base/js/2_Core/2_packageValiables.js',
+                    './web-doc-base/js/2_Core/3_Type.js',
+                    './web-doc-base/js/2_Core/4_builtinArrayMethods.js',
+                    './web-doc-base/js/2_Core/DebugLogger.js',
+                    './web-doc-base/js/2_Core/LoopTimer.js',
+                    './web-doc-base/js/2_Core/Timer.js',
  
-                    '../web-doc-base/js/3_Event/1_globalValiables.js',
-                    '../web-doc-base/js/3_Event/2_packageValiables.js',
-                    '../web-doc-base/js/3_Event/3_core.js',
-                    '../web-doc-base/js/3_Event/highContrustMode.js',
-                    '../web-doc-base/js/3_Event/imageReady.js',
-                    //'../web-doc-base/js/3_Event/prefersColor.js',
-                    //'../web-doc-base/js/3_Event/print.js',
-                    '../web-doc-base/js/3_Event/resize.js',
-                    '../web-doc-base/js/3_Event/scroll.js',
+                    './web-doc-base/js/3_Event/1_globalValiables.js',
+                    './web-doc-base/js/3_Event/2_packageValiables.js',
+                    './web-doc-base/js/3_Event/3_core.js',
+                    // './web-doc-base/js/3_Event/cssAvailability.js',
+                    './web-doc-base/js/3_Event/highContrustMode.js',
+                    './web-doc-base/js/3_Event/imageReady.js',
+                    // './web-doc-base/js/3_Event/prefersColor.js',
+                    // './web-doc-base/js/3_Event/print.js',
+                    './web-doc-base/js/3_Event/resize.js',
+                    './web-doc-base/js/3_Event/scroll.js',
  
-                    '../web-doc-base/js/4_DOM/1_globalValiables.js',
-                    '../web-doc-base/js/4_DOM/2_packageValiables.js',
-                    '../web-doc-base/js/4_DOM/3_DOM.js',
-                    '../web-doc-base/js/4_DOM/4_DOMStyle.js',
-                    '../web-doc-base/js/4_DOM/5_DOMAttr.js',
-                    '../web-doc-base/js/4_DOM/6_DOMClass.js',
-                    // '../web-doc-base/js/4_DOM/7_DOMEvent.js',
-                    '../web-doc-base/js/4_DOM/9_nodeCleaner.js',
+                    './web-doc-base/js/4_DOM/1_globalValiables.js',
+                    './web-doc-base/js/4_DOM/2_packageValiables.js',
+                    './web-doc-base/js/4_DOM/3_DOM.js',
+                    './web-doc-base/js/4_DOM/4_DOMStyle.js',
+                    './web-doc-base/js/4_DOM/5_DOMAttr.js',
+                    './web-doc-base/js/4_DOM/6_DOMClass.js',
+                    // './web-doc-base/js/4_DOM/7_DOMEvent.js',
+                    './web-doc-base/js/4_DOM/9_nodeCleaner.js',
  
-                    '../web-doc-base/js/5_CSSOM/CSSOM.js',
+                    './web-doc-base/js/5_CSSOM/CSSOM.js',
  
-                    '../web-doc-base/js/6_CanUse/1_globalValiables.js',
-                    //'../web-doc-base/js/6_CanUse/2_packageValiables.js',
-                    //'../web-doc-base/js/6_CanUse/dataUriTest.js',
-                    //'../web-doc-base/js/6_CanUse/ieFilterTest.js',
-                    //'../web-doc-base/js/6_CanUse/imageTest.js',
-                    //'../web-doc-base/js/6_CanUse/webfontTest.js',
- 
+                    './web-doc-base/js/6_CanUse/1_globalValiables.js',
+                    './web-doc-base/js/6_CanUse/2_packageValiables.js',
+                    //'./web-doc-base/js/6_CanUse/contentPusedoElemenmt.js',
+                    //'./web-doc-base/js/6_CanUse/dataUriTest.js',
+                    './web-doc-base/js/6_CanUse/ieFilterTest.js',
+                    //'./web-doc-base/js/6_CanUse/imageTest.js',
+                    //'./web-doc-base/js/6_CanUse/webfontTest.js',
+
                     '../web-doc-base/js/7_Library/blockquot.js',
                     '../web-doc-base/js/7_Library/detectImageTurnedOff.js',
                     '../web-doc-base/js/7_Library/HighContrastStyleSwitcher.js',
                     '../web-doc-base/js/7_Library/ie5.js',
                     '../web-doc-base/js/7_Library/PicaThumnail.js',
                     '../web-doc-base/js/7_Library/SidebarFixer.js',
- 
-                    '../web-doc-base/js/onreachEnd.js'
+
+                    './web-doc-base/js/onreachEnd.js'
                 ],
                 externs           : [
                     './web-doc-base/inline-js/__externs.js',

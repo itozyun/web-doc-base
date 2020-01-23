@@ -65,11 +65,12 @@
             position     : relative;
         /* //_}#can-content */
         }
+
     /* //_{#can-content */
         .chatR p:after, .chatL p:after {
             @include createPusedoBlock;
             position     : absolute;
-            top          : .4em;
+            top          : .7em;
             width        : 0;
             height       : 0;
         }
@@ -83,6 +84,45 @@
             border-width : .3em 0 .3em 0.6em;
             right        : -0.6em;
         }
+
+        /* //_{^@ie8 */ /* 疑似要素に Transform が効かない */
+        @include highContrastForIEGte9Gecko {
+            /* //_{^@ie9 */
+            .chatL p:after, .chatR p:after {
+                display : none;
+            }
+            .jsCanRotate {
+            /* //_}^@ie9 */
+                .chatL p:after, .chatR p:after {
+                    /* //_{^@ie9 */
+                    display      : block;
+                    /* //_}^@ie9 */
+                    width        : .4em;
+                    height       : .4em;
+                    border-color : #fff;
+                    /* //_{@modern */
+                    transform     : rotate(-45deg);
+                    /* //_}@modern */
+                    /* //_{@ie9 */
+                    -ms-transform : rotate(-45deg);
+                    /* //_}@ie9 */
+                    /* //_{@ie8 */
+                    filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
+                    /* //_}@ie8 */
+                }
+                .chatL p:after {
+                    border-width : 1px 0 0 1px;
+                    left         : -0.3em;
+                }
+                .chatR p:after {
+                    border-width : 0 1px 1px 0;
+                    right        : -0.3em;
+                }
+            /* //_{^@ie9 */
+            }
+            /* //_}^@ie9 */
+        }
+        /* //_}^@ie8 */
     /* //_}#can-content */
 
         @include highContrastForIE10ToEdge {
@@ -158,18 +198,51 @@
         margin     : 0 0 .4em;
     }
     .chatL p:after, .chatR p:after {
-        top          : -.3em;
-        border-width : 0 .2em .4em;
+        top          : -.5em;
+        border-width : 0 .4em .55em;
     }
     .chatL p:after {
         border-color : #fff transparent;
-        left         : 1.214em;
+        left         : 1em;
     }
     .chatR p:after {
         border-color : #85E445 transparent;
-        right        : 1.214em;
+        right        : 1em;
     }
 }
+
+@media (-ms-high-contrast:active) and (max-width: 319px) {
+    .chatL p:after, .chatR p:after {
+        border-bottom-color : inherit !important;
+        border-left-color   : transparent;
+        border-right-color  : transparent;
+    }
+}
+
+/* //_{@ie9,@modern */
+@media only screen and (-ms-high-contrast:active) and (max-width: 319px) {
+    /* //_{^@ie9 */
+    .jsCanRotate {
+    /* //_}^@ie9 */
+        .chatL p:after, .chatR p:after {
+            width  : .3em;
+            height : .3em;
+        }
+        .chatL p:after {
+            border-width : 1px 1px 0 0;
+            top          : -.35em;
+            left         : 1.15em;
+        }
+        .chatR p:after {
+            border-width : 1px 1px 0 0;
+            top          : -.35em;
+            right        : 1.15em;
+        }
+    /* //_{^@ie9 */
+    }
+    /* //_}^@ie9 */
+}
+/* //_}@ie9,@modern */
 
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
@@ -183,18 +256,18 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .chat {
-        background     : #fff;
+        background     : $COLOR_Print_fill;
         color          : $COLOR_Print_text;
         border-color   : $COLOR_Print_casual_text;
     }
         .chatTitle {
-            background : #fff;
+            background : $COLOR_Print_fill;
         }
         .chat p,
         .chat h2, .chat h3, .chat h4, .chat h5, .chat h6,
         .chatR p, .chatL p, .chat .chatMember {
             color        : $COLOR_Print_text;
-            background   : #fff;
+            background   : $COLOR_Print_fill;
             border-color : $COLOR_Print_casual_text;
         }
 
@@ -202,30 +275,28 @@
             .chatR p:before, .chatL p:before {
                 @include createPusedoBlock;
                 position     : absolute;
-                top          : 5px;
+                top          : .7em;
                 width        : 0;
                 height       : 0;
+                border-color : $COLOR_Print_fill $COLOR_Print_casual_text;
             }
             .chatL p:before {
-                border-color : transparent $COLOR_Print_casual_text;
-                border-width : 3px 7px 3px 0;
+                border-width : 4px 7px 4px 0;
                 left         : -7px;
             }
             .chatR p:before {
-                border-color : transparent $COLOR_Print_casual_text;
-                border-width : 3px 0 3px 7px;
+                border-width : 4px 0 4px 7px;
                 right        : -7px;
             }
             .chatL p:after, .chatR p:after {
-                top          : 5px;
-                border-color : transparent #fff;
+                border-color : transparent $COLOR_Print_fill;
             }
             .chatL p:after {
-                border-width : 3px 7px 3px 0;
+                border-width : 4px 7px 4px 0;
                 left         : -6px;
             }
             .chatR p:after {
-                border-width : 3px 0 3px 7px;
+                border-width : 4px 0 4px 7px;
                 right        : -6px;
             }
         /* //_}#can-content */

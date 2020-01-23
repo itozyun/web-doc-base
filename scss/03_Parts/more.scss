@@ -75,5 +75,48 @@
             border-bottom-color : transparent;
         }
     }
+    @include highContrastForIEGte9Gecko {
+        /* //_{^@ie9 */
+        & i {
+            display : none;
+        }
+        .jsCanRotate
+        /* //_}^@ie9 */
+        & i {
+            /* //_{^@ie9 */
+            /* //_{#can-inline-block */
+            display      : inline-block;
+            /* //_}#can-inline-block */
+            /* //_}^@ie9 */
+            /* //_{^#can-inline-block */
+            display      : inline;
+            /* //_}^#can-inline-block */
+            border-color  : #fff;
+            border-width  : 0 .15em .15em 0;        
+            /* //_{@modern */
+            width         : .45em;
+            height        : .45em;
+            transform     : rotate(-45deg);
+            top           : 0;
+            /* //_}@modern */
+            /* //_{@ie9 */
+            width         : .45em;
+            height        : .45em;
+            -ms-transform : rotate(-45deg);
+            top           : 0;
+            /* //_}@ie9 */
+            /* //_{@ie55,@ie6,@ie7,@ie8 */
+            width         : .35em;
+            height        : .35em;
+            /* //_{@ie8 */
+            top           : -.3em;
+            /* //_}@ie8 */
+            /* //_{@ie55,@ie6,@ie7 */
+            top           : 0;
+            /* //_}@ie55,@ie6,@ie7 */
+            filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
+            /* //_}@ie55,@ie6,@ie7,@ie8 */
+        }
+    }
 }
 /** //_}+blog **/

@@ -14,6 +14,11 @@ var event;
 var _wdb_ontimer;
 
 /**
+ * @type {function()}
+ */
+var _wdb_onlooptimer;
+
+/**
  * @type {?function(!Event)|null}
  */
 function onload(){};

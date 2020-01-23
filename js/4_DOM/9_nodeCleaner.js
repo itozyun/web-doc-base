@@ -1,5 +1,5 @@
 "use strict";
-Event_loadEventCallbacks.splice( 0, 0,
+g_Event_loadEventCallbacks.splice( 0, 0,
     function(){
         g_elmMain = DOM_getElementById( g_ELEMENT_MAIN_ID );
 
@@ -23,11 +23,14 @@ Event_loadEventCallbacks.splice( 0, 0,
 
                     switch( tag ){
                         case 'STYLE' :
-                            // debugger が出ているときのだが、InvalidAccessError で止まる
-                            if( ( sheet = CSSOM_getStyleSheet( kid ) ) &&
-                                ( rules = CSSOM_getCssRules( sheet ) ) && !rules.length )
-                            {
-                                DOM_remove( kid );
+                            // https://twitter.com/pbrocky/status/1219213180531929088
+                            // 開発ツールを出していると Firefox 72.0.1 で CSSOM のアクセスで InvalidAccessError が出る
+                            if( g_jsGte15 ?
+                                ( sheet = CSSOM_getStyleSheet( kid ) ) && ( rules = CSSOM_getCssRules( sheet ) ) && !rules[0]
+                                :
+                                ( new Function( 'k,a,b,s,r', 'try{s=a(k),r=b(s);return !r[0]}catch(e){}' ) )( kid )
+                            ){
+                                DOM_remove( kid, CSSOM_getStyleSheet, CSSOM_getCssRules );
                                 break;
                             };
                         case 'LINK' :
