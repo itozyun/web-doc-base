@@ -1,6 +1,7 @@
 /* //_{#can-content */
 #jsCanUseContent {
     visibility : hidden;
+    position   : absolute;
 }
 #jsCanUseContent:after {
     content : attr(id);
