@@ -20,3 +20,13 @@ function DOM_addClassName( elm, className ){
         DOM_setClassName( elm, _className + className );
     };
 };
+
+function DOM_removeClassName( elm, className ){
+    var _className;
+
+    if( DOM_hasClassName( elm, className ) ){
+        _className = DOM_getClassName( elm ).split( ' ' );
+        _className.splice( _className.indexOf( className ), 1 );
+        DOM_setClassName( elm, _className.join( ' ' ) );
+    };
+};
