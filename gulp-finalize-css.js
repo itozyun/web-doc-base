@@ -54,23 +54,53 @@ module.exports = function( options ){
                 };
             };
 
-            css.walkDecls('content', function( decl, rule ){
-                rule = decl.parent;
-                if( decl.value === '""' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
-                    rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
-                    updateCurrentFile = true;
-                } else if( decl.value === '"_"' && 0 <= rule.selector.indexOf( ' [firefox-gte2]' ) ){
-                    rule.selector = rule.selector.split( ' [firefox-gte2]' ).join( '' ) + ',x:-moz-any-link';
-                    decl.value = '" "';
-                    updateCurrentFile = true;
-                } else if( decl.value === '" "' && 0 <= rule.selector.indexOf( ' [opera-lte9]' ) ){
-                    rule.selector = rule.selector.split( ' [opera-lte9]' ).join( '' ) + ',x:not(\\)';
-                    css.append( rule ); // go to last
-                    updateCurrentFile = true;
+            css.walkDecls('content', function( decl ){
+                var rule = decl.parent;
+
+                if( 0 <= rule.selector.indexOf( ' [firefox]' ) ){
+                    workForHack( rule, ' [firefox]', ',x:-moz-any-link' );
+                } else if( 0 <= rule.selector.indexOf( ' [opera-lte9]' ) ){
+                    workForHack( rule, ' [opera-lte9]', ',x:not(\\)', true );
+                };
+            });
+            css.walkDecls('display', function( decl ){
+                var rule = decl.parent;
+
+                if( 0 <= rule.selector.indexOf( ' [firefox]' ) ){
+                    workForHack( rule, ' [firefox]', ',x:-moz-any-link' );
                 };
             });
 
+            function workForHack( rule, marker, hackString, goToLast ){
+                var selectors, selectorOther = [], selectorTarget = [],
+                    selector, newRule;
+
+                if( 0 <= rule.selector.indexOf( marker ) ){
+                    selectors = rule.selector.split( ',' );
+                    while( selector = selectors.shift() ){
+                        if( 0 < selector.indexOf( marker ) ){
+                            selectorTarget.push( selector.replace( marker, '' ) );
+                        } else {
+                            selectorOther.push( selector );
+                        };
+                    };
+                    if( selectorOther.length ){
+                        newRule          = rule.clone();
+                        rule.selector    = selectorOther.join( ',' );
+                        newRule.selector = selectorTarget.join( ',' ) + hackString;
+                        goToLast ? rulesAddToEnd.push( newRule ) : css.append( newRule );
+                    } else {
+                        rule.selector = selectorTarget.join( ',' ) + hackString;
+                        goToLast ? rulesAddToEnd.push( rule ) : css.append( rule );
+                    };
+                    updateCurrentFile = true;
+                };
+            };
+
             if( updateCurrentFile ){
+                while( rulesAddToEnd.length ){
+                    css.append( rulesAddToEnd.shift() );
+                };
                 file.contents = Buffer.from(css.toString());
             };
             this.push(file);

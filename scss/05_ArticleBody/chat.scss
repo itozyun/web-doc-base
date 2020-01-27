@@ -68,7 +68,7 @@
 
     /* //_{#can-content */
         .chatR p:after, .chatL p:after {
-            @include createPusedoBlock;
+            @include createPseudoBlock;
             position     : absolute;
             top          : .7em;
             width        : 0;
@@ -273,7 +273,7 @@
 
         /* //_{#can-content */
             .chatR p:before, .chatL p:before {
-                @include createPusedoBlock;
+                @include createPseudoBlock;
                 position     : absolute;
                 top          : .7em;
                 width        : 0;

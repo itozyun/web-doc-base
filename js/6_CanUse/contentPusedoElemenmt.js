@@ -1,7 +1,7 @@
 if( DEFINE_CONTENT_TEST_ID ){
     g_Event_listenCssAvailability(
         function( cssAvailability ){
-            if( cssAvailability && !g_Type_notUndefined( g_CanUse_contentPusedoElement ) ){
+            if( cssAvailability && !g_Type_notUndefined( g_CanUse_contentPseudoElement ) ){
                 var elm = DOM_createThenAdd(
                     g_body,
                     'a', // 'span' だと Firefox72 で .offsetWidth が 0 で判定に失敗する
@@ -10,7 +10,7 @@ if( DEFINE_CONTENT_TEST_ID ){
                         id            : DEFINE_CONTENT_TEST_ID
                     }
                 );
-                g_CanUse_contentPusedoElement = !!elm.offsetWidth;
+                g_CanUse_contentPseudoElement = !!elm.offsetWidth;
                 DOM_remove( elm );
             };
         }

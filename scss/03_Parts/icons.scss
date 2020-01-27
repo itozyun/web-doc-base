@@ -11,7 +11,7 @@
         vertical-align : text-top;
     /* //_}@modern */
     &:before, &:after {
-        @include createPusedoBlock;
+        @include createPseudoBlock;
         text-indent   : -1em;
         position      : absolute;
         border-width  : 0;

@@ -9,19 +9,19 @@
     }
 }
 
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 :link:focus img, :visited:focus img,
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 :link:active img, :visited:active img {
     @include highContrast {
         border-style : dotted;
     }
 }
 
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 :link:focus img,
 :visited:focus img,
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 :link:active img,
 :visited:active img {
     border-color : $COLOR_ACCENT !important;

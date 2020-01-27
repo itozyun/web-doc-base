@@ -15,9 +15,9 @@
     }
 
     &:link:active, &:visited:active
-    /* //_{#can-focus-psedo-class */
+    /* //_{#can-focus-pseudo-class */
     , &:link:focus, &:visited:focus
-    /* //_}#can-focus-psedo-class */
+    /* //_}#can-focus-pseudo-class */
     {
         /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
             border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
@@ -35,9 +35,9 @@
                 background : $COLOR_Watch_fill;
             }
             &:link:active, &:visited:active
-            /* //_{#can-focus-psedo-class */
+            /* //_{#can-focus-pseudo-class */
             , &:link:focus, &:visited:focus
-            /* //_}#can-focus-psedo-class */
+            /* //_}#can-focus-pseudo-class */
             {
                 border-color : $COLOR_Watch_fill;
             }          
@@ -73,9 +73,9 @@
     /* //_{^#ie7-win */
         // IE7 以下にはデザインが適用されない
         &:active
-        /* //_{#can-focus-psedo-class */
+        /* //_{#can-focus-pseudo-class */
         , &:focus
-        /* //_}#can-focus-psedo-class */
+        /* //_}#can-focus-pseudo-class */
         {
             border-color : $COLOR_ACCENT; /* input.btn に対して適用, a:link には上書きされる */
             color        : $COLOR_ACCENT;

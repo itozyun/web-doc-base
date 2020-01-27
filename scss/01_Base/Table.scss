@@ -208,9 +208,9 @@ tbody :hover td {
 }
 tbody :hover th {
     :link:active, :visited:active
-    /* //_{#can-focus-psedo-class */
+    /* //_{#can-focus-pseudo-class */
     , :focus
-    /* //_}#can-focus-psedo-class */
+    /* //_}#can-focus-pseudo-class */
     {
         background   : #fff !important;
         color        : $COLOR_ACCENT !important;

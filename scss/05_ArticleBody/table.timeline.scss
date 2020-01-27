@@ -59,7 +59,7 @@
 
     /* //_{#can-content */
     tbody td:before, tbody td:after {
-        @include createPusedoBlock;
+        @include createPseudoBlock;
         text-indent   : -1em;
         position      : absolute;
         border-width  : .3em;

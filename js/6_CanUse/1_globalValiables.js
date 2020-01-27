@@ -5,7 +5,7 @@
 //
 var g_CanUse_iefilter,
     g_CanUse_imageEnabled,
-    g_CanUse_contentPusedoElement,
+    g_CanUse_contentPseudoElement,
 
     g_CanUse_cssTransform =
         g_Type_notUndefined( g_style[ 'transform' ] ) ? 'transform' : 

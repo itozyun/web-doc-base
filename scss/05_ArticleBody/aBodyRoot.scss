@@ -6,9 +6,9 @@
     a, /* link の無い a には下線をつけない */
     /* //_}#ie6-win */
     :link:hover, :visited:hover, a:active
-    /* //_{#can-focus-psedo-class */
+    /* //_{#can-focus-pseudo-class */
     , a:focus
-    /* //_}#can-focus-psedo-class */
+    /* //_}#can-focus-pseudo-class */
     { text-decoration : none; }
 
     :link, :visited {

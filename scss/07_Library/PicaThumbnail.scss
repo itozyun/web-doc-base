@@ -1,8 +1,8 @@
 /*  PicaThumbnail
 --------------------------------------------------------------------------------------*/
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 .jsPica:focus,
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 .jsPica:active {
     @include highContrast {
         outline : 0;

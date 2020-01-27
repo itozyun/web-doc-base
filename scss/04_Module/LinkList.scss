@@ -107,9 +107,9 @@
             margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
         }
         &:active:hover
-        /* //_{#can-focus-psedo-class */
+        /* //_{#can-focus-pseudo-class */
         , &:focus:hover
-        /* //_}#can-focus-psedo-class */
+        /* //_}#can-focus-pseudo-class */
         {
             text-decoration : underline !important;
         }

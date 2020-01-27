@@ -78,7 +78,7 @@ textarea {
     margin           : 0;
 }
 
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 form :focus {
     color        : $COLOR_ACCENT;
     border-color : $COLOR_ACCENT;
@@ -86,7 +86,7 @@ form :focus {
         border-style : dotted;
     }
 }
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 
 /* //_{@modern */
 form :invalid {

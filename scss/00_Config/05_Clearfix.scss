@@ -3,7 +3,7 @@
  *   https://github.com/Compass/compass/tree/d5df161d0df7edc686e576b22412f437dd0590cc/core/stylesheets/compass/utilities/general
 --------------------------------------------------------------------------------------*/
 
-@mixin createPusedoBlock($invisible : 0) {
+@mixin createPseudoBlock($invisible : 0) {
     & {
         /* //_{@modern */
         /* http://browserhacks.com/ */
@@ -11,23 +11,29 @@
         @media \0 all { & { content : "." } }
         /* 2 <= Firefox */
         @if $invisible == 1 {
-            body:last-child & [firefox-gte2] /* , x:-moz-any-link @see /README.md */ {
+            body:last-child & [firefox] /* , x:-moz-any-link @see /README.md */ {
                 content : "";
             }
         /* https://ka2.org/css-hack-for-opera/ */
         /* Opera <= 9 */
             [opera-lte9] /* , x:not(\\) @see /README.md */ { content : " " }
         } @else {
-            body:last-child & [firefox-gte2] {
-                content : "_";
+            // https://developer.mozilla.org/en-US/docs/Web/CSS/::after
+            // Before Firefox 3.5, only the CSS level 2 behavior of :after was supported, which disallowed position, float, list-style-* and some display properties.
+            // https://www.rougebleu.net/css%E3%83%8F%E3%83%83%E3%82%AF%E4%B8%80%E8%A6%A7/
+            [firefox] {
+                display : none;
+            }
+            body:first-of-type & [firefox] {
+                display : block;
             }
             content : " ";
         }
-        overflow : hidden;
         /* //_}@modern */
         /* //_{^@modern */
         @if $invisible == 1 {
-            content : "";
+            content  : "";
+            overflow : hidden;
         } @else {
             content : " ";
         }
@@ -54,7 +60,7 @@
 
         /* //_{#can-content */
             &:after {
-                @include createPusedoBlock(1);
+                @include createPseudoBlock(1);
                 /* //_{@modern */
                 height      : 0;
                 line-height : 0;

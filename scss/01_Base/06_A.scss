@@ -5,16 +5,16 @@
 a, /* link の無い a には下線をつけない */
 /* //_}#ie6-win */
 :link, :visited
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 a:focus,
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 a:active
 { text-decoration : none; }
 
 :link:hover, :visited:hover,
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 a:focus:hover,
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 a:active:hover { text-decoration : underline; }
 
 /*  transition
@@ -84,9 +84,9 @@ a {
 /* :active, :focus 時の配色は同じ
 --------------------------------------------------------------------------------------*/
 a:active
-/* //_{#can-focus-psedo-class */
+/* //_{#can-focus-pseudo-class */
 , a:focus
-/* //_}#can-focus-psedo-class */
+/* //_}#can-focus-pseudo-class */
 {
     background-color : $COLOR_ACCENT !important;
     color            : #fff        !important;
