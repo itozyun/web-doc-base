@@ -37,7 +37,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
     if( maybeCanWebFont() ){
         g_DebugLogger.log( '[webFontTest] maybeCanWebFont() : true' );
 
-        if( document.fonts && !( ua[ 'WebKit' ] < 603 ) ){
+        if( document.fonts && !( g_WebKit < 603 ) ){
             g_DebugLogger.log( '[webFontTest] Use Native font loader.' );
             testByNativeFontLoaderAPI();
         } else {

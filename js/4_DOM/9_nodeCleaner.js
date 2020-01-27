@@ -1,5 +1,5 @@
 "use strict";
-g_Event_loadEventCallbacks.splice( 0, 0,
+g_Event_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
         g_elmMain = DOM_getElementById( g_ELEMENT_MAIN_ID );
 

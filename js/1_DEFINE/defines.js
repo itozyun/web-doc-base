@@ -26,4 +26,6 @@ var g_MOBILE_CSS_PREFIX = 'm_',
     USE_ARRAY_INDEXOF = 0,
 
 /** @define {string} */
-    DEFINE_TEST_IMAGE_URL = '';
+    DEFINE_TEST_IMAGE_HTTP = '',
+/** @define {string} */
+    DEFINE_TEST_IMAGE_HTTPS = '';

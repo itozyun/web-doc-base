@@ -8,10 +8,12 @@
  * Webページにimgタグがある
  *   
  */
+var TEST_IMAGE_URL = g_isSecure ? DEFINE_TEST_IMAGE_HTTPS : DEFINE_TEST_IMAGE_HTTP;
+
 function imageTest( callback ){
-    if( !DEFINE_TEST_IMAGE_URL ){
+    if( !TEST_IMAGE_URL ){
         if( DEFINE_DEBUG ){
-            g_DebugLogger.log( '[imageTest] DEFINE_TEST_IMAGE_URL is undefined!' );
+            g_DebugLogger.log( '[imageTest] TEST_IMAGE_URL is undefined!' );
         };
         g_Timer_set( callback, false );
         return;
@@ -22,11 +24,11 @@ function imageTest( callback ){
 
     img.onerror = imageTest_onError;
     img.onload  = imageTest_onLoad;
-    img.src     = DEFINE_TEST_IMAGE_URL;
+    img.src     = TEST_IMAGE_URL;
 
     if( g_Presto < 8 && img.complete ){
         g_Timer_set( callback, true );
-    } else {
+    } else if( !finish ){
         timerID = g_Timer_set( imageTest_check );
     };
 

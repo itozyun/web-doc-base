@@ -6,7 +6,7 @@
 var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_ID_WRAPPER = 'jsSidebarFixer', // jsSidebarFixer
     SIDEBAR_FIXER_IDS_WHEEL  = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
-    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ],
+    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ] || g_WebKit, // Safari 13 で確認
     SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || ua[ 'Fennec' ] || g_Goanna || g_EdgeHTML,
     /*
      * positionFixed
@@ -27,7 +27,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
                 // Firefox Mobile before 6.0 -
                 ( ua[ 'Fennec' ] < 6 ) ||
                 // WebOS less than 3
-                ( ua[ 'WebOS' ] && ua[ 'WebKit' ] < 534 ) ||
+                ( ua[ 'WebOS' ] && g_WebKit < 534 ) ||
                 // MeeGo
                 ( ua[ 'MeeGo' ] ) ||
                 // IE6-
@@ -45,12 +45,12 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
 
 if( !g_isMobile && !g_ServerSideRendering ){
 
-    g_Event_listenScrollEvent( SIDEBAR_FIXER_onscroll );
-    g_Event_listenResizeEvent( SIDEBAR_FIXER_onscroll );
-
     g_Event_listenLoadEvent(
         function(){
             var i = -1, id, elm;
+
+            g_Event_listenScrollEvent( SIDEBAR_FIXER_onscroll );
+            g_Event_listenResizeEvent( SIDEBAR_FIXER_onscroll );
 
             SIDEBAR_FIXER_elmRoot = document.compatMode !== 'CSS1Compat' ? g_body : g_html || g_body;
             SIDEBAR_FIXER_elmSide = DOM_getElementById( SIDEBAR_FIXER_ID_SIDEBAR );

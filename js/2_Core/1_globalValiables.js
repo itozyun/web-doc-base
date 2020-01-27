@@ -14,6 +14,7 @@ var g_emptyFunction       = new Function(),
     g_Presto       = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
     g_Gecko        = ua[ 'Gecko' ],
     g_Goanna       = ua[ 'Goanna' ],
+    g_WebKit       = ua[ 'WebKit' ],
     g_SafariMobile = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
     g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
 
@@ -38,6 +39,7 @@ var g_emptyFunction       = new Function(),
                   g_Trident < 10  ? 'ie' + ( g_Trident | 0 ) :
                   'modern'
                 ) + '.css',
+    g_isSecure = location.href.indexOf('https') === 0,
     g_assetUrl, g_assetDir, g_isMobile;
 
 var g_Type_notUndefined;
