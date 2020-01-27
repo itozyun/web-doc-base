@@ -24,8 +24,7 @@ g_Event_loadEventCallbacks.push(
                 left       : 0,
                 width      : '9px',
                 height     : '9px',
-                visibility : 'hidden',
-                color      : '#123456'
+                visibility : 'hidden'
             }
         );
     }

@@ -12,4 +12,7 @@ var g_Event_listenLoadEvent,
     g_Event_listenHighContrustModeChange,
 
     // nodeCleaner もアクセスするので global に公開する
-    g_Event_loadEventCallbacks = [];
+    g_Event_loadEventCallbacks = [],
+
+    g_Event_cssAvailability,
+    g_Event_highContrustModeState = 0;

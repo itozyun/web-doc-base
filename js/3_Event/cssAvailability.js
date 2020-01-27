@@ -1,11 +1,10 @@
-var Event_cssAvailabilityCallbacks = [],
-    Event_cssAvailability; 
+var Event_cssAvailabilityCallbacks = []; 
 
 function Event_cssAvailability_check(){
     var _cssAvailability = Event_elmTest.offsetWidth === 9;
     
-    if( Event_cssAvailability !== _cssAvailability ){
-        Event_dispatch( Event_cssAvailabilityCallbacks, Event_cssAvailability = _cssAvailability );
+    if( g_Event_cssAvailability !== _cssAvailability ){
+        Event_dispatch( Event_cssAvailabilityCallbacks, g_Event_cssAvailability = _cssAvailability );
     };
 };
 

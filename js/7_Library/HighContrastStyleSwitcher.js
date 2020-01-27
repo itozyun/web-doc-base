@@ -27,11 +27,11 @@ var HighContrastStyleSwitcher_init = function(){
 };
 
 g_Event_listenHighContrustModeChange(
-    function( isHighContrasrt ){
-        if( isHighContrasrt && !HighContrastStyleSwitcher_elmStyle ){
+    function( highContrustState ){
+        if( highContrustState && !HighContrastStyleSwitcher_elmStyle ){
             HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();
         } else {
-            isHighContrasrt ? DOM_appendChild( g_head, HighContrastStyleSwitcher_elmStyle ) : DOM_remove( HighContrastStyleSwitcher_elmStyle );
+            highContrustState ? DOM_appendChild( g_head, HighContrastStyleSwitcher_elmStyle ) : DOM_remove( HighContrastStyleSwitcher_elmStyle );
         };
     }
 );
