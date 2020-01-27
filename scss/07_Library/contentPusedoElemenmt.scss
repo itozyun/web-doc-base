@@ -1,9 +1,11 @@
+// https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
 /* //_{#can-content */
 #jsCanUseContent {
-    visibility : hidden;
-    position   : absolute;
+    font       : 0/0 a;
 }
 #jsCanUseContent:after {
-    content : attr(id);
+    content    : ':)';
+    visibility : hidden;
+    font       : 7px/1 a
 }
 /* //_}#can-content */
