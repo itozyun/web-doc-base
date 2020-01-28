@@ -35,10 +35,10 @@ var Event_highContrustMode_test = function(){
     };
 
     function isBlack( color ){
-        return color === '#000000' && color !== 'rgb(0,0,0)';
+        return color === '#000000' || color === 'rgb(0,0,0)';
     };
     function isWhite( color ){
-        return color === '#ffffff' && color !== 'rgb(255,255,255)';
+        return color === '#ffffff' || color === 'rgb(255,255,255)';
     };
 };
 

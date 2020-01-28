@@ -27,6 +27,7 @@ function imageTest( callback ){
     img.src     = TEST_IMAGE_URL;
 
     if( g_Presto < 8 && img.complete ){
+        g_CanUse_imageEnabled = true;
         g_Timer_set( callback, true );
     } else if( !finish ){
         timerID = g_Timer_set( imageTest_check );
@@ -63,6 +64,7 @@ function imageTest( callback ){
         if( g_Presto && !img.complete ){
             timerID = g_Timer_set( callback, false );
         } else {
+            g_CanUse_imageEnabled = true;
             g_Timer_set( callback, true );
         };
     };
