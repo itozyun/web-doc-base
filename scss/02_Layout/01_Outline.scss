@@ -108,30 +108,6 @@
     /* //_}#ie89 */
 /* //_}^+mobileOnly */
 
-/* //_{@modern */
-/*  メディアクエリをサポートするブラウザだけ table-layout にする
---------------------------------------------------------------------------------------*/
-@include media(pc) {
-    .lW {
-        display      : table;
-        table-layout : fixed;
-    }
-        .lM, .lS {
-            float          : none;
-            display        : table-cell;
-            vertical-align : top; /* Safari 3.2, ie8 で大切 */
-        }
-
-        .lM {
-            width : 100% * $PC_MAIN_COLUMN_RATIO;
-        }
-            .lMi, .lMz {
-                /* padding-right だと Safari 3.2 table レイアウトが狂う */
-                margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
-            }
-}
-/* //_}@modern */
-
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
 @include media(WQXGA) {
@@ -197,16 +173,15 @@
         /* //_{#can-max-min */
         max-width : 100%;
         /* //_}#can-max-min */
-        /* //_{@ie8,@ie9,@modern */
+    }
+    .lW {
+        /* //_{@ie8,@ie9 */
         display   : block;
-        /* //_}@ie8,@ie9,@modern */
+        /* //_}@ie8,@ie9 */
     }
         .lM, .lS {
             float   : none;
         /* //_{^@ie9 */
-            /* //_{@modern */
-            display : block; /* table-cell のリセット */
-            /* //_}@modern */
             width   : auto;
         /* //_}^@ie9 */
         /* //_{@ie9 */
