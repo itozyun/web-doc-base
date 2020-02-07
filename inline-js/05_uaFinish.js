@@ -67,4 +67,4 @@ if( device ){
     };
 };
 
-if( isPcMode ) ua.PC_MODE = true;
+if( isPcMode || is_iPadOsPcMode ) ua.PC_MODE = true;

@@ -13,6 +13,11 @@ function fromString( str1, str2 ){
 function findString( str1, str2 ){
     return 0 <= str1.indexOf( str2 );
 };
+function inObject( name, obj ){
+    for( var k in obj ){
+        if( k === name ) return true;
+    };
+};
 
 function getVersionString( strTarget, strStart ){
     var ret = '', i = -1, charCode;
@@ -78,6 +83,7 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     strPlatform   = navigator.platform,
 
     html          = document.documentElement,
+    htmlStyle     = html && html.style,
     docMode       = document.documentMode,
     screenW       = screen.width,
     screenH       = screen.height,
@@ -91,7 +97,7 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
 
     // https://www.fxsitecompat.com/ja/docs/2017/moz-appearance-property-has-been-removed/
     // -moz-appearance プロパティが廃止されました -> 更新: この変更は Firefox 54 で予定されていましたが、延期されました。
-    isGecko = html && html.style.MozAppearance !== undefined, // window.Components
+    isGecko = htmlStyle.MozAppearance !== undefined, // window.Components
 
     /*
      * http://qiita.com/takanamito/items/8c2b6bc24ea01381f1b5#_reference-8eedaa6525b73cd272b7
@@ -117,6 +123,9 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     versionAndroid = getVersionString( strPlatform , 'Android ' ) || getVersionString( strAppVersion, 'Android ' ) ||
                      getVersionString( strUserAgent, 'Android ' ) || versionAndroidWithUCWEB,
     maybeLinux  = findString( strPlatform, 'Linux' ), // Linux or Android
+
+    // https://www.bit-hive.com/articles/20190820
+    is_iPadOsPcMode = strPlatform === 'MacIntel' && navigator.standalone !== undefined,
 
     /*
      * http://help.dottoro.com/ljifbjwf.php
@@ -151,6 +160,8 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     versionGecko   = !versionGoanna && isGecko && getVersionString( strUserAgent, 'rv:' ),
     versionFirefox = getVersionString( strUserAgent, 'Firefox/' ), // Android9 + Firefox67.0 + PC_MOEDE で rv: が存在しない！
     versionOpera   = getVersionString( strUserAgent, 'Opera/' ),
+    versionFocus   = getVersionString( strUserAgent, 'Focus/' ),
+    isSleipnir     = window.FNRBrowser,
 
     versionWebKit = getNumber( strUserAgent, 'AppleWebKit/' ),
     versionChrome = getVersionString( strUserAgent, 'Chrome/' ),
@@ -158,6 +169,8 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     versionKHTML  = getVersionString( strAppVersion, 'KHTML/' ),
     versionIris   = getVersionString( strUserAgent.toLowerCase(), 'iris' ),
     versionFxiOS  = getVersionString( strUserAgent, 'FxiOS/' ),
+    versionCriOS  = getVersionString( strUserAgent, 'CriOS/' ),
+    versionEdgiOS = getVersionString( strUserAgent, 'EdgiOS/' ),
 
     // https://issuetracker.google.com/issues/36957795
     //  Canvas clearRect failing to clear
@@ -316,4 +329,4 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     versionNetFront, versionNX,
     isMac,
     isWindowsPhone, isFireOS,
-    isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, is_iOSWebView;
+    isAndroidBrowser, isAndroidChromeWebView, isAndroidBased, maybe_iOSWebView, is_iOSOperaTurbo, is_iOSDolphin, is_iOSBrave;

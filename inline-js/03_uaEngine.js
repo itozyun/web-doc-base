@@ -6,11 +6,10 @@ if( !engine ){
     if( isPresto ){
         engine        = isAndroidBased || deviceTypeIsPDA || deviceTypeIsPhone || deviceTypeIsTablet ? 'PrestoMobile' : 'Presto';
         engineVersion = versionPresto;
-    } else
 /*----------------------------------------------------------------------------//
  *  Trident or Tasman
  */
-    if( isTrident ){
+    } else if( isTrident ){
         if( v = getNumber( strAppVersion, 'Trident/' ) + 4 ){
             if( v !== versionTrident ){
                 brand        = 'IEHost';
@@ -39,55 +38,48 @@ if( !engine ){
                 brandVersion = versionTrident;
             };
         };
-        engineVersion = versionTrident; 
-    } else
+        engineVersion = versionTrident;
 /*----------------------------------------------------------------------------//
  *  EdgeHTML
  */
-    if( isEdgeHTML ){
+    } else if( isEdgeHTML ){
         engine        = isWindowsPhone ? 'EdgeMobile' : 'EdgeHTML';
         engineVersion = getVersionString( strAppVersion, 'Edge/' );
-    } else
 /*----------------------------------------------------------------------------//
- *  Goannna
+ *  Goanna
  */
-    if( versionGoanna ){
+    } else if( versionGoanna ){
         engine        = 'Goanna';
         engineVersion = versionGoanna;
-    } else
 /*----------------------------------------------------------------------------//
  *  Gecko
  */
-    if( isGecko ){
+    } else if( isGecko ){
         engine        = isAndroidBased ? 'Fennec' : 'Gecko';
         engineVersion = versionGecko || versionFirefox;
-    } else
 /*----------------------------------------------------------------------------//
  *  Samsung Browser
  */
-    if( verSamsung ){
+    } else if( verSamsung ){
         engine        = 'Samsung';
         engineVersion = verSamsung;
         if( surelyPcMode ) isPcMode = true;
-    } else
 /*----------------------------------------------------------------------------//
  *  NetFront
  */
-    if( strVersion = versionNetFront || getVersionString( strUserAgent, 'NetFront/' ) ){
+    } else if( strVersion = versionNetFront || getVersionString( strUserAgent, 'NetFront/' ) ){
         engine        = 'NetFront';
         engineVersion = strVersion;
-    } else
 /*----------------------------------------------------------------------------//
  *  iCab
  */
-    if( strVersion = getVersionString( strUserAgent, 'iCab' ) ){
+    } else if( strVersion = getVersionString( strUserAgent, 'iCab' ) ){
         engine        = 'iCab';
         engineVersion = strVersion;
-    } else
 /*----------------------------------------------------------------------------//
  *  Opera Mini
  */
-    if( strVersion = max( getVersionString( strUserAgent, 'Opera Mini/' ), getVersionString( strUserAgent, 'Opera Mobi/' ) ) || ( hasOperaMiniObject && verVersion ) ){
+    } else if( strVersion = max( getVersionString( strUserAgent, 'Opera Mini/' ), getVersionString( strUserAgent, 'Opera Mobi/' ) ) || ( hasOperaMiniObject && verVersion ) ){
         engine        = 'OperaMini'; 
         engineVersion = strVersion;
         if( !platform ){
@@ -100,39 +92,34 @@ if( !engine ){
             };
             if( device ) platform = 'iOS';
         };
-    } else
 /*----------------------------------------------------------------------------//
  *  UC Browser Speed Mode
  */
-    if( isUCWEB ){
+    } else if( isUCWEB ){
         engine        = 'UCWEB';
         engineVersion = versionUCWEB;
-    } else
 /*----------------------------------------------------------------------------//
  *  KHTML
  */
-    if( versionKHTML ){
+    } else if( versionKHTML ){
         engine        = 'KHTML';
         engineVersion = appVersion;
-    } else
 /*----------------------------------------------------------------------------//
  *  AOSP
  */
 // Android3.x-4.1 のAOSPで window.chrome がいるので AOSP の判定を Blink より先に
-    if( isAndroid && maybeAOSP ){
+    } else if( isAndroid && maybeAOSP ){
         engine           = 'AOSP';
         engineVersion    = versionAndroid;
         isAndroidBrowser = true;
         if( surelyPcMode ) isPcMode = true;
-    } else
 /*----------------------------------------------------------------------------//
  *  Chromium or ChromiumMobile
  */
-    if( hasChromeObject || hasOPRObject || versionOPR ){
+    } else if( hasChromeObject || hasOPRObject || versionOPR ){
         engine        = isAndroidBased ? 'ChromiumMobile' : 'Chromium';
         engineVersion = versionChrome;
         if( surelyPcMode ) isPcMode = true;
-    } else
 /*----------------------------------------------------------------------------//
  *  ChromeWebView
  */
@@ -140,7 +127,7 @@ if( !engine ){
 // Chrome WebView は Android 4.4 の時点では WebGL や WebAudio など一部の機能が利用できません(can i use)。
 // また UserAgent が書き換え可能なため、旧来のAOSPブラウザの UserAgent を偽装した形で配布されているケースがあります。
 // http://caniuse.com/#compare=chrome+40,android+4.2-4.3,android+4.4,android+4.4.3-4.4.4,and_chr+45
-    if( isAndroid && docRegElm ){
+    } else if( isAndroid && docRegElm ){
         // Android 標準ブラウザ Chrome WebView ブラウザ
         engine           = 'ChromeWebView';
         engineVersion    = parseFloat( versionAndroid ) < 5 ? versionAndroid : versionChrome; // Android 4.4.4- では Android の Version を。5.0+ では Chrome のバージョンを使用。
@@ -150,27 +137,25 @@ if( !engine ){
             isAndroidChromeWebView = true;
         };
         if( surelyPcMode ) isPcMode = true;
-    } else
 /*----------------------------------------------------------------------------//
  *  AOSP PC_Mode
  */
-    if( isAndroid && ( verVersion || surelyPcMode ) ){
+    } else if( isAndroid && ( verVersion || surelyPcMode ) ){
         engine           = 'AOSP';
         engineVersion    = versionAndroid;
         isAndroidBrowser = true;
         if( surelyPcMode ) isPcMode = true;
-    } else
 /*----------------------------------------------------------------------------//
  *  Chromium or ChromiumMobile (window.chrome 無)
  */
+    } else
     if( versionChrome ){
         engine        = isAndroidBased ? 'ChromiumMobile' : 'Chromium';
         engineVersion = versionChrome;
-    } else
 /*----------------------------------------------------------------------------//
  *  WebKit
  */
-    if( versionWebKit ){
+    } else if( versionWebKit ){
         engine        = 'WebKit'
         engineVersion = versionWebKit;
     };

@@ -141,7 +141,7 @@ if( appVersion === 2 && findString( strUserAgent, 'Sony/COM2/' ) ){
 /*----------------------------------------------------------------------------//
  *  iOS
  */
-if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin ){
+if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin || is_iPadOsPcMode ){
     if( versioniOSWithPuffin ){
         platformVersion = versioniOSWithPuffin;
         switch( puffinDevice.substr( 0, 4 ) ){
@@ -165,11 +165,16 @@ if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin 
         if( versioniOSWithUC ){
             platformVersion = versioniOSWithUC;
         } else {
-            platformVersion = getVersionString( strAppVersion.split( '_' ).join( '.' ), 'OS ' );
+            platformVersion  = getVersionString( strAppVersion.split( '_' ).join( '.' ), 'OS ' );
+
+            is_iOSOperaTurbo = !inObject( 'isSecureContext', window ); // createImageBitmap
+            is_iOSDolphin    = inObject( 'enableWebGL', window );
+            is_iOSBrave      = inObject( 'sameOrigin', window );
         };
 
-        if( !platformVersion ){
-            isPcMode = true;
+        if( !platformVersion ) isPcMode = true;
+
+        if( !platformVersion || isSleipnir ){ // Sleipnir は嘘のバージョンがUA文字列に設定されている
             platformVersion =
                 // navigator[ 'mediaDevices'    ] ? 11.2 : // WebView では無効
                 // https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc/issues/250#issuecomment-336240953
@@ -197,12 +202,12 @@ if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin 
         v = screenW === screenH * 1.5 || screenW * 1.5 === screenH;
 
         if( fromString( strPlatform, 'iPhone' ) ){ // iPhone or iPhone Simulator
-            device             = 'iPhone';
-            deviceVersion      = v ? ( dpRatio ? { max : 3 } : { min : 4, max : 5 } ) : { max : 6 };
+            device            = 'iPhone';
+            deviceVersion     = v ? ( dpRatio ? { max : 3 } : { min : 4, max : 5 } ) : { max : 6 };
             deviceTypeIsPhone = true;
-        } else if( fromString( strPlatform, 'iPad' ) ){ // iPad or iPad Simulator
-            device            = 'iPad';
-            deviceVersion     = dpRatio ? { max : 2 } : { min : 3 }; 
+        } else if( fromString( strPlatform, 'iPad' ) || is_iPadOsPcMode ){ // iPad or iPad Simulator
+            device             = 'iPad';
+            deviceVersion      = dpRatio ? { max : 2 } : { min : 3 }; 
             deviceTypeIsTablet = true;
         } else if( fromString( strPlatform, 'iPod' ) ){
             device                  = 'iPod';
@@ -212,15 +217,23 @@ if( fromString( strPlatform, 'iP' ) || versioniOSWithUC || versioniOSWithPuffin 
     };
 
     if( !versioniOSWithPuffin && // iPad iOS12.2 Puffin5.2.2 で fullscreenEnabled が存在の模様
+        //!is_iOSOperaTurbo && !is_iOSDolphin &&
+        //!versioniOSWithUC && !versionEdgiOS && !versionFxiOS && !versionFocus && 
         // ホーム画面から起動したWebページは navigator.standalone === true になっている。fullscreen API は無い。
-        ( navigator.standalone || document.fullscreenEnabled !== undefined || document.webkitFullscreenEnabled !== undefined ) ){
+        ( navigator.standalone ||
         // https://github.com/uupaa/WebApp2/blob/master/app/assets/modules/UserAgent.js
         // _isWebView_iOS(options)
+        // iPhone 13 で fullscreenEnabled の判定が出来ない.
+        // https://caniuse.com/#feat=fullscreen によると、iOS は12からなので、fullscreenEnabled による Safari/WebView の判定は 11 迄は動いたと仮定する
+            ( ( deviceTypeIsTablet || platformVersion < 12 ) && ( /* inObject( 'fullscreenEnabled', document ) || */ inObject( 'webkitFullscreenEnabled', document ) ) ) ||
+            ( 11 <= platformVersion && platformVersion < 13 && navigator.mediaDevices ) // 12迄は mediaDevices は Safari だけだった。
+        )
+    ){
         engine       = 'SafariMobile';
         brand        = 'Safari';
         brandVersion = platformVersion;
     } else {
-        is_iOSWebView = true;
+        maybe_iOSWebView = true;
         engine        = 'iOSWebView';
     };
     platform      = 'iOS';
@@ -611,7 +624,7 @@ if( maybeLinux && maybePCMode ){
         //   Android OS 5.0（Lollipop）から、Chromium WebView が OS から切り離され、Google Play から 「AndroidシステムのWebView」として更新できるようになった。
         //   この結果、端末ベンダー提供のパッチ適用に影響されずに更新されることになったが、この「ブラウザ」と Chrome for Android とは別物であることには注意が必要である。 
         v = versionAndroid =
-            html.style.touchAction !== undefined ? { min : 5 } : 
+            htmlStyle.touchAction !== undefined ? { min : 5 } : 
             docRegElm ? 4.4 :
             // ＾______Chromium_____
             int8Array ? (

@@ -4,7 +4,7 @@ if( !brand ){
     if( strVersion =
         ( isEdgeHTML && getVersionString( strUserAgent, 'Edge/'   ) ) || // Win Edge
         getVersionString( strUserAgent, 'EdgA/'   ) || // Android
-        getVersionString( strUserAgent, 'EdgiOS/' ) || // iOS
+        versionEdgiOS || // iOS
         getVersionString( strUserAgent, 'Edg/'    )    // Chromium based Microsoft Edge(MSEdge)
     ){
         brand        = 'Edge';
@@ -12,6 +12,8 @@ if( !brand ){
     } else if( strVersion = getVersionString( strAppVersion, 'Coast/' ) ){
         brand        = 'Coast';
         brandVersion = strVersion;
+    } else if( is_iOSOperaTurbo ){
+        brand        = 'OperaTurbo';
     } else if( strVersion = getVersionString( strAppVersion, 'OPT/' ) ){
         brand        = 'OperaTouch';
         brandVersion = strVersion;
@@ -59,19 +61,15 @@ if( !brand ){
 // Mozilla/5.0 (Linux; <Android Version> <Build Tag etc.>) AppleWebKit/<WebKit Rev> (KHTML, like Gecko) Version/4.0 Focus/<focusversion> Chrome/<Chrome Rev> Mobile Safari/<WebKit Rev>
 
     if( strVersion =
-        getVersionString( strUserAgent, 'Focus/' ) ||
+        versionFocus || getVersionString( strUserAgent, 'Klar/' ) ||
         // https://apps.apple.com/jp/app/firefox-focus-e3-83-97-e3-83-a9-e3-82-a4-e3-83-90-e3/id1055677337
         // iOS 12.2, Focus 8.1.2, (iOS 11.0以降)
         // https://en.wikipedia.org/wiki/Firefox_for_iOS#cite_note-10
         // Focus : FxiOS が 8.x にも拘わらず、iOS のバージョンが 11 以上、を使って判定
         // Firefox : FxiOS が 9.x 移行が、iSO 11+ 対応を持って判定
-        ( parseFloat( versionFxiOS ) < 9 && is_iOSWebView && 11 <= parseFloat( platformVersion ) && versionFxiOS )
+        ( parseFloat( versionFxiOS ) < 9 && maybe_iOSWebView && 11 <= parseFloat( platformVersion ) && versionFxiOS )
     ){
         brand        = 'Focus';
-        brandVersion = strVersion;
-    } else
-    if( strVersion = getVersionString( strUserAgent, 'Klar/' ) ){
-        brand        = 'Klar';
         brandVersion = strVersion;
     } else
     if( strVersion = getVersionString( strUserAgent, 'AOLBUILD/' ) || getVersionString( strUserAgent, 'AOL/' ) || getVersionString( strUserAgent, 'AOL ' ) ){
@@ -156,7 +154,7 @@ if( !brand ){
         brand        = 'ComodoDragon';
         brandVersion = strVersion;
     } else
-    if( ( strVersion = getVersionString( strUserAgent, 'Brave/' ) ) || findString( strUserAgent, ' Brave ' ) ){
+    if( ( strVersion = getVersionString( strUserAgent, 'Brave/' ) ) || findString( strUserAgent, ' Brave ' ) || is_iOSBrave ){
         brand        = 'Brave';
         brandVersion = strVersion || ( hasChromeObject && versionChrome );
     } else
@@ -164,11 +162,14 @@ if( !brand ){
         brand        = 'Rockmelt';
         brandVersion = strVersion;
     } else
-    if( ( strVersion = getVersionString( strUserAgent, 'Sleipnir/' ) ) || window.FNRBrowser ){
+    if( ( strVersion = getVersionString( strUserAgent, 'Sleipnir/' ) ) || isSleipnir ){
         brand        = 'Sleipnir';
         if( strVersion ){
             brandVersion = strVersion;
         };
+    } else
+    if( is_iOSDolphin ){
+        brand = 'Dolphin';
     } else
     if( strVersion = getVersionString( strUserAgent, 'Puffin/' ) ){
         brand        = 'Puffin';
@@ -241,18 +242,19 @@ if( !brand ){
     } else if( verSamsung ){
         brand        = engine;
         brandVersion = verSamsung;
-    } else if( strVersion =
-        getVersionString( strUserAgent, 'CriOS/' ) ||
+    } else if( strVersion = versionCriOS ||
         ( hasChromeObject || ( maybeChromeWebView && isAndroidBrowser ) ) && versionChrome ){
         brand        = 'Chrome';
         brandVersion = strVersion;
     } else if( isAndroidBrowser && !isAndroidChromeWebView ){
         brand        = engine;
         brandVersion = engineVersion;
-    } else if( is_iOSWebView || isAndroidChromeWebView ){
-        brand = 'unknown';
-    } else if( findString( strUserAgent, 'Safari' ) || verVersion ){
+    } else if( maybe_iOSWebView && !deviceTypeIsTablet ){
+        engine       = 'SafariMobile';
         brand        = 'Safari';
+        brandVersion = platformVersion;
+    } else if( !maybe_iOSWebView && !isAndroidChromeWebView && ( findString( strUserAgent, 'Safari' ) || verVersion ) ){
+        brand = 'Safari';
         brandVersion = verVersion || (
                         versionWebKit <   73    ? 0.8 :
                         versionWebKit <   85    ? 0.9 :
@@ -264,4 +266,5 @@ if( !brand ){
                         versionWebKit <= 525.13 ? 3 :
                         versionWebKit <= 525.25 ? 3.1 : 3.2 );
     };
+    brand = brand || 'unknown';
 };
