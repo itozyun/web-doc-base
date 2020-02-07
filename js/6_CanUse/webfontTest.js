@@ -100,7 +100,9 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
                     g_Timer_set( callback, result );
                 } else {
                     g_DebugLogger.log( '[webFontTest] mesureWebFont() : false' );
-                    dataUriTest( testDataUriComplete );
+                    // Firefox 72 では、このタイミングで判定に失敗する模様
+                    // testInterval = INTERVAL_EMBEDED_WEBFONT; 100ms でもフォントの判定に失敗する。
+                    testWebFont( true );
                 };
             },
             function( reason ){
@@ -121,7 +123,10 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
     function checkTime( ms ){
         // https://github.com/bramstein/fontfaceobserver/blob/master/src/observer.js
         // hidden の場合は時間切れをスキップする。未検証…
-        if( document.hidden || document[ 'msHidden' ] || document[ 'mozHidden' ] || document[ 'webkitHidden' ] ) return false;
+        if( document.hidden || document[ 'msHidden' ] || document[ 'mozHidden' ] || document[ 'webkitHidden' ] ){
+            resetTime();
+            return false;
+        };
         return ms < new Date - startTime;
     };
     
