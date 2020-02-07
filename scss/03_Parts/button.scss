@@ -102,9 +102,13 @@
 }
 
 input.btn {
+/* //_{@ie5win,@ie55 */
+    padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
+/* //_}@ie5win,@ie55 */
 /* //_{@ie6,@ie7 */
-    height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-/* //_}@ie6,@ie7 */  
+    height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
+/* //_}@ie6,@ie7 */
 }
 
 /* //_{@modern */
