@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/itozyun/web-doc-base#readme",
   "devDependencies": {
-    "google-closure-compiler": "^20191111.0.0",
+    "google-closure-compiler": "^20200112.0.0",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
     "plugin-error": "^1.0.1",
-    "postcss": "^7.0.25",
+    "postcss": "^7.0.26",
     "stream": "0.0.2",
     "vinyl": "^2.2.0"
   }
