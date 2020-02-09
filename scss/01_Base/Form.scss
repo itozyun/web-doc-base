@@ -41,13 +41,13 @@ input {
     /* //_{#can-box-sizing */
     /* //_{@modern */
     -webkit-box-sizing    : content-box;
+       -moz-box-sizing    : content-box;
     /* //_}@modern */
             box-sizing    : content-box;
     /* //_}#can-box-sizing */
     /* //_{@modern */
     -webkit-border-radius : 0;
        -moz-border-radius : 0;
-        -ms-border-radius : 0;
             border-radius : 0;
     -webkit-appearance    : none;
             appearance    : none;
