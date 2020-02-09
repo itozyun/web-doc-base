@@ -1,5 +1,32 @@
 /* //_{+it
 --------------------------------------------------------------------------------------*/
+kbd {
+    /* //_{#can-inline-block */
+    display        : inline-block;
+    /* //_}#can-inline-block */
+    border-width   : 1px;
+    border-color   : $COLOR_Default_text;
+    cursor         : pointer;
+    letter-spacing : -1;
+    padding        : 0 .4em;
+    margin         : 0 .1em;
+
+    /* //_{@modern */
+     -webkit-border-radius : 3px;
+        -moz-border-radius : 3px;
+          -o-border-radius : 3px;
+    /* //_}@modern */
+    /* //_{@ie9,@modern */
+             border-radius : 3px;
+    /* //_}@ie9,@modern */
+    /* //_{#can-hover-pseudo-class */
+    position       : relative;
+        &:hover {
+            top : -0.1em;
+        }
+    /* //_}#can-hover-pseudo-class */
+}
+
 code, var {
     background : $COLOR_Default_casual_fill;
     padding    : .1em .4em;
@@ -24,6 +51,9 @@ code, var {
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
+    kbd {
+        border-color : $COLOR_Watch_text;
+    }
     code, var {
         background : $COLOR_Watch_casual_fill;
 
@@ -45,6 +75,9 @@ code, var {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
+    kbd {
+        border-color : $COLOR_Print_text;
+    }
     code, var {
         background   : none !important;
         border-width : 1px;
