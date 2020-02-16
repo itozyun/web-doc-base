@@ -1,29 +1,18 @@
 /* //_{+GoogleCodePrettify */
 /*  Google Code Prettify
 --------------------------------------------------------------------------------------*/
-.prettyprint
-/* //_{+it */
-, .prettyprint code
-/* //_}+it */
-{
+.prettyprint {
     /* @include unbreak-inside; */
     background : #333;
     color      : #fff;
-}
-/* //_{+it */
-  .prettyprint code {
-      padding  : 0;
-  }
-/* //_}+it */
 
-pre.prettyprint {
     @include hPadding(0.875, 1.23em, 1.23em);
     @include lineHeight(1.2, 0);
 
-    margin         : 1.23em 0;
-    font-size      : 0.875em;
-    border-width   : 1px;
-    border-color   : #333;
+    margin       : 1.23em 0;
+    font-size    : 0.875em;
+    border-width : 1px;
+    border-color : #333;
 }
 
 /* //_{^#ie55- */
@@ -52,29 +41,20 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 /* //_}^#ie55- */
 
 @include media(print) {
- .prettyprint
-/* //_{+it */
-  , .prettyprint code
-/* //_}+it */
-  {
-    background : #fff;
-  }
-  .prettyprint {
-    border-width : 1px;
-  }
+    .prettyprint {
+        background : #fff;
+    }
 /* //_{^#ie55- */    
-  code .str { color: #060; }
-  code .kwd { color: #006; font-weight: bold; }
-  code .com { color: #600; font-style: italic; }
-  code .typ { color: #404; font-weight: bold; }
-  code .lit { color: #044; }
-  code .pun { color: #440; }
-  code .pln { color: #000; }
-  code .tag { color: #006; font-weight: bold; }
-  code .atn { color: #404; }
-  code .atv { color: #060; }
+    code .str { color: #060; }
+    code .kwd { color: #006; font-weight: bold; }
+    code .com { color: #600; font-style: italic; }
+    code .typ { color: #404; font-weight: bold; }
+    code .lit { color: #044; }
+    code .pun { color: #440; }
+    code .pln { color: #000; }
+    code .tag { color: #006; font-weight: bold; }
+    code .atn { color: #404; }
+    code .atv { color: #060; }
 /* //_}^#ie55- */
 }
 /* //_}+GoogleCodePrettify */
-
-

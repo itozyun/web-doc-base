@@ -35,8 +35,12 @@
     @extend %mona;
     @include hPadding(1, 1em, 1em);
 
-    margin         : 1em 0;
-    border-width   : 1px;
+    margin       : 1em 0;
+    border-width : 1px;
+
+    background   : #bcd;
+    border-color : #bcd;
+    color        : #00193d;
 }
 
 /*  Print
