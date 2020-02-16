@@ -88,10 +88,10 @@ module.exports = function( options ){
                         newRule          = rule.clone();
                         rule.selector    = selectorOther.join( ',' );
                         newRule.selector = selectorTarget.join( ',' ) + hackString;
-                        goToLast ? rulesAddToEnd.push( newRule ) : css.append( newRule );
+                        goToLast ? rulesAddToEnd.push( newRule ) : rule.after( newRule );
                     } else {
                         rule.selector = selectorTarget.join( ',' ) + hackString;
-                        goToLast ? rulesAddToEnd.push( rule ) : css.append( rule );
+                        goToLast && rulesAddToEnd.push( rule );
                     };
                     updateCurrentFile = true;
                 };
