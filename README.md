@@ -247,7 +247,7 @@ gulp.task('compile', function () {
                 warning_level     : 'VERBOSE',
                 language_in       : 'ECMASCRIPT3',
                 language_out      : 'ECMASCRIPT3',
-                output_wrapper    : '(function(ua,window,' + globalVariables + ',undefined){\n%output%\n})(ua,this,' + globalVariables + ')',
+                output_wrapper    : '(function(ua,window,emptyFunction,' + globalVariables + ',undefined){\n%output%\n})(ua,this,new Function,' + globalVariables + ')',
                 js_output_file    : 'temp.js'
             }
         )
