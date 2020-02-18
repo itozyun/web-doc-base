@@ -24,7 +24,9 @@
 }
     .Cover-img {
         position  : relative;
+        /* //_{^@ie5win */
         height    : 100%;
+        /* //_}^@ie5win */
         margin    : 0 0 0.6em;
     }
         .Cover img {
@@ -41,11 +43,18 @@
             bottom   : 0;
             /* //_}^@ie5win */
             /* //_{@ie5win */
+            @include clearfix;
             top      : 0;
             /* //_}@ie5win */
             left     : 0;
             width    : 100%;
         }
+            /* //_{@ie5win */
+            .Cover .img-loaded h2 {
+                float : left;
+            }
+            /* //_}@ie5win */
+
             .Cover h2 {
             /* //_{#can-inline-block */
                 display      : inline-block;
