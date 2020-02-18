@@ -44,12 +44,12 @@
 
 @mixin clearfix {
     /* //_{@modern,@ie9,@ie8,@ie7 */
-        display  : block;
+        /* display  : block; */
         overflow : hidden;
     /* //_}@modern,@ie9,@ie8,@ie7 */
 
     /* //_{#ie6-win */
-        display  : block;
+        /* display  : block; */
         height   : 1%;
         overflow : visible;
     /* //_}#ie6-win */

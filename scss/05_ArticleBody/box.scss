@@ -4,7 +4,6 @@
 .box {
     @include clearfix;
 
-
     li &, dl &, tr &, .note & {
         margin-top : 0;
     }
