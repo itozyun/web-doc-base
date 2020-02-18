@@ -19,6 +19,8 @@ if( window.onbeforeprint ){
             Event_dispatch( Event_printEventCallbacks, mediaQueryList.matches );
         }
     );
+} else {
+    g_Event_noPrintEvent = true;
 };
 
 g_Event_listenPrintEvent = function( callback ){

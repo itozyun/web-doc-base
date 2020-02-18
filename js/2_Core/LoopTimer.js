@@ -22,8 +22,8 @@ function LoopTimer_set( callback ){
         loopTimerClearID = setInterval( LoopTimer_on, LOOP_TIMER_INTERVAL );
     };
     LOOP_TIMERS.push( {
-        f   : callback,
-        uid : ++loopTimerUID
+        f    : callback,
+        _uid : ++loopTimerUID
     } );
 
     return loopTimerUID;
@@ -33,7 +33,7 @@ function LoopTimer_clear( uid ){
     var i = LOOP_TIMERS.length, cb;
 
     while( cb = LOOP_TIMERS[ --i ] ){
-        if( cb.uid === uid ){
+        if( cb._uid === uid ){
             LOOP_TIMERS.splice( i, 1 );
             if( !LOOP_TIMERS[ 0 ] ){
                 LoopTimer_remove();

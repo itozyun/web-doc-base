@@ -57,10 +57,11 @@ if( !g_isMobile && !g_ServerSideRendering ){
             SIDEBAR_FIXER_elmMain = g_elmMain;
             
             // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
-
-            SIDEBAR_FIXER_elmWrap = DOM_createElement( 'div' );
-            DOM_insertBefore( SIDEBAR_FIXER_elmWrap, DOM_getFirstChild( SIDEBAR_FIXER_elmSide ) );
-            SIDEBAR_FIXER_elmWrap.id = SIDEBAR_FIXER_ID_WRAPPER;
+            SIDEBAR_FIXER_elmWrap = DOM_prev(
+                DOM_getFirstChild( SIDEBAR_FIXER_elmSide ),
+                'div',
+                { id : SIDEBAR_FIXER_ID_WRAPPER }
+            );
 
             if( g_Trident || g_Tasman ){
                 SIDEBAR_FIXER_elmWrap.onfocusin = SIDEBAR_FIXER_onfocus;

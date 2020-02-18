@@ -28,4 +28,7 @@ var g_MOBILE_CSS_PREFIX = 'm_',
 /** @define {string} */
     DEFINE_TEST_IMAGE_HTTP = '',
 /** @define {string} */
-    DEFINE_TEST_IMAGE_HTTPS = '';
+    DEFINE_TEST_IMAGE_HTTPS = '',
+
+/** @define {string} */
+    DEFINE_AMAZON_ID = ''; // itozyun-22

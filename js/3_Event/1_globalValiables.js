@@ -15,4 +15,5 @@ var g_Event_listenLoadEvent,
     g_Event_loadEventCallbacks = [],
 
     g_Event_cssAvailability,
-    g_Event_highContrustModeState = 0;
+    g_Event_highContrustModeState = 0,
+    g_Event_noPrintEvent;

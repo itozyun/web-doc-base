@@ -32,10 +32,10 @@ function Timer_set( callback, opt_param, opt_intervalMs ){
         timerClearID = setTimeout( Timer_on, TIMER_INTERVAL );
     };
     TIMERS.push( {
-        f : callback,
-        p : opt_param,
-        uid : ++timerUID,
-        t : ( new Date - 0 ) + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
+        f    : callback,
+        p    : opt_param,
+        _uid : ++timerUID,
+        t    : ( new Date - 0 ) + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
     } );
 
     return timerUID;
@@ -45,7 +45,7 @@ function Timer_clear( uid ){
     var i = TIMERS.length, cb;
 
     while( cb = TIMERS[ --i ] ){
-        if( cb.uid === uid ){
+        if( cb._uid === uid ){
             TIMERS.splice( i, 1 );
             break;
         };

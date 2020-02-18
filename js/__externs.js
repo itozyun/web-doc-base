@@ -4,6 +4,11 @@
 var ua = {};
 
 /**
+ * @type {function()}
+ */
+var emptyFunction;
+
+/**
  * @type {Event} 
  */
 var event;

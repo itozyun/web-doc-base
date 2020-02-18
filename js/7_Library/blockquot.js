@@ -36,17 +36,11 @@ g_Event_listenLoadEvent(
             
             link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow noopener"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
-            if( g_w3cDOM ){
-                elmCite = DOM_createElement( tag );
-                add1st ? DOM_insertBefore( elmCite, DOM_getFirstChild( elm ) ) : DOM_appendChild( elm, elmCite );
-                DOM_setHTML( elmCite, link );
-                if( className ) DOM_setClassName( elmCite, className );
-            } else {
-                elm.insertAdjacentHTML(
-                    add1st ? 'AfterStart' : 'BeforeEnd',
-                    '<' + tag + ( className ? ' class="' + className + '">' : '>' ) + link + '</' + tag + '>'
-                );
-            };
+            elmCite = add1st ?
+                DOM_prev( DOM_getFirstChild( elm ), tag, { className : className } ) :
+                DOM_createThenAdd( elm, tag, { className : className } );
+            
+            DOM_setHTML( elmCite, link )
         };
 
         function createUrl( cite ){
@@ -58,8 +52,9 @@ g_Event_listenLoadEvent(
                 };
                 // ISBN-10
                 if( cite.length === 10 ){
-                    return 'http://www.amazon.co.jp/exec/obidos/ASIN/' + cite;// + '/itozyun-22/ref=nosim/';
-                };    
+                    return '//www.amazon.co.jp/exec/obidos/ASIN/' + cite +
+                     ( DEFINE_AMAZON_ID ? '/' + DEFINE_AMAZON_ID + '/ref=nosim/': '' );
+                };
             };
             return cite;
         };

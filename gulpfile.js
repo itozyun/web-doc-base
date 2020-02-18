@@ -56,11 +56,9 @@ gulp.task('js', gulp.series(
     function( cb ){
         const readFileSync = require('fs').readFileSync;
         
-        minjs = readFileSync( tempDir + '/temp2.js' ).toString();
+        minjs = readFileSync( tempDir + '/temp2.js' ).toString().replace( '\n', '' );
         console.log(minjs.length + 'bytes.');
-        cb();
-    },
-    function(){
+
         const cheerio = require('gulp-cheerio');
 
         return gulp.src('./ua.html')
@@ -72,14 +70,3 @@ gulp.task('js', gulp.series(
             .pipe(gulp.dest('./'));
     }
 ));
-
-/* -------------------------------------------------------
- *  gulp html modifier
- */
-const modifier = require('./gulp-html-modifier.js');
-
-gulp.task( 'mod', function(){
-    return gulp.src('./mod.2.html')
-        .pipe(modifier())
-        .pipe(gulp.dest('./mod'));
-});

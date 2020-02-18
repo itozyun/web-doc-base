@@ -1,4 +1,6 @@
-var g_emptyFunction       = new Function(),
+// ua, emptyFunction
+
+var g_emptyFunction       = emptyFunction, // || new Function(),
     g_onreachEndCallbacks = [],
 
     g_w3cDOM  = !!document.getElementsByTagName,
