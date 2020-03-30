@@ -62,7 +62,7 @@ g_LoopTimer_clear = LoopTimer_clear;
 
 g_onreachEndCallbacks.push(
     function(){
-        if( g_SafariMobile ){
+        if( g_SafariMobile < 6.1 ){
             g_Event_listenScrollEvent( LoopTimer_reset );
         };
         g_Event_listenUnloadEvent( LoopTimer_remove );

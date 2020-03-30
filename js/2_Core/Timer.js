@@ -72,7 +72,7 @@ g_Timer_clear = Timer_clear;
 
 g_onreachEndCallbacks.push(
     function(){
-        if( g_SafariMobile ){
+        if( g_SafariMobile < 6.1 ){
             g_Event_listenScrollEvent( Timer_reset );
         };
         g_Event_listenUnloadEvent( Timer_remove );

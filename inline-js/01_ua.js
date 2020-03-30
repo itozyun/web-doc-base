@@ -145,7 +145,7 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     isTrident      = !isPresto && ( document.all || docMode ), // IE11 には .all が居ない .docMode == 11
     versionTrident = isTrident && (
         docMode               ? docMode :
-        window.XMLHTTPRequest ? ( document.getElementsByTagName ? 7 : 4 ) :
+        window.XMLHttpRequest ? ( document.getElementsByTagName ? 7 : 4 ) :
         document.compatMode   ? 6 :
         (0).toFixed           ? 5.5 :
         window.attachEvent    ? 5 : 4 ),

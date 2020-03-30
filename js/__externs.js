@@ -4,6 +4,13 @@
 var ua = {};
 
 /**
+ * @const
+ */
+var IE4DOM = {
+    tags : function(){}
+};
+
+/**
  * @type {function()}
  */
 var emptyFunction;

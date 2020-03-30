@@ -35,7 +35,7 @@ module.exports = function( options ){
                         createNewFile = updateCurrentFile = true;
                     };
                     if( rule.name === 'media' && rule.params === TARGET_HC_SMALLPHONE_MEDIA_QUERY ){
-                        rule.params = '(max-width:319px)';
+                        rule.params = '(max-width' + rule.params.split( 'max-width' )[ 1 ];
                         rulesAddToEnd.push( rule.clone() );
                         rule.remove();
                         createNewFile = updateCurrentFile = true;
