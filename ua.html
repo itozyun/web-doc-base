@@ -213,7 +213,7 @@ V);ka("initial-scale=",W);ka("minimum-scale=",Q);I&&E.write('<meta name="viewpor
     ary.sort();
 
     for( var i = -1, k; k = ary[ ++i ]; ){
-        var c = ( k.k || k ).charAt( 0 ).toLowerCase();
+        var c = ( ( k && k.k ) || k || '' ).charAt( 0 ).toLowerCase();
 
         if( 'a'.charCodeAt( 0 ) > c.charCodeAt( 0 ) || c.charCodeAt( 0 ) > 'z'.charCodeAt( 0 ) ){
             c = '-';
