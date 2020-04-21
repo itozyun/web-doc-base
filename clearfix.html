@@ -25,6 +25,14 @@
 <p>:after で float を clear しています。:after 疑似要素の content が "" の為、ごく初期のブラウザでフロートの解除に失敗します。
 <br clear="all">
 
+<h2>IE7~9 用</h2>
+<div class="box" id="ie89">
+    <div class="l">Left</div>
+    <div class="r">Right</div>
+</div>
+<p>IE7~9 用の clearfix です。
+<br clear="all">
+
 <h2>IE6 以下用</h2>
 <div class="box" id="ie6">
     <div class="l">Left</div>
@@ -55,7 +63,7 @@
     <div class="l">Left</div>
     <div class="r">Right</div>
 </div>
-<p>FOpera 9 以下用の clearfix です。
+<p>Opera 9 以下用の clearfix です。
 <br clear="all">
 
 <h2>Firefox と Opera 用の CSS ハックのテスト</h2>
@@ -83,6 +91,9 @@
             visibility  : hidden;
             clear       : both;
         }
+    #ie89 {
+        overflow : hidden;
+    }
     #ie6 {
         height   : 1%;
         overflow : visible;

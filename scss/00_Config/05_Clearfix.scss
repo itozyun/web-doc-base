@@ -44,12 +44,10 @@
 
 @mixin clearfix {
     /* //_{@modern,@ie9,@ie8,@ie7 */
-        /* display  : block; */
         overflow : hidden;
     /* //_}@modern,@ie9,@ie8,@ie7 */
 
     /* //_{#ie6-win */
-        /* display  : block; */
         height   : 1%;
         overflow : visible;
     /* //_}#ie6-win */
@@ -58,7 +56,7 @@
         display  : inline-table;
     /* //_}@ie5mac */
 
-        /* //_{#can-content */
+        /* //_{@modern */
             &:after {
                 @include createPseudoBlock(1);
                 /* //_{@modern */
@@ -68,5 +66,5 @@
                 /* //_}@modern */
                 clear       : both;
             }
-        /* //_}#can-content */
+        /* //_}@modern */
 }
