@@ -13,7 +13,8 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
      *   original :
      *     https://github.com/jquery/jquery-mobile/blob/d04308f591d4d0e58443d6a645d0cc1f599888d2/js/support.js
      */
-    /* SIDEBAR_FIXER_positionFixed =
+    SIDEBAR_FIXER_positionFixed = g_Presto, // Opera 9.x-10.x では fixed でないと表示が乱れる
+            /*
             !(
                 // iOS 4.3 and older : Platform is iPhone/Pad/Touch and WebKit version is less than 534 (ios5)
                 ( ua[ 'SafariMobile' ] < 5 || ua[ 'iOSWebView' ] < 5 ) ||
@@ -173,7 +174,7 @@ function SIDEBAR_FIXER_onscroll(){
 function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElementHeight ){
         // transform pos:fixed が使えない場合、塗りのために width を指定するので pos:relative でなくレイアウトコストの低い pos:absolute を使用
     var POS_ABSOLUT_TOP = 'position:absolute;left:0;width:100%;top:',
-        // POS_FIXED_WIDTH = 'position:fixed;width:',
+        POS_FIXED_WIDTH = 'position:fixed;width:',
         TRANSF_TRANSL_0 = SIDEBAR_FIXER_transformProp + ':translate' + ( SIDEBAR_FIXER_can3D ? '3D(0,' : '(0,' ), /* 3D は Android 3.1 用 */
         TRANSF_TRANSL_Z = SIDEBAR_FIXER_can3D ? 'px,0)' : 'px)',
         winH  = SIDEBAR_FIXER_getFinite( window.innerHeight, SIDEBAR_FIXER_elmRoot.offsetHeight ),
@@ -200,12 +201,11 @@ function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElemen
         sidebarY = y;
         if( SIDEBAR_FIXER_transformProp ){
             css = TRANSF_TRANSL_0 + y + TRANSF_TRANSL_Z;
-        /* } else
-        if( SIDEBAR_FIXER_positionFixed ){
+        } else if( SIDEBAR_FIXER_positionFixed ){
             if( y !== 0 ){
                 y  -= scrollY - mainY; 
                 css = POS_FIXED_WIDTH + SIDEBAR_FIXER_elmSide.offsetWidth + 'px;top:' + y + 'px';
-            }; */
+            };
         } else {
             css = POS_ABSOLUT_TOP + y + 'px';
         };
