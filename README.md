@@ -218,7 +218,7 @@ gulp.task('compile', function () {
  
                     './web-doc-base/js/6_CanUse/1_globalValiables.js',
                     './web-doc-base/js/6_CanUse/2_packageValiables.js',
-                    //'./web-doc-base/js/6_CanUse/contentPusedoElemenmt.js',
+                    //'./web-doc-base/js/6_CanUse/contentPusedoElement.js',
                     //'./web-doc-base/js/6_CanUse/dataUriTest.js',
                     './web-doc-base/js/6_CanUse/ieFilterTest.js',
                     //'./web-doc-base/js/6_CanUse/imageTest.js',
