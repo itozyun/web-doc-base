@@ -55,13 +55,13 @@
                     /* //_{#can-inline-block */
                     display      : inline-block;
                     /* //_}#can-inline-block */
-                    /* //_{@ie6,@ie7,@ie55,@ie5win */
+                    /* //_{@ie7,@ie6,@ie55,@ie5win */
                     height       : 0;
                     width        : 0;
-                    /* //_}@ie6,@ie7,@ie55,@ie5win */
-                    /* //_{@ie55,@ie5win */
-                    line-height  : 0;
-                    /* //_}@ie55,@ie5win */
+                    /* //_}@ie7,@ie6,@ie55,@ie5win */
+                    /* //_{@ie6,@ie55,@ie5win */
+                    line-height  : 0; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
+                    /* //_}@ie6,@ie55,@ie5win */
 
                 /* //_{#ie7-win */
                     position     : relative;

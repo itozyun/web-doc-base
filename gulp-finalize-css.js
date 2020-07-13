@@ -1,6 +1,5 @@
-// Creaet CSS for High Contrast mode.
-// Delete " [firefox-gte2]" and add ",x:-moz-any-link" to .cleardix selector.
-// Delete " [firefox-gte2]", add ",x:-moz-any-link" and replace the value from "_" to " ".
+// Create CSS for High Contrast mode.
+// Delete " [firefox]" and add ",x:-moz-any-link".
 // Delete " [opera-lte9]" and add ",x:not(\\)" to .cleardix selector.
 
 const TARGET_HC_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active)',
@@ -17,7 +16,7 @@ module.exports = function( options ){
     stream._transform = function( file, encoding, cb ){
         if( file.isNull() ) return cb(null, file);
 
-        if( file.isStream() ) return cb( new PluginError( 'mqo', 'Streaming not supported' ) );
+        if( file.isStream() ) return cb( new PluginError( 'gulp-finalize-css', 'Streaming not supported' ) );
 
         if( file.isBuffer() ){
             let css = PostCSS.parse( file.contents.toString( encoding ) ),
