@@ -29,7 +29,7 @@ if( !brand ){
         brand        = 'UC';
         brandVersion = strVersion;
     } else
-    if( strVersion = getVersionString( strUserAgent, 'SilK/' ) ){
+    if( strVersion = getVersionString( strUserAgent, 'Silk/' ) ){
         brand        = 'Silk';
         brandVersion = strVersion;
     } else
