@@ -469,7 +469,7 @@ if( strVersion = getVersionString( strUserAgent, 'Kindle/' ) ){
  *  FireTV
  */
 // https://developer.amazon.com/ja/docs/fire-tv/user-agent-strings.html
-if( findString( strUserAgent, 'AmazonWebAppPlatform' ) || findString( strUserAgent, '; AFT' ) ){
+if( findString( strUserAgent, 'AmazonWebAppPlatform' ) || findString( strUserAgent, '; AFT' ) || isFirefoxForFireTV ){
     isFireOS        = true;
     platformVersion = versionAndroid;
     deviceTypeIsTV  = true;

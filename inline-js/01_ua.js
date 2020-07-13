@@ -319,6 +319,10 @@ var engine, engineVersion, platform, platformVersion, brand, brandVersion, devic
     // Android 4.4.4~6.x ChromeWebView 33.0.0.0 (Genymotion) PC_MODE の場合、Chrome/のバージョンは常に 11.0.696.34 になる
     maybeChromeWebView = maybeLinux && docRegElm && versionChrome === '11.0.696.34',
 
+    // https://github.com/mozilla-mobile/firefox-tv/blob/master/app/src/main/java/org/mozilla/tv/firefox/ext/Js.kt
+    // FireTV Firefox
+    isFirefoxForFireTV = window._firefoxTV_playbackStateObserverJava,
+
     surelyPcMode, isPcMode, strVersion,
     v, dpRatio,
     

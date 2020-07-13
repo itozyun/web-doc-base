@@ -53,7 +53,6 @@ var UserAgentObject = {
     Mac68K        : true,
     MacIntel      : 10.12,
     BlackBerry    : 10,
-    FireTV        : 1,
     SunOS         : true,
     FreeBSD       : true,
     OpenBSD       : true,
@@ -247,3 +246,9 @@ Window.prototype.searchBoxJavaBridge_ = {};
  * @type {string}
  */
 HTMLElement.prototype.msContentZoomFactor;
+
+/**
+ * FireTV Firefox
+ * @type {Object}
+ */
+var _firefoxTV_playbackStateObserverJava = {}
