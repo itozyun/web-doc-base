@@ -1,0 +1,3 @@
+[submodule "what-browser-am-i"]
+	path = what-browser-am-i
+	url = https://github.com/itozyun/what-browser-am-i.git
