@@ -1,5 +1,6 @@
+var
 /** @define {string} */
-var g_MOBILE_CSS_PREFIX = 'm_',
+    g_MOBILE_CSS_PREFIX = 'm_',
 /** @define {string} */
     g_HC_MODE_CSS_DIR   = 'hc',
 
