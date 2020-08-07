@@ -27,18 +27,18 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 ## Functions provided by Javascript - Javascript によって提供される機能
 
 1. User Agent detection [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
-2. Optimal viewport based on user agent judgment [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/dynamicViewPort.js)
-3. Adjustment of sidebar [src](https://github.com/itozyun/web-doc-base/blob/master/js/SidebarFixer.js)
-4. Click thumbnail image to enlarge [src](https://github.com/itozyun/web-doc-base/blob/master/js/PicaThumnail.js)
-5. Extension of blockquote [src](https://github.com/itozyun/web-doc-base/blob/master/js/blockquot.js)
+2. Optimal viewport based on user agent judgment [src](./src/inline-js/dynamicViewPort.js)
+3. Adjustment of sidebar [src](./src/js/SidebarFixer.js)
+4. Click thumbnail image to enlarge [src](./src/js/PicaThumnail.js)
+5. Extension of blockquote [src](./src/js/blockquot.js)
 
 ---
 
 1. ユーザーエージェント判定 [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
-2. ユーザーエージェント判定を元にした最適な viewport [src](https://github.com/itozyun/web-doc-base/blob/master/inline-js/10_dynamicViewPort.js)
-3. サイドバーの追従 [src](https://github.com/itozyun/web-doc-base/blob/master/js/SidebarFixer.js)
-4. サムネイル画像をクリックで拡大 [src](https://github.com/itozyun/web-doc-base/blob/master/js/PicaThumnail.js)
-5. blockquote の拡張 [src](https://github.com/itozyun/web-doc-base/blob/master/js/blockquot.js)
+2. ユーザーエージェント判定を元にした最適な viewport [src](./src/inline-js/dynamicViewPort.js)
+3. サイドバーの追従 [src](./src/js/7_Library/SidebarFixer.js)
+4. サムネイル画像をクリックで拡大 [src](./src/js/7_Library/PicaThumnail.js)
+5. blockquote の拡張 [src](./src/js/7_Library/blockquot.js)
 
 ## References - 参照プロジェクト
 
@@ -119,7 +119,7 @@ const plumber     = require("gulp-plumber"),
 
 gulp.task('css', function(){
     return gulp.src([
-            './web-doc-base/scss/**/*.scss',
+            './web-doc-base/src/scss/**/*.scss',
             './scss/**/*.scss'
         ])
         .pipe(plumber())
@@ -158,7 +158,7 @@ gulp.task('css', function(){
 
 ### How to build ./inline-js/*.js
 
-see [./gulpfile.js](https://github.com/itozyun/waht-browser-am-i/blob/master/gulpfile.js).
+see [itozyun/waht-browser-am-i/gulpfile.js](https://github.com/itozyun/waht-browser-am-i/blob/master/gulpfile.js).
 
 ### How to build ./js/*.js
 
@@ -180,59 +180,59 @@ gulp.task('compile', function () {
     return closureCompiler(
             {
                 js                : [
-                    './web-doc-base/js/1_DEFINE/defines.js',
+                    './web-doc-base/src/js/1_DEFINE/defines.js',
 
-                    './web-doc-base/js/2_Core/1_globalValiables.js',
-                    './web-doc-base/js/2_Core/2_packageValiables.js',
-                    './web-doc-base/js/2_Core/3_Type.js',
-                    './web-doc-base/js/2_Core/4_builtinArrayMethods.js',
-                    './web-doc-base/js/2_Core/DebugLogger.js',
-                    './web-doc-base/js/2_Core/LoopTimer.js',
-                    './web-doc-base/js/2_Core/Timer.js',
+                    './web-doc-base/src/js/2_Core/1_globalValiables.js',
+                    './web-doc-base/src/js/2_Core/2_packageValiables.js',
+                    './web-doc-base/src/js/2_Core/3_Type.js',
+                    './web-doc-base/src/js/2_Core/4_builtinArrayMethods.js',
+                    './web-doc-base/src/js/2_Core/DebugLogger.js',
+                    './web-doc-base/src/js/2_Core/LoopTimer.js',
+                    './web-doc-base/src/js/2_Core/Timer.js',
  
-                    './web-doc-base/js/3_Event/1_globalValiables.js',
-                    './web-doc-base/js/3_Event/2_packageValiables.js',
-                    './web-doc-base/js/3_Event/3_core.js',
-                    // './web-doc-base/js/3_Event/cssAvailability.js',
-                    './web-doc-base/js/3_Event/highContrustMode.js',
-                    './web-doc-base/js/3_Event/imageReady.js',
-                    // './web-doc-base/js/3_Event/prefersColor.js',
-                    // './web-doc-base/js/3_Event/print.js',
-                    './web-doc-base/js/3_Event/resize.js',
-                    './web-doc-base/js/3_Event/scroll.js',
+                    './web-doc-base/src/js/3_Event/1_globalValiables.js',
+                    './web-doc-base/src/js/3_Event/2_packageValiables.js',
+                    './web-doc-base/src/js/3_Event/3_core.js',
+                    // './web-doc-base/src/js/3_Event/cssAvailability.js',
+                    './web-doc-base/src/js/3_Event/highContrustMode.js',
+                    './web-doc-base/src/js/3_Event/imageReady.js',
+                    // './web-doc-base/src/js/3_Event/prefersColor.js',
+                    // './web-doc-base/src/js/3_Event/print.js',
+                    './web-doc-base/src/js/3_Event/resize.js',
+                    './web-doc-base/src/js/3_Event/scroll.js',
  
-                    './web-doc-base/js/4_DOM/1_globalValiables.js',
-                    './web-doc-base/js/4_DOM/2_packageValiables.js',
-                    './web-doc-base/js/4_DOM/3_DOM.js',
-                    './web-doc-base/js/4_DOM/4_DOMStyle.js',
-                    './web-doc-base/js/4_DOM/5_DOMAttr.js',
-                    './web-doc-base/js/4_DOM/6_DOMClass.js',
-                    // './web-doc-base/js/4_DOM/7_DOMEvent.js',
-                    './web-doc-base/js/4_DOM/9_nodeCleaner.js',
+                    './web-doc-base/src/js/4_DOM/1_globalValiables.js',
+                    './web-doc-base/src/js/4_DOM/2_packageValiables.js',
+                    './web-doc-base/src/js/4_DOM/3_DOM.js',
+                    './web-doc-base/src/js/4_DOM/4_DOMStyle.js',
+                    './web-doc-base/src/js/4_DOM/5_DOMAttr.js',
+                    './web-doc-base/src/js/4_DOM/6_DOMClass.js',
+                    // './web-doc-base/src/js/4_DOM/7_DOMEvent.js',
+                    './web-doc-base/src/js/4_DOM/9_nodeCleaner.js',
  
-                    './web-doc-base/js/5_CSSOM/CSSOM.js',
+                    './web-doc-base/src/js/5_CSSOM/CSSOM.js',
  
-                    './web-doc-base/js/6_CanUse/1_globalValiables.js',
-                    './web-doc-base/js/6_CanUse/2_packageValiables.js',
-                    //'./web-doc-base/js/6_CanUse/contentPusedoElement.js',
-                    //'./web-doc-base/js/6_CanUse/dataUriTest.js',
-                    './web-doc-base/js/6_CanUse/ieFilterTest.js',
-                    //'./web-doc-base/js/6_CanUse/imageTest.js',
-                    //'./web-doc-base/js/6_CanUse/webfontTest.js',
+                    './web-doc-base/src/js/6_CanUse/1_globalValiables.js',
+                    './web-doc-base/src/js/6_CanUse/2_packageValiables.js',
+                    //'./web-doc-base/src/js/6_CanUse/contentPusedoElement.js',
+                    //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
+                    './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
+                    //'./web-doc-base/src/js/6_CanUse/imageTest.js',
+                    //'./web-doc-base/src/js/6_CanUse/webfontTest.js',
 
-                    '../web-doc-base/js/7_Library/blockquot.js',
-                    '../web-doc-base/js/7_Library/detectImageTurnedOff.js',
-                    '../web-doc-base/js/7_Library/HighContrastStyleSwitcher.js',
-                    '../web-doc-base/js/7_Library/ie5.js',
-                    '../web-doc-base/js/7_Library/PicaThumnail.js',
-                    '../web-doc-base/js/7_Library/SidebarFixer.js',
+                    './web-doc-base/src/js/7_Library/blockquot.js',
+                    './web-doc-base/src/js/7_Library/detectImageTurnedOff.js',
+                    './web-doc-base/src/js/7_Library/HighContrastStyleSwitcher.js',
+                    './web-doc-base/src/js/7_Library/ie5.js',
+                    './web-doc-base/src/js/7_Library/PicaThumnail.js',
+                    './web-doc-base/src/js/7_Library/SidebarFixer.js',
 
-                    './web-doc-base/js/onreachEnd.js'
+                    './web-doc-base/src/js/onreachEnd.js'
                 ],
                 externs           : [
-                    './web-doc-base/inline-js/__externs.js',
+                    './web-doc-base/waht-browser-am-i/src/__externs.js',
                     './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                    './web-doc-base/js/__externs.js'
+                    './web-doc-base/src/js/__externs.js'
                 ],
                 define            : [
                     'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
@@ -256,12 +256,12 @@ gulp.task( 'finish', function(){
         {
             js                : [
                 tempDir + '/temp.js',
-                './web-doc-base/js/GoogleCodePrettify.js'
+                './web-doc-base/src/js/GoogleCodePrettify.js'
             ],
             externs           : [
-                './web-doc-base/inline-js/__externs.js',
+                './web-doc-base/waht-browser-am-i/src/__externs.js',
                 './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                './web-doc-base/js/__externs.js'
+                './web-doc-base/src/js/__externs.js'
             ],
             language_in       : 'ECMASCRIPT3',
             language_out      : 'ECMASCRIPT3',
