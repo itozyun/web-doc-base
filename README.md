@@ -158,7 +158,7 @@ gulp.task('css', function(){
 
 ### How to build ./inline-js/*.js
 
-see [itozyun/waht-browser-am-i/gulpfile.js](https://github.com/itozyun/waht-browser-am-i/blob/master/gulpfile.js).
+see [./gulpfile.js](./gulpfile.js).
 
 ### How to build ./js/*.js
 
