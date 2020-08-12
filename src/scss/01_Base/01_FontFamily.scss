@@ -27,7 +27,11 @@
         body, textarea, input {
             font-family :
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-                "Helvetica Neue", Helvetica, Arial, Verdana,
+                "Helvetica Neue",
+                // https://twitter.com/itozyun/status/1293662566791524352
+                // Windows 10, Chrome29 で日本語のテキストフローが乱れる
+                /* Helvetica, Arial, */
+                Verdana,
                 Roboto,
                 "UD Digi Kyokasho NP-R",
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
