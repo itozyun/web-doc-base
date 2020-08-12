@@ -108,8 +108,10 @@
         }
         /* //_}@modern */
     }
+    tfoot:before {
+        display : none;
+    }
     /* //_}#can-content */
-
     tfoot th {
         border-width : 1px 0 0;
     }

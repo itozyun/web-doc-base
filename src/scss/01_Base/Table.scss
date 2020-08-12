@@ -94,15 +94,38 @@ table {
         border-width : 0 0 1px 0.1em;
     }
 
-    tbody th, tfoot th {
+    tbody th {
         border-width : 0 0 1px;
     }
-    tbody td, tfoot td {
+    tbody td {
         border-width : 0 0.5em 1px;
         @include highContrast {
             border-width : 0 0 1px;
         }
     }
+    tfoot th {
+        border-width : 1px 0 0;
+    }
+    tfoot td {
+        border-width : 1px 0.5em 0;
+        @include highContrast {
+            border-width : 1px 0 0;
+        }
+    }
+
+    /* //_{#can-content */
+    tfoot {
+        position : relative;
+    }
+    tfoot:before {
+        @include createPseudoBlock;
+        width        : 100%;
+        position     : absolute;
+        left         : 0;
+        top          : 0;
+        border-width : 1px 0 0;
+    }
+    /* //_}#can-content */
 
 /*  color
 --------------------------------------------------------------------------------------*/
@@ -120,11 +143,13 @@ table {
     td {
         border-color : $fill $fill $casual_fill;
     }
-    tfoot th {
-        border-color : $casual_text;
-    }
+
+    /* //_{#can-content */
+    tfoot:before,
+    /* //_}#can-content */
+    tfoot th,
     tfoot td {
-        border-color : $fill $fill $casual_text;
+        border-color : $casual_text $fill;
     }
     thead th, thead td {
         background   : $casual_text;
@@ -155,11 +180,12 @@ table {
         td {
             border-color : $casual_fill $casual_fill $casual_text;
         }
-        tfoot th {
-            border-color : $text;
-        }
+        /* //_{#can-content */
+        tfoot:before,
+        /* //_}#can-content */
+        tfoot th,
         tfoot td {
-            border-color : $casual_fill $casual_fill $text;
+            border-color : $text $casual_fill;
         }
 
         /* //_{#can-hover-pseudo-class */
@@ -181,16 +207,16 @@ table {
 
 td {
     @include highContrastForIE10ToEdge {
-        border-top-color   : transparent;
+        // border-top-color   : transparent;
         border-left-color  : transparent;
         border-right-color : transparent;
     }
 }
 tfoot td {
     @include highContrastForIE10ToEdge {
-        border-top-color   : transparent;
-        border-left-color  : transparent;
-        border-right-color : transparent;
+        // border-bottom-color : transparent;
+        border-left-color   : transparent;
+        border-right-color  : transparent;
     }
 }
 
@@ -254,11 +280,12 @@ tbody :hover th {
     td {
         border-color : #fff #fff $COLOR_Print_casual_fill;
     }
-    tfoot th {
-        border-color : $COLOR_Print_casual_text;
-    }
+    /* //_{#can-content */
+    tfoot:before,
+    /* //_}#can-content */
+    tfoot th,
     tfoot td {
-        border-color : #fff #fff $COLOR_Print_casual_text;
+        border-color : $COLOR_Print_casual_text #fff;
     }
 
     thead {
@@ -289,8 +316,12 @@ tbody :hover th {
         td {
             border-color : #fff #fff $COLOR_Print_casual_text;
         }
+
+        /* //_{#can-content */
+        tfoot:before,
+        /* //_}#can-content */
         tfoot th, tfoot td {
-            border-color : #fff #fff $COLOR_Print_text;
+            border-color : $COLOR_Print_text #fff;
         }
 
         thead, tbody {
