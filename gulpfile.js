@@ -17,7 +17,7 @@ gulp.task('docs', gulp.series(
                         compilation_level : 'ADVANCED',
                         define            : [
                             'WHAT_BROWSER_AM_I_DEFINE_BRAND_ENABLED=false',
-                            'WHAT_BROWSER_AM_I_DEFINE_PC_MODE_ENABLED=false',
+                            'WHAT_BROWSER_AM_I_DEFINE_PCSITE_REQUESTED_ENABLED=false',
                             'WHAT_BROWSER_AM_I_DEFINE_IOS_DEVICE_ENABLED=false',
                             'WHAT_BROWSER_AM_I_DEFINE_DEVICE_TYPE_ENABLED=false'
                         ],

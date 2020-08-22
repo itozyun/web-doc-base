@@ -28,7 +28,7 @@ if( ua[ 'N3DS' ] ){
     } else {
         dynamicViewPort_initScale = dynamicViewPort_miniScale = 1;
     };
-} else if( isGecko && isPcMode ){
+} else if( isGecko && isPcSiteRequested ){
     dynamicViewPort_deviceWidth = true;
     dynamicViewPort_initScale   = dynamicViewPort_miniScale = 2;
 };
