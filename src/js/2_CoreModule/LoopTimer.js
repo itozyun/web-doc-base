@@ -1,3 +1,12 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_setLoopTimer   = LoopTimer_set;
+g_clearLoopTimer = LoopTimer_clear;
+
+/** ===========================================================================
+ * private
+ */
 var LOOP_TIMERS = [],
     LOOP_TIMER_INTERVAL = 999,
     loopTimerUID = 0,
@@ -57,14 +66,11 @@ function LoopTimer_remove(){
     };
 };
 
-g_LoopTimer_set   = LoopTimer_set;
-g_LoopTimer_clear = LoopTimer_clear;
-
 g_onreachEndCallbacks.push(
     function(){
         if( g_SafariMobile < 6.1 ){
-            g_Event_listenScrollEvent( LoopTimer_reset );
+            g_listenScrollEvent( LoopTimer_reset );
         };
-        g_Event_listenUnloadEvent( LoopTimer_remove );
+        g_listenUnloadEvent( LoopTimer_remove );
     }
 );

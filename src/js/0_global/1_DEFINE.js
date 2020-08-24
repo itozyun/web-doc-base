@@ -5,13 +5,16 @@ var
     g_HC_MODE_CSS_DIR   = 'hc',
 
 /** @define {number} */
-    DEFINE_DEBUG             = 0,
+    DEFINE_DEBUG              = 0,
 /** @define {string} */
-    DEFINE_LOGGER_ELEMENT_ID = '',
+    DEFINE_LOGGER_ELEMENT_ID  = '',
 /** @define {number} */
     DEFINE_WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
 /** @define {string} */
     DEFINE_CONTENT_TEST_ID    = 'jsCanUseContent',
+
+/** @define {string} */
+    DEFINE_MAIN_COLUMN_ID     = 'jsMain',
 
 /** @define {number} */
     USE_ARRAY_POP_ = 0,

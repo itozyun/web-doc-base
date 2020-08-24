@@ -6,7 +6,14 @@
  * アドオンやネットワーク監視アプリによる画像の禁止
  * 
  * Webページにimgタグがある
- *   
+ */
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_imageTest = imageTest;
+
+/** ===========================================================================
+ * private
  */
 var TEST_IMAGE_URL = g_isSecure ? DEFINE_TEST_IMAGE_HTTPS : DEFINE_TEST_IMAGE_HTTP;
 
@@ -15,7 +22,7 @@ function imageTest( callback ){
         if( DEFINE_DEBUG ){
             g_DebugLogger.log( '[imageTest] TEST_IMAGE_URL is undefined!' );
         };
-        g_Timer_set( callback, false );
+        g_setTimer( callback, false );
         return;
     };
 
@@ -27,10 +34,10 @@ function imageTest( callback ){
     img.src     = TEST_IMAGE_URL;
 
     if( g_Presto < 8 && img.complete ){
-        g_CanUse_imageEnabled = true;
-        g_Timer_set( callback, true );
+        g_imageEnabled = true;
+        g_setTimer( callback, true );
     } else if( !finish ){
-        timerID = g_Timer_set( imageTest_check );
+        timerID = g_setTimer( imageTest_check );
     };
 
     function imageTest_check(){
@@ -39,9 +46,9 @@ function imageTest( callback ){
         if( img.complete ){
             finish = true;
             if( img.width ) return;
-            g_Timer_set( callback, false );
+            g_setTimer( callback, false );
         } else {
-            timerID = g_Timer_set( imageTest_check );
+            timerID = g_setTimer( imageTest_check );
         };
     };
 
@@ -53,22 +60,19 @@ function imageTest( callback ){
         if( finish ) return;
 
         finish = true;
-        timerID && g_Timer_clear( timerID );
-        timerID = g_Timer_set( callback, false );
+        timerID && g_clearTimer( timerID );
+        timerID = g_setTimer( callback, false );
     };
 
     function imageTest_onLoad(){
         finish = true;
-        timerID && g_Timer_clear( timerID );
+        timerID && g_clearTimer( timerID );
 
         if( g_Presto && !img.complete ){
-            timerID = g_Timer_set( callback, false );
+            timerID = g_setTimer( callback, false );
         } else {
-            g_CanUse_imageEnabled = true;
-            g_Timer_set( callback, true );
+            g_imageEnabled = true;
+            g_setTimer( callback, true );
         };
     };
 };
-
-g_imageTest = imageTest;
-

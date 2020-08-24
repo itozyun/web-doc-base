@@ -9,7 +9,7 @@ function Event_dispatch( callbackList, param ){
     };
 };
 
-g_Event_loadEventCallbacks.push(
+g_loadEventCallbacks.push(
     function (){
         //Create a test div
         Event_elmTest = DOM_createThenAdd(

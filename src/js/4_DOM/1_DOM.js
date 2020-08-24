@@ -1,3 +1,10 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+
+/** ===========================================================================
+ * private
+ */
 g_html = DOM_getElementsByTagName( 'html' )[ 0 ];
 g_head = DOM_getElementsByTagName( 'head' )[ 0 ];
 

@@ -38,7 +38,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_elmSide,
     SIDEBAR_FIXER_elmMain,
     SIDEBAR_FIXER_elmWrap,
-    SIDEBAR_FIXER_transformProp = g_CanUse_cssTransform,
+    SIDEBAR_FIXER_transformProp = g_cssTransformName,
     SIDEBAR_FIXER_sidebarY = 0,
     SIDEBAR_FIXER_lastScrollY = 0,
     SIDEBAR_FIXER_can3D,
@@ -46,12 +46,12 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
 
 if( !g_isMobile && !g_ServerSideRendering ){
 
-    g_Event_listenLoadEvent(
+    g_listenLoadEvent(
         function(){
             var i = -1, id, elm;
 
-            g_Event_listenScrollEvent( SIDEBAR_FIXER_onscroll );
-            g_Event_listenResizeEvent( SIDEBAR_FIXER_onscroll );
+            g_listenScrollEvent( SIDEBAR_FIXER_onscroll );
+            g_listenResizeEvent( SIDEBAR_FIXER_onscroll );
 
             SIDEBAR_FIXER_elmRoot = document.compatMode !== 'CSS1Compat' ? g_body : g_html || g_body;
             SIDEBAR_FIXER_elmSide = DOM_getElementById( SIDEBAR_FIXER_ID_SIDEBAR );
@@ -78,25 +78,25 @@ if( !g_isMobile && !g_ServerSideRendering ){
 
             while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
                 elm = DOM_getElementById( id );
-                if( g_Type_notUndefined( elm.onwheel ) ){
+                if( g_notUndefined( elm.onwheel ) ){
                     if( g_passiveSupported ){
                         elm.addEventListener( 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
                     } else {
                         elm.onwheel = SIDEBAR_FIXER_onwheel;
                     };
-                } else if( g_Type_notUndefined( elm.onMozMousePixelScroll ) ){
+                } else if( g_notUndefined( elm.onMozMousePixelScroll ) ){
                     elm.onMozMousePixelScroll = SIDEBAR_FIXER_onwheel;
-                } else if( g_Type_notUndefined( elm.onDOMMouseScroll ) ){
+                } else if( g_notUndefined( elm.onDOMMouseScroll ) ){
                     elm.onDOMMouseScroll = SIDEBAR_FIXER_onwheel;
-                } else if( g_Type_notUndefined( elm.onmousewheel ) || g_Presto ){
+                } else if( g_notUndefined( elm.onmousewheel ) || g_Presto ){
                     elm.onmousewheel = SIDEBAR_FIXER_onwheel;
                 };
             };
             
             SIDEBAR_FIXER_can3D = !g_Trident && !g_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
-                g_Type_notUndefined( g_style[ 'perspective' ] ) ||
-                g_Type_notUndefined( g_style[ '-moz-perspective' ] ) ||
-                g_Type_notUndefined( g_style[ '-webkit-perspective' ] ) );
+                g_notUndefined( g_style[ 'perspective' ] ) ||
+                g_notUndefined( g_style[ '-moz-perspective' ] ) ||
+                g_notUndefined( g_style[ '-webkit-perspective' ] ) );
 
             /* if( !SIDEBAR_FIXER_transformProp ){
                 if( !SIDEBAR_FIXER_positionFixed ){
@@ -110,7 +110,7 @@ if( !g_isMobile && !g_ServerSideRendering ){
         }
     );
 
-    g_Event_listenResizeEvent(
+    g_listenResizeEvent(
         function(){
             var i = -1, id, elm;
 

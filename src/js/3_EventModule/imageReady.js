@@ -1,6 +1,16 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_listenImageReady = function( callback ){
+    Event_imagereadyCallbacks.push( callback );
+};
+
+/** ===========================================================================
+ * private
+ */
 var Event_imagereadyCallbacks = [];
 
-g_Event_listenLoadEvent(
+g_listenLoadEvent(
     function(){
         "use strict";
 
@@ -14,11 +24,7 @@ g_Event_listenLoadEvent(
     
             Event_dispatch( Event_imagereadyCallbacks, { img : img, imgEnabled : result } );
 
-            g_CanUse_imageEnabled = g_CanUse_imageEnabled || !!result;
+            g_imageEnabled = g_imageEnabled || !!result;
         };
     }
 );
-
-g_Event_listenImageReady = function( callback ){
-    Event_imagereadyCallbacks.push( callback );
-};

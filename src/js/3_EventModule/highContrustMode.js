@@ -3,6 +3,17 @@
  *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
  *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
  */
+
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_listenHighContrustModeChange = function( callback ){
+    Event_highContrustMode_callbacks.push( callback );
+};
+
+/** ===========================================================================
+ * private
+ */
 var Event_highContrustMode_callbacks = [],
     Event_highContrustMode_timerID,
     Event_highContrustMode_isHighContrust,
@@ -15,7 +26,7 @@ var Event_highContrustMode_callbacks = [],
 var Event_highContrustMode_test = function(){
     var defaultView = document.defaultView,
         computedStyle, color, bgColor,
-        highContrustModeState = g_Event_highContrustModeState;
+        highContrustModeState = g_highContrustModeState;
 
     computedStyle = defaultView ?
         defaultView.getComputedStyle( Event_elmTest, null ) :
@@ -29,7 +40,7 @@ var Event_highContrustMode_test = function(){
         Event_highContrustMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
         Event_highContrustMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
         if( highContrustModeState !== Event_highContrustMode_getState() ){
-            Event_dispatch( Event_highContrustMode_callbacks, g_Event_highContrustModeState );
+            Event_dispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
         };
         return true;
     };
@@ -43,7 +54,7 @@ var Event_highContrustMode_test = function(){
 };
 
 function Event_highContrustMode_getState(){
-    return g_Event_highContrustModeState = !Event_highContrustMode_isHighContrust ? 0 :
+    return g_highContrustModeState = !Event_highContrustMode_isHighContrust ? 0 :
           ( Event_highContrustMode_isWhiteOnBlack  ? 2 :
           ( Event_highContrustMode_isBlackOnWhite  ? 3 : 1) );
 };
@@ -69,7 +80,7 @@ if( 10 <= g_Trident || g_EdgeHTML ){
     );
     Event_highContrustMode_test = null;
 } else if( g_Trident < 10 || ( ( ua[ 'Win32' ] || ua[ 'Win64' ] ) && ( 44 <= g_Gecko || g_Goanna ) ) ){ // Goanna 4.3 で文書の onload 時のみハイコントラストモードを反映
-    g_Event_listenLoadEvent(
+    g_listenLoadEvent(
         function (){
             DOM_setStyle( Event_elmTest, 'color', '#123456' );
             DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
@@ -78,15 +89,11 @@ if( 10 <= g_Trident || g_EdgeHTML ){
             if( g_Gecko < 60 || g_Goanna ){
                 Event_highContrustMode_test();
             } else if( Event_highContrustMode_test() ){ // IE9- or Gecko70+
-                Event_highContrustMode_timerID = g_LoopTimer_set( Event_highContrustMode_test, 1000 );
+                Event_highContrustMode_timerID = g_setLoopTimer( Event_highContrustMode_test, 1000 );
             };
             Event_highContrustMode_test = null;
         }
     );
 } else {
     Event_highContrustMode_test = null;
-};
-
-g_Event_listenHighContrustModeChange = function( callback ){
-    Event_highContrustMode_callbacks.push( callback );
 };

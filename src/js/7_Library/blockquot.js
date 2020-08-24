@@ -3,7 +3,7 @@
  *  jQuery.prettyQuote.js
  *  http://unformedbuilding.com/articles/blockquote-and-jquery/
 */
-g_Event_listenLoadEvent(
+g_listenLoadEvent(
     function( e ){
         "use strict";
 

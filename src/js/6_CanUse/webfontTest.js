@@ -17,7 +17,14 @@
  * WebFont is available. v v
  *           Image fallback.
  */
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_webFontTest = webFontTest;
 
+/** ===========================================================================
+ * private
+ */
 var WEBFONT_TEST_PREFIX = 'bad_' + ( new Date() - 0 ) + '_';
 
 function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_testInterval ){
@@ -46,7 +53,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
         };
     } else {
         g_DebugLogger.log( '[webFontTest] maybeCanWebFont() : false' );
-        g_Timer_set( callback, 0 );
+        g_setTimer( callback, 0 );
     };
 
 /**================================================================
@@ -95,9 +102,11 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
 
         document.fonts.load( font ).then(
             function( fonts ){
-                g_DebugLogger.log( '[webFontTest] fonts.check() : ' + check() + ', fonts.length : ' + fonts.length );
+                if( DEFINE_DEBUG ){
+                    g_DebugLogger.log( '[webFontTest] fonts.check() : ' + check() + ', fonts.length : ' + fonts.length );
+                };
                 if( mesureWebFont( targetWebFontName ) ){
-                    g_Timer_set( callback, result );
+                    g_setTimer( callback, result );
                 } else {
                     g_DebugLogger.log( '[webFontTest] mesureWebFont() : false' );
                     // Firefox 72 では、このタイミングで判定に失敗する模様
@@ -144,12 +153,12 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
             if( canDataUri ){
                 callback( 0 );
             } else if( g_Trident < 9 ){
-                g_Timer_set( callback, 0 );
+                g_setTimer( callback, 0 );
             } else {
                 dataUriTest( testDataUriComplete );
             };
         } else {
-            g_Timer_set( testWebFont );
+            g_setTimer( testWebFont );
         };
     };
 
@@ -259,13 +268,13 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
                     }
                 );
                 CSSOM_addImport( embededWebFonts[ k ] );
-                g_Timer_set( testImportedCssReady, true );
+                g_setTimer( testImportedCssReady, true );
             } else if( checkTime( INTERVAL_EMBEDED_WEBFONT ) ){
                 g_DebugLogger.log( '[webFontTest] timeout! ' + k );
                 delete embededWebFonts[ k ];
-                g_Timer_set( testDataUriWebFont, true );
+                g_setTimer( testDataUriWebFont, true );
             } else {
-                g_Timer_set( testDataUriWebFont );
+                g_setTimer( testDataUriWebFont );
             };
             return;
         };
@@ -289,15 +298,13 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
             g_DebugLogger.log( '[webFontTest] testImportedCssReady ended.' );
             DOM_remove( div );
             testInterval = INTERVAL_EMBEDED_WEBFONT;
-            g_Timer_set( testWebFont, true );
+            g_setTimer( testWebFont, true );
         } else if( checkTime( testInterval ) ){
             g_DebugLogger.log( '[webFontTest] testImportedCssReady timeout!' );
             DOM_remove( div );
             callback( 0 );
         } else {
-            g_Timer_set( testImportedCssReady );
+            g_setTimer( testImportedCssReady );
         };
     };
 };
-
-g_webFontTest = webFontTest;

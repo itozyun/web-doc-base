@@ -1,14 +1,11 @@
-// ua, emptyFunction
-
 var g_emptyFunction       = emptyFunction, // || new Function(),
     g_onreachEndCallbacks = [],
 
     g_w3cDOM  = !!document.getElementsByTagName,
     g_body    = document.body,
     g_style   = g_body.style,
-    g_html, g_head,
-    g_ELEMENT_MAIN_ID = 'jsMain',
-    g_elmMain,
+
+    g_html, g_head, g_elmMain,
 
     g_Trident      = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
     g_Tasman       = ua[ 'Tasman' ],
@@ -42,14 +39,48 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
                   'modern'
                 ) + '.css',
     g_isSecure = location.href.indexOf('https') === 0,
-    g_assetUrl, g_assetDir, g_isMobile;
+    g_assetUrl, g_assetDir, g_isMobile,
 
-var g_Type_notUndefined;
+    g_DebugLogger = { log : function(){} },
 
-var g_DebugLogger = { log : function(){} };
+    g_setTimer    , g_clearTimer,
+    g_setLoopTimer, g_clearLoopTimer,
+    
+    g_listenLoadEvent,
+    g_listenUnloadEvent,
+    g_listenResizeEvent,
+    g_listenScrollEvent,
+    g_listenPrintEvent,
+    g_listenCssAvailability,
+    g_listenImageReady,
+    g_listenPrefersColorChange,
+    g_listenHighContrustModeChange,
 
-var g_Timer_set    , g_Timer_clear,
-    g_LoopTimer_set, g_LoopTimer_clear;
+    // nodeCleaner もアクセスするので global に公開する
+    g_loadEventCallbacks = [],
+
+    g_cssAvailability,
+    g_highContrustModeState = 0,
+    g_noPrintEvent,
+    
+    g_iefilterEnabled,
+    g_imageEnabled,
+    g_contentPseudoElementEnabled,
+
+    g_cssTransformName =
+        g_notUndefined( g_style[ 'transform' ] ) ? 'transform' : 
+        g_notUndefined( g_style[ '-o-transform' ] ) ? '-o-transform' : 
+        g_notUndefined( g_style[ '-ms-transform' ] ) ? '-ms-transform' : 
+        g_notUndefined( g_style[ '-moz-transform' ] ) ? '-moz-transform' : 
+        g_notUndefined( g_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
+    
+    g_dataUriTest,
+    g_imageTest,
+    g_webFontTest;
+
+function g_notUndefined( val ){
+    return val !== undefined;
+};
 
     g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
     --g_assetDir.length;

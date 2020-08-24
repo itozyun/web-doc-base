@@ -174,103 +174,92 @@ const gulp            = require('gulp'),
  */
 const closureCompiler = require('google-closure-compiler').gulp(),
       globalVariables = 'document,parseFloat,Function,isFinite,setTimeout,clearTimeout',
-      tempDir         = require('os').tmpdir() + '/' + name;
+      tempDir         = require('os').tmpdir() + '/' + name,
+      externs         = [
+         './web-doc-base/what-browser-am-i/src/__externs.js',
+         './node_modules/google-closure-compiler/contrib/externs/svg.js',
+         './web-doc-base/src/js/__externs.js'
+      ];
 
-gulp.task('compile', function () {
-    return closureCompiler(
+gulp.task('js', gulp.series(
+    function(){
+        return closureCompiler(
+                {
+                    js                : [
+                        './web-doc-base/src/js/0_global/1_DEFINE.js',
+
+                        './web-doc-base/src/js/1_packageGlobal/1_packageValiable.js',
+                        './web-doc-base/src/js/1_packageGlobal/2_builtinArrayMethods.js',
+
+                        './web-doc-base/src/js/2_CoreModule/DebugLogger.js',
+                        './web-doc-base/src/js/2_CoreModule/LoopTimer.js',
+                        './web-doc-base/src/js/2_CoreModule/Timer.js',
+    
+                        './web-doc-base/src/js/3_EventModule/1_moduleGlobal.js',
+                        './web-doc-base/src/js/3_EventModule/2_core.js',
+                        // './web-doc-base/src/js/3_EventModule/cssAvailability.js',
+                        './web-doc-base/src/js/3_EventModule/highContrustMode.js',
+                        './web-doc-base/src/js/3_EventModule/imageReady.js',
+                        // './web-doc-base/src/js/3_EventModule/prefersColor.js',
+                        // './web-doc-base/src/js/3_EventModule/print.js',
+                        './web-doc-base/src/js/3_EventModule/resize.js',
+                        './web-doc-base/src/js/3_EventModule/scroll.js',
+
+                        './web-doc-base/src/js/4_DOM/1_DOM.js',
+                        './web-doc-base/src/js/4_DOM/2_DOMStyle.js',
+                        './web-doc-base/src/js/4_DOM/3_DOMAttr.js',
+                        './web-doc-base/src/js/4_DOM/4_DOMClass.js',
+                        // './web-doc-base/src/js/4_DOM/5_DOMEvent.js',
+                        './web-doc-base/src/js/4_DOM/nodeCleaner.js',
+    
+                        './web-doc-base/src/js/5_CSSOM/CSSOM.js',
+
+                        //'./web-doc-base/src/js/6_CanUse/contentPusedoElement.js',
+                        //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
+                        './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
+                        //'./web-doc-base/src/js/6_CanUse/imageTest.js',
+                        //'./web-doc-base/src/js/6_CanUse/webfontTest.js',
+
+                        './web-doc-base/src/js/7_Library/blockquot.js',
+                        './web-doc-base/src/js/7_Library/detectImageTurnedOff.js',
+                        './web-doc-base/src/js/7_Library/HighContrastStyleSwitcher.js',
+                        './web-doc-base/src/js/7_Library/ie5.js',
+                        './web-doc-base/src/js/7_Library/PicaThumnail.js',
+                        './web-doc-base/src/js/7_Library/SidebarFixer.js',
+
+                        './web-doc-base/src/js/onreachEnd.js',
+                    ],
+                    externs           : externs,
+                    define            : [
+                        'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
+                        'g_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
+                    ],
+                    compilation_level : 'ADVANCED',
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    output_wrapper    : '(function(ua,window,emptyFunction,' + globalVariables + ',undefined){\n%output%\n})(ua,this,new Function,' + globalVariables + ')',
+                    js_output_file    : 'temp.js'
+                }
+            )
+            .src()
+            .pipe(gulp.dest( tempDir ));
+    },
+    function(){
+        return closureCompiler(
             {
                 js                : [
-                    './web-doc-base/src/js/1_DEFINE/defines.js',
-
-                    './web-doc-base/src/js/2_Core/1_globalValiables.js',
-                    './web-doc-base/src/js/2_Core/2_packageValiables.js',
-                    './web-doc-base/src/js/2_Core/3_Type.js',
-                    './web-doc-base/src/js/2_Core/4_builtinArrayMethods.js',
-                    './web-doc-base/src/js/2_Core/DebugLogger.js',
-                    './web-doc-base/src/js/2_Core/LoopTimer.js',
-                    './web-doc-base/src/js/2_Core/Timer.js',
- 
-                    './web-doc-base/src/js/3_Event/1_globalValiables.js',
-                    './web-doc-base/src/js/3_Event/2_packageValiables.js',
-                    './web-doc-base/src/js/3_Event/3_core.js',
-                    // './web-doc-base/src/js/3_Event/cssAvailability.js',
-                    './web-doc-base/src/js/3_Event/highContrustMode.js',
-                    './web-doc-base/src/js/3_Event/imageReady.js',
-                    // './web-doc-base/src/js/3_Event/prefersColor.js',
-                    // './web-doc-base/src/js/3_Event/print.js',
-                    './web-doc-base/src/js/3_Event/resize.js',
-                    './web-doc-base/src/js/3_Event/scroll.js',
- 
-                    './web-doc-base/src/js/4_DOM/1_globalValiables.js',
-                    './web-doc-base/src/js/4_DOM/2_packageValiables.js',
-                    './web-doc-base/src/js/4_DOM/3_DOM.js',
-                    './web-doc-base/src/js/4_DOM/4_DOMStyle.js',
-                    './web-doc-base/src/js/4_DOM/5_DOMAttr.js',
-                    './web-doc-base/src/js/4_DOM/6_DOMClass.js',
-                    // './web-doc-base/src/js/4_DOM/7_DOMEvent.js',
-                    './web-doc-base/src/js/4_DOM/9_nodeCleaner.js',
- 
-                    './web-doc-base/src/js/5_CSSOM/CSSOM.js',
- 
-                    './web-doc-base/src/js/6_CanUse/1_globalValiables.js',
-                    './web-doc-base/src/js/6_CanUse/2_packageValiables.js',
-                    //'./web-doc-base/src/js/6_CanUse/contentPusedoElement.js',
-                    //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
-                    './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
-                    //'./web-doc-base/src/js/6_CanUse/imageTest.js',
-                    //'./web-doc-base/src/js/6_CanUse/webfontTest.js',
-
-                    './web-doc-base/src/js/7_Library/blockquot.js',
-                    './web-doc-base/src/js/7_Library/detectImageTurnedOff.js',
-                    './web-doc-base/src/js/7_Library/HighContrastStyleSwitcher.js',
-                    './web-doc-base/src/js/7_Library/ie5.js',
-                    './web-doc-base/src/js/7_Library/PicaThumnail.js',
-                    './web-doc-base/src/js/7_Library/SidebarFixer.js',
-
-                    './web-doc-base/src/js/onreachEnd.js'
+                    tempDir + '/temp.js',
+                    './web-doc-base/src/js/GoogleCodePrettify.js'
                 ],
-                externs           : [
-                    './web-doc-base/waht-browser-am-i/src/__externs.js',
-                    './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                    './web-doc-base/src/js/__externs.js'
-                ],
-                define            : [
-                    'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                    'g_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
-                ],
-                compilation_level : 'ADVANCED',
-                formatting        : 'PRETTY_PRINT',
-                warning_level     : 'VERBOSE',
+                externs           : externs,
                 language_in       : 'ECMASCRIPT3',
                 language_out      : 'ECMASCRIPT3',
-                output_wrapper    : '(function(ua,window,emptyFunction,' + globalVariables + ',undefined){\n%output%\n})(ua,this,new Function,' + globalVariables + ')',
-                js_output_file    : 'temp.js'
+                js_output_file    : 'min.js'
             }
         )
         .src()
-        .pipe(gulp.dest( tempDir ));
-});
-
-gulp.task( 'finish', function(){
-    return closureCompiler(
-        {
-            js                : [
-                tempDir + '/temp.js',
-                './web-doc-base/src/js/GoogleCodePrettify.js'
-            ],
-            externs           : [
-                './web-doc-base/waht-browser-am-i/src/__externs.js',
-                './node_modules/google-closure-compiler/contrib/externs/svg.js',
-                './web-doc-base/src/js/__externs.js'
-            ],
-            language_in       : 'ECMASCRIPT3',
-            language_out      : 'ECMASCRIPT3',
-            js_output_file    : 'min.js'
-        }
-    )
-    .src()
-    .pipe(gulp.dest( output ));
-});
-
-gulp.task('javascript', gulp.series( 'compile', 'finish' ) );
+        .pipe(gulp.dest( output ));
+    }
+));
 ~~~

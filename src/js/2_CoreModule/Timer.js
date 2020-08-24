@@ -1,3 +1,12 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_setTimer   = Timer_set;
+g_clearTimer = Timer_clear;
+
+/** ===========================================================================
+ * private
+ */
 var TIMERS = [],
     TIMER_INTERVAL = 64,
     timerUID = 0,
@@ -66,15 +75,11 @@ function Timer_remove(){
     };
 };
 
-g_Timer_set   = Timer_set;
-g_Timer_clear = Timer_clear;
-
-
 g_onreachEndCallbacks.push(
     function(){
         if( g_SafariMobile < 6.1 ){
-            g_Event_listenScrollEvent( Timer_reset );
+            g_listenScrollEvent( Timer_reset );
         };
-        g_Event_listenUnloadEvent( Timer_remove );
+        g_listenUnloadEvent( Timer_remove );
     }
 );

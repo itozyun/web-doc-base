@@ -4,7 +4,7 @@ var PICA_THUMBNAIL_IMGS      = [],
     PICA_THUMBNAIL_safariPreventDefault;
 
 if( !g_ServerSideRendering ){
-    g_Event_listenLoadEvent(
+    g_listenLoadEvent(
         function(){
             var links = DOM_getElementsByTagName( 'A', g_elmMain ),
                 i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
@@ -51,7 +51,7 @@ if( !g_ServerSideRendering ){
         };
     };
 
-    g_Event_listenUnloadEvent(
+    g_listenUnloadEvent(
         function(){
             var i = -1, obj;
             

@@ -21,12 +21,12 @@ var HighContrastStyleSwitcher_init = function(){
         }
     );
 
-    if( g_CanUse_cssTransform || ( 5.5 <= g_Trident && g_Trident < 9 && g_CanUse_iefilter ) ){
+    if( g_cssTransformName || ( 5.5 <= g_Trident && g_Trident < 9 && g_iefilterEnabled ) ){
         DOM_addClassName( g_body, 'jsCanRotate' );
     };
 };
 
-g_Event_listenHighContrustModeChange(
+g_listenHighContrustModeChange(
     function( highContrustState ){
         if( highContrustState && !HighContrastStyleSwitcher_elmStyle ){
             HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();

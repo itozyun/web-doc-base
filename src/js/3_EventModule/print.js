@@ -1,3 +1,13 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+g_listenPrintEvent = function( callback ){
+    Event_printEventCallbacks.push( callback );
+};
+
+/** ===========================================================================
+ * private
+ */
 var Event_printEventCallbacks = [];
 
 // https://developer.mozilla.org/ja/docs/Web/API/WindowEventHandlers/onbeforeprint
@@ -8,7 +18,7 @@ if( window.onbeforeprint ){
     onafterprint  = function(){
         Event_dispatch( Event_printEventCallbacks, false );
     };
-    g_Event_listenUnloadEvent(
+    g_listenUnloadEvent(
         function(){
             onbeforeprint = onafterprint = g_emptyFunction;
         }
@@ -20,9 +30,5 @@ if( window.onbeforeprint ){
         }
     );
 } else {
-    g_Event_noPrintEvent = true;
-};
-
-g_Event_listenPrintEvent = function( callback ){
-    Event_printEventCallbacks.push( callback );
+    g_noPrintEvent = true;
 };

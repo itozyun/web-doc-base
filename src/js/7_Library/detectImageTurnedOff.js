@@ -1,6 +1,6 @@
 /**
  */
-g_Event_listenImageReady(
+g_listenImageReady(
     function( result ){
         "use strict";
 
