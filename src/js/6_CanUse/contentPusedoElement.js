@@ -1,4 +1,4 @@
-if( DEFINE_CONTENT_TEST_ID ){
+if( WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID ){
     if( !g_contentPseudoElementEnabled ){
         g_listenCssAvailability(
             function( cssAvailability ){
@@ -13,7 +13,7 @@ if( DEFINE_CONTENT_TEST_ID ){
                             'a',
                             {
                                 'aria-hidden' : 'true',
-                                id            : DEFINE_CONTENT_TEST_ID
+                                id            : WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID
                             }
                         );
                         g_contentPseudoElementEnabled = 6 <= elm.offsetWidth;

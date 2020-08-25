@@ -231,8 +231,8 @@ gulp.task('js', gulp.series(
                     ],
                     externs           : externs,
                     define            : [
-                        'g_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                        'g_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
+                        'WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
+                        'WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
                     ],
                     compilation_level : 'ADVANCED',
                     warning_level     : 'VERBOSE',

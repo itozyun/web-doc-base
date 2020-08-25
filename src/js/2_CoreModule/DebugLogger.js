@@ -1,14 +1,14 @@
 var DebugLogger_elm,
     DebugLogger_logsBeforeLoad = [];
 
-if( DEFINE_DEBUG ){
+if( WEB_DOC_BASE_DEFINE_DEBUG ){
     g_onreachEndCallbacks.push(
         function(){
             g_listenLoadEvent(function(){
-                if( DEFINE_LOGGER_ELEMENT_ID ){
-                    DebugLogger_elm = DOM_getElementById( DEFINE_LOGGER_ELEMENT_ID );
+                if( WEB_DOC_BASE_DEFINE_LOGGER_ELEMENT_ID ){
+                    DebugLogger_elm = DOM_getElementById( WEB_DOC_BASE_DEFINE_LOGGER_ELEMENT_ID );
                     if( !DebugLogger_elm ){
-                        alert( '#' + DEFINE_LOGGER_ELEMENT_ID + ' not found!' );
+                        alert( '#' + WEB_DOC_BASE_DEFINE_LOGGER_ELEMENT_ID + ' not found!' );
                     };
                 };
                 if( DebugLogger_elm ){

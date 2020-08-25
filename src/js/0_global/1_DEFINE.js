@@ -1,38 +1,25 @@
 var
 /** @define {string} */
-    g_MOBILE_CSS_PREFIX = 'm_',
+    WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX = 'm_',
 /** @define {string} */
-    g_HC_MODE_CSS_DIR   = 'hc',
+    WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR   = 'hc',
 
 /** @define {number} */
-    DEFINE_DEBUG              = 0,
+    WEB_DOC_BASE_DEFINE_DEBUG              = 0,
 /** @define {string} */
-    DEFINE_LOGGER_ELEMENT_ID  = '',
+    WEB_DOC_BASE_DEFINE_LOGGER_ELEMENT_ID  = '',
 /** @define {number} */
-    DEFINE_WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
+    WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
 /** @define {string} */
-    DEFINE_CONTENT_TEST_ID    = 'jsCanUseContent',
+    WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID    = 'jsCanUseContent',
 
 /** @define {string} */
-    DEFINE_MAIN_COLUMN_ID     = 'jsMain',
-
-/** @define {number} */
-    USE_ARRAY_POP_ = 0,
-/** @define {number} */
-    USE_ARRAY_PUSH = 1,
-/** @define {number} */
-    USE_ARRAY_SHIFT = 1,
-/** @define {number} */
-    USE_ARRAY_UNSHIFT = 0,
-/** @define {number} */
-    USE_ARRAY_SPLICE = 0,
-/** @define {number} */
-    USE_ARRAY_INDEXOF = 0,
+    WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID     = 'jsMain',
 
 /** @define {string} */
-    DEFINE_TEST_IMAGE_HTTP = '',
+    WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP    = '',
 /** @define {string} */
-    DEFINE_TEST_IMAGE_HTTPS = '',
+    WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS   = '',
 
 /** @define {string} */
-    DEFINE_AMAZON_ID = ''; // itozyun-22
+    WEB_DOC_BASE_DEFINE_AMAZON_ID          = ''; // itozyun-22

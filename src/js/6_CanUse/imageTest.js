@@ -15,11 +15,11 @@ g_imageTest = imageTest;
 /** ===========================================================================
  * private
  */
-var TEST_IMAGE_URL = g_isSecure ? DEFINE_TEST_IMAGE_HTTPS : DEFINE_TEST_IMAGE_HTTP;
+var TEST_IMAGE_URL = g_isSecure ? WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS : WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP;
 
 function imageTest( callback ){
     if( !TEST_IMAGE_URL ){
-        if( DEFINE_DEBUG ){
+        if( WEB_DOC_BASE_DEFINE_DEBUG ){
             g_DebugLogger.log( '[imageTest] TEST_IMAGE_URL is undefined!' );
         };
         g_setTimer( callback, false );

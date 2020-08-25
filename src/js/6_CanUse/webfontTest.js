@@ -36,9 +36,9 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
         startTime, canDataUri,
         span, div, baseFonts, defaultWidth, result;
 
-    if( DEFINE_DEBUG && 1 <= DEFINE_WEBFONT_DEBUG_MODE ){
+    if( WEB_DOC_BASE_DEFINE_DEBUG && 1 <= WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE ){
         targetWebFontName = WEBFONT_TEST_PREFIX + targetWebFontName;
-        g_DebugLogger.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + DEFINE_WEBFONT_DEBUG_MODE );
+        g_DebugLogger.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE );
     };
 
     if( maybeCanWebFont() ){
@@ -102,7 +102,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
 
         document.fonts.load( font ).then(
             function( fonts ){
-                if( DEFINE_DEBUG ){
+                if( WEB_DOC_BASE_DEFINE_DEBUG ){
                     g_DebugLogger.log( '[webFontTest] fonts.check() : ' + check() + ', fonts.length : ' + fonts.length );
                 };
                 if( mesureWebFont( targetWebFontName ) ){
@@ -284,9 +284,9 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
 
     function testImportedCssReady( isStart ){
         if( isStart ){
-            if( DEFINE_DEBUG ){
+            if( WEB_DOC_BASE_DEFINE_DEBUG ){
                 g_DebugLogger.log( '[webFontTest] testImportedCssReady start!' );
-                if( DEFINE_WEBFONT_DEBUG_MODE < 2 ){
+                if( WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE < 2 ){
                     targetWebFontName = targetWebFontName.replace( WEBFONT_TEST_PREFIX, '' );
                 };
                 g_DebugLogger.log( '[webFontTest] targetWebFontName : ' + targetWebFontName );

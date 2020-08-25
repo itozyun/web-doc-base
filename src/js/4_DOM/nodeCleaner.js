@@ -1,7 +1,7 @@
 "use strict";
 g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
-        g_elmMain = DOM_getElementById( DEFINE_MAIN_COLUMN_ID );
+        g_elmMain = DOM_getElementById( WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID );
 
         var removeCommentNodes  = !( g_Presto < 8 || g_Trident < 5 || g_Tasman ),
             removalMetaTagNames = [ 'og:', 'twitter:', 'fb:' ],

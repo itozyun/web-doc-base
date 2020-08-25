@@ -17,7 +17,7 @@ var HighContrastStyleSwitcher_init = function(){
             type  : 'text/css',
             rel   : 'stylesheet',
             media : 'screen',
-            href  : g_assetUrl + '/' + g_HC_MODE_CSS_DIR + '/' + g_cssName
+            href  : g_assetUrl + '/' + WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR + '/' + g_cssName
         }
     );
 
