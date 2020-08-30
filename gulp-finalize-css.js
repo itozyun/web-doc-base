@@ -2,8 +2,8 @@
 // Delete " [firefox]" and add ",x:-moz-any-link".
 // Delete " [opera-lte9]" and add ",x:not(\\)" to .cleardix selector.
 
-const TARGET_HC_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active)',
-      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only screen and (-ms-high-contrast:active) and (max-width:319px)',
+const TARGET_HC_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active)',
+      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active) and (max-width:319px)',
       PluginError = require('plugin-error'),
       Transform   = require('stream').Transform,
       PostCSS     = require('postcss'),

@@ -59,7 +59,7 @@ function Event_highContrustMode_getState(){
           ( Event_highContrustMode_isBlackOnWhite  ? 3 : 1) );
 };
 
-if( 10 <= g_Trident || g_EdgeHTML ){
+if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
     Event_matchMedia( '(-ms-high-contrast:black-on-white)' ).addListener(
         function( mediaQueryList ){
             Event_highContrustMode_isHighContrust = Event_highContrustMode_isBlackOnWhite = mediaQueryList.matches;
@@ -79,7 +79,19 @@ if( 10 <= g_Trident || g_EdgeHTML ){
         }
     );
     Event_highContrustMode_test = null;
-} else if( g_Trident < 10 || ( ( ua[ 'Win32' ] || ua[ 'Win64' ] ) && ( 44 <= g_Gecko || g_Goanna ) ) ){ // Goanna 4.3 で文書の onload 時のみハイコントラストモードを反映
+    /**
+     * IE, EdgeHTML
+     *   IE10 以降で完全なサポート。
+     * Firefox
+     *   OS 側の色設定は無視。初期は onload 時のコントラストモードを反映。途中から閲覧中のモード切替に対応(Gecko60 辺り?)
+     * Goanna 4.3
+     *   OS 側の色設定は無視。onload 時のコントラストモードを反映。
+     * Chromium Edge Canary v79.0.305.0
+     *   閲覧中のモード切替に対応。-ms-high-contrast に対応、但し色の再設定は出来ない。７
+     *   https://mspoweruser.com/microsoft-brings-high-contrast-mode-to-chromium-based-edge/
+     *   Currently, the High Contrast mode is hidden behind a flag ...
+     */
+} else if( g_Trident < 10 || ( g_Windows && ( 44 <= g_Gecko || g_Goanna ) ) ){ 
     g_listenLoadEvent(
         function (){
             DOM_setStyle( Event_elmTest, 'color', '#123456' );
@@ -88,7 +100,7 @@ if( 10 <= g_Trident || g_EdgeHTML ){
             // This Is the New Dark Mode in Mozilla Firefox 70
             if( g_Gecko < 60 || g_Goanna ){
                 Event_highContrustMode_test();
-            } else if( Event_highContrustMode_test() ){ // IE9- or Gecko70+
+            } else if( Event_highContrustMode_test() ){ // IE9- or Gecko60+
                 Event_highContrustMode_timerID = g_setLoopTimer( Event_highContrustMode_test, 1000 );
             };
             Event_highContrustMode_test = null;

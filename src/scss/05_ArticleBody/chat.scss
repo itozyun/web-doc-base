@@ -99,7 +99,7 @@
                     /* //_}^@ie9 */
                     width        : .4em;
                     height       : .4em;
-                    border-color : #fff;
+                    /* border-color : #fff; */
                     /* //_{@modern */
                     transform     : rotate(-45deg);
                     /* //_}@modern */
@@ -123,6 +123,22 @@
             /* //_}^@ie9 */
         }
         /* //_}^@ie8 */
+        @include highContrastForChromiumEdge {
+            .chatL p:after, .chatR p:after {
+                display      : block;
+                width        : .4em;
+                height       : .4em;
+                transform    : rotate(-45deg);
+            }
+            .chatL p:after {
+                border-width : 1px 0 0 1px;
+                left         : -0.3em;
+            }
+            .chatR p:after {
+                border-width : 0 1px 1px 0;
+                right        : -0.3em;
+            }
+        }
     /* //_}#can-content */
 
         @include highContrastForIE10ToEdge {
@@ -220,7 +236,7 @@
 }
 
 /* //_{@ie9,@modern */
-@media only screen and (-ms-high-contrast:active) and (max-width: 319px) {
+@media only dynamic-css and (-ms-high-contrast:active) and (max-width:319px) {
     /* //_{^@ie9 */
     .jsCanRotate {
     /* //_}^@ie9 */

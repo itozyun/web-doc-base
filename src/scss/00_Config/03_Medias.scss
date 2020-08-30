@@ -140,10 +140,12 @@ $COMMENT_OUT : (
 }
 
 @mixin highContrast {
+    /* //_{@modern */
     @media (-ms-high-contrast:active) {
         & { @content; }
     }
-    @media only screen and (-ms-high-contrast:active) {
+    /* //_}@modern */
+    @media only dynamic-css and (-ms-high-contrast:active) {
         & { @content; }
     }
 }
@@ -151,7 +153,7 @@ $COMMENT_OUT : (
 @mixin highContrastForIEGte9Gecko {
     /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
     @if(0 == 0){
-        @media only screen and (-ms-high-contrast:active) {
+        @media only dynamic-css and (-ms-high-contrast:active) {
             & { @content; }
         }
     }
@@ -159,6 +161,20 @@ $COMMENT_OUT : (
     /* //_{@ie5win,@ie5mac */
     @if(1 == 0){ @content; }
     /* //_}@ie5win,@ie5mac */
+}
+
+@mixin highContrastForChromiumEdge {
+    /* //_{@modern */
+    @if(0 == 0){
+        @media (-ms-high-contrast:active) and (prefers-color-scheme:dark),
+               (-ms-high-contrast:active) and (prefers-color-scheme:light) {
+            & { @content; }
+        }
+    }
+    /* //_}@modern */
+    /* //_{^@modern */
+    @if(1 == 0){ @content; }
+    /* //_}^@modern */
 }
 
 @mixin highContrastForIE10ToEdge {

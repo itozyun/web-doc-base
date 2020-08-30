@@ -91,7 +91,7 @@
             /* //_{^#can-inline-block */
             display      : inline;
             /* //_}^#can-inline-block */
-            border-color  : #fff;
+            /* border-color  : #fff; */
             border-width  : 0 .15em .15em 0;        
             /* //_{@modern */
             width         : .45em;
@@ -116,6 +116,16 @@
             /* //_}@ie55,@ie6,@ie7 */
             filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
             /* //_}@ie55,@ie6,@ie7,@ie8 */
+        }
+    }
+    @include highContrastForChromiumEdge {
+        & i {
+            display       : inline-block;
+            border-width  : 0 .15em .15em 0;
+            width         : .45em;
+            height        : .45em;
+            transform     : rotate(-45deg);
+            top           : 0;
         }
     }
 }
