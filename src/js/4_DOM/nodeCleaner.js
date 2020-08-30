@@ -28,9 +28,9 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             if( g_jsGte15 ?
                                 ( sheet = CSSOM_getStyleSheet( kid ) ) && ( rules = CSSOM_getCssRules( sheet ) ) && !rules[0]
                                 :
-                                ( new Function( 'k,a,b,s,r', 'try{s=a(k),r=b(s);return !r[0]}catch(e){}' ) )( kid )
+                                ( new Function( '$,a,b', 'try{$=a($),$=b($);return !$[0]}catch(e){}' ) )( kid, CSSOM_getStyleSheet, CSSOM_getCssRules )
                             ){
-                                DOM_remove( kid, CSSOM_getStyleSheet, CSSOM_getCssRules );
+                                DOM_remove( kid );
                                 break;
                             };
                         case 'LINK' :
