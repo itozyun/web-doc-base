@@ -1,6 +1,6 @@
 /* object with caption
  *  div.box
- *    div.caption[style=width:XXpx]
+ *    span.caption[style=width:XXpx]
  *       figure
  *         img|emned|
  *         figcaption
@@ -8,6 +8,8 @@
 $CaptionedObjectFontSize : 0.875em;
 
 .caption {
+    display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
+
     word-break : break-all;
     text-align : center;
     @include lineHeight(1.2, 0);
@@ -21,11 +23,11 @@ $CaptionedObjectFontSize : 0.875em;
 
     @include unbreak-inside;
 
-    img, .box & img {
-        margin : 0 0 .5em;
+    img /* , .box & img */ {
+        margin : 0 0 .5em !important;
     }
-}
 
-.box .caption * {
-    float : none;
+    /* .box & */ * {
+        float : none !important;
+    }
 }
