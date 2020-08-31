@@ -18,6 +18,7 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
     g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
     g_Windows      = ua[ 'Win32' ] || ua[ 'Win64' ],
     g_ChromiumEdge = parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
+    g_IEVersion    = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4,
 
 // https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
     g_passiveSupported = !g_Trident && !g_Tasman && (new Function(

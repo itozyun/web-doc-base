@@ -53,7 +53,7 @@ function imageTest( callback ){
     };
 
     function imageTest_onError(){
-        var errorFix = !g_Trident || g_Trident === 11 || ua[ 'IEHost' ] === 11;
+        var errorFix = !g_Trident || g_Trident === 11 || g_IEVersion === 11;
 
         // ie11(10,9 開発モード)で mineType 不正の場合、画像取得に成功してもエラーイベントが起こるのを無視する。
         if( errorFix && img.width ) return;
