@@ -21,16 +21,16 @@
         }
 
 /* Firefox OS2.2(シミュレータ) で Roboto がいると日本語を正しく表示できない... 2.1-は問題無し
- * http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
+ *   http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
  */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
         body, textarea, input {
             font-family :
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
                 "Helvetica Neue",
-                // https://twitter.com/itozyun/status/1293662566791524352
-                // Windows 10, Chrome29 で日本語のテキストフローが乱れる
-                /* Helvetica, Arial, */
+                /* Windows 10, Chrome29 で日本語のテキストフローが乱れるのを回避
+                 *   https://twitter.com/itozyun/status/1293662566791524352
+                 * Helvetica, Arial, */
                 Verdana,
                 Roboto,
                 "UD Digi Kyokasho NP-R",
@@ -46,38 +46,28 @@
  * IEは游ゴシックの下の余白が他のフォントより大きいというバグを抱えています。
  */
     @include media(onlyIE10To11){
-        body {
-            font-family : "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
-        }
-        textarea, input {
-            font-family : "UD Digi Kyokasho NP-R", Verdana, Meiryo, sans-serif;
+        body, textarea, input {
+            font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
         }
     }
 /* //_}@modern */
 
 /* //_{@ie9  */
-    body {
-        font-family : "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
-    }
-    textarea, input {
-        font-family : "UD Digi Kyokasho NP-R", Verdana, Meiryo, sans-serif;
+    body, textarea, input {
+        font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
     }
 /* //_}@ie9 */
 
 /* //_{@ie7,@ie8 */
-        body {
-            font-family : /* Arial, ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わない */
-                          Meiryo , "MS Gothic" , sans-serif;
-        }
-        textarea, input {
-            font-family : Arial, Meiryo , "MS PGothic" , sans-serif;
-        }
+    body, textarea, input {
+        font-family : Arial, Meiryo, "MS PGothic" , sans-serif;
+    }
 /* //_}@ie7,@ie8 */
 
 /* //_{#ie6-win */
-        body, textarea, input {
-            font-family : Arial, "MS Gothic" , sans-serif; /* ie6-, MacIE5- */
-        }
+    body, textarea, input {
+        font-family : Arial, "MS Gothic", sans-serif; /* ie6-, MacIE5- */
+    }
 /* //_}#ie6-win */
 
 
@@ -85,7 +75,7 @@
     /* //_{@modern,@ie9,@ie8,@ie7 */
             /* pre, */ code, var, kbd, samp /* , tt */ {
                 font-family : /* "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう！ */
-                    SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New',Courier, monospace, serif;
+                    SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', Courier, monospace, serif;
             }
     /* //_}@modern,@ie9,@ie8,@ie7 */
 

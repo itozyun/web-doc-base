@@ -81,6 +81,13 @@
  *   a
 --------------------------------------------------------------------------------------*/
 .AHead-labels {
+ /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
+/* //_{@ie7,@ie8 */
+    font-family : Meiryo, "MS PGothic", sans-serif;
+/* //_}@ie7,@ie8 */
+/* //_{#ie6-win */
+    font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
+/* //_}#ie6-win */
     margin-top     : 0.5em;
     color          : $COLOR_Ribbon_fill; /* , を消す */
     /* //_{@modern */
