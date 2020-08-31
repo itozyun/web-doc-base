@@ -141,7 +141,7 @@ $COMMENT_OUT : (
 
 @mixin highContrast {
     /* //_{@modern */
-    @media (-ms-high-contrast:active) {
+    @media only screen and (-ms-high-contrast:active) {
         & { @content; }
     }
     /* //_}@modern */
@@ -166,8 +166,8 @@ $COMMENT_OUT : (
 @mixin highContrastForChromiumEdge {
     /* //_{@modern */
     @if(0 == 0){
-        @media (-ms-high-contrast:active) and (prefers-color-scheme:dark),
-               (-ms-high-contrast:active) and (prefers-color-scheme:light) {
+        @media only screen and (-ms-high-contrast:active) and (prefers-color-scheme:dark),
+               only screen and (-ms-high-contrast:active) and (prefers-color-scheme:light) {
             & { @content; }
         }
     }
@@ -180,7 +180,7 @@ $COMMENT_OUT : (
 @mixin highContrastForIE10ToEdge {
     /* //_{@modern */
     @if(0 == 0){
-        @media (-ms-high-contrast:active) {
+        @media only screen and (-ms-high-contrast:active) {
             & { @content; }
         }
     }

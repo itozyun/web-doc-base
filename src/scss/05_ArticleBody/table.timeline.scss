@@ -100,10 +100,10 @@
         border-width  : .35em;
         border-color  : $COLOR_Default_fill;
         /* //_{@modern */
-        @media (-ms-high-contrast : black-on-white) {
+        @media only screen and (-ms-high-contrast : black-on-white) {
             & { border-color : #fff; }
         }
-        @media (-ms-high-contrast : white-on-black) {
+        @media only screen and (-ms-high-contrast : white-on-black) {
             & { border-color : #000; }
         }
         @include highContrastForIEGte9Gecko {
