@@ -25,13 +25,13 @@
         @include createButton( #1B95E0, #1B95E0, $COLOR_Default_fill, 1 );
     }
     .fb {
-        @include createButton( #3B5999, #3B5999, $COLOR_Default_fill, 1 );
+        @include createButton( #3B5999, #3B5999, #fff, 1 );
     }
     .hb {
         @include createButton( #008FDE, #008FDE, $COLOR_Default_fill, 1 );
     }
     .pt {
-        @include createButton( #BD081C, #BD081C, $COLOR_Default_fill, 1 );
+        @include createButton( #BD081C, #BD081C, #fff, 1 );
     }
     .pk {
         @include createButton( #EE4056, #EE4056, $COLOR_Default_fill, 1 );
