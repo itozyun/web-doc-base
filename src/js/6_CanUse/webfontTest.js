@@ -71,13 +71,13 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
  *    Windows Phone 7 - IE9
  */
     function maybeCanWebFont(){
-        var blacklist =
+        var blocklist =
                 ua[ 'MeeGo' ] || ua[ 'AOSP' ] < 2.2 || ua[ 'WebOS' ] || ua[ 'UCWEB' ] ||
                 ( ua[ 'TridentMobile' ] < 10 ) || // g_Tasman ||
                 ua[ 'NDS' ] || ua[ 'NDSi' ] || ua[ 'N3DS' ],
             style, sheet, cssText, v, result;
     
-        if( blacklist ){
+        if( blocklist ){
             return false;
         } else if( g_Trident < 6 ){
             return true;
@@ -85,8 +85,8 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
         style   = DOM_createThenAdd(
             g_head, 'style', 0, 0, '@font-face{font-family:"font";src:url("https://")}'
         );
-        sheet   = style.sheet || style.styleSheet;
-        cssText = sheet ? ((v = sheet.cssRules) && (v = v[0]) ? v.cssText : sheet.cssText || '') : '';
+        sheet   = CSSOM_getStyleSheet( style );
+        cssText = sheet ? ((v = CSSOM_getCssRules( sheet )) && (v = v[0]) ? v.cssText : sheet.cssText || '') : '';
         result  = 0 < cssText.indexOf('src') && cssText.indexOf('@font-face') === 0;
         DOM_remove( style );
         return result;
