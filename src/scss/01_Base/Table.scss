@@ -48,6 +48,7 @@ table {
         line-height       : 1.2;
     /* //_}^@ie5win */
         @include highContrast {
+            border-width    : 2px 0 0;
             border-spacing  : 2px;
             border-collapse : separate;
         }
@@ -92,6 +93,10 @@ table {
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
+        @include highContrast {
+            border-width : 0 0 2px;
+            padding      : 0.5em;
+        }
     }
 
     tbody th {
@@ -103,29 +108,33 @@ table {
             border-width : 0 0 1px;
         }
     }
+
+    /* //_{#can-lastChild */
+    tbody tr:last-child > * {
+        border-bottom-width : 0;
+    }
+    /* //_}#can-lastChild */
+    /* //_{^#can-lastChild */
+        /* //_{#can-1stChild */
+            @include highContrast {
+                tfoot tr:first-child th,
+                tfoot tr:first-child td {
+                    position : relative;
+                    top      : -3px; 
+                }
+            }
+        /* //_}#can-1stChild */
+    /* //_}^#can-lastChild */
+
     tfoot th {
-        border-width : 1px 0 0;
+        border-width : 2px 0 0;
     }
     tfoot td {
-        border-width : 1px 0.5em 0;
+        border-width : 2px 0.5em 0;
         @include highContrast {
-            border-width : 1px 0 0;
+            border-width : 2px 0 0;
         }
     }
-
-    /* //_{#can-content */
-    tfoot {
-        position : relative;
-    }
-    tfoot:before {
-        @include createPseudoBlock;
-        width        : 100%;
-        position     : absolute;
-        left         : 0;
-        top          : 0;
-        border-width : 1px 0 0;
-    }
-    /* //_}#can-content */
 
 /*  color
 --------------------------------------------------------------------------------------*/
@@ -144,9 +153,6 @@ table {
         border-color : $fill $fill $casual_fill;
     }
 
-    /* //_{#can-content */
-    tfoot:before,
-    /* //_}#can-content */
     tfoot th,
     tfoot td {
         border-color : $casual_text $fill;
@@ -180,9 +186,6 @@ table {
         td {
             border-color : $casual_fill $casual_fill $casual_text;
         }
-        /* //_{#can-content */
-        tfoot:before,
-        /* //_}#can-content */
         tfoot th,
         tfoot td {
             border-color : $text $casual_fill;
@@ -280,9 +283,7 @@ tbody :hover th {
     td {
         border-color : #fff #fff $COLOR_Print_casual_fill;
     }
-    /* //_{#can-content */
-    tfoot:before,
-    /* //_}#can-content */
+
     tfoot th,
     tfoot td {
         border-color : $COLOR_Print_casual_text #fff;
@@ -317,9 +318,6 @@ tbody :hover th {
             border-color : #fff #fff $COLOR_Print_casual_text;
         }
 
-        /* //_{#can-content */
-        tfoot:before,
-        /* //_}#can-content */
         tfoot th, tfoot td {
             border-color : $COLOR_Print_text #fff;
         }

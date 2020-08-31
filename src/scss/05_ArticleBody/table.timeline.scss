@@ -73,8 +73,8 @@
     tbody td:before {
         top           : .6em;
         left          : -0.75em;
-        width         : 0.6em;
-        height        : 0.6em;
+        width         : 0;
+        height        : 0;
         /* //_{@modern */
         -webkit-border-radius : .6em;
         -moz-border-radius    : .6em;
@@ -82,7 +82,7 @@
         /* //_{@modern,@ie9 */
         border-radius : .6em;
         /* //_}@modern,@ie9 */
-        border-width  : .3em;
+        border-width  : .6em;
         border-color  : $COLOR_Default_casual_fill;
     }
     tbody td:after {
@@ -106,11 +106,23 @@
         @media (-ms-high-contrast : white-on-black) {
             & { border-color : #000; }
         }
+        @include highContrastForIEGte9Gecko {
+            filter : invert(100%);
+        }
+        @include highContrastForChromiumEdge {
+            filter : invert(100%);
+        }
         /* //_}@modern */
+        /* //_{@ie8 */
+        @include highContrastForIEGte9Gecko {
+            top          : 1.2em;
+            left         : -.13em;
+            border-width : 0;
+            outline      : .35em solid invert;
+        }
+        /* //_}@ie8 */
     }
-    tfoot:before {
-        display : none;
-    }
+
     /* //_}#can-content */
     tfoot th {
         border-width : 1px 0 0;
