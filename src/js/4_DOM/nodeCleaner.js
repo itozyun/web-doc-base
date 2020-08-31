@@ -21,14 +21,14 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                 } else if( type === 1 ){
                     tag = DOM_getTagName( kid );
 
-                    switch( tag ){
+                    switch( tag.replace( '/', '' ) ){
                         case 'STYLE' :
                             // https://twitter.com/pbrocky/status/1219213180531929088
                             // 開発ツールを出していると Firefox 72.0.1 で CSSOM のアクセスで InvalidAccessError が出る
                             if( g_jsGte15 ?
-                                ( sheet = CSSOM_getStyleSheet( kid ) ) && ( rules = CSSOM_getCssRules( sheet ) ) && !rules[0]
+                                ( sheet = CSSOM_getStyleSheet( kid ) ) && ( rules = CSSOM_getCssRules( sheet ) ) && ( !rules[0] || !rules[0].cssText )
                                 :
-                                ( new Function( '$,a,b', 'try{$=a($),$=b($);return !$[0]}catch(e){}' ) )( kid, CSSOM_getStyleSheet, CSSOM_getCssRules )
+                                ( new Function( '$,a,b', 'try{$=a($),$=b($),$=$[0];return !$||!$.cssText}catch(e){}' ) )( kid, CSSOM_getStyleSheet, CSSOM_getCssRules )
                             ){
                                 DOM_remove( kid );
                                 break;
@@ -51,6 +51,19 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             if( DOM_hasAttribute( kid, 'skip-cleanup' ) ) break;
                         case '!' :
                             DOM_remove( kid );
+                            break;
+                        case 'HEADER' :
+                        case 'MAIN' :
+                        case 'NAV' :
+                        case 'ARTICLE' :
+                        case 'SECTION' :
+                        case 'ASIDE' :
+                        case 'FIGURE' :
+                        case 'FIGCAPTION' :
+                        case 'FOOTER' :
+                            if( g_Trident < 9 ){
+                                DOM_remove( kid );
+                            };
                             break;
                         default :
                             DOM_getChildNodes( kid ).length && walkTree( kid );                        
