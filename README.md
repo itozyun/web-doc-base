@@ -263,3 +263,80 @@ gulp.task('js', gulp.series(
     }
 ));
 ~~~
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)
+
+## Dependency Licenses
+
+### what-browser-am-i
+
+|         |     |
+|:--------| --- |
+| Author  | itozyun |
+| Website | https://github.com/itozyun/what-browser-am-i |
+| License | [MIT License](https://opensource.org/licenses/MIT) |
+
+### Modernizr
+
+|         |     |
+|:--------| --- |
+| Author  | Modernizr |
+| Website | https://github.com/Modernizr/Modernizr |
+| License | [MIT License](https://opensource.org/licenses/MIT) |
+
+### JavaScript code to detect available availability of a particular font in a browser using JavaScript and CSS.
+
+|         |     |
+|:--------| --- |
+| Author  | Lalit Patel |
+| Website | http://www.lalit.org/lab/javascript-css-font-detect/ |
+| License | [Apache Software License 2.0](http://www.apache.org/licenses/LICENSE-2.0) |
+
+### uupaa.js 完全に状況を掌握した画像の遅延読み込みの実現
+
+|         |     |
+|:--------| --- |
+| Author  | uupaa |
+| Website | http://d.hatena.ne.jp/uupaa/20080413/1208067631 |
+| License | MIT License? ([uupaa.js](https://code.google.com/archive/p/uupaa-js/) が MIT License の為多分) |
+
+### Google Code-Prettify
+
+|         |     |
+|:--------| --- |
+| Author  | google |
+| Website | https://github.com/googlearchive/code-prettify |
+| License | [Apache Software License 2.0](http://www.apache.org/licenses/LICENSE-2.0) |
+
+### jQuery.prettyQuote.js
+
+|         |     |
+|:--------| --- |
+| Author  | Matori/ub-pnr |
+| Website | https://unformedbuilding.com/demo/2010/prettyquote/ |
+| License | [MIT License](https://opensource.org/licenses/MIT) |
+
+## The referenced code
+
+### Detecting if images are disabled in browsers > Checking for Windows High Contrast
+
+|         |     |
+|:--------| --- |
+| Author  | Steve Faulkner |
+| Website | https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/ |
+
+### Function.prototype.applyとかArray.prototype.spliceのIE5用のコード
+
+|         |     |
+|:--------| --- |
+| Author  | ofk |
+| Website | https://ofk.hatenadiary.org/entry/20080904/1220485969 |
+
+### Array.prototype.indexOf() polyfill
+
+|         |     |
+|:--------| --- |
+| Author  | MDN |
+| Website | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf |

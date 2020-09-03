@@ -1,8 +1,3 @@
-/*
- * Original:
- *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
- *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
- */
 var HighContrastStyleSwitcher_elmStyle,
 /**
  * @type {?function()|null}

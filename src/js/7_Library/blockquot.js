@@ -1,7 +1,10 @@
 /*
  * Original:
  *  jQuery.prettyQuote.js
- *  http://unformedbuilding.com/articles/blockquote-and-jquery/
+ * 
+ *  Author : Matori/ub-pnr
+ *  Website: https://unformedbuilding.com/demo/2010/prettyquote/
+ *  License: MIT
 */
 g_listenLoadEvent(
     function( e ){

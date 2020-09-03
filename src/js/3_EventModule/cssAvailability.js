@@ -20,7 +20,6 @@ function Event_cssAvailability_check(){
 
 g_listenLoadEvent(
     function(){
-        Event_cssAvailability_check();
         g_setLoopTimer( Event_cssAvailability_check );
     }
 );

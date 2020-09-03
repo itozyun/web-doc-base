@@ -1,6 +1,3 @@
-/**================================================================
- * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/url/data-uri.js
- */
 /** ===========================================================================
  * export to packageGlobal
  */
@@ -11,6 +8,11 @@ g_dataUriTest = dataUriTest;
  */
 var CANIUSE_dataUriTestResult;
 
+/**================================================================
+ * Original Code:
+ *   https://github.com/Modernizr/Modernizr/blob/master/feature-detects/url/data-uri.js
+ *   MIT License
+ */
 function dataUriTest( callback ){
     if( g_notUndefined( CANIUSE_dataUriTestResult ) ){
         g_DebugLogger.log( '[dataUriTest] already done : ' + CANIUSE_dataUriTestResult );
@@ -25,7 +27,6 @@ function dataUriTest( callback ){
 
         datauri.onerror = function(){
             g_DebugLogger.log( '[dataUriTest] no DATA URI!' );
-            datauri.onload = datauri.onerror = g_emptyFunction;
             _callback( false );
         };
 

@@ -1,5 +1,11 @@
 var Array_prototype = Array.prototype;
 
+/**
+ * original:
+ *   Function.prototype.applyとかArray.prototype.spliceのIE5用のコード
+ *   ofk
+ *   https://ofk.hatenadiary.org/entry/20080904/1220485969
+ */
 Array_prototype.pop || (Array_prototype.pop = function () {
     var r = this[this.length - 1];
     --this.length;
@@ -45,6 +51,9 @@ Array_prototype.splice || (Array_prototype.splice = function (x, y) {
 
 /**
  * original:
+ *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+ */
+/**
  *   JavaScript 1.6, Array.indexOfを下位互換実装する
  *   http://www.inazumatv.com/contents/archives/7965
  */

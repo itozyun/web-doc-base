@@ -1,12 +1,9 @@
 /**
- * Detecting if images are disabled in browsers
- *  https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
- * 
- * ブラウザ自身による画像の禁止
- * アドオンやネットワーク監視アプリによる画像の禁止
- * 
- * Webページにimgタグがある
+ * 画像の禁止を検出する。画像の禁止には次の2パターンがあると思われる。2. の場合、他の手段で画像の利用は可能。
+ *   1. ブラウザによる画像の禁止
+ *   2. アドオンやネットワーク監視アプリによる画像のダウンロードのブロック
  */
+
 /** ===========================================================================
  * export to packageGlobal
  */
@@ -16,7 +13,17 @@ g_imageTest = imageTest;
  * private
  */
 var TEST_IMAGE_URL = g_isSecure ? WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS : WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP;
-
+/* 
+ * Original Code:
+ *  
+ * Author : uupaa.js@gmail.com 
+ * Website: http://d.hatena.ne.jp/uupaa/20080413/1208067631
+ * License: MIT?
+ */
+/**
+ * uupaa/image.onload.error.md
+ *   https://gist.github.com/uupaa/8001551
+ */
 function imageTest( callback ){
     if( !TEST_IMAGE_URL ){
         if( WEB_DOC_BASE_DEFINE_DEBUG ){

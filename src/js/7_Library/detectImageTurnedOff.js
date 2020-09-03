@@ -1,5 +1,3 @@
-/**
- */
 g_listenImageReady(
     function( result ){
         "use strict";

@@ -1,9 +1,3 @@
-/*
- * Original:
- *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
- *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
- */
-
 /** ===========================================================================
  * export to packageGlobal
  */
@@ -14,44 +8,18 @@ g_listenHighContrustModeChange = function( callback ){
 /** ===========================================================================
  * private
  */
+
+/*
+ * Original:
+ *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
+ *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
+ */
 var Event_highContrustMode_callbacks = [],
     Event_highContrustMode_timerID,
     Event_highContrustMode_isHighContrust,
     Event_highContrustMode_isBlackOnWhite,
-    Event_highContrustMode_isWhiteOnBlack;
-
-/**
- * @type {?function()|null}
- */
-var Event_highContrustMode_test = function(){
-    var defaultView = document.defaultView,
-        computedStyle, color, bgColor,
-        highContrustModeState = g_highContrustModeState;
-
-    computedStyle = defaultView ?
-        defaultView.getComputedStyle( Event_elmTest, null ) :
-        Event_elmTest.currentStyle;
-
-    color   = ( computedStyle && computedStyle.color || '' ).split( ' ' ).join( '' );
-    bgColor = ( computedStyle && computedStyle.backgroundColor || '' ).split( ' ' ).join( '' ); 
-
-    if( color ){
-        Event_highContrustMode_isHighContrust = color !== '#123456' && color !== 'rgb(18,52,86)';
-        Event_highContrustMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
-        Event_highContrustMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
-        if( highContrustModeState !== Event_highContrustMode_getState() ){
-            Event_dispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
-        };
-        return true;
-    };
-
-    function isBlack( color ){
-        return color === '#000000' || color === 'rgb(0,0,0)';
-    };
-    function isWhite( color ){
-        return color === '#ffffff' || color === 'rgb(255,255,255)';
-    };
-};
+    Event_highContrustMode_isWhiteOnBlack,
+    Event_highContrustMode_test;
 
 function Event_highContrustMode_getState(){
     return g_highContrustModeState = !Event_highContrustMode_isHighContrust ? 0 :
@@ -78,7 +46,7 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
             Event_dispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
         }
     );
-    Event_highContrustMode_test = null;
+
     /**
      * IE, EdgeHTML
      *   IE10 以降で完全なサポート。
@@ -91,21 +59,48 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
      *   https://mspoweruser.com/microsoft-brings-high-contrast-mode-to-chromium-based-edge/
      *   Currently, the High Contrast mode is hidden behind a flag ...
      */
-} else if( g_Trident < 10 || ( g_Windows && ( 44 <= g_Gecko || g_Goanna ) ) ){ 
+} else if( g_Trident < 10 || ( g_Windows && ( 44 <= g_Gecko || g_Goanna ) ) ){
+    Event_highContrustMode_test = function(){
+        var defaultView = document.defaultView,
+            computedStyle, color, bgColor,
+            highContrustModeState = g_highContrustModeState;
+
+        computedStyle = defaultView ?
+            defaultView.getComputedStyle( Event_elmTest, null ) :
+            Event_elmTest.currentStyle;
+
+        color   = ( computedStyle && computedStyle.color || '' ).split( ' ' ).join( '' );
+        bgColor = ( computedStyle && computedStyle.backgroundColor || '' ).split( ' ' ).join( '' ); 
+
+        if( color ){
+            Event_highContrustMode_isHighContrust = color !== '#123456' && color !== 'rgb(18,52,86)';
+            Event_highContrustMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
+            Event_highContrustMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
+            if( highContrustModeState !== Event_highContrustMode_getState() ){
+                Event_dispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
+            };
+            return true;
+        };
+
+        function isBlack( color ){
+            return color === '#000000' || color === 'rgb(0,0,0)';
+        };
+        function isWhite( color ){
+            return color === '#ffffff' || color === 'rgb(255,255,255)';
+        };
+    };
+
     g_listenLoadEvent(
         function (){
             DOM_setStyle( Event_elmTest, 'color', '#123456' );
             DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
-            // https://news.softpedia.com/news/this-is-the-new-dark-mode-in-mozilla-firefox-70-527932.shtml
-            // This Is the New Dark Mode in Mozilla Firefox 70
+
             if( g_Gecko < 60 || g_Goanna ){
-                Event_highContrustMode_test();
+                g_setTimer( Event_highContrustMode_test );
             } else if( Event_highContrustMode_test() ){ // IE9- or Gecko60+
                 Event_highContrustMode_timerID = g_setLoopTimer( Event_highContrustMode_test, 1000 );
             };
             Event_highContrustMode_test = null;
         }
     );
-} else {
-    Event_highContrustMode_test = null;
 };
