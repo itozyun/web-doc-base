@@ -1,6 +1,10 @@
 $MEDIAQUERY_TABLET_MAX_PX : 950;
 $MEDIAQUERY_TABLET        : 'handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
 
+$MEDIAQUERY_FONTSIZE_UPPER_TABLET : 18;
+
+$MEDIAQUERY_PHABLET_MAX_WIDTH : 740;
+
 /* //_{#can-mq */
 $MEDIAQUERY_TABLET_AND_PRINT : 'print, handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
 $NO_MEDIA_QUERY              : 1;
@@ -54,7 +58,7 @@ $COMMENT_OUT : (
     }
     @else if map-get($COMMENT_OUT, $media) == 1 {
         @if $media == 'pc' {
-            @media only screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / 16}em){
+            @media only screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / $MEDIAQUERY_FONTSIZE_UPPER_TABLET}em){
                 @content;
             }
         }
@@ -79,7 +83,7 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'phablet' {
-            @media handheld, projection, tv, only screen and (max-width: 740px) {
+            @media handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_WIDTH}px) {
                 @content;
             }
         }
@@ -89,7 +93,7 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'smallphone' {
-            @media handheld, projection, tv, only screen and (max-width: 319px) {
+            @media handheld, projection, tv, only screen and (max-width: 359px) {
                 @content;
             }
         }
