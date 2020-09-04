@@ -54,21 +54,21 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
     g_listenResizeEvent,
     g_listenScrollEvent,
     g_listenPrintEvent,
-    g_listenCssAvailability,
+    g_listenCssAvailabilityChange,
     g_listenImageReady,
     g_listenPrefersColorChange,
     g_listenHighContrustModeChange,
 
-    // nodeCleaner もアクセスするので global に公開する
+    // nodeCleaner もアクセスするので packageGlobal に公開する
     g_loadEventCallbacks = [],
 
     g_cssAvailability,
     g_highContrustModeState = 0,
-    g_noPrintEvent,
+    g_printEventDisabled,
     
     g_iefilterEnabled,
     g_imageEnabled,
-    g_contentPseudoElementEnabled,
+    g_generatedContentEnabled,
 
     g_cssTransformName =
         g_notUndefined( g_style[ 'transform' ] ) ? 'transform' : 

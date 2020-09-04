@@ -40,6 +40,10 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 4. サムネイル画像をクリックで拡大 [src](./src/js/7_Library/PicaThumnail.js)
 5. blockquote の拡張 [src](./src/js/7_Library/blockquot.js)
 
+### Investigation of special browser settings
+
+[Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
+
 ## References - 参照プロジェクト
 
 This project has been referred to the next project.
@@ -214,7 +218,7 @@ gulp.task('js', gulp.series(
     
                         './web-doc-base/src/js/5_CSSOM/CSSOM.js',
 
-                        //'./web-doc-base/src/js/6_CanUse/contentPusedoElement.js',
+                        //'./web-doc-base/src/js/6_CanUse/generatedContent.js',
                         //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
                         './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
                         //'./web-doc-base/src/js/6_CanUse/imageTest.js',

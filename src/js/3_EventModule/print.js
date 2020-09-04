@@ -30,5 +30,5 @@ if( window.onbeforeprint ){
         }
     );
 } else {
-    g_noPrintEvent = true;
+    g_printEventDisabled = true;
 };

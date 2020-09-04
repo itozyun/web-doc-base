@@ -8,7 +8,7 @@ g_dataUriTest = dataUriTest;
  */
 var CANIUSE_dataUriTestResult;
 
-/**================================================================
+/**============================================================================
  * Original Code:
  *   https://github.com/Modernizr/Modernizr/blob/master/feature-detects/url/data-uri.js
  *   MIT License

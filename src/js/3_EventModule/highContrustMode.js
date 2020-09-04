@@ -31,19 +31,19 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
     Event_matchMedia( '(-ms-high-contrast:black-on-white)' ).addListener(
         function( mediaQueryList ){
             Event_highContrustMode_isHighContrust = Event_highContrustMode_isBlackOnWhite = mediaQueryList.matches;
-            Event_dispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
         }
     );
     Event_matchMedia( '(-ms-high-contrast:white-on-black)' ).addListener(
         function( mediaQueryList ){
             Event_highContrustMode_isHighContrust = Event_highContrustMode_isWhiteOnBlack = mediaQueryList.matches;
-            Event_dispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
         }
     );
     Event_matchMedia( '(-ms-high-contrast:active)' ).addListener(
         function( mediaQueryList ){
             Event_highContrustMode_isHighContrust = mediaQueryList.matches;
-            Event_dispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
         }
     );
 
@@ -77,7 +77,7 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
             Event_highContrustMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
             Event_highContrustMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
             if( highContrustModeState !== Event_highContrustMode_getState() ){
-                Event_dispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
+                Event_lazyDispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
             };
             return true;
         };
@@ -96,7 +96,7 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
             DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
 
             if( g_Gecko < 60 || g_Goanna ){
-                g_setTimer( Event_highContrustMode_test );
+                Event_highContrustMode_test();
             } else if( Event_highContrustMode_test() ){ // IE9- or Gecko60+
                 Event_highContrustMode_timerID = g_setLoopTimer( Event_highContrustMode_test, 1000 );
             };
