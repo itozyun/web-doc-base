@@ -29,7 +29,7 @@
     }
     
     /* //_{#can-content */
-    .links a[href]:before {
+    .links [href]:before {
         content     : ">";
         position    : relative;
         left        : -0.5em;
@@ -39,10 +39,10 @@
         text-align  : center;
         font-weight : bold;
     }
-    .links a[href^="/"]:not([href^="//"]):before {
+    .links [href^="/"]:not([href^="//"]):before {
         content     : "+";
     }
-    .links a[href*="web.archive."]:before {
+    .links [href*="web.archive."]:before {
         content     : "*";
     }
     /* //_}#can-content */
