@@ -44,7 +44,7 @@ TODO g_generatedContentEnabled で CSS-P 等が使えない場合の値を返す
 4. g_listenPrefersColorChange
 5. g_listenPrintEvent
 
-### 1. g_listenCssAvailabilityChange
+### 1. `g_listenCssAvailabilityChange`
 
 CSS の有効/無効が切り替わるたびにコールバックします。Firefox は表示 > スタイルシートから、機能の死活をいつでも切り替えることが出来ます。
 
@@ -56,7 +56,7 @@ g_listenCssAvailabilityChange(
 );
 ~~~
 
-### 2. g_listenHighContrustModeChange
+### 2. `g_listenHighContrustModeChange`
 
 Windows 用ブラウザの一部が備える Web サイトのハイコントラストモードの状態変化をコールバックします。
 
@@ -68,7 +68,7 @@ g_listenHighContrustModeChange(
 );
 ~~~
 
-### 3. g_listenImageReady
+### 3. `g_listenImageReady`
 
 `onload` 時に存在する `&lt;img&gt;` について、ひとつづつ読み込まれたか？否かをコールバックします。
 
@@ -81,7 +81,7 @@ g_listenImageReady(
 );
 ~~~
 
-### 4. g_listenPrefersColorChange
+### 4. `g_listenPrefersColorChange`
 
 ダークモードの死活をコールバックします。
 
@@ -93,7 +93,7 @@ g_listenPrefersColorChange(
 );
 ~~~
 
-### 5. g_listenPrintEvent
+### 5. `g_listenPrintEvent`
 
 `beforeprint` `afterprint` イベントをコールバックします。
 
@@ -107,11 +107,11 @@ g_listenPrintEvent(
 
 ## Special methods
 
-1. g_dataUriTest
-2. g_imageTest
-3. g_webFontTest
+1. `g_dataUriTest`
+2. `g_imageTest`
+3. `g_webFontTest`
 
-### 1. g_dataUriTest
+### 1. `g_dataUriTest`
 
 `g_webFontTest` が使用しています。
 
@@ -123,7 +123,7 @@ g_dataUriTest(
 );
 ~~~
 
-### 2. g_imageTest
+### 2. `g_imageTest`
 
 `WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS` か `WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP` が描画されたか？で画像表示に制限が無いか？確認する。
 
@@ -135,7 +135,7 @@ g_imageTest(
 );
 ~~~
 
-### 3. g_webFontTest
+### 3. `g_webFontTest`
 
 Web フォントの読み込みのテスト、フォールバックのダウンロード読み込みのテスト、リガチャのテストを行います。
 
@@ -158,7 +158,7 @@ g_webFontTest(
         'myIconFont_canSVG'  : '/asset/iconfont/svg.css'
     },
     'myIconFont-testCssReady',
-    { i : 'home' }, // 3.
+    't', 'twitter', // 3.
     5000 // option : test interval ms
 );
 ~~~

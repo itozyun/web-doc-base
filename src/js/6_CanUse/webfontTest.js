@@ -27,7 +27,7 @@ g_webFontTest = webFontTest;
  */
 var WEBFONT_TEST_PREFIX = 'bad_' + ( new Date() - 0 ) + '_';
 
-function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_testInterval ){
+function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_ligTestChar, opt_testInterval ){
     var INTERVAL = 5000,
         INTERVAL_EMBEDED_WEBFONT = 100,
         TEST_STRING = 'mmmmmmmmmmlli';
@@ -229,14 +229,11 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
             };
         };
         if( detected && opt_ligTest ){
-            for( chr in opt_ligTest ){
-                span.innerHTML = chr;
-                w = span.offsetWidth;
-                span.innerHTML = opt_ligTest[ chr ];
-                canLig = w === span.offsetWidth ? 1 : 0;
-                span.innerHTML = TEST_STRING;
-                if( !canLig ) break;
-            };
+            span.innerHTML = opt_ligTest;
+            w = span.offsetWidth;
+            span.innerHTML = opt_ligTestChar;
+            canLig = w === span.offsetWidth ? 1 : 0;
+            span.innerHTML = TEST_STRING;
         };
         DOM_remove( span );
         return ( result = detected + canLig );
