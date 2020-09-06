@@ -2,7 +2,7 @@
 
 ## Special browser status flags
 
-1. CSS は有効化？
+1. CSS は有効か？
 2. `:before`, `:after` 疑似要素によるコンテンツの生成が出来るか？
 3. `-ms-filter` は有効か？
 4. ハイコントラストモードの状態

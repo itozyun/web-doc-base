@@ -3,10 +3,10 @@ $MEDIAQUERY_TABLET        : 'handheld, projection, tv, only screen and (max-widt
 
 $MEDIAQUERY_FONTSIZE_UPPER_TABLET : 18;
 
-$MEDIAQUERY_PHABLET_MAX_WIDTH : 740;
+$MEDIAQUERY_PHABLET_MAX_PX : 740;
 
 /* //_{#can-mq */
-$MEDIAQUERY_TABLET_AND_PRINT : 'print, handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)';
+$MEDIAQUERY_TABLET_AND_PRINT : #{"print, " + $MEDIAQUERY_TABLET};
 $NO_MEDIA_QUERY              : 1;
 /* //_}#can-mq */
 
@@ -83,7 +83,7 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'phablet' {
-            @media handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_WIDTH}px) {
+            @media handheld, projection, tv, only screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_PX}px) {
                 @content;
             }
         }
@@ -105,7 +105,7 @@ $COMMENT_OUT : (
         @else if $media == 'dark_theme' {
             @media handheld, only screen and (max-width: 240px)
             /* //_{@modern */
-            , only screen and (prefers-color-scheme: dark) /* only screen and は Chrome で必要。無いと印刷時にも適用される */
+            , only screen and (prefers-color-scheme:dark) /* only screen and は Chrome で必要。無いと印刷時にも適用される */
             /* //_}@modern */
             {
                 @content;

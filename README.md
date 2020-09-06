@@ -8,9 +8,9 @@ Super project for itozyun's Web document projects.
 2. Written based on the SMACSS
 3. Build for each browsers (modern, ie9, ie8, ie7, ie6, ie55, ie5win)
 4. Responsive Web Design for the 8 types of device (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
-5. Reduce ink to print (@media print)
-6. High contrast mode support (@media (-ms-high-contrast:active))
-7. Drak mode support
+5. Reduce ink to print (`@media print`)
+6. High contrast mode support (`@media (-ms-high-contrast:active)`)
+7. Drak mode support (`(prefers-color-scheme:dark)`)
 8. Legacy browsers support
 
 itozyun の Web ドキュメント・プロジェクトの親プロジェクトです。
@@ -19,9 +19,9 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 2. SMACSS をベースに書かれています
 3. ブラウザ別に CSS をビルド (modern, ie9, ie8, ie7, ie6, ie55, ie5win)
 4. レスポンシブデザインは8種類のデバイスのために用意 (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
-5. インクを節約して印刷 (@media print)
-6. ハイコントラストモードのサポート (@media (-ms-high-contrast:active))
-7. ダークモードのサポート
+5. インクを節約して印刷 (`@media print`)
+6. ハイコントラストモードのサポート (`@media (-ms-high-contrast:active)`)
+7. ダークモードのサポート (`(prefers-color-scheme:dark)`)
 8. 古いブラウザのサポート
 
 ## Functions provided by Javascript - Javascript によって提供される機能
