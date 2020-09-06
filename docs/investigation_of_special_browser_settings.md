@@ -1,6 +1,9 @@
 # Investigation of special browser settings
 
-## Special browser status flags
+1. Special browser status flags
+2. Special event listeners
+
+## 1. Special browser status flags
 
 1. CSS は有効か？
 2. `:before`, `:after` 疑似要素によるコンテンツの生成が出来るか？
@@ -9,21 +12,20 @@
 5. print イベントのコールバックの可否
 6. 画像が有効か？
 
-| valiable                  | type                 | value | available         | note                                                         |
-|:--------------------------|:---------------------|:------|:------------------|:-------------------------------------------------------------|
-| g_cssAvailability         | boolean              |       | g_listenLoadEvent |                                                              |
-| g_generatedContentEnabled | boolean or undefined |       | g_listenLoadEvent | undefined : g_cssAvailability == false                       |
-| g_iefilterEnabled         | boolean or undefined |       | g_listenLoadEvent |                                                              |
-| g_highContrastModeState   | number               | 0~3   | g_listenLoadEvent | none : 0, active : 1, white-on-black : 2, black-on-white : 3 |
-| g_printEventDisabled      | boolean              |       | allways           |                                                              |
-| g_imageEnabled            | boolean or undefined |       | g_listenLoadEvent | undefined : document.images.length == 0                      |
+| valiable                    | type                 | value | available           | note                                                         |
+|:----------------------------|:---------------------|:------|:--------------------|:-------------------------------------------------------------|
+| `g_cssAvailability`         | boolean              |       | `g_listenLoadEvent` |                                                              |
+| `g_generatedContentEnabled` | boolean or undefined |       | `g_listenLoadEvent` | undefined : `g_cssAvailability == false`                     |
+| `g_iefilterEnabled`         | boolean or undefined |       | `g_listenLoadEvent` |                                                              |
+| `g_highContrastModeState`   | number               | 0~3   | `g_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3 |
+| `g_printEventDisabled`      | boolean              |       | allways             |                                                              |
+| `g_imageEnabled`            | boolean or undefined |       | `g_listenLoadEvent` | undefined : `document.images.length == 0`                    |
 
 TODO g_generatedContentEnabled で CSS-P 等が使えない場合の値を返す
 
-g_generatedContentEnabled の判定用に、メインの css に下記スタイルを入れておく
+`g_generatedContentEnabled` の判定用に、メインの CSS に下記スタイルを入れておく。
 
 ~~~css
-/* //_{#can-content */
 #jsCanUseContent {
     font       : 0/0 a;
 }
@@ -32,10 +34,9 @@ g_generatedContentEnabled の判定用に、メインの css に下記スタイ�
     visibility : hidden;
     font       : 7px/1 a
 }
-/* //_}#can-content */
 ~~~
 
-## Special events
+## 2. Special event listeners
 
 1. g_listenCssAvailabilityChange
 2. g_listenHighContrustModeChange
@@ -69,6 +70,8 @@ g_listenHighContrustModeChange(
 
 ### 3. g_listenImageReady
 
+`onload` 時に存在する `&lt;img&gt;` について、ひとつづつ読み込まれたか？否かをコールバックします。
+
 ~~~js
 g_listenImageReady(
     function( result ){
@@ -80,6 +83,8 @@ g_listenImageReady(
 
 ### 4. g_listenPrefersColorChange
 
+ダークモードの死活をコールバックします。
+
 ~~~js
 g_listenPrefersColorChange(
     function( isDrakMode ){
@@ -89,6 +94,8 @@ g_listenPrefersColorChange(
 ~~~
 
 ### 5. g_listenPrintEvent
+
+`beforeprint` `afterprint` イベントをコールバックします。
 
 ~~~js
 g_listenPrintEvent(
@@ -106,6 +113,8 @@ g_listenPrintEvent(
 
 ### 1. g_dataUriTest
 
+`g_webFontTest` が使用しています。
+
 ~~~js
 g_dataUriTest(
     function( dataUriEnabled ){
@@ -116,7 +125,7 @@ g_dataUriTest(
 
 ### 2. g_imageTest
 
-WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS か WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP が描画されたか？で画像表示に制限が無いか？確認する。
+`WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS` か `WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP` が描画されたか？で画像表示に制限が無いか？確認する。
 
 ~~~js
 g_imageTest(
@@ -130,7 +139,7 @@ g_imageTest(
 
 Web フォントの読み込みのテスト、フォールバックのダウンロード読み込みのテスト、リガチャのテストを行います。
 
-1. メインの css に下記スタイルを入れておく
+1. メインの CSS に下記スタイルを入れておく、
 2. Web フォントを DATA URI スキームで埋め込んだ CSS のパスを与える
 3. リガチャはキャラクターと合字の長さが一致するかを調べる
 
@@ -167,7 +176,6 @@ g_webFontTest(
 }
 
 /* 1. */
-
 .myIconFont-testCssReady {
     position    : absolute;
     top         : 0;
@@ -184,6 +192,7 @@ g_webFontTest(
     font-weight : normal;
     font-style  : normal;
 }
+
 @font-face {
     font-family : 'myIconFont_canWOFF';
     src:
