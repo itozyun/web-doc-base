@@ -14,7 +14,7 @@
 | g_cssAvailability         | boolean              |       | g_listenLoadEvent |                                                              |
 | g_generatedContentEnabled | boolean or undefined |       | g_listenLoadEvent | undefined : g_cssAvailability == false                       |
 | g_iefilterEnabled         | boolean or undefined |       | g_listenLoadEvent |                                                              |
-| g_highContrustModeState   | number               | 0~3   | g_listenLoadEvent | none : 0, active : 1, white-on-black : 2, black-on-white : 3 |
+| g_highContrastModeState   | number               | 0~3   | g_listenLoadEvent | none : 0, active : 1, white-on-black : 2, black-on-white : 3 |
 | g_printEventDisabled      | boolean              |       | allways           |                                                              |
 | g_imageEnabled            | boolean or undefined |       | g_listenLoadEvent | undefined : document.images.length == 0                      |
 
@@ -61,7 +61,7 @@ Windows 用ブラウザの一部が備える Web サイトのハイコントラ�
 
 ~~~js
 g_listenHighContrustModeChange(
-    function( highContrustModeState ){
+    function( highContrastModeState ){
 
     }
 );

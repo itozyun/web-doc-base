@@ -63,7 +63,7 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
     g_loadEventCallbacks = [],
 
     g_cssAvailability,
-    g_highContrustModeState = 0,
+    g_highContrastModeState = 0,
     g_printEventDisabled,
     
     g_iefilterEnabled,

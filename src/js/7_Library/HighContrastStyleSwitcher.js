@@ -20,11 +20,11 @@ var HighContrastStyleSwitcher_elmStyle,
     };
 
 g_listenHighContrustModeChange(
-    function( highContrustState ){
-        if( highContrustState && !HighContrastStyleSwitcher_elmStyle ){
+    function( highContrastState ){
+        if( highContrastState && !HighContrastStyleSwitcher_elmStyle ){
             HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();
         } else {
-            highContrustState ? DOM_appendChild( g_head, HighContrastStyleSwitcher_elmStyle ) : DOM_remove( HighContrastStyleSwitcher_elmStyle );
+            highContrastState ? DOM_appendChild( g_head, HighContrastStyleSwitcher_elmStyle ) : DOM_remove( HighContrastStyleSwitcher_elmStyle );
         };
     }
 );

@@ -2,7 +2,7 @@
  * export to packageGlobal
  */
 g_listenHighContrustModeChange = function( callback ){
-    Event_highContrustMode_callbacks.push( callback );
+    Event_highContrastMode_callbacks.push( callback );
 };
 
 /** ===========================================================================
@@ -14,36 +14,36 @@ g_listenHighContrustModeChange = function( callback ){
  *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
  *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
  */
-var Event_highContrustMode_callbacks = [],
-    Event_highContrustMode_timerID,
-    Event_highContrustMode_isHighContrust,
-    Event_highContrustMode_isBlackOnWhite,
-    Event_highContrustMode_isWhiteOnBlack,
-    Event_highContrustMode_test;
+var Event_highContrastMode_callbacks = [],
+    Event_highContrastMode_timerID,
+    Event_highContrastMode_isHighContrust,
+    Event_highContrastMode_isBlackOnWhite,
+    Event_highContrastMode_isWhiteOnBlack,
+    Event_highContrastMode_test;
 
-function Event_highContrustMode_getState(){
-    return g_highContrustModeState = !Event_highContrustMode_isHighContrust ? 0 :
-          ( Event_highContrustMode_isWhiteOnBlack  ? 2 :
-          ( Event_highContrustMode_isBlackOnWhite  ? 3 : 1) );
+function Event_highContrastMode_getState(){
+    return g_highContrastModeState = !Event_highContrastMode_isHighContrust ? 0 :
+          ( Event_highContrastMode_isWhiteOnBlack  ? 2 :
+          ( Event_highContrastMode_isBlackOnWhite  ? 3 : 1) );
 };
 
 if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
     Event_matchMedia( '(-ms-high-contrast:black-on-white)' ).addListener(
         function( mediaQueryList ){
-            Event_highContrustMode_isHighContrust = Event_highContrustMode_isBlackOnWhite = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_highContrastMode_isHighContrust = Event_highContrastMode_isBlackOnWhite = mediaQueryList.matches;
+            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
     Event_matchMedia( '(-ms-high-contrast:white-on-black)' ).addListener(
         function( mediaQueryList ){
-            Event_highContrustMode_isHighContrust = Event_highContrustMode_isWhiteOnBlack = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_highContrastMode_isHighContrust = Event_highContrastMode_isWhiteOnBlack = mediaQueryList.matches;
+            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
     Event_matchMedia( '(-ms-high-contrast:active)' ).addListener(
         function( mediaQueryList ){
-            Event_highContrustMode_isHighContrust = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrustMode_callbacks, Event_highContrustMode_getState() );
+            Event_highContrastMode_isHighContrust = mediaQueryList.matches;
+            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
 
@@ -60,10 +60,10 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
      *   Currently, the High Contrast mode is hidden behind a flag ...
      */
 } else if( g_Trident < 10 || ( g_Windows && ( 44 <= g_Gecko || g_Goanna ) ) ){
-    Event_highContrustMode_test = function(){
+    Event_highContrastMode_test = function(){
         var defaultView = document.defaultView,
             computedStyle, color, bgColor,
-            highContrustModeState = g_highContrustModeState;
+            highContrastModeState = g_highContrastModeState;
 
         computedStyle = defaultView ?
             defaultView.getComputedStyle( Event_elmTest, null ) :
@@ -73,11 +73,11 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
         bgColor = ( computedStyle && computedStyle.backgroundColor || '' ).split( ' ' ).join( '' ); 
 
         if( color ){
-            Event_highContrustMode_isHighContrust = color !== '#123456' && color !== 'rgb(18,52,86)';
-            Event_highContrustMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
-            Event_highContrustMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
-            if( highContrustModeState !== Event_highContrustMode_getState() ){
-                Event_lazyDispatch( Event_highContrustMode_callbacks, g_highContrustModeState );
+            Event_highContrastMode_isHighContrust = color !== '#123456' && color !== 'rgb(18,52,86)';
+            Event_highContrastMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
+            Event_highContrastMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
+            if( highContrastModeState !== Event_highContrastMode_getState() ){
+                Event_lazyDispatch( Event_highContrastMode_callbacks, g_highContrastModeState );
             };
             return true;
         };
@@ -96,11 +96,11 @@ if( 10 <= g_Trident || g_EdgeHTML || ( g_Windows && g_ChromiumEdge ) ){
             DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
 
             if( g_Gecko < 60 || g_Goanna ){
-                Event_highContrustMode_test();
-            } else if( Event_highContrustMode_test() ){ // IE9- or Gecko60+
-                Event_highContrustMode_timerID = g_setLoopTimer( Event_highContrustMode_test, 1000 );
+                Event_highContrastMode_test();
+            } else if( Event_highContrastMode_test() ){ // IE9- or Gecko60+
+                Event_highContrastMode_timerID = g_setLoopTimer( Event_highContrastMode_test, 1000 );
             };
-            Event_highContrustMode_test = null;
+            Event_highContrastMode_test = null;
         }
     );
 };
