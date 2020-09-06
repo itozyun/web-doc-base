@@ -110,7 +110,7 @@ table {
     }
 
     /* //_{#can-lastChild */
-    tbody tr:last-child > * {
+    tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
         border-bottom-width : 0;
     }
     /* //_}#can-lastChild */
