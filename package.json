@@ -1,19 +1,22 @@
 {
-  "name"        : "web-doc-base",
-  "description" : "Super project for itozyun's Web document projects.",
-  "keywords"    : [ "HTML", "SCSS", "javascript", "SMACSS" ],
-  "author"      : "itozyun",
-  "license"     : "MIT",
-
-  "repository" : {
-    "type" : "git",
-    "url"  : "https://github.com/itozyun/web-doc-base.git"
+  "name": "web-doc-base",
+  "description": "Super project for itozyun's Web document projects.",
+  "keywords": [
+    "HTML",
+    "SCSS",
+    "javascript",
+    "SMACSS"
+  ],
+  "author": "itozyun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itozyun/web-doc-base.git"
   },
-  "bugs" : {
-    "url" : "https://github.com/itozyun/web-doc-base/issues"
+  "bugs": {
+    "url": "https://github.com/itozyun/web-doc-base/issues"
   },
-  "homepage" : "https://github.com/itozyun/web-doc-base#readme",
-
+  "homepage": "https://github.com/itozyun/web-doc-base#readme",
   "devDependencies": {
     "google-closure-compiler": "^20200719.0.0",
     "gulp": "^4.0.2",
