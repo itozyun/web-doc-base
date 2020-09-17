@@ -20,9 +20,9 @@ kbd {
              border-radius : 3px;
     /* //_}@ie9,@modern */
     /* //_{#can-hover-pseudo-class */
-    position       : relative;
         &:hover {
-            top : -0.1em;
+            position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
+            top      : -0.1em;
         }
     /* //_}#can-hover-pseudo-class */
 }
