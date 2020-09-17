@@ -6,7 +6,7 @@ if( g_IEVersion === 11 && g_Trident < 5.5 ){
         g_head,
         'link',
         {
-            href : g_assetUrl + '/' + g_cssName,
+            href : g_assetUrl + g_cssName,
             rel  : 'stylesheet',
             type : 'text/css'
         }

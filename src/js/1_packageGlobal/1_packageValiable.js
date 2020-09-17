@@ -42,7 +42,7 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
                   'modern'
                 ) + '.css',
     g_isSecure = location.href.indexOf('https') === 0,
-    g_assetUrl, g_assetDir, g_isMobile,
+    g_assetUrl, g_isMobile,
 
     g_DebugLogger = { log : function(){} },
 
@@ -85,11 +85,12 @@ function g_notUndefined( val ){
     return val !== undefined;
 };
 
-    g_assetDir = g_scripts[ g_scripts.length - 1 ].src.split( '/' );
-    --g_assetDir.length;
-    g_assetUrl = g_assetDir.join( '/' ); // "http://127.0.0.1:8020/public"
-    
-    if( 0 <= 'http: https:'.indexOf( g_assetDir[ 0 ] ) ){
-        g_assetDir.splice( 0, 3 );
+    g_assetUrl = g_scripts[ g_scripts.length - 1 ].src.split( '/' ); // IE7- では要素に書いてある内容. それ以外は absolute URL.
+    --g_assetUrl.length;
+    g_assetUrl = g_assetUrl.join( '/' ); // "http://127.0.0.1:8020/public/"
+
+    if( g_assetUrl ){
+        g_assetUrl += '/'; // '.' -> './'
+    // } else {
+        // g_assetUrl = './';
     };
-    g_assetDir = g_assetDir.join( '/' ); // "public"

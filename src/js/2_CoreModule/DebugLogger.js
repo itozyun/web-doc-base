@@ -28,4 +28,6 @@ if( WEB_DOC_BASE_DEFINE_DEBUG ){
     g_DebugLogger.log = function( text ){
         DebugLogger_logsBeforeLoad.push( text );
     };
+
+    g_DebugLogger.log( '[g_assetUrl] ' + g_assetUrl );
 };
