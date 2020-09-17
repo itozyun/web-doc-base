@@ -75,7 +75,8 @@
     /* //_{@modern,@ie9,@ie8,@ie7 */
             /* pre, */ code, var, kbd, samp /* , tt */ {
                 font-family : /* "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう！ */
-                    SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', Courier, monospace, serif;
+                    /* http://www.tohoho-web.com/ex/font.html#css-body-font */
+                    SFMono-Regular, 'Liberation Mono', Menlo, Consolas, "Hiragino Kaku Gothic ProN", Monaco, Meiryo, /* 'Courier New', Courier, */ monospace;
             }
     /* //_}@modern,@ie9,@ie8,@ie7 */
 
