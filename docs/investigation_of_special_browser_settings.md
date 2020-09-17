@@ -125,13 +125,14 @@ g_dataUriTest(
 
 ### 2. `g_imageTest`
 
-`WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS` か `WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP` が描画されたか？で画像表示に制限が無いか？確認する。
+`imageUrl` が描画されたか？で画像表示に制限が無いか？確認する。
 
 ~~~js
 g_imageTest(
     function( imageEnabled ){
 
-    }
+    },
+    imageUrl
 );
 ~~~
 
@@ -150,7 +151,7 @@ g_webFontTest(
         // webFontTestResult === 1 : webfont ready
         // webFontTestResult === 2 : webfont ready + ligature support
     },
-    'myIconFont', // @font-face > font-family
+    'myIconFont', // @font-face { font-family : 'myIconFont' };
     { // 2.
         'myIconFont_canTTF'  : '/asset/iconfont/ttf.css',
         'myIconFont_canWOFF' : '/asset/iconfont/woff.css',
@@ -158,7 +159,7 @@ g_webFontTest(
         'myIconFont_canSVG'  : '/asset/iconfont/svg.css'
     },
     'myIconFont-testCssReady',
-    't', 'twitter', // 3.
+    'twitter', 't', // 3.
     5000 // option : test interval ms
 );
 ~~~

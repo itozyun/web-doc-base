@@ -17,9 +17,4 @@ var
     WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID     = 'jsMain',
 
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP    = '',
-/** @define {string} */
-    WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS   = '',
-
-/** @define {string} */
     WEB_DOC_BASE_DEFINE_AMAZON_ID          = ''; // itozyun-22

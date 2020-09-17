@@ -12,7 +12,7 @@ g_imageTest = imageTest;
 /** ===========================================================================
  * private
  */
-var TEST_IMAGE_URL = g_isSecure ? WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS : WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTP;
+
 /* 
  * Original Code:
  *  
@@ -24,23 +24,18 @@ var TEST_IMAGE_URL = g_isSecure ? WEB_DOC_BASE_DEFINE_TEST_IMAGE_HTTPS : WEB_DOC
  * uupaa/image.onload.error.md
  *   https://gist.github.com/uupaa/8001551
  */
-function imageTest( callback ){
-    if( !TEST_IMAGE_URL ){
-        if( WEB_DOC_BASE_DEFINE_DEBUG ){
-            g_DebugLogger.log( '[imageTest] TEST_IMAGE_URL is undefined!' );
-        };
-        g_setTimer( callback, false );
-        return;
-    };
-
+function imageTest( callback, imageUrl ){ // callback, url, 
     var img = new Image(),
-        timerID ,finish;
+        timerID, finish, counter = 99;
+
+    g_DebugLogger.log( '[imageTest] start.' );
 
     img.onerror = imageTest_onError;
     img.onload  = imageTest_onLoad;
-    img.src     = TEST_IMAGE_URL;
+    img.src     = imageUrl;
 
     if( g_Presto < 8 && img.complete ){
+        g_DebugLogger.log( '[imageTest] Presto<8 success!' );
         g_imageEnabled = true;
         g_setTimer( callback, true );
     } else if( !finish ){
@@ -51,20 +46,32 @@ function imageTest( callback ){
         if( finish ) return;
         
         if( img.complete ){
+            g_DebugLogger.log( '[imageTest] timer -> img.complete. img.width=' + img.width );
+
             finish = true;
-            if( img.width ) return;
-            g_setTimer( callback, false );
-        } else {
+            // if( img.width ) return;
+            g_setTimer( callback, !!img.width );
+        } else if( --counter ){
+            // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
+            // g_DebugLogger.log( '[imageTest] timer -> img.complete=false.' );
             timerID = g_setTimer( imageTest_check );
+        } else {
+            g_DebugLogger.log( '[imageTest] timeout.' );
+            finish = true;
+            timerID = g_setTimer( callback, false );
         };
     };
 
     function imageTest_onError(){
         var errorFix = !g_Trident || g_Trident === 11 || g_IEVersion === 11;
 
+        g_DebugLogger.log( '[imageTest] error. errorFix=' + errorFix );
+
         // ie11(10,9 開発モード)で mineType 不正の場合、画像取得に成功してもエラーイベントが起こるのを無視する。
         if( errorFix && img.width ) return;
         if( finish ) return;
+
+        g_DebugLogger.log( '[imageTest] error!' );
 
         finish = true;
         timerID && g_clearTimer( timerID );
@@ -74,10 +81,14 @@ function imageTest( callback ){
     function imageTest_onLoad(){
         finish = true;
         timerID && g_clearTimer( timerID );
+        
+        g_DebugLogger.log( '[imageTest] onload.' );
 
         if( g_Presto && !img.complete ){
+            g_DebugLogger.log( '[imageTest] Presto not img.complete!' );
             timerID = g_setTimer( callback, false );
         } else {
+            g_DebugLogger.log( '[imageTest] success!' );
             g_imageEnabled = true;
             g_setTimer( callback, true );
         };

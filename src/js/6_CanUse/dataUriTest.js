@@ -23,7 +23,9 @@ function dataUriTest( callback ){
     } else {
         g_DebugLogger.log( '[dataUriTest] start!' );
 
-        var datauri = new Image();
+        var datauri = new Image(),
+            // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
+            timerID = g_setTimer( function(){ timerID && _callback( false ); } );
 
         datauri.onerror = function(){
             g_DebugLogger.log( '[dataUriTest] no DATA URI!' );
@@ -37,6 +39,7 @@ function dataUriTest( callback ){
         datauri.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     };
     function _callback( result ){
+        timerID = g_clearTimer( timerID );
         CANIUSE_dataUriTestResult = result;
         datauri.onload = datauri.onerror = g_emptyFunction;
         g_setTimer( callback, result );
