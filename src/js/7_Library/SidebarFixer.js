@@ -46,8 +46,9 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
 
 if( !g_isMobile && !g_ServerSideRendering ){
 
-    g_listenLoadEvent(
-        function(){
+    g_listenCssAvailabilityChange(
+        function( cssAvailability ){
+            if( !cssAvailability || SIDEBAR_FIXER_elmRoot ) return;
             var i = -1, id, elm;
 
             g_listenScrollEvent( SIDEBAR_FIXER_onscroll );
@@ -204,7 +205,7 @@ function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElemen
         } else if( SIDEBAR_FIXER_positionFixed ){
             if( y !== 0 ){
                 y  -= scrollY - mainY; 
-                css = POS_FIXED_WIDTH + SIDEBAR_FIXER_elmSide.offsetWidth + 'px;top:' + y + 'px';
+                css = POS_FIXED_WIDTH + SIDEBAR_FIXER_elmSide.offsetWidth + 'px;top:' + y + 'px'; // TODO clip
             };
         } else {
             css = POS_ABSOLUT_TOP + y + 'px';

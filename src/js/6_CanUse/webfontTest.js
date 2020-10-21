@@ -215,7 +215,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
     };
 
     function mesureWebFont( testFontName ){
-        var detected = 0, i = -1, font, chr, w, canLig = 0;
+        var detected = 0, i = -1, font, w, canLig = 0;
 
         preMesure && preMesure();
 

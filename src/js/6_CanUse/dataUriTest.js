@@ -24,6 +24,7 @@ function dataUriTest( callback ){
         g_DebugLogger.log( '[dataUriTest] start!' );
 
         var datauri = new Image(),
+            // https://twitter.com/itozyun/status/1306835988577099776/
             // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
             timerID = g_setTimer( function(){ timerID && _callback( false ); } );
 
