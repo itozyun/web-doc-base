@@ -44,7 +44,9 @@ blockquote {
         line-height : 1.2;
         text-align  : right;
         word-break  : break-all; /* 長いurl iOS4用効果あり */
-        /* word-wrap   : break-all; 効果なし */
+        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        word-wrap  : break-word;
+        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
         color       : $COLOR_Default_casual_text;
     }
 

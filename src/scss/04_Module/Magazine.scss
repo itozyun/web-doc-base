@@ -65,6 +65,9 @@
         }
         .Magazine-label {
             word-break : break-all;
+            /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+            word-wrap  : break-word;
+            /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
             margin     : .5em 0 .8em;
         }
         .Magazine .aBodyRoot {

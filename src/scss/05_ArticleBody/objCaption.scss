@@ -11,6 +11,10 @@ $CaptionedObjectFontSize : 0.875em;
     display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
 
     word-break : break-all;
+    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    word-wrap  : break-word;
+    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+
     text-align : center;
     @include lineHeight(1.2, 0);
     font-size  : 0.875em;

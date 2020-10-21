@@ -27,6 +27,9 @@
             .SearchResult cite {
                 color      : #006621;
                 word-break : break-all;
+                /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+                word-wrap  : break-word;
+                /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
             }
             .SearchResult div p {
                 margin : 0.2em 0 0;
