@@ -58,7 +58,14 @@
 <p>Firefox 1.x 以下用の clearfix です。
 <br clear="all">
 
+<h2>Opera 7.2x~8用</h2>
+<div class="box" id="opera7">
+    <div class="l">Left</div>
+    <div class="r">Right</div>
+</div>
+<p>Opera 7.2x~8用の clearfix です。
 <br clear="all">
+
 <h2>Opera 9 以下用</h2>
 <div class="box" id="opera9">
     <div class="l">Left</div>
@@ -68,9 +75,23 @@
 <br clear="all">
 
 <h2>Firefox と Opera 用の CSS ハックのテスト</h2>
-<p>Firefox 1 以下または Opera 9 以下のブラウザの場合、以下にコンテンツが表示されます。
+<p>Firefox 1 以下または Opera 9.x 以下のブラウザの場合、以下にコンテンツが表示されます。
 <p id="isFirefox1">Firefox 1 以下のブラウザです。
-<p id="isOpera9">Presto Opera 9 以下のブラウザです。
+<p id="isOpera9">Presto Opera 9.x 以下のブラウザです。</p>
+<table border=1 cellspacing=0>
+<thead>
+<tr>
+<th>Web Browser<th>result
+<tbody>
+<tr>
+<th>Windows XPsp3 Opera 7.11<td>×
+<tr>
+<th>Windows XPsp3 Opera 7.23<td>×
+<tr>
+<th>Windows XPsp3 Opera 8.02<td>×
+<tr>
+<th>Windows XPsp3 Opera 9.64<td>visible
+</table>
 </body>
 <style>
     html, body { height : 100%; }
@@ -121,6 +142,10 @@
             line-height : 0;
             visibility  : hidden;
             clear       : both;
+        }
+
+        html:first-child #opera7 {
+            display : inline-table;
         }
 
     #isFirefox1 { display : none }
