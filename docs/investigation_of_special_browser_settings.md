@@ -12,16 +12,14 @@
 5. print イベントのコールバックの可否
 6. 画像が有効か？
 
-| valiable                    | type                 | value | available           | note                                                         |
-|:----------------------------|:---------------------|:------|:--------------------|:-------------------------------------------------------------|
-| `g_cssAvailability`         | boolean              |       | `g_listenLoadEvent` |                                                              |
-| `g_generatedContentEnabled` | boolean or undefined |       | `g_listenLoadEvent` | undefined : `g_cssAvailability == false`                     |
-| `g_iefilterEnabled`         | boolean or undefined |       | `g_listenLoadEvent` |                                                              |
-| `g_highContrastModeState`   | number               | 0~3   | `g_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3 |
-| `g_printEventDisabled`      | boolean              |       | allways             |                                                              |
-| `g_imageEnabled`            | boolean or undefined |       | `g_listenLoadEvent` | undefined : `document.images.length == 0`                    |
-
-TODO g_generatedContentEnabled で CSS-P 等が使えない場合の値を返す
+| valiable                    | type                 | value | available           | note                                                                 |
+|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
+| `g_cssAvailability`         | boolean              |       | `g_listenLoadEvent` |                                                                      |
+| `g_generatedContentEnabled` | number  or undefined |       | `g_listenLoadEvent` | undefined : `g_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P |
+| `g_iefilterEnabled`         | boolean or undefined |       | `g_listenLoadEvent` |                                                                      |
+| `g_highContrastModeState`   | number               | 0~3   | `g_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
+| `g_printEventDisabled`      | boolean              |       | allways             |                                                                      |
+| `g_imageEnabled`            | boolean or undefined |       | `g_listenLoadEvent` | undefined : `document.images.length == 0`                            |
 
 `g_generatedContentEnabled` の判定用に、メインの CSS に下記スタイルを入れておく。
 
