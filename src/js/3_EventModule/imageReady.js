@@ -14,7 +14,7 @@ g_listenLoadEvent(
     function(){
         "use strict";
 
-        var imgs = document.images,
+        var imgs = document.images || DOM_getElementsByTagName( 'img' ), // for NN9 ??,
             i    = imgs.length,
             img, result;
 

@@ -45,7 +45,8 @@ function DOM_getElementsByClassName( elmRoot, className ){
 };
 
 function DOM_getElementById( id ){
-    return window[ id ] || document.all[ id ];
+    return window[ id ] || document[ id ] ||
+           document.getElementById( id ); // for NN9
 };
 
 function DOM_getParentElement( elm ){
@@ -73,7 +74,16 @@ function DOM_getChildNodes( elm ){
 };
 
 function DOM_getChildren( elm ){
-    return elm.children;
+    var kids = elm.children, nodes, i = 0, l, node;
+
+    if( !kids ){ // for NN9
+        kids  = [];
+        nodes = DOM_getChildNodes( elm );
+        for( l = nodes.length; i < l; ++i ){
+            ( node = nodes[ i ] ).nodeType === 1 && ( kids[ kids.length ] = node );
+        };
+    };
+    return kids;
 };
 
 function DOM_getHTML( elm ){

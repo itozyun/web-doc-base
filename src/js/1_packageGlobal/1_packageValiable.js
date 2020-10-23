@@ -34,14 +34,14 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
 
     g_jsGte15 = g_Trident < 5.5,
 
-    g_scripts = document.scripts,
+    g_scripts = document.scripts || DOM_getElementsByTagName( 'script' ), // for NN9
     g_cssName = ( g_Tasman ? 'ie5mac' :
                   g_Trident < 5.5 ? 'ie5win' :
                   g_Trident < 6   ? 'ie55' :
                   g_Trident < 10  ? 'ie' + ( g_Trident | 0 ) :
                   'modern'
                 ) + '.css',
-    g_isSecure = location.href.indexOf('https') === 0,
+    g_isSecure = location.href.indexOf( 'https' ) === 0,
     g_assetUrl, g_isMobile,
 
     g_DebugLogger = { log : function(){} },
