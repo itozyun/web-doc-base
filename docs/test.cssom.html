@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Test CSSOM | web-doc-base</title>
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="HandheldFriendly" content="true">
+<meta name="mobileoptimized" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+<style>
+    html, body { height : 100%; }
+</style>
+<script>
+window.onerror = function(a){
+    alert( a );
+};
+function cssomDataURI(){
+    var link = document.createElement( 'link' );
+    link.type  = 'text/css';
+    link.rel   = 'stylesheet';
+    link.media = 'screen';
+    link.href  = 'data:text/css;charset=utf-8;base64,Kntjb2xvcjpyZWR9';
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+};
+function cssom(){
+    var div = document.createElement( 'div' );
+    div.innerHTML = '_<style media="screen" type="text\/css">*{color:blue}<\/style>'
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.lastChild );
+};
+</script>
+</head>
+<body size="1">
+<a href="https://github.com/itozyun/web-doc-base/">github</a>, <a href="clearfix.html">clearfix のテスト</a>, <a href="generatedContent.html">疑似要素のテスト</a>, <a href="getInlineJs.html">Web 文書用のインライン js</a>
+<hr>
+<h1>CSSOM のテスト</h1>
+<script>
+var sheets = document.styleSheets,
+    elms, elm, sheet;
+
+if( !sheets ){
+    elms = document.getElementsByTagName( 'style' );
+    if( elms[ 0 ] ){
+        sheets = [ elms[ 0 ].sheet || elms[ 0 ].styleSheets ];
+    };
+};
+
+if( sheet = sheets[ 0 ] ){
+    if( sheet.rules || sheet.cssRules ){
+        document.write( '<p>styleSheet オブジェクトが存在します。' );
+    };
+};
+</script>
+<p><button onclick="cssomDataURI();" color="red">dynamic CSSOM DataURI</button>,
+<button onclick="cssom();" color="blue">dynamic CSSOM</button>
+</body>
+</html>

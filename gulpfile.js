@@ -62,3 +62,41 @@ gulp.task('docs', gulp.series(
             ).pipe(gulp.dest('./docs'));
     }
 ));
+
+/* -------------------------------------------------------
+ *  gulp btoa
+ */
+gulp.task('btoa', gulp.series(
+    function(){
+        return gulp.src( [
+            './js-base64/base64.js'
+        ]
+            ).pipe(
+                ClosureCompiler(
+                    {
+                        externs           : [ './js-base64/__externs.js' ],
+                        define            : [
+                            'REGEXP_FREE_BASE64_DEFINE_DEBUG=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_UTOB=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOU=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_ENCODE=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_DECODE=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOA=true',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_ATOB=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_BTOA=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_ATOB=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_UINT8=false'
+                        ],
+                        compilation_level : 'ADVANCED',
+                        // compilation_level : 'WHITESPACE_ONLY',
+                        formatting        : 'PRETTY_PRINT',
+                        warning_level     : 'VERBOSE',
+                        language_in       : 'ECMASCRIPT3',
+                        language_out      : 'ECMASCRIPT3',
+                        output_wrapper    : 'var Base64_btoa;\n%output%',
+                        js_output_file    : '.generated.btoa.js'
+                    }
+                )
+            ).pipe( gulp.dest( './src/js/5_CSSOM' ) );
+    }
+));

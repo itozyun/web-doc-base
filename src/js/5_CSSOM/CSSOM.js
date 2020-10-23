@@ -1,6 +1,7 @@
 var CSSOM_sheets = {},
     CSSOM_importIndex = {};
 
+// opera 9 未満は styleSheet が居ない
 function CSSOM_getStyleSheet( elm ){
     return elm.sheet || elm.styleSheet;
 };
@@ -11,7 +12,20 @@ function CSSOM_getCssRules( styleSheet ){
 
 // https://qiita.com/sainome_7/items/d3f6afa8ffee354e6e36
 function CSSOM_createSheet( css, media ){
-    CSSOM_sheets[ media ] = CSSOM_getStyleSheet( DOM_createThenAdd( g_head, 'style', { type : 'text/css', media : media }, 0, css ) );
+    if( 8 <= g_Presto && g_Presto < 9 ){
+        // 7.2x は 下が動作。7.1 以下は下も不可。
+        DOM_createThenAdd(
+            g_head, 'link',
+            {
+                type  : 'text/css',
+                rel   : 'stylesheet',
+                media : media,
+                href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( css )
+            }
+        );
+    } else {
+        CSSOM_sheets[ media ] = CSSOM_getStyleSheet( DOM_createThenAdd( g_head, 'style', { type : 'text/css', media : media }, 0, css ) );
+    };
 };
 
 function CSSOM_insertRule( newRules, opt_media ){
