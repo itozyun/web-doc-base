@@ -20,37 +20,50 @@ module.exports = function( options ){
 
         if( file.isBuffer() ){
             let css = PostCSS.parse( file.contents.toString( encoding ) ),
-                newCss, rulesAddToEnd = [], createNewFile, updateCurrentFile;
+                newCss, rulesAddToEnd = [], rulesOnlyScreen = [], createNewFile, updateCurrentFile, screenMediaBlock;
 
-            if( opts.hcdir ){
-                newCss = PostCSS.parse('@charset "UTF-8"');
+            newCss = PostCSS.parse('@charset "UTF-8"');
 
-                css.walkAtRules( function( rule ){
+            css.walkAtRules( function( rule ){
+                if( opts.hcdir ){
                     if( rule.name === 'media' && rule.params === TARGET_HC_MEDIA_QUERY ){
                         rule.clone().walkRules( function( r ){
                             newCss.append( r );
                         } );
                         rule.remove();
                         createNewFile = updateCurrentFile = true;
+                        return;
                     };
                     if( rule.name === 'media' && rule.params === TARGET_HC_SMALLPHONE_MEDIA_QUERY ){
                         rule.params = '(max-width' + rule.params.split( 'max-width' )[ 1 ];
                         rulesAddToEnd.push( rule.clone() );
                         rule.remove();
                         createNewFile = updateCurrentFile = true;
+                        return;
                     };
-                });
-
-                if( createNewFile ){
-                    while( rulesAddToEnd.length ){
-                        newCss.append( rulesAddToEnd.shift() );
-                    };
-                    this.push(new Vinyl({
-                        base     : '/',
-                        path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.hcdir + '/' + file.basename,
-                        contents : Buffer.from(newCss.toString())
-                    }));
                 };
+                if( rule.name === 'media' &&
+                    (
+                        rule.params.indexOf( 'only screen and (prefers-color-scheme:' ) === 0 ||
+                        rule.params.indexOf( 'only screen and (-ms-high-contrast:'    ) === 0
+                    )
+                ){
+                    rule.params = rule.params.split( 'only screen and' ).join( '' );
+                    rulesOnlyScreen.push( rule.clone() );
+                    rule.remove();
+                    updateCurrentFile = true;
+                };
+            });
+
+            if( createNewFile ){
+                while( rulesAddToEnd.length ){
+                    newCss.append( rulesAddToEnd.shift() );
+                };
+                this.push(new Vinyl({
+                    base     : '/',
+                    path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.hcdir + '/' + file.basename,
+                    contents : Buffer.from(newCss.toString())
+                }));
             };
 
             css.walkDecls('content', function( decl ){
@@ -93,6 +106,14 @@ module.exports = function( options ){
                         goToLast && rulesAddToEnd.push( rule );
                     };
                     updateCurrentFile = true;
+                };
+            };
+
+            if( rulesOnlyScreen.length ){
+                screenMediaBlock = PostCSS.atRule( { name : 'media', params : 'only screen' } );
+                css.append( screenMediaBlock );
+                while( rulesOnlyScreen.length ){
+                    screenMediaBlock.append( rulesOnlyScreen.shift() );
                 };
             };
 
