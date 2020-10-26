@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>import hack | web-doc-base</title>
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="HandheldFriendly" content="true">
+<meta name="mobileoptimized" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+<style>
+/*\*//*/@import "importHack/only_ie5mac.css";/**//*\*/
+@import 'importHack/single_quot.css';
+@import "importHack/double_quot.css";
+
+@import url('importHack/no_quot_url.css');
+@import url('importHack/single_quot_url.css');
+@import url("importHack/double_quot_url.css");
+
+@import 'data:text/css;charset=utf-8;base64,QGltcG9ydCAnaW1wb3J0SGFjay9kYXRhdXJpX3NpbmdsZV9xdW90LmNzcyc=';
+/* @import 'importHack/datauri_single_quot.css' */
+@import "data:text/css;charset=utf-8;base64,QGltcG9ydCAiaW1wb3J0SGFjay9kYXRhdXJpX2RvdWJsZV9xdW90LmNzcyI=";
+/* @import "importHack/datauri_double_quot.css" */
+@import url('data:text/css;charset=utf-8;base64,QGltcG9ydCB1cmwoJ2ltcG9ydEhhY2svZGF0YXVyaV9zaW5nbGVfcXVvdF91cmwuY3NzJyk=');
+/* @import url('importHack/datauri_single_quot_url.css') */
+@import url("data:text/css;charset=utf-8;base64,QGltcG9ydCB1cmwoImltcG9ydEhhY2svZGF0YXVyaV9kb3VibGVfcXVvdF91cmwuY3NzIik=");
+/* @import url("importHack/datauri_double_quot_url.css") */
+
+@import 'data:text/evil;charset=utf-8;base64,QGltcG9ydCAnaW1wb3J0SGFjay9kYXRhdXJpX2V2aWwuY3NzJw==';
+/* @import 'importHack/datauri_evil.css' */
+/**/
+pre { color : #ccc; padding : 1em; border : 1px solid #666; }
+</style>
+</head>
+<body size="1">
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="clearfix.html">clearfix のテスト</a>,
+<a href="generatedContent.html">疑似要素のテスト</a>,
+<a href="getInlineJs.html">Web 文書用のインライン js</a>,
+<a href="test.cssom.html">CSSOM のテスト</a>,
+import のテスト
+<hr>
+
+<h1>疑似要素による修飾のテスト</h1>
+<h2>1. single quot</h2>
+<pre id='single-quot'><code>@import 'importHack/single_quot.css';</code></pre>
+<h2>2. double quot</h2>
+<pre id='double-quot'><code>@import "importHack/double_quot.css";</code></pre>
+
+<h2>3. no quot url()</h2>
+<pre id='no-quot-url'><code>@import url(importHack/no_quot_url.css);</code></pre>
+<h2>4. single quot url()</h2>
+<pre id='single-quot-url'><code>@import url('importHack/single_quot_url.css');</code></pre>
+<h2>5. double quot url()</h2>
+<pre id='double-quot-url'><code>@import url("importHack/double_quot_url.css");</code></pre>
+
+<h2>5. Data URI single quot</h2>
+<pre id='datauri-single-quot'><code>@import 'importHack/datauri_single_quot.css'</code></pre>
+<h2>6. Data URI double quot</h2>
+<pre id='datauri-double-quot'><code>@import "importHack/datauri_double_quot.css"</code></pre>
+
+<h2>7. Data URI single quot url()</h2>
+<pre id='datauri-single-quot-url'><code>@import url('importHack/datauri_single_quot_url.css')</code></pre>
+<h2>8. Data URI double quot url()</h2>
+<pre id='datauri-double-quot-url'><code>@import url("importHack/datauri_double_quot_url.css")</code></pre>
+
+<h2>9. Data URI evil</h2>
+<pre id='datauri-evil'><code>@import 'importHack/datauri_evil.css'</code></pre>
+</body>
+<style>
+</style>
+</html>
