@@ -14,7 +14,8 @@ if( WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID ){
                                                 2 <= g_Gecko || ( g_Gecko && ( ua.ENGINE_VERSION.indexOf( '1.9.1' ) === 0 || ua.ENGINE_VERSION.indexOf( '1.9.2' ) === 0 ) ) ||
                                                 // Opera : CSS-P をサポートするのは 7.20 以降
                                                 7.2 <= g_Presto ||
-                                                530 <= g_WebKit || 3.2 <= g_SafariMobile ? 2 :
+                                                // Webkit : Safari 3.0 では既に十分な CSS-p のサポート
+                                                522 <= g_WebKit || 3 <= g_SafariMobile ? 2 :
                                                 6   <= g_Presto || g_Gecko ? 1 : 0;
                     if( !g_generatedContentEnabled ){
                         var elm = DOM_createThenAdd(
