@@ -15,7 +15,7 @@
         margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
     }
     tr & > p:first-of-type {
-        margin-top : 0;
+        margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
     }
     /* //_}#can-1stOfType */
 
@@ -95,3 +95,13 @@
         margin-top : ( - $WATCH_LINE_HEIGHT_EM + 1em ) / 4;
     }
 }
+
+/*  patch for Safari 3.2.3
+--------------------------------------------------------------------------------------*/
+/* //_{@modern */
+    @media screen and (min-width:0\-) { // Safari 4.1-
+        .box > p:first-of-type {
+            margin-top : auto;
+        }        
+    }
+/* //_}@modern */
