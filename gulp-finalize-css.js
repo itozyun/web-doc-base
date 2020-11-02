@@ -1,6 +1,6 @@
 // Create CSS for High Contrast mode.
-// Delete " [firefox]" and add ",x:-moz-any-link".
-// Delete " [opera-lte9]" and add ",x:not(\\)" to .cleardix selector.
+// Delete " [navigator-lte7]" and add ", :-o-prefocus, _:-moz-any-link".
+// Delete " [opera-lte720]" and add ",x:not(\\)" to .cleardix selector.
 
 const TARGET_HC_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active)',
       TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active) and (max-width:319px)',
@@ -42,14 +42,20 @@ module.exports = function( options ){
                         return;
                     };
                 };
+
                 if( rule.name === 'media' &&
                     (
                         rule.params.indexOf( 'only screen and (prefers-color-scheme:' ) === 0 ||
-                        rule.params.indexOf( 'only screen and (-ms-high-contrast:'    ) === 0
+                        rule.params.indexOf( 'only screen and (-ms-high-contrast:active) and (prefers-color-scheme:dark)' ) === 0
                     )
                 ){
-                    rule.params = rule.params.split( 'only screen and' ).join( '' );
+                    rule.params = rule.params.split( 'only screen and ' ).join( '' );
                     rulesOnlyScreen.push( rule.clone() );
+                    rule.remove();
+                    updateCurrentFile = true;
+                } else if( rule.name === 'media' && rule.params.indexOf( 'all and (-webkit-min-device-pixel-ratio:10000)' ) === 0 ){
+                    // Opera 8.54- 用に prefers-color-scheme:, -ms-high-contrast: より後にして上書き
+                    rulesAddToEnd.push( rule.clone() );
                     rule.remove();
                     updateCurrentFile = true;
                 };
@@ -66,20 +72,15 @@ module.exports = function( options ){
                 }));
             };
 
-            css.walkDecls('content', function( decl ){
+            css.walkDecls(function( decl ){
                 var rule = decl.parent;
 
-                if( 0 <= rule.selector.indexOf( ' [firefox]' ) ){
-                    workForHack( rule, ' [firefox]', ',x:-moz-any-link' );
-                } else if( 0 <= rule.selector.indexOf( ' [opera-lte9]' ) ){
-                    workForHack( rule, ' [opera-lte9]', ',x:not(\\)', true );
-                };
-            });
-            css.walkDecls('display', function( decl ){
-                var rule = decl.parent;
-
-                if( 0 <= rule.selector.indexOf( ' [firefox]' ) ){
-                    workForHack( rule, ' [firefox]', ',x:-moz-any-link' );
+                if( rule.selector ){
+                    if( 0 <= rule.selector.indexOf( ' [navigator-lte7]' ) ){
+                        workForHack( rule, ' [navigator-lte7]', ',:-o-prefocus,_:-moz-any-link' );
+                    } else if( 0 <= rule.selector.indexOf( ' [opera-lte720]' ) ){
+                        workForHack( rule, ' [opera-lte720]', ',x:not(\\)', true );
+                    };
                 };
             });
 

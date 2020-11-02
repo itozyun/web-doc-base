@@ -6,27 +6,24 @@
 @mixin createPseudoBlock($invisible : 0) {
     & {
         /* //_{@modern */
-        /* http://browserhacks.com/ */
-        /* Firefox <= 3 */
-        @media \0 all { & { content : "." } }
         /* 2 <= Firefox */
         @if $invisible == 1 {
-            body:last-child & [firefox] /* , x:-moz-any-link @see /README.md */ {
-                content : "";
+            :root & [navigator-lte7] {
+                content : ".";
             }
         /* https://ka2.org/css-hack-for-opera/ */
-        /* Opera <= 9 */
-            [opera-lte9] /* , x:not(\\) @see /README.md */ { content : " " }
+        /* Opera <= 7.20 */
+            [opera-lte720] /* , x:not(\\) @see /README.md */ { content : " " }
         } @else {
             // https://developer.mozilla.org/en-US/docs/Web/CSS/::after
             // Before Firefox 3.5, only the CSS level 2 behavior of :after was supported, which disallowed position, float, list-style-* and some display properties.
             // https://www.rougebleu.net/css%E3%83%8F%E3%83%83%E3%82%AF%E4%B8%80%E8%A6%A7/
-            [firefox] {
-                display : none;
-            }
-            body:first-of-type & [firefox] {
-                display : block;
-            }
+            /* http://browserhacks.com/ */
+            /* Firefox <= 3 */
+            @media \0 all { & { display : none; } }
+
+            // Opera 7.20-, do not support CSS-P.
+            [opera-lte720] /* , x:not(\\) @see /README.md */ { display : none; }
             content : " ";
         }
         /* //_}@modern */
@@ -46,6 +43,12 @@
     /* //_{@modern,@ie9,@ie8,@ie7 */
         overflow : hidden;
     /* //_}@modern,@ie9,@ie8,@ie7 */
+    /* //_{@modern */
+        :root & [navigator-lte7] {
+            overflow : visible;
+            position : relative;
+        }
+    /* //_}@modern */
 
     /* //_{#ie6-win */
         height   : 1%;
@@ -60,6 +63,9 @@
             &:after {
                 @include createPseudoBlock(1);
                 /* //_{@modern */
+                :root & [navigator-lte7] {
+                    display : block;
+                }
                 height      : 0;
                 line-height : 0;
                 visibility  : hidden;
