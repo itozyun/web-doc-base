@@ -69,12 +69,12 @@ gulp.task('docs', gulp.series(
 gulp.task('btoa', gulp.series(
     function(){
         return gulp.src( [
-            './js-base64/base64.js'
+            './regexp-free-js-base64/base64.js'
         ]
             ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : [ './js-base64/__externs.js' ],
+                        externs           : [ './regexp-free-js-base64/__externs.js' ],
                         define            : [
                             'REGEXP_FREE_BASE64_DEFINE_DEBUG=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_UTOB=false',

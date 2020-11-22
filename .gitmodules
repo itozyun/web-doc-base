@@ -1,6 +1,6 @@
 [submodule "what-browser-am-i"]
 	path = what-browser-am-i
 	url = https://github.com/itozyun/what-browser-am-i.git
-[submodule "js-base64"]
-	path = js-base64
-	url = https://github.com/itozyun/js-base64/
+[submodule "regexp-free-js-base64"]
+	path = regexp-free-js-base64
+	url = https://github.com/itozyun/regexp-free-js-base64
