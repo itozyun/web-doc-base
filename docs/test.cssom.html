@@ -18,18 +18,43 @@
 window.onerror = function(a){
     alert( a );
 };
-function cssomDataURI(){
+function cssom(){
+    var style = document.createElement( 'style' );
+    style.type  = 'text\/css';
+    // https://davidwalsh.name/add-rules-stylesheets
+    // WebKit hack :(
+    style.appendChild( document.createTextNode('') );
+    style.innerHTML = style.textContent = style.text = '*{color:green}'
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( style );
+};
+function cssomLink(){
     var link = document.createElement( 'link' );
-    link.type  = 'text/css';
+    link.type  = 'text\/css';
     link.rel   = 'stylesheet';
     link.media = 'screen';
-    link.href  = 'data:text/css;charset=utf-8;base64,Kntjb2xvcjpyZWR9';
+    link.href  = 'test.cssom.css';
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 };
-function cssom(){
+function cssomDataURI(){
+    var link = document.createElement( 'link' );
+    link.type  = 'text\/css';
+    link.rel   = 'stylesheet';
+    link.media = 'screen';
+    link.href  = 'data:text\/css;charset=utf-8;base64,Kntjb2xvcjpyZWR9';
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+};
+function cssomHack(){
     var div = document.createElement( 'div' );
     div.innerHTML = '_<style media="screen" type="text\/css">*{color:blue}<\/style>'
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.lastChild );
+};
+function cssomHack2(){
+    var div = document.createElement( 'div' );
+    div.innerHTML = '<style media="screen" type="text\/css">*{color:pink}<\/style>'
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.lastChild );
 };
@@ -38,7 +63,7 @@ function cssom(){
 <body size="1">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
-<a href="generatedContent.html">疑似要素のテスト</a>,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
 <a href="getInlineJs.html">Web 文書用のインライン js</a>,
 CSSOM のテスト,
 <a href="importHack.html">import のテスト</a>
@@ -61,7 +86,10 @@ if( sheet = sheets[ 0 ] ){
     };
 };
 </script>
-<p><button onclick="cssomDataURI();" color="red">dynamic CSSOM DataURI</button>,
-<button onclick="cssom();" color="blue">dynamic CSSOM</button>
+<p><button onclick="cssom();" color="blue">dynamic CSSOM general</button>,
+<button onclick="cssomLink();" color="blue">dynamic CSSOM Link</button>,
+<button onclick="cssomDataURI();" color="red">dynamic CSSOM DataURI</button>,
+<button onclick="cssomHack();" color="blue">dynamic CSSOM hack</button>,
+<button onclick="cssomHack2();" color="blue">dynamic CSSOM hack2</button>
 </body>
 </html>
