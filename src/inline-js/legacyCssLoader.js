@@ -1,0 +1,1 @@
+// Opera 9.27-, Firefox 3.0.x-

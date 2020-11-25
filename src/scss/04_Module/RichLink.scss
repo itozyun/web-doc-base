@@ -1,22 +1,23 @@
 /* [module] RichLinkList
  *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
  *
- * lM
- *  div.RichLink
- *    div.RichLink-sep
- *      a (.RichLink-1st) role=listitem
- *        div.RichLink-item
- *          img
- *          h3
- *            medal[-*]
- *          div, p
- * lS
+ * lMi 下用タグ構造
  *  div.RichLink
  *    div.RichLink-sep
  *      a role=listitem
- *       div.RichLink-item
- *          img
- *          b
+ *        img
+ *        h3
+ *          (span.medal[-*])
+ *        span.RichLink-meta,
+ *          span
+ *        p
+ * lSi 下用タグ構造
+ *  div.RichLink
+ *    div.RichLink-sep
+ *      a role=listitem
+ *        img
+ *        (span.medal[-*])
+ *        b
 --------------------------------------------------------------------------------------*/
 $RICHLINK_TEXT_SIZE : 0.875;
 
@@ -30,46 +31,56 @@ $RICHLINK_TEXT_SIZE : 0.875;
         @extend %linkCommon;
         @include lineHeight(1.4, 1);
     }
-        .RichLink-item {
+        .RichLink a {
             @include clearfix;
+
             /* //_{#ie55-,@ie8,@ie9,@modern */
             padding : 1em 0.5em 0;
             /* //_}#ie55-,@ie8,@ie9,@modern */
             /* //_{@ie6,@ie7 */
             padding : 1em 0.5em;
             /* //_}@ie6,@ie7 */
-        }
-        :link .RichLink-item, :visited .RichLink-item {
+
             border-width : 0 0 1px;
             @include highContrast {
                 border-width : 0;
             }
-        }
-        :link .RichLink-1st, :visited .RichLink-1st {
-            border-width : 1px 0;
         }
             .RichLink img {
                 float        : left;
                 border-width : 0;
             }
 
-            .RichLink h3 {
+            .RichLink  .h3 {
                 font-size   : 1.1em;
-                padding     : 0;
                 margin      : 0 0 0.4em;
             }
 
-            .RichLink-item div, .RichLink b {
+            .RichLink-meta, .RichLink b {
                 display     : block;
                 font-size   : 1em * $RICHLINK_TEXT_SIZE;
                 font-weight : normal;
             }
 
-            /* //_{@modern,@ie9,@ie8 */
-                .RichLink span {
+            /* //_{#can-inline-block */
+                /* //_{@modern */
+                .RichLink-meta {
+                    clear   : both;
+                    /* //_{@modern */
+                    display : -moz-inline-box;
+                    display : inline-table;
+                    /* //_}@modern */
                     display : inline-block;
                 }
-            /* //_}@modern,@ie9,@ie8 */
+                /* //_}@modern */
+                .RichLink-meta span {
+                    /* //_{@modern */
+                    /* display : -moz-inline-box;
+                    display : inline-table; */
+                    /* //_}@modern */
+                    display : inline-block;
+                }
+            /* //_}#can-inline-block */
 
             .RichLink p {
                 display     : block;
@@ -82,19 +93,31 @@ $RICHLINK_TEXT_SIZE : 0.875;
                 margin      : 0;
             }
 
-    .baseColor .RichLink-item div {
+    .RichLink a {
+        border-color : $COLOR_Ribbon_casual_fill !important;
+    }
+    .baseColor .RichLink a {
+        border-color : $COLOR_Default_casual_fill !important;
+    }
+    @include media(dark_theme) { 
+        .baseColor .RichLink a {
+            border-color : $COLOR_Watch_casual_fill !important;
+        }
+    }
+
+    .baseColor .RichLink-meta {
         color  : $COLOR_Default_casual_fill;
     }
     :link, :visited {
-        .baseColor & .RichLink-item div {
+        .baseColor & .RichLink-meta {
             color  : $COLOR_Default_casual_text;
         }
     }
-    .RichLink-item div {
+    .RichLink-meta {
         color  : $COLOR_Ribbon_casual_fill;
     }
     :link, :visited {
-        .RichLink-item div {
+        .RichLink-meta {
             color  : $COLOR_Ribbon_casual_text;
         }
     }
@@ -106,10 +129,10 @@ $RICHLINK_TEXT_SIZE : 0.875;
         height    : auto;
         margin    : 0 1em 1em 0;
     }
-    .RichLink h3 {
+    .RichLink .h3 {
         font-size : 1.5em;
     }
-    .RichLink-item div {
+    .RichLink-meta {
         padding   : 0 0 0.8em; /* 1em - .2em */
     }
     
@@ -148,11 +171,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
             width          : 33.3%;
         }
     }
-        .lM .RichLink-item {
+        .lM .RichLink a {
             border-width : 0;
             padding      : 1em;
         }
-            .RichLink-item div {
+            .RichLink-meta {
                 font-size : 1em;
             }
 }
@@ -178,7 +201,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .RichLink h3 {
+    .RichLink .h3 {
         font-size : 1.3em;
     }
 }
@@ -190,7 +213,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         padding-left  : 1%;
         padding-right : 1%;
     }
-    .RichLink h3 {
+    .RichLink .h3 {
         font-size : 1.1em;
     }
     .lS .RichLink div {
@@ -201,7 +224,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
-    .RichLink h3 {
+    .RichLink .h3 {
         font-size : 1em;
     } 
 }
@@ -227,11 +250,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
-    .baseColor .RichLink-item div {
+    .baseColor .RichLink-meta {
         color  : $COLOR_Watch_casual_fill;
     }
     :link, :visited {
-        .baseColor & .RichLink-item div {
+        .baseColor & .RichLink-meta {
             color  : $COLOR_Watch_casual_text;
         }
     }
