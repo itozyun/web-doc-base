@@ -90,6 +90,7 @@ clearfix のテスト,
 <p id="isGecko-181"><span class="gecko-181">Gecko -1.8.1</span> です。</p>
 <p id="isGecko094-142"><span class="gecko094-142">Gecko 0.9.4-1.4.2</span> のブラウザです。</p>
 <p id="isGecko15-173"><span class="gecko15-173">Gecko 1.5-1.7.3</span> のブラウザです。</p>
+<p id="isGecko18"><span class="gecko18">Gecko 1.8</span> のブラウザです。</p>
 <p id="isGecko18-"><span class="gecko18-">Gecko 1.8-</span> です。</p>
 <p id="isFirefox30-36"><span class="firefox30-36">Firefox 3.0-3.6</span> です。</p>
 <p id="isFirefox35-36"><span class="firefox35-36">Firefox 3.5-3.6</span> です。</p>
@@ -162,9 +163,9 @@ clearfix のテスト,
 <tr>
 <th>Windows XPsp3 Netscape Navigator 8.1.3(Gecko 1.7.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12, Gecko 1.8.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12, Gecko 1.8.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
 <th>Windows XPsp3 Firefox 3.0.9(Firefox 1.9.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>
 <tr>
@@ -303,16 +304,19 @@ clearfix のテスト,
     .firefox36-   { background: #99d; }
 
     .gecko14-181  { background: #9ad; }
+    .gecko18      { background: #aad; }
 
     #isGecko094-49 { display : none }
     _:-moz-any-link, /*:root*/ #isGecko094-49 { display : block }
 
     #isGecko14-181 { display : none }
     #isGecko-15 { display : none }
+    #isGecko18 { display : none }
     #isGecko-181 { display : none }
     @media \0 all {
         _:lang(x), #isGecko14-181 { display : block; }
         body*#isGecko-15 { display : block }
+        :-moz-is-html #isGecko18 { display : block }
         #isGecko-181 { display : block }
     }
 

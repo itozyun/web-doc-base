@@ -12,7 +12,12 @@
 
         /* Gecko <=1.9.0 do not support CSS-P. */
         /* override Gecko ~1.8.1 */
-        @media \0 all { & { display : none } }
+        @media \0 all {
+            & {
+                display : none;
+                width   : 0; /* for Gecko 0.9, display:none で消えない */
+            }
+        }
 
         @-moz-document url-prefix() {
             /* override Gecko 1.9.0~1.9.2 */
@@ -63,7 +68,7 @@
                 display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
             }
             /* override Gecko 1.4~1.8.1 */
-            &:after [_csshack_="_:lang(x)"] {
+            &:after [_lazyhack_="_:lang(x)"] {
                 display : block; /* for Gecko 1.4 */
             }
             /* override Gecko 1.8~ */

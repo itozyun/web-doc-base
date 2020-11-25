@@ -18,13 +18,57 @@ module.exports = function(){
 
             css.walkDecls(
                 function( decl ){
-                    var originalRule = decl.parent,
-                        selector     = originalRule.selector;
+                    var marker           = '[_lazyhack_="',
+                        originalRule     = decl.parent,
+                        beforeRule       = originalRule,
+                        originalSelector = originalRule.selector,
+                        selectors,
+                        selectorNoHack = [], selectorHacked = {},
+                        selector, hackString, newRule;
 
-                    if( selector ){
-                        if( 0 <= selector.indexOf( ':-opera-lte71' ) ){
-                            console.log( selector );
-                            originalRule.selector = selector.replace( ':-opera-lte71', ':not(\\)' );
+                    function getFirstCsshack( selector ){
+                        var start = selector.indexOf( marker ),
+                            end, hackString;
+
+                        if( 0 <= start ){
+                            end        = selector.indexOf( '"]', start );
+                            hackString = selector.substring( start + marker.length, end );
+                            // console.log( hackString )
+                            return hackString;
+                        };
+                    };
+
+                    if( originalSelector && originalRule.parent ){
+                        if( getFirstCsshack( originalSelector ) ){
+                            // console.log( originalRule.toString() );
+                            selectors = originalSelector.split( ',' );
+        
+                            while( selector = selectors.shift() ){
+                                if( hackString = getFirstCsshack( selector ) ){
+                                    selectorHacked[ hackString ] = selectorHacked[ hackString ] || [];
+                                    selectorHacked[ hackString ].push( selector.replace( ' ' + marker + hackString + '"]', '' ) );
+                                } else {
+                                    selectorNoHack.push( selector );
+                                };
+                            };
+    
+                            for( hackString in selectorHacked ){
+                                newRule          = beforeRule.clone();
+                                newRule.selector = selectorHacked[ hackString ].join( ',' ) + ',' + hackString.split( '|' ).join( ',' );
+                                beforeRule.after( newRule );
+                                beforeRule = newRule;
+                            };
+                            if( selectorNoHack.length ){
+                                originalRule.selector = selectorNoHack.join( ',' );
+                            } else {
+                                originalRule.remove();
+                            };
+                            updateCurrentFile = true;
+                        };
+
+                        if( 0 <= originalSelector.indexOf( ':-opera-lte71' ) ){
+                            console.log( originalSelector );
+                            originalRule.selector = originalSelector.replace( ':-opera-lte71', ':not(\\)' );
                             rulesAddToEnd.push( originalRule );
                             updateCurrentFile = true;
                         };

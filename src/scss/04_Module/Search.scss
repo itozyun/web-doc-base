@@ -89,18 +89,21 @@ $SEARCH_BTN_WIDTH : 3em;
 
 /* //_{@modern */
     @media \0 all {
-        /* override Gecko 0.9~1.4.2 */
-        .Search input [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+        .Search input {
             display  : inline;
             display  : -moz-inline-box;
             position : static;
         }
-        .Search-txt [_csshack_=":-gck-lte142|_:-moz-any-link"] {
-            // width     : 60%;
-            max-width : 100%;
+        .Search-txt {
+            width : 60%;
         }
-        .Search .btn [_csshack_=":-gck-lte142|_:-moz-any-link"] {
-            max-width : $SEARCH_BTN_WIDTH;
+        /* override Gecko 1.4~1.8.1 */
+        .Search input [_lazyhack_="_:lang(x)"] {
+            position : absolute;
+            display  : block;
+        }
+        .Search-txt [_lazyhack_="_:lang(x)"] {
+            width : 100%;
         }
     }
 /* //_}@modern */
