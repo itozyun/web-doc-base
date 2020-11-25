@@ -14,9 +14,15 @@
 --------------------------------------------------------------------------------------*/
 .medal, .medal-gold, .medal-silver, .medal-bronze {
 /* //_{#can-inline-block */
+    /* //_{@modern */
+    display      : -moz-inline-box;
+    display      : inline-table;
+    /* //_}@modern */
     display      : inline-block;
 /* //_}#can-inline-block */
+/* //_{^#can-inline-block */
     float        : left;
+/* //_}^#can-inline-block */
     margin       : 0 0.6em 1em 0;
     border-width : 1px; /* for high contrast mode */
 

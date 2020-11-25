@@ -57,6 +57,10 @@
 
             .Cover h2 {
             /* //_{#can-inline-block */
+                /* //_{@modern */
+                display      : -moz-inline-box;
+                display      : inline-table;
+                /* //_}@modern */
                 display      : inline-block;
             /* //_}#can-inline-block */
             /* //_{@ie6,@ie7 */
@@ -100,6 +104,10 @@
     }
     /* //_{#can-inline-block */
         .Cover-meta span {
+            /* //_{@modern */
+            display : -moz-inline-box;
+            display : inline-table;
+            /* //_}@modern */
             display : inline-block;
         }
     //* //_}#can-inline-block */
@@ -186,7 +194,7 @@
             padding    : 0;
         }
             .Cover h2 {
-                float      : left;
+                /* float      : left; */
                 display    : inline-block;
                 font-size  : 1em;
                 padding    : 0.5em;

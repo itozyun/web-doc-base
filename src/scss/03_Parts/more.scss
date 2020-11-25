@@ -11,6 +11,10 @@
         /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
 
         /* //_{#can-inline-block */
+        /* //_{@modern */
+        display      : -moz-inline-box;
+        display      : inline-table;
+        /* //_}@modern */
         display      : inline-block;
         margin-left  : .5em;
         /* //_}#can-inline-block */

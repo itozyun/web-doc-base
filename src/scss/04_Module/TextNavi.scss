@@ -11,6 +11,10 @@
 
     a {
         /* //_{#can-inline-block */
+        /* //_{@modern */
+        display : -moz-inline-box;
+        display : inline-table;
+        /* //_}@modern */
         display : inline-block;
         /* //_}#can-inline-block */
         /* //_{@ie6,@ie7,@ie55 */

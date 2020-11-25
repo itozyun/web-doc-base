@@ -2,6 +2,10 @@
 --------------------------------------------------------------------------------------*/
 kbd {
     /* //_{#can-inline-block */
+    /* //_{@modern */
+    display        : -moz-inline-box;
+    display        : inline-table;
+    /* //_}@modern */
     display        : inline-block;
     /* //_}#can-inline-block */
     border-width   : 1px;
