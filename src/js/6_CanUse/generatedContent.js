@@ -11,7 +11,7 @@ if( WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID ){
                     // Firefox 72.0, IE8~9, Edge, OSX Safari 13, iOS Safari 12 で判定に失敗する為、無条件に良しとする…
                     g_generatedContentEnabled = g_Goanna || 8 <= g_Trident || g_EdgeHTML ||
                                                 // Firefox : CSS-P をサポートするのは Firefox 3.5 以降, Gecko 1.9.1 以降. Firefox 3.5.19 は Gecko 1.9.1.19
-                                                2 <= g_Gecko || ( g_Gecko && ( ua.ENGINE_VERSION.indexOf( '1.9.1' ) === 0 || ua.ENGINE_VERSION.indexOf( '1.9.2' ) === 0 ) ) ||
+                                                g_FirefoxGte35 ||
                                                 // Opera : CSS-P をサポートするのは 7.20 以降
                                                 7.2 <= g_Presto ||
                                                 // Webkit : Safari 3.0 では既に十分な CSS-p のサポート

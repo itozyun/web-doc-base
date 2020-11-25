@@ -76,7 +76,7 @@ function DOM_getChildNodes( elm ){
 function DOM_getChildren( elm ){
     var kids = elm.children, nodes, i = 0, l, node;
 
-    if( !kids ){ // for NN9
+    if( !kids ){ // for Gecko ~1.9.0
         kids  = [];
         nodes = DOM_getChildNodes( elm );
         for( l = nodes.length; i < l; ++i ){
@@ -121,13 +121,20 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
     var elm, isStyle;
 
     if( tag === 'style' ){
-        // http://d.hatena.ne.jp/miya2000/20070327/p0
-        // 最初に style でないノードが無いと style が生成されない
         isStyle = true;
-        elm = DOM_justCreate( 'div', 'a<style type="text\/css">' + text + '<\/style>' ).lastChild;
-        // https://davidwalsh.name/add-rules-stylesheets
-        // WebKit hack :(
-	    // elm.appendChild( document.createTextNode('') );
+
+        if( true || g_Trident < 9 ){
+            // http://d.hatena.ne.jp/miya2000/20070327/p0
+            // 最初に style でないノードが無いと style が生成されない
+            elm = DOM_justCreate( 'div', 'a<style type="text\/css">' + text + '<\/style>' ).lastChild;
+        } else {
+            elm = DOM_justCreate( 'style' );
+            elm.type = 'text\/css';
+            // https://davidwalsh.name/add-rules-stylesheets
+            // WebKit hack :(
+            elm.appendChild( document.createTextNode('') );
+            // elm.innerHTML = text;
+        };
     } else {
         elm = DOM_justCreate( tag );
     };
@@ -185,4 +192,16 @@ function DOM_prev( targetNode, tag, attrs, styles, text ){
 function DOM_next( targetNode, tag, attrs, styles, text ){
     DOM_insert = 2;
     return DOM_createThenAdd( targetNode, tag, attrs, styles, text );
+};
+
+function DOM_contains( parentNode, childNode ){
+    if( parentNode.contains ){
+        return parentNode.contains( childNode );
+    };
+    while( childNode && childNode !== g_html ){
+        childNode = DOM_getParentElement( childNode );
+        if( parentNode === childNode ){
+            return true;
+        };
+    };
 };

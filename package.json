@@ -21,8 +21,10 @@
     "google-closure-compiler": "^20200719.0.0",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-diamond-princess-zoning": "^0.9.7",
     "plugin-error": "^1.0.1",
-    "postcss": "^7.0.32",
+    "postcss": "^8.1.10",
     "stream": "0.0.2",
     "vinyl": "^2.2.0"
   }

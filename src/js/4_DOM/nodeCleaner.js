@@ -14,7 +14,8 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                 i    = kids.length,
                 kid, type, tag, sheet, rules, name, j;
 
-            while( kid = kids[ --i ] ){
+            while( i ){
+                kid  = kids[ --i ]; // childNodes[ -1 ] は Firefox 3.5 でエラー
                 type = kid.nodeType;
                 if( type === 8 ){
                     removeCommentNodes && DOM_remove( kid );
@@ -33,8 +34,9 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                                 DOM_remove( kid );
                                 break;
                             };
+                            if( 8 <= g_Presto && g_Presto < 9 ) break;/* Opera 8 は <style> の移動が反映されない */
                         case 'LINK' :
-                            g_w3cDOM && !g_head.contains( kid ) && moveToHead.push( kid );
+                            g_w3cDOM && !DOM_contains( g_head, kid ) && moveToHead.push( kid );
                             break;
                         case 'META' :
                             name = DOM_getAttribute( kid, 'name' ) || DOM_getAttribute( kid, 'property' );

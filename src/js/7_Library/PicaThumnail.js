@@ -11,7 +11,7 @@ if( !g_ServerSideRendering ){
 
             for( ; elmA = links[ ++i ]; ){
                 if( !DOM_hasClassName( elmA, 'img-disabled' ) ){
-                    elmImg = elmA.children.length === 1 && elmA.children[ 0 ];
+                    elmImg = DOM_getChildren( elmA ).length === 1 && DOM_getChildren( elmA )[ 0 ];
                     tag    = elmImg && DOM_getTagName( elmImg );
                     if( tag === 'IMG' ){
                         href = DOM_getAttribute( elmA, 'href' );

@@ -25,6 +25,22 @@
             border-color : $COLOR_Ribbon_text;
         }
     }
+    #jsSide {
+        position : relative;
+    }
+    .lW {
+        overflow : hidden;
+    }
+    /* override Gecko ~1.8.1 */
+    @media \0 all {
+        .lW {
+            overflow : visible;
+        }
+        /* override Gecko 1.4~1.8.1 */
+        .lW [_csshack_="_:lang(x)"] {
+            overflow : hidden;
+        }
+    }
     /* //_}@modern */
 
     /* //_{@ie9 */
@@ -36,7 +52,9 @@
 
     /* //_{#ie8-win */
     .lW {
-        overflow : hidden; /* @modern では clearfix で hidden になっている */
+        /* //_{#ie6-win */
+        overflow : hidden; /* @ie7, @ie8 は clearfix で hidden になっている */
+        /* //_}#ie6-win */
         /* //_{@ie7 */
             // sidebar が header, footer に重なる問題の解決
             // https://klutche.org/archives/1061/
@@ -45,7 +63,7 @@
         /* //_}@ie7 */
     }
     #jsMain, #jsSide {
-        position : relative; /* @modern でも必要ではない…？ieではrelativeが無いと位置が取れない、だったかな？ */
+        position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
     }
     /* //_}#ie8-win */
 /* //_}^+mobileOnly */
