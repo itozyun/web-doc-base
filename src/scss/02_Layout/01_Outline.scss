@@ -47,9 +47,9 @@
                 margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
             }
 
-        /* //_{@ie5win,@ie55 */
+        /* //_{@ie5win,@ie55,@ie6 */
             .lM { overflow-x : hidden; } /* カラム落ち対策 */
-        /* //_}@ie5win,@ie55 */
+        /* //_}@ie5win,@ie55,@ie6 */
 
     /*  sub
     --------------------------------------------------------------------------------------*/

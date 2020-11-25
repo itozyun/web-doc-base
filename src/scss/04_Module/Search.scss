@@ -41,6 +41,7 @@ $SEARCH_BTN_WIDTH : 3em;
     }
 
     .Search-txt {
+        /* -moz-box-sizing : border-box; */
         display  : block;
         width    : 100%; /* opera 10- で無視されるので size 指定をしている */
         /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
@@ -85,3 +86,21 @@ $SEARCH_BTN_WIDTH : 3em;
         white-space   : nowrap;
         text-overflow : ellipsis;
     }
+
+/* //_{@modern */
+    @media \0 all {
+        /* override Gecko 0.9~1.4.2 */
+        .Search input [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+            display  : inline;
+            display  : -moz-inline-box;
+            position : static;
+        }
+        .Search-txt [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+            // width     : 60%;
+            max-width : 100%;
+        }
+        .Search .btn [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+            max-width : $SEARCH_BTN_WIDTH;
+        }
+    }
+/* //_}@modern */
