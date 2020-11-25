@@ -1,130 +1,44 @@
-// Create CSS for High Contrast mode.
-// Delete " [navigator-lte7]" and add ", :-o-prefocus, _:-moz-any-link".
-// Delete " [opera-lte720]" and add ",x:not(\\)" to .cleardix selector.
+// :not(backslash) -> :not(\)
 
-const TARGET_HC_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active)',
-      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active) and (max-width:319px)',
-      PluginError = require('plugin-error'),
+const PluginError = require('plugin-error'),
       Transform   = require('stream').Transform,
-      PostCSS     = require('postcss'),
-      Vinyl       = require('vinyl');
+      PostCSS     = require('postcss');
 
-module.exports = function( options ){
-    var stream = new Transform( { objectMode : true } ),
-        opts   = options || {};
+module.exports = function(){
+    var stream = new Transform( { objectMode : true } );
 
     stream._transform = function( file, encoding, cb ){
-        if( file.isNull() ) return cb(null, file);
+        if( file.isNull() ) return cb( null, file );
 
         if( file.isStream() ) return cb( new PluginError( 'gulp-finalize-css', 'Streaming not supported' ) );
 
         if( file.isBuffer() ){
             let css = PostCSS.parse( file.contents.toString( encoding ) ),
-                newCss, rulesAddToEnd = [], rulesOnlyScreen = [], createNewFile, updateCurrentFile, screenMediaBlock;
+                rulesAddToEnd = [], updateCurrentFile;
 
-            newCss = PostCSS.parse('@charset "UTF-8"');
+            css.walkDecls(
+                function( decl ){
+                    var originalRule = decl.parent,
+                        selector     = originalRule.selector;
 
-            css.walkAtRules( function( rule ){
-                if( opts.hcdir ){
-                    if( rule.name === 'media' && rule.params === TARGET_HC_MEDIA_QUERY ){
-                        rule.clone().walkRules( function( r ){
-                            newCss.append( r );
-                        } );
-                        rule.remove();
-                        createNewFile = updateCurrentFile = true;
-                        return;
-                    };
-                    if( rule.name === 'media' && rule.params === TARGET_HC_SMALLPHONE_MEDIA_QUERY ){
-                        rule.params = '(max-width' + rule.params.split( 'max-width' )[ 1 ];
-                        rulesAddToEnd.push( rule.clone() );
-                        rule.remove();
-                        createNewFile = updateCurrentFile = true;
-                        return;
-                    };
-                };
-
-                if( rule.name === 'media' &&
-                    (
-                        rule.params.indexOf( 'only screen and (prefers-color-scheme:' ) === 0 ||
-                        rule.params.indexOf( 'only screen and (-ms-high-contrast:active) and (prefers-color-scheme:dark)' ) === 0
-                    )
-                ){
-                    rule.params = rule.params.split( 'only screen and ' ).join( '' );
-                    rulesOnlyScreen.push( rule.clone() );
-                    rule.remove();
-                    updateCurrentFile = true;
-                } else if( rule.name === 'media' && rule.params.indexOf( 'all and (-webkit-min-device-pixel-ratio:10000)' ) === 0 ){
-                    // Opera 8.54- 用に prefers-color-scheme:, -ms-high-contrast: より後にして上書き
-                    rulesAddToEnd.push( rule.clone() );
-                    rule.remove();
-                    updateCurrentFile = true;
-                };
-            });
-
-            if( createNewFile ){
-                while( rulesAddToEnd.length ){
-                    newCss.append( rulesAddToEnd.shift() );
-                };
-                this.push(new Vinyl({
-                    base     : '/',
-                    path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.hcdir + '/' + file.basename,
-                    contents : Buffer.from(newCss.toString())
-                }));
-            };
-
-            css.walkDecls(function( decl ){
-                var rule = decl.parent;
-
-                if( rule.selector ){
-                    if( 0 <= rule.selector.indexOf( ' [navigator-lte7]' ) ){
-                        workForHack( rule, ' [navigator-lte7]', ',:-o-prefocus,_:-moz-any-link' );
-                    } else if( 0 <= rule.selector.indexOf( ' [opera-lte720]' ) ){
-                        workForHack( rule, ' [opera-lte720]', ',x:not(\\)', true );
-                    };
-                };
-            });
-
-            function workForHack( rule, marker, hackString, goToLast ){
-                var selectors, selectorOther = [], selectorTarget = [],
-                    selector, newRule;
-
-                if( 0 <= rule.selector.indexOf( marker ) ){
-                    selectors = rule.selector.split( ',' );
-                    while( selector = selectors.shift() ){
-                        if( 0 < selector.indexOf( marker ) ){
-                            selectorTarget.push( selector.replace( marker, '' ) );
-                        } else {
-                            selectorOther.push( selector );
+                    if( selector ){
+                        if( 0 <= selector.indexOf( ':-opera-lte71' ) ){
+                            console.log( selector );
+                            originalRule.selector = selector.replace( ':-opera-lte71', ':not(\\)' );
+                            rulesAddToEnd.push( originalRule );
+                            updateCurrentFile = true;
                         };
                     };
-                    if( selectorOther.length ){
-                        newRule          = rule.clone();
-                        rule.selector    = selectorOther.join( ',' );
-                        newRule.selector = selectorTarget.join( ',' ) + hackString;
-                        goToLast ? rulesAddToEnd.push( newRule ) : rule.after( newRule );
-                    } else {
-                        rule.selector = selectorTarget.join( ',' ) + hackString;
-                        goToLast && rulesAddToEnd.push( rule );
-                    };
-                    updateCurrentFile = true;
-                };
-            };
-
-            if( rulesOnlyScreen.length ){
-                screenMediaBlock = PostCSS.atRule( { name : 'media', params : 'only screen' } );
-                css.append( screenMediaBlock );
-                while( rulesOnlyScreen.length ){
-                    screenMediaBlock.append( rulesOnlyScreen.shift() );
-                };
-            };
+                }
+            );
 
             if( updateCurrentFile ){
                 while( rulesAddToEnd.length ){
                     css.append( rulesAddToEnd.shift() );
                 };
-                file.contents = Buffer.from(css.toString());
+                file.contents = Buffer.from( css.toString() );
             };
-            this.push(file);
+            this.push( file );
             cb();
         };
     };

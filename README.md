@@ -119,6 +119,7 @@ const plumber     = require("gulp-plumber"),
       sass        = require("gulp-sass"),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
+      CSSHack     = require("./web-doc-base/gulp-csshack.js"),
       finalizeCSS = require("./web-doc-base/gulp-finalize-css.js");
 
 gulp.task('css', function(){
@@ -153,7 +154,15 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(finalizeCSS({ hcdir : hcModeCssDir }))
+        .pipe(CSSHack({ hcdir : hcModeCssDir }))
+        .pipe(cleanCSS({
+            compatibility : { properties : { ieFilters : true } },
+            level: {
+                1: { roundingPrecision : 3 },
+                2: { all : true, removeUnusedAtRules: false }
+            }
+        }))
+        .pipe(finalizeCSS())
         .pipe(gulp.dest(output));
     });
 ~~~

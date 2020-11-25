@@ -39,7 +39,14 @@ clearfix のテスト,
 <p>:after で float を clear しています。:after 疑似要素の content が "" の為 Gecko ~1.5 で親ボックスの高さが不正になります。
 <p>Opera 7.0+, Gecko 1.6+, Safari 3+ で正常に動作を確認しています。
 
-<h2>Gecko ~1.5 用</h2>
+<h2>Gecko ~1.0.2 用</h2>
+<div class="box" id="clearfix-gecko10">
+    <div class="l">Left</div>
+    <div class="r">Right</div>
+</div>
+<p>Gecko ~1.0.2 用です。
+
+<h2>Gecko 0.6~0.9, 1.4 ~1.5 用</h2>
 <div class="box" id="clearfix-gecko15">
     <div class="l">Left</div>
     <div class="r">Right</div>
@@ -77,10 +84,13 @@ clearfix のテスト,
 <h2>Gecko と Presto Opera 用の CSS ハックのテスト</h2>
 <p>Gecko または Presto Opera の場合、以下にコンテンツが表示されます。</p>
 <p id="isGecko094-49"><span class="gecko094-49">Gecko 0.9.4-49</span> のブラウザです。</p>
-<p id="isGecko-190"><span class="gecko-190">Gecko -1.9.0</span> です。</p>
+<p id="isGecko14-181"><span class="gecko14-181">Gecko 1.4-1.8.1</span> です。</p>
+<p id="isGecko-15"><span class="gecko-15">Gecko -1.5</span> です。</p>
+<p id="isGecko-181"><span class="gecko-181">Gecko -1.8.1</span> です。</p>
 <p id="isGecko094-142"><span class="gecko094-142">Gecko 0.9.4-1.4.2</span> のブラウザです。</p>
 <p id="isGecko15-173"><span class="gecko15-173">Gecko 1.5-1.7.3</span> のブラウザです。</p>
 <p id="isGecko18-"><span class="gecko18-">Gecko 1.8-</span> です。</p>
+<p id="isFirefox30-36"><span class="firefox30-36">Firefox 3.0-3.6</span> です。</p>
 <p id="isFirefox35-36"><span class="firefox35-36">Firefox 3.5-3.6</span> です。</p>
 <p id="isFirefox36-"><span class="firefox36-">Firefox 3.6-</span> です。</p>
 <p id="isOpera7-71"><span class="opera7-71">Presto Opera 7-7.11</span> です。</p><!-- 閉じタグ必要! Opera 7.02 -->
@@ -127,39 +137,39 @@ clearfix のテスト,
 <tr>
 <th>Windows XPsp3 Opera 12.18<td><span class="opera72-12">7.20-12.18</span>, <span class="opera95-12">9.52-12.18</span>
 <tr>
-<th>Windows XPsp3 Mozilla 0.6(Gecko 0.6)<td><span class="gecko-190">Gecko -1.9.0</span>
+<th>Windows XPsp3 Mozilla 0.6(Gecko 0.6)<td><span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Mozilla 0.8.1(Gecko 0.8.1)<td><span class="gecko-190">Gecko -1.9.0</span>
+<th>Windows XPsp3 Mozilla 0.8.1(Gecko 0.8.1)<td><span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 6.2.3(Gecko 0.9.4.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 6.2.3(Gecko 0.9.4.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.02(Gecko 1.0.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 7.02(Gecko 1.0.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.1(Gecko 1.4)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 7.1(Gecko 1.4)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.4.2(Gecko 1.4.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Mozilla 1.4.2(Gecko 1.4.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.5(Gecko 1.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.5(Gecko 1.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.6(Gecko 1.6)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.6(Gecko 1.6)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.7.13(Gecko 1.7.13)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.7.13(Gecko 1.7.13)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.2(Gecko 1.7.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Netscape Navigator 7.2(Gecko 1.7.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Firefox 1.0 Preview Release(Gecko 1.7.3)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Firefox 1.0 Preview Release(Gecko 1.7.3)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 8.1.3(Gecko 1.7.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>
+<th>Windows XPsp3 Netscape Navigator 8.1.3(Gecko 1.7.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-190">Gecko -1.9.0</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12, Gecko 1.8.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko14-181">Gecko 1.4-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.0.9(Firefox 1.9.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Firefox 3.0.9(Firefox 1.9.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.5.19(Firefox 1.9.1.19)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>
+<th>Windows XPsp3 Firefox 3.5.19(Firefox 1.9.1.19)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.6.28(Firefox 1.9.2.28)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>, <span class="firefox36-">Firefox 3.6-</span>  
+<th>Windows XPsp3 Firefox 3.6.28(Firefox 1.9.2.28)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>, <span class="firefox36-">Firefox 3.6-</span>  
 </table>
 
 <hr>
@@ -172,7 +182,7 @@ clearfix のテスト,
         background : #ccc;
     }
     .box div {
-        margin  : 1em;
+        margin  : 0 1em;
         padding : 1em;
         /* http://norisfactory.com/stylesheetlab/000038.php */
         float   : left;
@@ -189,37 +199,36 @@ clearfix のテスト,
  *  ultimate clearfix
  */
 .ultimate-clearfix:after {
-    content     : "";    /* .ultimate-clearfix{overflow:hidden} を削除する代わりに指定する*/
-    height      : 0;     /* for Gecko 0.9~1.7.5 */
-    display     : block; /* for Gecko ~0.9 & Opera */
+    content     : "";     /* .ultimate-clearfix{overflow:hidden} を削除する代わりに指定する */
+    line-height : 0;      /* for Gecko 0.9 で隙間が出来るのを回避, 1.4.2 で親ボックスの高さ設定 */
+    height      : 0;      /* for Gecko 0.9~1.7.5 & Opera9~11 */
+    display     : block;  /* for Gecko ~0.8 and Opera, Gecko 1.0.2 で不適! */
     visibility  : hidden;
     clear       : both;
 }
 
-/* override Gecko ~0.8.1 */
+/* override Gecko ~1.8.1 */
 @media \0 all {
     .ultimate-clearfix:after {
-        content : ".";
+        content     : ".";
     }
-}
-_:-moz-any-link, .ultimate-clearfix:after { content : ""; } /* override Gecko 0.9~ */
-
 /* override Gecko 0.9~1.4.2 */
-:-gck-lte142, _:-moz-any-link, .ultimate-clearfix {
-    position : relative; /* for Gecko 1.0.2 */
-}
-:-gck-lte142, _:-moz-any-link, .ultimate-clearfix:after {
-    content     : ".";  /* for Gecko ~1.5 */
-    line-height : 0;    /* for Gecko 0.9   で隙間が出来るのを回避 */
-}
-
-/* override Gecko 1.5~1.7.3 */
-_::-moz-viewport, .ultimate-clearfix:after {
-    content : ".";  /* for Gecko ~1.5 */
+    :-gck-lte142, _:-moz-any-link, .ultimate-clearfix {
+        position : relative; /* for Gecko 1.0.2 */
+    }
+    :-gck-lte142, _:-moz-any-link, .ultimate-clearfix:after {
+        display  : inline; /* 1.0.2 で隙間が出来るのを回避 */
+    }
+/* override Gecko 1.4~1.8.1 */
+    _:lang(x), .ultimate-clearfix:after {
+        display : block; /* Gecko 1.4 */
+    }
+    /* override Gecko 1.8~ */
+    @-moz-document url-prefix() { .ultimate-clearfix:after { content : "" } }   
 }
 
 /* for Opera 6.06 */
-.ultimate-clearfix:before {
+.ultimate-clearfix:before { /* opera 9.54 で隙間が出来る, x:not(\) の後ろに書けば読み込まれない */
     content : "";
     display : table;
 }
@@ -236,12 +245,19 @@ _::-moz-viewport, .ultimate-clearfix:after {
             clear       : both;
         }
 
-    #clearfix-gecko15 {
+    #clearfix-gecko10 {
         position   : relative; /* for Gecko 1.0.2 */
     }
+        #clearfix-gecko10:after {
+            content     : ".";   /* for Gecko ~1.5 */
+            height      : 0;     /* for Gecko 1.0.2 */
+            visibility  : hidden;
+            clear       : both;
+        }
+
         #clearfix-gecko15:after {
             content     : ".";   /* for Gecko ~1.5 */
-            line-height : 0;     /* for Gecko 0.9   で隙間が出来るのを回避 */
+            line-height : 0;     /* for Gecko 0.9 で隙間が出来るのを回避, 1.4.2 で親ボックスの高さ設定 */
             height      : 0;     /* for Gecko 0.9~1.7.5 */
             display     : block; /* for Gecko ~0.9 & Opera */
             visibility  : hidden;
@@ -272,21 +288,32 @@ _::-moz-viewport, .ultimate-clearfix:after {
     .opera72-92   { background: #fcf; }
     .opera9-92    { background: #ffc; }
     .opera72-12   { background: #cfc; }
-    .opera80-96   { background: #ddc; }
+    .opera80-96   { background: #fcc; }
     .opera95-12   { background: #ccf; }
-    .gecko094-142 { background: #ccc; }
-    .gecko15-173  { background: #fcc; }
-    .gecko-190    { background: #dcd; }
-    .gecko094-49  { background: #cdd; }
-    .gecko18-     { background: #ccd; }
-    .firefox35-36 { background: #ddd; }
-    .firefox36-   { background: #cdc; }
+
+    .gecko094-142 { background: #999; }
+    .gecko-15     { background: #ddd; }
+    .gecko15-173  { background: #d99; }
+    .gecko-181    { background: #dd9; }
+    .gecko094-49  { background: #ddd; }
+    .gecko18-     { background: #d9d; }
+    .firefox30-36 { background: #9dd; }
+    .firefox35-36 { background: #9d9; }
+    .firefox36-   { background: #99d; }
+
+    .gecko14-181  { background: #9ad; }
 
     #isGecko094-49 { display : none }
     _:-moz-any-link, /*:root*/ #isGecko094-49 { display : block }
 
-    #isGecko-190 { display : none }
-    @media \0 all { #isGecko-190 { display : block } }
+    #isGecko14-181 { display : none }
+    #isGecko-15 { display : none }
+    #isGecko-181 { display : none }
+    @media \0 all {
+        _:lang(x), #isGecko14-181 { display : block; }
+        body*#isGecko-15 { display : block }
+        #isGecko-181 { display : block }
+    }
 
     #isGecko094-142 { display : none }
     :-gck-lte142, _:-moz-any-link, /*:root*/ #isGecko094-142 { display : block; }
@@ -295,16 +322,17 @@ _::-moz-viewport, .ultimate-clearfix:after {
     /*_:-moz-tree-row(hover),*/ _::-moz-viewport, #isGecko15-173 { display : block }
 
     #isGecko18- { display : none }
-    @-moz-document url-prefix() { #isGecko18- { display : block } }
-
+    #isFirefox30-36 { display : none }
     #isFirefox35-36 { display : none }
-    _:not(), _:-moz-handler-blocked, #isFirefox35-36 { display : block }
-
     #isFirefox36- { display : none }
-    _:-moz-handler-crashed, :root #isFirefox36- { display : block }
-
-    
-
+    @-moz-document url-prefix() {
+        #isGecko18- { display : block }
+        _:not(), _:-moz-loading, #isFirefox30-36 { display : block }
+        _:not(), _:-moz-handler-blocked, #isFirefox35-36 { display : block }
+        _:-moz-handler-crashed, :root #isFirefox36- { display : block }
+    }
+</style><!-- ここで一旦切らないと Opera で #isOpera9-9 が常に有効になる -->
+<style>
     /* https://stackoverflow.com/questions/1120335/how-to-make-css-visible-only-for-opera */
     #isOpera9-92  { display : none }
     #isOpera72-12 { display : none }
@@ -313,10 +341,10 @@ _::-moz-viewport, .ultimate-clearfix:after {
     #isOpera95-12 { display : none }
 
     @media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) {
-        html:\66irst-child #isOpera9-92 { display : block; }
         #isOpera72-12 { display : block; }
         html:first-child #isOpera72-92 { display : block; }
         #isOpera80-96 {　display : block; } /* 全角スペースを使ったハック Windows 限定という説あり */
+        html:\66irst-child #isOpera9-92 { display : block; }
         :-o-prefocus, /*:root*/ #isOpera95-12 { display : block; }
     }
 

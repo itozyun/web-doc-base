@@ -3,74 +3,71 @@
  *   https://github.com/Compass/compass/tree/d5df161d0df7edc686e576b22412f437dd0590cc/core/stylesheets/compass/utilities/general
 --------------------------------------------------------------------------------------*/
 
-@mixin createPseudoBlock($invisible : 0) {
+@mixin createPseudoBlock() {
     & {
-        /* //_{@modern */
-        /* 2 <= Firefox */
-        @if $invisible == 1 {
-            :root & [navigator-lte7] {
-                content : ".";
-            }
-        /* https://ka2.org/css-hack-for-opera/ */
-        /* Opera <= 7.20 */
-            [opera-lte720] /* , x:not(\\) @see /README.md */ { content : " " }
-        } @else {
-            // https://developer.mozilla.org/en-US/docs/Web/CSS/::after
-            // Before Firefox 3.5, only the CSS level 2 behavior of :after was supported, which disallowed position, float, list-style-* and some display properties.
-            // https://www.rougebleu.net/css%E3%83%8F%E3%83%83%E3%82%AF%E4%B8%80%E8%A6%A7/
-            /* http://browserhacks.com/ */
-            /* Firefox <= 3 */
-            @media \0 all { & { display : none; } }
+        content : " ";
+        display : block;
+    /* //_{@modern */
+        /* https://browserstrangeness.github.io/css_hacks.html */
 
-            // Opera 7.20-, do not support CSS-P.
-            [opera-lte720] /* , x:not(\\) @see /README.md */ { display : none; }
-            content : " ";
+        /* Gecko <=1.9.0 do not support CSS-P. */
+        /* override Gecko ~1.8.1 */
+        @media \0 all { & { display : none } }
+
+        @-moz-document url-prefix() {
+            /* override Gecko 1.9.0~1.9.2 */
+            & [_csshack_="_:-moz-loading"] { display : none }
+            /* override Gecko 1.9.1~1.9.2 */
+            & [_csshack_="_:-moz-handler-blocked"] { display : block }
         }
-        /* //_}@modern */
-        /* //_{^@modern */
-        @if $invisible == 1 {
-            content  : "";
-            overflow : hidden;
-        } @else {
-            content : " ";
-        }
-        /* //_}^@modern */
-        display  : block;
+
+        /* Opera <7.20, do not support CSS-P. */
+        [_csshack_=":-opera-lte71"] { display : none; }
+    /* //_}@modern */
     }
 }
 
 @mixin clearfix {
-    /* //_{@modern,@ie9,@ie8,@ie7 */
+    /* //_{@ie9,@ie8,@ie7 */
         overflow : hidden;
-    /* //_}@modern,@ie9,@ie8,@ie7 */
-    /* //_{@modern */
-        :root & [navigator-lte7] {
-            overflow : visible;
-            position : relative;
-        }
-    /* //_}@modern */
-
-    /* //_{#ie6-win */
+    /* //_}@ie9,@ie8,@ie7 */
+    /* //_{@ie6,@ie55 */
+        zoom     : 1;
+    /* //_}@ie6,@ie55 */
+    /* //_{@ie5win */
         height   : 1%;
-        overflow : visible;
-    /* //_}#ie6-win */
-
+    /* //_}@ie5win */
     /* //_{@ie5mac */
         display  : inline-table;
     /* //_}@ie5mac */
 
-        /* //_{@modern */
+    /* //_{@modern */
+        &:after {
+            content     : "";
+            line-height : 0; /* for Gecko 0.9 で隙間が出来るのを回避, 1.4.2 で親ボックスの高さ設定 */
+            height      : 0;
+            display     : block;
+            visibility  : hidden;
+            clear       : both;
+        }
+        /* override Gecko ~1.8.1 */
+        @media \0 all {
             &:after {
-                @include createPseudoBlock(1);
-                /* //_{@modern */
-                :root & [navigator-lte7] {
-                    display : block;
-                }
-                height      : 0;
-                line-height : 0;
-                visibility  : hidden;
-                /* //_}@modern */
-                clear       : both;
+                content : ".";
             }
-        /* //_}@modern */
+            /* override Gecko 0.9~1.4.2 */
+            [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+                position : relative; /* for Gecko 1.0.2 */
+            }
+            &:after [_csshack_=":-gck-lte142|_:-moz-any-link"] {
+                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
+            }
+            /* override Gecko 1.4~1.8.1 */
+            &:after [_csshack_="_:lang(x)"] {
+                display : block; /* for Gecko 1.4 */
+            }
+            /* override Gecko 1.8~ */
+            @-moz-document url-prefix() { &:after { content : "" } }
+        }
+    /* //_}@modern */
 }
