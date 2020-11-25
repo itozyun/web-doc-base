@@ -20,7 +20,7 @@ g_listenLoadEvent(
 
         for( ; i; ){
             img    = imgs[ --i ];
-            result = g_Trident < 9 ? img.complete : img.naturalWidth;
+            result = g_Trident < 9 ? img.complete : img.width;
             g_imageEnabled = g_imageEnabled || !!result;
             Event_lazyDispatch( Event_imagereadyCallbacks, { img : img, imgReady : result } );
         };

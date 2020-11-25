@@ -34,7 +34,7 @@ function imageTest( callback, imageUrl ){ // callback, url,
     img.onload  = imageTest_onLoad;
     img.src     = imageUrl;
 
-    if( g_Presto < 8 && img.complete ){
+    if( g_Presto < 8 && ( img.complete && img.width ) ){
         g_DebugLogger.log( '[imageTest] Presto<8 success!' );
         g_imageEnabled = true;
         g_setTimer( callback, true );
@@ -84,7 +84,7 @@ function imageTest( callback, imageUrl ){ // callback, url,
         
         g_DebugLogger.log( '[imageTest] onload.' );
 
-        if( g_Presto && !img.complete ){
+        if( g_Presto && !img.complete && !img.width ){
             g_DebugLogger.log( '[imageTest] Presto not img.complete!' );
             timerID = g_setTimer( callback, false );
         } else {
