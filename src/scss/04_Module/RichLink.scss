@@ -34,9 +34,9 @@ $RICHLINK_TEXT_SIZE : 0.875;
         .RichLink a {
             @include clearfix;
 
-            /* //_{#ie55-,@ie8,@ie9,@modern */
+            /* //_{#ie55-,@ie8,@ie9,#notie */
             padding : 1em 0.5em 0;
-            /* //_}#ie55-,@ie8,@ie9,@modern */
+            /* //_}#ie55-,@ie8,@ie9,#notie */
             /* //_{@ie6,@ie7 */
             padding : 1em 0.5em;
             /* //_}@ie6,@ie7 */
@@ -63,30 +63,21 @@ $RICHLINK_TEXT_SIZE : 0.875;
             }
 
             /* //_{#can-inline-block */
-                /* //_{@modern */
+                /* //_{@legacy */
                 .RichLink-meta {
-                    clear   : both;
-                    /* //_{@modern */
-                    display : -moz-inline-box;
-                    display : inline-table;
-                    /* //_}@modern */
-                    display : inline-block;
+                    clear : both;
                 }
-                /* //_}@modern */
+                /* //_}@legacy */
                 .RichLink-meta span {
-                    /* //_{@modern */
-                    /* display : -moz-inline-box;
-                    display : inline-table; */
-                    /* //_}@modern */
-                    display : inline-block;
+                    @include inline-block;
                 }
             /* //_}#can-inline-block */
 
             .RichLink p {
                 display     : block;
-                /* //_{#ie55-,@ie8,@ie9,@modern */
+                /* //_{#ie55-,@ie8,@ie9,#notie */
                 padding     : 0 0 1em;
-                /* //_}#ie55-,@ie8,@ie9,@modern */
+                /* //_}#ie55-,@ie8,@ie9,#notie */
                 /* //_{@ie6,@ie7 */
                 padding     : 0;
                 /* //_}@ie6,@ie7 */
@@ -149,9 +140,9 @@ $RICHLINK_TEXT_SIZE : 0.875;
         word-wrap  : break-word;
         /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
 
-        /* //_{#ie55-,@ie8,@ie9,@modern */
+        /* //_{#ie55-,@ie8,@ie9,#notie */
         padding    : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
-        /* //_}#ie55-,@ie8,@ie9,@modern */
+        /* //_}#ie55-,@ie8,@ie9,#notie */
         /* //_{@ie6,@ie7 */
         padding    : 0;
         /* //_}@ie6,@ie7 */

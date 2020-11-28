@@ -10,15 +10,15 @@ $SEARCH_BTN_WIDTH : 3em;
 .Search {
     position : relative;
     display  : block;
-    /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_{@ie6,@ie7,@ie8,@ie9,#notie */
     margin   : 0 $SEARCH_BTN_WIDTH 0 #{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
-    /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_}@ie6,@ie7,@ie8,@ie9,#notie */
     /* //_{@ie5win,@ie55 */
     padding  : 0 $SEARCH_BTN_WIDTH 0 0;
     /* //_}@ie5win,@ie55 */
-    /* //_{@ie8,@ie9,@modern */
+    /* //_{@ie8,@ie9,#notie */
     width    : auto;
-    /* //_}@ie8,@ie9,@modern */
+    /* //_}@ie8,@ie9,#notie */
     /* //_{@ie5win */
     width    : 100%;
     /* //_}@ie5win */
@@ -41,22 +41,21 @@ $SEARCH_BTN_WIDTH : 3em;
     }
 
     .Search-txt {
-        /* -moz-box-sizing : border-box; */
         display  : block;
         width    : 100%; /* opera 10- で無視されるので size 指定をしている */
-        /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7,@ie8,@ie9,#notie */
         left     : -#{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
-        /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_}@ie6,@ie7,@ie8,@ie9,#notie */
 
         /* //_{@ie5win,@ie55 */
         left     : #{$INPUT_BORDER_WIDTH / 2};
         /* //_}@ie5win,@ie55 */
 
-        /* //_{@modern */
+        /* //_{#notie */
         &:invalid {
             color : $COLOR_Default_casual_text; /* ie10,11 で赤字を上書き */
         }
-        /* //_}@modern */
+        /* //_}#notie */
     }
     /* 1. ie6-7 は input[type=submit] が border-box, [type=text] は content-box の為
           width & height と border を em サイズにして補正する。
@@ -87,7 +86,7 @@ $SEARCH_BTN_WIDTH : 3em;
         text-overflow : ellipsis;
     }
 
-/* //_{@modern */
+/* //_{@legacy */
     @media \0 all {
         .Search input {
             display  : inline;
@@ -106,4 +105,4 @@ $SEARCH_BTN_WIDTH : 3em;
             width : 100%;
         }
     }
-/* //_}@modern */
+/* //_}@legacy */

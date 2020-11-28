@@ -13,13 +13,7 @@
  *        b
 --------------------------------------------------------------------------------------*/
 .medal, .medal-gold, .medal-silver, .medal-bronze {
-/* //_{#can-inline-block */
-    /* //_{@modern */
-    display      : -moz-inline-box;
-    display      : inline-table;
-    /* //_}@modern */
-    display      : inline-block;
-/* //_}#can-inline-block */
+    @include inline-block;
 /* //_{^#can-inline-block */
     float        : left;
 /* //_}^#can-inline-block */

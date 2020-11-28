@@ -38,7 +38,7 @@
         font-size: 75%;
     }
 
-    /* //_{@modern */
+    /* //_{#notie */
     sub,
     sup {
         font-size      : 75%;
@@ -52,7 +52,7 @@
     sub {
         bottom: -0.25em;
     }
-    /* //_}@modern */
+    /* //_}#notie */
     
     img {
         /* //_{@ie7 */
@@ -71,9 +71,9 @@
     }
 
     pre {
-    /* //_{@modern */
+    /* //_{#notie */
         white-space : pre;           /* CSS 2.0 */
-    /* //_}@modern */
+    /* //_}#notie */
 
         @include pre-wrap;
     }

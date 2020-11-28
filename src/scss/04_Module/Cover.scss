@@ -56,13 +56,7 @@
             /* //_}@ie5win */
 
             .Cover h2 {
-            /* //_{#can-inline-block */
-                /* //_{@modern */
-                display      : -moz-inline-box;
-                display      : inline-table;
-                /* //_}@modern */
-                display      : inline-block;
-            /* //_}#can-inline-block */
+                @include inline-block;
             /* //_{@ie6,@ie7 */
                 display      : inline;
                 zoom         : 1;
@@ -102,15 +96,9 @@
         color      : $COLOR_Default_casual_text;
         margin     : 0 0.5em;
     }
-    /* //_{#can-inline-block */
         .Cover-meta span {
-            /* //_{@modern */
-            display : -moz-inline-box;
-            display : inline-table;
-            /* //_}@modern */
-            display : inline-block;
+            @include inline-block;
         }
-    //* //_}#can-inline-block */
     .Cover p {
         margin     : 0.6em 0.5em;
     }

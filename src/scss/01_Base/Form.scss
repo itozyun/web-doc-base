@@ -38,25 +38,22 @@ textarea, input {
 input {
     font-size             : 1em;
     line-height           : 1;
-    /* //_{#can-box-sizing */
-    /* //_{@modern */
-    -webkit-box-sizing    : content-box;
-       -moz-box-sizing    : content-box;
-    /* //_}@modern */
-            box-sizing    : content-box;
-    /* //_}#can-box-sizing */
+    @include box-sizing(content-box);
     /* //_{@modern */
     -webkit-border-radius : 0;
        -moz-border-radius : 0;
             border-radius : 0;
     -webkit-appearance    : none;
             appearance    : none;
-    margin                : 0;
     /* //_}@modern */
+    /* //_{#notie */
+    margin                : 0;
+    /* //_}#notie */
+    
 
-/* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+/* //_{@ie6,@ie7,@ie8,@ie9,#notie */
     height                : 1em;
-/* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+/* //_}@ie6,@ie7,@ie8,@ie9,#notie */
 /* //_{@ie55,@ie5win */
     height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
 /* //_}@ie55,@ie5win */

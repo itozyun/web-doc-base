@@ -75,13 +75,7 @@
         left          : -0.75em;
         width         : 0;
         height        : 0;
-        /* //_{@modern */
-        -webkit-border-radius : .6em;
-        -moz-border-radius    : .6em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .6em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.6em);
         border-width  : .6em;
         border-color  : $COLOR_Default_casual_fill;
     }
@@ -90,13 +84,7 @@
         left          : -0.5em;
         width         : 0;
         height        : 0;
-        /* //_{@modern */
-        -webkit-border-radius : .35em;
-        -moz-border-radius    : .35em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .35em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.35em);
         border-width  : .35em;
         border-color  : $COLOR_Default_fill;
         /* //_{@modern */

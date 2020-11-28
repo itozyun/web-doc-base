@@ -1,0 +1,11 @@
+@mixin box-sizing($value) {
+    /* //_{#can-box-sizing */
+    /* //_{@legacy */
+       -moz-box-sizing : $value;
+    /* //_}@legacy */
+    /* //_{@modern */
+    -webkit-box-sizing : $value;
+    /* //_}@modern */
+            box-sizing : $value;
+    /* //_}#can-box-sizing */
+}

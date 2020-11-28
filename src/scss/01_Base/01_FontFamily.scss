@@ -5,7 +5,7 @@
 // https://terkel.jp/archives/2016/05/system-fonts-on-website/
 // ウェブサイトでシステムフォント
 
-/* //_{@modern
+/* //_{#notie
  * http://loconet.web2.jp/blog/archives/2007/02/cssfontfamily.html
  */
         body, textarea, input {
@@ -19,7 +19,8 @@
                 "メイリオ", Meiryo,
                 "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
         }
-
+/* //_}#notie */
+/* //_{@modern */
 /* Firefox OS2.2(シミュレータ) で Roboto がいると日本語を正しく表示できない... 2.1-は問題無し
  *   http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
  */
@@ -72,13 +73,13 @@
 
 
 /* //_{+it */
-    /* //_{@modern,@ie9,@ie8,@ie7 */
+    /* //_{#notie,@ie9,@ie8,@ie7 */
             /* pre, */ code, var, kbd, samp /* , tt */ {
                 font-family : /* "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう！ */
                     /* http://www.tohoho-web.com/ex/font.html#css-body-font */
                     SFMono-Regular, 'Liberation Mono', Menlo, Consolas, "Hiragino Kaku Gothic ProN", Monaco, Meiryo, /* 'Courier New', Courier, */ monospace;
             }
-    /* //_}@modern,@ie9,@ie8,@ie7 */
+    /* //_}#notie,@ie9,@ie8,@ie7 */
 
     /* //_{#ie6-win */
             /* pre, */ code, var, kbd, samp /* , tt */ {

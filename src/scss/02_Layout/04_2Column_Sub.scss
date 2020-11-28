@@ -1,6 +1,6 @@
-/* //_{@modern */ /* Gecko 1.0.2 で発生する隙間を回避するために必要なものだけに指定する */
+/* //_{@legacy */ /* Gecko 1.0.2 で発生する隙間を回避するために必要なものだけに指定する */
 #lB .lSi, #lF
-/* //_}@modern */
+/* //_}@legacy */
 .lSi {
     @include clearfix;
 }

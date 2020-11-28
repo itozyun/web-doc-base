@@ -2,23 +2,25 @@
 /* http://perishablepress.com/press/2010/06/01/wrapping-content/ */
 /* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
 @mixin pre-wrap {
-    /* //_{@modern */
+    /* //_}@legacy */
         white-space : -pre-wrap;     /* Opera 4-6 */
         white-space : -o-pre-wrap;   /* Opera 7 */
         white-space : -moz-pre-wrap; /* Firefox 1.0-2.0 */
+    /* //_}@legacy */
+    /* //_{@modern */
         white-space : -webkit-pre-wrap; /* Chrome, Safari */
     /* //_}@modern */
         /* white-space : -hp-pre-wrap;  HP Printers */
-    /* //_{@ie8,@ie9,@modern */        
+    /* //_{@ie8,@ie9,#notie */        
         white-space : pre-wrap;      /* CSS 2.1, ie8+ */
-    /* //_}@ie8,@ie9,@modern */
+    /* //_}@ie8,@ie9,#notie */
 
         /* white-space : pre-line;      CSS 3.0 */
 
     /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
         word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
     /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-    /* //_{#ie8-win,@ie9,@modern */
+    /* //_{#ie8-win,@ie9,#notie */
         word-break  : break-all;     /* IE 5+ */
-    /* //_}#ie8-win,@ie9,@modern */
+    /* //_}#ie8-win,@ie9,#notie */
 }

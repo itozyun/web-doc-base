@@ -25,12 +25,16 @@
             border-color : $COLOR_Ribbon_text;
         }
     }
+    /* //_}@modern */
+    /* //_{#notie */
     #jsSide {
         position : relative;
     }
     .lW {
         overflow : hidden;
     }
+    /* //_}#notie */
+    /* //_{@legacy */
     /* override Gecko ~1.8.1 */
     @media \0 all {
         .lW {
@@ -41,7 +45,7 @@
             overflow : hidden;
         }
     }
-    /* //_}@modern */
+    /* //_}@legacy */
 
     /* //_{@ie9 */
     // sidebar が header, footer に重なる問題の解決
