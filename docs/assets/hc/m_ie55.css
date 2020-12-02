@@ -1,0 +1,74 @@
+@charset "UTF-8";
+.AMeta,
+.Pager,
+.SocialBtns,
+:link:active img,
+:visited:active img,
+blockquote,
+td {
+  border-style: dotted
+}
+table,
+tfoot td {
+  border-width: 2px 0 0
+}
+a:active {
+  outline: solid 2px
+}
+table {
+  border-spacing: 2px;
+  border-collapse: separate
+}
+th,
+thead {
+  font-weight: 700
+}
+td {
+  padding: .5em .25em
+}
+thead td,
+thead th {
+  border-width: 0 0 2px;
+  padding: .5em
+}
+tbody td {
+  border-width: 0 0 1px
+}
+.Cover-btn i,
+.Pager i {
+  display: none
+}
+.jsCanRotate .Cover-btn i {
+  display: inline;
+  border-width: 0 .15em .15em 0;
+  width: .35em;
+  height: .35em;
+  top: 0;
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M22=1, M12=1, M21=-1, sizingMethod="auto expand")
+}
+.LinkList,
+.RichLink {
+  padding: 2px 0
+}
+.LinkList a {
+  margin: 0 2px
+}
+.RichLink a {
+  border-width: 0
+}
+.tl {
+  border-collapse: collapse
+}
+.Pager {
+  text-align: center;
+  height: auto;
+  padding: 1em 0
+}
+.Pager span {
+  position: static;
+  display: inline;
+  width: auto
+}
+.jsPica:active {
+  outline: 0
+}

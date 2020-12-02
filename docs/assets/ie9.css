@@ -1,0 +1,3221 @@
+@charset "UTF-8";
+blockquote .tl tbody td:before,
+blockquote .tl td,
+blockquote .tl tfoot td,
+blockquote .tl tfoot th,
+blockquote .tl thead td,
+blockquote .tl thead th,
+h5,
+h6 {
+  border-color: #777
+}
+.h1,
+caption,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+thead {
+  page-break-after: avoid
+}
+.AHead,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.Magazine-date,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink .p,
+.Search,
+.Search-txt,
+.commonForm,
+.lM .RichLink b,
+a iframe,
+a img,
+h2:after {
+  display: block
+}
+.Magazine .box,
+figure,
+h2,
+textarea {
+  margin: 0
+}
+.h1,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table,
+textarea {
+  line-height: 1.2
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
+}
+.AAuthor,
+.BlogArchive dl,
+.Comment p,
+.Cover,
+.Magazine-item,
+.Magazine-main,
+.RichLink a,
+.Search .btn,
+.box,
+.lMi,
+.lS,
+.lSi,
+svg {
+  overflow: hidden
+}
+.links,
+pre {
+  white-space: pre-wrap
+}
+.Magazine-label,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+.links,
+blockquote:after,
+pre,
+td,
+th {
+  word-break: break-all;
+  word-wrap: break-word
+}
+.Magazine-item,
+.SearchResult div div,
+.caption,
+.commonForm-pair,
+.h1,
+dd,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+iframe,
+img,
+li,
+tr {
+  page-break-inside: avoid
+}
+.lM,
+.lS,
+.tl td,
+.tl th {
+  vertical-align: top
+}
+*,
+:after,
+:before {
+  border-style: solid;
+  border-width: 0
+}
+html {
+  font-size: 100%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
+body,
+input {
+  line-height: 1.9
+}
+body,
+input,
+textarea {
+  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
+}
+code,
+kbd,
+samp,
+var {
+  font-family: SFMono-Regular,"Liberation Mono",Menlo,Consolas,"Hiragino Kaku Gothic ProN",Monaco,Meiryo,monospace
+}
+:active,
+:focus {
+  outline: 0
+}
+dt,
+em,
+strong {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
+}
+blockquote,
+q {
+  quotes: none
+}
+q:after,
+q:before {
+  content: '';
+  content: none
+}
+small {
+  font-size: 75%
+}
+h4,
+h5,
+h6 {
+  font-size: 1em
+}
+cite,
+code,
+dfn,
+em,
+kbd,
+q,
+samp,
+strong,
+var {
+  font-style: normal
+}
+.BlogArchive a:link:hover,
+.BlogArchive a:visited:hover,
+.Label a:link:hover,
+.Label a:visited:hover,
+.aBodyRoot :link:hover,
+.aBodyRoot :visited:hover,
+.aBodyRoot a:active,
+.aBodyRoot a:focus,
+:link,
+:visited,
+a:active,
+a:focus,
+ins {
+  text-decoration: none
+}
+del {
+  text-decoration: line-through
+}
+h4 {
+  border-width: 0 0 0 .7em;
+  border-color: #111;
+  padding: 0 0 0 .3em
+}
+h5 {
+  border-width: 0 0 0 .5em;
+  padding: 0 0 0 .5em
+}
+h6 {
+  border-width: 0 0 0 .3em;
+  padding: 0 0 0 .7em
+}
+abbr[title],
+acronym,
+dfn,
+q[cite],
+q[title] {
+  border-bottom: 1px dotted
+}
+abbr[title],
+acronym,
+dfn {
+  cursor: help
+}
+.AMeta,
+.Pager,
+.SocialBtns,
+.tl thead th,
+hr,
+tbody th,
+th {
+  border-width: 0 0 1px
+}
+iframe,
+img {
+  max-width: 100%
+}
+.note .box,
+.note .hscroll,
+.tl td > :first-child,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img {
+  margin-top: 0
+}
+img {
+  height: auto
+}
+ol,
+ul {
+  padding-left: 2em
+}
+dl ol,
+dl ul,
+li ol,
+li ul {
+  padding-left: 1em
+}
+blockquote,
+p {
+  text-justify: inter-word;
+  line-break: normal;
+  text-align: justify
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns a:link:hover,
+.SocialBtns a:visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active:hover,
+a:focus:hover {
+  text-decoration: underline
+}
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.medal,
+a,
+a:active .ico-author:after,
+a:active .ico-author:before,
+a:active .ico-chain:after,
+a:active .ico-chain:before,
+a:active .ico-clock:after,
+a:active .ico-clock:before,
+a:active .ico-comment:before,
+a:active .ico-flag:after,
+a:active .ico-flag:before,
+a:active .ico-label:before,
+a:active .ico-pen:before,
+a:active .ico-sylinder:after,
+a:active .ico-sylinder:before,
+a:focus .ico-author:after,
+a:focus .ico-author:before,
+a:focus .ico-chain:after,
+a:focus .ico-chain:before,
+a:focus .ico-clock:after,
+a:focus .ico-clock:before,
+a:focus .ico-comment:before,
+a:focus .ico-flag:after,
+a:focus .ico-flag:before,
+a:focus .ico-label:before,
+a:focus .ico-pen:before,
+a:focus .ico-sylinder:after,
+a:focus .ico-sylinder:before {
+  border-color: #f8fbf8
+}
+.tl tbody th :link,
+.tl tbody th :link:hover,
+.tl thead :link,
+.tl thead :link:hover,
+:link {
+  color: #24c
+}
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited,
+body {
+  color: #111
+}
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #3079ed;
+  border-color: #3079ed
+}
+:visited:hover {
+  color: #419;
+  border-color: #419
+}
+.ribbon a {
+  color: #bbb;
+  border-color: #1a1a1a
+}
+.ribbon :link {
+  color: #bbe
+}
+.ribbon,
+.ribbon .AHead h1,
+.ribbon :visited,
+.tl tbody :hover th :link,
+.tl tbody :hover th :visited,
+code .pln,
+code .pun,
+tbody :hover th :link,
+tbody :hover th :visited {
+  color: #fff
+}
+a:active,
+a:active *,
+a:focus,
+a:focus * {
+  color: #fff!important
+}
+.wn,
+.wn:after {
+  color: red!important
+}
+.ribbon :visited:hover {
+  color: #b3f;
+  border-color: #b3f
+}
+a:active,
+a:focus {
+  background-color: #3079ed!important
+}
+h2 {
+  border-width: 0 0 2px;
+  padding: 1.5em .45em .5em;
+  font-size: 1.1em;
+  position: relative
+}
+h2:after {
+  width: 5em;
+  height: 0;
+  font-size: .1em;
+  line-height: 0;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  border-width: 2px 0 0;
+  border-color: #3079ed;
+  content: " "
+}
+.wn:after {
+  background: red!important
+}
+input,
+textarea {
+  border-width: 2px;
+  padding: .45em 8px
+}
+input {
+  font-size: 1em;
+  line-height: 1;
+  box-sizing: content-box;
+  height: 1em
+}
+textarea {
+  font-size: 1em;
+  overflow: auto
+}
+hr {
+  height: 1px;
+  border-color: transparent;
+  margin: 2em 1em;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMTExMTEiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+}
+tr hr {
+  margin: 1em 9%
+}
+:link img,
+:visited img {
+  border-color: #f8fbf8;
+  border-width: 2px
+}
+.AHead-labels a:link:active,
+.AHead-labels a:link:focus,
+.AHead-labels a:visited:active,
+.AHead-labels a:visited:focus,
+.Subscribe .atom:link:active,
+.Subscribe .atom:link:focus,
+.Subscribe .atom:visited:active,
+.Subscribe .atom:visited:focus,
+.Subscribe .fl:link:active,
+.Subscribe .fl:link:focus,
+.Subscribe .fl:visited:active,
+.Subscribe .fl:visited:focus,
+.Subscribe .rss:link:active,
+.Subscribe .rss:link:focus,
+.Subscribe .rss:visited:active,
+.Subscribe .rss:visited:focus,
+.Subscribe .stm:link:active,
+.Subscribe .stm:link:focus,
+.Subscribe .stm:visited:active,
+.Subscribe .stm:visited:focus,
+.btn:link:active,
+.btn:link:focus,
+.btn:visited:active,
+.btn:visited:focus,
+.ribbon :link img,
+.ribbon :visited img {
+  border-color: #1a1a1a
+}
+:link:active img,
+:link:focus img,
+:visited:active img,
+:visited:focus img {
+  border-color: #3079ed!important
+}
+.ABody h2,
+.Cover h2,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th {
+  border-color: #3079ed
+}
+:link:hover img,
+:visited:hover img {
+  position: relative;
+  top: 2px
+}
+dd ol,
+dd ul,
+li ol,
+li ul,
+tr ol,
+tr ul {
+  margin-top: 0;
+  margin-bottom: 0
+}
+.AHead-labels a,
+.SocialBtns a,
+.Subscribe a,
+dd blockquote,
+dd dl,
+dd p,
+dd pre,
+dd table,
+li blockquote,
+li dl,
+li p,
+li pre,
+li table,
+tr blockquote,
+tr dl,
+tr p,
+tr pre {
+  margin: 0 0 .5em
+}
+table {
+  border-width: 1px 0 0;
+  border-collapse: collapse;
+  empty-cells: show;
+  border-spacing: 0;
+  border-color: #777
+}
+th {
+  text-align: left;
+  padding: .5em
+}
+td {
+  padding: .5em 0;
+  border-color: #f8fbf8 #f8fbf8 #ddd
+}
+thead td,
+thead th {
+  padding: .5em .5em .5em .4em;
+  border-width: 0 0 1px .1em;
+  background: #777;
+  border-color: #ddd #818181;
+  color: #f8fbf8
+}
+tbody th {
+  background: #ddd;
+  border-color: #f8fbf8
+}
+tbody td {
+  border-width: 0 .5em 1px
+}
+tbody:not(:last-child) tr:last-child > * {
+  border-bottom-width: 0
+}
+tfoot th {
+  border-width: 2px 0 0
+}
+tfoot td {
+  border-width: 2px .5em 0
+}
+tfoot td,
+tfoot th {
+  border-color: #777 #f8fbf8
+}
+.aBodyRoot blockquote tbody th :visited,
+.aBodyRoot blockquote tbody th :visited:hover,
+.aBodyRoot thead :visited,
+.aBodyRoot thead :visited:hover,
+blockquote tbody th :link,
+blockquote tbody th :link:hover,
+thead :link,
+thead :link:hover {
+  color: #f8fbf8
+}
+blockquote h3,
+blockquote table {
+  border-color: #111
+}
+blockquote thead td,
+blockquote thead th {
+  background: #111;
+  border-color: #ddd #252525
+}
+blockquote tbody th {
+  background: #777;
+  border-color: #ddd;
+  color: #f8fbf8
+}
+blockquote td {
+  border-color: #ddd #ddd #777
+}
+blockquote tfoot td,
+blockquote tfoot th {
+  border-color: #111 #ddd
+}
+blockquote tbody :hover td {
+  border-color: #ddd #ddd #3079ed
+}
+tbody :hover th {
+  background: #3079ed;
+  color: #fff
+}
+tbody :hover td {
+  border-color: #f8fbf8 #f8fbf8 #3079ed;
+  color: #3079ed
+}
+tbody :hover th :focus,
+tbody :hover th :link:active,
+tbody :hover th :visited:active {
+  background: #fff!important;
+  color: #3079ed!important
+}
+.Cover-btn,
+.commonForm-send,
+.r {
+  text-align: right
+}
+.c {
+  text-align: center
+}
+.uc {
+  text-transform: uppercase
+}
+body {
+  background: #1a1a1a
+}
+.baseColor {
+  background: #f8fbf8
+}
+*,
+blockquote .tl tbody td:after {
+  border-color: #ddd
+}
+.ribbon * {
+  border-color: #2a2a2a
+}
+.lW,
+.lX {
+  width: 98%;
+  max-width: 70em;
+  margin: 0 auto
+}
+.lMi,
+.lMz {
+  margin-left: 3.857%
+}
+.lS {
+  width: 30%
+}
+.lSi {
+  margin: 0 9%
+}
+.lXi {
+  margin: 0 2.7%
+}
+.lW {
+  display: table;
+  table-layout: fixed
+}
+.lM,
+.lS {
+  display: table-cell
+}
+.lM {
+  width: 70%
+}
+.lMi,
+.lMz {
+  margin-right: 3.857%
+}
+.links,
+.mspacer,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+pre,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em
+}
+.lM1 {
+  float: left
+}
+.lM2 {
+  float: right
+}
+.lM1,
+.lM2 {
+  width: 47.91%
+}
+#lE .lW {
+  padding-bottom: 2.5em
+}
+#lE .lM,
+#lE .lS {
+  padding-bottom: 0
+}
+#lB .lM {
+  padding-bottom: 4em
+}
+#lB .lS,
+#lH .lMi,
+#lH .lSi {
+  padding-bottom: 1em
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 .8em
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
+}
+#lH .lMi,
+#lH .lSi {
+  padding-top: 1em
+}
+#lE,
+#lF,
+.tl tfoot th {
+  border-width: 1px 0 0
+}
+.AHead-labels a,
+.SocialBtns a,
+.Subscribe a,
+.btn {
+  display: inline-block;
+  border-width: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  vertical-align: top
+}
+.AHead-labels a:active,
+.AHead-labels a:focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
+.Subscribe a:active,
+.Subscribe a:focus,
+.btn:active,
+.btn:focus {
+  border-color: #3079ed;
+  color: #3079ed;
+  border-style: dotted;
+  outline: 0
+}
+.AHead-labels a:link,
+.btn:link {
+  background: #bbe;
+  border-color: #bbe;
+  color: #1a1a1a
+}
+.SocialBtns .fb:link:active,
+.SocialBtns .fb:link:focus,
+.SocialBtns .fb:visited:active,
+.SocialBtns .fb:visited:focus,
+.SocialBtns .pt:link:active,
+.SocialBtns .pt:link:focus,
+.SocialBtns .pt:visited:active,
+.SocialBtns .pt:visited:focus,
+.btn:visited {
+  border-color: #fff
+}
+.btn:visited {
+  background: #1a1a1a;
+  color: #fff
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.LinkList :visited,
+.RichLink-sep :visited,
+.baseColor .btn:visited,
+.medal {
+  background: #f8fbf8;
+  color: #111
+}
+.baseColor .btn:visited {
+  border-color: #111
+}
+blockquote,
+code,
+var {
+  background: #ddd
+}
+.commonForm-pair {
+  overflow: hidden;
+  margin-bottom: 1em
+}
+.commonForm label {
+  display: block;
+  float: left;
+  width: 7em;
+  padding: .45em 0 0
+}
+.commonForm-wrap {
+  display: block;
+  margin: 0 20px 0 8em
+}
+.commonForm-wrap * {
+  width: 100%
+}
+.ico-author,
+.ico-chain,
+.ico-clock,
+.ico-comment,
+.ico-flag,
+.ico-label,
+.ico-pen,
+.ico-sylinder {
+  position: relative;
+  padding-left: 1.2em
+}
+.ico-author:after,
+.ico-author:before,
+.ico-chain:after,
+.ico-chain:before,
+.ico-clock:after,
+.ico-clock:before,
+.ico-comment:after,
+.ico-comment:before,
+.ico-flag:after,
+.ico-flag:before,
+.ico-label:after,
+.ico-label:before,
+.ico-pen:after,
+.ico-pen:before,
+.ico-sylinder:after,
+.ico-sylinder:before {
+  text-indent: -1em;
+  position: absolute;
+  margin-top: .1em;
+  content: " ";
+  display: block
+}
+.ico-clock:before {
+  top: 0;
+  left: 0;
+  width: .7em;
+  height: .7em;
+  border-radius: .5em;
+  border-width: .15em;
+  border-color: #777
+}
+.ribbon .ico-author:after,
+.ribbon .ico-author:before,
+.ribbon .ico-chain:after,
+.ribbon .ico-chain:before,
+.ribbon .ico-clock:after,
+.ribbon .ico-clock:before,
+.ribbon .ico-comment:before,
+.ribbon .ico-flag:after,
+.ribbon .ico-flag:before,
+.ribbon .ico-label:before,
+.ribbon .ico-pen:before,
+.ribbon .ico-sylinder:after,
+.ribbon .ico-sylinder:before {
+  border-color: #bbb
+}
+.ico-clock:after {
+  top: .2em;
+  left: .43em;
+  width: .23em;
+  height: .23em;
+  border-width: 0 0 .14em .14em;
+  border-color: #777
+}
+.ico-label:before {
+  top: .2em;
+  left: 0;
+  width: .7em;
+  height: 0;
+  border-width: .6em 0 0;
+  border-color: #777
+}
+.ico-label:after {
+  top: .2em;
+  left: .7em;
+  width: 0;
+  height: 0;
+  border-width: .3em 0 .3em .3em;
+  border-color: transparent #777
+}
+.Cover-btn :link i,
+.Cover-btn :link:active i,
+.Cover-btn :link:focus i,
+.Cover-btn :visited:active i,
+.Cover-btn :visited:focus i,
+.Magazine-jump :link i,
+.Magazine-jump :link:active i,
+.Magazine-jump :link:focus i,
+.Magazine-jump :visited:active i,
+.Magazine-jump :visited:focus i,
+a:active .ico-label:after,
+a:focus .ico-label:after {
+  border-color: transparent #f8fbf8
+}
+.ribbon .ico-label:after {
+  border-color: transparent #bbb
+}
+.ico-author:before {
+  top: 0;
+  left: .3em;
+  width: .45em;
+  height: 0;
+  border-radius: .225em;
+  border-width: .225em 0;
+  border-color: #777
+}
+.ico-author:after {
+  top: .5em;
+  left: .1em;
+  width: 0;
+  height: 0;
+  border-radius: .3em .3em 0 0;
+  border-width: .5em .4em 0;
+  border-color: #777
+}
+.ico-flag:after,
+.ico-flag:before,
+.ico-pen:before {
+  top: 0;
+  border-color: #777;
+  height: 0
+}
+.ico-flag:before {
+  left: 0;
+  width: .1em;
+  border-width: 1em 0 0
+}
+.ico-flag:after {
+  left: .2em;
+  width: .8em;
+  border-width: .7em 0 0
+}
+.ico-pen:before {
+  left: .25em;
+  width: .5em;
+  border-width: 0 0 .7em
+}
+.ico-pen:after {
+  top: .75em;
+  left: .25em;
+  width: 0;
+  height: 0;
+  border-width: .25em .25em 0;
+  border-color: #777 transparent
+}
+.ico-chain:after,
+.ico-chain:before {
+  width: .3em;
+  height: .3em;
+  border-radius: .2em
+}
+a:active .ico-comment:after,
+a:active .ico-pen:after,
+a:focus .ico-comment:after,
+a:focus .ico-pen:after {
+  border-color: #f8fbf8 transparent
+}
+.ribbon .ico-comment:after,
+.ribbon .ico-pen:after {
+  border-color: #bbb transparent
+}
+.ico-chain:before {
+  top: .05em;
+  left: .05em;
+  border-width: .2em 0 .2em .2em;
+  border-color: #777
+}
+.ico-chain:after {
+  top: .3em;
+  left: .3em;
+  border-width: .2em .2em .2em 0;
+  border-color: #777
+}
+.ico-sylinder:after,
+.ico-sylinder:before {
+  width: .4em;
+  height: .4em;
+  border-color: #777
+}
+.ico-sylinder:before {
+  top: 0;
+  left: .1em;
+  border-width: .25em .2em .35em
+}
+.ico-sylinder:after {
+  top: .15em;
+  left: .2em;
+  border-width: .1em;
+  border-radius: .25em
+}
+.ico-comment:before {
+  top: 0;
+  left: 0;
+  width: .7em;
+  height: .45em;
+  border-radius: .2em;
+  border-width: .15em;
+  border-color: #777
+}
+.ico-comment:after {
+  top: .65em;
+  left: .3em;
+  width: 0;
+  height: 0;
+  border-width: .35em .2em 0;
+  border-color: #777 transparent
+}
+.medal,
+.medal-bronze,
+.medal-gold,
+.medal-silver {
+  display: block;
+  float: left;
+  margin: 0 .6em 1em 0;
+  border-width: 1px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6
+}
+:link .medal,
+:visited .medal {
+  border-color: #111;
+  background: #111;
+  color: #f8fbf8
+}
+.medal-gold {
+  border-color: #e7bd2c;
+  background: #e7bd2c;
+  color: #6d6309
+}
+.medal-silver {
+  border-color: #d3d6d6;
+  background: #d3d6d6;
+  color: #61686b
+}
+.medal-bronze {
+  border-color: #c47222;
+  background: #c47222;
+  color: #e6d6a9
+}
+.ADesc,
+.ribbon .AHead,
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #bbb
+}
+#lF .lM .mspacer,
+.Cover p {
+  margin: .6em .5em
+}
+.lS .mspacer {
+  margin: .6em 0
+}
+.Cover-btn i,
+.Magazine-jump i {
+  border-width: .5em 0 .5em .7em;
+  position: relative;
+  top: .15em;
+  display: inline-block;
+  margin-left: .5em
+}
+.AAuthor img,
+.Magazine-jump .btn {
+  margin: 0 0 1em 1em
+}
+.Cover-btn :visited i,
+.Magazine-jump :visited i {
+  border-color: transparent #111
+}
+.AAuthor {
+  padding: 0 .5em 1em
+}
+.AAuthor img {
+  float: right;
+  top: .4em
+}
+.ABody {
+  margin: 3.5em 0 2em
+}
+.ABody h2 {
+  font-size: 1.5em;
+  border-width: .2em 0 0;
+  padding: .8em 0 0;
+  color: #3079ed;
+  margin: 2em 0 1em
+}
+.ABody h2:after,
+.AHead-labels i,
+.Cover h2:after,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+.tl tbody :empty:after,
+.tl tbody :empty:before {
+  display: none
+}
+.ABody h3 {
+  font-weight: 700;
+  font-size: 1.25em;
+  border-width: .1em 0 0;
+  padding: .8em 0 0;
+  margin: 2.4em 0 1.2em
+}
+.ADesc {
+  margin: 4em 0 2.5em
+}
+.ADesc p {
+  margin: 0 .5em 1em
+}
+.AHead h1 {
+  font-size: 2em;
+  padding: 0;
+  margin: 2em 0;
+  color: #111;
+  text-align: left
+}
+.AHead-labels {
+  margin-top: .5em;
+  color: #1a1a1a
+}
+.AHead-labels a:visited {
+  background: #1a1a1a;
+  border-color: #bbb;
+  color: #bbb
+}
+.AHead-labels a:link:hover {
+  border-color: #bbe;
+  color: #1a1a1a
+}
+.Attribution,
+.CmtForm {
+  padding: 1em 0;
+  text-align: center
+}
+.BlogArchive,
+.Comment,
+.Label,
+.LinkList,
+.RichLink,
+.RichLink .p,
+.Subscribe {
+  padding: 0 0 1em
+}
+.Attribution small {
+  font-size: .875em
+}
+.BlogArchive dt {
+  display: block;
+  float: left;
+  clear: both
+}
+.BlogArchive dd {
+  margin-left: 3em;
+  color: #f8fbf8
+}
+.Subscribe div,
+.ribbon .BlogArchive dd,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
+}
+.BlogArchive a,
+.Label a {
+  display: inline-block;
+  margin: 0 0 1em;
+  border-width: 0 0 1px
+}
+#lF .BlogArchive a,
+#lF .Label a,
+.lS .BlogArchive a,
+.lS .Label a {
+  margin: 0 0 .6em
+}
+.Comment h3,
+.SearchResult h3 {
+  margin-bottom: 0
+}
+.Comment div,
+.Comment h3 {
+  font-size: 1em;
+  margin-left: 3%
+}
+.Comment div {
+  color: #777;
+  font-size: 93%
+}
+.Comment p {
+  padding: 0 3% .5em;
+  border-width: 0 0 1px;
+  margin-top: 0
+}
+.CmtForm iframe {
+  width: 100%;
+  margin: 0;
+  height: 400px
+}
+.Cover {
+  margin: 3.52em 0;
+  line-height: 1.4
+}
+.Cover-img {
+  position: relative;
+  height: 100%;
+  margin: 0 0 .6em
+}
+.Cover-meta,
+.SearchResult div div {
+  margin: 0 .5em
+}
+.Cover img {
+  margin: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%
+}
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
+.Cover .img-loaded div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%
+}
+.Cover h2 {
+  background: #3079ed;
+  color: #f8fbf8;
+  font-size: .825em;
+  padding: .6em;
+  border-width: 1px
+}
+.Cover h3 {
+  font-size: 1.33em;
+  padding: .37em;
+  margin: 0;
+  color: #fff;
+  background: rgba(0,0,0,.65)
+}
+.Magazine h3,
+.Magazine-yy {
+  font-size: 2em
+}
+.Cover-meta {
+  display: block;
+  color: #777
+}
+.Label div {
+  color: #f8fbf8;
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
+}
+.LinkList a,
+.RichLink-sep a {
+  page-break-inside: avoid;
+  display: block;
+  cursor: pointer;
+  text-decoration: none!important;
+  background: #111;
+  color: #f8fbf8
+}
+.LinkList :link,
+.RichLink-sep :link {
+  background: #f8fbf8;
+  color: #24c
+}
+.LinkList :link:hover,
+.LinkList :visited:hover,
+.RichLink-sep :link:hover,
+.RichLink-sep :visited:hover,
+.tl tr code,
+.tl tr var,
+blockquote tbody th code,
+blockquote tbody th var,
+thead code,
+thead var {
+  background: #ddd;
+  color: #111
+}
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: 0 0!important
+}
+.ribbon .LinkList a,
+.ribbon .RichLink-sep a {
+  background: #fff;
+  color: #1a1a1a
+}
+.ribbon .LinkList :link,
+.ribbon .RichLink-sep :link {
+  background: #1a1a1a;
+  color: #bbe
+}
+.ribbon .LinkList :visited,
+.ribbon .RichLink-sep :visited {
+  background: #1a1a1a;
+  color: #fff
+}
+.ribbon .LinkList :link:hover,
+.ribbon .LinkList :visited:hover,
+.ribbon .RichLink-sep :link:hover,
+.ribbon .RichLink-sep :visited:hover {
+  background: #2a2a2a;
+  color: #fff
+}
+.LinkList a {
+  line-height: 1.1;
+  padding: 1em .5em .8em
+}
+.LinkList a:active:hover,
+.LinkList a:focus:hover {
+  text-decoration: underline!important
+}
+.Magazine-item {
+  padding: 1em 0;
+  line-height: 1.2
+}
+.Magazine-date {
+  float: left;
+  font-weight: 700;
+  line-height: 1
+}
+.Magazine-dd,
+.Magazine-mm {
+  font-size: 4em
+}
+.Magazine-main {
+  margin-left: 5.5em;
+  border-width: 0 0 0 .5em;
+  padding-left: 1.5em;
+  border-color: #111
+}
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
+}
+.Magazine h3 {
+  font-weight: 700;
+  margin: .2em 0 0;
+  padding: 0
+}
+.Magazine-label {
+  margin: .5em 0 .8em
+}
+.Magazine .aBodyRoot {
+  font-size: 87.5%;
+  width: 80%;
+  float: left;
+  line-height: 1.6
+}
+.Magazine blockquote,
+.Magazine dl,
+.Magazine p,
+.Magazine pre {
+  margin-left: 0;
+  margin-right: 1.5em
+}
+.Magazine-jump {
+  width: 20%;
+  float: right
+}
+.RichLink-sep {
+  line-height: 1.4
+}
+.RichLink a {
+  padding: 1em .5em 0;
+  border-width: 0 0 1px;
+  border-color: #2a2a2a!important
+}
+.RichLink .p {
+  margin: 1em 0 .5em
+}
+.baseColor .RichLink a {
+  border-color: #ddd!important
+}
+.baseColor .RichLink-meta {
+  color: #ddd
+}
+.RichLink-meta {
+  color: #2a2a2a;
+  padding: 0 0 .8em;
+  clear: both
+}
+.RichLink img {
+  float: left;
+  margin: 0 .6em 1em 0
+}
+.lM .RichLink b {
+  font-size: 1.5em;
+  padding: 0 0 .4em
+}
+.lS .RichLink img {
+  float: right;
+  margin: 0 0 1em .6em
+}
+.lS .RichLink b {
+  font-size: .875em;
+  padding: 0 0 .914em
+}
+.Search {
+  position: relative;
+  margin: 0 3em 0 22px;
+  width: auto;
+  height: 1.9em
+}
+.Search input {
+  position: absolute;
+  top: 0
+}
+.Pager,
+.links a,
+.tl td,
+kbd:hover {
+  position: relative
+}
+.Search input:active,
+.Search input:focus,
+.Search input:hover {
+  z-index: 1
+}
+.Search-txt {
+  width: 100%;
+  left: -22px
+}
+.Search .btn {
+  padding-left: 0;
+  padding-right: 0;
+  width: 3em;
+  right: -3em;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+.SearchResult {
+  margin-bottom: 2em;
+  line-height: 1.2
+}
+.SearchResult p {
+  margin: .5em
+}
+.SearchResult :visited {
+  color: #1a0dab
+}
+.SearchResult cite {
+  color: #006621
+}
+.SearchResult div p {
+  margin: .2em 0 0;
+  color: #545454
+}
+.SearchResult div span {
+  color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
+}
+.Header {
+  line-height: 1
+}
+.Header h1,
+.h1 {
+  display: inline;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0 .5em 0 0;
+  line-height: 1
+}
+.Subscribe .atom:link {
+  background: #dd6502;
+  border-color: #dd6502;
+  color: #1a1a1a
+}
+.Subscribe .atom:visited {
+  background: #1a1a1a;
+  border-color: #dd6502;
+  color: #dd6502
+}
+.Subscribe .rss:link {
+  background: #dd8902;
+  border-color: #dd8902;
+  color: #1a1a1a
+}
+.Subscribe .rss:visited {
+  background: #1a1a1a;
+  border-color: #dd8902;
+  color: #dd8902
+}
+.Subscribe .fl:link {
+  background: #53bb45;
+  border-color: #53bb45;
+  color: #1a1a1a
+}
+.Subscribe .fl:visited {
+  background: #1a1a1a;
+  border-color: #53bb45;
+  color: #53bb45
+}
+.Subscribe .stm:link {
+  background: #8bc53f;
+  border-color: #8bc53f;
+  color: #1a1a1a
+}
+.Subscribe .stm:visited {
+  background: #1a1a1a;
+  border-color: #8bc53f;
+  color: #8bc53f
+}
+.TxtNavi {
+  padding: 1em 0;
+  line-height: 1.2;
+  text-align: right;
+  color: #f8fbf8
+}
+.aa,
+.note .aa,
+blockquote,
+dl .aa,
+li .aa,
+tr .aa {
+  padding: 1em
+}
+.aa {
+  margin: 1em 0;
+  background: #0a0809;
+  border-color: #0a0809;
+  line-height: 1
+}
+.tl,
+.tl th {
+  border-width: 0
+}
+.aa,
+.aa code,
+.aa var {
+  color: #00ac06
+}
+.aBodyRoot :visited,
+.tl tbody th :visited,
+.tl tbody th :visited:hover,
+.tl thead :visited,
+.tl thead :visited:hover,
+blockquote .tl tbody th :visited {
+  color: #717
+}
+.aBodyRoot :visited:hover {
+  color: #419
+}
+blockquote:before {
+  content: attr(title);
+  display: block
+}
+blockquote:after {
+  content: attr(cite)
+}
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  line-height: 1.2;
+  color: #24c;
+  margin: 0
+}
+.js-bqCite,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  line-height: 1.2;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
+.box {
+  margin: 1em 1em 0
+}
+.box > p:first-of-type {
+  margin-top: -.225em
+}
+tr .box > p:first-of-type {
+  margin-top: auto
+}
+.box dl,
+.box ol,
+.box p,
+.box ul,
+div .box .jsPicaLarge img {
+  margin: 0 0 1em
+}
+.box ol,
+.box ul {
+  list-style-position: inside
+}
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 0
+}
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1em 0
+}
+.hscroll table {
+  margin-bottom: .5em
+}
+.hscroll pre {
+  margin: 0 0 .5em;
+  white-space: pre;
+  overflow: auto
+}
+kbd {
+  border-color: #111;
+  cursor: pointer;
+  letter-spacing: -1;
+  padding: 0 .4em;
+  border-radius: 3px
+}
+kbd:hover {
+  top: -.1em
+}
+code,
+var {
+  padding: .1em .4em
+}
+pre code,
+pre var {
+  padding: 0;
+  margin: 0
+}
+blockquote .tl tr code,
+blockquote .tl tr var,
+blockquote code,
+blockquote var,
+tbody th code,
+tbody th var {
+  background: #777;
+  color: #f8fbf8
+}
+.links a {
+  padding-left: 1em;
+  line-height: 1.2
+}
+.links [href]:before {
+  content: ">";
+  position: relative;
+  left: -.5em;
+  width: 1em;
+  height: 1.4em;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: 700
+}
+.links [href^="/"]:not([href^="//"]):before {
+  content: "+"
+}
+.links [href*="web.archive."]:before {
+  content: "*"
+}
+.note {
+  padding-left: 25%;
+  margin: 1em
+}
+.note .box,
+.note blockquote,
+.note dl,
+.note iframe,
+.note img,
+.note ol,
+.note p,
+.note pre,
+.note ul {
+  margin-right: 0
+}
+.note .box iframe,
+.note .box img,
+.note blockquote dl,
+.note blockquote ol,
+.note blockquote p,
+.note blockquote pre,
+.note blockquote ul {
+  margin-right: 1em
+}
+dl.note dd {
+  margin-left: 1em
+}
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em;
+  max-width: 100%;
+  line-height: 1.2
+}
+.caption img {
+  margin: 0 0 .5em!important
+}
+.caption * {
+  float: none!important
+}
+.tl thead td {
+  border-width: 0 0 1px .3em
+}
+.tl tfoot td,
+.tl tfoot th,
+.tl thead td,
+.tl thead th {
+  border-color: #ddd;
+  padding-top: .5em;
+  padding-bottom: .5em
+}
+.tl th {
+  padding: .5em 1em .5em 0;
+  text-align: left
+}
+.tl td {
+  border-width: 0 0 0 .3em;
+  border-color: #ddd;
+  border-style: solid;
+  padding: .5em 1em
+}
+.tl tbody td:after,
+.tl tbody td:before {
+  text-indent: -1em;
+  position: absolute;
+  content: " ";
+  display: block
+}
+.tl tbody td:before {
+  top: .6em;
+  left: -.75em;
+  width: 0;
+  height: 0;
+  border-radius: .6em;
+  border-width: .6em;
+  border-color: #ddd
+}
+.tl tbody td:after {
+  top: .85em;
+  left: -.5em;
+  width: 0;
+  height: 0;
+  border-radius: .35em;
+  border-width: .35em;
+  border-color: #f8fbf8
+}
+.tl tfoot td {
+  border-width: 1px 0 0 .3em;
+  border-style: solid dotted
+}
+.tl tbody :hover th {
+  background: #3079ed!important;
+  color: #fff
+}
+.AMeta {
+  padding: .5em 0;
+  line-height: 1.2
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  color: #f8fbf8;
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  display: block;
+  width: 32%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+.Pager i {
+  display: inline-block;
+  border-color: transparent #777
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager :focus i,
+.Pager a:active i {
+  border-color: transparent #fff
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #777 transparent
+}
+.Pager-top :focus i,
+.Pager-top a:active i {
+  border-color: #fff transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em;
+  color: #f8fbf8
+}
+.note .prettyprint,
+.prettyprint,
+dl .prettyprint,
+li .prettyprint,
+tr .prettyprint {
+  padding: 1.23em 1.143em
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
+  color: #f8fbf8
+}
+.SocialBtns .tw:visited {
+  background: #f8fbf8;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #f8fbf8
+}
+.SocialBtns .hb:visited {
+  background: #f8fbf8;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #f8fbf8
+}
+.SocialBtns .pk:visited {
+  background: #f8fbf8;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #f8fbf8
+}
+.SocialBtns .ln:visited {
+  background: #f8fbf8;
+  border-color: #00c300;
+  color: #00c300
+}
+#jsCanUseContent {
+  font: 0/0 a
+}
+#jsCanUseContent:after {
+  content: ':)';
+  visibility: hidden;
+  font: 7px/1 a
+}
+.img-disabled img {
+  display: none!important
+}
+.prettyprint {
+  background: #333;
+  color: #fff;
+  margin: 1.23em 0;
+  font-size: .875em;
+  border-width: 1px;
+  border-color: #333;
+  line-height: 1.2
+}
+code .atv,
+code .str {
+  color: #65b042
+}
+code .kwd {
+  color: #e28964
+}
+code .com {
+  color: #aeaeae;
+  font-style: italic
+}
+code .tag,
+code .typ {
+  color: #89bdff
+}
+code .dec,
+code .lit {
+  color: #3387cc
+}
+code .atn {
+  color: #bdb76b
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #aeaeae
+}
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 {
+  list-style-type: none
+}
+.jsPicaLarge img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box
+}
+div .box .jsCapLarge {
+  float: none;
+  margin: 0 0 1em
+}
+em {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmNjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+}
+strong {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2NmNjZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+}
+@media handheld,
+projection,
+tv,
+only screen and (max-width:950px) {
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
+  #lB .lS,
+  #lF .lX {
+    border-width: 1px 0 0
+  }
+  #lB .lS,
+  #lB .lS .LinkList :link,
+  #lB .lS .LinkList :visited,
+  #lB .lS .RichLink-sep :link,
+  #lB .lS .RichLink-sep :visited {
+    background: #f1f4f1
+  }
+  table {
+    width: 94%
+  }
+  .lMz {
+    padding: 0;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%;
+    margin: 0 auto
+  }
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lH .lMi {
+    padding-bottom: 0
+  }
+  .mspacer {
+    margin: 1em .5em!important
+  }
+  #lB .lS .LinkList :link:hover,
+  #lB .lS .LinkList :visited:hover,
+  #lB .lS .RichLink-sep :link:hover,
+  #lB .lS .RichLink-sep :visited:hover {
+    background: #ddd
+  }
+  .Magazine img {
+    margin-left: 0
+  }
+  .Header,
+  .SocialBtns {
+    text-align: center
+  }
+  .Header h1,
+  .h1 {
+    display: block;
+    margin: 0 0 .5em
+  }
+  .hscroll table {
+    white-space: nowrap
+  }
+}
+@media print,
+handheld,
+projection,
+tv,
+only screen and (max-width:950px) {
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  pre,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 3%
+  }
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
+  .lW {
+    display: block
+  }
+  .lM,
+  .lS {
+    float: none;
+    display: table;
+    width: 100%;
+    table-layout: fixed
+  }
+  #lE .lS {
+    padding-top: 0
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 1.5% .8em
+  }
+  iframe,
+  img {
+    max-width: 94%
+  }
+  hr {
+    margin: 2em 6%
+  }
+  .AAuthor {
+    margin: 1em 0 0;
+    padding: 0
+  }
+  .AAuthor img {
+    float: left;
+    margin: 0 1em 1em 0
+  }
+  .ABody h2 {
+    margin: 2em 1.5% 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 1.5% 1.2em
+  }
+  .ABody h2,
+  .ABody h3 {
+    text-align: center;
+    padding-left: 1.5%;
+    padding-right: 1.5%
+  }
+  .ADesc {
+    margin: 0 0 2.5em
+  }
+  .ADesc p,
+  .box {
+    margin: 1em 0 0
+  }
+  .AHead h1 {
+    text-align: center
+  }
+  .Cover {
+    margin: 2em auto
+  }
+  .lS .RichLink a {
+    padding: .7em .5em 0
+  }
+  .lS .RichLink img {
+    float: left;
+    margin: 0 .5em .6em 0
+  }
+  .lS .RichLink b {
+    padding: 0 0 .571em;
+    font-size: 1em
+  }
+  .aa {
+    padding: 1em 3%
+  }
+  blockquote {
+    padding: 1em 1px
+  }
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1.5%
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 3% 1em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 1em 1em 3%
+  }
+  .prettyprint {
+    padding: 1.23em 3%
+  }
+}
+@media handheld,
+projection,
+tv,
+only screen and (max-width:740px) {
+  .Label div,
+  .LinkList,
+  .Subscribe div,
+  h2 {
+    text-align: center
+  }
+  .Magazine .aBodyRoot,
+  .Magazine-jump,
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    width: auto;
+    float: none
+  }
+  h2:after {
+    width: 33%;
+    left: 33%;
+    right: auto
+  }
+  table {
+    width: 96%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 2%
+  }
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    margin-left: 0;
+    margin-right: 0
+  }
+  #lB .lS {
+    padding-bottom: 2em
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 1% .8em
+  }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  pre,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 2%
+  }
+  iframe,
+  img {
+    max-width: 96%
+  }
+  hr {
+    margin: 2em 4%
+  }
+  .ABody h2 {
+    margin: 2em 1% 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 1% 1.2em
+  }
+  .ABody h2,
+  .ABody h3 {
+    padding-left: 1%;
+    padding-right: 1%
+  }
+  .Cover {
+    max-width: 400px
+  }
+  .LinkList {
+    padding: .2em 0 1em
+  }
+  .LinkList div {
+    display: inline-block;
+    margin: 2px
+  }
+  .Magazine {
+    margin: 1em 0 0;
+    border-width: .5em 0 0;
+    border-color: #111
+  }
+  .Magazine-item {
+    padding: 1em 0 0
+  }
+  .Magazine-date {
+    float: none;
+    font-family: inherit
+  }
+  .Magazine-mm,
+  .Magazine-yy {
+    display: inline;
+    font-size: 1em
+  }
+  .Magazine-dd {
+    font-size: 1em
+  }
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
+  }
+  .Magazine-main {
+    margin: 0;
+    float: none;
+    border-width: 0 0 .5em;
+    padding: 0 0 1em
+  }
+  .Magazine h3,
+  .lM .RichLink b {
+    font-size: 1.3em
+  }
+  .Magazine-jump .btn {
+    margin: 0 1em 0 0
+  }
+  .aa {
+    padding: 1em 2%
+  }
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1%
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 2% 1em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 1em 1em 2%
+  }
+  .prettyprint {
+    padding: 1.23em 2%
+  }
+}
+@media handheld,
+projection,
+tv,
+only screen and (max-width:479px) {
+  .AHead,
+  .AHead h1 {
+    text-align: center
+  }
+  dd {
+    margin-left: 1em
+  }
+  table {
+    width: 98%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 1%
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em .5% .8em
+  }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  pre,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 1%
+  }
+  iframe,
+  img {
+    max-width: 98%
+  }
+  hr {
+    margin: 2em 2%
+  }
+  .commonForm label {
+    float: none;
+    width: auto
+  }
+  .commonForm-wrap {
+    margin-left: 0
+  }
+  .ABody h2 {
+    margin: 2em .5% 1em;
+    font-size: 1.25em
+  }
+  .ABody h3 {
+    margin: 2.4em .5% 1.2em
+  }
+  .ABody h2,
+  .ABody h3 {
+    padding-left: .5%;
+    padding-right: .5%
+  }
+  .AHead h1 {
+    font-size: 1.5em
+  }
+  .lM .RichLink a {
+    padding-left: 1%;
+    padding-right: 1%
+  }
+  .lM .RichLink b {
+    font-size: 1.1em
+  }
+  .Header h1,
+  .h1 {
+    font-size: 1.2em
+  }
+  .aa {
+    padding: 1em 1%
+  }
+  .aBodyRoot {
+    line-height: 1.6
+  }
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 .5%
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 1% 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.15em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 1em 1em 1%
+  }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
+  }
+  .prettyprint {
+    padding: 1.23em 1%
+  }
+}
+@media handheld,
+projection,
+tv,
+only screen and (max-width:359px) {
+  .Cover h2,
+  .lM .RichLink b {
+    font-size: 1em
+  }
+  body {
+    font-size: .813em
+  }
+  .AHead-labels {
+    line-height: 0
+  }
+  .AHead-labels a {
+    display: block;
+    text-align: center;
+    margin: .5em
+  }
+  .Cover img {
+    width: auto;
+    margin: 0 1em 1em 0
+  }
+  .Cover .img-loaded div {
+    position: static;
+    padding: 0
+  }
+  .Cover h2 {
+    display: inline-block;
+    padding: .5em;
+    margin: 0 .5em .5em 0
+  }
+  .Cover h3 {
+    background: 0 0;
+    color: #111;
+    font-size: 1.5em;
+    padding: 0 0 .33em
+  }
+  .Cover p,
+  .Cover-meta {
+    margin-left: 0;
+    margin-right: 0
+  }
+  .box .caption,
+  .box iframe,
+  .box img,
+  .lM .RichLink img {
+    float: none;
+    margin: 0 auto 1em
+  }
+  div .box .jsCapLarge,
+  div .box .jsPicaLarge img {
+    margin: 0 auto 1em
+  }
+}
+@media handheld,
+only screen and (max-width:240px) {
+  body {
+    font-size: .75em
+  }
+  dd {
+    margin-left: .5em
+  }
+  .ABody h2,
+  .ABody h3,
+  .lM .RichLink a,
+  h2 {
+    padding-left: 0;
+    padding-right: 0
+  }
+  table {
+    width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 0 .8em
+  }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  pre,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 0
+  }
+  iframe,
+  img {
+    max-width: 100%
+  }
+  hr {
+    margin: 2em 0
+  }
+  .mspacer {
+    margin: .6em 0!important
+  }
+  .ABody h2 {
+    margin: 2em 0 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 0 1.2em
+  }
+  .LinkList a {
+    padding: .5em 0
+  }
+  .SearchResult div div,
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after,
+  blockquote:before {
+    margin: 0
+  }
+  .aa {
+    padding: 1em 2px
+  }
+  .aBodyRoot {
+    line-height: 1.4
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 0 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.1em
+  }
+  .prettyprint {
+    padding: 1.23em 2px
+  }
+}
+@media handheld,
+handheld and (max-width:240px),
+screen and (max-width:240px) {
+  .AHead,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  a,
+  h6 {
+    color: #999
+  }
+  .Magazine,
+  .Magazine-main,
+  blockquote h3,
+  blockquote table,
+  h4,
+  kbd {
+    border-color: #eee
+  }
+  .ico-author:after,
+  .ico-author:before,
+  .ico-chain:after,
+  .ico-chain:before,
+  .ico-clock:after,
+  .ico-clock:before,
+  .ico-comment:before,
+  .ico-flag:after,
+  .ico-flag:before,
+  .ico-label:before,
+  .ico-pen:before,
+  .ico-sylinder:after,
+  .ico-sylinder:before,
+  .tl tbody td:before,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote .tl tbody td:before,
+  blockquote .tl td,
+  blockquote .tl tfoot td,
+  blockquote .tl tfoot th,
+  blockquote .tl thead td,
+  blockquote .tl thead th,
+  h5,
+  h6,
+  table {
+    border-color: #999
+  }
+  .SocialBtns .fb:link:active,
+  .SocialBtns .fb:link:focus,
+  .SocialBtns .fb:visited:active,
+  .SocialBtns .fb:visited:focus,
+  .SocialBtns .hb:link:active,
+  .SocialBtns .hb:link:focus,
+  .SocialBtns .hb:visited:active,
+  .SocialBtns .hb:visited:focus,
+  .SocialBtns .ln:link:active,
+  .SocialBtns .ln:link:focus,
+  .SocialBtns .ln:visited:active,
+  .SocialBtns .ln:visited:focus,
+  .SocialBtns .pk:link:active,
+  .SocialBtns .pk:link:focus,
+  .SocialBtns .pk:visited:active,
+  .SocialBtns .pk:visited:focus,
+  .SocialBtns .pt:link:active,
+  .SocialBtns .pt:link:focus,
+  .SocialBtns .pt:visited:active,
+  .SocialBtns .pt:visited:focus,
+  .SocialBtns .tw:link:active,
+  .SocialBtns .tw:link:focus,
+  .SocialBtns .tw:visited:active,
+  .SocialBtns .tw:visited:focus,
+  .baseColor .btn:link:active,
+  .baseColor .btn:link:focus,
+  .baseColor .btn:visited:active,
+  .baseColor .btn:visited:focus,
+  :link img,
+  :visited img,
+  a,
+  tbody th {
+    border-color: #000
+  }
+  .SearchResult :visited,
+  .js-bqLink,
+  .tl tbody th :link,
+  .tl tbody th :link:hover,
+  .tl thead :link,
+  .tl thead :link:hover,
+  :link,
+  blockquote:before {
+    color: #bbe
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  :visited,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  :visited:hover {
+    color: #b3f;
+    border-color: #b3f
+  }
+  .LinkList :visited,
+  .RichLink-sep :visited,
+  input,
+  textarea {
+    background: #000;
+    color: #eee
+  }
+  #lB .lS .LinkList :link:hover,
+  #lB .lS .LinkList :visited:hover,
+  #lB .lS .RichLink-sep :link:hover,
+  #lB .lS .RichLink-sep :visited:hover,
+  [type=submit],
+  code,
+  tbody th,
+  var {
+    background: #222
+  }
+  td {
+    border-color: #000 #000 #222
+  }
+  tfoot td,
+  tfoot th {
+    border-color: #999 #000
+  }
+  thead td,
+  thead th {
+    background: #999;
+    border-color: #222 #8d8d8d;
+    color: #000
+  }
+  .BlogArchive dd,
+  .Label div,
+  .Pager,
+  .SocialBtns,
+  .SocialBtns .fb:link,
+  .SocialBtns .hb:link,
+  .SocialBtns .ln:link,
+  .SocialBtns .pk:link,
+  .SocialBtns .pt:link,
+  .SocialBtns .tw:link,
+  .TxtNavi,
+  .aBodyRoot blockquote tbody th :visited,
+  .aBodyRoot blockquote tbody th :visited:hover,
+  .aBodyRoot thead :visited,
+  .aBodyRoot thead :visited:hover,
+  blockquote tbody th :link,
+  blockquote tbody th :link:hover,
+  thead :link,
+  thead :link:hover {
+    color: #000
+  }
+  blockquote thead td,
+  blockquote thead th {
+    background: #eee;
+    border-color: #222 #dadada
+  }
+  *,
+  .medal,
+  .tl tbody td:after,
+  blockquote .tl tbody td:after {
+    border-color: #222
+  }
+  blockquote tbody th {
+    background: #999;
+    border-color: #222;
+    color: #000
+  }
+  blockquote td {
+    border-color: #222 #222 #999
+  }
+  blockquote tfoot td,
+  blockquote tfoot th {
+    border-color: #eee #222
+  }
+  blockquote tbody :hover td {
+    border-color: #222 #222 #3079ed
+  }
+  tbody :hover td {
+    border-color: #000 #000 #3079ed
+  }
+  .AHead h1,
+  .Cover h3,
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  body {
+    color: #eee
+  }
+  #lB .lS,
+  #lB .lS .LinkList :link,
+  #lB .lS .LinkList :visited,
+  #lB .lS .RichLink-sep :link,
+  #lB .lS .RichLink-sep :visited,
+  .SocialBtns .fb:visited,
+  .SocialBtns .hb:visited,
+  .SocialBtns .ln:visited,
+  .SocialBtns .pk:visited,
+  .SocialBtns .pt:visited,
+  .SocialBtns .tw:visited,
+  .SocialBtns :visited,
+  .baseColor {
+    background: #000
+  }
+  .baseColor .btn:link {
+    background: #bbe;
+    border-color: #bbe;
+    color: #000
+  }
+  .baseColor .btn:visited {
+    background: #000;
+    border-color: #eee;
+    color: #eee
+  }
+  .Pager i,
+  .ico-label:after {
+    border-color: transparent #999
+  }
+  .Pager-top i,
+  .ico-comment:after,
+  .ico-pen:after {
+    border-color: #999 transparent
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .medal,
+  .tl tr code,
+  .tl tr var,
+  blockquote,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #222;
+    color: #eee
+  }
+  :link .medal,
+  :visited .medal {
+    border-color: #999;
+    background: #999;
+    color: #000
+  }
+  .Cover-btn :link i,
+  .Magazine-jump :link i {
+    border-color: transparent #000
+  }
+  .Cover-btn :visited i,
+  .Magazine-jump :visited i {
+    border-color: transparent #eee
+  }
+  .LinkList a,
+  .RichLink-sep a,
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #999;
+    color: #000
+  }
+  .LinkList :link,
+  .RichLink-sep :link {
+    background: #000;
+    color: #bbe
+  }
+  .baseColor .RichLink a {
+    border-color: #222!important
+  }
+  .baseColor .RichLink-meta {
+    color: #222
+  }
+  .SearchResult div p {
+    color: grey
+  }
+  .SearchResult div span {
+    color: #545454
+  }
+  .aBodyRoot :visited:hover {
+    color: #b3f
+  }
+  pre code,
+  pre var {
+    background: 0 0
+  }
+  em {
+    background: #4e4e1f
+  }
+  strong {
+    background: #1c3a49
+  }
+  hr {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGZiZjgiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  }
+}
+@media print {
+  .ico-author:after,
+  .ico-author:before,
+  .ico-chain:after,
+  .ico-chain:before,
+  .ico-clock:after,
+  .ico-clock:before,
+  .ico-comment:before,
+  .ico-flag:after,
+  .ico-flag:before,
+  .ico-label:before,
+  .ico-pen:before,
+  .ico-sylinder:after,
+  .ico-sylinder:before,
+  .ribbon .ico-author:after,
+  .ribbon .ico-author:before,
+  .ribbon .ico-chain:after,
+  .ribbon .ico-chain:before,
+  .ribbon .ico-clock:after,
+  .ribbon .ico-clock:before,
+  .ribbon .ico-comment:before,
+  .ribbon .ico-flag:after,
+  .ribbon .ico-flag:before,
+  .ribbon .ico-label:before,
+  .ribbon .ico-pen:before,
+  .ribbon .ico-sylinder:after,
+  .ribbon .ico-sylinder:before,
+  blockquote code,
+  blockquote var,
+  table,
+  tbody th,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead td,
+  thead th,
+  thead var {
+    border-color: #666
+  }
+  .AHead-labels a,
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    padding: 0;
+    margin: 0
+  }
+  code .typ,
+  th {
+    font-weight: 700
+  }
+  body,
+  input {
+    line-height: 1.5
+  }
+  .ADesc,
+  .ribbon a,
+  a {
+    color: #666
+  }
+  .ribbon :link,
+  :link,
+  blockquote tbody th :link,
+  blockquote thead th :link,
+  thead :link {
+    color: #006
+  }
+  .ribbon :visited,
+  :visited,
+  blockquote tbody th :visited,
+  blockquote thead th :visited,
+  thead :visited {
+    color: #606
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .js-bqLink a:after,
+  .noprint,
+  [href$=".GIF"]:after,
+  [href$=".JPEG"]:after,
+  [href$=".JPG"]:after,
+  [href$=".PNG"]:after,
+  [href$=".gif"]:after,
+  [href$=".jpeg"]:after,
+  [href$=".jpg"]:after,
+  [href$=".png"]:after,
+  [href^="#"]:after,
+  [href^="mailto:"]:after,
+  [href^="tel:"]:after,
+  h2:after {
+    display: none
+  }
+  table {
+    margin: 1em 0;
+    width: 100%
+  }
+  thead td,
+  thead th {
+    background: #ccc;
+    color: #000;
+    padding: .5em;
+    border-width: 0 0 1px
+  }
+  tbody th {
+    background: #ccc
+  }
+  td {
+    border-color: #fff #fff #ccc
+  }
+  tfoot td,
+  tfoot th {
+    border-color: #666 #fff
+  }
+  blockquote table,
+  kbd {
+    border-color: #000
+  }
+  blockquote thead td,
+  blockquote thead th {
+    background: #ccc;
+    border-color: #000;
+    color: #000;
+    padding: .5em;
+    border-width: 0 0 1px
+  }
+  blockquote tbody th {
+    background: #ccc;
+    border-color: #000;
+    color: #000
+  }
+  blockquote td {
+    border-color: #fff #fff #666
+  }
+  blockquote tfoot td,
+  blockquote tfoot th {
+    border-color: #000 #fff
+  }
+  .Cover h2,
+  .Cover h3,
+  .aa,
+  .baseColor,
+  .ribbon,
+  body {
+    background: #fff;
+    color: #000
+  }
+  *,
+  .ribbon * {
+    border-color: #ccc
+  }
+  #lF .lX {
+    border-top: .15em solid #000
+  }
+  #lE .lW {
+    padding-bottom: 0
+  }
+  #lB .lM {
+    padding-bottom: 2em
+  }
+  #lH {
+    font-size: .875em
+  }
+  #lH .lMi {
+    padding: .5em 0
+  }
+  .ico-label:after,
+  .ribbon .ico-label:after {
+    border-color: transparent #666
+  }
+  .ico-comment:after,
+  .ico-pen:after,
+  .ribbon .ico-comment:after,
+  .ribbon .ico-pen:after {
+    border-color: #666 transparent
+  }
+  .ABody {
+    margin: 0
+  }
+  .AHead {
+    color: #666!important
+  }
+  .AHead h1 {
+    color: #000!important
+  }
+  .AHead-labels,
+  .aa code,
+  .aa var,
+  .tl tr code,
+  .tl tr var,
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  blockquote var,
+  code .pln,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead var {
+    color: #000
+  }
+  .AHead-labels i {
+    display: inline-block
+  }
+  .AHead-labels a {
+    display: inline;
+    line-height: 1.2;
+    border-width: 0
+  }
+  .Header h1,
+  .Header h1 + span {
+    display: block;
+    text-align: center
+  }
+  .AHead-labels a:link {
+    color: #006;
+    background: 0 0
+  }
+  .AHead-labels a:visited {
+    color: #606;
+    background: 0 0
+  }
+  .Cover .img-loaded div {
+    position: static
+  }
+  .Cover h2 {
+    border-width: 1px;
+    border-color: #000;
+    margin-top: 1em
+  }
+  .Magazine .aBodyRoot {
+    width: auto
+  }
+  .Header {
+    text-align: left
+  }
+  .h1 {
+    font-size: 1em
+  }
+  .Header h1 {
+    margin: 0 0 .5em
+  }
+  .AMeta-cita:after,
+  .aBodyRoot :link:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
+  }
+  blockquote {
+    background: 0 0;
+    margin: 1em 0
+  }
+  .hscroll {
+    overflow-x: visible;
+    overflow-y: visible
+  }
+  .hscroll table {
+    width: 100%;
+    margin: 0;
+    white-space: normal
+  }
+  .hscroll pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all
+  }
+  code,
+  var {
+    background: 0 0!important;
+    border-width: 1px;
+    border-color: #ccc
+  }
+  pre code {
+    border: 0
+  }
+  .tl tbody td:after,
+  blockquote .tl tbody td:after {
+    border-color: #fff
+  }
+  .prettyprint {
+    background: #fff
+  }
+  code .atv,
+  code .str {
+    color: #060
+  }
+  code .kwd,
+  code .tag {
+    color: #006;
+    font-weight: 700
+  }
+  code .com {
+    color: #600;
+    font-style: italic
+  }
+  code .atn,
+  code .typ {
+    color: #404
+  }
+  code .lit {
+    color: #044
+  }
+  code .pun {
+    color: #440
+  }
+}

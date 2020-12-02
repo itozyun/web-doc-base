@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.AMeta,
+.Pager,
+.SocialBtns,
+:link:active img,
+:link:focus img,
+:visited:active img,
+:visited:focus img,
+blockquote,
+form :focus,
+td {
+  border-style: dotted
+}
+table,
+tfoot td {
+  border-width: 2px 0 0
+}
+a:active,
+a:focus {
+  outline: solid 2px
+}
+table {
+  border-spacing: 2px;
+  border-collapse: separate
+}
+th,
+thead {
+  font-weight: 700
+}
+td {
+  padding: .5em .25em
+}
+thead td,
+thead th {
+  border-width: 0 0 2px;
+  padding: .5em
+}
+tbody td {
+  border-width: 0 0 1px
+}
+.Cover-btn i,
+.Pager i {
+  display: none
+}
+.jsCanRotate .Cover-btn i {
+  display: inline-block;
+  border-width: 0 .15em .15em 0;
+  width: .45em;
+  height: .45em;
+  transform: rotate(-45deg);
+  top: 0
+}
+.LinkList,
+.RichLink {
+  padding: 2px 0
+}
+.LinkList a {
+  margin: 0 2px
+}
+.RichLink a {
+  border-width: 0
+}
+.tl {
+  border-collapse: collapse
+}
+.tl tbody td:after {
+  filter: invert(100%)
+}
+.Pager {
+  text-align: center;
+  height: auto;
+  padding: 1em 0
+}
+.Pager span {
+  position: static;
+  display: inline
+}
+.jsPica:active,
+.jsPica:focus {
+  outline: 0
+}
