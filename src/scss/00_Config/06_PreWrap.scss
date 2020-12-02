@@ -2,7 +2,7 @@
 /* http://perishablepress.com/press/2010/06/01/wrapping-content/ */
 /* http://stackoverflow.com/questions/3247358/css-how-do-i-wrap-text-with-no-whitespace-inside-a-td */
 @mixin pre-wrap {
-    /* //_}@legacy */
+    /* //_{@legacy */
         white-space : -pre-wrap;     /* Opera 4-6 */
         white-space : -o-pre-wrap;   /* Opera 7 */
         white-space : -moz-pre-wrap; /* Firefox 1.0-2.0 */

@@ -103,7 +103,10 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'dark_theme' {
-            @media handheld, (max-width: 240px)
+            @media handheld
+            /* //_{#can-mq */
+            , (max-width: 240px)
+            /* //_}#can-mq */
             /* //_{@modern */
             , (prefers-color-scheme:dark)
             /* //_}@modern */
@@ -151,22 +154,27 @@ $COMMENT_OUT : (
         & { @content; }
     }
     /* //_}@modern */
+    /* //_{@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
     @media only dynamic-css and (-ms-high-contrast:active) {
         & { @content; }
     }
+    /* //_}@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_{@ie5mac,@legacy */
+    @if(1 == 0){ @content; }
+    /* //_}@ie5mac,@legacy */
 }
 
 @mixin highContrastForIEGte9Gecko {
-    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_{@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
     @if(0 == 0){
         @media only dynamic-css and (-ms-high-contrast:active) {
             & { @content; }
         }
     }
-    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-    /* //_{@ie5win,@ie5mac */
+    /* //_}@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    /* //_{@ie5mac,@legacy */
     @if(1 == 0){ @content; }
-    /* //_}@ie5win,@ie5mac */
+    /* //_}@ie5mac,@legacy */
 }
 
 @mixin highContrastForChromiumEdge {

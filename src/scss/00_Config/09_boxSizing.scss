@@ -1,8 +1,8 @@
 @mixin box-sizing($value) {
     /* //_{#can-box-sizing */
-    /* //_{@legacy */
-       -moz-box-sizing : $value;
-    /* //_}@legacy */
+    /* //_{#notie */
+       -moz-box-sizing : $value; /* firefox 4 でもこちら */
+    /* //_}#notie */
     /* //_{@modern */
     -webkit-box-sizing : $value;
     /* //_}@modern */

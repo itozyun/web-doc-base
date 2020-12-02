@@ -89,9 +89,9 @@ $SEARCH_BTN_WIDTH : 3em;
 /* //_{@legacy */
     @media \0 all {
         .Search input {
+            position : static;
             display  : inline;
             display  : -moz-inline-box;
-            position : static;
         }
         .Search-txt {
             width : 60%;

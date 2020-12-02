@@ -6,11 +6,13 @@
  *    div.RichLink-sep
  *      a role=listitem
  *        img
- *        h3
- *          (span.medal[-*])
+ *        (span.medal[-*])
+ *        b
+ *        (br)
  *        span.RichLink-meta,
  *          span
- *        p
+ *        (br)
+ *        span.p
  * lSi 下用タグ構造
  *  div.RichLink
  *    div.RichLink-sep
@@ -46,42 +48,21 @@ $RICHLINK_TEXT_SIZE : 0.875;
                 border-width : 0;
             }
         }
-            .RichLink img {
-                float        : left;
-                border-width : 0;
-            }
-
-            .RichLink  .h3 {
-                font-size   : 1.1em;
-                margin      : 0 0 0.4em;
-            }
-
-            .RichLink-meta, .RichLink b {
-                display     : block;
-                font-size   : 1em * $RICHLINK_TEXT_SIZE;
+            .RichLink b {
                 font-weight : normal;
             }
-
-            /* //_{#can-inline-block */
-                /* //_{@legacy */
-                .RichLink-meta {
-                    clear : both;
-                }
-                /* //_}@legacy */
-                .RichLink-meta span {
-                    @include inline-block;
-                }
-            /* //_}#can-inline-block */
-
-            .RichLink p {
-                display     : block;
+            .RichLink br {
+                display : none;
+            }
+            .RichLink .p {
+                display : block;
                 /* //_{#ie55-,@ie8,@ie9,#notie */
-                padding     : 0 0 1em;
+                padding : 0 0 1em;
                 /* //_}#ie55-,@ie8,@ie9,#notie */
                 /* //_{@ie6,@ie7 */
-                padding     : 0;
+                padding : 0;
                 /* //_}@ie6,@ie7 */
-                margin      : 0;
+                margin  : 1em 0 0.5em;
             }
 
     .RichLink a {
@@ -113,33 +94,40 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     }
 
-
 /*  layout Main
 --------------------------------------------------------------------------------------*/
-    .lM .RichLink img {
-        height    : auto;
-        margin    : 0 1em 1em 0;
+    .RichLink img {
+        float  : left;
+        margin : 0 .6em 1em 0;
     }
-    .RichLink .h3 {
+    .lM .RichLink b {
         font-size : 1.5em;
+        padding   : 0 0 0.4em;
+        display   : block;
     }
     .RichLink-meta {
-        padding   : 0 0 0.8em; /* 1em - .2em */
+        padding : 0 0 0.8em; /* 1em - .2em */
+        clear   : both;
+    /* //_{#can-inline-block */
+        span {
+            @include inline-block;
+        }
+    /* //_}#can-inline-block */
     }
-    
+
 /*  layout Sub
 --------------------------------------------------------------------------------------*/
     .lS .RichLink img {
         float  : right;
         margin : 0 0 1em 0.6em;
     }
-
-    .RichLink b {
+    .lS .RichLink b {
         word-break : break-all;
         /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
         word-wrap  : break-word;
         /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
 
+        font-size  : 1em * $RICHLINK_TEXT_SIZE;
         /* //_{#ie55-,@ie8,@ie9,#notie */
         padding    : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
         /* //_}#ie55-,@ie8,@ie9,#notie */
@@ -177,14 +165,12 @@ $RICHLINK_TEXT_SIZE : 0.875;
     .lS .RichLink a {
         padding : 0.7em 0.5em 0;
     }
-        .lS .RichLink div, .RichLink b {
-            padding : 0 0 0.5em / $RICHLINK_TEXT_SIZE;
-        }
         .lS .RichLink img {
             float  : left;
             margin : 0 0.5em 0.6em 0;
         }
-        .RichLink b {
+        .lS .RichLink b {
+            padding   : 0 0 0.5em / $RICHLINK_TEXT_SIZE;
             font-size : 1em;
         }
 }
@@ -192,7 +178,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .RichLink .h3 {
+    .lM .RichLink b {
         font-size : 1.3em;
     }
 }
@@ -204,18 +190,15 @@ $RICHLINK_TEXT_SIZE : 0.875;
         padding-left  : 1%;
         padding-right : 1%;
     }
-    .RichLink .h3 {
+    .lM .RichLink b {
         font-size : 1.1em;
-    }
-    .lS .RichLink div {
-        font-size : 1em;
     }
 }
 
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
-    .RichLink .h3 {
+    .lM .RichLink b {
         font-size : 1em;
     } 
 }
