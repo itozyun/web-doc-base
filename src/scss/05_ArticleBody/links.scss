@@ -9,13 +9,7 @@
         padding-left : 1em;
         @include lineHeight(1.2, 1);
 
-        /* //_{#can-inline-block */
-        /* //_{@modern */
-        display      : -moz-inline-box;
-        display      : inline-table;
-        /* //_}@modern */
-        display      : inline-block;
-        /* //_}#can-inline-block */
+        @include inline-block;
         
         /* //_{#can-content */
         position     : relative;

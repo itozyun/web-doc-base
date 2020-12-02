@@ -1,13 +1,7 @@
 /* //_{+it
 --------------------------------------------------------------------------------------*/
 kbd {
-    /* //_{#can-inline-block */
-    /* //_{@modern */
-    display        : -moz-inline-box;
-    display        : inline-table;
-    /* //_}@modern */
-    display        : inline-block;
-    /* //_}#can-inline-block */
+    @include inline-block;
     border-width   : 1px;
     border-color   : $COLOR_Default_text;
     cursor         : pointer;
@@ -15,14 +9,7 @@ kbd {
     padding        : 0 .4em;
     margin         : 0 .1em;
 
-    /* //_{@modern */
-     -webkit-border-radius : 3px;
-        -moz-border-radius : 3px;
-          -o-border-radius : 3px;
-    /* //_}@modern */
-    /* //_{@ie9,@modern */
-             border-radius : 3px;
-    /* //_}@ie9,@modern */
+    @include border-radius(3px);
     /* //_{#can-hover-pseudo-class */
         &:hover {
             position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */

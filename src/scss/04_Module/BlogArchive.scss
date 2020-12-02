@@ -32,11 +32,7 @@
         }
             .BlogArchive a {
             /* //_{#can-inline-block */
-                /* //_{@modern */
-                display : -moz-inline-box;
-                display : inline-table;
-                /* //_}@modern */
-                display : inline-block;
+                @include inline-block;
                 margin  : 0 0 1em;
             /* //_}#can-inline-block */
 

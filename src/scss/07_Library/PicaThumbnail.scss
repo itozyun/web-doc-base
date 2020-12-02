@@ -32,17 +32,11 @@
         margin    : 0 auto 1em; /* auto は中央配置で transition させるため */
         /* //_}#can-margin-auto */
 
-        /* //_{#can-box-sizing */
-        /* //_{@modern */
-        -webkit-box-sizing : border-box;
-           -moz-box-sizing : border-box;
-        /* //_}@modern */
-                box-sizing : border-box;
-        /* //_}#can-box-sizing */
+        @include box-sizing(border-box);
 
-    /* //_{@modern,@ie9 */
+    /* //_{#notie,@ie9 */
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}@modern,@ie9 */
+    /* //_}#notie,@ie9 */
         .box & {
             /* //_{@modern */
             float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
@@ -56,9 +50,9 @@
         margin : 0 auto 1em; /* auto は中央配置で transition させるため */
         /* //_}#can-margin-auto */
 
-    /* //_{@modern,@ie9 */
+    /* //_{#notie,@ie9 */
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}@modern,@ie9 */
+    /* //_}#notie,@ie9 */
         .box & {
             float  : none;
             margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */

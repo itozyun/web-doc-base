@@ -2,8 +2,10 @@
  * http://webcommu.net/phone-table-scroll/
  */
 .hscroll {
-/* //_{@modern */
+/* //_{#notie */
     overflow      : auto;
+/* //_}#notie */
+/* //_{@modern */
     // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
     //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
     -webkit-overflow-scrolling : touch;
@@ -61,9 +63,9 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .hscroll {
-    /* //_{@modern */
+    /* //_{#notie */
         overflow   : visible;
-    /* //_}@modern */
+    /* //_}#notie */
         overflow-x : visible;
         overflow-y : visible;
     }

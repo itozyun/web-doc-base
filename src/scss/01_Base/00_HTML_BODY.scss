@@ -31,11 +31,11 @@
 
     html,
     body {
-        margin      : 0;
-        /* //_{@modern */
-        padding     : 0;/* opera 8 */
-        /* //_}@modern */
-        height      : 100%; /* js */
+        margin  : 0;
+        /* //_{@legacy */
+        padding : 0; /* opera 8 */
+        /* //_}@legacy */
+        height  : 100%;
     }
     /* //_{@ie5win */
     *,

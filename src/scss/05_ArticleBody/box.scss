@@ -99,7 +99,7 @@
 /*  patch for Safari 3.2.3
 --------------------------------------------------------------------------------------*/
 /* //_{@modern */
-    @media screen and (min-width:0\-) { // Safari 4.1-
+    @media screen and (min-width:0\-) { // Safari ~4.1
         .box > p:first-of-type {
             margin-top : auto;
         }        

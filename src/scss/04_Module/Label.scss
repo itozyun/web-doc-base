@@ -14,10 +14,10 @@
         text-justify : inter-ideograph;
         line-break   : normal;
     /* //_}#ie7-win,@ie8,@ie9 */
-    /* //_{#ie7-win,@ie9,@modern */
+    /* //_{#ie7-win,@ie9,#notie */
         text-align   : justify;
         /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
-    /* //_}#ie7-win,@ie9,@modern */
+    /* //_}#ie7-win,@ie9,#notie */
     }
     .ribbon .Label div {
         color : $COLOR_Ribbon_fill; /* , を消す */
@@ -25,11 +25,7 @@
 
         .Label a {
         /* //_{#can-inline-block */
-            /* //_{@modern */
-            display : -moz-inline-box;
-            display : inline-table;
-            /* //_}@modern */
-            display : inline-block;
+            @include inline-block;
             margin  : 0 0 1em;
         /* //_}#can-inline-block */
 

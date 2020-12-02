@@ -175,6 +175,10 @@ gulp.task('js', gulp.series(
                         './src/js/7_Library/detectImageTurnedOff.js',
                         './src/js/7_Library/HighContrastStyleSwitcher.js',
                         './src/js/7_Library/ie5.js',
+<<<<<<< HEAD
+=======
+                        './src/js/7_Library/LegacyCssLoader.js',
+>>>>>>> legacy-target-development
                         './src/js/7_Library/PicaThumnail.js',
                         './src/js/7_Library/SidebarFixer.js',
 

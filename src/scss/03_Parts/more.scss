@@ -1,4 +1,3 @@
-/** //_{+blog **/
 /*  ▶
 --------------------------------------------------------------------------------------*/
 %more-icon {
@@ -6,16 +5,12 @@
         border-width : 0.5em 0 0.5em 0.7em;
         position     : relative;
     
-        /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7,@ie8,@ie9,#notie */
         top          : 0.15em;
-        /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_}@ie6,@ie7,@ie8,@ie9,#notie */
 
         /* //_{#can-inline-block */
-        /* //_{@modern */
-        display      : -moz-inline-box;
-        display      : inline-table;
-        /* //_}@modern */
-        display      : inline-block;
+        @include inline-block;
         margin-left  : .5em;
         /* //_}#can-inline-block */
 
@@ -133,4 +128,3 @@
         }
     }
 }
-/** //_}+blog **/

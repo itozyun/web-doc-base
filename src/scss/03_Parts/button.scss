@@ -19,9 +19,9 @@
     , &:link:focus, &:visited:focus
     /* //_}#can-focus-pseudo-class */
     {
-        /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_{@ie6,@ie7,@ie8,@ie9,#notie */
             border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
-        /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+        /* //_}@ie6,@ie7,@ie8,@ie9,#notie */
     }
 
     @if $opt_need_bgcolor_for_Watch == 1 {
@@ -46,24 +46,18 @@
 }
 
 %btnBase {
-    /* //_{#can-inline-block */
-    /* //_{@modern */
-    display      : -moz-inline-box;
-    display      : inline-table;
-    /* //_}@modern */
-    display      : inline-block;
-    /* //_}#can-inline-block */
+    @include inline-block;
     border-width : 2px;
     cursor       : pointer;
     text-align   : center;
-    /* //_{@modern */
+    /* //_{@legacy */
     line-height  : $BASE_LINE_HEIGHT_EM;
     padding      : 0 1em;
-    /* //_}@modern */
-    /* //_{^@modern */
+    /* //_}@legacy */
+    /* //_{^@legacy */
     line-height  : 1;
     padding      : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
-    /* //_}^@modern */
+    /* //_}^@legacy */
     /* //_{@modern,@ie9 */
     vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
     /* //_}@modern,@ie9 */
@@ -112,10 +106,10 @@
 }
 
 input.btn {
-/* //_{@modern */
+/* //_{@legacy */
     line-height : 1;
     padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em; /* Gecko ~1.8 */
-/* //_}@modern */
+/* //_}@legacy */
 /* //_{@ie5win,@ie55 */
     padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
 /* //_}@ie5win,@ie55 */

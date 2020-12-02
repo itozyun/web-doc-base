@@ -8,8 +8,10 @@
  *  //@ie8
  *  //@ie9
  *  //@modern
+ *  //@legacy
  * 
  * 2.Group
+ *  //#notie[@modern,@legacy]
  *  //#ie55-[@ie5win,@ie5mac,@ie55]
  *  //#ie6-win[@ie5win,@ie55,@ie6]
  *  //#ie7-win[@ie5win,@ie55,@ie6,@ie7]
@@ -19,21 +21,21 @@
  *
  *  //#can-mq[@modern,@ie9]
  *  //#can-svg[@modern,@ie9]
- *  //#can-content[@modern,@ie9,@ie8]
- *  //#can-attr-selector[@modern,@ie9,@ie8,@ie7]
- *  //#can-max-min[@modern,@ie9,@ie8,@ie7]
- *  //#can-margin-auto[@modern,@ie9,@ie8,@ie7,@ie6,@ie55]
- *  //#can-hover-pseudo-class[@modern,@ie9,@ie8,@ie7]
- *  //#can-focus-pseudo-class[@modern,@ie9,@ie8,@ie5mac]
- *  //#can-empty-pseudo-class[@modern,@ie9]
- *  //#can-inline-block[@modern,@ie9,@ie8,@ie5mac]
- *  //#can-box-sizing[@modern,@ie9,@ie8]
+ *  //#can-content[@modern,@legacy,@ie9,@ie8]
+ *  //#can-attr-selector[@modern,@legacy,@ie9,@ie8,@ie7]
+ *  //#can-max-min[@modern,@legacy,@ie9,@ie8,@ie7]
+ *  //#can-margin-auto[@modern,@legacy,@ie9,@ie8,@ie7,@ie6,@ie55]
+ *  //#can-hover-pseudo-class[@modern,@legacy,@ie9,@ie8,@ie7]
+ *  //#can-focus-pseudo-class[@modern,@legacy,@ie9,@ie8,@ie5mac]
+ *  //#can-empty-pseudo-class[@modern,@legacy,@ie9]
+ *  //#can-inline-block[@modern,@legacy,@ie9,@ie8,@ie5mac]
+ *  //#can-box-sizing[@modern,@legacy,@ie9,@ie8]
  *    https://developer.mozilla.org/ja/docs/Web/CSS/box-sizing
  *      -moz-: | -webkit-: Safari 3~5.1, AOPS 2~
- *  //#can-1stChild[@modern,@ie9,@ie8,@ie7,@ie5mac]
- *  //#can-lastChild[@modern,@ie9]
- *  //#can-1stOfType[@modern,@ie9,@ie8]
- *  //#can-transparent[@modern,@ie9,@ie8,@ie7]
+ *  //#can-1stChild[@modern,@legacy,@ie9,@ie8,@ie7,@ie5mac]
+ *  //#can-lastChild[@modern,@legacy,@ie9]
+ *  //#can-1stOfType[@modern,@legacy,@ie9,@ie8]
+ *  //#can-transparent[@modern,@legacy,@ie9,@ie8,@ie7]
  *
  * 3.Options
  *  //+mobileOnly

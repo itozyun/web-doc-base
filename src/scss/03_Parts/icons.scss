@@ -7,9 +7,7 @@
     position     : relative;
     padding-left : 1.2em;
     /* //_{@modern */
-        display        : -moz-inline-box;
-        display        : inline-table;
-        display        : inline-block; /* 3DSはインライン要素でpaddingが効かない、DSiでrelativeが効かない */
+        display        : inline-block; /* 3DSはインライン要素で padding が効かない、DSiで relative が効かない */
         vertical-align : text-top;
     /* //_}@modern */
     &:before, &:after {
@@ -118,13 +116,7 @@
         left          : 0;
         width         : 0.7em;
         height        : 0.7em;
-        /* //_{@modern */
-        -webkit-border-radius : .5em;
-        -moz-border-radius    : .5em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .5em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.5em);
         @include icon-border;
         border-width  : .15em;
     }
@@ -171,13 +163,7 @@
         left          : 0.3em;
         width         : 0.45em;
         height        : 0;
-        /* //_{@modern */
-        -webkit-border-radius : .225em;
-        -moz-border-radius    : .225em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .225em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.225em);
         border-width  : 0.225em 0;
         @include icon-border;
     }
@@ -186,14 +172,7 @@
         left          : 0.1em;
         width         : 0;
         height        : 0;
-        /* //_{@modern */
-        -webkit-border-top-right-radius : .3em;
-        -webkit-border-top-left-radius  : .3em;
-        -moz-border-radius    : .3em .3em 0 0;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .3em .3em 0 0;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.3em .3em 0 0);
         border-width  : 0.5em 0.4em 0;
         @include icon-border;
     }
@@ -256,13 +235,7 @@
         width         : 0.3em;
         height        : 0.3em;
         @include icon-border;
-        /* //_{@modern */
-        -webkit-border-radius : 0.2em;
-        -moz-border-radius    : 0.2em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .2em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.2em);
         border-width  : 0.2em 0 0.2em 0.2em;
     }
     &:after {
@@ -271,13 +244,7 @@
         width         : 0.3em;
         height        : 0.3em;
         @include icon-border;
-        /* //_{@modern */
-        -webkit-border-radius : 0.2em;
-        -moz-border-radius    : 0.2em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .2em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.2em);
         border-width  : 0.2em 0.2em 0.2em 0;
     }
     /* //_}#can-content */
@@ -301,13 +268,7 @@
         width         : 0.4em;
         height        : 0.4em;
         border-width  : 0.1em;
-        /* //_{@modern */
-        -webkit-border-radius : .3em;
-        -moz-border-radius    : .3em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius : .25em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.25em);
         @include icon-border;
     }
     /* //_}#can-content */
@@ -322,13 +283,7 @@
         left                  : 0;
         width                 : .7em;
         height                : .45em;
-        /* //_{@modern */
-        -webkit-border-radius : 0.2em;
-        -moz-border-radius    : 0.2em;
-        /* //_}@modern */
-        /* //_{@modern,@ie9 */
-        border-radius         : 0.2em;
-        /* //_}@modern,@ie9 */
+        @include border-radius(.2em);
         border-width          : .15em;
         @include icon-border;
     }
