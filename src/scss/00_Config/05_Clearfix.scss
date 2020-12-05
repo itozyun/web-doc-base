@@ -49,7 +49,6 @@
     /* //_{#notie */
         &:after {
             content     : "";
-            line-height : 0; /* for Gecko 0.9 で隙間が出来るのを回避, 1.4.2 で親ボックスの高さ設定 */
             height      : 0;
             display     : block;
             visibility  : hidden;
@@ -58,18 +57,19 @@
         /* override Gecko ~1.8.1 */
         @media \0 all {
             &:after {
-                content : ".";
+                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
             }
             /* override Gecko 0.9~1.4.2 */
             [_csshack_=":-gck-lte142|_:-moz-any-link"] {
                 position : relative; /* for Gecko 1.0.2 */
             }
-            &:after [_csshack_=":-gck-lte142|_:-moz-any-link"] {
-                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
-            }
-            /* override Gecko 1.4~1.8.1 */
+            /* override Gecko 1.2~1.8.1 */
             &:after [_lazyhack_="_:lang(x)"] {
-                display : block; /* for Gecko 1.4 */
+                content     : ".";   /* (1) for Gecko 1.3~1.5 */
+                display     : block; /* (2) for Gecko 1.3~1.4 */
+                font-size   : 1px;   /* (3) for Gecko 1.2.1. (1)(2)で発生する隙間を小さく */
+                line-height : 0;     /*     for Gecko 1.2.1. (1)(2)で発生する隙間を小さく */
+                height      : 0.1px; /*     for Gecko 1.4    (3)で高さが無くなるのを回避, 1.4.2 では発生しない */
             }
             /* override Gecko 1.8~ */
             @-moz-document url-prefix() { &:after { content : "" } }
