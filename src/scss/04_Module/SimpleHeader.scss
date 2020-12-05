@@ -12,11 +12,13 @@
 }
 
     .Header h1, .h1 {
-        display     : inline;
-        font-size   : 1.5em;
+        /* //_{^+mobileOnly */
+        display   : inline;
+        /* //_}^+mobileOnly */
+        font-size : 1.5em;
         @include lineHeight(1, 0);
-        padding     : 0;
-        margin      : 0 0.5em 0 0;
+        padding   : 0;
+        margin    : 0 0.5em 0 0;
     }
 
 /*  WSXGA
@@ -34,8 +36,8 @@
         text-align : center;
     }
         .Header h1, .h1 {
-            display   : block;
-            margin    : 0 0 0.5em;
+            display : block;
+            margin  : 0 0 0.5em;
         }
 }
 
@@ -57,13 +59,17 @@
             font-size : 1em;
         }
         .Header h1 {
+            /* //_{^+mobileOnly */
             display    : block;
+            /* //_}^+mobileOnly */
             text-align : center;
             margin     : 0 0 0.5em;
         }
+        /* //_{^#ie6-win */
         .Header h1+span {
             display    : block;
             text-align : center;
         }
+        /* //_}^#ie6-win */
 }
 /** //_}+simpleHeader **/

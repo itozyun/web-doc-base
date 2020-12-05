@@ -1246,7 +1246,6 @@ pre var {
 }
 .Header h1,
 .h1 {
-  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
@@ -1920,11 +1919,6 @@ strong {
     padding: 0;
     margin: 0
   }
-  .Header h1,
-  .Header h1 + span {
-    display: block;
-    text-align: center
-  }
   .AHead-labels a:link {
     color: #006;
     background: 0 0
@@ -1948,7 +1942,12 @@ strong {
     font-size: 1em
   }
   .Header h1 {
+    text-align: center;
     margin: 0 0 .5em
+  }
+  .Header h1 + span {
+    display: block;
+    text-align: center
   }
   .AMeta-cita:after,
   .aBodyRoot :link:after {

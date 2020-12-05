@@ -1701,11 +1701,6 @@ strong {
     padding: 0;
     margin: 0
   }
-  .Header h1,
-  .Header h1 + span {
-    display: block;
-    text-align: center
-  }
   .AHead-labels a:link {
     color: #006;
     background: 0 0
@@ -1743,6 +1738,8 @@ strong {
     font-size: 1em
   }
   .Header h1 {
+    display: block;
+    text-align: center;
     margin: 0 0 .5em
   }
   .aa {

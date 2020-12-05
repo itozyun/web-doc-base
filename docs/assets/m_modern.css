@@ -1503,6 +1503,11 @@ pre var {
   width: auto;
   height: 1.9em
 }
+.Search-txt,
+.caption {
+  width: 100%;
+  display: block
+}
 .Search input {
   position: absolute;
   top: 0
@@ -1513,8 +1518,6 @@ pre var {
   z-index: 1
 }
 .Search-txt {
-  display: block;
-  width: 100%;
   left: -22px
 }
 .Search-txt:invalid {
@@ -1557,7 +1560,6 @@ pre var {
 }
 .Header h1,
 .h1 {
-  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
@@ -1800,10 +1802,8 @@ dl.note dd {
   margin-left: 1em
 }
 .caption {
-  display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%;
   max-width: 100%;
   line-height: 1.2
 }
@@ -3024,11 +3024,6 @@ screen and (prefers-color-scheme:dark) {
     padding: 0;
     margin: 0
   }
-  .Header h1,
-  .Header h1 + span {
-    display: block;
-    text-align: center
-  }
   .AHead-labels a:link {
     color: #006;
     background: 0 0
@@ -3052,7 +3047,12 @@ screen and (prefers-color-scheme:dark) {
     font-size: 1em
   }
   .Header h1 {
+    text-align: center;
     margin: 0 0 .5em
+  }
+  .Header h1 + span {
+    display: block;
+    text-align: center
   }
   .AMeta-cita:after,
   .aBodyRoot :link:after {

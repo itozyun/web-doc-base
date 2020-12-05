@@ -52,14 +52,23 @@ textarea {
 .e6C .lW {
   width: 100%
 }
+.Cover-meta,
+.Header h1,
 .Pager span,
+.RichLink .p,
+.RichLink b,
+.RichLink-meta,
+.Search,
+.Search-txt,
 .caption,
 .commonForm,
 .commonForm label,
 .commonForm-wrap,
 .e6BR,
+.h1,
 .js-bqCite,
 .jsPicaLarge,
+.lM .RichLink b,
 .links a,
 a iframe,
 a img {
@@ -951,7 +960,6 @@ kbd {
   background: #000
 }
 .Cover-meta {
-  display: block;
   color: #777
 }
 .Cover {
@@ -1037,11 +1045,7 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink b {
-  display: block
-}
 .RichLink .p {
-  display: block;
   padding: 0;
   margin: 1em 0 .5em
 }
@@ -1054,8 +1058,7 @@ pre var {
 .RichLink-meta {
   color: #2a2a2a;
   padding: 0 0 .8em;
-  clear: both;
-  display: block
+  clear: both
 }
 .RichLink img {
   float: left;
@@ -1063,8 +1066,7 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em;
-  display: block
+  padding: 0 0 .4em
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1078,7 +1080,6 @@ pre var {
   font-size: 1em
 }
 .Search {
-  display: block;
   margin: 0 3em 0 1.1em;
   height: 1.9em
 }
@@ -1090,7 +1091,6 @@ pre var {
   z-index: 1
 }
 .Search-txt {
-  display: block;
   width: 100%;
   left: -1.1em
 }
@@ -1131,11 +1131,9 @@ pre var {
 }
 .Header h1,
 .h1 {
-  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
-  display: block;
   margin: 0 0 .5em
 }
 .Subscribe .atom:link {
@@ -1577,11 +1575,6 @@ strong {
   color: #111
 }
 @media print {
-  .Header h1,
-  .Header h1 + span {
-    display: block;
-    text-align: center
-  }
   code .typ,
   th {
     font-weight: 700
@@ -1767,6 +1760,7 @@ strong {
     font-size: 1em
   }
   .Header h1 {
+    text-align: center;
     margin: 0 0 .5em
   }
   blockquote {

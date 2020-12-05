@@ -1620,11 +1620,6 @@ strong {
   color: #111
 }
 @media print {
-  .Header h1,
-  .Header h1 + span {
-    display: block;
-    text-align: center
-  }
   .lSi,
   .lW,
   .lX,
@@ -1896,6 +1891,8 @@ strong {
     font-size: 1em
   }
   .Header h1 {
+    display: block;
+    text-align: center;
     margin: 0 0 .5em
   }
   .aa {
