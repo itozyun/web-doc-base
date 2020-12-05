@@ -40,10 +40,12 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
                   g_Trident < 5.5 ? 'ie5win' :
                   g_Trident < 6   ? 'ie55' :
                   g_Trident < 10  ? 'ie' + ( g_Trident | 0 ) :
+                  g_Presto < 9.5 || ( g_Gecko && !g_FirefoxGte35 ) ? 'legacy' :
                   'modern'
                 ) + '.css',
     g_isSecure = location.href.indexOf( 'https' ) === 0,
     g_assetUrl, g_isMobile,
+    g_useMobile = g_Gecko < 0.9 || ua.NDS || ua.NDSi || ua.N3DS || ua.New3DS || ua.PSP || ua.PSVita || ua.PSPGo,
 
     g_DebugLogger = { log : function(){} },
 

@@ -26,7 +26,7 @@ g_imageTest = imageTest;
  */
 function imageTest( callback, imageUrl ){ // callback, url, 
     var img = new Image(),
-        timerID, finish, counter = 99;
+        finish, counter = 99;
 
     g_DebugLogger.log( '[imageTest] start.' );
 
@@ -34,63 +34,35 @@ function imageTest( callback, imageUrl ){ // callback, url,
     img.onload  = imageTest_onLoad;
     img.src     = imageUrl;
 
-    if( g_Presto < 8 && ( img.complete && img.width ) ){
-        g_DebugLogger.log( '[imageTest] Presto<8 success!' );
-        g_imageEnabled = true;
-        g_setTimer( callback, true );
-    } else if( !finish ){
-        timerID = g_setTimer( imageTest_check );
-    };
+    g_setTimer( imageTest_check );
 
     function imageTest_check(){
-        if( finish ) return;
-        
-        if( img.complete ){
+        if( finish || !counter || img.complete ){
             g_DebugLogger.log( '[imageTest] timer -> img.complete. img.width=' + img.width );
-
-            finish = true;
-            // if( img.width ) return;
-            g_setTimer( callback, !!img.width );
-        } else if( --counter ){
+            
+            var result = !!img.width;
+            g_imageEnabled = g_imageEnabled || result;
+            g_setTimer( callback, result );
+            img.onerror = img.onload = g_emptyFunction;
+            img = callback = null;
+        } else {
+            --counter;
             // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
             // g_DebugLogger.log( '[imageTest] timer -> img.complete=false.' );
-            timerID = g_setTimer( imageTest_check );
-        } else {
-            g_DebugLogger.log( '[imageTest] timeout.' );
-            finish = true;
-            timerID = g_setTimer( callback, false );
+            g_setTimer( imageTest_check );
         };
     };
 
     function imageTest_onError(){
-        var errorFix = !g_Trident || g_Trident === 11 || g_IEVersion === 11;
-
-        g_DebugLogger.log( '[imageTest] error. errorFix=' + errorFix );
-
+        // var errorFix = !g_Trident || g_Trident === 11 || g_IEVersion === 11;
         // ie11(10,9 開発モード)で mineType 不正の場合、画像取得に成功してもエラーイベントが起こるのを無視する。
-        if( errorFix && img.width ) return;
-        if( finish ) return;
-
+        // if( errorFix && img.width ) return;
         g_DebugLogger.log( '[imageTest] error!' );
-
         finish = true;
-        timerID && g_clearTimer( timerID );
-        timerID = g_setTimer( callback, false );
     };
 
     function imageTest_onLoad(){
-        finish = true;
-        timerID && g_clearTimer( timerID );
-        
         g_DebugLogger.log( '[imageTest] onload.' );
-
-        if( g_Presto && !img.complete && !img.width ){
-            g_DebugLogger.log( '[imageTest] Presto not img.complete!' );
-            timerID = g_setTimer( callback, false );
-        } else {
-            g_DebugLogger.log( '[imageTest] success!' );
-            g_imageEnabled = true;
-            g_setTimer( callback, true );
-        };
+        finish = true;
     };
 };

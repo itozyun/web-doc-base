@@ -168,17 +168,13 @@ gulp.task('js', gulp.series(
                         //'./src/js/6_CanUse/generatedContent.js',
                         //'./src/js/6_CanUse/dataUriTest.js',
                         './src/js/6_CanUse/ieFilterTest.js',
-                        //'./src/js/6_CanUse/imageTest.js',
+                        './src/js/6_CanUse/imageTest.js',
                         //'./src/js/6_CanUse/webfontTest.js',
 
                         './src/js/7_Library/blockquot.js',
+                        './src/js/7_Library/cssLoader.js',
                         './src/js/7_Library/detectImageTurnedOff.js',
                         './src/js/7_Library/HighContrastStyleSwitcher.js',
-                        './src/js/7_Library/ie5.js',
-<<<<<<< HEAD
-=======
-                        './src/js/7_Library/LegacyCssLoader.js',
->>>>>>> legacy-target-development
                         './src/js/7_Library/PicaThumnail.js',
                         './src/js/7_Library/SidebarFixer.js',
 
@@ -207,8 +203,8 @@ gulp.task('js', gulp.series(
         return ClosureCompiler(
             {
                 js                : [
-                    tempDir + '/temp.js',
-                    './src/js/GoogleCodePrettify.js'
+                    tempDir + '/temp.js'//,
+                    //'./src/js/GoogleCodePrettify.js'
                 ],
                 externs           : externs,
                 // compilation_level : 'WHITESPACE_ONLY',
@@ -252,6 +248,7 @@ gulp.task('css', function(){
         .pipe(sass())
         .pipe(gcm())
         .pipe(cleanCSS({
+            format : 'beautify',
             compatibility : { properties : { ieFilters : true } },
             //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
             level: {
@@ -261,7 +258,9 @@ gulp.task('css', function(){
                 },
                 2: {
                     all : true,
-                    removeUnusedAtRules: false
+                    removeUnusedAtRules : false,
+                    // overrideProperties  : false,
+                    skipProperties : [ 'display' ]
                 }
             }
         }))
@@ -277,9 +276,11 @@ gulp.task('css', function(){
                 },
                 2: {
                     all : true,
-                    removeUnusedAtRules: false
+                    removeUnusedAtRules : false,
+                    // overrideProperties  : false,
+                    skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition' ]
                 }
-            }
+            } 
         }))
         .pipe(finalizeCSS())
         .pipe(gulp.dest( './docs/assets' ));

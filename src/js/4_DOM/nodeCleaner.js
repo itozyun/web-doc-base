@@ -3,7 +3,7 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
         g_elmMain = DOM_getElementById( WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID );
 
-        var removeCommentNodes  = !( g_Presto < 8 || g_Trident < 5 || g_Tasman ),
+        var removeCommentNodes  = !( g_Presto < 8 || g_Trident < 5 || g_Tasman || g_Gecko < 0.9 ),
             removalMetaTagNames = [ 'og:', 'twitter:', 'fb:' ],
             moveToHead          = [];
 
@@ -36,7 +36,8 @@ g_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             };
                             if( 8 <= g_Presto && g_Presto < 9 ) break;/* Opera 8 は <style> の移動が反映されない */
                         case 'LINK' :
-                            g_w3cDOM && !DOM_contains( g_head, kid ) && moveToHead.push( kid );
+                            g_w3cDOM && ( g_Trident !== 6 ) && /* IE6 で link を移動すると style の適用がガタガタ */
+                                !DOM_contains( g_head, kid ) && moveToHead.push( kid );
                             break;
                         case 'META' :
                             name = DOM_getAttribute( kid, 'name' ) || DOM_getAttribute( kid, 'property' );

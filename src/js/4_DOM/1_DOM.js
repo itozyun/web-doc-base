@@ -118,7 +118,8 @@ function DOM_justCreate( tag, html ){
 }
 
 function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
-    var elm, isStyle;
+    var updateAfterAdd = g_Trident < 9, // ie では後で、Opera 8.x + <link> では先で
+        elm, isStyle;
 
     if( tag === 'style' ){
         isStyle = true;
@@ -139,6 +140,8 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
         elm = DOM_justCreate( tag );
     };
 
+    if( !updateAfterAdd ) update();
+
     if( DOM_insert ){ // 1:insertBefore or 2:insertAfter
         if( DOM_insert === 2 ){
             targetNode = targetNode.nextSibling;
@@ -148,16 +151,20 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
         } else {
             DOM_appendChild( DOM_getParentElement( targetNode ), elm );
         };
+        DOM_insert = 0;
     } else {
         DOM_appendChild( targetNode, elm );
     };
-    DOM_insert = 0;
 
-    attrs && DOM_attr( elm, attrs );
-    styles && DOM_css( elm, styles );
-    text && !isStyle && DOM_appendChild( elm, document.createTextNode( text ) );
+    if( updateAfterAdd ) update();
 
-    function DOM_attr( elm, attrs ){
+    function update(){
+        attrs && updateAttr( elm, attrs );
+        styles && updateCSS( elm, styles );
+        text && !isStyle && DOM_appendChild( elm, document.createTextNode( text ) );        
+    };
+
+    function updateAttr( elm, attrs ){
         var k;
     
         for( k in attrs ){
@@ -173,7 +180,7 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
         }; 
     };
     
-    function DOM_css( elm, styles ){
+    function updateCSS( elm, styles ){
         var elmStyle = elm.style, k;
     
         for( k in styles ){

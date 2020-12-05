@@ -6,7 +6,7 @@ Super project for itozyun's Web document projects.
 
 1. 2 Column layout (WQXGA, WSXGA, XGA)
 2. Written based on the SMACSS
-3. Build for each browsers (modern, ie9, ie8, ie7, ie6, ie55, ie5win)
+3. Build for each browsers (modern, legacy, ie9, ie8, ie7, ie6, ie55, ie5win)
 4. Responsive Web Design for the 8 types of device (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. Reduce ink to print (`@media print`)
 6. High contrast mode support (`@media (-ms-high-contrast:active)`)
@@ -17,7 +17,7 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 
 1. 2カラムレイアウト (WQXGA, WSXGA, XGA)
 2. SMACSS をベースに書かれています
-3. ブラウザ別に CSS をビルド (modern, ie9, ie8, ie7, ie6, ie55, ie5win)
+3. ブラウザ別に CSS をビルド (modern, legacy, ie9, ie8, ie7, ie6, ie55, ie5win)
 4. レスポンシブデザインは8種類のデバイスのために用意 (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. インクを節約して印刷 (`@media print`)
 6. ハイコントラストモードのサポート (`@media (-ms-high-contrast:active)`)
@@ -58,11 +58,14 @@ This project has been referred to the next project.
 
 ## How the CSS and Javascript import - CSS と Javascript のインポートの仕方
 
-Javascript and CSS are placed in the same directory.
+Javascript and CSS are placed in the same directory. 
+Do not add the `async` or `deffer` attributes to `<script>`.
+To find out why, look at `g_assetUrl` in code.
 
 ---
 
-Javascript と CSS は同じディレクトリに配置します。
+Javascript と CSS は同じディレクトリに配置します。`<script>` に `async` や `deffer` 属性を付けてはいけません。
+この理由を知るにはコードで `g_assetPath` を確認します。
 
 ~~~html
 <!--[if IE 5]>
@@ -80,10 +83,13 @@ Javascript と CSS は同じディレクトリに配置します。
 <!--[if IE 8]><link href="/assets/ie8.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if IE 9]><link href="/assets/ie9.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if !IE]><!-->
+<noscript>
 <style type="text/css" media="screen,handheld,projection,tv,print">
 /*\*//*/ @import "/assets/ie5mac.css"; /**/ /*\*/
 @import "/assets/modern.css"; /**/
-</style><!--<![endif]-->
+</style>
+</noscript>
+<!--<![endif]-->
 <script src="/assets/min.js"></script>
 ~~~
 
@@ -210,7 +216,7 @@ gulp.task('js', gulp.series(
     
                         './web-doc-base/src/js/3_EventModule/1_moduleGlobal.js',
                         './web-doc-base/src/js/3_EventModule/2_core.js',
-                        // './web-doc-base/src/js/3_EventModule/cssAvailability.js',
+                        './web-doc-base/src/js/3_EventModule/cssAvailability.js',
                         './web-doc-base/src/js/3_EventModule/highContrastMode.js',
                         './web-doc-base/src/js/3_EventModule/imageReady.js',
                         // './web-doc-base/src/js/3_EventModule/prefersColor.js',
@@ -230,13 +236,13 @@ gulp.task('js', gulp.series(
                         //'./web-doc-base/src/js/6_CanUse/generatedContent.js',
                         //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
                         './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
-                        //'./web-doc-base/src/js/6_CanUse/imageTest.js',
+                        './web-doc-base/src/js/6_CanUse/imageTest.js',
                         //'./web-doc-base/src/js/6_CanUse/webfontTest.js',
 
                         './web-doc-base/src/js/7_Library/blockquot.js',
+                        './web-doc-base/src/js/7_Library/cssLoader.js',
                         './web-doc-base/src/js/7_Library/detectImageTurnedOff.js',
                         './web-doc-base/src/js/7_Library/HighContrastStyleSwitcher.js',
-                        './web-doc-base/src/js/7_Library/ie5.js',
                         './web-doc-base/src/js/7_Library/PicaThumnail.js',
                         './web-doc-base/src/js/7_Library/SidebarFixer.js',
 

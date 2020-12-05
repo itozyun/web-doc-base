@@ -35,12 +35,15 @@
     }
     /* //_}#notie */
     /* //_{@legacy */
+    #jsMain {
+        position : relative; /* for Opera <9, relativeが無いと位置が取れない */
+    }
     /* override Gecko ~1.8.1 */
     @media \0 all {
         .lW {
             overflow : visible;
         }
-        /* override Gecko 1.4~1.8.1 */
+        /* override Gecko 1.2~1.8.1 */
         .lW [_lazyhack_="_:lang(x)"] {
             overflow : hidden;
         }

@@ -31,7 +31,9 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
                 // MeeGo
                 ( ua[ 'MeeGo' ] ) ||
                 // IE6-
-                ( g_Trident < 7 )
+                ( g_Trident < 7 ) ||
+                // Presto
+                ( g_Presto < 9 )
             ),
     SIDEBAR_FIXER_elmRoot,
     SIDEBAR_FIXER_elmSide,
@@ -44,7 +46,7 @@ var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
     SIDEBAR_FIXER_skipScroll,
     SIDEBAR_FIXER_isGeckoGte097 = g_Gecko && 0 <= ua.conpare( ua.ENGINE_VERSION, '0.9.7' );
 
-if( !g_isMobile && !g_ServerSideRendering ){
+if( !g_isMobile && !g_ServerSideRendering && !( g_Presto < 8 ) ){
 
     g_listenCssAvailabilityChange(
         function( cssAvailability ){
@@ -74,6 +76,7 @@ if( !g_isMobile && !g_ServerSideRendering ){
                 SIDEBAR_FIXER_elmWrap.addEventListener( 'DOMFocusIn', SIDEBAR_FIXER_onfocus, false );
             };
 
+            // Array と NodeList の場合があるので、常に再取得
             while( 1 < DOM_getChildNodes( SIDEBAR_FIXER_elmSide ).length ){
                 DOM_appendChild( SIDEBAR_FIXER_elmWrap, DOM_getChildNodes( SIDEBAR_FIXER_elmSide )[ 1 ] );
             };

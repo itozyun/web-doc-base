@@ -9,7 +9,8 @@ g_listenScrollEvent = function( callback ){
  * private
  */
 var Event_scrollEventCallbacks = [],
-    Event_tempOnScroll         = window.onscroll;
+    Event_tempOnScroll         = window.onscroll,
+    Event_lastScrollY          = 0;
 
 onscroll = function( e ){
     var ret;
@@ -20,6 +21,21 @@ onscroll = function( e ){
         Event_dispatch( Event_scrollEventCallbacks );
     };
     return ret;
+};
+
+if( g_Gecko < 1 || ( 1.2 <= g_Gecko && g_Gecko < 1.8 ) || g_Presto <= 7.2 ){
+    LoopTimer_set(
+        function(){
+            var scrollY = window.scrollY || g_body.scrollTop;
+
+            if( Event_lastScrollY !== scrollY ){
+                // Gecko 0.9.4.1 scroll event 無し!
+                document.title = window.pageYOffset || SIDEBAR_FIXER_elmRoot.scrollTop || g_body.scrollTop || 'scroll';
+                Event_lastScrollY = scrollY;
+                onscroll();
+            };
+        }
+    );
 };
 
 g_listenUnloadEvent(
