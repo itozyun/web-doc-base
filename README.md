@@ -1,6 +1,7 @@
 # Web Doc Base
 
-## Overview - 概要
+## Overview
+概要
 
 Super project for itozyun's Web document projects.
 
@@ -24,7 +25,8 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 7. ダークモードのサポート (`(prefers-color-scheme:dark)`)
 8. 古いブラウザのサポート
 
-## Functions provided by Javascript - Javascript によって提供される機能
+## Functions provided by Javascript
+Javascript によって提供される機能
 
 1. User Agent detection [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
 2. Optimal viewport based on user agent judgment [src](./src/inline-js/dynamicViewPort.js)
@@ -40,11 +42,14 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 4. サムネイル画像をクリックで拡大 [src](./src/js/7_Library/PicaThumnail.js)
 5. blockquote の拡張 [src](./src/js/7_Library/blockquot.js)
 
-### Investigation of special browser settings
+### Links
 
-[Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
+* [Demo](https://itozyun.github.io/web-doc-base/)
+* [clearfix.html](https://itozyun.github.io/web-doc-base/clearfix.html)
+* [Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
 
-## References - 参照プロジェクト
+## References
+参照プロジェクト
 
 This project has been referred to the next project.
 
@@ -93,7 +98,8 @@ Javascript と CSS は同じディレクトリに配置します。`<script>` �
 <script src="/assets/min.js"></script>
 ~~~
 
-## How the CSS build - CSS のビルドの方法
+## How the CSS build
+CSS のビルドの方法
 
 1. CSS is written in SCSS + [gulp-iz-preprosessor](https://github.com/itozyun/gulp-iz-preprocessor) expanded comments
 2. Generate the browser-specific .scss by gulp-iz-preprosessor
@@ -107,181 +113,20 @@ Javascript と CSS は同じディレクトリに配置します。`<script>` �
 3. 出来た .scss をコンパイルします
 4. ./web-doc-base/gulp-finalize-css.js でファイナライズします。
 
+### How to build ./src/scss/*.scss
 
-### gulpfile.js
+* See gulp-task `css` in [./gulpfile.js](./gulpfile.js).
 
-~~~js
-const gulp     = require('gulp'),
-      name     = 'MyBlog',
-      output   = './public',
-      mobileCssPrefix = 'm_',
-      hcModeCssDir    = 'hc';
+## How the Javascript build
+Javascript のビルドの方法
 
-/* -------------------------------------------------------
- *  gulp css
- */
-const plumber     = require("gulp-plumber"),
-      izpp        = require('gulp-iz-preprocessor'),
-      sass        = require("gulp-sass"),
-      gcm         = require("gulp-group-css-media-queries"),
-      cleanCSS    = require("gulp-clean-css"),
-      CSSHack     = require("./web-doc-base/gulp-csshack.js"),
-      finalizeCSS = require("./web-doc-base/gulp-finalize-css.js");
+### How to build ./src/inline-js/*.js
 
-gulp.task('css', function(){
-    return gulp.src([
-            './web-doc-base/src/scss/**/*.scss',
-            './scss/**/*.scss'
-        ])
-        .pipe(plumber())
-        .pipe(
-            izpp({
-                log      : false,
-                fileType : 'scss',
-                tasks : [
-                    { name : 'desktop', imports : [ 'Magazine' ] },
-                    { name : 'mobile',  imports : [ 'mobileOnly' ], prefix : mobileCssPrefix }
-                ]
-            })
-        )
-        .pipe(sass())
-        .pipe(gcm())
-        .pipe(cleanCSS({
-            compatibility : { properties : { ieFilters : true } },
-            //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
-            level: {
-                1: {
-                    // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-                    roundingPrecision : 3
-                },
-                2: {
-                    all : true,
-                    removeUnusedAtRules: false
-                }
-            }
-        }))
-        .pipe(CSSHack({ hcdir : hcModeCssDir }))
-        .pipe(cleanCSS({
-            compatibility : { properties : { ieFilters : true } },
-            level: {
-                1: { roundingPrecision : 3 },
-                2: { all : true, removeUnusedAtRules: false }
-            }
-        }))
-        .pipe(finalizeCSS())
-        .pipe(gulp.dest(output));
-    });
-~~~
+* See gulp-task `docs` in [./gulpfile.js](./gulpfile.js).
 
-## How the Javascript build - Javascript のビルドの方法
+### How to build ./src/js/*.js
 
-### How to build ./inline-js/*.js
-
-see [./gulpfile.js](./gulpfile.js).
-
-### How to build ./js/*.js
-
-~~~js
-const gulp            = require('gulp'),
-      name            = 'MyBlog',
-      output          = './public',
-      mobileCssPrefix = 'm_',
-      hcModeCssDir    = 'hc';
-
-/* -------------------------------------------------------
- *  gulp js
- */
-const closureCompiler = require('google-closure-compiler').gulp(),
-      globalVariables = 'document,parseFloat,Function,isFinite,setTimeout,clearTimeout',
-      tempDir         = require('os').tmpdir() + '/' + name,
-      externs         = [
-         './web-doc-base/what-browser-am-i/src/__externs.js',
-         './node_modules/google-closure-compiler/contrib/externs/svg.js',
-         './web-doc-base/src/js/__externs.js'
-      ];
-
-gulp.task('js', gulp.series(
-    function(){
-        return closureCompiler(
-                {
-                    js                : [
-                        './web-doc-base/src/js/0_global/1_DEFINE.js',
-
-                        './web-doc-base/src/js/1_packageGlobal/1_packageValiable.js',
-                        './web-doc-base/src/js/1_packageGlobal/2_builtinArrayMethods.js',
-
-                        './web-doc-base/src/js/2_CoreModule/DebugLogger.js',
-                        './web-doc-base/src/js/2_CoreModule/LoopTimer.js',
-                        './web-doc-base/src/js/2_CoreModule/Timer.js',
-    
-                        './web-doc-base/src/js/3_EventModule/1_moduleGlobal.js',
-                        './web-doc-base/src/js/3_EventModule/2_core.js',
-                        './web-doc-base/src/js/3_EventModule/cssAvailability.js',
-                        './web-doc-base/src/js/3_EventModule/highContrastMode.js',
-                        './web-doc-base/src/js/3_EventModule/imageReady.js',
-                        // './web-doc-base/src/js/3_EventModule/prefersColor.js',
-                        // './web-doc-base/src/js/3_EventModule/print.js',
-                        './web-doc-base/src/js/3_EventModule/resize.js',
-                        './web-doc-base/src/js/3_EventModule/scroll.js',
-
-                        './web-doc-base/src/js/4_DOM/1_DOM.js',
-                        './web-doc-base/src/js/4_DOM/2_DOMStyle.js',
-                        './web-doc-base/src/js/4_DOM/3_DOMAttr.js',
-                        './web-doc-base/src/js/4_DOM/4_DOMClass.js',
-                        // './web-doc-base/src/js/4_DOM/5_DOMEvent.js',
-                        './web-doc-base/src/js/4_DOM/nodeCleaner.js',
-    
-                        './web-doc-base/src/js/5_CSSOM/CSSOM.js',
-
-                        //'./web-doc-base/src/js/6_CanUse/generatedContent.js',
-                        //'./web-doc-base/src/js/6_CanUse/dataUriTest.js',
-                        './web-doc-base/src/js/6_CanUse/ieFilterTest.js',
-                        './web-doc-base/src/js/6_CanUse/imageTest.js',
-                        //'./web-doc-base/src/js/6_CanUse/webfontTest.js',
-
-                        './web-doc-base/src/js/7_Library/blockquot.js',
-                        './web-doc-base/src/js/7_Library/cssLoader.js',
-                        './web-doc-base/src/js/7_Library/detectImageTurnedOff.js',
-                        './web-doc-base/src/js/7_Library/HighContrastStyleSwitcher.js',
-                        './web-doc-base/src/js/7_Library/PicaThumnail.js',
-                        './web-doc-base/src/js/7_Library/SidebarFixer.js',
-
-                        './web-doc-base/src/js/onreachEnd.js',
-                    ],
-                    externs           : externs,
-                    define            : [
-                        'WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                        'WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR="' + hcModeCssDir + '"'
-                    ],
-                    compilation_level : 'ADVANCED',
-                    warning_level     : 'VERBOSE',
-                    language_in       : 'ECMASCRIPT3',
-                    language_out      : 'ECMASCRIPT3',
-                    output_wrapper    : '(function(ua,window,emptyFunction,' + globalVariables + ',undefined){\n%output%\n})(ua,this,new Function,' + globalVariables + ')',
-                    js_output_file    : 'temp.js'
-                }
-            )
-            .src()
-            .pipe(gulp.dest( tempDir ));
-    },
-    function(){
-        return closureCompiler(
-            {
-                js                : [
-                    tempDir + '/temp.js',
-                    './web-doc-base/src/js/GoogleCodePrettify.js'
-                ],
-                externs           : externs,
-                language_in       : 'ECMASCRIPT3',
-                language_out      : 'ECMASCRIPT3',
-                js_output_file    : 'min.js'
-            }
-        )
-        .src()
-        .pipe(gulp.dest( output ));
-    }
-));
-~~~
+* See gulp-task `js` in [./gulpfile.js](./gulpfile.js).
 
 ## License
 
