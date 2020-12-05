@@ -50,6 +50,10 @@ table,
 textarea {
   line-height: 1.2
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 .links,
 .note,
 blockquote,
@@ -78,6 +82,16 @@ ul {
 svg {
   overflow: hidden
 }
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
+}
 code,
 kbd,
 var {
@@ -86,6 +100,22 @@ var {
 .links,
 pre {
   white-space: pre-wrap
+}
+.ABody h3,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 .SearchResult cite,
 .caption,
@@ -153,20 +183,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
-}
-.RichLink b,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -353,7 +369,8 @@ a:focus .ico-flag:before,
 a:focus .ico-label:before,
 a:focus .ico-pen:before,
 a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
+a:focus .ico-sylinder:before,
+tbody th {
   border-color: #f8fbf8
 }
 .tl tbody th :link,
@@ -363,6 +380,7 @@ a:focus .ico-sylinder:before {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -444,8 +462,8 @@ textarea {
 }
 input {
   font-size: 1em;
-  line-height: 1;
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 textarea {
@@ -564,10 +582,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -652,9 +666,6 @@ tbody :hover th :visited:active {
 }
 body {
   background: #1a1a1a
-}
-.baseColor {
-  background: #f8fbf8
 }
 *,
 blockquote .tl tbody td:after {
@@ -775,30 +786,6 @@ blockquote .tl tbody td:after {
 .btn:visited {
   background: #1a1a1a;
   color: #fff
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.LinkList :visited,
-.RichLink-sep :visited,
-.baseColor .btn:visited,
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
-.baseColor .btn:visited {
-  border-color: #111
-}
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-blockquote,
-code,
-var {
-  background: #ddd
 }
 .commonForm-pair {
   overflow: hidden;
@@ -1114,7 +1101,6 @@ a:focus .ico-pen:after {
   display: none
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   padding: .8em 0 0;
@@ -1295,6 +1281,11 @@ kbd {
   background: #f8fbf8;
   color: #24c
 }
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
+}
 .LinkList :link:hover,
 .LinkList :visited:hover,
 .RichLink-sep :link:hover,
@@ -1349,6 +1340,9 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
+.RichLink b {
+  display: block
+}
 .RichLink .p {
   display: block;
   margin: 1em 0 .5em
@@ -1362,7 +1356,8 @@ pre var {
 .RichLink-meta {
   color: #2a2a2a;
   padding: 0 0 .8em;
-  clear: both
+  clear: both;
+  display: block
 }
 .RichLink img {
   float: left;
@@ -1448,6 +1443,7 @@ kbd:hover {
 }
 .Header h1,
 .h1 {
+  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
@@ -1638,8 +1634,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1948,6 +1943,16 @@ em {
 }
 strong {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2NmNjZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media handheld,
 projection,

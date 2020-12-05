@@ -1,9 +1,12 @@
 @mixin inline-block {
 /* //_{#can-inline-block */
 /* //_{@legacy */
-    display      : -moz-inline-box;
+    display      : inline;
     display      : inline-table;
 /* //_}@legacy */
     display      : inline-block;
+/* //_{@legacy */
+    display      : -moz-inline-box; /* Gecko 0.9.4.1 */
+/* //_}@legacy */
 /* //_}#can-inline-block */
 }

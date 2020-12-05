@@ -16,17 +16,21 @@ blockquote {
     }
 
     /* //_{#can-content */
+        /* //_{^@legacy */ // for Gecko 1.7.x
     blockquote:before {
         content : attr(title);
         display : block;
     }
+        /* //_}^@legacy */
     blockquote:after {
         content : attr(cite);
     }
     /* //_}#can-content */
 
     /* //_{#can-content */
+    /* //_{^@legacy */
     blockquote:before,
+    /* //_}^@legacy */
     /* //_}#can-content */
     .js-bqLink {
         @include hMargin(2, 0, 0);

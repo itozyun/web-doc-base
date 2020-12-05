@@ -21,9 +21,4 @@
     @include media(onlyOpera) { /* Opera 10 以上 */
         p, blockquote { text-align : justify; }
     }
-
-    /* ff2+ */
-    body:empty p, body:empty blockquote, x:-moz-any-link {
-        /* text-align : justify; */
-    }
 /* //_}@modern */

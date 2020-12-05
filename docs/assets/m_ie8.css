@@ -51,6 +51,10 @@ textarea {
 .lS2 {
   width: 48.5%
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 .links,
 .note,
 blockquote,
@@ -78,6 +82,16 @@ ul {
 .lW {
   overflow: hidden
 }
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
+}
 code,
 kbd,
 var {
@@ -86,6 +100,22 @@ var {
 .links,
 pre {
   white-space: pre-wrap
+}
+.ABody h3,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 .SearchResult cite,
 .caption,
@@ -153,20 +183,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
-}
-.RichLink b,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -357,7 +373,8 @@ a:focus .ico-flag:before,
 a:focus .ico-label:before,
 a:focus .ico-pen:before,
 a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
+a:focus .ico-sylinder:before,
+tbody th {
   border-color: #f8fbf8
 }
 .tl tbody th :link,
@@ -367,6 +384,7 @@ a:focus .ico-sylinder:before {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -448,8 +466,8 @@ textarea {
 }
 input {
   font-size: 1em;
-  line-height: 1;
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 textarea {
@@ -576,10 +594,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -651,9 +665,6 @@ tbody :hover th :visited:active {
 }
 body {
   background: #1a1a1a
-}
-.baseColor {
-  background: #f8fbf8
 }
 *,
 blockquote .tl tbody td:after {
@@ -761,30 +772,6 @@ blockquote .tl tbody td:after {
 .btn:visited {
   background: #1a1a1a;
   color: #fff
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.LinkList :visited,
-.RichLink-sep :visited,
-.baseColor .btn:visited,
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
-.baseColor .btn:visited {
-  border-color: #111
-}
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-blockquote,
-code,
-var {
-  background: #ddd
 }
 .commonForm-pair {
   overflow: hidden;
@@ -1092,7 +1079,6 @@ a:focus .ico-pen:after {
   display: none
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   padding: .8em 0 0;
@@ -1266,6 +1252,11 @@ kbd {
   background: #f8fbf8;
   color: #24c
 }
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
+}
 .LinkList :link:hover,
 .LinkList :visited:hover,
 .RichLink-sep :link:hover,
@@ -1320,6 +1311,9 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
+.RichLink b {
+  display: block
+}
 .RichLink .p {
   display: block;
   margin: 1em 0 .5em
@@ -1333,7 +1327,8 @@ pre var {
 .RichLink-meta {
   color: #2a2a2a;
   padding: 0 0 .8em;
-  clear: both
+  clear: both;
+  display: block
 }
 .RichLink img {
   float: left;
@@ -1419,6 +1414,7 @@ kbd:hover {
 }
 .Header h1,
 .h1 {
+  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
@@ -1608,8 +1604,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1916,6 +1911,16 @@ em {
 }
 strong {
   background: #6cf
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media print {
   .ico-author:after,

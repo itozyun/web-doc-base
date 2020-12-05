@@ -89,6 +89,12 @@
     }
 /* //_}@ie6,@ie7 */
 
+/* //_{@legacy */
+    .jsPica {
+        @include inline-block; /* for Opera 7.20 */
+    }
+/* //_}@legacy */
+
 /* //_{@ie55,@ie5win */
 .jsPica {
     display : block; /* この指定が無いとギャラリーで他の画像に隠れる */

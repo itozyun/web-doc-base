@@ -44,9 +44,19 @@ table,
 textarea {
   line-height: 1.2
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
 }
 .Magazine-label,
 .SearchResult cite,
@@ -263,8 +273,7 @@ tbody th {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -317,20 +326,16 @@ h2 {
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
-.wn {
-  color: red!important
-}
 input,
 textarea {
+  font-size: 1em;
   border-width: 2px;
   padding: .45em 8px
 }
-input {
-  font-size: 1em;
-  line-height: 1
+.wn {
+  color: red!important
 }
 textarea {
-  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -422,10 +427,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-blockquote,
-tbody th {
-  background: #ddd
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -483,10 +484,8 @@ blockquote tfoot th {
   text-transform: uppercase
 }
 body {
-  background: #1a1a1a
-}
-.baseColor {
-  background: #f8fbf8
+  background: #1a1a1a;
+  color: #111
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -603,16 +602,6 @@ var {
   border-color: #fff;
   color: #fff
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
-}
 .commonForm-pair {
   display: inline-table;
   margin-bottom: 1em
@@ -648,7 +637,6 @@ var {
 }
 .medal {
   border-color: #f8fbf8;
-  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1012,6 +1000,9 @@ kbd {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
+.RichLink b {
+  display: block
+}
 .RichLink .p {
   display: block;
   margin: 1em 0 .5em
@@ -1025,7 +1016,8 @@ kbd {
 .RichLink-meta {
   color: #2a2a2a;
   padding: 0 0 .8em;
-  clear: both
+  clear: both;
+  display: block
 }
 .RichLink img {
   float: left;
@@ -1064,8 +1056,6 @@ kbd {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  right: -3em;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
@@ -1236,7 +1226,6 @@ kbd {
 }
 code,
 var {
-  background: #ddd;
   padding: .1em .4em
 }
 pre code,
@@ -1467,6 +1456,16 @@ em {
 }
 strong {
   background: #6cf
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media print {
   .lW,

@@ -88,7 +88,9 @@
         .Magazine-jump {
             width   : 20%;
             float   : right;
+            /* //_{^@legacy */
             @extend %more-icon;
+            /* //_}^@legacy */
         }
             .Magazine-jump .btn {
                 margin : 0 0 1em 1em;

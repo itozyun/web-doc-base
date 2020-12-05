@@ -30,15 +30,23 @@
         .commonForm-wrap {
             display : block;
         /* //_{^@ie5win */
+            /* //_{^@legacy */
             margin  : 0 #{($INPUT_BORDER_WIDTH + $FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+            /* //_}^@legacy */
         /* //_}^@ie5win */
+            /* //_{@legacy */
+            margin  : 0 0 1em 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+            /* //_}@legacy */
         }
 
             .commonForm-wrap * {
                 width      : 100%;
-            /* //_{@ie7 */ /* 上に出来る余白を消す、ie5 はカラムが壊れる */
+            /* //_{@ie7,@ie6 */ /* 上に出来る余白を消す、ie5 はカラムが壊れる */
                 float      : left;
-            /* //_}@ie7 */
+            /* //_}@ie7,@ie6 */
+            /* //_{@legacy */
+                float : right; /* Opera ~8 右に揃える */
+                /* //_}@legacy */
             }
 
         .commonForm-send {

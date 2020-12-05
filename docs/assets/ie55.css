@@ -44,12 +44,18 @@ table,
 textarea {
   line-height: 1.2
 }
+body,
+input {
+  line-height: 1.9
+}
 .Cover-meta,
 .Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
 .Pager span,
 .RichLink .p,
+.RichLink b,
+.RichLink-meta,
 .Search,
 .Search-txt,
 .caption,
@@ -65,12 +71,22 @@ a iframe,
 a img {
   display: block
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 .Pager span,
 .Search .btn,
 .e6C,
 .e6C .lW,
 .lW {
   overflow: hidden
+}
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
 }
 code,
 kbd,
@@ -129,10 +145,6 @@ body,
 html {
   margin: 0;
   height: 100%
-}
-body,
-input {
-  line-height: 1.9
 }
 body,
 input,
@@ -291,6 +303,7 @@ p {
 a:active:hover {
   text-decoration: underline
 }
+.medal,
 a,
 hr,
 tbody th {
@@ -303,6 +316,7 @@ tbody th {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -362,7 +376,6 @@ textarea {
 }
 input {
   font-size: 1em;
-  line-height: 1;
   height: 2.1em
 }
 .e6BR,
@@ -461,9 +474,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -522,9 +532,6 @@ blockquote tfoot th {
 }
 body {
   background: #1a1a1a
-}
-.baseColor {
-  background: #f8fbf8
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -616,6 +623,7 @@ body {
   padding-bottom: 1em
 }
 .links,
+blockquote,
 dl,
 iframe,
 img,
@@ -670,16 +678,6 @@ ul {
 input.btn {
   padding: .3em 1em .6em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
-}
 .commonForm-pair {
   zoom: 1;
   margin-bottom: 1em
@@ -706,11 +704,6 @@ input.btn {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
-}
-.medal {
-  border-color: #f8fbf8;
-  background: #f8fbf8;
-  color: #111
 }
 :link .medal,
 :visited .medal {
@@ -1250,10 +1243,6 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
-blockquote {
-  background: #ddd;
-  margin: 1em
-}
 .js-bqLink {
   color: #24c;
   margin: 0
@@ -1306,7 +1295,6 @@ kbd {
 }
 code,
 var {
-  background: #ddd;
   padding: .1em .4em
 }
 pre code,
@@ -1545,6 +1533,16 @@ em {
 }
 strong {
   background: #6cf
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media print {
   .Header h1,

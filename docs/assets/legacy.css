@@ -4,7 +4,6 @@
 textarea {
   overflow: auto
 }
-blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -33,20 +32,12 @@ a,
 h6 {
   color: #777
 }
-#jsSide,
-.Pager,
-.links a,
-.tl td,
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
 .RichLink .p,
+.RichLink b,
+.RichLink-meta,
 .Search,
 .Search-txt,
 .commonForm,
@@ -56,7 +47,11 @@ a img,
 h2:after {
   display: block
 }
+.AMeta,
+.caption,
 .h1,
+.js-bqLink,
+.links a,
 h1,
 h2,
 h3,
@@ -67,9 +62,45 @@ table,
 textarea {
   line-height: 1.2
 }
+body,
+input {
+  line-height: 1.9
+}
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Pager,
+.Search,
+.links a,
+.tl td,
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
+}
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
 }
 .Magazine-label,
 .SearchResult cite,
@@ -125,10 +156,6 @@ html {
   height: 100%
 }
 body,
-input {
-  line-height: 1.9
-}
-body,
 input,
 textarea {
   font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"UD Digi Kyokasho NP-R","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif
@@ -142,11 +169,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
 }
 .RichLink b,
 h1,
@@ -324,32 +346,7 @@ a:focus:hover {
 .baseColor .btn:visited:focus,
 .medal,
 a,
-a:active .ico-author:after,
-a:active .ico-author:before,
-a:active .ico-chain:after,
-a:active .ico-chain:before,
-a:active .ico-clock:after,
-a:active .ico-clock:before,
-a:active .ico-comment:before,
-a:active .ico-flag:after,
-a:active .ico-flag:before,
-a:active .ico-label:before,
-a:active .ico-pen:before,
-a:active .ico-sylinder:after,
-a:active .ico-sylinder:before,
-a:focus .ico-author:after,
-a:focus .ico-author:before,
-a:focus .ico-chain:after,
-a:focus .ico-chain:before,
-a:focus .ico-clock:after,
-a:focus .ico-clock:before,
-a:focus .ico-comment:before,
-a:focus .ico-flag:after,
-a:focus .ico-flag:before,
-a:focus .ico-label:before,
-a:focus .ico-pen:before,
-a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
+tbody th {
   border-color: #f8fbf8
 }
 .tl tbody th :link,
@@ -359,6 +356,7 @@ a:focus .ico-sylinder:before {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -422,8 +420,8 @@ input,
 textarea {
   font-size: 1em;
   margin: 0;
-  border-width: 2px;
-  padding: .45em 8px
+  border-width: .1em;
+  padding: 0
 }
 h2:after {
   width: 5em;
@@ -437,24 +435,22 @@ h2:after {
   border-color: #3079ed;
   content: " "
 }
-.ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
-.tl tbody :empty:after,
-.tl tbody :empty:before {
+input[type=hidden] {
   display: none
 }
 .wn:after {
   background: red!important
 }
 input {
-  line-height: 1;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 1em
+  height: 2.1em
+}
+input::-moz-focus-inner {
+  border: 0
 }
 hr {
   height: 1px;
@@ -507,7 +503,6 @@ tr hr {
 .ABody h2,
 .Cover h2,
 .tl tbody :hover td,
-.tl tbody :hover td:before,
 .tl tbody :hover th {
   border-color: #3079ed
 }
@@ -567,10 +562,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -587,6 +578,7 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -649,11 +641,7 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-.baseColor {
-  background: #f8fbf8
-}
-*,
-blockquote .tl tbody td:after {
+* {
   border-color: #ddd
 }
 .ribbon * {
@@ -674,7 +662,6 @@ blockquote .tl tbody td:after {
 .commonForm-pair:after,
 .lW:after {
   content: "";
-  line-height: 0;
   height: 0;
   display: block;
   visibility: hidden;
@@ -766,12 +753,16 @@ var {
 .SocialBtns a,
 .Subscribe a,
 .btn {
+  display: inline;
+  display: inline-table;
   display: inline-block;
+  display: -moz-inline-box;
   border-width: 2px;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
-  padding: 0 1em
+  padding: 0 1em;
+  height: 2.1em
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
@@ -808,28 +799,32 @@ var {
   color: #fff
 }
 input.btn {
-  line-height: 1;
-  padding: .45em 1em
+  padding: 0
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.LinkList :visited,
-.RichLink-sep :visited,
-.baseColor .btn:visited,
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
-.baseColor .btn:visited {
-  border-color: #111
-}
-blockquote,
-code,
-var {
-  background: #ddd
+@-moz-document url-prefix() {
+  _:-moz-loading,
+  h2:after {
+    display: none
+  }
+  _:-moz-handler-blocked,
+  h2:after {
+    display: block
+  }
+  _:-moz-loading,
+  input,
+  textarea {
+    padding: .45em .4em;
+    -moz-box-sizing: border-box
+  }
+  _:-moz-loading,
+  input {
+    line-height: 1
+  }
+  _:-moz-loading,
+  input.btn {
+    line-height: 1;
+    padding: .45em 1em
+  }
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -840,214 +835,13 @@ var {
   width: 7em;
   padding: .45em 0 0
 }
-.Cover img,
-.commonForm-wrap * {
-  width: 100%
-}
 .commonForm-wrap {
   display: block;
-  margin: 0 20px 0 8em
+  margin: 0 0 1em 8em
 }
-.ico-author,
-.ico-chain,
-.ico-clock,
-.ico-comment,
-.ico-flag,
-.ico-label,
-.ico-pen,
-.ico-sylinder {
-  position: relative;
-  padding-left: 1.2em
-}
-.ico-author:after,
-.ico-author:before,
-.ico-chain:after,
-.ico-chain:before,
-.ico-clock:after,
-.ico-clock:before,
-.ico-comment:after,
-.ico-comment:before,
-.ico-flag:after,
-.ico-flag:before,
-.ico-label:after,
-.ico-label:before,
-.ico-pen:after,
-.ico-pen:before,
-.ico-sylinder:after,
-.ico-sylinder:before {
-  text-indent: -1em;
-  position: absolute;
-  margin-top: .1em;
-  content: " ";
-  display: block
-}
-.ico-clock:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .7em;
-  border-width: .15em;
-  border-color: #777
-}
-.ribbon .ico-author:after,
-.ribbon .ico-author:before,
-.ribbon .ico-chain:after,
-.ribbon .ico-chain:before,
-.ribbon .ico-clock:after,
-.ribbon .ico-clock:before,
-.ribbon .ico-comment:before,
-.ribbon .ico-flag:after,
-.ribbon .ico-flag:before,
-.ribbon .ico-label:before,
-.ribbon .ico-pen:before,
-.ribbon .ico-sylinder:after,
-.ribbon .ico-sylinder:before {
-  border-color: #bbb
-}
-.ico-clock:after {
-  top: .2em;
-  left: .43em;
-  width: .23em;
-  height: .23em;
-  border-width: 0 0 .14em .14em;
-  border-color: #777
-}
-.ico-label:before {
-  top: .2em;
-  left: 0;
-  width: .7em;
-  height: 0;
-  border-width: .6em 0 0;
-  border-color: #777
-}
-.ico-label:after {
-  top: .2em;
-  left: .7em;
-  width: 0;
-  height: 0;
-  border-width: .3em 0 .3em .3em;
-  border-color: transparent #777
-}
-.Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :link:focus i,
-.Cover-btn :visited:active i,
-.Cover-btn :visited:focus i,
-.Magazine-jump :link i,
-.Magazine-jump :link:active i,
-.Magazine-jump :link:focus i,
-.Magazine-jump :visited:active i,
-.Magazine-jump :visited:focus i,
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #f8fbf8
-}
-.ribbon .ico-label:after {
-  border-color: transparent #bbb
-}
-.ico-author:before {
-  top: 0;
-  left: .3em;
-  width: .45em;
-  height: 0;
-  border-width: .225em 0;
-  border-color: #777
-}
-.ico-author:after {
-  top: .5em;
-  left: .1em;
-  width: 0;
-  height: 0;
-  border-width: .5em .4em 0;
-  border-color: #777
-}
-.ico-flag:after,
-.ico-flag:before,
-.ico-pen:before {
-  top: 0;
-  border-color: #777;
-  height: 0
-}
-.ico-flag:before {
-  left: 0;
-  width: .1em;
-  border-width: 1em 0 0
-}
-.ico-flag:after {
-  left: .2em;
-  width: .8em;
-  border-width: .7em 0 0
-}
-.ico-pen:before {
-  left: .25em;
-  width: .5em;
-  border-width: 0 0 .7em
-}
-.ico-pen:after {
-  top: .75em;
-  left: .25em;
-  width: 0;
-  height: 0;
-  border-width: .25em .25em 0;
-  border-color: #777 transparent
-}
-a:active .ico-comment:after,
-a:active .ico-pen:after,
-a:focus .ico-comment:after,
-a:focus .ico-pen:after {
-  border-color: #f8fbf8 transparent
-}
-.ribbon .ico-comment:after,
-.ribbon .ico-pen:after {
-  border-color: #bbb transparent
-}
-.ico-chain:before {
-  top: .05em;
-  left: .05em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em 0 .2em .2em;
-  border-color: #777
-}
-.ico-chain:after {
-  top: .3em;
-  left: .3em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em .2em .2em 0;
-  border-color: #777
-}
-.ico-sylinder:after,
-.ico-sylinder:before {
-  width: .4em;
-  height: .4em;
-  border-color: #777
-}
-.ico-sylinder:before {
-  top: 0;
-  left: .1em;
-  border-width: .25em .2em .35em
-}
-.ico-sylinder:after {
-  top: .15em;
-  left: .2em;
-  border-width: .1em
-}
-.ico-comment:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .45em;
-  border-width: .15em;
-  border-color: #777
-}
-.ico-comment:after {
-  top: .65em;
-  left: .3em;
-  width: 0;
-  height: 0;
-  border-width: .35em .2em 0;
-  border-color: #777 transparent
+.commonForm-wrap * {
+  width: 100%;
+  float: right
 }
 .medal,
 .medal-bronze,
@@ -1098,18 +892,6 @@ a:focus .ico-pen:after {
 .lS .mspacer {
   margin: .6em 0
 }
-.Cover-btn i,
-.Magazine-jump i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-btn :visited i,
-.Magazine-jump :visited i {
-  border-color: transparent #111
-}
 .AAuthor {
   padding: 0 .5em 1em
 }
@@ -1128,8 +910,11 @@ a:focus .ico-pen:after {
   color: #3079ed;
   margin: 2em 0 1em
 }
+.ABody h2:after {
+  display: none;
+  width: 0
+}
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   padding: .8em 0 0;
@@ -1174,7 +959,10 @@ a:focus .ico-pen:after {
 .Subscribe {
   padding: 0 0 1em
 }
-.Attribution small {
+.Attribution small,
+.caption,
+.js-bqLink,
+.prettyprint {
   font-size: .875em
 }
 .BlogArchive dt {
@@ -1194,8 +982,7 @@ a:focus .ico-pen:after {
 }
 .BlogArchive a,
 .Label a {
-  display: inline-block;
-  margin: 0 0 1em;
+  line-height: 2.8;
   border-width: 0 0 1px
 }
 #lF .BlogArchive a,
@@ -1227,7 +1014,6 @@ a:focus .ico-pen:after {
   line-height: 1.4
 }
 .Cover-img {
-  position: relative;
   height: 100%;
   margin: 0 0 .6em
 }
@@ -1238,15 +1024,8 @@ a:focus .ico-pen:after {
 .Cover img {
   margin: 0;
   display: block;
+  width: 100%;
   max-width: 100%
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1255,6 +1034,10 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline;
+  display: inline-table;
+  display: inline-block;
+  display: -moz-inline-box;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1276,9 +1059,14 @@ kbd {
   display: block;
   color: #777
 }
-.Label div {
-  color: #f8fbf8;
-  text-align: justify
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.jsPica {
+  display: inline;
+  display: inline-table;
+  display: inline-block;
+  display: -moz-inline-box
 }
 .LinkList a,
 .RichLink-sep a {
@@ -1293,6 +1081,11 @@ kbd {
 .RichLink-sep :link {
   background: #f8fbf8;
   color: #24c
+}
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -1349,7 +1142,6 @@ pre var {
 }
 .Magazine-date {
   float: left;
-  font-weight: 700;
   line-height: 1
 }
 .Magazine-dd,
@@ -1368,7 +1160,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1437,8 +1228,7 @@ kbd {
   padding: 0 0 .914em
 }
 .Search {
-  position: relative;
-  margin: 0 3em 0 22px;
+  padding: 0 3em 0 0;
   width: auto;
   height: 1.9em
 }
@@ -1453,7 +1243,7 @@ kbd {
 }
 .Search-txt {
   width: 100%;
-  left: -22px
+  left: .05em
 }
 .Search-txt:invalid {
   color: #777
@@ -1462,7 +1252,7 @@ kbd {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  right: -3em;
+  left: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
@@ -1581,17 +1371,10 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
-blockquote:before {
-  content: attr(title);
-  display: block
-}
 blockquote:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  line-height: 1.2;
+.js-bqLink {
   color: #24c;
   margin: 0
 }
@@ -1604,6 +1387,11 @@ blockquote:after {
   word-break: break-all;
   color: #777;
   margin: 0
+}
+.links a,
+kbd {
+  display: inline;
+  display: inline-table
 }
 .box {
   margin: 1em 1em 0
@@ -1648,6 +1436,8 @@ div .box .jsPicaLarge img {
   overflow: hidden
 }
 kbd {
+  display: inline-block;
+  display: -moz-inline-box;
   border-color: #111;
   cursor: pointer;
   letter-spacing: -1;
@@ -1683,7 +1473,8 @@ tbody th var {
 }
 .links a {
   padding-left: 1em;
-  line-height: 1.2
+  display: inline-block;
+  display: -moz-inline-box
 }
 .links [href]:before {
   content: ">";
@@ -1692,8 +1483,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1731,10 +1521,8 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
   width: 100%;
-  max-width: 100%;
-  line-height: 1.2
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1763,75 +1551,6 @@ dl.note dd {
   border-style: solid;
   padding: .5em 1em
 }
-.tl tbody td:after,
-.tl tbody td:before {
-  text-indent: -1em;
-  position: absolute;
-  content: " ";
-  display: block
-}
-@-moz-document url-prefix() {
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:after,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:after,
-  .ico-label:before,
-  .ico-pen:after,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .tl tbody td:after,
-  .tl tbody td:before,
-  _:-moz-loading,
-  h2:after {
-    display: none
-  }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:after,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:after,
-  .ico-label:before,
-  .ico-pen:after,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .tl tbody td:after,
-  .tl tbody td:before,
-  _:-moz-handler-blocked,
-  h2:after {
-    display: block
-  }
-}
-.tl tbody td:before {
-  top: .6em;
-  left: -.75em;
-  width: 0;
-  height: 0;
-  border-width: .6em;
-  border-color: #ddd
-}
-.tl tbody td:after {
-  top: .85em;
-  left: -.5em;
-  width: 0;
-  height: 0;
-  border-width: .35em;
-  border-color: #f8fbf8
-}
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
@@ -1841,8 +1560,7 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0;
-  line-height: 1.2
+  padding: .5em 0
 }
 .AMeta div {
   margin: .5em 0;
@@ -1873,7 +1591,11 @@ dl.note dd {
   text-overflow: ellipsis
 }
 .Pager i {
+  display: inline;
+  display: inline-table;
   display: inline-block;
+  display: -moz-inline-box;
+  vertical-align: text-top;
   border-color: transparent #777
 }
 .Pager-next i {
@@ -1983,7 +1705,6 @@ tr .prettyprint {
   background: #333;
   color: #fff;
   margin: 1.23em 0;
-  font-size: .875em;
   border-width: 1px;
   border-color: #333;
   line-height: 1.2
@@ -2046,38 +1767,22 @@ em {
 strong {
   background: #6cf
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 @media print {
   .lW,
   .lX,
   table {
     width: 100%
   }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .ribbon .ico-author:after,
-  .ribbon .ico-author:before,
-  .ribbon .ico-chain:after,
-  .ribbon .ico-chain:before,
-  .ribbon .ico-clock:after,
-  .ribbon .ico-clock:before,
-  .ribbon .ico-comment:before,
-  .ribbon .ico-flag:after,
-  .ribbon .ico-flag:before,
-  .ribbon .ico-label:before,
-  .ribbon .ico-pen:before,
-  .ribbon .ico-sylinder:after,
-  .ribbon .ico-sylinder:before,
   blockquote code,
   blockquote var,
   table,
@@ -2258,16 +1963,6 @@ strong {
   #lH .lMi {
     padding: .5em 0
   }
-  .ico-label:after,
-  .ribbon .ico-label:after {
-    border-color: transparent #666
-  }
-  .ico-comment:after,
-  .ico-pen:after,
-  .ribbon .ico-comment:after,
-  .ribbon .ico-pen:after {
-    border-color: #666 transparent
-  }
   .AAuthor {
     margin: 1em 0 0;
     padding: 0
@@ -2391,8 +2086,7 @@ strong {
   }
   .js-bqCite,
   .js-bqLink,
-  blockquote:after,
-  blockquote:before {
+  blockquote:after {
     margin: 0 1.5%
   }
   blockquote {
@@ -2471,24 +2165,10 @@ strong {
   }
 }
 @media \0 all {
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:after,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:after,
-  .ico-label:before,
-  .ico-pen:after,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .tl tbody td:after,
-  .tl tbody td:before,
+  input,
+  input.btn {
+    line-height: 1
+  }
   h2:after {
     display: none;
     width: 0
@@ -2504,28 +2184,16 @@ strong {
   .Magazine-item:after,
   .Magazine-main:after,
   .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lW:after,
-  :-gck-lte142,
-  _:-moz-any-link {
-    display: inline
-  }
-  #lB .lMi:after,
-  #lB .lSi:after,
-  #lF .lMi:after,
-  #lF .lSi:after,
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .Magazine-item:after,
-  .Magazine-main:after,
-  .RichLink a:after,
+  .Search input,
   .box:after,
   .commonForm-pair:after,
   .lW:after {
-    content: "."
+    display: inline
+  }
+  input,
+  textarea {
+    padding: .45em .4em;
+    -moz-box-sizing: border-box
   }
   #lB .lMi,
   #lB .lSi,
@@ -2559,15 +2227,27 @@ strong {
   .box:after,
   .commonForm-pair:after,
   .lW:after,_:lang(x) {
-    display: block
+    content: ".";
+    display: block;
+    font-size: 1px;
+    line-height: 0;
+    height: .1px
+  }
+  input.btn {
+    padding: .45em 1em
+  }
+  .Search {
+    margin: 0
   }
   .Search input {
-    display: inline;
-    display: -moz-inline-box;
-    position: static
+    position: static;
+    display: -moz-inline-box
   }
   .Search-txt {
     width: 60%
+  }
+  .Search,_:lang(x) {
+    margin: 0 3em 0 1.1em
   }
   .Search input,_:lang(x) {
     position: absolute;
@@ -2601,24 +2281,6 @@ strong {
     overflow: hidden
   }
 }
-.ico-author:after,
-.ico-author:before,
-.ico-chain:after,
-.ico-chain:before,
-.ico-clock:after,
-.ico-clock:before,
-.ico-comment:after,
-.ico-comment:before,
-.ico-flag:after,
-.ico-flag:before,
-.ico-label:after,
-.ico-label:before,
-.ico-pen:after,
-.ico-pen:before,
-.ico-sylinder:after,
-.ico-sylinder:before,
-.tl tbody td:after,
-.tl tbody td:before,
 :not(\),
 h2:after {
   display: none

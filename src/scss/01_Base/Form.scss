@@ -31,14 +31,18 @@ textarea, input {
     /* //_{@modern */
          /* padding-left : 1px;1px : 0pxだとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
     /* //_}@modern */
-    padding      : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
+    /* //_{^@legacy */
+    padding      : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR}; // Opera 8~ では padding が無視, Opera 7 では 0 に
+    /* //_}^@legacy */
+    /* //_{@legacy */
+    padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
+    /* //_}@legacy */
     @include placeholderColor( $COLOR_Default_casual_text );
 }
 
 input {
     font-size             : 1em;
-    line-height           : 1;
-    @include box-sizing(content-box);
+
     /* //_{@modern */
     -webkit-border-radius : 0;
        -moz-border-radius : 0;
@@ -49,21 +53,49 @@ input {
     /* //_{#notie */
     margin                : 0;
     /* //_}#notie */
-    
 
-/* //_{@ie6,@ie7,@ie8,@ie9,#notie */
+/* //_{@ie6,@ie7,@ie8,@ie9,@modern */
+    @include box-sizing(content-box);
+    line-height           : 1;
     height                : 1em;
-/* //_}@ie6,@ie7,@ie8,@ie9,#notie */
-/* //_{@ie55,@ie5win */
+/* //_}@ie6,@ie7,@ie8,@ie9,@modern */
+/* //_{@ie55,@ie5win,@legacy */
+    line-height           : $BASE_LINE_HEIGHT;
     height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
-/* //_}@ie55,@ie5win */
+/* //_}@ie55,@ie5win,@legacy */
 }
 
-/* //_{@modern */
+/* //_{@legacy */
+    /* override Gecko ~1.8.1 */
+    @media \0 all {
+        textarea, input {
+            padding         : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
+            -moz-box-sizing : border-box;
+        }
+        input {
+            line-height : 1;
+        }
+    }
+    @-moz-document url-prefix() {
+        /* override Gecko 1.9.0~1.9.2 */
+        textarea [_csshack_="_:-moz-loading"], input [_csshack_="_:-moz-loading"] {
+            padding         : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
+            -moz-box-sizing : border-box;
+        }
+        input [_csshack_="_:-moz-loading"] {
+            line-height : 1;
+        }
+    }
+    input[type=hidden] {
+        display: none; /* Opera */
+    }
+/* //_}@legacy */
+
+/* //_{@modern,@legacy */
 input::-moz-focus-inner /* , button::-moz-focus-inner */ {
     border      : 0;
 }
-/* //_}@modern */
+/* //_}@modern,@legacy */
 
 textarea {
     font-size        : 1em; /* for Edge, IE11- */

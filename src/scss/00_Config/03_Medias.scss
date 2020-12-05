@@ -111,9 +111,13 @@ $COMMENT_OUT : (
             , (prefers-color-scheme:dark)
             /* //_}@modern */
             {
+                /* //_{#can-mq */
                 @media handheld, screen { /* screen が無いと Chrome で印刷時にも適用される．only screen and では古い Opera にも適用されるので使わない． */
+                /* //_}#can-mq */
                     @content;
+                /* //_{#can-mq */
                 }
+                /* //_}#can-mq */
             }
         }
         @else if $media == 'print' {

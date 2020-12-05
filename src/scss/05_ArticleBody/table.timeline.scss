@@ -57,6 +57,7 @@
     /* //_}#can-1stChild */
     }
 
+    /* //_{^@legacy */
     /* //_{#can-content */
     tbody td:before, tbody td:after {
         @include createPseudoBlock;
@@ -70,6 +71,9 @@
     }
     /* //_}#can-empty-pseudo-class */
 
+    /* td に対する絶対配置は Iron14 と Windows Safari 5.1.1 で動作, Iron8 では不可 body が親になる. */
+    /* Webkit 534.51, 535 が可, ~534.? が不可ということ? */
+    /* td に対する絶対配置は Opera 10.54 で動作, Opera ~10 では非表示. */
     tbody td:before {
         top           : .6em;
         left          : -0.75em;
@@ -110,8 +114,9 @@
         }
         /* //_}@ie8 */
     }
-
     /* //_}#can-content */
+    /* //_}^@legacy */
+
     tfoot th {
         border-width : 1px 0 0;
     }
@@ -131,9 +136,11 @@
 /* //_{#can-hover-pseudo-class */
     tbody :hover th,
     tbody :hover td
+    /* //_{^@legacy */
     /* //_{#can-content */
     , tbody :hover td:before
     /* //_}#can-content */
+    /* //_}^@legacy */
     {
         border-color : $COLOR_ACCENT;
     }
@@ -162,18 +169,22 @@ blockquote .tl {
     thead th, thead td,
     td,
     tfoot th, tfoot td
+    /* //_{^@legacy */
     /* //_{#can-content */
     , tbody td:before
     /* //_}#can-content */
+    /* //_}^@legacy */
     {
         border-color : $COLOR_Default_casual_text;
     }
     
+    /* //_{^@legacy */
     /* //_{#can-content */
     tbody td:after {
         border-color : $COLOR_Default_casual_fill;
     }
     /* //_}#can-content */
+    /* //_}^@legacy */
     tbody th :visited {
         color : $COLOR_Default_visited;
     }

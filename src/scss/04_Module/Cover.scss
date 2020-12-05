@@ -105,7 +105,9 @@
     .Cover-btn {
         text-align : right;
 
+        /* //_{^@legacy */
         @extend %more-icon;
+        /* //_}^@legacy */
     }
 
 /*  WSXGA

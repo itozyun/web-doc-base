@@ -44,29 +44,30 @@ table,
 textarea {
   line-height: 1.2
 }
+body,
+input {
+  line-height: 1.9
+}
 .e6L,
 .e6R {
   width: 50%
 }
-.Cover-meta,
-.Header h1,
 .Pager span,
-.RichLink .p,
-.Search,
-.Search-txt,
 .caption,
 .commonForm,
 .commonForm label,
 .commonForm-wrap,
 .e6BR,
-.h1,
 .js-bqCite,
 .jsPica,
-.lM .RichLink b,
 .links a,
 a iframe,
 a img {
   display: block
+}
+.baseColor,
+.medal {
+  background: #f8fbf8
 }
 .Search .btn,
 .e6C,
@@ -88,6 +89,16 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
+}
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
 }
 code,
 kbd,
@@ -150,10 +161,6 @@ body,
 html {
   margin: 0;
   height: 100%
-}
-body,
-input {
-  line-height: 1.9
 }
 body,
 input,
@@ -310,6 +317,7 @@ p {
 a:active:hover {
   text-decoration: underline
 }
+.medal,
 a,
 hr,
 tbody th {
@@ -323,6 +331,7 @@ tbody th {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -382,7 +391,6 @@ textarea {
 }
 input {
   font-size: 1em;
-  line-height: 1;
   height: 2.1em
 }
 .e6BR,
@@ -484,16 +492,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-blockquote,
-code,
-tbody th,
-var {
-  background: #ddd
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -551,9 +549,6 @@ blockquote tfoot th {
 }
 body {
   background: #1a1a1a
-}
-.baseColor {
-  background: #f8fbf8
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -682,16 +677,6 @@ body {
 input.btn {
   padding: .3em 1em .6em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
-}
 .commonForm-pair {
   zoom: 1;
   margin-bottom: 1em
@@ -722,11 +707,6 @@ input.btn {
 .Cover,
 .RichLink-sep {
   line-height: 1.4
-}
-.medal {
-  border-color: #f8fbf8;
-  background: #f8fbf8;
-  color: #111
 }
 :link .medal,
 :visited .medal {
@@ -946,6 +926,7 @@ kbd {
   background: #000
 }
 .Cover-meta {
+  display: block;
   color: #777
 }
 .Cover {
@@ -1031,7 +1012,11 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
+.RichLink b {
+  display: block
+}
 .RichLink .p {
+  display: block;
   margin: 1em 0 .5em
 }
 .baseColor .RichLink a {
@@ -1042,7 +1027,8 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em
+  padding: 0 0 .8em;
+  display: block
 }
 .RichLink img {
   float: left;
@@ -1050,7 +1036,8 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  padding: 0 0 .4em;
+  display: block
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1064,6 +1051,7 @@ pre var {
   font-size: 1em
 }
 .Search {
+  display: block;
   padding: 0 3em 0 0;
   height: 1.9em
 }
@@ -1075,6 +1063,7 @@ pre var {
   z-index: 1
 }
 .Search-txt {
+  display: block;
   width: 100%;
   left: .05em
 }
@@ -1115,9 +1104,11 @@ pre var {
 }
 .Header h1,
 .h1 {
+  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
+  display: block;
   margin: 0 0 .5em
 }
 .Subscribe .atom:link {
@@ -1499,6 +1490,16 @@ em {
 }
 strong {
   background: #6cf
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media print {
   .Header h1,

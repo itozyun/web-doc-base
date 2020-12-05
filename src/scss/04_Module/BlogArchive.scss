@@ -31,14 +31,16 @@
             color      : $COLOR_Ribbon_fill; /* , を消す */
         }
             .BlogArchive a {
+            /* //_{^@legacy */
             /* //_{#can-inline-block */
                 @include inline-block;
                 margin  : 0 0 1em;
             /* //_}#can-inline-block */
+            /* //_}^@legacy */
 
-            /* //_{^#can-inline-block */
+            /* //_{^#can-inline-block,@legacy */
                 line-height : 2.8;
-            /* //_}^#can-inline-block */
+            /* //_}^#can-inline-block,@legacy */
 
                 border-width : 0 0 1px;
 

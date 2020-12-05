@@ -66,9 +66,9 @@
     zoom        : 1;
     /* //_}@ie6,@ie7 */
 
-    /* //_{@ie5win,@ie55 */
+    /* //_{@ie5win,@ie55,@legacy */
     height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    /* //_}@ie5win,@ie55 */
+    /* //_}@ie5win,@ie55,@legacy */
 
     &:link:hover, &:visited:hover {
         text-decoration : underline;
@@ -106,10 +106,6 @@
 }
 
 input.btn {
-/* //_{@legacy */
-    line-height : 1;
-    padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em; /* Gecko ~1.8 */
-/* //_}@legacy */
 /* //_{@ie5win,@ie55 */
     padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
 /* //_}@ie5win,@ie55 */
@@ -117,6 +113,25 @@ input.btn {
     height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
     padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
 /* //_}@ie6,@ie7 */
+
+/* //_{@legacy */
+    padding : 0; // for Opera 7.x
+
+    /* Gecko ~1.8.1 */
+    @media \0 all {
+        & {
+            line-height : 1;
+            padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+        }
+    }
+    @-moz-document url-prefix() {
+        /* override Gecko 1.9.0~1.9.2 */
+        & [_csshack_="_:-moz-loading"] {
+            line-height : 1;
+            padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+        }
+    }
+/* //_}@legacy */
 }
 
 /* //_{@modern */

@@ -19,6 +19,9 @@
     /* //_{#can-content */
     &:after {
         display : none; /* for iOS4 content : none だけでは消えない */
+        /* //_{@legacy */
+        width   : 0;    /* for Opera */
+        /* //_}@legacy */
     }
     /* //_}#can-content */
 }

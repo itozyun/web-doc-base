@@ -74,10 +74,36 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
+}
 code,
 kbd,
 var {
   margin: 0 .1em
+}
+.ABody h3,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 .SearchResult cite,
 .caption,
@@ -156,20 +182,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
-}
-.RichLink b,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -348,10 +360,15 @@ a:focus:hover {
 :visited {
   background-color: transparent
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 :link,
 :link *,
 :visited,
 :visited * {
+  -webkit-transition-property: background-color,color,border-color;
   -webkit-transition: .3s ease-in;
   -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
   -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
@@ -404,7 +421,8 @@ a:focus .ico-flag:before,
 a:focus .ico-label:before,
 a:focus .ico-pen:before,
 a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
+a:focus .ico-sylinder:before,
+tbody th {
   border-color: #f8fbf8
 }
 .tl tbody th :link,
@@ -414,6 +432,7 @@ a:focus .ico-sylinder:before {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -517,14 +536,15 @@ textarea:-ms-input-placeholder {
   color: #777
 }
 input {
-  line-height: 1;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 input::-moz-focus-inner {
@@ -651,10 +671,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -740,9 +756,6 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-.baseColor {
-  background: #f8fbf8
-}
 *,
 blockquote .tl tbody td:after {
   border-color: #ddd
@@ -784,7 +797,6 @@ blockquote .tl tbody td:after {
 .lMi:after,
 .lSi:after {
   content: "";
-  line-height: 0;
   height: 0;
   display: block;
   visibility: hidden;
@@ -872,30 +884,6 @@ input.btn::-webkit-search-decoration {
 }
 input.btn:focus {
   outline-offset: -2px
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.LinkList :visited,
-.RichLink-sep :visited,
-.baseColor .btn:visited,
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
-.baseColor .btn:visited {
-  border-color: #111
-}
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-blockquote,
-code,
-var {
-  background: #ddd
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -1226,7 +1214,6 @@ a:focus .ico-pen:after {
   display: none
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   padding: .8em 0 0;
@@ -1384,6 +1371,7 @@ kbd {
   padding: .37em;
   margin: 0;
   color: #fff;
+  background: #000;
   background: rgba(0,0,0,.65)
 }
 .Cover-meta {
@@ -1409,6 +1397,11 @@ kbd {
 .RichLink-sep :link {
   background: #f8fbf8;
   color: #24c
+}
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -1464,6 +1457,9 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
+.RichLink b {
+  display: block
+}
 .RichLink .p {
   display: block;
   margin: 1em 0 .5em
@@ -1477,7 +1473,8 @@ pre var {
 .RichLink-meta {
   color: #2a2a2a;
   padding: 0 0 .8em;
-  clear: both
+  clear: both;
+  display: block
 }
 .RichLink img {
   float: left;
@@ -1506,11 +1503,6 @@ pre var {
   width: auto;
   height: 1.9em
 }
-.Search-txt,
-.caption {
-  width: 100%;
-  display: block
-}
 .Search input {
   position: absolute;
   top: 0
@@ -1521,6 +1513,8 @@ pre var {
   z-index: 1
 }
 .Search-txt {
+  display: block;
+  width: 100%;
   left: -22px
 }
 .Search-txt:invalid {
@@ -1563,6 +1557,7 @@ pre var {
 }
 .Header h1,
 .h1 {
+  display: inline;
   font-size: 1.5em;
   padding: 0;
   line-height: 1;
@@ -1770,8 +1765,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1806,8 +1800,10 @@ dl.note dd {
   margin-left: 1em
 }
 .caption {
+  display: block;
   text-align: center;
   font-size: .875em;
+  width: 100%;
   max-width: 100%;
   line-height: 1.2
 }
@@ -2067,6 +2063,7 @@ li.L8 {
 }
 .jsCap,
 .jsPica img {
+  -webkit-transition-property: width,margin;
   -webkit-transition: .3s ease-in;
   -moz-transition: width .3s ease-in,margin .3s ease-in;
   -o-transition: width .3s ease-in,margin .3s ease-in;
@@ -2076,6 +2073,7 @@ li.L8 {
   width: 100%;
   max-width: 100%;
   height: auto;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
@@ -2089,6 +2087,16 @@ em {
 }
 strong {
   background: #6cf
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media screen and (min-width:0\-) {
   .box > p:first-of-type {
@@ -3212,9 +3220,9 @@ screen and (prefers-color-scheme:dark) {
     display: inline
   }
   .Pager i {
-    display: none;
     border-top-color: transparent;
-    border-bottom-color: transparent
+    border-bottom-color: transparent;
+    display: none
   }
   .Pager-top i {
     border-color: inherit transparent
@@ -3240,7 +3248,7 @@ screen and (prefers-color-scheme:dark) {
   .commonForm-pair:after,
   .lMi:after,
   .lSi:after {
-    content: "."
+    display: inline
   }
   .AAuthor,
   .BlogArchive dl,
@@ -3263,21 +3271,12 @@ screen and (prefers-color-scheme:dark) {
   .box:after,
   .commonForm-pair:after,
   .lMi:after,
-  .lSi:after,
-  :-gck-lte142,
-  _:-moz-any-link {
-    display: inline
-  }
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
   .lSi:after,_:lang(x) {
-    display: block
+    content: ".";
+    display: block;
+    font-size: 1px;
+    line-height: 0;
+    height: .1px
   }
   @-moz-document url-prefix() {
     .AAuthor:after,

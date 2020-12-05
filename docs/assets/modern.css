@@ -49,6 +49,8 @@ textarea {
 .Magazine-mm,
 .Magazine-yy,
 .RichLink .p,
+.RichLink b,
+.RichLink-meta,
 .Search,
 .Search-txt,
 .commonForm,
@@ -61,6 +63,21 @@ h2:after {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
+}
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
 }
 .Magazine-label,
 .SearchResult cite,
@@ -141,11 +158,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
 }
 .RichLink b,
 h1,
@@ -331,11 +343,16 @@ a:focus:hover {
 :visited {
   background-color: transparent
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 :link,
 :link *,
 :visited,
 :visited *,
 h2 {
+  -webkit-transition-property: background-color,color,border-color;
   -webkit-transition: .3s ease-in;
   -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
   -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
@@ -388,7 +405,8 @@ a:focus .ico-flag:before,
 a:focus .ico-label:before,
 a:focus .ico-pen:before,
 a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
+a:focus .ico-sylinder:before,
+tbody th {
   border-color: #f8fbf8
 }
 .tl tbody th :link,
@@ -398,6 +416,7 @@ a:focus .ico-sylinder:before {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -501,14 +520,15 @@ textarea:-ms-input-placeholder {
   color: #777
 }
 input {
-  line-height: 1;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 input::-moz-focus-inner {
@@ -640,10 +660,6 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -722,9 +738,6 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-.baseColor {
-  background: #f8fbf8
-}
 *,
 blockquote .tl tbody td:after {
   border-color: #ddd
@@ -745,7 +758,6 @@ blockquote .tl tbody td:after {
 .lSi:after,
 .lW:after {
   content: "";
-  line-height: 0;
   height: 0;
   display: block;
   visibility: hidden;
@@ -884,26 +896,6 @@ input.btn::-webkit-search-decoration {
 }
 input.btn:focus {
   outline-offset: -2px
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.LinkList :visited,
-.RichLink-sep :visited,
-.baseColor .btn:visited,
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
-.baseColor .btn:visited {
-  border-color: #111
-}
-blockquote,
-code,
-var {
-  background: #ddd
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -1238,7 +1230,6 @@ a:focus .ico-pen:after {
   display: none
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   padding: .8em 0 0;
@@ -1388,6 +1379,7 @@ kbd {
   padding: .37em;
   margin: 0;
   color: #fff;
+  background: #000;
   background: rgba(0,0,0,.65)
 }
 .Magazine h3,
@@ -1414,6 +1406,11 @@ kbd {
 .RichLink-sep :link {
   background: #f8fbf8;
   color: #24c
+}
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -1470,7 +1467,6 @@ pre var {
 }
 .Magazine-date {
   float: left;
-  font-weight: 700;
   line-height: 1
 }
 .Magazine-dd,
@@ -1489,7 +1485,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1818,8 +1813,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -2117,6 +2111,7 @@ li.L8 {
 }
 .jsCap,
 .jsPica img {
+  -webkit-transition-property: width,margin;
   -webkit-transition: .3s ease-in;
   -moz-transition: width .3s ease-in,margin .3s ease-in;
   -o-transition: width .3s ease-in,margin .3s ease-in;
@@ -2126,6 +2121,7 @@ li.L8 {
   width: 100%;
   max-width: 100%;
   height: auto;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
@@ -2138,6 +2134,7 @@ div .box .jsPicaLarge img {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transition-property: transform;
   -webkit-transition: .3s ease-in;
   -moz-transition: transform .3s ease-in;
   -o-transition: transform .3s ease-in;
@@ -2160,6 +2157,16 @@ strong {
   background: -o-linear-gradient(top,rgba(0,0,0,0) 0,rgba(102,204,255,0) 60%,#6cf 61%,#6cf 100%);
   background: -ms-linear-gradient(top,rgba(0,0,0,0) 0,rgba(102,204,255,0) 60%,#6cf 61%,#6cf 100%);
   background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(255,255,102,0) 60%,#6cf 61%,#6cf 100%)
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media screen and (min-width:0\-) {
   .box > p:first-of-type {
@@ -3695,9 +3702,9 @@ screen and (prefers-color-scheme:dark) {
     display: inline
   }
   .Pager i {
-    display: none;
     border-top-color: transparent;
-    border-bottom-color: transparent
+    border-bottom-color: transparent;
+    display: none
   }
   .Pager-top i {
     border-color: inherit transparent
@@ -3726,7 +3733,7 @@ screen and (prefers-color-scheme:dark) {
   .lMi:after,
   .lSi:after,
   .lW:after {
-    content: "."
+    display: inline
   }
   .AAuthor,
   .BlogArchive dl,
@@ -3755,24 +3762,12 @@ screen and (prefers-color-scheme:dark) {
   .commonForm-pair:after,
   .lMi:after,
   .lSi:after,
-  .lW:after,
-  :-gck-lte142,
-  _:-moz-any-link {
-    display: inline
-  }
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .Magazine-item:after,
-  .Magazine-main:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after,
   .lW:after,_:lang(x) {
-    display: block
+    content: ".";
+    display: block;
+    font-size: 1px;
+    line-height: 0;
+    height: .1px
   }
   @-moz-document url-prefix() {
     .AAuthor:after,

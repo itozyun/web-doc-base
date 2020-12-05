@@ -53,27 +53,42 @@
             }
                 .Pager i { /* i を絶対配置にすると、Opera mini で表示されない */
                     @include inline-block;
+                    /* //_{@legacy */
+                    vertical-align : text-top;
+                    /* //_}@legacy */
                     /* //_{@ie7,@ie6,@ie55,@ie5win */
-                    height       : 0;
-                    width        : 0;
+                    height         : 0;
+                    width          : 0;
                     /* //_}@ie7,@ie6,@ie55,@ie5win */
                     /* //_{@ie6,@ie55,@ie5win */
-                    line-height  : 0; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
+                    line-height    : 0; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
                     /* //_}@ie6,@ie55,@ie5win */
 
                 /* //_{#ie7-win */
-                    position     : relative;
+                    position       : relative;
                     /* //_{@ie7 */
-                        zoom     : 1;
-                    /* //_}@ie7 */                    
+                        zoom       : 1;
+                    /* //_}@ie7 */
                     /* //_{@ie6,@ie7 */
-                        top      : -.5em;
+                        top        : -.5em;
                     /* //_}@ie6,@ie7 */
                     /* //_{@ie55,@ie5win */
-                        top      : .5em;
+                        top        : .5em;
                     /* //_}@ie55,@ie5win */
                 /* //_}#ie7-win */
 
+                    /* //_{#can-transparent */
+                    border-color : transparent $COLOR_Default_casual_text;
+                    /* //_}#can-transparent */
+                
+                    /* //_{^#can-transparent */
+                    border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
+                    /* //_}^#can-transparent */
+
+                    @include highContrastForIE10ToEdge {
+                        border-top-color    : transparent;
+                        border-bottom-color : transparent;
+                    }
                     @include highContrast {
                         display : none;
                     }
@@ -85,19 +100,6 @@
                 .Pager-prev i {
                     border-width : 0.5em 0 0.5em 0.7em;
                     margin-left  : 0.5em;
-                }
-                .Pager i {
-                    /* //_{#can-transparent */
-                    border-color : transparent $COLOR_Default_casual_text;
-                    /* //_}#can-transparent */
-                
-                    /* //_{^#can-transparent */
-                    border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
-                    /* //_}^#can-transparent */
-                    @include highContrastForIE10ToEdge {
-                        border-top-color    : transparent;
-                        border-bottom-color : transparent;
-                    }
                 }
                 .Pager a:active i
                 /* //_{#can-focus-pseudo-class */

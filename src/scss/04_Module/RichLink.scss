@@ -49,6 +49,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
             }
         }
             .RichLink b {
+                display     : block;
                 font-weight : normal;
             }
             .RichLink br {
@@ -108,6 +109,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     .RichLink-meta {
         padding : 0 0 0.8em; /* 1em - .2em */
         clear   : both;
+        display : block;
     /* //_{#can-inline-block */
         span {
             @include inline-block;
