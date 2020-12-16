@@ -1,7 +1,7 @@
 /**
  * load modern.css or legacy.css
  */
-if( !g_Trident && !g_Tasman ){
+if( !( g_Trident < 10 ) && !g_Tasman ){
     document.write( '<link href="' + g_assetUrl + g_cssName + '" rel="stylesheet" type="text\/css" media="screen,handheld,projection,tv,print">' );
 };
 
