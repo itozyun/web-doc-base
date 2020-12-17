@@ -204,7 +204,7 @@ gulp.task('js', gulp.series(
             {
                 js                : [
                     tempDir + '/temp.js'//,
-                    //'./src/js/GoogleCodePrettify.js'
+                    //'./src/js/GoogleCodePrettify.js' Gecko 0.8 で止まる
                 ],
                 externs           : externs,
                 // compilation_level : 'WHITESPACE_ONLY',
