@@ -35,9 +35,7 @@
 @include media(phablet) {
 /* clear 2column */
     .lM1, .lM2 {
-        float        : none;
-        width        : auto;
-        margin-left  : 0;
-        margin-right : 0;
+        float : none;
+        width : auto;
     }
 }

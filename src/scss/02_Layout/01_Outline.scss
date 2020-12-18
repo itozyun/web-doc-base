@@ -180,58 +180,53 @@
     }
         .lM, .lS {
             float   : none;
-        /* //_{^@ie9 */
             width   : auto;
-        /* //_}^@ie9 */
-        /* //_{@ie9 */
-            display      : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
-            width        : 100%;  /* auto は不可 */
-            table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
-        /* //_}@ie9 */
         }
+            .lMi, .lMz, .lSi, .lXi {
+                margin : 0;
+            }
 }
 /* //_}^+mobileOnly */
 
 /* //_{+mobileOnly
 --------------------------------------------------------------------------------------*/
     .lW {
+        /* //_{@ie8,@modern */
         overflow : hidden; /* この指定が無いと塗りがはみ出る */
+        /* //_}@ie8,@modern */
+        /* //_{@ie5win */
+        width      : 100%; /* この指定が無いと横スクロールが出る  */
+        overflow-x : hidden;
+        /* //_}@ie5win */
     }
-        .lM, .lS {
-        /* //_{@ie9 */
-            display      : table; /* 親要素にmarginが継承されてしまうためArticleBodyの塗りが ie9,WP7.8 で乱れる. */
-            width        : 100%;  /* auto は不可 */
-            table-layout : fixed; /* display:table にすると max-width が効かなくなる, fixed で改善する https://goo.gl/BmuNfG */
-        /* //_}@ie9 */
+        .lM, .lS, #lB .lSi, .lX {
+            /* //_{#can-max-min */
+            max-width : $TABLET_MAX_WIDTH_EM;
+            margin    : 0 auto;
+            /* //_}#can-max-min */
         }
-            .lMi, .lMz, .lSi, .lXi {
-                /* //_{#can-max-min */
-                max-width : $TABLET_MAX_WIDTH_EM;
-                /* //_}#can-max-min */
-            }
+        #lB .lS {
+            /* //_{#can-max-min */
+            max-width : 100%;
+            /* //_}#can-max-min */
+        }
 /* //_}+mobileOnly */
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
-    .lMz {
-        padding : 0;
-    /* //_{#can-margin-auto */
-        margin    : 0 auto;
-    /* //_}#can-margin-auto */
-    }
     .lMi, .lMz .lMh, .lSi, .lXi {
         padding : 0 $TABLET_H_SPACE;
-    /* //_{#can-margin-auto */
-        margin  : 0 auto;
-    /* //_}#can-margin-auto */
+    }
+    #lB .lSi {
+        padding : 0;
     }
 }
 
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .lMi, .lMz .lMh, .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
         padding : 0 $PHABLET_H_SPACE;
     }
 }
@@ -239,7 +234,7 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    .lMi, .lMz .lMh, .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
         padding : 0 $PHONE_H_SPACE;
     }
 }
@@ -247,7 +242,7 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .lMi, .lMz .lMh, .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
         padding : 0;
     }
 }
@@ -259,16 +254,15 @@
         display : none;
     }
 
-    .lMi, .lMz, .lSi, .lXi {
-        /* //_{^+mobileOnly */
-        padding : 0;
-        margin  : 0;
-        /* //_}^+mobileOnly */
-
-        /* //_{+mobileOnly */
-            /* //_{#can-max-min */
-                max-width : 100%;
-            /* //_}#can-max-min */
-        /* //_}+mobileOnly */
+    /* //_{+mobileOnly */
+    .lM, .lX {
+        /* //_{#can-max-min */
+        max-width : 100%;
+        /* //_}#can-max-min */
+        margin    : 0;
     }
+    .lMi, .lMz .lMh, .lXi {
+        padding : 0;
+    }
+    /* //_}+mobileOnly */
 }

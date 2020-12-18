@@ -55,16 +55,6 @@ $RICHLINK_TEXT_SIZE : 0.875;
             .RichLink br {
                 display : none;
             }
-            .RichLink .p {
-                display : block;
-                /* //_{#ie55-,@ie8,@ie9,#notie */
-                padding : 0 0 1em;
-                /* //_}#ie55-,@ie8,@ie9,#notie */
-                /* //_{@ie6,@ie7 */
-                padding : 0;
-                /* //_}@ie6,@ie7 */
-                margin  : 1em 0 0.5em;
-            }
 
     .RichLink a {
         border-color : $COLOR_Ribbon_casual_fill !important;
@@ -103,18 +93,20 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
     .lM .RichLink b {
         font-size : 1.5em;
-        padding   : 0 0 0.4em;
+        margin    : 0 0 0.4em;
         display   : block;
     }
     .RichLink-meta {
-        padding : 0 0 0.8em; /* 1em - .2em */
-        clear   : both;
-        display : block;
-    /* //_{#can-inline-block */
+        font-size : 1em * $RICHLINK_TEXT_SIZE;
+        display   : block;
+        margin    : 1em / $RICHLINK_TEXT_SIZE 0;
         span {
             @include inline-block;
         }
-    /* //_}#can-inline-block */
+    }
+    .RichLink .p {
+        display : block;
+        margin  : 1em 0;
     }
 
 /*  layout Sub
@@ -141,7 +133,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
-    .lMf .RichLink-sep {
+    .lM .RichLink-sep {
         display      : table;
         table-layout : fixed;
         margin       : 1em 0;

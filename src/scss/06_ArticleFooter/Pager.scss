@@ -100,6 +100,9 @@
                 .Pager-prev i {
                     border-width : 0.5em 0 0.5em 0.7em;
                     margin-left  : 0.5em;
+                    /* //_{#ie7-win */
+                    left         : 0.5em;
+                    /* //_}#ie7-win */
                 }
                 .Pager a:active i
                 /* //_{#can-focus-pseudo-class */

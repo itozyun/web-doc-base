@@ -59,10 +59,14 @@ input {
     line-height           : 1;
     height                : 1em;
 /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
-/* //_{@ie55,@ie5win,@legacy */
+/* //_{@ie55,@ie5win */
+    line-height           : 1;
+    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+/* //_}@ie55,@ie5win */
+/* //_{@legacy */
     line-height           : $BASE_LINE_HEIGHT;
     height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
-/* //_}@ie55,@ie5win,@legacy */
+/* //_}@legacy */
 }
 
 /* //_{@legacy */

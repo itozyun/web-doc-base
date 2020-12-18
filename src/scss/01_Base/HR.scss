@@ -1,15 +1,16 @@
 hr {
-    height       : 1px;
     border-width : 0 0 1px; /* for high contrast mode */
-/* //_{#can-transparent */
+/* //_{@ie9,@modern */
+    height       : 1px;
     border-color : transparent;
-/* //_}#can-transparent */
-/* //_{^#can-transparent */
-    border-color : $COLOR_Default_fill;
+/* //_}@ie9,@modern */
+/* //_{#ie8-win,@ie5mac,@legacy */
+    height       : 0;
+    border-color : $COLOR_Default_casual_fill;
     blockquote & {
-        border-color : $COLOR_Default_casual_fill;
+        border-color : $COLOR_Default_casual_text;
     }
-/* //_}^#can-transparent */
+/* //_}#ie8-win,@ie5mac,@legacy */
 }
 
 tr hr {
@@ -19,25 +20,12 @@ tr hr {
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
-    /* //_{^#can-transparent */
     hr {
-        border-color : $COLOR_Watch_fill;
+        /* //_{#ie8-win,@ie5mac,@legacy */
+        border-color : $COLOR_Watch_casual_fill;
         blockquote & {
-            border-color : $COLOR_Watch_casual_fill;
+            border-color : $COLOR_Watch_casual_text;
         }
+        /* //_}#ie8-win,@ie5mac,@legacy */
     }
-    /* //_}^#can-transparent */
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    /* //_{^#can-transparent */
-    hr {
-        border-color : #fff;
-        blockquote & {
-            border-color : #fff;
-        }
-    }
-    /* //_}^#can-transparent */
 }
