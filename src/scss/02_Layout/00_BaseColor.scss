@@ -22,7 +22,8 @@ body {
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
     #lB .lS {
-        background : $COLOR_Sidebar_fill;
+        border-width : 1px 0 0;
+        background   : $COLOR_Sidebar_fill;
     }
 }
 
@@ -33,7 +34,7 @@ body {
         border-color : $COLOR_Watch_casual_fill;
     }
     body {
-        color      : $COLOR_Watch_text;
+        color : $COLOR_Watch_text;
     }
     .baseColor {
         background : $COLOR_Watch_fill;

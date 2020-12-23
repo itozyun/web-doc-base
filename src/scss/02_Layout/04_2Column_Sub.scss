@@ -21,25 +21,22 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
-    #lB .lS {
-        border-width : 1px 0 0;
+    .lS1 {
+        float : left;
+        width : 50% - $TABLET_H_SPACE * 0.5;
     }
-        .lS1 {
-            float : left;
-            width : 50% - $TABLET_H_SPACE * 0.5;
-        }
-        .lS2 {
-            float : right;
-            width : 50% - $TABLET_H_SPACE * 0.5;
-        }
-        #lB .lS1 {
-            width   : 50% - $TABLET_H_SPACE * 1.5;
-            padding : 0 0 0 $TABLET_H_SPACE;
-        }
-        #lB .lS2 {
-            width   : 50% - $TABLET_H_SPACE * 1.5;
-            padding : 0 $TABLET_H_SPACE 0 0;
-        }
+    .lS2 {
+        float : right;
+        width : 50% - $TABLET_H_SPACE * 0.5;
+    }
+    #lB .lS1 {
+        width   : 50% - $TABLET_H_SPACE * 1.5;
+        padding : 0 0 0 $TABLET_H_SPACE;
+    }
+    #lB .lS2 {
+        width   : 50% - $TABLET_H_SPACE * 1.5;
+        padding : 0 $TABLET_H_SPACE 0 0;
+    }
 }
 
 /*  Phablet
