@@ -30,7 +30,7 @@ if( g_Gecko < 1 || ( 1.2 <= g_Gecko && g_Gecko < 1.8 ) || g_Presto <= 7.2 ){
 
             if( Event_lastScrollY !== scrollY ){
                 // Gecko 0.9.4.1 scroll event 無し!
-                document.title = window.pageYOffset || SIDEBAR_FIXER_elmRoot.scrollTop || g_body.scrollTop || 'scroll';
+                // document.title = window.pageYOffset || g_body.scrollTop || 'scroll';
                 Event_lastScrollY = scrollY;
                 onscroll();
             };
