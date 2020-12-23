@@ -51,6 +51,7 @@
                 height : $BASE_LINE_HEIGHT_EM;
                 /* //_}@ie5win */
             }
+            /* //_{^#ie6-win */
                 .Pager i { /* i を絶対配置にすると、Opera mini で表示されない */
                     @include inline-block;
                     /* //_{@legacy */
@@ -146,6 +147,7 @@
                     border-color : #fff $COLOR_ACCENT;
                     /* //_}^#can-transparent */
                 }
+            /* //_}^#ie6-win */
 
 /*  Phone
 --------------------------------------------------------------------------------------*/

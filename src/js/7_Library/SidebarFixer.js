@@ -218,21 +218,28 @@ function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElemen
         sidebarY = y;
         if( SIDEBAR_FIXER_transformProp ){
             css = TRANSF_TRANSL_0 + y + TRANSF_TRANSL_Z;
-        } else if( SIDEBAR_FIXER_positionFixed ){
-            if( y !== 0 ){
-                y  -= scrollY - mainY;
-                w   = SIDEBAR_FIXER_elmSide.offsetWidth;
-                css = POS_FIXED_WIDTH + w + 'px;top:' + y + 'px;' +
-                          (
-                          sidebarY < 0 ? 
-                              'clip:rect(' + ( -sidebarY ) + 'px ' + w + 'px ' + ( visibleHeight - sidebarY ) + 'px 0)' :
-                          sidebarY + sideH < mainY + visibleHeight ?
-                              'clip:rect(0 ' + w + 'px ' + sideH + 'px 0)' :
-                              'clip:rect(0 ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainY ) + 'px 0)'
-                          );
-            };
         } else {
-            css = POS_ABSOLUT_TOP + y + 'px';
+            if( SIDEBAR_FIXER_positionFixed ){
+                if( y !== 0 ){
+                    y  -= scrollY - mainY;
+                    w   = SIDEBAR_FIXER_elmSide.offsetWidth;
+                    css = POS_FIXED_WIDTH + w + 'px;top:' + y + 'px';
+                };
+            } else {
+                css = POS_ABSOLUT_TOP + y + 'px';
+            };
+
+            if( SIDEBAR_FIXER_positionFixed || g_Trident < 7 ){
+                w    = w || SIDEBAR_FIXER_elmSide.offsetWidth;
+                css += ';' +
+                    (
+                    sidebarY < 0 ? 
+                        'clip:rect(' + ( -sidebarY ) + 'px ' + w + 'px ' + ( visibleHeight - sidebarY ) + 'px 0)' :
+                    sidebarY + sideH < mainY + visibleHeight ?
+                        'clip:rect(0 ' + w + 'px ' + sideH + 'px 0)' :
+                        'clip:rect(0 ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainY ) + 'px 0)'
+                    );
+            };
         };
     };
 

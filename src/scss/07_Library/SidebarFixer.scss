@@ -59,9 +59,6 @@
 
     /* //_{#ie8-win */
     .lW {
-        /* //_{#ie6-win */
-        overflow : hidden; /* @ie7, @ie8 は clearfix で hidden になっている */
-        /* //_}#ie6-win */
         /* //_{@ie7 */
             // sidebar が header, footer に重なる問題の解決
             // https://klutche.org/archives/1061/

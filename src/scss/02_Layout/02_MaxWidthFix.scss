@@ -11,18 +11,18 @@
         height       : 1px;
         width        : 50%;
         margin-right : -$PC_MAX_WIDTH_EM/2;
-        /* //_{^+mobileOnly */
+        /* //_{+mobileOnly */
         margin-right : -$TABLET_MAX_WIDTH_EM/2;
-        /* //_}^+mobileOnly */
+        /* //_}+mobileOnly */
     }
     .e6R {
         float        : right;
         height       : 1px;
         width        : 50%;
         margin-left  : -$PC_MAX_WIDTH_EM/2;
-        /* //_{^+mobileOnly */
+        /* //_{+mobileOnly */
         margin-left  : -$TABLET_MAX_WIDTH_EM/2;
-        /* //_}^+mobileOnly */
+        /* //_}+mobileOnly */
     }
     .e6C {
         overflow : hidden;

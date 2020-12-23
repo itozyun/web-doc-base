@@ -21,6 +21,12 @@
             -ms-text-size-adjust : 100%; /* 2 */
                 /* text-size-adjust : 100%; 2 */
         /* //_}@modern */
+
+    /* //_{^+mobileOnly */
+        /* //_{@ie6 */
+            overflow-x           : hidden;
+        /* //_}@ie6 */ 
+    /* //_}^+mobileOnly */
     }
 
     /* //_{@modern */
@@ -46,15 +52,6 @@
     textarea {
         line-height : 1.2;
     }
-
-    /* //_{^+mobileOnly */
-        /* //_{@ie5win */
-        body {
-            overflow-x : hidden;
-        }
-        /* //_}@ie5win */ 
-    /* //_}^+mobileOnly */
-
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {

@@ -89,7 +89,9 @@
             width   : 20%;
             float   : right;
             /* //_{^@legacy */
+                /* //_{^#ie6-win */
             @extend %more-icon;
+                /* //_}^#ie6-win */
             /* //_}^@legacy */
         }
             .Magazine-jump .btn {
