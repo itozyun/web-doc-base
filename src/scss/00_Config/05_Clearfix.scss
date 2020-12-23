@@ -54,6 +54,8 @@
             visibility  : hidden;
             clear       : both;
         }
+    /* //_}#notie */
+    /* //_{@legacy */
         /* override Gecko ~1.8.1 */
         @media \0 all {
             &:after {
@@ -74,5 +76,5 @@
             /* override Gecko 1.8~ */
             @-moz-document url-prefix() { &:after { content : "" } }
         }
-    /* //_}#notie */
+    /* //_}@legacy */
 }
