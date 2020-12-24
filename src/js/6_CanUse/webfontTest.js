@@ -228,7 +228,7 @@ function webFontTest( callback, targetWebFontName, embededWebFonts, testIdAndCla
                 break;  
             };
         };
-        if( detected && opt_ligTest ){
+        if( !g_Trident && detected && opt_ligTest ){ // IE5 でエラーが発生
             span.innerHTML = opt_ligTest;
             w = span.offsetWidth;
             span.innerHTML = opt_ligTestChar;
