@@ -55,6 +55,13 @@ h2:after {
 .lS2 {
   width: 48.5%
 }
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited {
+  background: #f1f4f1
+}
 .Search .btn,
 .lW {
   overflow: hidden
@@ -80,6 +87,7 @@ ul {
 #lB .lS .RichLink-sep :visited:hover,
 blockquote,
 code,
+hr,
 tbody th,
 var {
   background: #ddd
@@ -562,8 +570,7 @@ form :invalid {
 hr {
   height: 1px;
   border-color: transparent;
-  margin: 2em 6%;
-  background: #777
+  margin: 2em 6%
 }
 tr hr {
   margin: 1em 9%
@@ -763,29 +770,26 @@ blockquote .tl tbody td:after {
 .ribbon * {
   border-color: #2a2a2a
 }
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #f1f4f1
-}
-.lMi,
-.lMz,
-.lSi,
-.lXi {
-  max-width: 50em
-}
-.lMz {
-  padding: 0;
+#lB .lSi,
+.lM,
+.lS,
+.lX {
+  max-width: 50em;
   margin: 0 auto
+}
+#lB .lS,
+.Cover img,
+.caption {
+  max-width: 100%
 }
 .lMi,
 .lMz .lMh,
 .lSi,
 .lXi {
-  padding: 0 3%;
-  margin: 0 auto
+  padding: 0 3%
+}
+#lB .lSi {
+  padding: 0
 }
 .AAuthor:after,
 .BlogArchive dl:after,
@@ -809,6 +813,14 @@ blockquote .tl tbody td:after {
 .lM2,
 .lS2 {
   float: right
+}
+#lB .lS1 {
+  width: 45.5%;
+  padding: 0 0 0 3%
+}
+#lB .lS2 {
+  width: 45.5%;
+  padding: 0 3% 0 0
 }
 #lE .lW {
   padding-bottom: 2.5em
@@ -1244,6 +1256,10 @@ a:focus .ico-pen:after {
   color: #111;
   text-align: center
 }
+.Attribution small,
+.RichLink-meta {
+  font-size: .875em
+}
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a;
@@ -1279,12 +1295,8 @@ a:focus .ico-pen:after {
 .Label,
 .LinkList,
 .RichLink,
-.RichLink .p,
 .Subscribe {
   padding: 0 0 1em
-}
-.Attribution small {
-  font-size: .875em
 }
 .BlogArchive dt {
   display: block;
@@ -1292,7 +1304,7 @@ a:focus .ico-pen:after {
   clear: both
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -1343,8 +1355,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover h2,
 .Cover-meta span,
@@ -1460,10 +1471,6 @@ pre var {
 .RichLink b {
   display: block
 }
-.RichLink .p {
-  display: block;
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1472,9 +1479,8 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both;
-  display: block
+  display: block;
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1482,8 +1488,12 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em;
+  margin: 0 0 .4em;
   display: block
+}
+.RichLink .p {
+  display: block;
+  margin: 1em 0
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1804,7 +1814,6 @@ dl.note dd {
 .caption {
   text-align: center;
   font-size: .875em;
-  max-width: 100%;
   line-height: 1.2
 }
 .caption img {
@@ -2088,6 +2097,9 @@ em {
 strong {
   background: #6cf
 }
+blockquote hr {
+  background: #777
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -2101,6 +2113,10 @@ strong {
 @media screen and (min-width:0\-) {
   .box > p:first-of-type {
     margin-top: auto
+  }
+  .tl td:after,
+  .tl td:before {
+    display: none!important
   }
 }
 @media only screen and (min-width:741px) {
@@ -2126,6 +2142,7 @@ only screen and (max-width:740px) {
   table {
     width: 96%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2137,9 +2154,12 @@ only screen and (max-width:740px) {
   .lS1,
   .lS2 {
     float: none;
+    width: auto
+  }
+  #lB .lS1,
+  #lB .lS2 {
     width: auto;
-    margin-left: 0;
-    margin-right: 0
+    padding: 0
   }
   #lB .lS {
     padding-bottom: 2em
@@ -2233,6 +2253,7 @@ only screen and (max-width:479px) {
   table {
     width: 98%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2409,6 +2430,7 @@ only screen and (max-width:240px) {
   table {
     width: 100%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2481,10 +2503,8 @@ only screen and (max-width:240px) {
   }
 }
 @media handheld,
-handheld and (max-width:240px),
-handheld and (prefers-color-scheme:dark),
-screen and (max-width:240px),
-screen and (prefers-color-scheme:dark) {
+only screen and (prefers-color-scheme:dark),
+only screen and (max-width:240px) {
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -2847,6 +2867,11 @@ screen and (prefers-color-scheme:dark) {
   thead var {
     border-color: #666
   }
+  .ABody,
+  .lM,
+  .lX {
+    margin: 0
+  }
   code .typ,
   th {
     font-weight: 700
@@ -2956,11 +2981,14 @@ screen and (prefers-color-scheme:dark) {
   .ribbon * {
     border-color: #ccc
   }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
+  .lM,
+  .lX {
     max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lXi {
+    padding: 0
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2986,9 +3014,6 @@ screen and (prefers-color-scheme:dark) {
   .ribbon .ico-comment:after,
   .ribbon .ico-pen:after {
     border-color: #666 transparent
-  }
-  .ABody {
-    margin: 0
   }
   .AHead {
     color: #666!important
@@ -3236,60 +3261,6 @@ screen and (prefers-color-scheme:dark) {
   blockquote,
   p {
     text-align: justify
-  }
-}
-@media \0 all {
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after {
-    display: inline
-  }
-  .AAuthor,
-  .BlogArchive dl,
-  .Comment p,
-  .Cover,
-  .RichLink a,
-  .box,
-  .commonForm-pair,
-  .lMi,
-  .lSi,
-  :-gck-lte142,
-  _:-moz-any-link {
-    position: relative
-  }
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after,_:lang(x) {
-    content: ".";
-    display: block;
-    font-size: 1px;
-    line-height: 0;
-    height: .1px
-  }
-  @-moz-document url-prefix() {
-    .AAuthor:after,
-    .BlogArchive dl:after,
-    .Comment p:after,
-    .Cover:after,
-    .RichLink a:after,
-    .box:after,
-    .commonForm-pair:after,
-    .lMi:after,
-    .lSi:after {
-      content: ""
-    }
   }
 }
 @media only screen and (-ms-high-contrast:black-on-white) {

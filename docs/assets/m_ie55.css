@@ -4,8 +4,10 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote hr,
 h5,
-h6 {
+h6,
+table {
   border-color: #777
 }
 .h1,
@@ -44,13 +46,14 @@ table,
 textarea {
   line-height: 1.2
 }
-body,
-input {
-  line-height: 1.9
-}
 .e6L,
 .e6R {
   width: 50%
+}
+.e6BR,
+.e6L,
+.e6R {
+  height: 1px
 }
 .Cover-meta,
 .Header h1,
@@ -78,10 +81,16 @@ a img {
 .medal {
   background: #f8fbf8
 }
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited {
+  background: #f1f4f1
+}
 .Search .btn,
 .e6C,
-.e6C .lW,
-.lW {
+.e6C .lW {
   overflow: hidden
 }
 .links,
@@ -147,13 +156,11 @@ tr {
 .tl th {
   vertical-align: top
 }
-.Cover-btn i,
 .Cover-img,
 .Pager,
 .Search {
   position: relative
 }
-.RichLink-meta,
 .e6BR,
 .jsCapLarge,
 .jsPicaLarge img {
@@ -170,6 +177,10 @@ body,
 html {
   margin: 0;
   height: 100%
+}
+body,
+input {
+  line-height: 1.9
 }
 body,
 input,
@@ -275,6 +286,10 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+*,
+hr {
+  border-color: #ddd
+}
 .note .box,
 .note .hscroll,
 .tl td *,
@@ -328,7 +343,6 @@ a:active:hover {
 }
 .medal,
 a,
-hr,
 tbody th {
   border-color: #f8fbf8
 }
@@ -400,13 +414,8 @@ textarea {
 }
 input {
   font-size: 1em;
+  line-height: 1;
   height: 2.1em
-}
-.e6BR,
-.e6L,
-.e6R,
-hr {
-  height: 1px
 }
 textarea {
   font-size: 1em;
@@ -414,8 +423,8 @@ textarea {
   margin: 0
 }
 hr {
-  margin: 2em 6%;
-  background: #777
+  height: 0;
+  margin: 2em 6%
 }
 #lB .lS,
 #lE,
@@ -424,10 +433,6 @@ hr {
 .tl tfoot th,
 table {
   border-width: 1px 0 0
-}
-*,
-blockquote hr {
-  border-color: #ddd
 }
 tr hr {
   margin: 1em 9%
@@ -482,8 +487,7 @@ table {
   width: 94%;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0;
-  border-color: #777
+  border-spacing: 0
 }
 th {
   text-align: left;
@@ -562,31 +566,22 @@ body {
 .ribbon * {
   border-color: #2a2a2a
 }
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #f1f4f1
-}
-.lMz {
-  padding: 0;
-  margin: 0 auto
-}
 .lMi,
 .lMz .lMh,
 .lSi,
 .lXi {
-  padding: 0 3%;
-  margin: 0 auto
+  padding: 0 3%
+}
+#lB .lSi {
+  padding: 0
 }
 .e6L {
   float: left;
-  margin-right: -35em
+  margin-right: -25em
 }
 .e6R {
   float: right;
-  margin-left: -35em
+  margin-left: -25em
 }
 .e6C,
 .lM1,
@@ -624,6 +619,14 @@ body {
 .lM2,
 .lS2 {
   float: right
+}
+#lB .lS1 {
+  width: 45.5%;
+  padding: 0 0 0 3%
+}
+#lB .lS2 {
+  width: 45.5%;
+  padding: 0 3% 0 0
 }
 #lE .lW {
   padding-bottom: 2.5em
@@ -749,24 +752,6 @@ input.btn {
 .lS .mspacer {
   margin: .6em 0
 }
-.Cover-btn i {
-  border-width: .5em 0 .5em .7em;
-  left: .5em;
-  height: 0;
-  width: 0;
-  top: .5em;
-  line-height: 0
-}
-.Cover-btn :link i {
-  border-color: #24c #f8fbf8
-}
-.Cover-btn :visited i {
-  border-color: #f8fbf8 #111
-}
-.Cover-btn :link:active i,
-.Cover-btn :visited:active i {
-  border-color: #3079ed #f8fbf8
-}
 .AAuthor {
   zoom: 1;
   margin: 1em 0 0;
@@ -812,6 +797,10 @@ input.btn {
   color: #111;
   text-align: center
 }
+.Attribution small,
+.RichLink-meta {
+  font-size: .875em
+}
 .AHead-labels {
   font-family: "MS Gothic",sans-serif;
   margin-top: .5em;
@@ -839,12 +828,8 @@ input.btn {
 .Label,
 .LinkList,
 .RichLink,
-.RichLink .p,
 .Subscribe {
   padding: 0 0 1em
-}
-.Attribution small {
-  font-size: .875em
 }
 .BlogArchive dt {
   display: block;
@@ -861,7 +846,7 @@ input.btn {
   line-height: 2.4
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -1020,9 +1005,6 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink .p {
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1031,7 +1013,7 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1039,7 +1021,10 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  margin: 0 0 .4em
+}
+.RichLink .p {
+  margin: 1em 0
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1358,33 +1343,6 @@ dl.note dd {
   overflow: hidden;
   text-overflow: ellipsis
 }
-.Pager i {
-  height: 0;
-  width: 0;
-  line-height: 0;
-  position: relative;
-  top: .5em;
-  border-color: #f8fbf8 #777
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager a:active i {
-  border-color: #3079ed #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #777 #f8fbf8
-}
-.Pager-top a:active i {
-  border-color: #fff #3079ed
-}
 .SocialBtns {
   padding: 1em 0;
   color: #f8fbf8;
@@ -1500,6 +1458,18 @@ strong {
   color: #111
 }
 @media print {
+  blockquote code,
+  blockquote var,
+  table,
+  tbody th,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead td,
+  thead th,
+  thead var {
+    border-color: #666
+  }
   body,
   input {
     line-height: 1.5
@@ -1522,24 +1492,6 @@ strong {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .tl tbody td:after,
-  blockquote .tl tbody td:after,
-  blockquote hr,
-  hr {
-    border-color: #fff
-  }
-  blockquote code,
-  blockquote var,
-  table,
-  tbody th,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead td,
-  thead th,
-  thead var {
-    border-color: #666
   }
   table {
     margin: 1em 0;
@@ -1613,6 +1565,16 @@ strong {
   .noprint {
     display: none
   }
+  .ABody,
+  .lM,
+  .lX {
+    margin: 0
+  }
+  .lMi,
+  .lMz .lMh,
+  .lXi {
+    padding: 0
+  }
   #lF .lX {
     border-top: .15em solid #000
   }
@@ -1627,9 +1589,6 @@ strong {
   }
   #lH .lMi {
     padding: .5em 0
-  }
-  .ABody {
-    margin: 0
   }
   .AHead {
     color: #666!important
@@ -1712,6 +1671,10 @@ strong {
   }
   pre code {
     border: 0
+  }
+  .tl tbody td:after,
+  blockquote .tl tbody td:after {
+    border-color: #fff
   }
   .prettyprint {
     background: #fff

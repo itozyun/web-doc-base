@@ -50,9 +50,22 @@ table,
 textarea {
   line-height: 1.2
 }
+.lM1,
+.lM2,
+.lS1,
+.lS2 {
+  width: 48.5%
+}
 .baseColor,
 .medal {
   background: #f8fbf8
+}
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited {
+  background: #f1f4f1
 }
 .links,
 .note,
@@ -78,7 +91,6 @@ ul {
 .box,
 .lMi,
 .lSi,
-.lW,
 svg {
   overflow: hidden
 }
@@ -674,41 +686,26 @@ blockquote .tl tbody td:after {
 .ribbon * {
   border-color: #2a2a2a
 }
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #f1f4f1
-}
+#lB .lSi,
 .lM,
-.lS {
-  display: table;
-  width: 100%;
-  table-layout: fixed
-}
-.lM1,
-.lM2,
-.lS1,
-.lS2 {
-  width: 48.5%
-}
-.lMi,
-.lMz,
-.lSi,
-.lXi {
-  max-width: 50em
-}
-.lMz {
-  padding: 0;
+.lS,
+.lX {
+  max-width: 50em;
   margin: 0 auto
+}
+#lB .lS,
+.Cover img,
+.caption {
+  max-width: 100%
 }
 .lMi,
 .lMz .lMh,
 .lSi,
 .lXi {
-  padding: 0 3%;
-  margin: 0 auto
+  padding: 0 3%
+}
+#lB .lSi {
+  padding: 0
 }
 .lM1,
 .lS1 {
@@ -717,6 +714,14 @@ blockquote .tl tbody td:after {
 .lM2,
 .lS2 {
   float: right
+}
+#lB .lS1 {
+  width: 45.5%;
+  padding: 0 0 0 3%
+}
+#lB .lS2 {
+  width: 45.5%;
+  padding: 0 3% 0 0
 }
 #lE .lW {
   padding-bottom: 2.5em
@@ -1126,6 +1131,10 @@ a:focus .ico-pen:after {
   color: #111;
   text-align: center
 }
+.Attribution small,
+.RichLink-meta {
+  font-size: .875em
+}
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a
@@ -1160,12 +1169,8 @@ a:focus .ico-pen:after {
 .Label,
 .LinkList,
 .RichLink,
-.RichLink .p,
 .Subscribe {
   padding: 0 0 1em
-}
-.Attribution small {
-  font-size: .875em
 }
 .BlogArchive dt {
   display: block;
@@ -1173,7 +1178,7 @@ a:focus .ico-pen:after {
   clear: both
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -1224,8 +1229,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover h2,
 .Cover-meta span,
@@ -1343,10 +1347,6 @@ pre var {
 .RichLink b {
   display: block
 }
-.RichLink .p {
-  display: block;
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1355,9 +1355,8 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both;
-  display: block
+  display: block;
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1365,8 +1364,12 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em;
+  margin: 0 0 .4em;
   display: block
+}
+.RichLink .p {
+  display: block;
+  margin: 1em 0
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1671,7 +1674,6 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  max-width: 100%;
   line-height: 1.2
 }
 .caption img {
@@ -1953,10 +1955,7 @@ strong {
   border-color: #111;
   color: #111
 }
-@media handheld,
-projection,
-tv,
-only screen and (max-width:740px) {
+@media screen and (max-width:740px) {
   .Label div,
   .LinkList,
   .Subscribe div,
@@ -1971,6 +1970,7 @@ only screen and (max-width:740px) {
   table {
     width: 96%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -1982,9 +1982,12 @@ only screen and (max-width:740px) {
   .lS1,
   .lS2 {
     float: none;
+    width: auto
+  }
+  #lB .lS1,
+  #lB .lS2 {
     width: auto;
-    margin-left: 0;
-    margin-right: 0
+    padding: 0
   }
   #lB .lS {
     padding-bottom: 2em
@@ -2064,10 +2067,7 @@ only screen and (max-width:740px) {
     padding: 1.23em 2%
   }
 }
-@media handheld,
-projection,
-tv,
-only screen and (max-width:479px) {
+@media screen and (max-width:479px) {
   .AHead,
   .AHead h1 {
     text-align: center
@@ -2078,6 +2078,7 @@ only screen and (max-width:479px) {
   table {
     width: 98%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2181,10 +2182,7 @@ only screen and (max-width:479px) {
     padding: 1.23em 1%
   }
 }
-@media handheld,
-projection,
-tv,
-only screen and (max-width:359px) {
+@media screen and (max-width:359px) {
   .Cover h2,
   .lM .RichLink b {
     font-size: 1em
@@ -2236,98 +2234,15 @@ only screen and (max-width:359px) {
     margin: 0 auto 1em
   }
 }
-@media handheld,
-only screen and (max-width:240px) {
-  body {
-    font-size: .75em
-  }
-  dd {
-    margin-left: .5em
-  }
-  .ABody h2,
-  .ABody h3,
-  .lM .RichLink a,
-  h2 {
-    padding-left: 0;
-    padding-right: 0
-  }
-  table {
-    width: 100%
-  }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0
-  }
-  h4,
-  h5,
+@media screen and (max-width:240px) {
+  .AHead,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  a,
   h6 {
-    margin: 1.5em 0 .8em
+    color: #999
   }
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  pre,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 0
-  }
-  iframe,
-  img {
-    max-width: 100%
-  }
-  hr {
-    margin: 2em 0
-  }
-  .mspacer {
-    margin: .6em 0!important
-  }
-  .ABody h2 {
-    margin: 2em 0 1em
-  }
-  .ABody h3 {
-    margin: 2.4em 0 1.2em
-  }
-  .LinkList a {
-    padding: .5em 0
-  }
-  .SearchResult div div,
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0
-  }
-  .aa {
-    padding: 1em 2px
-  }
-  .aBodyRoot {
-    line-height: 1.4
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 0 1em
-  }
-  .box > p:first-of-type {
-    margin-top: -.1em
-  }
-  .prettyprint {
-    padding: 1.23em 2px
-  }
-}
-@media handheld,
-handheld and (max-width:240px),
-screen and (max-width:240px) {
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -2358,13 +2273,27 @@ screen and (max-width:240px) {
   table {
     border-color: #999
   }
-  .AHead,
-  .Cover-meta,
-  .baseColor :link .RichLink-meta,
-  .baseColor :visited .RichLink-meta,
-  a,
-  h6 {
-    color: #999
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  pre,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 0
+  }
+  body {
+    font-size: .75em;
+    color: #eee
+  }
+  dd {
+    margin-left: .5em
   }
   blockquote h3,
   blockquote table,
@@ -2433,6 +2362,13 @@ screen and (max-width:240px) {
     color: #b3f;
     border-color: #b3f
   }
+  .ABody h2,
+  .ABody h3,
+  .lM .RichLink a,
+  h2 {
+    padding-left: 0;
+    padding-right: 0
+  }
   .LinkList :visited,
   .RichLink-sep :visited,
   input,
@@ -2444,11 +2380,15 @@ screen and (max-width:240px) {
   #lB .lS .LinkList :visited:hover,
   #lB .lS .RichLink-sep :link:hover,
   #lB .lS .RichLink-sep :visited:hover,
+  .medal,
   [type=submit],
   code,
   tbody th,
   var {
     background: #222
+  }
+  table {
+    width: 100%
   }
   td {
     border-color: #000 #000 #222
@@ -2513,14 +2453,6 @@ screen and (max-width:240px) {
   tbody :hover td {
     border-color: #000 #000 #3079ed
   }
-  .AHead h1,
-  .Cover h3,
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  body {
-    color: #eee
-  }
   #lB .lS,
   #lB .lS .LinkList :link,
   #lB .lS .LinkList :visited,
@@ -2536,10 +2468,38 @@ screen and (max-width:240px) {
   .baseColor {
     background: #000
   }
+  #lB .lSi,
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 0 .8em
+  }
+  iframe,
+  img {
+    max-width: 100%
+  }
+  hr {
+    margin: 2em 0;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGZiZjgiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  }
   .baseColor .btn:link {
     background: #bbe;
     border-color: #bbe;
     color: #000
+  }
+  .AHead h1,
+  .Cover h3,
+  .medal,
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th {
+    color: #eee
   }
   .baseColor .btn:visited {
     background: #000;
@@ -2555,32 +2515,26 @@ screen and (max-width:240px) {
   .ico-pen:after {
     border-color: #999 transparent
   }
-  .LinkList :link:hover,
-  .LinkList :visited:hover,
-  .RichLink-sep :link:hover,
-  .RichLink-sep :visited:hover,
-  .medal,
-  .tl tr code,
-  .tl tr var,
-  blockquote,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    background: #222;
-    color: #eee
-  }
   :link .medal,
   :visited .medal {
     border-color: #999;
     background: #999;
     color: #000
   }
+  .mspacer {
+    margin: .6em 0!important
+  }
   .Cover-btn :link i {
     border-color: transparent #000
   }
   .Cover-btn :visited i {
     border-color: transparent #eee
+  }
+  .ABody h2 {
+    margin: 2em 0 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 0 1.2em
   }
   .LinkList a,
   .RichLink-sep a,
@@ -2593,10 +2547,27 @@ screen and (max-width:240px) {
     background: #999;
     color: #000
   }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #222;
+    color: #eee
+  }
   .LinkList :link,
   .RichLink-sep :link {
     background: #000;
     color: #bbe
+  }
+  .LinkList a {
+    padding: .5em 0
   }
   .baseColor .RichLink a {
     border-color: #222!important
@@ -2604,27 +2575,49 @@ screen and (max-width:240px) {
   .baseColor .RichLink-meta {
     color: #222
   }
+  .SearchResult div div,
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after,
+  blockquote:before {
+    margin: 0
+  }
   .SearchResult div p {
     color: grey
   }
   .SearchResult div span {
     color: #545454
   }
+  .aa {
+    padding: 1em 2px
+  }
+  .aBodyRoot {
+    line-height: 1.4
+  }
   .aBodyRoot :visited:hover {
     color: #b3f
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 0 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.1em
   }
   pre code,
   pre var {
     background: 0 0
+  }
+  .prettyprint {
+    padding: 1.23em 2px
   }
   em {
     background: #4e4e1f
   }
   strong {
     background: #1c3a49
-  }
-  hr {
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGZiZjgiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
   }
 }
 @media print {
@@ -2665,6 +2658,11 @@ screen and (max-width:240px) {
   thead th,
   thead var {
     border-color: #666
+  }
+  .ABody,
+  .lM,
+  .lX {
+    margin: 0
   }
   code .typ,
   th {
@@ -2775,11 +2773,14 @@ screen and (max-width:240px) {
   .ribbon * {
     border-color: #ccc
   }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
+  .lM,
+  .lX {
     max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lXi {
+    padding: 0
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2805,9 +2806,6 @@ screen and (max-width:240px) {
   .ribbon .ico-comment:after,
   .ribbon .ico-pen:after {
     border-color: #666 transparent
-  }
-  .ABody {
-    margin: 0
   }
   .AHead {
     color: #666!important

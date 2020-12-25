@@ -4,8 +4,10 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote hr,
 h5,
-h6 {
+h6,
+table {
   border-color: #777
 }
 .h1,
@@ -54,6 +56,13 @@ textarea {
 .medal {
   background: #f8fbf8
 }
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited {
+  background: #f1f4f1
+}
 .Cover-btn i,
 .Cover-img,
 .Pager,
@@ -84,8 +93,7 @@ ul {
 .Search .btn,
 .box,
 .lMi,
-.lSi,
-.lW {
+.lSi {
   overflow: hidden
 }
 #lB .lS .LinkList :link:hover,
@@ -260,6 +268,10 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+*,
+hr {
+  border-color: #ddd
+}
 iframe,
 img {
   max-width: 100%;
@@ -426,10 +438,8 @@ textarea {
   margin: 0
 }
 hr {
-  height: 1px;
-  border-color: transparent;
-  margin: 2em 6%;
-  background: #777
+  height: 0;
+  margin: 2em 6%
 }
 #lB .lS,
 #lE,
@@ -510,8 +520,7 @@ table {
   width: 94%;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0;
-  border-color: #777
+  border-spacing: 0
 }
 th {
   text-align: left;
@@ -603,35 +612,29 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-* {
-  border-color: #ddd
-}
 .ribbon * {
   border-color: #2a2a2a
 }
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #f1f4f1
-}
-.lMi,
-.lMz,
-.lSi,
-.lXi {
-  max-width: 50em
-}
-.lMz {
-  padding: 0;
+#lB .lSi,
+.lM,
+.lS,
+.lX {
+  max-width: 50em;
   margin: 0 auto
+}
+#lB .lS,
+.Cover img,
+.caption {
+  max-width: 100%
 }
 .lMi,
 .lMz .lMh,
 .lSi,
 .lXi {
-  padding: 0 3%;
-  margin: 0 auto
+  padding: 0 3%
+}
+#lB .lSi {
+  padding: 0
 }
 .lM1,
 .lS1 {
@@ -640,6 +643,14 @@ body {
 .lM2,
 .lS2 {
   float: right
+}
+#lB .lS1 {
+  width: 45.5%;
+  padding: 0 0 0 3%
+}
+#lB .lS2 {
+  width: 45.5%;
+  padding: 0 3% 0 0
 }
 #lE .lW {
   padding-bottom: 2.5em
@@ -844,6 +855,10 @@ input.btn {
   color: #111;
   text-align: center
 }
+.Attribution small,
+.RichLink-meta {
+  font-size: .875em
+}
 .AHead-labels {
   font-family: Meiryo,"MS PGothic",sans-serif;
   margin-top: .5em;
@@ -865,9 +880,6 @@ input.btn {
 .Attribution {
   padding: 1em 0;
   text-align: center
-}
-.Attribution small {
-  font-size: .875em
 }
 .BlogArchive,
 .Comment,
@@ -892,7 +904,7 @@ input.btn {
   line-height: 2.4
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -941,8 +953,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1049,10 +1060,6 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink .p {
-  padding: 0;
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1061,8 +1068,7 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1070,7 +1076,10 @@ pre var {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  margin: 0 0 .4em
+}
+.RichLink .p {
+  margin: 1em 0
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1329,8 +1338,7 @@ dl.note dd {
 }
 .caption {
   text-align: center;
-  font-size: .875em;
-  max-width: 100%
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1411,7 +1419,8 @@ dl.note dd {
 }
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
-  margin-left: .5em
+  margin-left: .5em;
+  left: .5em
 }
 .Pager a:active i {
   border-color: transparent #fff
@@ -1601,6 +1610,11 @@ strong {
   thead var {
     border-color: #666
   }
+  .ABody,
+  .lM,
+  .lX {
+    margin: 0
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1697,11 +1711,14 @@ strong {
   .noprint {
     display: none
   }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
+  .lM,
+  .lX {
     max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lXi {
+    padding: 0
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1717,9 +1734,6 @@ strong {
   }
   #lH .lMi {
     padding: .5em 0
-  }
-  .ABody {
-    margin: 0
   }
   .AHead {
     color: #666!important

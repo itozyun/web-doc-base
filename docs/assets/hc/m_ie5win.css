@@ -34,14 +34,6 @@ thead th {
 tbody td {
   border-width: 0 0 1px
 }
-.Cover-btn i,
-.Pager i {
-  display: none
-}
-.jsCanRotate .Cover-btn i {
-  display: inline;
-  border-width: 0 .15em .15em 0
-}
 .LinkList,
 .RichLink {
   padding: 2px 0

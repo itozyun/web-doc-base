@@ -4,8 +4,10 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote hr,
 h5,
-h6 {
+h6,
+table {
   border-color: #777
 }
 .h1,
@@ -234,6 +236,10 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+*,
+hr {
+  border-color: #ddd
+}
 iframe,
 img {
   max-width: 100%
@@ -399,10 +405,8 @@ textarea {
   margin: 0
 }
 hr {
-  height: 1px;
-  border-color: transparent;
-  margin: 2em 1em;
-  background: #777
+  height: 0;
+  margin: 2em 1em
 }
 #lE,
 #lF,
@@ -480,8 +484,7 @@ tr pre {
 table {
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0;
-  border-color: #777
+  border-spacing: 0
 }
 th {
   text-align: left;
@@ -572,9 +575,6 @@ tbody :hover th :visited:active {
 }
 body {
   background: #1a1a1a
-}
-* {
-  border-color: #ddd
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -878,7 +878,7 @@ input.btn {
   line-height: 2.4
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -1092,10 +1092,6 @@ kbd {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink .p {
-  padding: 0;
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1104,8 +1100,8 @@ kbd {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both
+  font-size: .875em;
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1113,7 +1109,10 @@ kbd {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  margin: 0 0 .4em
+}
+.RichLink .p {
+  margin: 1em 0
 }
 .lS .RichLink img {
   float: right;
@@ -1457,7 +1456,8 @@ dl.note dd {
 }
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
-  margin-left: .5em
+  margin-left: .5em;
+  left: .5em
 }
 .Pager a:active i {
   border-color: transparent #fff
@@ -1744,6 +1744,13 @@ strong {
   .lS {
     float: none
   }
+  .ABody,
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    margin: 0
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1755,13 +1762,6 @@ strong {
   .TxtNavi,
   .noprint {
     display: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    padding: 0;
-    margin: 0
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1826,9 +1826,6 @@ strong {
     text-align: center;
     padding-left: 1.5%;
     padding-right: 1.5%
-  }
-  .ABody {
-    margin: 0
   }
   .ADesc {
     margin: 0 0 2.5em;

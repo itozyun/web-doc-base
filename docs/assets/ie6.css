@@ -4,8 +4,10 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote hr,
 h5,
-h6 {
+h6,
+table {
   border-color: #777
 }
 .h1,
@@ -44,6 +46,10 @@ table,
 textarea {
   line-height: 1.2
 }
+.lM,
+html {
+  overflow-x: hidden
+}
 #lH,
 .e6C .lW {
   width: 100%
@@ -75,11 +81,9 @@ a img {
 .medal {
   background: #f8fbf8
 }
-.Pager span,
 .Search .btn,
 .e6C,
-.e6C .lW,
-.lW {
+.e6C .lW {
   overflow: hidden
 }
 blockquote,
@@ -127,6 +131,13 @@ tr {
 .tl td,
 .tl th {
   vertical-align: top
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Pager,
+.Search {
+  position: relative
 }
 * {
   border-style: solid;
@@ -245,6 +256,10 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+*,
+hr {
+  border-color: #ddd
+}
 .note .box,
 .note .hscroll,
 .tl td *,
@@ -308,7 +323,6 @@ a:active:hover {
 .baseColor .btn:visited:active,
 .medal,
 a,
-hr,
 tbody th {
   border-color: #f8fbf8
 }
@@ -380,30 +394,20 @@ input {
   line-height: 1;
   height: 1em
 }
-.e6BR,
-.e6L,
-.e6R,
-hr {
-  height: 1px
-}
 textarea {
   font-size: 1em;
   overflow: auto;
   margin: 0
 }
 hr {
-  margin: 2em 1em;
-  background: #777
+  height: 0;
+  margin: 2em 1em
 }
 #lE,
 #lF,
 .tl tfoot th,
 table {
   border-width: 1px 0 0
-}
-*,
-blockquote hr {
-  border-color: #ddd
 }
 tr hr {
   margin: 1em 9%
@@ -473,8 +477,7 @@ tr pre {
 table {
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0;
-  border-color: #777
+  border-spacing: 0
 }
 th {
   text-align: left;
@@ -554,6 +557,13 @@ body {
 .ribbon * {
   border-color: #2a2a2a
 }
+.BlogArchive dl,
+.Pager a,
+.TxtNavi a,
+.lMi,
+.lW {
+  zoom: 1
+}
 .lW,
 .lX {
   width: 98%;
@@ -561,8 +571,7 @@ body {
 }
 .lM {
   width: 67.3%;
-  float: left;
-  overflow-x: hidden
+  float: left
 }
 .lMi,
 .lMz {
@@ -579,18 +588,19 @@ body {
 }
 .e6L,
 .e6R {
-  width: 50%
+  width: 50%;
+  height: 1px
 }
 .lXi {
   margin: 0 2.7%
 }
 .e6L {
   float: left;
-  margin-right: -25em
+  margin-right: -35em
 }
 .e6R {
   float: right;
-  margin-left: -25em
+  margin-left: -35em
 }
 .e6C,
 .lM1 {
@@ -601,15 +611,9 @@ body {
 }
 .e6BR {
   clear: both;
+  height: 1px;
   line-height: 1px;
   margin-bottom: -1px
-}
-.BlogArchive dl,
-.Pager a,
-.TxtNavi a,
-.lMi,
-.lW {
-  zoom: 1
 }
 .lM2 {
   float: right
@@ -764,29 +768,6 @@ input.btn {
 .lS .mspacer {
   margin: .6em 0
 }
-.Cover-btn i,
-.Magazine-jump i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  left: .5em;
-  height: 0;
-  width: 0
-}
-.Cover-btn :link i,
-.Magazine-jump :link i {
-  border-color: #24c #f8fbf8
-}
-.Cover-btn :visited i,
-.Magazine-jump :visited i {
-  border-color: #f8fbf8 #111
-}
-.Cover-btn :link:active i,
-.Cover-btn :visited:active i,
-.Magazine-jump :link:active i,
-.Magazine-jump :visited:active i {
-  border-color: #3079ed #f8fbf8
-}
 .AAuthor {
   zoom: 1;
   padding: 0 .5em 1em
@@ -883,7 +864,7 @@ input.btn {
   line-height: 2.4
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -922,7 +903,6 @@ input.btn {
   line-height: 1.4
 }
 .Cover-img {
-  position: relative;
   height: 100%;
   margin: 0 0 .6em
 }
@@ -1101,10 +1081,6 @@ kbd {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink .p {
-  padding: 0;
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1113,8 +1089,8 @@ kbd {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both
+  font-size: .875em;
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1122,7 +1098,10 @@ kbd {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  margin: 0 0 .4em
+}
+.RichLink .p {
+  margin: 1em 0
 }
 .lS .RichLink img {
   float: right;
@@ -1133,7 +1112,6 @@ kbd {
   padding: 0
 }
 .Search {
-  position: relative;
   margin: 0 3em 0 1.1em;
   height: 1.9em
 }
@@ -1408,7 +1386,6 @@ dl.note dd {
   text-indent: -1.2em
 }
 .Pager {
-  position: relative;
   color: #f8fbf8;
   height: 4em
 }
@@ -1427,39 +1404,9 @@ dl.note dd {
   position: absolute;
   top: 1em;
   width: 32%;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
-}
-#jsMain,
-#jsSide,
-.Pager i {
-  position: relative
-}
-.Pager i {
-  height: 0;
-  width: 0;
-  line-height: 0;
-  top: -.5em;
-  border-color: #f8fbf8 #777
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager a:active i {
-  border-color: #3079ed #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #777 #f8fbf8
-}
-.Pager-top a:active i {
-  border-color: #fff #3079ed
 }
 .SocialBtns {
   padding: 1em 0;
@@ -1620,6 +1567,18 @@ strong {
   color: #111
 }
 @media print {
+  blockquote code,
+  blockquote var,
+  table,
+  tbody th,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead td,
+  thead th,
+  thead var {
+    border-color: #666
+  }
   .lSi,
   .lW,
   .lX,
@@ -1651,24 +1610,6 @@ strong {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .tl tbody td:after,
-  blockquote .tl tbody td:after,
-  blockquote hr,
-  hr {
-    border-color: #fff
-  }
-  blockquote code,
-  blockquote var,
-  table,
-  tbody th,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead td,
-  thead th,
-  thead var {
-    border-color: #666
   }
   thead td,
   thead th {
@@ -1732,6 +1673,13 @@ strong {
   .lS {
     float: none
   }
+  .ABody,
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    margin: 0
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1743,13 +1691,6 @@ strong {
   .TxtNavi,
   .noprint {
     display: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    padding: 0;
-    margin: 0
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1810,9 +1751,6 @@ strong {
     text-align: center;
     padding-left: 1.5%;
     padding-right: 1.5%
-  }
-  .ABody {
-    margin: 0
   }
   .ADesc {
     margin: 0 0 2.5em;
@@ -1941,6 +1879,10 @@ strong {
   }
   pre code {
     border: 0
+  }
+  .tl tbody td:after,
+  blockquote .tl tbody td:after {
+    border-color: #fff
   }
   .prettyprint {
     padding: 1.23em 3%;

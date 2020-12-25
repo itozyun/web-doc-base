@@ -66,6 +66,7 @@ h2:after {
 }
 blockquote,
 code,
+hr,
 tbody th,
 var {
   background: #ddd
@@ -547,7 +548,6 @@ hr {
   height: 1px;
   border-color: transparent;
   margin: 2em 1em;
-  background: #777;
   background: -webkit-gradient(linear,left top,right top,color-stop(0,transparent),color-stop(50%,#111),color-stop(100%,transparent));
   background: -webkit-linear-gradient(left,transparent 0,#111 50%,transparent 100%);
   background: -moz-linear-gradient(left,transparent 0,#111 50%,transparent 100%);
@@ -1272,17 +1272,16 @@ a:focus .ico-pen:after {
   padding: 1em 0;
   text-align: center
 }
+.Attribution small {
+  font-size: .875em
+}
 .BlogArchive,
 .Comment,
 .Label,
 .LinkList,
 .RichLink,
-.RichLink .p,
 .Subscribe {
   padding: 0 0 1em
-}
-.Attribution small {
-  font-size: .875em
 }
 .BlogArchive dt {
   display: block;
@@ -1290,7 +1289,7 @@ a:focus .ico-pen:after {
   clear: both
 }
 .BlogArchive dd {
-  margin-left: 3em;
+  margin-left: 3.5em;
   color: #f8fbf8
 }
 .Subscribe div,
@@ -1516,9 +1515,6 @@ kbd {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink .p {
-  margin: 1em 0 .5em
-}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1527,8 +1523,8 @@ kbd {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  padding: 0 0 .8em;
-  clear: both
+  font-size: .875em;
+  margin: 1.143em 0
 }
 .RichLink img {
   float: left;
@@ -1536,7 +1532,10 @@ kbd {
 }
 .lM .RichLink b {
   font-size: 1.5em;
-  padding: 0 0 .4em
+  margin: 0 0 .4em
+}
+.RichLink .p {
+  margin: 1em 0
 }
 .lS .RichLink img {
   float: right;
@@ -2158,6 +2157,9 @@ strong {
   background: -ms-linear-gradient(top,rgba(0,0,0,0) 0,rgba(102,204,255,0) 60%,#6cf 61%,#6cf 100%);
   background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(255,255,102,0) 60%,#6cf 61%,#6cf 100%)
 }
+blockquote hr {
+  background: #777
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -2171,6 +2173,10 @@ strong {
 @media screen and (min-width:0\-) {
   .box > p:first-of-type {
     margin-top: auto
+  }
+  .tl td:after,
+  .tl td:before {
+    display: none!important
   }
 }
 @media only screen and (min-width:52.83333em) {
@@ -2268,13 +2274,13 @@ strong {
     margin-right: 1em
   }
   .Magazine-sep,
-  .lMf .RichLink-sep {
+  .lM .RichLink-sep {
     display: table;
     table-layout: fixed;
     margin: 1em 0
   }
   .Magazine-item,
-  .lMf .RichLink-sep a {
+  .lM .RichLink-sep a {
     display: table-cell;
     vertical-align: top
   }
@@ -2285,7 +2291,7 @@ strong {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lMf .RichLink-sep a {
+  .lM .RichLink-sep a {
     width: 33.3%
   }
   .lM .RichLink a {
@@ -2371,22 +2377,28 @@ only screen and (max-width:950px) {
   table {
     width: 94%
   }
-  .lMz {
-    padding: 0;
-    margin: 0 auto
-  }
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
-    padding: 0 3%;
-    margin: 0 auto
+    padding: 0 3%
+  }
+  #lB .lSi {
+    padding: 0
   }
   .lS1 {
     float: left
   }
   .lS2 {
     float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
   }
   #lH .lMi {
     padding-bottom: 0
@@ -2421,6 +2433,22 @@ handheld,
 projection,
 tv,
 only screen and (max-width:950px) {
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
+  .lM,
+  .lS {
+    float: none;
+    width: auto
+  }
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    margin: 0
+  }
   .links,
   .note,
   blockquote,
@@ -2435,16 +2463,6 @@ only screen and (max-width:950px) {
   tr blockquote pre,
   ul {
     margin: 1em 3%
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .lM,
-  .lS {
-    float: none;
-    width: auto
   }
   #lE .lS {
     padding-top: 0
@@ -2542,15 +2560,6 @@ only screen and (max-width:740px) {
   h2 {
     text-align: center
   }
-  .Magazine .aBodyRoot,
-  .Magazine-jump,
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    width: auto;
-    float: none
-  }
   h2:after {
     width: 33%;
     left: 33%;
@@ -2559,6 +2568,7 @@ only screen and (max-width:740px) {
   table {
     width: 96%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2569,8 +2579,13 @@ only screen and (max-width:740px) {
   .lM2,
   .lS1,
   .lS2 {
-    margin-left: 0;
-    margin-right: 0
+    float: none;
+    width: auto
+  }
+  #lB .lS1,
+  #lB .lS2 {
+    width: auto;
+    padding: 0
   }
   #lB .lS {
     padding-bottom: 2em
@@ -2657,6 +2672,11 @@ only screen and (max-width:740px) {
   .lM .RichLink b {
     font-size: 1.3em
   }
+  .Magazine .aBodyRoot,
+  .Magazine-jump {
+    width: auto;
+    float: none
+  }
   .Magazine-jump .btn {
     margin: 0 1em 0 0
   }
@@ -2698,6 +2718,7 @@ only screen and (max-width:479px) {
   table {
     width: 98%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2874,6 +2895,7 @@ only screen and (max-width:240px) {
   table {
     width: 100%
   }
+  #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2946,10 +2968,8 @@ only screen and (max-width:240px) {
   }
 }
 @media handheld,
-handheld and (max-width:240px),
-handheld and (prefers-color-scheme:dark),
-screen and (max-width:240px),
-screen and (prefers-color-scheme:dark) {
+only screen and (prefers-color-scheme:dark),
+only screen and (max-width:240px) {
   a,
   h6 {
     color: #999
@@ -3324,14 +3344,6 @@ screen and (prefers-color-scheme:dark) {
   thead var {
     border-color: #666
   }
-  .AHead-labels a,
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    padding: 0;
-    margin: 0
-  }
   code .typ,
   th {
     font-weight: 700
@@ -3500,7 +3512,9 @@ screen and (prefers-color-scheme:dark) {
   .AHead-labels a {
     display: inline;
     line-height: 1.2;
-    border-width: 0
+    border-width: 0;
+    padding: 0;
+    margin: 0
   }
   .Header h1,
   .Header h1 + span {
@@ -3718,72 +3732,6 @@ screen and (prefers-color-scheme:dark) {
   blockquote,
   p {
     text-align: justify
-  }
-}
-@media \0 all {
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .Magazine-item:after,
-  .Magazine-main:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after,
-  .lW:after {
-    display: inline
-  }
-  .AAuthor,
-  .BlogArchive dl,
-  .Comment p,
-  .Cover,
-  .Magazine-item,
-  .Magazine-main,
-  .RichLink a,
-  .box,
-  .commonForm-pair,
-  .lMi,
-  .lSi,
-  .lW,
-  :-gck-lte142,
-  _:-moz-any-link {
-    position: relative
-  }
-  .AAuthor:after,
-  .BlogArchive dl:after,
-  .Comment p:after,
-  .Cover:after,
-  .Magazine-item:after,
-  .Magazine-main:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after,
-  .lW:after,_:lang(x) {
-    content: ".";
-    display: block;
-    font-size: 1px;
-    line-height: 0;
-    height: .1px
-  }
-  @-moz-document url-prefix() {
-    .AAuthor:after,
-    .BlogArchive dl:after,
-    .Comment p:after,
-    .Cover:after,
-    .Magazine-item:after,
-    .Magazine-main:after,
-    .RichLink a:after,
-    .box:after,
-    .commonForm-pair:after,
-    .lMi:after,
-    .lSi:after,
-    .lW:after {
-      content: ""
-    }
   }
 }
 @media only screen and (-ms-high-contrast:black-on-white) {
