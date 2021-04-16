@@ -34,9 +34,9 @@
 
         @include box-sizing(border-box);
 
-    /* //_{#notie,@ie9 */
+    /* //_{#can-mq */
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#notie,@ie9 */
+    /* //_}#can-mq */
         .box & {
             /* //_{@modern */
             float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
@@ -50,9 +50,9 @@
         margin : 0 auto 1em; /* auto は中央配置で transition させるため */
         /* //_}#can-margin-auto */
 
-    /* //_{#notie,@ie9 */
+    /* //_{#can-mq */
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#notie,@ie9 */
+    /* //_}#can-mq */
         .box & {
             float  : none;
             margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
@@ -88,12 +88,6 @@
         }
     }
 /* //_}@ie6,@ie7 */
-
-/* //_{@legacy */
-    .jsPica {
-        @include inline-block; /* for Opera 7.20 */
-    }
-/* //_}@legacy */
 
 /* //_{@ie55,@ie5win */
 .jsPica {

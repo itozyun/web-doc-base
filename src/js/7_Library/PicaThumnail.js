@@ -20,7 +20,8 @@ if( !g_ServerSideRendering ){
                         if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
                             elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
                             elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
-                            thumbWidth     = ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
+                            // Opera 7.x : elmImg.style.width への setter で float が解除される
+                            thumbWidth     = g_Presto < 8 ? '' : ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
                             DOM_setStyle( elmImg, 'width', thumbWidth );
                             DOM_addClassName( elmA, 'jsPica' );
                             PICA_THUMBNAIL_IMGS.push( {
@@ -68,7 +69,6 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
     var ev  = e || event,
         key = ev.keyCode || ev.witch,
         i   = PICA_THUMBNAIL_IMGS.length,
-        _   = '',
         elmImg,
         parent, elmA, elmCap, src, obj, tag, w, elms, l, size, n, c;
 
@@ -127,7 +127,7 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                     
                     obj.clazz = c = DOM_getClassName( elmA );
                     DOM_addClassName( elmA, 'jsPicaLarge' );
-                    DOM_setStyle( elmImg, 'width', _ );
+                    DOM_setStyle( elmImg, 'width', '' );
                     elmImg.src = obj.large;
                     if( elmCap = obj.elmCap ){
                         DOM_setCssText( elmCap, '' );
