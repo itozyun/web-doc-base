@@ -1,70 +1,47 @@
 /** //_{+blog **/
 /* [module] Blog Archive
- *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *  出現位置は #lB .lMi 下
  *
 --------------------------------------------------------------------------------------*/
 .BlogArchive {
     @include stackableModule;
-}
-    .BlogArchive dl {
-        @include clearfix;
+
+    th {
+        word-break : normal;
+        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        word-wrap  : normal;
+        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
     }
-        .BlogArchive dt {
-            display : block;
-            float   : left;
-            clear   : both;
-        /* //_{#ie7-win */
-            line-height : 2.8;
-        /* //_}#ie7-win */
-        }
-        .lS .BlogArchive dt,
-        #lF .BlogArchive dt {
-        /* //_{#ie7-win */
-            line-height : 2.4;
-        /* //_}#ie7-win */
-        }
-        .BlogArchive dd {
-            margin-left : 3.5em;
-            color       : $COLOR_Default_fill; /* , を消す */
-        }
-        .ribbon .BlogArchive dd {
-            color      : $COLOR_Ribbon_fill; /* , を消す */
-        }
-            .BlogArchive a {
-            /* //_{^@legacy */
-            /* //_{#can-inline-block */
-                @include inline-block;
-                margin  : 0 0 1em;
-            /* //_}#can-inline-block */
-            /* //_}^@legacy */
 
-            /* //_{^#can-inline-block,@legacy */
-                line-height : 2.8;
-            /* //_}^#can-inline-block,@legacy */
+    &, tbody :hover td {
+        color : $COLOR_Default_fill; /* , を消す */
+    }
 
-                border-width : 0 0 1px;
+    a {
+    /* //_{^@legacy */
+    /* //_{#can-inline-block */
+        @include inline-block;
+        margin       : 0 0 1em;
+    /* //_}#can-inline-block */
+    /* //_}^@legacy */
 
-                &:link:hover, &:visited:hover { /* 詳細度の為に a: が必要 */
-                    text-decoration : none;
-                }
-            }
+    /* //_{^#can-inline-block,@legacy */
+        line-height  : 2.8;
+    /* //_}^#can-inline-block,@legacy */
 
-            .lS .BlogArchive a,
-            #lF .BlogArchive a {
-            /* //_{#can-inline-block */
-                margin  : 0 0 0.6em;
-            /* //_}#can-inline-block */
+        border-width : 0 0 1px;
+    }
 
-            /* //_{^#can-inline-block */
-                line-height : 2.4;
-            /* //_}^#can-inline-block */
-            }
+    :link:hover, :visited:hover {
+        text-decoration : none;
+    }
 
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .BlogArchive dd {
-        color : $COLOR_Watch_fill; /* , を消す */
+    @include media(dark_theme) {
+        &, tbody :hover td {
+            color : $COLOR_Watch_fill; /* , を消す */
+        }
     }
 }
 /** //_}+blog **/
