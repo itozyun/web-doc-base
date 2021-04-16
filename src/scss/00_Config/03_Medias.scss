@@ -19,27 +19,6 @@ $COMMENT_OUT : (
     'pc'           : 0,
     'tablet_print' : 2,
     'tablet'       : 2,
-/* //_}+mobileOnly */
-/* //_{^+mobileOnly */
-    /* //_{@modern */
-    'WQXGA'        : $CAN_USE_MEDIA_QUERY,
-    'WSXGA'        : $CAN_USE_MEDIA_QUERY,
-    /* //_}@modern */
-    /* //_{^@modern */
-    'WQXGA'        : 0,
-    'WSXGA'        : 0,
-    /* //_}^@modern */
-    'pc'           : $CAN_USE_MEDIA_QUERY,
-    'tablet_print' : 1,
-
-    /* //_{@legacy */
-    'tablet'       : 1,
-    /* //_}@legacy */
-    /* //_{^@legacy */
-    'tablet'       : $CAN_USE_MEDIA_QUERY,
-    /* //_}^@legacy */
-    
-/* //_}^+mobileOnly */
     /* //_{@legacy */
     'phablet'      : 1,
     'phone'        : 1,
@@ -54,6 +33,25 @@ $COMMENT_OUT : (
     'watch'        : $CAN_USE_MEDIA_QUERY,
     'dark_theme'   : $CAN_USE_MEDIA_QUERY,
     /* //_}^@legacy */
+/* //_}+mobileOnly */
+/* //_{^+mobileOnly */
+    /* //_{@modern */
+    'WQXGA'        : $CAN_USE_MEDIA_QUERY,
+    'WSXGA'        : $CAN_USE_MEDIA_QUERY,
+    /* //_}@modern */
+    /* //_{^@modern */
+    'WQXGA'        : 0,
+    'WSXGA'        : 0,
+    /* //_}^@modern */
+    'pc'           : $CAN_USE_MEDIA_QUERY,
+    'tablet_print' : 1,
+    'tablet'       : $CAN_USE_MEDIA_QUERY,
+    'phablet'      : $CAN_USE_MEDIA_QUERY,
+    'phone'        : $CAN_USE_MEDIA_QUERY,
+    'smallphone'   : $CAN_USE_MEDIA_QUERY,
+    'watch'        : $CAN_USE_MEDIA_QUERY,
+    'dark_theme'   : $CAN_USE_MEDIA_QUERY,
+/* //_}^+mobileOnly */
 
     'print'        : 1,
     /* //_{@modern */
@@ -91,13 +89,10 @@ $COMMENT_OUT : (
         }
         @else if $media == 'tablet_print' {
             @media print
-                /* //_{#notie */
-                , handheld, projection, tv
-                /* //_}#notie */
                 /* //_{#can-mq */
                 ,
                 /* //_{@modern */
-                only
+                handheld, projection, tv, only
                 /* //_}@modern */
                 screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)
                 /* //_}#can-mq */

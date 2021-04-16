@@ -42,7 +42,13 @@ $SEARCH_BTN_WIDTH : 3em;
 
     .Search-txt {
         display  : block;
-        width    : 100%; /* opera 10- で無視されるので size 指定をしている */
+        width    : 100%; /* Opera <=9.27 で無視されるので <input size> 指定する */
+        /* //_{@legacy */
+        box-sizing  : content-box; /* Opera 9.0~9.27 */
+        height      : #{$BASE_LINE_HEIGHT_EM - $INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
+        line-height : #{$BASE_LINE_HEIGHT_EM - $INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
+        /* //_}@legacy */
+        
         /* //_{@ie6,@ie7,@ie8,@ie9,@modern */
         left     : -#{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
         /* //_}@ie6,@ie7,@ie8,@ie9,@modern */
@@ -51,11 +57,11 @@ $SEARCH_BTN_WIDTH : 3em;
         left     : #{$INPUT_BORDER_WIDTH / 2};
         /* //_}@ie5win,@ie55,@legacy */
 
-        /* //_{#notie */
+        /* //_{@modern */
         &:invalid {
             color : $COLOR_Default_casual_text; /* ie10,11 で赤字を上書き */
         }
-        /* //_}#notie */
+        /* //_}@modern */
     }
     /* 1. ie6-7 は input[type=submit] が border-box, [type=text] は content-box の為
           width & height と border を em サイズにして補正する。
@@ -102,7 +108,8 @@ $SEARCH_BTN_WIDTH : 3em;
             display  : -moz-inline-box;
         }
         .Search-txt {
-            width : 60%;
+            width  : 60%;
+            height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         }
         /* override Gecko 1.2~1.8.1 */
         .Search [_lazyhack_="_:lang(x)"] {
@@ -114,6 +121,11 @@ $SEARCH_BTN_WIDTH : 3em;
         }
         .Search-txt [_lazyhack_="_:lang(x)"] {
             width : 100%;
+        }
+    }
+    @-moz-document url-prefix() {
+        .Search-txt {
+            height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         }
     }
 /* //_}@legacy */

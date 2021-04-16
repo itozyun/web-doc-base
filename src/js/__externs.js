@@ -59,3 +59,8 @@ function onbeforeprint(){};
  * @type {?function(!Event)|null}
  */
 function onafterprint(){};
+
+/**
+ * @type {function()}
+ */
+function prettyPrint(){};

@@ -65,7 +65,8 @@ input {
 /* //_}@ie55,@ie5win */
 /* //_{@legacy */
     line-height           : $BASE_LINE_HEIGHT;
-    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    border-style          : solid; /* for Opera 9.x [type=submit] */
 /* //_}@legacy */
 }
 

@@ -210,10 +210,10 @@ blockquote .tl {
 
         thead th, thead td,
         td, tbody td:before, tfoot th, tfoot td {
-            border-color : $COLOR_Watch_casual_text;
+            border-color : $COLOR_Watch_casual_fill;
         }
         tbody td:after {
-            border-color : $COLOR_Watch_casual_fill;
+            border-color : $COLOR_Watch_fill;
         }
 
         thead, tbody th {
@@ -230,7 +230,7 @@ blockquote .tl {
         td,
         tfoot th, tfoot td,
         tbody td:before {
-            border-color  : $COLOR_Watch_casual_text;
+            border-color : $COLOR_Watch_casual_text;
         }
         tbody td:after {
             border-color : $COLOR_Watch_casual_fill;
@@ -244,12 +244,7 @@ blockquote .tl {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    .tl {
-        tbody td:after {
-            border-color :#fff;
-        }
-    }
-    blockquote .tl {
+    .tl, blockquote .tl {
         tbody td:after {
             border-color :#fff;
         }
