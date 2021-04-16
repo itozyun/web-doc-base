@@ -87,14 +87,6 @@ tbody th,
 var {
   background: #ddd
 }
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-td,
-th {
-  word-break: break-all
-}
 .SearchResult div div,
 .caption,
 .commonForm-pair,
@@ -183,8 +175,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -434,6 +426,14 @@ table {
   empty-cells: show;
   border-spacing: 0
 }
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+td,
+th {
+  word-break: break-all
+}
 th {
   text-align: left;
   padding: .5em
@@ -463,6 +463,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
@@ -522,7 +524,6 @@ body {
 #lB .lSi {
   padding: 0
 }
-.BlogArchive dl,
 .Comment p,
 .Cover,
 .lMi,
@@ -749,10 +750,8 @@ var {
   margin-top: .5em;
   color: #1a1a1a
 }
-#lF .BlogArchive a,
 #lF .Label a,
 .Cover-img,
-.lS .BlogArchive a,
 .lS .Label a {
   margin: 0 0 .6em
 }
@@ -785,20 +784,8 @@ var {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.BlogArchive th {
+  word-break: normal
 }
 .BlogArchive a,
 .Label a {
@@ -871,6 +858,11 @@ kbd {
 }
 .Cover {
   margin: 2em auto
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
 }
 .LinkList a,
 .RichLink-sep a {

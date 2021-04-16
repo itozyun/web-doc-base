@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -45,6 +51,11 @@ h6,
 table,
 textarea {
   line-height: 1.2
+}
+pre,
+td,
+th {
+  word-wrap: break-word
 }
 .lM,
 html {
@@ -96,18 +107,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.Magazine-label,
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-.links,
-pre,
-td,
-th {
-  word-break: break-all;
-  word-wrap: break-word
 }
 .Magazine-item,
 .SearchResult div div,
@@ -211,8 +210,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -508,6 +507,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -557,7 +558,6 @@ body {
 .ribbon * {
   border-color: #2a2a2a
 }
-.BlogArchive dl,
 .Pager a,
 .TxtNavi a,
 .lMi,
@@ -638,6 +638,7 @@ body {
   padding-bottom: 1em
 }
 .links,
+.mspacer,
 blockquote,
 dl,
 iframe,
@@ -757,10 +758,6 @@ input.btn {
 :visited .RichLink-meta {
   color: #bbb
 }
-.mspacer {
-  margin: 1em;
-  word-break: break-all
-}
 #lF .lM .mspacer,
 .Cover p {
   margin: .6em .5em
@@ -849,29 +846,18 @@ input.btn {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both;
-  line-height: 2.8
+.BlogArchive th {
+  word-break: normal;
+  word-wrap: normal
 }
-#lF .BlogArchive a,
-#lF .BlogArchive dt,
-#lF .Label a,
-.lS .BlogArchive a,
-.lS .BlogArchive dt,
-.lS .Label a {
-  line-height: 2.4
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.Magazine-label,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+.links {
+  word-break: break-all;
+  word-wrap: break-word
 }
 .BlogArchive a,
 .Label a {
@@ -949,6 +935,15 @@ input.btn {
   text-justify: inter-ideograph;
   line-break: normal;
   text-align: justify
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
+}
+#lF .Label a,
+.lS .Label a {
+  line-height: 2.4
 }
 .LinkList a,
 .RichLink-sep a {

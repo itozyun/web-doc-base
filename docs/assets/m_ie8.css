@@ -47,6 +47,18 @@ table,
 textarea {
   line-height: 1.2
 }
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+.links,
+blockquote:after,
+pre,
+td,
+th {
+  word-break: break-all;
+  word-wrap: break-word
+}
 .lM1,
 .lM2,
 .lS1,
@@ -80,7 +92,6 @@ ul {
   margin: 1em 3%
 }
 .AAuthor,
-.BlogArchive dl,
 .Comment p,
 .Cover,
 .RichLink a,
@@ -125,18 +136,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-.links,
-blockquote:after,
-pre,
-td,
-th {
-  word-break: break-all;
-  word-wrap: break-word
 }
 .SearchResult div div,
 .caption,
@@ -222,8 +221,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -611,6 +610,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1125,10 +1126,8 @@ a:focus .ico-pen:after {
   margin-top: .5em;
   color: #1a1a1a
 }
-#lF .BlogArchive a,
 #lF .Label a,
 .Cover-img,
-.lS .BlogArchive a,
 .lS .Label a {
   margin: 0 0 .6em
 }
@@ -1157,20 +1156,9 @@ a:focus .ico-pen:after {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.BlogArchive th {
+  word-break: normal;
+  word-wrap: normal
 }
 .BlogArchive a,
 .Label a {
@@ -1248,6 +1236,11 @@ kbd {
   color: #f8fbf8;
   text-justify: inter-ideograph;
   line-break: normal
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
 }
 .LinkList a,
 .RichLink-sep a {

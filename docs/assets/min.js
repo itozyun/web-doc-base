@@ -137,7 +137,7 @@
     }
   }
   function ia(a, b) {
-    if (9 > y) {
+    if (9 > v) {
       if (b) {
         for (var d = b.split(";"), c; c = d.shift();) {
           c = c.split(":"), a.style[c[0]] = c[1];
@@ -249,23 +249,23 @@
     function c(X) {
       u = X;
       if (za) {
-        v = f + X + h;
+        w = f + X + h;
       } else {
         if (wb) {
           if (0 !== X) {
             X -= e - l;
             var Y = M.offsetWidth;
-            v = "position:fixed;width:" + Y + "px;top:" + X + "px";
+            w = "position:fixed;width:" + Y + "px;top:" + X + "px";
           }
         } else {
-          v = "position:absolute;left:0;width:100%;top:" + X + "px";
+          w = "position:absolute;left:0;width:100%;top:" + X + "px";
         }
         if (wb || 7 > q) {
-          Y = Y || M.offsetWidth, v += ";" + (0 > u ? "clip:rect(" + -u + "px " + Y + "px " + (Z - u) + "px 0)" : u + n < l + Z ? "clip:rect(0 " + Y + "px " + n + "px 0)" : "clip:rect(0 " + Y + "px " + (e + Z - u - l) + "px 0)");
+          Y = Y || M.offsetWidth, w += ";" + (0 > u ? "clip:rect(" + -u + "px " + Y + "px " + (Z - u) + "px 0)" : u + n < l + Z ? "clip:rect(0 " + Y + "px " + n + "px 0)" : "clip:rect(0 " + Y + "px " + (e + Z - u - l) + "px 0)");
         }
       }
     }
-    var e = Ba, f = za + ":translate" + (Qa ? "3D(0," : "(0,"), h = Qa ? "px,0)" : "px)", g = la(t.innerHeight, W.offsetHeight), m = xb, p = m.offsetHeight, n = w.offsetHeight, l = 0, v = "", u = 0, yb = M.offsetTop === m.offsetTop, Ub = n < p;
+    var e = Ba, f = za + ":translate" + (Qa ? "3D(0," : "(0,"), h = Qa ? "px,0)" : "px)", g = la(t.innerHeight, W.offsetHeight), m = xb, p = m.offsetHeight, n = x.offsetHeight, l = 0, w = "", u = 0, yb = M.offsetTop === m.offsetTop, Ub = n < p;
     if (yb) {
       for (; m;) {
         l += m.offsetTop || 0, m = m.offsetParent || m.parentElement;
@@ -298,13 +298,13 @@
         }
       }
     }
-    za && v && (v += ";-webkit-overflow-scrolling:touch;");
-    ia(w, v);
+    za && w && (w += ";-webkit-overflow-scrolling:touch;");
+    ia(x, w);
     Sa = u;
     return yb && !Wb && !Xb;
   }
   function F(a) {
-    x && (Ba = la(t.pageYOffset, W.scrollTop, z.scrollTop));
+    y && (Ba = la(t.pageYOffset, W.scrollTop, z.scrollTop));
     var b = a || event, d = this !== b.target, c = d && la(b.deltaY, b.wheelDeltaY / 120, b.wheelDelta / -120, b.detail / ("MozMousePixelScroll" === b.type ? 45 : 1));
     if (d && c && Ca(9 >= c ? -9 >= c ? -3 : c : 3)) {
       if (a) {
@@ -322,15 +322,15 @@
   function ma(a) {
     a = a || event;
     var b = a = a.srcElement || a.target, d = 0;
-    if (wa(w, a)) {
-      for (; w !== a && wa(w, a);) {
+    if (wa(x, a)) {
+      for (; x !== a && wa(x, a);) {
         d += a.offsetTop || 0, a = a.offsetParent;
       }
       vb ? E = [d, b.offsetHeight] : (Ca(0, d, b.offsetHeight), E = !0, t.scrollTo(la(t.pageXOffset, W.scrollLeft, z.scrollLeft), Ba));
     }
   }
-  var D = Pb, na = [], mb = !!r.getElementsByTagName, z = r.body, G = z.style, Da, q = k.Trident || k.TridentMobile, H = k.Tasman, Ea = k.EdgeHTML || k.EdgeMobile, y = k.Presto || k.PrestoMobile, x = k.Gecko, Bb = x && 0 <= k.conpare(k.ENGINE_VERSION, "1.9.1"), Ua = k.Goanna, Va = k.WebKit, Cb = k.SafariMobile || k.iOSWebView, Db = k.OperaMini && k.UCWEB, Eb = k.Win32 || k.Win64, Zb = Ha(bb.userAgent.split("Edg/")[1]), $b = Ha(bb.appVersion.split("Trident/")[1]) + 4, Fa = !q && !H && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), 
-  ac = 5.5 > q, Fb = r.scripts || U("script"), ka = (H ? "ie5mac" : 5.5 > q ? "ie5win" : 6 > q ? "ie55" : 10 > q ? "ie" + (q | 0) : 9.5 > y || x && !Bb ? "legacy" : "modern") + ".css", bc = .9 > x || k.NDS || k.NDSi || k.N3DS || k.New3DS || k.PSP || k.PSVita || k.PSPGo, da = [], jb, Ka = 0, tb, za = A(G.transform) ? "transform" : A(G["-o-transform"]) ? "-o-transform" : A(G["-ms-transform"]) ? "-ms-transform" : A(G["-moz-transform"]) ? "-moz-transform" : A(G["-webkit-transform"]) ? "-webkit-transform" : 
+  var D = Pb, na = [], mb = !!r.getElementsByTagName, z = r.body, G = z.style, Da, q = k.Trident || k.TridentMobile, H = k.Tasman, Ea = k.EdgeHTML || k.EdgeMobile, v = k.Presto || k.PrestoMobile, y = k.Gecko, Bb = y && 0 <= k.conpare(k.ENGINE_VERSION, "1.9.1"), Ua = k.Goanna, Va = k.WebKit, Cb = k.SafariMobile || k.iOSWebView, Db = k.OperaMini && k.UCWEB, Eb = k.Win32 || k.Win64, Zb = Ha(bb.userAgent.split("Edg/")[1]), $b = Ha(bb.appVersion.split("Trident/")[1]) + 4, Fa = !q && !H && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), 
+  ac = 5.5 > q, Fb = r.scripts || U("script"), ka = (H ? "ie5mac" : 5.5 > q ? "ie5win" : 6 > q ? "ie55" : 10 > q ? "ie" + (q | 0) : 9.5 > v || y && !Bb ? "legacy" : "modern") + ".css", bc = .9 > y || k.NDS || k.NDSi || k.N3DS || k.New3DS || k.PSP || k.PSVita || k.PSPGo, da = [], jb, Ka = 0, tb, za = A(G.transform) ? "transform" : A(G["-o-transform"]) ? "-o-transform" : A(G["-ms-transform"]) ? "-ms-transform" : A(G["-moz-transform"]) ? "-moz-transform" : A(G["-webkit-transform"]) ? "-webkit-transform" : 
   "";
   var L = Fb[Fb.length - 1].src.split("/");
   --L.length;
@@ -469,7 +469,7 @@
       Q(pa, ta());
     });
   } else {
-    if (10 > q || Eb && (44 <= x || Ua)) {
+    if (10 > q || Eb && (44 <= y || Ua)) {
       var Ga = function() {
         function a(e) {
           return "#ffffff" === e || "rgb(255,255,255)" === e;
@@ -484,7 +484,7 @@
       N(function() {
         S.style.color = "#123456";
         S.style.backgroundColor = "#123456";
-        60 > x || Ua ? Ga() : Ga() && Ia(Ga, 1E3);
+        60 > y || Ua ? Ga() : Ga() && Ia(Ga, 1E3);
         Ga = null;
       });
     }
@@ -496,7 +496,7 @@
       d && Jb(a, b[--d].src);
     }
     var b = r.images || U("img"), d = b.length;
-    if (9 <= y && 12 > y) {
+    if (9 <= v && 12 > v) {
       d && Jb(a, b[--d].src);
     } else {
       for (; d;) {
@@ -529,7 +529,7 @@
     sa || P(Lb);
     return b;
   };
-  (1 > x || 1.2 <= x && 1.8 > x || 7.2 >= y) && Ia(function() {
+  (1 > y || 1.2 <= y && 1.8 > y || 7.2 >= v) && Ia(function() {
     var a = t.scrollY || z.scrollTop;
     Mb !== a && (Mb = a, onscroll());
   });
@@ -555,7 +555,7 @@
                   !d && J(g);
                   break;
                 }
-                if (8 <= y && 9 > y) {
+                if (8 <= v && 9 > v) {
                   break;
                 }
               case "LINK":
@@ -603,7 +603,7 @@
       }
     }
     Da = fa("jsMain");
-    var b = !(8 > y || 5 > q || H || .9 > x), d = 7 > q, c = ["og:", "twitter:", "fb:"], e = [];
+    var b = !(8 > v || 5 > q || H || .9 > y), d = 7 > q, c = ["og:", "twitter:", "fb:"], e = [];
     a(ha);
   });
   9 > q && N(function(a) {
@@ -634,8 +634,8 @@
         g = g.substr(9).toUpperCase().split("-").join("");
         if (13 === g.length) {
           g = g.toString().slice(3, -1);
-          for (var l = 0, v = 0; 9 > v; v++) {
-            l += (g.charAt(v) - 0) * (10 - v);
+          for (var l = 0, w = 0; 9 > w; w++) {
+            l += (g.charAt(w) - 0) * (10 - w);
           }
           l = (11 - l % 11) % 11;
           l = 10 === l ? "X" : l.toString();
@@ -665,7 +665,7 @@
   var Aa = [], Oa;
   Db || (N(function() {
     for (var a = U("A", Da), b = -1, d, c, e, f; d = a[++b];) {
-      xa(d, "img-disabled") || (e = (c = 1 === nb(d).length && nb(d)[0]) && c.tagName.toUpperCase(), "IMG" === e && (e = d.getAttribute("href") || "", f = e.split("?")[0].split("#")[0].split("."), f = (f[f.length - 1] || "").toLowerCase(), 0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + f + ".") && (d.onkeydown = c.onclick = ub, d.onclick = Tb, f = c.offsetWidth - 4 + "px", c.style.width = f, K(d, "jsPica"), Aa.push({g:d, B:c.src, C:f, o:e, h:c}))));
+      xa(d, "img-disabled") || (e = (c = 1 === nb(d).length && nb(d)[0]) && c.tagName.toUpperCase(), "IMG" === e && (e = d.getAttribute("href") || "", f = e.split("?")[0].split("#")[0].split("."), f = (f[f.length - 1] || "").toLowerCase(), 0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + f + ".") && (d.onkeydown = c.onclick = ub, d.onclick = Tb, f = 8 > v ? "" : c.offsetWidth - 4 + "px", c.style.width = f, K(d, "jsPica"), Aa.push({g:d, B:c.src, C:f, o:e, h:c}))));
     }
   }), 525.13 > Va && (ha.onclick = function(a) {
     if (Oa) {
@@ -677,8 +677,8 @@
     }
     ha.onclick = D;
   }));
-  var Ta = ["jsSidebarFixer1", "jsSidebarFixer2"], vb = 10 <= q || Ea || k.Chromium || Va, Ob = x || k.Fennec || Ua || Ea, wb = !(5 > k.SafariMobile || 5 > k.iOSWebView || 2.2 > k.AOSP || 6 > k.Fennec || k.WebOS && 534 > Va || k.MeeGo || 7 > q || 9 > y), W, M, xb, w, Sa = 0, Ba = 0, Qa, E, ab = x && 0 <= k.conpare(k.ENGINE_VERSION, "0.9.7");
-  for (Nb || Db || 8 > y || (dc(function(a) {
+  var Ta = ["jsSidebarFixer1", "jsSidebarFixer2"], vb = 10 <= q || Ea || k.Chromium || Va, Ob = y || k.Fennec || Ua || Ea, wb = !(5 > k.SafariMobile || 5 > k.iOSWebView || 2.2 > k.AOSP || 6 > k.Fennec || k.WebOS && 534 > Va || k.MeeGo || 7 > q || 9 > v), W, M, xb, x, Sa = 0, Ba = 0, Qa, E, ab = y && 0 <= k.conpare(k.ENGINE_VERSION, "0.9.7");
+  for (Nb || Db || 8 > v || (dc(function(a) {
     if (a && !W) {
       a = -1;
       var b;
@@ -687,12 +687,12 @@
       W = "CSS1Compat" !== r.compatMode ? z : ha || z;
       M = fa("jsSide");
       xb = Da;
-      w = pb(M.firstChild, "div", {id:"jsSidebarFixer"});
-      for (q || H ? w.onfocusin = ma : Ob ? r.addEventListener("focus", ma, Fa ? {capture:!0, passive:!1} : !0) : w.addEventListener("DOMFocusIn", ma, !1); 1 < M.childNodes.length;) {
-        w.appendChild(M.childNodes[1]);
+      x = pb(M.firstChild, "div", {id:"jsSidebarFixer"});
+      for (q || H ? x.onfocusin = ma : Ob ? r.addEventListener("focus", ma, Fa ? {capture:!0, passive:!1} : !0) : x.addEventListener("DOMFocusIn", ma, !1); 1 < M.childNodes.length;) {
+        x.appendChild(M.childNodes[1]);
       }
       for (; b = Ta[++a];) {
-        b = fa(b), A(b.onwheel) ? Fa ? b.addEventListener("wheel", F, {passive:!1}) : b.onwheel = F : Bb ? b.addEventListener("MozMousePixelScroll", F, !1) : ab || !A(b.onmousewheel) && !y || (b.onmousewheel = F);
+        b = fa(b), A(b.onwheel) ? Fa ? b.addEventListener("wheel", F, {passive:!1}) : b.onwheel = F : Bb ? b.addEventListener("MozMousePixelScroll", F, !1) : ab || !A(b.onmousewheel) && !v || (b.onmousewheel = F);
       }
       ab && r.addEventListener("DOMMouseScroll", Yb, !1);
       Qa = !q && !Ea && (A(G.perspective) || A(G["-moz-perspective"]) || A(G["-webkit-perspective"]));
@@ -703,7 +703,7 @@
       b = fa(b), Fa && b.removeEventListener("wheel", F, {passive:!1}), b.removeEventListener("MozMousePixelScroll", F, !1), b.onwheel = b.onmousewheel = D, b.onwheel = b.onmousewheel = null;
     }
     ab && r.removeEventListener("DOMMouseScroll", F, !1);
-    q || H ? (w.onfocusin = D, w.onfocusin = null) : Ob ? r.removeEventListener("focus", ma, Fa ? {capture:!0, passive:!1} : !0) : w.removeEventListener("DOMFocusIn", ma, !1);
+    q || H ? (x.onfocusin = D, x.onfocusin = null) : Ob ? r.removeEventListener("focus", ma, Fa ? {capture:!0, passive:!1} : !0) : x.removeEventListener("DOMFocusIn", ma, !1);
   })); na.length;) {
     na.shift()();
   }

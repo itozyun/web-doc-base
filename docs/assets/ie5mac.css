@@ -60,15 +60,6 @@ tbody th,
 var {
   background: #ddd
 }
-.Magazine-label,
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-td,
-th {
-  word-break: break-all
-}
 .Magazine-item,
 .SearchResult div div,
 .caption,
@@ -153,8 +144,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -209,7 +200,6 @@ a iframe,
 a img {
   display: block
 }
-.BlogArchive dl,
 .Comment p,
 .Cover,
 .lMi,
@@ -410,6 +400,15 @@ table {
   empty-cells: show;
   border-spacing: 0
 }
+.Magazine-label,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+td,
+th {
+  word-break: break-all
+}
 th {
   text-align: left;
   padding: .5em
@@ -439,6 +438,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
@@ -767,32 +768,14 @@ var {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.BlogArchive th {
+  word-break: normal
 }
 .BlogArchive a,
 .Label a {
   display: inline-block;
   margin: 0 0 1em;
   border-width: 0 0 1px
-}
-#lF .BlogArchive a,
-#lF .Label a,
-.lS .BlogArchive a,
-.lS .Label a {
-  margin: 0 0 .6em
 }
 .Comment h3,
 .SearchResult h3 {
@@ -816,14 +799,18 @@ var {
   margin: 3.52em 0;
   line-height: 1.4
 }
-.Cover-img {
-  position: relative;
-  height: 100%;
+#lF .Label a,
+.Cover-img,
+.lS .Label a {
   margin: 0 0 .6em
 }
 .Cover-meta,
 .SearchResult div div {
   margin: 0 .5em
+}
+.Cover-img {
+  position: relative;
+  height: 100%
 }
 .Cover img {
   margin: 0;
@@ -864,6 +851,11 @@ kbd {
 .Cover-meta {
   display: block;
   color: #777
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
 }
 .LinkList a,
 .RichLink-sep a {

@@ -59,6 +59,15 @@ body,
 input {
   line-height: 1.9
 }
+.SearchResult cite,
+.caption,
+.lS .RichLink b,
+.links,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .lM1,
 .lM2,
 .lS1,
@@ -132,15 +141,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.SearchResult cite,
-.caption,
-.lS .RichLink b,
-.links,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .SearchResult div div,
 .caption,
@@ -243,8 +243,8 @@ pre {
   white-space: -moz-pre-wrap;
   white-space: pre-wrap
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -471,7 +471,8 @@ input[type=hidden] {
   background: red!important
 }
 input {
-  height: 2.1em
+  height: 2.1em;
+  border-style: solid
 }
 input::-moz-focus-inner {
   border: 0
@@ -607,6 +608,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
@@ -700,7 +703,6 @@ input.btn {
 #lF .lMi:after,
 #lF .lSi:after,
 .AAuthor:after,
-.BlogArchive dl:after,
 .Comment p:after,
 .Cover:after,
 .RichLink a:after,
@@ -799,31 +801,6 @@ input.btn {
 .btn:visited {
   background: #1a1a1a;
   color: #fff
-}
-@-moz-document url-prefix() {
-  _:-moz-loading,
-  h2:after {
-    display: none
-  }
-  _:-moz-handler-blocked,
-  h2:after {
-    display: block
-  }
-  _:-moz-loading,
-  input,
-  textarea {
-    padding: .45em .4em;
-    -moz-box-sizing: border-box
-  }
-  _:-moz-loading,
-  input {
-    line-height: 1
-  }
-  _:-moz-loading,
-  input.btn {
-    line-height: 1;
-    padding: .45em 1em
-  }
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -958,10 +935,8 @@ input.btn {
   margin-top: .5em;
   color: #1a1a1a
 }
-#lF .BlogArchive a,
 #lF .Label a,
 .Cover-img,
-.lS .BlogArchive a,
 .lS .Label a {
   margin: 0 0 .6em
 }
@@ -990,20 +965,8 @@ input.btn {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.BlogArchive th {
+  word-break: normal
 }
 .BlogArchive a,
 .Label a {
@@ -1071,8 +1034,7 @@ kbd {
 }
 .Cover-meta span,
 .RichLink-meta span,
-.TxtNavi a,
-.jsPica {
+.TxtNavi a {
   display: inline;
   display: inline-table;
   display: inline-block;
@@ -1080,6 +1042,11 @@ kbd {
 }
 .Cover {
   margin: 2em auto
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
 }
 .LinkList a,
 .RichLink-sep a {
@@ -1210,10 +1177,10 @@ pre var {
 .Search-txt {
   display: block;
   width: 100%;
+  box-sizing: content-box;
+  height: 1.7em;
+  line-height: 1.7em;
   left: .05em
-}
-.Search-txt:invalid {
-  color: #777
 }
 .Search .btn {
   padding-left: 0;
@@ -1223,6 +1190,34 @@ pre var {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
+}
+@-moz-document url-prefix() {
+  _:-moz-loading,
+  h2:after {
+    display: none
+  }
+  _:-moz-handler-blocked,
+  h2:after {
+    display: block
+  }
+  _:-moz-loading,
+  input,
+  textarea {
+    padding: .45em .4em;
+    -moz-box-sizing: border-box
+  }
+  _:-moz-loading,
+  input {
+    line-height: 1
+  }
+  _:-moz-loading,
+  input.btn {
+    line-height: 1;
+    padding: .45em 1em
+  }
+  .Search-txt {
+    height: 2.1em
+  }
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1722,10 +1717,10 @@ li.L8 {
   -moz-box-sizing: border-box;
   box-sizing: border-box
 }
-div .box .jsPicaLarge img {
+.box .jsPicaLarge img {
   margin: 0 0 1em
 }
-div .box .jsCapLarge {
+.box .jsCapLarge {
   float: none;
   margin: 0 0 1em
 }
@@ -1935,12 +1930,6 @@ tv {
   }
 }
 @media handheld {
-  .tl tbody td:before,
-  .tl td,
-  .tl tfoot td,
-  .tl tfoot th,
-  .tl thead td,
-  .tl thead th,
   blockquote .tl tbody td:before,
   blockquote .tl td,
   blockquote .tl tfoot td,
@@ -2016,18 +2005,12 @@ tv {
   .baseColor .btn:link:focus,
   .baseColor .btn:visited:active,
   .baseColor .btn:visited:focus,
+  .tl tbody td:after,
   :link img,
   :visited img,
   a,
   tbody th {
     border-color: #000
-  }
-  *,
-  .medal,
-  .tl tbody td:after,
-  blockquote .tl tbody td:after,
-  hr {
-    border-color: #222
   }
   .SearchResult :visited,
   .js-bqLink,
@@ -2082,6 +2065,7 @@ tv {
     background: #222
   }
   hr {
+    border-color: #222;
     margin: 2em 0
   }
   table {
@@ -2101,7 +2085,8 @@ tv {
     border-color: #222 #8d8d8d;
     color: #000
   }
-  .BlogArchive dd,
+  .BlogArchive,
+  .BlogArchive tbody :hover td,
   .Label div,
   .Pager,
   .SocialBtns,
@@ -2144,6 +2129,17 @@ tv {
   }
   tbody :hover td {
     border-color: #000 #000 #3079ed
+  }
+  *,
+  .medal,
+  .tl tbody td:before,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote .tl tbody td:after {
+    border-color: #222
   }
   #lB .lS,
   #lB .lS .LinkList :link,
@@ -2595,7 +2591,6 @@ tv {
   #lF .lMi:after,
   #lF .lSi:after,
   .AAuthor:after,
-  .BlogArchive dl:after,
   .Comment p:after,
   .Cover:after,
   .RichLink a:after,
@@ -2614,7 +2609,6 @@ tv {
   #lF .lMi,
   #lF .lSi,
   .AAuthor,
-  .BlogArchive dl,
   .Comment p,
   .Cover,
   .RichLink a,
@@ -2629,7 +2623,6 @@ tv {
   #lF .lMi:after,
   #lF .lSi:after,
   .AAuthor:after,
-  .BlogArchive dl:after,
   .Comment p:after,
   .Cover:after,
   .RichLink a:after,
@@ -2652,7 +2645,8 @@ tv {
     display: -moz-inline-box
   }
   .Search-txt {
-    width: 60%
+    width: 60%;
+    height: 2.1em
   }
   .Search,_:lang(x) {
     margin: 0 3em 0 1.1em
@@ -2670,7 +2664,6 @@ tv {
     #lF .lMi:after,
     #lF .lSi:after,
     .AAuthor:after,
-    .BlogArchive dl:after,
     .Comment p:after,
     .Cover:after,
     .RichLink a:after,

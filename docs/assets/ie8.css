@@ -56,12 +56,24 @@ table,
 textarea {
   line-height: 1.2
 }
+.Magazine-label,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+.links,
+blockquote:after,
+pre,
+td,
+th {
+  word-break: break-all;
+  word-wrap: break-word
+}
 .baseColor,
 .medal {
   background: #f8fbf8
 }
 .AAuthor,
-.BlogArchive dl,
 .Comment p,
 .Cover,
 .Magazine-item,
@@ -91,19 +103,6 @@ dt,
 em,
 strong {
   font-weight: 700
-}
-.Magazine-label,
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-.links,
-blockquote:after,
-pre,
-td,
-th {
-  word-break: break-all;
-  word-wrap: break-word
 }
 .Magazine-item,
 .SearchResult div div,
@@ -200,8 +199,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -585,6 +584,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1145,32 +1146,15 @@ a:focus .ico-pen:after {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.BlogArchive th {
+  word-break: normal;
+  word-wrap: normal
 }
 .BlogArchive a,
 .Label a {
   display: inline-block;
   margin: 0 0 1em;
   border-width: 0 0 1px
-}
-#lF .BlogArchive a,
-#lF .Label a,
-.lS .BlogArchive a,
-.lS .Label a {
-  margin: 0 0 .6em
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1194,14 +1178,18 @@ a:focus .ico-pen:after {
   margin: 3.52em 0;
   line-height: 1.4
 }
-.Cover-img {
-  position: relative;
-  height: 100%;
+#lF .Label a,
+.Cover-img,
+.lS .Label a {
   margin: 0 0 .6em
 }
 .Cover-meta,
 .SearchResult div div {
   margin: 0 .5em
+}
+.Cover-img {
+  position: relative;
+  height: 100%
 }
 .Cover img {
   margin: 0;
@@ -1248,6 +1236,11 @@ kbd {
   color: #f8fbf8;
   text-justify: inter-ideograph;
   line-break: normal
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
 }
 .LinkList a,
 .RichLink-sep a {

@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -46,6 +52,11 @@ table,
 textarea {
   line-height: 1.2
 }
+pre,
+td,
+th {
+  word-wrap: break-word
+}
 .Cover-meta,
 .Magazine-date,
 .Magazine-mm,
@@ -88,18 +99,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.Magazine-label,
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-.links,
-pre,
-td,
-th {
-  word-break: break-all;
-  word-wrap: break-word
 }
 .Magazine-item,
 .SearchResult div div,
@@ -208,8 +207,8 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive a:link:hover,
-.BlogArchive a:visited:hover,
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
 .Label a:link:hover,
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
@@ -313,7 +312,6 @@ p {
 a:active:hover {
   text-decoration: underline
 }
-.medal,
 a,
 tbody th {
   border-color: #f8fbf8
@@ -325,12 +323,10 @@ tbody th {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
 :visited,
-body,
 table {
   color: #111
 }
@@ -486,6 +482,8 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -530,12 +528,12 @@ blockquote tfoot th {
   text-transform: uppercase
 }
 body {
-  background: #1a1a1a
+  background: #1a1a1a;
+  color: #111
 }
 .ribbon * {
   border-color: #2a2a2a
 }
-.BlogArchive dl,
 .LinkList *,
 .Pager a,
 .RichLink-sep *,
@@ -624,6 +622,7 @@ body {
   padding-bottom: 1em
 }
 .links,
+.mspacer,
 blockquote,
 dl,
 iframe,
@@ -706,6 +705,10 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
+.medal {
+  border-color: #f8fbf8;
+  color: #111
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -726,10 +729,6 @@ input.btn {
   border-color: #c47222;
   background: #c47222;
   color: #e6d6a9
-}
-.mspacer {
-  margin: 1em;
-  word-break: break-all
 }
 #lF .lM .mspacer,
 .Cover p {
@@ -819,29 +818,18 @@ input.btn {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive dt {
-  display: block;
-  float: left;
-  clear: both;
-  line-height: 2.8
+.BlogArchive th {
+  word-break: normal;
+  word-wrap: normal
 }
-#lF .BlogArchive a,
-#lF .BlogArchive dt,
-#lF .Label a,
-.lS .BlogArchive a,
-.lS .BlogArchive dt,
-.lS .Label a {
-  line-height: 2.4
-}
-.BlogArchive dd {
-  margin-left: 3.5em;
-  color: #f8fbf8
-}
-.Subscribe div,
-.ribbon .BlogArchive dd,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #1a1a1a
+.Magazine-label,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.lS .RichLink b,
+.links {
+  word-break: break-all;
+  word-wrap: break-word
 }
 .BlogArchive a,
 .Label a {
@@ -919,6 +907,15 @@ input.btn {
   text-justify: inter-ideograph;
   line-break: normal;
   text-align: justify
+}
+.Subscribe div,
+.ribbon .Label div,
+.ribbon .TxtNavi {
+  color: #1a1a1a
+}
+#lF .Label a,
+.lS .Label a {
+  line-height: 2.4
 }
 .LinkList a,
 .RichLink-sep a {
