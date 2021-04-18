@@ -1,18 +1,20 @@
-li, dd, tr {
+// (li|dd) > tr > (ol|ul) が来ることは無いので tr が先で tr > (li|dd) > (ol|ul) の場合にスタイルを上書きする
+tr {
     ol, ul {
         margin-top    : 0;
-        margin-bottom : 0;
+        margin-bottom : 0.5em;
     }
-}
-
-li, dd {
-    p, pre, blockquote, dl, table {
+    p, pre, blockquote, dl {
         margin : 0 0 .5em;
     }
 }
 
-tr {
-    p, pre, blockquote, dl {
+li, dd {
+    ol, ul {
+        margin-top    : 0;
+        margin-bottom : 0;
+    }
+    p, pre, blockquote, dl, table {
         margin : 0 0 .5em;
     }
 }
