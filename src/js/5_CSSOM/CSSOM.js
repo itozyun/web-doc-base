@@ -1,7 +1,9 @@
+// javascriptでスタイルを追加する方法
+//   https://qiita.com/sainome_7/items/d3f6afa8ffee354e6e36
+
 var CSSOM_sheets = {},
     CSSOM_importIndex = {};
 
-// opera 9 未満は styleSheet が居ない
 function CSSOM_getStyleSheet( elm ){
     return elm.sheet || elm.styleSheet;
 };
@@ -10,10 +12,13 @@ function CSSOM_getCssRules( styleSheet ){
     return ( 10 <= g_Trident ) ? styleSheet.cssRules : ( styleSheet.rules || styleSheet.cssRules );
 };
 
-// https://qiita.com/sainome_7/items/d3f6afa8ffee354e6e36
 function CSSOM_createSheet( css, media ){
     if( 8 <= g_Presto && g_Presto < 9 ){
-        // 7.2x は 下が動作。7.1 以下は下も不可。
+        //  Data URIs explained
+        //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
+        //   Opera 7.2+ – data URIs must not be longer than 4100 characters
+
+        // For Opera 8.x. Hack with data URIs.
         DOM_createThenAdd(
             g_head, 'link',
             {
@@ -23,7 +28,8 @@ function CSSOM_createSheet( css, media ){
                 href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( css )
             }
         );
-    } else {
+    } else if( !( g_Presto < 7.2 ) ){
+        // For Opera 7.2x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
         CSSOM_sheets[ media ] = CSSOM_getStyleSheet( DOM_createThenAdd( g_head, 'style', { type : 'text/css', media : media }, 0, css ) );
     };
 };

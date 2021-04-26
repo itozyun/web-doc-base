@@ -118,29 +118,28 @@ function DOM_justCreate( tag, html ){
 }
 
 function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
-    var updateAfterAdd = g_Trident < 9, // ie では後で、Opera 8.x + <link> では先で
-        elm, isStyle;
+    var updateAfterAppend = g_Trident < 9, // ie では後で、Opera 8.x + <link> では先で
+        isStyle           = tag === 'style',
+        elm;
 
-    if( tag === 'style' ){
-        isStyle = true;
-
-        if( true || g_Trident < 9 ){
-            // http://d.hatena.ne.jp/miya2000/20070327/p0
-            // 最初に style でないノードが無いと style が生成されない
-            elm = DOM_justCreate( 'div', 'a<style type="text\/css">' + text + '<\/style>' ).lastChild;
-        } else {
+    if( isStyle ){
+        if( g_WebKit ){
             elm = DOM_justCreate( 'style' );
             elm.type = 'text\/css';
             // https://davidwalsh.name/add-rules-stylesheets
-            // WebKit hack :(
+            //   WebKit hack :(
             elm.appendChild( document.createTextNode('') );
-            // elm.innerHTML = text;
+            elm.innerHTML = text;
+        } else {
+            // http://d.hatena.ne.jp/miya2000/20070327/p0
+            //   最初に style でないノードが無いと style が生成されない
+            elm = DOM_justCreate( 'div', 'a<style type="text\/css">' + text + '<\/style>' ).lastChild;
         };
     } else {
         elm = DOM_justCreate( tag );
     };
 
-    if( !updateAfterAdd ) update();
+    if( !updateAfterAppend ) update();
 
     if( DOM_insert ){ // 1:insertBefore or 2:insertAfter
         if( DOM_insert === 2 ){
@@ -156,7 +155,7 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
         DOM_appendChild( targetNode, elm );
     };
 
-    if( updateAfterAdd ) update();
+    if( updateAfterAppend ) update();
 
     function update(){
         attrs && updateAttr( elm, attrs );
@@ -171,7 +170,7 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
             switch( k ){
                 case 'class' :
                 case 'className' :
-                    DOM_addClassName( elm, attrs[ k ] );
+                    DOM_setClassName( elm, attrs[ k ] );
                     break;
                 default :
                     DOM_setAttribute( elm, k, attrs[ k ] );
