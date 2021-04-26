@@ -4,6 +4,10 @@
     border-color : $COLOR_Default_fill;
     border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
 
+    blockquote & {
+        border-color : $COLOR_Default_casual_fill;
+    }
+
     .ribbon & {
         border-color : $COLOR_Ribbon_fill;
     }
@@ -36,6 +40,9 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     :link img, :visited img {
-        border-color : $COLOR_Watch_fill;
+        border-color : transparent; // filter: brightness(85%); の影響を避ける
+        blockquote & {
+            border-color : transparent;
+        }
     }
 }
