@@ -9,6 +9,9 @@ blockquote {
     @include highContrast {
         border-style : dotted;
     }
+    blockquote {
+        border-color : $COLOR_Default_casual_text;
+    }
 }
 
     blockquote h3 {
@@ -68,6 +71,9 @@ blockquote {
     blockquote {
         background : $COLOR_Watch_casual_fill;
         color      : $COLOR_Watch_text;
+        blockquote {
+            border-color : $COLOR_Watch_casual_text;
+        }
     }
         blockquote h3 {
             border-color : $COLOR_Watch_text;
