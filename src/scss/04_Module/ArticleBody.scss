@@ -7,7 +7,14 @@
     margin : 3.5em 0 2em;
 }
 
-/*  h2, h3
+/*  h1
+--------------------------------------------------------------------------------------*/
+.ABody h1 {
+    @include hMargin(2, 3em, 3em);
+    font-size : 2em;
+}
+
+/*  h2
 --------------------------------------------------------------------------------------*/
 .ABody h2 {
     @include hMargin(2, 2em, 1em);
@@ -25,6 +32,9 @@
     }
     /* //_}#can-content */
 }
+
+/*  h3
+--------------------------------------------------------------------------------------*/
 .ABody h3 {
     @include hMargin(2, 2.4em, 1.2em);
     font-weight    : bold;
@@ -47,7 +57,7 @@
         .ABody .aBodyRoot > *:first-child {
             margin-top : 0;
         }
-        .ABody h2, .ABody h3 {
+        .ABody h1, .ABody h2, .ABody h3 {
             text-align : center;
         }
 }
@@ -55,10 +65,10 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet_print) {
-    .ABody h2, .ABody h3 {
+    .ABody h1, .ABody h2, .ABody h3 {
         text-align : center;
     }
-    .ABody h2, .ABody h3 {
+    .ABody h1, .ABody h2, .ABody h3 {
         padding-left  : $TABLET_H_SPACE/2;
         padding-right : $TABLET_H_SPACE/2;
     }
@@ -67,7 +77,7 @@
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .ABody h2, .ABody h3 {
+    .ABody h1, .ABody h2, .ABody h3 {
         padding-left   : $PHABLET_H_SPACE/2;
         padding-right  : $PHABLET_H_SPACE/2;
     }
@@ -76,10 +86,13 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    .ABody h2 {
-        font-size     : 1.25em;
+    .ABody h1 {
+        font-size : 1.5em;
     }
-    .ABody h2, .ABody h3 {
+    .ABody h2 {
+        font-size : 1.25em;
+    }
+    .ABody h1, .ABody h2, .ABody h3 {
         padding-left  : $PHONE_H_SPACE/2;
         padding-right : $PHONE_H_SPACE/2;
     }
@@ -88,7 +101,7 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .ABody h2, .ABody h3 {
+    .ABody h1, .ABody h2, .ABody h3 {
         padding-left  : 0;
         padding-right : 0;
     }
