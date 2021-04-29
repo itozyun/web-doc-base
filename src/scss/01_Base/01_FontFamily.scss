@@ -1,54 +1,99 @@
 /*  font-family
---------------------------------------------------------------------------------------*/    
-/* https://tokunagakazuya.tk/vk3l */
+--------------------------------------------------------------------------------------*/
+// 「ウェブサイトでシステムフォント」
+//    https://terkel.jp/archives/2016/05/system-fonts-on-website/
 
-// https://terkel.jp/archives/2016/05/system-fonts-on-website/
-// ウェブサイトでシステムフォント
+// 「CSSのfont-family：ヒラギノとＭＳ Ｐゴシックとメイリオの悩ましい関係」
+//    https://web.archive.org/web/20190826144556/http://loconet.web2.jp/blog/archives/2007/02/cssfontfamily.html
 
-/* //_{#notie
- * http://loconet.web2.jp/blog/archives/2007/02/cssfontfamily.html
+// 「欧文フォント」
+//    http://www.akibatec.net/wabunfont/library/ohbun/ohbun.html
+
+/* (1) Chrome 58 では "Yu Gothic Medium" を認識しないバグの回避
+ *      「読みやすいフォントの CSS 設定例」より
+ *         https://murashun.jp/article/design/css-font-readability.html
+ *       参考「【Chrome問題対応済】游ゴシック font-family 完全版！これなら2020年まで使えます（多分）」
+//         https://tokunagakazuya.tk/vk3l
+ *
+ * (2) Firefox OS2.2(シミュレータ)で Roboto がいると日本語を正しく表示できない問題の回避
+ *      「Webページの日本語がFirefox OS 2.2で表示され無い問題の対策」より
+ *         http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
+ *
+ * (3) Windows 10 + Lunascape(Webkit 537.21)で日本語と半角文字のテキストフローが乱れる件、Helvetica, Arial, を fontFamily から外して解決
+ *      https://twitter.com/itozyun/status/1293663862080716800
+ *
+ * (4) "IEは游ゴシックの下の余白が他のフォントより大きいというバグ"を回避。
+ *     「2020年まで使えるfont-familyおすすめゴシック体」
+ *        https://qiita.com/tsuka-rinorino/items/4181efd43d072e246519#ie%E5%90%91%E3%81%91
+ *
+ * (5) "Windows 8.0以下に搭載されている明朝体フォント『MS明朝』『MS P明朝』が、フォントサイズ22、23px以下ではアンチエイリアスがかからない"を回避。
+ *     「CSSにたったの1行！明朝体をWindows 8.0以下でも綺麗に表示する方法」より
+ *        https://web改善事例.com/font-mincho-css-beautiful/
+ *
+ * (6) CSSでコード表示に指定すべき推奨フォントの例 より
+ *      「とほほのフォント」
+ *         http://www.tohoho-web.com/ex/font.html#css-body-font
+ *       参考「バグ取りの日々 > font-familyのソースコード用等幅フォント設定まとめ」
+ *         https://www.bugbugnow.net/2020/02/font-family-mono.html
+ *
+ * (6) "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう問題あり
  */
+
+/* //_{#notie */
+        // (1)
+        @font-face {
+            font-family : "YuGothic M";
+            src         : local("Yu Gothic Medium"),
+                          local("Yu Gothic");
+            font-weight : 500;
+        }
         body, textarea, input {
             font-family :
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
                 "Helvetica Neue", Helvetica, Arial, Verdana,
-                /* Roboto, */
+                /* Roboto, */ // (2)
                 "UD Digi Kyokasho NP-R",
+                "游ゴシック体", YuGothic, "YuGothic M", // (1)
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-                "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
+                /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
                 "メイリオ", Meiryo,
-                "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+                "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
         }
 /* //_}#notie */
+
 /* //_{@modern */
-/* Firefox OS2.2(シミュレータ) で Roboto がいると日本語を正しく表示できない... 2.1-は問題無し
- *   http://outcloud.blogspot.jp/2016/03/firefox-os22-dislike-Roboto.html
- */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
         body, textarea, input {
             font-family :
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
                 "Helvetica Neue",
-                /* Windows 10, Chrome29 で日本語のテキストフローが乱れるのを回避
-                 *   https://twitter.com/itozyun/status/1293662566791524352
-                 * Helvetica, Arial, */
+                /* Helvetica, Arial, */ // (3)
                 Verdana,
                 Roboto,
                 "UD Digi Kyokasho NP-R",
+                "游ゴシック体", YuGothic, "YuGothic M", // (1)
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-                "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic,
+                /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
                 "メイリオ", Meiryo,
-                "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+                "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
         }
     }
 
-/*
- * https://qiita.com/tsuka-rinorino/items/4181efd43d072e246519#ie%E5%90%91%E3%81%91
- * IEは游ゴシックの下の余白が他のフォントより大きいというバグを抱えています。
- */
     @include media(onlyIE10To11){
         body, textarea, input {
-            font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
+            font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif; // (4)
+        }
+    }
+
+    %mincho {
+        font-family :
+            "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
+        @include media(onlyIE10To11){
+            & {
+                transform   : rotate(.03deg); // (5)
+                font-weight : 700;
+            }
         }
     }
 /* //_}@modern */
@@ -56,6 +101,11 @@
 /* //_{@ie9  */
     body, textarea, input {
         font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
+    }
+    %mincho {
+        font-family   : "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+        -ms-transform : rotate(.03deg); // (5)
+        font-weight   : 700;
     }
 /* //_}@ie9 */
 
@@ -71,18 +121,25 @@
     }
 /* //_}#ie6-win */
 
-
 /* //_{+it */
     /* //_{#notie,@ie9,@ie8,@ie7 */
-            /* pre, */ code, var, kbd, samp /* , tt */ {
-                font-family : /* "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう！ */
-                    /* http://www.tohoho-web.com/ex/font.html#css-body-font */
-                    SFMono-Regular, 'Liberation Mono', Menlo, Consolas, "Hiragino Kaku Gothic ProN", Monaco, Meiryo, /* 'Courier New', Courier, */ monospace;
+            // (6)
+            code, var, kbd, samp /* , pre, tt */ {
+                font-family : // (7) 注意事項
+                    SFMono-Regular,
+                    'Liberation Mono',
+                    /* Menlo,                       Mac OS X 10.6(2009年) */
+                    Consolas,                    /* Windows Vista(2006年) */
+                    /* Monaco,                      MacOS 9 */
+                    /* "Hiragino Kaku Gothic ProN", 和文コメント用：Mac OS X 10.5(2006年) */
+                    Meiryo,                      /* 和文コメント用：Windows Vista(2006年) */
+                    /* 'Courier New', Courier, */
+                    monospace;
             }
     /* //_}#notie,@ie9,@ie8,@ie7 */
 
     /* //_{#ie6-win */
-            /* pre, */ code, var, kbd, samp /* , tt */ {
+            code, var, kbd, samp /* , pre, tt */ {
                 font-family : 'Courier New', monospace;
             }
     /* //_}#ie6-win */

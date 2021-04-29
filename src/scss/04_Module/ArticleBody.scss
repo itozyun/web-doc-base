@@ -7,6 +7,16 @@
     margin : 3.5em 0 2em;
 }
 
+/*  明朝
+--------------------------------------------------------------------------------------*/
+/* //_{@modern,@ie9 */
+.ABody {
+    h1, h2, h3, h4, h5, h6 {
+        @extend %mincho;
+    }
+}
+/* //_}@modern,@ie9 */
+
 /*  h1
 --------------------------------------------------------------------------------------*/
 .ABody h1 {
@@ -20,7 +30,7 @@
     @include hMargin(2, 2em, 1em);
     font-size      : 1.5em;
     border-width   : 0.2em 0 0;
-    padding        : 0.8em 0 0;
+    padding        : 1.4em 0 .6em;
     border-color   : $COLOR_ACCENT;
     color          : $COLOR_ACCENT;
     /* //_{#can-content */
@@ -40,7 +50,7 @@
     font-weight    : bold;
     font-size      : 1.25em;
     border-width   : 0.1em 0 0;
-    padding        : 0.8em 0 0;
+    padding        : 1.4em 0 .6em;
 }
 
 /*  WSXGA

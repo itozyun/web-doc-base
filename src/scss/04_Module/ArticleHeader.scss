@@ -10,6 +10,10 @@
         color : $COLOR_Default_casual_text;
     }
         .AHead h1 {
+            /* //_{@modern,@ie9 */
+            @extend %mincho;
+            /* //_}@modern,@ie9 */
+
             font-size      : 2em;
             padding        : 0;
             margin         : 2em 0;
