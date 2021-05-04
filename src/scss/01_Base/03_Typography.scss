@@ -45,8 +45,9 @@
     abbr[title],
     /* //_}#can-attr-selector */
     acronym {
-        border-bottom : 1px dotted;
-        cursor        : help;
+        border-bottom   : 1px dotted;
+        text-decoration : none;
+        cursor          : help;
     }
 
     img, iframe
