@@ -30,6 +30,12 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text;
     }
+    /* //_{#can-target-pseudo-class */
+    :target & {
+        border-color : #fff;
+    }
+    /* //_}#can-target-pseudo-class */
+
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
@@ -55,6 +61,12 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text transparent;
     }
+    /* //_{#can-target-pseudo-class */
+    :target & {
+        border-color : #fff transparent;
+    }
+    /* //_}#can-target-pseudo-class */
+
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
@@ -86,6 +98,12 @@
     .ribbon & {
         border-color    : transparent $COLOR_Ribbon_casual_text;
     }
+    /* //_{#can-target-pseudo-class */
+    :target & {
+        border-color : transparent #fff;
+    }
+    /* //_}#can-target-pseudo-class */
+
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
