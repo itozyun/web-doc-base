@@ -3,11 +3,11 @@
  */
 "use strict";
 
-var SIDEBAR_FIXER_ID_SIDEBAR = 'jsSide', // jsSide
-    SIDEBAR_FIXER_ID_WRAPPER = 'jsSidebarFixer', // jsSidebarFixer
-    SIDEBAR_FIXER_IDS_WHEEL  = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
-    SIDEBAR_FIXER_AFTER_SCROLL = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ] || g_WebKit, // Safari 13 で確認
-    SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || ua[ 'Fennec' ] || g_Goanna || g_EdgeHTML,
+var SIDEBAR_FIXER_ID_SIDEBAR    = 'jsSide', // jsSide
+    SIDEBAR_FIXER_ID_WRAPPER    = 'jsSidebarFixer', // jsSidebarFixer
+    SIDEBAR_FIXER_IDS_WHEEL     = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
+    SIDEBAR_FIXER_AFTER_SCROLL  = 10 <= g_Trident || g_EdgeHTML || ua[ 'Chromium' ] || g_WebKit, // Safari 13 で確認
+    SIDEBAR_FIXER_CAPTURE_FOCUS = g_Gecko || g_Goanna || g_EdgeHTML,
     /*
      * positionFixed
      *   original :
