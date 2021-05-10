@@ -51,6 +51,10 @@ img, iframe {
     @include hMargin(1, 1em, 1em);
 }
 
+caption {
+    @include hMargin(1, 1.5em, #{$BASE_LINE_HEIGHT_EM - 1.2em}); // $WATCH_LINE_HEIGHT
+}
+
 img, iframe {
 /* //_{#can-max-min */
     max-width : 100%;

@@ -85,6 +85,21 @@
         }
     }
 
+    li, dl {
+        @include lineHeight(1.2, 0);
+    }
+
+    li {
+        margin-top    : .3em;
+        margin-bottom : .3em;
+    }
+    dt {
+        margin-top    : #{$BASE_LINE_HEIGHT_EM - 1.2em};
+    }
+    dd {
+        margin-bottom : .3em;
+    }
+
     li, dd, dt, tr {
         @include unbreak-inside;
     }
@@ -99,6 +114,16 @@
     dd {
         margin-left : 1em;
     }
+    li {
+        margin-top    : .2em;
+        margin-bottom : .2em;
+    }
+    dt {
+        margin-top    : #{$PHONE_LINE_HEIGHT_EM - 1.2em};
+    }
+    dd, li {
+        margin-bottom : .2em;
+    }
 }
 
 /*  Watch
@@ -106,6 +131,16 @@
 @include media(watch) {
     dd {
         margin-left : 0.5em;
+    }
+    li {
+        margin-top    : .1em;
+        margin-bottom : .1em;
+    }
+    dt {
+        margin-top    : #{$WATCH_LINE_HEIGHT_EM - 1.2em};
+    }
+    dd {
+        margin-bottom : .1em;
     }
 }
 

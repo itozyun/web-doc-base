@@ -44,9 +44,7 @@ table {
     /* //_{@ie5win,@ie55 */
         /* table-layout      : fixed; fixed 指定が無いと table がカラムをはみ出す -> </p> がなかったせい? */
     /* //_}@ie5win,@ie55 */
-    /* //_{^@ie5win */
-        line-height       : 1.2;
-    /* //_}^@ie5win */
+        @include lineHeight(1.2, 1);
         @include highContrast {
             border-width    : 2px 0 0;
             border-spacing  : 2px;
@@ -59,15 +57,9 @@ table {
         @include unbreak-after;
     } */
 
-/* //_{@ie5win */
-    tr * {
-        line-height       : 1.2;
-    }
-/* //_}@ie5win */
-
     thead, th {
         @include highContrast {
-            font-weight  : bold;
+            font-weight : bold;
         }
     }
 
