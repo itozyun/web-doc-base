@@ -3,7 +3,7 @@ const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       Cheerio         = require('gulp-cheerio'),
-      externsJs       = './what-browser-am-i/src/__externs.js',
+      externsJs       = './.submodules/what-browser-am-i/src/__externs.js',
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
@@ -14,15 +14,15 @@ const gulp            = require('gulp'),
  */
 gulp.task('docs', gulp.series(
     function(){
-        return gulp.src( './what-browser-am-i/src/0_global.js' )
+        return gulp.src( './.submodules/what-browser-am-i/src/0_global.js' )
             .pipe(gulp.dest( tempDir + '/temp' ));
     },
     function(){
         return gulp.src(
                 [
-                    './what-browser-am-i/src/**.js',
-                    '!./what-browser-am-i/src/0_global.js',
-                    '!./what-browser-am-i/src/4_brand.js',
+                    './.submodules/what-browser-am-i/src/**.js',
+                    '!./.submodules/what-browser-am-i/src/0_global.js',
+                    '!./.submodules/what-browser-am-i/src/4_brand.js',
                     '!' + externsJs,
                     './src/inline-js/dynamicViewPort.js'
                 ]
@@ -87,12 +87,12 @@ gulp.task('docs', gulp.series(
 gulp.task('btoa', gulp.series(
     function(){
         return gulp.src( [
-            './regexp-free-js-base64/base64.js'
+            './.submodules/regexp-free-js-base64/base64.js'
         ]
             ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : [ './regexp-free-js-base64/__externs.js' ],
+                        externs           : [ './.submodules/regexp-free-js-base64/__externs.js' ],
                         define            : [
                             'REGEXP_FREE_BASE64_DEFINE_DEBUG=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_UTOB=false',
@@ -126,8 +126,8 @@ const mobileCssPrefix = 'm_',
  *  gulp js
  */
 const externs = [
-         './what-browser-am-i/src/__externs.js',
-         './regexp-free-js-base64/__externs.js',
+         './.submodules/what-browser-am-i/src/__externs.js',
+         './.submodules/regexp-free-js-base64/__externs.js',
          './node_modules/google-closure-compiler/contrib/externs/svg.js',
          './src/js/__externs.js'
       ];
@@ -227,8 +227,8 @@ const plumber     = require("gulp-plumber"),
       sass        = require("gulp-sass"),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
-      CSShack     = require('./gulp-csshack.js'),
-      finalizeCSS = require("./gulp-finalize-css.js");
+      CSShack     = require('./js-buildtools/gulp-csshack.js'),
+      finalizeCSS = require("./js-buildtools/gulp-finalize-css.js");
 
 gulp.task('css', function(){
     return gulp.src([

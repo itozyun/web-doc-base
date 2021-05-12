@@ -61,6 +61,14 @@ This project has been referred to the next project.
 1. [gariban](https://github.com/itozyun/gariban) "超軽量な無料 Blogger テンプレート"
 2. [OutCloud](http://outcloud.blogspot.com/) "itozyun のブログです"
 
+## Installation
+
+~~~
+> git clone https://github.com/itozyun/web-doc-base.git --recursive
+
+> npm install
+~~~
+
 ## How the CSS and Javascript import - CSS と Javascript のインポートの仕方
 
 Javascript and CSS are placed in the same directory. 
@@ -70,7 +78,7 @@ To find out why, look at `g_assetUrl` in code.
 ---
 
 Javascript と CSS は同じディレクトリに配置します。`<script>` に `async` や `deffer` 属性を付けてはいけません。
-この理由を知るにはコードで `g_assetPath` を確認します。
+この理由を知るにはコードで `g_assetUrl` を確認します。
 
 ~~~html
 <!--[if IE 5]>
