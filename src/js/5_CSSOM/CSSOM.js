@@ -25,7 +25,7 @@ function CSSOM_createSheet( css, media ){
                 type  : 'text/css',
                 rel   : 'stylesheet',
                 media : media,
-                href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( css )
+                href  : 'data:text/css;charset=utf-8;base64,' + Base64_uriSafeBtoa( css )
             }
         );
     } else if( !( g_Presto < 7.2 ) ){

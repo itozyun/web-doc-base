@@ -29,7 +29,7 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 Javascript によって提供される機能
 
 1. User Agent detection [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
-2. Optimal viewport based on user agent judgment [src](./src/inline-js/dynamicViewPort.js)
+2. Optimal viewport based on user agent judgment [src](./src/js-inline/dynamicViewPort.js)
 3. Adjustment of sidebar [src](./src/js/SidebarFixer.js)
 4. Click thumbnail image to enlarge [src](./src/js/PicaThumnail.js)
 5. Extension of blockquote [src](./src/js/blockquot.js)
@@ -37,7 +37,7 @@ Javascript によって提供される機能
 ---
 
 1. ユーザーエージェント判定 [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
-2. ユーザーエージェント判定を元にした最適な viewport [src](./src/inline-js/dynamicViewPort.js)
+2. ユーザーエージェント判定を元にした最適な viewport [src](./src/js-inline/dynamicViewPort.js)
 3. サイドバーの追従 [src](./src/js/7_Library/SidebarFixer.js)
 4. サムネイル画像をクリックで拡大 [src](./src/js/7_Library/PicaThumnail.js)
 5. blockquote の拡張 [src](./src/js/7_Library/blockquot.js)
@@ -128,7 +128,7 @@ CSS のビルドの方法
 ## How the Javascript build
 Javascript のビルドの方法
 
-### How to build ./src/inline-js/*.js
+### How to build ./src/js-inline/*.js
 
 * See gulp-task `docs` in [./gulpfile.js](./gulpfile.js).
 

@@ -2,7 +2,6 @@ const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       Cheerio         = require('gulp-cheerio'),
-      externsJs       = './.submodules/what-browser-am-i/src/__externs.js',
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
@@ -14,25 +13,24 @@ const gulp            = require('gulp'),
 gulp.task('docs', gulp.series(
     function(){
         return gulp.src( [
-            './.submodules/what-browser-am-i/src/**.js',
+            './.submodules/what-browser-am-i/src/js/**/*.js',
             '!./.submodules/what-browser-am-i/src/4_brand.js',
-            '!' + externsJs,
-            './src/inline-js/dynamicViewPort.js'
+            './src/js-inline/dynamicViewPort.js'
             ] ).pipe(
                 gulpDPZ(
                     {
                         labelPackageGlobal : '*',
                         packageGlobalArgs  : 'ua,window,document,navigator,screen,parseFloat,Number',
-                        basePath           : [ './.submodules/what-browser-am-i/src/', './src/inline-js/' ]
+                        basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
                     }
                 )
             ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : [ externsJs ],
+                        externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
                         define            : [
                             'WHAT_BROWSER_AM_I_DEFINE_BRAND_ENABLED=false',
-                            'WHAT_BROWSER_AM_I_DEFINE_PCSITE_REQUESTED_ENABLED=false',
+                            'WHAT_BROWSER_AM_I_DEFINE_PCSITE_REQUESTED_ENABLED=false', // <- true',
                             'WHAT_BROWSER_AM_I_DEFINE_IOS_DEVICE_ENABLED=false',
                             'WHAT_BROWSER_AM_I_DEFINE_DEVICE_TYPE_ENABLED=false'
                         ],
@@ -72,21 +70,21 @@ gulp.task('docs', gulp.series(
 gulp.task('btoa', gulp.series(
     function(){
         return gulp.src( [
-            './.submodules/regexp-free-js-base64/base64.js'
+            './.submodules/regexp-free-js-base64/src/js/base64.js'
         ]
             ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : [ './.submodules/regexp-free-js-base64/__externs.js' ],
+                        externs           : [ './.submodules/regexp-free-js-base64/src/js-externs/externs.js' ],
                         define            : [
                             'REGEXP_FREE_BASE64_DEFINE_DEBUG=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_UTOB=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_BTOU=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_ENCODE=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_DECODE=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOA=true',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOA=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_ATOB=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_BTOA=false',
+                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_BTOA=true',
                             'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_ATOB=false',
                             'REGEXP_FREE_BASE64_DEFINE_USE_UINT8=false'
                         ],
@@ -96,7 +94,7 @@ gulp.task('btoa', gulp.series(
                         warning_level     : 'VERBOSE',
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
-                        output_wrapper    : 'var Base64_btoa;\n%output%',
+                        output_wrapper    : 'var Base64_uriSafeBtoa;\n%output%',
                         js_output_file    : '.generated.btoa.js'
                     }
                 )
@@ -111,10 +109,9 @@ const mobileCssPrefix = 'm_',
  *  gulp js
  */
 const externs = [
-         './.submodules/what-browser-am-i/src/__externs.js',
-         './.submodules/regexp-free-js-base64/__externs.js',
+         './.submodules/what-browser-am-i/src/js-externs/externs.js',
          './node_modules/google-closure-compiler/contrib/externs/svg.js',
-         './src/js/__externs.js'
+         './src/js-externs/externs.js'
       ];
 
 gulp.task('js', gulp.series(
@@ -148,6 +145,7 @@ gulp.task('js', gulp.series(
                         // './src/js/4_DOM/5_DOMEvent.js',
                         './src/js/4_DOM/nodeCleaner.js',
     
+                        './src/js/5_CSSOM/.generated.btoa.js',
                         './src/js/5_CSSOM/CSSOM.js',
 
                         //'./src/js/6_CanUse/generatedContent.js',
