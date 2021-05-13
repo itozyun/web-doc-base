@@ -1,5 +1,4 @@
 const gulp            = require('gulp'),
-      gulpConcat      = require('gulp-concat'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       Cheerio         = require('gulp-cheerio'),
@@ -14,31 +13,17 @@ const gulp            = require('gulp'),
  */
 gulp.task('docs', gulp.series(
     function(){
-        return gulp.src( './.submodules/what-browser-am-i/src/0_global.js' )
-            .pipe(gulp.dest( tempDir + '/temp' ));
-    },
-    function(){
-        return gulp.src(
-                [
-                    './.submodules/what-browser-am-i/src/**.js',
-                    '!./.submodules/what-browser-am-i/src/0_global.js',
-                    '!./.submodules/what-browser-am-i/src/4_brand.js',
-                    '!' + externsJs,
-                    './src/inline-js/dynamicViewPort.js'
-                ]
-            ).pipe(gulpConcat('package.js'))
-            .pipe(gulp.dest( tempDir + '/temp' ));
-    },
-    function(){
-        return gulp.src( [ tempDir + '/temp/**/*.js' ] )
-            .pipe(
+        return gulp.src( [
+            './.submodules/what-browser-am-i/src/**.js',
+            '!./.submodules/what-browser-am-i/src/4_brand.js',
+            '!' + externsJs,
+            './src/inline-js/dynamicViewPort.js'
+            ] ).pipe(
                 gulpDPZ(
                     {
-                        labelGlobal        : 'global',
-                        labelPackageGlobal : '###',
-                        labelModuleGlobal  : '###',
+                        labelPackageGlobal : '*',
                         packageGlobalArgs  : 'ua,window,document,navigator,screen,parseFloat,Number',
-                        basePath           : tempDir + '/temp'
+                        basePath           : [ './.submodules/what-browser-am-i/src/', './src/inline-js/' ]
                     }
                 )
             ).pipe(
