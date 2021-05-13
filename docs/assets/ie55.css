@@ -10,11 +10,33 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote blockquote,
 blockquote hr,
 h5,
 h6,
 table {
   border-color: #777
+}
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
+.Label a:link:hover,
+.Label a:visited:hover,
+.aBodyRoot :link:hover,
+.aBodyRoot :visited:hover,
+.aBodyRoot a,
+.aBodyRoot a:active,
+:link,
+:visited,
+a,
+a:active,
+acronym,
+dfn,
+ins {
+  text-decoration: none
+}
+dd,
+li {
+  margin-bottom: .3em
 }
 .h1,
 caption,
@@ -35,6 +57,25 @@ a,
 h6 {
   color: #777
 }
+.note .box,
+.note .hscroll,
+.tl td *,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img,
+tr ol,
+tr ul {
+  margin-top: 0
+}
 .AMeta,
 .caption,
 .h1,
@@ -42,12 +83,14 @@ h6 {
 .js-bqLink,
 .links a,
 .prettyprint,
+dl,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+li,
 table,
 textarea {
   line-height: 1.2
@@ -207,21 +250,6 @@ strong,
 var {
   font-style: normal
 }
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
-.aBodyRoot a,
-.aBodyRoot a:active,
-:link,
-:visited,
-a,
-a:active,
-ins {
-  text-decoration: none
-}
 del {
   text-decoration: line-through
 }
@@ -243,6 +271,12 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
+*,
+blockquote :link img,
+blockquote :visited img,
+hr {
+  border-color: #ddd
+}
 .ribbon :link img,
 .ribbon :visited img,
 .ribbon a {
@@ -257,27 +291,6 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
-*,
-hr {
-  border-color: #ddd
-}
-.note .box,
-.note .hscroll,
-.tl td *,
-dl .box,
-dl .hscroll,
-dl iframe,
-dl img,
-li .box,
-li .hscroll,
-li iframe,
-li img,
-tr .box,
-tr .hscroll,
-tr iframe,
-tr img {
-  margin-top: 0
-}
 img {
   height: auto
 }
@@ -290,6 +303,12 @@ dl ul,
 li ol,
 li ul {
   padding-left: 1em
+}
+li {
+  margin-top: .3em
+}
+dt {
+  margin-top: .7em
 }
 blockquote,
 p {
@@ -420,14 +439,10 @@ tr hr {
   position: relative;
   top: 2px
 }
-dd ol,
-dd ul,
-li ol,
-li ul,
+.hscroll table,
 tr ol,
 tr ul {
-  margin-top: 0;
-  margin-bottom: 0
+  margin-bottom: .5em
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -447,6 +462,13 @@ tr dl,
 tr p,
 tr pre {
   margin: 0 0 .5em
+}
+dd ol,
+dd ul,
+li ol,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0
 }
 table {
   border-collapse: collapse;
@@ -636,6 +658,9 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
+caption {
+  margin: 1.5em 1em .7em
+}
 #lH .lMi,
 #lH .lSi {
   padding-top: 1em
@@ -686,6 +711,10 @@ input.btn {
   float: left;
   width: 7em;
   padding: .45em 0 0
+}
+.ABody h2,
+.ABody h3 {
+  padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
   margin: 0 1em 0 8em
@@ -749,17 +778,19 @@ input.btn {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ABody h1 {
+  font-size: 2em;
+  margin: 3em 0
+}
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  padding: .8em 0 0;
   color: #3079ed;
   margin: 2em 0 1em
 }
 .ABody h3 {
   font-size: 1.25em;
   border-width: .1em 0 0;
-  padding: .8em 0 0;
   margin: 2.4em 0 1.2em
 }
 .ADesc {
@@ -1251,9 +1282,6 @@ blockquote .tl tbody th :visited {
   width: 100%;
   margin: 1em 0
 }
-.hscroll table {
-  margin-bottom: .5em
-}
 .hscroll pre {
   margin: 0 0 .5em;
   white-space: pre;
@@ -1307,7 +1335,6 @@ tbody th var {
 .note blockquote dl,
 .note blockquote ol,
 .note blockquote p,
-.note blockquote pre,
 .note blockquote ul {
   margin-right: 1em
 }
@@ -1332,14 +1359,14 @@ dl.note dd {
   padding-bottom: .5em
 }
 .tl th {
-  padding: .5em 1em .5em 0;
+  padding: .5em .8em .5em .5em;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em 1em
+  padding: .5em .8em
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1571,6 +1598,7 @@ strong {
   }
   .Cover h2,
   .Cover h3,
+  .aa,
   .baseColor,
   .ribbon,
   body {
@@ -1640,6 +1668,9 @@ strong {
   ul {
     margin: 1em 3%
   }
+  caption {
+    margin: 1.5em 3% .7em
+  }
   hr {
     margin: 2em 6%
   }
@@ -1657,12 +1688,16 @@ strong {
     float: left;
     margin: 0 1em 1em 0
   }
+  .ABody h1 {
+    margin: 3em 1.5%
+  }
   .ABody h2 {
     margin: 2em 1.5% 1em
   }
   .ABody h3 {
     margin: 2.4em 1.5% 1.2em
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3 {
     text-align: center;
@@ -1685,7 +1720,6 @@ strong {
     color: #666!important
   }
   .AHead-labels,
-  .aa,
   .aa code,
   .aa var,
   .tl tr code,
@@ -1749,9 +1783,9 @@ strong {
     text-align: center;
     margin: 0 0 .5em
   }
-  .aa {
-    padding: 1em 3%;
-    background: #fff
+  .aa,
+  .note .aa {
+    padding: 1em 3%
   }
   .js-bqCite,
   .js-bqLink {
@@ -1796,12 +1830,21 @@ strong {
   pre code {
     border: 0
   }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 3%
+  }
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
   }
+  .note .prettyprint,
   .prettyprint {
-    padding: 1.23em 3%;
+    padding: 1.23em 3%
+  }
+  .prettyprint {
     background: #fff
   }
 }

@@ -5,6 +5,7 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote blockquote,
 h5,
 h6 {
   border-color: #777
@@ -49,13 +50,34 @@ h2,
 textarea {
   margin: 0
 }
+.note .box,
+.note .hscroll,
+.tl td > :first-child,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img,
+tr ol,
+tr ul {
+  margin-top: 0
+}
 .h1,
+dl,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+li,
 table,
 textarea {
   line-height: 1.2
@@ -72,10 +94,6 @@ td,
 th {
   word-break: break-all;
   word-wrap: break-word
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
 }
 .Magazine-date,
 .aa {
@@ -104,15 +122,6 @@ var {
 .links,
 pre {
   white-space: pre-wrap
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-dt,
-em,
-strong {
-  font-weight: 700
 }
 .Magazine-item,
 .SearchResult div div,
@@ -162,15 +171,31 @@ input,
 textarea {
   font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
 }
+.ABody h1,
+.ABody h2,
+.ABody h3,
+.ABody h4,
+.ABody h5,
+.ABody h6,
+.AHead h1 {
+  font-family: "游明朝",YuMincho,"HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
+  -ms-transform: rotate(.03deg);
+  font-weight: 700
+}
 code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Menlo,Consolas,"Hiragino Kaku Gothic ProN",Monaco,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
 :active,
 :focus {
   outline: 0
+}
+dt,
+em,
+strong {
+  font-weight: 700
 }
 .RichLink b,
 h1,
@@ -227,6 +252,10 @@ ins {
 del {
   text-decoration: line-through
 }
+dd,
+li {
+  margin-bottom: .3em
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #111;
@@ -250,6 +279,7 @@ q[title] {
 abbr[title],
 acronym,
 dfn {
+  text-decoration: none;
   cursor: help
 }
 .AMeta,
@@ -265,23 +295,6 @@ iframe,
 img {
   max-width: 100%
 }
-.note .box,
-.note .hscroll,
-.tl td > :first-child,
-dl .box,
-dl .hscroll,
-dl iframe,
-dl img,
-li .box,
-li .hscroll,
-li iframe,
-li img,
-tr .box,
-tr .hscroll,
-tr iframe,
-tr img {
-  margin-top: 0
-}
 img {
   height: auto
 }
@@ -294,6 +307,12 @@ dl ul,
 li ol,
 li ul {
   padding-left: 1em
+}
+li {
+  margin-top: .3em
+}
+dt {
+  margin-top: .7em
 }
 blockquote,
 p {
@@ -411,15 +430,13 @@ tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
 }
+:target,
+:target *,
 a:active,
 a:active *,
 a:focus,
 a:focus * {
   color: #fff!important
-}
-.wn,
-.wn:after {
-  color: red!important
 }
 .ribbon :visited:hover {
   color: #b3f;
@@ -428,6 +445,19 @@ a:focus * {
 a:active,
 a:focus {
   background-color: #3079ed!important
+}
+:target,
+:target * {
+  background: #3079ed!important;
+  border-color: #fff!important
+}
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
+.wn,
+.wn:after {
+  color: red!important
 }
 h2 {
   border-width: 0 0 2px;
@@ -479,6 +509,12 @@ tr hr {
   border-color: #f8fbf8;
   border-width: 2px
 }
+*,
+blockquote .tl tbody td:after,
+blockquote :link img,
+blockquote :visited img {
+  border-color: #ddd
+}
 .AHead-labels a:link:active,
 .AHead-labels a:link:focus,
 .AHead-labels a:visited:active,
@@ -525,14 +561,10 @@ tr hr {
   position: relative;
   top: 2px
 }
-dd ol,
-dd ul,
-li ol,
-li ul,
+.hscroll table,
 tr ol,
 tr ul {
-  margin-top: 0;
-  margin-bottom: 0
+  margin-bottom: .5em
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -552,6 +584,13 @@ tr dl,
 tr p,
 tr pre {
   margin: 0 0 .5em
+}
+dd ol,
+dd ul,
+li ol,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0
 }
 table {
   border-width: 1px 0 0;
@@ -656,10 +695,6 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-*,
-blockquote .tl tbody td:after {
-  border-color: #ddd
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -747,6 +782,9 @@ kbd,
 var {
   margin: 0 .1em
 }
+caption {
+  margin: 1.5em 1em .7em
+}
 #lH .lMi,
 #lH .lSi {
   padding-top: 1em
@@ -787,19 +825,9 @@ var {
   border-color: #bbe;
   color: #1a1a1a
 }
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:active,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:active,
-.SocialBtns .pt:visited:focus,
-.btn:visited {
-  border-color: #fff
-}
 .btn:visited {
   background: #1a1a1a;
+  border-color: #fff;
   color: #fff
 }
 .commonForm-pair {
@@ -811,6 +839,10 @@ var {
   float: left;
   width: 7em;
   padding: .45em 0 0
+}
+.ABody h2,
+.ABody h3 {
+  padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
   display: block;
@@ -876,6 +908,29 @@ var {
 .ribbon .ico-sylinder:before {
   border-color: #bbb
 }
+.SocialBtns .fb:link:active,
+.SocialBtns .fb:link:focus,
+.SocialBtns .fb:visited:active,
+.SocialBtns .fb:visited:focus,
+.SocialBtns .pt:link:active,
+.SocialBtns .pt:link:focus,
+.SocialBtns .pt:visited:active,
+.SocialBtns .pt:visited:focus,
+:target .ico-author:after,
+:target .ico-author:before,
+:target .ico-chain:after,
+:target .ico-chain:before,
+:target .ico-clock:after,
+:target .ico-clock:before,
+:target .ico-comment:before,
+:target .ico-flag:after,
+:target .ico-flag:before,
+:target .ico-label:before,
+:target .ico-pen:before,
+:target .ico-sylinder:after,
+:target .ico-sylinder:before {
+  border-color: #fff
+}
 .ico-clock:after {
   top: .2em;
   left: .43em;
@@ -916,6 +971,11 @@ a:focus .ico-label:after {
 }
 .ribbon .ico-label:after {
   border-color: transparent #bbb
+}
+.Pager :focus i,
+.Pager a:active i,
+:target .ico-label:after {
+  border-color: transparent #fff
 }
 .ico-author:before {
   top: 0;
@@ -980,6 +1040,12 @@ a:focus .ico-pen:after {
 .ribbon .ico-comment:after,
 .ribbon .ico-pen:after {
   border-color: #bbb transparent
+}
+.Pager-top :focus i,
+.Pager-top a:active i,
+:target .ico-comment:after,
+:target .ico-pen:after {
+  border-color: #fff transparent
 }
 .ico-chain:before {
   top: .05em;
@@ -1102,10 +1168,13 @@ a:focus .ico-pen:after {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ABody h1 {
+  font-size: 2em;
+  margin: 3em 0
+}
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  padding: .8em 0 0;
   color: #3079ed;
   margin: 2em 0 1em
 }
@@ -1120,9 +1189,9 @@ a:focus .ico-pen:after {
   display: none
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
-  padding: .8em 0 0;
   margin: 2.4em 0 1.2em
 }
 .ADesc {
@@ -1344,6 +1413,7 @@ pre var {
 }
 .Magazine-date {
   float: left;
+  font-weight: 700;
   line-height: 1
 }
 .Magazine-dd,
@@ -1362,6 +1432,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1624,9 +1695,6 @@ div .box .jsPicaLarge img {
   overflow-y: hidden;
   margin: 1em 0
 }
-.hscroll table {
-  margin-bottom: .5em
-}
 .hscroll pre {
   margin: 0 0 .5em;
   white-space: pre;
@@ -1671,7 +1739,8 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center
+  text-align: center;
+  font-weight: 700
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1699,7 +1768,6 @@ tbody th var {
 .note blockquote dl,
 .note blockquote ol,
 .note blockquote p,
-.note blockquote pre,
 .note blockquote ul {
   margin-right: 1em
 }
@@ -1731,14 +1799,14 @@ dl.note dd {
   padding-bottom: .5em
 }
 .tl th {
-  padding: .5em 1em .5em 0;
+  padding: .5em .8em .5em .5em;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em 1em
+  padding: .5em .8em
 }
 .tl tbody td:after,
 .tl tbody td:before {
@@ -1818,18 +1886,10 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
-  border-color: transparent #fff
-}
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
   border-color: #777 transparent
-}
-.Pager-top :focus i,
-.Pager-top a:active i {
-  border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -2105,6 +2165,9 @@ screen and (max-width:950px) {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  caption {
+    margin: 1.5em 3% .7em
+  }
   iframe,
   img {
     max-width: 94%
@@ -2120,12 +2183,16 @@ screen and (max-width:950px) {
     float: left;
     margin: 0 1em 1em 0
   }
+  .ABody h1 {
+    margin: 3em 1.5%
+  }
   .ABody h2 {
     margin: 2em 1.5% 1em
   }
   .ABody h3 {
     margin: 2.4em 1.5% 1.2em
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3 {
     text-align: center;
@@ -2156,7 +2223,8 @@ screen and (max-width:950px) {
     padding: 0 0 .571em;
     font-size: 1em
   }
-  .aa {
+  .aa,
+  .note .aa {
     padding: 1em 3%
   }
   blockquote {
@@ -2179,8 +2247,42 @@ screen and (max-width:950px) {
   .box img {
     margin: 0 1em 1em 3%
   }
+  .note .prettyprint,
   .prettyprint {
     padding: 1.23em 3%
+  }
+}
+@media print,
+screen and (max-width:950px) and (max-width:950px) {
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 3%
+  }
+}
+@media screen and (max-width:950px) and (max-width:740px) {
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 2%
+  }
+}
+@media screen and (max-width:950px) and (max-width:479px) {
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 1%
+  }
+}
+@media screen and (max-width:950px) and (max-width:240px) {
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 0
   }
 }
 @media screen and (max-width:740px) {
@@ -2240,6 +2342,9 @@ screen and (max-width:950px) {
   ul {
     margin: 1em 2%
   }
+  caption {
+    margin: 1.5em 2% .7em
+  }
   iframe,
   img {
     max-width: 96%
@@ -2247,12 +2352,16 @@ screen and (max-width:950px) {
   hr {
     margin: 2em 4%
   }
+  .ABody h1 {
+    margin: 3em 1%
+  }
   .ABody h2 {
     margin: 2em 1% 1em
   }
   .ABody h3 {
     margin: 2.4em 1% 1.2em
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3 {
     padding-left: 1%;
@@ -2310,7 +2419,8 @@ screen and (max-width:950px) {
   .Magazine-jump .btn {
     margin: 0 1em 0 0
   }
-  .aa {
+  .aa,
+  .note .aa {
     padding: 1em 2%
   }
   .js-bqCite,
@@ -2330,6 +2440,7 @@ screen and (max-width:950px) {
   .box img {
     margin: 0 1em 1em 2%
   }
+  .note .prettyprint,
   .prettyprint {
     padding: 1.23em 2%
   }
@@ -2341,6 +2452,16 @@ screen and (max-width:950px) {
   }
   dd {
     margin-left: 1em
+  }
+  li {
+    margin-top: .2em
+  }
+  dt {
+    margin-top: .4em
+  }
+  dd,
+  li {
+    margin-bottom: .2em
   }
   table {
     width: 98%
@@ -2372,6 +2493,9 @@ screen and (max-width:950px) {
   ul {
     margin: 1em 1%
   }
+  caption {
+    margin: 1.5em 1% .7em
+  }
   iframe,
   img {
     max-width: 98%
@@ -2386,6 +2510,10 @@ screen and (max-width:950px) {
   .commonForm-wrap {
     margin-left: 0
   }
+  .ABody h1 {
+    margin: 3em .5%;
+    font-size: 1.5em
+  }
   .ABody h2 {
     margin: 2em .5% 1em;
     font-size: 1.25em
@@ -2393,6 +2521,7 @@ screen and (max-width:950px) {
   .ABody h3 {
     margin: 2.4em .5% 1.2em
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3 {
     padding-left: .5%;
@@ -2412,7 +2541,8 @@ screen and (max-width:950px) {
   .h1 {
     font-size: 1.2em
   }
-  .aa {
+  .aa,
+  .note .aa {
     padding: 1em 1%
   }
   .aBodyRoot {
@@ -2445,6 +2575,7 @@ screen and (max-width:950px) {
   .Pager-prev i {
     margin-left: .2em
   }
+  .note .prettyprint,
   .prettyprint {
     padding: 1.23em 1%
   }
@@ -2502,6 +2633,10 @@ screen and (max-width:950px) {
   }
 }
 @media screen and (max-width:240px) {
+  dd,
+  li {
+    margin-bottom: .1em
+  }
   .AHead,
   .Cover-meta,
   .baseColor :link .RichLink-meta,
@@ -2532,6 +2667,12 @@ screen and (max-width:950px) {
   dd {
     margin-left: .5em
   }
+  li {
+    margin-top: .1em
+  }
+  dt {
+    margin-top: .2em
+  }
   .Magazine,
   .Magazine-main,
   blockquote h3,
@@ -2559,6 +2700,7 @@ screen and (max-width:950px) {
   blockquote .tl tfoot th,
   blockquote .tl thead td,
   blockquote .tl thead th,
+  blockquote blockquote,
   h5,
   h6,
   table {
@@ -2593,8 +2735,6 @@ screen and (max-width:950px) {
   .baseColor .btn:visited:active,
   .baseColor .btn:visited:focus,
   .tl tbody td:after,
-  :link img,
-  :visited img,
   a,
   tbody th {
     border-color: #000
@@ -2626,6 +2766,7 @@ screen and (max-width:950px) {
     color: #b3f;
     border-color: #b3f
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3,
   .lM .RichLink a,
@@ -2650,6 +2791,12 @@ screen and (max-width:950px) {
   tbody th,
   var {
     background: #222
+  }
+  :link img,
+  :visited img,
+  blockquote :link img,
+  blockquote :visited img {
+    border-color: transparent
   }
   table {
     width: 100%
@@ -2750,6 +2897,9 @@ screen and (max-width:950px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  caption {
+    margin: 1.5em 0 .7em
+  }
   iframe,
   img {
     max-width: 100%
@@ -2801,6 +2951,9 @@ screen and (max-width:950px) {
   .Cover-btn :visited i,
   .Magazine-jump :visited i {
     border-color: transparent #eee
+  }
+  .ABody h1 {
+    margin: 3em 0
   }
   .ABody h2 {
     margin: 2em 0 1em
@@ -2860,7 +3013,8 @@ screen and (max-width:950px) {
   .SearchResult div span {
     color: #545454
   }
-  .aa {
+  .aa,
+  .note .aa {
     padding: 1em 2px
   }
   .aBodyRoot {
@@ -2882,6 +3036,7 @@ screen and (max-width:950px) {
   pre var {
     background: 0 0
   }
+  .note .prettyprint,
   .prettyprint {
     padding: 1.23em 2px
   }

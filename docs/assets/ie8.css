@@ -5,11 +5,16 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote blockquote,
 blockquote hr,
 h5,
 h6,
 table {
   border-color: #777
+}
+dd,
+li {
+  margin-bottom: .3em
 }
 .h1,
 caption,
@@ -45,13 +50,34 @@ a img,
 h2:after {
   display: block
 }
+.note .box,
+.note .hscroll,
+.tl td > :first-child,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img,
+tr ol,
+tr ul {
+  margin-top: 0
+}
 .h1,
+dl,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+li,
 table,
 textarea {
   line-height: 1.2
@@ -156,7 +182,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Menlo,Consolas,"Hiragino Kaku Gothic ProN",Monaco,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
 :active,
 :focus {
@@ -240,6 +266,7 @@ q[title] {
 abbr[title],
 acronym,
 dfn {
+  text-decoration: none;
   cursor: help
 }
 .AMeta,
@@ -259,23 +286,6 @@ iframe,
 img {
   max-width: 100%
 }
-.note .box,
-.note .hscroll,
-.tl td > :first-child,
-dl .box,
-dl .hscroll,
-dl iframe,
-dl img,
-li .box,
-li .hscroll,
-li iframe,
-li img,
-tr .box,
-tr .hscroll,
-tr iframe,
-tr img {
-  margin-top: 0
-}
 img {
   height: auto
 }
@@ -288,6 +298,12 @@ dl ul,
 li ol,
 li ul {
   padding-left: 1em
+}
+li {
+  margin-top: .3em
+}
+dt {
+  margin-top: .7em
 }
 blockquote,
 p {
@@ -361,6 +377,13 @@ a:focus .ico-sylinder:after,
 a:focus .ico-sylinder:before,
 tbody th {
   border-color: #f8fbf8
+}
+*,
+blockquote .tl tbody td:after,
+blockquote :link img,
+blockquote :visited img,
+hr {
+  border-color: #ddd
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -462,7 +485,6 @@ textarea {
 }
 hr {
   height: 0;
-  border-color: #ddd;
   margin: 2em 1em
 }
 #lE,
@@ -525,14 +547,10 @@ tr hr {
   position: relative;
   top: 2px
 }
-dd ol,
-dd ul,
-li ol,
-li ul,
+.hscroll table,
 tr ol,
 tr ul {
-  margin-top: 0;
-  margin-bottom: 0
+  margin-bottom: .5em
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -552,6 +570,13 @@ tr dl,
 tr p,
 tr pre {
   margin: 0 0 .5em
+}
+dd ol,
+dd ul,
+li ol,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0
 }
 table {
   border-collapse: collapse;
@@ -648,10 +673,6 @@ tbody :hover th :visited:active {
 body {
   background: #1a1a1a
 }
-*,
-blockquote .tl tbody td:after {
-  border-color: #ddd
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -739,6 +760,9 @@ kbd,
 var {
   margin: 0 .1em
 }
+caption {
+  margin: 1.5em 1em .7em
+}
 #lH .lMi,
 #lH .lSi {
   padding-top: 1em
@@ -801,6 +825,10 @@ var {
 .Cover img,
 .commonForm-wrap * {
   width: 100%
+}
+.ABody h2,
+.ABody h3 {
+  padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
   display: block;
@@ -1079,10 +1107,13 @@ a:focus .ico-pen:after {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ABody h1 {
+  font-size: 2em;
+  margin: 3em 0
+}
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  padding: .8em 0 0;
   color: #3079ed;
   margin: 2em 0 1em
 }
@@ -1097,7 +1128,6 @@ a:focus .ico-pen:after {
 .ABody h3 {
   font-size: 1.25em;
   border-width: .1em 0 0;
-  padding: .8em 0 0;
   margin: 2.4em 0 1.2em
 }
 .ADesc {
@@ -1604,9 +1634,6 @@ tr .box > p:first-of-type {
   overflow-y: hidden;
   margin: 1em 0
 }
-.hscroll table {
-  margin-bottom: .5em
-}
 .hscroll pre {
   margin: 0 0 .5em;
   white-space: pre;
@@ -1678,7 +1705,6 @@ tbody th var {
 .note blockquote dl,
 .note blockquote ol,
 .note blockquote p,
-.note blockquote pre,
 .note blockquote ul {
   margin-right: 1em
 }
@@ -1710,14 +1736,14 @@ dl.note dd {
   padding-bottom: .5em
 }
 .tl th {
-  padding: .5em 1em .5em 0;
+  padding: .5em .8em .5em .5em;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em 1em
+  padding: .5em .8em
 }
 .tl tbody td:after,
 .tl tbody td:before {
@@ -2101,6 +2127,7 @@ strong {
   }
   .Cover h2,
   .Cover h3,
+  .aa,
   .baseColor,
   .ribbon,
   body {
@@ -2165,6 +2192,9 @@ strong {
   ul {
     margin: 1em 3%
   }
+  caption {
+    margin: 1.5em 3% .7em
+  }
   iframe,
   img {
     max-width: 94%
@@ -2196,12 +2226,16 @@ strong {
     float: left;
     margin: 0 1em 1em 0
   }
+  .ABody h1 {
+    margin: 3em 1.5%
+  }
   .ABody h2 {
     margin: 2em 1.5% 1em
   }
   .ABody h3 {
     margin: 2.4em 1.5% 1.2em
   }
+  .ABody h1,
   .ABody h2,
   .ABody h3 {
     text-align: center;
@@ -2224,7 +2258,6 @@ strong {
     color: #666!important
   }
   .AHead-labels,
-  .aa,
   .aa code,
   .aa var,
   .tl tr code,
@@ -2296,9 +2329,9 @@ strong {
   .Header h1 {
     margin: 0 0 .5em
   }
-  .aa {
-    padding: 1em 3%;
-    background: #fff
+  .aa,
+  .note .aa {
+    padding: 1em 3%
   }
   .AMeta-cita:after,
   .aBodyRoot :link:after {
@@ -2352,12 +2385,21 @@ strong {
   pre code {
     border: 0
   }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 3%
+  }
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
   }
+  .note .prettyprint,
   .prettyprint {
-    padding: 1.23em 3%;
+    padding: 1.23em 3%
+  }
+  .prettyprint {
     background: #fff
   }
   code .atv,

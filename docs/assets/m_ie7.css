@@ -10,11 +10,16 @@ blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
+blockquote blockquote,
 blockquote hr,
 h5,
 h6,
 table {
   border-color: #777
+}
+dd,
+li {
+  margin-bottom: .3em
 }
 .h1,
 caption,
@@ -35,6 +40,25 @@ a,
 h6 {
   color: #777
 }
+.note .box,
+.note .hscroll,
+.tl td > :first-child,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img,
+tr ol,
+tr ul {
+  margin-top: 0
+}
 .AMeta,
 .caption,
 .h1,
@@ -42,12 +66,14 @@ h6 {
 .js-bqLink,
 .links a,
 .prettyprint,
+dl,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+li,
 table,
 textarea {
   line-height: 1.2
@@ -168,7 +194,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Menlo,Consolas,"Hiragino Kaku Gothic ProN",Monaco,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
 :active {
   outline: 0
@@ -256,6 +282,7 @@ q[title] {
 abbr[title],
 acronym,
 dfn {
+  text-decoration: none;
   cursor: help
 }
 .AMeta,
@@ -266,10 +293,6 @@ hr,
 tbody th,
 th {
   border-width: 0 0 1px
-}
-*,
-hr {
-  border-color: #ddd
 }
 iframe,
 img {
@@ -295,23 +318,6 @@ a iframe,
 a img {
   display: block
 }
-.note .box,
-.note .hscroll,
-.tl td > :first-child,
-dl .box,
-dl .hscroll,
-dl iframe,
-dl img,
-li .box,
-li .hscroll,
-li iframe,
-li img,
-tr .box,
-tr .hscroll,
-tr iframe,
-tr img {
-  margin-top: 0
-}
 ol,
 ul {
   padding-left: 2em
@@ -321,6 +327,12 @@ dl ul,
 li ol,
 li ul {
   padding-left: 1em
+}
+li {
+  margin-top: .3em
+}
+dt {
+  margin-top: .7em
 }
 blockquote,
 p {
@@ -357,6 +369,12 @@ a:active:hover {
 a,
 tbody th {
   border-color: #f8fbf8
+}
+*,
+blockquote :link img,
+blockquote :visited img,
+hr {
+  border-color: #ddd
 }
 .js-bqLink,
 .tl tbody th :link,
@@ -487,14 +505,10 @@ tr hr {
   position: relative;
   top: 2px
 }
-dd ol,
-dd ul,
-li ol,
-li ul,
+.hscroll table,
 tr ol,
 tr ul {
-  margin-top: 0;
-  margin-bottom: 0
+  margin-bottom: .5em
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -514,6 +528,13 @@ tr dl,
 tr p,
 tr pre {
   margin: 0 0 .5em
+}
+dd ol,
+dd ul,
+li ol,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0
 }
 table {
   width: 94%;
@@ -672,6 +693,9 @@ body {
 #lE .lS {
   padding-top: 0
 }
+caption {
+  margin: 1.5em 3% .7em
+}
 #lH .lMi,
 #lH .lSi {
   padding-top: 1em
@@ -729,6 +753,10 @@ input.btn {
   float: left;
   width: 7em;
   padding: .45em 0 0
+}
+.ABody h2,
+.ABody h3 {
+  padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
   display: block;
@@ -822,19 +850,22 @@ input.btn {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ABody h1 {
+  font-size: 2em;
+  margin: 3em 1.5%
+}
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  padding: .8em 0 0;
   color: #3079ed;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
   font-size: 1.25em;
   border-width: .1em 0 0;
-  padding: .8em 0 0;
   margin: 2.4em 1.5% 1.2em
 }
+.ABody h1,
 .ABody h2,
 .ABody h3 {
   text-align: center;
@@ -1202,8 +1233,7 @@ pre var {
   font-family: monospace;
   background: #0a0809;
   border-color: #0a0809;
-  line-height: 1;
-  padding: 1em 3%
+  line-height: 1
 }
 .js-bqCite,
 .js-bqLink {
@@ -1219,6 +1249,10 @@ dl .aa,
 li .aa,
 tr .aa {
   padding: 1em
+}
+.aa,
+.note .aa {
+  padding: 1em 3%
 }
 .aa,
 .aa code,
@@ -1263,9 +1297,6 @@ blockquote {
   overflow-x: auto;
   overflow-y: hidden;
   margin: 1em 0
-}
-.hscroll table {
-  margin-bottom: .5em
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1326,12 +1357,17 @@ tbody th var {
 .note blockquote dl,
 .note blockquote ol,
 .note blockquote p,
-.note blockquote pre,
 .note blockquote ul {
   margin-right: 1em
 }
 dl.note dd {
   margin-left: 1em
+}
+.note blockquote dl,
+.note blockquote ol,
+.note blockquote p,
+.note blockquote ul {
+  margin-right: 3%
 }
 .caption {
   text-align: center;
@@ -1355,14 +1391,14 @@ dl.note dd {
   padding-bottom: .5em
 }
 .tl th {
-  padding: .5em 1em .5em 0;
+  padding: .5em .8em .5em .5em;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em 1em
+  padding: .5em .8em
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1504,14 +1540,17 @@ dl.note dd {
   margin: 1.23em 0;
   font-size: .875em;
   border-width: 1px;
-  border-color: #333;
-  padding: 1.23em 3%
+  border-color: #333
 }
 .note .prettyprint,
 dl .prettyprint,
 li .prettyprint,
 tr .prettyprint {
   padding: 1.23em 1.143em
+}
+.note .prettyprint,
+.prettyprint {
+  padding: 1.23em 3%
 }
 code .atv,
 code .str {
