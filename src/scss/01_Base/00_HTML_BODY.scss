@@ -29,11 +29,13 @@
     /* //_}^+mobileOnly */
     }
 
+    /* //_{+baseFontSize18 */
     /* //_{@modern */
     @media only screen and (min-width : #{($MEDIAQUERY_PHABLET_MAX_PX + 1)}px) { /* メディアクエリに対応し、phablet より大きい画面で 18px に */
-        body { font-size : #{$MEDIAQUERY_FONTSIZE_UPPER_TABLET / 16}em }
+        body { font-size : #{$FONTSIZE_UPPER_TABLET / $FONTSIZE_DEFAULT}em }
     }
     /* //_}@modern */
+    /* //_}+baseFontSize18 */
 
     html,
     body {

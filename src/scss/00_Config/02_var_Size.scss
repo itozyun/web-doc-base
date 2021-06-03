@@ -46,3 +46,13 @@ $INPUT_BORDER_WIDTH   : 2px !default;
 $FORM_ITEM_PADDING_LR : 8px !default;
 
 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH : 2px !default;
+
+$FONTSIZE_DEFAULT : 16;
+
+/* //_{+baseFontSize18 */
+$FONTSIZE_UPPER_TABLET : 18;
+/* //_}+baseFontSize18 */
+
+/* //_{^+baseFontSize18 */
+$FONTSIZE_UPPER_TABLET : $FONTSIZE_DEFAULT;
+/* //_}^+baseFontSize18 */

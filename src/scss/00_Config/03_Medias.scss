@@ -1,7 +1,5 @@
 $MEDIAQUERY_TABLET_MAX_PX : 950;
 
-$MEDIAQUERY_FONTSIZE_UPPER_TABLET : 18;
-
 $MEDIAQUERY_PHABLET_MAX_PX : 740;
 
 /* //_{#can-mq */
@@ -74,7 +72,7 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 only
                 /* //_}@modern */
-                screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / $MEDIAQUERY_FONTSIZE_UPPER_TABLET}em)
+                screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / $FONTSIZE_UPPER_TABLET}em)
                 { @content; }
         }
         @else if $media == 'WSXGA' {
