@@ -64,3 +64,29 @@ function onafterprint(){};
  * @type {function()}
  */
 function prettyPrint(){};
+
+
+/** @type {function()} */
+document.onfullscreenchange = function(){};
+/** @type {function()} Gecko 10+ */
+ document.onmozfullscreenchange = function(){};
+/** @type {function()} Safari 5.1, Mobile safari 5.1+, */
+  document.onwebkitfullscreenchange = function(){};
+/** @type {function()} Trident 11+ */
+  document.onmsfullscreenchange = function(){};
+
+/** @type {boolean}  */
+document.fullscreen;
+/** @type {boolean}  */
+document.mozFullScreen;
+/** @type {boolean}  */
+document.msFullscreenElement;
+/** @type {boolean}  */
+document.webkitIsFullscreen;
+
+/** @type {function()} Chrome 15+, Safari 6+, */
+HTMLElement.prototype.webkitRequestFullscreen = function(){};
+/** @type {function()} Gecko 9+ */
+HTMLElement.prototype.mozRequestFullscreen = function(){};
+/** @type {function()} Trident 11+ */
+HTMLElement.prototype.msRequestFullscreen = function(){};

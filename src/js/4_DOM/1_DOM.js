@@ -24,11 +24,18 @@ function DOM_createElementNS( ns, tagName ){
 function DOM_getElementsByTagName( tag, opt_root ){
     opt_root = opt_root || document;
 
-    return g_w3cDOM ? opt_root.getElementsByTagName( tag ) : opt_root.all.tags( tag.toUpperCase() );
+    var elms = g_w3cDOM ? opt_root.getElementsByTagName( tag ) : opt_root.all.tags( tag.toUpperCase() ),
+        ret = [],
+        i = 0, l = elms.length;
+
+    for( l = elms.length; i < l; ++i ){
+        ret[ i ] = elms[ i ];
+    };  
+    return ret;
 };
 
 function DOM_getElementsByClassName( elmRoot, className ){
-    var elms, i = 0, l, elm, ret = [];
+    var elms, i = 0, l, elm, ret = [], j = -1;
 
     if( g_w3cDOM && elmRoot.getElementsByClassName ){
         return elmRoot.getElementsByClassName( className );
@@ -38,7 +45,7 @@ function DOM_getElementsByClassName( elmRoot, className ){
     for( l = elms.length; i < l; ++i ){
         elm = elms[ i ];
         if( DOM_hasClassName( elm, className ) ){
-            ret[ ret.length ] = elm;
+            ret[ ++j ] = elm;
         };
     };  
     return ret;

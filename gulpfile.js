@@ -154,6 +154,7 @@ gulp.task('js', gulp.series(
                         './src/js/6_CanUse/imageTest.js',
                         //'./src/js/6_CanUse/webfontTest.js',
 
+                        './src/js/7_Library/blog2slide.js',
                         './src/js/7_Library/blockquot.js',
                         './src/js/7_Library/cssLoader.js',
                         './src/js/7_Library/detectImageTurnedOff.js',
