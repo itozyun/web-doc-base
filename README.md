@@ -45,7 +45,13 @@ Javascript によって提供される機能
 ### Links
 
 * [Demo](https://itozyun.github.io/web-doc-base/)
-* [clearfix.html](https://itozyun.github.io/web-doc-base/clearfix.html)
+* [clearfixのテスト](https://itozyun.github.io/web-doc-base/clearfix.html)
+* [疑似要素のテスト](https://itozyun.github.io/web-doc-base/cssGeneratedContent.html)
+* [Web 文書用のインライン js](https://itozyun.github.io/web-doc-base/getInlineJs.html)
+* [CSSOM のテスト](https://itozyun.github.io/web-doc-base/test.cssom.html)
+* [import のテスト](https://itozyun.github.io/web-doc-base/importHack.html)
+* [Test Image loading](https://itozyun.github.io/web-doc-base/testImageLoading.html)
+* [アイコンのテスト](https://itozyun.github.io/web-doc-base/test.icon.html)
 * [Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
 
 ## References
