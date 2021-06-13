@@ -124,7 +124,7 @@ function DOM_justCreate( tag, html ){
     return elm;
 }
 
-function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
+function DOM_createThenAdd( targetNode, tag, attrs, styles, text, isSVG ){
     var updateAfterAppend = g_Trident < 9, // ie では後で、Opera 8.x + <link> では先で
         isStyle           = tag === 'style',
         elm;
@@ -143,7 +143,7 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
             elm = DOM_justCreate( 'div', 'a<style type="text\/css">' + text + '<\/style>' ).lastChild;
         };
     } else {
-        elm = DOM_justCreate( tag );
+        elm = isSVG ? DOM_createElementNS( 'http://www.w3.org/2000/svg', tag ) : DOM_justCreate( tag );
     };
 
     if( !updateAfterAppend ) update();
@@ -167,7 +167,7 @@ function DOM_createThenAdd( targetNode, tag, attrs, styles, text ){
     function update(){
         attrs && updateAttr( elm, attrs );
         styles && updateCSS( elm, styles );
-        text && !isStyle && DOM_appendChild( elm, document.createTextNode( text ) );        
+        text != null && !isStyle && DOM_appendChild( elm, document.createTextNode( text ) );        
     };
 
     function updateAttr( elm, attrs ){

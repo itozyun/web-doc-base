@@ -3,7 +3,11 @@ function DOM_getClassName( elm ){
 };
 
 function DOM_setClassName( elm, className ){
-    elm.className = className;
+    if( g_Trident < 9 ){
+        elm.className = className;
+    } else {
+        elm.setAttribute( 'class', className ); // SVG で値が変更されないケースに対策
+    };
 };
 
 function DOM_hasClassName( elm, className ){

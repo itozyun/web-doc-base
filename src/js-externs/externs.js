@@ -90,3 +90,9 @@ HTMLElement.prototype.webkitRequestFullscreen = function(){};
 HTMLElement.prototype.mozRequestFullscreen = function(){};
 /** @type {function()} Trident 11+ */
 HTMLElement.prototype.msRequestFullscreen = function(){};
+
+/** @type {function()} Gecko 1.9.0 */
+CanvasRenderingContext2D.prototype.mozDrawText = function(){};
+
+/** @type {number}  */
+ var __vml = 0;

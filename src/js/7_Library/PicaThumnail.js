@@ -42,7 +42,7 @@ if( !g_ServerSideRendering ){
         }
     );
 
-    if( g_WebKit < 525.13 ){ // Safari3-
+    if( g_WebKit < 525.13 ){ // Safari <3
         g_html.onclick = function( e ){
             if( PICA_THUMBNAIL_safariPreventDefault ){
                 PICA_THUMBNAIL_safariPreventDefault = false;
