@@ -16,6 +16,11 @@
 ------------------------------------------------------------------------------>
 <!-- Just Microsoft Internet Explorer -->
 <!--[if IE]><link rel="shortcut icon" href="multi.ico"><![endif]-->
+<script>
+    if( document.documentMode === 10 ){
+        document.write( '<link rel="shortcut icon" href="multi.ico">' );
+    };
+</script>
 <meta name="msapplication-TileImage" content="icons/png_144.png">
 
 <!-- Other browsers -->
