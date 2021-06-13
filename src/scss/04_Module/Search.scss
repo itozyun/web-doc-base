@@ -128,4 +128,12 @@ $SEARCH_BTN_WIDTH : 3em;
             height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         }
     }
+    /* .operaLt8 {
+        .Search input {
+            position     : static;
+            display      : inline;
+            border-width : 0;
+            padding      : 0;
+        }
+    } */
 /* //_}@legacy */
