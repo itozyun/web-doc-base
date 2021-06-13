@@ -104,6 +104,7 @@ h2:after {
 .lW {
   overflow: hidden
 }
+#blog2slide-start button,
 .links,
 .note,
 blockquote,
@@ -1294,6 +1295,7 @@ a:focus .ico-pen:after {
   color: #3079ed;
   margin: 2em 1.5% 1em
 }
+#blog2slide-root > div > *,
 .ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
@@ -2068,6 +2070,25 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
+#blog2slide-root {
+  margin: 0 auto;
+  overflow: auto
+}
+#blog2slide-root > div {
+  height: 100%;
+  width: 98%;
+  max-width: 105em;
+  display: table;
+  margin: auto
+}
+#blog2slide-current {
+  font-size: 2em;
+  display: table-cell!important;
+  vertical-align: middle
+}
+h1#blog2slide-current {
+  font-size: 4em
+}
 #jsCanUseContent {
   font: 0/0 a
 }
@@ -2188,11 +2209,6 @@ blockquote hr {
     display: none!important
   }
 }
-@media only screen and (min-width:741px) {
-  body {
-    font-size: 1.125em
-  }
-}
 @media handheld,
 projection,
 tv,
@@ -2238,6 +2254,7 @@ only screen and (max-width:740px) {
   h6 {
     margin: 1.5em 1% .8em
   }
+  #blog2slide-start button,
   .links,
   .note,
   blockquote,
@@ -2359,6 +2376,7 @@ only screen and (max-width:479px) {
   h6 {
     margin: 1.5em .5% .8em
   }
+  #blog2slide-start button,
   .links,
   .note,
   blockquote,
@@ -2563,6 +2581,7 @@ only screen and (max-width:240px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  #blog2slide-start button,
   .links,
   .note,
   blockquote,
@@ -3309,6 +3328,9 @@ only screen and (max-width:240px) {
   .AHead h1 {
     transform: rotate(.03deg);
     font-weight: 700
+  }
+  #blog2slide-root:-ms-fullscreen {
+    background: #f8fbf8
   }
 }
 @media only screen and (-ms-high-contrast:active) {
