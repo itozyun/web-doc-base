@@ -22,3 +22,12 @@
     /* //_}#ie */
     page-break-after           : avoid;
 }
+
+@mixin unbreak-pane {
+    /* //_{^@ie5mac */
+        word-break  : break-all;     /* IE 5+ */
+    /* //_}^@ie5mac */
+    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+}

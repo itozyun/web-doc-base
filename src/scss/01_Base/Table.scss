@@ -64,10 +64,7 @@ table {
     }
 
     th, td {
-        word-break : break-all; /* table がカラムを割るのを防ぐ */
-        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-        word-wrap  : break-word;
-        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        @include unbreak-pane; /* table がカラムを割るのを防ぐ */
     }
 
     th {

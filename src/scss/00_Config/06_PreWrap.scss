@@ -17,10 +17,5 @@
 
         /* white-space : pre-line;      CSS 3.0 */
 
-    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-        word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
-    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-    /* //_{#ie8-win,@ie9,#notie */
-        word-break  : break-all;     /* IE 5+ */
-    /* //_}#ie8-win,@ie9,#notie */
+    @include unbreak-pane;
 }

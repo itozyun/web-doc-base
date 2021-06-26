@@ -50,10 +50,7 @@ blockquote {
         font-size   : 0.875em;
         line-height : 1.2;
         text-align  : right;
-        word-break  : break-all; /* 長いurl iOS4用効果あり */
-        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-        word-wrap   : break-word;
-        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+        @include unbreak-pane; /* 長い url 用 */
         color       : $COLOR_Default_casual_text;
     }
 
