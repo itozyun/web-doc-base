@@ -14,14 +14,14 @@
 
 |  | valiable                    | type                 | value | available           | note                                                                 |
 |:-|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
-|1 | `g_cssAvailability`         | boolean              |       | `g_listenLoadEvent` |                                                                      |
-|2 | `g_generatedContentEnabled` | number or undefined  |       | `g_listenLoadEvent` | undefined : `g_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P |
-|3 | `g_iefilterEnabled`         | boolean or undefined |       | `g_listenLoadEvent` |                                                                      |
-|4 | `g_highContrastModeState`   | number               | 0~3   | `g_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
-|5 | `g_printEventDisabled`      | boolean              |       | allways             |                                                                      |
-|6 | `g_imageEnabled`            | boolean or undefined |       | `g_listenLoadEvent` | undefined : `document.images.length == 0`                            |
+|1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
+|2 | `p_generatedContentEnabled` | number or undefined  |       | `p_listenLoadEvent` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P |
+|3 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
+|4 | `p_highContrastModeState`   | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
+|5 | `p_printEventDisabled`      | boolean              |       | allways             |                                                                      |
+|6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenLoadEvent` | undefined : `document.images.length == 0`                            |
 
-`g_generatedContentEnabled` の判定用に、メインの CSS に下記スタイルを入れておく。
+`p_generatedContentEnabled` の判定用に、メインの CSS に下記スタイルを入れておく。
 
 ~~~css
 #jsCanUseContent {
@@ -36,42 +36,42 @@
 
 ## 2. Special event listeners
 
-1. `g_listenCssAvailabilityChange`
-2. `g_listenHighContrustModeChange`
-3. `g_listenImageReady`
-4. `g_listenPrefersColorChange`
-5. `g_listenPrintEvent`
+1. `p_listenCssAvailabilityChange`
+2. `p_listenHighContrustModeChange`
+3. `p_listenImageReady`
+4. `p_listenPrefersColorChange`
+5. `p_listenPrintEvent`
 
-### 1. `g_listenCssAvailabilityChange`
+### 1. `p_listenCssAvailabilityChange`
 
 CSS の有効/無効が切り替わるたびにコールバックします。Firefox は表示 > スタイルシートから、機能の死活をいつでも切り替えることが出来ます。
 
 ~~~js
-g_listenCssAvailabilityChange(
+p_listenCssAvailabilityChange(
     function( cssAvailability ){
 
     }
 );
 ~~~
 
-### 2. `g_listenHighContrustModeChange`
+### 2. `p_listenHighContrustModeChange`
 
 Windows 用ブラウザの一部が備える Web サイトのハイコントラストモードの状態変化をコールバックします。
 
 ~~~js
-g_listenHighContrustModeChange(
+p_listenHighContrustModeChange(
     function( highContrastModeState ){
 
     }
 );
 ~~~
 
-### 3. `g_listenImageReady`
+### 3. `p_listenImageReady`
 
 `onload` 時に存在する `&lt;img&gt;` について、ひとつづつ読み込まれたか？否かをコールバックします。
 
 ~~~js
-g_listenImageReady(
+p_listenImageReady(
     function( result ){
         var imgElement = result.img,
             imgReady = result.imgReady,
@@ -79,24 +79,24 @@ g_listenImageReady(
 );
 ~~~
 
-### 4. `g_listenPrefersColorChange`
+### 4. `p_listenPrefersColorChange`
 
 ダークモードの死活をコールバックします。
 
 ~~~js
-g_listenPrefersColorChange(
+p_listenPrefersColorChange(
     function( isDrakMode ){
 
     }
 );
 ~~~
 
-### 5. `g_listenPrintEvent`
+### 5. `p_listenPrintEvent`
 
 `beforeprint` `afterprint` イベントをコールバックします。
 
 ~~~js
-g_listenPrintEvent(
+p_listenPrintEvent(
     function( isBeforePrint ){
 
     }
@@ -105,28 +105,28 @@ g_listenPrintEvent(
 
 ## Special methods
 
-1. `g_dataUriTest`
-2. `g_imageTest`
-3. `g_webFontTest`
+1. `p_dataUriTest`
+2. `p_imageTest`
+3. `p_webFontTest`
 
-### 1. `g_dataUriTest`
+### 1. `p_dataUriTest`
 
-`g_webFontTest` が使用しています。
+`p_webFontTest` が使用しています。
 
 ~~~js
-g_dataUriTest(
+p_dataUriTest(
     function( dataUriEnabled ){
 
     }
 );
 ~~~
 
-### 2. `g_imageTest`
+### 2. `p_imageTest`
 
 `imageUrl` が描画されたか？で画像表示に制限が無いか？確認する。
 
 ~~~js
-g_imageTest(
+p_imageTest(
     function( imageEnabled ){
 
     },
@@ -134,7 +134,7 @@ g_imageTest(
 );
 ~~~
 
-### 3. `g_webFontTest`
+### 3. `p_webFontTest`
 
 参考記事 [Webフォントがブラウザで有効か？きっちり調べる](https://outcloud.blogspot.com/2018/02/IsWebfontEffective.html)
 
@@ -146,7 +146,7 @@ Web フォントの読み込み完了のテスト、フォールバックのダ�
 4. リガチャはキャラクターと合字の長さが一致するかを調べる
 
 ~~~js
-g_webFontTest(
+p_webFontTest(
     function( webFontTestResult ){
         // webFontTestResult === 0 : no webfont
         // webFontTestResult === 1 : webfont ready

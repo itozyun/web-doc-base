@@ -79,12 +79,12 @@ This project has been referred to the next project.
 
 Javascript and CSS are placed in the same directory. 
 Do not add the `async` or `deffer` attributes to `<script>`.
-To find out why, look at `g_assetUrl` in code.
+To find out why, look at `p_assetUrl` in code.
 
 ---
 
 Javascript と CSS は同じディレクトリに配置します。`<script>` に `async` や `deffer` 属性を付けてはいけません。
-この理由を知るにはコードで `g_assetUrl` を確認します。
+この理由を知るにはコードで `p_assetUrl` を確認します。
 
 ~~~html
 <!--[if IE 5]>
