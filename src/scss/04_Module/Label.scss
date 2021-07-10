@@ -27,7 +27,8 @@
         /* //_{^@legacy */
         /* //_{#can-inline-block */
             @include inline-block;
-            margin  : 0 0 1em;
+            margin      : 0 0 1.7em;
+            line-height : 1.2;
         /* //_}#can-inline-block */
         /* //_}^@legacy */
 
@@ -44,13 +45,15 @@
 
         .lS .Label a,
         #lF .Label a {
+        /* //_{^@legacy */
         /* //_{#can-inline-block */
-            margin : 0 0 0.6em;
+            margin      : 0 0 1.3em;
         /* //_}#can-inline-block */
+        /* //_}^@legacy */
 
-        /* //_{^#can-inline-block */
+        /* //_{^#can-inline-block,@legacy */
             line-height : 2.4;
-        /* //_}^#can-inline-block */
+        /* //_}^#can-inline-block,@legacy */
         }
 
 /*  Phablet
