@@ -95,7 +95,7 @@ gulp.task('btoa', gulp.series(
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
                         output_wrapper    : 'var Base64_btoa;\n%output%',
-                        js_output_file    : '.generated.btoa.js'
+                        js_output_file    : '_generated.btoa.js'
                     }
                 )
             ).pipe( gulp.dest( './src/js/5_CSSOM' ) );
@@ -116,72 +116,43 @@ const externs = [
 
 gulp.task('js', gulp.series(
     function(){
-        return ClosureCompiler(
-                {
-                    js                : [
-                        './src/js/0_global/1_DEFINE.js',
-
-                        './src/js/1_packageGlobal/1_packageValiable.js',
-                        './src/js/1_packageGlobal/2_builtinArrayMethods.js',
-
-                        './src/js/2_CoreModule/DebugLogger.js',
-                        './src/js/2_CoreModule/LoopTimer.js',
-                        './src/js/2_CoreModule/Timer.js',
-    
-                        './src/js/3_EventModule/1_moduleGlobal.js',
-                        './src/js/3_EventModule/2_core.js',
-                        './src/js/3_EventModule/cssAvailability.js',
-                        './src/js/3_EventModule/highContrastMode.js',
-                        './src/js/3_EventModule/imageReady.js',
-                        // './src/js/3_EventModule/prefersColor.js',
-                        // './src/js/3_EventModule/print.js',
-                        './src/js/3_EventModule/resize.js',
-                        './src/js/3_EventModule/scroll.js',
-
-                        './src/js/4_DOM/1_DOM.js',
-                        './src/js/4_DOM/2_DOMStyle.js',
-                        './src/js/4_DOM/3_DOMAttr.js',
-                        './src/js/4_DOM/4_DOMClass.js',
-                        // './src/js/4_DOM/5_DOMEvent.js',
-                        './src/js/4_DOM/nodeCleaner.js',
-    
-                        './src/js/5_CSSOM/.generated.btoa.js',
-                        './src/js/5_CSSOM/CSSOM.js',
-
-                        //'./src/js/6_CanUse/generatedContent.js',
-                        //'./src/js/6_CanUse/dataUriTest.js',
-                        './src/js/6_CanUse/ieFilterTest.js',
-                        './src/js/6_CanUse/imageTest.js',
-                        //'./src/js/6_CanUse/webfontTest.js',
-
-                        './src/js/7_Library/blog2slide.js',
-                        './src/js/7_Library/blockquot.js',
-                        './src/js/7_Library/cssLoader.js',
-                        './src/js/7_Library/detectImageTurnedOff.js',
-                        './src/js/7_Library/HighContrastStyleSwitcher.js',
-                        './src/js/7_Library/PicaThumnail.js',
-                        './src/js/7_Library/SidebarFixer.js',
-
-                        './src/js/onreachEnd.js',
-                    ],
-                    externs           : externs,
-                    define            : [
-                        'WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                        'WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
-                        'WEB_DOC_BASE_DEFINE_AMAZON_ID="itozyun-22"'
-                    ],
-                    compilation_level : 'ADVANCED',
-                    // compilation_level : 'WHITESPACE_ONLY',
-                    //formatting        : 'PRETTY_PRINT',
-                    warning_level     : 'VERBOSE',
-                    language_in       : 'ECMASCRIPT3',
-                    language_out      : 'ECMASCRIPT3',
-                    output_wrapper    : '(function(ua,window,emptyFunction,' + globalVariables + ',undefined){\n%output%\n})(ua,this,new Function,' + globalVariables + ')',
-                    js_output_file    : 'temp.js'
-                }
-            )
-            .src()
-            .pipe(gulp.dest( tempDir ));
+        return gulp.src(
+                [
+                    './src/js/**/*.js',
+                    '!./src/js/3_EventModule/prefersColor.js',
+                    '!./src/js/3_EventModule/print.js',
+                    '!./src/js/6_CanUse/generatedContent.js',
+                    '!./src/js/6_CanUse/dataUriTest.js',
+                    '!./src/js/6_CanUse/webfontTest.js',
+                    '!./src/js/graph/**/*.js',
+                    '!./src/js/GoogleCodePrettify.js'
+                ]
+            ).pipe(
+                gulpDPZ(
+                    {
+                        packageGlobalArgs : [ 'ua,window,emptyFunction,' + globalVariables + ',undefined', 'ua,this,new Function,' + globalVariables + ',void 0' ],
+                        basePath          : './src/js/'
+                    }
+                )
+             ).pipe(
+                ClosureCompiler(
+                    {
+                        externs           : externs,
+                        define            : [
+                            'WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
+                            'WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
+                            'WEB_DOC_BASE_DEFINE_AMAZON_ID="itozyun-22"'
+                        ],
+                        compilation_level : 'ADVANCED',
+                        // compilation_level : 'WHITESPACE_ONLY',
+                        //formatting        : 'PRETTY_PRINT',
+                        warning_level     : 'VERBOSE',
+                        language_in       : 'ECMASCRIPT3',
+                        language_out      : 'ECMASCRIPT3',
+                        js_output_file    : 'temp.js'
+                    }
+                )
+            ).pipe(gulp.dest( tempDir ));
     },
     function(){
         return ClosureCompiler(

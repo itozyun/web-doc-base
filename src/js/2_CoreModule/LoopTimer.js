@@ -1,9 +1,11 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_setLoopTimer   = LoopTimer_set;
-g_clearLoopTimer = LoopTimer_clear;
+p_setLoopTimer   = LoopTimer_set;
+p_clearLoopTimer = LoopTimer_clear;
 
+_p_LoopTimer_reset  = LoopTimer_reset;
+_p_LoopTimer_remove = LoopTimer_remove;
 /** ===========================================================================
  * private
  */
@@ -21,11 +23,15 @@ function LoopTimer_on(){
     };
 };
 
-if( g_Trident < 5 || g_Tasman ){
+if( p_Trident < 5 || p_Tasman ){
     window[ '_wdb_onlooptimer' ] = LoopTimer_on;
     LoopTimer_on = '_wdb_onlooptimer()';
 };
 
+/**
+ * @param {Function} callback
+ * @return {number}
+ */
 function LoopTimer_set( callback ){
     if( !LOOP_TIMERS.length ){
         loopTimerClearID = setInterval( LoopTimer_on, LOOP_TIMER_INTERVAL );
@@ -38,6 +44,10 @@ function LoopTimer_set( callback ){
     return loopTimerUID;
 };
 
+/**
+ * @param {number} uid
+ * @return {number}
+ */
 function LoopTimer_clear( uid ){
     var i = LOOP_TIMERS.length, cb;
 
@@ -65,12 +75,3 @@ function LoopTimer_remove(){
         loopTimerClearID = clearInterval( loopTimerClearID );
     };
 };
-
-g_onreachEndCallbacks.push(
-    function(){
-        if( g_SafariMobile < 6.1 ){
-            g_listenScrollEvent( LoopTimer_reset );
-        };
-        g_listenUnloadEvent( LoopTimer_remove );
-    }
-);

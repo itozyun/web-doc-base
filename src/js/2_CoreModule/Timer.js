@@ -1,9 +1,11 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_setTimer   = Timer_set;
-g_clearTimer = Timer_clear;
+p_setTimer   = Timer_set;
+p_clearTimer = Timer_clear;
 
+_p_Timer_reset = Timer_reset;
+_p_Timer_remove = Timer_remove;
 /** ===========================================================================
  * private
  */
@@ -31,11 +33,17 @@ function Timer_on(){
     };
 };
 
-if( g_Trident < 5 || g_Tasman ){
+if( p_Trident < 5 || p_Tasman ){
     window[ '_wdb_ontimer' ] = Timer_on;
     Timer_on = '_wdb_ontimer()';
 };
 
+/**
+ * @param {Function} callback
+ * @param {*=} opt_param
+ * @param {number=} opt_intervalMs
+ * @return {number}
+ */
 function Timer_set( callback, opt_param, opt_intervalMs ){
     if( !TIMERS.length ){
         timerClearID = setTimeout( Timer_on, TIMER_INTERVAL );
@@ -50,6 +58,10 @@ function Timer_set( callback, opt_param, opt_intervalMs ){
     return timerUID;
 };
 
+/**
+ * @param {number} uid
+ * @return {number}
+ */
 function Timer_clear( uid ){
     var i = TIMERS.length, cb;
 
@@ -74,12 +86,3 @@ function Timer_remove(){
         timerClearID = clearTimeout( timerClearID );
     };
 };
-
-g_onreachEndCallbacks.push(
-    function(){
-        if( g_SafariMobile < 6.1 ){
-            g_listenScrollEvent( Timer_reset );
-        };
-        g_listenUnloadEvent( Timer_remove );
-    }
-);

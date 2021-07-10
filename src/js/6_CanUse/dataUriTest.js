@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_dataUriTest = dataUriTest;
+p_dataUriTest = dataUriTest;
 
 /** ===========================================================================
  * private
@@ -14,35 +14,35 @@ var CANIUSE_dataUriTestResult;
  *   MIT License
  */
 function dataUriTest( callback ){
-    if( g_notUndefined( CANIUSE_dataUriTestResult ) ){
-        g_DebugLogger.log( '[dataUriTest] already done : ' + CANIUSE_dataUriTestResult );
-        g_setTimer( callback, CANIUSE_dataUriTestResult );
-    } else if( g_Trident < 8 ){
-        g_DebugLogger.log( '[dataUriTest] trident < 8 : false' );
-        g_setTimer( callback, false );
+    if( p_notUndefined( CANIUSE_dataUriTestResult ) ){
+        Debug.log( '[dataUriTest] already done : ' + CANIUSE_dataUriTestResult );
+        p_setTimer( callback, CANIUSE_dataUriTestResult );
+    } else if( p_Trident < 8 ){
+        Debug.log( '[dataUriTest] trident < 8 : false' );
+        p_setTimer( callback, false );
     } else {
-        g_DebugLogger.log( '[dataUriTest] start!' );
+        Debug.log( '[dataUriTest] start!' );
 
         var datauri = new Image(),
             // https://twitter.com/itozyun/status/1306835988577099776/
             // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
-            timerID = g_setTimer( function(){ timerID && _callback( false ); } );
+            timerID = p_setTimer( function(){ timerID && _callback( false ); } );
 
         datauri.onerror = function(){
-            g_DebugLogger.log( '[dataUriTest] no DATA URI!' );
+            Debug.log( '[dataUriTest] no DATA URI!' );
             _callback( false );
         };
 
         datauri.onload = function(){
-            g_DebugLogger.log( '[dataUriTest] DATA URI:' + ( datauri.width * datauri.height === 1 ) );
+            Debug.log( '[dataUriTest] DATA URI:' + ( datauri.width * datauri.height === 1 ) );
             _callback( datauri.width * datauri.height === 1 );
         };
         datauri.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     };
     function _callback( result ){
-        timerID = g_clearTimer( timerID );
+        timerID = p_clearTimer( timerID );
         CANIUSE_dataUriTestResult = result;
-        datauri.onload = datauri.onerror = g_emptyFunction;
-        g_setTimer( callback, result );
+        datauri.onload = datauri.onerror = p_emptyFunction;
+        p_setTimer( callback, result );
     };
 };

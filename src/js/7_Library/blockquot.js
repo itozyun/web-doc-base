@@ -6,22 +6,22 @@
  *  Website: https://unformedbuilding.com/demo/2010/prettyquote/
  *  License: MIT
 */
-g_listenLoadEvent(
+p_listenLoadEvent(
     function( e ){
         "use strict";
 
-        var elmTargets = DOM_getElementsByTagName( 'blockquote', g_elmMain ),
+        var elmTargets = p_DOM_getElementsByTagName( p_elmMain, 'blockquote' ),
             elm, i = -1, title, cite;
 
         for( ; elm = elmTargets[ ++i ]; ){
-            title = DOM_getAttribute( elm, 'title' );
-            cite  = DOM_getAttribute( elm, 'cite' );
+            title = p_DOM_getAttribute( elm, 'title' );
+            cite  = p_DOM_getAttribute( elm, 'cite' );
 
             if( title && cite ){
-                DOM_removeAttribute( elm, 'title' );
+                p_DOM_removeAttribute( elm, 'title' );
                 create( title, cite, 'js-bqLink', true );
             } else if( cite ){
-                DOM_removeAttribute( elm, 'cite' );
+                p_DOM_removeAttribute( elm, 'cite' );
                 create( window.decodeURI ? decodeURI( cite ) : cite, cite, 'js-bqCite' );
             };
         };
@@ -36,14 +36,16 @@ g_listenLoadEvent(
             var tag  = add1st ? 'div' : 'cite',
                 link = createUrl( cite ),
                 elmCite;
-            
-            link = '<a' + ( isExternalUrl( link ) ? ' target="_blank" rel="nofollow noopener"' : '' ) + ' hidefocus="true" href="' + link + '">' + title + '</a>';
 
             elmCite = add1st ?
-                DOM_prev( DOM_getFirstChild( elm ), tag, { className : className } ) :
-                DOM_createThenAdd( elm, tag, { className : className } );
+                p_DOM_insertElementBefore( p_DOM_getFirstChild( elm ), tag, { className : className } ) :
+                p_DOM_insertElement( elm, tag, { className : className } );
             
-            DOM_setHTML( elmCite, link )
+            p_DOM_insertElement( elmCite, 'a',
+                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener', hidefocus : true, href : link } :
+                                        { hidefocus : true, href : link },
+                                    title
+                               );
         };
 
         function createUrl( cite ){

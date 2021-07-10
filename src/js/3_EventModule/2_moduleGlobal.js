@@ -3,6 +3,10 @@ var Event_matchMedia    = window.matchMedia,
     Event_loaded,
     Event_elmTest;
 
+/**
+ * @param {Array.<Function>} callbackList
+ * @param {*=} param
+ */
 function Event_dispatch( callbackList, param ){
     for( var i = 0; i < callbackList.length; ++i ){ // callbackList は callback 中にも追加される
         callbackList[ i ]( param );
@@ -10,9 +14,13 @@ function Event_dispatch( callbackList, param ){
 };
 
 // onload 後にタイマーを挟んで dispatch する
+/**
+ * @param {Array.<Function>} callbackList
+ * @param {*=} param
+ */
 function Event_lazyDispatch( callbackList, param ){
     if( Event_loaded && !Event_lazyCallbacks.length ){
-        g_setTimer( _Event_lazyDispatch );
+        p_setTimer( _Event_lazyDispatch );
     };
     Event_lazyCallbacks.push( callbackList, param );
 };
@@ -28,30 +36,30 @@ function Event_lazyDispatch( callbackList, param ){
         };
     };
 
-// g_listenLoadEvent が存在しない為、配列を触る
-g_loadEventCallbacks.push(
+// p_listenLoadEvent が存在しない為、配列を触る
+p_loadEventCallbacks.push(
     function (){
         // Create a test div
-        Event_elmTest = DOM_createThenAdd(
-            g_body,
+        Event_elmTest = p_DOM_insertElement(
+            p_body,
             'div',
             {
-                'aria-hidden' : 'true'
-            },
-            {
-                position   : 'absolute',
-                top        : 0,
-                left       : 0,
-                width      : '9px',
-                height     : '9px',
-                visibility : 'hidden'
+                'aria-hidden' : 'true',
+                style         : {
+                    position   : 'absolute',
+                    top        : 0,
+                    left       : 0,
+                    width      : '9px',
+                    height     : '9px',
+                    visibility : 'hidden'
+                }
             }
         );
 
-        g_listenLoadEvent( function(){
+        p_listenLoadEvent( function(){
             Event_loaded = true;
             if( Event_lazyCallbacks.length ){
-                g_setTimer( _Event_lazyDispatch );
+                p_setTimer( _Event_lazyDispatch );
             };
         } );
     }

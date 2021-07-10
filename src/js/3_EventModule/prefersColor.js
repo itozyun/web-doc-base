@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenPrefersColorChange = function( callback ){
+p_listenPrefersColorChange = function( callback ){
     Event_prefersColorChangeEventCallbacks.push( callback );
 };
 

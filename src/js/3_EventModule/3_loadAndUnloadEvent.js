@@ -1,10 +1,10 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenLoadEvent = function( callback ){
-    g_loadEventCallbacks.push( callback );
+p_listenLoadEvent = function( callback ){
+    p_loadEventCallbacks.push( callback );
 };
-g_listenUnloadEvent = function( callback ){
+p_listenUnloadEvent = function( callback ){
     Event_unloadEventCallbacks.push( callback );
 };
 
@@ -26,9 +26,9 @@ function Event_init( e ){
 
     if( Event_tempOnLoad ) ret = Event_tempOnLoad( e );
 
-    Event_dispatch( g_loadEventCallbacks, e );
-    onload = g_emptyFunction;
-    g_loadEventCallbacks = Event_init = Event_tempOnLoad = onload = null;
+    Event_dispatch( p_loadEventCallbacks, e );
+    onload = p_emptyFunction;
+    p_loadEventCallbacks = Event_init = Event_tempOnLoad = onload = null;
 
     return ret;
 };
@@ -43,6 +43,6 @@ function Event_kill( e ){
 
     Event_dispatch( Event_unloadEventCallbacks, e );
 
-    onunload = g_emptyFunction;
+    onunload = p_emptyFunction;
     return ret;
 };

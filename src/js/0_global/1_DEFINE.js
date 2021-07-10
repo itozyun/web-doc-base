@@ -1,3 +1,4 @@
+
 var
 /** @define {string} */
     WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX = 'm_',
@@ -18,3 +19,9 @@ var
 
 /** @define {string} */
     WEB_DOC_BASE_DEFINE_AMAZON_ID          = '';
+
+var Debug = {};
+
+if( !WEB_DOC_BASE_DEFINE_DEBUG ){
+    Debug.log = function(){};
+};

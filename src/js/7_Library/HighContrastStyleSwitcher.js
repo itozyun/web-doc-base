@@ -3,28 +3,28 @@ var HighContrastStyleSwitcher_elmStyle,
  * @type {?function()|null}
  */
     HighContrastStyleSwitcher_init = function(){
-        HighContrastStyleSwitcher_elmStyle = DOM_createThenAdd(
-            g_head, 'link',
+        HighContrastStyleSwitcher_elmStyle = p_DOM_insertElement(
+            p_head, 'link',
             {
                 type  : 'text/css',
                 rel   : 'stylesheet',
                 media : 'screen',
-                href  : g_assetUrl + WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR + '/' + g_cssName
+                href  : p_assetUrl + WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR + '/' + p_cssName
             }
         );
 
-        if( g_cssTransformName || ( 5.5 <= g_Trident && g_Trident < 9 && g_iefilterEnabled ) ){
-            DOM_addClassName( g_body, 'jsCanRotate' );
+        if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
+            p_DOM_addClassName( p_body, 'jsCanRotate' );
         };
         HighContrastStyleSwitcher_init = null;
     };
 
-g_listenHighContrustModeChange(
+p_listenHighContrustModeChange(
     function( highContrastState ){
         if( highContrastState && !HighContrastStyleSwitcher_elmStyle ){
             HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();
         } else {
-            highContrastState ? DOM_appendChild( g_head, HighContrastStyleSwitcher_elmStyle ) : DOM_remove( HighContrastStyleSwitcher_elmStyle );
+            highContrastState ? p_head.appendChild( HighContrastStyleSwitcher_elmStyle ) : p_DOM_remove( HighContrastStyleSwitcher_elmStyle );
         };
     }
 );

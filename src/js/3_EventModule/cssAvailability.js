@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenCssAvailabilityChange = function( callback ){
+p_listenCssAvailabilityChange = function( callback ){
     Event_cssAvailabilityCallbacks.push( callback );
 };
 
@@ -13,14 +13,14 @@ var Event_cssAvailabilityCallbacks = [];
 function Event_cssAvailability_check(){
     var _cssAvailability = Event_elmTest.offsetWidth === 9;
     
-    if( g_cssAvailability !== _cssAvailability ){
-        Event_lazyDispatch( Event_cssAvailabilityCallbacks, g_cssAvailability = _cssAvailability );
+    if( p_cssAvailability !== _cssAvailability ){
+        Event_lazyDispatch( Event_cssAvailabilityCallbacks, p_cssAvailability = _cssAvailability );
     };
 };
 
-g_listenLoadEvent(
+p_listenLoadEvent(
     function(){
         Event_cssAvailability_check();
-        g_setLoopTimer( Event_cssAvailability_check );
+        p_setLoopTimer( Event_cssAvailability_check );
     }
 );

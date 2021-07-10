@@ -1,28 +1,25 @@
-var g_emptyFunction       = emptyFunction, // || new Function(),
-    g_onreachEndCallbacks = [],
+var p_emptyFunction       = emptyFunction, // || new Function(),
+    p_body    = document.body,
+    p_style   = p_body.style,
 
-    g_w3cDOM  = !!document.getElementsByTagName,
-    g_body    = document.body,
-    g_style   = g_body.style,
+    p_html, p_head, p_elmMain,
 
-    g_html, g_head, g_elmMain,
-
-    g_Trident      = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
-    g_Tasman       = ua[ 'Tasman' ],
-    g_EdgeHTML     = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
-    g_Presto       = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
-    g_Gecko        = ua[ 'Gecko' ] || ua[ 'Fennec' ],
-    g_FirefoxGte35 = g_Gecko && 0 <= ua.conpare( ua.ENGINE_VERSION, '1.9.1' ),
-    g_Goanna       = ua[ 'Goanna' ],
-    g_WebKit       = ua[ 'WebKit' ],
-    g_SafariMobile = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
-    g_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
-    g_Windows      = ua[ 'Win32' ] || ua[ 'Win64' ],
-    g_ChromiumEdge = parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
-    g_IEVersion    = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4,
+    p_Trident      = ua[ 'Trident' ] || ua[ 'TridentMobile' ],
+    p_Tasman       = ua[ 'Tasman' ],
+    p_EdgeHTML     = ua[ 'EdgeHTML' ] || ua[ 'EdgeMobile' ],
+    p_Presto       = ua[ 'Presto' ] || ua[ 'PrestoMobile' ],
+    p_Gecko        = ua[ 'Gecko' ] || ua[ 'Fennec' ],
+    p_FirefoxGte35 = p_Gecko && 0 <= ua.conpare( ua.ENGINE_VERSION, '1.9.1' ),
+    p_Goanna       = ua[ 'Goanna' ],
+    p_WebKit       = ua[ 'WebKit' ],
+    p_SafariMobile = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
+    p_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
+    p_Windows      = ua[ 'Win32' ] || ua[ 'Win64' ],
+    p_ChromiumEdge = parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
+    p_IEVersion    = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4,
 
 // https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
-    g_passiveSupported = !g_Trident && !g_Tasman && (new Function(
+    p_passiveSupported = !p_Trident && !p_Tasman && (new Function(
         'try{' +
             'var r,o=Object.defineProperty({},"passive",{' +
                 'get:function(){r=!0}' +
@@ -33,67 +30,35 @@ var g_emptyFunction       = emptyFunction, // || new Function(),
         '}catch(e){}'
     ))(),
 
-    g_jsGte15 = g_Trident < 5.5,
+    p_jsGte15 = p_Trident < 5.5,
 
-    g_scripts = document.scripts || DOM_getElementsByTagName( 'script' ), // for NN9
-    g_cssName = ( g_Tasman ? 'ie5mac' :
-                  g_Trident < 5.5 ? 'ie5win' :
-                  g_Trident < 6   ? 'ie55' :
-                  g_Trident < 10  ? 'ie' + ( g_Trident | 0 ) :
-                  g_Presto < 9.5 || ( g_Gecko && !g_FirefoxGte35 ) ? 'legacy' :
+    p_cssName = ( p_Tasman ? 'ie5mac' :
+                  p_Trident < 5.5 ? 'ie5win' :
+                  p_Trident < 6   ? 'ie55' :
+                  p_Trident < 10  ? 'ie' + ( p_Trident | 0 ) :
+                  p_Presto < 9.5 || ( p_Gecko && !p_FirefoxGte35 ) ? 'legacy' :
                   'modern'
                 ) + '.css',
-    g_isSecure = location.href.indexOf( 'https' ) === 0,
-    g_assetUrl, g_isMobile,
-    g_useMobile = g_Gecko < 0.9 || ua.NDS || ua.NDSi || ua.N3DS || ua.New3DS || ua.PSP || ua.PSVita || ua.PSPGo,
+    p_isSecure = location.href.indexOf( 'https' ) === 0,
 
-    g_DebugLogger = { log : function(){} },
-
-    g_setTimer    , g_clearTimer,
-    g_setLoopTimer, g_clearLoopTimer,
+    p_scripts, p_assetUrl, p_isMobile,
+    p_useMobile = p_Gecko < 0.9 || ua.NDS || ua.NDSi || ua.N3DS || ua.New3DS || ua.PSP || ua.PSVita || ua.PSPGo,
     
-    g_listenLoadEvent,
-    g_listenUnloadEvent,
-    g_listenResizeEvent,
-    g_listenScrollEvent,
-    g_listenPrintEvent,
-    g_listenCssAvailabilityChange,
-    g_listenImageReady,
-    g_listenPrefersColorChange,
-    g_listenHighContrustModeChange,
+    p_iefilterEnabled,
+    p_imageEnabled,
+    p_generatedContentEnabled,
 
-    // nodeCleaner もアクセスするので packageGlobal に公開する
-    g_loadEventCallbacks = [],
-
-    g_cssAvailability,
-    g_highContrastModeState = 0,
-    g_printEventDisabled,
+    p_cssTransformName =
+        p_notUndefined( p_style[ 'transform' ] ) ? 'transform' : 
+        p_notUndefined( p_style[ '-o-transform' ] ) ? '-o-transform' : 
+        p_notUndefined( p_style[ '-ms-transform' ] ) ? '-ms-transform' : 
+        p_notUndefined( p_style[ '-moz-transform' ] ) ? '-moz-transform' : 
+        p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
     
-    g_iefilterEnabled,
-    g_imageEnabled,
-    g_generatedContentEnabled,
+    p_dataUriTest,
+    p_imageTest,
+    p_webFontTest;
 
-    g_cssTransformName =
-        g_notUndefined( g_style[ 'transform' ] ) ? 'transform' : 
-        g_notUndefined( g_style[ '-o-transform' ] ) ? '-o-transform' : 
-        g_notUndefined( g_style[ '-ms-transform' ] ) ? '-ms-transform' : 
-        g_notUndefined( g_style[ '-moz-transform' ] ) ? '-moz-transform' : 
-        g_notUndefined( g_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
-    
-    g_dataUriTest,
-    g_imageTest,
-    g_webFontTest;
-
-function g_notUndefined( val ){
+function p_notUndefined( val ){
     return val !== undefined;
 };
-
-    g_assetUrl = g_scripts[ g_scripts.length - 1 ].src.split( '/' ); // IE7- では要素に書いてある内容. それ以外は absolute URL.
-    --g_assetUrl.length;
-    g_assetUrl = g_assetUrl.join( '/' ); // "http://127.0.0.1:8020/public/"
-
-    if( g_assetUrl ){
-        g_assetUrl += '/'; // '.' -> './'
-    // } else {
-        // g_assetUrl = './';
-    };

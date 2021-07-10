@@ -1,9 +1,18 @@
+/** ===========================================================================
+ * export to packageGlobal
+ */
+ p_DOM_setStyle    = DOM_setStyle,
+ p_DOM_setCssText  = DOM_setCssText
+ 
+/** ===========================================================================
+ * private
+ */
 function DOM_setStyle( elm, name, value ){
     elm.style[ name ] = value;
 };
 
 function DOM_setCssText( elm, cssText ){
-    if( g_Presto < 9 ){
+    if( p_Presto < 9 ){
         if( cssText ){
             var styles = cssText.split( ';' ),
                 style, nameAndValue;

@@ -7,7 +7,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_imageTest = imageTest;
+p_imageTest = imageTest;
 
 /** ===========================================================================
  * private
@@ -28,41 +28,41 @@ function imageTest( callback, imageUrl ){ // callback, url,
     var img = new Image(),
         finish, counter = 99;
 
-    g_DebugLogger.log( '[imageTest] start.' );
+    Debug.log( '[imageTest] start.' );
 
     img.onerror = imageTest_onError;
     img.onload  = imageTest_onLoad;
     img.src     = imageUrl;
 
-    g_setTimer( imageTest_check );
+    p_setTimer( imageTest_check );
 
     function imageTest_check(){
         if( finish || !counter || img.complete ){
-            g_DebugLogger.log( '[imageTest] timer -> img.complete. img.width=' + img.width );
+            Debug.log( '[imageTest] timer -> img.complete. img.width=' + img.width );
             
             var result = !!img.width;
-            g_imageEnabled = g_imageEnabled || result;
-            g_setTimer( callback, result );
-            img.onerror = img.onload = g_emptyFunction;
+            p_imageEnabled = p_imageEnabled || result;
+            p_setTimer( callback, result );
+            img.onerror = img.onload = p_emptyFunction;
             img = callback = null;
         } else {
             --counter;
             // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
-            // g_DebugLogger.log( '[imageTest] timer -> img.complete=false.' );
-            g_setTimer( imageTest_check );
+            // Debug.log( '[imageTest] timer -> img.complete=false.' );
+            p_setTimer( imageTest_check );
         };
     };
 
     function imageTest_onError(){
-        // var errorFix = !g_Trident || g_Trident === 11 || g_IEVersion === 11;
+        // var errorFix = !p_Trident || p_Trident === 11 || p_IEVersion === 11;
         // ie11(10,9 開発モード)で mineType 不正の場合、画像取得に成功してもエラーイベントが起こるのを無視する。
         // if( errorFix && img.width ) return;
-        g_DebugLogger.log( '[imageTest] error!' );
+        Debug.log( '[imageTest] error!' );
         finish = true;
     };
 
     function imageTest_onLoad(){
-        g_DebugLogger.log( '[imageTest] onload.' );
+        Debug.log( '[imageTest] onload.' );
         finish = true;
     };
 };

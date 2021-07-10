@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenPrintEvent = function( callback ){
+p_listenPrintEvent = function( callback ){
     Event_printEventCallbacks.push( callback );
 };
 
@@ -18,9 +18,9 @@ if( window.onbeforeprint ){
     onafterprint  = function(){
         Event_dispatch( Event_printEventCallbacks, false );
     };
-    g_listenUnloadEvent(
+    p_listenUnloadEvent(
         function(){
-            onbeforeprint = onafterprint = g_emptyFunction;
+            onbeforeprint = onafterprint = p_emptyFunction;
         }
     );
 } else if( Event_matchMedia ){
@@ -30,5 +30,5 @@ if( window.onbeforeprint ){
         }
     );
 } else {
-    g_printEventDisabled = true;
+    p_printEventDisabled = true;
 };

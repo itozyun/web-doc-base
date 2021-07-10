@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenScrollEvent = function( callback ){
+p_listenScrollEvent = function( callback ){
     Event_scrollEventCallbacks.push( callback );
 };
 
@@ -23,14 +23,14 @@ onscroll = function( e ){
     return ret;
 };
 
-if( g_Gecko < 1 || ( 1.2 <= g_Gecko && g_Gecko < 1.8 ) || g_Presto <= 7.2 ){
-    LoopTimer_set(
+if( p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2 ){
+    p_setLoopTimer(
         function(){
-            var scrollY = window.scrollY || g_body.scrollTop;
+            var scrollY = window.scrollY || p_body.scrollTop;
 
             if( Event_lastScrollY !== scrollY ){
                 // Gecko 0.9.4.1 scroll event 無し!
-                // document.title = window.pageYOffset || g_body.scrollTop || 'scroll';
+                // document.title = window.pageYOffset || p_body.scrollTop || 'scroll';
                 Event_lastScrollY = scrollY;
                 onscroll();
             };
@@ -38,8 +38,8 @@ if( g_Gecko < 1 || ( 1.2 <= g_Gecko && g_Gecko < 1.8 ) || g_Presto <= 7.2 ){
     );
 };
 
-g_listenUnloadEvent(
+p_listenUnloadEvent(
     function(){
-        onscroll = Event_tempOnScroll = g_emptyFunction;
+        onscroll = Event_tempOnScroll = p_emptyFunction;
     }
 );

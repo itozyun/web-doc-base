@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-g_listenResizeEvent = function( callback ){
+p_listenResizeEvent = function( callback ){
     Event_resizeEventCallbacks.push( callback );
 };
 
@@ -26,8 +26,8 @@ onresize = function( e ){
 
 function Event_resetTimer(){
     if( Event_resizeTimerID ){
-        g_clearTimer( Event_resizeTimerID );
-        Event_resizeTimerID = g_setTimer( Event_resizeEventLazyCallback );
+        p_clearTimer( Event_resizeTimerID );
+        Event_resizeTimerID = p_setTimer( Event_resizeEventLazyCallback );
     };
 };
 
@@ -36,9 +36,9 @@ function Event_resizeEventLazyCallback(){
     Event_dispatch( Event_resizeEventCallbacks );
 };
 
-g_listenUnloadEvent(
+p_listenUnloadEvent(
     function(){
         if( Event_resizeTimerID ) clearTimeout( Event_resizeTimerID );
-        onresize = Event_tempOnResize = g_emptyFunction;
+        onresize = Event_tempOnResize = p_emptyFunction;
     }
 );

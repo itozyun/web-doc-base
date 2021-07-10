@@ -3,27 +3,27 @@ var PICA_THUMBNAIL_IMGS      = [],
     PICA_THUMBNAIL_MARGIN_LR = 4, // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
     PICA_THUMBNAIL_safariPreventDefault;
 
-if( !g_ServerSideRendering ){
-    g_listenLoadEvent(
+if( !p_ServerSideRendering ){
+    p_listenLoadEvent(
         function(){
-            var links = DOM_getElementsByTagName( 'A', g_elmMain ),
+            var links = p_DOM_getElementsByTagName( p_elmMain, 'A' ),
                 i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
 
             for( ; elmA = links[ ++i ]; ){
-                if( !DOM_hasClassName( elmA, 'img-disabled' ) ){
-                    elmImg = DOM_getChildren( elmA ).length === 1 && DOM_getChildren( elmA )[ 0 ];
-                    tag    = elmImg && DOM_getTagName( elmImg );
+                if( !p_DOM_hasClassName( elmA, 'img-disabled' ) ){
+                    elmImg = p_DOM_getChildren( elmA ).length === 1 && p_DOM_getChildren( elmA )[ 0 ];
+                    tag    = elmImg && p_DOM_getTagName( elmImg );
                     if( tag === 'IMG' ){
-                        href = DOM_getAttribute( elmA, 'href' );
+                        href = p_DOM_getAttribute( elmA, 'href' );
                         ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
                         ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
                         if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
                             elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
                             elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
                             // Opera 7.x : elmImg.style.width への setter で float が解除される
-                            thumbWidth     = g_Presto < 8 ? '' : ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
-                            DOM_setStyle( elmImg, 'width', thumbWidth );
-                            DOM_addClassName( elmA, 'jsPica' );
+                            thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
+                            p_DOM_setStyle( elmImg, 'width', thumbWidth );
+                            p_DOM_addClassName( elmA, 'jsPica' );
                             PICA_THUMBNAIL_IMGS.push( {
                                 elmA        : elmA,
                                 thumbUrl    : elmImg.src,
@@ -42,8 +42,8 @@ if( !g_ServerSideRendering ){
         }
     );
 
-    if( g_WebKit < 525.13 ){ // Safari <3
-        g_html.onclick = function( e ){
+    if( p_WebKit < 525.13 ){ // Safari <3
+        p_html.onclick = function( e ){
             if( PICA_THUMBNAIL_safariPreventDefault ){
                 PICA_THUMBNAIL_safariPreventDefault = false;
                 e.preventDefault();
@@ -52,15 +52,15 @@ if( !g_ServerSideRendering ){
         };
     };
 
-    g_listenUnloadEvent(
+    p_listenUnloadEvent(
         function(){
             var i = -1, obj;
             
             for( ; obj = PICA_THUMBNAIL_IMGS[ ++i ]; ){
-                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = g_emptyFunction;
+                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = p_emptyFunction;
                 obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = null;
             };
-            g_html.onclick = g_emptyFunction;
+            p_html.onclick = p_emptyFunction;
         }
     );
 };
@@ -83,25 +83,25 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                 
                 if( obj.replaced ){
                     // Large -> small
-                    DOM_setStyle( elmImg, 'width', obj.thumbWidth );
+                    p_DOM_setStyle( elmImg, 'width', obj.thumbWidth );
                     elmImg.src = obj.thumbUrl;
-                    DOM_setClassName( elmA, obj.clazz );
+                    p_DOM_setClassName( elmA, obj.clazz );
                     if( elmCap = obj.elmCap ){
-                        DOM_setCssText( elmCap, obj.captionCSS );
-                        DOM_setClassName( elmCap, 'caption jsCap' );
+                        p_DOM_setCssText( elmCap, obj.captionCSS );
+                        p_DOM_setClassName( elmCap, 'caption jsCap' );
                     };
                 } else {
                     // small -> Large
                     if( src = obj.originalUrl ){
                         delete obj.originalUrl;
                         
-                        while( parent = DOM_getParentElement( parent ) ){
-                            if( DOM_hasClassName( parent, 'caption' ) ){
+                        while( parent = p_DOM_getParentNode( parent ) ){
+                            if( p_DOM_hasClassName( parent, 'caption' ) ){
                                 obj.elmCap     = parent;
                                 obj.captionCSS = parent.style.cssText;
-                                DOM_addClassName( parent, 'jsCap' );
+                                p_DOM_addClassName( parent, 'jsCap' );
                             } else {
-                                tag = DOM_getTagName( parent );
+                                tag = p_DOM_getTagName( parent );
                                 if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
                             };
                         };
@@ -125,13 +125,13 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
                         obj.large = src;
                     };
                     
-                    obj.clazz = c = DOM_getClassName( elmA );
-                    DOM_addClassName( elmA, 'jsPicaLarge' );
-                    DOM_setStyle( elmImg, 'width', '' );
+                    obj.clazz = c = p_DOM_getClassName( elmA );
+                    p_DOM_addClassName( elmA, 'jsPicaLarge' );
+                    p_DOM_setStyle( elmImg, 'width', '' );
                     elmImg.src = obj.large;
                     if( elmCap = obj.elmCap ){
-                        DOM_setCssText( elmCap, '' );
-                        DOM_addClassName( elmCap, 'jsCapLarge' );
+                        p_DOM_setCssText( elmCap, '' );
+                        p_DOM_addClassName( elmCap, 'jsCapLarge' );
                     };
                 };
 
