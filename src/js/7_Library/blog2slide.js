@@ -17,14 +17,14 @@ p_listenLoadEvent(
                                  0,
             elmContainer;
 
-        // Trident が msRequestFullscreen をサポートするのは 11+
-        // Gecko が mozRequestFullscreen をサポートするのは 9+
-        // Chrome が webkitRequestFullscreen をサポートするのは 15+
-        // Safari が webkitRequestFullscreen をサポートするのは 6+
-        // Samsung が webkitRequestFullscreen をサポートするのは 4+
-        blog2slide_requestFullscreen = elmButtonContainer.requestFullscreen    || elmButtonContainer.webkitRequestFullscreen ||
-                                       elmButtonContainer.mozRequestFullscreen || elmButtonContainer.msRequestFullscreen;
         if( elmButtonContainer ){
+            // Trident が msRequestFullscreen をサポートするのは 11+
+            // Gecko が mozRequestFullscreen をサポートするのは 9+
+            // Chrome が webkitRequestFullscreen をサポートするのは 15+
+            // Safari が webkitRequestFullscreen をサポートするのは 6+
+            // Samsung が webkitRequestFullscreen をサポートするのは 4+
+            blog2slide_requestFullscreen = elmButtonContainer.requestFullscreen    || elmButtonContainer.webkitRequestFullscreen ||
+                                           elmButtonContainer.mozRequestFullscreen || elmButtonContainer.msRequestFullscreen;            
             if( prefix !== 0 || blog2slide_requestFullscreen ){
                 elmButtonContainer.innerHTML = '<button class="btn">スライドを開始する</button>';
                 elmButtonContainer.firstChild.onclick = blog2slide_onStartButtonClick;
@@ -40,7 +40,7 @@ p_listenLoadEvent(
                 if( prefix !== 0 ){
                     document[ 'on' + prefix + 'fullscreenchange' ] = blog2slide_onFullscreenChange;
                 } else if( p_Trident ){
-                    document.addEventListener( 'MSFullscreenChange', blog2slide_onFullscreenChange, false );
+                    p_DOM_addEventListener( document, 'MSFullscreenChange', blog2slide_onFullscreenChange, false );
                 } else {
                     // Gecko が onmozfullscreenchange をサポートするのは 10+
                     // Chrome が onwebkitfullscreenchange をサポートするのは 45+
