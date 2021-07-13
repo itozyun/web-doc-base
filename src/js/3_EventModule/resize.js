@@ -8,10 +8,16 @@ p_listenResizeEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-var Event_resizeEventCallbacks = [],
-    Event_tempOnResize         = window.onresize,
-    Event_resizeTimerID;
+/** @type {Array<Function>} */
+var Event_resizeEventCallbacks = [];
+/** @type {Function|null} */
+var Event_tempOnResize         = window.onresize;
+var Event_resizeTimerID;
 
+/**
+ * @param {Event=} e
+ * @return {*}
+ */
 onresize = function( e ){
     var ret;
 

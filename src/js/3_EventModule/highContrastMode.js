@@ -14,8 +14,9 @@ p_listenHighContrustModeChange = function( callback ){
  *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
  *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
  */
-var Event_highContrastMode_callbacks = [],
-    Event_highContrastMode_timerID,
+/** @type {Array<Function>} */
+var Event_highContrastMode_callbacks = [];
+var Event_highContrastMode_timerID,
     Event_highContrastMode_isHighContrust,
     Event_highContrastMode_isBlackOnWhite,
     Event_highContrastMode_isWhiteOnBlack,

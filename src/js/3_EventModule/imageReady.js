@@ -8,12 +8,11 @@ p_listenImageReady = function( callback ){
 /** ===========================================================================
  * private
  */
+/** @type {Array<Function>} */
 var Event_imagereadyCallbacks = [];
 
 p_listenLoadEvent(
     function(){
-        "use strict";
-
         var imgs = document.images || p_DOM_getElementsByTagNameFromDocument( 'img' ), // for NN9 ??,
             i    = imgs.length,
             img, result;

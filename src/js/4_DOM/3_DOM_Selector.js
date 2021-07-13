@@ -15,7 +15,7 @@ p_head = DOM_getElementsByTagNameFromDocument( 'head' )[ 0 ];
  */
 
 /** 1.
- * @param {string} tag
+ * @param {string} id
  * @return {Element}
  */
 function DOM_getElementById( id ){

@@ -31,7 +31,7 @@ var _wdb_ontimer;
 var _wdb_onlooptimer;
 
 /**
- * @type {?function(!Event)|null}
+ * @type {?function(!Event=)|null}
  */
 function onload(){};
 
@@ -41,7 +41,7 @@ function onload(){};
 function onunload(){};
 
 /**
- * @type {?function(!Event)|null}
+ * @type {?function(!Event=)|null}
  */
 function onscroll(){};
 

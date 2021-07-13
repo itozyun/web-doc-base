@@ -51,7 +51,9 @@ function DOM_getChildNodes( elm ){
     while( i ){
         node = childNodes[ --i ];
         if( hasChildren || node.nodeType === 1 ){
-            result[ ++j ] = node;
+            if( !m_isIE4DOM || node.tagName !== 'FONT' ){
+                result[ ++j ] = node;
+            };
         };
     };
     return result;

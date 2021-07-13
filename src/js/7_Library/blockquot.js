@@ -8,8 +8,6 @@
 */
 p_listenLoadEvent(
     function( e ){
-        "use strict";
-
         var elmTargets = p_DOM_getElementsByTagName( p_elmMain, 'blockquote' ),
             elm, i = -1, title, cite;
 

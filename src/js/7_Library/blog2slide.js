@@ -10,9 +10,9 @@ var blog2slide_requestFullscreen,
 p_listenLoadEvent(
     function(){
         var elmButtonContainer = p_DOM_getElementById( 'blog2slide-start' ),
-            prefix             = p_notUndefined( document.onfullscreenchange       ) ? '' :
-                                 p_notUndefined( document.onmozfullscreenchange    ) ? 'moz' :
-                                 p_notUndefined( document.onwebkitfullscreenchange ) ? 'webkit' :
+            prefix             = p_notUndefined( document.onfullscreenchange       ) ? 'f' :
+                                 p_notUndefined( document.onmozfullscreenchange    ) ? 'mozF' :
+                                 p_notUndefined( document.onwebkitfullscreenchange ) ? 'webkitF' :
                                  // p_notUndefined( document.onmsfullscreenchange     ) ? 'ms' :
                                  0,
             elmContainer;
@@ -27,7 +27,7 @@ p_listenLoadEvent(
                                            elmButtonContainer.mozRequestFullscreen || elmButtonContainer.msRequestFullscreen;            
             if( prefix !== 0 || blog2slide_requestFullscreen ){
                 elmButtonContainer.innerHTML = '<button class="btn">スライドを開始する</button>';
-                elmButtonContainer.firstChild.onclick = blog2slide_onStartButtonClick;
+                p_DOM_addEventListener( elmButtonContainer.firstChild, 'click', blog2slide_onStartButtonClick );
 
                 elmContainer         = p_DOM_getParentNode( elmButtonContainer );
                 blog2slide_elmRoot   = p_DOM_getParentNode( elmContainer );
@@ -38,7 +38,7 @@ p_listenLoadEvent(
                 blog2slide_elmSlides.splice( 0, 0, blog2slide_elmH1 );
 
                 if( prefix !== 0 ){
-                    document[ 'on' + prefix + 'fullscreenchange' ] = blog2slide_onFullscreenChange;
+                    p_DOM_addEventListener( document, prefix + 'ullscreenchange', blog2slide_onFullscreenChange );
                 } else if( p_Trident ){
                     p_DOM_addEventListener( document, 'MSFullscreenChange', blog2slide_onFullscreenChange, false );
                 } else {

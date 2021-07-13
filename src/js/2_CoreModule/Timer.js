@@ -6,27 +6,29 @@ p_clearTimer = Timer_clear;
 
 _p_Timer_reset = Timer_reset;
 _p_Timer_remove = Timer_remove;
+
 /** ===========================================================================
  * private
  */
-var TIMERS = [],
-    TIMER_INTERVAL = 64,
+/** @type {Array<Object>} */
+var TIMER_LISTENERS = [];
+var TIMER_INTERVAL = 64,
     timerUID = 0,
     timerClearID;
 
 function Timer_on(){
     var cb, i = 0, t = ( new Date - 0 );
 
-    while( i < TIMERS.length ){
-        if( t < TIMERS[ 0 ].t ){
+    while( i < TIMER_LISTENERS.length ){
+        if( t < TIMER_LISTENERS[ 0 ].t ){
             ++i;
             continue;
         };
-        cb = TIMERS.splice( i, 1 )[ 0 ];
+        cb = TIMER_LISTENERS.splice( i, 1 )[ 0 ];
         cb.f( cb.p );
     };
 
-    if( TIMERS.length ){
+    if( TIMER_LISTENERS.length ){
         timerClearID = setTimeout( Timer_on, TIMER_INTERVAL );
     } else {
         timerClearID = 0;
@@ -45,10 +47,10 @@ if( p_Trident < 5 || p_Tasman ){
  * @return {number}
  */
 function Timer_set( callback, opt_param, opt_intervalMs ){
-    if( !TIMERS.length ){
+    if( !TIMER_LISTENERS.length ){
         timerClearID = setTimeout( Timer_on, TIMER_INTERVAL );
     };
-    TIMERS.push( {
+    TIMER_LISTENERS.push( {
         f    : callback,
         p    : opt_param,
         _uid : ++timerUID,
@@ -63,11 +65,11 @@ function Timer_set( callback, opt_param, opt_intervalMs ){
  * @return {number}
  */
 function Timer_clear( uid ){
-    var i = TIMERS.length, cb;
+    var i = TIMER_LISTENERS.length, cb;
 
-    while( cb = TIMERS[ --i ] ){
+    while( cb = TIMER_LISTENERS[ --i ] ){
         if( cb._uid === uid ){
-            TIMERS.splice( i, 1 );
+            TIMER_LISTENERS.splice( i, 1 );
             break;
         };
     };

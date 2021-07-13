@@ -8,6 +8,7 @@ p_listenPrefersColorChange = function( callback ){
 /** ===========================================================================
  * private
  */
+/** @type {Array<Function>} */
 var Event_prefersColorChangeEventCallbacks = []; 
 
 if( Event_matchMedia ){

@@ -8,6 +8,7 @@ p_listenPrintEvent = function( callback ){
 /** ===========================================================================
  * private
  */
+/** @type {Array<Function>} */
 var Event_printEventCallbacks = [];
 
 // https://developer.mozilla.org/ja/docs/Web/API/WindowEventHandlers/onbeforeprint

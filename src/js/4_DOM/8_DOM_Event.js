@@ -9,34 +9,62 @@ p_DOM_removeEventListener = DOM_removeEventListener;
 /** ===========================================================================
  * private
  */
-var DOM_EVENT_LISTENERS = {};
+/** @type {Object<string, Object>} */
+var DOM_EVENT_LISTENERS    = {};
 
+var DOM_EVENT_USE_ATTACH   = 5 <= p_Trident && p_Trident < 9,
+    DOM_EVENT_USE_STANDERD = !p_Tasman && window.addEventListener;
+
+/** 1.
+ * @param {EventTarget} eventTarget
+ * @param {string} type
+ * @param {Function} callback
+ * @param {Object|boolean=} option
+ */
 function DOM_addEventListener( eventTarget, type, callback, option ){
-    if( p_Trident < 5 || p_Tasman ){
-        eventTarget[ 'on' + type ] = _DOM_dispatch;
-        var hash = { eventTarget : eventTarget, cb : callback };
+    if( DOM_EVENT_USE_ATTACH ){
+        eventTarget.attachEvent( 'on' + type, callback );
+    } else if( DOM_EVENT_USE_STANDERD ){
+        eventTarget.addEventListener( type, callback,
+            option ? ( p_passiveSupported ? option : option.capture ) : false );
+    } else {
+        var hash = { eventTarget : eventTarget, callback : callback },
+            eventListners = DOM_EVENT_LISTENERS[ type ],
+            i = eventListners.length, _hash;
 
-        if( DOM_EVENT_LISTENERS[ type ] ){
+        if( eventListners ){
+            while( _hash = eventListners[ --i ] ){
+                if( _hash.eventTarget === eventTarget && _hash.callback === callback ){
+                    return;
+                };
+            };
             DOM_EVENT_LISTENERS[ type ].push( hash );
         } else {
             DOM_EVENT_LISTENERS[ type ] = [ hash ];
         };
-    } else if( p_Trident < 9 ){
-        eventTarget.attachEvent( 'on' + type, callback );
-    } else {
-        eventTarget.addEventListener( type, callback,
-            option ? ( p_passiveSupported ? option : option.capture ) : false );
+        eventTarget[ 'on' + type ] = _DOM_dispatch;
     };
 };
 
+/** 2.
+ * @param {EventTarget} eventTarget
+ * @param {string} type
+ * @param {Function} callback
+ * @param {Object|boolean=} option
+ */
 function DOM_removeEventListener( eventTarget, type, callback, option ){
-    if( p_Trident < 5 || p_Tasman ){
+    if( DOM_EVENT_USE_ATTACH ){
+        eventTarget.detachEvent( 'on' + type, callback );
+    } else if( DOM_EVENT_USE_STANDERD ){
+        eventTarget.removeEventListener( type, callback,
+            option ? ( p_passiveSupported ? option : option.capture ) : false );
+    } else {
         var eventListners = DOM_EVENT_LISTENERS[ type ],
             i = eventListners.length, hash, skip;
 
         while( hash = eventListners[ --i ] ){
             if( hash.eventTarget === eventTarget ){
-                if( hash.cb === callback ){
+                if( hash.callback === callback ){
                     eventListners.splice( i, 1 );
                 } else {
                     skip = true;
@@ -46,11 +74,6 @@ function DOM_removeEventListener( eventTarget, type, callback, option ){
         if( !skip ){
             eventTarget[ 'on' + type ] = p_emptyFunction;
         };
-    } else if( p_Trident < 9 ){
-        eventTarget.detachEvent( 'on' + type, callback );
-    } else {
-        eventTarget.removeEventListener( type, callback,
-            option ? ( p_passiveSupported ? option : option.capture ) : false );
     };
 };
 
@@ -63,7 +86,7 @@ function DOM_removeEventListener( eventTarget, type, callback, option ){
         
         while( hash = eventListners[ ++i ] ){
             if( hash.eventTarget === eventTarget ){
-                hash.cb( e );
+                hash.callback( e );
             };
         };
     };

@@ -6,19 +6,22 @@ p_clearLoopTimer = LoopTimer_clear;
 
 _p_LoopTimer_reset  = LoopTimer_reset;
 _p_LoopTimer_remove = LoopTimer_remove;
+
 /** ===========================================================================
  * private
  */
-var LOOP_TIMERS = [],
-    LOOP_TIMER_INTERVAL = 999,
+/** @type {Array<Object>} */
+var LOOP_LISTENERS = [];
+
+var LOOP_INTERVAL = 999,
     loopTimerUID = 0,
     loopTimerClearID;
 
 function LoopTimer_on(){
     var cb, i = 0;
 
-    for( ; i < LOOP_TIMERS.length; ++i ){
-        cb = LOOP_TIMERS[ i ];
+    for( ; i < LOOP_LISTENERS.length; ++i ){
+        cb = LOOP_LISTENERS[ i ];
         cb.f();
     };
 };
@@ -33,10 +36,10 @@ if( p_Trident < 5 || p_Tasman ){
  * @return {number}
  */
 function LoopTimer_set( callback ){
-    if( !LOOP_TIMERS.length ){
-        loopTimerClearID = setInterval( LoopTimer_on, LOOP_TIMER_INTERVAL );
+    if( !LOOP_LISTENERS.length ){
+        loopTimerClearID = setInterval( LoopTimer_on, LOOP_INTERVAL );
     };
-    LOOP_TIMERS.push( {
+    LOOP_LISTENERS.push( {
         f    : callback,
         _uid : ++loopTimerUID
     } );
@@ -49,12 +52,12 @@ function LoopTimer_set( callback ){
  * @return {number}
  */
 function LoopTimer_clear( uid ){
-    var i = LOOP_TIMERS.length, cb;
+    var i = LOOP_LISTENERS.length, cb;
 
-    while( cb = LOOP_TIMERS[ --i ] ){
+    while( cb = LOOP_LISTENERS[ --i ] ){
         if( cb._uid === uid ){
-            LOOP_TIMERS.splice( i, 1 );
-            if( !LOOP_TIMERS[ 0 ] ){
+            LOOP_LISTENERS.splice( i, 1 );
+            if( !LOOP_LISTENERS[ 0 ] ){
                 LoopTimer_remove();
             };
             break;
@@ -66,7 +69,7 @@ function LoopTimer_clear( uid ){
 function LoopTimer_reset(){
     if( loopTimerClearID ){
         LoopTimer_remove();
-        loopTimerClearID = setInterval( LoopTimer_on, LOOP_TIMER_INTERVAL );
+        loopTimerClearID = setInterval( LoopTimer_on, LOOP_INTERVAL );
     };
 };
 

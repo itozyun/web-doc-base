@@ -19,5 +19,6 @@ if( p_IEVersion === 11 && p_Trident === 5 ){
             type : 'text/css'
         }
     );
+    // document.createStyleSheet( p_assetUrl + p_cssName );
     // p_head.appendChild( document.createElement( '<link href="' + p_assetUrl + p_cssName + '" rel=stylesheet type="text/css">' ) );
 };

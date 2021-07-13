@@ -1,4 +1,3 @@
-"use strict";
 var PICA_THUMBNAIL_IMGS      = [],
     PICA_THUMBNAIL_MARGIN_LR = 4, // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
     PICA_THUMBNAIL_safariPreventDefault;
@@ -18,8 +17,9 @@ if( !p_ServerSideRendering ){
                         ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
                         ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
                         if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
-                            elmA.onkeydown = elmImg.onclick = PICA_THUMBNAIL_onClickThumbnail;
-                            elmA.onclick   = PICA_THUMBNAIL_onClickAnchor;
+                            p_DOM_addEventListener( elmA  , 'keydown', PICA_THUMBNAIL_onClickThumbnail );
+                            p_DOM_addEventListener( elmImg, 'click', PICA_THUMBNAIL_onClickThumbnail );
+                            p_DOM_addEventListener( elmA  , 'click', PICA_THUMBNAIL_onClickAnchor );
                             // Opera 7.x : elmImg.style.width への setter で float が解除される
                             thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PICA_THUMBNAIL_MARGIN_LR ) + 'px';
                             p_DOM_setStyle( elmImg, 'width', thumbWidth );
@@ -57,8 +57,9 @@ if( !p_ServerSideRendering ){
             var i = -1, obj;
             
             for( ; obj = PICA_THUMBNAIL_IMGS[ ++i ]; ){
-                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = p_emptyFunction;
-                obj.elmA.onkeydown = obj.elmA.onclick = obj.elmImg.onclick = null;
+                p_DOM_removeEventListener( obj.elmA  , 'keydown', PICA_THUMBNAIL_onClickThumbnail );
+                p_DOM_removeEventListener( obj.elmImg, 'click'  , PICA_THUMBNAIL_onClickThumbnail );
+                p_DOM_removeEventListener( obj.elmA  , 'click'  , PICA_THUMBNAIL_onClickAnchor );
             };
             p_html.onclick = p_emptyFunction;
         }

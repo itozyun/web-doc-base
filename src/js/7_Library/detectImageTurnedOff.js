@@ -1,7 +1,5 @@
 p_listenImageReady(
     function( result ){
-        "use strict";
-
         var imgElement = result.img,
             imgReady   = result.imgReady,
             parent     = p_DOM_getParentNode( imgElement );

@@ -8,10 +8,17 @@ p_listenScrollEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-var Event_scrollEventCallbacks = [],
-    Event_tempOnScroll         = window.onscroll,
-    Event_lastScrollY          = 0;
+/** @type {Array<Function>} */
+var Event_scrollEventCallbacks = [];
 
+/** @type {Function|null} */
+var Event_tempOnScroll         = window.onscroll;
+var Event_lastScrollY          = 0;
+
+/**
+ * @param {Event=} e
+ * @return {*}
+ */
 onscroll = function( e ){
     var ret;
 

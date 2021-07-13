@@ -1,4 +1,3 @@
-"use strict";
 p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
         p_elmMain = p_DOM_getElementById( WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID );

@@ -121,7 +121,7 @@ gulp.task('js', gulp.series(
                     './src/js/**/*.js',
                     '!./src/js/3_EventModule/prefersColor.js',
                     '!./src/js/3_EventModule/print.js',
-                    '!./src/js/6_CanUse/generatedContent.js',
+                    '!./src/js/6_CanUse/cssGeneratedContent.js',
                     '!./src/js/6_CanUse/dataUriTest.js',
                     '!./src/js/6_CanUse/webfontTest.js',
                     '!./src/js/graph/**/*.js',
@@ -130,7 +130,7 @@ gulp.task('js', gulp.series(
             ).pipe(
                 gulpDPZ(
                     {
-                        packageGlobalArgs : [ 'ua,window,emptyFunction,' + globalVariables + ',undefined', 'ua,this,new Function,' + globalVariables + ',void 0' ],
+                        packageGlobalArgs : [ 'ua,window,emptyFunction,' + globalVariables + ',undefined', 'ua,this,function(){},' + globalVariables + ',void 0' ],
                         basePath          : './src/js/'
                     }
                 )

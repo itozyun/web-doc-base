@@ -33,7 +33,11 @@ function m_toHTMLString( tagName, attrs, textContent ){
     html[ ++j ] = '>';
 
     if( textContent != null ){
-        html[ ++j ] = textContent;
+        if( m_isIE4DOM && tagName !== 'font' ){
+            html[ ++j ] = '<FONT>' + textContent + '</FONT>';
+        } else {
+            html[ ++j ] = textContent;
+        };
     };
 
     html[ ++j ] = '</' + tagName + '>';
