@@ -25,11 +25,27 @@ function DOM_getElementById( id ){
 
 /** 2.
  * @param {string} tag
- * @param {HTMLDocument|Element|?=} opt_root MS DOM のメソッドを使う際は ? を追加。
  * @return {Array}
  */
-function DOM_getElementsByTagNameFromDocument( tag, opt_root ){
-    var root = opt_root || document,
+function DOM_getElementsByTagNameFromDocument( tag ){
+    return DOM_getElementsByTagName( document, tag );
+};
+
+/** 3.
+ * @param {string} className
+ * @return {Array}
+ */
+function DOM_getElementsByClassNameFromDocument( className ){
+    return DOM_getElementsByClassName( document, className );
+};
+
+/** 4.
+ * @param {Element|Document} rootElementOrDocument
+ * @param {string} tag
+ * @return {Array}
+ */
+function DOM_getElementsByTagName( rootElementOrDocument, tag ){
+    var root = rootElementOrDocument,
         elms = ( tag !== '*' && !m_isIE4DOM ) ?
                    root.getElementsByTagName( tag ) :
                tag !== '*' ? root.all.tags( tag.toUpperCase() ) :
@@ -43,14 +59,14 @@ function DOM_getElementsByTagNameFromDocument( tag, opt_root ){
     return ret;
 };
 
-/** 3.
+/** 5.
+ * @param {Element|Document} rootElementOrDocument
  * @param {string} className
- * @param {HTMLDocument|Element|?=} opt_root MS DOM のメソッドを使う際は ? を追加。
  * @return {Array}
  */
-function DOM_getElementsByClassNameFromDocument( className, opt_root ){
-    var root = opt_root || document,
-        ret = [], hasMethod, elms, i = 0, l, elm, j = -1;
+function DOM_getElementsByClassName( rootElementOrDocument, className ){
+    var root = rootElementOrDocument,
+        ret  = [], hasMethod, elms, i = 0, l, elm, j = -1;
 
     if( !( p_Trident < 9 ) && root.getElementsByClassName ){
         hasMethod = true;
@@ -61,27 +77,9 @@ function DOM_getElementsByClassNameFromDocument( className, opt_root ){
 
     for( l = elms.length; i < l; ++i ){
         elm = elms[ i ];
-        if( hasMethod || DOM_hasClassName( elm, className ) ){
+        if( hasMethod || ( m_isIE4DOM || elm.nodeType === 1 ) && DOM_hasClassName( elm, className ) ){
             ret[ ++j ] = elm;
         };
     };
     return ret;
-};
-
-/** 4.
- * @param {Element} elm
- * @param {string} tag
- * @return {Array}
- */
-function DOM_getElementsByTagName( elm, tag ){
-    return DOM_getElementsByTagNameFromDocument( tag, elm );
-};
-
-/** 5.
- * @param {Element} elm
- * @param {string} tag
- * @return {Array}
- */
-function DOM_getElementsByClassName( elm, tag ){
-    return DOM_getElementsByClassNameFromDocument( tag, elm );
 };

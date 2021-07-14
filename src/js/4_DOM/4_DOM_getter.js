@@ -22,7 +22,7 @@
 };
 
 /** 2.
- * @param {Element} elm
+ * @param {Node} elm
  * @return {Array.<Node>}
  */
 function DOM_getChildNodes( elm ){
@@ -38,7 +38,7 @@ function DOM_getChildNodes( elm ){
 
 /** 3.
  * @param {Element} elm
- * @return {Array.<Element>}
+ * @return {Array.<Node>}
  */
  function DOM_getChildren( elm ){
     var hasChildren = !!elm.children,
