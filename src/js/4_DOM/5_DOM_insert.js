@@ -48,20 +48,22 @@ var DOM_nonStandardElementCreation   = p_Trident < 9,
         if( attrs && !DOM_nonStandardElementCreation ){
             for( name in attrs ){
                 value = attrs[ name ];
-                switch( name ){
-                    case 'class' :
-                    case 'className' :
-                        p_DOM_setClassName( elm, value );
-                        break;
-                    case 'style' :
-                        elmStyle = elm.style;
-                        for( styleName in value ){
-                            elmStyle[ styleName ] = value[ styleName ];
-                        };
-                        break;
-                    default :
-                        p_DOM_setAttribute( elm, name, value );
-                        break;
+                if( value || value === 0 ){
+                    switch( name ){
+                        case 'class' :
+                        case 'className' :
+                            p_DOM_setClassName( elm, value );
+                            break;
+                        case 'style' :
+                            elmStyle = elm.style;
+                            for( styleName in value ){
+                                elmStyle[ styleName ] = value[ styleName ];
+                            };
+                            break;
+                        default :
+                            p_DOM_setAttribute( elm, name, value );
+                            break;
+                    };
                 };
             };
         };
