@@ -126,7 +126,7 @@ p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdA
         );
 
         function check(){
-            return document.fonts[ 'check' ]( font, 'i' );
+            return document.fonts.check( font, 'i' );
         };
     };
 
