@@ -46,7 +46,7 @@ function DOM_getElementsByClassNameFromDocument( className ){
  */
 function DOM_getElementsByTagName( rootElementOrDocument, tag ){
     var root = rootElementOrDocument,
-        elms = ( tag !== '*' && !m_isIE4DOM ) ?
+        elms = ( tag !== '*' || !( p_Trident < 6 ) ) ?
                    root.getElementsByTagName( tag ) :
                tag !== '*' ? root.all.tags( tag.toUpperCase() ) :
                    root.all,
