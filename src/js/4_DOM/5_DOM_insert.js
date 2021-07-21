@@ -9,6 +9,7 @@ p_DOM_insertTextNode       = DOM_insertTextNode;
 p_DOM_insertTextNodeBefore = DOM_insertTextNodeBefore;
 p_DOM_insertTextNodeAfter  = DOM_insertTextNodeAfter;
 p_DOM_remove               = DOM_remove;
+p_DOM_empty                = DOM_empty;
 p_DOM_contains             = DOM_contains;
 p_DOM_getInnerHTML         = DOM_getInnerHTML;
 
@@ -239,7 +240,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
 /** 8.
  * @param {Node} elm
  */
- function DOM_remove( elm ){
+function DOM_remove( elm ){
     if( WEB_DOC_BASE_DEFINE_DEBUG && !p_DOM_getParentNode( elm ) ){
         return;
     };
@@ -254,7 +255,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
 /** 9.
  * @param {Node} elm
  */
- function DOM_empty( elm ){
+function DOM_empty( elm ){
     if( WEB_DOC_BASE_DEFINE_DEBUG && !p_DOM_getParentNode( elm ) ){
         return;
     };

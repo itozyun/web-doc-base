@@ -22,6 +22,7 @@ var p_DOM_getElementById,
     p_DOM_insertTextNodeAfter,
 
     p_DOM_remove,
+    p_DOM_empty,
     p_DOM_contains,
     p_DOM_getInnerHTML,
 

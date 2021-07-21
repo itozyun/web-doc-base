@@ -1,5 +1,4 @@
-var m_isIE4DOM = p_Trident < 5,
-    m_virtualNodeList = [];
+var m_isIE4DOM = p_Trident < 5;
 
 /**
  * @param {string} tagName
