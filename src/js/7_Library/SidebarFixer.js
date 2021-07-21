@@ -48,7 +48,7 @@ if( !p_isMobile && !p_ServerSideRendering && !( p_Presto < 8 ) ){
 
     p_listenCssAvailabilityChange(
         function( cssAvailability ){
-            if( !cssAvailability || SIDEBAR_FIXER_elmRoot ) return;
+            if( !cssAvailability ) return;
 
             var i = -1, id, elm;
 
@@ -110,6 +110,8 @@ if( !p_isMobile && !p_ServerSideRendering && !( p_Presto < 8 ) ){
             }; */
 
             SIDEBAR_FIXER_onscroll();
+
+            return true;
         }
     );
 

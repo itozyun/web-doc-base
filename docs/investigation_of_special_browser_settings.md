@@ -42,6 +42,8 @@
 4. `p_listenPrefersColorChange`
 5. `p_listenPrintEvent`
 
+コールバックで `true` を返すとリスナを解除できる。
+
 ### 1. `p_listenCssAvailabilityChange`
 
 CSS の有効/無効が切り替わるたびにコールバックします。Firefox は表示 > スタイルシートから、機能の死活をいつでも切り替えることが出来ます。
@@ -49,7 +51,7 @@ CSS の有効/無効が切り替わるたびにコールバックします。Fir
 ~~~js
 p_listenCssAvailabilityChange(
     function( cssAvailability ){
-
+        return true; // リスナの解除
     }
 );
 ~~~

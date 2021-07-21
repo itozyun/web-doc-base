@@ -9,7 +9,10 @@ var Event_matchMedia    = window.matchMedia,
  */
 function Event_dispatch( callbackList, param ){
     for( var i = 0; i < callbackList.length; ++i ){ // callbackList は callback 中にも追加される
-        callbackList[ i ]( param );
+        if( callbackList[ i ]( param ) === true ){ // true が戻された場合、
+            callbackList.splice( i, 1 );
+            --i;
+        };
     };
 };
 

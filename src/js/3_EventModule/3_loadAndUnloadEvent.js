@@ -46,7 +46,9 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
 };
     function _Event_onloadDoesnotWorkSafari(){
         if( Event_init ){
-            if( document.readyState === 'loaded' || document.readyState === 'complete' ){
+            var readyState = document.readyState;
+
+            if( readyState === 'loaded' || readyState === 'complete' ){
                 Event_init();
             } else {
                 p_setTimer( _Event_onloadDoesnotWorkSafari );
