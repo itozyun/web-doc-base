@@ -15,6 +15,7 @@ var p_emptyFunction       = emptyFunction, // || new Function(),
     p_SafariMobile = ua[ 'SafariMobile' ] || ua[ 'iOSWebView' ],
     p_ServerSideRendering = ua[ 'OperaMini' ] && ua[ 'UCWEB' ],
     p_Windows      = ua[ 'Win32' ] || ua[ 'Win64' ],
+    p_ChromiumBase = ua[ 'Chromium' ] || ua[ 'ChromiumMobile' ] || ua[ 'ChromeWebView' ] || ua[ 'AOSP' ] || ua[ 'Samsung' ],
     p_ChromiumEdge = parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
     p_IEVersion    = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4,
 
