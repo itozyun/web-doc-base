@@ -18,31 +18,14 @@ var Event_tempOnLoad           = window.onload; // window. を付けないと Wi
 /** @type {Function|null} */
 var Event_tempOnUnload         = window.onunload;
 
-/** @type {Function|null} */
-onload   = Event_init;
-/** @type {Function|null} */
-onunload = Event_kill;
-
-/**
- * @param {Event=} e
- * @return {*}
- */
-function Event_init( e ){
-    var ret;
-
-    if( Event_tempOnLoad ) ret = Event_tempOnLoad( e );
-
-    Event_dispatch( p_loadEventCallbacks, e );
-    onload = p_emptyFunction;
-    p_loadEventCallbacks = Event_init = Event_tempOnLoad = onload = null;
-
-    return ret;
-};
+var Event_init;
 
 // Re: onLoad doesn't work with Safari?
 // http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
 if( p_WebKit <= 419.3 ){ // Safari 2-
     p_setTimer( _Event_onloadDoesnotWorkSafari );
+} else {
+    p_addEventListener( window, 'load', Event_init );
 };
     function _Event_onloadDoesnotWorkSafari(){
         if( Event_init ){
@@ -55,6 +38,25 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
             };
         };
     };
+
+/** @type {Function|null} */
+onload = Event_init = function Event_init( e ){
+    var ret;
+
+    p_removeEventListener( window, 'load', Event_init );
+    Event_init = null;
+
+    if( Event_tempOnLoad ) ret = Event_tempOnLoad( e );
+
+    Event_dispatch( p_loadEventCallbacks, e );
+
+    p_loadEventCallbacks.length = 0; // 複数回呼ばれる!
+
+    return ret;
+};
+
+/** @type {Function|null} */
+onunload = Event_kill;
 
 /**
  * @param {Event=} e
