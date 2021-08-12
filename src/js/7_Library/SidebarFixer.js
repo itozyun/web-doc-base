@@ -316,7 +316,7 @@ function SIDEBAR_FIXER_fix( scrollY, wheelDeltaY, focusedElementY, focusedElemen
     return isMultiColumn && !mainInViewPort && !nocancelWheel;
 };
 
-function SIDEBAR_FIXER_onwheel( _event ){
+function SIDEBAR_FIXER_onwheel( e ){
     // https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mousewheel
     // TODO axis
     // https://w3g.jp/blog/tools/wheelevent_crossbrowser
@@ -324,13 +324,12 @@ function SIDEBAR_FIXER_onwheel( _event ){
     if( p_Gecko ){
         SIDEBAR_FIXER_lastScrollY = SIDEBAR_FIXER_getFinite( window.pageYOffset, SIDEBAR_FIXER_elmRoot.scrollTop, p_body.scrollTop );
     };
-    var e        = _event || event,
-        hitChild = this !== e.target,
+    var hitChild = this !== e.target,
         deltaY   = hitChild && SIDEBAR_FIXER_getFinite( e.deltaY, e.wheelDeltaY / 120, e.wheelDelta / -120,  e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 1 ) ),
         cancel   = hitChild && deltaY && SIDEBAR_FIXER_fix( SIDEBAR_FIXER_lastScrollY, deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 );
 
-        if( cancel ){
-        if( _event ){
+    if( cancel ){
+        if( e.preventDefault ){
             e.preventDefault();
             e.stopPropagation();
         }  else {

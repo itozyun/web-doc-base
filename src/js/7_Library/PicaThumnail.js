@@ -67,13 +67,12 @@ if( !p_ServerSideRendering ){
 };
 
 function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
-    var ev  = e || event,
-        key = ev.keyCode || ev.witch,
+    var key = e.keyCode || e.witch,
         i   = PICA_THUMBNAIL_IMGS.length,
         elmImg,
         parent, elmA, elmCap, src, obj, tag, w, elms, l, size, n, c;
 
-    if( ev.type === 'keydown' && key !== 13 ) return;
+    if( e.type === 'keydown' && key !== 13 ) return;
 
     if( !cancelAction ){        
         for( ; i; ){
@@ -142,14 +141,14 @@ function PICA_THUMBNAIL_onClickThumbnail( e, cancelAction ){
         };
     };
 
-    if( e ){
+    if( e.preventDefault ){
         e.preventDefault();
         e.stopPropagation();
         PICA_THUMBNAIL_safariPreventDefault = true;
         return false;
     } else {
-        ev.cancelBubble = true;
-        return ev.returnValue = false;
+        e.cancelBubble = true;
+        return e.returnValue = false;
     };
 };
 
