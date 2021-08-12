@@ -67,11 +67,11 @@ if( !p_isMobile && !p_ServerSideRendering && !( p_Presto < 8 ) ){
             );
 
             if( p_Trident || p_Tasman ){
-                p_DOM_addEventListener( SIDEBAR_FIXER_elmWrap, 'focusin', SIDEBAR_FIXER_onfocus );
+                p_addEventListener( SIDEBAR_FIXER_elmWrap, 'focusin', SIDEBAR_FIXER_onfocus );
             } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
-                p_DOM_addEventListener( document, 'focus', SIDEBAR_FIXER_onfocus, { capture : true, passive : false } );
+                p_addEventListener( document, 'focus', SIDEBAR_FIXER_onfocus, { capture : true, passive : false } );
             } else {
-                p_DOM_addEventListener( SIDEBAR_FIXER_elmWrap, 'DOMFocusIn', SIDEBAR_FIXER_onfocus, false );
+                p_addEventListener( SIDEBAR_FIXER_elmWrap, 'DOMFocusIn', SIDEBAR_FIXER_onfocus, false );
             };
 
             // Array と NodeList の場合があるので、常に再取得
@@ -82,18 +82,18 @@ if( !p_isMobile && !p_ServerSideRendering && !( p_Presto < 8 ) ){
             while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
                 elm = p_DOM_getElementById( id );
                 if( p_notUndefined( elm.onwheel ) ){
-                    p_DOM_addEventListener( elm, 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
+                    p_addEventListener( elm, 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
                 } else if( p_FirefoxGte35 ){
-                    p_DOM_addEventListener( elm, 'MozMousePixelScroll', SIDEBAR_FIXER_onwheel, false );
+                    p_addEventListener( elm, 'MozMousePixelScroll', SIDEBAR_FIXER_onwheel, false );
                 } else if( SIDEBAR_FIXER_isGeckoGte097 ){
                     // elm.addEventListener( 'DOMMouseScroll', SIDEBAR_FIXER_onwheel, false );
                 } else if( p_notUndefined( elm.onmousewheel ) || p_Presto ){
-                    p_DOM_addEventListener( elm, 'mousewheel', SIDEBAR_FIXER_onwheel, false );
+                    p_addEventListener( elm, 'mousewheel', SIDEBAR_FIXER_onwheel, false );
                 };
             };
 
             if( SIDEBAR_FIXER_isGeckoGte097 ){
-                p_DOM_addEventListener( document, 'DOMMouseScroll', SIDEBAR_FIXER_onwheelForGecko, false );
+                p_addEventListener( document, 'DOMMouseScroll', SIDEBAR_FIXER_onwheelForGecko, false );
             };
             
             SIDEBAR_FIXER_can3D = !p_Trident && !p_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
@@ -122,26 +122,26 @@ if( !p_isMobile && !p_ServerSideRendering && !( p_Presto < 8 ) ){
             while( id = SIDEBAR_FIXER_IDS_WHEEL[ ++i ] ){
                 elm = p_DOM_getElementById( id );
                 if( p_notUndefined( elm.onwheel ) ){
-                    p_DOM_removeEventListener( elm, 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
+                    p_removeEventListener( elm, 'wheel', SIDEBAR_FIXER_onwheel, { passive : false } );
                 } else if( p_FirefoxGte35 ){
-                    p_DOM_removeEventListener( elm, 'MozMousePixelScroll', SIDEBAR_FIXER_onwheel, false );
+                    p_removeEventListener( elm, 'MozMousePixelScroll', SIDEBAR_FIXER_onwheel, false );
                 } else if( SIDEBAR_FIXER_isGeckoGte097 ){
 
                 } else if( p_notUndefined( elm.onmousewheel ) || p_Presto ){
-                    p_DOM_removeEventListener( elm, 'mousewheel', SIDEBAR_FIXER_onwheel, false );
+                    p_removeEventListener( elm, 'mousewheel', SIDEBAR_FIXER_onwheel, false );
                 };
             };
 
             if( SIDEBAR_FIXER_isGeckoGte097 ){
-                p_DOM_removeEventListener( document, 'DOMMouseScroll', SIDEBAR_FIXER_onwheel, false );
+                p_removeEventListener( document, 'DOMMouseScroll', SIDEBAR_FIXER_onwheel, false );
             };
 
             if( p_Trident || p_Tasman ){
-                p_DOM_removeEventListener( SIDEBAR_FIXER_elmWrap, 'focusin', SIDEBAR_FIXER_onwheel, false );
+                p_removeEventListener( SIDEBAR_FIXER_elmWrap, 'focusin', SIDEBAR_FIXER_onwheel, false );
             } else if( SIDEBAR_FIXER_CAPTURE_FOCUS ){
-                p_DOM_removeEventListener( document, 'focus', SIDEBAR_FIXER_onfocus, { capture : true, passive : false } );
+                p_removeEventListener( document, 'focus', SIDEBAR_FIXER_onfocus, { capture : true, passive : false } );
             } else {
-                p_DOM_removeEventListener( SIDEBAR_FIXER_elmWrap, 'DOMFocusIn', SIDEBAR_FIXER_onfocus, false );
+                p_removeEventListener( SIDEBAR_FIXER_elmWrap, 'DOMFocusIn', SIDEBAR_FIXER_onfocus, false );
             };
         }
     );

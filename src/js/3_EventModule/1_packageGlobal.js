@@ -1,4 +1,7 @@
-var p_listenLoadEvent,
+var p_addEventListener,
+    p_removeEventListener,
+
+    p_listenLoadEvent,
     p_listenUnloadEvent,
     p_listenResizeEvent,
     p_listenScrollEvent,

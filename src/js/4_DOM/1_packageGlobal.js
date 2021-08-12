@@ -38,7 +38,4 @@ var p_DOM_getElementById,
     p_DOM_removeClassName,
 
     p_DOM_setStyle,
-    p_DOM_setCssText,
-
-    p_DOM_addEventListener,
-    p_DOM_removeEventListener;
+    p_DOM_setCssText;

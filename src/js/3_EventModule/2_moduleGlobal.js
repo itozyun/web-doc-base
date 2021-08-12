@@ -41,7 +41,7 @@ function Event_lazyDispatch( callbackList, param ){
 
 // p_listenLoadEvent が存在しない為、配列を触る
 p_loadEventCallbacks.push(
-    function (){
+    function(){
         // Create a test div
         Event_elmTest = p_DOM_insertElement(
             p_body,
