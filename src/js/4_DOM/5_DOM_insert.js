@@ -256,9 +256,6 @@ function DOM_remove( elm ){
  * @param {Node} elm
  */
 function DOM_empty( elm ){
-    if( WEB_DOC_BASE_DEFINE_DEBUG && !p_DOM_getParentNode( elm ) ){
-        return;
-    };
     elm.innerHTML = '';
 };
 

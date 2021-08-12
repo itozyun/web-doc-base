@@ -18,7 +18,7 @@ function m_toHTMLString( tagName, attrs, textContent ){
                 if( name === 'style' ){
                     html[ ++j ] = ' style="';
                     for( styleName in value ){
-                        html[ ++j ] = m_toSnakeCase( styleName ) + ':' + value[ styleName ] + ';';
+                        html[ ++j ] = toSnakeCase( styleName ) + ':' + value[ styleName ] + ';';
                     };
                     html[ ++j ] = '"';
                 } else {
@@ -41,20 +41,20 @@ function m_toHTMLString( tagName, attrs, textContent ){
 
     html[ ++j ] = '</' + tagName + '>';
     return html.join( '' );
-};
 
-function m_toSnakeCase( str ){
-    var result = [],
-        chars  = str.split( '' ),
-        i      = chars.length,
-        chr;
-
-    while( i ){
-        chr = chars[ --i ];
-        if( 'A' <= chr && chr <= 'Z' ){
-            chr = '-' + chr.toLowerCase();
+    function toSnakeCase( str ){
+        var result = [],
+            chars  = str.split( '' ),
+            i      = chars.length,
+            chr;
+    
+        while( i ){
+            chr = chars[ --i ];
+            if( 'A' <= chr && chr <= 'Z' ){
+                chr = '-' + chr.toLowerCase();
+            };
+            result[ i ] = chr;
         };
-        result[ i ] = chr;
+        return result.join( '' );
     };
-    return result.join( '' );
 };

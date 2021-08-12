@@ -2,14 +2,14 @@
  * export to packageGlobal
  */
 p_listenImageReady = function( callback ){
-    Event_imagereadyCallbacks.push( callback );
+    Event_imageReadyCallbacks.push( callback );
 };
 
 /** ===========================================================================
  * private
  */
 /** @type {Array<Function>} */
-var Event_imagereadyCallbacks = [];
+var Event_imageReadyCallbacks = [];
 
 p_listenLoadEvent(
     function(){
@@ -18,7 +18,7 @@ p_listenLoadEvent(
             img, result;
 
         function testForPresto( result ){
-            Event_dispatch( Event_imagereadyCallbacks, { img : imgs[ i ], imgReady : result } );
+            Event_dispatch( Event_imageReadyCallbacks, { img : imgs[ i ], imgReady : result } );
             if( i ){
                 p_imageTest( testForPresto, imgs[ --i ].src );
             };
@@ -31,7 +31,7 @@ p_listenLoadEvent(
                 img    = imgs[ --i ];
                 result = p_Trident < 9 ? img.complete : 0 <= img.naturalWidth ? img.naturalWidth : img.width;
                 p_imageEnabled = p_imageEnabled || !!result;
-                Event_lazyDispatch( Event_imagereadyCallbacks, { img : img, imgReady : result } );
+                Event_lazyDispatch( Event_imageReadyCallbacks, { img : img, imgReady : result } );
             };
         };
     }

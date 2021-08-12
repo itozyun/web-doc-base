@@ -92,7 +92,7 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
     };
 
     p_listenLoadEvent(
-        function (){
+        function(){
             p_DOM_setStyle( Event_elmTest, 'color', '#123456' );
             p_DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
 
