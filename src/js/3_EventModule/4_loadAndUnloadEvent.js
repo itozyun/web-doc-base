@@ -18,8 +18,6 @@ var Event_tempOnLoad           = window.onload; // window. を付けないと Wi
 /** @type {Function|null} */
 var Event_tempOnUnload         = window.onunload;
 
-var Event_init;
-
 // Re: onLoad doesn't work with Safari?
 // http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
 if( p_WebKit <= 419.3 ){ // Safari 2-
@@ -40,7 +38,7 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
     };
 
 /** @type {Function|null} */
-onload = Event_init = function Event_init( e ){
+var Event_init = onload = function( e ){
     var ret;
 
     p_removeEventListener( window, 'load', Event_init );
