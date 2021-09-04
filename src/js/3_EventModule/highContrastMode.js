@@ -29,22 +29,22 @@ function Event_highContrastMode_getState(){
 };
 
 if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
-    Event_matchMedia( '(-ms-high-contrast:black-on-white)' ).addListener(
+    m_matchMedia( '(-ms-high-contrast:black-on-white)' ).addListener(
         function( mediaQueryList ){
             Event_highContrastMode_isHighContrust = Event_highContrastMode_isBlackOnWhite = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
+            m_lazyDispatchEvent( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
-    Event_matchMedia( '(-ms-high-contrast:white-on-black)' ).addListener(
+    m_matchMedia( '(-ms-high-contrast:white-on-black)' ).addListener(
         function( mediaQueryList ){
             Event_highContrastMode_isHighContrust = Event_highContrastMode_isWhiteOnBlack = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
+            m_lazyDispatchEvent( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
-    Event_matchMedia( '(-ms-high-contrast:active)' ).addListener(
+    m_matchMedia( '(-ms-high-contrast:active)' ).addListener(
         function( mediaQueryList ){
             Event_highContrastMode_isHighContrust = mediaQueryList.matches;
-            Event_lazyDispatch( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
+            m_lazyDispatchEvent( Event_highContrastMode_callbacks, Event_highContrastMode_getState() );
         }
     );
 
@@ -67,8 +67,8 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
             highContrastModeState = p_highContrastModeState;
 
         computedStyle = defaultView ?
-            defaultView.getComputedStyle( Event_elmTest, null ) :
-            Event_elmTest.currentStyle;
+            defaultView.getComputedStyle( m_elmTest, null ) :
+            m_elmTest.currentStyle;
 
         color   = ( computedStyle && computedStyle.color || '' ).split( ' ' ).join( '' );
         bgColor = ( computedStyle && computedStyle.backgroundColor || '' ).split( ' ' ).join( '' ); 
@@ -78,7 +78,7 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
             Event_highContrastMode_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
             Event_highContrastMode_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
             if( highContrastModeState !== Event_highContrastMode_getState() ){
-                Event_lazyDispatch( Event_highContrastMode_callbacks, p_highContrastModeState );
+                m_lazyDispatchEvent( Event_highContrastMode_callbacks, p_highContrastModeState );
             };
             return true;
         };
@@ -93,8 +93,8 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
 
     p_listenLoadEvent(
         function(){
-            p_DOM_setStyle( Event_elmTest, 'color', '#123456' );
-            p_DOM_setStyle( Event_elmTest, 'backgroundColor', '#123456' );
+            p_DOM_setStyle( m_elmTest, 'color', '#123456' );
+            p_DOM_setStyle( m_elmTest, 'backgroundColor', '#123456' );
 
             if( p_Gecko < 60 || p_Goanna ){
                 Event_highContrastMode_test();

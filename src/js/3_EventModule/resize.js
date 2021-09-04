@@ -10,24 +10,17 @@ p_listenResizeEvent = function( callback ){
  */
 /** @type {Array<Function>} */
 var Event_resizeEventCallbacks = [];
-/** @type {Function|null} */
-var Event_tempOnResize         = window.onresize;
 var Event_resizeTimerID;
+
+p_addEventListener( window, 'resize', Event_resizeEventHandler );
 
 /**
  * @param {Event=} e
- * @return {*}
  */
-onresize = function( e ){
-    var ret;
-
-    if( Event_tempOnResize ) ret = Event_tempOnResize( e );
-    
-    if( !Event_init ){
+function Event_resizeEventHandler( e ){
+    if( !m_initEventHandler ){
         Event_resetTimer();
     };
-
-    return ret;
 };
 
 function Event_resetTimer(){
@@ -39,12 +32,12 @@ function Event_resetTimer(){
 
 function Event_resizeEventLazyCallback(){
     Event_resizeTimerID = 0;
-    Event_dispatch( Event_resizeEventCallbacks );
+    m_dispatchEvent( Event_resizeEventCallbacks );
 };
 
 p_listenUnloadEvent(
     function(){
         if( Event_resizeTimerID ) clearTimeout( Event_resizeTimerID );
-        onresize = Event_tempOnResize = p_emptyFunction;
+        p_removeEventListener( window, 'resize', Event_resizeEventHandler );
     }
 );

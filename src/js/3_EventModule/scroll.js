@@ -9,28 +9,21 @@ p_listenScrollEvent = function( callback ){
  * private
  */
 /** @type {Array<Function>} */
-var Event_scrollEventCallbacks = [];
-
-/** @type {Function|null} */
-var Event_tempOnScroll         = window.onscroll;
-var Event_lastScrollY          = 0;
+var Event_scrollEventCallbacks = [],
+    Event_lastScrollY          = 0,
+    Event_NO_SCROLL_EVENT      = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
 
 /**
  * @param {Event=} e
  * @return {*}
  */
-onscroll = function( e ){
-    var ret;
-
-    if( Event_tempOnScroll ) ret = Event_tempOnScroll( e );
-
-    if( !Event_init ){
-        Event_dispatch( Event_scrollEventCallbacks );
+function Event_scrollEventHandler( e ){
+    if( !m_initEventHandler ){
+        m_dispatchEvent( Event_scrollEventCallbacks );
     };
-    return ret;
 };
 
-if( p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2 ){
+if( Event_NO_SCROLL_EVENT ){
     p_setLoopTimer(
         function(){
             var scrollY = window.scrollY || p_body.scrollTop;
@@ -39,14 +32,18 @@ if( p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2 ){
                 // Gecko 0.9.4.1 scroll event 無し!
                 // document.title = window.pageYOffset || p_body.scrollTop || 'scroll';
                 Event_lastScrollY = scrollY;
-                onscroll();
+                Event_scrollEventHandler();
             };
         }
     );
+} else {
+    p_addEventListener( window, 'scroll', Event_scrollEventHandler );
 };
 
 p_listenUnloadEvent(
     function(){
-        onscroll = Event_tempOnScroll = p_emptyFunction;
+        if( !Event_NO_SCROLL_EVENT ){
+            p_removeEventListener( window, 'scroll', Event_scrollEventHandler );
+        };
     }
 );

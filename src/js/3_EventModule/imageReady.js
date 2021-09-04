@@ -18,7 +18,7 @@ p_listenLoadEvent(
             img, result;
 
         function testForPresto( result ){
-            Event_dispatch( Event_imageReadyCallbacks, { img : imgs[ i ], imgReady : result } );
+            m_dispatchEvent( Event_imageReadyCallbacks, { img : imgs[ i ], imgReady : result } );
             if( i ){
                 p_imageTest( testForPresto, imgs[ --i ].src );
             };
@@ -31,7 +31,7 @@ p_listenLoadEvent(
                 img    = imgs[ --i ];
                 result = p_Trident < 9 ? img.complete : 0 <= img.naturalWidth ? img.naturalWidth : img.width;
                 p_imageEnabled = p_imageEnabled || !!result;
-                Event_lazyDispatch( Event_imageReadyCallbacks, { img : img, imgReady : result } );
+                m_lazyDispatchEvent( Event_imageReadyCallbacks, { img : img, imgReady : result } );
             };
         };
     }

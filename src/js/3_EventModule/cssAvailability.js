@@ -11,10 +11,10 @@ p_listenCssAvailabilityChange = function( callback ){
 var Event_cssAvailabilityCallbacks = []; 
 
 function Event_cssAvailability_check(){
-    var _cssAvailability = Event_elmTest.offsetWidth === 9;
+    var _cssAvailability = m_elmTest.offsetWidth === 9;
     
     if( p_cssAvailability !== _cssAvailability ){
-        Event_lazyDispatch( Event_cssAvailabilityCallbacks, p_cssAvailability = _cssAvailability );
+        m_lazyDispatchEvent( Event_cssAvailabilityCallbacks, p_cssAvailability = _cssAvailability );
     };
 };
 

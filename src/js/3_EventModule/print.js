@@ -14,20 +14,20 @@ var Event_printEventCallbacks = [];
 // https://developer.mozilla.org/ja/docs/Web/API/WindowEventHandlers/onbeforeprint
 if( window.onbeforeprint ){
     onbeforeprint = function(){
-        Event_dispatch( Event_printEventCallbacks, true );
+        m_dispatchEvent( Event_printEventCallbacks, true );
     };
     onafterprint  = function(){
-        Event_dispatch( Event_printEventCallbacks, false );
+        m_dispatchEvent( Event_printEventCallbacks, false );
     };
     p_listenUnloadEvent(
         function(){
             onbeforeprint = onafterprint = p_emptyFunction;
         }
     );
-} else if( Event_matchMedia ){
-    Event_matchMedia( 'print' ).addListener(
+} else if( m_matchMedia ){
+    m_matchMedia( 'print' ).addListener(
         function( mediaQueryList ){
-            Event_dispatch( Event_printEventCallbacks, mediaQueryList.matches );
+            m_dispatchEvent( Event_printEventCallbacks, mediaQueryList.matches );
         }
     );
 } else {

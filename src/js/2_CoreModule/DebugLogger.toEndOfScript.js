@@ -16,8 +16,8 @@ if( WEB_DOC_BASE_DEFINE_DEBUG ){
             Debug.log = console.log;
         };
 
-        while( _Debug_logsBeforeLoad.length ){
-            Debug.log( _Debug_logsBeforeLoad.shift() );
+        while( _p_Debug_logsBeforeLoad.length ){
+            Debug.log( _p_Debug_logsBeforeLoad.shift() );
         };
     });
 };
