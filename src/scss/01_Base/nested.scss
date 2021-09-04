@@ -7,6 +7,9 @@ tr {
     p, pre, blockquote, dl {
         margin : 0 0 .5em;
     }
+    blockquote p {
+        margin : .5em 0;
+    }
 }
 
 li, dd {
@@ -16,5 +19,8 @@ li, dd {
     }
     p, pre, blockquote, dl, table {
         margin : 0 0 .5em;
+    }
+    blockquote p {
+        margin : .5em 0;
     }
 }
