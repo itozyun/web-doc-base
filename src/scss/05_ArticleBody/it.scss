@@ -23,8 +23,16 @@ code, var {
     padding    : .1em .4em;
     margin     : 0 .1em;
 
+    a:active &
+    /* //_{#can-focus-pseudo-class */
+    , a:focus &
+    /* //_}#can-focus-pseudo-class */
+    {
+        background : $COLOR_ACCENT;
+    }
+
     pre & {
-        background : none !important;
+        background : none;
         padding    : 0;
         margin     : 0;
     }
@@ -48,10 +56,6 @@ code, var {
     code, var {
         background : $COLOR_Watch_casual_fill;
 
-        pre & {
-            background : none;
-        }
-
         blockquote &, tbody th &, blockquote .tl tr & {
             background : $COLOR_Watch_casual_text;
             color      : $COLOR_Watch_fill;
@@ -70,7 +74,7 @@ code, var {
         border-color : $COLOR_Print_text;
     }
     code, var {
-        background   : none !important;
+        background   : none;
         border-width : 1px;
         border-color : $COLOR_Print_casual_fill;
 
