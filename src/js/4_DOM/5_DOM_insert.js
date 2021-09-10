@@ -241,7 +241,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
  * @param {Node} elm
  */
 function DOM_remove( elm ){
-    if( WEB_DOC_BASE_DEFINE_DEBUG && !p_DOM_getParentNode( elm ) ){
+    if( DEFINE_WEB_DOC_BASE__DEBUG && !p_DOM_getParentNode( elm ) ){
         return;
     };
 

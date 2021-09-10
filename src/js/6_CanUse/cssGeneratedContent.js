@@ -3,7 +3,7 @@
  *   https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
  *   MIT License
  */
-if( WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID ){
+if( DEFINE_WEB_DOC_BASE__CONTENT_TEST_ID ){
     p_listenLoadEvent(
         function(){
             if( p_cssAvailability ){
@@ -23,7 +23,7 @@ if( WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID ){
                             'a',
                             {
                                 'aria-hidden' : 'true',
-                                id            : WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID
+                                id            : DEFINE_WEB_DOC_BASE__CONTENT_TEST_ID
                             }
                         );
                         p_generatedContentEnabled = 6 <= elm.offsetWidth ? 2 : 0; // TODO 雑!

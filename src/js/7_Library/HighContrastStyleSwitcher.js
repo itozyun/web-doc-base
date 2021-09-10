@@ -9,7 +9,7 @@ var HighContrastStyleSwitcher_elmStyle,
                 type  : 'text/css',
                 rel   : 'stylesheet',
                 media : 'screen',
-                href  : p_assetUrl + WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR + '/' + p_cssName
+                href  : p_assetUrl + DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR + '/' + p_cssName
             }
         );
 

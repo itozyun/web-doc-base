@@ -23,7 +23,7 @@ var WEBFONT_TEST_PREFIX = 'bad_' + ( new Date() - 0 ) + '_';
 /** ===========================================================================
  * export to packageGlobal
  */
-p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_ligTestChar, opt_testInterval ){
+p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_ligTestChar, opt_testInterval ){
     var INTERVAL = 5000,
         INTERVAL_EMBEDED_WEBFONT = 100,
         TEST_STRING = 'mmmmmmmmmmlli',
@@ -37,13 +37,13 @@ p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdA
         elmSpan, elmDiv, defaultWidth, result;
 
     function callback( result ){
-        _callback( result );
-        _callback = elmSpan = elmDiv = defaultWidth = null;
+        onCompleteHandler( result );
+        onCompleteHandler = elmSpan = elmDiv = defaultWidth = null;
     };
 
-    if( WEB_DOC_BASE_DEFINE_DEBUG && 1 <= WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE ){
+    if( DEFINE_WEB_DOC_BASE__DEBUG && 1 <= DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE ){
         targetWebFontName = WEBFONT_TEST_PREFIX + targetWebFontName;
-        Debug.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE );
+        Debug.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE );
     };
 
     if( maybeCanWebFont() ){
@@ -77,9 +77,16 @@ p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdA
  */
     function maybeCanWebFont(){
         var blocklist =
-                ua[ 'MeeGo' ] || ua[ 'AOSP' ] < 2.2 || ua[ 'WebOS' ] || ua[ 'UCWEB' ] ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP    ) < 2.2 ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB   ) ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MeeGo ) ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_WebOS ) ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS   ) ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi  ) ||
+            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_N3DS  ),
+                /* ua[ 'MeeGo' ] || ua[ 'AOSP' ] < 2.2 || ua[ 'WebOS' ] || ua[ 'UCWEB' ] ||
                 ( ua[ 'TridentMobile' ] < 10 ) || // p_Tasman ||
-                ua[ 'NDS' ] || ua[ 'NDSi' ] || ua[ 'N3DS' ],
+                ua[ 'NDS' ] || ua[ 'NDSi' ] || ua[ 'N3DS' ], */
             style, sheet, cssText, v, result;
     
         if( blocklist ){
@@ -107,7 +114,7 @@ p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdA
 
         document.fonts.load( font ).then(
             function( fonts ){
-                if( WEB_DOC_BASE_DEFINE_DEBUG ){
+                if( DEFINE_WEB_DOC_BASE__DEBUG ){
                     Debug.log( '[webFontTest] fonts.check() : ' + check() + ', fonts.length : ' + fonts.length );
                 };
                 if( mesureWebFont( targetWebFontName ) ){
@@ -302,9 +309,9 @@ p_webFontTest = function( _callback, targetWebFontName, embededWebFonts, testIdA
 
     function testImportedCssReady( isStart ){
         if( isStart ){
-            if( WEB_DOC_BASE_DEFINE_DEBUG ){
+            if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( '[webFontTest] testImportedCssReady start!' );
-                if( WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE < 2 ){
+                if( DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE < 2 ){
                     targetWebFontName = targetWebFontName.replace( WEBFONT_TEST_PREFIX, '' );
                 };
                 Debug.log( '[webFontTest] targetWebFontName : ' + targetWebFontName );

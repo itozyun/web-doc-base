@@ -1,4 +1,4 @@
-if( WEB_DOC_BASE_DEFINE_DEBUG ){
+if( DEFINE_WEB_DOC_BASE__DEBUG ){
     /**
      * @param {string} text
      */

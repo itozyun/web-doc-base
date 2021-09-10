@@ -56,7 +56,7 @@ p_listenLoadEvent(
                 // ISBN-10
                 if( cite.length === 10 ){
                     return '//www.amazon.co.jp/exec/obidos/ASIN/' + cite +
-                     ( WEB_DOC_BASE_DEFINE_AMAZON_ID ? '/' + WEB_DOC_BASE_DEFINE_AMAZON_ID + '/ref=nosim/': '' );
+                     ( DEFINE_WEB_DOC_BASE__AMAZON_ID ? '/' + DEFINE_WEB_DOC_BASE__AMAZON_ID + '/ref=nosim/': '' );
                 };
             };
             return cite;

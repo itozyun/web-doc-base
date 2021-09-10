@@ -1,27 +1,20 @@
-
 var
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX = 'm_',
+    DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX = 'm_',
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR   = 'hc',
+    DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR   = 'hc',
 
 /** @define {number} */
-    WEB_DOC_BASE_DEFINE_DEBUG              = 0,
+    DEFINE_WEB_DOC_BASE__DEBUG              = 0,
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_LOGGER_ELEMENT_ID  = '',
+    DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID  = '',
 /** @define {number} */
-    WEB_DOC_BASE_DEFINE_WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
+    DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_CONTENT_TEST_ID    = 'jsCanUseContent',
-
-/** @define {string} */
-    WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID     = 'jsMain',
+    DEFINE_WEB_DOC_BASE__CONTENT_TEST_ID    = 'jsCanUseContent',
 
 /** @define {string} */
-    WEB_DOC_BASE_DEFINE_AMAZON_ID          = '';
+    DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID     = 'jsMain',
 
-var Debug = {};
-
-if( !WEB_DOC_BASE_DEFINE_DEBUG ){
-    Debug.log = function(){};
-};
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__AMAZON_ID          = '';

@@ -43,7 +43,12 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
         };
     };
 
-p_addEventListener( window, 'unload', Event_unloadEventHandler );
+// https://web.archive.org/web/20180328040501/http://oogatta.hatenadiary.jp/entry/20121228/1356696182
+//   bfcache について覚えて帰ってもらいます。（転載）
+// IE と Firefox <1.5(Gecko <1.8) だけ unload でイベントリスナを削除する
+if( p_Trident || p_Gecko < 1.8 ){
+    p_addEventListener( window, 'unload', Event_unloadEventHandler );
+};
 
 /**
  * @param {Event=} e

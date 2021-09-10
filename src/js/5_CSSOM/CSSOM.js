@@ -135,6 +135,7 @@ function CSSOM_addImport( url, opt_media ){
     } else if( !( p_Presto < 7.2 ) ){
         // For Opera 7.2x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
         var styleSheet = CSSOM_getStyleSheet( p_DOM_insertStyleElement( p_head, { media : opt_media }, css ) );
+
         if( styleSheet ){
             CSSOM_styleSheets[ opt_media || 'all' ] = styleSheet;
         };

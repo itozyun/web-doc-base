@@ -10,10 +10,11 @@ p_removeEventListener = EventTraget_removeEventListener;
  * private
  */
 /** @type {Object<string, Object>} */
-var EVENT_TARGET_LISTENERS    = {};
-
-var EVENT_TARGET_USE_ATTACH   = 5 <= p_Trident && p_Trident < 9,
-    EVENT_TARGET_USE_STANDERD = !p_Tasman && window.addEventListener;
+var EventTarget_LISTENERS        = {},
+    EventTarget_USE_ATTACH       = false, // 5 <= p_Trident && p_Trident < 9,
+    EventTarget_USE_STANDERD     = !p_Tasman && window.addEventListener,
+    EventTarget_PATCH_OLD_WEBKIT = p_WebKit < 525.13, // Safari <3
+    EventTarget_safariPreventDefault;
 
 /** 1.
  * @param {EventTarget} eventTarget
@@ -22,27 +23,41 @@ var EVENT_TARGET_USE_ATTACH   = 5 <= p_Trident && p_Trident < 9,
  * @param {Object|boolean=} option
  */
 function EventTraget_addEventListener( eventTarget, type, callback, option ){
-    if( EVENT_TARGET_USE_ATTACH ){
-        eventTarget.attachEvent( 'on' + type, callback );
-    } else if( EVENT_TARGET_USE_STANDERD ){
+    if( EventTarget_USE_STANDERD ){
         eventTarget.addEventListener( type, callback,
             option ? ( p_passiveSupported ? option : option.capture ) : false );
     } else {
-        var listener = { eventTarget : eventTarget, callback : callback },
-            eventListners = EVENT_TARGET_LISTENERS[ type ],
-            i = eventListners.length, _listener;
+        var listener      = { eventTarget : eventTarget, callback : callback },
+            eventListners = EventTarget_LISTENERS[ type ],
+            onType        = 'on' + type,
+            i, _listener, tempCallback;
 
         if( eventListners ){
+            i = eventListners.length;
             while( _listener = eventListners[ --i ] ){
                 if( _listener.eventTarget === eventTarget && _listener.callback === callback ){
                     return;
                 };
             };
-            EVENT_TARGET_LISTENERS[ type ].push( listener );
+            EventTarget_LISTENERS[ type ].push( listener );
         } else {
-            EVENT_TARGET_LISTENERS[ type ] = [ listener ];
+            EventTarget_LISTENERS[ type ] = eventListners = [ listener ];
+
+            if( !EventTarget_USE_ATTACH ){
+                // DOM0 で追加されていた callback を listener に加える
+                // 実際には js-inline の onload コールバックを EventTarget_LISTENERS 配下に移す
+                tempCallback = eventTarget[ onType ];
+                if( typeof tempCallback === 'function' && tempCallback !== EventTraget_dispatchProxy ){
+                    eventListners.unshift( { eventTarget : eventTarget, callback : tempCallback } );
+                };
+            };
         };
-        eventTarget[ 'on' + type ] = EventTraget_DOM0_dispatch;
+
+        if( EventTarget_USE_ATTACH ){
+            eventTarget.attachEvent( onType, EventTraget_dispatchProxy ); // TODO 2度呼ばれた場合?
+        } else {
+            eventTarget[ onType ] = EventTraget_dispatchProxy;
+        };
     };
 };
 
@@ -53,46 +68,92 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
  * @param {Object|boolean=} option
  */
 function EventTraget_removeEventListener( eventTarget, type, callback, option ){
-    var onType = 'on' + type;
-
-    if( EVENT_TARGET_USE_ATTACH ){
-        eventTarget.detachEvent( onType, callback );
-    } else if( EVENT_TARGET_USE_STANDERD ){
+    if( EventTarget_USE_STANDERD ){
         eventTarget.removeEventListener( type, callback,
             option ? ( p_passiveSupported ? option : option.capture ) : false );
     } else {
-        var eventListners = EVENT_TARGET_LISTENERS[ type ],
-            i = eventListners.length, listener, skip;
+        var eventListners = EventTarget_LISTENERS[ type ],
+            onType        = 'on' + type,
+            i, listener, skipRemoveListener;
 
-        while( listener = eventListners[ --i ] ){
-            if( listener.eventTarget === eventTarget ){
-                if( listener.callback === callback ){
-                    eventListners.splice( i, 1 );
-                } else {
-                    skip = true;
+        if( eventListners ){
+            i = eventListners.length;
+            while( listener = eventListners[ --i ] ){
+                if( listener.eventTarget === eventTarget ){
+                    if( listener.callback === callback ){
+                        eventListners.splice( i, 1 );
+                    } else {
+                        skipRemoveListener = true;
+                    };
                 };
             };
-        };
-        if( !skip ){
-            eventTarget[ onType ] = p_emptyFunction;
-            eventTarget[ onType ] = null;
+            if( !skipRemoveListener ){
+                if( EventTarget_USE_ATTACH ){
+                    eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
+                } else {
+                    eventTarget[ onType ] = p_emptyFunction;
+                    eventTarget[ onType ] = null;
+                };
+            };
         };
     };
 };
 
-    function EventTraget_DOM0_dispatch( _e ){
+    function EventTraget_dispatchProxy( _e ){
         var e             = _e || event,
             type          = e.type,
-            eventListners = EVENT_TARGET_LISTENERS[ type ],
+            eventListners = EventTarget_LISTENERS[ type ],
             eventTarget   = this,
-            i             = -1, listener;
+            i             = -1,
+            listener, stopPropagation;
         
-        while( listener = eventListners[ ++i ] ){
-            if( listener.eventTarget === eventTarget ){
-                eventTarget.__callback__ = listener.callback;
-                eventTarget.__callback__( e );
-                eventTarget.__callback__ = p_emptyFunction;
-                eventTarget.__callback__ = null;
+        if( p_Trident ){
+            e.preventDefault = function(){
+                e.returnValue = false;
+            };
+            e.stopPropagation = function(){
+                e.cancelBubble = true;
+            };
+        } else if( EventTarget_PATCH_OLD_WEBKIT ){
+            e._stopPropagation = e.stopPropagation;
+            e.stopPropagation = function(){
+                stopPropagation = true;
             };
         };
+
+        while( listener = eventListners[ ++i ] ){
+            if( listener.eventTarget === eventTarget ){
+                eventTarget.__handleEvent__ = listener.callback;
+                eventTarget.__handleEvent__( e );
+                eventTarget.__handleEvent__ = p_emptyFunction;
+                eventTarget.__handleEvent__ = null;
+            };
+        };
+
+        if( p_Trident ){
+            e.preventDefault = e.stopPropagation = null;
+            return e.returnValue;
+        } else if( EventTarget_PATCH_OLD_WEBKIT ){
+            if( e.defaultPrevented ){
+                if( e.type === 'click' && e.target.tagName === 'A' ){
+                    EventTarget_safariPreventDefault = true;
+                };
+            };
+            if( stopPropagation && !EventTarget_safariPreventDefault ){
+                e._stopPropagation();
+            };
+            e._stopPropagation = e.stopPropagation = null;
+        };
     };
+
+if( EventTarget_PATCH_OLD_WEBKIT ){
+    p_html.addEventListener( 'click',
+        function( e ){
+            if( EventTarget_safariPreventDefault ){
+                EventTarget_safariPreventDefault = false;
+                e.preventDefault();
+                return false;
+            };
+        }
+    );
+};

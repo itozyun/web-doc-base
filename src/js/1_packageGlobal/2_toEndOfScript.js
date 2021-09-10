@@ -10,7 +10,7 @@ if( p_assetUrl ){
 
 Debug.log( '[p_assetUrl] ' + p_assetUrl );
 
-if( WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX ){
+if( DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX ){
     p_isMobile = p_useMobile || p_DOM_getAttribute( p_body, 'mob' ) === '1';
-    p_cssName  = ( p_isMobile ? WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX : '' ) + p_cssName;
+    p_cssName  = ( p_isMobile ? DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX : '' ) + p_cssName;
 };

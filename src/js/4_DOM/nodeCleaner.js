@@ -1,6 +1,6 @@
 p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
-        p_elmMain = p_DOM_getElementById( WEB_DOC_BASE_DEFINE_MAIN_COLUMN_ID );
+        p_elmMain = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID );
 
         var removeCommentNodes  = !( p_Presto < 8 || p_Trident < 5 || p_Tasman || p_Gecko < 0.9 ),
             hasDynamicStyleBug  = p_Trident < 7,

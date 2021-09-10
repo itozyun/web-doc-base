@@ -19,11 +19,11 @@
   "devDependencies": {
     "google-closure-compiler": "^20210601.0.0",
     "gulp": "^4.0.2",
-    "gulp-cheerio": "^1.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-diamond-princess-zoning": "^0.9.10",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-iz-preprocessor": "^1.0.2",
+    "gulp-jsdom": "^1.1.0",
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.1.1",
     "plugin-error": "^1.0.1",

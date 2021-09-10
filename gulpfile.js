@@ -1,7 +1,7 @@
 const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
-      Cheerio         = require('gulp-cheerio'),
+      gulpJSDOM       = require('gulp-jsdom'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
@@ -20,7 +20,7 @@ gulp.task('docs', gulp.series(
                 gulpDPZ(
                     {
                         labelPackageGlobal : '*',
-                        packageGlobalArgs  : 'ua,window,document,navigator,screen,parseFloat,Number',
+                        packageGlobalArgs  : [ 'ua,window,document,navigator,screen,parseFloat,Number,undefined', 'ua,window,document,navigator,screen,parseFloat,Number,void 0' ],
                         basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
                     }
                 )
@@ -29,10 +29,11 @@ gulp.task('docs', gulp.series(
                     {
                         externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
                         define            : [
-                            'WHAT_BROWSER_AM_I_DEFINE_BRAND_ENABLED=false',
-                            'WHAT_BROWSER_AM_I_DEFINE_PCSITE_REQUESTED_ENABLED=false', // <- true',
-                            'WHAT_BROWSER_AM_I_DEFINE_IOS_DEVICE_ENABLED=false',
-                            'WHAT_BROWSER_AM_I_DEFINE_DEVICE_TYPE_ENABLED=false'
+                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
+                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=false'
                         ],
                         compilation_level : 'ADVANCED',
                         //compilation_level : 'WHITESPACE_ONLY',
@@ -40,7 +41,7 @@ gulp.task('docs', gulp.series(
                         warning_level     : 'VERBOSE',
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
-                        output_wrapper    : 'ua={};%output%',
+                        output_wrapper    : 'ua=[];%output%',
                         js_output_file    : tempJsName
                     }
                 )
@@ -48,16 +49,74 @@ gulp.task('docs', gulp.series(
     },
     function( cb ){
         const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
-        console.log(minjs.length + 'bytes.');
 
-        return gulp.src( ['./docs/getInlineJs.html', './docs/testImageLoading.html' ])
+        return gulp.src( ['./docs/getInlineJs.html' ])
             .pipe(
-                Cheerio(
+                gulpJSDOM(
+                    function( document ){
+                        var elm = document.getElementsByTagName( 'script' )[ 0 ];
+
+                        if( elm ){
+                            elm.textContent = minjs;
+                        };
+
+                        elm = document.getElementsByTagName( 'textarea' )[ 0 ];
+
+                        if( elm ){
+                            elm.value = minjs;
+                        };
+                    }
+                )
+            ).pipe(gulp.dest('./docs'));
+    },
+    function(){
+        return gulp.src( [
+            './.submodules/what-browser-am-i/src/js/**/*.js',
+            '!./.submodules/what-browser-am-i/src/4_brand.js',
+            './src/js-inline/dynamicViewPort.js'
+            ] ).pipe(
+                gulpDPZ(
                     {
-                        run : function($){
-                            $('script').eq(0).text( minjs );
-                            $('textarea').eq(0).text( minjs );
-                        } //, parserOptions: { xmlMode: true }
+                        labelPackageGlobal : '*',
+                        packageGlobalArgs  : [ 'ua,window,document,navigator,screen,parseFloat,Number,undefined', 'ua,window,document,navigator,screen,parseFloat,Number,void 0' ],
+                        basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
+                    }
+                )
+            ).pipe(
+                ClosureCompiler(
+                    {
+                        externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
+                        define            : [
+                            // 'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
+                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=false',
+                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=false'
+                        ],
+                        compilation_level : 'ADVANCED',
+                        //compilation_level : 'WHITESPACE_ONLY',
+                        //formatting        : 'PRETTY_PRINT',
+                        warning_level     : 'VERBOSE',
+                        language_in       : 'ECMASCRIPT3',
+                        language_out      : 'ECMASCRIPT3',
+                        output_wrapper    : 'ua=[];%output%',
+                        js_output_file    : tempJsName
+                    }
+                )
+            ).pipe(gulp.dest( tempDir ));
+    },
+    function( cb ){
+        const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
+
+        return gulp.src( [ './docs/testImageLoading.html' ] )
+            .pipe(
+                gulpJSDOM(
+                    function( document ){
+                        var elm = document.getElementsByTagName( 'script' )[ 0 ];
+
+                        if( elm ){
+                            elm.textContent = minjs;
+                        };
                     }
                 )
             ).pipe(gulp.dest('./docs'));
@@ -77,16 +136,16 @@ gulp.task('btoa', gulp.series(
                     {
                         externs           : [ './.submodules/regexp-free-js-base64/src/js-externs/externs.js' ],
                         define            : [
-                            'REGEXP_FREE_BASE64_DEFINE_DEBUG=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_UTOB=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOU=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_ENCODE=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_DECODE=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_BTOA=true',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_ATOB=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_BTOA=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_URISAFE_ATOB=false',
-                            'REGEXP_FREE_BASE64_DEFINE_USE_UINT8=false'
+                            'DEFINE_REGEXP_FREE_BASE64__DEBUG=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_UTOB=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_BTOU=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_ENCODE=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_DECODE=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_BTOA=true',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_ATOB=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_URISAFE_BTOA=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_URISAFE_ATOB=false',
+                            'DEFINE_REGEXP_FREE_BASE64__USE_UINT8=false'
                         ],
                         compilation_level : 'ADVANCED',
                         // compilation_level : 'WHITESPACE_ONLY',
@@ -118,6 +177,7 @@ gulp.task('js', gulp.series(
     function(){
         return gulp.src(
                 [
+                    './.submodules/what-browser-am-i/src/js/0_global/*.js',
                     './src/js/**/*.js',
                     '!./src/js/3_EventModule/prefersColor.js',
                     '!./src/js/3_EventModule/print.js',
@@ -125,13 +185,13 @@ gulp.task('js', gulp.series(
                     '!./src/js/6_CanUse/dataUriTest.js',
                     '!./src/js/6_CanUse/webfontTest.js',
                     '!./src/js/graph/**/*.js',
-                    '!./src/js/GoogleCodePrettify.js'
+                    '!./src/js/7_Library/GoogleCodePrettify.js'
                 ]
             ).pipe(
                 gulpDPZ(
                     {
                         packageGlobalArgs : [ 'ua,window,emptyFunction,' + globalVariables + ',undefined', 'ua,this,function(){},' + globalVariables + ',void 0' ],
-                        basePath          : './src/js/'
+                        basePath          : [ './src/js/', './.submodules/what-browser-am-i/src/js/' ]
                     }
                 )
              ).pipe(
@@ -139,9 +199,10 @@ gulp.task('js', gulp.series(
                     {
                         externs           : externs,
                         define            : [
-                            'WEB_DOC_BASE_DEFINE_MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                            'WEB_DOC_BASE_DEFINE_HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
-                            'WEB_DOC_BASE_DEFINE_AMAZON_ID="itozyun-22"'
+                            'DEFINE_WHAT_BROWSWER_AM_I__MINYFY=true',
+                            'DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
+                            'DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
+                            'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
                         ],
                         compilation_level : 'ADVANCED',
                         // compilation_level : 'WHITESPACE_ONLY',
@@ -159,7 +220,7 @@ gulp.task('js', gulp.series(
             {
                 js                : [
                     tempDir + '/temp.js'//,
-                    //'./src/js/GoogleCodePrettify.js' Gecko 0.8 で止まる
+                    //'./src/js-skipAdvancedCompilation/GoogleCodePrettify.js' Gecko 0.8 で止まる
                 ],
                 externs           : externs,
                 // compilation_level : 'WHITESPACE_ONLY',
