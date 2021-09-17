@@ -12,8 +12,8 @@ p_removeEventListener = EventTraget_removeEventListener;
 /** @type {Object<string, Object>} */
 var EventTarget_LISTENERS        = {},
     EventTarget_USE_ATTACH       = false, // 5 <= p_Trident && p_Trident < 9,
-    EventTarget_USE_STANDERD     = !p_Tasman && window.addEventListener,
     EventTarget_PATCH_OLD_WEBKIT = p_WebKit < 525.13, // Safari <3
+    EventTarget_USE_STANDERD     = !EventTarget_PATCH_OLD_WEBKIT && !p_Tasman && window.addEventListener,
     EventTarget_safariPreventDefault;
 
 /** 1.
