@@ -1,9 +1,13 @@
 
 /** //_{+simpleHeader **/
-    #lH .lMi, #lH .lSi { /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
+    #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
+    #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */ 
         padding-top    : 1em;
+        /* //_{^@ie5win */
         padding-bottom : 1em;
+        /* //_}^@ie5win */
     }
+
     #lE, #lF {
         border-width : 1px 0 0;
     }
