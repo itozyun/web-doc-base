@@ -174,11 +174,14 @@
         /* //_}#can-max-min */
     }
     .lW {
-        /* //_{@ie8,@ie9 */
+        /* //_{#ie89 */
         display   : block;
-        /* //_}@ie8,@ie9 */
+        /* //_}#ie89 */
     }
         .lM, .lS {
+            /* //_{#ie89 */
+            display   : block;
+            /* //_}#ie89 */
             float   : none;
             width   : auto;
         }
