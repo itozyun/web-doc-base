@@ -132,7 +132,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
             };
 
             if( SidebarFixer_isGeckoGte097 ){
-                p_removeEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheel, false );
+                p_removeEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheelForGecko, false );
             };
 
             if( p_Trident || p_Tasman ){
@@ -163,7 +163,7 @@ function SidebarFixer_onscroll(){
     if( SidebarFixer_skipScroll && !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
         SidebarFixer_skipScroll = false;
     } else {
-        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
         if( SidebarFixer_skipScroll ){
             //console.log( '.fix after scroll ' + SidebarFixer_lastScrollY, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
             SidebarFixer_fix( SidebarFixer_lastScrollY, 0, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
@@ -346,10 +346,10 @@ function SidebarFixer_onwheelForGecko( e ){
 function SidebarFixer_onfocus( _event ){
     var e   = _event || event,
         elm = e.srcElement || e.target,
-        _el = elm,
-        y   = 0;
+        y   = 0, h;
 
     if( p_DOM_contains( SidebarFixer_elmWrap, elm ) ){
+        h = elm.offsetHeight;
         while( SidebarFixer_elmWrap !== elm && p_DOM_contains( SidebarFixer_elmWrap, elm ) ){
             y   += elm.offsetTop || 0;
             elm  = elm.offsetParent;
@@ -357,15 +357,15 @@ function SidebarFixer_onfocus( _event ){
 
         if( !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
             // Chrome 77, 表示ボックス外の要素へのfocusの際に表示ボックスが拡大する．この際は、scroll位置の再取得をする．
-            SidebarFixer_fix( SidebarFixer_lastScrollY, 0, y, _el.offsetHeight );
+            SidebarFixer_fix( SidebarFixer_lastScrollY, 0, y, h );
             SidebarFixer_skipScroll = true;
             SidebarFixer_setScrollY( SidebarFixer_lastScrollY );
         } else {
-            SidebarFixer_skipScroll = [ y, _el.offsetHeight ];
+            SidebarFixer_skipScroll = [ y, h ];
         };
     };
 };
 
 function SidebarFixer_setScrollY( scrollY ){
-    window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
+    window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, window.scrollX, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
 };
