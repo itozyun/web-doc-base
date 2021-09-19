@@ -8,7 +8,7 @@ if( !p_cloudRendering ){
                 i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
 
             for( ; elmA = links[ ++i ]; ){
-                if( !p_DOM_hasClassName( elmA, 'img-disabled' ) ){
+                if( !p_DOM_hasClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_DISABLED ) ){
                     elmImg = p_DOM_getChildren( elmA ).length === 1 && p_DOM_getChildren( elmA )[ 0 ];
                     tag    = elmImg && p_DOM_getTagName( elmImg );
                     if( tag === 'IMG' ){
@@ -22,7 +22,7 @@ if( !p_cloudRendering ){
                             // Opera 7.x : elmImg.style.width への setter で float が解除される
                             thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
                             p_DOM_setStyle( elmImg, 'width', thumbWidth );
-                            p_DOM_addClassName( elmA, 'jsPica' );
+                            p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
                             PicaThumbnail_IMGS.push( {
                                 elmA        : elmA,
                                 thumbUrl    : elmImg.src,
@@ -73,7 +73,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                 p_DOM_setClassName( elmA, obj.clazz );
                 if( elmCap = obj.elmCap ){
                     p_DOM_setCssText( elmCap, obj.captionCSS );
-                    p_DOM_setClassName( elmCap, 'caption jsCap' );
+                    p_DOM_setClassName( elmCap, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ + ' ' + DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
                 };
             } else {
                 // small -> Large
@@ -81,10 +81,10 @@ function PicaThumbnail_onClickThumbnail( e ){
                     delete obj.originalUrl;
                     
                     while( parent = p_DOM_getParentNode( parent ) ){
-                        if( p_DOM_hasClassName( parent, 'caption' ) ){
+                        if( p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
                             obj.elmCap     = parent;
                             obj.captionCSS = parent.style.cssText;
-                            p_DOM_addClassName( parent, 'jsCap' );
+                            p_DOM_addClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
                         } else {
                             tag = p_DOM_getTagName( parent );
                             if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
@@ -111,12 +111,12 @@ function PicaThumbnail_onClickThumbnail( e ){
                 };
                 
                 obj.clazz = c = p_DOM_getClassName( elmA );
-                p_DOM_addClassName( elmA, 'jsPicaLarge' );
+                p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_LARGE );
                 p_DOM_setStyle( elmImg, 'width', '' );
                 elmImg.src = obj.large;
                 if( elmCap = obj.elmCap ){
                     p_DOM_setCssText( elmCap, '' );
-                    p_DOM_addClassName( elmCap, 'jsCapLarge' );
+                    p_DOM_addClassName( elmCap, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE );
                 };
             };
 

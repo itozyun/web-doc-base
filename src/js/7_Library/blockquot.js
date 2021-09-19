@@ -17,10 +17,10 @@ p_listenLoadEvent(
 
             if( title && cite ){
                 p_DOM_removeAttribute( elm, 'title' );
-                create( title, cite, 'js-bqLink', true );
+                create( title, cite, DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_LINK, true );
             } else if( cite ){
                 p_DOM_removeAttribute( elm, 'cite' );
-                create( window.decodeURI ? decodeURI( cite ) : cite, cite, 'js-bqCite' );
+                create( window.decodeURI ? decodeURI( cite ) : cite, cite, DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE );
             };
         };
 
@@ -40,7 +40,7 @@ p_listenLoadEvent(
                 p_DOM_insertElement( elm, tag, { className : className } );
             
             p_DOM_insertElement( elmCite, 'a',
-                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener', hidefocus : true, href : link } :
+                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener noreferrer', hidefocus : true, href : link } :
                                         { hidefocus : true, href : link },
                                     title
                                );

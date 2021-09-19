@@ -12,7 +12,7 @@ function DOM_setStyle( elm, name, value ){
 };
 
 function DOM_setCssText( elm, cssText ){
-    if( p_Presto < 9 ){
+    if( p_Presto < 9 || p_Trident < 5.5 ){ // IE5 : cssText では SidebarFixer が scroll イベントで動かない
         if( cssText ){
             var styles = cssText.split( ';' ),
                 style, nameAndValue;

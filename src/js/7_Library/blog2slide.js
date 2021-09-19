@@ -9,7 +9,7 @@ var blog2slide_requestFullscreen,
 
 p_listenLoadEvent(
     function(){
-        var elmButtonContainer = p_DOM_getElementById( 'blog2slide-start' ),
+        var elmButtonContainer = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID ),
             prefix             = p_notUndefined( document.onfullscreenchange       ) ? 'f' :
                                  p_notUndefined( document.onmozfullscreenchange    ) ? 'mozF' :
                                  p_notUndefined( document.onwebkitfullscreenchange ) ? 'webkitF' :
@@ -66,10 +66,10 @@ function blog2slide_onFullscreenChange(){
         document.fullscreen ||         /* Gecko 64, Chrome 71+, Samsung 10.1+ */
         /* document.mozFullScreen ||      Gecko 9+ */
         document.webkitIsFullscreen || /* Chrome 15+, Safari 6+, Samsung 4+ */
-        document.msFullscreenElement ||       /* Trident 11+ */
+        document.msFullscreenElement ||/* Trident 11+ */
         window.fullScreen              /* Gecko 1.8.1+ (Firefox 2+, Netscape Navigator 9+) */
     ){
-        p_DOM_setAttribute( blog2slide_elmRoot, 'id', 'blog2slide-root' );
+        p_DOM_setAttribute( blog2slide_elmRoot, 'id', DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID );
         blog2slide_elmSlides[ 1 ].parentNode.insertBefore( blog2slide_elmH1, blog2slide_elmSlides[ 1 ] );
 
         blog2slide_showSlide();
@@ -100,7 +100,7 @@ function blog2slide_showSlide(){
         0;
 
     blog2slide_elmCurrent = blog2slide_elmSlides[ blog2slide_currentSlideIndex ];
-    p_DOM_setAttribute( blog2slide_elmCurrent, 'id', 'blog2slide-current' );
+    p_DOM_setAttribute( blog2slide_elmCurrent, 'id', DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID );
 };
 
 function blog2slide_onKeydown( e ){

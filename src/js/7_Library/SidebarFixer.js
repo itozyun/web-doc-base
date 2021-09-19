@@ -1,11 +1,9 @@
 /*
  * 途中でサイドバーの要素が変化する -> 知りません
  */
-var SidebarFixer_ID_SIDEBAR    = 'jsSide', // jsSide
-    SidebarFixer_ID_WRAPPER    = 'jsSidebarFixer', // jsSidebarFixer
-    SidebarFixer_IDS_WHEEL     = [ 'jsSidebarFixer1', 'jsSidebarFixer2' ],
-    SidebarFixer_AFTER_SCROLL  = 10 <= p_Trident || p_EdgeHTML || p_ChromiumBase || p_WebKit, // Safari 13 で確認
-    SidebarFixer_CAPTURE_FOCUS = p_Gecko || p_Goanna || p_EdgeHTML,
+var SidebarFixer_ID_OF_WHEEL_ELEMENTS             = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
+    SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL         = 10 <= p_Trident || p_EdgeHTML || p_ChromiumBase || p_WebKit, // Safari 13 で確認
+    SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
     /*
      * positionFixed
      *   original :
@@ -57,19 +55,19 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
             p_listenResizeEvent( SidebarFixer_onscroll );
 
             SidebarFixer_elmRoot = document.compatMode !== 'CSS1Compat' ? p_body : p_html || p_body;
-            SidebarFixer_elmSide = p_DOM_getElementById( SidebarFixer_ID_SIDEBAR );
+            SidebarFixer_elmSide = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID );
             SidebarFixer_elmMain = p_elmMain;
             
             // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
             SidebarFixer_elmWrap = p_DOM_insertElementBefore(
                 p_DOM_getFirstChild( SidebarFixer_elmSide ),
                 'div',
-                { id : SidebarFixer_ID_WRAPPER }
+                { id : DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID }
             );
 
             if( p_Trident || p_Tasman ){
                 p_addEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus );
-            } else if( SidebarFixer_CAPTURE_FOCUS ){
+            } else if( SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN ){
                 p_addEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
             } else {
                 p_addEventListener( SidebarFixer_elmWrap, 'DOMFocusIn', SidebarFixer_onfocus, false );
@@ -80,7 +78,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
                 SidebarFixer_elmWrap.appendChild( p_DOM_getChildNodes( SidebarFixer_elmSide )[ 1 ] );
             };
 
-            while( id = SidebarFixer_IDS_WHEEL[ ++i ] ){
+            while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
                 elm = p_DOM_getElementById( id );
                 if( p_notUndefined( elm.onwheel ) ){
                     p_addEventListener( elm, 'wheel', SidebarFixer_onwheel, { passive : false } );
@@ -120,7 +118,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
         function(){
             var i = -1, id, elm;
 
-            while( id = SidebarFixer_IDS_WHEEL[ ++i ] ){
+            while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
                 elm = p_DOM_getElementById( id );
                 if( p_notUndefined( elm.onwheel ) ){
                     p_removeEventListener( elm, 'wheel', SidebarFixer_onwheel, { passive : false } );
@@ -139,7 +137,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
 
             if( p_Trident || p_Tasman ){
                 p_removeEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onwheel, false );
-            } else if( SidebarFixer_CAPTURE_FOCUS ){
+            } else if( SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN ){
                 p_removeEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
             } else {
                 p_removeEventListener( SidebarFixer_elmWrap, 'DOMFocusIn', SidebarFixer_onfocus, false );
@@ -162,14 +160,14 @@ function SidebarFixer_getFinite( arg ){
 };
 
 function SidebarFixer_onscroll(){
-    if( SidebarFixer_skipScroll && !SidebarFixer_AFTER_SCROLL ){
+    if( SidebarFixer_skipScroll && !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
         SidebarFixer_skipScroll = false;
     } else {
         SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
         if( SidebarFixer_skipScroll ){
             //console.log( '.fix after scroll ' + SidebarFixer_lastScrollY, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
             SidebarFixer_fix( SidebarFixer_lastScrollY, 0, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
-            // SidebarFixer_scrollY( SidebarFixer_lastScrollY );
+            // SidebarFixer_setScrollY( SidebarFixer_lastScrollY );
             SidebarFixer_skipScroll = false;
         } else {
             //console.log( 'scroll ' + SidebarFixer_lastScrollY );
@@ -338,7 +336,7 @@ function SidebarFixer_onwheel( e ){
 function SidebarFixer_onwheelForGecko( e ){
     var i = -1, id;
 
-    while( id = SidebarFixer_IDS_WHEEL[ ++i ] ){
+    while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
         if( p_DOM_contains( p_DOM_getElementById( id ), e.target ) ){
             SidebarFixer_onwheel( e );
         };
@@ -357,17 +355,17 @@ function SidebarFixer_onfocus( _event ){
             elm  = elm.offsetParent;
         };
 
-        if( !SidebarFixer_AFTER_SCROLL ){
+        if( !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
             // Chrome 77, 表示ボックス外の要素へのfocusの際に表示ボックスが拡大する．この際は、scroll位置の再取得をする．
             SidebarFixer_fix( SidebarFixer_lastScrollY, 0, y, _el.offsetHeight );
             SidebarFixer_skipScroll = true;
-            SidebarFixer_scrollY( SidebarFixer_lastScrollY );
+            SidebarFixer_setScrollY( SidebarFixer_lastScrollY );
         } else {
             SidebarFixer_skipScroll = [ y, _el.offsetHeight ];
         };
     };
 };
 
-function SidebarFixer_scrollY( scrollY ){
+function SidebarFixer_setScrollY( scrollY ){
     window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
 };
