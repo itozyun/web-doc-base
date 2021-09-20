@@ -4,6 +4,8 @@ var PicaThumbnail_IMGS      = [],
 if( !p_cloudRendering ){
     p_listenLoadEvent(
         function(){
+            if( !p_elmMain ) return;
+
             var links = p_DOM_getElementsByTagName( p_elmMain, 'A' ),
                 i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
 

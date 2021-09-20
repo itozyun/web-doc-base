@@ -48,15 +48,18 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
     p_listenCssAvailabilityChange(
         function( cssAvailability ){
             if( !cssAvailability ) return;
+            if( !p_elmMain ) return true;
 
             var i = -1, id, elm;
-
-            p_listenScrollEvent( SidebarFixer_onscroll );
-            p_listenResizeEvent( SidebarFixer_onscroll );
 
             SidebarFixer_elmRoot = document.compatMode !== 'CSS1Compat' ? p_body : p_html || p_body;
             SidebarFixer_elmSide = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID );
             SidebarFixer_elmMain = p_elmMain;
+
+            if( !SidebarFixer_elmSide ) return true;
+
+            p_listenScrollEvent( SidebarFixer_onscroll );
+            p_listenResizeEvent( SidebarFixer_onscroll );
             
             // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
             SidebarFixer_elmWrap = p_DOM_insertElementBefore(
