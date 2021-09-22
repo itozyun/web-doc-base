@@ -116,6 +116,19 @@
     }
 }
 
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .lM .LinkList {
+        @include stackableModule(.2em);
+
+        div {
+            display : inline-block;
+            margin  : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH; /* for highContrast */
+        }
+    }
+}
+
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
