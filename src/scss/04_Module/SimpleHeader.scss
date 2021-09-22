@@ -16,9 +16,11 @@
         display   : inline;
         /* //_}^+mobileOnly */
         font-size : 1.5em;
-        @include lineHeight(1, 0);
-        padding   : 0;
         margin    : 0 0.5em 0 0;
+    }
+    .Header h1 {
+        @include lineHeight(1, 0);
+        padding : 0;
     }
 
 /*  WSXGA
