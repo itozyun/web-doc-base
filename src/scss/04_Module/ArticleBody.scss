@@ -67,8 +67,15 @@
         .ABody .aBodyRoot > *:first-child {
             margin-top : 0;
         }
-        .ABody h1, .ABody h2, .ABody h3 {
+        .ABody h1, .ABody h2 {
             text-align : center;
+        }
+        .ABody h2 {
+            /* //_{@modern */
+            -webkit-column-span : all;
+               -moz-column-span : all;
+                    column-span : all;
+            /* //_}@modern */
         }
 }
 

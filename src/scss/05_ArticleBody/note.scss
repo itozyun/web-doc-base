@@ -23,37 +23,42 @@ dl.note dd {
     margin-left : 1em;
 }
 
-/*  Tablet
+/*  Tablet, Phablet, Phone, Watch
 --------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    .note {
-        blockquote p,
-        blockquote ul,
-        blockquote ol,
-        blockquote dl {
-            @include media(tablet_print) {
-                & {
-                    margin-right : $TABLET_H_SPACE;
-                }
+.note {
+    blockquote p,
+    blockquote ul,
+    blockquote ol,
+    blockquote dl {
+        @include media(tablet_print) {
+            & {
+                margin-right : $TABLET_H_SPACE;
             }
-        
-            @include media(phablet) {
-                & {
-                    margin-right : $PHABLET_H_SPACE;
-                }
+        }
+    
+        @include media(phablet) {
+            & {
+                margin-right : $PHABLET_H_SPACE;
             }
-        
-            @include media(phone) {
-                & {
-                    margin-right : $PHONE_H_SPACE;
-                }
+        }
+    
+        @include media(phone) {
+            & {
+                margin-right : $PHONE_H_SPACE;
             }
-        
-            @include media(watch) {
-                & {
-                    margin-right : 0;
-                }
+        }
+    
+        @include media(watch) {
+            & {
+                margin-right : 0;
             }
         }
     }
+}
+.note {
+    /* //_{@modern */
+    -webkit-column-span : all;
+       -moz-column-span : all;
+            column-span : all;
+    /* //_}@modern */
 }
