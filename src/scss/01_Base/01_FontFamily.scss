@@ -37,6 +37,8 @@
  *         https://www.bugbugnow.net/2020/02/font-family-mono.html
  *
  * (6) "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう問題あり
+ *
+ * (7) "YuKyokasho" 游教科書体 macOS Catalina (10.15) https://mimi.moe.in/nmp/fonts/fonts
  */
 
 /* //_{#notie */
@@ -52,7 +54,7 @@
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
                 "Helvetica Neue", Helvetica, Arial, Verdana,
                 /* Roboto, */ // (2)
-                "UD Digi Kyokasho NP-R",
+                "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
                 "游ゴシック体", YuGothic, "YuGothic M", // (1)
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
@@ -70,7 +72,7 @@
                 /* Helvetica, Arial, */ // (3)
                 Verdana,
                 Roboto,
-                "UD Digi Kyokasho NP-R",
+                "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
                 "游ゴシック体", YuGothic, "YuGothic M", // (1)
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
@@ -87,6 +89,7 @@
 
     %mincho {
         font-family :
+            /* "BIZ UD明朝", "BIZ UDMincho", */
             "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 
         @include media(onlyIE10To11){
@@ -103,7 +106,8 @@
         font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
     }
     %mincho {
-        font-family   : "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+        font-family   : /* "BIZ UD明朝", "BIZ UDMincho", */
+                        "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
         -ms-transform : rotate(.03deg); // (5)
         font-weight   : 700;
     }
@@ -123,9 +127,8 @@
 
 /* //_{+it */
     /* //_{#notie,@ie9,@ie8,@ie7 */
-            // (6)
             code, var, kbd, samp /* , pre, tt */ {
-                font-family : // (7) 注意事項
+                font-family : // (6) 注意事項
                     SFMono-Regular,
                     'Liberation Mono',
                     /* Menlo,                       Mac OS X 10.6(2009年) */
