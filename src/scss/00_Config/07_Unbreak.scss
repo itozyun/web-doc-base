@@ -1,12 +1,13 @@
 
 @mixin unbreak-inside {
     /* //_{@modern */
-    break-inside      : avoid;
+    break-inside                : avoid;
+    -webkit-column-break-inside : avoid;
     /* //_}@modern */
     /* //_{#ie */
     /* page-break-inside : ""; */
     /* //_}#ie */
-    page-break-inside : avoid;
+    page-break-inside           : avoid;
 }
 
 @mixin unbreak-after {
