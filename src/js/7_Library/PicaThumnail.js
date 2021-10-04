@@ -2,42 +2,37 @@ var PicaThumbnail_IMGS      = [],
     PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
 
 if( !p_cloudRendering ){
-    p_listenLoadEvent(
-        function(){
-            if( !p_elmMain ) return;
+    p_listenImageReady(
+        function( result ){
+            if( !result.imgReady || !p_elmMain ) return;
 
-            var links = p_DOM_getElementsByTagName( p_elmMain, 'A' ),
-                i = -1, _ = '', elmA, elmImg, tag, href, ext, thumbWidth;
+            var elmImg = result.img, 
+                elmA   = p_DOM_getParentNode( elmImg ),
+                href, ext, thumbWidth;
 
-            for( ; elmA = links[ ++i ]; ){
-                if( !p_DOM_hasClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_DISABLED ) ){
-                    elmImg = p_DOM_getChildren( elmA ).length === 1 && p_DOM_getChildren( elmA )[ 0 ];
-                    tag    = elmImg && p_DOM_getTagName( elmImg );
-                    if( tag === 'IMG' ){
-                        href = p_DOM_getAttribute( elmA, 'href' );
-                        ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
-                        ext  = ( ext[ ext.length - 1 ] || _ ).toLowerCase();
-                        if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
-                            p_addEventListener( elmA  , 'keydown', PicaThumbnail_onClickThumbnail );
-                            p_addEventListener( elmImg, 'click', PicaThumbnail_onClickThumbnail );
-                            p_addEventListener( elmA  , 'click', PicaThumbnail_onClickAnchor );
-                            // Opera 7.x : elmImg.style.width への setter で float が解除される
-                            thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
-                            p_DOM_setStyle( elmImg, 'width', thumbWidth );
-                            p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
-                            PicaThumbnail_IMGS.push( {
-                                elmA        : elmA,
-                                thumbUrl    : elmImg.src,
-                                thumbWidth  : thumbWidth,
-                                originalUrl : href,
-                                elmImg      : elmImg //,
-                                // replaced   : false,
-                                // clazz      : _,
-                                // elmCap     : elmCap,
-                                // captionCSS : ''
-                            } );
-                        };
-                    };
+            if( p_DOM_getTagName( elmA ) === 'A' && p_DOM_getChildren( elmA ).length === 1 ){
+                href = p_DOM_getAttribute( elmA, 'href' );
+                ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
+                ext  = ( ext[ ext.length - 1 ] || '' ).toLowerCase();
+                if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
+                    p_addEventListener( elmA  , 'keydown', PicaThumbnail_onClickThumbnail );
+                    p_addEventListener( elmImg, 'click'  , PicaThumbnail_onClickThumbnail );
+                    p_addEventListener( elmA  , 'click'  , PicaThumbnail_onClickAnchor );
+                    // Opera 7.x : elmImg.style.width への setter で float が解除される
+                    thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
+                    p_DOM_setStyle( elmImg, 'width', thumbWidth );
+                    p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
+                    PicaThumbnail_IMGS.push( {
+                        elmA        : elmA,
+                        thumbUrl    : elmImg.src,
+                        thumbWidth  : thumbWidth,
+                        originalUrl : href,
+                        elmImg      : elmImg //,
+                        // replaced   : false,
+                        // clazz      : _,
+                        // elmCap     : elmCap,
+                        // captionCSS : ''
+                    } );
                 };
             };
         }
@@ -58,7 +53,7 @@ function PicaThumbnail_onClickThumbnail( e ){
     var key = e.keyCode || e.witch,
         i   = PicaThumbnail_IMGS.length,
         elmImg,
-        parent, elmA, elmCap, src, obj, tag, w, elms, l, size, n, c;
+        parent, elmA, elmCap, src, obj, tag, w, elms, l, size, n;
 
     if( e.type === 'keydown' && key !== 13 ) return;
 
@@ -112,7 +107,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                     obj.large = src;
                 };
                 
-                obj.clazz = c = p_DOM_getClassName( elmA );
+                obj.clazz = p_DOM_getClassName( elmA );
                 p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_LARGE );
                 p_DOM_setStyle( elmImg, 'width', '' );
                 elmImg.src = obj.large;
