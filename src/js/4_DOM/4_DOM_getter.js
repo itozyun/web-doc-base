@@ -41,8 +41,8 @@ function DOM_getChildNodes( elm ){
  * @return {Array.<Node>}
  */
  function DOM_getChildren( elm ){
-    var hasChildren = !!elm.children,
-        childNodes  = hasChildren ? elm.children : elm.childNodes,
+    var hasChildren = elm.children,
+        childNodes  = hasChildren ? hasChildren : elm.childNodes,
         result      = [],
         i           = childNodes.length,
         j           = -1,
