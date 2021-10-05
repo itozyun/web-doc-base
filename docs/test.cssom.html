@@ -58,6 +58,25 @@ function cssomHack2(){
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.lastChild );
 };
+function cssomTrident(){
+    var styleSheet = document.createStyleSheet();
+    
+    if( styleSheet.addRule ){
+        styleSheet.addRule( '*', 'color:#666' );
+    } else if( styleSheet.insertRule ){
+        styleSheet.insertRule( '*{color:#666}', styleSheet.cssRules.length );
+    };
+};
+function cssomTrident2(){
+    var elm = document.createElement( 'style' ),
+        styleSheet = elm.sheet || elm.styleSheet;
+
+    if( styleSheet.addRule ){
+        styleSheet.addRule( '*', 'color:#6ff' );
+    } else if( styleSheet.insertRule ){
+        styleSheet.insertRule( '*{color:#6ff}', styleSheet.cssRules.length );
+    };
+};
 </script>
 </head>
 <body size="1">
@@ -89,10 +108,12 @@ if( sheet = sheets[ 0 ] ){
     };
 };
 </script>
-<p><button onclick="cssom();" color="blue">dynamic CSSOM general</button>,
-<button onclick="cssomLink();" color="blue">dynamic CSSOM Link</button>,
-<button onclick="cssomDataURI();" color="red">dynamic CSSOM DataURI</button>,
-<button onclick="cssomHack();" color="blue">dynamic CSSOM hack</button>,
-<button onclick="cssomHack2();" color="blue">dynamic CSSOM hack2</button>
+<p><button onclick="cssom();">dynamic CSSOM general</button>,
+<button onclick="cssomLink();">dynamic CSSOM Link</button>,
+<button onclick="cssomDataURI();">dynamic CSSOM DataURI</button>,
+<button onclick="cssomHack();">dynamic CSSOM hack</button>,
+<button onclick="cssomHack2();">dynamic CSSOM hack2</button>
+<button onclick="cssomTrident();">dynamic CSSOM Trident&lt;11</button>
+<button onclick="cssomTrident2();">dynamic CSSOM Trident&lt;11 - 2</button>
 </body>
 </html>

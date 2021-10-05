@@ -57,7 +57,7 @@ function CSSOM_getCssRules( styleSheet ){
  * @param {string|undefined=} opt_media
  */
 function CSSOM_insertRule( newRules, opt_media ){
-    var styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] || CSSOM_createStyleSheetForTrident( opt_media ),
+    var styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] || CSSOM_createStyleSheetForTridentAndOpera9( opt_media ),
         l          = newRules.length - 2,
         i          = -1,
         cssText    = '',
@@ -89,7 +89,7 @@ function CSSOM_insertRule( newRules, opt_media ){
  */
 function CSSOM_addImport( url, opt_media ){
     var media      = opt_media || 'all',
-        styleSheet = CSSOM_styleSheets[ media ] || CSSOM_createStyleSheetForTrident( opt_media ),
+        styleSheet = CSSOM_styleSheets[ media ] || CSSOM_createStyleSheetForTridentAndOpera9( opt_media ),
         index      = CSSOM_importIndex[ media ] || 0;
 
     if( !styleSheet ){
@@ -110,10 +110,10 @@ function CSSOM_addImport( url, opt_media ){
  * @param {string=} opt_media
  * @return {CSSStyleSheet|undefined}
  */
-    function CSSOM_createStyleSheetForTrident( opt_media ){
+    function CSSOM_createStyleSheetForTridentAndOpera9( opt_media ){
         var elm, styleSheet;
 
-        if( p_Trident === 5.5 ){ // Win XP sp3, IETester IE5.5 で確認
+        if( p_Trident === 5.5 || 9 <= p_Presto ){ // Win XP sp3, IETester IE5.5 で確認
             elm        = p_DOM_insertElement( p_head, 'style' ),
             styleSheet = CSSOM_getStyleSheet( elm );
 
@@ -124,7 +124,7 @@ function CSSOM_addImport( url, opt_media ){
             styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] = document.createStyleSheet();
 
             if( DEFINE_WEB_DOC_BASE__DEBUG && !styleSheet.owningElement ){
-                Debug.log( '[CSSOM] CSSOM_createStyleSheetForTrident(), No styleSheet.owningElement!' );
+                Debug.log( '[CSSOM] CSSOM_createStyleSheetForTridentAndOpera9(), No styleSheet.owningElement!' );
                 return styleSheet;
             };
 
