@@ -29,6 +29,21 @@ function CSSOM_getStyleSheet( elm ){
     return elm.sheet || elm.styleSheet;
 };
 
+/* function CSSOM_getOwnerNode( styleSheet ){
+    return styleSheet.owningElement || styleSheet.ownerNode;
+};
+function CSSOM_removeStyleSheet( styleSheet ){
+    p_DOM_remove( elm = CSSOM_getOwnerNode( styleSheet ) );
+    // media = p_DOM_getAttribute( elm, 'media' ) || 'all';
+    for( media in CSSOM_styleSheets ){
+        if( CSSOM_styleSheets[ media ] === styleSheet ){
+            CSSOM_styleSheets[ media ] = null;
+            CSSOM_importIndex[ media ] = 0;
+            break;
+        };
+    };
+}; */
+
 /**
  * @param {CSSStyleSheet} styleSheet
  * @return {CSSRuleList}
@@ -42,31 +57,30 @@ function CSSOM_getCssRules( styleSheet ){
  * @param {string|undefined=} opt_media
  */
 function CSSOM_insertRule( newRules, opt_media ){
-    var media = opt_media || 'all',
-        sheet = CSSOM_styleSheets[ media ],
-        selector, property, css = '', _css;
+    var styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] || CSSOM_createStyleSheetForTrident( opt_media ),
+        l          = newRules.length - 2,
+        i          = -1,
+        cssText    = '',
+        selector, property, _cssText;
 
-    if( !sheet ){
-        sheet = CSSOM_createStyleSheetForTrident( opt_media );
-    };
+    while( i < l ){
+        selector = newRules[ ++i ];
+        property = newRules[ ++i ];
+        _cssText = selector + '{' + property + '}';
 
-    while( newRules.length ){
-        selector = newRules.shift();
-        property = newRules.shift();
-        _css     = selector + '{' + property + '}';
-
-        if( !sheet ){
-            css += _css;
-        } else if( sheet.addRule ){
-            sheet.addRule( selector, property );
-        } else if( sheet.insertRule ){
-            sheet.insertRule( _css, sheet.cssRules.length );
+        if( !styleSheet ){
+            cssText += _cssText;
+        } else if( styleSheet.addRule ){
+            styleSheet.addRule( selector, property );
+        } else if( styleSheet.insertRule ){
+            styleSheet.insertRule( _cssText, styleSheet.cssRules.length );
         };
     };
 
-    if( css ){
-        CSSOM_createStyleSheetForOther( css, opt_media );
+    if( cssText ){
+        CSSOM_createStyleSheetForOther( cssText, opt_media );
     };
+    // return styleSheet;
 };
 
 /**
@@ -74,25 +88,22 @@ function CSSOM_insertRule( newRules, opt_media ){
  * @param {string=} opt_media
  */
 function CSSOM_addImport( url, opt_media ){
-    var media = opt_media || 'all',
-        sheet = CSSOM_styleSheets[ media ],
-        index = CSSOM_importIndex[ media ] || 0;
+    var media      = opt_media || 'all',
+        styleSheet = CSSOM_styleSheets[ media ] || CSSOM_createStyleSheetForTrident( opt_media ),
+        index      = CSSOM_importIndex[ media ] || 0;
 
-    if( !sheet ){
-        sheet = CSSOM_createStyleSheetForTrident( opt_media );
-    };
-
-    if( !sheet ){
+    if( !styleSheet ){
         CSSOM_createStyleSheetForOther( '@import "' + url + '"', opt_media );
         /* if( !CSSOM_styleSheets[ media ] ){
             return;
         }; */
-    } else if( sheet.addImport ){
-        sheet.addImport( url, index );
-    } else if( sheet.insertRule ){
-        sheet.insertRule( '@import "' + url + '"', index );
+    } else if( styleSheet.addImport ){
+        styleSheet.addImport( url, index );
+    } else if( styleSheet.insertRule ){
+        styleSheet.insertRule( '@import "' + url + '"', index );
     };
     CSSOM_importIndex[ media ] = ++index;
+    // return styleSheet;
 };
 
 /**
@@ -100,23 +111,34 @@ function CSSOM_addImport( url, opt_media ){
  * @return {CSSStyleSheet|undefined}
  */
     function CSSOM_createStyleSheetForTrident( opt_media ){
-        if( p_Trident < 11 ){
-            var styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] = document.createStyleSheet();
-    
+        var elm, styleSheet;
+
+        if( p_Trident === 5.5 ){ // Win XP sp3, IETester IE5.5 で確認
+            elm        = p_DOM_insertElement( p_head, 'style' ),
+            styleSheet = CSSOM_getStyleSheet( elm );
+
             if( opt_media ){
-                var links = p_DOM_getElementsByTagNameFromDocument( 'link' ),
-                    link  = links[ links.length - 1 ];
-                
-                p_DOM_setAttribute( link, 'media', opt_media );
+                p_DOM_setAttribute( elm, 'media', opt_media );
             };
-            return styleSheet;
+        } else if( p_Trident < 11 ){
+            styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] = document.createStyleSheet();
+
+            if( DEFINE_WEB_DOC_BASE__DEBUG && !styleSheet.owningElement ){
+                Debug.log( '[CSSOM] CSSOM_createStyleSheetForTrident(), No styleSheet.owningElement!' );
+                return styleSheet;
+            };
+
+            if( opt_media ){
+                p_DOM_setAttribute( styleSheet.owningElement, 'media', opt_media );
+            };
         };
+        return styleSheet;
     };
 /**
- * @param {string} css
+ * @param {string} cssText
  * @param {string|undefined} opt_media
  */
- function CSSOM_createStyleSheetForOther( css, opt_media ){
+function CSSOM_createStyleSheetForOther( cssText, opt_media ){
     if( CSSOM_USE_DATAURI_FALLBACK ){
         //  Data URIs explained
         //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
@@ -129,15 +151,15 @@ function CSSOM_addImport( url, opt_media ){
                 type  : 'text/css',
                 rel   : 'stylesheet',
                 media : opt_media,
-                href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( css )
+                href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText )
             }
         );
     } else if( !( p_Presto < 7.2 ) ){
         // For Opera 7.2x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
-        var styleSheet = CSSOM_getStyleSheet( p_DOM_insertStyleElement( p_head, { media : opt_media }, css ) );
+        var styleSheet = CSSOM_getStyleSheet( p_DOM_insertStyleElement( p_head, { media : opt_media }, cssText ) );
 
         if( styleSheet ){
-            CSSOM_styleSheets[ opt_media || 'all' ] = styleSheet;
+            /* return */ CSSOM_styleSheets[ opt_media || 'all' ] = styleSheet;
         };
     };
 };
