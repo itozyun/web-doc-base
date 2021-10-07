@@ -77,8 +77,9 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
  */
     function maybeCanWebFont(){
         var blocklist =
-            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP    ) < 2.2 ||
-            p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB   ) ||
+            p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP          ) < 2.2 ||
+            p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB         ) ||
+            p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
             p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MeeGo ) ||
             p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_WebOS ) ||
             p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS   ) ||

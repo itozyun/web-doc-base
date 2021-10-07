@@ -1,12 +1,4 @@
-if( 
-    (
-        !p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Gecko ) &&
-        !p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) &&
-        !p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile )
-    ) ||
-    1 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Gecko ) ||
-    5.5 <= ( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) )
-){
+if( !( p_Gecko < 1.8 ) && !( p_Trident < 5.5 ) && !( p_Presto < 7.2 ) ){
     p_listenLoadEvent(
         function(){
             if( p_cssAvailability ){

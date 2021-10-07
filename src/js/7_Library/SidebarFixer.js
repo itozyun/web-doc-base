@@ -12,17 +12,17 @@ var SidebarFixer_ID_OF_WHEEL_ELEMENTS             = [ DEFINE_WEB_DOC_BASE__SIDEB
     SidebarFixer_positionFixed = // Opera 9.x-10.x では fixed でないと表示が乱れる
             !(
                 // iOS 4.3 and older : Platform is iPhone/Pad/Touch and WebKit version is less than 534 (ios5)
-                p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_SafariMobile ) < 5 ||
-                p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_iOSWebView   ) < 5 ||
+                p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_SafariMobile ) < 5 ||
+                p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_iOSWebView   ) < 5 ||
                 // Opera Mini
                 // https://www.tobymackenzie.com/blog/2017/05/11/opera-mini-supporting-fixed-position/
                 //( ua[ 'OperaMini' ] ) ||
                 // UC Browser speed mode on
                 //( ua[ 'UCWEB' ] ) ||
                 //Android lte 2.1: Platform is Android and WebKit version is less than 533 (Android 2.2)
-                ( p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP ) < 2.2 ) ||
+                ( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP ) < 2.2 ) ||
                 // Firefox Mobile before 6.0 -
-                ( p_getPlatformVersionOf( WHAT_BROWSER_AM_I__ENGINE_Fennec ) < 6 ) ||
+                ( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Fennec ) < 6 ) ||
                 // WebOS less than 3
                 ( p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_WebOS ) && p_WebKit < 534 ) ||
                 // MeeGo
@@ -41,7 +41,7 @@ var SidebarFixer_ID_OF_WHEEL_ELEMENTS             = [ DEFINE_WEB_DOC_BASE__SIDEB
     SidebarFixer_lastScrollY = 0,
     SidebarFixer_can3D,
     SidebarFixer_skipScroll,
-    SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( ua[ WHAT_BROWSER_AM_I__INDEX_ENGINE_VERSION ], '0.9.7' );
+    SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' );
 
 if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
 
