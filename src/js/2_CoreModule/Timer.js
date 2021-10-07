@@ -16,7 +16,8 @@ var TIMER_INTERVAL = 64,
     timerUID = 0,
     timerClearID;
 
-function Timer_on(){
+/** @type {Function|string} */
+var Timer_on = function(){
     var cb, i = 0, t = ( new Date - 0 );
 
     while( i < TIMER_LISTENERS.length ){

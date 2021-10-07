@@ -9,9 +9,11 @@ p_listenScrollEvent = function( callback ){
  * private
  */
 /** @type {Array<Function>} */
-var Event_scrollEventCallbacks = [],
-    Event_lastScrollY          = 0,
-    Event_NO_SCROLL_EVENT      = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
+var  Event_scrollEventCallbacks = [];
+/** @type {number} */
+var  Event_lastScrollY          = 0;
+/** @type {boolean} */
+var Event_NO_SCROLL_EVENT       = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
 
 /**
  * @param {Event=} e

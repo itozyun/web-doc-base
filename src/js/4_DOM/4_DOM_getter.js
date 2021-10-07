@@ -15,7 +15,7 @@
 
 /** 1.
  * @param {Node} elm
- * @return {Element}
+ * @return {Node|null}
  */
  function DOM_getParentNode( elm ){
     return m_isIE4DOM ? elm.parentElement : elm.parentNode;

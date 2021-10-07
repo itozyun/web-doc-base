@@ -17,7 +17,8 @@ var LOOP_INTERVAL = 999,
     loopTimerUID = 0,
     loopTimerClearID;
 
-function LoopTimer_on(){
+/** @type {Function|string} */
+var LoopTimer_on = function(){
     var cb, i = 0;
 
     for( ; i < LOOP_LISTENERS.length; ++i ){

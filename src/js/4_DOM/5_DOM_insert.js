@@ -16,8 +16,10 @@ p_DOM_getInnerHTML         = DOM_getInnerHTML;
 /** ===========================================================================
  * private
  */
-var DOM_nonStandardElementCreation   = p_Trident < 9,
-    DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
+/** @type {boolean} */
+var DOM_nonStandardElementCreation   = p_Trident < 9;
+/** @type {boolean} */
+var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
 
     /**
      * @param {number} insertPosition
@@ -149,12 +151,16 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
  * @param {Node} targetNode
  * @param {Object|number=} attrs
  * @param {*=} textContent
- * @return {Element}
+ * @return {Element|undefined}
  */
 function DOM_insertStyleElement( targetNode, attrs, textContent ){
     var elm, name, value;
 
     if( m_isIE4DOM ){
+        // if targetNode === p_head
+        // sheet = document.createStyleSheet()
+        // sheet.cssText = textContent;
+        // shhet.owningElement
         return;
     } else if( p_WebKit ){
         elm = document.createElement( 'style' );
@@ -242,6 +248,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
  */
 function DOM_remove( elm ){
     if( DEFINE_WEB_DOC_BASE__DEBUG && !p_DOM_getParentNode( elm ) ){
+        Debug.log( '[DOM] p_DOM_remove(), No parentNode!' );
         return;
     };
 

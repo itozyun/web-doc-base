@@ -3,9 +3,11 @@
  */
 
 /** @type {Function|null} */
-var m_initEventHandler,
-    m_matchMedia = window.matchMedia,
-    m_elmTest;
+var m_initEventHandler;
+/** @type {Function|undefined} */
+var m_matchMedia = window.matchMedia;
+/** @type {Element|null} */
+var m_elmTest;
 
 /**
  * @param {Array.<Function>} callbackList
@@ -35,8 +37,8 @@ function m_lazyDispatchEvent( callbackList, param ){
 /** ===========================================================================
  * private
  */
-var Event_lazyCallbacks = [],
-    Event_loaded;
+var Event_lazyCallbacks = [];
+var Event_loaded;
 
 function _m_lazyDispatchEvent(){
     var lazyCallbacks = Event_lazyCallbacks,
