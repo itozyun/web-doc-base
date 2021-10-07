@@ -5,7 +5,7 @@
  *    articleFooterItem
 --------------------------------------------------------------------------------------*/
 @mixin article-footer-item {
-    border-width  : 0 0 1px;
+    border-width : 0 0 1px;
     @include highContrast {
         border-style : dotted;
     }

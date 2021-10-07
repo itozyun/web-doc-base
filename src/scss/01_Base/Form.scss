@@ -5,129 +5,121 @@
  * @include placeholderColor(#00ff00);
  */
  @mixin placeholderColor($color) {
-    /* //_{@modern */
-    &:placeholder-shown {
-        color: $color;
+    @if( $UA_Modern ){
+        &:placeholder-shown {
+            color : $color;
+        }
+        &::-webkit-input-placeholder {
+            color : $color;
+        }
+        &:-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &::-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &:-ms-input-placeholder {
+            color : $color;
+        }
     }
-    &::-webkit-input-placeholder {
-        color:$color;
-    }
-    &:-moz-placeholder {
-        color:$color;
-        opacity: 1;
-    }
-    &::-moz-placeholder {
-        color:$color;
-        opacity: 1;
-    }
-    &:-ms-input-placeholder {
-        color:$color;
-    }
-    /* //_}@modern */
 }
 
 textarea, input {
     border-width : $INPUT_BORDER_WIDTH;
-    /* //_{@modern */
+    @if( $UA_Modern ){
          /* padding-left : 1px;1px : 0pxだとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
-    /* //_}@modern */
-    /* //_{^@legacy */
-    padding      : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR}; // Opera 8~ では padding が無視, Opera 7 では 0 に
-    /* //_}^@legacy */
-    /* //_{@legacy */
-    padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
-    /* //_}@legacy */
+    }
+    @if( $IS_OLD_OPERA == false ){
+        padding : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
+    } @else {
+        // padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
+    }
+    @if( $IS_OLD_GECKO ){
+        -moz-box-sizing : border-box;
+    }
     @include placeholderColor( $COLOR_Default_casual_text );
 }
 
 input {
-    font-size             : 1em;
+    @if( $UA_Modern or $IS_WIN_IE ){
+        font-size : 1em; /* for Edge, IE11- */
+    }
+    @if( $UA_Modern ){
+        -webkit-border-radius : 0;
+           -moz-border-radius : 0;
+                border-radius : 0;
+        -webkit-appearance    : none;
+                appearance    : none;
+    }
+    @if( $IS_NOT_IE ){
+        margin                : 0;
+    }
 
-    /* //_{@modern */
-    -webkit-border-radius : 0;
-       -moz-border-radius : 0;
-            border-radius : 0;
-    -webkit-appearance    : none;
-            appearance    : none;
-    /* //_}@modern */
-    /* //_{#notie */
-    margin                : 0;
-    /* //_}#notie */
-
-/* //_{@ie6,@ie7,@ie8,@ie9,@modern */
-    @include box-sizing(content-box);
-    line-height           : 1;
-    height                : 1em;
-/* //_}@ie6,@ie7,@ie8,@ie9,@modern */
-/* //_{@ie55,@ie5win */
-    line-height           : 1;
-    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
-/* //_}@ie55,@ie5win */
-/* //_{@legacy */
-    line-height           : $BASE_LINE_HEIGHT;
-    height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    border-style          : solid; /* for Opera 9.x [type=submit] */
-/* //_}@legacy */
+    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6  ){
+        @include box-sizing(content-box);
+        line-height           : 1;
+        height                : 1em;
+    }
+    @if( $UA_IE55 or $UA_IE5  ){
+        line-height           : 1;
+        height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+    }
+    @if( $IS_LEGACY ){
+        height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    }
+    @if( $IS_OLD_GECKO ){
+        line-height           : 1;
+    }
+    @if( $IS_OLD_OPERA ){
+        line-height : $BASE_LINE_HEIGHT;
+    }
+    @if( $UA_Opera9 ){
+        border-style : solid; /* for Opera 9.x [type=submit] */
+    }
 }
 
-/* //_{@legacy */
-    /* override Gecko ~1.8.1 */
-    @media \0 all {
-        textarea, input {
-            padding         : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
-            -moz-box-sizing : border-box;
-        }
-        input {
-            line-height : 1;
-        }
-    }
-    @-moz-document url-prefix() {
-        /* override Gecko 1.9.0~1.9.2 */
-        textarea [_csshack_="_:-moz-loading"], input [_csshack_="_:-moz-loading"] {
-            padding         : #{($BASE_LINE_HEIGHT_EM - 1em) / 2} #{$FORM_ITEM_PADDING_LR};
-            -moz-box-sizing : border-box;
-        }
-        input [_csshack_="_:-moz-loading"] {
-            line-height : 1;
-        }
-    }
+@if( $IS_OLD_OPERA ){
     input[type=hidden] {
         display: none; /* Opera */
     }
-/* //_}@legacy */
-
-/* //_{@modern,@legacy */
-input::-moz-focus-inner /* , button::-moz-focus-inner */ {
-    border      : 0;
 }
-/* //_}@modern,@legacy */
+
+@if( $UA_Modern or $UA_Gck130-190 ){
+    input::-moz-focus-inner /* , button::-moz-focus-inner */ {
+        border      : 0;
+    }
+}
 
 textarea {
-    font-size        : 1em; /* for Edge, IE11- */
+    @if( $UA_Modern or $IS_WIN_IE ){
+        font-size : 1em; /* for Edge, IE11- */
+    }
     overflow         : auto;
-    /* //_{@modern */
-    resize           : vertical;
-    background-image : none; /* Android Firefox */
-    /* //_}@modern */
+    @if( $UA_Modern ){
+        resize           : vertical;
+        background-image : none; /* Android Firefox */
+    }
     margin           : 0;
 }
 
-/* //_{#can-focus-pseudo-class */
-form :focus {
-    color        : $COLOR_ACCENT;
-    border-color : $COLOR_ACCENT;
-    @include highContrast {
-        border-style : dotted;
+@if( $CANUSE_FOCUS_PSEUDO_CLASS  ){
+    form :focus {
+        color        : $COLOR_ACCENT;
+        border-color : $COLOR_ACCENT;
+        @include highContrast {
+            border-style : dotted;
+        }
     }
 }
-/* //_}#can-focus-pseudo-class */
 
-/* //_{@modern */
-form :invalid {
-    color      : $COLOR_WARN;
-    box-shadow : none; /* firefox45 */
+@if( $UA_Modern ){
+    form :invalid {
+        color      : $COLOR_WARN;
+        box-shadow : none; /* firefox45 */
+    }
 }
-/* //_}@modern */
 
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
@@ -137,9 +129,9 @@ form :invalid {
         color      : $COLOR_Watch_text;
         @include placeholderColor( $COLOR_Watch_casual_text );
     }
-    /* //_{#can-attr-selector */
-    [type="submit"] {
-        background : $COLOR_Watch_casual_fill;
+    @if( $CANUSE_ATTR_SELECTOR ){
+        [type="submit"] {
+            background : $COLOR_Watch_casual_fill;
+        }
     }
-    /* //_}#can-attr-selector */
 }

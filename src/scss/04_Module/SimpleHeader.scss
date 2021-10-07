@@ -2,78 +2,72 @@
  *  出現位置は #lH .lMi 下で固定
  *
 --------------------------------------------------------------------------------------*/
-
-/** //_{+simpleHeader **/
-
-/*  [module] Header
---------------------------------------------------------------------------------------*/
-.Header {
-    @include lineHeight(1, 1);
-}
-
-    .Header h1, .h1 {
-        /* //_{^+mobileOnly */
-        display   : inline;
-        /* //_}^+mobileOnly */
-        font-size : 1.5em;
-        margin    : 0 0.5em 0 0;
-    }
-    .Header h1 {
-        @include lineHeight(1, 0);
-        padding : 0;
-    }
-
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
+@if( $Option_simpleHeader ){
     .Header {
-        text-align : center;
+        @include lineHeight(1, 1);
     }
-}
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet) {
-    .Header {
-        text-align : center;
-    }
         .Header h1, .h1 {
-            display : block;
-            margin  : 0 0 0.5em;
-        }
-}
-
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .Header h1, .h1 {
-        font-size : 1.2em;
-    }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .Header {
-        text-align : left;
-    }
-        .h1 {
-            font-size : 1em;
+            @if( $Option_mobileOnly == false ){
+                display   : inline;
+            }
+            font-size : 1.5em;
+            margin    : 0 0.5em 0 0;
         }
         .Header h1 {
-            /* //_{^+mobileOnly */
-            display    : block;
-            /* //_}^+mobileOnly */
-            text-align : center;
-            margin     : 0 0 0.5em;
+            @include lineHeight(1, 0);
+            padding : 0;
         }
-        /* //_{^#ie6-win */
-        /* //_{^@ie5mac */
-        .Header h1+span {
-            display    : block;
+
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
+        .Header {
             text-align : center;
         }
-        /* //_}^@ie5mac */
-        /* //_}^#ie6-win */
+    }
+
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        .Header {
+            text-align : center;
+        }
+            .Header h1, .h1 {
+                display : block;
+                margin  : 0 0 0.5em;
+            }
+    }
+
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
+        .Header h1, .h1 {
+            font-size : 1.2em;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .Header {
+            text-align : left;
+        }
+            .h1 {
+                font-size : 1em;
+            }
+            .Header h1 {
+                @if( $Option_mobileOnly == false ){
+                    display    : block;
+                }
+                text-align : center;
+                margin     : 0 0 0.5em;
+            }
+            @if( $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false ){
+                .Header h1+span {
+                    display    : block;
+                    text-align : center;
+                }
+            }
+    }
 }
-/** //_}+simpleHeader **/

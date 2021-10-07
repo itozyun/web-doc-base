@@ -41,9 +41,6 @@ table {
         border-collapse   : collapse;
         empty-cells       : show;
         border-spacing    : 0;
-    /* //_{@ie5win,@ie55 */
-        /* table-layout      : fixed; fixed 指定が無いと table がカラムをはみ出す -> </p> がなかったせい? */
-    /* //_}@ie5win,@ie55 */
         @include lineHeight(1.2, 1);
         @include highContrast {
             border-width    : 2px 0 0;
@@ -105,22 +102,20 @@ table {
         }
     }
 
-    /* //_{#can-lastChild */
-    tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
-        border-bottom-width : 0;
+    @if( $CANUSE_LAST_CHILD_SELECTOR ){
+        tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
+            border-bottom-width : 0;
+        }        
     }
-    /* //_}#can-lastChild */
-    /* //_{^#can-lastChild */
-        /* //_{#can-1stChild */
-            @include highContrast {
-                tfoot tr:first-child th,
-                tfoot tr:first-child td {
-                    position : relative;
-                    top      : -3px; 
-                }
+    @if( $CANUSE_LAST_CHILD_SELECTOR == false and $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
+        @include highContrast {
+            tfoot tr:first-child th,
+            tfoot tr:first-child td {
+                position : relative;
+                top      : -3px; 
             }
-        /* //_}#can-1stChild */
-    /* //_}^#can-lastChild */
+        }
+    }
 
     tfoot th {
         border-width : 2px 0 0;
@@ -136,9 +131,9 @@ table {
 --------------------------------------------------------------------------------------*/
 @mixin tableColor( $text, $fill, $casual_text, $casual_fill ){
     table {
-    /* //_{@ie5win,@ie55 */
-        color        : $text;
-    /* //_}@ie5win,@ie55 */
+        @if( $UA_IE5 or $UA_IE55 ){
+            color        : $text;
+        }
         border-color : $casual_text;
     }
     tbody th {
@@ -187,11 +182,11 @@ table {
             border-color : $text $casual_fill;
         }
 
-        /* //_{#can-hover-pseudo-class */
-        tbody :hover td {
-            border-color : $casual_fill $casual_fill $COLOR_ACCENT;
+        @if( $CANUSE_HOVER_PSEUDO_CLASS ){
+            tbody :hover td {
+                border-color : $casual_fill $casual_fill $COLOR_ACCENT;
+            }
         }
-        /* //_}#can-hover-pseudo-class */
 
         tbody th {
             :link   , :link:hover,
@@ -219,29 +214,29 @@ tfoot td {
     }
 }
 
-/* //_{#can-hover-pseudo-class */
-tbody :hover th {
-    background   : $COLOR_ACCENT;
-    color        : #fff;
-    :link, :visited {
-        color    : #fff;
+@if( $CANUSE_HOVER_PSEUDO_CLASS ){
+    tbody :hover th {
+        background   : $COLOR_ACCENT;
+        color        : #fff;
+        :link, :visited {
+            color    : #fff;
+        }
+    }
+    tbody :hover td {
+        border-color : $COLOR_Default_fill $COLOR_Default_fill $COLOR_ACCENT;
+        color        : $COLOR_ACCENT;
+    }
+    tbody :hover th {
+        :link:active, :visited:active
+        /* //_{#can-focus-pseudo-class */
+        , :focus
+        /* //_}#can-focus-pseudo-class */
+        {
+            background   : #fff !important;
+            color        : $COLOR_ACCENT !important;
+        }        
     }
 }
-tbody :hover td {
-    border-color : $COLOR_Default_fill $COLOR_Default_fill $COLOR_ACCENT;
-    color        : $COLOR_ACCENT;
-}
-tbody :hover th {
-    :link:active, :visited:active
-    /* //_{#can-focus-pseudo-class */
-    , :focus
-    /* //_}#can-focus-pseudo-class */
-    {
-        background   : #fff !important;
-        color        : $COLOR_ACCENT !important;
-    }        
-}
-/* //_}#can-hover-pseudo-class */
 
 /*  Dark theme
 --------------------------------------------------------------------------------------*/

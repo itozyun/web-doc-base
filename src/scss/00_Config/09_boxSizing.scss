@@ -1,11 +1,11 @@
 @mixin box-sizing($value) {
-    /* //_{#can-box-sizing */
-    /* //_{#notie */
-       -moz-box-sizing : $value; /* firefox 4 でもこちら */
-    /* //_}#notie */
-    /* //_{@modern */
-    -webkit-box-sizing : $value;
-    /* //_}@modern */
-            box-sizing : $value;
-    /* //_}#can-box-sizing */
+    @if( $CANUSE_CAN_BOX_SIZING ){
+        @if( $UA_Modern or $IS_OLD_GECKO ){
+            -moz-box-sizing : $value; /* firefox 4 でもこちら */
+        }
+        @if( $UA_Modern ){
+            -webkit-box-sizing : $value;
+        }
+        box-sizing : $value;
+    }
 }

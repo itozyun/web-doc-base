@@ -1,33 +1,33 @@
-/** //_{+blog **/
 /* [module] Article Description
  *  出現位置は #lE .lSi 下で固定
  *
 --------------------------------------------------------------------------------------*/
-.ADesc {
-    margin : 4em 0 2.5em;
-    color  : $COLOR_Ribbon_casual_text;
-
-    p {
-        margin : 0 0.5em 1em;
-    }
-}
-
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
+@if( $Option_blog ){
     .ADesc {
-        margin : 0 0 2.5em;
+        margin : 4em 0 2.5em;
+        color  : $COLOR_Ribbon_casual_text;
 
         p {
-            margin : 1em 0 0;
+            margin : 0 0.5em 1em;
+        }
+    }
+
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
+        .ADesc {
+            margin : 0 0 2.5em;
+
+            p {
+                margin : 1em 0 0;
+            }
+        }
+    }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .ADesc {
+            color : $COLOR_Print_casual_text;
         }
     }
 }
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .ADesc {
-        color : $COLOR_Print_casual_text;
-    }
-}
-/** //_}+blog **/

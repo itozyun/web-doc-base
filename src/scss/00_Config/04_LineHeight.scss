@@ -1,17 +1,12 @@
-
-/* //_{@ie5win */
-$VALID_LINEHEIGHT : 0;
-/* //_}@ie5win */
-
-$VALID_LINEHEIGHT : 1 !default;
-
 @mixin lineHeight($height, $onlyChildren) {
-    @if $VALID_LINEHEIGHT == 1 or $onlyChildren == 0 {
+    $VALID_LINEHEIGHT : if($UA_IE5, false, true);
+
+    @if $VALID_LINEHEIGHT or $onlyChildren == 0 {
         & {
             line-height : $height;
         }
     }
-    @if $VALID_LINEHEIGHT == 0 {
+    @if $VALID_LINEHEIGHT == false {
         * {
             line-height : $height;
         }

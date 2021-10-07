@@ -56,9 +56,9 @@ dl.note dd {
     }
 }
 .note {
-    /* //_{@modern */
-    -webkit-column-span : all;
-       -moz-column-span : all;
-            column-span : all;
-    /* //_}@modern */
+    @if( $UA_Modern ){
+        -webkit-column-span : all;
+           -moz-column-span : all;
+                column-span : all;
+    }
 }

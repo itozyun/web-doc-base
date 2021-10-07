@@ -19,7 +19,7 @@ a:active:hover { text-decoration : underline; }
 
 /*  transition
 --------------------------------------------------------------------------------------*/
-/* //_{@modern */
+@if( $UA_Modern ){
     :link, :visited {
         background-color : transparent;
     }
@@ -37,7 +37,7 @@ a:active:hover { text-decoration : underline; }
              -o-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
                 transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
     }
-/* //_}@modern */
+}
 
 /* a タグの色
 --------------------------------------------------------------------------------------*/
@@ -98,13 +98,13 @@ a:active
 
 /* :target
 --------------------------------------------------------------------------------------*/
-/* //_{#can-target-pseudo-class */
-:target, :target * {
-    background   : $COLOR_ACCENT !important;
-    color        : #fff  !important;
-    border-color : #fff  !important;
+@if( $CANUSE_TARGET_PSEUDO_CLASS ){
+    :target, :target * {
+        background   : $COLOR_ACCENT !important;
+        color        : #fff  !important;
+        border-color : #fff  !important;
+    }
 }
-/* //_}#can-target-pseudo-class */
 
 
 /*  Dark theme

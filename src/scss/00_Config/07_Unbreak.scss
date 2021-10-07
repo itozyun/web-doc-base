@@ -1,34 +1,34 @@
 
 @mixin unbreak-inside {
-    /* //_{@modern */
-    break-inside                : avoid;
-    -webkit-column-break-inside : avoid;
-    /* //_}@modern */
+    @if( $UA_Modern ){
+        break-inside                : avoid;
+        -webkit-column-break-inside : avoid;
+    }
     /* //_{#ie */
     /* page-break-inside : ""; */
     /* //_}#ie */
-    page-break-inside           : avoid;
+    page-break-inside : avoid;
 }
 
 @mixin unbreak-after {
-    /* //_{@modern */
-    -webkit-column-break-after : avoid;
-    -webkit-region-break-after : avoid;
-      -moz-break-after         : avoid;
-    column-break-after         : avoid;
-    break-after                : avoid;
-    /* //_}@modern */
+    @if( $UA_Modern ){
+        -webkit-column-break-after : avoid;
+        -webkit-region-break-after : avoid;
+          -moz-break-after         : avoid;
+        column-break-after         : avoid;
+        break-after                : avoid;
+    }
     /* //_{#ie */
     /* page-break-after           : ""; */
     /* //_}#ie */
-    page-break-after           : avoid;
+    page-break-after : avoid;
 }
 
 @mixin unbreak-pane {
-    /* //_{^@ie5mac */
+    @if( $UA_MacIE5 == false ){
         word-break  : break-all;     /* IE 5+ */
-    /* //_}^@ie5mac */
-    /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    }
+    @if( $UA_IE55 or $UA_IE6 or $UA_IE7 or $UA_IE8 or $UA_IE9 or $UA_Modern ){
         word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
-    /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
+    }
 }

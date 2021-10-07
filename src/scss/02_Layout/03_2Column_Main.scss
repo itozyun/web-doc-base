@@ -1,6 +1,6 @@
-    /* //_{@legacy */ /* Gecko 1.0.2 で発生する隙間を回避するために必要なものだけに指定する */
+    /* //_{@gck121 */ /* Gecko 1.0.2 で発生する隙間を回避するために必要なものだけに指定する */
     #lB .lMi, #lF
-    /* //_}@legacy */
+    /* //_}@gck121 */
     .lMi {
         @include clearfix;
     }
@@ -10,14 +10,14 @@
         .lM2 {
             float : right;
         }
-/* //_{^+mobileOnly */
-    .lM1 {
-        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+    @if( $Option_mobileOnly == false ){
+        .lM1 {
+            width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+        }
+        .lM2 {
+            width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+        }
     }
-    .lM2 {
-        width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
-    }
-/* //_}^+mobileOnly */
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/

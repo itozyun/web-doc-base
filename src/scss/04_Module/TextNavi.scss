@@ -1,39 +1,39 @@
-/** //_{+blog **/
 /* [module] Text Navi
  *  出現位置は #lE .lXi 下で固定
  *
 --------------------------------------------------------------------------------------*/
-.TxtNavi {
-    padding     : 1em 0;
-    line-height : 1.2;
-    text-align  : right;
-    color       : $COLOR_Default_fill; /* , を消す */
-
-    a {
-        @include inline-block;
-        /* //_{@ie6,@ie7,@ie55 */
-        zoom    : 1;
-        /* //_}@ie6,@ie7,@ie55 */
-    }
-}
-
-.ribbon .TxtNavi {
-    color : $COLOR_Ribbon_fill; /* , を消す */
-}
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
+@if( $Option_blog ){
     .TxtNavi {
-        color : $COLOR_Watch_fill; /* , を消す */
-    }
-}
+        padding     : 1em 0;
+        line-height : 1.2;
+        text-align  : right;
+        color       : $COLOR_Default_fill; /* , を消す */
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .TxtNavi {
-        display : none;
+        a {
+            @include inline-block;
+            @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+                zoom : 1;
+            }
+        }
+    }
+
+    .ribbon .TxtNavi {
+        color : $COLOR_Ribbon_fill; /* , を消す */
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        .TxtNavi {
+            color : $COLOR_Watch_fill; /* , を消す */
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .TxtNavi {
+            display : none;
+        }
     }
 }
-/** //_}+blog **/

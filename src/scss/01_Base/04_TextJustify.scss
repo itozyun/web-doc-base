@@ -1,6 +1,6 @@
 /*  justify ie5 ff1, opera10 以降,
 --------------------------------------------------------------------------------------*/
-/* //_{@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9 */
+@if( $IS_WIN_IE ){
     /* ie11(ie5 モード)で英日交じりの文字組が酷いので、外す -> inter-word にしたら良さげ */
     p, blockquote {
         // text-justify : inter-ideograph;
@@ -8,9 +8,9 @@
         line-break   : normal;
         text-align   : justify; /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? -> inter-word にしてしばらく試す */
     }
-/* //_}@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9 */
+}
 
-/* //_{@modern */
+@if( $UA_Modern ){
     /* ie10 ~ Edge */
     /* https://spyweb.media/2017/12/04/ie-edge-css-hacks/ */
     _:-ms-lang(x), p, blockquote {
@@ -21,4 +21,4 @@
     @include media(onlyOpera) { /* Opera 10 以上 */
         p, blockquote { text-align : justify; }
     }
-/* //_}@modern */
+}

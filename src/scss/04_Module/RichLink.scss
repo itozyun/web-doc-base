@@ -36,12 +36,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
         .RichLink a {
             @include clearfix;
 
-            /* //_{#ie55-,@ie8,@ie9,#notie */
-            padding : 1em 0.5em 0;
-            /* //_}#ie55-,@ie8,@ie9,#notie */
-            /* //_{@ie6,@ie7 */
-            padding : 1em 0.5em;
-            /* //_}@ie6,@ie7 */
+            @if( $UA_IE7 or $UA_IE6 ){
+                padding : 1em 0.5em;
+            } @else {
+                padding : 1em 0.5em 0;
+            }
 
             border-width : 0 0 1px;
             @include highContrast {
@@ -96,8 +95,8 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     }
         .RichLink img {
-            float     : left;
-            margin    : 0 .6em 1em 0;
+            float  : left;
+            margin : 0 .6em 1em 0;
         }
     .RichLink-meta {
         font-size : 1em * $RICHLINK_TEXT_SIZE;
@@ -118,14 +117,12 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
     .RichLink b {
         @include unbreak-pane;
-
-        font-size  : 1em * $RICHLINK_TEXT_SIZE;
-        /* //_{#ie55-,@ie8,@ie9,#notie */
-        padding    : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
-        /* //_}#ie55-,@ie8,@ie9,#notie */
-        /* //_{@ie6,@ie7 */
-        padding    : 0;
-        /* //_}@ie6,@ie7 */
+        font-size : 1em * $RICHLINK_TEXT_SIZE;
+        @if( $UA_IE7 or $UA_IE6 ){
+            padding : 0;
+        } @else {
+            padding : 0 0 0.8em / $RICHLINK_TEXT_SIZE;
+        }
     }
 
 /*  WSXGA

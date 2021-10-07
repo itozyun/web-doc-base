@@ -1,4 +1,4 @@
-/** //_{+blog **/
+
 /* [parts] medal
  *  出現位置は RichLink 内
  *
@@ -12,64 +12,65 @@
 *         img, span.medal
  *        b
 --------------------------------------------------------------------------------------*/
-.medal, .medal-gold, .medal-silver, .medal-bronze {
-    display      : block;
-    float        : left;
-    margin       : 0 0.6em 1em 0;
-    border-width : 1px; /* for high contrast mode */
+@if( $Option_blog ){
+    .medal, .medal-gold, .medal-silver, .medal-bronze {
+        display      : block;
+        float        : left;
+        margin       : 0 0.6em 1em 0;
+        border-width : 1px; /* for high contrast mode */
 
-    text-align   : center;
-    font-style   : normal;
-    font-weight  : bold;
+        text-align   : center;
+        font-style   : normal;
+        font-weight  : bold;
 
-    width        : 1.6em;
-    height       : 1.6em;
-    line-height  : 1.6;
-}
+        width        : 1.6em;
+        height       : 1.6em;
+        line-height  : 1.6;
+    }
 
-/*  color
---------------------------------------------------------------------------------------*/
-.medal {
-    border-color : $COLOR_Default_fill;
-    background   : $COLOR_Default_fill;
-    color        : $COLOR_Default_text;
-}
-
-:link .medal, :visited .medal {
-    border-color : $COLOR_Default_text;
-    background   : $COLOR_Default_text;
-    color        : $COLOR_Default_fill;
-}
-
-.medal-gold {
-    border-color : #e7bd2c;
-    background   : #e7bd2c;
-    color        : rgb(109, 99, 9);
-}
-.medal-silver {
-    border-color : #d3d6d6;
-    background   : #d3d6d6;
-    color        : rgb(97, 104, 107);
-}
-.medal-bronze {
-    border-color : #C47222;
-    background   : #C47222;
-    color        : rgb(230, 214, 169);
-}
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
+    /*  color
+    --------------------------------------------------------------------------------------*/
     .medal {
-        border-color : $COLOR_Watch_casual_fill;
-        background   : $COLOR_Watch_casual_fill;
-        color        : $COLOR_Watch_text;
+        border-color : $COLOR_Default_fill;
+        background   : $COLOR_Default_fill;
+        color        : $COLOR_Default_text;
     }
-    
+
     :link .medal, :visited .medal {
-        border-color : $COLOR_Watch_casual_text;
-        background   : $COLOR_Watch_casual_text;
-        color        : $COLOR_Watch_fill;
+        border-color : $COLOR_Default_text;
+        background   : $COLOR_Default_text;
+        color        : $COLOR_Default_fill;
+    }
+
+    .medal-gold {
+        border-color : #e7bd2c;
+        background   : #e7bd2c;
+        color        : rgb(109, 99, 9);
+    }
+    .medal-silver {
+        border-color : #d3d6d6;
+        background   : #d3d6d6;
+        color        : rgb(97, 104, 107);
+    }
+    .medal-bronze {
+        border-color : #C47222;
+        background   : #C47222;
+        color        : rgb(230, 214, 169);
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        .medal {
+            border-color : $COLOR_Watch_casual_fill;
+            background   : $COLOR_Watch_casual_fill;
+            color        : $COLOR_Watch_text;
+        }
+        
+        :link .medal, :visited .medal {
+            border-color : $COLOR_Watch_casual_text;
+            background   : $COLOR_Watch_casual_text;
+            color        : $COLOR_Watch_fill;
+        }
     }
 }
-/** //_}+blog **/

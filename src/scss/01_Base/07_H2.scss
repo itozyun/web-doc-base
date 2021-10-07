@@ -6,32 +6,31 @@ h2 {
     border-width : 0 0 2px;
     padding      : 1.5em 0.45em 0.5em;
     font-size    : 1.1em;
-    /* //_{^#can-content */
-    font-weight  : bold;
-    /* //_}^#can-content */
 
-    /* //_{#can-content */
-    position     : relative;
-    
-    &:after {
-        @include createPseudoBlock;
-        width        : 5em;
-        height       : 0;
-        font-size    : 0.1em;
-        line-height  : 0;
-        position     : absolute;
-        left         : 0;
-        bottom       : -2px;
-        border-width : 2px 0 0;
-        border-color : $COLOR_Default_accent;
-    }
-
-    .ribbon &:after {
-        @if $COLOR_Default_accent != $COLOR_Ribbon_accent {
-            border-color : $COLOR_Ribbon_accent;
+    @if( $CANUSE_PSEUDO_BLOCK ){
+        position : relative;
+        
+        &:after {
+            @include createPseudoBlock;
+            width        : 5em;
+            height       : 0;
+            font-size    : 0.1em;
+            line-height  : 0;
+            position     : absolute;
+            left         : 0;
+            bottom       : -2px;
+            border-width : 2px 0 0;
+            border-color : $COLOR_Default_accent;
         }
+
+        .ribbon &:after {
+            @if $COLOR_Default_accent != $COLOR_Ribbon_accent {
+                border-color : $COLOR_Ribbon_accent;
+            }
+        }
+    } @else {
+        font-weight : bold;
     }
-    /* //_}#can-content */
 }
 
 /*  warning
@@ -39,12 +38,12 @@ h2 {
 .wn {
     color : $COLOR_WARN !important;
 
-    /* //_{#can-content */
-    &:after {
-        background : $COLOR_WARN !important;
-        color      : $COLOR_WARN !important;
-    }
-    /* //_}#can-content */    
+    @if( $CANUSE_PSEUDO_BLOCK ){
+        &:after {
+            background : $COLOR_WARN !important;
+            color      : $COLOR_WARN !important;
+        }
+    }  
 }
 
 /*  Phablet
@@ -52,12 +51,11 @@ h2 {
 @include media(phablet) {
     h2 {
         text-align : center;
-    }
-    
-    h2:after {
-        width : 33%;
-        left  : 33%;
-        right : auto;
+        &:after {
+            width : 33%;
+            left  : 33%;
+            right : auto;
+        }
     }
 }
 
@@ -84,9 +82,9 @@ h2 {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-/* //_{#can-content */
-    h2:after {
-        display : none; /* for iOS4 content : none だけでは消えない */
+    @if( $CANUSE_PSEUDO_BLOCK ){
+        h2:after {
+            display : none; /* for iOS4 content : none だけでは消えない */
+        }
     }
-/* //_}#can-content */
 }

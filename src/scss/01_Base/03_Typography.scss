@@ -34,11 +34,11 @@
         font-style : normal;
     }
 
-    /* //_{#can-attr-selector */
-    q[title], q[cite] {
-        border-bottom : 1px dotted;
+    @if( $CANUSE_ATTR_SELECTOR ){
+        q[title], q[cite] {
+            border-bottom : 1px dotted;
+        }
     }
-    /* //_}#can-attr-selector */
 
     dfn,
     /* //_{#can-attr-selector */
@@ -54,12 +54,12 @@
     // , embed, object, video
     {
         @include unbreak-inside;
-        /* //_{#can-margin-auto */
-        margin    : 1em auto;
-        /* //_}#can-margin-auto */
-        /* //_{^#can-margin-auto */
-        margin    : 1em 0;
-        /* //_}^#can-margin-auto */
+        @if( $CANUSE_MARGIN_AUTO ){
+            margin    : 1em auto;
+        }
+        @if( $CANUSE_MARGIN_AUTO == false ){
+            margin    : 1em 0;
+        }
         a & {
             display : block; /* focus 時の塗りを適切にする */
         }
@@ -69,19 +69,19 @@
     }
 
     img {
-        height    : auto;
+        height : auto;
     }
 
     ul, ol {
-        /* //_{@modern */
-        list-style-position : outside; /* android opera12 ?? */
-        /* //_}@modern */
-        padding-left        : 2em;
-        /* //_{@ie5win,@ie55 */
-        margin-left         : 0;
-        /* //_}@ie5win,@ie55 */
+        padding-left : 2em;
+        @if( $UA_Modern ){
+            list-style-position : outside; /* android opera12 ?? */
+        }
+        @if( $UA_IE5 or $UA_IE55 ){
+            margin-left : 0;
+        }
         li &, dl & {
-            padding-left  : 1em;
+            padding-left : 1em;
         }
     }
 
@@ -94,7 +94,7 @@
         margin-bottom : .3em;
     }
     dt {
-        margin-top    : #{$BASE_LINE_HEIGHT_EM - 1.2em};
+        margin-top : #{$BASE_LINE_HEIGHT_EM - 1.2em};
     }
     dd {
         margin-bottom : .3em;
@@ -158,9 +158,9 @@
         color        : $COLOR_Watch_casual_text;
     }
 
-    /* //_{@modern */
-    img {
-        filter : brightness(85%);
+    @if( $UA_Modern ){
+        img {
+            filter : brightness(85%);
+        }
     }
-    /* //_}@modern */
 }

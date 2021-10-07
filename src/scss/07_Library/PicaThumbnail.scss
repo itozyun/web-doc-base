@@ -11,7 +11,7 @@
 
 .jsPica img,
 .jsCap { /* onload 時にアニメーションしないように .caption に .jsCap を付ける。アニメを抑止しないと offsetWidth の取得で誤る。 */
-    /* //_{@modern */
+    @if( $UA_Modern ){
         /* clean-css ignore:start */
         -webkit-transition-property : width, margin;
                  -webkit-transition :       0.3s ease-in;
@@ -19,18 +19,18 @@
                     -moz-transition : width 0.3s ease-in, margin 0.3s ease-in;
                       -o-transition : width 0.3s ease-in, margin 0.3s ease-in;
                          transition : width 0.3s ease-in, margin 0.3s ease-in;
-    /* //_}@modern */
+    }
 }
 
     .jsPicaLarge img {
         width     : 100%;
-    /* //_{#can-max-min */
-        max-width : 100%;
-    /* //_}#can-max-min */
+        @if( $CANUSE_MAX_AND_MIN_SIZES ){
+            max-width : 100%;
+        }
         height    : auto;
-        /* //_{#can-margin-auto */
-        margin    : 0 auto 1em; /* auto は中央配置で transition させるため */
-        /* //_}#can-margin-auto */
+        @if( $CANUSE_MARGIN_AUTO ){
+            margin    : 0 auto 1em; /* auto は中央配置で transition させるため */
+        }
 
         @include box-sizing(border-box);
 
@@ -38,17 +38,17 @@
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
     /* //_}#can-mq */
         .box & {
-            /* //_{@modern */
+            @if( $UA_Modern ){
             float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-            /* //_}@modern */
+        }
             margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
         }
     }
 
     .jsCapLarge {
-        /* //_{#can-margin-auto */
-        margin : 0 auto 1em; /* auto は中央配置で transition させるため */
-        /* //_}#can-margin-auto */
+        @if( $CANUSE_MARGIN_AUTO ){
+            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+        }
 
     /* //_{#can-mq */
         div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
@@ -62,15 +62,15 @@
 /*  Phone-
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
-    /* //_{@modern,@ie9 */
-    div .box .jsPicaLarge img,
-    div .box .jsCapLarge {
-        margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
+    @if( $IS_LEGACY == false ){ // アニメーション用の指定なので legacy を除外
+        div .box .jsPicaLarge img,
+        div .box .jsCapLarge {
+            margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
+        }
     }
-    /* //_}@modern,@ie9 */
 }
 
-/* //_{@ie6,@ie7 */
+@if( $UA_IE7 or $UA_IE6 ){
     /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
     .jsPicaLarge {
         display : block;
@@ -87,14 +87,14 @@
             }
         }
     }
-/* //_}@ie6,@ie7 */
+}
 
-/* //_{@ie55,@ie5win */
-.jsPica {
-    display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
+@if( $UA_IE55 or $UA_IE5  ){
+    .jsPica {
+        display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
+    }
+    .jsPicaLarge img,
+    .jsCapLarge {
+        clear : both; /* ギャラリーでの回り込みの解除 */
+    }
 }
-.jsPicaLarge img,
-.jsCapLarge {
-    clear : both; /* ギャラリーでの回り込みの解除 */
-}
-/* //_}@ie55,@ie5win */

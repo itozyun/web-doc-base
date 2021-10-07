@@ -10,18 +10,18 @@
         color : $COLOR_Default_casual_text;
     }
         .AHead h1 {
-            /* //_{@modern,@ie9 */
-            @extend %mincho;
-            /* //_}@modern,@ie9 */
+            @if( $UA_Modern or $UA_IE9 ){
+                @extend %mincho;
+            }
 
             font-size      : 2em;
             padding        : 0;
             margin         : 2em 0;
 
             color          : $COLOR_Default_text;
-            /* //_{^+mobileOnly */
-            text-align     : left;
-            /* //_}^+mobileOnly */
+            @if( $Option_mobileOnly == false ){
+                text-align     : left;
+            }
         }
     .ribbon .AHead {
         color : $COLOR_Ribbon_casual_text;
@@ -78,82 +78,81 @@
 }
 
 /* =====================================================================================
- * //_{+ArticleLabels
- *
  * .AHead-labels
  *   i.ico-label
  *   a
 --------------------------------------------------------------------------------------*/
-.AHead-labels {
- /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
-/* //_{@ie7,@ie8 */
-    font-family : Meiryo, "MS PGothic", sans-serif;
-/* //_}@ie7,@ie8 */
-/* //_{#ie6-win */
-    font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
-/* //_}#ie6-win */
-    margin-top     : 0.5em;
-    color          : $COLOR_Ribbon_fill; /* , を消す */
-    /* //_{@modern */
-    vertical-align : middle; /* ie11 のガタツキを修正 */
-    /* //_}@modern */
-}
-    .AHead-labels i {
-        display : none;
-    }
-    .AHead-labels a {
-        @extend %btnBase;
-        @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
-        &:link:hover { /* .ribbon :link:hover の上書き */
-            border-color : $COLOR_Ribbon_link;
-            color        : $COLOR_Ribbon_fill;
-        }
-        margin : 0 0 0.5em;
-    }
-
-/*  Phone-
---------------------------------------------------------------------------------------*/
-@include media(smallphone) {
+@if( $Option_ArticleLabels ){
     .AHead-labels {
-        line-height : 0;
-    }
-        .AHead-labels a {
-            display     : block;
-            text-align  : center;
-            margin      : 0.5em;
+    /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
+        @if( $UA_IE7 or $UA_IE8 ){
+            font-family : Meiryo, "MS PGothic", sans-serif;
         }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .AHead-labels {
-        color : $COLOR_Print_text;
+        @if( $IS_LTE_WIN_IE6 ){
+            font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
+        }
+        margin-top     : 0.5em;
+        color          : $COLOR_Ribbon_fill; /* , を消す */
+        @if( $UA_Modern ){
+            vertical-align : middle; /* ie11 のガタツキを修正 */
+        }
     }
-        /* //_{#can-content */
         .AHead-labels i {
-        /* //_{#can-inline-block */
-            display      : inline-block;
-        /* //_}#can-inline-block */
+            display : none;
         }
-        /* //_}#can-content */
-
         .AHead-labels a {
-        /* //_{#can-inline-block */
-            display      : inline;
-        /* //_}#can-inline-block */
-            line-height  : 1.2;
-            border-width : 0;
-            padding      : 0;
-            margin       : 0;
+            @extend %btnBase;
+            @include createButton( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+            &:link:hover { /* .ribbon :link:hover の上書き */
+                border-color : $COLOR_Ribbon_link;
+                color        : $COLOR_Ribbon_fill;
+            }
+            margin : 0 0 0.5em;
         }
-        .AHead-labels a:link {
-            color      : $COLOR_Print_link;
-            background : none;
+
+    /*  Phone-
+    --------------------------------------------------------------------------------------*/
+    @include media(smallphone) {
+        .AHead-labels {
+            line-height : 0;
         }
-        .AHead-labels a:visited {
-            color      : $COLOR_Print_visited;
-            background : none;
+            .AHead-labels a {
+                display     : block;
+                text-align  : center;
+                margin      : 0.5em;
+            }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .AHead-labels {
+            color : $COLOR_Print_text;
         }
+            @if( $CANUSE_CSS_GENERATED_CONTENT ){
+                .AHead-labels i {
+                    @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
+                        @include inline-block;
+                    }
+                }
+            }
+
+            .AHead-labels a {
+            @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
+                display      : inline;
+            }
+                line-height  : 1.2;
+                border-width : 0;
+                padding      : 0;
+                margin       : 0;
+            }
+            .AHead-labels a:link {
+                color      : $COLOR_Print_link;
+                background : none;
+            }
+            .AHead-labels a:visited {
+                color      : $COLOR_Print_visited;
+                background : none;
+            }
+    }
 }
-/* //_}+ArticleLabels */

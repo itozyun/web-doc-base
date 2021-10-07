@@ -1,53 +1,51 @@
-/* //_{+mona */
 /* role="image" */
 /* http://b4t.jp/823 */
+@if( $Option_mona ){
+    %mona {
+        @include lineHeight(1.125, 0);
 
-%mona {
-    @include lineHeight(1.125, 0);
+        @if( $IS_LTE_WIN_IE6 ){
+            font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
+        }
 
-/* IE */
-/* //_{#ie6-win */
-    font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
-/* //_}#ie6-win */
+        @if( $UA_IE7 or $UA_IE8 ){
+            font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
+        }
 
-/* //_{@ie7,@ie8 */
-    font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
-/* //_}@ie7,@ie8 */
-
-/* //_{#notie */
-    font-family:"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","MS Pｺﾞｼｯｸ","MS PGothic",sans-serif;
-/* //_}#notie */
-/* //_{@modern */
-    /* firefox */
-    :-moz-read-only & {
-        font-family:Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,sans-serif;
-    }
-    /* safari */
-    @include media(onlySafari) {
-        & {
-            font-family:"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif;
+        @if( $IS_NOT_IE ){
+            font-family:"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","MS Pｺﾞｼｯｸ","MS PGothic",sans-serif;
+        }
+        @if( $UA_Modern ){
+            /* firefox */
+            :-moz-read-only & {
+                font-family:Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,sans-serif;
+            }
+            /* safari */
+            @include media(onlySafari) {
+                & {
+                    font-family:"MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif;
+                }
+            }
         }
     }
-/* //_}@modern */
-}
 
-.mona {
-    @extend %mona;
-    @include hPadding(1, 1em, 1em);
-
-    border-width : 1px;
-
-    background   : #bcd;
-    border-color : #bcd;
-    color        : #00193d;
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
     .mona {
-        background : #fff;
-        color      : $COLOR_Print_text;
+        @extend %mona;
+        @include hPadding(1, 1em, 1em);
+
+        border-width : 1px;
+
+        background   : #bcd;
+        border-color : #bcd;
+        color        : #00193d;
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .mona {
+            background : #fff;
+            color      : $COLOR_Print_text;
+        }
     }
 }
-/* //_}+mona */

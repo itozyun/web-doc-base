@@ -13,7 +13,7 @@
  *      「読みやすいフォントの CSS 設定例」より
  *         https://murashun.jp/article/design/css-font-readability.html
  *       参考「【Chrome問題対応済】游ゴシック font-family 完全版！これなら2020年まで使えます（多分）」
-//         https://tokunagakazuya.tk/vk3l
+ *         https://tokunagakazuya.tk/vk3l
  *
  * (2) Firefox OS2.2(シミュレータ)で Roboto がいると日本語を正しく表示できない問題の回避
  *      「Webページの日本語がFirefox OS 2.2で表示され無い問題の対策」より
@@ -41,29 +41,26 @@
  * (7) "YuKyokasho" 游教科書体 macOS Catalina (10.15) https://mimi.moe.in/nmp/fonts/fonts
  */
 
-/* //_{#notie */
-        // (1)
-        @font-face {
-            font-family : "YuGothic M";
-            src         : local("Yu Gothic Medium"),
-                          local("Yu Gothic");
-            font-weight : 500;
-        }
-        body, textarea, input {
-            font-family :
-                -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-                "Helvetica Neue", Helvetica, Arial, Verdana,
-                /* Roboto, */ // (2)
-                "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
-                "游ゴシック体", YuGothic, "YuGothic M", // (1)
-                "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-                /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
-                "メイリオ", Meiryo,
-                "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
-        }
-/* //_}#notie */
-
-/* //_{@modern */
+@if( $UA_Modern ){
+    // (1)
+    @font-face {
+        font-family : "YuGothic M";
+        src         : local("Yu Gothic Medium"),
+                      local("Yu Gothic");
+        font-weight : 500;
+    }
+    body, textarea, input {
+        font-family :
+            -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+            "Helvetica Neue", Helvetica, Arial, Verdana,
+            /* Roboto, */ // (2)
+            "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            "游ゴシック体", YuGothic, "YuGothic M", // (1)
+            "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+            /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
+            "メイリオ", Meiryo,
+            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
+    }    
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
         body, textarea, input {
             font-family :
@@ -99,9 +96,26 @@
             }
         }
     }
-/* //_}@modern */
+}
 
-/* //_{@ie9  */
+@if( $IS_LEGACY ){
+    body, textarea, input {
+        font-family :
+            -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+            "Helvetica Neue",
+            /* Helvetica, Arial, */ // (3)
+            Verdana,
+            Roboto,
+            "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            "游ゴシック体", YuGothic,
+            "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+            /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
+            "メイリオ", Meiryo,
+            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
+    }   
+}
+
+@if( $UA_IE9 ){
     body, textarea, input {
         font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
     }
@@ -111,39 +125,39 @@
         -ms-transform : rotate(.03deg); // (5)
         font-weight   : 700;
     }
-/* //_}@ie9 */
+}
 
-/* //_{@ie7,@ie8 */
+@if( $UA_IE7 or $UA_IE8 ){
     body, textarea, input {
         font-family : Arial, Meiryo, "MS PGothic", sans-serif;
     }
-/* //_}@ie7,@ie8 */
+}
 
-/* //_{#ie6-win */
+@if( $IS_LTE_WIN_IE6 ){
     body, textarea, input {
-        font-family : Arial, "MS PGothic", sans-serif; /* ie6-, MacIE5- */
+        font-family : Arial, "MS PGothic", sans-serif;
     }
-/* //_}#ie6-win */
+}
 
-/* //_{+it */
-    /* //_{#notie,@ie9,@ie8,@ie7 */
-            code, var, kbd, samp /* , pre, tt */ {
-                font-family : // (6) 注意事項
-                    SFMono-Regular,
-                    'Liberation Mono',
-                    /* Menlo,                       Mac OS X 10.6(2009年) */
-                    Consolas,                    /* Windows Vista(2006年) */
-                    /* Monaco,                      MacOS 9 */
-                    /* "Hiragino Kaku Gothic ProN", 和文コメント用：Mac OS X 10.5(2006年) */
-                    Meiryo,                      /* 和文コメント用：Windows Vista(2006年) */
-                    /* 'Courier New', Courier, */
-                    monospace;
-            }
-    /* //_}#notie,@ie9,@ie8,@ie7 */
+@if( $Option_it ){
+    @if( $UA_IE7 or $UA_IE8 or $UA_IE9 or $IS_NOT_IE ){
+        code, var, kbd, samp /* , pre, tt */ {
+            font-family : // (6) 注意事項
+                SFMono-Regular,
+                'Liberation Mono',
+                /* Menlo,                       Mac OS X 10.6(2009年) */
+                Consolas,                    /* Windows Vista(2006年) */
+                /* Monaco,                      MacOS 9 */
+                /* "Hiragino Kaku Gothic ProN", 和文コメント用：Mac OS X 10.5(2006年) */
+                Meiryo,                      /* 和文コメント用：Windows Vista(2006年) */
+                /* 'Courier New', Courier, */
+                monospace;
+        }
+    }
 
-    /* //_{#ie6-win */
-            code, var, kbd, samp /* , pre, tt */ {
-                font-family : 'Courier New', monospace;
-            }
-    /* //_}#ie6-win */
-/* //_}+it */
+    @if( $IS_LTE_WIN_IE6 ){
+        code, var, kbd, samp /* , pre, tt */ {
+            font-family : 'Courier New', monospace;
+        }
+    }
+}

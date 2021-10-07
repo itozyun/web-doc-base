@@ -1,47 +1,42 @@
-/** //_{+blog **/
 /* [module] Blog Archive
  *  出現位置は #lB .lMi 下
  *
 --------------------------------------------------------------------------------------*/
-.BlogArchive {
-    @include stackableModule;
+@if( $Option_blog ){
+    .BlogArchive {
+        @include stackableModule;
 
-    th {
-        word-break : normal;
-        /* //_{@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-        word-wrap  : normal;
-        /* //_}@ie55,@ie6,@ie7,@ie8,@ie9,@modern */
-    }
+        th {
+            word-break : normal;
+            @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+                word-wrap  : normal;
+            }
+        }
 
-    &, tbody :hover td {
-        color : $COLOR_Default_fill; /* , を消す */
-    }
-
-    a {
-    /* //_{^@legacy */
-    /* //_{#can-inline-block */
-        @include inline-block;
-        margin       : 0 0 1em;
-    /* //_}#can-inline-block */
-    /* //_}^@legacy */
-
-    /* //_{^#can-inline-block,@legacy */
-        line-height  : 2.8;
-    /* //_}^#can-inline-block,@legacy */
-
-        border-width : 0 0 1px;
-    }
-
-    :link:hover, :visited:hover {
-        text-decoration : none;
-    }
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
         &, tbody :hover td {
-            color : $COLOR_Watch_fill; /* , を消す */
+            color : $COLOR_Default_fill; /* , を消す */
+        }
+
+        a {
+            @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
+                @include inline-block;
+                margin       : 0 0 1em;
+            } @else {
+                line-height  : 2.8;
+            }
+            border-width : 0 0 1px;
+        }
+
+        :link:hover, :visited:hover {
+            text-decoration : none;
+        }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
+            &, tbody :hover td {
+                color : $COLOR_Watch_fill; /* , を消す */
+            }
         }
     }
 }
-/** //_}+blog **/

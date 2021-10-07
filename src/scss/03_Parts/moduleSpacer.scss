@@ -4,9 +4,9 @@
 .mspacer {
     margin : 1em;
 
-/* //_{#ie7-win */
-    word-break : break-all;
-/* //_}#ie7-win */
+    @if( $IS_LTE_WIN_IE7 ){
+        word-break : break-all;
+    }
 }
 
 #lF .lM .mspacer {

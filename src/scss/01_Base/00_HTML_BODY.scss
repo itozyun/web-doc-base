@@ -14,36 +14,33 @@
 /*  html & body
 --------------------------------------------------------------------------------------*/    
     html {
-        font-size                : 100%; /* 1 */
-        /* //_{@modern */
-        -webkit-text-size-adjust : 100%; /* 2 */
-           -moz-text-size-adjust : 100%; /* 2 */
-            -ms-text-size-adjust : 100%; /* 2 */
-                /* text-size-adjust : 100%; 2 */
-        /* //_}@modern */
-
-    /* //_{^+mobileOnly */
-        /* //_{@ie6 */
-            overflow-x           : hidden;
-        /* //_}@ie6 */ 
-    /* //_}^+mobileOnly */
+        font-size : 100%; /* 1 */
+        @if( $UA_Modern ){
+            -webkit-text-size-adjust : 100%; /* 2 */
+               -moz-text-size-adjust : 100%; /* 2 */
+                -ms-text-size-adjust : 100%; /* 2 */
+                 /* text-size-adjust : 100%; 2 */
+        }
+        @if( $Option_mobileOnly == false and $UA_IE6 ){
+            overflow-x : hidden;
+        }
     }
 
-    /* //_{+baseFontSize18 */
-    /* //_{@modern */
-    @media only screen and (min-width : #{($MEDIAQUERY_PHABLET_MAX_PX + 1)}px) { /* メディアクエリに対応し、phablet より大きい画面で 18px に */
-        body { font-size : #{$FONTSIZE_UPPER_TABLET / $FONTSIZE_DEFAULT}em }
+    @if( $Option_baseFontSize18 and $UA_Modern ){
+        @media only screen and (min-width : #{($MEDIAQUERY_PHABLET_MAX_PX + 1)}px) { /* メディアクエリに対応し、phablet より大きい画面で 18px に */
+            body { font-size : #{$FONTSIZE_UPPER_TABLET / $FONTSIZE_DEFAULT}em }
+        }
     }
-    /* //_}@modern */
-    /* //_}+baseFontSize18 */
 
     html,
     body {
-        margin  : 0;
-        /* //_{@legacy */
-        padding : 0; /* opera 8 */
-        /* //_}@legacy */
-        height  : 100%;
+        margin : 0;
+        height : 100%;
+    }
+    body {
+        @if( $UA_Opera8 ){
+            padding : 0; /* opera 8 */
+        }
     }
     /* //_{@ie5win */
     *,

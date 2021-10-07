@@ -33,9 +33,9 @@
         text-align     : left;
     }
     td {
-        /* //_{#can-content */
-        position       : relative;
-        /* //_}#can-content */
+        @if( $CANUSE_PSEUDO_BLOCK ){
+            position       : relative;
+        }
         border-width   : 0 0 0 .3em;
         border-color   : $COLOR_Default_casual_fill;
         @include highContrastForIE10ToEdge {
@@ -45,87 +45,83 @@
         padding        : .5em .8em;
         vertical-align : top;
 
-    /* //_{^#can-1stChild */
-        & * {
-            margin-top : 0;
+        @if( $CANUSE_1ST_CHILD_SELECTOR ){
+            & > *:first-child {
+                margin-top : 0;
+            }
+        } @else {
+            & * {
+                margin-top : 0;
+            }
         }
-    /* //_}^#can-1stChild */
-    /* //_{#can-1stChild */
-        & > *:first-child {
-            margin-top : 0;
-        }
-    /* //_}#can-1stChild */
     }
 
-    /* //_{^@legacy */
-    /* //_{#can-content */
-    tbody td:before, tbody td:after {
-        @include createPseudoBlock;
-        text-indent   : -1em;
-        position      : absolute;
-        border-width  : .3em;
+    @if( $IS_LEGACY == false and $CANUSE_PSEUDO_BLOCK ){
+        tbody td:before, tbody td:after {
+            @include createPseudoBlock;
+            text-indent   : -1em;
+            position      : absolute;
+            border-width  : .3em;
+        }
+        @if( $CANUSE_EMPTY_PSEUDO_CLASS ){
+            tbody :empty:before, tbody :empty:after {
+                display : none; /* for iOS4 content : none だけでは消えない */
+            }
+        }
+        /* td に対する絶対配置は Iron14 と Windows Safari 5.1.1 で動作, Iron8 では不可 body が親になる. */
+        /* Webkit 534.51, 535 が可, ~534.? が不可ということ? */
+        /* td に対する絶対配置は Opera 10.54 で動作, Opera ~10 では非表示. */
+        tbody td:before {
+            top           : .6em;
+            left          : -0.75em;
+            width         : 0;
+            height        : 0;
+            @include border-radius(.6em);
+            border-width  : .6em;
+            border-color  : $COLOR_Default_casual_fill;
+        }
+        tbody td:after {
+            top           : .85em;
+            left          : -0.5em;
+            width         : 0;
+            height        : 0;
+            @include border-radius(.35em);
+            border-width  : .35em;
+            border-color  : $COLOR_Default_fill;
+            @if( $UA_Modern ){
+                @media only screen and (-ms-high-contrast : black-on-white) {
+                    & { border-color : #fff; }
+                }
+                @media only screen and (-ms-high-contrast : white-on-black) {
+                    & { border-color : #000; }
+                }
+                @include highContrastForIEGte9Gecko {
+                    filter : invert(100%);
+                }
+                @include highContrastForChromiumEdge {
+                    filter : invert(100%);
+                }
+            }
+            @if( $UA_IE8 ){
+                @include highContrastForIEGte9Gecko {
+                    top          : 1.2em;
+                    left         : -.13em;
+                    border-width : 0;
+                    outline      : .35em solid invert;
+                }
+            }
+        }
     }
-    /* //_{#can-empty-pseudo-class */
-    tbody :empty:before, tbody :empty:after {
-        display : none; /* for iOS4 content : none だけでは消えない */
-    }
-    /* //_}#can-empty-pseudo-class */
-
-    /* td に対する絶対配置は Iron14 と Windows Safari 5.1.1 で動作, Iron8 では不可 body が親になる. */
-    /* Webkit 534.51, 535 が可, ~534.? が不可ということ? */
-    /* td に対する絶対配置は Opera 10.54 で動作, Opera ~10 では非表示. */
-    tbody td:before {
-        top           : .6em;
-        left          : -0.75em;
-        width         : 0;
-        height        : 0;
-        @include border-radius(.6em);
-        border-width  : .6em;
-        border-color  : $COLOR_Default_casual_fill;
-    }
-    tbody td:after {
-        top           : .85em;
-        left          : -0.5em;
-        width         : 0;
-        height        : 0;
-        @include border-radius(.35em);
-        border-width  : .35em;
-        border-color  : $COLOR_Default_fill;
-        /* //_{@modern */
-        @media only screen and (-ms-high-contrast : black-on-white) {
-            & { border-color : #fff; }
-        }
-        @media only screen and (-ms-high-contrast : white-on-black) {
-            & { border-color : #000; }
-        }
-        @include highContrastForIEGte9Gecko {
-            filter : invert(100%);
-        }
-        @include highContrastForChromiumEdge {
-            filter : invert(100%);
-        }
-        /* //_}@modern */
-        /* //_{@ie8 */
-        @include highContrastForIEGte9Gecko {
-            top          : 1.2em;
-            left         : -.13em;
-            border-width : 0;
-            outline      : .35em solid invert;
-        }
-        /* //_}@ie8 */
-    }
-    /* //_}#can-content */
-    /* //_}^@legacy */
 
     /*  patch for Safari ~4.x
     --------------------------------------------------------------------------------------*/
-    /* //_{@modern */
+    @if( $UA_Modern ){
         @media screen and (min-width:0\-) { // Safari ~4.1
             td:before, td:after {
                 display : none !important; // tebla-cell に対して絶対配置が出来ない
             }
         }
-    /* //_}@modern */
+}
 
     tfoot th {
         border-width : 1px 0 0;
@@ -143,27 +139,27 @@
         padding-bottom : .5em;
     }
 
-/* //_{#can-hover-pseudo-class */
-    tbody :hover th,
-    tbody :hover td
-    /* //_{^@legacy */
-    /* //_{#can-content */
-    , tbody :hover td:before
-    /* //_}#can-content */
-    /* //_}^@legacy */
-    {
-        border-color : $COLOR_ACCENT;
-    }
-    tbody :hover th {
-        background  : $COLOR_ACCENT !important;
-        color       : #fff;
-    }
-    tbody :hover th {
-        :link, :visited {
-            color : #fff;
+    @if( $CANUSE_HOVER_PSEUDO_CLASS ){
+        tbody :hover th,
+        tbody :hover td
+        /* //_{^#legacy */
+        /* //_{#can-content */
+        , tbody :hover td:before
+        /* //_}#can-content */
+        /* //_}^#legacy */
+        {
+            border-color : $COLOR_ACCENT;
+        }
+        tbody :hover th {
+            background  : $COLOR_ACCENT !important;
+            color       : #fff;
+        }
+        tbody :hover th {
+            :link, :visited {
+                color : #fff;
+            }
         }
     }
-/* //_}#can-hover-pseudo-class */
 
     thead, tbody th {
         :link, :link:hover {
@@ -179,22 +175,20 @@ blockquote .tl {
     thead th, thead td,
     td,
     tfoot th, tfoot td
-    /* //_{^@legacy */
+    /* //_{^#legacy */
     /* //_{#can-content */
     , tbody td:before
     /* //_}#can-content */
-    /* //_}^@legacy */
+    /* //_}^#legacy */
     {
         border-color : $COLOR_Default_casual_text;
     }
     
-    /* //_{^@legacy */
-    /* //_{#can-content */
-    tbody td:after {
-        border-color : $COLOR_Default_casual_fill;
+    @if( $CANUSE_PSEUDO_BLOCK ){
+        tbody td:after {
+            border-color : $COLOR_Default_casual_fill;
+        }
     }
-    /* //_}#can-content */
-    /* //_}^@legacy */
     tbody th :visited {
         color : $COLOR_Default_visited;
     }

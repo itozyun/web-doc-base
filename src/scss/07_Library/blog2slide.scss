@@ -1,48 +1,48 @@
-/* //_{+blog2slide */
-/* //_{@modern */
-#blog2slide-start button {
-    @include hMargin(1, 1em, 1em);
-}
-
-#blog2slide-root {
-    margin   : 0 auto;
-    overflow : auto;
-}
-
-@include media(onlyIE10To11){
-    #blog2slide-root:-ms-fullscreen {
-        background : $COLOR_Default_fill;
-    }
-}
-
-    #blog2slide-root>div {
-        height    : 100%;
-        width     : 98%;
-        max-width : $PC_MAX_WIDTH_EM * 1.5;
-        display   : table;
-        margin    : auto;
-    }
-        #blog2slide-root>div>* {
-            display : none;
+@if( $Option_blog2slide ){
+    @if( $UA_Modern ){
+        #blog2slide-start button {
+            @include hMargin(1, 1em, 1em);
         }
 
-        #blog2slide-current {
-            font-size      : 2em;
-            display        : table-cell !important;
-            vertical-align : middle;
-        }
-        h1#blog2slide-current {
-            font-size : 4em;
+        #blog2slide-root {
+            margin   : 0 auto;
+            overflow : auto;
         }
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    #blog2slide-root {
-        -webkit-column-count : 1;
-           -moz-column-count : 1;
-                column-count : 1;
+        @include media(onlyIE10To11){
+            #blog2slide-root:-ms-fullscreen {
+                background : $COLOR_Default_fill;
+            }
+        }
+
+            #blog2slide-root>div {
+                height    : 100%;
+                width     : 98%;
+                max-width : $PC_MAX_WIDTH_EM * 1.5;
+                display   : table;
+                margin    : auto;
+            }
+                #blog2slide-root>div>* {
+                    display : none;
+                }
+
+                #blog2slide-current {
+                    font-size      : 2em;
+                    display        : table-cell !important;
+                    vertical-align : middle;
+                }
+                h1#blog2slide-current {
+                    font-size : 4em;
+                }
+
+        /*  WSXGA
+        --------------------------------------------------------------------------------------*/
+        @include media(WSXGA) {
+            #blog2slide-root {
+                -webkit-column-count : 1;
+                -moz-column-count : 1;
+                        column-count : 1;
+            }
+        }
     }
 }
-/* //_}@modern */
-/* //_}+blog2slide */

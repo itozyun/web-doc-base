@@ -2,15 +2,13 @@
  *    Pure CSS icon
  *      http://outcloud.blogspot.com/2018/02/PureCssIcon.html
 --------------------------------------------------------------------------------------*/
-/* //_{^@legacy */
 @mixin icon-base {
-    /* //_{#can-content */
     position     : relative;
     padding-left : 1.2em;
-    /* //_{@modern */
+    @if( $UA_Modern ){
         display        : inline-block; /* 3DSはインライン要素で padding が効かない、DSiで relative が効かない */
         vertical-align : text-top;
-    /* //_}@modern */
+    }
     &:before, &:after {
         @include createPseudoBlock;
         text-indent   : -1em;
@@ -18,7 +16,6 @@
         border-width  : 0;
         margin-top    : .1em;
     }
-    /* //_}#can-content */
 }
 @mixin icon-border {
     & {
@@ -30,11 +27,11 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text;
     }
-    /* //_{#can-target-pseudo-class */
-    :target & {
-        border-color : #fff;
+    @if( $CANUSE_TARGET_PSEUDO_CLASS ){
+        :target & {
+            border-color : #fff;
+        }
     }
-    /* //_}#can-target-pseudo-class */
 
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
@@ -61,11 +58,11 @@
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text transparent;
     }
-    /* //_{#can-target-pseudo-class */
-    :target & {
-        border-color : #fff transparent;
+    @if( $CANUSE_TARGET_PSEUDO_CLASS ){
+        :target & {
+            border-color : #fff transparent;
+        }
     }
-    /* //_}#can-target-pseudo-class */
 
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
@@ -98,11 +95,11 @@
     .ribbon & {
         border-color    : transparent $COLOR_Ribbon_casual_text;
     }
-    /* //_{#can-target-pseudo-class */
-    :target & {
-        border-color : transparent #fff;
+    @if( $CANUSE_TARGET_PSEUDO_CLASS ){
+        :target & {
+            border-color : transparent #fff;
+        }
     }
-    /* //_}#can-target-pseudo-class */
 
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
@@ -126,194 +123,180 @@
     }
 }
 
-.ico-clock {
-    /* //_{#can-content */
-    @include icon-base;
+@if( $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false ){
+    .ico-clock {
+        @include icon-base;
 
-    &:before {
-        top           : 0;
-        left          : 0;
-        width         : 0.7em;
-        height        : 0.7em;
-        @include border-radius(.5em);
-        @include icon-border;
-        border-width  : .15em;
+        &:before {
+            top           : 0;
+            left          : 0;
+            width         : 0.7em;
+            height        : 0.7em;
+            @include border-radius(.5em);
+            @include icon-border;
+            border-width  : .15em;
+        }
+        &:after {
+            top           : 0.2em;
+            left          : 0.43em;
+            width         : 0.23em;
+            height        : 0.23em;
+            @include icon-border;
+            border-width  : 0 0 .14em .14em;
+        }
     }
-    &:after {
-        top           : 0.2em;
-        left          : 0.43em;
-        width         : 0.23em;
-        height        : 0.23em;
-        @include icon-border;
-        border-width  : 0 0 .14em .14em;
+
+    .ico-label {
+        @include icon-base;
+
+        &:before {
+            top           : 0.2em;
+            left          : 0;
+            width         : 0.7em;
+            height        : 0;
+            border-width  : .6em 0 0;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0.2em;
+            left          : 0.7em;
+            width         : 0;
+            height        : 0;
+            @include icon-border-transparent-fill;
+            border-width  : 0.3em 0 0.3em 0.3em;
+        }
     }
-    /* //_}#can-content */
+
+    .ico-author {
+        @include icon-base;
+
+        &:before {
+            top           : 0;
+            left          : 0.3em;
+            width         : 0.45em;
+            height        : 0;
+            @include border-radius(.225em);
+            border-width  : 0.225em 0;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0.5em;
+            left          : 0.1em;
+            width         : 0;
+            height        : 0;
+            @include border-radius(.3em .3em 0 0);
+            border-width  : 0.5em 0.4em 0;
+            @include icon-border;
+        }
+    }
+
+    .ico-flag {
+        @include icon-base;
+
+        &:before {
+            top           : 0;
+            left          : 0;
+            width         : 0.1em;
+            height        : 0;
+            border-width  : 1em 0 0;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0;
+            left          : 0.2em;
+            width         : 0.8em;
+            height        : 0;
+            border-width  : .7em 0 0;
+            @include icon-border;
+        }
+    }
+
+    .ico-pen {
+        @include icon-base;
+
+        &:before {
+            top           : 0;
+            left          : 0.25em;
+            width         : 0.5em;
+            height        : 0;
+            border-width  : 0 0 0.7em;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0.75em;
+            left          : 0.25em;
+            width         : 0;
+            height        : 0;
+            @include icon-border-fill-transparent;
+            border-width  : .25em .25em 0 .25em;
+        }
+    }
+
+    .ico-chain {
+        @include icon-base;
+
+        &:before {
+            top           : 0.05em;
+            left          : 0.05em;
+            width         : 0.3em;
+            height        : 0.3em;
+            @include icon-border;
+            @include border-radius(.2em);
+            border-width  : 0.2em 0 0.2em 0.2em;
+        }
+        &:after {
+            top           : 0.3em;
+            left          : 0.3em;
+            width         : 0.3em;
+            height        : 0.3em;
+            @include icon-border;
+            @include border-radius(.2em);
+            border-width  : 0.2em 0.2em 0.2em 0;
+        }
+        
+    }
+
+    .ico-sylinder {
+        @include icon-base;
+
+        &:before {
+            top           : 0;
+            left          : 0.1em;
+            width         : 0.4em;
+            height        : 0.4em;
+            border-width  : .25em .2em .35em;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0.15em;
+            left          : 0.2em;
+            width         : 0.4em;
+            height        : 0.4em;
+            border-width  : 0.1em;
+            @include border-radius(.25em);
+            @include icon-border;
+        }
+    }
+
+    .ico-comment {
+        @include icon-base;
+
+        &:before {
+            top                   : 0;
+            left                  : 0;
+            width                 : .7em;
+            height                : .45em;
+            @include border-radius(.2em);
+            border-width          : .15em;
+            @include icon-border;
+        }
+        &:after {
+            top           : 0.65em;
+            left          : 0.3em;
+            width         : 0;
+            height        : 0;
+            @include icon-border-fill-transparent;
+            border-width  : 0.35em .2em 0 .2em;
+        }
+    }
 }
-
-.ico-label {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0.2em;
-        left          : 0;
-        width         : 0.7em;
-        height        : 0;
-        border-width  : .6em 0 0;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0.2em;
-        left          : 0.7em;
-        width         : 0;
-        height        : 0;
-        @include icon-border-transparent-fill;
-        border-width  : 0.3em 0 0.3em 0.3em;
-    }
-    /* //_}#can-content */
-}
-
-.ico-author {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0;
-        left          : 0.3em;
-        width         : 0.45em;
-        height        : 0;
-        @include border-radius(.225em);
-        border-width  : 0.225em 0;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0.5em;
-        left          : 0.1em;
-        width         : 0;
-        height        : 0;
-        @include border-radius(.3em .3em 0 0);
-        border-width  : 0.5em 0.4em 0;
-        @include icon-border;
-    }
-    /* //_}#can-content */
-}
-
-.ico-flag {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0;
-        left          : 0;
-        width         : 0.1em;
-        height        : 0;
-        border-width  : 1em 0 0;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0;
-        left          : 0.2em;
-        width         : 0.8em;
-        height        : 0;
-        border-width  : .7em 0 0;
-        @include icon-border;
-    }
-    /* //_}#can-content */
-}
-
-.ico-pen {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0;
-        left          : 0.25em;
-        width         : 0.5em;
-        height        : 0;
-        border-width  : 0 0 0.7em;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0.75em;
-        left          : 0.25em;
-        width         : 0;
-        height        : 0;
-        @include icon-border-fill-transparent;
-        border-width  : .25em .25em 0 .25em;
-    }
-    /* //_}#can-content */
-}
-
-.ico-chain {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0.05em;
-        left          : 0.05em;
-        width         : 0.3em;
-        height        : 0.3em;
-        @include icon-border;
-        @include border-radius(.2em);
-        border-width  : 0.2em 0 0.2em 0.2em;
-    }
-    &:after {
-        top           : 0.3em;
-        left          : 0.3em;
-        width         : 0.3em;
-        height        : 0.3em;
-        @include icon-border;
-        @include border-radius(.2em);
-        border-width  : 0.2em 0.2em 0.2em 0;
-    }
-    /* //_}#can-content */
-}
-
-.ico-sylinder {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top           : 0;
-        left          : 0.1em;
-        width         : 0.4em;
-        height        : 0.4em;
-        border-width  : .25em .2em .35em;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0.15em;
-        left          : 0.2em;
-        width         : 0.4em;
-        height        : 0.4em;
-        border-width  : 0.1em;
-        @include border-radius(.25em);
-        @include icon-border;
-    }
-    /* //_}#can-content */
-}
-
-.ico-comment {
-    /* //_{#can-content */
-    @include icon-base;
-
-    &:before {
-        top                   : 0;
-        left                  : 0;
-        width                 : .7em;
-        height                : .45em;
-        @include border-radius(.2em);
-        border-width          : .15em;
-        @include icon-border;
-    }
-    &:after {
-        top           : 0.65em;
-        left          : 0.3em;
-        width         : 0;
-        height        : 0;
-        @include icon-border-fill-transparent;
-        border-width  : 0.35em .2em 0 .2em;
-    }
-    /* //_}#can-content */
-}
-/* //_}^@legacy */

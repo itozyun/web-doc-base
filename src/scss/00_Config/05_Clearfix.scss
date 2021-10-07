@@ -7,74 +7,64 @@
     & {
         content : " ";
         display : block;
-    /* //_{@legacy */
-        /* https://browserstrangeness.github.io/css_hacks.html */
 
         /* Gecko <=1.9.0 do not support CSS-P. */
-        /* override Gecko ~1.8.1 */
-        @media \0 all {
-            & {
-                display : none;
-                width   : 0; /* for Gecko 0.9, display:none で消えない */
+        @if( $UA_Gck-095 or $UA_Gck096-121 or $UA_Gck130-190 ){
+            display : none;
+            @if( $UA_Gck-095 ){
+                width : 0; /* for Gecko 0.9, display:none で消えない */
             }
         }
 
-        @-moz-document url-prefix() {
-            /* override Gecko 1.9.0~1.9.2 */
-            & [_csshack_="_:-moz-loading"] { display : none }
-            /* override Gecko 1.9.1~1.9.2 */
-            & [_csshack_="_:-moz-handler-blocked"] { display : block }
+        @if( $UA_Opera7 ){
+            /* Opera <7.20, do not support CSS-P. */
+            [_csshack_=":-opera-lte71"] { display : none; }
         }
-
-        /* Opera <7.20, do not support CSS-P. */
-        [_csshack_=":-opera-lte71"] { display : none; }
-    /* //_}@legacy */
     }
 }
 
 @mixin clearfix {
-    /* //_{@ie9,@ie8,@ie7 */
+    @if( $UA_IE9 or $UA_IE8 or $UA_IE7 ){
         overflow : hidden;
-    /* //_}@ie9,@ie8,@ie7 */
-    /* //_{@ie6,@ie55 */
+    }
+    @if( $UA_IE6 or $UA_IE55 ){
         zoom     : 1;
-    /* //_}@ie6,@ie55 */
-    /* //_{@ie5win */
+    }
+    @if( $UA_IE5 ){
         height   : 1%;
-    /* //_}@ie5win */
-    /* //_{@ie5mac */
+    }
+    @if( $UA_MacIE5 ){
         display  : inline-table;
-    /* //_}@ie5mac */
+    }
 
-    /* //_{#notie */
+    // https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
+    @if( $IS_NOT_IE ){
         &:after {
-            content     : "";
-            height      : 0;
-            display     : block;
+            @if( $UA_Gck130-190 ){
+                content : ".";    /* for Gecko 1.3~1.5 */
+            } @else {
+                content : "";
+            };
+            @if( $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 ){
+                height : 0;       /* for Gecko 0.9~1.7.5 & Opera 9~11(+contentEditable) */
+            }
+            @if( $UA_Gck096-121 ){
+                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
+            } @else {
+                @if( $UA_Gck-095 == false ){
+                    display : block; /* for Gecko 1.3~ & Opera */
+                }
+            }
             visibility  : hidden;
             clear       : both;
         }
-    /* //_}#notie */
-    /* //_{@legacy */
-        /* override Gecko ~1.8.1 */
-        @media \0 all {
-            &:after {
-                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
-            }
-            /* override Gecko 0.9~1.4.2 */
-            [_csshack_=":-gck-lte142|_:-moz-any-link"] {
-                position : relative; /* for Gecko 1.0.2 */
-            }
-            /* override Gecko 1.2~1.8.1 */
-            &:after [_lazyhack_="_:lang(x)"] {
-                content     : ".";   /* (1) for Gecko 1.3~1.5 */
-                display     : block; /* (2) for Gecko 1.3~1.4 */
-                font-size   : 1px;   /* (3) for Gecko 1.2.1. (1)(2)で発生する隙間を小さく */
-                line-height : 0;     /*     for Gecko 1.2.1. (1)(2)で発生する隙間を小さく */
-                height      : 0.1px; /*     for Gecko 1.4    (3)で高さが無くなるのを回避, 1.4.2 では発生しない */
-            }
-            /* override Gecko 1.8~ */
-            @-moz-document url-prefix() { &:after { content : "" } }
+    }
+    @if( $UA_Gck096-121 ){
+        position : relative; /* for Gecko 1.0.2 */
+    }
+    @if( $UA_Gck130-190 ){
+        @-moz-document url-prefix() { /* override Gecko 1.8~ */
+            &:after { content : "" }
         }
-    /* //_}@legacy */
+    }
 }

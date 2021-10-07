@@ -1,16 +1,16 @@
 hr {
     border-width : 0 0 1px; /* for high contrast mode */
-/* //_{@ie9,@modern */
-    height       : 1px;
-    border-color : transparent;
-/* //_}@ie9,@modern */
-/* //_{#ie8-win,@ie5mac,@legacy */
-    height       : 0;
-    border-color : $COLOR_Default_casual_fill;
-    blockquote & {
-        border-color : $COLOR_Default_casual_text;
+    @if( $UA_IE9 or $UA_Modern ){
+        height       : 1px;
+        border-color : transparent;
     }
-/* //_}#ie8-win,@ie5mac,@legacy */
+    @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
+        height       : 0;
+        border-color : $COLOR_Default_casual_fill;
+        blockquote & {
+            border-color : $COLOR_Default_casual_text;
+        }       
+    }
 }
 
 tr hr {
@@ -21,11 +21,11 @@ tr hr {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     hr {
-        /* //_{#ie8-win,@ie5mac,@legacy */
-        border-color : $COLOR_Watch_casual_fill;
-        blockquote & {
-            border-color : $COLOR_Watch_casual_text;
+        @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
+            border-color : $COLOR_Watch_casual_fill;
+            blockquote & {
+                border-color : $COLOR_Watch_casual_text;
+            }
         }
-        /* //_}#ie8-win,@ie5mac,@legacy */
     }
 }

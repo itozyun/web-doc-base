@@ -18,22 +18,22 @@ blockquote {
         border-color : $COLOR_Default_text;
     }
 
-    /* //_{#can-content */
-        /* //_{^@legacy */ // for Gecko 1.7.x
-    blockquote:before {
-        content : attr(title);
-        display : block;
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        @if( $IS_OLD_GECKO == false ){
+            blockquote:before {
+                content : attr(title);
+                display : block;
+            }
+        }
+        blockquote:after {
+            content : attr(cite);
+        }
     }
-        /* //_}^@legacy */
-    blockquote:after {
-        content : attr(cite);
-    }
-    /* //_}#can-content */
 
     /* //_{#can-content */
-    /* //_{^@legacy */
-    blockquote:before,
-    /* //_}^@legacy */
+    /* //_{^#legacy */
+    blockquote:before, // TODO ^#oldGecko
+    /* //_}^#legacy */
     /* //_}#can-content */
     .js-bqLink {
         @include hMargin(2, 0, 0);
@@ -89,9 +89,9 @@ blockquote {
         background : none;
         margin     : 1em 0;
     }
-    /* //_{#can-content */
-    .js-bqLink a:after {
-        display : none; /* for iOS4 content : none だけでは消えない */
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        .js-bqLink a:after {
+            display : none; /* for iOS4 content : none だけでは消えない */
+        }
     }
-    /* //_}#can-content */
 }

@@ -11,9 +11,9 @@
     @include article-footer-item;
 
     padding : 1em 0 0.5em;
-    /* //_{#ie7-win */
-    padding : 1em 0;
-    /* //_}#ie7-win */
+    @if( $IS_LTE_WIN_IE7 ){
+        padding : 1em 0;
+    }
     color   : $COLOR_Default_fill; /* , を消す */
 
     a {

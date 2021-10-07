@@ -1,73 +1,72 @@
-/* //_{^+mobileOnly */
-    /* //_{@modern */
-    #jsSidebarFixer {
-        /* http://blog.webcreativepark.net/2012/10/19-161432.html */
-        -webkit-backface-visibility : hidden;
-           -moz-backface-visibility : hidden;
-                backface-visibility : hidden;
-        /* clean-css ignore:start */
-        -webkit-transition-property : transform;
-        -webkit-transition          :           0.3s ease-in;
-        /* clean-css ignore:end */
-           -moz-transition          : transform 0.3s ease-in;
-             -o-transition          : transform 0.3s ease-in;
-                transition          : transform 0.3s ease-in;
+@if( $Option_mobileOnly == false ){
+    @if( $UA_Modern ){
+        #jsSidebarFixer {
+            /* http://blog.webcreativepark.net/2012/10/19-161432.html */
+            -webkit-backface-visibility : hidden;
+               -moz-backface-visibility : hidden;
+                    backface-visibility : hidden;
+            /* clean-css ignore:start */
+            -webkit-transition-property : transform;
+            -webkit-transition          :           0.3s ease-in;
+            /* clean-css ignore:end */
+               -moz-transition          : transform 0.3s ease-in;
+                 -o-transition          : transform 0.3s ease-in;
+                    transition          : transform 0.3s ease-in;
+        }
+
+        /* ホバーで色を変えてスクロール可能をあることを知らせる */
+        @include media(pc) {
+            #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+                border-color : $COLOR_Default_text;
+            }
+        }
+        @media (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / 16}em) and (prefers-color-scheme:dark) {
+            #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+                border-color : $COLOR_Ribbon_text;
+            }
+        }
+    }
+    @if( $IS_NOT_IE ){
+        #jsSide {
+            position : relative;
+        }
+        .lW {
+            @if( $UA_Gck-095 or $UA_Gck096-121 ){
+                overflow : visible;
+                @if( $UA_Gck096-121 ){
+                    /* override Gecko 1.2~1.8.1 */
+                    & [_lazyhack_="_:lang(x)"] {
+                        overflow : hidden;
+                    }
+                }
+            } @else {
+                overflow : hidden;
+            }
+        }
+    }
+    @if( $UA_Opera7 or $UA_Opera8 ){
+        #jsMain {
+            position : relative; /* for Opera <9, relativeが無いと位置が取れない */
+        }
     }
 
-    /* ホバーで色を変えてスクロール可能をあることを知らせる */
-    @include media(pc) {
-        #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
-            border-color : $COLOR_Default_text;
-        }
-    }
-    @media (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / 16}em) and (prefers-color-scheme:dark) {
-        #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
-            border-color : $COLOR_Ribbon_text;
-        }
-    }
-    /* //_}@modern */
-    /* //_{#notie */
-    #jsSide {
-        position : relative;
-    }
-    .lW {
-        overflow : hidden;
-    }
-    /* //_}#notie */
-    /* //_{@legacy */
-    #jsMain {
-        position : relative; /* for Opera <9, relativeが無いと位置が取れない */
-    }
-    /* override Gecko ~1.8.1 */
-    @media \0 all {
-        .lW {
-            overflow : visible;
-        }
-        /* override Gecko 1.2~1.8.1 */
-        .lW [_lazyhack_="_:lang(x)"] {
+    @if( $UA_IE9 ){
+        // sidebar が header, footer に重なる問題の解決
+        .lS {
             overflow : hidden;
         }
     }
-    /* //_}@legacy */
-
-    /* //_{@ie9 */
-    // sidebar が header, footer に重なる問題の解決
-    .lS {
-        overflow : hidden;
-    }
-    /* //_}@ie9 */
-
-    /* //_{#ie8-win */
-    .lW {
-        /* //_{@ie7 */
+    @if( $UA_IE7 ){
+        .lW {
             // sidebar が header, footer に重なる問題の解決
             // https://klutche.org/archives/1061/
             // 【CSS】IE7の野郎でoverflow:auto内のposition:relative要素がはみ出るバグの対処法
             position : relative;
-        /* //_}@ie7 */
+        }
     }
-    #jsMain, #jsSide {
-        position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
+    @if( $IS_LTE_WIN_IE8 ){
+        #jsMain, #jsSide {
+            position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
+        }
     }
-    /* //_}#ie8-win */
-/* //_}^+mobileOnly */
+}

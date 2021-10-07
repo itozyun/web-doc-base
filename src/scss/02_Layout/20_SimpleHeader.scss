@@ -1,11 +1,11 @@
 
-/** //_{+simpleHeader **/
+@if( $Option_simpleHeader ){
     #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
     #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */ 
-        padding-top    : 1em;
-        /* //_{^@ie5win */
-        padding-bottom : 1em;
-        /* //_}^@ie5win */
+        padding-top : 1em;
+        @if( $UA_IE5 == false ){
+            padding-bottom : 1em;
+        }
     }
 
     #lE, #lF {
@@ -30,4 +30,4 @@
             padding : .5em 0;
         }
     }
-/** //_}+simpleHeader **/
+}

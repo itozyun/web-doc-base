@@ -1,74 +1,64 @@
-/** //_{+blog **/
 /* [module] Label
  *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
  *
 --------------------------------------------------------------------------------------*/
-.Label {
-    @include stackableModule;
-}
-
-    .Label div {
-        color : $COLOR_Default_fill; /* , を消す */
-    
-    /* //_{#ie7-win,@ie8,@ie9 */
-        text-justify : inter-ideograph;
-        line-break   : normal;
-    /* //_}#ie7-win,@ie8,@ie9 */
-    /* //_{#ie7-win,@ie9,@modern */
-        text-align   : justify;
-        /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
-    /* //_}#ie7-win,@ie9,@modern */
+@if( $Option_blog ){
+    .Label {
+        @include stackableModule;
     }
-    .ribbon .Label div {
-        color : $COLOR_Ribbon_fill; /* , を消す */
-    }
-
-        .Label a {
-        /* //_{^@legacy */
-        /* //_{#can-inline-block */
-            @include inline-block;
-            margin      : 0 0 1.7em;
-            line-height : 1.2;
-        /* //_}#can-inline-block */
-        /* //_}^@legacy */
-
-        /* //_{^#can-inline-block,@legacy */
-            line-height : 2.8;
-        /* //_}^#can-inline-block,@legacy */
-
-            border-width : 0 0 1px;
-
-            &:link:hover, &:visited:hover { /* 詳細度の為に a: が必要 */
-                text-decoration : none;
+        .Label div {
+            color : $COLOR_Default_fill; /* , を消す */
+        
+            @if( $IS_WIN_IE ){
+                text-justify : inter-ideograph;
+                line-break   : normal;
+            }
+            @if( $UA_Modern or $UA_IE9 or $IS_LTE_WIN_IE7 ){
+                text-align   : justify;
+                /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
             }
         }
-
-        .lS .Label a,
-        #lF .Label a {
-        /* //_{^@legacy */
-        /* //_{#can-inline-block */
-            margin      : 0 0 1.3em;
-        /* //_}#can-inline-block */
-        /* //_}^@legacy */
-
-        /* //_{^#can-inline-block,@legacy */
-            line-height : 2.4;
-        /* //_}^#can-inline-block,@legacy */
+        .ribbon .Label div {
+            color : $COLOR_Ribbon_fill; /* , を消す */
         }
+            .Label a {
+                @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
+                    @include inline-block;
+                    margin      : 0 0 1.7em;
+                    line-height : 1.2;
+                } @else {
+                    line-height : 2.8;
+                }
 
-/*  Phablet
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .Label div {
-        text-align : center;
+                border-width : 0 0 1px;
+
+                &:link:hover, &:visited:hover { /* 詳細度の為に a: が必要 */
+                    text-decoration : none;
+                }
+            }
+
+            .lS .Label a,
+            #lF .Label a {
+                @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
+                    margin      : 0 0 1.3em;
+                } @else {
+                    line-height : 2.4;
+                }
+            }
+
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+        .Label div {
+            text-align : center;
+        }
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        .Label div {
+            color : $COLOR_Watch_fill; /* , を消す */
+        }
     }
 }
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .Label div {
-        color : $COLOR_Watch_fill; /* , を消す */
-    }
-}
-/** //_}+blog **/

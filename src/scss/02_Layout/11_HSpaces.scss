@@ -1,19 +1,19 @@
 @mixin hMargin($ratio, $marginTop, $marginBottom, $parentHasMarginForPC : 0, $maxWidth : 0){
-    /* //_{^+mobileOnly */
-    @if 1 < $ratio {
-        & {
-            margin  : $marginTop 0 $marginBottom;
+    @if( $Option_mobileOnly == false ){
+        @if 1 < $ratio {
+            & {
+                margin  : $marginTop 0 $marginBottom;
+            }
+        } @else if $parentHasMarginForPC == 1 {
+            & {
+                margin  : $marginTop 0 $marginBottom;
+            }
+        } @else {
+            & {
+                margin  : $marginTop 1em $marginBottom;
+            } 
         }
-    } @else if $parentHasMarginForPC == 1 {
-        & {
-            margin  : $marginTop 0 $marginBottom;
-        }
-    } @else {
-        & {
-            margin  : $marginTop 1em $marginBottom;
-        } 
     }
-    /* //_}^+mobileOnly */
 
     @include media(tablet_print) {
         & {
@@ -60,30 +60,30 @@ caption {
 }
 
 img, iframe {
-/* //_{#can-max-min */
-    max-width : 100%;
+    @if( $CANUSE_MAX_AND_MIN_SIZES ){
+        max-width : 100%;
 
-    @include media(tablet_print) {
-        & {
-            max-width  : #{100% - $TABLET_H_SPACE * 2};
+        @include media(tablet_print) {
+            & {
+                max-width  : #{100% - $TABLET_H_SPACE * 2};
+            }
+        }
+        @include media(phablet) {
+            & {
+                max-width  : #{100% - $PHABLET_H_SPACE * 2};
+            }
+        }
+        @include media(phone) {
+            & {
+                max-width  : #{100% - $PHONE_H_SPACE * 2};
+            }
+        }
+        @include media(watch) {
+            & {
+                max-width  : 100%;
+            }
         }
     }
-    @include media(phablet) {
-        & {
-            max-width  : #{100% - $PHABLET_H_SPACE * 2};
-        }
-    }
-    @include media(phone) {
-        & {
-            max-width  : #{100% - $PHONE_H_SPACE * 2};
-        }
-    }
-    @include media(watch) {
-        & {
-            max-width  : 100%;
-        }
-    }
-/* //_}#can-max-min */
 }
 
 tr blockquote {

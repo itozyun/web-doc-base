@@ -19,9 +19,9 @@
     , &:link:focus, &:visited:focus
     /* //_}#can-focus-pseudo-class */
     {
-        /* //_{@ie6,@ie7,@ie8,@ie9,#notie */
+        @if( $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $IS_NOT_IE ){
             border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
-        /* //_}@ie6,@ie7,@ie8,@ie9,#notie */
+        }
     }
 
     @if $opt_need_bgcolor_for_Watch == 1 {
@@ -50,31 +50,31 @@
     border-width : 2px;
     cursor       : pointer;
     text-align   : center;
-    /* //_{@legacy */
+    @if( $IS_LEGACY ){
     line-height  : $BASE_LINE_HEIGHT_EM;
     padding      : 0 1em;
-    /* //_}@legacy */
-    /* //_{^@legacy */
-    line-height  : 1;
-    padding      : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
-    /* //_}^@legacy */
-    /* //_{@modern,@ie9 */
-    vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
-    /* //_}@modern,@ie9 */
+}
+    @if( $IS_LEGACY == false ){
+        line-height  : 1;
+        padding      : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+    }
+    @if( $UA_Modern or $UA_IE9 ){
+        vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
+    }
     
-    /* //_{@ie6,@ie7 */
-    zoom        : 1;
-    /* //_}@ie6,@ie7 */
+    @if( $UA_IE7 or $UA_IE6 ){
+        zoom : 1;
+    }
 
-    /* //_{@ie5win,@ie55,@legacy */
-    height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    /* //_}@ie5win,@ie55,@legacy */
+    @if( $UA_IE55 or $UA_IE5 or $IS_LEGACY ){
+        height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    }
 
     &:link:hover, &:visited:hover {
         text-decoration : underline;
     }
 
-    /* //_{^#ie7-win */
+    @if( $IS_LTE_WIN_IE7 == false ){
         // IE7 以下にはデザインが適用されない
         &:active
         /* //_{#can-focus-pseudo-class */
@@ -86,18 +86,18 @@
             border-style : dotted;
             outline      : 0;
         }
-    /* //_}^#ie7-win */
+    }
 
-    /* //_{#ie7-win */
+    @if( $IS_LTE_WIN_IE7 ){
         &:link:active, &:visited:active {
-        /* //_{@ie5win,@ie55 */
-            border-color : $COLOR_ACCENT;
-        /* //_}@ie5win,@ie55 */
+            @if( $UA_IE5 or $UA_IE55 ){
+                border-color : $COLOR_ACCENT;
+            }
             color        : $COLOR_ACCENT;
             border-style : dotted;
             outline      : 0;
         }
-    /* //_}#ie7-win */
+    }
 }
 
 .btn {
@@ -106,44 +106,44 @@
 }
 
 input.btn {
-/* //_{@ie5win,@ie55 */
-    padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
-/* //_}@ie5win,@ie55 */
-/* //_{@ie6,@ie7 */
-    height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
-/* //_}@ie6,@ie7 */
-
-/* //_{@legacy */
-    padding : 0; // for Opera 7.x
-
-    /* Gecko ~1.8.1 */
-    @media \0 all {
+    @if( $UA_IE5 or $UA_IE55 ){
+        padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
+    }
+    @if( $UA_IE7 or $UA_IE6 ){
+        height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
+    }
+    @if( $UA_Opera7 ){
+        padding : 0; // for Opera 7.x
+    }
+    @if( $IS_OLD_GECKO ){
+        /* Gecko ~1.8.1 */
         & {
             line-height : 1;
             padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
         }
-    }
-    @-moz-document url-prefix() {
-        /* override Gecko 1.9.0~1.9.2 */
-        & [_csshack_="_:-moz-loading"] {
-            line-height : 1;
-            padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+        @if( $UA_Gck130-190 ){
+            @-moz-document url-prefix() { /* override Gecko 1.8~ */
+                /* override Gecko 1.9.0~1.9.2 */
+                & [_csshack_="_:-moz-loading"] {
+                    line-height : 1;
+                    padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+                }
+            }
         }
     }
-/* //_}@legacy */
 }
 
-/* //_{@modern */
-/* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
- * iOSでのデフォルトスタイルをリセット */
-input.btn::-webkit-search-decoration {
-    display : none;
+@if( $UA_Modern ){
+    /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
+    * iOSでのデフォルトスタイルをリセット */
+    input.btn::-webkit-search-decoration {
+        display : none;
+    }
+    input.btn:focus {
+        outline-offset : -2px;
+    }
 }
-input.btn:focus {
-    outline-offset : -2px;
-}
-/* //_}@modern */
 
 /* //_<bottom50 */
 .baseColor .btn {

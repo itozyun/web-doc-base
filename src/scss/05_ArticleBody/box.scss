@@ -10,14 +10,14 @@
 
     margin : 1em 1em 0;
 
-    /* //_{#can-1stOfType */
-    & > p:first-of-type {
-        margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
+    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+        & > p:first-of-type {
+            margin-top : ( - $BASE_LINE_HEIGHT_EM + 1em ) / 4;
+        }
+        tr & > p:first-of-type {
+            margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
+        }
     }
-    tr & > p:first-of-type {
-        margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
-    }
-    /* //_}#can-1stOfType */
 
     p, dl, ul, ol {
         @include hMargin(1, 0, 1em, 1);
@@ -98,10 +98,10 @@
 
 /*  patch for Safari 3.2.3
 --------------------------------------------------------------------------------------*/
-/* //_{@modern */
+@if( $UA_Modern ){
     @media screen and (min-width:0\-) { // Safari ~4.1
         .box > p:first-of-type {
             margin-top : auto;
         }        
     }
-/* //_}@modern */
+}

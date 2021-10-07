@@ -16,65 +16,64 @@
  *
 --------------------------------------------------------------------------------------*/
 
-/* //_{^+mobileOnly */
+@if( $Option_mobileOnly == false ){
     /*  wrapper
     --------------------------------------------------------------------------------------*/
     .lW {
-    /* //_{^#ie89 */
-        @include clearfix;
-    /* //_}^#ie89 */
+        @if( $IS_IE8_OR_9 == false ){
+            @include clearfix;
+        }
     }
 
     .lW, .lX {
         width     : 98%;
-        /* //_{#can-max-min */
-        max-width : $PC_MAX_WIDTH_EM;
-        /* //_}#can-max-min */
-        /* //_{#can-margin-auto */
-        margin    : 0 auto;
-        /* //_}#can-margin-auto */
+        @if( $CANUSE_MAX_AND_MIN_SIZES ){
+            max-width : $PC_MAX_WIDTH_EM;
+        }
+        @if( $CANUSE_MARGIN_AUTO ){
+            margin    : 0 auto;
+        }
     }
 
     /*  main
     --------------------------------------------------------------------------------------*/    
         .lM {
-            /* //_{^#ie89 */
-            width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
-            float : left;
-            /* //_}^#ie89 */
+            @if( $IS_IE8_OR_9 == false ){
+                width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+                float : left;
+            }
+            @if( $IS_LTE_WIN_IE6 ){
+                overflow-x : hidden; /* カラム落ち対策 */
+            }
         }
             .lMi, .lMz {
                 margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
             }
 
-        /* //_{@ie5win,@ie55,@ie6 */
-            .lM { overflow-x : hidden; } /* カラム落ち対策 */
-        /* //_}@ie5win,@ie55,@ie6 */
-
     /*  sub
     --------------------------------------------------------------------------------------*/
         .lS {
             width : 100% * $PC_SUB_COLUMN_RATIO;
-            /* //_{^#ie89 */
-            float : right;
-            /* //_}^#ie89 */
+            @if( $IS_IE8_OR_9 == false ){
+                float : right;
+            }
         }
             .lSi {
-                /* //_{@ie6 */
-                width  : 82%;
-                /* //_}@ie6 */
-                /* //_{#ie55- */
-                width  : 100%;
-                /* //_}#ie55- */
+                @if( $UA_IE6 ){
+                    width  : 82%;
+                }
+                @if( $UA_IE55 ){
+                    width  : 100%;
+                }
                 margin : 0 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
             }
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
         .lSi {
-            /* //_{@ie6 */
-            width  : 100%;
-            /* //_}@ie6 */
+            @if( $UA_IE6 ){
+                width  : 100%;
+            }
         }
     }
 
@@ -87,25 +86,25 @@
     * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
     */
 
-    /* //_{#ie89
-     *  float-layout -> table-layout
-    --------------------------------------------------------------------------------------*/
-    .lW {
-        display      : table;
-        table-layout : fixed;
-    }
-        .lM, .lS {
-            display        : table-cell;
-            vertical-align : top; /* Safari 3.2, ie8 で大切 */
+    @if( $IS_IE8_OR_9 ){
+        /*  float-layout -> table-layout
+        --------------------------------------------------------------------------------------*/
+        .lW {
+            display      : table;
+            table-layout : fixed;
         }
-        .lM {
-            width : 100% * $PC_MAIN_COLUMN_RATIO;
-        }
-            .lMi, .lMz {
-                margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+            .lM, .lS {
+                display        : table-cell;
+                vertical-align : top; /* Safari 3.2, ie8 で大切 */
             }
-    /* //_}#ie89 */
-/* //_}^+mobileOnly */
+            .lM {
+                width : 100% * $PC_MAIN_COLUMN_RATIO;
+            }
+                .lMi, .lMz {
+                    margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+                }
+    }
+}
 
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
@@ -165,66 +164,65 @@
 
 /*  Tablet & Print
 --------------------------------------------------------------------------------------*/
-/* //_{^+mobileOnly */
-@include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
-    .lW, .lX {
-        width     : 100%;
-        /* //_{#can-max-min */
-        max-width : 100%;
-        /* //_}#can-max-min */
-    }
-    .lW {
-        /* //_{#ie89 */
-        display   : block;
-        /* //_}#ie89 */
-    }
-        .lM, .lS {
-            /* //_{#ie89 */
-            display   : block;
-            /* //_}#ie89 */
-            float   : none;
-            width   : auto;
-        }
-            .lMi, .lMz, .lSi, .lXi {
-                margin : 0;
+@if( $Option_mobileOnly == false ){
+    @include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
+        .lW, .lX {
+            width     : 100%;
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : 100%;
             }
+        }
+        .lW {
+            @if( $IS_IE8_OR_9 ){
+                display   : block;
+            }
+        }
+            .lM, .lS {
+                @if( $IS_IE8_OR_9 ){
+                    display   : block;
+                }
+                float   : none;
+                width   : auto;
+            }
+                .lMi, .lMz, .lSi, .lXi {
+                    margin : 0;
+                }
+    }
 }
-/* //_}^+mobileOnly */
 
 /* #lB > .lX の際に footer の塗りがはみ出さないようにする  */
 .lX {
-    /* //_{@ie8,@ie9,@modern */
-    overflow : hidden; /* この指定が無いと塗りがはみ出る */
-    /* //_}@ie8,@ie9,@modern */
-    /* //_{@ie5win */
-    width      : 100%; /* この指定が無いと横スクロールが出る  */
-    overflow-x : hidden;
-    /* //_}@ie5win */
-}
-
-/* //_{+mobileOnly
---------------------------------------------------------------------------------------*/
-    .lW {
-        /* //_{@ie8,@modern */
+    @if( $IS_IE8_OR_9 or $UA_Modern ){
         overflow : hidden; /* この指定が無いと塗りがはみ出る */
-        /* //_}@ie8,@modern */
-        /* //_{@ie5win */
+    }
+    @if( $UA_IE5 ){
         width      : 100%; /* この指定が無いと横スクロールが出る  */
         overflow-x : hidden;
-        /* //_}@ie5win */
+    }
+}
+
+@if( $Option_mobileOnly ){
+    .lW {
+        @if( $UA_IE8 or $UA_Modern ){
+            overflow : hidden; /* この指定が無いと塗りがはみ出る */
+        }
+        @if( $UA_IE5 ){
+            width      : 100%; /* この指定が無いと横スクロールが出る  */
+            overflow-x : hidden;
+        }
     }
         .lM, .lS, #lB .lSi, .lX {
-            /* //_{#can-max-min */
-            max-width : $TABLET_MAX_WIDTH_EM;
-            margin    : 0 auto;
-            /* //_}#can-max-min */
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : $TABLET_MAX_WIDTH_EM;
+                margin    : 0 auto;
+            }
         }
         #lB .lS {
-            /* //_{#can-max-min */
-            max-width : 100%;
-            /* //_}#can-max-min */
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
         }
-/* //_}+mobileOnly */
+}
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
@@ -268,15 +266,15 @@
         display : none;
     }
 
-    /* //_{+mobileOnly */
-    .lM, .lX {
-        /* //_{#can-max-min */
-        max-width : 100%;
-        /* //_}#can-max-min */
-        margin    : 0;
+    @if( $Option_mobileOnly ){
+        .lM, .lX {
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+            margin    : 0;
+        }
+        .lMi, .lMz .lMh, .lXi {
+            padding : 0;
+        }
     }
-    .lMi, .lMz .lMh, .lXi {
-        padding : 0;
-    }
-    /* //_}+mobileOnly */
 }
