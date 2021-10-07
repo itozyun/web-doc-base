@@ -199,7 +199,7 @@ gulp.task('js', gulp.series(
                     {
                         externs           : externs,
                         define            : [
-                            'DEFINE_WHAT_BROWSWER_AM_I__MINYFY=true',
+                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
                             'DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
                             'DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
