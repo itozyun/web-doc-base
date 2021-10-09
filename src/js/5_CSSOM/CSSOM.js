@@ -2,10 +2,16 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-p_CSSOM_getStyleSheet = CSSOM_getStyleSheet;
-p_CSSOM_getCssRules   = CSSOM_getCssRules;
-p_CSSOM_insertRule    = CSSOM_insertRule;
-p_CSSOM_addImport     = CSSOM_addImport;
+p_CSSOM_getStyleSheetElementList = CSSOM_getStyleSheetElementList;
+p_CSSOM_createStyleSheet         = CSSOM_createStyleSheet;
+p_CSSOM_deleteStyleSheet         = CSSOM_deleteStyleSheet;
+p_CSSOM_insertRuleToStyleSheet   = CSSOM_insertRuleToStyleSheet;
+p_CSSOM_deleteRuleFromStyleSheet = CSSOM_deleteRuleFromStyleSheet;
+p_CSSOM_setStyleOfRule           = CSSOM_setStyleOfRule;
+p_CSSOM_getRawValueOfRule        = CSSOM_getRawValueOfRule;
+p_CSSOM_getIndexOfRule           = CSSOM_getIndexOfRule;
+p_CSSOM_getLastIndexOfRule       = CSSOM_getLastIndexOfRule;
+
 
 /** ===========================================================================
  * private
@@ -13,153 +19,461 @@ p_CSSOM_addImport     = CSSOM_addImport;
 // javascriptでスタイルを追加する方法
 //   https://qiita.com/sainome_7/items/d3f6afa8ffee354e6e36
 
-/** @type {Object<string, CSSStyleSheet>} */
-var CSSOM_styleSheets = {};
+/** @type {Array.<Object>} */
+var CSSOM_styleSheetDataList = [];
+    function CSSOM_getDataByStyleSheet( styleSheet ){
+        var i = CSSOM_styleSheetDataList.length,
+            data;
 
-/** @type {Object<string, number>} */
-var CSSOM_importIndex = {};
+        for( ; i; ){
+            data = CSSOM_styleSheetDataList[ --i ];
+            if( data._rawSheet === styleSheet ){
+                return data;
+            };
+        };
+    };
 
-var CSSOM_USE_DATAURI_FALLBACK = 8 <= p_Presto && p_Presto < 9
+    function CSSOM_renumber( cssRules, startIndex ){
+        var l = cssRules.length,
+            i = startIndex,
+            from = i, rule, offset;
+
+        for( ; i < l; ++i ){
+            rule = cssRules[ i ];
+            offset = rule.to - rule.from;
+            rule.from = from;
+            rule.to   = from + offset;
+            from += 1 + offset;
+        };
+    };
+
+var CSSOM_USE_DATAURI_FALLBACK = 8 <= p_Presto && p_Presto < 9;
+
+var CSSOM_HAS_STYLESHEET_OBJECT = p_Trident || !( p_Presto < 9 ) && (function(){
+    var elmStyle = p_DOM_insertElement( p_html, 'style' ),
+        result = !!CSSOM_getStyleSheet( elmStyle );
+    
+    p_DOM_remove( elmStyle );
+    return result;
+})();
+
+Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
+
+var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
+    // https://amachang.hatenablog.com/entry/20070703/1183445387
+    // Safari で CSSStyleSheet オブジェクトを生成する方法
+    var elmStyle = p_DOM_insertElement( p_html, 'style' ),
+        result;
+
+    p_DOM_insertTextNode( elmStyle, '' );
+    result = !!CSSOM_getStyleSheet( elmStyle );
+    p_DOM_remove( elmStyle );
+    return result;
+})();
+
+if( !CSSOM_HAS_STYLESHEET_OBJECT ){
+    Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_WITH_PATCH : ' + CSSOM_HAS_STYLESHEET_WITH_PATCH );
+};
+
+/**
+ * @return {Array.<Node>}
+ */
+function CSSOM_getStyleSheetElementList(){
+    var styleSheets = document.styleSheets,
+        elementList = [],
+        i = 0, j = -1, l, allElements, elm, tag;
+
+    
+    if( styleSheets ){
+        for( l = styleSheets.length; i < l; ++i ){
+            elementList[ i ] = CSSOM_getOwnerNode( styleSheets[ i ] );
+        };
+    } else {
+        allElements = p_DOM_getElementsByTagNameFromDocument( '*' ); // <link>, <style> の配列
+
+        for( l = allElements.length; i < l; ++i ){
+            elm = allElements[ i ];
+            tag = p_DOM_getTagName( elm );
+            if( tag === 'STYLE' || tag === 'LINK' && p_DOM_getAttribute( elm, 'type' ) === 'text/css' ){
+                elementList[ ++j ] = elm;
+            };
+        };
+    };
+    return elementList;
+};
 
 /**
  * @param {Element} elm
  * @return {CSSStyleSheet}
  */
 function CSSOM_getStyleSheet( elm ){
-    return elm.sheet || elm.styleSheet;
+    return elm.styleSheet || elm.sheet;
 };
-
-/* function CSSOM_getOwnerNode( styleSheet ){
-    return styleSheet.owningElement || styleSheet.ownerNode;
-};
-function CSSOM_removeStyleSheet( styleSheet ){
-    p_DOM_remove( elm = CSSOM_getOwnerNode( styleSheet ) );
-    // media = p_DOM_getAttribute( elm, 'media' ) || 'all';
-    for( media in CSSOM_styleSheets ){
-        if( CSSOM_styleSheets[ media ] === styleSheet ){
-            CSSOM_styleSheets[ media ] = null;
-            CSSOM_importIndex[ media ] = 0;
-            break;
-        };
-    };
-}; */
 
 /**
- * @param {CSSStyleSheet} styleSheet
+ * @param {CSSStyleSheet|Object} styleSheet
  * @return {CSSRuleList}
  */
 function CSSOM_getCssRules( styleSheet ){
-    return ( 10 <= p_Trident ) ? styleSheet.cssRules : ( styleSheet.rules || styleSheet.cssRules );
+    return 9 < p_Trident ? styleSheet.cssRules : ( styleSheet.rules || styleSheet.cssRules );
 };
 
 /**
- * @param {Array} newRules
- * @param {string|undefined=} opt_media
+ * @param {CSSStyleSheet|StyleSheet} styleSheet
+ * @return {Node}
  */
-function CSSOM_insertRule( newRules, opt_media ){
-    var styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] || CSSOM_createStyleSheetForTridentAndOpera9( opt_media ),
-        l          = newRules.length - 2,
-        i          = -1,
-        cssText    = '',
-        selector, property, _cssText;
-
-    while( i < l ){
-        selector = newRules[ ++i ];
-        property = newRules[ ++i ];
-        _cssText = selector + '{' + property + '}';
-
-        if( !styleSheet ){
-            cssText += _cssText;
-        } else if( styleSheet.addRule ){
-            styleSheet.addRule( selector, property );
-        } else if( styleSheet.insertRule ){
-            styleSheet.insertRule( _cssText, styleSheet.cssRules.length );
-        };
-    };
-
-    if( cssText ){
-        CSSOM_createStyleSheetForOther( cssText, opt_media );
-    };
-    // return styleSheet;
+function CSSOM_getOwnerNode( styleSheet ){
+    return styleSheet.owningElement || styleSheet.ownerNode;
 };
 
 /**
- * @param {string} url
- * @param {string=} opt_media
+ * 
+ * @param {string|undefined=} opt_media 
+ * @param {number|undefined=} opt_index
+ * @return {CSSStyleSheet|Object|undefined}
  */
-function CSSOM_addImport( url, opt_media ){
-    var media      = opt_media || 'all',
-        styleSheet = CSSOM_styleSheets[ media ] || CSSOM_createStyleSheetForTridentAndOpera9( opt_media ),
-        index      = CSSOM_importIndex[ media ] || 0;
+function CSSOM_createStyleSheet( opt_media, opt_index ){
+    var styleElms = CSSOM_getStyleSheetElementList(),
+        length    = styleElms.length,
+        index     = 0 <= opt_index && opt_index < length ? opt_index : length,
+        elmBefore = styleElms[ index - 1 ],
+        elmAfter  = styleElms[ index ],
+        elmStyle, styleSheet;
 
-    if( !styleSheet ){
-        CSSOM_createStyleSheetForOther( '@import "' + url + '"', opt_media );
-        /* if( !CSSOM_styleSheets[ media ] ){
-            return;
+    if( false && p_Trident < 11 && p_Trident !== 5.5 ){  // Win XP sp3, IETester IE5.5 で確認
+        styleSheet = document.createStyleSheet();
+        elmStyle   = CSSOM_getOwnerNode( styleSheet );
+        /* if( elmAfter ){ // 以下の操作をすると style が効かなくなる!
+            p_DOM_getParentNode( elmAfter ).insertBefore( elmStyle, elmAfter );
+        } else if( elmBefore ){ // 最後の直後に追加
+            if( elmBefore.nextSibling ){
+                p_DOM_getParentNode( elmBefore.nextSibling ).insertBefore( elmStyle, elmBefore.nextSibling );
+            } else {
+                p_DOM_getParentNode( elmBefore ).appendChild( elmStyle );
+            };
+        } else {
+            p_head.appendChild( elmStyle );
         }; */
-    } else if( styleSheet.addImport ){
-        styleSheet.addImport( url, index );
-    } else if( styleSheet.insertRule ){
-        styleSheet.insertRule( '@import "' + url + '"', index );
-    };
-    CSSOM_importIndex[ media ] = ++index;
-    // return styleSheet;
-};
-
-/**
- * @param {string=} opt_media
- * @return {CSSStyleSheet|undefined}
- */
-    function CSSOM_createStyleSheetForTridentAndOpera9( opt_media ){
-        var elm, styleSheet;
-
-        if( p_Trident === 5.5 || 9 <= p_Presto ){ // Win XP sp3, IETester IE5.5 で確認
-            elm        = p_DOM_insertElement( p_head, 'style' ),
-            styleSheet = CSSOM_getStyleSheet( elm );
-
-            if( opt_media ){
-                p_DOM_setAttribute( elm, 'media', opt_media );
-            };
-        } else if( p_Trident < 11 ){
-            styleSheet = CSSOM_styleSheets[ opt_media || 'all' ] = document.createStyleSheet();
-
-            if( DEFINE_WEB_DOC_BASE__DEBUG && !styleSheet.owningElement ){
-                Debug.log( '[CSSOM] CSSOM_createStyleSheetForTridentAndOpera9(), No styleSheet.owningElement!' );
-                return styleSheet;
-            };
-
-            if( opt_media ){
-                p_DOM_setAttribute( styleSheet.owningElement, 'media', opt_media );
-            };
+        if( opt_media ){
+            p_DOM_setAttribute( styleSheet.owningElement, 'media', opt_media );
+            p_DOM_setAttribute( styleSheet.owningElement, 'id', 'CSSOM-' + index );
         };
-        return styleSheet;
-    };
-/**
- * @param {string} cssText
- * @param {string|undefined} opt_media
- */
-function CSSOM_createStyleSheetForOther( cssText, opt_media ){
-    if( CSSOM_USE_DATAURI_FALLBACK ){
-        //  Data URIs explained
-        //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
-        //   Opera 7.2+ – data URIs must not be longer than 4100 characters
+    } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+        if( elmAfter ){
+            elmStyle = p_DOM_insertElementBefore( elmAfter, 'style' );
+        } else if( elmBefore ){
+            elmStyle = p_DOM_insertElementAfter( elmBefore, 'style' );
+        } else {
+            elmStyle = p_DOM_insertElement( p_head, 'style' );
+        };
+        if( CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            // https://davidwalsh.name/add-rules-stylesheets
+            //   WebKit hack :(
+            p_DOM_insertTextNode( elmStyle, '' );
+        };
+        styleSheet = CSSOM_getStyleSheet( elmStyle );
 
-        // For Opera 8.x. Hack with data URIs.
-        p_DOM_insertElement(
-            p_head, 'link',
-            {
-                type  : 'text/css',
-                rel   : 'stylesheet',
-                media : opt_media,
-                href  : 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText )
-            }
-        );
+        if( opt_media ){
+            p_DOM_setAttribute( elmStyle, 'media', opt_media );
+        };
     } else if( !( p_Presto < 7.2 ) ){
-        // For Opera 7.2x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
-        var styleSheet = CSSOM_getStyleSheet( p_DOM_insertStyleElement( p_head, { media : opt_media }, cssText ) );
+        // For Opera 7.2x~8.x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
+        styleSheet = { _media : opt_media, _index : index, isFallback : true };
+    };
 
-        if( styleSheet ){
-            /* return */ CSSOM_styleSheets[ opt_media || 'all' ] = styleSheet;
+    CSSOM_styleSheetDataList.push( {
+        _rawSheet : styleSheet,
+        _elmOwner : elmStyle,
+        _cssRules : []
+    } );
+    return styleSheet;
+};
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ */
+ function CSSOM_deleteStyleSheet( styleSheet ){
+    var data = CSSOM_getDataByStyleSheet( styleSheet );
+
+    data._elmOwner && p_DOM_remove( data._elmOwner );
+
+    CSSOM_styleSheetDataList.splice( CSSOM_styleSheetDataList.indexOf( data ), 1 );
+};
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {string} selectorTextOrAtRule
+ * @param {Object|string} urlOrStyle
+ * @param {number|undefined=} opt_ruleIndex
+ * @return {number}
+ */
+function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrStyle, opt_ruleIndex ){
+    var data       = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules   = data._cssRules,
+        isImport   = selectorTextOrAtRule === '@import',
+        isPage     = selectorTextOrAtRule === '@page',
+        isFontFace = selectorTextOrAtRule === '@font-face',
+        length     = cssRules.length,
+        importLength, i, ruleIndex, styles = '', cssText,
+        property, newCSSRule, rawCSSRiles, totalRules;
+
+    // @import の数を数える
+    if( styleSheet.imports ){
+        importLength = styleSheet.imports.length;
+    } else {
+        for( i = 0; i < length; ++i ){
+            if( cssRules[ i ].selectorTextOrAtRule !== '@import' ){
+                break;
+            };
+        };
+        importLength = i;
+    };
+
+    if( isImport ){
+        ruleIndex = 0 <= opt_ruleIndex && opt_ruleIndex < importLength ? opt_ruleIndex : importLength;
+        cssText   = selectorTextOrAtRule + ' "' + urlOrStyle + '"';
+    } else {
+        ruleIndex   = importLength <= opt_ruleIndex && opt_ruleIndex < length ? opt_ruleIndex : length;
+        for( property in urlOrStyle ){
+            styles += ';' + property + ':' + urlOrStyle[ property ];
+        };
+        styles  = styles.substr( 1 );
+        cssText = selectorTextOrAtRule + '{' + styles + '}';
+        if( 5.5 <= p_Trident && isFontFace ){
+            ruleIndex = length; // ruleIndex を無視する
+        };
+    };
+
+    newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, from : ruleIndex, to : ruleIndex };
+    cssRules.splice( ruleIndex, 0, newCSSRule );
+
+    if( p_Trident < 9 || ( isImport && p_Trident < 11 ) ){ // Firefox にも .addRule が存在する
+        rawCSSRiles = CSSOM_getCssRules( styleSheet );
+        totalRules  = rawCSSRiles.length;
+        if( isImport ){
+            styleSheet.addImport( urlOrStyle, ruleIndex );
+        } else if( 5.5 <= p_Trident && isPage ){
+            // addPageRule addPageRule(selector, rule, ruleIndex)
+        } else if( 5 <= p_Trident && isFontFace ){
+            //if( true || ruleIndex ){
+                styleSheet.cssText += cssText;
+            //} else {
+                // styleSheet.cssText = cssText + styleSheet.cssText;
+            //};
+        } else {
+            styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
+        };
+        // セレクターを分割する独自ルールによって rules.length は2以上増える事がある
+        newCSSRule.to = ruleIndex + ( rawCSSRiles.length - totalRules - 1 );
+    } else if( styleSheet.insertRule ){
+        styleSheet.insertRule( cssText, ruleIndex );
+    } else {
+        CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+    };
+
+    CSSOM_renumber( cssRules, ruleIndex );
+
+    return ruleIndex;
+};
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {number} ruleIndex
+ * @return {boolean}
+ */
+function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
+    var data       = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules   = data._cssRules,
+        targetRule = cssRules[ ruleIndex ],
+        from       = targetRule.from,
+        to         = targetRule.to;
+
+    if( targetRule ){
+        cssRules.splice( ruleIndex, 1 );
+        CSSOM_renumber( cssRules, ruleIndex );
+
+        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+        } else if( p_Trident < 11 ){
+            // from to が異なれば、その間を removeRule
+            for( ; from <= to; --to ){
+                styleSheet.removeRule( to );
+            };
+        } else {
+            styleSheet.deleteRule( from );
+        };
+    };
+    return !!targetRule;
+};
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {number} ruleIndex
+ * @param {string} property
+ * @param {string|number|boolean} value
+ */
+function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
+    var rawRules   = CSSOM_getCssRules( styleSheet ),
+        data       = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules   = data._cssRules,
+        targetRule = cssRules[ ruleIndex ],
+        from       = targetRule.from,
+        to         = targetRule.to;
+
+    if( targetRule ){
+        targetRule.urlOrStyle[ property ] = value;
+        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+        } else if( p_Trident < 11 ){
+            // from to が異なれば、その間を removeRule
+            for( ; from <= to; --to ){
+                rawRules[ to ].style[ property ] = '' + value;
+            };
+        } else {
+            rawRules[ from ].style[ property ] = '' + value;
         };
     };
 };
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {number} ruleIndex
+ * @param {string} property
+ * @return {string}
+ */
+function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
+    var rawRules   = CSSOM_getCssRules( styleSheet ),
+        data       = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules   = data._cssRules,
+        targetRule = cssRules[ ruleIndex ],
+        from       = targetRule.from,
+        ret;
+
+    if( targetRule ){
+        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            ret = targetRule.urlOrStyle[ property ];
+        } else {
+            ret = rawRules[ from ].style[ property ];
+        };
+    };
+    return ret;
+};
+
+// JavaScriptによるCSSの操作
+//   https://web.archive.org/web/20130817200734/http://bmky.net/text/note/javascript-css/
+//     色を取得する場合はブラウザ毎に挙動が異なるので注意する。
+//     IEは指定したまま取得できるが、Operaは色を勝手に#16進6桁に展開。
+//     Firefoxに至ってはRGBフォーマットにしてしまう。
+//     またFirefoxは短縮形で取得しようとすると、設定していないプロパティにデフォルト値が入った状態で返ってくるので注意する。
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {string} selectorTextOrAtRule
+ * @param {string=} opt_urlOrStyle
+ * @return {number}
+ */
+function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
+    var data     = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules = data._cssRules,
+        i = 0, l = cssRules.length, rule;
+
+    for( ; i < l; ++i ) {
+        rule = cssRules[ i ];
+        if( rule.selectorTextOrAtRule == selectorTextOrAtRule ){
+            if( opt_urlOrStyle && rule.urlOrStyle !== opt_urlOrStyle ){
+                continue;
+            };
+            return i;
+        };
+    };
+    return -1;
+};
+
+/**
+ * @param {CSSStyleSheet|Object} styleSheet
+ * @param {string} selectorTextOrAtRule
+ * @param {string=} opt_urlOrStyle
+ * @return {number}
+ */
+function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
+    var data     = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules = data._cssRules,
+        i = cssRules.length - 1, rule;
+
+    for( ; 0 <= i; --i ) {
+        rule = cssRules[ i ];
+        if( rule.selectorTextOrAtRule == selectorTextOrAtRule ){
+            if( opt_urlOrStyle && rule.urlOrStyle !== opt_urlOrStyle ){
+                continue;
+            };
+            break;
+        };
+    };
+    return i;
+};
+
+    function CSSOM_commitUpdatesToStyleSheetElement( styleSheet ){
+        var data       = CSSOM_getDataByStyleSheet( styleSheet ),
+            cssRules   = data._cssRules,
+            elmOwner   = data._elmOwner,
+            index      = styleSheet._index,
+            styleElms  = CSSOM_getStyleSheetElementList(),
+            elmBefore = styleElms[ index - 1 ],
+            elmAfter  = styleElms[ index ],
+            cssText   = [],
+            i = - 1, j = -1,
+            rule, selectorTextOrAtRule, urlOrStyle, styles, property, tag = 'style', attr;
+
+        for( ; rule = cssRules[ ++i ]; ){
+            selectorTextOrAtRule = rule.selectorTextOrAtRule;
+            urlOrStyle = rule.urlOrStyle;
+
+            if( selectorTextOrAtRule === '@import' ){
+                cssText[ ++j ] = selectorTextOrAtRule + ' "' + urlOrStyle + '"';
+            } else {
+                cssText[ ++j ] = selectorTextOrAtRule + '{';
+                styles = '';
+                for( property in urlOrStyle ){
+                    styles += ';' + property + ':' + urlOrStyle[ property ];
+                };
+                cssText[ ++j ] = styles.substr( 1 ) + '}';
+            };
+        };
+        cssText = cssText.join( '' );
+
+        if( CSSOM_USE_DATAURI_FALLBACK ){
+            cssText = 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText );
+        };
+
+        if( !elmOwner ){
+            attr = { type : 'text\/css', media : data._media };
+            if( CSSOM_USE_DATAURI_FALLBACK ){
+                //  Data URIs explained
+                //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
+                //   Opera 7.2+ – data URIs must not be longer than 4100 characters
+                //  JavaScriptによるCSSの操作
+                //   https://web.archive.org/web/20130817200734/http://bmky.net/text/note/javascript-css/
+
+                // For Opera 8.x. Hack with data URIs.
+                attr.rel  = 'stylesheet';
+                attr.href = cssText;
+                tag       = 'link';
+                cssText   = undefined;
+            };
+            if( elmAfter ){
+                elmOwner = p_DOM_insertElementBefore( elmAfter, tag, attr, cssText );
+            } else if( elmBefore ){
+                elmOwner = p_DOM_insertElementAfter( elmBefore, tag, attr, cssText );
+            } else {
+                elmOwner = p_DOM_insertElement( p_head, tag, attr, cssText );
+            };
+            data._elmOwner = elmOwner;
+        } else {
+            if( CSSOM_USE_DATAURI_FALLBACK ){
+                p_DOM_setAttribute( elmOwner, 'href', cssText );
+            } else {
+                p_DOM_empty( elmOwner );
+                p_DOM_insertTextNode( elmOwner, cssText );
+            };
+        };
+    };

@@ -4,7 +4,6 @@
 p_DOM_insertElement        = DOM_insertElement;
 p_DOM_insertElementBefore  = DOM_insertElementBefore;
 p_DOM_insertElementAfter   = DOM_insertElementAfter;
-p_DOM_insertStyleElement   = DOM_insertStyleElement;
 p_DOM_insertTextNode       = DOM_insertTextNode;
 p_DOM_insertTextNodeBefore = DOM_insertTextNodeBefore;
 p_DOM_insertTextNodeAfter  = DOM_insertTextNodeAfter;
@@ -144,43 +143,6 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
             textContent != null && DOM_insertTextNode( elm, textContent );
         };
     };
-    return elm;
-};
-
-/** 4.
- * @param {Node} targetNode
- * @param {Object|number=} attrs
- * @param {*=} textContent
- * @return {Element|undefined}
- */
-function DOM_insertStyleElement( targetNode, attrs, textContent ){
-    var elm, name, value;
-
-    if( m_isIE4DOM ){
-        // if targetNode === p_head
-        // sheet = document.createStyleSheet()
-        // sheet.cssText = textContent;
-        // shhet.owningElement
-        return;
-    } else if( p_WebKit ){
-        elm = document.createElement( 'style' );
-        // https://davidwalsh.name/add-rules-stylesheets
-        //   WebKit hack :(
-        DOM_insertTextNode( elm, '' );
-        elm.innerHTML = textContent;
-        for( name in attrs ){
-            value = attrs[ name ];
-            p_DOM_setAttribute( elm, name, value );
-        };
-    } else {
-        // http://d.hatena.ne.jp/miya2000/20070327/p0
-        //   最初に style でないノードが無いと style が生成されない
-        elm = document.createElement( 'div' );
-        elm.innerHTML = 'a' + m_toHTMLString( 'style', attrs, textContent );
-        elm = elm.lastChild;
-    };
-    elm.type = 'text\/css';
-    targetNode.appendChild( elm );
     return elm;
 };
 

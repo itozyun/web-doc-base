@@ -24,17 +24,7 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
 
                     switch( tag.replace( '/', '' ) ){
                         case 'STYLE' :
-                            // https://twitter.com/pbrocky/status/1219213180531929088
-                            // 開発ツールを出していると Firefox 72.0.1 で CSSOM のアクセスで InvalidAccessError が出る
-                            if( p_jsGte15 ?
-                                ( sheet = p_CSSOM_getStyleSheet( kid ) ) && ( rules = p_CSSOM_getCssRules( sheet ) ) && ( !rules[0] || !rules[0].cssText )
-                                :
-                                ( new Function( '$,a,b', 'try{$=a($),$=b($),$=$[0];return !$||!$.cssText}catch(e){}' ) )( kid, p_CSSOM_getStyleSheet, p_CSSOM_getCssRules )
-                            ){
-                                !hasDynamicStyleBug && p_DOM_remove( kid ); /* IE5.5 で style を移動すると適用されない */
-                                break;
-                            };
-                            if( 8 <= p_Presto && p_Presto < 9 ) break;/* Opera 8 は <style> の移動が反映されない */
+                            if( 8 <= p_Presto && p_Presto < 9 ) break; /* Opera 8 は <style> の移動が反映されない */
                         case 'LINK' :
                             !m_isIE4DOM && !hasDynamicStyleBug && /* IE6 で link を移動すると style の適用がガタガタ */
                                 !p_DOM_contains( p_head, kid ) && moveToHead.push( kid );
