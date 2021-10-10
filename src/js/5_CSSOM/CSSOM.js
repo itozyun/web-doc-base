@@ -53,14 +53,21 @@ var CSSOM_USE_DATAURI_FALLBACK = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 �
 var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && !( p_Presto < 9 ) && (function(){
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
         result = !!CSSOM_getStyleSheet( elmStyle );
-    
+
+    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+        Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
+        Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
+        Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
+        Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
+        Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
+    };
     p_DOM_remove( elmStyle );
     return result;
 })();
 
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
-var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
+var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
     // https://amachang.hatenablog.com/entry/20070703/1183445387
     // Safari で CSSStyleSheet オブジェクトを生成する方法
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
@@ -68,6 +75,13 @@ var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit &
 
     p_DOM_insertTextNode( elmStyle, '' );
     result = !!CSSOM_getStyleSheet( elmStyle );
+    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+        Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
+        Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
+        Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
+        Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
+        Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
+    };
     p_DOM_remove( elmStyle );
     return result;
 })();
@@ -245,16 +259,17 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     };
 
     newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, _indexStart : ruleIndex, _indexEnd : ruleIndex };
-    cssRules.splice( ruleIndex, 0, newCSSRule );
 
-    if( p_Trident < 9 ){ // Firefox にも .addRule が存在する
+    if( p_Trident < 9 ){ // Firefox にも .addRule が存在する, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する, @font-face には .cssText を使う
         rawCSSRiles = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
         totalRules  = rawCSSRiles.length;
         if( isImport ){
             styleSheet.addImport( urlOrStyle, ruleIndex );
         } else if( 5.5 <= p_Trident && isPage ){
             // addPageRule addPageRule(selector, rule, ruleIndex)
-        } else if( 5 <= p_Trident && isFontFace ){
+        } else if( p_Trident < 6 && isFontFace ){ // IE5.5 クラッシュする!
+            return -1;
+        } else if( 6 <= p_Trident && isFontFace ){
             styleSheet.cssText += cssText; // .addRule を使うと SCRIPT87: 引数が無効です。
         } else {
             styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
@@ -263,12 +278,29 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         newCSSRule._indexEnd = ruleIndex + ( rawCSSRiles.length - totalRules - 1 );
         if( ( rawCSSRiles.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
             Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
-            cssRules.splice( ruleIndex, 1 );
             return -1;
         };
         Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRiles.length - totalRules ) );
-    } else if( styleSheet.insertRule ){
-        if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でもエラー
+    } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+        if( ( p_WebKit < 536 || p_ChromiumBase < 19 ) && isImport ){
+            var elm = document.createElement( 'link' );
+
+            elm.type = 'text/css';
+            elm.rel  = 'stylesheet';
+            elm.href = urlOrStyle;
+            p_head.parentNode.appendChild( elm );
+        } else if( ( p_WebKit < 536 || p_ChromiumBase < 19 ) && isFontFace ){
+            // styleSheet.cssText += cssText; // .addRule を使うと SYNTAX_ERR : DOM Expection 12 @import の追加が出来ない!
+            var elm = document.createElement( 'style' );
+            // https://davidwalsh.name/add-rules-stylesheets
+            //   WebKit hack :(
+            p_DOM_insertTextNode( elm, '' );
+            elm.textContent = cssText;
+            elm.type = 'text/css';
+            // elm.media = styleSheet.media;
+            // p_DOM_insertElementAfter( data._elmOwner, 'style', { type : 'text/css' }, cssText );
+            p_head.parentNode.appendChild( elm );
+        } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でもエラー
             styleSheet.insertRule( 'z{a:0}', ruleIndex );
             CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText;
         } else {
@@ -278,6 +310,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
     };
 
+    cssRules.splice( ruleIndex, 0, newCSSRule );
     CSSOM_renumber( cssRules, ruleIndex );
 
     return ruleIndex;
@@ -350,14 +383,15 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
  */
 function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
     var data       = CSSOM_getDataByStyleSheet( styleSheet ),
-        cssRules   = data._cssRules,
-        targetRule = cssRules[ ruleIndex ],
+        targetRule = data._cssRules[ ruleIndex ],
         rawRule, ret;
 
     if( targetRule ){
         if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
-            Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
+            if( DEFINE_WEB_DOC_BASE__DEBUG ){
+                Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
+            };
             ret = rawRule && rawRule.style[ toCamelcase( property ) ];
         } else {
             ret = targetRule.urlOrStyle[ property ];

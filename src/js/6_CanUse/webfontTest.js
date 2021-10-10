@@ -45,6 +45,7 @@ var webFontTest_maybeCanUseWebFont;
 /** @type {Function|null} */
 var webFontTest_testMaybeCanUseWebFont = function(){
     var blocklist =
+            p_WebKit < 525 || // Safari <3.1
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP          ) < 2.2 ||
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB         ) ||
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
@@ -60,19 +61,19 @@ var webFontTest_testMaybeCanUseWebFont = function(){
 
     if( blocklist ){
         return false;
-    } else if( p_Trident < 6 ){
+    } else if( p_Trident < 5 || p_WebKit < 536 || p_ChromiumBase < 19 ){
         return true;
     };
 
     styleSheet = p_CSSOM_createStyleSheet();
     if( styleSheet && !styleSheet.isFallback ){ // CSSStyleSheet であること!
         ruleIndex = p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', { 'font-family' : '"font"', src : 'url("https://")' } );
-        cssText   = p_Trident < 9 ? styleSheet.cssText : styleSheet.cssRules[ ruleIndex ].cssText,
+        cssText   = styleSheet.cssText || ( styleSheet.rules[ ruleIndex ] && styleSheet.rules[ ruleIndex ].cssText ) || '';
         result    = cssText.match( 'src' ) && cssText.match( '@font-face' );
-        if( DEFINE_WEB_DOC_BASE__DEBUG  ){
-            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont(). length:' +
-            　          ( p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules ).length + ', ' +
-                        p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) + ' ' + cssText );
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() cssText: ' + cssText );
+            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() length: ' + ( p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules ).length );
+            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() src: ' + p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) );
         };
     };
     p_CSSOM_deleteStyleSheet( styleSheet );
@@ -340,14 +341,26 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
         };
 
         if( 1 < elmDiv.offsetWidth ){
-            Debug.log( '[webFontTest] testImportedCssReady ended.' );
+            Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + elmDiv.offsetWidth );
             p_DOM_remove( elmDiv );
             intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT;
             p_setTimer( testWebFont, true );
         } else if( checkTime( intervalTime ) ){
-            Debug.log( '[webFontTest] testImportedCssReady timeout!' );
-            p_DOM_remove( elmDiv );
-            callback( 0 );
+            /**
+             * offsetWidth = 9 にならない問題
+             * Windows Safari 3.2.3   WebKit 525.29 で必要. Windows Safari 4.0.5 WebKit 531   でこの処理は不要.
+             * Windows Chrome 1.0.154 WebKit 525.19 で必要. Windows Iron 5.0.380 Webkit 533.4 でこの処理は不要.
+             */
+            if( p_WebKit < 528 || p_ChromiumBase < 2 ){
+                Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + elmDiv.offsetWidth );
+                p_DOM_remove( elmDiv );
+                intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT;
+                p_setTimer( testWebFont, true );
+            } else {
+                Debug.log( '[webFontTest] testImportedCssReady timeout!' );
+                p_DOM_remove( elmDiv );
+                callback( 0 );
+            };
         } else {
             p_setTimer( testImportedCssReady );
         };
