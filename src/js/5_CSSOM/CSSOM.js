@@ -33,23 +33,24 @@ var CSSOM_styleSheetDataList = [];
         };
     };
 
-    function CSSOM_renumber( cssRules, startIndex ){
+    function CSSOM_renumber( cssRules, start ){
         var l = cssRules.length,
-            i = startIndex,
-            from = i, rule, offset;
+            i = start,
+            indexStart = i, rule, offset;
 
         for( ; i < l; ++i ){
             rule = cssRules[ i ];
-            offset = rule.to - rule.from;
-            rule.from = from;
-            rule.to   = from + offset;
-            from += 1 + offset;
+            offset = rule._indexEnd - rule._indexStart;
+            rule._indexStart = indexStart;
+            rule._indexEnd   = indexStart + offset;
+            indexStart += 1 + offset;
         };
     };
 
-var CSSOM_USE_DATAURI_FALLBACK = 8 <= p_Presto && p_Presto < 9;
+var CSSOM_USE_DATAURI_FALLBACK = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 styleSheet は存在するが insertRule が無い
+                                 8 <= p_Presto && p_Presto < 9;
 
-var CSSOM_HAS_STYLESHEET_OBJECT = p_Trident || !( p_Presto < 9 ) && (function(){
+var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && !( p_Presto < 9 ) && (function(){
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
         result = !!CSSOM_getStyleSheet( elmStyle );
     
@@ -83,7 +84,6 @@ function CSSOM_getStyleSheetElementList(){
         elementList = [],
         i = 0, j = -1, l, allElements, elm, tag;
 
-    
     if( styleSheets ){
         for( l = styleSheets.length; i < l; ++i ){
             elementList[ i ] = CSSOM_getOwnerNode( styleSheets[ i ] );
@@ -104,18 +104,18 @@ function CSSOM_getStyleSheetElementList(){
 
 /**
  * @param {Element} elm
- * @return {CSSStyleSheet}
+ * @return {CSSStyleSheet|StyleSheet}
  */
 function CSSOM_getStyleSheet( elm ){
     return elm.styleSheet || elm.sheet;
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @return {CSSRuleList}
  */
 function CSSOM_getCssRules( styleSheet ){
-    return 9 < p_Trident ? styleSheet.cssRules : ( styleSheet.rules || styleSheet.cssRules );
+    return p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules; // ie11 長さ0 の rules が存在する
 };
 
 /**
@@ -130,14 +130,14 @@ function CSSOM_getOwnerNode( styleSheet ){
  * 
  * @param {string|undefined=} opt_media 
  * @param {number|undefined=} opt_index
- * @return {CSSStyleSheet|Object|undefined}
+ * @return {CSSStyleSheet|StyleSheet|Object|undefined}
  */
 function CSSOM_createStyleSheet( opt_media, opt_index ){
-    var styleElms = CSSOM_getStyleSheetElementList(),
-        length    = styleElms.length,
+    var elements  = CSSOM_getStyleSheetElementList(),
+        length    = elements.length,
         index     = 0 <= opt_index && opt_index < length ? opt_index : length,
-        elmBefore = styleElms[ index - 1 ],
-        elmAfter  = styleElms[ index ],
+        elmBefore = elements[ index - 1 ],
+        elmAfter  = elements[ index ],
         elmStyle, styleSheet;
 
     if( false && p_Trident < 11 && p_Trident !== 5.5 ){  // Win XP sp3, IETester IE5.5 で確認
@@ -190,7 +190,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  */
  function CSSOM_deleteStyleSheet( styleSheet ){
     var data = CSSOM_getDataByStyleSheet( styleSheet );
@@ -201,7 +201,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {Object|string} urlOrStyle
  * @param {number|undefined=} opt_ruleIndex
@@ -244,29 +244,36 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         };
     };
 
-    newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, from : ruleIndex, to : ruleIndex };
+    newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, _indexStart : ruleIndex, _indexEnd : ruleIndex };
     cssRules.splice( ruleIndex, 0, newCSSRule );
 
-    if( p_Trident < 9 || ( isImport && p_Trident < 11 ) ){ // Firefox にも .addRule が存在する
-        rawCSSRiles = CSSOM_getCssRules( styleSheet );
+    if( p_Trident < 9 ){ // Firefox にも .addRule が存在する
+        rawCSSRiles = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
         totalRules  = rawCSSRiles.length;
         if( isImport ){
             styleSheet.addImport( urlOrStyle, ruleIndex );
         } else if( 5.5 <= p_Trident && isPage ){
             // addPageRule addPageRule(selector, rule, ruleIndex)
         } else if( 5 <= p_Trident && isFontFace ){
-            //if( true || ruleIndex ){
-                styleSheet.cssText += cssText;
-            //} else {
-                // styleSheet.cssText = cssText + styleSheet.cssText;
-            //};
+            styleSheet.cssText += cssText; // .addRule を使うと SCRIPT87: 引数が無効です。
         } else {
             styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
         };
         // セレクターを分割する独自ルールによって rules.length は2以上増える事がある
-        newCSSRule.to = ruleIndex + ( rawCSSRiles.length - totalRules - 1 );
+        newCSSRule._indexEnd = ruleIndex + ( rawCSSRiles.length - totalRules - 1 );
+        if( ( rawCSSRiles.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
+            Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
+            cssRules.splice( ruleIndex, 1 );
+            return -1;
+        };
+        Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRiles.length - totalRules ) );
     } else if( styleSheet.insertRule ){
-        styleSheet.insertRule( cssText, ruleIndex );
+        if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でもエラー
+            styleSheet.insertRule( 'z{a:0}', ruleIndex );
+            CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText;
+        } else {
+            styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクターの扱いは?
+        };
     } else {
         CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
     };
@@ -277,7 +284,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {number} ruleIndex
  * @return {boolean}
  */
@@ -285,8 +292,8 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
     var data       = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules   = data._cssRules,
         targetRule = cssRules[ ruleIndex ],
-        from       = targetRule.from,
-        to         = targetRule.to;
+        indexStart = targetRule._indexStart,
+        indexEnd   = targetRule._indexEnd;
 
     if( targetRule ){
         cssRules.splice( ruleIndex, 1 );
@@ -295,19 +302,19 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
         if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
         } else if( p_Trident < 11 ){
-            // from to が異なれば、その間を removeRule
-            for( ; from <= to; --to ){
-                styleSheet.removeRule( to );
+            // indexStart indexEnd が異なれば、その間を removeRule
+            for( ; indexStart <= indexEnd; --indexEnd ){
+                styleSheet.removeRule( indexEnd );
             };
         } else {
-            styleSheet.deleteRule( from );
+            styleSheet.deleteRule( indexStart );
         };
     };
     return !!targetRule;
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {number} ruleIndex
  * @param {string} property
  * @param {string|number|boolean} value
@@ -317,44 +324,66 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
         data       = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules   = data._cssRules,
         targetRule = cssRules[ ruleIndex ],
-        from       = targetRule.from,
-        to         = targetRule.to;
+        indexStart = targetRule._indexStart,
+        indexEnd   = targetRule._indexEnd;
 
     if( targetRule ){
         targetRule.urlOrStyle[ property ] = value;
         if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
         } else if( p_Trident < 11 ){
-            // from to が異なれば、その間を removeRule
-            for( ; from <= to; --to ){
-                rawRules[ to ].style[ property ] = '' + value;
+            // indexStart indexEnd が異なれば、その間を removeRule
+            for( ; indexStart <= indexEnd; --indexEnd ){
+                rawRules[ indexEnd ].style[ property ] = '' + value;
             };
         } else {
-            rawRules[ from ].style[ property ] = '' + value;
+            rawRules[ indexStart ].style[ property ] = '' + value;
         };
     };
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {number} ruleIndex
  * @param {string} property
  * @return {string}
  */
 function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
-    var rawRules   = CSSOM_getCssRules( styleSheet ),
-        data       = CSSOM_getDataByStyleSheet( styleSheet ),
+    var data       = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules   = data._cssRules,
         targetRule = cssRules[ ruleIndex ],
-        from       = targetRule.from,
-        ret;
+        rawRule, ret;
 
     if( targetRule ){
         if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-            ret = targetRule.urlOrStyle[ property ];
+            rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
+            Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
+            ret = rawRule && rawRule.style[ toCamelcase( property ) ];
         } else {
-            ret = rawRules[ from ].style[ property ];
+            ret = targetRule.urlOrStyle[ property ];
         };
+    };
+    function toCamelcase( str ){
+        var result = [],
+            chars  = str.split( '' ),
+            i      = 0,
+            l      = chars.length,
+            chr, toUpper = false;
+
+        for( ; i < l; ++i ){
+            chr = chars[ i ];
+            if( chr === '-' ){
+                toUpper = true;
+            } else {
+                if( toUpper ){
+                    result[ i ] = chr.toUpperCase();
+                    toUpper = false;
+                } else {
+                    result[ i ] = chr;
+                };
+            };
+        };
+        return result.join( '' );
     };
     return ret;
 };
@@ -367,7 +396,7 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
 //     またFirefoxは短縮形で取得しようとすると、設定していないプロパティにデフォルト値が入った状態で返ってくるので注意する。
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {string=} opt_urlOrStyle
  * @return {number}
@@ -390,7 +419,7 @@ function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle 
 };
 
 /**
- * @param {CSSStyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {string=} opt_urlOrStyle
  * @return {number}
@@ -413,13 +442,13 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
 };
 
     function CSSOM_commitUpdatesToStyleSheetElement( styleSheet ){
-        var data       = CSSOM_getDataByStyleSheet( styleSheet ),
-            cssRules   = data._cssRules,
-            elmOwner   = data._elmOwner,
-            index      = styleSheet._index,
-            styleElms  = CSSOM_getStyleSheetElementList(),
-            elmBefore = styleElms[ index - 1 ],
-            elmAfter  = styleElms[ index ],
+        var data      = CSSOM_getDataByStyleSheet( styleSheet ),
+            cssRules  = data._cssRules,
+            elmOwner  = data._elmOwner,
+            index     = styleSheet._index,
+            elements  = CSSOM_getStyleSheetElementList(),
+            elmBefore = elements[ index - 1 ],
+            elmAfter  = elements[ index ],
             cssText   = [],
             i = - 1, j = -1,
             rule, selectorTextOrAtRule, urlOrStyle, styles, property, tag = 'style', attr;

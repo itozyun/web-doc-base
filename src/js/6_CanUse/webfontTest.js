@@ -56,7 +56,7 @@ var webFontTest_testMaybeCanUseWebFont = function(){
             /* ua[ 'MeeGo' ] || ua[ 'AOSP' ] < 2.2 || ua[ 'WebOS' ] || ua[ 'UCWEB' ] ||
             ( ua[ 'TridentMobile' ] < 10 ) || // p_Tasman ||
             ua[ 'NDS' ] || ua[ 'NDSi' ] || ua[ 'N3DS' ], */
-        styleSheet, ruleIndex, result;
+        styleSheet, ruleIndex, cssText, result;
 
     if( blocklist ){
         return false;
@@ -67,11 +67,12 @@ var webFontTest_testMaybeCanUseWebFont = function(){
     styleSheet = p_CSSOM_createStyleSheet();
     if( styleSheet && !styleSheet.isFallback ){ // CSSStyleSheet であること!
         ruleIndex = p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', { 'font-family' : '"font"', src : 'url("https://")' } );
-        result    = p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) &&
-                    ( p_Trident < 11 ? styleSheet.cssText : styleSheet.cssRules[ ruleIndex ].cssText ).match( '@font-face' );
-        if( DEFINE_WEB_DOC_BASE__DEBUG ){
-            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont().' + p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) +
-                       ( p_Trident < 11 ? styleSheet.cssText : styleSheet.cssRules[ ruleIndex ].cssText ) );
+        cssText   = p_Trident < 9 ? styleSheet.cssText : styleSheet.cssRules[ ruleIndex ].cssText,
+        result    = cssText.match( 'src' ) && cssText.match( '@font-face' );
+        if( DEFINE_WEB_DOC_BASE__DEBUG  ){
+            Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont(). length:' +
+            　          ( p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules ).length + ', ' +
+                        p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) + ' ' + cssText );
         };
     };
     p_CSSOM_deleteStyleSheet( styleSheet );
