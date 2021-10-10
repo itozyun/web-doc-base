@@ -33,17 +33,18 @@ var CSSOM_styleSheetDataList = [];
         };
     };
 
-    function CSSOM_renumber( cssRules, start ){
+    function CSSOM_renumber( cssRules, i ){
         var l = cssRules.length,
-            i = start,
-            indexStart = i, rule, offset;
+            indexStart = i, cssRule, offset;
 
         for( ; i < l; ++i ){
-            rule = cssRules[ i ];
-            offset = rule._indexEnd - rule._indexStart;
-            rule._indexStart = indexStart;
-            rule._indexEnd   = indexStart + offset;
-            indexStart += 1 + offset;
+            cssRule = cssRules[ i ];
+            if( !cssRule._elmFallback ){
+                offset = cssRule._indexEnd - cssRule._indexStart;
+                cssRule._indexStart = indexStart;
+                cssRule._indexEnd   = indexStart + offset;
+                indexStart += 1 + offset;
+            };
         };
     };
 
@@ -100,7 +101,12 @@ function CSSOM_getStyleSheetElementList(){
 
     if( styleSheets ){
         for( l = styleSheets.length; i < l; ++i ){
-            elementList[ i ] = CSSOM_getOwnerNode( styleSheets[ i ] );
+            if( p_ChromiumBase < 2 ){ // Windows Chrome 1.0.154 WebKit 525.19, DOM ツリーから抜いた <link> が存在する!
+                elm = CSSOM_getOwnerNode( styleSheets[ i ] );
+                elm.parentNode && ( elementList[ i ] = elm );
+            } else {
+                elementList[ i ] = CSSOM_getOwnerNode( styleSheets[ i ] );
+            };
         };
     } else {
         allElements = p_DOM_getElementsByTagNameFromDocument( '*' ); // <link>, <style> の配列
@@ -154,25 +160,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
         elmAfter  = elements[ index ],
         elmStyle, styleSheet;
 
-    if( false && p_Trident < 11 && p_Trident !== 5.5 ){  // Win XP sp3, IETester IE5.5 で確認
-        styleSheet = document.createStyleSheet();
-        elmStyle   = CSSOM_getOwnerNode( styleSheet );
-        /* if( elmAfter ){ // 以下の操作をすると style が効かなくなる!
-            p_DOM_getParentNode( elmAfter ).insertBefore( elmStyle, elmAfter );
-        } else if( elmBefore ){ // 最後の直後に追加
-            if( elmBefore.nextSibling ){
-                p_DOM_getParentNode( elmBefore.nextSibling ).insertBefore( elmStyle, elmBefore.nextSibling );
-            } else {
-                p_DOM_getParentNode( elmBefore ).appendChild( elmStyle );
-            };
-        } else {
-            p_head.appendChild( elmStyle );
-        }; */
-        if( opt_media ){
-            p_DOM_setAttribute( styleSheet.owningElement, 'media', opt_media );
-            p_DOM_setAttribute( styleSheet.owningElement, 'id', 'CSSOM-' + index );
-        };
-    } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+    if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
         if( elmAfter ){
             elmStyle = p_DOM_insertElementBefore( elmAfter, 'style' );
         } else if( elmBefore ){
@@ -207,10 +195,18 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
  * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  */
  function CSSOM_deleteStyleSheet( styleSheet ){
-    var data = CSSOM_getDataByStyleSheet( styleSheet );
+    var data     = CSSOM_getDataByStyleSheet( styleSheet ),
+        cssRules = data._cssRules,
+        i        = cssRules.length,
+        cssRule;
 
     data._elmOwner && p_DOM_remove( data._elmOwner );
 
+    for( ; cssRule = cssRules[ --i ]; ){
+        if( cssRule._elmFallback ){
+            p_DOM_remove( cssRule._elmFallback );
+        };
+    };
     CSSOM_styleSheetDataList.splice( CSSOM_styleSheetDataList.indexOf( data ), 1 );
 };
 
@@ -223,13 +219,14 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
  */
 function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrStyle, opt_ruleIndex ){
     var data       = CSSOM_getDataByStyleSheet( styleSheet ),
+        elmOwner   = data._elmOwner,
         cssRules   = data._cssRules,
         isImport   = selectorTextOrAtRule === '@import',
         isPage     = selectorTextOrAtRule === '@page',
         isFontFace = selectorTextOrAtRule === '@font-face',
         length     = cssRules.length,
         importLength, i, ruleIndex, styles = '', cssText,
-        property, newCSSRule, rawCSSRiles, totalRules;
+        property, newCSSRule, rawCSSRules, totalRules, nextSibling, elmStyle;
 
     // @import の数を数える
     if( styleSheet.imports ){
@@ -253,7 +250,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         };
         styles  = styles.substr( 1 );
         cssText = selectorTextOrAtRule + '{' + styles + '}';
-        if( 5.5 <= p_Trident && isFontFace ){
+        if( 6 <= p_Trident && isFontFace ){
             ruleIndex = length; // ruleIndex を無視する
         };
     };
@@ -261,45 +258,56 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, _indexStart : ruleIndex, _indexEnd : ruleIndex };
 
     if( p_Trident < 9 ){ // Firefox にも .addRule が存在する, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する, @font-face には .cssText を使う
-        rawCSSRiles = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
-        totalRules  = rawCSSRiles.length;
-        if( isImport ){
-            styleSheet.addImport( urlOrStyle, ruleIndex );
-        } else if( 5.5 <= p_Trident && isPage ){
-            // addPageRule addPageRule(selector, rule, ruleIndex)
-        } else if( p_Trident < 6 && isFontFace ){ // IE5.5 クラッシュする!
-            return -1;
-        } else if( 6 <= p_Trident && isFontFace ){
-            styleSheet.cssText += cssText; // .addRule を使うと SCRIPT87: 引数が無効です。
+        rawCSSRules = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
+        totalRules  = rawCSSRules.length;
+        if( p_Trident < 6 && isFontFace ){
+            // http://d.hatena.ne.jp/miya2000/20070327/p0
+            //   最初に style でないノードが無いと style が生成されない
+            elmStyle = document.createElement( 'div' );
+            elmStyle.innerHTML = '_<style type="text/css"' + ( styleSheet.media ? ' media="' + styleSheet.media + '"' : '' ) + '>' + cssText + '</style>';
+            elmStyle = elmStyle.lastChild;
+            if( nextSibling = elmOwner.nextSibling ){
+                p_DOM_getParentNode( elmOwner ).insertBefore( elmStyle, nextSibling );
+            } else {
+                p_DOM_getParentNode( elmOwner ).appendChild( elmStyle );
+            };
+            newCSSRule._elmFallback = elmStyle;
         } else {
-            styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
+            if( isImport ){
+                styleSheet.addImport( urlOrStyle, ruleIndex );
+            } else if( 5.5 <= p_Trident && isPage ){
+                // addPageRule addPageRule(selector, rule, ruleIndex)
+            } else if( 6 <= p_Trident && isFontFace ){ // IE5.5 クラッシュする!
+                styleSheet.cssText += cssText; // .addRule を使うと SCRIPT87: 引数が無効です。
+            } else {
+                styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
+            };
+            // セレクターを分割する独自ルールによって rules.length は2以上増える事がある
+            newCSSRule._indexEnd = ruleIndex + ( rawCSSRules.length - totalRules - 1 );
+            if( ( rawCSSRules.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
+                Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
+                return -1;
+            };
+            Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRules.length - totalRules ) );
         };
-        // セレクターを分割する独自ルールによって rules.length は2以上増える事がある
-        newCSSRule._indexEnd = ruleIndex + ( rawCSSRiles.length - totalRules - 1 );
-        if( ( rawCSSRiles.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
-            Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
-            return -1;
-        };
-        Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRiles.length - totalRules ) );
     } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-        if( ( p_WebKit < 536 || p_ChromiumBase < 19 ) && isImport ){
-            var elm = document.createElement( 'link' );
-
-            elm.type = 'text/css';
-            elm.rel  = 'stylesheet';
-            elm.href = urlOrStyle;
-            p_head.parentNode.appendChild( elm );
-        } else if( ( p_WebKit < 536 || p_ChromiumBase < 19 ) && isFontFace ){
-            // styleSheet.cssText += cssText; // .addRule を使うと SYNTAX_ERR : DOM Expection 12 @import の追加が出来ない!
-            var elm = document.createElement( 'style' );
+        if( ( p_WebKit < 536 || p_ChromiumBase < 28 ) && isImport ){
+            // .addRule を使うと SYNTAX_ERR : DOM Expection 12 @import の追加が出来ない!
+            newCSSRule._elmFallback = p_DOM_insertElementAfter(
+                elmOwner,
+                'link',
+                { href : urlOrStyle, rel : 'stylesheet', type : 'text/css' } 
+            );
+        } else if( p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE && isFontFace ){
+            elmStyle = newCSSRule._elmFallback = p_DOM_insertElementAfter(
+                elmOwner,
+                'style',
+                { type : 'text/css', media : styleSheet.media }
+            );
             // https://davidwalsh.name/add-rules-stylesheets
             //   WebKit hack :(
-            p_DOM_insertTextNode( elm, '' );
-            elm.textContent = cssText;
-            elm.type = 'text/css';
-            // elm.media = styleSheet.media;
-            // p_DOM_insertElementAfter( data._elmOwner, 'style', { type : 'text/css' }, cssText );
-            p_head.parentNode.appendChild( elm );
+            p_DOM_insertTextNode( elmStyle, '' );
+            elmStyle.innerText = cssText; // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
         } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でもエラー
             styleSheet.insertRule( 'z{a:0}', ruleIndex );
             CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText;
@@ -330,17 +338,21 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
 
     if( targetRule ){
         cssRules.splice( ruleIndex, 1 );
-        CSSOM_renumber( cssRules, ruleIndex );
 
-        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-            CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
-        } else if( p_Trident < 11 ){
-            // indexStart indexEnd が異なれば、その間を removeRule
-            for( ; indexStart <= indexEnd; --indexEnd ){
-                styleSheet.removeRule( indexEnd );
-            };
+        if( targetRule._elmFallback ){
+            p_DOM_remove( targetRule._elmFallback );
         } else {
-            styleSheet.deleteRule( indexStart );
+            CSSOM_renumber( cssRules, ruleIndex );
+            if( !CSSOM_HAS_STYLESHEET_OBJECT && !CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+            } else if( p_Trident < 11 ){
+                // indexStart indexEnd が異なれば、その間を removeRule
+                for( ; indexStart <= indexEnd; --indexEnd ){
+                    styleSheet.removeRule( indexEnd );
+                };
+            } else {
+                styleSheet.deleteRule( indexStart );
+            };
         };
     };
     return !!targetRule;
@@ -361,16 +373,20 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
         indexEnd   = targetRule._indexEnd;
 
     if( targetRule ){
-        targetRule.urlOrStyle[ property ] = value;
-        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-            CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
-        } else if( p_Trident < 11 ){
-            // indexStart indexEnd が異なれば、その間を removeRule
-            for( ; indexStart <= indexEnd; --indexEnd ){
-                rawRules[ indexEnd ].style[ property ] = '' + value;
-            };
+        if( targetRule.selectorTextOrAtRule === '@import' ){
+            targetRule.urlOrStyle = value;
         } else {
-            rawRules[ indexStart ].style[ property ] = '' + value;
+            targetRule.urlOrStyle[ property ] = value;
+            if( !CSSOM_HAS_STYLESHEET_OBJECT && !CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+            } else if( p_Trident < 11 ){
+                // indexStart indexEnd が異なれば、その間を removeRule
+                for( ; indexStart <= indexEnd; --indexEnd ){
+                    rawRules[ indexEnd ].style[ property ] = '' + value;
+                };
+            } else {
+                rawRules[ indexStart ].style[ property ] = '' + value;
+            };
         };
     };
 };
@@ -387,7 +403,9 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
         rawRule, ret;
 
     if( targetRule ){
-        if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+        if( targetRule.selectorTextOrAtRule === '@import' ){
+            ret = targetRule.urlOrStyle;
+        } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
