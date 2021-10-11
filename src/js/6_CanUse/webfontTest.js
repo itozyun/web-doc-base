@@ -18,7 +18,7 @@
  *           Image fallback.
  */
 
-var TEST_WEBFONT_NO_WORK_DATA_URI_WEBFONT = p_Trident < 9 || p_ChromiumBase < 2; // Data URI スキームをサポートするが Web フォントには使えない環境
+var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_ChromiumBase < 2; // Data URI スキームをサポートするが Web フォントには使えない環境
 var TEST_WEBFONT_PREFIX                   = 'bad_' + ( new Date() - 0 ) + '_';
 var TEST_WEBFONT_LOADED_EMBEDED_WEBFONT   = 5000;
 var TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT = 100;
@@ -62,12 +62,12 @@ var webFontTest_testMaybeCanUseWebFont = function(){
 
     if( blocklist ){
         return false;
-    } else if( p_Trident < 5 || p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE ){
+    } else if( p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE ){
         return true;
     };
 
-    styleSheet = p_CSSOM_createStyleSheet();
-    if( styleSheet && !styleSheet.isFallback ){ // CSSStyleSheet であること!
+    if( p_CSSOM_canuse === 2 ){ // CSSStyleSheet であること!
+        styleSheet = p_CSSOM_createStyleSheet();
         ruleIndex = p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', { 'font-family' : '"font"', src : 'url("https://")' } );
         cssText   = styleSheet.cssText || ( styleSheet.cssRules && styleSheet.cssRules[ ruleIndex ] && styleSheet.cssRules[ ruleIndex ].cssText ) || '';
         result    = cssText.match( 'src' ) && cssText.match( '@font-face' );
@@ -76,8 +76,8 @@ var webFontTest_testMaybeCanUseWebFont = function(){
             Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() length: ' + ( p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules ).length );
             Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() src: ' + p_CSSOM_getRawValueOfRule( styleSheet, ruleIndex, 'src' ) );
         };
+        p_CSSOM_deleteStyleSheet( styleSheet );
     };
-    p_CSSOM_deleteStyleSheet( styleSheet );
 
     webFontTest_testMaybeCanUseWebFont = null;
 
@@ -185,7 +185,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
             Debug.log( '[webFontTest] testWebFont timeout!' );
             if( canUseDataURI ){
                 callback( 0 );
-            } else if( TEST_WEBFONT_NO_WORK_DATA_URI_WEBFONT ){
+            } else if( TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT ){
                 p_setTimer( callback, 0 );
             } else {
                 p_dataUriTest( onTestDataURIComplete );
@@ -313,6 +313,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
                         id            : testIdAndClassName
                     }
                 );
+                // TOOD <link> にする
                 styleSheetDataURIWebFont = p_CSSOM_createStyleSheet();
                 p_CSSOM_insertRuleToStyleSheet( styleSheetDataURIWebFont, '@import', embededWebFonts[ embededWebFontName ] );
                 p_setTimer( testImportedCssReady, true );
@@ -349,10 +350,11 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
         } else if( checkTime( intervalTime ) ){
             /**
              * offsetWidth = 9 にならない問題
-             * Windows Safari 3.2.3   WebKit 525.29 で必要. Windows Safari 4.0.5 WebKit 531   でこの処理は不要.
-             * Windows Chrome 1.0.154 WebKit 525.19 で必要. Windows Iron 2.0.168 Webkit 530.4 でこの処理は不要.
+             *  1. Windows Safari 3.2.3   WebKit 525.29 で必要. Windows Safari 4.0.5 WebKit 531 でこの処理は不要.
+             *  2. Windows Chrome 1.0.154 WebKit 525.19 でも発生したが TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT の為
+             *     ここには至らない. Windows Iron 2.0.168 Webkit 530.4 でこの処理は不要.
              */
-            if( p_WebKit < 528 || p_ChromiumBase < 2 ){
+            if( p_WebKit < 528 ){
                 Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + elmDiv.offsetWidth );
                 p_DOM_remove( elmDiv );
                 intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT;

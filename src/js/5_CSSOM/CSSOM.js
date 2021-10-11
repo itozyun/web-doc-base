@@ -21,37 +21,39 @@ p_CSSOM_getLastIndexOfRule       = CSSOM_getLastIndexOfRule;
 
 /** @type {Array.<Object>} */
 var CSSOM_styleSheetDataList = [];
-    function CSSOM_getDataByStyleSheet( styleSheet ){
-        var i = CSSOM_styleSheetDataList.length,
-            data;
 
-        for( ; i; ){
-            data = CSSOM_styleSheetDataList[ --i ];
-            if( data._rawSheet === styleSheet ){
-                return data;
-            };
+function CSSOM_getDataByStyleSheet( styleSheet ){
+    var i = CSSOM_styleSheetDataList.length,
+        data;
+
+    for( ; i; ){
+        data = CSSOM_styleSheetDataList[ --i ];
+        if( data._rawSheet === styleSheet ){
+            return data;
         };
     };
+};
 
-    function CSSOM_renumber( cssRules, i ){
-        var l = cssRules.length,
-            indexStart = i, cssRule, offset;
+function CSSOM_renumber( cssRules, indexStart ){
+    var l = cssRules.length,
+        i = indexStart, cssRule, offset;
 
-        for( ; i < l; ++i ){
-            cssRule = cssRules[ i ];
-            if( !cssRule._elmFallback ){
-                offset = cssRule._indexEnd - cssRule._indexStart;
-                cssRule._indexStart = indexStart;
-                cssRule._indexEnd   = indexStart + offset;
-                indexStart += 1 + offset;
-            };
+    for( ; i < l; ++i ){
+        cssRule = cssRules[ i ];
+        if( !cssRule._elmFallback ){
+            offset = cssRule._indexEnd - cssRule._indexStart;
+            cssRule._indexStart = indexStart;
+            cssRule._indexEnd   = indexStart + offset;
+            indexStart += 1 + offset;
         };
     };
+};
 
-var CSSOM_USE_DATAURI_FALLBACK = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 styleSheet は存在するが insertRule が無い
-                                 8 <= p_Presto && p_Presto < 9;
+var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 styleSheet は存在するが insertRule が無い
+                                     8 <= p_Presto && p_Presto < 9;
+var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
 
-var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && !( p_Presto < 9 ) && (function(){
+var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK && !( p_Presto < 9 ) && (function(){
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
         result = !!CSSOM_getStyleSheet( elmStyle );
 
@@ -68,7 +70,7 @@ var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && 
 
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
-var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
+var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK && !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
     // https://amachang.hatenablog.com/entry/20070703/1183445387
     // Safari で CSSStyleSheet オブジェクトを生成する方法
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
@@ -90,6 +92,9 @@ var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_HAS_
 if( !CSSOM_HAS_STYLESHEET_OBJECT ){
     Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_WITH_PATCH : ' + CSSOM_HAS_STYLESHEET_WITH_PATCH );
 };
+
+p_CSSOM_canuse = CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ? 2 :
+                 CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  ? 1 : 0;
 
 /**
  * @return {Array.<Node>}
@@ -178,7 +183,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
         if( opt_media ){
             p_DOM_setAttribute( elmStyle, 'media', opt_media );
         };
-    } else if( !( p_Presto < 7.2 ) ){
+    } else if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
         // For Opera 7.2x~8.x and other browsers. Opera 7.0-7.1x does not support dynamic CSS. But only support dynamic import CSS.
         styleSheet = { _media : opt_media, _index : index, isFallback : true };
     };
@@ -260,7 +265,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     if( p_Trident < 9 ){ // Firefox にも .addRule が存在する, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する, @font-face には .cssText を使う
         rawCSSRules = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
         totalRules  = rawCSSRules.length;
-        if( p_Trident < 6 && isFontFace ){
+        if( isFontFace ){
             // http://d.hatena.ne.jp/miya2000/20070327/p0
             //   最初に style でないノードが無いと style が生成されない
             elmStyle = document.createElement( 'div' );
@@ -277,12 +282,11 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 styleSheet.addImport( urlOrStyle, ruleIndex );
             } else if( 5.5 <= p_Trident && isPage ){
                 // addPageRule addPageRule(selector, rule, ruleIndex)
-            } else if( 6 <= p_Trident && isFontFace ){ // IE5.5 クラッシュする!
-                styleSheet.cssText += cssText; // .addRule を使うと SCRIPT87: 引数が無効です。
             } else {
                 styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
             };
-            // セレクターを分割する独自ルールによって rules.length は2以上増える事がある
+            // IE8 マルチセレクターは分割して登録される
+            // IE7- マルチセレクターは、引数が無効です。
             newCSSRule._indexEnd = ruleIndex + ( rawCSSRules.length - totalRules - 1 );
             if( ( rawCSSRules.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
                 Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
@@ -343,7 +347,7 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
             p_DOM_remove( targetRule._elmFallback );
         } else {
             CSSOM_renumber( cssRules, ruleIndex );
-            if( !CSSOM_HAS_STYLESHEET_OBJECT && !CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
                 CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
             } else if( p_Trident < 11 ){
                 // indexStart indexEnd が異なれば、その間を removeRule
@@ -361,10 +365,10 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
 /**
  * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
  * @param {number} ruleIndex
- * @param {string} property
- * @param {string|number|boolean} value
+ * @param {string} propertyOrURL
+ * @param {string|number|boolean=} opt_value
  */
-function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
+function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value ){
     var rawRules   = CSSOM_getCssRules( styleSheet ),
         data       = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules   = data._cssRules,
@@ -373,19 +377,31 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, property, value ){
         indexEnd   = targetRule._indexEnd;
 
     if( targetRule ){
+        // TODO @font-face
         if( targetRule.selectorTextOrAtRule === '@import' ){
-            targetRule.urlOrStyle = value;
+            targetRule.urlOrStyle = propertyOrURL;
+            if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
+                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+            } else if( targetRule._elmFallback ){
+                p_DOM_setAttribute( targetRule._elmFallback, 'href', propertyOrURL );
+            } else if( p_Trident < 9 ){
+                styleSheet.addImport( propertyOrURL, indexStart );
+                styleSheet.removeRule( indexStart + 1 );
+            } else {
+                styleSheet.insertRule( targetRule.selectorTextOrAtRule + '{' + propertyOrURL + '}', indexStart );
+                styleSheet.deleteRule( indexStart + 1 );
+            };
         } else {
-            targetRule.urlOrStyle[ property ] = value;
-            if( !CSSOM_HAS_STYLESHEET_OBJECT && !CSSOM_HAS_STYLESHEET_WITH_PATCH ){
+            targetRule.urlOrStyle[ propertyOrURL ] = opt_value;
+            if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
                 CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
             } else if( p_Trident < 11 ){
                 // indexStart indexEnd が異なれば、その間を removeRule
                 for( ; indexStart <= indexEnd; --indexEnd ){
-                    rawRules[ indexEnd ].style[ property ] = '' + value;
+                    rawRules[ indexEnd ].style[ propertyOrURL ] = '' + opt_value;
                 };
             } else {
-                rawRules[ indexStart ].style[ property ] = '' + value;
+                rawRules[ indexStart ].style[ propertyOrURL ] = '' + opt_value;
             };
         };
     };
