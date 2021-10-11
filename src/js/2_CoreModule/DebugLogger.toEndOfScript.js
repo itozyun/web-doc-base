@@ -16,6 +16,13 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
             Debug.log = function( text ){
                 p_DOM_insertElement( DebugLogger_elm, 'P', null, text );
             };
+            Debug.error = function( text ){
+                p_DOM_insertElement( DebugLogger_elm, 'P', { style : { color : 'red' } }, text );
+            };
+            window.onerror = function( a, b, c ){
+                Debug.error( a+ ', ' + b + ', ' + c );
+                return true;
+            };
         } else if( window.console ){
             Debug.log = console.log;
         } else {
