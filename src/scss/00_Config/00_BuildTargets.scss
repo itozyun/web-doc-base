@@ -239,7 +239,7 @@
     $CANUSE_FOCUS_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
     $CANUSE_EMPTY_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $UA_IE9;
     $CANUSE_TARGET_PSEUDO_CLASS   : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_DISPLAY_INLINE_BLOCK  : $UA_Modern or $UA_Opera7 or $UA_Opera8 or $UA_Opera9 or $UA_Gck096-121 or $UA_Gck130-190 or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_DISPLAY_INLINE_BLOCK  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
     $CANUSE_CAN_BOX_SIZING        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_1ST_CHILD_SELECTOR    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
     $CANUSE_LAST_CHILD_SELECTOR   : $UA_Modern or $IS_LEGACY or $UA_IE9;
