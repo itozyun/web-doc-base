@@ -238,7 +238,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         importLength = styleSheet.imports.length;
     } else {
         for( i = 0; i < length; ++i ){
-            if( cssRules[ i ].selectorTextOrAtRule !== '@import' ){
+            if( cssRules[ i ].selectorTextOrAtRule !== '@import' /* || cssRules[ i ].selectorTextOrAtRule !== '@charset' */ ){
                 break;
             };
         };
@@ -262,7 +262,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
 
     newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, _indexStart : ruleIndex, _indexEnd : ruleIndex };
 
-    if( p_Trident < 9 ){ // Firefox にも .addRule が存在する, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する, @font-face には .cssText を使う
+    if( p_Trident < 9 ){ // Firefox, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する
         rawCSSRules = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
         totalRules  = rawCSSRules.length;
         if( isFontFace ){
@@ -295,8 +295,19 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRules.length - totalRules ) );
         };
     } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-        if( ( p_WebKit < 536 || p_ChromiumBase < 28 ) && isImport ){
-            // .addRule を使うと SYNTAX_ERR : DOM Expection 12 @import の追加が出来ない!
+        if( ( p_Windows && p_WebKit || p_ChromiumBase < 28 ) && isImport ){
+            // .insertRule を使うと SyntaxError: DOM Exception 12: An invalid or illegal string was specified.
+            //   Windows + WebKit で起きる問題の模様
+            //
+            //   1. Webkit 528(Safari 4.0 beta, February 24, 2009) では .insertRule + @import が使える模様。Window 版 WebKit の問題にかもしれない。
+            //       -> https://bugs.webkit.org/show_bug.cgi?id=38771 IE9 test failure: "HIERARCHY_REQUEST_ERR raised if @import rule inserted after a regular rule"
+            //       -> https://bugs.webkit.org/show_bug.cgi?id=56981 CSSStyleSheet#insertRule doesn't work well with imported stylesheets
+            //   2. Iron 27 で問題発生. 28 では正常。ちなみに 28 以降は Blink に分岐する。27 の Webkit は 537 で Safari 6.1 相当。
+            //   3. Windows Safari 5 で問題発生。
+            //   4. Windows Lunascape Webkit 537.21 (Safari 6.1 相当)で問題発生。
+            //
+            // Safari の WebKit version について
+            //   https://en.wikipedia.org/wiki/Safari_version_history#Windows
             newCSSRule._elmFallback = p_DOM_insertElementAfter(
                 elmOwner,
                 'link',
@@ -308,13 +319,10 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 'style',
                 { type : 'text/css', media : styleSheet.media }
             );
-            // https://davidwalsh.name/add-rules-stylesheets
-            //   WebKit hack :(
-            p_DOM_insertTextNode( elmStyle, '' );
             elmStyle.innerText = cssText; // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
-        } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でもエラー
+        /* } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でエラー
             styleSheet.insertRule( 'z{a:0}', ruleIndex );
-            CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText;
+            CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText; */
         } else {
             styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクターの扱いは?
         };

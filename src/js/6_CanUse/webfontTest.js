@@ -47,6 +47,7 @@ var webFontTest_maybeCanUseWebFont;
 var webFontTest_testMaybeCanUseWebFont = function(){
     var blocklist =
             p_WebKit < 525 || // Safari <3.1
+            p_Gecko && !p_FirefoxGte35 || // Gecko <1.9.1 p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', {} ) でエラー
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP          ) < 2.2 ||
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB         ) ||
             p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
@@ -68,9 +69,9 @@ var webFontTest_testMaybeCanUseWebFont = function(){
 
     if( p_CSSOM_canuse === 2 ){ // CSSStyleSheet であること!
         styleSheet = p_CSSOM_createStyleSheet();
-        ruleIndex = p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', { 'font-family' : '"font"', src : 'url("https://")' } );
-        cssText   = styleSheet.cssText || ( styleSheet.cssRules && styleSheet.cssRules[ ruleIndex ] && styleSheet.cssRules[ ruleIndex ].cssText ) || '';
-        result    = cssText.match( 'src' ) && cssText.match( '@font-face' );
+        ruleIndex  = p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', { 'font-family' : '"font"', src : 'url("https://")' } );
+        cssText    = styleSheet.cssText || ( styleSheet.cssRules && styleSheet.cssRules[ ruleIndex ] && styleSheet.cssRules[ ruleIndex ].cssText ) || '';
+        result     = cssText.match( 'src' ) && cssText.match( '@font-face' );
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() cssText: ' + cssText );
             Debug.log( '[webFontTest] webFontTest_testMaybeCanUseWebFont() length: ' + ( p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules ).length );
