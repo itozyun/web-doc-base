@@ -50,10 +50,8 @@
             }
             @if( $UA_Gck096-121 ){
                 display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
-            } @else {
-                @if( $UA_Gck-095 == false ){
-                    display : block; /* for Gecko 1.3~ & Opera */
-                }
+            } @else if( $UA_Modern or $IS_OLD_OPERA or $UA_Gck130-190 ){
+                display : block; /* for Gecko 1.3~ & Opera */
             }
             visibility  : hidden;
             clear       : both;
