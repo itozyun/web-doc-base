@@ -18,7 +18,9 @@
  *           Image fallback.
  */
 
-var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_ChromiumBase < 2; // Data URI スキームをサポートするが Web フォントには使えない環境
+// Data URI スキームをサポートするが Web フォントには使えない環境
+var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_ChromiumBase < 2 ||
+                                            p_Presto  < 12; // Windows Opera 12.18 で確認
 var TEST_WEBFONT_PREFIX                   = 'bad_' + ( new Date() - 0 ) + '_';
 var TEST_WEBFONT_LOADED_EMBEDED_WEBFONT   = 5000;
 var TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT = 100;
