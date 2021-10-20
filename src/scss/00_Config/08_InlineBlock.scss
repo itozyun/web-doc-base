@@ -1,13 +1,14 @@
 @mixin inline-block {
     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-        @if( $UA_Gck-095 ){
+        @if( $IS_OLD_OPERA ){
+            display : inline-table;
+        }
+        @if( $UA_Gck-095 or $UA_Gck096-121 ){
             // https://www.brunildo.org/test/inline-block4.html
             display         : -moz-inline-box; /* Gecko 0.9.4.1 */
             -moz-box-orient : vertical;
+        } @else {
+            display : inline-block;
         }
-        @if( $IS_LEGACY ){
-            display      : inline-table;
-        }
-        display : inline-block;
     }
 }
