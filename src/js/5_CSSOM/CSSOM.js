@@ -106,7 +106,8 @@ function CSSOM_getStyleSheetElementList(){
 
     if( styleSheets ){
         for( l = styleSheets.length; i < l; ++i ){
-            if( p_ChromiumBase < 2 ){ // Windows Chrome 1.0.154 WebKit 525.19, DOM ツリーから抜いた <link> が存在する!
+            if( p_ChromiumBase < 2 ||          // Windows Chrome 1.0.154 WebKit 525.19, DOM ツリーから抜いた <link> が存在する!
+                p_Windows && p_WebKit < 526 ){ // Windows Safari 3.2.3   WebKit 525.29, 同上
                 elm = CSSOM_getOwnerNode( styleSheets[ i ] );
                 elm.parentNode && ( elementList[ i ] = elm );
             } else {
@@ -430,10 +431,10 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
         if( targetRule.selectorTextOrAtRule === '@import' ){
             ret = targetRule.urlOrStyle;
         } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-            rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
             };
+            rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
             ret = rawRule && rawRule.style[ toCamelcase( property ) ];
         } else {
             ret = targetRule.urlOrStyle[ property ];
