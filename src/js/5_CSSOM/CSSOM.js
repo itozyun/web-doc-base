@@ -49,15 +49,16 @@ function CSSOM_renumber( cssRules, indexStart ){
     };
 };
 
-var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 styleSheet は存在するが insertRule が無い
+var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作
                                      8 <= p_Presto && p_Presto < 9;
 var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
 
-var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK && !( p_Presto < 9 ) && (function(){
+var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident ||
+    ( DEFINE_WEB_DOC_BASE__DEBUG || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
         result = !!CSSOM_getStyleSheet( elmStyle );
 
-    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+    if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
         Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
         Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
         Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
@@ -70,7 +71,8 @@ var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident || !CSSOM_USE_DATAURI_FALLBACK && 
 
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
-var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK && !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit && (function(){
+var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit &&
+    ( DEFINE_WEB_DOC_BASE__DEBUG || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){
     // https://amachang.hatenablog.com/entry/20070703/1183445387
     // Safari で CSSStyleSheet オブジェクトを生成する方法
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
@@ -78,7 +80,7 @@ var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_
 
     p_DOM_insertTextNode( elmStyle, '' );
     result = !!CSSOM_getStyleSheet( elmStyle );
-    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+    if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
         Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
         Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
         Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
@@ -93,9 +95,10 @@ if( !CSSOM_HAS_STYLESHEET_OBJECT ){
     Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_WITH_PATCH : ' + CSSOM_HAS_STYLESHEET_WITH_PATCH );
 };
 
-p_CSSOM_canuse = CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ? 2 :
-                 CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  ? 1 : 0;
+p_CSSOM_canuse = CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  ? 1 :
+                 CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ? 2 : 0;
 
+Debug.log( '[CSSOM] p_CSSOM_canuse : ' + p_CSSOM_canuse );
 /**
  * @return {Array.<Node>}
  */
@@ -327,11 +330,13 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         } else {
             styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクターの扱いは?
         };
-    } else {
-        CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
     };
 
     cssRules.splice( ruleIndex, 0, newCSSRule );
+
+    if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
+        CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+    };
     CSSOM_renumber( cssRules, ruleIndex );
 
     return ruleIndex;
@@ -527,8 +532,9 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
             elmBefore = elements[ index - 1 ],
             elmAfter  = elements[ index ],
             cssText   = [],
-            i = - 1, j = -1,
-            rule, selectorTextOrAtRule, urlOrStyle, styles, property, tag = 'style', attr;
+            i = - 1, j = -1, tag = 'style',
+            attr = { type : 'text\/css', media : data._media },
+            rule, selectorTextOrAtRule, urlOrStyle, styles, property;
 
         for( ; rule = cssRules[ ++i ]; ){
             selectorTextOrAtRule = rule.selectorTextOrAtRule;
@@ -549,23 +555,20 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
 
         if( CSSOM_USE_DATAURI_FALLBACK ){
             cssText = 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText );
+            //  Data URIs explained
+            //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
+            //   Opera 7.2+ – data URIs must not be longer than 4100 characters
+            //  JavaScriptによるCSSの操作
+            //   https://web.archive.org/web/20130817200734/http://bmky.net/text/note/javascript-css/
+
+            // For Opera 8.x. Hack with data URIs.
+            attr.rel  = 'stylesheet';
+            attr.href = cssText;
+            tag       = 'link';
+            cssText   = undefined;
         };
 
         if( !elmOwner ){
-            attr = { type : 'text\/css', media : data._media };
-            if( CSSOM_USE_DATAURI_FALLBACK ){
-                //  Data URIs explained
-                //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
-                //   Opera 7.2+ – data URIs must not be longer than 4100 characters
-                //  JavaScriptによるCSSの操作
-                //   https://web.archive.org/web/20130817200734/http://bmky.net/text/note/javascript-css/
-
-                // For Opera 8.x. Hack with data URIs.
-                attr.rel  = 'stylesheet';
-                attr.href = cssText;
-                tag       = 'link';
-                cssText   = undefined;
-            };
             if( elmAfter ){
                 elmOwner = p_DOM_insertElementBefore( elmAfter, tag, attr, cssText );
             } else if( elmBefore ){
@@ -575,11 +578,9 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
             };
             data._elmOwner = elmOwner;
         } else {
-            if( CSSOM_USE_DATAURI_FALLBACK ){
-                p_DOM_setAttribute( elmOwner, 'href', cssText );
-            } else {
-                p_DOM_empty( elmOwner );
-                p_DOM_insertTextNode( elmOwner, cssText );
-            };
+            // Opera 7.2~7.5 に↓は反映されない．Opera 8 の Data URI 同じ。
+            //   elmOwner.innerHTML = elmOwner.textContent = elmOwner.text = cssText;
+            data._elmOwner = p_DOM_insertElementAfter( elmOwner, tag, attr, cssText );
+            p_DOM_remove( elmOwner );
         };
     };
