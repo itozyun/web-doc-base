@@ -127,6 +127,10 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                 eventTarget.__handleEvent__( e );
                 eventTarget.__handleEvent__ = p_emptyFunction;
                 eventTarget.__handleEvent__ = null;
+            } else if( p_Presto < 7.2 && eventTarget === document && listener.eventTarget === window ){
+                window.__handleEvent__ = listener.callback;
+                window.__handleEvent__( e );
+                delete window.__handleEvent__;
             };
         };
 

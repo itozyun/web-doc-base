@@ -41,7 +41,8 @@ function DOM_getChildNodes( elm ){
  * @return {Array.<Node>}
  */
  function DOM_getChildren( elm ){
-    var hasChildren = elm.children,
+    var hasChildren = !( p_Presto < 7.2 ) && // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
+                      elm.children,
         childNodes  = hasChildren ? hasChildren : elm.childNodes,
         result      = [],
         i           = childNodes.length,
