@@ -3,10 +3,11 @@
  *  //@modern
  *  //@opr9
  *  //@opr8
- *  //@opr7
+ *  //@opr72
+ *  //@opr70
  *  //@gck190
  *  //@gck121
- *  //@gck095
+ *  //@gck097
  *  //@ie9
  *  //@ie8
  *  //@ie7
@@ -16,7 +17,10 @@
  *  //@ie5mac
  * 
  * 2.Group
- *  //#legacy[@opr7,@opr8,@opr9,@gck095,@gck121,@gck190]
+ *  //#opr7x[@opr70,@opr72]
+ *  //#old-opera[#opr7x,@opr8,@opr9]
+ *  //#old-gecko[@gck097,@gck121,@gck190]
+ *  //#legacy[#old-opera,#old-gecko]
  *  //#notie[@modern,#legacy]
  *  //#ie55-[@ie5win,@ie5mac,@ie55]
  *  //#ie6-win[@ie5win,@ie55,@ie6]
@@ -32,9 +36,9 @@
  *  //#can-max-min[@modern,#legacy,@ie9,@ie8,@ie7]
  *  //#can-margin-auto[@modern,#legacy,@ie9,@ie8,@ie7,@ie6,@ie55]
  *  //#can-hover-pseudo-class[@modern,#legacy,@ie9,@ie8,@ie7]
- *  //#can-focus-pseudo-class[@modern,#legacy,@ie9,@ie8,@ie5mac]
+ *  //#can-focus-pseudo-class[@modern,@opr8,@opr9,@gck097,@gck121,@gck190,@ie9,@ie8,@ie5mac]
  *  //#can-empty-pseudo-class[@modern,#legacy,@ie9]
- *  //#can-target-pseudo-class[@modern,#legacy,@ie9]
+ *  //#can-target-pseudo-class[@modern,@gck097,@gck121,@gck190,@ie9]
  *  //#can-inline-block[@modern,#legacy,@ie9,@ie8,@ie5mac]
  *  //#can-box-sizing[@modern,#legacy,@ie9,@ie8]
  *    https://developer.mozilla.org/ja/docs/Web/CSS/box-sizing
@@ -105,10 +109,15 @@
     /* //_}@modern */
     $UA_Modern     : false !default;
 
-    /* //_{@opr7 */
-    $UA_Opera7     : true;
-    /* //_}@opr7 */
-    $UA_Opera7     : false !default;
+    /* //_{@opr70 */
+    $UA_Opera70    : true;
+    /* //_}@opr70 */
+    $UA_Opera70    : false !default;
+
+    /* //_{@opr72 */
+    $UA_Opera72    : true;
+    /* //_}@opr72 */
+    $UA_Opera72    : false !default;
 
     /* //_{@opr8 */
     $UA_Opera8     : true;
@@ -120,15 +129,15 @@
     /* //_}@opr9 */
     $UA_Opera9     : false !default;
 
-    /* //_{@gck095 */
-    $UA_Gck-095    : true;
-    /* //_}@gck095 */
-    $UA_Gck-095    : false !default;
+    /* //_{@gck097 */
+    $UA_Gck-097    : true;
+    /* //_}@gck097 */
+    $UA_Gck-097    : false !default;
 
     /* //_{@gck121 */
-    $UA_Gck096-121 : true;
+    $UA_Gck101-121 : true;
     /* //_}@gck121 */
-    $UA_Gck096-121 : false !default;
+    $UA_Gck101-121 : false !default;
 
     /* //_{@gck190 */
     $UA_Gck130-190 : true;
@@ -217,8 +226,9 @@
 || 3. Groups
 ||
 |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/*/
-    $IS_OLD_OPERA   : $UA_Opera7 or $UA_Opera8 or $UA_Opera9;
-    $IS_OLD_GECKO   : $UA_Gck-095 or $UA_Gck096-121 or $UA_Gck130-190;
+    $IS_Opera7x     : $UA_Opera70 or $UA_Opera72;
+    $IS_OLD_OPERA   : $IS_Opera7x or $UA_Opera8 or $UA_Opera9;
+    $IS_OLD_GECKO   : $UA_Gck-097 or $UA_Gck101-121 or $UA_Gck130-190;
     $IS_LEGACY      : $IS_OLD_OPERA or $IS_OLD_GECKO;
     $IS_NOT_IE      : $IS_LEGACY or $UA_Modern;
     $IS_LTE_IE55    : $UA_MacIE5 or $UA_IE5 or $UA_IE55;
@@ -231,14 +241,14 @@
     $CANUSE_CSS_MEDIA_QUERY       : $UA_Modern or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_SVG                   : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_CSS_GENERATED_CONTENT : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
-    $CANUSE_PSEUDO_BLOCK          : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false;
+    $CANUSE_PSEUDO_BLOCK          : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;
     $CANUSE_ATTR_SELECTOR         : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_MAX_AND_MIN_SIZES     : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_MARGIN_AUTO           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
     $CANUSE_HOVER_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_FOCUS_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_FOCUS_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5;
     $CANUSE_EMPTY_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_TARGET_PSEUDO_CLASS   : $UA_Modern or $IS_LEGACY or $UA_IE9;
+    $CANUSE_TARGET_PSEUDO_CLASS   : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
     $CANUSE_DISPLAY_INLINE_BLOCK  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
     $CANUSE_CAN_BOX_SIZING        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_1ST_CHILD_SELECTOR    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;

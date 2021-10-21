@@ -31,9 +31,9 @@
             position : relative;
         }
         .lW {
-            @if( $UA_Gck-095 or $UA_Gck096-121 ){
+            @if( $UA_Gck-097 or $UA_Gck101-121 ){
                 overflow : visible;
-                @if( $UA_Gck096-121 ){
+                @if( $UA_Gck101-121 ){
                     /* override Gecko 1.2~1.8.1 */
                     & [_lazyhack_="_:lang(x)"] {
                         overflow : hidden;
@@ -44,7 +44,7 @@
             }
         }
     }
-    @if( $UA_Opera7 or $UA_Opera8 ){
+    @if( $IS_Opera7x or $UA_Opera8 ){
         #jsMain {
             position : relative; /* for Opera <9, relativeが無いと位置が取れない */
         }

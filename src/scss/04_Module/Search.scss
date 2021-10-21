@@ -108,7 +108,7 @@ $SEARCH_BTN_WIDTH : 3em;
         width  : 60%;
         height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
     }
-    @if( $UA_Gck096-121 or $UA_Gck130-190 ){
+    @if( $UA_Gck101-121 or $UA_Gck130-190 ){
         /* override Gecko 1.2~1.8.1 */
         .Search [_lazyhack_="_:lang(x)"] {
             margin : 0 $SEARCH_BTN_WIDTH 0 #{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
@@ -129,7 +129,7 @@ $SEARCH_BTN_WIDTH : 3em;
         }
     }
 }
-@if( $UA_Opera7 ){
+@if( $IS_Opera7x ){
     .Search input {
         position     : static;
         display      : inline;

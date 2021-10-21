@@ -36,7 +36,7 @@
     @if( $CANUSE_PSEUDO_BLOCK ){
         &:after {
             display : none; /* for iOS4 content : none だけでは消えない */
-            @if( $UA_Opera7 ){
+            @if( $IS_Opera7x ){
                 width   : 0;    /* for Opera */
             }
         }

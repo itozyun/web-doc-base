@@ -56,7 +56,7 @@
         }
     }
 
-    @if( $IS_LEGACY == false and $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_PSEUDO_BLOCK ){
         tbody td:before, tbody td:after {
             @include createPseudoBlock;
             text-indent   : -1em;

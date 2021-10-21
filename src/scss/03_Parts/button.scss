@@ -113,7 +113,7 @@ input.btn {
         height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
     }
-    @if( $UA_Opera7 ){
+    @if( $IS_Opera7x ){
         padding : 0; // for Opera 7.x
     }
     @if( $IS_OLD_GECKO ){

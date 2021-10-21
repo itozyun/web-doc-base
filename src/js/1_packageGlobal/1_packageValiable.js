@@ -75,12 +75,13 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
                   p_Trident < 5.5 ? 'ie5win' :
                   p_Trident < 6   ? 'ie55' :
                   p_Trident < 10  ? 'ie'  + ( p_Trident | 0 ) :
+                  p_Presto  < 7.2 ? 'opr70' :
+                  p_Presto  < 8   ? 'opr72' :
                   p_Presto  < 9.5 ? 'opr' + ( p_Presto  | 0 ) :
                     ( p_Gecko && !p_FirefoxGte35 ) ?
                       ( 1.3 <= p_Gecko ? 'gck190' :
-                        0   <= ua.conpare( p_engineVersion, '0.9.6' )
-                                       ? 'gck121' :
-                                         'gck095'
+                        1   <= p_Gecko ? 'gck121' :
+                                         'gck097'
                     ) :
                                     'modern'
                 ) + '.css',

@@ -54,7 +54,7 @@ var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9
 var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
 
 var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident ||
-    ( DEFINE_WEB_DOC_BASE__DEBUG || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){
+    ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
         result = !!CSSOM_getStyleSheet( elmStyle );
 
@@ -72,7 +72,7 @@ var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident ||
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
 var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit &&
-    ( DEFINE_WEB_DOC_BASE__DEBUG || !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){
+    ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
     // https://amachang.hatenablog.com/entry/20070703/1183445387
     // Safari で CSSStyleSheet オブジェクトを生成する方法
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
