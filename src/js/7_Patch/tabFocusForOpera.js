@@ -1,6 +1,9 @@
 /**
- * 2011 年 7 月現在で、 Internet Explorer と Opera は、デフォルトではフォーカス可能でない要素に関して、負の整数を指定した tabindex コンテンツ属性に対応 
+ * 2011年7月現在で、Internet Explorer と Opera は、デフォルトではフォーカス可能でない要素に関して、負の整数を指定した tabindex コンテンツ属性に対応 
  * https://books.google.co.jp/books?id=ZSsfUNa2nMgC&pg=PA562&lpg=PA562&dq=Opera+tabindex&source=bl&ots=TbzzkHtakR&sig=ACfU3U1fIWCpEwgJrRBLfY6DPdvLFwK12w&hl=ja&sa=X&ved=2ahUKEwjWxO6EsNrzAhXIMN4KHazmBzkQ6AF6BAgXEAM#v=onepage&q=Opera%20tabindex&f=false
+ *
+ * C15: CSSを用いて、ユーザーインタフェースコンポーネントがフォーカスを受けとったときの表示を変更する
+ *   https://waic.jp/docs/NOTE-WCAG20-TECHS-20120103/C15.html
  */
 p_Presto && 8 <= p_Presto && p_listenLoadEvent(
     function( e ){
@@ -12,7 +15,7 @@ p_Presto && 8 <= p_Presto && p_listenLoadEvent(
             if( p_DOM_getAttribute( elm, 'tabindex' ) === '-1' ){
                 elm.removeAttribute( 'tabindex' );
             } else if( p_DOM_getAttribute( elm, 'href' ) ){
-                p_DOM_setAttribute( elm, 'tabindex', 0 );
+                p_DOM_setAttribute( elm, 'tabindex', '0' );
             };
         };
     }
