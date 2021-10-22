@@ -161,8 +161,11 @@ gulp.task('btoa', gulp.series(
     }
 ));
 
-const mobileCssPrefix = 'm_',
-      hcModeCssDir    = 'hc';
+const assetPathToJSDir       = 'js',
+      assetPathToCSSDir      = 'css',
+      desktopCSSDir          = 'pc',
+      mobileCSSDir           = 'mb',
+      highContrastModeCSSDir = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -200,8 +203,11 @@ gulp.task('js', gulp.series(
                         externs           : externs,
                         define            : [
                             'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX="' + mobileCssPrefix + '"',
-                            'DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR="' + hcModeCssDir + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetPathToJSDir  + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetPathToCSSDir + '"',
+                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + desktopCSSDir     + '"',
+                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + mobileCSSDir      + '"',
+                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + highContrastModeCSSDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
                         ],
                         compilation_level : 'ADVANCED',
@@ -231,7 +237,7 @@ gulp.task('js', gulp.series(
             }
         )
         .src()
-        .pipe(gulp.dest( './docs/assets' ));
+        .pipe(gulp.dest( './docs/assets/' + assetPathToJSDir ));
     }
 ));
 
@@ -256,8 +262,8 @@ gulp.task('css', function(){
                 log      : true,
                 fileType : 'scss',
                 tasks : [
-                    { name : 'desktop', imports : [ 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ] },
-                    { name : 'mobile',  imports : [ 'mobileOnly', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], prefix : mobileCssPrefix }
+                    { name : 'desktop', imports : [ 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : desktopCSSDir },
+                    { name : 'mobile',  imports : [ 'mobileOnly', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : mobileCSSDir }
                 ]
             })
         )
@@ -280,7 +286,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(CSShack({ hcdir : hcModeCssDir }))
+        .pipe(CSShack({ hcdir : highContrastModeCSSDir }))
         .pipe(cleanCSS({
             format : 'beautify',
             compatibility : { properties : { ieFilters : true } },
@@ -299,5 +305,5 @@ gulp.task('css', function(){
             } 
         }))
         .pipe(finalizeCSS())
-        .pipe(gulp.dest( './docs/assets' ));
+        .pipe(gulp.dest( './docs/assets/' + assetPathToCSSDir ));
 });

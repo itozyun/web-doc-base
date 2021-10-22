@@ -1,9 +1,4 @@
 var
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__MOBILE_CSS_PREFIX = 'm_',
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__HC_MODE_CSS_DIR   = 'hc',
-
 /** @define {number} */
     DEFINE_WEB_DOC_BASE__DEBUG              = 0,
 /** @define {string} */
@@ -26,9 +21,9 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR  = 'css',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__DEFAULT_CSS_DIR       = '',
+    DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR  = 'pc',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__MOBILE_CSS_DIR        = 'mb',
+    DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR   = 'mb',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR = 'hc',
 
@@ -58,7 +53,7 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE = 'js-bqCite',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__AMAZON_ID          = '',
+    DEFINE_WEB_DOC_BASE__AMAZON_ID                = '',
 
 /** ===========================================================================
  * 7_Library/PicaThumbnail.js

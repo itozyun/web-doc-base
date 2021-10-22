@@ -87,7 +87,9 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
                 ) + '.css',
     p_isSecure = location.href.indexOf( 'https' ) === 0,
 
-    p_scripts, p_assetUrl, p_isMobile,
+    p_scripts, p_assetUrl,
+    p_cssDir = DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR ?  DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR + '/': '',
+    p_isMobile, p_screenModeDir = '',
     p_useMobile = // p_Gecko < 0.9 ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_N3DS   ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_New3DS ) ||
