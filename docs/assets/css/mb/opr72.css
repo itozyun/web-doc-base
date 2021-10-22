@@ -1,13 +1,19 @@
 @charset "UTF-8";
-blockquote .tl tbody td:before,
+.hscroll,
+.hscroll pre,
+textarea {
+  overflow: auto
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
+blockquote hr,
 h5,
-h6 {
+h6,
+table {
   border-color: #777
 }
 dd,
@@ -39,8 +45,8 @@ a img,
 h2:after {
   display: block
 }
-figure,
 h2,
+input,
 textarea {
   margin: 0
 }
@@ -63,7 +69,12 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.AMeta,
+.Pager span,
+.caption,
 .h1,
+.js-bqLink,
+.links a,
 dl,
 h1,
 h2,
@@ -76,17 +87,18 @@ table,
 textarea {
   line-height: 1.2
 }
+body,
+input {
+  line-height: 1.9
+}
+.RichLink b,
 .SearchResult cite,
 .caption,
-.js-bqCite,
-.lS .RichLink b,
 .links,
-blockquote:after,
 pre,
 td,
 th {
-  word-break: break-all;
-  word-wrap: break-word
+  word-break: break-all
 }
 .lM1,
 .lM2,
@@ -94,12 +106,29 @@ th {
 .lS2 {
   width: 48.5%
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
 #lB .lS,
 #lB .lS .LinkList :link,
 #lB .lS .LinkList :visited,
 #lB .lS .RichLink-sep :link,
 #lB .lS .RichLink-sep :visited {
   background: #f1f4f1
+}
+.Cover-img,
+.Pager,
+.Search,
+.links a,
+.tl td,
+:link:hover img,
+:visited:hover img,
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
 }
 .links,
 .note,
@@ -109,23 +138,11 @@ iframe,
 img,
 ol,
 p,
-pre,
 table,
 tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
-}
-.AAuthor,
-.Comment p,
-.Cover,
-.RichLink a,
-.Search .btn,
-.box,
-.lMi,
-.lSi,
-svg {
-  overflow: hidden
 }
 #lB .lS .LinkList :link:hover,
 #lB .lS .LinkList :visited:hover,
@@ -142,9 +159,21 @@ kbd,
 var {
   margin: 0 .1em
 }
-.links,
-pre {
-  white-space: pre-wrap
+.ABody h3,
+.links [href]:before,
+dt,
+em,
+strong {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 .SearchResult div div,
 .caption,
@@ -177,30 +206,20 @@ tr {
 html {
   font-size: 100%
 }
+small,
+sub,
+sup {
+  font-size: 75%
+}
 body,
 html {
   margin: 0;
   height: 100%
 }
 body,
-input {
-  line-height: 1.9
-}
-body,
 input,
 textarea {
-  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
-}
-.ABody h1,
-.ABody h2,
-.ABody h3,
-.ABody h4,
-.ABody h5,
-.ABody h6,
-.AHead h1 {
-  font-family: "游明朝",YuMincho,"HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif;
-  -ms-transform: rotate(.03deg);
-  font-weight: 700
+  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -208,22 +227,8 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:active,
-:focus {
+:active {
   outline: 0
-}
-dt,
-em,
-strong {
-  font-weight: 700
-}
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -234,14 +239,22 @@ q:before {
   content: '';
   content: none
 }
-small {
-  font-size: 75%
+sub,
+sup {
+  line-height: 0;
+  vertical-align: baseline
 }
 h4,
 h5,
 h6 {
   font-size: 1em;
   margin: 1.5em 1.5% .8em
+}
+sup {
+  top: -.5em
+}
+sub {
+  bottom: -.25em
 }
 cite,
 code,
@@ -254,6 +267,11 @@ strong,
 var {
   font-style: normal
 }
+pre {
+  white-space: pre;
+  white-space: -o-pre-wrap;
+  margin: 1em 0
+}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label a:link:hover,
@@ -261,11 +279,9 @@ var {
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
 .aBodyRoot a:active,
-.aBodyRoot a:focus,
 :link,
 :visited,
 a:active,
-a:focus,
 ins {
   text-decoration: none
 }
@@ -331,12 +347,6 @@ li {
 dt {
   margin-top: .7em
 }
-blockquote,
-p {
-  text-justify: inter-word;
-  line-break: normal;
-  text-align: justify
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -349,30 +359,19 @@ p {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
-a:focus:hover {
+a:active:hover {
   text-decoration: underline
 }
 .SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
 .SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
 .SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
 .SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
 .SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
 .SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
 .SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
 .SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
 .baseColor .btn:link:active,
-.baseColor .btn:link:focus,
 .baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
 .medal,
 a,
 a:active .ico-author:after,
@@ -404,6 +403,13 @@ a:focus .ico-sylinder:before,
 tbody th {
   border-color: #f8fbf8
 }
+*,
+blockquote .tl tbody td:after,
+blockquote :link img,
+blockquote :visited img,
+hr {
+  border-color: #ddd
+}
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -420,8 +426,7 @@ body {
   color: #111
 }
 .ribbon :link:hover,
-:link:hover,
-form :focus {
+:link:hover {
   color: #3079ed;
   border-color: #3079ed
 }
@@ -447,40 +452,25 @@ tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
 }
-:target,
-:target *,
 a:active,
-a:active *,
-a:focus,
-a:focus * {
+a:active * {
   color: #fff!important
-}
-.ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
-}
-a:active,
-a:focus {
-  background-color: #3079ed!important
-}
-:target,
-:target * {
-  background: #3079ed!important;
-  border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
 }
 .wn,
 .wn:after {
   color: red!important
 }
+.ribbon :visited:hover {
+  color: #b3f;
+  border-color: #b3f
+}
+a:active {
+  background-color: #3079ed!important
+}
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em;
-  position: relative
+  font-size: 1.1em
 }
 h2:after {
   width: 5em;
@@ -499,24 +489,22 @@ h2:after {
 }
 input,
 textarea {
-  border-width: 2px;
-  padding: .45em 8px
+  border-width: .1em
 }
 input {
-  font-size: 1em;
-  box-sizing: content-box;
-  line-height: 1;
-  height: 1em
+  height: 2.1em
 }
-textarea {
-  font-size: 1em;
-  overflow: auto
+.AHead-labels i,
+.Cover h2:after,
+.RichLink br,
+.tl tbody :empty:after,
+.tl tbody :empty:before,
+input[type=hidden] {
+  display: none
 }
 hr {
-  height: 1px;
-  border-color: transparent;
-  margin: 2em 6%;
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMTExMTEiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  height: 0;
+  margin: 2em 6%
 }
 tr hr {
   margin: 1em 9%
@@ -526,56 +514,34 @@ tr hr {
   border-color: #f8fbf8;
   border-width: 2px
 }
-*,
-blockquote .tl tbody td:after,
-blockquote :link img,
-blockquote :visited img {
-  border-color: #ddd
-}
 .AHead-labels a:link:active,
-.AHead-labels a:link:focus,
 .AHead-labels a:visited:active,
-.AHead-labels a:visited:focus,
 .Subscribe .atom:link:active,
-.Subscribe .atom:link:focus,
 .Subscribe .atom:visited:active,
-.Subscribe .atom:visited:focus,
 .Subscribe .fl:link:active,
-.Subscribe .fl:link:focus,
 .Subscribe .fl:visited:active,
-.Subscribe .fl:visited:focus,
 .Subscribe .rss:link:active,
-.Subscribe .rss:link:focus,
 .Subscribe .rss:visited:active,
-.Subscribe .rss:visited:focus,
 .Subscribe .stm:link:active,
-.Subscribe .stm:link:focus,
 .Subscribe .stm:visited:active,
-.Subscribe .stm:visited:focus,
 .btn:link:active,
-.btn:link:focus,
 .btn:visited:active,
-.btn:visited:focus,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #1a1a1a
 }
 :link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+:visited:active img {
   border-color: #3079ed!important
 }
 .ABody h2,
 .Cover h2,
 .tl tbody :hover td,
-.tl tbody :hover td:before,
 .tl tbody :hover th {
   border-color: #3079ed
 }
 :link:hover img,
 :visited:hover img {
-  position: relative;
   top: 2px
 }
 .hscroll table,
@@ -609,13 +575,16 @@ li ul {
   margin-top: 0;
   margin-bottom: 0
 }
+dd blockquote p,
+li blockquote p {
+  margin: .5em 0
+}
 table {
   width: 94%;
   border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0;
-  border-color: #777
+  border-spacing: 0
 }
 th {
   text-align: left;
@@ -658,6 +627,7 @@ tfoot th {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
+.Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -700,7 +670,6 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-tbody :hover th :focus,
 tbody :hover th :link:active,
 tbody :hover th :visited:active {
   background: #fff!important;
@@ -741,8 +710,22 @@ body {
 .lXi {
   padding: 0 3%
 }
-#lB .lSi {
+#lB .lSi,
+input.btn {
   padding: 0
+}
+.AAuthor:after,
+.Comment p:after,
+.Cover:after,
+.RichLink a:after,
+.box:after,
+.commonForm-pair:after,
+.lMi:after,
+.lSi:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  clear: both
 }
 .lM1,
 .lS1 {
@@ -790,22 +773,19 @@ caption {
 .SocialBtns a,
 .Subscribe a,
 .btn {
+  display: inline-table;
   display: inline-block;
   border-width: 2px;
   cursor: pointer;
   text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  vertical-align: top
+  line-height: 1.9em;
+  padding: 0 1em;
+  height: 2.1em
 }
 .AHead-labels a:active,
-.AHead-labels a:focus,
 .SocialBtns a:active,
-.SocialBtns a:focus,
 .Subscribe a:active,
-.Subscribe a:focus,
-.btn:active,
-.btn:focus {
+.btn:active {
   border-color: #3079ed;
   color: #3079ed;
   border-style: dotted;
@@ -817,13 +797,18 @@ caption {
   border-color: #bbe;
   color: #1a1a1a
 }
+.SocialBtns .fb:link:active,
+.SocialBtns .fb:visited:active,
+.SocialBtns .pt:link:active,
+.SocialBtns .pt:visited:active,
+.btn:visited {
+  border-color: #fff
+}
 .btn:visited {
   background: #1a1a1a;
-  border-color: #fff;
   color: #fff
 }
 .commonForm-pair {
-  overflow: hidden;
   margin-bottom: 1em
 }
 .commonForm label {
@@ -838,10 +823,11 @@ caption {
 }
 .commonForm-wrap {
   display: block;
-  margin: 0 20px 0 8em
+  margin: 0 0 1em 8em
 }
 .commonForm-wrap * {
-  width: 100%
+  width: 100%;
+  float: right
 }
 .ico-author,
 .ico-chain,
@@ -881,7 +867,6 @@ caption {
   left: 0;
   width: .7em;
   height: .7em;
-  border-radius: .5em;
   border-width: .15em;
   border-color: #777
 }
@@ -899,29 +884,6 @@ caption {
 .ribbon .ico-sylinder:after,
 .ribbon .ico-sylinder:before {
   border-color: #bbb
-}
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:active,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:active,
-.SocialBtns .pt:visited:focus,
-:target .ico-author:after,
-:target .ico-author:before,
-:target .ico-chain:after,
-:target .ico-chain:before,
-:target .ico-clock:after,
-:target .ico-clock:before,
-:target .ico-comment:before,
-:target .ico-flag:after,
-:target .ico-flag:before,
-:target .ico-label:before,
-:target .ico-pen:before,
-:target .ico-sylinder:after,
-:target .ico-sylinder:before {
-  border-color: #fff
 }
 .ico-clock:after {
   top: .2em;
@@ -947,11 +909,6 @@ caption {
   border-width: .3em 0 .3em .3em;
   border-color: transparent #777
 }
-.Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :link:focus i,
-.Cover-btn :visited:active i,
-.Cover-btn :visited:focus i,
 a:active .ico-label:after,
 a:focus .ico-label:after {
   border-color: transparent #f8fbf8
@@ -959,17 +916,11 @@ a:focus .ico-label:after {
 .ribbon .ico-label:after {
   border-color: transparent #bbb
 }
-.Pager :focus i,
-.Pager a:active i,
-:target .ico-label:after {
-  border-color: transparent #fff
-}
 .ico-author:before {
   top: 0;
   left: .3em;
   width: .45em;
   height: 0;
-  border-radius: .225em;
   border-width: .225em 0;
   border-color: #777
 }
@@ -978,7 +929,6 @@ a:focus .ico-label:after {
   left: .1em;
   width: 0;
   height: 0;
-  border-radius: .3em .3em 0 0;
   border-width: .5em .4em 0;
   border-color: #777
 }
@@ -1012,12 +962,6 @@ a:focus .ico-label:after {
   border-width: .25em .25em 0;
   border-color: #777 transparent
 }
-.ico-chain:after,
-.ico-chain:before {
-  width: .3em;
-  height: .3em;
-  border-radius: .2em
-}
 a:active .ico-comment:after,
 a:active .ico-pen:after,
 a:focus .ico-comment:after,
@@ -1028,21 +972,19 @@ a:focus .ico-pen:after {
 .ribbon .ico-pen:after {
   border-color: #bbb transparent
 }
-.Pager-top :focus i,
-.Pager-top a:active i,
-:target .ico-comment:after,
-:target .ico-pen:after {
-  border-color: #fff transparent
-}
 .ico-chain:before {
   top: .05em;
   left: .05em;
+  width: .3em;
+  height: .3em;
   border-width: .2em 0 .2em .2em;
   border-color: #777
 }
 .ico-chain:after {
   top: .3em;
   left: .3em;
+  width: .3em;
+  height: .3em;
   border-width: .2em .2em .2em 0;
   border-color: #777
 }
@@ -1060,15 +1002,13 @@ a:focus .ico-pen:after {
 .ico-sylinder:after {
   top: .15em;
   left: .2em;
-  border-width: .1em;
-  border-radius: .25em
+  border-width: .1em
 }
 .ico-comment:before {
   top: 0;
   left: 0;
   width: .7em;
   height: .45em;
-  border-radius: .2em;
   border-width: .15em;
   border-color: #777
 }
@@ -1136,24 +1076,14 @@ a:focus .ico-pen:after {
 .mspacer {
   margin: 1em .5em!important
 }
-.Cover-btn i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-btn :visited i {
-  border-color: transparent #111
-}
-.AAuthor {
-  margin: 1em 0 0;
-  padding: 0
-}
 .AAuthor img {
   top: .4em;
   float: left;
   margin: 0 1em 1em 0
+}
+.AAuthor {
+  margin: 1em 0 0;
+  padding: 0
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -1168,16 +1098,11 @@ a:focus .ico-pen:after {
   color: #3079ed;
   margin: 2em 1.5% 1em
 }
-.ABody h2:after,
-.AHead-labels i,
-.Cover h2:after,
-.RichLink br,
-.tl tbody :empty:after,
-.tl tbody :empty:before {
-  display: none
+.ABody h2:after {
+  display: none;
+  width: 0
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -1204,21 +1129,13 @@ a:focus .ico-pen:after {
   text-align: center
 }
 .Attribution small,
-.RichLink-meta {
+.RichLink-meta,
+.prettyprint code {
   font-size: .875em
 }
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a
-}
-#lF .Label a,
-.Cover-img,
-.lS .Label a {
-  margin: 0 0 .6em
-}
-.Cover-meta,
-.SearchResult div div {
-  margin: 0 .5em
 }
 .AHead-labels a:visited {
   background: #1a1a1a;
@@ -1229,8 +1146,7 @@ a:focus .ico-pen:after {
   border-color: #bbe;
   color: #1a1a1a
 }
-.Attribution,
-.CmtForm {
+.Attribution {
   padding: 1em 0;
   text-align: center
 }
@@ -1243,13 +1159,11 @@ a:focus .ico-pen:after {
   padding: 0 0 1em
 }
 .BlogArchive th {
-  word-break: normal;
-  word-wrap: normal
+  word-break: normal
 }
 .BlogArchive a,
 .Label a {
-  display: inline-block;
-  margin: 0 0 1em;
+  line-height: 2.8;
   border-width: 0 0 1px
 }
 .Comment h3,
@@ -1276,27 +1190,18 @@ blockquote,
 kbd {
   border-width: 1px
 }
-.CmtForm iframe {
-  width: 100%;
-  margin: 0;
-  height: 400px
-}
 .Cover-img {
-  position: relative;
-  height: 100%
+  height: 100%;
+  margin: 0 0 .6em
+}
+.Cover-meta,
+.SearchResult div div {
+  margin: 0 .5em
 }
 .Cover img {
   margin: 0;
   display: block;
   width: 100%
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1305,6 +1210,8 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-table;
+  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1315,25 +1222,29 @@ kbd {
   padding: .37em;
   margin: 0;
   color: #fff;
-  background: rgba(0,0,0,.65)
+  background: #000
 }
 .Cover-meta {
   display: block;
   color: #777
 }
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a {
+  display: inline-table;
+  display: inline-block
+}
 .Cover {
   margin: 2em auto
-}
-.Label div {
-  color: #f8fbf8;
-  text-justify: inter-ideograph;
-  line-break: normal;
-  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
 .ribbon .TxtNavi {
   color: #1a1a1a
+}
+#lF .Label a,
+.lS .Label a {
+  line-height: 2.4
 }
 .LinkList a,
 .RichLink-sep a {
@@ -1399,8 +1310,7 @@ pre var {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList a:active:hover {
   text-decoration: underline!important
 }
 .RichLink a {
@@ -1408,9 +1318,10 @@ pre var {
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
-.RichLink b {
-  display: block;
-  font-weight: 400
+.Search input,
+.tl,
+.tl th {
+  border-width: 0
 }
 .baseColor .RichLink a {
   border-color: #ddd!important
@@ -1420,21 +1331,26 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
-  display: block;
   margin: 1.143em 0
+}
+.RichLink h3 {
+  font-size: 1.5em;
+  margin: 0 0 .4em
+}
+.RichLink h3 * {
+  font-size: .667em
 }
 .RichLink img {
   float: left;
   margin: 0 .6em 1em 0
 }
-.lM .RichLink b {
-  font-size: 1.5em;
-  margin: 0 0 .4em;
-  display: block
-}
-.RichLink .p {
-  display: block;
+.RichLink p {
   margin: 1em 0
+}
+.RichLink b {
+  display: block;
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1443,42 +1359,33 @@ pre var {
   float: left;
   margin: 0 .5em .6em 0
 }
-.lS .RichLink b {
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .Search {
-  position: relative;
   display: block;
-  margin: 0 3em 0 22px;
+  padding: 0 3em 0 0;
   width: auto;
   height: 1.9em
 }
 .Search input {
-  position: absolute;
-  top: 0
-}
-.Pager,
-.links a,
-.tl td,
-kbd:hover {
-  position: relative
+  top: 0;
+  position: static;
+  display: inline;
+  padding: 0
 }
 .Search input:active,
-.Search input:focus,
 .Search input:hover {
   z-index: 1
 }
 .Search-txt {
   display: block;
   width: 100%;
-  left: -22px
+  left: .05em
 }
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  right: -3em;
+  left: 100%;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
 }
@@ -1512,10 +1419,12 @@ kbd:hover {
 .Header h1,
 .h1 {
   font-size: 1.5em;
-  padding: 0;
-  line-height: 1;
   display: block;
   margin: 0 0 .5em
+}
+.Header h1 {
+  padding: 0;
+  line-height: 1
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1570,18 +1479,20 @@ kbd:hover {
   border-color: #0a0809;
   line-height: 1
 }
-.tl,
-.tl th {
-  border-width: 0
-}
 .note .aa,
+.note .prettyprint,
 dl .aa,
+dl .prettyprint,
 li .aa,
-tr .aa {
+li .prettyprint,
+tr .aa,
+tr .prettyprint {
   padding: 1em
 }
 .aa,
-.note .aa {
+.note .aa,
+.note .prettyprint,
+.prettyprint {
   padding: 1em 3%
 }
 .aa,
@@ -1610,10 +1521,8 @@ blockquote:before {
 blockquote:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
+.js-bqLink {
   font-size: .875em;
-  line-height: 1.2;
   color: #24c;
   margin: 0 1.5%
 }
@@ -1623,8 +1532,14 @@ blockquote:after {
   font-size: .875em;
   line-height: 1.2;
   text-align: right;
+  word-break: break-all;
   color: #777;
   margin: 0 1.5%
+}
+.links a,
+kbd {
+  display: inline-table;
+  display: inline-block
 }
 .box > p:first-of-type {
   margin-top: -.225em
@@ -1655,19 +1570,16 @@ tr .box > p:first-of-type {
 }
 .hscroll pre {
   margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
+  white-space: pre
 }
-.Pager span,
 .hscroll table {
   white-space: nowrap
 }
 kbd {
   border-color: #111;
   cursor: pointer;
-  letter-spacing: -1;
-  padding: 0 .4em;
-  border-radius: 3px
+  letter-spacing: -1px;
+  padding: 0 .4em
 }
 kbd:hover {
   top: -.1em
@@ -1675,6 +1587,10 @@ kbd:hover {
 code,
 var {
   padding: .1em .4em
+}
+a:active code,
+a:active var {
+  background: #3079ed
 }
 pre code,
 pre var {
@@ -1690,9 +1606,11 @@ tbody th var {
   background: #777;
   color: #f8fbf8
 }
+.links {
+  white-space: -o-pre-wrap
+}
 .links a {
-  padding-left: 1em;
-  line-height: 1.2
+  padding-left: 1em
 }
 .links [href]:before {
   content: ">";
@@ -1701,8 +1619,7 @@ tbody th var {
   width: 1em;
   height: 1.4em;
   line-height: 1.4;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1720,7 +1637,6 @@ tbody th var {
 .note img,
 .note ol,
 .note p,
-.note pre,
 .note ul {
   margin-right: 0
 }
@@ -1745,7 +1661,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  line-height: 1.2
+  width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1786,7 +1702,6 @@ dl.note dd {
   left: -.75em;
   width: 0;
   height: 0;
-  border-radius: .6em;
   border-width: .6em;
   border-color: #ddd
 }
@@ -1795,7 +1710,6 @@ dl.note dd {
   left: -.5em;
   width: 0;
   height: 0;
-  border-radius: .35em;
   border-width: .35em;
   border-color: #f8fbf8
 }
@@ -1808,8 +1722,7 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0;
-  line-height: 1.2
+  padding: .5em 0
 }
 .AMeta div {
   margin: .5em 0;
@@ -1835,12 +1748,12 @@ dl.note dd {
   position: absolute;
   top: 1em;
   display: block;
-  width: 32%;
-  overflow: hidden;
-  text-overflow: ellipsis
+  width: 32%
 }
 .Pager i {
+  display: inline-table;
   display: inline-block;
+  vertical-align: text-top;
   border-color: transparent #777
 }
 .Pager-next i {
@@ -1851,10 +1764,16 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
+.Pager a:active i {
+  border-color: transparent #fff
+}
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
   border-color: #777 transparent
+}
+.Pager-top a:active i {
+  border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -1935,21 +1854,9 @@ dl.note dd {
 .prettyprint {
   background: #333;
   color: #fff;
-  margin: 1.23em 0;
-  font-size: .875em;
   border-width: 1px;
   border-color: #333;
   line-height: 1.2
-}
-.note .prettyprint,
-dl .prettyprint,
-li .prettyprint,
-tr .prettyprint {
-  padding: 1.23em 1.143em
-}
-.note .prettyprint,
-.prettyprint {
-  padding: 1.23em 3%
 }
 code .atv,
 code .str {
@@ -1998,18 +1905,18 @@ li.L8 {
   height: auto;
   box-sizing: border-box
 }
-div .box .jsPicaLarge img {
+.box .jsPicaLarge img {
   margin: 0 0 1em
 }
-div .box .jsCapLarge {
+.box .jsCapLarge {
   float: none;
   margin: 0 0 1em
 }
 em {
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmNjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: #ff6
 }
 strong {
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2NmNjZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+  background: #6cf
 }
 .baseColor .btn:link {
   background: #24c;
@@ -2021,12 +1928,33 @@ strong {
   border-color: #111;
   color: #111
 }
-@media screen and (max-width:740px) {
+@media handheld,
+projection,
+tv {
+  .AHead,
+  .AHead h1,
+  .AHead-labels a,
   .Label div,
   .LinkList,
   .Subscribe div,
   h2 {
     text-align: center
+  }
+  body {
+    font-size: .813em
+  }
+  dd {
+    margin-left: 1em
+  }
+  li {
+    margin-top: .2em
+  }
+  dt {
+    margin-top: .4em
+  }
+  dd,
+  li {
+    margin-bottom: .2em
   }
   h2:after {
     width: 33%;
@@ -2034,15 +1962,16 @@ strong {
     right: auto
   }
   table {
-    width: 96%
+    width: 98%
   }
   #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
-    padding: 0 2%
+    padding: 0 1%
   }
+  .commonForm label,
   .lM1,
   .lM2,
   .lS1,
@@ -2061,124 +1990,6 @@ strong {
   h4,
   h5,
   h6 {
-    margin: 1.5em 1% .8em
-  }
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  pre,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 2%
-  }
-  caption {
-    margin: 1.5em 2% .7em
-  }
-  iframe,
-  img {
-    max-width: 96%
-  }
-  hr {
-    margin: 2em 4%
-  }
-  .ABody h1 {
-    margin: 3em 1%
-  }
-  .ABody h2 {
-    margin: 2em 1% 1em
-  }
-  .ABody h3 {
-    margin: 2.4em 1% 1.2em
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3 {
-    padding-left: 1%;
-    padding-right: 1%
-  }
-  .Cover {
-    max-width: 400px
-  }
-  .LinkList {
-    padding: .2em 0 1em
-  }
-  .LinkList div {
-    display: inline-block;
-    margin: 2px
-  }
-  .lM .RichLink b {
-    font-size: 1.3em
-  }
-  .aa,
-  .note .aa {
-    padding: 1em 2%
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1%
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 2% 1em
-  }
-  .box .caption,
-  .box iframe,
-  .box img {
-    margin: 0 1em 1em 2%
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 2%
-  }
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1.23em 2%
-  }
-}
-@media screen and (max-width:479px) {
-  .AHead,
-  .AHead h1 {
-    text-align: center
-  }
-  dd {
-    margin-left: 1em
-  }
-  li {
-    margin-top: .2em
-  }
-  dt {
-    margin-top: .4em
-  }
-  dd,
-  li {
-    margin-bottom: .2em
-  }
-  table {
-    width: 98%
-  }
-  #lB .lSi,
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 1%
-  }
-  h4,
-  h5,
-  h6 {
     margin: 1.5em .5% .8em
   }
   .links,
@@ -2189,7 +2000,6 @@ strong {
   img,
   ol,
   p,
-  pre,
   table,
   tr blockquote p,
   tr blockquote pre,
@@ -2201,14 +2011,11 @@ strong {
   }
   iframe,
   img {
+    max-width: 96%;
     max-width: 98%
   }
   hr {
     margin: 2em 2%
-  }
-  .commonForm label {
-    float: none;
-    width: auto
   }
   .commonForm-wrap {
     margin-left: 0
@@ -2233,77 +2040,15 @@ strong {
   .AHead h1 {
     font-size: 1.5em
   }
-  .lM .RichLink a {
-    padding-left: 1%;
-    padding-right: 1%
-  }
-  .lM .RichLink b {
-    font-size: 1.1em
-  }
-  .Header h1,
-  .h1 {
-    font-size: 1.2em
-  }
-  .aa,
-  .note .aa {
-    padding: 1em 1%
-  }
-  .aBodyRoot {
-    line-height: 1.6
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 .5%
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 1% 1em
-  }
-  .box > p:first-of-type {
-    margin-top: -.15em
-  }
-  .box .caption,
-  .box iframe,
-  .box img {
-    margin: 0 1em 1em 1%
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 1%
-  }
-  .Pager-next i,
-  .Pager-top i {
-    margin-right: .2em
-  }
-  .Pager-prev i {
-    margin-left: .2em
-  }
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1.23em 1%
-  }
-}
-@media screen and (max-width:359px) {
-  .Cover h2,
-  .lM .RichLink b {
-    font-size: 1em
-  }
-  body {
-    font-size: .813em
-  }
   .AHead-labels {
     line-height: 0
   }
   .AHead-labels a {
     display: block;
-    text-align: center;
     margin: .5em
+  }
+  .Cover {
+    max-width: 400px
   }
   .Cover img {
     width: auto;
@@ -2315,6 +2060,7 @@ strong {
   }
   .Cover h2 {
     display: inline-block;
+    font-size: 1em;
     padding: .5em;
     margin: 0 .5em .5em 0
   }
@@ -2329,19 +2075,73 @@ strong {
     margin-left: 0;
     margin-right: 0
   }
-  .box .caption,
-  .box iframe,
-  .box img,
-  .lM .RichLink img {
+  .LinkList {
+    padding: .2em 0 1em
+  }
+  .LinkList div {
+    display: inline-block;
+    margin: 2px
+  }
+  .RichLink a {
+    padding-left: 1%;
+    padding-right: 1%
+  }
+  .RichLink h3,
+  .RichLink h3 * {
+    font-size: 1em
+  }
+  .RichLink img {
     float: none;
     margin: 0 auto 1em
   }
-  div .box .jsCapLarge,
-  div .box .jsPicaLarge img {
-    margin: 0 auto 1em
+  .Header h1,
+  .h1 {
+    font-size: 1.2em
+  }
+  .aa,
+  .note .aa,
+  .note .prettyprint,
+  .prettyprint {
+    padding: 1em 1%
+  }
+  .aBodyRoot {
+    line-height: 1.6
+  }
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after {
+    margin: 0 .5%
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 1% 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.15em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 auto 1em;
+    float: none
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 1%
+  }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
   }
 }
-@media screen and (max-width:240px) {
+@media handheld {
   dd,
   li {
     margin-bottom: .1em
@@ -2374,6 +2174,7 @@ strong {
   blockquote .tl thead td,
   blockquote .tl thead th,
   blockquote blockquote,
+  blockquote hr,
   h5,
   h6,
   table {
@@ -2387,7 +2188,6 @@ strong {
   img,
   ol,
   p,
-  pre,
   table,
   tr blockquote p,
   tr blockquote pre,
@@ -2414,33 +2214,19 @@ strong {
     border-color: #eee
   }
   .SocialBtns .fb:link:active,
-  .SocialBtns .fb:link:focus,
   .SocialBtns .fb:visited:active,
-  .SocialBtns .fb:visited:focus,
   .SocialBtns .hb:link:active,
-  .SocialBtns .hb:link:focus,
   .SocialBtns .hb:visited:active,
-  .SocialBtns .hb:visited:focus,
   .SocialBtns .ln:link:active,
-  .SocialBtns .ln:link:focus,
   .SocialBtns .ln:visited:active,
-  .SocialBtns .ln:visited:focus,
   .SocialBtns .pk:link:active,
-  .SocialBtns .pk:link:focus,
   .SocialBtns .pk:visited:active,
-  .SocialBtns .pk:visited:focus,
   .SocialBtns .pt:link:active,
-  .SocialBtns .pt:link:focus,
   .SocialBtns .pt:visited:active,
-  .SocialBtns .pt:visited:focus,
   .SocialBtns .tw:link:active,
-  .SocialBtns .tw:link:focus,
   .SocialBtns .tw:visited:active,
-  .SocialBtns .tw:visited:focus,
   .baseColor .btn:link:active,
-  .baseColor .btn:link:focus,
   .baseColor .btn:visited:active,
-  .baseColor .btn:visited:focus,
   .tl tbody td:after,
   a,
   tbody th {
@@ -2476,7 +2262,7 @@ strong {
   .ABody h1,
   .ABody h2,
   .ABody h3,
-  .lM .RichLink a,
+  .RichLink a,
   h2 {
     padding-left: 0;
     padding-right: 0
@@ -2498,6 +2284,10 @@ strong {
   tbody th,
   var {
     background: #222
+  }
+  hr {
+    border-color: #222;
+    margin: 2em 0
   }
   :link img,
   :visited img,
@@ -2611,10 +2401,6 @@ strong {
   img {
     max-width: 100%
   }
-  hr {
-    margin: 2em 0;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGZiZjgiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-  }
   .baseColor .btn:link {
     background: #bbe;
     border-color: #bbe;
@@ -2650,12 +2436,6 @@ strong {
   }
   .mspacer {
     margin: .6em 0!important
-  }
-  .Cover-btn :link i {
-    border-color: transparent #000
-  }
-  .Cover-btn :visited i {
-    border-color: transparent #eee
   }
   .ABody h1 {
     margin: 3em 0
@@ -2708,8 +2488,7 @@ strong {
   .SearchResult div div,
   .js-bqCite,
   .js-bqLink,
-  blockquote:after,
-  blockquote:before {
+  blockquote:after {
     margin: 0
   }
   .SearchResult div p {
@@ -2719,7 +2498,9 @@ strong {
     color: #545454
   }
   .aa,
-  .note .aa {
+  .note .aa,
+  .note .prettyprint,
+  .prettyprint {
     padding: 1em 2px
   }
   .aBodyRoot {
@@ -2737,19 +2518,11 @@ strong {
   .box > p:first-of-type {
     margin-top: -.1em
   }
-  pre code,
-  pre var {
-    background: 0 0
-  }
   .note blockquote dl,
   .note blockquote ol,
   .note blockquote p,
   .note blockquote ul {
     margin-right: 0
-  }
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1.23em 2px
   }
   em {
     background: #4e4e1f
@@ -2970,6 +2743,7 @@ strong {
     color: #000
   }
   .AHead-labels i {
+    display: inline-table;
     display: inline-block
   }
   .AHead-labels a {
@@ -3020,6 +2794,7 @@ strong {
     margin: 1em 0
   }
   .hscroll {
+    overflow: visible;
     overflow-x: visible;
     overflow-y: visible
   }
@@ -3030,13 +2805,12 @@ strong {
   }
   .hscroll pre {
     margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    white-space: -o-pre-wrap;
     word-break: break-all
   }
   code,
   var {
-    background: 0 0!important;
+    background: 0 0;
     border-width: 1px;
     border-color: #ccc
   }
@@ -3072,5 +2846,8 @@ strong {
   }
   code .pun {
     color: #440
+  }
+  code .dec {
+    color: #003
   }
 }

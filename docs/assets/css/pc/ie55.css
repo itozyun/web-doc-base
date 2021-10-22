@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -51,38 +57,6 @@ a,
 h6 {
   color: #777
 }
-.AMeta *,
-.Magazine-item *,
-.SearchResult *,
-.caption,
-.caption *,
-.h1,
-.h1 *,
-.js-bqCite,
-.js-bqLink,
-.links a *,
-.prettyprint,
-.prettyprint *,
-dl,
-dl *,
-h1,
-h1 *,
-h2,
-h2 *,
-h3,
-h3 *,
-h4,
-h4 *,
-h5,
-h5 *,
-h6,
-h6 *,
-li,
-li *,
-table *,
-textarea {
-  line-height: 1.2
-}
 .note .box,
 .note .hscroll,
 .tl td *,
@@ -102,26 +76,59 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.lMi,
-.lSi,
-.lW {
-  height: 1%
+.AMeta,
+.Pager span,
+.caption,
+.h1,
+.js-bqCite,
+.js-bqLink,
+.links a,
+.prettyprint,
+dl,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+table,
+textarea {
+  line-height: 1.2
+}
+pre,
+td,
+th {
+  word-wrap: break-word
+}
+.Cover-meta,
+.Magazine-date,
+.Magazine-mm,
+.Magazine-yy,
+.Pager span,
+.RichLink b,
+.Search,
+.Search-txt,
+.caption,
+.commonForm,
+.commonForm label,
+.commonForm-wrap,
+.e6BR,
+.js-bqCite,
+.jsPica,
+.links a,
+a iframe,
+a img {
+  display: block
 }
 .baseColor,
 .medal {
   background: #f8fbf8
 }
-.Magazine-label,
-.SearchResult cite,
-.caption,
-.js-bqCite,
-.lS .RichLink b,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
+.Search .btn,
+.e6C,
+.e6C .lW {
+  overflow: hidden
 }
 blockquote,
 code,
@@ -157,6 +164,11 @@ tr {
 .tl th {
   vertical-align: top
 }
+.e6BR,
+.jsCapLarge,
+.jsPicaLarge img {
+  clear: both
+}
 #jsMain,
 #jsSide,
 .Cover-img,
@@ -176,7 +188,6 @@ html {
   margin: 0;
   height: 100%
 }
-*,
 body,
 input {
   line-height: 1.9
@@ -237,10 +248,9 @@ strong,
 var {
   font-style: normal
 }
-.commonForm-wrap *,
-pre code,
-pre samp {
-  width: 100%
+.RichLink p,
+pre {
+  margin: 1em 0
 }
 del {
   text-decoration: line-through
@@ -282,27 +292,6 @@ hr,
 tbody th,
 th {
   border-width: 0 0 1px
-}
-.Cover-meta,
-.Magazine-date,
-.Magazine-mm,
-.Magazine-yy,
-.Pager span,
-.RichLink .p,
-.RichLink b,
-.RichLink-meta,
-.Search,
-.Search-txt,
-.caption,
-.commonForm,
-.commonForm-wrap,
-.js-bqCite,
-.jsPica,
-.lM .RichLink b,
-.links a,
-a iframe,
-a img {
-  display: block
 }
 img {
   height: auto
@@ -483,6 +472,10 @@ li ul {
   margin-top: 0;
   margin-bottom: 0
 }
+dd blockquote p,
+li blockquote p {
+  margin: .5em 0
+}
 table {
   border-collapse: collapse;
   empty-cells: show;
@@ -556,8 +549,7 @@ blockquote tfoot th {
   text-align: right
 }
 .c,
-.caption,
-.e6C {
+.caption {
   text-align: center
 }
 .uc {
@@ -570,10 +562,18 @@ body {
 .ribbon * {
   border-color: #2a2a2a
 }
+.LinkList *,
+.Pager a,
+.RichLink-sep *,
+.TxtNavi a,
+.lMi,
+.lW {
+  zoom: 1
+}
 .lW,
 .lX {
   width: 98%;
-  text-align: left
+  margin: 0 auto
 }
 .lM {
   width: 67.3%;
@@ -590,24 +590,42 @@ body {
 }
 .lSi {
   width: 100%;
-  margin: 0 9%
+  margin: 0 9%;
+  zoom: 1
+}
+.e6L,
+.e6R {
+  width: 50%;
+  height: 1px
 }
 .lXi {
   margin: 0 2.7%
 }
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-.e6BR,
-.e6L,
-.e6R {
-  display: none
+.e6L {
+  float: left;
+  margin-right: -35em
 }
-.Cover .img-loaded h2,
-.Magazine-date,
+.e6R {
+  float: right;
+  margin-left: -35em
+}
+.e6C,
 .lM1 {
   float: left
+}
+#lB,
+#lH,
+.commonForm-wrap *,
+.e6C .lW {
+  width: 100%
+}
+.e6C {
+  margin: 0!important
+}
+.e6BR {
+  height: 1px;
+  line-height: 1px;
+  margin-bottom: -1px
 }
 .lM2 {
   float: right
@@ -639,7 +657,6 @@ iframe,
 img,
 ol,
 p,
-pre,
 table,
 tr blockquote p,
 tr blockquote pre,
@@ -691,13 +708,21 @@ caption {
 input.btn {
   padding: .3em 1em .6em
 }
+.commonForm-pair {
+  zoom: 1;
+  margin-bottom: 1em
+}
+.commonForm label {
+  float: left;
+  width: 7em;
+  padding: .45em 0 0
+}
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
-.commonForm-pair {
-  height: 1%;
-  margin-bottom: 1em
+.commonForm-wrap {
+  margin: 0 1em 0 8em
 }
 .medal,
 .medal-bronze,
@@ -747,18 +772,13 @@ input.btn {
   margin: .6em 0
 }
 .AAuthor {
-  height: 1%;
+  zoom: 1;
   padding: 0 .5em 1em
 }
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em;
   top: .4em
-}
-.Cover .img-loaded div,
-.Search input {
-  top: 0;
-  position: absolute
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -800,6 +820,12 @@ input.btn {
 .aa {
   font-family: monospace
 }
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
+}
 .AHead-labels a:visited {
   background: #1a1a1a;
   border-color: #bbb;
@@ -817,7 +843,7 @@ input.btn {
 .caption,
 .js-bqCite,
 .js-bqLink,
-.prettyprint {
+.prettyprint code {
   font-size: .875em
 }
 .BlogArchive,
@@ -829,7 +855,17 @@ input.btn {
   padding: 0 0 1em
 }
 .BlogArchive th {
-  word-break: normal
+  word-break: normal;
+  word-wrap: normal
+}
+.Magazine-label,
+.RichLink b,
+.SearchResult cite,
+.caption,
+.js-bqCite,
+.links {
+  word-break: break-all;
+  word-wrap: break-word
 }
 .BlogArchive a,
 .Label a {
@@ -850,20 +886,18 @@ input.btn {
   font-size: 93%
 }
 .Comment p {
-  height: 1%;
+  zoom: 1;
   padding: 0 3% .5em;
   border-width: 0 0 1px;
   margin-top: 0
 }
 .Cover {
-  height: 1%;
-  margin: 3.52em 0
-}
-.Cover *,
-.RichLink-sep * {
+  zoom: 1;
+  margin: 3.52em 0;
   line-height: 1.4
 }
 .Cover-img {
+  height: 100%;
   margin: 0 0 .6em
 }
 .Cover-meta,
@@ -876,7 +910,8 @@ input.btn {
   width: 100%
 }
 .Cover .img-loaded div {
-  height: 1%;
+  position: absolute;
+  bottom: 0;
   left: 0;
   width: 100%
 }
@@ -986,14 +1021,12 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-item {
-  height: 1%;
-  padding: 1em 0
+  zoom: 1;
+  padding: 1em 0;
+  line-height: 1.2
 }
-.Header *,
-.Header h1 *,
-.Magazine-date *,
-.aa *,
-.h1 * {
+.Magazine-date {
+  float: left;
   line-height: 1
 }
 .Magazine-dd,
@@ -1001,7 +1034,7 @@ pre var {
   font-size: 4em
 }
 .Magazine-main {
-  height: 1%;
+  zoom: 1;
   margin-left: 5.5em;
   border-width: 0 0 0 .5em;
   padding-left: 1.5em;
@@ -1042,8 +1075,11 @@ kbd {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
+.RichLink-sep {
+  line-height: 1.4
+}
 .RichLink a {
-  height: 1%;
+  zoom: 1;
   padding: 1em .5em 0;
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
@@ -1059,29 +1095,32 @@ kbd {
   font-size: .875em;
   margin: 1.143em 0
 }
-.RichLink img {
-  float: left;
-  margin: 0 .6em 1em 0
-}
-.lM .RichLink b {
+.RichLink h3 {
   font-size: 1.5em;
   margin: 0 0 .4em
 }
-.RichLink .p {
-  margin: 1em 0
+.RichLink h3 * {
+  font-size: .667em
+}
+.RichLink img {
+  float: left;
+  margin: 0 .6em 1em 0
 }
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
 }
-.lS .RichLink b {
+.RichLink b {
   font-size: .875em;
   padding: 0 0 .914em
 }
 .Search {
   padding: 0 3em 0 0;
-  width: 100%;
   height: 1.9em
+}
+.Search input {
+  position: absolute;
+  top: 0
 }
 .Search input:active {
   z-index: 1
@@ -1095,12 +1134,16 @@ kbd {
   padding-right: 0;
   width: 3em;
   right: .05em;
-  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
 }
 .SearchResult {
-  margin-bottom: 2em
+  margin-bottom: 2em;
+  line-height: 1.2
+}
+.Header,
+.Header h1 {
+  line-height: 1
 }
 .SearchResult p {
   margin: .5em
@@ -1125,9 +1168,10 @@ kbd {
 .h1 {
   display: inline;
   font-size: 1.5em;
-  padding: 0;
-  margin: 0 .5em 0 0;
-  line-height: 1
+  margin: 0 .5em 0 0
+}
+.Header h1 {
+  padding: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1177,10 +1221,14 @@ kbd {
 }
 .aa,
 .note .aa,
+.note .prettyprint,
 blockquote,
 dl .aa,
+dl .prettyprint,
 li .aa,
-tr .aa {
+li .prettyprint,
+tr .aa,
+tr .prettyprint {
   padding: 1em
 }
 .aa {
@@ -1219,7 +1267,7 @@ blockquote .tl tbody th :visited {
   margin: 0
 }
 .box {
-  height: 1%;
+  zoom: 1;
   margin: 1em 1em 0
 }
 .box .jsPicaLarge img,
@@ -1250,19 +1298,19 @@ blockquote .tl tbody th :visited {
   white-space: pre;
   overflow: auto
 }
-.hscroll pre code,
-.hscroll pre samp {
-  width: auto
-}
 kbd {
   border-color: #111;
   cursor: pointer;
-  letter-spacing: -1;
+  letter-spacing: -1px;
   padding: 0 .4em
 }
 code,
 var {
   padding: .1em .4em
+}
+a:active code,
+a:active var {
+  background: #3079ed
 }
 pre code,
 pre var {
@@ -1280,7 +1328,7 @@ tbody th var {
 }
 .links a {
   padding-left: 1em;
-  height: 1em
+  zoom: 1
 }
 .note {
   padding-left: 25%;
@@ -1293,7 +1341,6 @@ tbody th var {
 .note img,
 .note ol,
 .note p,
-.note pre,
 .note ul {
   margin-right: 0
 }
@@ -1308,11 +1355,11 @@ tbody th var {
 dl.note dd {
   margin-left: 1em
 }
-.caption * {
-  float: none!important
-}
 .caption img {
   margin: 0 0 .5em!important
+}
+.caption * {
+  float: none!important
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1347,6 +1394,10 @@ dl.note dd {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em
+}
 .Pager {
   color: #f8fbf8;
   height: 4em
@@ -1365,24 +1416,11 @@ dl.note dd {
 .Pager span {
   position: absolute;
   top: 1em;
-  width: 32%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
-}
-.Pager a {
-  height: 1.9em
+  width: 32%
 }
 .SocialBtns {
   padding: 1em 0;
   color: #f8fbf8
-}
-.note .prettyprint,
-.prettyprint,
-dl .prettyprint,
-li .prettyprint,
-tr .prettyprint {
-  padding: 1.23em 1.143em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1450,9 +1488,9 @@ tr .prettyprint {
 .prettyprint {
   background: #333;
   color: #fff;
-  margin: 1.23em 0;
   border-width: 1px;
-  border-color: #333
+  border-color: #333;
+  padding: 1em
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1461,10 +1499,6 @@ tr .prettyprint {
 .box .jsCapLarge {
   float: none;
   margin: 0 0 1em
-}
-.jsCapLarge,
-.jsPicaLarge img {
-  clear: both
 }
 em {
   background: #ff6
@@ -1494,6 +1528,10 @@ strong {
   thead th,
   thead var {
     border-color: #666
+  }
+  .RichLink b,
+  .h1 {
+    font-size: 1em
   }
   .lW,
   .lX,
@@ -1631,7 +1669,6 @@ strong {
   img,
   ol,
   p,
-  pre,
   table,
   tr blockquote p,
   tr blockquote pre,
@@ -1738,15 +1775,11 @@ strong {
     float: left;
     margin: 0 .5em .6em 0
   }
-  .lS .RichLink b {
-    padding: 0 0 .571em;
-    font-size: 1em
+  .RichLink b {
+    padding: 0 0 .571em
   }
   .Header {
     text-align: left
-  }
-  .h1 {
-    font-size: 1em
   }
   .Header h1 {
     display: block;
@@ -1754,7 +1787,9 @@ strong {
     margin: 0 0 .5em
   }
   .aa,
-  .note .aa {
+  .note .aa,
+  .note .prettyprint,
+  .prettyprint {
     padding: 1em 3%
   }
   .js-bqCite,
@@ -1788,11 +1823,12 @@ strong {
   }
   .hscroll pre {
     margin: 0;
-    word-break: break-all
+    word-break: break-all;
+    word-wrap: break-word
   }
   code,
   var {
-    background: 0 0!important;
+    background: 0 0;
     border-width: 1px;
     border-color: #ccc
   }
@@ -1808,10 +1844,6 @@ strong {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1.23em 3%
   }
   .prettyprint {
     background: #fff
