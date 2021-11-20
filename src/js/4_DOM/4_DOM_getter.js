@@ -41,16 +41,18 @@ function DOM_getChildNodes( elm ){
  * @return {Array.<Node>}
  */
  function DOM_getChildren( elm ){
-    var hasChildren = !( p_Presto < 7.2 ) && // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
+                      // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
+                      //   https://t.co/nxPB0wJRJt
+    var hasChildren = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
                       elm.children,
-        childNodes  = hasChildren ? hasChildren : elm.childNodes,
+        nodeList    = hasChildren ? hasChildren : elm.childNodes,
         result      = [],
-        i           = childNodes.length,
+        i           = nodeList.length,
         j           = -1,
         node;
 
     while( i ){
-        node = childNodes[ --i ];
+        node = nodeList[ --i ];
         if( hasChildren || node.nodeType === 1 ){
             if( !m_isIE4DOM || node.tagName !== 'FONT' ){
                 result[ ++j ] = node;
