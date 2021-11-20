@@ -161,11 +161,24 @@ gulp.task('btoa', gulp.series(
     }
 ));
 
-const assetPathToJSDir       = 'js',
-      assetPathToCSSDir      = 'css',
-      desktopCSSDir          = 'pc',
-      mobileCSSDir           = 'mb',
-      highContrastModeCSSDir = 'hc';
+/**
+ * 推奨ディレクトリ
+ *  /assets/js/
+ *  /assets/css/pc/
+ *  /assets/css/pc/hc/
+ *  /assets/css/mb/
+ *  /assets/css/mb/hc/
+ * 
+ * または、
+ *  /assets/js/
+ *  /assets/css/
+ *  /assets/css/hc/
+ */
+const assetsDirToJSDir      = 'js',
+      assetsDirToCSSDir     = 'css',
+      cssDirToDesktopDir    = 'pc',
+      cssDirToMobileDir     = 'mb',
+      toHighContrastModeDir = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -203,11 +216,11 @@ gulp.task('js', gulp.series(
                         externs           : externs,
                         define            : [
                             'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetPathToJSDir  + '"',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetPathToCSSDir + '"',
-                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + desktopCSSDir     + '"',
-                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + mobileCSSDir      + '"',
-                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + highContrastModeCSSDir + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir      + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir     + '"',
+                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir    + '"',
+                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir     + '"',
+                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + toHighContrastModeDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
                         ],
                         compilation_level : 'ADVANCED',
@@ -237,7 +250,7 @@ gulp.task('js', gulp.series(
             }
         )
         .src()
-        .pipe(gulp.dest( './docs/assets/' + assetPathToJSDir ));
+        .pipe(gulp.dest( './docs/assets/' + assetsDirToJSDir ));
     }
 ));
 
@@ -262,8 +275,8 @@ gulp.task('css', function(){
                 log      : true,
                 fileType : 'scss',
                 tasks : [
-                    { name : 'desktop', imports : [ 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : desktopCSSDir },
-                    { name : 'mobile',  imports : [ 'mobileOnly', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : mobileCSSDir }
+                    { name : 'desktop', imports : [ 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToDesktopDir },
+                    { name : 'mobile',  imports : [ 'mobileOnly', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToMobileDir }
                 ]
             })
         )
@@ -286,7 +299,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(CSShack({ hcdir : highContrastModeCSSDir }))
+        .pipe(CSShack({ hcdir : toHighContrastModeDir }))
         .pipe(cleanCSS({
             format : 'beautify',
             compatibility : { properties : { ieFilters : true } },
@@ -305,5 +318,5 @@ gulp.task('css', function(){
             } 
         }))
         .pipe(finalizeCSS())
-        .pipe(gulp.dest( './docs/assets/' + assetPathToCSSDir ));
+        .pipe(gulp.dest( './docs/assets/' + assetsDirToCSSDir ));
 });
