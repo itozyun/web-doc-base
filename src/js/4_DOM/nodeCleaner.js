@@ -12,7 +12,7 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
         function walkTree( parent ){
             var kids = p_DOM_getChildNodes( parent ),
                 i    = kids.length,
-                kid, type, tag, sheet, rules, name, j;
+                kid, type, tag, name, j;
 
             while( i ){
                 kid  = kids[ --i ]; // childNodes[ -1 ] は Firefox 3.5 でエラー
