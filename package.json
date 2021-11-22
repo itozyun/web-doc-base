@@ -1,5 +1,6 @@
 {
   "name": "web-doc-base",
+  "version": "0.9.11",
   "description": "Super project for itozyun's Web document projects.",
   "keywords": [
     "HTML",

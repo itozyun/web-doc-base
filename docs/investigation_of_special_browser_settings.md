@@ -70,7 +70,7 @@ p_listenHighContrustModeChange(
 
 ### 3. `p_listenImageReady`
 
-`onload` 時に存在する `&lt;img&gt;` について、ひとつづつ読み込まれたか？否かをコールバックします。
+`onload` 時に存在する `<img>` について、ひとつづつ読み込まれたか？否かをコールバックします。
 
 ~~~js
 p_listenImageReady(
@@ -95,7 +95,7 @@ p_listenPrefersColorChange(
 
 ### 5. `p_listenPrintEvent`
 
-`beforeprint` `afterprint` イベントをコールバックします。
+`beforeprint`, `afterprint` イベントをコールバックします。`p_printEventDisabled` が `false` の場合、コールバックはありません。
 
 ~~~js
 p_listenPrintEvent(

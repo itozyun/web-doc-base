@@ -28,24 +28,6 @@ var
     DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR = 'hc',
 
 /** ===========================================================================
- * 7_Library/SidebarFixer.js
- */
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID       = 'jsSidebarFixer',
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID = 'jsSidebarFixer1',
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID = 'jsSidebarFixer2',
-
-/** ===========================================================================
- * 7_Library/detectImageTurnedOff.js
- */
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED   = 'img-loaded',
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_DISABLED = 'img-disabled',
-
-/** ===========================================================================
  * 7_Library/blockquot.js
  */
 /** @define {string} */
@@ -54,6 +36,30 @@ var
     DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE = 'js-bqCite',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__AMAZON_ID                = '',
+
+/** ===========================================================================
+ * 7_Library/blog2slide.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID   = 'blog2slide-start',
+    /** @define {string} */
+    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID    = 'blog2slide-root',
+    /** @define {string} */
+    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID = 'blog2slide-current',
+
+/** ===========================================================================
+ * 7_Library/cssLoader.toEndOfScript.js
+ */
+/** @define {boolean} */
+    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS = true,
+
+/** ===========================================================================
+ * 7_Library/detectImageTurnedOff.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED   = 'img-loaded',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_DISABLED = 'img-disabled',
 
 /** ===========================================================================
  * 7_Library/PicaThumbnail.js
@@ -70,11 +76,11 @@ var
     DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE  = 'jsCapLarge',
 
 /** ===========================================================================
- * 7_Library/blog2slide.js
+ * 7_Library/SidebarFixer.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID   = 'blog2slide-start',
-    /** @define {string} */
-    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID    = 'blog2slide-root',
-    /** @define {string} */
-    DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID = 'blog2slide-current';
+    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID       = 'jsSidebarFixer',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID = 'jsSidebarFixer1',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID = 'jsSidebarFixer2';

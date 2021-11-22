@@ -15,7 +15,7 @@ gulp.task('docs', gulp.series(
         return gulp.src( [
             './.submodules/what-browser-am-i/src/js/**/*.js',
             '!./.submodules/what-browser-am-i/src/4_brand.js',
-            './src/js-inline/dynamicViewPort.js'
+            './src/js-inline/*.js'
             ] ).pipe(
                 gulpDPZ(
                     {

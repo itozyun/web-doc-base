@@ -7,7 +7,7 @@ Super project for itozyun's Web document projects.
 
 1. 2 Column layout (WQXGA, WSXGA, XGA)
 2. Written based on the SMACSS
-3. Build for each browsers (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7~7.1x, Opera 7.2x~7.5x, Opera 8~8.5x, Opera 9~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
+3. Build for each browsers (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7\~7.1x, Opera 7.20\~7.5x, Opera 8\~8.5x, Opera 9\~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
 4. Responsive Web Design for the 8 types of device (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. Reduce ink to print (`@media print`)
 6. High contrast mode support (`@media (-ms-high-contrast:active)`)
@@ -18,7 +18,7 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 
 1. 2カラムレイアウト (WQXGA, WSXGA, XGA)
 2. SMACSS をベースに書かれています
-3. ブラウザ別に CSS をビルド (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7~7.1x, Opera 7.20~7.5x, Opera 8~8.5x, Opera 9~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
+3. ブラウザ別に CSS をビルド (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7\~7.1x, Opera 7.20\~7.5x, Opera 8\~8.5x, Opera 9\~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
 4. レスポンシブデザインは8種類のデバイスのために用意 (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. インクを節約して印刷 (`@media print`)
 6. ハイコントラストモードのサポート (`@media (-ms-high-contrast:active)`)
@@ -54,6 +54,7 @@ Javascript によって提供される機能
 * [アイコンのテスト](https://itozyun.github.io/web-doc-base/test.icon.html)
 * [RichLink のテスト](https://itozyun.github.io/web-doc-base/richlink.html)
 * [Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
+* [ブートシーケンス](./docs/bootsequence.md)
 
 ## References
 参照プロジェクト
