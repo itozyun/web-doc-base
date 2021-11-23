@@ -201,7 +201,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: 'Courier New',monospace
+  font-family: "Courier New",monospace
 }
 :active {
   outline: 0
@@ -1270,7 +1270,6 @@ blockquote .tl tbody th :visited {
   zoom: 1;
   margin: 1em 1em 0
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
@@ -1497,8 +1496,7 @@ dl.note dd {
   height: auto
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

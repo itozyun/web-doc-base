@@ -230,7 +230,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: 'Courier New',monospace
+  font-family: "Courier New",monospace
 }
 :active {
   outline: 0
@@ -1539,12 +1539,8 @@ li.L8 {
   height: auto;
   border-width: 0
 }
-.box .jsPicaLarge img {
-  margin: 0 0 1em
-}
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 .jsPicaLarge {
   zoom: 1;

@@ -1434,14 +1434,14 @@ dl.note dd {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto
+  height: auto;
+  margin: 0 0 1em
 }
-.box .jsPicaLarge img {
+.jsCapLarge {
   margin: 0 0 1em
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

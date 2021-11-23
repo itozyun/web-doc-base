@@ -191,7 +191,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 sub,
@@ -1364,7 +1364,6 @@ blockquote:after {
 tr .box > p:first-of-type {
   margin-top: auto
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
@@ -1621,14 +1620,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ':)';
-  visibility: hidden;
-  font: 7px/1 a
-}
 .img-disabled img {
   display: none!important
 }
@@ -1683,14 +1674,13 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 .lW {
   overflow: visible

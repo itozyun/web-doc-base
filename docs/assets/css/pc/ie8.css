@@ -66,7 +66,14 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.AMeta,
+.Pager span,
+.caption,
 .h1,
+.js-bqCite,
+.links a,
+.prettyprint,
+blockquote:after,
 dl,
 h1,
 h2,
@@ -201,7 +208,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 small {
@@ -297,6 +304,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -1615,7 +1623,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #777;
   margin: 0
@@ -1629,7 +1636,6 @@ blockquote:after {
 tr .box > p:first-of-type {
   margin-top: auto
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
@@ -1689,10 +1695,6 @@ tbody th var {
   background: #777;
   color: #f8fbf8
 }
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
-}
 .links [href]:before {
   content: ">";
   position: relative;
@@ -1734,8 +1736,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  max-width: 100%;
-  line-height: 1.2
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1796,8 +1797,7 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0;
-  line-height: 1.2
+  padding: .5em 0
 }
 .AMeta div {
   margin: .5em 0;
@@ -1823,8 +1823,7 @@ dl.note dd {
   position: absolute;
   top: 1em;
   display: block;
-  width: 32%;
-  line-height: 1.2
+  width: 32%
 }
 .Pager i {
   display: inline-block;
@@ -1915,14 +1914,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ':)';
-  visibility: hidden;
-  font: 7px/1 a
-}
 .img-disabled img {
   display: none!important
 }
@@ -1931,8 +1922,7 @@ dl.note dd {
   color: #fff;
   border-width: 1px;
   border-color: #333;
-  padding: 1em;
-  line-height: 1.2
+  padding: 1em
 }
 code .atv,
 code .str {
@@ -1977,13 +1967,12 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   box-sizing: border-box
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

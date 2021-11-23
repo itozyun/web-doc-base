@@ -217,7 +217,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 sub,
@@ -1376,7 +1376,8 @@ blockquote:after {
   }
 }
 .AMeta,
-.links a {
+.links a,
+.prettyprint {
   line-height: 1.2
 }
 .box > p:first-of-type {
@@ -1646,14 +1647,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ':)';
-  visibility: hidden;
-  font: 7px/1 a
-}
 .img-disabled img {
   display: none!important
 }
@@ -1661,8 +1654,7 @@ dl.note dd {
   background: #333;
   color: #fff;
   border-width: 1px;
-  border-color: #333;
-  line-height: 1.2
+  border-color: #333
 }
 code .atv,
 code .str {
@@ -1707,17 +1699,13 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box
 }
-.box .jsPicaLarge img {
-  margin: 0 0 1em
-}
-.box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+div .box .jsCapLarge {
+  float: none
 }
 em {
   background: #ff6
@@ -1735,33 +1723,12 @@ strong {
   border-color: #111;
   color: #111
 }
-@media handheld,
-projection,
-tv {
-  .AHead,
-  .AHead h1,
-  .AHead-labels a,
+@media screen and (max-width:740px) {
   .Label div,
   .LinkList,
   .Subscribe div,
   h2 {
     text-align: center
-  }
-  body {
-    font-size: .813em
-  }
-  dd {
-    margin-left: 1em
-  }
-  li {
-    margin-top: .2em
-  }
-  dt {
-    margin-top: .4em
-  }
-  dd,
-  li {
-    margin-bottom: .2em
   }
   h2:after {
     width: 33%;
@@ -1769,16 +1736,15 @@ tv {
     right: auto
   }
   table {
-    width: 98%
+    width: 96%
   }
   #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
-    padding: 0 1%
+    padding: 0 2%
   }
-  .commonForm label,
   .lM1,
   .lM2,
   .lS1,
@@ -1793,6 +1759,123 @@ tv {
   }
   #lB .lS {
     padding-bottom: 2em
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 1% .8em
+  }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 2%
+  }
+  caption {
+    margin: 1.5em 2% .7em
+  }
+  iframe,
+  img {
+    max-width: 96%
+  }
+  hr {
+    margin: 2em 4%
+  }
+  .ABody h1 {
+    margin: 3em 1%
+  }
+  .ABody h2 {
+    margin: 2em 1% 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 1% 1.2em
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3 {
+    padding-left: 1%;
+    padding-right: 1%
+  }
+  .Cover {
+    max-width: 400px
+  }
+  .LinkList {
+    padding: .2em 0 1em
+  }
+  .LinkList div {
+    display: inline-block;
+    margin: 2px
+  }
+  .RichLink h3 {
+    font-size: 1.3em
+  }
+  .RichLink h3 * {
+    font-size: .769em
+  }
+  .aa,
+  .note .aa,
+  .note .prettyprint,
+  .prettyprint {
+    padding: 1em 2%
+  }
+  .js-bqCite,
+  .js-bqLink,
+  blockquote:after {
+    margin: 0 1%
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 2% 1em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 1em 1em 2%
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 2%
+  }
+}
+@media screen and (max-width:479px) {
+  .AHead,
+  .AHead h1 {
+    text-align: center
+  }
+  dd {
+    margin-left: 1em
+  }
+  li {
+    margin-top: .2em
+  }
+  dt {
+    margin-top: .4em
+  }
+  dd,
+  li {
+    margin-bottom: .2em
+  }
+  table {
+    width: 98%
+  }
+  #lB .lSi,
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 1%
   }
   h4,
   h5,
@@ -1818,11 +1901,14 @@ tv {
   }
   iframe,
   img {
-    max-width: 96%;
     max-width: 98%
   }
   hr {
     margin: 2em 2%
+  }
+  .commonForm label {
+    float: none;
+    width: auto
   }
   .commonForm-wrap {
     margin-left: 0
@@ -1847,59 +1933,15 @@ tv {
   .AHead h1 {
     font-size: 1.5em
   }
-  .AHead-labels {
-    line-height: 0
-  }
-  .AHead-labels a {
-    display: block;
-    margin: .5em
-  }
-  .Cover {
-    max-width: 400px
-  }
-  .Cover img {
-    width: auto;
-    margin: 0 1em 1em 0
-  }
-  .Cover .img-loaded div {
-    position: static;
-    padding: 0
-  }
-  .Cover h2 {
-    display: inline-block;
-    font-size: 1em;
-    padding: .5em;
-    margin: 0 .5em .5em 0
-  }
-  .Cover h3 {
-    background: 0 0;
-    color: #111;
-    font-size: 1.5em;
-    padding: 0 0 .33em
-  }
-  .Cover p,
-  .Cover-meta {
-    margin-left: 0;
-    margin-right: 0
-  }
-  .LinkList {
-    padding: .2em 0 1em
-  }
-  .LinkList div {
-    display: inline-block;
-    margin: 2px
-  }
   .RichLink a {
     padding-left: 1%;
     padding-right: 1%
   }
-  .RichLink h3,
-  .RichLink h3 * {
-    font-size: 1em
+  .RichLink h3 {
+    font-size: 1.1em
   }
-  .RichLink img {
-    float: none;
-    margin: 0 auto 1em
+  .RichLink h3 * {
+    font-size: .909em
   }
   .Header h1,
   .h1 {
@@ -1931,8 +1973,7 @@ tv {
   .box .caption,
   .box iframe,
   .box img {
-    margin: 0 auto 1em;
-    float: none
+    margin: 0 1em 1em 1%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -1948,7 +1989,56 @@ tv {
     margin-left: .2em
   }
 }
-@media handheld {
+@media screen and (max-width:359px) {
+  body {
+    font-size: .813em
+  }
+  .AHead-labels {
+    line-height: 0
+  }
+  .AHead-labels a {
+    display: block;
+    text-align: center;
+    margin: .5em
+  }
+  .Cover img {
+    width: auto;
+    margin: 0 1em 1em 0
+  }
+  .Cover .img-loaded div {
+    position: static;
+    padding: 0
+  }
+  .Cover h2 {
+    display: inline-block;
+    font-size: 1em;
+    padding: .5em;
+    margin: 0 .5em .5em 0
+  }
+  .Cover h3 {
+    background: 0 0;
+    color: #111;
+    font-size: 1.5em;
+    padding: 0 0 .33em
+  }
+  .Cover p,
+  .Cover-meta {
+    margin-left: 0;
+    margin-right: 0
+  }
+  .RichLink h3,
+  .RichLink h3 * {
+    font-size: 1em
+  }
+  .RichLink img,
+  .box .caption,
+  .box iframe,
+  .box img {
+    float: none;
+    margin: 0 auto 1em
+  }
+}
+@media screen and (max-width:240px) {
   dd,
   li {
     margin-bottom: .1em

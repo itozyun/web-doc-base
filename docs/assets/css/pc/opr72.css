@@ -82,6 +82,7 @@ tr ul {
 .h1,
 .js-bqLink,
 .links a,
+.prettyprint,
 dl,
 h1,
 h2,
@@ -217,7 +218,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 sub,
@@ -1570,7 +1571,6 @@ kbd {
 tr .box > p:first-of-type {
   margin-top: auto
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
@@ -1857,14 +1857,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ':)';
-  visibility: hidden;
-  font: 7px/1 a
-}
 .img-disabled img {
   display: none!important
 }
@@ -1873,8 +1865,7 @@ dl.note dd {
   color: #fff;
   border-width: 1px;
   border-color: #333;
-  padding: 1em;
-  line-height: 1.2
+  padding: 1em
 }
 code .atv,
 code .str {
@@ -1919,13 +1910,12 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   box-sizing: border-box
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 .lW {
   overflow: hidden

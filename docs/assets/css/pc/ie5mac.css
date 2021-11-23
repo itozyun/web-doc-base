@@ -1201,11 +1201,11 @@ blockquote .tl tbody th :visited {
   display: inline-table;
   margin: 1em 1em 0
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsCapLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1459,11 +1459,11 @@ dl.note dd {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto
+  height: auto;
+  margin: 0 0 1em
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

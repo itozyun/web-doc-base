@@ -1321,7 +1321,6 @@ blockquote .tl tbody th :visited {
 .box {
   margin: 1em 1em 0
 }
-.box .jsPicaLarge img,
 .box dl,
 .box ol,
 .box p,
@@ -1619,13 +1618,12 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   border-width: 0
 }
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 .jsPicaLarge {
   zoom: 1;

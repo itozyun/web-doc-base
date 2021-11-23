@@ -231,7 +231,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: 'Courier New',monospace
+  font-family: "Courier New",monospace
 }
 :active {
   outline: 0
@@ -1475,12 +1475,8 @@ dl.note dd {
   width: 100%;
   height: auto
 }
-.box .jsPicaLarge img {
-  margin: 0 0 1em
-}
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

@@ -60,7 +60,14 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.AMeta,
+.Pager span,
+.caption,
 .h1,
+.js-bqCite,
+.links a,
+.prettyprint,
+blockquote:after,
 dl,
 h1,
 h2,
@@ -224,7 +231,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 small {
@@ -322,6 +329,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -1575,7 +1583,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #777;
   margin: 0 1.5%
@@ -1648,10 +1655,6 @@ tbody th var {
   background: #777;
   color: #f8fbf8
 }
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
-}
 .links [href]:before {
   content: ">";
   position: relative;
@@ -1697,8 +1700,7 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
-  line-height: 1.2
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1759,8 +1761,7 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0;
-  line-height: 1.2
+  padding: .5em 0
 }
 .AMeta div {
   margin: .5em 0;
@@ -1786,8 +1787,7 @@ dl.note dd {
   position: absolute;
   top: 1em;
   display: block;
-  width: 32%;
-  line-height: 1.2
+  width: 32%
 }
 .Pager i {
   display: inline-block;
@@ -1879,14 +1879,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ':)';
-  visibility: hidden;
-  font: 7px/1 a
-}
 .img-disabled img {
   display: none!important
 }
@@ -1894,8 +1886,7 @@ dl.note dd {
   background: #333;
   color: #fff;
   border-width: 1px;
-  border-color: #333;
-  line-height: 1.2
+  border-color: #333
 }
 code .atv,
 code .str {
@@ -1940,16 +1931,12 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   box-sizing: border-box
 }
-.box .jsPicaLarge img {
-  margin: 0 0 1em
-}
 .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+  float: none
 }
 em {
   background: #ff6

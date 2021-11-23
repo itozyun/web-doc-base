@@ -209,7 +209,7 @@ q {
 }
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none
 }
 sub,
@@ -2143,7 +2143,7 @@ dl.note dd {
   font: 0/0 a
 }
 #jsCanUseContent:after {
-  content: ':)';
+  content: ":)";
   visibility: hidden;
   font: 7px/1 a
 }
@@ -2209,8 +2209,8 @@ li.L8 {
 }
 .jsPicaLarge img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
