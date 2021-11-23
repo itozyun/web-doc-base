@@ -1,6 +1,4 @@
-// 1. onload, (+DOMContentLoaded) で noscript タグ内の @import "./assets/modern.css"; -> ./assets/ を取得して link 要素を追加する
-// 2. document.write を使う Presto < 9, Gecko < 1, Safari < 3 は main.js 内で script タグの assetDir を取得する為
-// 3. Legacy Safari の onload fix はしない
+/** @see/docs/bootsequence.md */
 if( DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS ){
     var cssAndJsLoader_presto =
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Presto       ) ||

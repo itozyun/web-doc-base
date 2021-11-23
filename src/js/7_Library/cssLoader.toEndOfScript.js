@@ -1,3 +1,4 @@
+/** @see/docs/bootsequence.md */
 if(
 /**
  * IE9以下以外に modern.css, macie5.css, oprXX.css, gckXX.css を読み込む

@@ -578,7 +578,7 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
             };
             data._elmOwner = elmOwner;
         } else {
-            // Opera 7.2~7.5 に↓は反映されない．Opera 8 の Data URI 同じ。
+            // Opera 7.2~7.5 に↓は反映されない．Opera 8 の Data URI 同じ。<- TODO Gecko 0.9.x は?
             //   elmOwner.innerHTML = elmOwner.textContent = elmOwner.text = cssText;
             data._elmOwner = p_DOM_insertElementAfter( elmOwner, tag, attr, cssText );
             p_DOM_remove( elmOwner );

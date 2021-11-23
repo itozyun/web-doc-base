@@ -70,7 +70,7 @@ Presto < 9, Gecko < 1, Safari < 3, IE 以外の `addEventListener` をサポー�
 
 `<script>` の `src` からアセットディレクトリを取得します。Presto < 9, Gecko < 1 は、CSS 周りのバグを回避する為に `document.write()` で  `<link>` 要素を追加します。
 
-Safari < 3 には `onload` が実装されていない為、常に main.js 側で CSS を読み込みます。
+Safari < 3 には `load` イベントがいない為、常にこのフォールバックのある main.js から CSS を読み込みます。
 
 ## 2. ビルドオプション
 
