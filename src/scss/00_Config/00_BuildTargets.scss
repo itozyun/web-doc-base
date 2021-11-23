@@ -29,7 +29,7 @@
  *  //#ie89[@ie8,@ie9]
  *  //#ie[@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9]
  *
- *  //#can-mq[@modern,@ie9]
+ *  //#can-mq[@modern,@ie9,@opr9,@gck190]
  *  //#can-svg[@modern,@ie9]
  *  //#can-content[@modern,#legacy,@ie9,@ie8]
  *  //#can-attr-selector[@modern,#legacy,@ie9,@ie8,@ie7]
@@ -238,7 +238,9 @@
     $IS_WIN_IE      : $IS_LTE_WIN_IE8 or $UA_IE9;
     $IS_IE8_OR_9    : $UA_IE8 or $UA_IE9;
 
-    $CANUSE_CSS_MEDIA_QUERY       : $UA_Modern or $UA_Opera9 or $UA_Gck130-190;
+
+
+    $CANUSE_CSS_MEDIA_QUERY       : $UA_Modern or $UA_IE9 or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_SVG                   : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_CSS_GENERATED_CONTENT : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_PSEUDO_BLOCK          : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;

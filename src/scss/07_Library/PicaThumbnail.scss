@@ -23,46 +23,50 @@
 }
 
     .jsPicaLarge img {
-        width     : 100%;
+        width  : 100%;
+        height : auto;
         @if( $CANUSE_MAX_AND_MIN_SIZES ){
             max-width : 100%;
         }
-        height    : auto;
         @if( $CANUSE_MARGIN_AUTO ){
-            margin    : 0 auto 1em; /* auto は中央配置で transition させるため */
+            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+        } @else {
+            margin : 0 0 1em;
         }
-
         @include box-sizing(border-box);
-
-    /* //_{#can-mq */
-        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#can-mq */
-        .box & {
-            @if( $UA_Modern ){
-            float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-        }
-            margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
-        }
     }
+    /* //_{#can-mq */
+    div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+    /* //_}#can-mq */
+        .box .jsPicaLarge img {
+            @if( $UA_Modern ){
+                float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
+                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+            }
+        }
 
     .jsCapLarge {
         @if( $CANUSE_MARGIN_AUTO ){
             margin : 0 auto 1em; /* auto は中央配置で transition させるため */
-        }
-
-    /* //_{#can-mq */
-        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#can-mq */
-        .box & {
-            float  : none;
-            margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+        } @else {
+            margin : 0 0 1em;
         }
     }
+    /* //_{#can-mq */
+    div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+    /* //_}#can-mq */
+        .box .jsCapLarge {
+            float : none;
+            @if( $UA_Modern ){
+                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+            }
+        }
 
 /*  Phone-
 --------------------------------------------------------------------------------------*/
+
 @include media(smallphone) {
-    @if( $IS_LEGACY == false ){ // アニメーション用の指定なので legacy を除外
+    @if( $UA_Modern ){ // アニメーション用の指定
         div .box .jsPicaLarge img,
         div .box .jsCapLarge {
             margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */

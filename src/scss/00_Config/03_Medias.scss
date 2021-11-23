@@ -9,11 +9,11 @@ $COMMENT_OUT : (
     'pc'           : 0,
     'tablet_print' : 2,
     'tablet'       : 2,
-    'phablet'      : if($CANUSE_CSS_MEDIA_QUERY or $IS_LEGACY, 1, 0),
-    'phone'        : if($CANUSE_CSS_MEDIA_QUERY or $IS_LEGACY, 1, 0),
-    'smallphone'   : if($CANUSE_CSS_MEDIA_QUERY or $IS_LEGACY, 1, 0),
-    'watch'        : if($CANUSE_CSS_MEDIA_QUERY or $IS_LEGACY, 1, 0),
-    'dark_theme'   : if($CANUSE_CSS_MEDIA_QUERY or $IS_LEGACY, 1, 0),
+    'phablet'      : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'phone'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'smallphone'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'watch'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'dark_theme'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}+mobileOnly */
 /* //_{^+mobileOnly */
     'WQXGA'        : if($UA_Modern, 1, 0),
@@ -61,20 +61,22 @@ $COMMENT_OUT : (
             @media print
                 /* //_{#can-mq */
                 ,
+                /* //_}#can-mq */
                 /* //_{@modern */
                 handheld, projection, tv, only
                 /* //_}@modern */
+                /* //_{#can-mq */
                 screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)
                 /* //_}#can-mq */
                 { @content; }
         }
         @else if $media == 'tablet' {
             @media
-                /* //_{#notie */
-                handheld, projection, tv
-                /* //_}#notie */
+                /* //_{^#can-mq */
+                    dumy-for-gulp-sass5
+                /* //_}^#can-mq */
                 /* //_{@modern */
-                , only
+                handheld, projection, tv, only
                 /* //_}@modern */
                 /* //_{#can-mq */
                 screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)
@@ -83,9 +85,14 @@ $COMMENT_OUT : (
         }
         @else if $media == 'phablet' {
             @media
-                /* //_{#notie */
+                /* //_{^#can-mq */
+                    /* //_{^@opr8 */
+                    dumy-for-gulp-sass5
+                    /* //_}^@opr8 */
+                /* //_}^#can-mq */
+                /* //_{@modern,@opr8 */
                 handheld, projection, tv
-                /* //_}#notie */
+                /* //_}@modern,@opr8 */
                 /* //_{@modern */
                 , only
                 /* //_}@modern */
@@ -96,9 +103,14 @@ $COMMENT_OUT : (
         }
         @else if $media == 'phone' {
             @media
-                /* //_{#notie */
+                /* //_{^#can-mq */
+                    /* //_{^@opr8 */
+                    dumy-for-gulp-sass5
+                    /* //_}^@opr8 */
+                /* //_}^#can-mq */
+                /* //_{@modern,@opr8 */
                 handheld, projection, tv
-                /* //_}#notie */
+                /* //_}@modern,@opr8 */
                 /* //_{@modern */
                 , only
                 /* //_}@modern */
@@ -109,9 +121,14 @@ $COMMENT_OUT : (
         }
         @else if $media == 'smallphone' {
             @media
-                /* //_{#notie */
+                /* //_{^#can-mq */
+                    /* //_{^@opr8 */
+                    dumy-for-gulp-sass5
+                    /* //_}^@opr8 */
+                /* //_}^#can-mq */
+                /* //_{@modern,@opr8 */
                 handheld, projection, tv
-                /* //_}#notie */
+                /* //_}@modern,@opr8 */
                 /* //_{@modern */
                 , only
                 /* //_}@modern */
@@ -122,9 +139,14 @@ $COMMENT_OUT : (
         }
         @else if $media == 'watch' {
             @media
-                /* //_{#notie */
+                /* //_{^#can-mq */
+                    /* //_{^@opr8 */
+                    dumy-for-gulp-sass5
+                    /* //_}^@opr8 */
+                /* //_}^#can-mq */
+                /* //_{@modern,@opr8 */
                 handheld
-                /* //_}#notie */
+                /* //_}@modern,@opr8 */
                 /* //_{@modern */
                 , only
                 /* //_}@modern */
@@ -135,9 +157,14 @@ $COMMENT_OUT : (
         }
         @else if $media == 'dark_theme' {
             @media
-                /* //_{#notie */
+                /* //_{^#can-mq */
+                    /* //_{^@opr8 */
+                    dumy-for-gulp-sass5
+                    /* //_}^@opr8 */
+                /* //_}^#can-mq */
+                /* //_{@modern,@opr8 */
                 handheld
-                /* //_}#notie */
+                /* //_}@modern,@opr8 */
                 /* //_{@modern */
                 , only screen and (prefers-color-scheme:dark), only
                 /* //_}@modern */
@@ -189,9 +216,6 @@ $COMMENT_OUT : (
             & { @content; }
         }
     }
-    // @if( $UA_MacIE5 or $IS_LEGACY ){
-        // @if(1 == 0){ @content; }
-    // }
 }
 
 @mixin highContrastForIEGte9Gecko {
@@ -200,9 +224,6 @@ $COMMENT_OUT : (
             & { @content; }
         }
     }
-    // @if( $UA_MacIE5 or $IS_LEGACY ){
-        // @if(1 == 0){ @content; }
-    // }
 }
 
 @mixin highContrastForChromiumEdge {
@@ -212,9 +233,6 @@ $COMMENT_OUT : (
             & { @content; }
         }
     }
-    // @if( $UA_MacIE5 or $IS_LEGACY ){
-        // @if(1 == 0){ @content; }
-    // }
 }
 
 @mixin highContrastForIE10ToEdge {
@@ -223,7 +241,4 @@ $COMMENT_OUT : (
             & { @content; }
         }
     }
-    // @if( $UA_MacIE5 or $IS_LEGACY ){
-        // @if(1 == 0){ @content; }
-    // }
 }

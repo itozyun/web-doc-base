@@ -259,7 +259,7 @@ gulp.task('js', gulp.series(
  */
 const plumber     = require("gulp-plumber"),
       izpp        = require('gulp-iz-preprocessor'),
-      sass        = require("gulp-sass"),
+      sass        = require("gulp-sass")(require('sass')),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
       CSShack     = require('./js-buildtools/gulp-csshack.js'),

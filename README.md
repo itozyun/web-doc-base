@@ -144,6 +144,10 @@ Javascript のビルドの方法
 
 * See gulp-task `js` in [./gulpfile.js](./gulpfile.js).
 
+## Update Notes
+
+1. Version 0.9.12 and later use [gulp-sass@5.0.0](https://www.npmjs.com/package/gulp-sass#user-content-migrating-to-version-5).
+
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)

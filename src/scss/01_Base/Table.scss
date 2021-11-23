@@ -108,9 +108,9 @@ table {
         }        
     }
     @if( $CANUSE_LAST_CHILD_SELECTOR == false and $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
-        @include highContrast {
-            tfoot tr:first-child th,
-            tfoot tr:first-child td {
+        tfoot tr:first-child th,
+        tfoot tr:first-child td {
+            @include highContrast {
                 position : relative;
                 top      : -3px; 
             }
