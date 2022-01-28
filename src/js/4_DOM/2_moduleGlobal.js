@@ -2,8 +2,8 @@ var m_isIE4DOM = p_Trident < 5;
 
 /**
  * @param {string} tagName
- * @param {Object|number=} attrs
- * @param {*=} textContent
+ * @param {Object=} attrs
+ * @param {string|number=} textContent
  * @return {string}
  */
 function m_toHTMLString( tagName, attrs, textContent ){

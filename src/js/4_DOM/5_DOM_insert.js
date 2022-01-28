@@ -24,8 +24,8 @@ var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
      * @param {number} insertPosition
      * @param {Node} targetNode
      * @param {string} tag
-     * @param {Object|number=} attrs
-     * @param {*=} textContent
+     * @param {Object=} attrs
+     * @param {string|number=} textContent
      * @param {boolean=} isSVG
      * @return {Element}
      */
@@ -79,8 +79,8 @@ var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
 /** 1.
  * @param {Node} targetNode
  * @param {string} tag
- * @param {Object|number=} attrs
- * @param {*=} textContent
+ * @param {Object=} attrs
+ * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {Element}
  */
@@ -102,7 +102,7 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
 /** 2.
  * @param {Node} targetNode
  * @param {string} tag
- * @param {Object|number=} attrs
+ * @param {Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {Element}
@@ -123,7 +123,7 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
 /** 3.
  * @param {Node} targetNode
  * @param {string} tag
- * @param {Object|number=} attrs
+ * @param {Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {Element}
@@ -148,15 +148,14 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
 
 /** 5.
  * @param {Element} targetNode
- * @param {*} textContent
+ * @param {string|number} textContent
  * @return {Node|null}
  */
 function DOM_insertTextNode( targetNode, textContent ){
-    var text = textContent != null ? '' : textContent,
-        textNode;
+    var textNode;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 2, targetNode, 'font', 0, text );
+        return DOM_createElement( 2, targetNode, 'font', undefined, textContent );
     } else {
         textNode = document.createTextNode( '' + textContent );
         targetNode.appendChild( textNode );
@@ -166,15 +165,14 @@ function DOM_insertTextNode( targetNode, textContent ){
 
 /** 6.
  * @param {Node} targetNode
- * @param {*} textContent
+ * @param {string|number} textContent
  * @return {Node|null}
  */
 function DOM_insertTextNodeBefore( targetNode, textContent ){
-    var text = textContent != null ? '' : textContent,
-        textNode;
+    var textNode;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 0, targetNode, 'font', 0, text );
+        return DOM_createElement( 0, targetNode, 'font', undefined, textContent );
     } else {
         textNode = document.createTextNode( '' + textContent );
 
@@ -185,15 +183,14 @@ function DOM_insertTextNodeBefore( targetNode, textContent ){
 
 /** 7.
  * @param {Node} targetNode
- * @param {*} textContent
+ * @param {string|number} textContent
  * @return {Node|null}
  */
 function DOM_insertTextNodeAfter( targetNode, textContent ){
-    var text = textContent != null ? '' : textContent,
-        textNode, nextSibling;
+    var textNode, nextSibling;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 1, targetNode, 'font', 0, text );
+        return DOM_createElement( 1, targetNode, 'font', undefined, textContent );
     } else {
         textNode    = document.createTextNode( '' + textContent ),
         nextSibling = targetNode.nextSibling;

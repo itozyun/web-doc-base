@@ -52,7 +52,6 @@ if( p_Trident || p_Gecko < 1.8 ){
 
 /**
  * @param {Event=} e
- * @return {*}
  */
 function Event_unloadEventHandler( e ){
     m_dispatchEvent( Event_unloadEventCallbacks, e );

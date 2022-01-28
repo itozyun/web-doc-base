@@ -18,7 +18,7 @@
  * @return {Element|null}
  */
  function DOM_getParentNode( elm ){
-    return m_isIE4DOM ? elm.parentElement : elm.parentNode;
+    return /** @type {Element|null} */ (m_isIE4DOM ? elm.parentElement : elm.parentNode);
 };
 
 /** 2.

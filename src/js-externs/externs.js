@@ -69,11 +69,11 @@ function prettyPrint(){};
 /** @type {function()} */
 document.onfullscreenchange = function(){};
 /** @type {function()} Gecko 10+ */
- document.onmozfullscreenchange = function(){};
+document.onmozfullscreenchange = function(){};
 /** @type {function()} Safari 5.1, Mobile safari 5.1+, */
-  document.onwebkitfullscreenchange = function(){};
+document.onwebkitfullscreenchange = function(){};
 /** @type {function()} Trident 11+ */
-  document.onmsfullscreenchange = function(){};
+document.onmsfullscreenchange = function(){};
 
 /** @type {boolean}  */
 document.fullscreen;
@@ -95,4 +95,4 @@ HTMLElement.prototype.msRequestFullscreen = function(){};
 CanvasRenderingContext2D.prototype.mozDrawText = function(){};
 
 /** @type {number}  */
- var __vml = 0;
+var __vml = 0;
