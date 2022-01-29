@@ -10,11 +10,11 @@
 @include media(WQXGA) {
     .lS1 {
         float : left;
-        width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        width : 50% - math.div($WQXGA-COLUMN-GAP-PCT, $WQXGA-SUB-COLUMN-RATIO) * 0.5;
     }
     .lS2 {
         float : right;
-        width : 50% - ($WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        width : 50% - math.div($WQXGA-COLUMN-GAP-PCT, $WQXGA-SUB-COLUMN-RATIO) * 0.5;
     }
 }
 

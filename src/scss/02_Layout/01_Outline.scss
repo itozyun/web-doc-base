@@ -47,7 +47,7 @@
             }
         }
             .lMi, .lMz {
-                margin-left  : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+                margin-left  : math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO);
             }
 
     /*  sub
@@ -65,7 +65,7 @@
                 @if( $UA_IE55 ){
                     width  : 100%;
                 }
-                margin : 0 100% * $PC_COLUMN_GAP_RATIO / $PC_SUB_COLUMN_RATIO;
+                margin : 0 math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-SUB-COLUMN-RATIO);
             }
     /*  Print
     --------------------------------------------------------------------------------------*/
@@ -101,7 +101,7 @@
                 width : 100% * $PC_MAIN_COLUMN_RATIO;
             }
                 .lMi, .lMz {
-                    margin-right : 100% * $PC_COLUMN_GAP_RATIO / $PC_MAIN_COLUMN_RATIO;
+                    margin-right : math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO);
                 }
     }
 }
@@ -117,17 +117,17 @@
             width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
         }
             .lMi, .lMz {
-                margin : 0 $WQXGA_COLUMN_GAP_EM 0 #{$WQXGA_COLUMN_GAP_PCT / $WQXGA_MAIN_COLUMN_RATIO};
+                margin : 0 $WQXGA_COLUMN_GAP_EM 0 math.div($WQXGA-COLUMN-GAP-PCT, $WQXGA-MAIN-COLUMN-RATIO);
             }
                 .lMh {
                     margin-left  : 50%;
-                    padding-left : $WQXGA_COLUMN_GAP_EM / 2;
+                    padding-left : math.div($WQXGA-COLUMN-GAP-EM, 2);
                 }
         .lS {
             width : 100% * $WQXGA_SUB_COLUMN_RATIO;
         }
             .lSi {
-                margin : 0 $WQXGA_COLUMN_GAP_PCT / $WQXGA_SUB_COLUMN_RATIO;
+                margin : 0 math.div($WQXGA-COLUMN-GAP-PCT, $WQXGA-SUB-COLUMN-RATIO);
             }
         .lXi {
             margin : 0 $WQXGA_COLUMN_GAP_PCT;
@@ -145,17 +145,17 @@
             width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
         }
             .lMi, .lMz {
-                margin : 0 $WSXGA_COLUMN_GAP_EM 0 $WSXGA_COLUMN_GAP_PCT / $WSXGA_MAIN_COLUMN_RATIO;
+                margin : 0 $WSXGA_COLUMN_GAP_EM 0 math.div($WSXGA-COLUMN-GAP-PCT, $WSXGA-MAIN-COLUMN-RATIO);
             }
                 .lMh {
                     margin-left  : 50%;
-                    padding-left : $WSXGA_COLUMN_GAP_EM / 2;
+                    padding-left : math.div($WSXGA-COLUMN-GAP-EM, 2);
                 }
         .lS {
             width : 100% * $WSXGA_SUB_COLUMN_RATIO;
         }
             .lSi {
-                margin : 0 $WSXGA_COLUMN_GAP_PCT / $WSXGA_SUB_COLUMN_RATIO;
+                margin : 0 math.div($WSXGA-COLUMN-GAP-PCT, $WSXGA-SUB-COLUMN-RATIO);
             }
         .lXi {
             margin : 0 $WSXGA_COLUMN_GAP_PCT;

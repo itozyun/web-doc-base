@@ -12,10 +12,10 @@
         }
     @if( $Option_mobileOnly == false ){
         .lM1 {
-            width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+            width : 50% - 100% * math.div(math.div($PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO - $PC-COLUMN-GAP-RATIO * 2) , 2);
         }
         .lM2 {
-            width : 50% - 100% * ($PC_COLUMN_GAP_RATIO / ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2 )) / 2;
+            width : 50% - 100% * math.div(math.div($PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO - $PC-COLUMN-GAP-RATIO * 2) , 2);
         }
     }
 

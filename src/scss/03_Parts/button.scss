@@ -56,7 +56,7 @@
 }
     @if( $IS_LEGACY == false ){
         line-height  : 1;
-        padding      : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+        padding      : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
     }
     @if( $UA_Modern or $UA_IE9 ){
         vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
@@ -120,14 +120,14 @@ input.btn {
         /* Gecko ~1.8.1 */
         & {
             line-height : 1;
-            padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+            padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
         }
         @if( $UA_Gck130-190 ){
             @-moz-document url-prefix() { /* override Gecko 1.8~ */
                 /* override Gecko 1.9.0~1.9.2 */
                 & [_csshack_="_:-moz-loading"] {
                     line-height : 1;
-                    padding     : #{($BASE_LINE_HEIGHT_EM - 1em ) / 2} 1em;
+                    padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
                 }
             }
         }

@@ -44,7 +44,7 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 only
                 /* //_}@modern */
-                screen and (min-width: #{($MEDIAQUERY_TABLET_MAX_PX + 1) / $FONTSIZE_UPPER_TABLET}em)
+                screen and (min-width: #{1em * math.div($MEDIAQUERY-TABLET-MAX-PX + 1, $FONTSIZE-UPPER-TABLET)})
                 { @content; }
         }
         @else if $media == 'WSXGA' {
@@ -75,6 +75,9 @@ $COMMENT_OUT : (
                 /* //_{^#can-mq */
                     dumy-for-gulp-sass5
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern */
                 handheld, projection, tv, only
                 /* //_}@modern */
@@ -90,6 +93,9 @@ $COMMENT_OUT : (
                     dumy-for-gulp-sass5
                     /* //_}^@opr8 */
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern,@opr8 */
                 handheld, projection, tv
                 /* //_}@modern,@opr8 */
@@ -108,6 +114,9 @@ $COMMENT_OUT : (
                     dumy-for-gulp-sass5
                     /* //_}^@opr8 */
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern,@opr8 */
                 handheld, projection, tv
                 /* //_}@modern,@opr8 */
@@ -126,6 +135,9 @@ $COMMENT_OUT : (
                     dumy-for-gulp-sass5
                     /* //_}^@opr8 */
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern,@opr8 */
                 handheld, projection, tv
                 /* //_}@modern,@opr8 */
@@ -144,6 +156,9 @@ $COMMENT_OUT : (
                     dumy-for-gulp-sass5
                     /* //_}^@opr8 */
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern,@opr8 */
                 handheld
                 /* //_}@modern,@opr8 */
@@ -162,6 +177,9 @@ $COMMENT_OUT : (
                     dumy-for-gulp-sass5
                     /* //_}^@opr8 */
                 /* //_}^#can-mq */
+                /* //_{ */
+                    ,
+                /* //_} */
                 /* //_{@modern,@opr8 */
                 handheld
                 /* //_}@modern,@opr8 */

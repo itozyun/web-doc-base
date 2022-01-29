@@ -1,3 +1,4 @@
+@use "sass:math";
 
 $BASE_LINE_HEIGHT      : 1.9 !default;
 $BASE_LINE_HEIGHT_EM   : 1em * $BASE_LINE_HEIGHT;
@@ -33,7 +34,7 @@ $PHABLET_H_SPACE         : 2% !default;
 $PHONE_H_SPACE           : 1% !default;
 
 $CONTENT_MARGIN_LR       : 2% !default;
-$CONTENT_MARGIN_LR_WSXGA : $CONTENT_MARGIN_LR / 2;
+$CONTENT_MARGIN_LR_WSXGA : math.div($CONTENT-MARGIN-LR, 2);
 
 $BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
 

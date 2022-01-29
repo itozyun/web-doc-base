@@ -52,7 +52,7 @@ $SEARCH_BTN_WIDTH : 3em;
         @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 ){
             left : -#{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
         } @else {
-            left : #{$INPUT_BORDER_WIDTH / 2};
+            left : math.div($INPUT-BORDER-WIDTH, 2);
         }
 
         @if( $UA_Modern ){
@@ -76,12 +76,12 @@ $SEARCH_BTN_WIDTH : 3em;
 
         @if( $UA_IE7 or $UA_IE6 ){
             width    : #{$SEARCH_BTN_WIDTH + $INPUT_BORDER_WIDTH * 2};
-            right    : #{- $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH / 2};
+            right    : -$SEARCH-BTN-WIDTH - math.div($INPUT-BORDER-WIDTH, 2);
         }
 
         @if( $UA_IE5 or $UA_IE55 ){
             width    : $SEARCH_BTN_WIDTH;
-            right    : #{$INPUT_BORDER_WIDTH / 2};
+            right    : math.div($INPUT-BORDER-WIDTH, 2);
         }
 
         @if( $IS_LEGACY ){

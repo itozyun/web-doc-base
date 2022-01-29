@@ -17,19 +17,19 @@
 
     @include media(tablet_print) {
         & {
-            margin  : $marginTop #{$TABLET_H_SPACE / $ratio} $marginBottom;
+            margin  : $marginTop math.div($TABLET-H-SPACE, $ratio) $marginBottom;
         }
     }
 
     @include media(phablet) {
         & {
-            margin  : $marginTop #{$PHABLET_H_SPACE / $ratio} $marginBottom;
+            margin  : $marginTop math.div($PHABLET-H-SPACE, $ratio) $marginBottom;
         }
     }
 
     @include media(phone) {
         & {
-            margin  : $marginTop #{$PHONE_H_SPACE / $ratio} $marginBottom;
+            margin  : $marginTop math.div($PHONE-H-SPACE, $ratio) $marginBottom;
         }
     }
 
@@ -98,10 +98,10 @@ hr {
 
 @mixin hPadding($ratio, $paddingTop, $paddingBottom){
     & {
-        padding : $paddingTop 1em / $ratio $paddingBottom;
+        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
     }
     li &, dl &, tr &, .note & {
-        padding : $paddingTop 1em / $ratio $paddingBottom;
+        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
     }
 
     @include media(tablet_print) {
