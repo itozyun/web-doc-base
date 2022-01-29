@@ -16,7 +16,7 @@ p_head = DOM_getElementsByTagNameFromDocument( 'head' )[ 0 ];
 
 /** 1.
  * @param {string} id
- * @return {Element}
+ * @return {Element|null}
  */
 function DOM_getElementById( id ){
     return window[ id ] || document[ id ] ||
@@ -25,7 +25,7 @@ function DOM_getElementById( id ){
 
 /** 2.
  * @param {string} tag
- * @return {Array}
+ * @return {Array.<Element>} // TODO HTMLCollection
  */
 function DOM_getElementsByTagNameFromDocument( tag ){
     return DOM_getElementsByTagName( document, tag );
@@ -33,7 +33,7 @@ function DOM_getElementsByTagNameFromDocument( tag ){
 
 /** 3.
  * @param {string} className
- * @return {Array}
+ * @return {Array.<Element>} // TODO HTMLCollection
  */
 function DOM_getElementsByClassNameFromDocument( className ){
     return DOM_getElementsByClassName( document, className );
@@ -42,7 +42,7 @@ function DOM_getElementsByClassNameFromDocument( className ){
 /** 4.
  * @param {Element|Document} rootElementOrDocument
  * @param {string} tag
- * @return {Array}
+ * @return {Array.<Element>} // TODO HTMLCollection
  */
 function DOM_getElementsByTagName( rootElementOrDocument, tag ){
     var root = rootElementOrDocument,
@@ -62,7 +62,7 @@ function DOM_getElementsByTagName( rootElementOrDocument, tag ){
 /** 5.
  * @param {Element|Document} rootElementOrDocument
  * @param {string} className
- * @return {Array}
+ * @return {Array.<Element>} // TODO HTMLCollection
  */
 function DOM_getElementsByClassName( rootElementOrDocument, className ){
     var root = rootElementOrDocument,

@@ -19,7 +19,36 @@ p_CSSOM_getLastIndexOfRule       = CSSOM_getLastIndexOfRule;
 // javascriptでスタイルを追加する方法
 //   https://qiita.com/sainome_7/items/d3f6afa8ffee354e6e36
 
-/** @type {Array.<Object>} */
+/**
+ * @typedef {{
+ *   _media     : (string|undefined),
+ *   _index     : number,
+ *   isFallback : boolean
+ * }}
+ */
+var StyleSheetFallback;
+
+/**
+ * @typedef {{
+ *   _rawSheet : (CSSStyleSheet|StyleSheet|StyleSheetFallback),
+ *   _elmOwner : HTMLStyleElement,
+ *   _cssRules : Array.<CSSRuleInternal>
+ * }}
+ */
+var StyleSheetInternal;
+
+/**
+ * @typedef {{
+ *   selectorTextOrAtRule : string,
+ *   urlOrStyle           : (string|Object),
+ *   _elmFallback         : (HTMLStyleElement|HTMLLinkElement|undefined),
+ *   _indexStart          : (number|undefined),
+ *   _indexEnd            : (number|undefined)
+ * }}
+ */
+var CSSRuleInternal;
+
+/** @type {Array.<StyleSheetInternal>} */
 var CSSOM_styleSheetDataList = [];
 
 function CSSOM_getDataByStyleSheet( styleSheet ){
@@ -99,8 +128,9 @@ p_CSSOM_canuse = CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  
                  CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ? 2 : 0;
 
 Debug.log( '[CSSOM] p_CSSOM_canuse : ' + p_CSSOM_canuse );
+
 /**
- * @return {Array.<Node>}
+ * @return {Array.<HTMLStyleElement|HTMLLinkElement>}
  */
 function CSSOM_getStyleSheetElementList(){
     var styleSheets = document.styleSheets,
@@ -132,7 +162,7 @@ function CSSOM_getStyleSheetElementList(){
 };
 
 /**
- * @param {Element} elm
+ * @param {HTMLStyleElement|HTMLLinkElement} elm
  * @return {CSSStyleSheet|StyleSheet}
  */
 function CSSOM_getStyleSheet( elm ){
@@ -140,7 +170,7 @@ function CSSOM_getStyleSheet( elm ){
 };
 
 /**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+ * @param {CSSStyleSheet|StyleSheet} styleSheet
  * @return {CSSRuleList}
  */
 function CSSOM_getCssRules( styleSheet ){
@@ -149,17 +179,17 @@ function CSSOM_getCssRules( styleSheet ){
 
 /**
  * @param {CSSStyleSheet|StyleSheet} styleSheet
- * @return {Node}
+ * @return {HTMLStyleElement|HTMLLinkElement}
  */
 function CSSOM_getOwnerNode( styleSheet ){
-    return styleSheet.owningElement || styleSheet.ownerNode;
+    return /** @type {HTMLStyleElement|HTMLLinkElement} */ (styleSheet.owningElement || styleSheet.ownerNode);
 };
 
-/**
+/** CSSOM モジュールで動的に操作する StyleSheet インスタンスを生成します
  * 
- * @param {string|undefined=} opt_media 
- * @param {number|undefined=} opt_index
- * @return {CSSStyleSheet|StyleSheet|Object|undefined}
+ * @param {string=} opt_media 
+ * @param {number=} opt_index
+ * @return {CSSStyleSheet|StyleSheet|StyleSheetFallback|undefined}
  */
 function CSSOM_createStyleSheet( opt_media, opt_index ){
     var elements  = CSSOM_getStyleSheetElementList(),
@@ -192,16 +222,19 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
         styleSheet = { _media : opt_media, _index : index, isFallback : true };
     };
 
-    CSSOM_styleSheetDataList.push( {
-        _rawSheet : styleSheet,
-        _elmOwner : elmStyle,
-        _cssRules : []
-    } );
-    return styleSheet;
+    if( styleSheet ){
+        CSSOM_styleSheetDataList.push( {
+            _rawSheet : styleSheet,
+            _elmOwner : elmStyle,
+            _cssRules : []
+        } );
+        return styleSheet;
+    };
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスを削除します。
+ * 
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  */
  function CSSOM_deleteStyleSheet( styleSheet ){
     var data     = CSSOM_getDataByStyleSheet( styleSheet ),
@@ -219,12 +252,14 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
     CSSOM_styleSheetDataList.splice( CSSOM_styleSheetDataList.indexOf( data ), 1 );
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスにルールを追加します。
+ *  (a)font-face, (a)import の可否はブラウザによって異なります。(a)page は未実装。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {Object|string} urlOrStyle
- * @param {number|undefined=} opt_ruleIndex
- * @return {number}
+ * @param {number=} opt_ruleIndex
+ * @return {number} ruleIndex
  */
 function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrStyle, opt_ruleIndex ){
     var data       = CSSOM_getDataByStyleSheet( styleSheet ),
@@ -253,7 +288,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         ruleIndex = 0 <= opt_ruleIndex && opt_ruleIndex < importLength ? opt_ruleIndex : importLength;
         cssText   = selectorTextOrAtRule + ' "' + urlOrStyle + '"';
     } else {
-        ruleIndex   = importLength <= opt_ruleIndex && opt_ruleIndex < length ? opt_ruleIndex : length;
+        ruleIndex = importLength <= opt_ruleIndex && opt_ruleIndex < length ? opt_ruleIndex : length;
         for( property in urlOrStyle ){
             styles += ';' + property + ':' + urlOrStyle[ property ];
         };
@@ -267,7 +302,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     newCSSRule = { selectorTextOrAtRule : selectorTextOrAtRule, urlOrStyle : urlOrStyle, _indexStart : ruleIndex, _indexEnd : ruleIndex };
 
     if( p_Trident < 9 ){ // Firefox, Safari 3.2.3(webKit 525.29) は addRule insertRule 両方存在する
-        rawCSSRules = styleSheet.rules; // CSSOM_getCssRules( styleSheet );
+        rawCSSRules = styleSheet.rules; // <= CSSOM_getCssRules( styleSheet );
         totalRules  = rawCSSRules.length;
         if( isFontFace ){
             // http://d.hatena.ne.jp/miya2000/20070327/p0
@@ -283,9 +318,9 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             newCSSRule._elmFallback = elmStyle;
         } else {
             if( isImport ){
-                styleSheet.addImport( urlOrStyle, ruleIndex );
+                styleSheet.addImport( /** @type {string} */ (urlOrStyle), ruleIndex );
             } else if( 5.5 <= p_Trident && isPage ){
-                // addPageRule addPageRule(selector, rule, ruleIndex)
+                // styleSheet.addPageRule( selectorTextOrAtRule, styles, ruleIndex );
             } else {
                 styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
             };
@@ -335,15 +370,16 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     cssRules.splice( ruleIndex, 0, newCSSRule );
 
     if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-        CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+        CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
     };
     CSSOM_renumber( cssRules, ruleIndex );
 
     return ruleIndex;
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** p_CSSOM_insertRuleToStyleSheet() 経由で追加したルールを削除します。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @return {boolean}
  */
@@ -362,7 +398,7 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
         } else {
             CSSOM_renumber( cssRules, ruleIndex );
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
             } else if( p_Trident < 11 ){
                 // indexStart indexEnd が異なれば、その間を removeRule
                 for( ; indexStart <= indexEnd; --indexEnd ){
@@ -376,26 +412,27 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
     return !!targetRule;
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスのルールにスタイルを追加します。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @param {string} propertyOrURL
  * @param {string|number|boolean=} opt_value
  */
 function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value ){
-    var rawRules   = CSSOM_getCssRules( styleSheet ),
-        data       = CSSOM_getDataByStyleSheet( styleSheet ),
+    var data       = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules   = data._cssRules,
         targetRule = cssRules[ ruleIndex ],
         indexStart = targetRule._indexStart,
-        indexEnd   = targetRule._indexEnd;
+        indexEnd   = targetRule._indexEnd,
+        rawRules;
 
     if( targetRule ){
         // TODO @font-face
         if( targetRule.selectorTextOrAtRule === '@import' ){
             targetRule.urlOrStyle = propertyOrURL;
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
             } else if( targetRule._elmFallback ){
                 p_DOM_setAttribute( targetRule._elmFallback, 'href', propertyOrURL );
             } else if( p_Trident < 9 ){
@@ -408,21 +445,24 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value )
         } else {
             targetRule.urlOrStyle[ propertyOrURL ] = opt_value;
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( styleSheet );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
             } else if( p_Trident < 11 ){
+                rawRules = CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) );
                 // indexStart indexEnd が異なれば、その間を removeRule
                 for( ; indexStart <= indexEnd; --indexEnd ){
                     rawRules[ indexEnd ].style[ propertyOrURL ] = '' + opt_value;
                 };
             } else {
+                rawRules = styleSheet.cssRules; // <= CSSOM_getCssRules( styleSheet );
                 rawRules[ indexStart ].style[ propertyOrURL ] = '' + opt_value;
             };
         };
     };
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスのルールのスタイル値を取得します。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @param {string} property
  * @return {string}
@@ -437,9 +477,9 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
             ret = targetRule.urlOrStyle;
         } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( styleSheet ).length + ' ' + targetRule._indexStart );
+                Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) ).length + ' ' + targetRule._indexStart );
             };
-            rawRule = CSSOM_getCssRules( styleSheet )[ targetRule._indexStart ];
+            rawRule = CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) )[ targetRule._indexStart ];
             ret = rawRule && rawRule.style[ toCamelcase( property ) ];
         } else {
             ret = targetRule.urlOrStyle[ property ];
@@ -477,10 +517,11 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
 //     Firefoxに至ってはRGBフォーマットにしてしまう。
 //     またFirefoxは短縮形で取得しようとすると、設定していないプロパティにデフォルト値が入った状態で返ってくるので注意する。
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** CSSOM_insertRuleToStyleSheet(), CSSOM_setStyleOfRule() 経由で生成した StyleSheet インスタンスのルールの index を取得します。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
- * @param {string=} opt_urlOrStyle
+ * @param {Object|string=} opt_urlOrStyle
  * @return {number}
  */
 function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
@@ -500,10 +541,11 @@ function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle 
     return -1;
 };
 
-/**
- * @param {CSSStyleSheet|StyleSheet|Object} styleSheet
+/** CSSOM_insertRuleToStyleSheet(), CSSOM_setStyleOfRule() 経由で生成した StyleSheet インスタンスのルールの index を取得します。
+ *
+ * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
- * @param {string=} opt_urlOrStyle
+ * @param {Object|string=} opt_urlOrStyle
  * @return {number}
  */
 function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
@@ -523,6 +565,9 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
     return i;
 };
 
+    /**
+     * @param {StyleSheetFallback} styleSheet 
+     */
     function CSSOM_commitUpdatesToStyleSheetElement( styleSheet ){
         var data      = CSSOM_getDataByStyleSheet( styleSheet ),
             cssRules  = data._cssRules,
@@ -580,7 +625,7 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
         } else {
             // Opera 7.2~7.5 に↓は反映されない．Opera 8 の Data URI 同じ。<- TODO Gecko 0.9.x は?
             //   elmOwner.innerHTML = elmOwner.textContent = elmOwner.text = cssText;
-            data._elmOwner = p_DOM_insertElementAfter( elmOwner, tag, attr, cssText );
+            data._elmOwner = p_DOM_insertElementAfter( elmOwner, tag, attr, cssText ); // TODO replaceElement ?
             p_DOM_remove( elmOwner );
         };
     };

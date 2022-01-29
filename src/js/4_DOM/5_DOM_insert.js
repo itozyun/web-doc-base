@@ -149,13 +149,13 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
 /** 5.
  * @param {Element} targetNode
  * @param {string|number} textContent
- * @return {Node|null}
+ * @return {Text|HTMLFontElement}
  */
 function DOM_insertTextNode( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 2, targetNode, 'font', undefined, textContent );
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 2, targetNode, 'font', undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
         targetNode.appendChild( textNode );
@@ -166,13 +166,13 @@ function DOM_insertTextNode( targetNode, textContent ){
 /** 6.
  * @param {Node} targetNode
  * @param {string|number} textContent
- * @return {Node|null}
+ * @return {Text|HTMLFontElement}
  */
 function DOM_insertTextNodeBefore( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 0, targetNode, 'font', undefined, textContent );
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 0, targetNode, 'font', undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
 
@@ -184,13 +184,13 @@ function DOM_insertTextNodeBefore( targetNode, textContent ){
 /** 7.
  * @param {Node} targetNode
  * @param {string|number} textContent
- * @return {Node|null}
+ * @return {Text|HTMLFontElement}
  */
 function DOM_insertTextNodeAfter( targetNode, textContent ){
     var textNode, nextSibling;
 
     if( m_isIE4DOM ){
-        return DOM_createElement( 1, targetNode, 'font', undefined, textContent );
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 1, targetNode, 'font', undefined, textContent ));
     } else {
         textNode    = document.createTextNode( '' + textContent ),
         nextSibling = targetNode.nextSibling;
@@ -219,7 +219,7 @@ function DOM_remove( elm ){
 };
 
 /** 9.
- * @param {Node} elm
+ * @param {Element} elm
  */
 function DOM_empty( elm ){
     elm.innerHTML = '';

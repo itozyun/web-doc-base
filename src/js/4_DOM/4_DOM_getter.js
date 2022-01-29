@@ -23,7 +23,7 @@
 
 /** 2.
  * @param {Node} elm
- * @return {Array.<Node>}
+ * @return {Array.<Node>} // TODO NodeList or DOM_getChildNodeArray
  */
 function DOM_getChildNodes( elm ){
     var childNodes = m_isIE4DOM ? elm.children : elm.childNodes,
@@ -38,22 +38,22 @@ function DOM_getChildNodes( elm ){
 
 /** 3.
  * @param {Element} elm
- * @return {Array.<Node>}
+ * @return {Array.<Element>} // TODO HTMLCollection or DOM_getChildElementArray
  */
  function DOM_getChildren( elm ){
                       // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
                       //   https://t.co/nxPB0wJRJt
-    var hasChildren = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
-                      elm.children,
-        nodeList    = hasChildren ? hasChildren : elm.childNodes,
-        result      = [],
-        i           = nodeList.length,
-        j           = -1,
+    var htmlList = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
+                   elm.children,
+        nodeList = htmlList ? htmlList : elm.childNodes,
+        result   = [],
+        i        = nodeList.length,
+        j        = -1,
         node;
 
     while( i ){
         node = nodeList[ --i ];
-        if( hasChildren || node.nodeType === 1 ){
+        if( htmlList || node.nodeType === 1 ){
             if( !m_isIE4DOM || node.tagName !== 'FONT' ){
                 result[ ++j ] = node;
             };
@@ -68,7 +68,7 @@ function DOM_getChildNodes( elm ){
  */
  function DOM_getFirstChild( elm ){
     if( m_isIE4DOM ){
-        return elm.children[ 0 ];
+        return elm.children.length ? elm.children[ 0 ] : null;
     };
     return elm.firstChild;
 };
@@ -79,7 +79,9 @@ function DOM_getChildNodes( elm ){
  */
 function DOM_getLastChild( elm ){
     if( m_isIE4DOM ){
-        return elm.children[ elm.children.length - 1 ];
+        var children = elm.children;
+
+        return children.length ? children[ children.length - 1 ] : null;
     };
     return elm.lastChild;
 };

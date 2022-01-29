@@ -22,8 +22,8 @@ function m_dispatchEvent( callbackList, param ){
     };
 };
 
-// onload 後にタイマーを挟んで dispatch する
-/**
+/** onload 後にタイマーを挟んで dispatch する
+ * 
  * @param {Array.<Function>} callbackList
  * @param {*=} param
  */
