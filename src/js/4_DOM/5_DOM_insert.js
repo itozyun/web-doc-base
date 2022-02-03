@@ -228,6 +228,7 @@ function DOM_empty( elm ){
 /** 10.
  * @param {Element} parentNode
  * @param {Node} childNode
+ * @return {boolean|undefined}
  */
 function DOM_contains( parentNode, childNode ){
     if( parentNode.contains ){
@@ -243,6 +244,7 @@ function DOM_contains( parentNode, childNode ){
 
 /** 11.
  * @param {Element} elm
+ * @return {string}
  */
 function DOM_getInnerHTML( elm ){
     if( m_isIE4DOM ){
