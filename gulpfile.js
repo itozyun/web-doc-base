@@ -194,6 +194,7 @@ gulp.task('js', gulp.series(
         return gulp.src(
                 [
                     './.submodules/what-browser-am-i/src/js/0_global/*.js',
+                    '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
                     './src/js/**/*.js',
                     '!./src/js/3_EventModule/prefersColor.js',
                     '!./src/js/3_EventModule/print.js',
