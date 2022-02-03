@@ -10,7 +10,7 @@ p_DOM_getClassName    = DOM_getClassName,
 p_DOM_setClassName    = DOM_setClassName,
 p_DOM_hasClassName    = DOM_hasClassName,
 p_DOM_addClassName    = DOM_addClassName,
-p_DOM_removeClassName = DOM_removeClassName
+p_DOM_removeClassName = DOM_removeClassName;
 
 /** ===========================================================================
  * private
@@ -20,7 +20,7 @@ p_DOM_removeClassName = DOM_removeClassName
  * @param {Element} elm
  * @return {string}
  */
- function DOM_getTagName( elm ){
+function DOM_getTagName( elm ){
     return elm.tagName.toUpperCase();
 };
 

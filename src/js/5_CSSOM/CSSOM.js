@@ -236,7 +236,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
  * 
  * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  */
- function CSSOM_deleteStyleSheet( styleSheet ){
+function CSSOM_deleteStyleSheet( styleSheet ){
     var data     = CSSOM_getDataByStyleSheet( styleSheet ),
         cssRules = data._cssRules,
         i        = cssRules.length,

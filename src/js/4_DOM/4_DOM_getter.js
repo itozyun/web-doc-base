@@ -17,7 +17,7 @@
  * @param {Node} elm
  * @return {Element|null}
  */
- function DOM_getParentNode( elm ){
+function DOM_getParentNode( elm ){
     return /** @type {Element|null} */ (m_isIE4DOM ? elm.parentElement : elm.parentNode);
 };
 
@@ -40,7 +40,7 @@ function DOM_getChildNodes( elm ){
  * @param {Element} elm
  * @return {Array.<Element>} // TODO HTMLCollection or DOM_getChildElementArray
  */
- function DOM_getChildren( elm ){
+function DOM_getChildren( elm ){
                       // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
                       //   https://t.co/nxPB0wJRJt
     var htmlList = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
@@ -66,7 +66,7 @@ function DOM_getChildNodes( elm ){
  * @param {Element} elm
  * @return {Node|null}
  */
- function DOM_getFirstChild( elm ){
+function DOM_getFirstChild( elm ){
     if( m_isIE4DOM ){
         return elm.children.length ? elm.children[ 0 ] : null;
     };
