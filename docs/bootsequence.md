@@ -28,26 +28,32 @@ IE 以外のブラウザ用または Mac IE5 用の CSS が読み込まれます
 ~~~html
 <noscript>
 <style>/*<![CDATA[*/
-#noscript { display : none; border : double 5px #f66; padding: 1em; background: #300;color : #fff; }
+noscript p { display:none;border:double 5px #f66;padding:1em;background:#300;color:#fff; }
 /* Gecko ~1.8 */
 @media \0 all {
-    #noscript { display : block; }
+    noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."; }
 }
 @-moz-document url-prefix() {
     /* Gecko 1.8~1.9.2 */
-    _:not(), _:-moz-loading, #noscript { display : block; }
+    _:not(), _:-moz-loading, noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."; }
     /* Gecko 1.9.1~1.9.2 */
-    _:not(), _:-moz-handler-blocked, #noscript { display : none; }
+    _:not(), _:-moz-handler-blocked, noscript p { display:none }
 }
 /* Opera 7.20~9.27 */
 @media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) {
-    html:first-child #noscript { display : block; }
+    html:first-child noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."; }
 }
 /* Opera ~7.10 */
-#noscript, x:not(\){ display : block; }
+noscript p, x:not(\){ display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."; }
 /*]]>*/</style>
-<p id="noscript">Javascript disabled! Please enabled javascript or use new version of browser. At least Opera 9.50+ or Firefox 3.5+.
+<p>
 </noscript>
+~~~
+
+#### 短縮版
+
+~~~html
+<noscript><style>/*<![CDATA[*/noscript p{display:none;border:double 5px #f66;padding:1em;background:#300;color:#fff}@media \0 all{noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."}}@-moz-document url-prefix(){_:not(),_:-moz-loading,noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."}_:not(),_:-moz-handler-blocked,noscript p{display:none}}@media all and(-webkit-min-device-pixel-ratio:10000),not all and(-webkit-min-device-pixel-ratio:0){html:first-child noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."}}noscript p,x:not(\){display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."}/*]]>*/</style><p></noscript>
 ~~~
 
 ### 1.2. IE5~9 の場合
