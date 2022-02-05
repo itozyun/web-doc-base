@@ -106,7 +106,10 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
         p_notUndefined( p_style[ '-ms-transform' ] ) ? '-ms-transform' : 
         p_notUndefined( p_style[ '-moz-transform' ] ) ? '-moz-transform' : 
         p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
-    
+
+    // nodeCleaner もアクセスするので packageGlobal に公開する
+    p_loadEventCallbacks = [],
+
     p_dataUriTest,
     p_imageTest,
     p_webFontTest;
