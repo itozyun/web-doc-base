@@ -26,7 +26,7 @@ Array.prototype.unshift || (Array.prototype.unshift = function() {
   return H;
 });
 Array.prototype.splice || (Array.prototype.splice = function(E, m) {
-  var H = arguments, h = H.length - 2 - m, Ha = this.slice(E, E + m), ja;
+  var H = arguments, h = H.length - 2 - m, Ia = this.slice(E, E + m), ja;
   if (0 < h) {
     var I = this.length - 1;
     for (ja = E + m; I >= ja; --I) {
@@ -45,7 +45,7 @@ Array.prototype.splice || (Array.prototype.splice = function(E, m) {
   for (ja = H.length; I < ja; ++I) {
     this[I - 2 + E] = H[I];
   }
-  return Ha;
+  return Ia;
 });
 Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
   var H = this.length >>> 0;
@@ -66,10 +66,10 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
   }
   return -1;
 });
-(function(E, m, H, h, Ha, ja, I, bb, M) {
+(function(E, m, H, h, Ia, ja, I, bb, M) {
   function F(p) {
     if (E[0] === p) {
-      return Ia === Ia + "" ? I(Ia) : Ia;
+      return Ja === Ja + "" ? I(Ja) : Ja;
     }
   }
   function aa(p) {
@@ -78,12 +78,12 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       return v === v + "" ? I(v) : v;
     }
   }
-  var ea = h.body, va = ea.style, za, Ja, Ka, Ia = E[1], r = F(2) || F(3), oa = F(7), Va = F(5) || F(6), B = F(8) || F(9), T = F(11) || F(12), cb = T && 0 <= E.conpare(Ia, "1.9.1"), db = F(13), La = F(15);
+  var ea = h.body, va = ea.style, za, Ka, La, Ja = E[1], r = F(2) || F(3), oa = F(7), Va = F(5) || F(6), B = F(8) || F(9), T = F(11) || F(12), cb = T && 0 <= E.conpare(Ja, "1.9.1"), db = F(13), Aa = F(15);
   ja = F(16) || F(17);
-  var pb = F(10) || F(25), Jb = F(20) || F(22) || F(23) || F(21) || F(24), Kb = I(Ha.userAgent.split("Edg/")[1]);
-  Ha = I(Ha.appVersion.split("Trident/")[1]) + 4;
-  var qb = aa(35) || aa(36) || aa(37), rb = !r && !oa && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), eb = (oa ? "ie5mac" : 5.5 > r ? "ie5win" : 6 > r ? "ie55" : 10 > r ? "ie" + (r | 0) : 7.2 > B ? "opr70" : 8 > B ? "opr72" : 9.5 > B ? "opr" + (B | 0) : T && !cb ? 1.3 <= T ? "gck190" : 1 <= T ? "gck121" : "gck097" : "modern") + ".css", Wa = "", Lb = aa(1) || aa(2) || aa(3) || 
-  aa(4) || aa(8) || aa(9) || aa(10), sb, tb = va.transform !== M ? "transform" : va["-o-transform"] !== M ? "-o-transform" : va["-ms-transform"] !== M ? "-ms-transform" : va["-moz-transform"] !== M ? "-moz-transform" : va["-webkit-transform"] !== M ? "-webkit-transform" : "", Xa = [], fb, pa, ub, Ya, vb, wb, xb, yb;
+  var pb = F(10) || F(25), qb = F(20) || F(22) || F(23) || F(21) || F(24), Kb = I(Ia.userAgent.split("Edg/")[1]);
+  Ia = I(Ia.appVersion.split("Trident/")[1]) + 4;
+  var rb = aa(35) || aa(36) || aa(37), sb = !r && !oa && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), eb = (oa ? "ie5mac" : 5.5 > r ? "ie5win" : 6 > r ? "ie55" : 10 > r ? "ie" + (r | 0) : 7.2 > B ? "opr70" : 8 > B ? "opr72" : 9.5 > B ? "opr" + (B | 0) : T && !cb ? 1.3 <= T ? "gck190" : 1 <= T ? "gck121" : "gck097" : "modern") + ".css", Wa = "", Lb = aa(1) || aa(2) || aa(3) || 
+  aa(4) || aa(8) || aa(9) || aa(10), tb, ub = va.transform !== M ? "transform" : va["-o-transform"] !== M ? "-o-transform" : va["-ms-transform"] !== M ? "-ms-transform" : va["-moz-transform"] !== M ? "-moz-transform" : va["-webkit-transform"] !== M ? "-webkit-transform" : "", Xa = [], fb, pa, vb, Ya, wb, xb, yb, zb;
   (function() {
     function p() {
       for (var d, g = 0, l = new Date - 0; g < x.length;) {
@@ -107,10 +107,10 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       L.push({f:d, u:++Q});
       return Q;
     };
-    vb = function() {
+    wb = function() {
       O && (z(), O = setInterval(v, P));
     };
-    wb = z;
+    xb = z;
     var L = [], P = 999, Q = 0, O;
     if (5 > r || oa) {
       m._wdb_onlooptimer = v, v = "_wdb_onlooptimer()";
@@ -120,7 +120,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       x.push({f:d, p:g, u:++W, t:new Date - 0 + (ba < l ? l : ba)});
       return W;
     };
-    ub = function(d) {
+    vb = function(d) {
       for (var g = x.length, l; l = x[--g];) {
         if (l.u === d) {
           x.splice(g, 1);
@@ -129,16 +129,16 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       }
       return 0;
     };
-    xb = function() {
+    yb = function() {
       c && (t(), c = setTimeout(p, ba));
     };
-    yb = t;
+    zb = t;
     var x = [], ba = 64, W = 0, c;
     if (5 > r || oa) {
       m._wdb_ontimer = p, p = "_wdb_ontimer()";
     }
   })();
-  var Aa, Sa, gb, qa, Ba, zb, hb, ra, ib, Ab, fa, Ta, Za, ka, Ua, Ca, jb, Bb, $a, kb, Da, Ea, Ma;
+  var Ba, Sa, gb, qa, Ca, Ab, hb, ra, ib, Bb, fa, Ta, Za, ka, Ua, Da, jb, Cb, $a, kb, Ea, Fa, Ma;
   (function() {
     function p(c, d, g) {
       var l = ["<", c], n = 1, w, J;
@@ -181,10 +181,10 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     }
     function L(c, d, g, l, n, w) {
       if (x) {
-        var J = 0 === c ? "beforebegin" : 1 === c ? "afterend" : "beforeend", u = Ba(2 > c ? qa(d) : d);
+        var J = 0 === c ? "beforebegin" : 1 === c ? "afterend" : "beforeend", u = Ca(2 > c ? qa(d) : d);
         u = 2 > c ? u.indexOf(d) + c : u.length;
         d.insertAdjacentHTML(J, p(g, l, n));
-        return Ba(d)[u];
+        return Ca(d)[u];
       }
       d = ba ? h.createElement(p(g, l)) : w ? h.createElementNS("http://www.w3.org/2000/svg", g) : h.createElement(g);
       if (l && !ba) {
@@ -226,21 +226,21 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     }
     var x = 5 > r;
     za = v("html")[0];
-    Ja = v("head")[0];
-    Aa = function(c) {
+    Ka = v("head")[0];
+    Ba = function(c) {
       return m[c] || h[c] || h.getElementById(c);
     };
     Sa = v;
     gb = z;
     qa = t;
-    Ba = function(c) {
+    Ca = function(c) {
       c = x ? c.children : c.childNodes;
       for (var d = [], g = c.length; g;) {
         d[--g] = c[g];
       }
       return d;
     };
-    zb = function(c) {
+    Ab = function(c) {
       var d = !(7.03 < B && 7.2 > B) && c.children;
       c = d ? d : c.childNodes;
       for (var g = [], l = c.length, n = -1, w; l;) {
@@ -263,7 +263,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       x || (t(c).insertBefore(d, c), W && null != l && P(d, l));
       return d;
     };
-    Ab = P;
+    Bb = P;
     fa = function(c) {
       x ? c.outerHTML = "" : qa(c).removeChild(c);
     };
@@ -287,18 +287,18 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     Ua = function(c, d, g) {
       c.setAttribute(d, g);
     };
-    Ca = function(c, d) {
+    Da = function(c, d) {
       c.removeAttribute(d);
     };
     jb = function(c, d) {
       return c.hasAttribute ? c.hasAttribute(d) : null != c.getAttribute(d);
     };
-    Bb = function(c) {
+    Cb = function(c) {
       return c.className;
     };
     $a = Q;
     kb = O;
-    Da = function(c, d) {
+    Ea = function(c, d) {
       var g;
       if (!O(c, d)) {
         if (g = c.className) {
@@ -307,7 +307,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
         Q(c, g + d);
       }
     };
-    Ea = function(c, d, g) {
+    Fa = function(c, d, g) {
       c.style[d] = g;
     };
     Ma = function(c, d) {
@@ -327,7 +327,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     };
     Xa.splice(0, 0, function() {
       function c(w) {
-        w = Ba(w);
+        w = Ca(w);
         for (var J = w.length, u, K, C; J;) {
           if (u = w[--J], K = u.nodeType, 8 === K) {
             d && fa(u);
@@ -339,7 +339,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
                     break;
                   }
                 case "LINK":
-                  x || g || Ta(Ja, u) || n.push(u);
+                  x || g || Ta(Ka, u) || n.push(u);
                   break;
                 case "META":
                   K = ka(u, "name") || ka(u, "property");
@@ -373,21 +373,21 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
                   9 > r && fa(u);
                   break;
                 default:
-                  Ba(u).length && c(u);
+                  Ca(u).length && c(u);
               }
             }
           }
         }
         for (; n[0];) {
-          Ja.appendChild(n.pop());
+          Ka.appendChild(n.pop());
         }
       }
-      Ka = Aa("jsMain");
+      La = Ba("jsMain");
       var d = !(8 > B || 5 > r || oa || .9 > T), g = 7 > r, l = ["og:", "twitter:", "fb:"], n = [];
       c(za);
     });
   })();
-  var N, X, la, Fa, lb, ab, Cb, mb, Db, Eb, nb = 0;
+  var N, X, la, Ga, lb, ab, Db, mb, Eb, Fb, nb = 0;
   (function() {
     function p(f, k) {
       for (var a = 0; a < f.length; ++a) {
@@ -433,13 +433,13 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     }
     function Q() {
       var f = 9 === d.offsetWidth;
-      Eb !== f && v(R, Eb = f);
+      Fb !== f && v(R, Fb = f);
     }
     function O() {
-      return nb = sa ? Ga ? 2 : ha ? 3 : 1 : 0;
+      return nb = sa ? Ha ? 2 : ha ? 3 : 1 : 0;
     }
     function x() {
-      !C && ia && (ub(ia), ia = pa(ba));
+      !C && ia && (vb(ia), ia = pa(ba));
     }
     function ba() {
       ia = 0;
@@ -458,7 +458,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     });
     N = function(f, k, a, b) {
       if (u) {
-        f.addEventListener(k, a, b ? rb ? b : b.capture : !1);
+        f.addEventListener(k, a, b ? sb ? b : b.capture : !1);
       } else {
         var e = {i:f, h:a};
         b = n[k];
@@ -478,7 +478,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     };
     X = function(f, k, a, b) {
       if (u) {
-        f.removeEventListener(k, a, b ? rb ? b : b.capture : !1);
+        f.removeEventListener(k, a, b ? sb ? b : b.capture : !1);
       } else {
         b = n[k];
         k = "on" + k;
@@ -491,7 +491,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
         }
       }
     };
-    var n = {}, w = !1, J = 525.13 > La, u = !J && !oa && m.addEventListener, K;
+    var n = {}, w = !1, J = 525.13 > Aa, u = !J && !oa && m.addEventListener, K;
     J && za.addEventListener("click", function(f) {
       if (K) {
         return K = !1, f.preventDefault(), !1;
@@ -500,7 +500,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     la = function(f) {
       Xa.push(f);
     };
-    Fa = function(f) {
+    Ga = function(f) {
       wa.push(f);
     };
     var C = function(f) {
@@ -508,9 +508,9 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       C = null;
       p(Xa, f);
     }, wa = [];
-    419.3 >= La ? pa(L) : N(m, "load", C);
+    419.3 >= Aa ? pa(L) : N(m, "load", C);
     (r || 1.8 > T) && N(m, "unload", P);
-    Cb = function(f) {
+    Db = function(f) {
       R.push(f);
     };
     var R = [];
@@ -518,23 +518,23 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       Q();
       Ya(Q);
     });
-    Db = function(f) {
+    Eb = function(f) {
       Y.push(f);
     };
-    var Y = [], sa, ha, Ga;
-    if (10 <= r || Va || qb && Kb) {
+    var Y = [], sa, ha, Ha;
+    if (10 <= r || Va || rb && Kb) {
       c("(-ms-high-contrast:black-on-white)").addListener(function(f) {
         sa = ha = f.matches;
         v(Y, O());
       }), c("(-ms-high-contrast:white-on-black)").addListener(function(f) {
-        sa = Ga = f.matches;
+        sa = Ha = f.matches;
         v(Y, O());
       }), c("(-ms-high-contrast:active)").addListener(function(f) {
         sa = f.matches;
         v(Y, O());
       });
     } else {
-      if (10 > r || qb && (44 <= T || db)) {
+      if (10 > r || rb && (44 <= T || db)) {
         var Z = function() {
           function f(e) {
             return "#ffffff" === e || "rgb(255,255,255)" === e;
@@ -543,12 +543,12 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
           k = (b && b.color || "").split(" ").join("");
           b = (b && b.backgroundColor || "").split(" ").join("");
           if (k) {
-            return sa = "#123456" !== k && "rgb(18,52,86)" !== k, ha = ("#000000" === k || "rgb(0,0,0)" === k) && f(b), Ga = f(k) && ("#000000" === b || "rgb(0,0,0)" === b), a !== O() && v(Y, nb), !0;
+            return sa = "#123456" !== k && "rgb(18,52,86)" !== k, ha = ("#000000" === k || "rgb(0,0,0)" === k) && f(b), Ha = f(k) && ("#000000" === b || "rgb(0,0,0)" === b), a !== O() && v(Y, nb), !0;
           }
         };
         la(function() {
-          Ea(d, "color", "#123456");
-          Ea(d, "backgroundColor", "#123456");
+          Fa(d, "color", "#123456");
+          Fa(d, "backgroundColor", "#123456");
           60 > T || db ? Z() : Z() && Ya(Z);
           Z = null;
         });
@@ -564,7 +564,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
         a && fb(f, k[--a].src);
       }
       var k = h.images || Sa("img"), a = k.length;
-      if (9 <= B && 12 > B) {
+      if (9 <= B && 12 > B || 532 > Aa) {
         a && fb(f, k[--a].src);
       } else {
         for (; a;) {
@@ -578,7 +578,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     };
     var Na = [], ia;
     N(m, "resize", x);
-    Fa(function() {
+    Ga(function() {
       ia && clearTimeout(ia);
       X(m, "resize", x);
     });
@@ -590,7 +590,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       var f = m.scrollY || ea.scrollTop;
       ma !== f && (ma = f, W());
     }) : N(m, "scroll", W);
-    Fa(function() {
+    Ga(function() {
       ta || X(m, "scroll", W);
     });
   })();
@@ -600,9 +600,9 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       var z = ra(za, "style"), t = !(!z.styleSheet && !z.sheet);
       fa(z);
       return t;
-    }() || !La || p || v || function() {
+    }() || !Aa || p || v || function() {
       var z = ra(za, "style");
-      Ab(z, "");
+      Bb(z, "");
       var t = !(!z.styleSheet && !z.sheet);
       fa(z);
       return t;
@@ -612,7 +612,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     9 > r && la(function() {
       var p = ra(ea, "div");
       Ma(p, "position:absolute;top:0;left:0;width:1px;height:1px;line-height:1px;filter:dropshadow() progid:DXImageTransform.Microsoft.Shadow()");
-      sb = 1 < p.offsetHeight;
+      tb = 1 < p.offsetHeight;
       Ma(p, "");
       fa(p);
     });
@@ -633,8 +633,8 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
   })();
   (function() {
     function p() {
-      g = ra(Ja, "link", {type:"text/css", rel:"stylesheet", media:"screen", href:na + "css/" + Wa + "hc/" + eb});
-      (tb || 5.5 <= r && 9 > r && sb) && Da(ea, "jsCanRotate");
+      g = ra(Ka, "link", {type:"text/css", rel:"stylesheet", media:"screen", href:na + "css/" + Wa + "hc/" + eb});
+      (ub || 5.5 <= r && 9 > r && tb) && Ea(ea, "jsCanRotate");
       p = null;
     }
     function v(a) {
@@ -645,14 +645,14 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
             e = b.l;
             var D = q = b.j;
             if (b.B) {
-              if (Ea(e, "width", b.J), e.src = b.I, $a(D, b.D), e = b.v) {
+              if (Fa(e, "width", b.J), e.src = b.I, $a(D, b.D), e = b.v) {
                 Ma(e, b.C), $a(e, "caption jsCap");
               }
             } else {
               if (y = b.A) {
                 for (delete b.A; q = qa(q);) {
                   if (kb(q, "caption")) {
-                    b.v = q, b.C = q.style.cssText, Da(q, "jsCap");
+                    b.v = q, b.C = q.style.cssText, Ea(q, "jsCap");
                   } else {
                     var G = Za(q);
                     if ("DIV" === G || "P" === G || "BLOCKQUOT" === G) {
@@ -672,12 +672,12 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
                 }
                 b.G = y;
               }
-              b.D = Bb(D);
-              Da(D, "jsPicaLarge");
-              Ea(e, "width", "");
+              b.D = Cb(D);
+              Ea(D, "jsPicaLarge");
+              Fa(e, "width", "");
               e.src = b.G;
               if (e = b.v) {
-                Ma(e, ""), Da(e, "jsCapLarge");
+                Ma(e, ""), Ea(e, "jsCapLarge");
               }
             }
             b.B = !b.B;
@@ -722,13 +722,13 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
           }
         }
       }
-      var S = Y + ":translate" + (Ga ? "3D(0," : "(0,"), Oa = Ga ? "px,0)" : "px)", D = t(m.innerHeight, K.offsetHeight), G = wa, V = G.offsetHeight, da = R.offsetHeight, A = 0, ca = "", U = 0, Fb = C.offsetTop === G.offsetTop, Mb = da < V;
-      if (Fb) {
+      var S = Y + ":translate" + (Ha ? "3D(0," : "(0,"), Oa = Ha ? "px,0)" : "px)", D = t(m.innerHeight, K.offsetHeight), G = wa, V = G.offsetHeight, da = R.offsetHeight, A = 0, ca = "", U = 0, Gb = C.offsetTop === G.offsetTop, Mb = da < V;
+      if (Gb) {
         for (; G;) {
           A += G.offsetTop || 0, G = G.offsetParent || G.parentElement;
         }
         G = A + V <= a;
-        var Nb = a + D <= A, Gb = a < A && A < a + D, Hb = a < A + V && A + V < a + D, Ob = Gb && Hb, Ra = A + V - a < D ? A + V - a : D, ob = da <= Ra;
+        var Nb = a + D <= A, Hb = a < A && A < a + D, Ib = a < A + V && A + V < a + D, Ob = Hb && Ib, Ra = A + V - a < D ? A + V - a : D, ob = da <= Ra;
         if (0 <= e) {
           if (ob) {
             return;
@@ -751,14 +751,14 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
               U = sa - 60 * b, 0 < b ? (e = a + D - A - da, e = V - da < e ? V - da : e, U = U < e ? e : U) : (e = 0 > a - A ? 0 : a - A, U = e < U ? e : U), y(U);
             }
           } else {
-            Mb && (Gb || Nb ? y(0) : ob ? y(a - A) : Hb || G ? y(V - da) : (e = a + D - A - da, y(0 > e ? 0 : e)));
+            Mb && (Hb || Nb ? y(0) : ob ? y(a - A) : Ib || G ? y(V - da) : (e = a + D - A - da, y(0 > e ? 0 : e)));
           }
         }
       }
       Y && ca && (ca += ";-webkit-overflow-scrolling:touch;");
       Ma(R, ca);
       sa = U;
-      return Fb && !Ob && !Pb;
+      return Gb && !Ob && !Pb;
     }
     function Q(a) {
       T && (ha = t(m.pageYOffset, K.scrollTop, ea.scrollTop));
@@ -767,7 +767,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
     }
     function O(a) {
       for (var b = -1, e; e = n[++b];) {
-        Ta(Aa(e), a.target) && Q(a);
+        Ta(Ba(e), a.target) && Q(a);
       }
     }
     function x(a) {
@@ -785,10 +785,10 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       Na.call(ia);
     }
     function W() {
-      h.fullscreenElement || h.fullscreen || h.webkitIsFullscreen || h.msFullscreenElement || m.fullScreen ? (Ua(ia, "id", "blog2slide-root"), ta[1].parentNode.insertBefore(xa, ta[1]), c(), h.onkeydown = d) : ma && (fa(xa), Ca(ia, "id"), Ca(ma, "id"), ma = h.onkeydown = null);
+      h.fullscreenElement || h.fullscreen || h.webkitIsFullscreen || h.msFullscreenElement || m.fullScreen ? (Ua(ia, "id", "blog2slide-root"), ta[1].parentNode.insertBefore(xa, ta[1]), c(), h.onkeydown = d) : ma && (fa(xa), Da(ia, "id"), Da(ma, "id"), ma = h.onkeydown = null);
     }
     function c() {
-      ma && Ca(ma, "id");
+      ma && Da(ma, "id");
       f = 0 < f ? k < f ? k : f : 0;
       ma = ta[f];
       Ua(ma, "id", "blog2slide-current");
@@ -803,56 +803,56 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       }
     }
     var g;
-    Db(function(a) {
-      a && !g ? p && p() : a ? Ja.appendChild(g) : fa(g);
+    Eb(function(a) {
+      a && !g ? p && p() : a ? Ka.appendChild(g) : fa(g);
     });
     var l = [];
     pb || (mb(function(a) {
-      if (a.o && Ka) {
+      if (a.o && La) {
         a = a.m;
         var b = qa(a);
-        if ("A" === Za(b) && 1 === zb(b).length) {
+        if ("A" === Za(b) && 1 === Ab(b).length) {
           var e = ka(b, "href"), q = e.split("?")[0].split("#")[0].split(".");
           q = (q[q.length - 1] || "").toLowerCase();
-          0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + q + ".") && (N(b, "keydown", v), N(a, "click", v), N(b, "click", z), q = 8 > B ? "" : a.offsetWidth - 4 + "px", Ea(a, "width", q), Da(b, "jsPica"), l.push({j:b, I:a.src, J:q, A:e, l:a}));
+          0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + q + ".") && (N(b, "keydown", v), N(a, "click", v), N(b, "click", z), q = 8 > B ? "" : a.offsetWidth - 4 + "px", Fa(a, "width", q), Ea(b, "jsPica"), l.push({j:b, I:a.src, J:q, A:e, l:a}));
         }
       }
-    }), Fa(function(a, b) {
+    }), Ga(function(a, b) {
       for (a = -1; b = l[++a];) {
         X(b.j, "keydown", v), X(b.l, "click", v), X(b.j, "click", z);
       }
     }));
-    var n = ["jsSidebarFixer1", "jsSidebarFixer2"], w = 10 <= r || Va || Jb || La, J = T || db || Va, u = !(5 > F(16) || 5 > F(17) || 2.2 > F(21) || 6 > F(12) || aa(30) && 534 > La || aa(32) || 7 > r || 9 > B), K, C, wa, R, Y = tb, sa = 0, ha = 0, Ga, Z, ya = T && 0 <= E.conpare(Ia, "0.9.7");
-    Ib || pb || 8 > B || (Cb(function(a) {
+    var n = ["jsSidebarFixer1", "jsSidebarFixer2"], w = 10 <= r || Va || qb || Aa, J = T || db || Va, u = !(5 > F(16) || 5 > F(17) || 2.2 > F(21) || 6 > F(12) || aa(30) && 534 > Aa || aa(32) || 7 > r || 9 > B), K, C, wa, R, Y = ub, sa = 0, ha = 0, Ha, Z, ya = T && 0 <= E.conpare(Ja, "0.9.7");
+    Jb || pb || 8 > B || (Db(function(a) {
       if (a) {
-        if (!Ka) {
+        if (!La) {
           return !0;
         }
         a = -1;
         var b;
         K = "CSS1Compat" !== h.compatMode ? ea : za || ea;
-        C = Aa("jsSide");
-        wa = Ka;
+        C = Ba("jsSide");
+        wa = La;
         if (!C) {
           return !0;
         }
         ab(L);
         lb(L);
         R = ib(hb(C), "div", {id:"jsSidebarFixer"});
-        for (r || oa ? N(R, "focusin", x) : J ? N(h, "focus", x, {capture:!0, passive:!1}) : N(R, "DOMFocusIn", x, !1); 1 < Ba(C).length;) {
-          R.appendChild(Ba(C)[1]);
+        for (r || oa ? N(R, "focusin", x) : J ? N(h, "focus", x, {capture:!0, passive:!1}) : N(R, "DOMFocusIn", x, !1); 1 < Ca(C).length;) {
+          R.appendChild(Ca(C)[1]);
         }
         for (; b = n[++a];) {
-          b = Aa(b), b.onwheel !== M ? N(b, "wheel", Q, {passive:!1}) : cb ? N(b, "MozMousePixelScroll", Q, !1) : ya || (b.onmousewheel !== M || B) && N(b, "mousewheel", Q, !1);
+          b = Ba(b), b.onwheel !== M ? N(b, "wheel", Q, {passive:!1}) : cb ? N(b, "MozMousePixelScroll", Q, !1) : ya || (b.onmousewheel !== M || B) && N(b, "mousewheel", Q, !1);
         }
         ya && N(h, "DOMMouseScroll", O, !1);
-        Ga = !r && !Va && (va.perspective !== M || va["-moz-perspective"] !== M || va["-webkit-perspective"] !== M);
+        Ha = !r && !Va && (va.perspective !== M || va["-moz-perspective"] !== M || va["-webkit-perspective"] !== M);
         L();
         return !0;
       }
-    }), Fa(function() {
+    }), Ga(function() {
       for (var a = -1, b; b = n[++a];) {
-        b = Aa(b), b.onwheel !== M ? X(b, "wheel", Q, {passive:!1}) : cb ? X(b, "MozMousePixelScroll", Q, !1) : ya || (b.onmousewheel !== M || B) && X(b, "mousewheel", Q, !1);
+        b = Ba(b), b.onwheel !== M ? X(b, "wheel", Q, {passive:!1}) : cb ? X(b, "MozMousePixelScroll", Q, !1) : ya || (b.onmousewheel !== M || B) && X(b, "mousewheel", Q, !1);
       }
       ya && X(h, "DOMMouseScroll", O, !1);
       r || oa ? X(R, "focusin", Q, !1) : J ? X(h, "focus", x, {capture:!0, passive:!1}) : X(R, "DOMFocusIn", x, !1);
@@ -876,15 +876,15 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
         G = V ? ib(hb(e), da, {className:G}) : ra(e, da, {className:G});
         ra(G, "a", 0 === D.indexOf("http") ? {target:"_blank", rel:"nofollow noopener noreferrer", F:!0, href:D, H:B ? "0" : M} : {F:!0, href:D, H:B ? "0" : M}, Oa);
       }
-      if (Ka) {
-        for (var b = gb(Ka, "blockquote"), e, q = -1, y, S; e = b[++q];) {
-          y = ka(e, "title"), S = ka(e, "cite"), y && S ? (Ca(e, "title"), a(y, S, "js-bqLink", !0)) : S && (Ca(e, "cite"), a(m.decodeURI ? decodeURI(S) : S, S, "js-bqCite"));
+      if (La) {
+        for (var b = gb(La, "blockquote"), e, q = -1, y, S; e = b[++q];) {
+          y = ka(e, "title"), S = ka(e, "cite"), y && S ? (Da(e, "title"), a(y, S, "js-bqLink", !0)) : S && (Da(e, "cite"), a(m.decodeURI ? decodeURI(S) : S, S, "js-bqCite"));
         }
       }
     });
     var Na, ia, xa, ma, ta, f, k;
     la(function() {
-      var a = Aa("blog2slide-start"), b = h.onfullscreenchange !== M ? "f" : h.onmozfullscreenchange !== M ? "mozF" : h.onwebkitfullscreenchange !== M ? "webkitF" : 0;
+      var a = Ba("blog2slide-start"), b = h.onfullscreenchange !== M ? "f" : h.onmozfullscreenchange !== M ? "mozF" : h.onwebkitfullscreenchange !== M ? "webkitF" : 0;
       a && (Na = a.requestFullscreen || a.webkitRequestFullscreen || a.mozRequestFullscreen || a.msRequestFullscreen, 0 !== b || Na ? (a.innerHTML = '<button class="btn">\u30b9\u30e9\u30a4\u30c9\u3092\u958b\u59cb\u3059\u308b</button>', N(a.firstChild, "click", ba), a = qa(a), ia = qa(a), ta = gb(a, "section"), xa = h.createElement("h1"), xa.innerHTML = Sa("h1")[0].innerHTML, k = ta.length, ta.splice(0, 0, xa), 0 !== b ? N(h, b + "ullscreenchange", W) : r ? N(h, "MSFullscreenChange", W, !1) : lb(W)) : 
       fa(a));
     });
@@ -892,13 +892,13 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
       var b = a.m;
       a = a.o;
       var e = qa(b);
-      kb(e, "aBodyRoot") ? a || ka(b, "alt") || Ea(b, "display", "none") : Da(e, a ? "img-loaded" : "img-disabled");
+      kb(e, "aBodyRoot") ? a || ka(b, "alt") || Fa(b, "display", "none") : Ea(e, a ? "img-loaded" : "img-disabled");
     });
   })();
   (function() {
     8 <= B && la(function() {
       for (var p = Sa("a"), v = p.length, z = 0, t; z < v; ++z) {
-        t = p[z], "-1" === ka(t, "tabindex") ? Ca(t, "tabindex") : ka(t, "href") && Ua(t, "tabindex", "0");
+        t = p[z], "-1" === ka(t, "tabindex") ? Da(t, "tabindex") : ka(t, "href") && Ua(t, "tabindex", "0");
       }
     });
   })();
@@ -907,14 +907,14 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(E, m) {
   --na.length;
   "js" === na[na.length - 1] && --na.length;
   (na = na.join("/")) && (na += "/");
-  var Ib = Lb || "1" === ka(ea, "mob");
-  Wa = (Ib ? "mb" : "pc") + "/";
-  6.1 > ja && ab(vb);
-  Fa(wb);
-  6.1 > ja && ab(xb);
-  Fa(yb);
-  10 > r && (11 !== Ha || 5 !== r) || (9 > B || 1 > T || !oa && !m.addEventListener ? h.write('<link href="' + na + "css/" + Wa + eb + '" rel="stylesheet" type="text/css" media="screen,handheld,print">') : 419.3 >= La && la(function() {
-    ra(Ja, "link", {href:na + "css/" + Wa + eb, rel:"stylesheet", type:"text/css", media:"screen,handheld,projection,tv,print"});
+  var Jb = Lb || "1" === ka(ea, "mob");
+  Wa = (Jb ? "mb" : "pc") + "/";
+  6.1 > ja && ab(wb);
+  Ga(xb);
+  6.1 > ja && ab(yb);
+  Ga(zb);
+  10 > r && (11 !== Ia || 5 !== r) || (9.5 > B || 1.5 > T || !oa && !m.addEventListener ? h.write('<link href="' + na + "css/" + Wa + eb + '" rel="stylesheet" type="text/css" media="screen,handheld,print">') : (532 >= Aa || 2 > qb) && la(function() {
+    ra(Ka, "link", {href:na + "css/" + Wa + eb, rel:"stylesheet", type:"text/css", media:"screen,handheld,projection,tv,print"});
   }));
 })(ua, this, function() {
 }, document, navigator, screen, parseFloat, Number, void 0);
