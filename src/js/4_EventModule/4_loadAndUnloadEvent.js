@@ -25,7 +25,7 @@ m_initEventHandler = function( e ){
 var Event_unloadEventCallbacks = [];
 
 // Re: onLoad doesn't work with Safari?
-// http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
+//   https://web.archive.org/web/20050418235512/http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
 if( p_WebKit <= 419.3 ){ // Safari 2-
     p_setTimer( _Event_onloadDoesnotWorkSafari );
 } else {

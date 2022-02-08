@@ -9,13 +9,14 @@ if( DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS ){
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Tasman );
 
     if(
-        cssAndJsLoader_gecko  < 1 ||
-        cssAndJsLoader_presto < 9 ||
+        cssAndJsLoader_gecko  < 1.5 ||
+        cssAndJsLoader_presto < 9.5 ||
         cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident       ) < 10 ||
         cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
         // Re: onLoad doesn't work with Safari?
-        // http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
-        cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_WebKit       ) <= 419.3 || // Safari 2-
+        //   https://web.archive.org/web/20050418235512/http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
+        cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_WebKit       ) <= 532 || // Windows XP + Safari 4.0.5-, noscript.textContent が ""
+        cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Chromium     )  <   2 || // Windows XP + Chrome-, noscript.textContent が ""
         !window.addEventListener && !window.attachEvent
     ){
         // document.write('<link href="' + cssAndJsLoader_assetUrl + cssAndJsLoader_cssName + '" rel="stylesheet" type="text/css">');
@@ -54,7 +55,7 @@ function cssAndJsLoader_onload(){
 
     for( ; i < l; ++i ){
         noscript = noscripts[ i ];
-        content  = noscript.textContent,
+        content  = noscript.textContent;
         end      = content.indexOf( 'modern.css"' );
         start    = content.lastIndexOf( '@import "', end ); // @import が2つある為、先に end を調べる
         if( 0 <= start && 0 < end ){

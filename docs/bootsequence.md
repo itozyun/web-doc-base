@@ -70,13 +70,15 @@ main.js のロードに失敗するケースに備えて、ごく一部のブラ
 
 ### 1.4. main.js から CSS を読み込む
 
-Presto < 9, Gecko < 1, Safari < 3, IE 以外の `addEventListener` をサポートしないブラウザは常にここで CSS を読み込みます。
+Gecko <1.5, Opera <9.5, Safari <=4.0.5, IE 以外の `addEventListener` をサポートしないブラウザは常にここで CSS を読み込みます。
 
 インライン javascript の CSS ローダーを使わないビルド設定の場合、全ての IE 以外のブラウザと Mac IE 5 もここから CSS を読み込みます。
 
 `<script>` の `src` からアセットディレクトリを取得します。Presto < 9, Gecko < 1 は、CSS 周りのバグを回避する為に `document.write()` で  `<link>` 要素を追加します。
 
 Safari < 3 には `load` イベントがいない為、常にこのフォールバックのある main.js から CSS を読み込みます。
+
+1 <= Gecko <1.5, 9 <= Opera <9.5, 3 <= Safari <=4.0.5 では `<noscript>` 下の `textContent` を取得できない為、ここから CSS を読み込みます。
 
 ## 2. ビルドオプション
 
@@ -96,7 +98,7 @@ var
 | IE 5~9 | 2 | 2 |
 | modern browsers | 3 | 1 |
 | Mac IE 5 | 3 | 1 |
-| Gecko <1, Opera <9, Safari <3 | 4 | 1 |
+| Gecko <1.5, Opera <9.5, Safari <=4.0.5 | 4 | 1 |
 
 ### 2.2. インライン javascript の CSS ローダーを使わない設定で main.js をビルドする
 
@@ -107,7 +109,7 @@ CSS ライブラリプロジェクト等では、インライン javascript と 
 | IE 5~9 | 2 | 2 |
 | modern browsers | 4 | 1 |
 | Mac IE 5 | 4 | 1 |
-| Gecko <1, Opera <9, Safari <3 | 4 | 1 |
+| Gecko <1.5, Opera <9.5, Safari <=4.0.5 | 4 | 1 |
 
 ## 3. CSS の読み込みと文書のパフォーマンス
 
