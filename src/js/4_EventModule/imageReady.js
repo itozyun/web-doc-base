@@ -24,7 +24,7 @@ p_listenLoadEvent(
             };
         };
 
-        if( 9 <= p_Presto && p_Presto < 12 ){
+        if( 9 <= p_Presto && p_Presto < 12 || p_WebKit < 532 ){ // Windows XP + Safari 4.0.5 で判定に失敗する為こちらへ
             i && p_imageTest( testForPresto, imgs[ --i ].src );
         } else {
             for( ; i; ){
