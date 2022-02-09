@@ -139,7 +139,7 @@ function CSSOM_getStyleSheetElementList(){
 
     if( styleSheets ){
         for( l = styleSheets.length; i < l; ++i ){
-            if( p_ChromiumBase < 2 ||          // Windows Chrome 1.0.154 WebKit 525.19, DOM ツリーから抜いた <link> が存在する!
+            if( p_Chromium < 2 ||              // Windows Chrome 1.0.154 WebKit 525.19, DOM ツリーから抜いた <link> が存在する!
                 p_Windows && p_WebKit < 526 ){ // Windows Safari 3.2.3   WebKit 525.29, 同上
                 elm = CSSOM_getOwnerNode( styleSheets[ i ] );
                 elm.parentNode && ( elementList[ i ] = elm );
@@ -334,7 +334,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRules.length - totalRules ) );
         };
     } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-        if( ( p_Windows && p_WebKit || p_ChromiumBase < 28 ) && isImport ){
+        if( ( p_Windows && p_WebKit || p_Chromium < 28 ) && isImport ){
             // .insertRule を使うと SyntaxError: DOM Exception 12: An invalid or illegal string was specified.
             //   Windows + WebKit で起きる問題の模様
             //
@@ -353,6 +353,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 { href : urlOrStyle, rel : 'stylesheet', type : 'text/css' } 
             );
         } else if( p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE && isFontFace ){
+            // WebFont 非対応ブラウザではエラーが起るので、ここには入らない!
             elmStyle = newCSSRule._elmFallback = p_DOM_insertElementAfter(
                 elmOwner,
                 'style',

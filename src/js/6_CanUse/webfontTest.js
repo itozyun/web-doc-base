@@ -19,7 +19,7 @@
  */
 
 // Data URI スキームをサポートするが Web フォントには使えない環境
-var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_ChromiumBase < 2 ||
+var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_Chromium < 2 ||
                                             p_Presto  < 12; // Windows Opera 12.18 で確認
 var TEST_WEBFONT_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + ( new Date - 0 ) + '_' );
 var TEST_WEBFONT_LOADED_EMBEDED_WEBFONT   = 5000;

@@ -49,11 +49,12 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_WebKit         = p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_WebKit ),
     p_SafariMobile   = p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_SafariMobile  ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_iOSWebView ),
     p_cloudRendering = p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_OperaMini     ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB ),
-    p_ChromiumBase   = p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Chromium      ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_ChromiumMobile ) ||
+    p_Chromium       = p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Chromium      ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_ChromiumMobile ),
+    p_isChromiumBase = p_Chromium                                                      ||
                        p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_ChromeWebView ) || p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP ) ||
                        p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Samsung       ), // KaiOS, Silk ?
-    p_ChromiumEdge   = parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
-    p_IEVersion      = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4,
+    p_ChromiumEdge   = p_Chromium && parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
+    p_IEVersion      = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4, // brand が無いので
     p_Windows        = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win16 ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win32 ) ||
                        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win64 ),
 

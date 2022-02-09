@@ -15,7 +15,7 @@ if( DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID ){
                                                 // Opera : CSS-P をサポートするのは 7.20 以降
                                                 7.2 <= p_Presto ||
                                                 // Webkit : Safari 3.0 では既に十分な CSS-p のサポート
-                                                522 <= p_WebKit || 3 <= p_SafariMobile || p_ChromiumBase ? 2 :
+                                                522 <= p_WebKit || 3 <= p_SafariMobile || p_isChromiumBase ? 2 :
                                                 6   <= p_Presto || p_Gecko ? 1 : 0;
                     if( !p_generatedContentEnabled ){
                         var elm = p_DOM_insertElement(

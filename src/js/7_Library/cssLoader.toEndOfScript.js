@@ -18,8 +18,8 @@ if(
     } else if(
         p_Presto   <  9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
         p_Gecko    <  1.5 || // Windows XP + Gecko  1.4.1  , noscript 下のコンテンツが取れない
-        p_WebKit <= 532 || // Windows XP + Safari 4.0.5- , noscript.textContent が ""
-        p_ChromiumBase <  2 || // Windows XP + Chrome 1.0.154, noscript.textContent が ""
+        p_WebKit   <= 532 || // Windows XP + Safari 4.0.5- , noscript.textContent が ""
+        p_Chromium <  2   || // Windows XP + Chrome 1.0.154, noscript.textContent が ""
         !DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS
     ){
         p_listenLoadEvent(
