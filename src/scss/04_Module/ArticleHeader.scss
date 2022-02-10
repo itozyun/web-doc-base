@@ -13,14 +13,18 @@
             @if( $UA_Modern or $UA_IE9 ){
                 @extend %mincho;
             }
+            font-size : 2em;
+            color     : $COLOR_Default_text;
 
-            font-size      : 2em;
-            padding        : 0;
-            margin         : 2em 0;
+            @if( $UA_Gck-097 or $UA_Gck101-121 ){
+                padding : 2em 0;
+            } @else {
+                padding : 0;
+                margin  : 2em 0;
+            }
 
-            color          : $COLOR_Default_text;
             @if( $Option_mobileOnly == false ){
-                text-align     : left;
+                text-align : left;
             }
         }
     .ribbon .AHead {
