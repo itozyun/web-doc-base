@@ -8,7 +8,7 @@ if( !p_cloudRendering ){
 
             var elmImg = result.img, 
                 elmA   = p_DOM_getParentNode( elmImg ),
-                href, ext, thumbWidth;
+                href, ext, thumbWidth = '';
 
             if( p_DOM_getTagName( elmA ) === 'A' && p_DOM_getChildren( elmA ).length === 1 ){
                 href = p_DOM_getAttribute( elmA, 'href' );
@@ -18,9 +18,11 @@ if( !p_cloudRendering ){
                     p_addEventListener( elmA  , 'keydown', PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmImg, 'click'  , PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmA  , 'click'  , PicaThumbnail_onClickAnchor );
-                    // Opera 7.x : elmImg.style.width への setter で float が解除される
-                    thumbWidth     = p_Presto < 8 ? '' : ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
-                    p_DOM_setStyle( elmImg, 'width', thumbWidth );
+                    // Opera 7.x, 8, 8.5 : elmImg.style.width への setter で float が解除される
+                    if( !( p_Presto < 9 ) ){
+                        thumbWidth = ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
+                        p_DOM_setStyle( elmImg, 'width', thumbWidth );
+                    };
                     p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
                     PicaThumbnail_IMGS.push( {
                         elmA        : elmA,
