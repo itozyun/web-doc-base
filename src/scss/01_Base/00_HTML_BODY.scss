@@ -38,8 +38,8 @@
         height : 100%;
     }
     body {
-        @if( $UA_Opera8 ){
-            padding : 0; /* opera 8 */
+        @if( $UA_Opera8 or $IS_Opera7x ){
+            padding : 0; /* opera 7-8 */
         }
     }
     /* //_{@ie5win */
