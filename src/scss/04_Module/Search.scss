@@ -23,6 +23,51 @@ $SEARCH_BTN_WIDTH : 3em;
         }
         padding : 0;
     }
+} @else if( $IS_OLD_GECKO ){
+    @if( $Option_simpleHeader ){
+        #lH .lSi {
+            padding-right : #{$SEARCH_BTN_WIDTH + $INPUT_BORDER_WIDTH};
+        }
+    }
+    .Search {
+        height : $BASE_LINE_HEIGHT_EM;
+    }
+    .Search-txt {
+        width : 100%;
+    }
+    @if( $UA_Gck-097 ){
+        @if( $Option_simpleHeader ){
+            #lH .lSi {
+                position : relative;
+            }
+        }
+        .Search .btn {
+            position : absolute;
+            top      : 0;
+        }
+    } @else if( $UA_Gck101-121 or $UA_Gck130-190 ){
+        .Search {
+            position : relative;
+            display  : block;
+        }
+        /* override Gecko 1.2~1.8.1 */
+        .Search input /* [_lazyhack_="_:lang(x)"] */ {
+            position : absolute;
+            top      : 0;
+            display  : block;
+        }
+         .Search-txt /* [_lazyhack_="_:lang(x)"] */ {
+            left : 0;
+            height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        }
+        @if( $UA_Gck130-190 ){
+            @-moz-document url-prefix() { /* override Gecko 1.8~ */
+                .Search-txt {
+                    height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+                }
+            }
+        }
+    }
 } @else {
     .Search {
         position : relative;
@@ -103,7 +148,13 @@ $SEARCH_BTN_WIDTH : 3em;
             right    : math.div($INPUT-BORDER-WIDTH, 2);
         }
 
-        @if( $UA_Opera9 ){
+        @if( $UA_Gck-097 ){
+            width    : $SEARCH_BTN_WIDTH;
+            right    : - $INPUT-BORDER-WIDTH;
+        } @else if( $UA_Gck101-121 or $UA_Gck130-190 ){
+            width    : $SEARCH_BTN_WIDTH;
+            right    : - $SEARCH_BTN_WIDTH - $INPUT-BORDER-WIDTH;
+        } @else if( $UA_Opera9 ){
             width    : $SEARCH_BTN_WIDTH;
             right    : math.div($INPUT-BORDER-WIDTH, 2);
         }
@@ -115,46 +166,3 @@ $SEARCH_BTN_WIDTH : 3em;
         white-space   : nowrap;
         text-overflow : ellipsis;
     }
-
-@if( $IS_OLD_GECKO ){
-    .Search {
-        margin : 0;
-    }
-    .Search input {
-        position : static;
-        display  : inline;
-        display  : -moz-inline-box;
-    }
-    .Search-txt {
-        width  : 60%;
-        height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    }
-    @if( $UA_Gck101-121 or $UA_Gck130-190 ){
-        /* override Gecko 1.2~1.8.1 */
-        .Search [_lazyhack_="_:lang(x)"] {
-            margin : 0 $SEARCH_BTN_WIDTH 0 #{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
-        }
-        .Search input [_lazyhack_="_:lang(x)"] {
-            position : absolute;
-            display  : block;
-        }
-        .Search-txt [_lazyhack_="_:lang(x)"] {
-            width : 100%;
-        }
-    }
-    @if( $UA_Gck130-190 ){
-        @-moz-document url-prefix() { /* override Gecko 1.8~ */
-            .Search-txt {
-                height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-            }
-        }
-    }
-}
-@if( $IS_Opera7x ){
-    .Search input {
-        position     : static;
-        display      : inline;
-        border-width : 0;
-        padding      : 0;
-    }
-}
