@@ -19,9 +19,9 @@ blockquote {
     }
 
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        @if( $IS_OLD_GECKO == false ){
-            blockquote:before {
-                content : attr(title);
+        blockquote:before {
+            content : attr(title);
+            @if( $CANUSE_PSEUDO_BLOCK ){
                 display : block;
             }
         }
@@ -31,9 +31,7 @@ blockquote {
     }
 
     /* //_{#can-content */
-    /* //_{^#legacy */
-    blockquote:before, // TODO ^#oldGecko
-    /* //_}^#legacy */
+    blockquote:before,
     /* //_}#can-content */
     .js-bqLink {
         @include hMargin(2, 0, 0);

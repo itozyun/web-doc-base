@@ -25,15 +25,17 @@
         }
     }
     
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
         .links [href]:before {
             content     : ">";
-            position    : relative;
-            left        : -0.5em;
-            width       : 1em;
-            height      : 1.4em; /* for iOS8 */
-            line-height : 1.4; /* for iOS8 */
-            text-align  : center;
+            @if( $CANUSE_PSEUDO_BLOCK ){
+                position    : relative;
+                left        : -0.5em;
+                width       : 1em;
+                height      : 1.4em; /* for iOS8 */
+                line-height : 1.4; /* for iOS8 */
+                text-align  : center;
+            }
             font-weight : bold;
         }
         /* //_{^@ie8 */

@@ -2,13 +2,15 @@
 
 /*  global
 --------------------------------------------------------------------------------------*/ 
-    *
-    /* //_{#can-content */
-    , :before, :after
-    /* //_}#can-content */
-    {
+    * {
         border-style : solid;
         border-width : 0;
+    }
+    @if( $CANUSE_PSEUDO_BLOCK ){
+        :before, :after {
+            border-style : solid;
+            border-width : 0;
+        }
     }
 
 /*  html & body

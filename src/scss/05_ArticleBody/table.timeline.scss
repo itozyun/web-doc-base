@@ -141,14 +141,13 @@
 
     @if( $CANUSE_HOVER_PSEUDO_CLASS ){
         tbody :hover th,
-        tbody :hover td
-        /* //_{^#legacy */
-        /* //_{#can-content */
-        , tbody :hover td:before
-        /* //_}#can-content */
-        /* //_}^#legacy */
-        {
+        tbody :hover td {
             border-color : $COLOR_ACCENT;
+        }
+        @if( $CANUSE_PSEUDO_BLOCK ){
+            tbody :hover td:before {
+                border-color : $COLOR_ACCENT;
+            }
         }
         tbody :hover th {
             background  : $COLOR_ACCENT !important;
@@ -174,17 +173,14 @@
 blockquote .tl {
     thead th, thead td,
     td,
-    tfoot th, tfoot td
-    /* //_{^#legacy */
-    /* //_{#can-content */
-    , tbody td:before
-    /* //_}#can-content */
-    /* //_}^#legacy */
-    {
+    tfoot th, tfoot td {
         border-color : $COLOR_Default_casual_text;
     }
     
     @if( $CANUSE_PSEUDO_BLOCK ){
+        tbody td:before {
+            border-color : $COLOR_Default_casual_text;
+        }
         tbody td:after {
             border-color : $COLOR_Default_casual_fill;
         }
@@ -203,11 +199,17 @@ blockquote .tl {
         }
 
         thead th, thead td,
-        td, tbody td:before, tfoot th, tfoot td {
+        td,
+        tfoot th, tfoot td {
             border-color : $COLOR_Watch_casual_fill;
         }
-        tbody td:after {
-            border-color : $COLOR_Watch_fill;
+        @if( $CANUSE_PSEUDO_BLOCK ){
+            tbody td:before {
+                border-color : $COLOR_Watch_casual_fill;
+            }
+            tbody td:after {
+                border-color : $COLOR_Watch_fill;
+            }
         }
 
         thead, tbody th {
@@ -222,12 +224,16 @@ blockquote .tl {
     blockquote .tl {
         thead th, thead td,
         td,
-        tfoot th, tfoot td,
-        tbody td:before {
+        tfoot th, tfoot td {
             border-color : $COLOR_Watch_casual_text;
         }
-        tbody td:after {
-            border-color : $COLOR_Watch_casual_fill;
+        @if( $CANUSE_PSEUDO_BLOCK ){
+            tbody td:before {
+                border-color : $COLOR_Watch_casual_text;
+            }
+            tbody td:after {
+                border-color : $COLOR_Watch_casual_fill;
+            }
         }
         tbody th :visited {
             color : $COLOR_Watch_visited;
