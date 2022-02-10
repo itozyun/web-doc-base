@@ -4,6 +4,11 @@ body {
     background : $COLOR_Ribbon_fill;
     color      : $COLOR_Default_text;
 }
+@if( $UA_Gck-097 ){
+    .ribbon {
+        background : $COLOR_Ribbon_fill; // Only for Gecko 0.8.1
+    }
+}
 .baseColor {
     background : $COLOR_Default_fill;
 }

@@ -23,6 +23,9 @@
         @if( $IS_IE8_OR_9 == false ){
             @include clearfix;
         }
+        @if( $UA_Gck-097 ){
+            position : relative; // clearfix
+        }
     }
 
     .lW, .lX {
