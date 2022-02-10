@@ -54,26 +54,24 @@ input {
                 appearance    : none;
     }
     @if( $IS_NOT_IE ){
-        margin                : 0;
+        margin : 0;
     }
 
     @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6  ){
         @include box-sizing(content-box);
-        line-height           : 1;
-        height                : 1em;
+        line-height : 1;
+        height      : 1em;
     }
     @if( $UA_IE55 or $UA_IE5  ){
-        line-height           : 1;
-        height                : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+        line-height : 1;
+        height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
     }
     @if( $IS_LEGACY ){
-        height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
     }
     @if( $IS_OLD_GECKO ){
-        line-height           : 1;
-    }
-    @if( $IS_OLD_OPERA ){
-        line-height : $BASE_LINE_HEIGHT;
+        line-height : 1;
+        font-size   : 1em;
     }
     @if( $UA_Opera9 ){
         border-style : solid; /* for Opera 9.x [type=submit] */

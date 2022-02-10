@@ -7,23 +7,41 @@
 --------------------------------------------------------------------------------------*/
 $SEARCH_BTN_WIDTH : 3em;
 
-.Search {
-    position : relative;
-    display  : block;
-    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 ){
-        margin   : 0 $SEARCH_BTN_WIDTH 0 #{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
-    } @else {
-        padding  : 0 $SEARCH_BTN_WIDTH 0 0;
+@if( $UA_Opera8 or $IS_Opera7x ){
+    .Search {
+        position : relative;
+        top      : math.div(-$BASE_LINE_HEIGHT_EM + 1em, 2);
+    }
+    .Search-txt {
+        margin-right : $INPUT_BORDER_WIDTH * 2;
+    }
+    .Search input {
+        @if( $IS_Opera7x ){
+            border-width : 0;
+        } @else {
+            border-width : $INPUT_BORDER_WIDTH;
+        }
+        padding : 0;
+    }
+} @else {
+    .Search {
+        position : relative;
+        display  : block;
+        @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 ){
+            margin   : 0 $SEARCH_BTN_WIDTH 0 #{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
+        } @else {
+            padding  : 0 $SEARCH_BTN_WIDTH 0 0;
+        }
+
+        @if( $IS_NOT_IE or $UA_IE9 or $UA_IE8 ){
+            width    : auto;
+        }
+        @if( $UA_IE5 ){
+            width    : 100%;
+        }
+        height   : $BASE_LINE_HEIGHT_EM;
     }
 
-    @if( $IS_NOT_IE or $UA_IE9 or $UA_IE8 ){
-        width    : auto;
-    }
-    @if( $UA_IE5 ){
-        width    : 100%;
-    }
-    height   : $BASE_LINE_HEIGHT_EM;
-}
     .Search input {
         position : absolute;
         top      : 0;
@@ -61,6 +79,7 @@ $SEARCH_BTN_WIDTH : 3em;
             }
         }
     }
+}
     /* 1. ie6-7 は input[type=submit] が border-box, [type=text] は content-box の為
           width & height と border を em サイズにして補正する。
        2. ie5.5 以下は、[type=submit] [type=text] 共に border-box。
@@ -84,13 +103,15 @@ $SEARCH_BTN_WIDTH : 3em;
             right    : math.div($INPUT-BORDER-WIDTH, 2);
         }
 
-        @if( $IS_LEGACY ){
+        @if( $UA_Opera9 ){
             width    : $SEARCH_BTN_WIDTH;
-            left     : 100%;
+            right    : math.div($INPUT-BORDER-WIDTH, 2);
         }
 
-        /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
-        overflow      : hidden;
+        @if( $UA_Opera72 == false ){ // Opera 7.23 でだけ、ボタンの上が欠ける、7.20 では発生しない
+            /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
+            overflow      : hidden;
+        }
         white-space   : nowrap;
         text-overflow : ellipsis;
     }
