@@ -35,9 +35,10 @@
     color          : $COLOR_ACCENT;
     @if( $CANUSE_PSEUDO_BLOCK ){
         &:after {
-            display : none; /* for iOS4 content : none だけでは消えない */
-            @if( $IS_Opera7x ){
-                width   : 0;    /* for Opera */
+            @if( $IS_Opera7x or $UA_Opera8 ){
+                width : 0;      /* for Opera 7-8 */
+            } @else {
+                display : none; /* for iOS4 content:none では消えない */
             }
         }
     }
