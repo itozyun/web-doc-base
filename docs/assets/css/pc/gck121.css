@@ -149,9 +149,7 @@ tr {
 .lW,_:lang(x) {
   overflow: hidden
 }
-*,
-:after,
-:before {
+* {
   border-style: solid;
   border-width: 0
 }
@@ -190,6 +188,7 @@ var {
 .ABody h3,
 .Magazine h3,
 .Magazine-date,
+.links [href]:before,
 dt,
 em,
 h2,
@@ -303,7 +302,12 @@ iframe,
 img {
   max-width: 100%
 }
+.Magazine-date,
 .Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.Search,
+.Search input,
 .commonForm,
 a iframe,
 a img {
@@ -375,7 +379,6 @@ blockquote :visited img,
 hr {
   border-color: #ddd
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -460,7 +463,8 @@ textarea {
 }
 input {
   height: 2.1em;
-  line-height: 1
+  line-height: 1;
+  font-size: 1em
 }
 hr {
   height: 0;
@@ -920,9 +924,8 @@ input.btn {
 }
 .AHead h1 {
   font-size: 2em;
-  padding: 0;
-  margin: 2em 0;
   color: #111;
+  padding: 2em 0;
   text-align: left
 }
 .AHead-labels {
@@ -1032,6 +1035,10 @@ kbd {
   color: #fff;
   background: #000
 }
+.Magazine h3,
+.Magazine-yy {
+  font-size: 2em
+}
 .Cover-meta {
   display: block;
   color: #777
@@ -1118,13 +1125,8 @@ pre var {
   line-height: 1.2
 }
 .Magazine-date {
-  display: block;
   float: left;
   line-height: 1
-}
-.Magazine-yy {
-  display: block;
-  font-size: 2em
 }
 .Magazine-dd,
 .Magazine-mm {
@@ -1142,7 +1144,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-size: 2em;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1204,55 +1205,31 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
-  display: block;
   font-size: .875em;
   padding: 0 0 .914em
 }
+#lH .lSi {
+  padding-right: 3.1em
+}
 .Search {
-  display: block;
-  padding: 0 3em 0 0;
-  width: auto;
-  height: 1.9em;
-  margin: 0
-}
-.Search input {
-  top: 0;
-  position: static;
-  display: inline;
-  display: -moz-inline-box
-}
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
+  height: 1.9em
 }
 .Search-txt {
-  display: block;
-  left: .05em;
-  width: 60%;
+  width: 100%;
+  left: 0;
   height: 2.1em
+}
+.Search input {
+  position: absolute;
+  top: 0
 }
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  left: 100%;
+  right: -3.1em;
   white-space: nowrap;
   text-overflow: ellipsis
-}
-
-.caption {
-  width: 100%
-}
-.Search-txt,_:lang(x) {
-  width: 100%
-}
-.Search,_:lang(x) {
-  margin: 0 3em 0 1.1em
-}
-.Search input,_:lang(x) {
-  position: absolute;
-  display: block
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1358,13 +1335,6 @@ tr .prettyprint {
 .tl th {
   border-width: 0
 }
-.js-bqCite,
-.js-bqLink,
-blockquote:after {
-  line-height: 1.2;
-  margin: 0;
-  font-size: .875em
-}
 .aa,
 .aa code,
 .aa var {
@@ -1381,15 +1351,28 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
+blockquote:before {
+  content: attr(title)
+}
 blockquote:after {
   content: attr(cite)
+}
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  line-height: 1.2;
+  color: #24c;
+  margin: 0
 }
 .js-bqCite,
 blockquote:after {
   display: block;
+  font-size: .875em;
+  line-height: 1.2;
   text-align: right;
   word-break: break-all;
-  color: #777
+  color: #777;
+  margin: 0
 }
 .box {
   margin: 1em 1em 0
@@ -1471,6 +1454,15 @@ tbody th var {
   display: block;
   line-height: 1.2
 }
+.links [href]:before {
+  content: ">"
+}
+.links [href^="/"]:not([href^="//"]):before {
+  content: "+"
+}
+.links [href*="web.archive."]:before {
+  content: "*"
+}
 .note {
   padding-left: 25%;
   margin: 1em
@@ -1499,6 +1491,7 @@ dl.note dd {
 .caption {
   text-align: center;
   font-size: .875em;
+  width: 100%;
   max-width: 100%
 }
 .caption img {
@@ -1711,8 +1704,7 @@ li.L8 {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box
+  -moz-box-sizing: border-box
 }
 .box .jsCapLarge {
   float: none
@@ -1985,9 +1977,6 @@ strong {
   thead var {
     color: #000
   }
-  .AHead-labels i {
-    display: -moz-inline-box
-  }
   .AHead-labels a {
     display: inline;
     line-height: 1.2;
@@ -2049,7 +2038,8 @@ strong {
   }
   .js-bqCite,
   .js-bqLink,
-  blockquote:after {
+  blockquote:after,
+  blockquote:before {
     margin: 0 1.5%
   }
   blockquote {

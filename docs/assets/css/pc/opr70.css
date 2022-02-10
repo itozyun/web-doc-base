@@ -77,10 +77,6 @@ table,
 textarea {
   line-height: 1.2
 }
-body,
-input {
-  line-height: 1.9
-}
 .Magazine-label,
 .RichLink b,
 .SearchResult cite,
@@ -128,9 +124,17 @@ tr {
 .tl th {
   vertical-align: top
 }
-*,
-:after,
-:before {
+#jsMain,
+#jsSide,
+.Cover-img,
+.Pager,
+.Search,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
+* {
   border-style: solid;
   border-width: 0
 }
@@ -146,6 +150,12 @@ body,
 html {
   margin: 0;
   height: 100%
+}
+body {
+  padding: 0;
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 body,
 input,
@@ -164,6 +174,7 @@ var {
 .ABody h3,
 .Magazine h3,
 .Magazine-date,
+.links [href]:before,
 dt,
 em,
 h2,
@@ -191,7 +202,6 @@ q:before {
 sub,
 sup {
   line-height: 0;
-  position: relative;
   vertical-align: baseline
 }
 h4,
@@ -237,6 +247,21 @@ ins {
 del {
   text-decoration: line-through
 }
+.Magazine-date,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.commonForm,
+a iframe,
+a img,
+h1 br,
+h2 br,
+h3 br,
+h4 br,
+h5 br,
+h6 br {
+  display: block
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #111;
@@ -275,17 +300,6 @@ th {
 iframe,
 img {
   max-width: 100%
-}
-.Magazine-date,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
-.commonForm,
-a iframe,
-a img {
-  display: block
 }
 img {
   height: auto
@@ -333,32 +347,6 @@ a:active:hover {
 .baseColor .btn:visited:active,
 .medal,
 a,
-a:active .ico-author:after,
-a:active .ico-author:before,
-a:active .ico-chain:after,
-a:active .ico-chain:before,
-a:active .ico-clock:after,
-a:active .ico-clock:before,
-a:active .ico-comment:before,
-a:active .ico-flag:after,
-a:active .ico-flag:before,
-a:active .ico-label:before,
-a:active .ico-pen:before,
-a:active .ico-sylinder:after,
-a:active .ico-sylinder:before,
-a:focus .ico-author:after,
-a:focus .ico-author:before,
-a:focus .ico-chain:after,
-a:focus .ico-chain:before,
-a:focus .ico-clock:after,
-a:focus .ico-clock:before,
-a:focus .ico-comment:before,
-a:focus .ico-flag:after,
-a:focus .ico-flag:before,
-a:focus .ico-label:before,
-a:focus .ico-pen:before,
-a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before,
 tbody th {
   border-color: #f8fbf8
 }
@@ -368,7 +356,6 @@ blockquote :visited img,
 hr {
   border-color: #ddd
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -380,8 +367,7 @@ hr {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -621,9 +607,6 @@ tbody :hover th :visited:active {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -732,7 +715,6 @@ caption {
 .Subscribe a,
 .btn {
   display: inline-table;
-  display: inline-block;
   border-width: 2px;
   cursor: pointer;
   text-align: center;
@@ -790,198 +772,6 @@ input.btn {
 .commonForm-wrap * {
   width: 100%;
   float: right
-}
-.ico-author,
-.ico-chain,
-.ico-clock,
-.ico-comment,
-.ico-flag,
-.ico-label,
-.ico-pen,
-.ico-sylinder {
-  position: relative;
-  padding-left: 1.2em
-}
-.ico-author:after,
-.ico-author:before,
-.ico-chain:after,
-.ico-chain:before,
-.ico-clock:after,
-.ico-clock:before,
-.ico-comment:after,
-.ico-comment:before,
-.ico-flag:after,
-.ico-flag:before,
-.ico-label:after,
-.ico-label:before,
-.ico-pen:after,
-.ico-pen:before,
-.ico-sylinder:after,
-.ico-sylinder:before {
-  text-indent: -1em;
-  position: absolute;
-  margin-top: .1em;
-  content: " ";
-  display: block;
-  display: none
-}
-.ico-clock:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .7em;
-  border-width: .15em;
-  border-color: #777
-}
-.ribbon .ico-author:after,
-.ribbon .ico-author:before,
-.ribbon .ico-chain:after,
-.ribbon .ico-chain:before,
-.ribbon .ico-clock:after,
-.ribbon .ico-clock:before,
-.ribbon .ico-comment:before,
-.ribbon .ico-flag:after,
-.ribbon .ico-flag:before,
-.ribbon .ico-label:before,
-.ribbon .ico-pen:before,
-.ribbon .ico-sylinder:after,
-.ribbon .ico-sylinder:before {
-  border-color: #bbb
-}
-.ico-clock:after {
-  top: .2em;
-  left: .43em;
-  width: .23em;
-  height: .23em;
-  border-width: 0 0 .14em .14em;
-  border-color: #777
-}
-.ico-label:before {
-  top: .2em;
-  left: 0;
-  width: .7em;
-  height: 0;
-  border-width: .6em 0 0;
-  border-color: #777
-}
-.ico-label:after {
-  top: .2em;
-  left: .7em;
-  width: 0;
-  height: 0;
-  border-width: .3em 0 .3em .3em;
-  border-color: transparent #777
-}
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #f8fbf8
-}
-.ribbon .ico-label:after {
-  border-color: transparent #bbb
-}
-.ico-author:before {
-  top: 0;
-  left: .3em;
-  width: .45em;
-  height: 0;
-  border-width: .225em 0;
-  border-color: #777
-}
-.ico-author:after {
-  top: .5em;
-  left: .1em;
-  width: 0;
-  height: 0;
-  border-width: .5em .4em 0;
-  border-color: #777
-}
-.ico-flag:after,
-.ico-flag:before,
-.ico-pen:before {
-  top: 0;
-  border-color: #777;
-  height: 0
-}
-.ico-flag:before {
-  left: 0;
-  width: .1em;
-  border-width: 1em 0 0
-}
-.ico-flag:after {
-  left: .2em;
-  width: .8em;
-  border-width: .7em 0 0
-}
-.ico-pen:before {
-  left: .25em;
-  width: .5em;
-  border-width: 0 0 .7em
-}
-.ico-pen:after {
-  top: .75em;
-  left: .25em;
-  width: 0;
-  height: 0;
-  border-width: .25em .25em 0;
-  border-color: #777 transparent
-}
-a:active .ico-comment:after,
-a:active .ico-pen:after,
-a:focus .ico-comment:after,
-a:focus .ico-pen:after {
-  border-color: #f8fbf8 transparent
-}
-.ribbon .ico-comment:after,
-.ribbon .ico-pen:after {
-  border-color: #bbb transparent
-}
-.ico-chain:before {
-  top: .05em;
-  left: .05em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em 0 .2em .2em;
-  border-color: #777
-}
-.ico-chain:after {
-  top: .3em;
-  left: .3em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em .2em .2em 0;
-  border-color: #777
-}
-.ico-sylinder:after,
-.ico-sylinder:before {
-  width: .4em;
-  height: .4em;
-  border-color: #777
-}
-.ico-sylinder:before {
-  top: 0;
-  left: .1em;
-  border-width: .25em .2em .35em
-}
-.ico-sylinder:after {
-  top: .15em;
-  left: .2em;
-  border-width: .1em
-}
-.ico-comment:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .45em;
-  border-width: .15em;
-  border-color: #777
-}
-.ico-comment:after {
-  top: .65em;
-  left: .3em;
-  width: 0;
-  height: 0;
-  border-width: .35em .2em 0;
-  border-color: #777 transparent
 }
 .medal,
 .medal-bronze,
@@ -1069,9 +859,9 @@ a:focus .ico-pen:after {
 }
 .AHead h1 {
   font-size: 2em;
+  color: #111;
   padding: 0;
   margin: 2em 0;
-  color: #111;
   text-align: left
 }
 .AHead-labels {
@@ -1134,7 +924,6 @@ a:focus .ico-pen:after {
   line-height: 1.4
 }
 .Cover-img {
-  position: relative;
   height: 100%;
   margin: 0 0 .6em
 }
@@ -1148,6 +937,14 @@ a:focus .ico-pen:after {
   width: 100%;
   max-width: 100%
 }
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-table
+}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -1155,8 +952,6 @@ a:focus .ico-pen:after {
   width: 100%
 }
 .Cover h2 {
-  display: inline-table;
-  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1177,12 +972,6 @@ a:focus .ico-pen:after {
 .Cover-meta {
   display: block;
   color: #777
-}
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a {
-  display: inline-table;
-  display: inline-block
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1354,36 +1143,17 @@ kbd {
   padding: 0 0 .914em
 }
 .Search {
-  position: relative;
-  padding: 0 3em 0 0;
-  width: auto;
-  height: 1.9em
-}
-.Search input {
-  top: 0;
-  position: static;
-  display: inline;
-  padding: 0
-}
-#jsMain,
-#jsSide,
-.Pager,
-kbd:hover {
-  position: relative
-}
-.Search input:active,
-.Search input:hover {
-  z-index: 1
+  top: -.45em
 }
 .Search-txt {
-  width: 100%;
-  left: .05em
+  margin-right: .2em
+}
+.Search input {
+  padding: 0
 }
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  left: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
@@ -1485,13 +1255,6 @@ tr .prettyprint {
   border-color: #0a0809;
   line-height: 1
 }
-.js-bqCite,
-.js-bqLink,
-blockquote:after {
-  line-height: 1.2;
-  margin: 0;
-  font-size: .875em
-}
 .aa,
 .aa code,
 .aa var {
@@ -1509,23 +1272,27 @@ blockquote .tl tbody th :visited {
   color: #419
 }
 blockquote:before {
-  content: attr(title);
-  display: block
+  content: attr(title)
 }
 blockquote:after {
   content: attr(cite)
 }
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  line-height: 1.2;
+  color: #24c;
+  margin: 0
+}
 .js-bqCite,
 blockquote:after {
   display: block;
+  font-size: .875em;
+  line-height: 1.2;
   text-align: right;
   word-break: break-all;
-  color: #777
-}
-.links a,
-kbd {
-  display: inline-table;
-  display: inline-block
+  color: #777;
+  margin: 0
 }
 .box {
   margin: 1em 1em 0
@@ -1604,6 +1371,15 @@ tbody th var {
 .caption {
   display: block;
   line-height: 1.2
+}
+.links [href]:before {
+  content: ">"
+}
+.links [href^="/"]:not([href^="//"]):before {
+  content: "+"
+}
+.links [href*="web.archive."]:before {
+  content: "*"
 }
 .note {
   padding-left: 25%;
@@ -1702,7 +1478,6 @@ dl.note dd {
 }
 .Pager i {
   display: inline-table;
-  display: inline-block;
   vertical-align: text-top;
   border-color: transparent #777
 }
@@ -1875,32 +1650,6 @@ strong {
   table {
     width: 100%
   }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .ribbon .ico-author:after,
-  .ribbon .ico-author:before,
-  .ribbon .ico-chain:after,
-  .ribbon .ico-chain:before,
-  .ribbon .ico-clock:after,
-  .ribbon .ico-clock:before,
-  .ribbon .ico-comment:before,
-  .ribbon .ico-flag:after,
-  .ribbon .ico-flag:before,
-  .ribbon .ico-label:before,
-  .ribbon .ico-pen:before,
-  .ribbon .ico-sylinder:after,
-  .ribbon .ico-sylinder:before,
   blockquote code,
   blockquote var,
   table,
@@ -2087,16 +1836,6 @@ strong {
   #lH .lMi {
     padding: .5em 0
   }
-  .ico-label:after,
-  .ribbon .ico-label:after {
-    border-color: transparent #666
-  }
-  .ico-comment:after,
-  .ico-pen:after,
-  .ribbon .ico-comment:after,
-  .ribbon .ico-pen:after {
-    border-color: #666 transparent
-  }
   .AAuthor {
     margin: 1em 0 0;
     padding: 0
@@ -2153,10 +1892,6 @@ strong {
   thead code,
   thead var {
     color: #000
-  }
-  .AHead-labels i {
-    display: inline-table;
-    display: inline-block
   }
   .AHead-labels a {
     display: inline;
@@ -2219,7 +1954,8 @@ strong {
   }
   .js-bqCite,
   .js-bqLink,
-  blockquote:after {
+  blockquote:after,
+  blockquote:before {
     margin: 0 1.5%
   }
   blockquote {

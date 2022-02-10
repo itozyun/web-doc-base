@@ -87,24 +87,9 @@ td,
 th {
   word-break: break-all
 }
-#jsSide,
-.Cover-img,
-.Pager,
-.Search,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #ddd
 }
 .Magazine-item,
 .SearchResult div div,
@@ -129,9 +114,17 @@ tr {
 .tl th {
   vertical-align: top
 }
-*,
-:after,
-:before {
+#jsSide,
+#lH .lSi,
+.Cover-img,
+.Pager,
+.lW,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
+* {
   border-style: solid;
   border-width: 0
 }
@@ -170,6 +163,7 @@ var {
 .ABody h3,
 .Magazine h3,
 .Magazine-date,
+.links [href]:before,
 dt,
 em,
 h2,
@@ -287,8 +281,6 @@ img {
 .Magazine-mm,
 .Magazine-yy,
 .RichLink b,
-.Search,
-.Search-txt,
 .commonForm,
 a iframe,
 a img {
@@ -350,8 +342,7 @@ a:focus:hover {
 .baseColor .btn:visited:active,
 .baseColor .btn:visited:focus,
 .medal,
-a,
-tbody th {
+a {
   border-color: #f8fbf8
 }
 *,
@@ -360,7 +351,6 @@ blockquote :visited img,
 hr {
   border-color: #ddd
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -393,7 +383,6 @@ form :focus {
 .ribbon :link {
   color: #bbe
 }
-.ribbon,
 .ribbon .AHead h1,
 .ribbon :visited,
 .tl tbody :hover th :link,
@@ -425,10 +414,6 @@ a:focus {
   background: #3079ed!important;
   border-color: #fff!important
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
@@ -445,7 +430,8 @@ textarea {
 }
 input {
   height: 2.1em;
-  line-height: 1
+  line-height: 1;
+  font-size: 1em
 }
 hr {
   height: 0;
@@ -561,6 +547,10 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
+tbody th {
+  background: #ddd;
+  border-color: #f8fbf8
+}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -641,6 +631,21 @@ tbody :hover th :visited:active {
 }
 body {
   background: #1a1a1a
+}
+.ribbon,
+.ribbon .LinkList :visited,
+.ribbon .RichLink-sep :visited {
+  background: #1a1a1a;
+  color: #fff
+}
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
+blockquote,
+code,
+var {
+  background: #ddd
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -902,9 +907,8 @@ input.btn {
 }
 .AHead h1 {
   font-size: 2em;
-  padding: 0;
-  margin: 2em 0;
   color: #111;
+  padding: 2em 0;
   text-align: left
 }
 .AHead-labels {
@@ -1079,11 +1083,6 @@ pre var {
   background: #1a1a1a;
   color: #bbe
 }
-.ribbon .LinkList :visited,
-.ribbon .RichLink-sep :visited {
-  background: #1a1a1a;
-  color: #fff
-}
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
 .ribbon .RichLink-sep :link:hover,
@@ -1146,6 +1145,10 @@ kbd {
   width: 20%;
   float: right
 }
+.Search-txt,
+.caption {
+  width: 100%
+}
 .RichLink-sep {
   line-height: 1.4
 }
@@ -1187,33 +1190,19 @@ kbd {
   font-size: .875em;
   padding: 0 0 .914em
 }
+#lH .lSi {
+  padding-right: 3.1em
+}
 .Search {
-  padding: 0 3em 0 0;
-  width: auto;
-  height: 1.9em;
-  margin: 0
-}
-.Search input {
-  top: 0;
-  position: static;
-  display: inline;
-  display: -moz-inline-box
-}
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
-}
-.Search-txt {
-  left: .05em;
-  width: 60%;
-  height: 2.1em
+  height: 1.9em
 }
 .Search .btn {
+  position: absolute;
+  top: 0;
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  left: 100%;
+  right: -.1em;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
@@ -1322,13 +1311,6 @@ tr .prettyprint {
 .tl th {
   border-width: 0
 }
-.js-bqCite,
-.js-bqLink,
-blockquote:after {
-  line-height: 1.2;
-  margin: 0;
-  font-size: .875em
-}
 .aa,
 .aa code,
 .aa var {
@@ -1345,15 +1327,28 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
+blockquote:before {
+  content: attr(title)
+}
 blockquote:after {
   content: attr(cite)
+}
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  line-height: 1.2;
+  color: #24c;
+  margin: 0
 }
 .js-bqCite,
 blockquote:after {
   display: block;
+  font-size: .875em;
+  line-height: 1.2;
   text-align: right;
   word-break: break-all;
-  color: #777
+  color: #777;
+  margin: 0
 }
 .box {
   margin: 1em 1em 0
@@ -1435,6 +1430,15 @@ tbody th var {
   display: block;
   line-height: 1.2
 }
+.links [href]:before {
+  content: ">"
+}
+.links [href^="/"]:not([href^="//"]):before {
+  content: "+"
+}
+.links [href*="web.archive."]:before {
+  content: "*"
+}
 .note {
   padding-left: 25%;
   margin: 1em
@@ -1463,7 +1467,6 @@ dl.note dd {
 .caption {
   text-align: center;
   font-size: .875em;
-  width: 100%;
   max-width: 100%
 }
 .caption img {
@@ -1676,8 +1679,7 @@ li.L8 {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box
+  -moz-box-sizing: border-box
 }
 .box .jsCapLarge {
   float: none
@@ -1950,9 +1952,6 @@ strong {
   thead var {
     color: #000
   }
-  .AHead-labels i {
-    display: -moz-inline-box
-  }
   .AHead-labels a {
     display: inline;
     line-height: 1.2;
@@ -2014,7 +2013,8 @@ strong {
   }
   .js-bqCite,
   .js-bqLink,
-  blockquote:after {
+  blockquote:after,
+  blockquote:before {
     margin: 0 1.5%
   }
   blockquote {

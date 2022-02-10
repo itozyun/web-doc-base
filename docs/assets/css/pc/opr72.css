@@ -4,6 +4,7 @@
 textarea {
   overflow: auto
 }
+blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -39,18 +40,6 @@ a,
 h6 {
   color: #777
 }
-.Magazine-date,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
-}
 .Magazine .box,
 h2,
 input,
@@ -80,9 +69,10 @@ tr ul {
 .Pager span,
 .caption,
 .h1,
-.js-bqLink,
+.js-bqCite,
 .links a,
 .prettyprint,
+blockquote:after,
 dl,
 h1,
 h2,
@@ -95,10 +85,6 @@ table,
 textarea {
   line-height: 1.2
 }
-body,
-input {
-  line-height: 1.9
-}
 .Magazine-label,
 .RichLink b,
 .SearchResult cite,
@@ -109,24 +95,25 @@ td,
 th {
   word-break: break-all
 }
+.Magazine-date,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.commonForm,
+a iframe,
+a img,
+h1 br,
+h2 br,
+h2:after,
+h3 br,
+h4 br,
+h5 br,
+h6 br {
+  display: block
+}
 .baseColor,
 .medal {
   background: #f8fbf8
-}
-#jsMain,
-#jsSide,
-.Cover-img,
-.Pager,
-.Search,
-.links a,
-.tl td,
-:link:hover img,
-:visited:hover img,
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
 }
 .Magazine-date,
 .aa {
@@ -179,6 +166,22 @@ tr {
 .tl th {
   vertical-align: top
 }
+#jsMain,
+#jsSide,
+.Cover-img,
+.Pager,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+:link:hover img,
+:visited:hover img,
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
 *,
 :after,
 :before {
@@ -197,6 +200,12 @@ body,
 html {
   margin: 0;
   height: 100%
+}
+body {
+  padding: 0;
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 body,
 input,
@@ -315,6 +324,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -401,8 +411,7 @@ hr {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -475,7 +484,6 @@ input {
   height: 2.1em
 }
 .AHead-labels i,
-.Cover h2:after,
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
@@ -519,6 +527,7 @@ tr hr {
 .ABody h2,
 .Cover h2,
 .tl tbody :hover td,
+.tl tbody :hover td:before,
 .tl tbody :hover th {
   border-color: #3079ed
 }
@@ -660,9 +669,6 @@ tbody :hover th :visited:active {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -770,7 +776,6 @@ caption {
 .SocialBtns a,
 .Subscribe a,
 .btn {
-  display: inline-table;
   display: inline-block;
   border-width: 2px;
   cursor: pointer;
@@ -1094,8 +1099,8 @@ a:focus .ico-pen:after {
   color: #3079ed;
   margin: 2em 0 1em
 }
-.ABody h2:after {
-  display: none;
+.ABody h2:after,
+.Cover h2:after {
   width: 0
 }
 .ABody h3 {
@@ -1111,9 +1116,9 @@ a:focus .ico-pen:after {
 }
 .AHead h1 {
   font-size: 2em;
+  color: #111;
   padding: 0;
   margin: 2em 0;
-  color: #111;
   text-align: left
 }
 .AHead-labels {
@@ -1189,6 +1194,14 @@ a:focus .ico-pen:after {
   width: 100%;
   max-width: 100%
 }
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -1196,8 +1209,6 @@ a:focus .ico-pen:after {
   width: 100%
 }
 .Cover h2 {
-  display: inline-table;
-  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1218,12 +1229,6 @@ a:focus .ico-pen:after {
 .Cover-meta {
   display: block;
   color: #777
-}
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a {
-  display: inline-table;
-  display: inline-block
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1395,30 +1400,17 @@ kbd {
   padding: 0 0 .914em
 }
 .Search {
-  padding: 0 3em 0 0;
-  width: auto;
-  height: 1.9em
-}
-.Search input {
-  top: 0;
-  position: static;
-  display: inline;
-  padding: 0
-}
-.Search input:active,
-.Search input:hover {
-  z-index: 1
+  top: -.45em
 }
 .Search-txt {
-  width: 100%;
-  left: .05em
+  margin-right: .2em
+}
+.Search input {
+  padding: 0
 }
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  left: 100%;
-  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
 }
@@ -1542,8 +1534,10 @@ blockquote:before {
 blockquote:after {
   content: attr(cite)
 }
-.js-bqLink {
+.js-bqLink,
+blockquote:before {
   font-size: .875em;
+  line-height: 1.2;
   color: #24c;
   margin: 0
 }
@@ -1551,16 +1545,10 @@ blockquote:after {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   word-break: break-all;
   color: #777;
   margin: 0
-}
-.links a,
-kbd {
-  display: inline-table;
-  display: inline-block
 }
 .box {
   margin: 1em 1em 0
@@ -1631,12 +1619,8 @@ tbody th var {
   white-space: -o-pre-wrap;
   margin: 1em
 }
-.links a {
-  padding-left: 1em
-}
 .links [href]:before {
   content: ">";
-  position: relative;
   left: -.5em;
   width: 1em;
   height: 1.4em;
@@ -1769,7 +1753,6 @@ dl.note dd {
   width: 32%
 }
 .Pager i {
-  display: inline-table;
   display: inline-block;
   vertical-align: text-top;
   border-color: transparent #777
@@ -1937,11 +1920,6 @@ strong {
   color: #111
 }
 @media print {
-  .lW,
-  .lX,
-  table {
-    width: 100%
-  }
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -2010,30 +1988,13 @@ strong {
   thead :visited {
     color: #606
   }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .js-bqLink a:after,
-  .noprint,
-  [href$=".GIF"]:after,
-  [href$=".JPEG"]:after,
-  [href$=".JPG"]:after,
-  [href$=".PNG"]:after,
-  [href$=".gif"]:after,
-  [href$=".jpeg"]:after,
-  [href$=".jpg"]:after,
-  [href$=".png"]:after,
-  [href^="#"]:after,
-  [href^="mailto:"]:after,
-  [href^="tel:"]:after,
   h2:after {
-    display: none
+    width: 0
+  }
+  .lW,
+  .lX,
+  table {
+    width: 100%
   }
   thead td,
   thead th {
@@ -2108,6 +2069,30 @@ strong {
   .lSi,
   .lXi {
     margin: 0
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .js-bqLink a:after,
+  .noprint,
+  [href$=".GIF"]:after,
+  [href$=".JPEG"]:after,
+  [href$=".JPG"]:after,
+  [href$=".PNG"]:after,
+  [href$=".gif"]:after,
+  [href$=".jpeg"]:after,
+  [href$=".jpg"]:after,
+  [href$=".png"]:after,
+  [href^="#"]:after,
+  [href^="mailto:"]:after,
+  [href^="tel:"]:after {
+    display: none
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2223,7 +2208,6 @@ strong {
     color: #000
   }
   .AHead-labels i {
-    display: inline-table;
     display: inline-block
   }
   .AHead-labels a {
@@ -2287,7 +2271,8 @@ strong {
   }
   .js-bqCite,
   .js-bqLink,
-  blockquote:after {
+  blockquote:after,
+  blockquote:before {
     margin: 0 1.5%
   }
   blockquote {

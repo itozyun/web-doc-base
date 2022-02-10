@@ -1161,9 +1161,9 @@ a:focus .ico-pen:after {
 }
 .AHead h1 {
   font-size: 2em;
+  color: #111;
   padding: 0;
   margin: 2em 0;
-  color: #111;
   text-align: center
 }
 .Attribution small,
