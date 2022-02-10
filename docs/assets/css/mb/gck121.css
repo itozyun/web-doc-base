@@ -1187,11 +1187,10 @@ pre var {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: -3.1em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em;

@@ -1226,10 +1226,9 @@ kbd {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  right: -3.1em;
   white-space: nowrap;
-  text-overflow: ellipsis
+  width: 3em;
+  right: -3.1em
 }
 .SearchResult {
   margin-bottom: 2em;

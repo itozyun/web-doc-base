@@ -1515,9 +1515,9 @@ kbd {
 }
 .Search {
   position: relative;
+  height: 1.9em;
   margin: 0 3em 0 22px;
-  width: auto;
-  height: 1.9em
+  width: auto
 }
 .Search input {
   position: absolute;
@@ -1541,9 +1541,9 @@ kbd:hover {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: -3em;
-  white-space: nowrap;
   text-overflow: ellipsis
 }
 .SearchResult {

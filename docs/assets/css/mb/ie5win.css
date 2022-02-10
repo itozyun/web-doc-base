@@ -1051,9 +1051,9 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .Search {
+  height: 1.9em;
   padding: 0 3em 0 0;
-  width: 100%;
-  height: 1.9em
+  width: 100%
 }
 .Search input:active {
   z-index: 1
@@ -1065,11 +1065,10 @@ pre var {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: .05em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em

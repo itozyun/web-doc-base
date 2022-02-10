@@ -1115,8 +1115,8 @@ kbd {
   padding: 0 0 .914em
 }
 .Search {
-  padding: 0 3em 0 0;
-  height: 1.9em
+  height: 1.9em;
+  padding: 0 3em 0 0
 }
 .Search input {
   position: absolute;
@@ -1132,10 +1132,9 @@ kbd {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  right: .05em;
   white-space: nowrap;
-  text-overflow: ellipsis
+  width: 3em;
+  right: .05em
 }
 .SearchResult {
   margin-bottom: 2em;

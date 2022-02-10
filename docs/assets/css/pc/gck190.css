@@ -1209,11 +1209,10 @@ kbd {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: -3.1em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1375,19 +1374,6 @@ blockquote:after {
   .lW:after {
     content: ""
   }
-  _:-moz-loading,
-  input.btn {
-    line-height: 1;
-    padding: .45em 1em
-  }
-  .Search-txt {
-    height: 2.1em
-  }
-}
-.AMeta,
-.links a,
-.prettyprint {
-  line-height: 1.2
 }
 .box > p:first-of-type {
   margin-top: -.225em
@@ -1459,7 +1445,8 @@ tbody th var {
   margin: 1em
 }
 .links a {
-  padding-left: 1em
+  padding-left: 1em;
+  line-height: 1.2
 }
 .Pager span,
 .caption {
@@ -1542,7 +1529,8 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0
+  padding: .5em 0;
+  line-height: 1.2
 }
 .AMeta div {
   margin: .5em 0;
@@ -1667,7 +1655,8 @@ dl.note dd {
   color: #fff;
   border-width: 1px;
   border-color: #333;
-  padding: 1em
+  padding: 1em;
+  line-height: 1.2
 }
 code .atv,
 code .str {

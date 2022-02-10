@@ -1461,9 +1461,9 @@ kbd {
   color: #222
 }
 .Search {
+  height: 1.9em;
   padding: 0 3em 0 0;
-  width: auto;
-  height: 1.9em
+  width: auto
 }
 .Search input {
   position: absolute;
@@ -1484,11 +1484,10 @@ kbd {
 .Search .btn {
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: .05em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em;

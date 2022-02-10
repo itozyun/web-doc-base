@@ -1201,11 +1201,10 @@ kbd {
   top: 0;
   padding-left: 0;
   padding-right: 0;
+  white-space: nowrap;
   width: 3em;
   right: -.1em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em;
