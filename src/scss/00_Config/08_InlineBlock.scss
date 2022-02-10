@@ -1,11 +1,10 @@
 @mixin inline-block {
     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-        @if( $IS_OLD_OPERA ){
+        @if( $UA_Opera70 ){
             display : inline-table;
-        }
-        @if( $UA_Gck-097 or $UA_Gck101-121 ){
+        }@else if( $UA_Gck-097 or $UA_Gck101-121 ){
             // https://www.brunildo.org/test/inline-block4.html
-            display         : -moz-inline-box; /* Gecko 0.9.4.1 */
+            display : -moz-inline-box; /* Gecko 0.9.4.1 */
             // -moz-box-orient : vertical;
         } @else {
             display : inline-block;

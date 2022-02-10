@@ -6,6 +6,8 @@
         @if( $UA_Modern ){
             -webkit-box-sizing : $value;
         }
-        box-sizing : $value;
+        @if( $IS_OLD_GECKO == false ){
+            box-sizing : $value;
+        }
     }
 }
