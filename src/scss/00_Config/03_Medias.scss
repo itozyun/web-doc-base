@@ -171,25 +171,29 @@ $COMMENT_OUT : (
                 { @content; }
         }
         @else if $media == 'dark_theme' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr8 */
-                handheld
-                /* //_}@modern,@opr8 */
-                /* //_{@modern */
-                , only screen and (prefers-color-scheme:dark), only
-                /* //_}@modern */
-                /* //_{#can-mq */
-                screen and (max-width: 240px)
-                /* //_}#can-mq */
-                { @content; }
+            @if $CANUSE_DARK_THEME_ALLWAYS {
+                @content;
+            } @else {
+                @media
+                    /* //_{^#can-mq */
+                        /* //_{^@opr8 */
+                        dumy-for-gulp-sass5
+                        /* //_}^@opr8 */
+                    /* //_}^#can-mq */
+                    /* //_{ */
+                        ,
+                    /* //_} */
+                    /* //_{@modern,@opr8 */
+                    handheld
+                    /* //_}@modern,@opr8 */
+                    /* //_{@modern */
+                    , only screen and (prefers-color-scheme:dark), only
+                    /* //_}@modern */
+                    /* //_{#can-mq */
+                    screen and (max-width: 240px)
+                    /* //_}#can-mq */
+                        { @content; }
+            }
         }
         @else if $media == 'print' {
             @media print {
