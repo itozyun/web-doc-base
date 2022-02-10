@@ -51,12 +51,12 @@
     cursor       : pointer;
     text-align   : center;
     @if( $IS_LEGACY ){
-    line-height  : $BASE_LINE_HEIGHT_EM;
-    padding      : 0 1em;
-}
+        line-height : $BASE_LINE_HEIGHT_EM;
+        padding     : 0 1em;
+    }
     @if( $IS_LEGACY == false ){
-        line-height  : 1;
-        padding      : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
+        line-height : 1;
+        padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
     }
     @if( $UA_Modern or $UA_IE9 ){
         vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
@@ -117,19 +117,9 @@ input.btn {
         padding : 0; // for Opera 7.x
     }
     @if( $IS_OLD_GECKO ){
-        /* Gecko ~1.8.1 */
         & {
             line-height : 1;
             padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
-        }
-        @if( $UA_Gck130-190 ){
-            @-moz-document url-prefix() { /* override Gecko 1.8~ */
-                /* override Gecko 1.9.0~1.9.2 */
-                & [_csshack_="_:-moz-loading"] {
-                    line-height : 1;
-                    padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
-                }
-            }
         }
     }
 }
