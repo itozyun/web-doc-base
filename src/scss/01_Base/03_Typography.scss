@@ -5,6 +5,13 @@
         @include unbreak-inside;
         @include unbreak-after;
     }
+    @if( $UA_Opera8 or $IS_Opera7x ){
+        h1, h2, h3, h4, h5, h6 {
+            br {
+                display : block;
+            }
+        }
+    }
 
     h1, h2, h3, h5, h6 {
         font-weight : normal;
