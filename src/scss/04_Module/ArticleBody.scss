@@ -57,7 +57,7 @@
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
-    .ABody {
+    .ABody, .ABody blockquote {
         -webkit-column-count : 2;
         -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
            -moz-column-count : 2;
@@ -71,7 +71,7 @@
         .ABody h1, .ABody h2 {
             text-align : center;
         }
-        .ABody h2 {
+        .ABody h1, .ABody h2, .ABody blockquote {
             @if( $UA_Modern ){
                 -webkit-column-span : all;
                    -moz-column-span : all;
