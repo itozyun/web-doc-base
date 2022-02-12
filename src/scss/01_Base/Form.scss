@@ -43,9 +43,8 @@ textarea, input {
 }
 
 input {
-    @if( $UA_Modern or $IS_WIN_IE ){
-        font-size : 1em; /* for Edge, IE11- */
-    }
+    font-size : 1em;
+
     @if( $UA_Modern ){
         -webkit-border-radius : 0;
            -moz-border-radius : 0;
@@ -53,34 +52,30 @@ input {
         -webkit-appearance    : none;
                 appearance    : none;
     }
-    @if( $IS_NOT_IE ){
-        margin : 0;
-    }
 
-    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6  ){
+    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 ){
         @include box-sizing(content-box);
         line-height : 1;
         height      : 1em;
     }
-    @if( $UA_IE55 or $UA_IE5  ){
+    @if( $UA_IE55 or $UA_IE5 or $IS_OLD_GECKO ){
         line-height : 1;
         height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
     }
-    @if( $IS_LEGACY ){
+    @if( $IS_OLD_OPERA ){
         height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    }
-    @if( $IS_OLD_GECKO ){
-        line-height : 1;
-        font-size   : 1em;
     }
     @if( $UA_Opera9 ){
         border-style : solid; /* for Opera 9.x [type=submit] */
+    }
+    @if( $IS_NOT_IE ){
+        margin : 0;
     }
 }
 
 @if( $IS_OLD_OPERA ){
     input[type=hidden] {
-        display: none; /* Opera */
+        // display : none; /* Opera */
     }
 }
 
@@ -91,18 +86,17 @@ input {
 }
 
 textarea {
-    @if( $UA_Modern or $IS_WIN_IE ){
-        font-size : 1em; /* for Edge, IE11- */
-    }
-    overflow         : auto;
+    font-size : 1em;
+    overflow  : auto;
+    margin    : 0;
+
     @if( $UA_Modern ){
         resize           : vertical;
         background-image : none; /* Android Firefox */
     }
-    margin           : 0;
 }
 
-@if( $CANUSE_FOCUS_PSEUDO_CLASS  ){
+@if( $CANUSE_FOCUS_PSEUDO_CLASS ){
     form :focus {
         color        : $COLOR_ACCENT;
         border-color : $COLOR_ACCENT;
