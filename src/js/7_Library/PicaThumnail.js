@@ -1,5 +1,23 @@
-var PicaThumbnail_IMGS      = [],
-    PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
+/** @type {Array.<picaThumbnail>} */
+var PicaThumbnail_IMGS      = [];
+var PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
+
+/**
+ * @typedef {{
+ *   elmA                : Element,
+ *   thumbUrl            : string,
+ *   thumbWidth          : string,
+ *   originalUrl         : (string|undefined),
+ *   elmImg              : Element,
+ *   isGoogleUserContent : boolean,
+ *   replaced            : (boolean|undefined),
+ *   clazz               : (string|undefined),
+ *   elmCap              : (Element|undefined),
+ *   captionCSS          : (string|undefined),
+ *   large               : (string|undefined)
+ * }}
+ */
+var picaThumbnail;
 
 if( !p_cloudRendering ){
     p_listenImageReady(
@@ -8,13 +26,14 @@ if( !p_cloudRendering ){
 
             var elmImg = result.img, 
                 elmA   = p_DOM_getParentNode( elmImg ),
-                href, ext, thumbWidth = '';
+                href, ext, thumbWidth = '', guc;
 
             if( p_DOM_getTagName( elmA ) === 'A' && p_DOM_getChildren( elmA ).length === 1 ){
                 href = p_DOM_getAttribute( elmA, 'href' );
                 ext  = href.split( '?' )[ 0 ].split( '#' )[ 0 ].split( '.' );
                 ext  = ( ext[ ext.length - 1 ] || '' ).toLowerCase();
-                if( 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
+                guc  = 0 < href.indexOf( 'blogger.googleusercontent.com/img/' );
+                if( guc || 0 <= '.jpg.png.gif.bmp.jpeg.webp.'.indexOf( '.' + ext + '.' ) ){
                     p_addEventListener( elmA  , 'keydown', PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmImg, 'click'  , PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmA  , 'click'  , PicaThumbnail_onClickAnchor );
@@ -24,17 +43,14 @@ if( !p_cloudRendering ){
                         p_DOM_setStyle( elmImg, 'width', thumbWidth );
                     };
                     p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
-                    PicaThumbnail_IMGS.push( {
-                        elmA        : elmA,
-                        thumbUrl    : elmImg.src,
-                        thumbWidth  : thumbWidth,
-                        originalUrl : href,
-                        elmImg      : elmImg //,
-                        // replaced   : false,
-                        // clazz      : _,
-                        // elmCap     : elmCap,
-                        // captionCSS : ''
-                    } );
+                    PicaThumbnail_IMGS.push( /** @type {picaThumbnail} */ ({
+                        elmA                : elmA,
+                        thumbUrl            : elmImg.src,
+                        thumbWidth          : thumbWidth,
+                        originalUrl         : href,
+                        elmImg              : elmImg,
+                        isGoogleUserContent : guc
+                    }) );
                 };
             };
         }
@@ -60,16 +76,16 @@ function PicaThumbnail_onClickThumbnail( e ){
     if( e.type === 'keydown' && key !== 13 ) return;
 
     for( ; i; ){
-        obj = PicaThumbnail_IMGS[ --i ];
+        obj = /** @type {picaThumbnail} */ (PicaThumbnail_IMGS[ --i ]);
         if( obj.elmImg === this || obj.elmA === this ){
             elmImg = obj.elmImg;
             elmA = parent = obj.elmA;
-            
+
             if( obj.replaced ){
                 // Large -> small
                 p_DOM_setStyle( elmImg, 'width', obj.thumbWidth );
                 elmImg.src = obj.thumbUrl;
-                p_DOM_setClassName( elmA, obj.clazz );
+                p_DOM_setClassName( elmA, /** @type {string} */ (obj.clazz) );
                 if( elmCap = obj.elmCap ){
                     p_DOM_setCssText( elmCap, obj.captionCSS );
                     p_DOM_setClassName( elmCap, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ + ' ' + DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
@@ -78,7 +94,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                 // small -> Large
                 if( src = obj.originalUrl ){
                     delete obj.originalUrl;
-                    
+
                     while( parent = p_DOM_getParentNode( parent ) ){
                         if( p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
                             obj.elmCap     = parent;
@@ -89,11 +105,23 @@ function PicaThumbnail_onClickThumbnail( e ){
                             if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
                         };
                     };
-                    
+
                     w = parent.offsetWidth - PicaThumbnail_MARGIN_LR - 1;
                     if( 1600 < w ) w = 1600;
-                    
-                    if( 0 < src.indexOf( '.bp.blogspot.com/' ) ){
+
+                    if( obj.isGoogleUserContent ){
+                        elms = src.split( '=' );
+                        l    = elms.length;
+                        if( size = elms[ l - 1 ] ){
+                            n = parseFloat( size.substr( 1 ) );
+                            if( n && size === 's' + n ){
+                                elms[ l - 1 ] = 'w' + w;
+                            } else {
+                                elms[ l ] = 'w' + w;
+                            };
+                        };
+                        src = elms.join( '=' );
+                    } else if( 0 < src.indexOf( '.bp.blogspot.com/' ) ){
                         elms = src.split( '/' );
                         l    = elms.length;
                         if( size = elms[ l - 2 ] ){
@@ -108,7 +136,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                     };
                     obj.large = src;
                 };
-                
+
                 obj.clazz = p_DOM_getClassName( elmA );
                 p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_LARGE );
                 p_DOM_setStyle( elmImg, 'width', '' );
