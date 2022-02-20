@@ -9,15 +9,15 @@ var blog2slide_requestFullscreen,
 
 p_listenLoadEvent(
     function(){
-        var elmButtonContainer = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID ),
-            prefix             = p_notUndefined( document.onfullscreenchange       ) ? 'f' :
-                                 p_notUndefined( document.onmozfullscreenchange    ) ? 'mozF' :
-                                 p_notUndefined( document.onwebkitfullscreenchange ) ? 'webkitF' :
-                                 // p_notUndefined( document.onmsfullscreenchange     ) ? 'ms' :
-                                 0,
-            elmContainer;
+        var elmButtonContainer = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID );
 
         if( elmButtonContainer ){
+            var prefix = p_notUndefined( document.onfullscreenchange       ) ? 'f' :
+                         p_notUndefined( document.onmozfullscreenchange    ) ? 'mozF' :
+                         p_notUndefined( document.onwebkitfullscreenchange ) ? 'webkitF' :
+                         // p_notUndefined( document.onmsfullscreenchange     ) ? 'msF' :
+                         0,
+                elmContainer;
             // Trident が msRequestFullscreen をサポートするのは 11+
             // Gecko が mozRequestFullscreen をサポートするのは 9+
             // Chrome が webkitRequestFullscreen をサポートするのは 15+
@@ -62,12 +62,12 @@ function blog2slide_onStartButtonClick(){
 
 function blog2slide_onFullscreenChange(){
     // https://caniuse.com/?search=fullscreen
-    if( document.fullscreenElement ||  /* Trident 11+, EdgeHTML */
-        document.fullscreen ||         /* Gecko 64, Chrome 71+, Samsung 10.1+ */
+    if( document.fullscreenElement   || /* Trident 11+, EdgeHTML */
+        document.fullscreen          || /* Gecko 64, Chrome 71+, Samsung 10.1+ */
         /* document.mozFullScreen ||      Gecko 9+ */
-        document.webkitIsFullscreen || /* Chrome 15+, Safari 6+, Samsung 4+ */
-        document.msFullscreenElement ||/* Trident 11+ */
-        window.fullScreen              /* Gecko 1.8.1+ (Firefox 2+, Netscape Navigator 9+) */
+        document.webkitIsFullscreen  || /* Chrome 15+, Safari 6+, Samsung 4+ */
+        document.msFullscreenElement || /* Trident 11+ */
+        window.fullScreen               /* Gecko 1.8.1+ (Firefox 2+, Netscape Navigator 9+) */
     ){
         p_DOM_setAttribute( blog2slide_elmRoot, 'id', DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID );
         blog2slide_elmSlides[ 1 ].parentNode.insertBefore( blog2slide_elmH1, blog2slide_elmSlides[ 1 ] );
