@@ -71,7 +71,9 @@
         .ABody h1, .ABody h2 {
             text-align : center;
         }
-        .ABody h1, .ABody h2, .ABody blockquote {
+        h1, h2,
+        blockquote, blockquote:before, blockquote:after,
+        .js-bqLink, .js-bqCite {
             @if( $UA_Modern ){
                 -webkit-column-span : all;
                    -moz-column-span : all;
