@@ -240,21 +240,22 @@
 
 
 
-    $CANUSE_CSS_MEDIA_QUERY       : $UA_Modern or $UA_IE9 or $UA_Opera9 or $UA_Gck130-190;
-    $CANUSE_DARK_THEME_ALLWAYS    : $UA_Opera9; // Opera 9 不規則にダークモード用の色指定で上書きされる!
-    $CANUSE_SVG                   : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
-    $CANUSE_CSS_GENERATED_CONTENT : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
-    $CANUSE_PSEUDO_BLOCK          : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;
-    $CANUSE_ATTR_SELECTOR         : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_MAX_AND_MIN_SIZES     : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_MARGIN_AUTO           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
-    $CANUSE_HOVER_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_FOCUS_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5;
-    $CANUSE_EMPTY_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_TARGET_PSEUDO_CLASS   : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
-    $CANUSE_DISPLAY_INLINE_BLOCK  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
-    $CANUSE_CAN_BOX_SIZING        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
-    $CANUSE_1ST_CHILD_SELECTOR    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
-    $CANUSE_LAST_CHILD_SELECTOR   : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_1ST_OF_TYPE_SELECTOR  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
-    $CANUSE_BORDER_TRANSPARENT    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_CSS_MEDIA_QUERY                     : $UA_Modern or $UA_IE9 or $UA_Opera9 or $UA_Gck130-190;
+    $CANUSE_DARK_THEME_ALLWAYS                  : $UA_Opera9 or $UA_Opera8; // Opera 9- 不規則にダークモード用(handheld)の色指定で上書きされる!
+    $CANUSE_SVG                                 : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
+    $CANUSE_CSS_GENERATED_CONTENT               : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $CANUSE_PSEUDO_BLOCK                        : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;
+    $CANUSE_CSS_GENERATED_NLOCK_IN_INLINE_BLOCK : $UA_Modern or $IS_IE8_OR_9;
+    $CANUSE_ATTR_SELECTOR                       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_MAX_AND_MIN_SIZES                   : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_MARGIN_AUTO                         : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
+    $CANUSE_HOVER_PSEUDO_CLASS                  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_FOCUS_PSEUDO_CLASS                  : $UA_Modern or $IS_OLD_GECKO or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_EMPTY_PSEUDO_CLASS                  : $UA_Modern or $IS_LEGACY or $UA_IE9;
+    $CANUSE_TARGET_PSEUDO_CLASS                 : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
+    $CANUSE_DISPLAY_INLINE_BLOCK                : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_CAN_BOX_SIZING                      : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $CANUSE_1ST_CHILD_SELECTOR                  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
+    $CANUSE_LAST_CHILD_SELECTOR                 : $UA_Modern or $IS_LEGACY or $UA_IE9;
+    $CANUSE_1ST_OF_TYPE_SELECTOR                : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $CANUSE_BORDER_TRANSPARENT                  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;

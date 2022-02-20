@@ -133,7 +133,7 @@
         .AHead-labels {
             color : $COLOR_Print_text;
         }
-            @if( $CANUSE_PSEUDO_BLOCK ){
+            @if( $CANUSE_CSS_GENERATED_NLOCK_IN_INLINE_BLOCK ){
                 .AHead-labels i {
                     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
                         @include inline-block;

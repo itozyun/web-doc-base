@@ -8,10 +8,6 @@
 $SEARCH_BTN_WIDTH : 3em;
 
 @if( $UA_Opera8 or $IS_Opera7x ){
-    .Search {
-        position : relative;
-        top      : math.div(-$BASE_LINE_HEIGHT_EM + 1em, 2);
-    }
     .Search-txt {
         margin-right : $INPUT_BORDER_WIDTH * 2;
     }
