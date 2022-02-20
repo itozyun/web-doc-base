@@ -1,5 +1,5 @@
 /* [module] LinkList
- *  出現位置は [#lB] [.lMi|.lSi] 下
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
  *
  *  div.LinkList
  *   div
@@ -12,8 +12,8 @@
     }
     a {
         @include unbreak-inside;
-        display : block;
-        cursor  : pointer;
+        display         : block;
+        cursor          : pointer;
         text-decoration : none !important;
 
         /* href がない場合 current を示す塗りになる */
@@ -21,12 +21,12 @@
         color            : $COLOR_Default_fill;
     }
     :link {
-        background       : $COLOR_Default_fill;
-        color            : $COLOR_Default_link;
+        background : $COLOR_Default_fill;
+        color      : $COLOR_Default_link;
     }
     :visited {
-        background       : $COLOR_Default_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
-        color            : $COLOR_Default_text;
+        background : $COLOR_Default_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
+        color      : $COLOR_Default_text;
     }
     :link:hover, :visited:hover {
         background : $COLOR_Default_casual_fill;
@@ -51,12 +51,12 @@
         color      : $COLOR_Ribbon_fill;
     }
     .ribbon & :link {
-        background       : $COLOR_Ribbon_fill;
-        color            : $COLOR_Ribbon_link;
+        background : $COLOR_Ribbon_fill;
+        color      : $COLOR_Ribbon_link;
     }
     .ribbon & :visited {
-        background       : $COLOR_Ribbon_fill;
-        color            : $COLOR_Ribbon_text;
+        background : $COLOR_Ribbon_fill;
+        color      : $COLOR_Ribbon_text;
     }
     .ribbon & :link:hover, .ribbon & :visited:hover {
         background : $COLOR_Ribbon_casual_fill;
