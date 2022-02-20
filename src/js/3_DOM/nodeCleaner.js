@@ -45,6 +45,11 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                         case '!' :
                             p_DOM_remove( kid );
                             break;
+                        case 'SOURCE' :
+                            if( !window.HTMLSourceElement ){
+                                p_DOM_remove( kid );
+                            };
+                            break;
                         case 'HEADER' :
                         case 'MAIN' :
                         case 'NAV' :
