@@ -39,12 +39,6 @@ a,
 h6 {
   color: #777
 }
-.Magazine .box,
-h2,
-input,
-textarea {
-  margin: 0
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -128,7 +122,6 @@ tr {
 #jsSide,
 .Cover-img,
 .Pager,
-.Search,
 kbd:hover,
 sub,
 sup {
@@ -409,26 +402,22 @@ a:active {
   background-color: #3079ed!important
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
+input,
+textarea {
+  font-size: 1em;
+  margin: 0;
+  border-width: .1em
+}
 .wn {
   color: red!important
 }
-input,
-textarea {
-  border-width: .1em
-}
 input {
   height: 2.1em
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-input[type=hidden] {
-  display: none
 }
 hr {
   height: 0;
@@ -822,15 +811,12 @@ input.btn {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor img,
-.Magazine-jump .btn {
-  margin: 0 0 1em 1em
-}
 .AAuthor {
   padding: 0 .5em 1em
 }
 .AAuthor img {
   float: right;
+  margin: 0 0 1em 1em;
   top: .4em
 }
 .ABody {
@@ -867,6 +853,12 @@ input.btn {
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a
+}
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
 }
 .AHead-labels a:visited {
   background: #1a1a1a;
@@ -1085,6 +1077,9 @@ kbd {
   float: left;
   line-height: 1.6
 }
+.Magazine .box {
+  margin: 0
+}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1095,6 +1090,9 @@ kbd {
 .Magazine-jump {
   width: 20%;
   float: right
+}
+.Magazine-jump .btn {
+  margin: 0 0 1em 1em
 }
 .RichLink-sep {
   line-height: 1.4
@@ -1141,9 +1139,6 @@ kbd {
 .RichLink b {
   font-size: .875em;
   padding: 0 0 .914em
-}
-.Search {
-  top: -.45em
 }
 .Search-txt {
   margin-right: .2em

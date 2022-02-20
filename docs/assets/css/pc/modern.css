@@ -2317,6 +2317,7 @@ blockquote hr {
     max-width: 40em
   }
   .ABody,
+  .ABody blockquote,
   .SearchResult-multi {
     -webkit-column-count: 2;
     -webkit-column-gap: 2.6em;
@@ -2335,6 +2336,8 @@ blockquote hr {
   .Header {
     text-align: center
   }
+  .ABody blockquote,
+  .ABody h1,
   .ABody h2,
   .hscroll {
     -webkit-column-span: all;

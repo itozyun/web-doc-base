@@ -39,11 +39,6 @@ a,
 h6 {
   color: #777
 }
-h2,
-input,
-textarea {
-  margin: 0
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -160,7 +155,6 @@ tr {
 }
 .Cover-img,
 .Pager,
-.Search,
 kbd:hover,
 sub,
 sup {
@@ -431,25 +425,23 @@ a:active {
   background-color: #3079ed!important
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
   font-weight: 700
 }
+input,
+textarea {
+  font-size: 1em;
+  margin: 0;
+  border-width: .1em
+}
 .wn {
   color: red!important
 }
-input,
-textarea {
-  border-width: .1em
-}
 input {
   height: 2.1em
-}
-.AHead-labels i,
-.RichLink br,
-input[type=hidden] {
-  display: none
 }
 hr {
   height: 0;
@@ -886,6 +878,10 @@ caption {
   margin-top: .5em;
   color: #1a1a1a
 }
+.AHead-labels i,
+.RichLink br {
+  display: none
+}
 .AHead-labels a:visited {
   background: #1a1a1a;
   border-color: #bbb;
@@ -1108,9 +1104,6 @@ pre var {
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
-}
-.Search {
-  top: -.45em
 }
 .Search-txt {
   margin-right: .2em

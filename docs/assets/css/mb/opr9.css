@@ -27,17 +27,6 @@ a,
 h6 {
   color: #999
 }
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
-}
-h2,
-input,
-textarea {
-  margin: 0
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -94,6 +83,12 @@ th {
 tbody th {
   background: #222
 }
+.commonForm,
+a iframe,
+a img,
+h2:after {
+  display: block
+}
 .lM1,
 .lM2,
 .lS1,
@@ -105,8 +100,6 @@ tbody th {
 .Search,
 .links a,
 .tl td,
-:link:hover img,
-:visited:hover img,
 h2,
 kbd:hover,
 sub,
@@ -452,9 +445,18 @@ blockquote .tl tbody th :visited {
   color: red!important
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
+}
+input,
+textarea {
+  font-size: 1em;
+  margin: 0;
+  border-width: .1em;
+  background: #000;
+  color: #eee
 }
 h2:after {
   width: 5em;
@@ -471,39 +473,8 @@ h2:after {
 .wn:after {
   background: red!important
 }
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited,
-.SocialBtns .fb:visited,
-.SocialBtns .hb:visited,
-.SocialBtns .ln:visited,
-.SocialBtns .pk:visited,
-.SocialBtns .pt:visited,
-.SocialBtns .tw:visited,
-.SocialBtns :visited,
-.baseColor,
-input,
-textarea {
-  background: #000
-}
-input,
-textarea {
-  border-width: .1em;
-  color: #eee
-}
 input {
   height: 2.1em
-}
-.ABody h2:after,
-.AHead-labels i,
-.Cover h2:after,
-.RichLink br,
-.tl tbody :empty:after,
-.tl tbody :empty:before,
-input[type=hidden] {
-  display: none
 }
 hr {
   height: 0;
@@ -553,6 +524,7 @@ tr hr {
 }
 :link:hover img,
 :visited:hover img {
+  position: relative;
   top: 2px
 }
 :link img,
@@ -724,6 +696,21 @@ blockquote .tl tbody td:after {
 .tl tbody :hover th {
   border-color: #3079ed
 }
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited,
+.SocialBtns .fb:visited,
+.SocialBtns .hb:visited,
+.SocialBtns .ln:visited,
+.SocialBtns .pk:visited,
+.SocialBtns .pt:visited,
+.SocialBtns .tw:visited,
+.SocialBtns :visited,
+.baseColor {
+  background: #000
+}
 #lB .lSi,
 .lM,
 .lS,
@@ -858,229 +845,6 @@ caption {
   width: 100%;
   float: right
 }
-.ico-author,
-.ico-chain,
-.ico-clock,
-.ico-comment,
-.ico-flag,
-.ico-label,
-.ico-pen,
-.ico-sylinder {
-  position: relative;
-  padding-left: 1.2em
-}
-.ico-author:after,
-.ico-author:before,
-.ico-chain:after,
-.ico-chain:before,
-.ico-clock:after,
-.ico-clock:before,
-.ico-comment:after,
-.ico-comment:before,
-.ico-flag:after,
-.ico-flag:before,
-.ico-label:after,
-.ico-label:before,
-.ico-pen:after,
-.ico-pen:before,
-.ico-sylinder:after,
-.ico-sylinder:before {
-  text-indent: -1em;
-  position: absolute;
-  margin-top: .1em;
-  content: " ";
-  display: block
-}
-.ico-clock:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .7em;
-  border-width: .15em;
-  border-color: #999
-}
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
-a:active .ico-author:after,
-a:active .ico-author:before,
-a:active .ico-chain:after,
-a:active .ico-chain:before,
-a:active .ico-clock:after,
-a:active .ico-clock:before,
-a:active .ico-comment:before,
-a:active .ico-flag:after,
-a:active .ico-flag:before,
-a:active .ico-label:before,
-a:active .ico-pen:before,
-a:active .ico-sylinder:after,
-a:active .ico-sylinder:before,
-a:focus .ico-author:after,
-a:focus .ico-author:before,
-a:focus .ico-chain:after,
-a:focus .ico-chain:before,
-a:focus .ico-clock:after,
-a:focus .ico-clock:before,
-a:focus .ico-comment:before,
-a:focus .ico-flag:after,
-a:focus .ico-flag:before,
-a:focus .ico-label:before,
-a:focus .ico-pen:before,
-a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before {
-  border-color: #f8fbf8
-}
-.ribbon .ico-author:after,
-.ribbon .ico-author:before,
-.ribbon .ico-chain:after,
-.ribbon .ico-chain:before,
-.ribbon .ico-clock:after,
-.ribbon .ico-clock:before,
-.ribbon .ico-comment:before,
-.ribbon .ico-flag:after,
-.ribbon .ico-flag:before,
-.ribbon .ico-label:before,
-.ribbon .ico-pen:before,
-.ribbon .ico-sylinder:after,
-.ribbon .ico-sylinder:before {
-  border-color: #bbb
-}
-.ico-clock:after {
-  top: .2em;
-  left: .43em;
-  width: .23em;
-  height: .23em;
-  border-width: 0 0 .14em .14em;
-  border-color: #999
-}
-.ico-label:before {
-  top: .2em;
-  left: 0;
-  width: .7em;
-  height: 0;
-  border-width: .6em 0 0;
-  border-color: #999
-}
-.ico-label:after {
-  top: .2em;
-  left: .7em;
-  width: 0;
-  height: 0;
-  border-width: .3em 0 .3em .3em;
-  border-color: transparent #999
-}
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #f8fbf8
-}
-.ribbon .ico-label:after {
-  border-color: transparent #bbb
-}
-.ico-author:before {
-  top: 0;
-  left: .3em;
-  width: .45em;
-  height: 0;
-  border-width: .225em 0;
-  border-color: #999
-}
-.ico-author:after {
-  top: .5em;
-  left: .1em;
-  width: 0;
-  height: 0;
-  border-width: .5em .4em 0;
-  border-color: #999
-}
-.ico-flag:after,
-.ico-flag:before,
-.ico-pen:before {
-  top: 0;
-  border-color: #999;
-  height: 0
-}
-.ico-flag:before {
-  left: 0;
-  width: .1em;
-  border-width: 1em 0 0
-}
-.ico-flag:after {
-  left: .2em;
-  width: .8em;
-  border-width: .7em 0 0
-}
-.ico-pen:before {
-  left: .25em;
-  width: .5em;
-  border-width: 0 0 .7em
-}
-.ico-pen:after {
-  top: .75em;
-  left: .25em;
-  width: 0;
-  height: 0;
-  border-width: .25em .25em 0;
-  border-color: #999 transparent
-}
-a:active .ico-comment:after,
-a:active .ico-pen:after,
-a:focus .ico-comment:after,
-a:focus .ico-pen:after {
-  border-color: #f8fbf8 transparent
-}
-.ribbon .ico-comment:after,
-.ribbon .ico-pen:after {
-  border-color: #bbb transparent
-}
-.ico-chain:before {
-  top: .05em;
-  left: .05em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em 0 .2em .2em;
-  border-color: #999
-}
-.ico-chain:after {
-  top: .3em;
-  left: .3em;
-  width: .3em;
-  height: .3em;
-  border-width: .2em .2em .2em 0;
-  border-color: #999
-}
-.ico-sylinder:after,
-.ico-sylinder:before {
-  width: .4em;
-  height: .4em;
-  border-color: #999
-}
-.ico-sylinder:before {
-  top: 0;
-  left: .1em;
-  border-width: .25em .2em .35em
-}
-.ico-sylinder:after {
-  top: .15em;
-  left: .2em;
-  border-width: .1em
-}
-.ico-comment:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .45em;
-  border-width: .15em;
-  border-color: #999
-}
-.ico-comment:after {
-  top: .65em;
-  left: .3em;
-  width: 0;
-  height: 0;
-  border-width: .35em .2em 0;
-  border-color: #999 transparent
-}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -1163,6 +927,14 @@ a:focus .ico-pen:after {
   border-width: .2em 0 0;
   color: #3079ed;
   margin: 2em 1.5% 1em
+}
+.ABody h2:after,
+.AHead-labels i,
+.Cover h2:after,
+.RichLink br,
+.tl tbody :empty:after,
+.tl tbody :empty:before {
+  display: none
 }
 .ABody h3 {
   font-size: 1.25em;
@@ -1962,6 +1734,12 @@ strong {
   border-color: #111;
   color: #111
 }
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus {
+  border-color: #f8fbf8
+}
 @media screen and (max-width:740px) {
   .Label div,
   .LinkList,
@@ -2391,32 +2169,6 @@ strong {
   }
 }
 @media print {
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .ribbon .ico-author:after,
-  .ribbon .ico-author:before,
-  .ribbon .ico-chain:after,
-  .ribbon .ico-chain:before,
-  .ribbon .ico-clock:after,
-  .ribbon .ico-clock:before,
-  .ribbon .ico-comment:before,
-  .ribbon .ico-flag:after,
-  .ribbon .ico-flag:before,
-  .ribbon .ico-label:before,
-  .ribbon .ico-pen:before,
-  .ribbon .ico-sylinder:after,
-  .ribbon .ico-sylinder:before,
   blockquote code,
   blockquote var,
   table,
@@ -2567,16 +2319,6 @@ strong {
   #lH .lMi {
     padding: .5em 0
   }
-  .ico-label:after,
-  .ribbon .ico-label:after {
-    border-color: transparent #666
-  }
-  .ico-comment:after,
-  .ico-pen:after,
-  .ribbon .ico-comment:after,
-  .ribbon .ico-pen:after {
-    border-color: #666 transparent
-  }
   .AHead {
     color: #666!important
   }
@@ -2600,9 +2342,6 @@ strong {
   thead code,
   thead var {
     color: #000
-  }
-  .AHead-labels i {
-    display: inline-block
   }
   .AHead-labels a {
     display: inline;

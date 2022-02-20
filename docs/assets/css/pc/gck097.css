@@ -39,12 +39,6 @@ a,
 h6 {
   color: #777
 }
-.Magazine .box,
-h2,
-input,
-textarea {
-  margin: 0
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -415,23 +409,25 @@ a:focus {
   border-color: #fff!important
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
-.wn {
-  color: red!important
-}
 input,
 textarea {
+  font-size: 1em;
+  margin: 0;
   border-width: .1em;
   padding: .45em .4em;
   -moz-box-sizing: border-box
 }
+.wn {
+  color: red!important
+}
 input {
-  height: 2.1em;
   line-height: 1;
-  font-size: 1em
+  height: 2.1em
 }
 hr {
   height: 0;
@@ -870,15 +866,12 @@ input.btn {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor img,
-.Magazine-jump .btn {
-  margin: 0 0 1em 1em
-}
 .AAuthor {
   padding: 0 .5em 1em
 }
 .AAuthor img {
   float: right;
+  margin: 0 0 1em 1em;
   top: .4em
 }
 .ABody {
@@ -1134,6 +1127,9 @@ kbd {
   float: left;
   line-height: 1.6
 }
+.Magazine .box {
+  margin: 0
+}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1148,6 +1144,9 @@ kbd {
 .Search-txt,
 .caption {
   width: 100%
+}
+.Magazine-jump .btn {
+  margin: 0 0 1em 1em
 }
 .RichLink-sep {
   line-height: 1.4
