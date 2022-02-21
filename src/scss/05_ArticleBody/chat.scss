@@ -44,28 +44,28 @@
             text-align : left;
         }
         .chatL {
-            padding    : 0 20% 0 4em;
+            padding : 0 20% 0 4em;
         }
         .chatR {
-            padding    : 0 4em 0 20%;
+            padding : 0 4em 0 20%;
         }
             .chatR p, .chatL p {
-                margin       : .4em 0;
-                display      : block;
-                text-align   : left;
-                color        : #111;
+                margin     : .4em 0;
+                display    : block;
+                text-align : left;
+                color      : #111;
                 @if( $CANUSE_PSEUDO_BLOCK ){
-                    position     : relative;
+                    position : relative;
                 }
             }
 
             @if( $CANUSE_PSEUDO_BLOCK ){
                 .chatR p:after, .chatL p:after {
                     @include createPseudoBlock;
-                    position     : absolute;
-                    top          : .7em;
-                    width        : 0;
-                    height       : 0;
+                    position : absolute;
+                    top      : .7em;
+                    width    : 0;
+                    height   : 0;
                 }
                 .chatL p:after {
                     border-color : transparent #fff;
@@ -79,63 +79,73 @@
                 }
 
                 @if( $UA_IE8 == false ){ /* 疑似要素に Transform が効かない */
-                    @include highContrastForIEGte9Gecko {
-                        /* //_{^@ie9 */
-                        .chatL p:after, .chatR p:after {
+                    /* //_{^@ie9 */
+                    .chatL p:after, .chatR p:after {
+                        @include highContrastForIEGte9Gecko {
                             display : none;
                         }
-                        .jsCanRotate {
-                        /* //_}^@ie9 */
-                            .chatL p:after, .chatR p:after {
-                                @if( $UA_IE9 == false ){
-                                    display      : block;
-                                }
-                                width        : .4em;
-                                height       : .4em;
+                    }
+                    .jsCanRotate {
+                    /* //_}^@ie9 */
+                        .chatL p:after, .chatR p:after {
+                            @include highContrastForIEGte9Gecko {
+                                width  : .4em;
+                                height : .4em;
                                 /* border-color : #fff; */
+                                @if( $UA_IE9 == false ){
+                                    display : block;
+                                }
                                 @if( $UA_Modern ){
-                                    transform     : rotate(-45deg);
+                                    transform : rotate(-45deg);
                                 }
                                 @if( $UA_IE9 ){
                                     -ms-transform : rotate(-45deg);
                                 }
-                                /* //_{@ie8 */
-                                // filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
-                                /* //_}@ie8 */
                             }
-                            .chatL p:after {
+                            /* //_{@ie8 */
+                            // filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
+                            /* //_}@ie8 */
+                        }
+                        .chatL p:after {
+                            @include highContrastForIEGte9Gecko {
                                 border-width : 1px 0 0 1px;
                                 left         : -0.3em;
                             }
-                            .chatR p:after {
+                        }
+                        .chatR p:after {
+                            @include highContrastForIEGte9Gecko {
                                 border-width : 0 1px 1px 0;
                                 right        : -0.3em;
                             }
-                        /* //_{^@ie9 */
                         }
-                        /* //_}^@ie9 */
+                    /* //_{^@ie9 */
+                    }
+                    /* //_}^@ie9 */
+                }
+                .chatL p:after, .chatR p:after {
+                    @include highContrastForChromiumEdge {
+                        display   : block;
+                        width     : .4em;
+                        height    : .4em;
+                        transform : rotate(-45deg);
                     }
                 }
-                @include highContrastForChromiumEdge {
-                    .chatL p:after, .chatR p:after {
-                        display      : block;
-                        width        : .4em;
-                        height       : .4em;
-                        transform    : rotate(-45deg);
-                    }
-                    .chatL p:after {
+                .chatL p:after {
+                    @include highContrastForChromiumEdge {
                         border-width : 1px 0 0 1px;
                         left         : -0.3em;
                     }
-                    .chatR p:after {
+                }
+                .chatR p:after {
+                    @include highContrastForChromiumEdge {
                         border-width : 0 1px 1px 0;
                         right        : -0.3em;
                     }
                 }
             }
 
-            @include highContrastForIE10ToEdge {
-                .chatL p:after, .chatR p:after {
+            .chatL p:after, .chatR p:after {
+                @include highContrastForIE10ToEdge {
                     border-top-color    : transparent;
                     border-bottom-color : transparent;
                 }
@@ -176,10 +186,10 @@
     --------------------------------------------------------------------------------------*/
     @include media(phone) {
         .chatL {
-            padding    : 0 9% 0 4em;
+            padding : 0 9% 0 4em;
         }
         .chatR {
-            padding    : 0 4em 0 9%;
+            padding : 0 4em 0 9%;
         }
     }
 
@@ -191,14 +201,14 @@
             display  : inline-block;
         }
         .chatL {
-            padding  : 0 9% 0 $CONTENT_MARGIN_LR;
+            padding : 0 9% 0 $CONTENT_MARGIN_LR;
         }
         .chatR {
             text-align : right;
             padding    : 0 $CONTENT_MARGIN_LR 0 9%;
         }
         .chatR p, .chatL p {
-            margin     : 0 0 .4em;
+            margin : 0 0 .4em;
         }
         .chatL p:after, .chatR p:after {
             top          : -.5em;
@@ -259,9 +269,9 @@
     --------------------------------------------------------------------------------------*/
     @include media(print) {
         .chat {
-            background     : $COLOR_Print_fill;
-            color          : $COLOR_Print_text;
-            border-color   : $COLOR_Print_casual_text;
+            background   : $COLOR_Print_fill;
+            color        : $COLOR_Print_text;
+            border-color : $COLOR_Print_casual_text;
         }
             .chatTitle {
                 background : $COLOR_Print_fill;
