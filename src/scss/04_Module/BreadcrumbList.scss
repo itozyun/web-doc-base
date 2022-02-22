@@ -1,0 +1,47 @@
+/* [module] BreadcrumbList
+ *  出現位置は #lE .lMi 下で固定
+ *
+--------------------------------------------------------------------------------------*/
+.BreadcrumbList {
+    padding : 1em 0;
+    color   : $COLOR_Default_casual_text;
+    @include lineHeight(1.2, 0);
+
+    a {
+        @include inline-block;
+        @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+            zoom : 1;
+        }
+    }
+}
+
+.ribbon .BreadcrumbList {
+    color : $COLOR_Ribbon_casual_text;
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    .BreadcrumbList  {
+        color : $COLOR_Watch_casual_text;
+    }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@include media(tablet) {
+    .BreadcrumbList {
+        padding : 1em 0 0;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .BreadcrumbList {
+        font-size     : .83em;
+        padding       : 0.5em 0;
+        border-bottom : 0.18em solid $COLOR_Print_text; /* 0.15 / .83 */
+        color         : $COLOR_Print_casual_text !important;
+    }
+}
