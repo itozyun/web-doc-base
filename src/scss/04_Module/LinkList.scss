@@ -83,7 +83,7 @@
             color      : $COLOR_Watch_text;
         }
 
-        @if $COLOR_Default_fill != $COLOR_Sidebar_fill {
+        @if $COLOR_Watch_fill != $COLOR_Sidebar_fill {
             #lB .lS & :link, #lB .lS & :visited {
                 background : $COLOR_Watch_fill;
             }

@@ -16,7 +16,7 @@ $COLOR_Default_visited       : #717 !default;
 $COLOR_Default_hover         : $COLOR_ACCENT !default;
 $COLOR_Default_visited_hover : #419 !default;
 
-/*  黒系統のフッターメイン用カラー
+/*  黒系統のリボン用カラー(フッターとページ上部のアクセント)
 --------------------------------------------------------------------------------------*/
 $COLOR_Ribbon_fill          : #1a1a1a !default;
 $COLOR_Ribbon_text          : #fff !default;
@@ -41,6 +41,21 @@ $COLOR_Watch_link          : $COLOR_Ribbon_link !default;
 $COLOR_Watch_visited       : #eae !default;
 $COLOR_Watch_hover         : $COLOR_Ribbon_hover !default;
 $COLOR_Watch_visited_hover : $COLOR_Ribbon_visited_hover !default;
+
+@if( $CANUSE_DARK_THEME_ALLWAYS ){
+    $COLOR_Sidebar_fill          : $COLOR_Watch_fill;
+
+    $COLOR_Default_fill          : $COLOR_Watch_fill;
+    $COLOR_Default_text          : $COLOR_Watch_text;
+    $COLOR_Default_casual_fill   : $COLOR_Watch_casual_fill;
+    $COLOR_Default_casual_text   : $COLOR_Watch_casual_text;
+    $COLOR_Default_accent        : $COLOR_Watch_accent;
+    
+    $COLOR_Default_link          : $COLOR_Watch_link;
+    $COLOR_Default_visited       : $COLOR_Watch_visited;
+    $COLOR_Default_hover         : $COLOR_Watch_hover;
+    $COLOR_Default_visited_hover : $COLOR_Watch_visited_hover;
+};
 
 /*  印刷用カラー
 --------------------------------------------------------------------------------------*/
