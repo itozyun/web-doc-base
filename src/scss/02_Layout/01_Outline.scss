@@ -34,7 +34,7 @@
             max-width : $PC_MAX_WIDTH_EM;
         }
         @if( $CANUSE_MARGIN_AUTO ){
-            margin    : 0 auto;
+            margin : 0 auto;
         }
     }
 
