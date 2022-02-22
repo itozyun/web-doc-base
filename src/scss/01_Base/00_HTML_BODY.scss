@@ -50,9 +50,6 @@
     /* //_{^@ie5win */
     body
     /* //_}^@ie5win */
-    /* //_{^#opr7x */ // Opera 7.x input[type=text] に触れなくなる
-    , input
-    /* //_}^#opr7x */
     {
         line-height : $BASE_LINE_HEIGHT;
     }
@@ -78,7 +75,7 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    body, input {
+    body {
         line-height : $PRINT_LINE_HEIGHT; /* for paper save */
     }
 }

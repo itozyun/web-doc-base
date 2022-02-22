@@ -64,18 +64,21 @@ input {
     }
     @if( $IS_OLD_OPERA ){
         height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-    }
-    @if( $UA_Opera9 ){
-        border-style : solid; /* for Opera 9.x [type=submit] */
+        @if( $IS_Opera7x == false ){
+            line-height : 1; // Opera 7.x input[type=text] に触れなくなる
+        }
+        @if( $UA_Opera9 ){
+            border-style : solid; /* for Opera 9.x [type=submit] */
+        }
     }
     @if( $IS_NOT_IE ){
         margin : 0;
     }
 }
 
-@if( $IS_OLD_OPERA ){
-    input[type=hidden] {
-        // display : none; /* Opera */
+@if( $UA_Opera8 ){
+    input[type=submit]:focus {
+        border-style : solid;
     }
 }
 

@@ -8,16 +8,27 @@
 $SEARCH_BTN_WIDTH : 3em;
 
 @if( $UA_Opera8 or $IS_Opera7x ){
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        .Search {
+            text-align : center;
+        }
+    }
+
     .Search-txt {
         margin-right : $INPUT_BORDER_WIDTH * 2;
+        @if( $IS_Opera7x ){
+            background : $COLOR_Default_casual_fill; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
+        }
     }
     .Search input {
         @if( $IS_Opera7x ){
             border-width : 0;
+            padding      : 0;
         } @else {
             border-width : $INPUT_BORDER_WIDTH;
         }
-        padding : 0;
     }
 } @else if( $IS_OLD_GECKO ){
     @if( $Option_simpleHeader ){
@@ -94,7 +105,7 @@ $SEARCH_BTN_WIDTH : 3em;
 
     .Search-txt {
         display : block;
-        width   : 100%; /* Opera <=9.27 で無視されるので <input size> 指定する */
+        width   : 100%; /* Opera <=8.5 で無視されるので <input size> 指定する */
 
         @if( $UA_Opera9 ){
             box-sizing  : content-box; /* Opera 9.0~9.27 */
@@ -120,9 +131,15 @@ $SEARCH_BTN_WIDTH : 3em;
        2. ie5.5 以下は、[type=submit] [type=text] 共に border-box。
     */
     .Search .btn {
-        padding-left  : 0;
-        padding-right : 0;
-        white-space   : nowrap;
+        white-space : nowrap;
+
+        @if( $UA_Opera8 ){
+            padding-left  : 0.5em;
+            padding-right : 0.5em;
+        } @else {
+            padding-left  : 0;
+            padding-right : 0;
+        }
 
         @if( $IS_IE8_OR_9 or $UA_Modern ){
             width : $SEARCH_BTN_WIDTH;
