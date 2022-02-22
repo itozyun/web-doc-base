@@ -217,9 +217,10 @@ html {
   margin: 0;
   height: 100%
 }
-body,
-input {
-  line-height: 1.9
+body {
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 body,
 input,
@@ -382,8 +383,7 @@ hr {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -607,9 +607,6 @@ blockquote tfoot th {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -649,6 +646,7 @@ body {
   line-height: 1px;
   margin-bottom: -1px
 }
+.BreadcrumbList a,
 .LinkList *,
 .Pager a,
 .RichLink-sep *,
@@ -774,10 +772,6 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -801,6 +795,7 @@ input.btn {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -914,6 +909,15 @@ input.btn {
 .Label a {
   line-height: 2.8;
   border-width: 0 0 1px
+}
+.BreadcrumbList {
+  color: #777;
+  line-height: 1.2;
+  padding: 1em 0 0
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1117,9 +1121,9 @@ pre var {
   left: -1.1em
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   width: 3.2em;
   right: -3.05em;
   text-overflow: ellipsis
@@ -1586,8 +1590,7 @@ strong {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -1740,6 +1743,12 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

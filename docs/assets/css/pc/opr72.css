@@ -89,6 +89,7 @@ td,
 th {
   word-break: break-all
 }
+.Cover-meta,
 .Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
@@ -112,12 +113,6 @@ h6 br {
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #ddd
 }
 .ABody h3,
 .Magazine h3,
@@ -354,8 +349,7 @@ a:active:hover {
 .baseColor .btn:link:active,
 .baseColor .btn:visited:active,
 .tl tbody td:after,
-a,
-tbody th {
+a {
   border-color: #f8fbf8
 }
 *,
@@ -550,6 +544,10 @@ thead th {
   background: #777;
   border-color: #ddd #818181;
   color: #f8fbf8
+}
+tbody th {
+  background: #ddd;
+  border-color: #f8fbf8
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -834,8 +832,15 @@ input.btn {
   background: #c47222;
   color: #e6d6a9
 }
+.Search-txt,
+blockquote,
+code,
+var {
+  background: #ddd
+}
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -935,6 +940,19 @@ input.btn {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  padding: 1em 0;
+  color: #777;
+  line-height: 1.2
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -971,14 +989,6 @@ input.btn {
   width: 100%;
   max-width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -986,6 +996,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1004,7 +1015,6 @@ kbd {
   font-size: 2em
 }
 .Cover-meta {
-  display: block;
   color: #777
 }
 .Subscribe div,
@@ -1189,9 +1199,9 @@ kbd {
   padding: 0
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
-  padding-right: 0;
-  white-space: nowrap
+  padding-right: 0
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1710,16 +1720,11 @@ strong {
   thead var {
     border-color: #666
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   code .typ,
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ribbon a,
@@ -1968,6 +1973,16 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
+  }
+  .RichLink b,
+  .h1 {
+    font-size: 1em
   }
   .Cover {
     margin: 2em auto

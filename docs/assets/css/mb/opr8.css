@@ -4,6 +4,19 @@
 textarea {
   overflow: auto
 }
+blockquote .tl tbody td:before,
+blockquote .tl td,
+blockquote .tl tfoot td,
+blockquote .tl tfoot th,
+blockquote .tl thead td,
+blockquote .tl thead th,
+blockquote blockquote,
+blockquote hr,
+h5,
+h6,
+table {
+  border-color: #777
+}
 dd,
 li {
   margin-bottom: .3em
@@ -25,7 +38,7 @@ thead {
 .baseColor :visited .RichLink-meta,
 a,
 h6 {
-  color: #999
+  color: #777
 }
 .Cover-img,
 .Pager,
@@ -86,14 +99,6 @@ td,
 th {
   word-break: break-all
 }
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-[type=submit],
-tbody th {
-  background: #222
-}
 #lB .lSi,
 body {
   padding: 0
@@ -116,6 +121,17 @@ h6 br {
 .lS2 {
   width: 48.5%
 }
+.baseColor,
+.medal {
+  background: #f8fbf8
+}
+#lB .lS,
+#lB .lS .LinkList :link,
+#lB .lS .LinkList :visited,
+#lB .lS .RichLink-sep :link,
+#lB .lS .RichLink-sep :visited {
+  background: #f1f4f1
+}
 .links,
 .note,
 blockquote,
@@ -129,6 +145,16 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
+}
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #ddd
 }
 code,
 kbd,
@@ -193,12 +219,9 @@ html {
   height: 100%
 }
 body {
+  line-height: 1.9;
   background: #1a1a1a;
-  color: #eee
-}
-body,
-input {
-  line-height: 1.9
+  color: #111
 }
 body,
 input,
@@ -277,6 +300,7 @@ del {
 }
 h4 {
   border-width: 0 0 0 .7em;
+  border-color: #111;
   padding: 0 0 0 .3em
 }
 h5 {
@@ -300,27 +324,9 @@ dfn {
   text-decoration: none;
   cursor: help
 }
-blockquote .tl tbody td:before,
-blockquote .tl td,
-blockquote .tl tfoot td,
-blockquote .tl tfoot th,
-blockquote .tl thead td,
-blockquote .tl thead th,
-blockquote blockquote,
-blockquote hr,
-h5,
-h6,
-table {
-  border-color: #999
-}
-.AMeta,
-.Pager,
-.SocialBtns,
-.tl thead th,
-hr,
-tbody th,
-th {
-  border-width: 0 0 1px
+.tl td,
+input[type=submit]:focus {
+  border-style: solid
 }
 iframe,
 img {
@@ -347,39 +353,6 @@ li {
 dt {
   margin-top: .7em
 }
-blockquote h3,
-blockquote table,
-h4 {
-  border-color: #eee
-}
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:active,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:active,
-.SocialBtns .pt:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-a,
-tbody th {
-  border-color: #000
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -396,17 +369,66 @@ a:active:hover,
 a:focus:hover {
   text-decoration: underline
 }
-.ribbon a {
-  color: #bbb;
-  border-color: #1a1a1a
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.tl tbody td:after,
+a,
+tbody th {
+  border-color: #f8fbf8
 }
-.SearchResult :visited,
-.ribbon :link,
+*,
+blockquote .tl tbody td:after,
+blockquote :link img,
+blockquote :visited img,
+hr {
+  border-color: #ddd
+}
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
 .tl thead :link:hover,
 :link {
+  color: #24c
+}
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited {
+  color: #111
+}
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #3079ed;
+  border-color: #3079ed
+}
+:visited:hover {
+  color: #419;
+  border-color: #419
+}
+.ribbon a {
+  color: #bbb;
+  border-color: #1a1a1a
+}
+.ribbon :link {
   color: #bbe
 }
 .ribbon,
@@ -420,39 +442,23 @@ tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
 }
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #3079ed;
-  border-color: #3079ed
-}
 a:active,
 a:active *,
 a:focus,
 a:focus * {
   color: #fff!important
 }
-.ribbon :visited:hover,
-:visited:hover {
+.wn,
+.wn:after {
+  color: red!important
+}
+.ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
 }
 a:active,
 a:focus {
   background-color: #3079ed!important
-}
-.aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-:visited,
-blockquote .tl tbody th :visited {
-  color: #eae
-}
-.wn,
-.wn:after {
-  color: red!important
 }
 h2 {
   margin: 0;
@@ -463,10 +469,7 @@ h2 {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: .1em;
-  background: #000;
-  color: #eee
+  margin: 0
 }
 h2:after {
   width: 5em;
@@ -483,12 +486,26 @@ h2:after {
 .wn:after {
   background: red!important
 }
+.Search input,
+input,
+textarea {
+  border-width: .1em
+}
+.AMeta,
+.Pager,
+.SocialBtns,
+.tl thead th,
+hr,
+tbody th,
+th {
+  border-width: 0 0 1px
+}
 input {
-  height: 2.1em
+  height: 2.1em;
+  line-height: 1
 }
 hr {
   height: 0;
-  border-color: #222;
   margin: 2em 6%
 }
 tr hr {
@@ -496,6 +513,7 @@ tr hr {
 }
 :link img,
 :visited img {
+  border-color: #f8fbf8;
   border-width: 2px
 }
 .AHead-labels a:link:active,
@@ -532,16 +550,17 @@ tr hr {
 :visited:focus img {
   border-color: #3079ed!important
 }
+.ABody h2,
+.Cover h2,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th {
+  border-color: #3079ed
+}
 :link:hover img,
 :visited:hover img {
   position: relative;
   top: 2px
-}
-:link img,
-:visited img,
-blockquote :link img,
-blockquote :visited img {
-  border-color: transparent
 }
 .hscroll table,
 tr ol,
@@ -591,15 +610,15 @@ th {
 }
 td {
   padding: .5em 0;
-  border-color: #000 #000 #222
+  border-color: #f8fbf8 #f8fbf8 #ddd
 }
 thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #999;
-  border-color: #222 #8d8d8d;
-  color: #000
+  background: #777;
+  border-color: #ddd #818181;
+  color: #f8fbf8
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -607,29 +626,22 @@ tbody td {
 tbody:not(:last-child) tr:last-child > * {
   border-bottom-width: 0
 }
+#lB .lS,
+#lE,
+#lF,
+#lF .lX,
+.tl tfoot th {
+  border-width: 1px 0 0
+}
 tfoot th {
   border-width: 2px 0 0
 }
 tfoot td {
   border-width: 2px .5em 0
 }
-tbody :hover th {
-  background: #3079ed;
-  color: #fff
-}
-tbody :hover td {
-  color: #3079ed;
-  border-color: #000 #000 #3079ed
-}
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
-  background: #fff!important;
-  color: #3079ed!important
-}
 tfoot td,
 tfoot th {
-  border-color: #999 #000
+  border-color: #777 #f8fbf8
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
@@ -642,33 +654,52 @@ blockquote tbody th :link,
 blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
-  color: #000
+  color: #f8fbf8
+}
+blockquote h3,
+blockquote table {
+  border-color: #111
 }
 blockquote thead td,
 blockquote thead th {
-  background: #eee;
-  border-color: #222 #dadada
+  background: #111;
+  border-color: #ddd #252525
 }
 blockquote tbody th {
-  background: #999;
-  border-color: #222;
-  color: #000
+  background: #777;
+  border-color: #ddd;
+  color: #f8fbf8
 }
 blockquote td {
-  border-color: #222 #222 #999
+  border-color: #ddd #ddd #777
 }
 blockquote tfoot td,
 blockquote tfoot th {
-  border-color: #eee #222
+  border-color: #111 #ddd
 }
 blockquote tbody :hover td {
-  border-color: #222 #222 #3079ed
+  border-color: #ddd #ddd #3079ed
+}
+tbody :hover th {
+  background: #3079ed;
+  color: #fff
+}
+tbody :hover td {
+  border-color: #f8fbf8 #f8fbf8 #3079ed;
+  color: #3079ed
+}
+tbody :hover th :focus,
+tbody :hover th :link:active,
+tbody :hover th :visited:active {
+  background: #fff!important;
+  color: #3079ed!important
 }
 .Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Search,
 .c {
   text-align: center
 }
@@ -677,45 +708,6 @@ blockquote tbody :hover td {
 }
 .ribbon * {
   border-color: #2a2a2a
-}
-#lB .lS,
-#lE,
-#lF,
-#lF .lX,
-.tl tfoot th {
-  border-width: 1px 0 0
-}
-*,
-.tl tbody td:before,
-.tl td,
-.tl tfoot td,
-.tl tfoot th,
-.tl thead td,
-.tl thead th,
-blockquote .tl tbody td:after {
-  border-color: #222
-}
-.ABody h2,
-.Cover h2,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th {
-  border-color: #3079ed
-}
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited,
-.SocialBtns .fb:visited,
-.SocialBtns .hb:visited,
-.SocialBtns .ln:visited,
-.SocialBtns .pk:visited,
-.SocialBtns .pt:visited,
-.SocialBtns .tw:visited,
-.SocialBtns :visited,
-.baseColor {
-  background: #000
 }
 #lB .lSi,
 .lM,
@@ -821,9 +813,19 @@ caption {
   border-color: #bbe;
   color: #1a1a1a
 }
+.SocialBtns .fb:link:active,
+.SocialBtns .fb:link:focus,
+.SocialBtns .fb:visited:active,
+.SocialBtns .fb:visited:focus,
+.SocialBtns .pt:link:active,
+.SocialBtns .pt:link:focus,
+.SocialBtns .pt:visited:active,
+.SocialBtns .pt:visited:focus,
+.btn:visited {
+  border-color: #fff
+}
 .btn:visited {
   background: #1a1a1a;
-  border-color: #fff;
   color: #fff
 }
 .commonForm-pair {
@@ -862,9 +864,15 @@ caption {
   height: 1.6em;
   line-height: 1.6
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.medal {
+  border-color: #f8fbf8;
+  color: #111
+}
+:link .medal,
+:visited .medal {
+  border-color: #111;
+  background: #111;
+  color: #f8fbf8
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -881,19 +889,9 @@ caption {
   background: #c47222;
   color: #e6d6a9
 }
-.medal {
-  border-color: #222;
-  background: #222;
-  color: #eee
-}
-:link .medal,
-:visited .medal {
-  border-color: #999;
-  background: #999;
-  color: #000
-}
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -955,10 +953,10 @@ caption {
 }
 .AHead h1 {
   font-size: 2em;
+  color: #111;
   padding: 0;
   margin: 2em 0;
-  text-align: center;
-  color: #eee
+  text-align: center
 }
 .Attribution small,
 .RichLink-meta,
@@ -1004,6 +1002,23 @@ caption {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  color: #777;
+  line-height: 1.2;
+  padding: 1em 0 0
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -1041,14 +1056,6 @@ kbd {
   display: block;
   width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -1056,6 +1063,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1065,12 +1073,12 @@ kbd {
   font-size: 1.33em;
   padding: .37em;
   margin: 0;
-  background: #000;
-  color: #eee
+  color: #fff;
+  background: #000
 }
 .Cover-meta {
   display: block;
-  color: #999
+  color: #777
 }
 .Cover {
   margin: 2em auto
@@ -1090,8 +1098,37 @@ kbd {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
-  background: #999;
-  color: #000
+  background: #111;
+  color: #f8fbf8
+}
+.LinkList :link,
+.RichLink-sep :link {
+  background: #f8fbf8;
+  color: #24c
+}
+.LinkList :visited,
+.RichLink-sep :visited {
+  background: #f8fbf8;
+  color: #111
+}
+.LinkList :link:hover,
+.LinkList :visited:hover,
+.RichLink-sep :link:hover,
+.RichLink-sep :visited:hover,
+.tl tr code,
+.tl tr var,
+blockquote tbody th code,
+blockquote tbody th var,
+thead code,
+thead var {
+  background: #ddd;
+  color: #111
+}
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: 0 0!important
 }
 .ribbon .LinkList a,
 .ribbon .RichLink-sep a {
@@ -1115,35 +1152,6 @@ kbd {
   background: #2a2a2a;
   color: #fff
 }
-.LinkList :link,
-.RichLink-sep :link {
-  background: #000;
-  color: #bbe
-}
-.LinkList :visited,
-.RichLink-sep :visited {
-  background: #000;
-  color: #eee
-}
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
-.tl tr code,
-.tl tr var,
-blockquote tbody th code,
-blockquote tbody th var,
-thead code,
-thead var {
-  background: #222;
-  color: #eee
-}
-.tl td,
-.tl th,
-pre code,
-pre var {
-  background: 0 0!important
-}
 .LinkList a {
   line-height: 1.1;
   padding: 1em .5em .8em
@@ -1158,7 +1166,10 @@ pre var {
   border-color: #2a2a2a!important
 }
 .baseColor .RichLink a {
-  border-color: #222!important
+  border-color: #ddd!important
+}
+.baseColor .RichLink-meta {
+  color: #ddd
 }
 .RichLink-meta {
   color: #2a2a2a;
@@ -1190,20 +1201,13 @@ pre var {
   float: left;
   margin: 0 .5em .6em 0
 }
-.baseColor .RichLink-meta {
-  color: #222
-}
 .Search-txt {
   margin-right: .2em
 }
-.Search input {
-  border-width: .1em;
-  padding: 0
-}
 .Search .btn {
-  padding-left: 0;
-  padding-right: 0;
   white-space: nowrap;
+  padding-left: .5em;
+  padding-right: .5em;
   overflow: hidden
 }
 .SearchResult {
@@ -1213,24 +1217,21 @@ pre var {
 .SearchResult p {
   margin: .5em
 }
+.SearchResult :visited {
+  color: #1a0dab
+}
 .SearchResult cite {
   color: #006621
 }
 .SearchResult div p {
   margin: .2em 0 0;
+  color: #545454
+}
+.SearchResult div span {
   color: grey
 }
 .SearchResult-multi {
   margin: 2em 0
-}
-.SearchResult div span {
-  color: #545454
-}
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-blockquote {
-  color: #eee
 }
 .Header {
   line-height: 1;
@@ -1290,7 +1291,7 @@ blockquote {
   padding: 1em 0;
   line-height: 1.2;
   text-align: right;
-  color: #000
+  color: #f8fbf8
 }
 .aa {
   margin: 1em 0;
@@ -1324,12 +1325,19 @@ tr .prettyprint {
 .aa var {
   color: #00ac06
 }
+.aBodyRoot :visited,
+.tl tbody th :visited,
+.tl tbody th :visited:hover,
+.tl thead :visited,
+.tl thead :visited:hover,
+blockquote .tl tbody th :visited {
+  color: #717
+}
 .aBodyRoot :visited:hover {
-  color: #b3f
+  color: #419
 }
 blockquote {
-  padding: 1em 1px;
-  background: #222
+  padding: 1em 1px
 }
 blockquote:before {
   content: attr(title);
@@ -1337,6 +1345,13 @@ blockquote:before {
 }
 blockquote:after {
   content: attr(cite)
+}
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  line-height: 1.2;
+  color: #24c;
+  margin: 0 1.5%
 }
 .js-bqCite,
 blockquote:after {
@@ -1346,13 +1361,6 @@ blockquote:after {
   word-break: break-all;
   color: #777;
   margin: 0 1.5%
-}
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  line-height: 1.2;
-  margin: 0 1.5%;
-  color: #bbe
 }
 .box > p:first-of-type {
   margin-top: -.225em
@@ -1389,18 +1397,17 @@ tr .box > p:first-of-type {
   white-space: nowrap
 }
 kbd {
+  border-color: #111;
   cursor: pointer;
   letter-spacing: -1px;
-  padding: 0 .4em;
-  border-color: #eee
+  padding: 0 .4em
 }
 kbd:hover {
   top: -.1em
 }
 code,
 var {
-  padding: .1em .4em;
-  background: #222
+  padding: .1em .4em
 }
 a:active code,
 a:active var,
@@ -1419,8 +1426,8 @@ blockquote code,
 blockquote var,
 tbody th code,
 tbody th var {
-  background: #999;
-  color: #000
+  background: #777;
+  color: #f8fbf8
 }
 .links {
   white-space: pre-wrap
@@ -1488,6 +1495,7 @@ dl.note dd {
 .tl tfoot th,
 .tl thead td,
 .tl thead th {
+  border-color: #ddd;
   padding-top: .5em;
   padding-bottom: .5em
 }
@@ -1497,7 +1505,7 @@ dl.note dd {
 }
 .tl td {
   border-width: 0 0 0 .3em;
-  border-style: solid;
+  border-color: #ddd;
   padding: .5em .8em
 }
 .tl tbody td:after,
@@ -1512,7 +1520,15 @@ dl.note dd {
   left: -.75em;
   width: 0;
   height: 0;
-  border-width: .6em
+  border-width: .6em;
+  border-color: #ddd
+}
+.tl tbody td:after {
+  top: .85em;
+  left: -.5em;
+  width: 0;
+  height: 0;
+  border-width: .35em
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1521,14 +1537,6 @@ dl.note dd {
 .tl tbody :hover th {
   background: #3079ed!important;
   color: #fff
-}
-.tl tbody td:after {
-  top: .85em;
-  left: -.5em;
-  width: 0;
-  height: 0;
-  border-width: .35em;
-  border-color: #000
 }
 .AMeta {
   padding: .5em 0
@@ -1539,8 +1547,8 @@ dl.note dd {
   text-indent: -1.2em
 }
 .Pager {
-  height: 4em;
-  color: #000
+  color: #f8fbf8;
+  height: 4em
 }
 .Pager-next {
   left: 0
@@ -1562,7 +1570,7 @@ dl.note dd {
 .Pager i {
   display: inline-block;
   vertical-align: text-top;
-  border-color: transparent #999
+  border-color: transparent #777
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1579,7 +1587,7 @@ dl.note dd {
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
-  border-color: #999 transparent
+  border-color: #777 transparent
 }
 .Pager-top :focus i,
 .Pager-top a:active i {
@@ -1587,62 +1595,68 @@ dl.note dd {
 }
 .SocialBtns {
   padding: 1em 0 .5em;
-  text-align: center;
-  color: #000
-}
-.SocialBtns .tw:visited {
-  border-color: #1b95e0;
-  color: #1b95e0
+  color: #f8fbf8;
+  text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
   border-color: #1b95e0;
-  color: #000
+  color: #f8fbf8
 }
-.SocialBtns .fb:visited {
-  border-color: #3b5999;
-  color: #3b5999
+.SocialBtns .tw:visited {
+  background: #f8fbf8;
+  border-color: #1b95e0;
+  color: #1b95e0
 }
 .SocialBtns .fb:link {
   background: #3b5999;
   border-color: #3b5999;
-  color: #000
+  color: #fff
 }
-.SocialBtns .hb:visited {
-  border-color: #008fde;
-  color: #008fde
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
 }
 .SocialBtns .hb:link {
   background: #008fde;
   border-color: #008fde;
-  color: #000
+  color: #f8fbf8
 }
-.SocialBtns .pt:visited {
-  border-color: #bd081c;
-  color: #bd081c
+.SocialBtns .hb:visited {
+  background: #f8fbf8;
+  border-color: #008fde;
+  color: #008fde
 }
 .SocialBtns .pt:link {
   background: #bd081c;
   border-color: #bd081c;
-  color: #000
+  color: #fff
 }
-.SocialBtns .pk:visited {
-  border-color: #ee4056;
-  color: #ee4056
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
 }
 .SocialBtns .pk:link {
   background: #ee4056;
   border-color: #ee4056;
-  color: #000
+  color: #f8fbf8
 }
-.SocialBtns .ln:visited {
-  border-color: #00c300;
-  color: #00c300
+.SocialBtns .pk:visited {
+  background: #f8fbf8;
+  border-color: #ee4056;
+  color: #ee4056
 }
 .SocialBtns .ln:link {
   background: #00c300;
   border-color: #00c300;
-  color: #000
+  color: #f8fbf8
+}
+.SocialBtns .ln:visited {
+  background: #f8fbf8;
+  border-color: #00c300;
+  color: #00c300
 }
 .img-disabled img {
   display: none!important
@@ -1704,10 +1718,10 @@ li.L8 {
   float: none
 }
 em {
-  background: #4e4e1f
+  background: #ff6
 }
 strong {
-  background: #1c3a49
+  background: #6cf
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1719,15 +1733,40 @@ strong {
   border-color: #111;
   color: #111
 }
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus {
-  border-color: #f8fbf8
-}
-@media handheld,
-projection,
-tv {
+@media handheld {
+  dd,
+  li {
+    margin-bottom: .1em
+  }
+  blockquote .tl tbody td:before,
+  blockquote .tl td,
+  blockquote .tl tfoot td,
+  blockquote .tl tfoot th,
+  blockquote .tl thead td,
+  blockquote .tl thead th,
+  blockquote blockquote,
+  blockquote hr,
+  h5,
+  h6 {
+    border-color: #999
+  }
+  .AHead,
+  .BreadcrumbList,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  a,
+  h6 {
+    color: #999
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3,
+  .RichLink a,
+  h2 {
+    padding-left: 0;
+    padding-right: 0
+  }
   .AHead,
   .AHead h1,
   .AHead-labels a,
@@ -1737,36 +1776,224 @@ tv {
   h2 {
     text-align: center
   }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 0
+  }
   body {
-    font-size: .813em
+    font-size: .75em;
+    color: #eee
   }
   dd {
-    margin-left: 1em
+    margin-left: .5em
   }
   li {
-    margin-top: .2em
+    margin-top: .1em
   }
   dt {
-    margin-top: .4em
+    margin-top: .2em
   }
-  dd,
-  li {
-    margin-bottom: .2em
+  blockquote h3,
+  blockquote table,
+  h4,
+  kbd {
+    border-color: #eee
+  }
+  .SocialBtns .fb:link:active,
+  .SocialBtns .fb:link:focus,
+  .SocialBtns .fb:visited:active,
+  .SocialBtns .fb:visited:focus,
+  .SocialBtns .hb:link:active,
+  .SocialBtns .hb:link:focus,
+  .SocialBtns .hb:visited:active,
+  .SocialBtns .hb:visited:focus,
+  .SocialBtns .ln:link:active,
+  .SocialBtns .ln:link:focus,
+  .SocialBtns .ln:visited:active,
+  .SocialBtns .ln:visited:focus,
+  .SocialBtns .pk:link:active,
+  .SocialBtns .pk:link:focus,
+  .SocialBtns .pk:visited:active,
+  .SocialBtns .pk:visited:focus,
+  .SocialBtns .pt:link:active,
+  .SocialBtns .pt:link:focus,
+  .SocialBtns .pt:visited:active,
+  .SocialBtns .pt:visited:focus,
+  .SocialBtns .tw:link:active,
+  .SocialBtns .tw:link:focus,
+  .SocialBtns .tw:visited:active,
+  .SocialBtns .tw:visited:focus,
+  .baseColor .btn:link:active,
+  .baseColor .btn:link:focus,
+  .baseColor .btn:visited:active,
+  .baseColor .btn:visited:focus,
+  .tl tbody td:after,
+  a,
+  tbody th {
+    border-color: #000
+  }
+  .SearchResult :visited,
+  .tl tbody th :link,
+  .tl tbody th :link:hover,
+  .tl thead :link,
+  .tl thead :link:hover,
+  :link {
+    color: #bbe
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  :visited,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  :visited:hover {
+    color: #b3f;
+    border-color: #b3f
   }
   h2:after {
     width: 33%;
     left: 33%;
     right: auto
   }
+  .LinkList :visited,
+  .RichLink-sep :visited,
+  input,
+  textarea {
+    background: #000;
+    color: #eee
+  }
+  #lB .lS .LinkList :link:hover,
+  #lB .lS .LinkList :visited:hover,
+  #lB .lS .RichLink-sep :link:hover,
+  #lB .lS .RichLink-sep :visited:hover,
+  [type=submit],
+  blockquote,
+  code,
+  tbody th,
+  var {
+    background: #222
+  }
+  hr {
+    border-color: #222;
+    margin: 2em 0
+  }
+  :link img,
+  :visited img,
+  blockquote :link img,
+  blockquote :visited img {
+    border-color: transparent
+  }
   table {
-    width: 98%
+    width: 100%;
+    border-color: #999
+  }
+  td {
+    border-color: #000 #000 #222
+  }
+  tfoot td,
+  tfoot th {
+    border-color: #999 #000
+  }
+  thead td,
+  thead th {
+    background: #999;
+    border-color: #222 #8d8d8d;
+    color: #000
+  }
+  .BlogArchive,
+  .BlogArchive tbody :hover td,
+  .Label div,
+  .Pager,
+  .SocialBtns,
+  .SocialBtns .fb:link,
+  .SocialBtns .hb:link,
+  .SocialBtns .ln:link,
+  .SocialBtns .pk:link,
+  .SocialBtns .pt:link,
+  .SocialBtns .tw:link,
+  .TxtNavi,
+  .aBodyRoot blockquote tbody th :visited,
+  .aBodyRoot blockquote tbody th :visited:hover,
+  .aBodyRoot thead :visited,
+  .aBodyRoot thead :visited:hover,
+  blockquote tbody th :link,
+  blockquote tbody th :link:hover,
+  thead :link,
+  thead :link:hover {
+    color: #000
+  }
+  blockquote thead td,
+  blockquote thead th {
+    background: #eee;
+    border-color: #222 #dadada
+  }
+  blockquote tbody th {
+    background: #999;
+    border-color: #222;
+    color: #000
+  }
+  blockquote td {
+    border-color: #222 #222 #999
+  }
+  blockquote tfoot td,
+  blockquote tfoot th {
+    border-color: #eee #222
+  }
+  blockquote tbody :hover td {
+    border-color: #222 #222 #3079ed
+  }
+  tbody :hover td {
+    border-color: #000 #000 #3079ed
+  }
+  *,
+  .medal,
+  .tl tbody td:before,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote .tl tbody td:after {
+    border-color: #222
+  }
+  #lB .lS,
+  #lB .lS .LinkList :link,
+  #lB .lS .LinkList :visited,
+  #lB .lS .RichLink-sep :link,
+  #lB .lS .RichLink-sep :visited,
+  .SocialBtns .fb:visited,
+  .SocialBtns .hb:visited,
+  .SocialBtns .ln:visited,
+  .SocialBtns .pk:visited,
+  .SocialBtns .pt:visited,
+  .SocialBtns .tw:visited,
+  .SocialBtns :visited,
+  .baseColor {
+    background: #000
   }
   #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
-    padding: 0 1%
+    padding: 0
   }
   .commonForm label,
   .lM1,
@@ -1787,55 +2014,67 @@ tv {
   h4,
   h5,
   h6 {
-    margin: 1.5em .5% .8em
-  }
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 1%
+    margin: 1.5em 0 .8em
   }
   caption {
-    margin: 1.5em 1% .7em
+    margin: 1.5em 0 .7em
   }
   iframe,
   img {
     max-width: 96%;
-    max-width: 98%
+    max-width: 98%;
+    max-width: 100%
   }
-  hr {
-    margin: 2em 2%
+  .baseColor .btn:link {
+    background: #bbe;
+    border-color: #bbe;
+    color: #000
+  }
+  .baseColor .btn:visited {
+    background: #000;
+    border-color: #eee;
+    color: #eee
   }
   .commonForm-wrap {
     margin-left: 0
   }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .medal,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #222;
+    color: #eee
+  }
+  :link .medal,
+  :visited .medal {
+    border-color: #999;
+    background: #999;
+    color: #000
+  }
+  .mspacer {
+    margin: .6em 0!important
+  }
   .ABody h1 {
-    margin: 3em .5%;
+    margin: 3em 0;
     font-size: 1.5em
   }
   .ABody h2 {
-    margin: 2em .5% 1em;
+    margin: 2em 0 1em;
     font-size: 1.25em
   }
   .ABody h3 {
-    margin: 2.4em .5% 1.2em
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3 {
-    padding-left: .5%;
-    padding-right: .5%
+    margin: 2.4em 0 1.2em
   }
   .AHead h1 {
-    font-size: 1.5em
+    font-size: 1.5em;
+    color: #eee
   }
   .AHead-labels {
     line-height: 0
@@ -1863,14 +2102,30 @@ tv {
   }
   .Cover h3 {
     background: 0 0;
-    color: #111;
     font-size: 1.5em;
-    padding: 0 0 .33em
+    padding: 0 0 .33em;
+    color: #eee
   }
   .Cover p,
   .Cover-meta {
     margin-left: 0;
     margin-right: 0
+  }
+  .LinkList a,
+  .RichLink-sep a,
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #999;
+    color: #000
+  }
+  .LinkList :link,
+  .RichLink-sep :link {
+    background: #000;
+    color: #bbe
   }
   .LinkList {
     padding: .2em 0 1em
@@ -1879,9 +2134,11 @@ tv {
     display: inline-block;
     margin: 2px
   }
-  .RichLink a {
-    padding-left: 1%;
-    padding-right: 1%
+  .LinkList a {
+    padding: .5em 0
+  }
+  .baseColor .RichLink a {
+    border-color: #222!important
   }
   .RichLink h3,
   .RichLink h3 * {
@@ -1891,139 +2148,29 @@ tv {
     float: none;
     margin: 0 auto 1em
   }
-  .Header h1,
-  .h1 {
-    font-size: 1.2em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 1%
-  }
-  .aBodyRoot {
-    line-height: 1.6
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 .5%
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 1% 1em
-  }
-  .box > p:first-of-type {
-    margin-top: -.15em
-  }
-  .box .caption,
-  .box iframe,
-  .box img {
-    margin: 0 auto 1em;
-    float: none
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 1%
-  }
-  .Pager-next i,
-  .Pager-top i {
-    margin-right: .2em
-  }
-  .Pager-prev i {
-    margin-left: .2em
-  }
-}
-@media handheld {
-  dd,
-  li {
-    margin-bottom: .1em
-  }
-  body {
-    font-size: .75em
-  }
-  dd {
-    margin-left: .5em
-  }
-  li {
-    margin-top: .1em
-  }
-  dt {
-    margin-top: .2em
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3,
-  .RichLink a,
-  h2 {
-    padding-left: 0;
-    padding-right: 0
-  }
-  table {
-    width: 100%
-  }
-  #lB .lSi,
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0
-  }
-  h4,
-  h5,
-  h6 {
-    margin: 1.5em 0 .8em
-  }
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 0
-  }
-  caption {
-    margin: 1.5em 0 .7em
-  }
-  iframe,
-  img {
-    max-width: 100%
-  }
-  hr {
-    margin: 2em 0
-  }
-  .mspacer {
-    margin: .6em 0!important
-  }
-  .ABody h1 {
-    margin: 3em 0
-  }
-  .ABody h2 {
-    margin: 2em 0 1em
-  }
-  .ABody h3 {
-    margin: 2.4em 0 1.2em
-  }
-  .LinkList a {
-    padding: .5em 0
+  .baseColor .RichLink-meta {
+    color: #222
   }
   .SearchResult div div,
   .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
+  blockquote:after {
     margin: 0
+  }
+  .SearchResult div p {
+    color: grey
+  }
+  .SearchResult div span {
+    color: #545454
+  }
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  blockquote {
+    color: #eee
+  }
+  .Header h1,
+  .h1 {
+    font-size: 1.2em
   }
   .aa,
   .note .aa,
@@ -2034,11 +2181,25 @@ tv {
   .aBodyRoot {
     line-height: 1.4
   }
+  .aBodyRoot :visited:hover {
+    color: #b3f
+  }
+  .js-bqLink,
+  blockquote:before {
+    margin: 0;
+    color: #bbe
+  }
   .box dl,
   .box ol,
   .box p,
   .box ul {
     margin: 0 0 1em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 auto 1em;
+    float: none
   }
   .box > p:first-of-type {
     margin-top: -.1em
@@ -2048,6 +2209,25 @@ tv {
   .note blockquote p,
   .note blockquote ul {
     margin-right: 0
+  }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
+  }
+  .Pager i {
+    border-color: transparent #999
+  }
+  .Pager-top i {
+    border-color: #999 transparent
+  }
+  em {
+    background: #4e4e1f
+  }
+  strong {
+    background: #1c3a49
   }
 }
 @media print {
@@ -2072,8 +2252,7 @@ tv {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -2241,6 +2420,12 @@ tv {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

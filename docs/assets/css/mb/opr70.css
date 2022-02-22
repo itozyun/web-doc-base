@@ -116,16 +116,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-blockquote,
-code,
-tbody th,
-var {
-  background: #ddd
-}
 code,
 kbd,
 var {
@@ -362,8 +352,7 @@ a:active:hover {
 .baseColor .btn:link:active,
 .baseColor .btn:visited:active,
 .medal,
-a,
-tbody th {
+a {
   border-color: #f8fbf8
 }
 *,
@@ -545,6 +534,10 @@ thead th {
   border-color: #ddd #818181;
   color: #f8fbf8
 }
+tbody th {
+  background: #ddd;
+  border-color: #f8fbf8
+}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -623,6 +616,7 @@ tbody :hover th :visited:active {
 .r {
   text-align: right
 }
+.Search,
 .c {
   text-align: center
 }
@@ -779,10 +773,6 @@ caption {
   height: 1.6em;
   line-height: 1.6
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -804,8 +794,19 @@ caption {
   background: #c47222;
   color: #e6d6a9
 }
+#lB .lS .LinkList :link:hover,
+#lB .lS .LinkList :visited:hover,
+#lB .lS .RichLink-sep :link:hover,
+#lB .lS .RichLink-sep :visited:hover,
+.Search-txt,
+blockquote,
+code,
+var {
+  background: #ddd
+}
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -911,6 +912,23 @@ caption {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  color: #777;
+  line-height: 1.2;
+  padding: 1em 0 0
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-table
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -948,14 +966,6 @@ kbd {
   display: block;
   width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-table
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -963,6 +973,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-table;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1112,9 +1123,9 @@ pre var {
   padding: 0
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   overflow: hidden
 }
 .SearchResult {
@@ -1638,8 +1649,7 @@ strong {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -1804,6 +1814,12 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

@@ -132,9 +132,10 @@ html {
   margin: 0;
   height: 100%
 }
-body,
-input {
-  line-height: 1.9
+body {
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 :active,
 :focus {
@@ -304,6 +305,7 @@ form :focus {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 .ribbon a,
 :link .RichLink-meta,
 :visited .RichLink-meta {
@@ -496,10 +498,6 @@ blockquote tfoot th {
 }
 .uc {
   text-transform: uppercase
-}
-body {
-  background: #1a1a1a;
-  color: #111
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -760,6 +758,17 @@ caption {
 .RichLink br {
   display: none
 }
+.BlogArchive a,
+.BreadcrumbList a,
+.Cover h2,
+.Cover-meta span,
+.Label a,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .AHead-labels a:visited {
   background: #1a1a1a;
   border-color: #bbb;
@@ -789,9 +798,13 @@ caption {
   word-break: normal
 }
 .BlogArchive a {
-  display: inline-block;
   margin: 0 0 1em;
   border-width: 0 0 1px
+}
+.BreadcrumbList {
+  padding: 1em 0;
+  color: #777;
+  line-height: 1.2
 }
 .Comment h3,
 .SearchResult h3 {
@@ -827,15 +840,6 @@ caption {
 .Cover img {
   margin: 0;
   display: block
-}
-.Cover h2,
-.Cover-meta span,
-.Label a,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1061,9 +1065,9 @@ kbd {
   left: .05em
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   overflow: hidden
 }
 .SearchResult {
@@ -1494,17 +1498,12 @@ strong {
   thead var {
     border-color: #666
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .lW,
   .lX,
   table {
     width: 100%
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ribbon a,
@@ -1723,6 +1722,16 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
+  }
+  .RichLink b,
+  .h1 {
+    font-size: 1em
   }
   .Cover {
     margin: 2em auto

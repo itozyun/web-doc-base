@@ -159,9 +159,10 @@ html {
   margin: 0;
   height: 100%
 }
-body,
-input {
-  line-height: 1.9
+body {
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 body,
 input,
@@ -371,8 +372,7 @@ hr {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -650,9 +650,6 @@ tbody :hover th :visited:active {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a
-}
 .ribbon,
 .ribbon .LinkList :visited,
 .ribbon .RichLink-sep :visited {
@@ -842,10 +839,6 @@ input.btn {
 .caption {
   width: 100%
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -869,6 +862,7 @@ input.btn {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -973,6 +967,23 @@ input.btn {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  color: #777;
+  line-height: 1.2;
+  padding: 1em 0 0
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: -moz-inline-box
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -1009,14 +1020,6 @@ kbd {
   margin: 0;
   display: block
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: -moz-inline-box
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -1024,6 +1027,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: -moz-inline-box;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1166,9 +1170,9 @@ pre var {
 .Search .btn {
   position: absolute;
   top: 0;
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   width: 3em;
   right: -.1em;
   overflow: hidden
@@ -1701,8 +1705,7 @@ strong {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -1867,6 +1870,12 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

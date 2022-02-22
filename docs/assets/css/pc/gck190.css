@@ -140,9 +140,10 @@ html {
   margin: 0;
   height: 100%
 }
-body,
-input {
-  line-height: 1.9
+body {
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #111
 }
 body,
 input,
@@ -277,6 +278,7 @@ iframe,
 img {
   max-width: 100%
 }
+.Cover-meta,
 .Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
@@ -365,8 +367,7 @@ hr {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-body {
+:visited {
   color: #111
 }
 .ribbon :link:hover,
@@ -638,9 +639,6 @@ tbody :hover th :visited:active {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -854,6 +852,7 @@ input.btn {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -947,6 +946,19 @@ input.btn {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  padding: 1em 0;
+  color: #777;
+  line-height: 1.2
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -983,14 +995,6 @@ input.btn {
   width: 100%;
   max-width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -998,6 +1002,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-block;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1016,7 +1021,6 @@ kbd {
   font-size: 2em
 }
 .Cover-meta {
-  display: block;
   color: #777
 }
 .Subscribe div,
@@ -1206,9 +1210,9 @@ kbd {
   top: 0
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   width: 3em;
   right: -3.1em;
   overflow: hidden
@@ -1776,6 +1780,9 @@ strong {
   .mspacer {
     margin: 1em .5em!important
   }
+  .BreadcrumbList {
+    padding: 1em 0 0
+  }
   #lB .lS .LinkList :link:hover,
   #lB .lS .LinkList :visited:hover,
   #lB .lS .RichLink-sep :link:hover,
@@ -2291,6 +2298,7 @@ screen and (max-width:950px) {
     margin-bottom: .1em
   }
   .AHead,
+  .BreadcrumbList,
   .Cover-meta,
   .baseColor :link .RichLink-meta,
   .baseColor :visited .RichLink-meta,
@@ -2689,8 +2697,7 @@ screen and (max-width:950px) {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -2855,6 +2862,12 @@ screen and (max-width:950px) {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

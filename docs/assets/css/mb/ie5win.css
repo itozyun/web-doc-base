@@ -52,6 +52,7 @@ h6 {
   color: #777
 }
 .AMeta *,
+.BreadcrumbList *,
 .Pager span,
 .SearchResult *,
 .caption,
@@ -190,7 +191,8 @@ tr {
 }
 * {
   border-style: solid;
-  border-width: 0
+  border-width: 0;
+  line-height: 1.9
 }
 html {
   font-size: 100%
@@ -199,10 +201,6 @@ body,
 html {
   margin: 0;
   height: 100%
-}
-*,
-input {
-  line-height: 1.9
 }
 body,
 input,
@@ -390,6 +388,7 @@ table {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 .ribbon a,
 :link .RichLink-meta,
 :visited .RichLink-meta {
@@ -855,6 +854,11 @@ input.btn {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  color: #777;
+  line-height: 1.2;
+  padding: 1em 0 0
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -1062,9 +1066,9 @@ pre var {
   left: .05em
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   width: 3em;
   right: .05em;
   overflow: hidden
@@ -1479,8 +1483,7 @@ strong {
   thead var {
     border-color: #666
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -1635,6 +1638,12 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static

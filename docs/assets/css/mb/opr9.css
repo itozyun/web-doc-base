@@ -75,10 +75,6 @@ td,
 th {
   word-break: break-all
 }
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
 [type=submit],
 tbody th {
   background: #222
@@ -182,9 +178,10 @@ html {
   margin: 0;
   height: 100%
 }
-body,
-input {
-  line-height: 1.9
+body {
+  line-height: 1.9;
+  background: #1a1a1a;
+  color: #eee
 }
 body,
 input,
@@ -366,6 +363,10 @@ h4 {
 .SocialBtns .tw:link:focus,
 .SocialBtns .tw:visited:active,
 .SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
 a,
 tbody th {
   border-color: #000
@@ -474,7 +475,8 @@ h2:after {
   background: red!important
 }
 input {
-  height: 2.1em
+  height: 2.1em;
+  line-height: 1
 }
 hr {
   height: 0;
@@ -665,10 +667,6 @@ blockquote tbody :hover td {
 .uc {
   text-transform: uppercase
 }
-body {
-  background: #1a1a1a;
-  color: #eee
-}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -697,10 +695,6 @@ blockquote .tl tbody td:after {
   border-color: #3079ed
 }
 #lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited,
 .SocialBtns .fb:visited,
 .SocialBtns .hb:visited,
 .SocialBtns .ln:visited,
@@ -860,10 +854,6 @@ caption {
   height: 1.6em;
   line-height: 1.6
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
-}
 .medal-gold {
   border-color: #e7bd2c;
   background: #e7bd2c;
@@ -892,6 +882,7 @@ caption {
 }
 .ADesc,
 .ribbon .AHead,
+.ribbon .BreadcrumbList,
 :link .RichLink-meta,
 :visited .RichLink-meta {
   color: #bbb
@@ -1000,6 +991,23 @@ caption {
   line-height: 2.8;
   border-width: 0 0 1px
 }
+.BreadcrumbList {
+  line-height: 1.2;
+  color: #999;
+  padding: 1em 0 0
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.links a,
+kbd {
+  display: inline-block
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -1010,7 +1018,7 @@ caption {
   margin-left: 3%
 }
 .Comment div {
-  color: #777;
+  color: #999;
   font-size: 93%
 }
 .Comment p {
@@ -1037,14 +1045,6 @@ kbd {
   display: block;
   width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -1052,8 +1052,9 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: inline-block;
   background: #3079ed;
-  color: #f8fbf8;
+  color: #000;
   font-size: .825em;
   padding: .6em
 }
@@ -1216,9 +1217,9 @@ pre var {
   left: .05em
 }
 .Search .btn {
+  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  white-space: nowrap;
   width: 3em;
   right: .05em;
   overflow: hidden
@@ -1361,7 +1362,7 @@ blockquote:after {
   font-size: .875em;
   text-align: right;
   word-break: break-all;
-  color: #777;
+  color: #999;
   margin: 0 1.5%
 }
 .js-bqLink,
@@ -1725,20 +1726,14 @@ strong {
   background: #1c3a49
 }
 .baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
+  background: #bbe;
+  border-color: #bbe;
+  color: #000
 }
 .baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
-}
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus {
-  border-color: #f8fbf8
+  background: #000;
+  border-color: #eee;
+  color: #eee
 }
 @media screen and (max-width:740px) {
   .Label div,
@@ -2036,7 +2031,7 @@ strong {
   }
   .Cover h3 {
     background: 0 0;
-    color: #111;
+    color: #eee;
     font-size: 1.5em;
     padding: 0 0 .33em
   }
@@ -2190,8 +2185,7 @@ strong {
   th {
     font-weight: 700
   }
-  body,
-  input {
+  body {
     line-height: 1.5
   }
   .ADesc,
@@ -2357,6 +2351,12 @@ strong {
   .AHead-labels a:visited {
     color: #606;
     background: 0 0
+  }
+  .BreadcrumbList {
+    font-size: .83em;
+    padding: .5em 0;
+    border-bottom: .18em solid #000;
+    color: #666!important
   }
   .Cover .img-loaded div {
     position: static
