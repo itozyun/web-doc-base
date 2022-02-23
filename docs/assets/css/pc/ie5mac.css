@@ -1055,14 +1055,14 @@ kbd {
   position: absolute;
   top: 0
 }
-.Search input:active,
-.Search input:focus {
-  z-index: 1
-}
 .Search-txt {
   display: block;
   width: 100%;
   left: .05em
+}
+.Search input:active,
+.Search input:focus {
+  z-index: 1
 }
 .Search .btn {
   white-space: nowrap;

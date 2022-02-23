@@ -1205,9 +1205,9 @@ pre var {
   margin-right: .2em
 }
 .Search .btn {
-  white-space: nowrap;
   padding-left: .5em;
   padding-right: .5em;
+  white-space: nowrap;
   overflow: hidden
 }
 .SearchResult {

@@ -1472,14 +1472,14 @@ kbd {
 kbd:hover {
   position: relative
 }
+.Search-txt {
+  width: 100%;
+  left: -22px
+}
 .Search input:active,
 .Search input:focus,
 .Search input:hover {
   z-index: 1
-}
-.Search-txt {
-  width: 100%;
-  left: -22px
 }
 .Search .btn {
   white-space: nowrap;

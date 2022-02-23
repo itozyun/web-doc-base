@@ -1607,16 +1607,16 @@ pre var {
   position: absolute;
   top: 0
 }
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
-}
 .Search-txt {
   left: -22px
 }
 .Search-txt:invalid {
   color: #777
+}
+.Search input:active,
+.Search input:focus,
+.Search input:hover {
+  z-index: 1
 }
 .Search .btn {
   white-space: nowrap;

@@ -1485,15 +1485,15 @@ pre var {
 kbd:hover {
   position: relative
 }
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
-}
 .Search-txt {
   display: block;
   width: 100%;
   left: -22px
+}
+.Search input:active,
+.Search input:focus,
+.Search input:hover {
+  z-index: 1
 }
 .Search .btn {
   white-space: nowrap;

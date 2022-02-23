@@ -1205,16 +1205,16 @@ pre var {
   position: absolute;
   top: 0
 }
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
-}
 .Search-txt {
   box-sizing: content-box;
   height: 1.7em;
   line-height: 1.7em;
   left: .05em
+}
+.Search input:active,
+.Search input:focus,
+.Search input:hover {
+  z-index: 1
 }
 .Search .btn {
   white-space: nowrap;

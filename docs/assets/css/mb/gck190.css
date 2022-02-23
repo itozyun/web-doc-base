@@ -462,6 +462,9 @@ input {
   line-height: 1;
   height: 2.1em
 }
+input:-moz-focus-inner {
+  border: 0
+}
 input::-moz-focus-inner {
   border: 0
 }
@@ -1179,12 +1182,17 @@ pre var {
   display: block
 }
 .Search .btn {
+  width: 3em;
+  right: -3.1em;
   white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
-  width: 3em;
-  right: -3.1em;
   overflow: hidden
+}
+.Search input:active,
+.Search input:focus,
+.Search input:hover {
+  z-index: 1
 }
 .SearchResult {
   margin-bottom: 2em;
