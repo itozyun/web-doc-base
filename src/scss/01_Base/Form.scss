@@ -42,6 +42,15 @@ textarea, input {
     @include placeholderColor( $COLOR_Default_casual_text );
 }
 
+@if( $UA_Gck-097 ){
+    input[type=submit] {
+        -moz-box-sizing : content-box; /* Gecko 0.8.1 */
+    }
+    :-gck-lte142, _:-moz-any-link, input[type=submit] {
+        -moz-box-sizing : border-box; /* Gecko 0.9.4~1.4.2 */
+    }
+}
+
 input {
     font-size : 1em;
 
@@ -82,9 +91,18 @@ input {
     }
 }
 
+@if( $UA_Gck-097 or $UA_Gck101-121 ){
+    input[type=submit]:focus {
+        border-style : solid;
+    }
+    input[type=submit]:-moz-focus-inner {
+        border : 0;
+    }
+}
+
 @if( $UA_Modern or $UA_Gck130-190 ){
     input::-moz-focus-inner /* , button::-moz-focus-inner */ {
-        border      : 0;
+        border : 0;
     }
 }
 
