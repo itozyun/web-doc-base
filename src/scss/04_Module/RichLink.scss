@@ -98,6 +98,14 @@ $RICHLINK_TEXT_SIZE : 0.875;
         .RichLink img {
             float  : left;
             margin : 0 .6em 1em 0;
+            // Fix : Rect of <img> becomes box-width in Opera7.x.
+            // https://twitter.com/itozyun/status/1496619343698096129
+            @if $IS_Opera7x {
+                width : auto;
+            }
+            @if $UA_Opera72 {
+                line-height: 0;
+            }
         }
     .RichLink-meta {
         font-size : 1em * $RICHLINK_TEXT_SIZE;
