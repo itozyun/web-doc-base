@@ -67,20 +67,21 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     }
 
-    .baseColor .RichLink-meta {
-        color  : $COLOR_Default_casual_fill;
-    }
-    :link, :visited {
-        .baseColor & .RichLink-meta {
-            color  : $COLOR_Default_casual_text;
-        }
-    }
     .RichLink-meta {
         color  : $COLOR_Ribbon_casual_fill;
     }
     :link, :visited {
         .RichLink-meta {
             color  : $COLOR_Ribbon_casual_text;
+        }
+    }
+
+    .baseColor .RichLink-meta {
+        color  : $COLOR_Default_casual_fill;
+    }
+    :link, :visited {
+        .baseColor & .RichLink-meta {
+            color  : $COLOR_Default_casual_text;
         }
     }
 
