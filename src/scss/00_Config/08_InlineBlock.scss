@@ -9,5 +9,8 @@
         } @else {
             display : inline-block;
         }
+        @if( $UA_Opera8 or $IS_Opera7x ){
+            vertical-align : top;
+        }
     }
 }
