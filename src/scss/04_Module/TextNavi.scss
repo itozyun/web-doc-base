@@ -10,7 +10,9 @@
         color       : $COLOR_Default_fill; /* , を消す */
 
         a {
-            @include inline-block;
+            @if( $UA_Gck-097 == false ){
+                @include inline-block; /* Gecko 0.9.7 だけ崩れる */
+            }
             @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
                 zoom : 1;
             }
