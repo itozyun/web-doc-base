@@ -366,11 +366,11 @@ clearfix のテスト,
         #isOpera80-96 {　display : block; } /* 全角スペースを使ったハック Windows 限定という説あり */
         html:\66irst-child #isOpera9-92 { display : block; }
         :-o-prefocus, /*:root*/ #isOpera95-12 { display : block; }
-    }
+    } /* Opera 7.2- のみ続く指定が無視される (A) */
 
     #isOpera7-71 { display : none }
     /* 最期に書く */
-    #isOpera7-71, x:not(\){ display : block; }
+    #isOpera7-71, x:not(\){ display : block; } /* (A) につきこの指定は不要 */
 
 /* for Opera 6.06 で頭にできる隙間を小さくする */
 .ultimate-clearfix:before { /* opera 9.54~, Safari 3.2 で隙間が出来る, x:not(\) の後ろに書けば読み込まれない */

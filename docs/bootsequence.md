@@ -26,34 +26,50 @@ IE 以外のブラウザ用または Mac IE5 用の CSS が読み込まれます
 次の HTML タグで javascript を有効にするか Web ブラウザの変更を促す警告メッセージを表示して、閲覧者に対処を促します。
 
 ~~~html
+<!--[if !IE]><!-->
 <noscript>
+<div id="-o-"><!-- 旧いブラウザには noscript p セレクタが効かない! -->
 <style>/*<![CDATA[*/
-noscript p { display:none;border:double 5px #f66;padding:1em;background:#300;color:#fff; }
-/* Gecko ~1.8 */
-@media \0 all {
-    noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."; }
-}
-@-moz-document url-prefix() {
-    /* Gecko 1.8~1.9.2 */
-    _:not(), _:-moz-loading, noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."; }
-    /* Gecko 1.9.1~1.9.2 */
-    _:not(), _:-moz-handler-blocked, noscript p { display:none }
-}
+/* common */
+#-o- p{border:double 5px #f66;padding:1em;background:#300;color:#fff}
+
 /* Opera 7.20~9.27 */
-@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) {
-    html:first-child noscript p { display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."; }
+@media all and(-o-:0),not all and(-o-:0){
+    html:first-child #-o-{display:block}
+    :_{top:0} /* Opera ~7.11 skip next rule */
 }
-/* Opera ~7.10 */
-noscript p, x:not(\){ display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."; }
+/* common */
+#-o-{display:none}
+#-o- p:after{content:attr(nojs) attr(opr)}
+
+/* Opera 用ルールを先に、Gecko 用を後に書く */
+
+/* Gecko ~1.8 */
+@media \0 all{
+    #-o-{display:block}
+    #-o- p:after{content:attr(nojs) attr(gck)}
+}
+@-moz-document url-prefix(){
+    /* Gecko 1.8~1.9.2 */
+    _:not(),_:-moz-loading,#-o-{display:block}
+    _:not(),_:-moz-loading,#-o- p:after{content:attr(nojs) attr(gck)}
+    /* Gecko 1.9.1~1.9.2 */
+    _:not(),_:-moz-handler-blocked,#-o- div{display:none}
+}
 /*]]>*/</style>
-<p>
+<p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."><!-- inline 要素は不可 -->
+</div>
 </noscript>
+<!--<![endif]-->
 ~~~
+
+テキストでは無く、`content` でメッセージを表示しています。これは CSS が無効の場合、IE5~9 以外のブラウザの全てでメッセージが表示されてしまうのを避ける為です。
 
 #### 短縮版
 
 ~~~html
-<noscript><style>/*<![CDATA[*/noscript p{display:none;border:double 5px #f66;padding:1em;background:#300;color:#fff}@media \0 all{noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."}}@-moz-document url-prefix(){_:not(),_:-moz-loading,noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Firefox 3.5+."}_:not(),_:-moz-handler-blocked,noscript p{display:none}}@media all and(-webkit-min-device-pixel-ratio:10000),not all and(-webkit-min-device-pixel-ratio:0){html:first-child noscript p{display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."}}noscript p,x:not(\){display:block;content:"Please enabled javascript or use new version of browser. At least Opera 9.50+."}/*]]>*/</style><p></noscript>
+<!--[if !IE]><!--><noscript><div id="-o-"><style>/*<![CDATA[*/#-o- p{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o- p:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o- p:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o- p:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*]]>*/</style><p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></div></noscript><!--<![endif]-->
+
 ~~~
 
 ### 1.2. IE5~9 の場合
