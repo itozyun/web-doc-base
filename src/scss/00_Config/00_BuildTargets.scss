@@ -31,7 +31,7 @@
  *  //#ie89[@ie8,@ie9]
  *  //#ie[@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9]
  *
- *  //#can-mq[@modern,@ie9,@opr9,@gck190]
+ *  //#can-mq[@modern,@ie9,@opr9]
  *  //#can-svg[@modern,@ie9]
  *  //#can-content[@modern,#legacy,@ie9,@ie8]
  *  //#can-attr-selector[@modern,#legacy,@ie9,@ie8,@ie7]
@@ -47,7 +47,7 @@
  *      -moz-: | -webkit-: Safari 3~5.1, AOPS 2~
  *  //#can-1stChild[@modern,#legacy,@ie9,@ie8,@ie7,@ie5mac]
  *  //#can-lastChild[@modern,#legacy,@ie9]
- *  //#can-1stOfType[@modern,#legacy,@ie9,@ie8]
+ *  //#can-1stOfType[@modern,#old-opera,@ie9,@ie8]
  *  //#can-transparent[@modern,#legacy,@ie9,@ie8,@ie7]
  *
  * 3.Options
@@ -242,7 +242,7 @@
 
 
 
-    $CANUSE_CSS_MEDIA_QUERY                     : $UA_Modern or $UA_IE9 or $UA_Opera9 or $UA_Gck130-190;
+    $CANUSE_CSS_MEDIA_QUERY                     : $UA_Modern or $UA_IE9 or $UA_Opera9;
     $CANUSE_DARK_THEME_ALLWAYS                  : $UA_Opera9; // Opera 9- 不規則にダークモード用(handheld)の色指定で上書きされる!
     $CANUSE_SVG                                 : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_CSS_GENERATED_CONTENT               : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
@@ -259,5 +259,5 @@
     $CANUSE_CAN_BOX_SIZING                      : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_1ST_CHILD_SELECTOR                  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
     $CANUSE_LAST_CHILD_SELECTOR                 : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_1ST_OF_TYPE_SELECTOR                : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $CANUSE_1ST_OF_TYPE_SELECTOR                : $UA_Modern or $IS_OLD_OPERA or $IS_IE8_OR_9;
     $CANUSE_BORDER_TRANSPARENT                  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;

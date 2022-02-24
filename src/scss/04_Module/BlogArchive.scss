@@ -7,7 +7,9 @@
         @include stackableModule;
 
         th {
-            word-break : normal;
+            @if( $IS_OLD_GECKO == false ){
+                word-break : normal;
+            }
             @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 or $UA_IE55 ){
                 word-wrap  : normal;
             }
