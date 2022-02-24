@@ -1,9 +1,4 @@
 @charset "UTF-8";
-.hscroll,
-.hscroll pre,
-textarea {
-  overflow: auto
-}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -126,12 +121,18 @@ tr {
 .tl th {
   vertical-align: top
 }
+.RichLink a,
 .Search .btn {
   overflow: hidden
 }
 
 .lW,_:lang(x) {
   overflow: hidden
+}
+.hscroll,
+.hscroll pre,
+textarea {
+  overflow: auto
 }
 * {
   border-style: solid;
