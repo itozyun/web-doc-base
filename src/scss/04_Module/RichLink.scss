@@ -51,6 +51,9 @@ $RICHLINK_TEXT_SIZE : 0.875;
             @include highContrast {
                 border-width : 0;
             }
+            @if( $UA_Gck-097 or $UA_Gck101-121 ){
+                overflow : hidden; /* カラム幅が増えるのを抑止 */
+            }
         }
             .RichLink b {
                 display     : block;

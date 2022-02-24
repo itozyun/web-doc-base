@@ -39,7 +39,7 @@ textarea, input {
          /* padding-left : 1px;1px : 0pxだとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
     }
     @if( $IS_OLD_OPERA == false ){
-        padding : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) #{$FORM_ITEM_PADDING_LR};
+        padding : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) $FORM_ITEM_PADDING_LR;
     } @else {
         // padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
     }
