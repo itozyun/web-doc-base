@@ -763,9 +763,7 @@ ul {
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
+#lB .lS {
   padding-bottom: 1em
 }
 h4,
@@ -781,9 +779,11 @@ var {
 caption {
   margin: 1.5em 1em .7em
 }
-#lH .lMi,
-#lH .lSi {
+#lH .lMi {
   padding-top: 1em
+}
+#lH .lSi {
+  padding-top: .4em
 }
 #lE,
 #lF,
@@ -1806,9 +1806,6 @@ strong {
   #lB .lS2 {
     width: 45.5%;
     padding: 0 3% 0 0
-  }
-  #lH .lMi {
-    padding-bottom: 0
   }
   .mspacer {
     margin: 1em .5em!important

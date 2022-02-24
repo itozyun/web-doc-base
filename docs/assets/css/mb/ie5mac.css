@@ -974,12 +974,12 @@ pre var {
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
-.baseColor .RichLink-meta {
-  color: #ddd
-}
 .RichLink-meta {
   color: #2a2a2a;
   margin: 1.143em 0
+}
+.baseColor .RichLink-meta {
+  color: #ddd
 }
 .RichLink h3 {
   font-size: 1.5em;

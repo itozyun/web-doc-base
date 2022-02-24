@@ -114,6 +114,19 @@ h6 br {
 .aa {
   font-family: monospace
 }
+.mspacer,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em
+}
 .ABody h3,
 .Magazine h3,
 .Magazine-date,
@@ -151,10 +164,6 @@ li,
 tr {
   page-break-inside: avoid
 }
-.tl td,
-.tl th {
-  vertical-align: top
-}
 #jsMain,
 #jsSide,
 .Cover-img,
@@ -191,7 +200,8 @@ body {
   padding: 0;
   line-height: 1.9;
   background: #1a1a1a;
-  color: #111
+  color: #111;
+  text-align: center
 }
 body,
 input,
@@ -224,7 +234,8 @@ sup {
 h4,
 h5,
 h6 {
-  font-size: 1em
+  font-size: 1em;
+  margin: 1.5em 0 .8em
 }
 sup {
   top: -.5em
@@ -629,6 +640,32 @@ tbody :hover th :visited:active {
 .ribbon * {
   border-color: #2a2a2a
 }
+.lW,
+.lX {
+  width: 98%;
+  max-width: 70em;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left
+}
+.lM {
+  width: 67.3%;
+  float: left
+}
+.lMi,
+.lMz {
+  padding-left: 3.857%
+}
+.lS {
+  width: 30%;
+  float: right
+}
+.lSi {
+  padding: 0 9%
+}
+.lXi {
+  padding: 0 2.7%
+}
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
@@ -638,49 +675,11 @@ tbody :hover th :visited:active {
 .box:after,
 .commonForm-pair:after,
 .lMi:after,
-.lSi:after,
-.lW:after {
+.lSi:after {
   content: "";
   display: block;
   visibility: hidden;
   clear: both
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
-}
-.mspacer,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em
 }
 .lM1 {
   float: left
@@ -702,15 +701,8 @@ ul {
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
+#lB .lS {
   padding-bottom: 1em
-}
-h4,
-h5,
-h6 {
-  margin: 1.5em 0 .8em
 }
 code,
 kbd,
@@ -720,9 +712,11 @@ var {
 caption {
   margin: 1.5em 1em .7em
 }
-#lH .lMi,
-#lH .lSi {
+#lH .lMi {
   padding-top: 1em
+}
+#lH .lSi {
+  padding-top: .4em
 }
 #lE,
 #lF,
@@ -734,6 +728,7 @@ caption {
 .Subscribe a,
 .btn {
   display: inline-block;
+  vertical-align: top;
   border-width: 2px;
   cursor: pointer;
   text-align: center;
@@ -951,7 +946,8 @@ var {
 .TxtNavi a,
 .links a,
 kbd {
-  display: inline-block
+  display: inline-block;
+  vertical-align: top
 }
 .Comment h3,
 .SearchResult h3 {
@@ -997,6 +993,7 @@ kbd {
 }
 .Cover h2 {
   display: inline-block;
+  vertical-align: top;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1162,13 +1159,13 @@ kbd {
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
-.baseColor .RichLink-meta {
-  color: #ddd
-}
 .RichLink-meta {
   color: #2a2a2a;
   font-size: .875em;
   margin: 1.143em 0
+}
+.baseColor .RichLink-meta {
+  color: #ddd
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -1179,7 +1176,9 @@ kbd {
 }
 .RichLink img {
   float: left;
-  margin: 0 .6em 1em 0
+  margin: 0 .6em 1em 0;
+  width: auto;
+  line-height: 0
 }
 .RichLink p {
   margin: 1em 0
@@ -1473,13 +1472,15 @@ dl.note dd {
 }
 .tl th {
   padding: .5em .8em .5em .5em;
+  vertical-align: top;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em .8em
+  padding: .5em .8em;
+  vertical-align: top
 }
 .tl tbody td:after,
 .tl tbody td:before {
@@ -1720,6 +1721,13 @@ strong {
   thead var {
     border-color: #666
   }
+  .AAuthor,
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    padding: 0
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1820,13 +1828,6 @@ strong {
   .lS {
     float: none
   }
-  .ABody,
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1897,9 +1898,10 @@ strong {
   #lH .lMi {
     padding: .5em 0
   }
-  .AAuthor {
-    margin: 1em 0 0;
-    padding: 0
+  .AAuthor,
+  .ADesc p,
+  .box {
+    margin: 1em 0 0
   }
   .AAuthor img {
     float: left;
@@ -1921,13 +1923,12 @@ strong {
     padding-left: 1.5%;
     padding-right: 1.5%
   }
+  .ABody {
+    margin: 0
+  }
   .ADesc {
     margin: 0 0 2.5em;
     color: #666
-  }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
   }
   .AHead h1 {
     text-align: center;

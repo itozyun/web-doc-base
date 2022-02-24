@@ -139,10 +139,6 @@ li,
 tr {
   page-break-inside: avoid
 }
-.tl td,
-.tl th {
-  vertical-align: top
-}
 .Cover-img,
 .Pager,
 kbd:hover,
@@ -677,16 +673,13 @@ tbody :hover th :visited:active {
   padding-bottom: 2.5em
 }
 #lE .lM,
-#lE .lS,
-#lH .lMi {
+#lE .lS {
   padding-bottom: 0
 }
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
+#lB .lS {
   padding-bottom: 1em
 }
 #lE .lS {
@@ -695,15 +688,18 @@ tbody :hover th :visited:active {
 caption {
   margin: 1.5em 3% .7em
 }
-#lH .lMi,
-#lH .lSi {
+#lH .lMi {
   padding-top: 1em
+}
+#lH .lSi {
+  padding-top: .4em
 }
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a,
 .btn {
   display: inline-table;
+  vertical-align: top;
   border-width: 2px;
   cursor: pointer;
   text-align: center;
@@ -927,7 +923,8 @@ var {
 .TxtNavi a,
 .links a,
 kbd {
-  display: inline-table
+  display: inline-table;
+  vertical-align: top
 }
 .Comment h3,
 .SearchResult h3 {
@@ -974,6 +971,7 @@ kbd {
 }
 .Cover h2 {
   display: inline-table;
+  vertical-align: top;
   background: #3079ed;
   color: #f8fbf8;
   font-size: .825em;
@@ -1082,12 +1080,12 @@ pre var {
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
-.baseColor .RichLink-meta {
-  color: #ddd
-}
 .RichLink-meta {
   color: #2a2a2a;
   margin: 1.143em 0
+}
+.baseColor .RichLink-meta {
+  color: #ddd
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -1098,7 +1096,8 @@ pre var {
 }
 .RichLink img {
   float: left;
-  margin: 0 .6em 1em 0
+  margin: 0 .6em 1em 0;
+  width: auto
 }
 .RichLink p {
   margin: 1em 0
@@ -1417,13 +1416,15 @@ dl.note dd {
 }
 .tl th {
   padding: .5em .8em .5em .5em;
+  vertical-align: top;
   text-align: left
 }
 .tl td {
   border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid;
-  padding: .5em .8em
+  padding: .5em .8em;
+  vertical-align: top
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;

@@ -760,16 +760,13 @@ blockquote .tl tbody td:after {
   padding-bottom: 2.5em
 }
 #lE .lM,
-#lE .lS,
-#lH .lMi {
+#lE .lS {
   padding-bottom: 0
 }
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
+#lB .lS {
   padding-bottom: 1em
 }
 #lE .lS {
@@ -778,9 +775,11 @@ blockquote .tl tbody td:after {
 caption {
   margin: 1.5em 3% .7em
 }
-#lH .lMi,
-#lH .lSi {
+#lH .lMi {
   padding-top: 1em
+}
+#lH .lSi {
+  padding-top: .4em
 }
 .AHead-labels a,
 .SocialBtns a,
