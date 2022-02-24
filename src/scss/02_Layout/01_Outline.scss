@@ -15,12 +15,18 @@
  *    * 上記以外のブラウザ 
  *
 --------------------------------------------------------------------------------------*/
+// Opera 7.54u2,「スモール・スクリーン・レンダリング」によってコンテンツが左に寄る問題を回避, ~7.2x では発生しない
+// Opera 7.20~7.5x は親要素の text-align : center でセンタリング
+// https://twitter.com/itozyun/status/1496632445567115264
+// Opera 7.54u2, margin が反映されないので padding を使う
+// https://twitter.com/itozyun/status/1496641802740600832
+$LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 
 @if( $Option_mobileOnly == false ){
     /*  wrapper
     --------------------------------------------------------------------------------------*/
     .lW {
-        @if( $IS_IE8_OR_9 == false ){
+        @if( $IS_IE8_OR_9 == false and $LAYOUT_FIX_FOR_Opera75 == false ){
             @include clearfix;
         }
         @if( $UA_Gck-097 ){
@@ -33,8 +39,20 @@
         @if( $CANUSE_MAX_AND_MIN_SIZES ){
             max-width : $PC_MAX_WIDTH_EM;
         }
-        @if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto;
+        @if( $LAYOUT_FIX_FOR_Opera75 == false ){
+            @if( $CANUSE_MARGIN_AUTO ){
+                margin : 0 auto;
+            }
+        }
+    }
+
+    @if( $LAYOUT_FIX_FOR_Opera75 ){
+        body {
+            text-align : center;
+        }
+        .lW, .lX {
+            @include inline-block;
+            text-align : left;
         }
     }
 
@@ -50,7 +68,11 @@
             }
         }
             .lMi, .lMz {
-                margin-left  : math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO);
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    padding-left : math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO);
+                } @else {
+                    margin-left : math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-MAIN-COLUMN-RATIO);
+                }
             }
 
     /*  sub
@@ -68,7 +90,11 @@
                 @if( $UA_IE55 ){
                     width  : 100%;
                 }
-                margin : 0 math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-SUB-COLUMN-RATIO);
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    padding : 0 math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-SUB-COLUMN-RATIO);
+                } @else {
+                    margin : 0 math.div(100% * $PC-COLUMN-GAP-RATIO, $PC-SUB-COLUMN-RATIO);
+                }
             }
     /*  Print
     --------------------------------------------------------------------------------------*/
@@ -83,7 +109,11 @@
     /*  x-column
     --------------------------------------------------------------------------------------*/
         .lXi {
-            margin : 0 100% * $PC_COLUMN_GAP_RATIO;
+            @if( $LAYOUT_FIX_FOR_Opera75 ){
+                padding : 0 100% * $PC_COLUMN_GAP_RATIO;
+            } @else {
+                margin : 0 100% * $PC_COLUMN_GAP_RATIO;
+            }
         }
     /*
     * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
@@ -170,25 +200,29 @@
 @if( $Option_mobileOnly == false ){
     @include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
         .lW, .lX {
-            width     : 100%;
+            width : 100%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
             }
         }
         .lW {
             @if( $IS_IE8_OR_9 ){
-                display   : block;
+                display : block;
             }
         }
             .lM, .lS {
+                float : none;
+                width : auto;
                 @if( $IS_IE8_OR_9 ){
-                    display   : block;
+                    display : block;
                 }
-                float   : none;
-                width   : auto;
             }
                 .lMi, .lMz, .lSi, .lXi {
-                    margin : 0;
+                    @if( $LAYOUT_FIX_FOR_Opera75 ){
+                        padding : 0;
+                    } @else {
+                        margin : 0;
+                    }
                 }
     }
 }
@@ -213,11 +247,19 @@
             width      : 100%; /* この指定が無いと横スクロールが出る  */
             overflow-x : hidden;
         }
+        @if( $LAYOUT_FIX_FOR_Opera75 ){
+            text-align : center;
+        }
     }
         .lM, .lS, #lB .lSi, .lX {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $TABLET_MAX_WIDTH_EM;
-                margin    : 0 auto;
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    @include inline-block;
+                    text-align : left;
+                } @else {
+                    margin : 0 auto;
+                }
             }
         }
         #lB .lS {
@@ -271,10 +313,10 @@
 
     @if( $Option_mobileOnly ){
         .lM, .lX {
+            margin : 0;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
             }
-            margin    : 0;
         }
         .lMi, .lMz .lMh, .lXi {
             padding : 0;
