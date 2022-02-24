@@ -31,9 +31,11 @@
     border-color : $COLOR_ACCENT !important;
 }
 
-:link:hover img, :visited:hover img {
-    position : relative;
-    top      : 2px;
+@if( $UA_Gck-097 == false ){ /* 下ではチラツキが激しい */
+    :link:hover img, :visited:hover img {
+        position : relative;
+        top      : 2px;
+    }
 }
 
 /*  Dark theme
