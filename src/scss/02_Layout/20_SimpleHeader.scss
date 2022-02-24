@@ -1,18 +1,9 @@
 
 @if( $Option_simpleHeader ){
-    #lH .lMi { /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
-        padding-top : 1em;
-        @if( $UA_IE5 == false and $IS_OLD_OPERA == false ){
-            padding-bottom : 1em;
-        }
-    }
+    #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
     #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
-        @if( $IS_OLD_OPERA ){
-            padding-top : 0.4em;
-        } @else {
-            padding-top : 1em;
-        }
-        @if( $UA_IE5 == false and $IS_OLD_OPERA == false ){
+        padding-top : 1em;
+        @if( $UA_IE5 == false ){
             padding-bottom : 1em;
         }
     }
@@ -25,7 +16,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(tablet) {
         #lH .lMi {
-            @if( $UA_IE5 == false and $IS_OLD_OPERA == false ){
+            @if( $UA_IE5 == false ){
                 padding-bottom : 0;
             }
         }

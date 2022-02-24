@@ -26,6 +26,13 @@
     }
 }
 
+
+@if( $IS_OLD_OPERA or $IS_OLD_GECKO ){
+    form {
+        margin : 0;
+    }
+}
+
 textarea, input {
     border-width : $INPUT_BORDER_WIDTH;
     @if( $UA_Modern ){

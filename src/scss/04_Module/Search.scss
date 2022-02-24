@@ -137,7 +137,7 @@ $SEARCH_BTN_WIDTH : 3em;
     }
 }
 
-@if( $UA_Opera8 == false and $IS_Opera7x == false ){
+@if( $UA_Opera8 == false and $IS_Opera7x == false and $IS_OLD_GECKO == false ){
     .Search input {
         /* //_{#can-hover-pseudo-class */
         &:hover,
