@@ -116,6 +116,12 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+body,
+form,
+h2,
+html {
+  margin: 0
+}
 code,
 kbd,
 var {
@@ -175,7 +181,6 @@ sup {
 }
 body,
 html {
-  margin: 0;
   height: 100%
 }
 body {
@@ -446,7 +451,6 @@ blockquote .tl tbody th :visited {
   color: red!important
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -760,13 +764,16 @@ blockquote .tl tbody td:after {
   padding-bottom: 2.5em
 }
 #lE .lM,
-#lE .lS {
+#lE .lS,
+#lH .lMi {
   padding-bottom: 0
 }
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS {
+#lB .lS,
+#lH .lMi,
+#lH .lSi {
   padding-bottom: 1em
 }
 #lE .lS {
@@ -775,11 +782,9 @@ blockquote .tl tbody td:after {
 caption {
   margin: 1.5em 3% .7em
 }
-#lH .lMi {
-  padding-top: 1em
-}
+#lH .lMi,
 #lH .lSi {
-  padding-top: .4em
+  padding-top: 1em
 }
 .AHead-labels a,
 .SocialBtns a,

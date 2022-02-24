@@ -1376,7 +1376,6 @@ kbd {
 .Comment,
 .Label,
 .LinkList,
-.RichLink,
 .Subscribe {
   padding: 0 0 1em
 }
@@ -1595,6 +1594,10 @@ kbd {
 .Magazine-jump {
   width: 20%;
   float: right
+}
+.RichLink {
+  padding: 0 0 1em;
+  overflow-x: hidden
 }
 .RichLink-sep {
   line-height: 1.4

@@ -311,6 +311,11 @@ li {
 dt {
   margin-top: .7em
 }
+.Magazine .box,
+form,
+h2 {
+  margin: 0
+}
 .Magazine,
 .Magazine-main,
 blockquote h3,
@@ -438,7 +443,6 @@ blockquote .tl tbody th :visited {
   color: red!important
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -763,7 +767,9 @@ ul {
 #lB .lM {
   padding-bottom: 4em
 }
-#lB .lS {
+#lB .lS,
+#lH .lMi,
+#lH .lSi {
   padding-bottom: 1em
 }
 h4,
@@ -779,11 +785,9 @@ var {
 caption {
   margin: 1.5em 1em .7em
 }
-#lH .lMi {
-  padding-top: 1em
-}
+#lH .lMi,
 #lH .lSi {
-  padding-top: .4em
+  padding-top: 1em
 }
 #lE,
 #lF,
@@ -902,12 +906,15 @@ caption {
 .lS .mspacer {
   margin: .6em 0
 }
+.AAuthor img,
+.Magazine-jump .btn {
+  margin: 0 0 1em 1em
+}
 .AAuthor {
   padding: 0 .5em 1em
 }
 .AAuthor img {
   float: right;
-  margin: 0 0 1em 1em;
   top: .4em
 }
 .ABody {
@@ -1177,9 +1184,6 @@ kbd {
   float: left;
   line-height: 1.6
 }
-.Magazine .box {
-  margin: 0
-}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1190,9 +1194,6 @@ kbd {
 .Magazine-jump {
   width: 20%;
   float: right
-}
-.Magazine-jump .btn {
-  margin: 0 0 1em 1em
 }
 .RichLink-sep {
   line-height: 1.4
@@ -1806,6 +1807,9 @@ strong {
   #lB .lS2 {
     width: 45.5%;
     padding: 0 3% 0 0
+  }
+  #lH .lMi {
+    padding-bottom: 0
   }
   .mspacer {
     margin: 1em .5em!important

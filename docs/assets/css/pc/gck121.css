@@ -71,16 +71,6 @@ table,
 textarea {
   line-height: 1.2
 }
-.Magazine-label,
-.RichLink b,
-.SearchResult cite,
-.caption,
-.links,
-pre,
-td,
-th {
-  word-break: break-all
-}
 #jsSide,
 #lB .lMi,
 #lB .lSi,
@@ -332,6 +322,11 @@ li {
 dt {
   margin-top: .7em
 }
+.Magazine .box,
+form,
+h2 {
+  margin: 0
+}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -447,7 +442,6 @@ a:focus {
   background: #f8fbf8
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -889,12 +883,15 @@ input.btn {
 .lS .mspacer {
   margin: .6em 0
 }
+.AAuthor img,
+.Magazine-jump .btn {
+  margin: 0 0 1em 1em
+}
 .AAuthor {
   padding: 0 .5em 1em
 }
 .AAuthor img {
   float: right;
-  margin: 0 0 1em 1em;
   top: .4em
 }
 .ABody {
@@ -961,9 +958,6 @@ input.btn {
 .RichLink,
 .Subscribe {
   padding: 0 0 1em
-}
-.BlogArchive th {
-  word-break: normal
 }
 .BlogArchive a,
 .Label a {
@@ -1160,9 +1154,6 @@ kbd {
   float: left;
   line-height: 1.6
 }
-.Magazine .box {
-  margin: 0
-}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1173,9 +1164,6 @@ kbd {
 .Magazine-jump {
   width: 20%;
   float: right
-}
-.Magazine-jump .btn {
-  margin: 0 0 1em 1em
 }
 .RichLink-sep {
   line-height: 1.4
@@ -1239,11 +1227,6 @@ kbd {
   white-space: nowrap;
   padding-left: 0;
   padding-right: 0
-}
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1384,18 +1367,11 @@ blockquote:after {
   font-size: .875em;
   line-height: 1.2;
   text-align: right;
-  word-break: break-all;
   color: #777;
   margin: 0
 }
 .box {
   margin: 1em 1em 0
-}
-.box > p:first-of-type {
-  margin-top: -.225em
-}
-tr .box > p:first-of-type {
-  margin-top: auto
 }
 .box dl,
 .box ol,
@@ -2088,8 +2064,7 @@ strong {
   }
   .hscroll pre {
     margin: 0;
-    white-space: -moz-pre-wrap;
-    word-break: break-all
+    white-space: -moz-pre-wrap
   }
   code,
   var {

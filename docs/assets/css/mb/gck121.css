@@ -71,15 +71,6 @@ table,
 textarea {
   line-height: 1.2
 }
-.RichLink b,
-.SearchResult cite,
-.caption,
-.links,
-pre,
-td,
-th {
-  word-break: break-all
-}
 .lM1,
 .lM2,
 .lS1,
@@ -124,6 +115,12 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
+}
+body,
+form,
+h2,
+html {
+  margin: 0
 }
 #lB .lS .LinkList :link:hover,
 #lB .lS .LinkList :visited:hover,
@@ -176,7 +173,6 @@ sup {
 }
 body,
 html {
-  margin: 0;
   height: 100%
 }
 body {
@@ -454,7 +450,6 @@ a:focus {
   background: #f8fbf8
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
@@ -967,9 +962,6 @@ input.btn {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive th {
-  word-break: normal
-}
 .BlogArchive a,
 .Label a {
   line-height: 2.8;
@@ -1162,18 +1154,18 @@ pre var {
 .RichLink p {
   margin: 1em 0
 }
-.RichLink b {
-  display: block;
-  font-weight: 400;
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
+}
+.RichLink b {
+  display: block;
+  font-weight: 400;
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 #lH .lSi {
   padding-right: 3.1em
@@ -1199,11 +1191,6 @@ pre var {
   padding-left: 0;
   padding-right: 0;
   overflow: hidden
-}
-.Search input:active,
-.Search input:focus,
-.Search input:hover {
-  z-index: 1
 }
 .SearchResult {
   margin-bottom: 2em;
@@ -1353,15 +1340,8 @@ blockquote:after {
   font-size: .875em;
   line-height: 1.2;
   text-align: right;
-  word-break: break-all;
   color: #777;
   margin: 0 1.5%
-}
-.box > p:first-of-type {
-  margin-top: -.225em
-}
-tr .box > p:first-of-type {
-  margin-top: auto
 }
 .box dl,
 .box ol,
@@ -1949,8 +1929,7 @@ strong {
   }
   .hscroll pre {
     margin: 0;
-    white-space: -moz-pre-wrap;
-    word-break: break-all
+    white-space: -moz-pre-wrap
   }
   code,
   var {
