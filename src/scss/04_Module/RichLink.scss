@@ -28,6 +28,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
     @include highContrast {
         padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
     }
+    @if( $UA_Modern ){
+        /* Opera 9.52~9.64 横スクロールバーの出現を抑止
+           https://twitter.com/itozyun/status/1496758538772824064 */
+        overflow-x : hidden;
+    }
 }
     .RichLink-sep {
         @extend %linkCommon;
