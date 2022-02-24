@@ -233,7 +233,7 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
                 css += ';' +
                     (
                     sidebarY < 0 ? 
-                        'clip:rect(' + ( -sidebarY ) + 'px ' + w + 'px ' + ( visibleHeight - sidebarY ) + 'px 0)' :
+                        'clip:rect(' + ( -sidebarY ) + 'px ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainY ) + 'px 0)' :
                     sidebarY + sideH < mainY + visibleHeight ?
                         'clip:rect(0 ' + w + 'px ' + sideH + 'px 0)' :
                         'clip:rect(0 ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainY ) + 'px 0)'
@@ -314,6 +314,10 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
     p_DOM_setCssText( SidebarFixer_elmWrap, css );
 
     SidebarFixer_sidebarY = sidebarY;
+
+    // for debug
+    // document.title = sidebarY;
+    // window.status = css;
 
     return isMultiColumn && !mainInViewPort && !nocancelWheel;
 };
