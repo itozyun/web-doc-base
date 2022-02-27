@@ -240,10 +240,9 @@
     $IS_WIN_IE      : $IS_LTE_WIN_IE8 or $UA_IE9;
     $IS_IE8_OR_9    : $UA_IE8 or $UA_IE9;
 
-
+    $DARK_THEME_ALLWAYS : false;
 
     $CANUSE_CSS_MEDIA_QUERY          : $UA_Modern or $UA_IE9 or $UA_Opera9;
-    $CANUSE_DARK_THEME_ALLWAYS       : $UA_Opera9; // Opera 9- 不規則にダークモード用(handheld)の色指定で上書きされる!
     $CANUSE_SVG                      : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
     $CANUSE_CSS_GENERATED_CONTENT    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_PSEUDO_BLOCK             : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;
