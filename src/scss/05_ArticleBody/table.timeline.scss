@@ -10,14 +10,14 @@
     }
     
     thead th, thead td, tbody th {
-        color          : $COLOR_Default_text;
+        color : $COLOR_Default_text;
     }
 
     thead th {
-        border-width   : 0 0 1px 0;
+        border-width : 0 0 1px 0;
     }
     thead td {
-        border-width   : 0 0 1px .3em;
+        border-width : 0 0 1px .3em;
     }
 
     thead th, thead td {
@@ -33,17 +33,17 @@
         text-align     : left;
     }
     td {
-        @if( $CANUSE_PSEUDO_BLOCK ){
-            position       : relative;
+        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
+            position : relative;
         }
+        padding        : .5em .8em;
+        vertical-align : top;
         border-width   : 0 0 0 .3em;
         border-color   : $COLOR_Default_casual_fill;
+        border-style   : solid;
         @include highContrastForIE10ToEdge {
             border-color : inherit;
         }
-        border-style   : solid;
-        padding        : .5em .8em;
-        vertical-align : top;
 
         @if( $CANUSE_1ST_CHILD_SELECTOR ){
             & > *:first-child {
@@ -56,12 +56,12 @@
         }
     }
 
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
         tbody td:before, tbody td:after {
             @include createPseudoBlock;
-            text-indent   : -1em;
-            position      : absolute;
-            border-width  : .3em;
+            text-indent  : -1em;
+            position     : absolute;
+            border-width : .3em;
         }
         @if( $CANUSE_EMPTY_PSEUDO_CLASS ){
             tbody :empty:before, tbody :empty:after {
@@ -72,22 +72,22 @@
         /* Webkit 534.51, 535 が可, ~534.? が不可ということ? */
         /* td に対する絶対配置は Opera 10.54 で動作, Opera ~10 では非表示. */
         tbody td:before {
-            top           : .6em;
-            left          : -0.75em;
-            width         : 0;
-            height        : 0;
+            top          : .6em;
+            left         : -0.75em;
+            width        : 0;
+            height       : 0;
+            border-width : .6em;
+            border-color : $COLOR_Default_casual_fill;
             @include border-radius(.6em);
-            border-width  : .6em;
-            border-color  : $COLOR_Default_casual_fill;
         }
         tbody td:after {
-            top           : .85em;
-            left          : -0.5em;
-            width         : 0;
-            height        : 0;
+            top          : .85em;
+            left         : -0.5em;
+            width        : 0;
+            height       : 0;
+            border-width : .35em;
+            border-color : $COLOR_Default_fill;
             @include border-radius(.35em);
-            border-width  : .35em;
-            border-color  : $COLOR_Default_fill;
             @if( $UA_Modern ){
                 @media only screen and (-ms-high-contrast : black-on-white) {
                     & { border-color : #fff; }
@@ -144,14 +144,14 @@
         tbody :hover td {
             border-color : $COLOR_ACCENT;
         }
-        @if( $CANUSE_PSEUDO_BLOCK ){
+        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
             tbody :hover td:before {
                 border-color : $COLOR_ACCENT;
             }
         }
         tbody :hover th {
-            background  : $COLOR_ACCENT !important;
-            color       : #fff;
+            background : $COLOR_ACCENT !important;
+            color      : #fff;
         }
         tbody :hover th {
             :link, :visited {
@@ -177,7 +177,7 @@ blockquote .tl {
         border-color : $COLOR_Default_casual_text;
     }
     
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
         tbody td:before {
             border-color : $COLOR_Default_casual_text;
         }
@@ -203,7 +203,7 @@ blockquote .tl {
         tfoot th, tfoot td {
             border-color : $COLOR_Watch_casual_fill;
         }
-        @if( $CANUSE_PSEUDO_BLOCK ){
+        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
             tbody td:before {
                 border-color : $COLOR_Watch_casual_fill;
             }
@@ -227,7 +227,7 @@ blockquote .tl {
         tfoot th, tfoot td {
             border-color : $COLOR_Watch_casual_text;
         }
-        @if( $CANUSE_PSEUDO_BLOCK ){
+        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
             tbody td:before {
                 border-color : $COLOR_Watch_casual_text;
             }
