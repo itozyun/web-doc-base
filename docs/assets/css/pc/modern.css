@@ -861,9 +861,6 @@ ul {
 .lM2 {
   width: 47.91%
 }
-#lE .lW {
-  padding-bottom: 2.5em
-}
 #lE .lM,
 #lE .lS {
   padding-bottom: 0
@@ -1285,6 +1282,7 @@ a:focus .ico-pen:after {
   border-color: transparent #111
 }
 .AAuthor {
+  margin: 2em 0;
   padding: 0 .5em 1em
 }
 .AAuthor img {
@@ -1293,6 +1291,11 @@ a:focus .ico-pen:after {
 }
 .ABody {
   margin: 3.5em 0 2em
+}
+.ADesc,
+.AHead,
+.SearchResult-multi {
+  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -1331,22 +1334,17 @@ kbd {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc {
-  margin: 4em 0 2.5em
-}
 .ADesc p {
   margin: 0 .5em 1em
 }
-.AHead,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta {
+.AHead {
   color: #777
 }
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  padding: 0;
-  margin: 2em 0;
+  margin: 0;
+  padding: 2em 0;
   text-align: left
 }
 .AHead-labels {
@@ -1617,6 +1615,10 @@ kbd {
 .baseColor .RichLink-meta {
   color: #ddd
 }
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta {
+  color: #777
+}
 .RichLink h3 {
   font-size: 1.5em;
   margin: 0 0 .4em
@@ -1692,9 +1694,6 @@ kbd {
 }
 .SearchResult div span {
   color: grey
-}
-.SearchResult-multi {
-  margin: 2em 0
 }
 .Header h1,
 .h1 {
@@ -1976,10 +1975,10 @@ dl.note dd {
   text-align: left
 }
 .tl td {
+  padding: .5em .8em;
   border-width: 0 0 0 .3em;
   border-color: #ddd;
-  border-style: solid;
-  padding: .5em .8em
+  border-style: solid
 }
 .tl tbody td:after,
 .tl tbody td:before {
@@ -1993,22 +1992,22 @@ dl.note dd {
   left: -.75em;
   width: 0;
   height: 0;
+  border-width: .6em;
+  border-color: #ddd;
   -webkit-border-radius: .6em;
   -moz-border-radius: .6em;
-  border-radius: .6em;
-  border-width: .6em;
-  border-color: #ddd
+  border-radius: .6em
 }
 .tl tbody td:after {
   top: .85em;
   left: -.5em;
   width: 0;
   height: 0;
+  border-width: .35em;
+  border-color: #f8fbf8;
   -webkit-border-radius: .35em;
   -moz-border-radius: .35em;
-  border-radius: .35em;
-  border-width: .35em;
-  border-color: #f8fbf8
+  border-radius: .35em
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -2601,6 +2600,11 @@ only screen and (max-width:950px) {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
+  }
   caption {
     margin: 1.5em 3% .7em
   }
@@ -2612,7 +2616,6 @@ only screen and (max-width:950px) {
     margin: 2em 6%
   }
   .AAuthor {
-    margin: 1em 0 0;
     padding: 0
   }
   .AAuthor img {
@@ -2634,9 +2637,6 @@ only screen and (max-width:950px) {
     text-align: center;
     padding-left: 1.5%;
     padding-right: 1.5%
-  }
-  .ADesc {
-    margin: 0 0 2.5em
   }
   .ADesc p,
   .box {

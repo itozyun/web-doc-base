@@ -32,7 +32,6 @@ h6,
 thead {
   page-break-after: avoid
 }
-.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -673,9 +672,6 @@ tbody :hover th :visited:active {
   width: 45.5%;
   padding: 0 3% 0 0
 }
-#lE .lW {
-  padding-bottom: 2.5em
-}
 #lE .lM,
 #lE .lS {
   padding-bottom: 0
@@ -826,7 +822,7 @@ var {
   margin: 0 1em 1em 0
 }
 .AAuthor {
-  margin: 1em 0 0;
+  margin: 1em 0;
   padding: 0
 }
 .ABody {
@@ -855,18 +851,23 @@ var {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
-.ADesc {
-  margin: 0 0 2.5em
+.ADesc,
+.RichLink p {
+  margin: 1em 0
 }
 .ADesc p,
 .box {
   margin: 1em 0 0
 }
+.AHead {
+  color: #777;
+  margin: 1em 0
+}
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  padding: 0;
-  margin: 2em 0;
+  margin: 0;
+  padding: 2em 0;
   text-align: center
 }
 .Attribution small,
@@ -1101,9 +1102,6 @@ pre var {
   float: left;
   margin: 0 .6em 1em 0;
   width: auto
-}
-.RichLink p {
-  margin: 1em 0
 }
 .RichLink b {
   display: block;
@@ -1423,11 +1421,11 @@ dl.note dd {
   text-align: left
 }
 .tl td {
+  padding: .5em .8em;
+  vertical-align: top;
   border-width: 0 0 0 .3em;
   border-color: #ddd;
-  border-style: solid;
-  padding: .5em .8em;
-  vertical-align: top
+  border-style: solid
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;

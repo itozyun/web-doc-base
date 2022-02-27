@@ -27,7 +27,6 @@ h6,
 thead {
   page-break-after: avoid
 }
-.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -726,9 +725,6 @@ ul {
 .lM2 {
   width: 47.91%
 }
-#lE .lW {
-  padding-bottom: 2.5em
-}
 #lE .lM,
 #lE .lS {
   padding-bottom: 0
@@ -889,6 +885,7 @@ input.btn {
   margin: 0 0 1em 1em
 }
 .AAuthor {
+  margin: 2em 0;
   padding: 0 .5em 1em
 }
 .AAuthor img {
@@ -897,6 +894,11 @@ input.btn {
 }
 .ABody {
   margin: 3.5em 0 2em
+}
+.ADesc,
+.AHead,
+.SearchResult-multi {
+  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -913,15 +915,16 @@ input.btn {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc {
-  margin: 4em 0 2.5em
-}
 .ADesc p {
   margin: 0 .5em 1em
+}
+.AHead {
+  color: #777
 }
 .AHead h1 {
   font-size: 2em;
   color: #111;
+  margin: 0;
   padding: 2em 0;
   text-align: left
 }
@@ -1253,9 +1256,6 @@ kbd {
 .SearchResult div span {
   color: grey
 }
-.SearchResult-multi {
-  margin: 2em 0
-}
 .Header h1,
 .h1 {
   display: inline;
@@ -1507,9 +1507,9 @@ dl.note dd {
   text-align: left
 }
 .tl td {
+  padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #ddd;
-  padding: .5em .8em
+  border-color: #ddd
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1906,7 +1906,7 @@ strong {
     padding: .5em 0
   }
   .AAuthor {
-    margin: 1em 0 0;
+    margin: 1em 0;
     padding: 0
   }
   .AAuthor img {
@@ -1930,19 +1930,20 @@ strong {
     padding-right: 1.5%
   }
   .ADesc {
-    margin: 0 0 2.5em;
+    margin: 1em 0;
     color: #666
   }
   .ADesc p,
   .box {
     margin: 1em 0 0
   }
+  .AHead {
+    margin: 1em 0;
+    color: #666!important
+  }
   .AHead h1 {
     text-align: center;
     color: #000!important
-  }
-  .AHead {
-    color: #666!important
   }
   .AHead-labels,
   .aa code,

@@ -4,7 +4,6 @@
 textarea {
   overflow: auto
 }
-blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -33,7 +32,6 @@ h6,
 thead {
   page-break-after: avoid
 }
-.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -44,7 +42,6 @@ h6 {
 .Pager,
 .links [href]:before,
 .links a,
-.tl td,
 h2,
 kbd:hover,
 sub,
@@ -70,14 +67,7 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.AMeta,
-.Pager span,
-.caption,
 .h1,
-.js-bqCite,
-.links a,
-.prettyprint,
-blockquote:after,
 dl,
 h1,
 h2,
@@ -334,7 +324,6 @@ ol,
 ul {
   padding-left: 2em
 }
-.links a,
 dl ol,
 dl ul,
 li ol,
@@ -372,12 +361,11 @@ a:active:hover {
 .SocialBtns .tw:visited:active,
 .baseColor .btn:link:active,
 .baseColor .btn:visited:active,
-.tl tbody td:after,
+.medal,
 a {
   border-color: #f8fbf8
 }
 *,
-blockquote .tl tbody td:after,
 blockquote :link img,
 blockquote :visited img,
 hr {
@@ -390,6 +378,7 @@ hr {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -502,7 +491,6 @@ tr hr {
 .ABody h2,
 .Cover h2,
 .tl tbody :hover td,
-.tl tbody :hover td:before,
 .tl tbody :hover th {
   border-color: #3079ed
 }
@@ -711,9 +699,6 @@ tbody :hover th :visited:active {
   width: 45.5%;
   padding: 0 3% 0 0
 }
-#lE .lW {
-  padding-bottom: 2.5em
-}
 #lE .lM,
 #lE .lS {
   padding-bottom: 0
@@ -810,10 +795,6 @@ caption {
   height: 1.6em;
   line-height: 1.6
 }
-.medal {
-  border-color: #f8fbf8;
-  color: #111
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -868,7 +849,7 @@ var {
   margin: 0 1em 1em 0
 }
 .AAuthor {
-  margin: 1em 0 0;
+  margin: 1em 0;
   padding: 0
 }
 .ABody {
@@ -900,18 +881,23 @@ var {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
-.ADesc {
-  margin: 0 0 2.5em
+.ADesc,
+.RichLink p {
+  margin: 1em 0
 }
 .ADesc p,
 .box {
   margin: 1em 0 0
 }
+.AHead {
+  color: #777;
+  margin: 1em 0
+}
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  padding: 0;
-  margin: 2em 0;
+  margin: 0;
+  padding: 2em 0;
   text-align: center
 }
 .Attribution small,
@@ -924,9 +910,7 @@ var {
   color: #1a1a1a
 }
 .AHead-labels i,
-.RichLink br,
-.tl tbody :empty:after,
-.tl tbody :empty:before {
+.RichLink br {
   display: none
 }
 .AHead-labels a:visited {
@@ -1150,9 +1134,6 @@ pre var {
   width: auto;
   line-height: 0
 }
-.RichLink p {
-  margin: 1em 0
-}
 .RichLink b {
   display: block;
   padding: 0 0 .571em;
@@ -1319,6 +1300,7 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
+  line-height: 1.2;
   text-align: right;
   word-break: break-all;
   color: #777;
@@ -1392,6 +1374,15 @@ tbody th var {
 .links {
   white-space: -o-pre-wrap
 }
+.links a {
+  padding-left: 1em;
+  line-height: 1.2
+}
+.Pager span,
+.caption {
+  display: block;
+  line-height: 1.2
+}
 .links [href]:before {
   content: ">";
   left: -.5em;
@@ -1437,7 +1428,6 @@ dl.note dd {
   margin-right: 3%
 }
 .caption {
-  display: block;
   text-align: center;
   font-size: .875em;
   width: 100%
@@ -1465,33 +1455,11 @@ dl.note dd {
   text-align: left
 }
 .tl td {
+  padding: .5em .8em;
+  vertical-align: top;
   border-width: 0 0 0 .3em;
   border-color: #ddd;
-  border-style: solid;
-  padding: .5em .8em;
-  vertical-align: top
-}
-.tl tbody td:after,
-.tl tbody td:before {
-  text-indent: -1em;
-  position: absolute;
-  content: " ";
-  display: block
-}
-.tl tbody td:before {
-  top: .6em;
-  left: -.75em;
-  width: 0;
-  height: 0;
-  border-width: .6em;
-  border-color: #ddd
-}
-.tl tbody td:after {
-  top: .85em;
-  left: -.5em;
-  width: 0;
-  height: 0;
-  border-width: .35em
+  border-style: solid
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1502,7 +1470,8 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0
+  padding: .5em 0;
+  line-height: 1.2
 }
 .AMeta div {
   margin: .5em 0;
@@ -1527,7 +1496,6 @@ dl.note dd {
 .Pager span {
   position: absolute;
   top: 1em;
-  display: block;
   width: 32%
 }
 .Pager i {
@@ -1626,7 +1594,8 @@ dl.note dd {
   background: #333;
   color: #fff;
   border-width: 1px;
-  border-color: #333
+  border-color: #333;
+  line-height: 1.2
 }
 code .atv,
 code .str {
