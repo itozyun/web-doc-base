@@ -7,7 +7,8 @@
  *    +ArticleLabels
 --------------------------------------------------------------------------------------*/
     .AHead {
-        color : $COLOR_Default_casual_text;
+        color  : $COLOR_Default_casual_text;
+        margin : 2em 0;
     }
         .AHead h1 {
             @if( $UA_Modern or $UA_IE9 ){
@@ -15,12 +16,12 @@
             }
             font-size : 2em;
             color     : $COLOR_Default_text;
+            margin    : 0;
 
             @if( $UA_Gck-097 or $UA_Gck101-121 ){
                 padding : 2em 0;
             } @else {
-                padding : 0;
-                margin  : 2em 0;
+                padding : 2em 0;
             }
 
             @if( $Option_mobileOnly == false ){
@@ -43,6 +44,7 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet_print) {
+    .AHead { margin : 1em 0; }
     .AHead h1 { text-align : center; }
 }
 
@@ -63,7 +65,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .AHead {
-        color  : $COLOR_Watch_casual_text;
+        color : $COLOR_Watch_casual_text;
     }
         .AHead h1 {
             color : $COLOR_Watch_text;
@@ -74,10 +76,10 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .AHead {
-        color  : $COLOR_Print_casual_text !important;
+        color : $COLOR_Print_casual_text !important;
     }
     .AHead h1 {
-        color  : $COLOR_Print_text !important;
+        color : $COLOR_Print_text !important;
     }
 }
 
@@ -95,8 +97,8 @@
         @if( $IS_LTE_WIN_IE6 ){
             font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
         }
-        margin-top     : 0.5em;
-        color          : $COLOR_Ribbon_fill; /* , を消す */
+        margin-top : 0.5em;
+        color      : $COLOR_Ribbon_fill; /* , を消す */
         @if( $UA_Modern ){
             vertical-align : middle; /* ie11 のガタツキを修正 */
         }
@@ -121,9 +123,9 @@
             line-height : 0;
         }
             .AHead-labels a {
-                display     : block;
-                text-align  : center;
-                margin      : 0.5em;
+                display    : block;
+                text-align : center;
+                margin     : 0.5em;
             }
     }
 
@@ -143,7 +145,7 @@
 
             .AHead-labels a {
             @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-                display      : inline;
+                display : inline;
             }
                 line-height  : 1.2;
                 border-width : 0;

@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
     .ADesc {
-        margin : 4em 0 2.5em;
+        margin : 2em 0;
         color  : $COLOR_Ribbon_casual_text;
 
         p {
@@ -16,7 +16,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(tablet_print) {
         .ADesc {
-            margin : 0 0 2.5em;
+            margin : 1em 0;
 
             p {
                 margin : 1em 0 0;
