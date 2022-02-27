@@ -123,7 +123,7 @@
     }
 }
 
-@if( $CANUSE_CSS_GENERATED_NLOCK_IN_INLINE_BLOCK ){
+@if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
     .ico-clock {
         @include icon-base;
 

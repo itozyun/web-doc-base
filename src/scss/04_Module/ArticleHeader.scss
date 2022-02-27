@@ -16,13 +16,8 @@
             }
             font-size : 2em;
             color     : $COLOR_Default_text;
+            padding   : 2em 0;
             margin    : 0;
-
-            @if( $UA_Gck-097 or $UA_Gck101-121 ){
-                padding : 2em 0;
-            } @else {
-                padding : 2em 0;
-            }
 
             @if( $Option_mobileOnly == false ){
                 text-align : left;
@@ -135,7 +130,7 @@
         .AHead-labels {
             color : $COLOR_Print_text;
         }
-            @if( $CANUSE_CSS_GENERATED_NLOCK_IN_INLINE_BLOCK ){
+            @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
                 .AHead-labels i {
                     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
                         @include inline-block;
