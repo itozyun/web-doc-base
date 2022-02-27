@@ -51,7 +51,7 @@ var
  * 7_Library/cssLoader.toEndOfScript.js
  */
 /** @define {boolean} */
-    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS = true,
+    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS = true,
 
 /** ===========================================================================
  * 7_Library/detectImageTurnedOff.js
