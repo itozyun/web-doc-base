@@ -57,7 +57,7 @@ IE 以外のブラウザ用または Mac IE5 用の CSS が読み込まれます
     _:not(),_:-moz-handler-blocked,#-o- div{display:none}
 }
 /*]]>*/</style>
-<p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."><!-- inline 要素は不可 -->
+<p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></p><!-- inline 要素は不可 -->
 </div>
 </noscript>
 <!--<![endif]-->
@@ -68,7 +68,7 @@ IE 以外のブラウザ用または Mac IE5 用の CSS が読み込まれます
 #### 短縮版
 
 ~~~html
-<!--[if !IE]><!--><noscript><div id="-o-"><style>/*<![CDATA[*/#-o- p{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o- p:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o- p:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o- p:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*]]>*/</style><p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></div></noscript><!--<![endif]-->
+<!--[if !IE]><!--><noscript><div id="-o-"><style>/*<![CDATA[*/#-o- p{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o- p:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o- p:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o- p:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*]]>*/</style><p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></p></div></noscript><!--<![endif]-->
 
 ~~~
 
@@ -101,7 +101,7 @@ Safari < 3 には `load` イベントがいない為、常にこのフォール�
 ~~~js
 var
 /** @define {boolean} */
-    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_CSS = true;
+    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS = true;
 ~~~
 
 1. インライン javascript で CSS ローダーを使う設定で main.js とインライン js をビルドする
