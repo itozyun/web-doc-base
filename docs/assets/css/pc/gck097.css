@@ -434,6 +434,13 @@ input {
   line-height: 1;
   height: 2.1em
 }
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+[type=hidden] {
+  display: none
+}
 input[type=submit]:-moz-focus-inner {
   border: 0
 }
@@ -698,7 +705,8 @@ ul {
   padding-bottom: 0
 }
 #lB .lM {
-  padding-bottom: 4em
+  padding-bottom: 4em;
+  padding-top: 2em
 }
 #lB .lS,
 #lH .lMi,
@@ -899,12 +907,6 @@ input.btn {
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br {
-  display: none
 }
 .AHead-labels a:visited {
   background: #1a1a1a;

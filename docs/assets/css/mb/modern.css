@@ -2235,7 +2235,6 @@ blockquote hr {
   }
 }
 @media handheld,
-projection,
 tv,
 only screen and (max-width:740px) {
   .Label div,
@@ -2366,7 +2365,6 @@ only screen and (max-width:740px) {
   }
 }
 @media handheld,
-projection,
 tv,
 only screen and (max-width:479px) {
   .AHead,
@@ -2511,7 +2509,6 @@ only screen and (max-width:479px) {
   }
 }
 @media handheld,
-projection,
 tv,
 only screen and (max-width:359px) {
   body {
