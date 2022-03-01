@@ -98,6 +98,12 @@ input {
     }
 }
 
+@if( $UA_Gck-097 ){
+    [type=hidden] {
+        display: none; // Only for Gecko 0.9.6
+    }
+}
+
 @if( $UA_Gck-097 or $UA_Gck101-121 ){
     input[type=submit]:focus {
         border-style : solid;

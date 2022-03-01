@@ -6,6 +6,12 @@
     padding-bottom : 4em;
 }
 
+@if( $UA_Gck-097 or $UA_Gck101-121 ){
+    #lB .lM {
+        padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
+    }
+}
+
 #lB .lS {
     padding-bottom : 1em;
 }
