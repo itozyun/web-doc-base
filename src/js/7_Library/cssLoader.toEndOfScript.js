@@ -14,7 +14,11 @@ if(
         p_Gecko  < 1 || // Gecko 0.9.4 以下で確認 0.9.6 では発生しない document.write でないと css が適用されない
         !p_Tasman && !window.addEventListener // Tasman 以外で addEventListener をサポートしないブラウザ(未確認)
     ){
-        document.write('<link href="' + p_assetUrl + p_cssDir + p_screenModeDir + p_cssName + '" rel="stylesheet" type="text/css" media="screen,handheld,print">');
+        document.write(
+            '<link href="' + p_assetUrl + p_cssDir + p_screenModeDir + p_cssName + '" rel="stylesheet"' +
+                ( p_Presto < 8 ? '' : ' media="screen,handheld,print"' ) + // Opera 7.54u2, media があると view > fullscreen でスタイルが適用されない
+            '>'
+        );
     } else if(
         p_Presto   <  9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
         p_Gecko    <  1.5 || // Windows XP + Gecko  1.4.1  , noscript 下のコンテンツが取れない
@@ -30,7 +34,7 @@ if(
                     {
                         href  : p_assetUrl + p_cssDir + p_screenModeDir + p_cssName,
                         rel   : 'stylesheet',
-                        type  : 'text/css',
+                        // type  : 'text/css',
                         media : 'screen,handheld,projection,tv,print'
                     }
                 );

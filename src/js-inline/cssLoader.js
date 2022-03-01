@@ -67,7 +67,7 @@ function cssAndJsLoader_onload(){
     if( dir || dir === '' ){
         link.href  = dir + cssName;
         link.rel   = 'stylesheet';
-        link.type  = 'text/css';
+        // link.type  = 'text/css';
         link.media = 'screen,handheld,projection,tv,print';
 
         document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
