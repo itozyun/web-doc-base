@@ -35,7 +35,7 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     }
 
     .lW, .lX {
-        width     : 98%;
+        width : 98%;
         @if( $CANUSE_MAX_AND_MIN_SIZES ){
             max-width : $PC_MAX_WIDTH_EM;
         }
