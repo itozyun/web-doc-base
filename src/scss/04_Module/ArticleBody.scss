@@ -33,7 +33,7 @@
     padding        : 1.4em 0 .6em;
     border-color   : $COLOR_ACCENT;
     color          : $COLOR_ACCENT;
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
         &:after {
             @if( $IS_Opera7x or $UA_Opera8 ){
                 width : 0;      /* for Opera 7-8 */

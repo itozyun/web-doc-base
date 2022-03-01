@@ -7,7 +7,7 @@ h2 {
     padding      : 1.5em 0.45em 0.5em;
     font-size    : 1.1em;
 
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
         position : relative;
         
         &:after {
@@ -38,7 +38,7 @@ h2 {
 .wn {
     color : $COLOR_WARN !important;
 
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
         &:after {
             background : $COLOR_WARN !important;
             color      : $COLOR_WARN !important;
@@ -82,7 +82,7 @@ h2 {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    @if( $CANUSE_PSEUDO_BLOCK ){
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
         h2:after {
             @if( $IS_Opera7x or $UA_Opera8 ){
                 width : 0;      /* for Opera 7-8 */

@@ -54,12 +54,12 @@
                 display    : block;
                 text-align : left;
                 color      : #111;
-                @if( $CANUSE_PSEUDO_BLOCK ){
+                @if( $CANUSE_CSS_GENERATED_BLOCK ){
                     position : relative;
                 }
             }
 
-            @if( $CANUSE_PSEUDO_BLOCK ){
+            @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:after, .chatL p:after {
                     @include createPseudoBlock;
                     position : absolute;
@@ -284,7 +284,7 @@
                 border-color : $COLOR_Print_casual_text;
             }
 
-            @if( $CANUSE_PSEUDO_BLOCK ){
+            @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:before, .chatL p:before {
                     @include createPseudoBlock;
                     position     : absolute;

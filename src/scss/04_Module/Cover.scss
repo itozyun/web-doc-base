@@ -71,7 +71,7 @@
                     padding      : 0.6em;
                     border-width : 1px; /* for high contrast mode */
                 }
-                @if( $CANUSE_PSEUDO_BLOCK ){
+                @if( $CANUSE_CSS_GENERATED_BLOCK ){
                     .Cover h2:after {
                         @if( $IS_Opera7x or $UA_Opera8 ){
                             width : 0;      /* for Opera 7-8 */

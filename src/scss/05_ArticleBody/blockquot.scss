@@ -21,7 +21,7 @@ blockquote {
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
         blockquote:before {
             content : attr(title);
-            @if( $CANUSE_PSEUDO_BLOCK ){
+            @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 display : block;
             }
         }
@@ -44,11 +44,11 @@ blockquote {
     /* //_}#can-content */
     .js-bqCite {
         @include hMargin(2, 0, 0);
+        @include unbreak-pane; /* 長い url 用 */
         display     : block;
         font-size   : 0.875em;
         line-height : 1.2;
         text-align  : right;
-        @include unbreak-pane; /* 長い url 用 */
         color       : $COLOR_Default_casual_text;
     }
 
