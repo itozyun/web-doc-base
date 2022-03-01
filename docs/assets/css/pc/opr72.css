@@ -149,7 +149,6 @@ tr {
 .links [href]:before,
 .links a,
 h2,
-kbd:hover,
 sub,
 sup {
   position: relative
@@ -382,12 +381,8 @@ hr {
 .ribbon,
 .ribbon .AHead h1,
 .ribbon :visited,
-.tl tbody :hover th :link,
-.tl tbody :hover th :visited,
 code .pln,
-code .pun,
-tbody :hover th :link,
-tbody :hover th :visited {
+code .pun {
   color: #fff
 }
 a:active,
@@ -480,9 +475,7 @@ tr hr {
   border-color: #3079ed!important
 }
 .ABody h2,
-.Cover h2,
-.tl tbody :hover td,
-.tl tbody :hover th {
+.Cover h2 {
   border-color: #3079ed
 }
 :link:hover img,
@@ -601,22 +594,6 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #111 #ddd
 }
-blockquote tbody :hover td {
-  border-color: #ddd #ddd #3079ed
-}
-tbody :hover th {
-  background: #3079ed;
-  color: #fff
-}
-tbody :hover td {
-  border-color: #f8fbf8 #f8fbf8 #3079ed;
-  color: #3079ed
-}
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
-  background: #fff!important;
-  color: #3079ed!important
-}
 .Cover-btn,
 .commonForm-send,
 .r {
@@ -667,10 +644,10 @@ tbody :hover th :visited:active {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
-  content: "";
-  display: block;
   visibility: hidden;
-  clear: both
+  clear: both;
+  content: "";
+  display: block
 }
 .lM1 {
   float: left
@@ -883,8 +860,8 @@ var {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: left
 }
 .AHead-labels {
@@ -1317,11 +1294,11 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  word-break: break-all;
   display: block;
   font-size: .875em;
   line-height: 1.2;
   text-align: right;
-  word-break: break-all;
   color: #777;
   margin: 0
 }
@@ -1365,9 +1342,6 @@ kbd {
   letter-spacing: -1px;
   padding: 0 .4em
 }
-kbd:hover {
-  top: -.1em
-}
 code,
 var {
   padding: .1em .4em
@@ -1407,8 +1381,6 @@ tbody th var {
   content: ">";
   left: -.5em;
   width: 1em;
-  height: 1.4em;
-  line-height: 1.4;
   text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
@@ -1480,10 +1452,6 @@ dl.note dd {
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
-}
-.tl tbody :hover th {
-  background: #3079ed!important;
-  color: #fff
 }
 .AMeta {
   padding: .5em 0;

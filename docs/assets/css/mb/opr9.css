@@ -715,11 +715,11 @@ tbody :hover th :visited:active {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
+  visibility: hidden;
+  clear: both;
   content: "";
   height: 0;
-  display: block;
-  visibility: hidden;
-  clear: both
+  display: block
 }
 .lM1,
 .lS1 {
@@ -935,8 +935,8 @@ caption {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: center
 }
 .Attribution small,
@@ -1349,11 +1349,11 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  word-break: break-all;
   display: block;
   font-size: .875em;
   line-height: 1.2;
   text-align: right;
-  word-break: break-all;
   color: #777;
   margin: 0 1.5%
 }
@@ -1441,8 +1441,6 @@ tbody th var {
   position: relative;
   left: -.5em;
   width: 1em;
-  height: 1.4em;
-  line-height: 1.4;
   text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {

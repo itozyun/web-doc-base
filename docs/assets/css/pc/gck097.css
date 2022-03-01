@@ -94,10 +94,19 @@ tr {
 }
 #jsSide,
 #lH .lSi,
+.AAuthor,
+.Comment p,
+.Cover,
 .Cover-img,
+.Magazine-item,
+.Magazine-main,
 .Pager,
+.RichLink a,
+.box,
+.commonForm-pair,
+.lMi,
+.lSi,
 .lW,
-kbd:hover,
 sub,
 sup {
   position: relative
@@ -372,12 +381,8 @@ form :focus {
 }
 .ribbon .AHead h1,
 .ribbon :visited,
-.tl tbody :hover th :link,
-.tl tbody :hover th :visited,
 code .pln,
-code .pun,
-tbody :hover th :link,
-tbody :hover th :visited {
+code .pun {
   color: #fff
 }
 :target,
@@ -482,9 +487,7 @@ tr hr {
   border-color: #3079ed!important
 }
 .ABody h2,
-.Cover h2,
-.tl tbody :hover td,
-.tl tbody :hover th {
+.Cover h2 {
   border-color: #3079ed
 }
 .hscroll table,
@@ -598,23 +601,6 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #111 #ddd
 }
-blockquote tbody :hover td {
-  border-color: #ddd #ddd #3079ed
-}
-tbody :hover th {
-  background: #3079ed;
-  color: #fff
-}
-tbody :hover td {
-  border-color: #f8fbf8 #f8fbf8 #3079ed;
-  color: #3079ed
-}
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
-  background: #fff!important;
-  color: #3079ed!important
-}
 .Cover-btn,
 .commonForm-send,
 .r {
@@ -655,10 +641,10 @@ var {
 .lMi:after,
 .lSi:after,
 .lW:after {
-  content: "";
-  height: 0;
   visibility: hidden;
-  clear: both
+  clear: both;
+  content: "";
+  height: 0
 }
 .lW,
 .lX {
@@ -906,8 +892,8 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: left
 }
 .AHead-labels {
@@ -1158,6 +1144,11 @@ kbd {
   overflow: hidden;
   border-color: #2a2a2a!important
 }
+.Pager span,
+.Search .btn {
+  position: absolute;
+  top: 1em
+}
 .baseColor .RichLink a {
   border-color: #ddd!important
 }
@@ -1199,8 +1190,6 @@ kbd {
   height: 2.1em
 }
 .Search .btn {
-  top: 1em;
-  position: absolute;
   width: 2em;
   right: .8em;
   white-space: nowrap;
@@ -1390,9 +1379,6 @@ kbd {
   letter-spacing: -1px;
   padding: 0 .4em
 }
-kbd:hover {
-  top: -.1em
-}
 code,
 var {
   padding: .1em .4em
@@ -1500,10 +1486,6 @@ dl.note dd {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.tl tbody :hover th {
-  background: #3079ed!important;
-  color: #fff
-}
 .AMeta {
   padding: .5em 0;
   line-height: 1.2
@@ -1529,8 +1511,6 @@ dl.note dd {
   text-align: right
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
   width: 32%
 }
 .Pager i {

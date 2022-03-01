@@ -705,11 +705,11 @@ tbody :hover th :visited:active {
 .RichLink a:after,
 .box:after,
 .commonForm-pair:after {
+  visibility: hidden;
+  clear: both;
   content: "";
   height: 0;
-  display: inline;
-  visibility: hidden;
-  clear: both
+  display: inline
 }
 .lM1,
 .lS1 {
@@ -924,8 +924,8 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: center
 }
 .Attribution small,

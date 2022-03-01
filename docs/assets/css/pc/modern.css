@@ -807,11 +807,11 @@ tbody :hover th :visited:active {
 .lMi:after,
 .lSi:after,
 .lW:after {
+  visibility: hidden;
+  clear: both;
   content: "";
   height: 0;
-  display: block;
-  visibility: hidden;
-  clear: both
+  display: block
 }
 .lW,
 .lX {
@@ -1343,8 +1343,8 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: left
 }
 .AHead-labels {
@@ -1907,9 +1907,9 @@ tbody th var {
   position: relative;
   left: -.5em;
   width: 1em;
+  text-align: center;
   height: 1.4em;
-  line-height: 1.4;
-  text-align: center
+  line-height: 1.4
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -2213,7 +2213,15 @@ li.L8 {
   -o-transition: width .3s ease-in,margin .3s ease-in;
   transition: width .3s ease-in,margin .3s ease-in
 }
+.jsPica img {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in
+}
 .jsPicaLarge img {
+  cursor: -webkit-zoom-out;
+  cursor: -moz-zoom-out;
+  cursor: zoom-out;
   width: 100%;
   height: auto;
   max-width: 100%;

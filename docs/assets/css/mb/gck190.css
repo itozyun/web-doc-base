@@ -695,11 +695,11 @@ tbody :hover th :visited:active {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
+  visibility: hidden;
+  clear: both;
   content: ".";
   height: 0;
-  display: block;
-  visibility: hidden;
-  clear: both
+  display: block
 }
 .lM1,
 .lS1 {
@@ -914,8 +914,8 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: center
 }
 .Attribution small,
@@ -1667,7 +1667,11 @@ li.L7,
 li.L8 {
   list-style-type: none
 }
+.jsPica img {
+  cursor: -moz-zoom-in
+}
 .jsPicaLarge img {
+  cursor: -moz-zoom-out;
   width: 100%;
   height: auto;
   max-width: 100%;

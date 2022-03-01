@@ -1220,8 +1220,8 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #111;
-  margin: 0;
   padding: 2em 0;
+  margin: 0;
   text-align: center
 }
 .Attribution small,
@@ -1726,8 +1726,6 @@ tbody th var {
   position: relative;
   left: -.5em;
   width: 1em;
-  height: 1.4em;
-  line-height: 1.4;
   text-align: center;
   font-weight: 700
 }
