@@ -68,7 +68,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , projection, tv, only
                 /* //_}@modern */
-                /* //_{@opr9 
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -92,7 +95,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , projection, tv, only
                 /* //_}@modern */
-                /* //_{@opr9
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -116,7 +122,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , projection, tv, only
                 /* //_}@modern */
-                /* //_{@opr9
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -140,7 +149,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , projection, tv, only
                 /* //_}@modern */
-                /* //_{@opr9
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -164,7 +176,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , projection, tv, only
                 /* //_}@modern */
-                /* //_{@opr9
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -188,7 +203,10 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 , only
                 /* //_}@modern */
-                /* //_{@opr9
+                /* //_{@opr9 */
+                    /* //_{ */
+                        dumy-for-syntax-hilighter
+                    /* //_} */
                     ,
                 /* //_}@opr9 */
                 /* //_{#can-mq */
@@ -215,8 +233,11 @@ $COMMENT_OUT : (
                     /* //_{@modern */
                     , only screen and (prefers-color-scheme:dark), only
                     /* //_}@modern */
-                    /* //_{@opr9
-                    ,
+                    /* //_{@opr9 */
+                        /* //_{ */
+                            dumy-for-syntax-hilighter
+                        /* //_} */
+                        ,
                     /* //_}@opr9 */
                     /* //_{#can-mq */
                     screen and (max-width: 240px)
