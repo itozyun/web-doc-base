@@ -61,7 +61,7 @@
 
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:after, .chatL p:after {
-                    @include createPseudoBlock;
+                    @include createCSSGeneratedBlock;
                     position : absolute;
                     top      : .7em;
                     width    : 0;
@@ -286,7 +286,7 @@
 
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:before, .chatL p:before {
-                    @include createPseudoBlock;
+                    @include createCSSGeneratedBlock;
                     position     : absolute;
                     top          : .7em;
                     width        : 0;

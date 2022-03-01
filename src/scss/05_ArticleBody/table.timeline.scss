@@ -58,7 +58,7 @@
 
     @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
         tbody td:before, tbody td:after {
-            @include createPseudoBlock;
+            @include createCSSGeneratedBlock;
             text-indent  : -1em;
             position     : absolute;
             border-width : .3em;

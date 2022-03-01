@@ -10,7 +10,7 @@
         vertical-align : text-top;
     }
     &:before, &:after {
-        @include createPseudoBlock;
+        @include createCSSGeneratedBlock;
         text-indent   : -1em;
         position      : absolute;
         border-width  : 0;
