@@ -11,23 +11,31 @@ p_listenImageReady = function( callback ){
 /** @type {Array<Function>} */
 var Event_imageReadyCallbacks = [];
 
+var killSmartRendering = 7.5 <= p_Presto && p_Presto < 8;
+
+// Opera 7.54u2 でレンダリングモードが変わる問題を若干改善する。
+if( killSmartRendering ){
+    (function(){
+        var imgs = document.images, i = imgs.length, img;
+
+        for( ; i; ){
+            img = imgs[ --i ];
+            img._src = img.src;
+            p_DOM_removeAttribute( img, 'src' );
+        };
+    })();
+};
+
 p_listenLoadEvent(
     function(){
         var imgs = document.images || p_DOM_getElementsByTagNameFromDocument( 'img' ), // for NN9 ??,
             i    = imgs.length,
             img, result;
 
-        function testForPresto( result ){
-            m_dispatchEvent( Event_imageReadyCallbacks, { img : imgs[ i ], imgReady : result } );
-            if( i ){
-                p_imageTest( testForPresto, imgs[ --i ].src );
-            };
-        };
-
         if( p_Presto < 12 || // img.width で <img> 要素の画面上のサイズが返る?
             p_WebKit < 532   // Windows XP + Safari 4.0.5 で判定に失敗する為こちらへ
         ){
-            i && p_imageTest( testForPresto, imgs[ --i ].src );
+            testForPresto();
         } else {
             for( ; i; ){
                 img    = imgs[ --i ];
@@ -35,6 +43,21 @@ p_listenLoadEvent(
                 p_imageEnabled = p_imageEnabled || !!result;
                 m_lazyDispatchEvent( Event_imageReadyCallbacks, { img : img, imgReady : result } );
             };
+        };
+
+        function testForPresto(){
+            if( i ){
+                img = imgs[ --i ];
+                if( killSmartRendering ){
+                    p_DOM_setAttribute( img, 'src', img._src );
+                };
+                p_imageTest( testCallback, killSmartRendering ? img._src : img.src );
+            };
+        };
+
+        function testCallback( result ){
+            m_dispatchEvent( Event_imageReadyCallbacks, { img : img, imgReady : result } );
+            testForPresto();
         };
     }
 );
