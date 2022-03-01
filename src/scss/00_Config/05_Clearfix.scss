@@ -32,10 +32,15 @@
     @if( $UA_MacIE5 ){
         display  : inline-table;
     }
+    @if( $UA_Gck-097 or $UA_Gck101-121 ){
+        position : relative; /* for Gecko 0.9.4.1, 1.0.2 */
+    }
 
     // https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
     @if( $IS_NOT_IE ){
         &:after {
+            visibility : hidden;
+            clear      : both;
             @if( $UA_Gck130-190 ){
                 content : ".";    /* for Gecko 1.3~1.5 */
             } @else {
@@ -49,12 +54,7 @@
             } @else if( $UA_Modern or $IS_OLD_OPERA or $UA_Gck130-190 ){
                 display : block; /* for Gecko 1.3~ & Opera */
             }
-            visibility  : hidden;
-            clear       : both;
         }
-    }
-    @if( $UA_Gck101-121 ){
-        position : relative; /* for Gecko 1.0.2 */
     }
     @if( $UA_Gck130-190 ){
         @-moz-document url-prefix() { /* override Gecko 1.8~ */
