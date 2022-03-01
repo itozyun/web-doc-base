@@ -22,6 +22,29 @@
     }
 }
 
+.jsPica img {
+    @if( $UA_Modern ){
+        cursor : -webkit-zoom-in;
+    }
+    @if( $UA_Modern or $UA_Gck130-190 ){ // Gecko 1.4+
+        cursor : -moz-zoom-in;
+    }
+    @if( $UA_Modern ){
+        cursor : zoom-in;
+    }
+}
+.jsPicaLarge img {
+    @if( $UA_Modern ){
+        cursor : -webkit-zoom-out;
+    }
+    @if( $UA_Modern or $UA_Gck130-190 ){ // Gecko 1.4+
+        cursor : -moz-zoom-out;
+    }
+    @if( $UA_Modern ){
+        cursor : zoom-out;
+    }
+}
+
     .jsPicaLarge img {
         width  : 100%;
         height : auto;
@@ -64,7 +87,6 @@
 
 /*  Phone-
 --------------------------------------------------------------------------------------*/
-
 @include media(smallphone) {
     @if( $UA_Modern ){ // アニメーション用の指定
         div .box .jsPicaLarge img,
