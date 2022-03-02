@@ -2284,13 +2284,11 @@ blockquote hr {
   h2 {
     -webkit-transition-property: border-color
   }
-  _:increment,
-  _:not(*:root),
-  :link,
   :link *,
-  :visited,
+  :link,
   :visited *,
-  h2 {
+  :visited,
+  h2,_:increment,_:not(:root) {
     -webkit-transition-property: background-color,color,border-color
   }
   .box > p:first-of-type {

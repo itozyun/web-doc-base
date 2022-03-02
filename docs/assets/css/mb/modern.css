@@ -2233,12 +2233,10 @@ blockquote hr {
   :visited * {
     -webkit-transition-property: border-color
   }
-  _:increment,
-  _:not(*:root),
-  :link,
   :link *,
-  :visited,
-  :visited * {
+  :link,
+  :visited *,
+  :visited,_:increment,_:not(:root) {
     -webkit-transition-property: background-color,color,border-color
   }
   .box > p:first-of-type {

@@ -65,13 +65,6 @@ module.exports = function(){
                             };
                             updateCurrentFile = true;
                         };
-
-                        if( 0 <= originalSelector.indexOf( ':-opera-lte71' ) ){
-                            console.log( originalSelector );
-                            originalRule.selector = originalSelector.replace( ':-opera-lte71', ':not(\\)' );
-                            rulesAddToEnd.push( originalRule );
-                            updateCurrentFile = true;
-                        };
                     };
                 }
             );

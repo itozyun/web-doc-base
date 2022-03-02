@@ -1,0 +1,20 @@
+@mixin animate-colors() {
+    @if( $UA_Modern ){
+        /* clean-css ignore:start */
+        -webkit-transition-property : background-color, color, border-color;
+        -webkit-transition          : 0.3s ease-in;
+        /* clean-css ignore:end */
+        -moz-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+            -o-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+                transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+    }
+    // Chrome 1 でフォーカスしたリンク文字が消える問題の修正。
+    @include media(chrome1OrSafariLte4){
+        & {
+            -webkit-transition-property : border-color; // for Chrome 1
+        }
+        & [_lazyhack_="_:increment|_:not(*:root)"] {
+            -webkit-transition-property : background-color, color, border-color; // override for Chrome 2+
+        }
+    }
+}

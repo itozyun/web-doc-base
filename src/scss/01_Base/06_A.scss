@@ -24,40 +24,9 @@ a:active:hover { text-decoration : underline; }
         background-color : transparent;
     }
     :link, :link *,
-    :visited, :visited *
-    /* //_{^+mobileOnly */
-        , h2 /* SidebarFixer 用 */
-    /* //_}^+mobileOnly */
-    {
-    /* clean-css ignore:start */
-        -webkit-transition-property : background-color, color, border-color;
-        -webkit-transition          : 0.3s ease-in;
-    /* clean-css ignore:end */
-           -moz-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
-             -o-transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
-                transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+    :visited, :visited * {
+        @include animate-colors;
     }
-    // Chrome 1 でフォーカスしたリンク文字が消える問題の修正。
-    @include media(chrome1OrSafariLte4){
-        :link, :link *,
-        :visited, :visited *
-        /* //_{^+mobileOnly */
-            , h2 /* SidebarFixer 用 */
-        /* //_}^+mobileOnly */
-        {
-            -webkit-transition-property : border-color; // for Chrome 1
-        }
-        _:increment, _:not(*:root),
-        :link, :link *,
-        :visited, :visited *
-        /* //_{^+mobileOnly */
-            , h2 /* SidebarFixer 用 */
-        /* //_}^+mobileOnly */
-        {
-            -webkit-transition-property : background-color, color, border-color; // override for Chrome 2+
-        }
-    }
-
 }
 
 /* a タグの色

@@ -25,6 +25,9 @@
                 border-color : $COLOR_Ribbon_text;
             }
         }
+        h2 {
+            @include animate-colors;
+        }
     }
     @if( $IS_NOT_IE ){
         #jsSide {
