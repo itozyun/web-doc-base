@@ -1509,6 +1509,7 @@ thead var {
   background: #ddd;
   color: #111
 }
+.RichLink-meta,
 .tl td,
 .tl th,
 pre code,
@@ -2276,6 +2277,22 @@ blockquote hr {
   color: #111
 }
 @media screen and (min-width:0\-) {
+  :link,
+  :link *,
+  :visited,
+  :visited *,
+  h2 {
+    -webkit-transition-property: border-color
+  }
+  _:increment,
+  _:not(*:root),
+  :link,
+  :link *,
+  :visited,
+  :visited *,
+  h2 {
+    -webkit-transition-property: background-color,color,border-color
+  }
   .box > p:first-of-type {
     margin-top: auto
   }

@@ -115,13 +115,11 @@
 
     /*  patch for Safari ~4.x
     --------------------------------------------------------------------------------------*/
-    @if( $UA_Modern ){
-        @media screen and (min-width:0\-) { // Safari ~4.1
-            td:before, td:after {
-                display : none !important; // tebla-cell に対して絶対配置が出来ない
-            }
+    @include media(chrome1OrSafariLte4){
+        td:before, td:after {
+            display : none !important; // tebla-cell に対して絶対配置が出来ない
         }
-}
+    }
 
     tfoot th {
         border-width : 1px 0 0;
