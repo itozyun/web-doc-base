@@ -59,191 +59,86 @@ $COMMENT_OUT : (
             }
         }
         @else if $media == 'tablet_print' {
-            @media print
-                /* //_{#can-mq,@opr9,@opr8 */
-                ,
-                /* //_}#can-mq,@opr9,@opr8 */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , tv, only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media print, screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media print, handheld, screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media print, handheld, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media print, handheld{ @content; }
+            }@else {
+                @media print{ @content; }
+            }
         }
         @else if $media == 'tablet' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , tv, only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, tv, only screen and (max-width: #{$MEDIAQUERY_TABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
+            }
         }
         @else if $media == 'phablet' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , tv, only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_PX}px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_PX}px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, tv, only screen and (max-width: #{$MEDIAQUERY_PHABLET_MAX_PX}px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
+            }
         }
         @else if $media == 'phone' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , tv, only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: 479px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: 479px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: 479px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, tv, only screen and (max-width: 479px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
+            }
         }
         @else if $media == 'smallphone' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , tv, only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: 359px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: 359px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: 359px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, tv, only screen and (max-width: 359px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
+            }
         }
         @else if $media == 'watch' {
-            @media
-                /* //_{^#can-mq */
-                    /* //_{^@opr8 */
-                    dumy-for-gulp-sass5
-                    /* //_}^@opr8 */
-                /* //_}^#can-mq */
-                /* //_{ */
-                    ,
-                /* //_} */
-                /* //_{@modern,@opr9,@opr8 */
-                handheld
-                /* //_}@modern,@opr9,@opr8 */
-                /* //_{@modern */
-                , only
-                /* //_}@modern */
-                /* //_{@opr9 */
-                    /* //_{ */
-                        dumy-for-syntax-hilighter
-                    /* //_} */
-                    ,
-                /* //_}@opr9 */
-                /* //_{#can-mq */
-                screen and (max-width: 240px)
-                /* //_}#can-mq */
-                { @content; }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: 240px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: 240px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, only screen and (max-width: 240px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
+            }
         }
         @else if $media == 'dark_theme' {
             @if $DARK_THEME_ALLWAYS {
                 @content;
             } @else {
-                @media
-                    /* //_{^#can-mq */
-                        /* //_{^@opr8 */
-                        dumy-for-gulp-sass5
-                        /* //_}^@opr8 */
-                    /* //_}^#can-mq */
-                    /* //_{ */
-                        ,
-                    /* //_} */
-                    /* //_{@modern,@opr9,@opr8 */
-                    handheld
-                    /* //_}@modern,@opr9,@opr8 */
-                    /* //_{@modern */
-                    , only screen and (prefers-color-scheme:dark), only
-                    /* //_}@modern */
-                    /* //_{@opr9 */
-                        /* //_{ */
-                            dumy-for-syntax-hilighter
-                        /* //_} */
-                        ,
-                    /* //_}@opr9 */
-                    /* //_{#can-mq */
-                    screen and (max-width: 240px)
-                    /* //_}#can-mq */
-                        { @content; }
+                @if( $UA_IE9 ){
+                    @media screen and (max-width: 240px){ @content; }
+                }@else if( $UA_Opera9 ){
+                    @media handheld, screen and (max-width: 240px){ @content; }
+                }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                    @media handheld, only screen and (prefers-color-scheme:dark), only screen and (max-width: 240px){ @content; }
+                }@else if( $UA_Opera8 ){
+                    @media handheld{ @content; }
+                }
             }
         }
         @else if $media == 'print' {
