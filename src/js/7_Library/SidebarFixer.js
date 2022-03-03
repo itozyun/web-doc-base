@@ -70,6 +70,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
                 { id : DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID }
             );
 
+            p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
             if( p_Trident || p_Tasman ){
                 p_addEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus );
             } else if( SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN ){
@@ -132,6 +133,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
                 p_removeEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheelForGecko, false );
             };
 
+            p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
             if( p_Trident || p_Tasman ){
                 p_removeEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus, false );
             } else if( SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN ){
@@ -185,6 +187,10 @@ function SidebarFixer_onscroll(){
             SidebarFixer_updateViewport();
         };
     };
+};
+
+function SidebarFixer_onWindowBlur(){
+    SidebarFixer_fix( SidebarFixer_lastScrollY );
 };
 
 /**
@@ -280,22 +286,18 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
             if( sidebarIsLower ){
                 if( topInViewPort || outsideViewPort ){
                     createPositioning( 0 );
-                    //console.log( 'A ' + sidebarY );
                 } else if( sideInViewPort ){
                     createPositioning( scrollY - mainColY );
-                    //console.log( 'B ' + sidebarY );
                 } else if( btmInViewPort || outOnViewPort ){
                     createPositioning( mainColHeight - sidebarHeight );
                 } else {
                     scrollLimit = scrollY + viewportHeight - mainColY - sidebarHeight;
                     scrollLimit = scrollLimit < 0 ? 0 : scrollLimit;
                     createPositioning( scrollLimit );
-                    //console.log( 'C ' + sidebarY + ' limit:' + scrollLimit );
                 };
             };
         } else {
             // マウスが sidebar にホバーしている
-            // document.title = 'sY:' + scrollY + ' < my:' + mainColY + ' mh:' + mainColHeight + ' wH' + viewportHeight;
             if( sideInViewPort ){
                 nocancelWheel = true;
             } else {
@@ -304,11 +306,9 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
                     scrollLimit = scrollY + viewportHeight - mainColY - sidebarHeight;
                     scrollLimit = mainColHeight - sidebarHeight < scrollLimit ? mainColHeight - sidebarHeight : scrollLimit;
                     sidebarY    = sidebarY < scrollLimit ? scrollLimit : sidebarY;
-                    //console.log( '↓ ' + sidebarY + ' limit:' + scrollLimit );
                 } else {
                     scrollLimit = scrollY - mainColY < 0 ? 0 : scrollY - mainColY;
                     sidebarY    = scrollLimit < sidebarY ? scrollLimit : sidebarY;
-                    //console.log( '↑ ' + sidebarY + ' limit:' + scrollLimit );
                 };
                 createPositioning( sidebarY );
             };
@@ -369,13 +369,14 @@ function SidebarFixer_onfocus( e ){
         return;
     };
 
-    var elmFocused = e.target || e.srcElement, // TODO blur でのサイドバーのリセット!
+    var elmFocused = e.target || e.srcElement,
         y          = 0,
         h, elm;
 
     if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_showEvent( e.type );
+            p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementblur );
         };
 
         h = elmFocused.offsetHeight;
@@ -407,6 +408,11 @@ function SidebarFixer_setScrollY( scrollY ){
         SidebarFixer_showEvent( 'scrollTo' );
     };
     window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, window.scrollX, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
+};
+
+function SidebarFixer_onActiveElementblur(){
+    p_removeEventListener( this, 'blur', SidebarFixer_onActiveElementblur );
+    SidebarFixer_updateElementFocused( 0, 0 );
 };
 
 if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_positionFixed ){
