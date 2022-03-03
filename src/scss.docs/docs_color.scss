@@ -1,0 +1,32 @@
+$COLOR_ACCENT : #29a119;
+$COLOR_WARN   : #ca088a;
+$COLOR_THEME  : $COLOR_ACCENT;
+
+$COLOR_Sidebar_fill : #ecf1bf;
+
+/*  白系統のボディーメイン用カラー
+--------------------------------------------------------------------------------------*/
+$COLOR_Default_fill          : #f8fbfa;
+$COLOR_Default_text          : #021605;
+$COLOR_Default_casual_fill   : #bddac8;
+$COLOR_Default_casual_text   : #717e73;
+$COLOR_Default_accent        : $COLOR_THEME;
+
+$COLOR_Default_link          : #24c;
+$COLOR_Default_visited       : #717;
+$COLOR_Default_hover         : $COLOR_ACCENT;
+$COLOR_Default_visited_hover : #419;
+
+/*  黒系統のリボン用カラー(フッターとページ上部のアクセント)
+--------------------------------------------------------------------------------------*/
+$COLOR_Ribbon_fill          : #010e06;
+$COLOR_Ribbon_text          : #ecfae8;
+$COLOR_Ribbon_casual_fill   : #052209;
+$COLOR_Ribbon_casual_text   : #92a094;
+$COLOR_Ribbon_accent        : $COLOR_THEME;
+
+$COLOR_Ribbon_link          : #bbe;
+$COLOR_Ribbon_visited       : $COLOR_Ribbon_text;
+$COLOR_Ribbon_hover         : $COLOR_ACCENT;
+$COLOR_Ribbon_visited_hover : #b3f;
+

@@ -8,9 +8,9 @@ const gulp            = require('gulp'),
       globalVariables = 'document,navigator,screen,parseFloat,Number';
 
 /* -------------------------------------------------------
- *  gulp docs
+ *  gulp whatbrowserami
  */
-gulp.task('docs', gulp.series(
+gulp.task( 'whatbrowserami', gulp.series(
     function(){
         return gulp.src( [
             './.submodules/what-browser-am-i/src/js/**/*.js',
@@ -46,7 +46,14 @@ gulp.task('docs', gulp.series(
                     }
                 )
             ).pipe(gulp.dest( tempDir ));
-    },
+    } )
+);
+
+/* -------------------------------------------------------
+ *  gulp docs
+ */
+gulp.task('docs', gulp.series(
+    'whatbrowserami',
     function( cb ){
         const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
 
@@ -268,7 +275,10 @@ const plumber     = require("gulp-plumber"),
 
 gulp.task('css', function(){
     return gulp.src([
-            "./src/scss/**/*.scss"
+            "./src/scss/00_Config/00_BuildTargets.scss",
+            "./src/scss.docs/docs_color.scss",
+            "./src/scss/**/*.scss",
+            "./src/scss.docs/**.scss"
         ])
         .pipe(plumber())
         .pipe(
@@ -296,7 +306,7 @@ gulp.task('css', function(){
                     all : true,
                     removeUnusedAtRules : false,
                     // overrideProperties  : false,
-                    skipProperties : [ 'display' ]
+                    skipProperties : [ 'display', 'cursor' ]
                 }
             }
         }))
@@ -314,7 +324,7 @@ gulp.task('css', function(){
                     all : true,
                     removeUnusedAtRules : false,
                     // overrideProperties  : false,
-                    skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition' ]
+                    skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor' ]
                 }
             } 
         }))

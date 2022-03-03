@@ -1,0 +1,29 @@
+/*
+ * //!baseFontSize18
+ * //!blog
+ * //!aa
+ * //!it
+ * //!mona
+ * //!ArticleLabels
+ * //!SocialBtns
+ * //!GoogleCodePrettify
+ * //!simpleHeader
+ * //!blog2slide
+ * //!chat
+ */
+
+#lE {
+    border-top : 0.3em solid $COLOR_THEME;
+}
+
+#lF {
+    border-top : 0.3em solid $COLOR_THEME;
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    #lF {
+        border : 0;
+    }
+}
