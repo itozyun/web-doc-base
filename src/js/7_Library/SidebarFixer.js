@@ -159,9 +159,9 @@ function SidebarFixer_getFinite( arg ){
 };
 
 /**
- * @param {Event=} e 
+ * @param {Event|undefined|number=} param Eventオブジェクトの場合もあれば、タイマーで呼ばれた場合は 0 が入っている
  */
-function SidebarFixer_onscroll(){
+function SidebarFixer_onscroll( param ){
     if( !p_cssAvailability ){
         SidebarFixer_skipScroll = false;
         return;
@@ -176,7 +176,7 @@ function SidebarFixer_onscroll(){
     if( SidebarFixer_skipScroll && !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
         SidebarFixer_skipScroll = false;
     } else {
-        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop ); // TODO 0の場合は skip
         if( SidebarFixer_skipScroll ){
             SidebarFixer_fix( SidebarFixer_lastScrollY, 0, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
             SidebarFixer_skipScroll = false;
@@ -207,33 +207,35 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
         mainInViewPort, nocancelWheel;
 
     function createPositioning( y ){
-        var w;
+        var useClip = SidebarFixer_positionFixed || p_Trident < 7,
+            sidebarWidth;
 
         sidebarY = y;
         if( SidebarFixer_transformProp ){
-            css = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_use3D ? '3D(0,' : '(0,' ) +  /* 3D は Android 3.1 用 */
-                  y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' );
+            css = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_use3D ? '3D(0,' : '(0,' ) +  /* 3D は Android 3.1 ではマスト */
+                  y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
+                  ';-webkit-overflow-scrolling:touch;';
         } else {
+            if( useClip ){
+                sidebarWidth = SidebarFixer_elmSide.offsetWidth;
+            };
             if( SidebarFixer_positionFixed ){
                 if( y !== 0 ){
-                    y  -= scrollY - mainColY;
-                    w   = SidebarFixer_elmSide.offsetWidth;
-                    css = 'position:fixed;width:' + w + 'px;top:' + y + 'px';
+                    css = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( y - scrollY + mainColY ) + 'px';
                 };
             } else {
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
                 css = 'position:absolute;left:0;width:100%;top:' + y + 'px';
             };
 
-            if( SidebarFixer_positionFixed || p_Trident < 7 ){
-                w    = w || SidebarFixer_elmSide.offsetWidth;
+            if( useClip ){
                 css += ';' +
                     (
-                    sidebarY < 0 ? 
-                        'clip:rect(' + ( -sidebarY ) + 'px ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainColY ) + 'px 0)' :
-                    sidebarY + sidebarHeight < mainColY + visibleHeight ?
-                        'clip:rect(0 ' + w + 'px ' + sidebarHeight + 'px 0)' :
-                        'clip:rect(0 ' + w + 'px ' + ( scrollY + visibleHeight - sidebarY - mainColY ) + 'px 0)'
+                    y < 0 ? 
+                        'clip:rect(' + ( -y ) + 'px ' + sidebarWidth + 'px ' + ( scrollY + visibleHeight - y - mainColY ) + 'px 0)' :
+                    y + sidebarHeight < mainColY + visibleHeight ?
+                        'clip:rect(0 ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
+                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( scrollY + visibleHeight - y - mainColY ) + 'px 0)'
                     );
             };
         };
@@ -318,7 +320,6 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
         SidebarFixer_updateSidebar( sidebarY, sidebarHeight, mainColY, mainColHeight, viewportHeight, focusedElementY || '-' );
     };
 
-    if( SidebarFixer_transformProp && css ) css += ';-webkit-overflow-scrolling:touch;';
     p_DOM_setCssText( SidebarFixer_elmWrap, css );
 
     SidebarFixer_sidebarY = sidebarY;
@@ -385,7 +386,7 @@ function SidebarFixer_onfocus( e ){
             y   += elm.offsetTop;
             elm  = elm.offsetParent;
         };
-        if( SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
+        if( SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){ // TODO 共通化
             // Chrome 77, 表示ボックス外の要素へのfocusの際に表示ボックスが拡大する．この際は、scroll位置の再取得をする．
             SidebarFixer_skipScroll = [ y, h ];
             if( SidebarFixer_dummyScrollTimerID ){
@@ -410,6 +411,9 @@ function SidebarFixer_setScrollY( scrollY ){
     window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, window.scrollX, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
 };
 
+/** ===========================================================================
+ * for debug
+ */
 function SidebarFixer_onActiveElementblur(){
     p_removeEventListener( this, 'blur', SidebarFixer_onActiveElementblur );
     SidebarFixer_updateElementFocused( 0, 0 );
@@ -456,7 +460,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_positionFixed ){
             p_DOM_setCssText( SidebarFixer_elmViewport, 'position:absolute;left:1px;width:50px;height:50px;border:1px solid #fff' );
 
             SidebarFixer_elmFocused = p_DOM_insertElement( SidebarFixer_elmSidebar, 'div' );
-            p_DOM_setCssText( SidebarFixer_elmFocused, 'position:absolute;left:0;top:0;width:54px;background:#66c' );
+            p_DOM_setCssText( SidebarFixer_elmFocused, 'position:absolute;left:0;top:0;width:54px;line-height:0;font-size:0;background:#66c' );
 
             return true;
         }
