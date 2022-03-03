@@ -1,6 +1,6 @@
 var
-/** @define {number} */
-    DEFINE_WEB_DOC_BASE__DEBUG              = 0,
+/** @define {boolean} */
+    DEFINE_WEB_DOC_BASE__DEBUG              = false,
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID  = '',
 /** @define {number} */

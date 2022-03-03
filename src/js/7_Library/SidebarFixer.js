@@ -2,6 +2,7 @@
  * 途中でサイドバーの要素が変化する -> 知りません
  */
 var SidebarFixer_ID_OF_WHEEL_ELEMENTS             = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
+    // focus イベントに続いて scroll イベントが起こる
     SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL         = 10 <= p_Trident || p_EdgeHTML || p_isChromiumBase || p_WebKit, // Safari 13 で確認
     SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
     /*
@@ -36,10 +37,10 @@ var SidebarFixer_ID_OF_WHEEL_ELEMENTS             = [ DEFINE_WEB_DOC_BASE__SIDEB
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
     SidebarFixer_elmWrap,
-    SidebarFixer_transformProp = p_cssTransformName,
+    SidebarFixer_transformProp = p_cssTransformName, // Chrome 1 描画が欠ける
     SidebarFixer_sidebarY = 0,
     SidebarFixer_lastScrollY = 0,
-    SidebarFixer_can3D,
+    SidebarFixer_use3D,
     SidebarFixer_skipScroll,
     SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' );
 
@@ -98,18 +99,10 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
                 p_addEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheelForGecko, false );
             };
             
-            SidebarFixer_can3D = !p_Trident && !p_EdgeHTML && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
+            SidebarFixer_use3D = !p_Trident && !p_EdgeHTML && !( p_Chromium < 2 ) && ( // Win8.1 以下の IE にはGPU描画エラー有、Win10の Edge, IE11- は3D系が付くとtransitionしない
                 p_notUndefined( p_style[ 'perspective' ] ) ||
                 p_notUndefined( p_style[ '-moz-perspective' ] ) ||
                 p_notUndefined( p_style[ '-webkit-perspective' ] ) );
-
-            /* if( !SidebarFixer_transformProp ){
-                if( !SidebarFixer_positionFixed ){
-                    // elmMain への relative 設定は ie6 で必要! 
-                    // 無いとマルチカラム判定で elmMain.offsetTop = 0, elmSide.offsetTop = 64 になり fix に進まない. -> CSSへ
-                    SidebarFixer_elmSide.style.position = SidebarFixer_elmMain.style.position = 'relative';
-                };
-            }; */
 
             SidebarFixer_onscroll();
 
@@ -139,7 +132,7 @@ if( !p_isMobile && !p_cloudRendering && !( p_Presto < 8 ) ){
             };
 
             if( p_Trident || p_Tasman ){
-                p_removeEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onwheel, false );
+                p_removeEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus, false );
             } else if( SidebarFixer_USE_CAPTURE_OF_FOCUS_FOR_FOCUSIN ){
                 p_removeEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
             } else {
@@ -162,19 +155,33 @@ function SidebarFixer_getFinite( arg ){
     return 0;
 };
 
-function SidebarFixer_onscroll(){
+/**
+ * @param {Event=} e 
+ */
+function SidebarFixer_onscroll( e ){
+    if( !p_cssAvailability ){
+        SidebarFixer_skipScroll = false;
+        return;
+    };
+    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+        SidebarFixer_showEvent( 's' );
+    };
+    /* if( SidebarFixer_skipScroll && e ){
+        e.preventDefault();
+        e.stopPropagation();
+    }; */
     if( SidebarFixer_skipScroll && !SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ){
         SidebarFixer_skipScroll = false;
     } else {
         SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
         if( SidebarFixer_skipScroll ){
-            //console.log( '.fix after scroll ' + SidebarFixer_lastScrollY, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
             SidebarFixer_fix( SidebarFixer_lastScrollY, 0, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
-            // SidebarFixer_setScrollY( SidebarFixer_lastScrollY );
             SidebarFixer_skipScroll = false;
         } else {
-            //console.log( 'scroll ' + SidebarFixer_lastScrollY );
             SidebarFixer_fix( SidebarFixer_lastScrollY );
+        };
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            SidebarFixer_updateViewport();
         };
     };
 };
@@ -189,8 +196,8 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
         // transform pos:fixed が使えない場合、塗りのために width を指定するので pos:relative でなくレイアウトコストの低い pos:absolute を使用
     var POS_ABSOLUT_TOP = 'position:absolute;left:0;width:100%;top:',
         POS_FIXED_WIDTH = 'position:fixed;width:',
-        TRANSF_TRANSL_0 = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_can3D ? '3D(0,' : '(0,' ), /* 3D は Android 3.1 用 */
-        TRANSF_TRANSL_Z = SidebarFixer_can3D ? 'px,0)' : 'px)',
+        TRANSF_TRANSL_0 = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_use3D ? '3D(0,' : '(0,' ), /* 3D は Android 3.1 用 */
+        TRANSF_TRANSL_Z = SidebarFixer_use3D ? 'px,0)' : 'px)',
         winH  = SidebarFixer_getFinite( window.innerHeight, SidebarFixer_elmRoot.offsetHeight ),
         elm   = SidebarFixer_elmMain,
         mainH = elm.offsetHeight,
@@ -308,6 +315,9 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
                 createPositioning( sidebarY );
             };
         };
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            SidebarFixer_updateSidebar( sidebarY, sideH, mainY, winH );
+        };
     };
 
     if( SidebarFixer_transformProp && css ) css += ';-webkit-overflow-scrolling:touch;';
@@ -315,20 +325,26 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
 
     SidebarFixer_sidebarY = sidebarY;
 
-    // for debug
-    // document.title = sidebarY;
-    // window.status = css;
-
     return isMultiColumn && !mainInViewPort && !nocancelWheel;
 };
 
 function SidebarFixer_onwheel( e ){
+    if( !p_cssAvailability ){
+        return;
+    };
+
+    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+        SidebarFixer_showEvent( 'm' );
+    };
     // https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mousewheel
     // TODO axis
     // https://w3g.jp/blog/tools/wheelevent_crossbrowser
     // ホイール系イベント2014年版クロスブラウザ
     if( p_Gecko ){
         SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            SidebarFixer_updateViewport();
+        };
     };
     var hitChild = this !== e.target,
         deltaY   = hitChild && SidebarFixer_getFinite( e.deltaY, e.wheelDeltaY / 120, e.wheelDelta / -120,  e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 1 ) ),
@@ -350,13 +366,22 @@ function SidebarFixer_onwheelForGecko( e ){
     };
 };
 
-function SidebarFixer_onfocus( _event ){
-    var e   = _event || event,
-        elm = e.srcElement || e.target,
-        y   = 0, h;
+function SidebarFixer_onfocus( e ){
+    if( !p_cssAvailability ){
+        return;
+    };
 
-    if( p_DOM_contains( SidebarFixer_elmWrap, elm ) ){
-        h = elm.offsetHeight;
+    var elmFocused = e.srcElement || e.target, // TODO blur でのサイドバーのリセット!
+        y          = 0,
+        h, elm;
+
+    if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            SidebarFixer_showEvent( e.type );
+        };
+
+        h = elmFocused.offsetHeight;
+        elm = elmFocused;
         while( SidebarFixer_elmWrap !== elm && p_DOM_contains( SidebarFixer_elmWrap, elm ) ){
             y   += elm.offsetTop || 0;
             elm  = elm.offsetParent;
@@ -370,9 +395,87 @@ function SidebarFixer_onfocus( _event ){
         } else {
             SidebarFixer_skipScroll = [ y, h ];
         };
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            SidebarFixer_updateElementFocused( y, h );
+        };
     };
 };
 
 function SidebarFixer_setScrollY( scrollY ){
     window.scrollTo( SidebarFixer_getFinite( window.pageXOffset, window.scrollX, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollY );
+};
+
+if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_positionFixed ){
+    var SidebarFixer_elmDisplayEvents,
+        SidebarFixer_elmDocument,
+        SidebarFixer_elmViewport,
+        SidebarFixer_elmSidebar,
+        SidebarFixer_elmFocused,
+        SidebarFixer_displayEventsTimerID;
+
+    p_listenCssAvailabilityChange(
+        function( cssAvailability ){
+            if( !cssAvailability ) return;
+            if( !p_elmMain ) return true;
+
+            var elmTestRoot = p_DOM_insertElement( p_body, 'div' );
+
+            p_DOM_setCssText( elmTestRoot, 'position:fixed;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );
+
+            p_DOM_insertElement( elmTestRoot, 'div', undefined, 
+                ( SidebarFixer_FOCUS_FOLLOWED_BY_SCROLL ? 'focus=>scroll' : '?' ) + ' | ' +
+                ( p_cssTransformName ? 'transform' + ( SidebarFixer_use3D ? '3D' : '' ) : ( SidebarFixer_positionFixed ? 'pos:fixed' : 'pos:absolute' ) )
+            );
+
+            SidebarFixer_elmDisplayEvents = p_DOM_insertElement( elmTestRoot, 'div' );
+
+            SidebarFixer_elmDocument = p_DOM_insertElement( elmTestRoot, 'div' );
+            p_DOM_setCssText( SidebarFixer_elmDocument, 'position:absolute;left:0;top:0;width:54px;background:#686' );
+
+            SidebarFixer_elmSidebar = p_DOM_insertElement( elmTestRoot, 'div' );
+            p_DOM_setCssText( SidebarFixer_elmSidebar, 'position:absolute;left:0;width:54px;background:#9f9' );
+
+            SidebarFixer_elmViewport = p_DOM_insertElement( elmTestRoot, 'div' );
+            p_DOM_setCssText( SidebarFixer_elmViewport, 'position:absolute;left:1px;width:50px;height:50px;border:1px solid #030' );
+
+            SidebarFixer_elmFocused = p_DOM_insertElement( SidebarFixer_elmSidebar, 'div' );
+            p_DOM_setCssText( SidebarFixer_elmFocused, 'position:absolute;left:0;top:0;width:54px;background:#33f' );
+
+            return true;
+        }
+    );
+};
+
+function SidebarFixer_showEvent( eventChar ){
+    if( SidebarFixer_elmDisplayEvents ){
+        if( SidebarFixer_displayEventsTimerID ){
+            SidebarFixer_displayEventsTimerID = p_clearTimer( SidebarFixer_displayEventsTimerID );
+        };
+        SidebarFixer_displayEventsTimerID = p_setTimer( SidebarFixer_hideEvent, 0, 800 );
+        SidebarFixer_elmDisplayEvents.innerHTML += ' ' + eventChar;
+    };
+};
+function SidebarFixer_hideEvent(){
+    SidebarFixer_elmDisplayEvents.innerHTML = '';
+};
+function SidebarFixer_updateViewport(){
+    if( SidebarFixer_elmViewport ){
+        p_DOM_setStyle( SidebarFixer_elmViewport, 'top', ( SidebarFixer_lastScrollY / 10 | 0 ) + 'px' );
+    };
+};
+function SidebarFixer_updateSidebar( sidebarY, sideH, mainY, winH ){
+    if( SidebarFixer_elmSidebar ){
+        p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarY + mainY ) / 10 | 0 ) + 'px' );
+        p_DOM_setStyle( SidebarFixer_elmSidebar, 'height', ( sideH / 10 | 0 ) + 'px' );
+
+        p_DOM_setStyle( SidebarFixer_elmViewport, 'height', ( winH / 10 | 0 ) + 'px' );
+
+        p_DOM_setStyle( SidebarFixer_elmDocument, 'height', ( p_body.scrollHeight / 10 | 0 ) + 'px' );
+    };
+};
+function SidebarFixer_updateElementFocused( y, h ){
+    if( SidebarFixer_elmFocused ){
+        p_DOM_setStyle( SidebarFixer_elmFocused, 'top', ( y / 10 | 0 ) + 'px' );
+        p_DOM_setStyle( SidebarFixer_elmFocused, 'height', ( h / 10 | 0 ) + 'px' );
+    };
 };

@@ -20,7 +20,7 @@ var Event_NO_SCROLL_EVENT       = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1
  */
 function Event_scrollEventHandler( e ){
     if( !m_initEventHandler ){
-        m_dispatchEvent( Event_scrollEventCallbacks );
+        m_dispatchEvent( Event_scrollEventCallbacks, e );
     };
 };
 
