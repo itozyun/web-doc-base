@@ -115,7 +115,7 @@
 
     /*  patch for Safari ~4.x
     --------------------------------------------------------------------------------------*/
-    @include media(chrome1OrSafariLte4){
+    @include media(chromeLte5OrSafariLte4){
         td:before, td:after {
             display : none !important; // tebla-cell に対して絶対配置が出来ない
         }

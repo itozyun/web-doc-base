@@ -32,7 +32,7 @@ $COMMENT_OUT : (
     'onlyIE10To11' : if($UA_Modern, 1, 0),
     'onlyOpera'    : if($UA_Modern, 1, 0),
     'onlySafari'   : if($UA_Modern, 1, 0),
-    'chrome1OrSafariLte4' : if($UA_Modern, 1, 0)
+    'chromeLte5OrSafariLte4' : if($UA_Modern, 1, 0)
 ) !default;
 
 @mixin media($media) {
@@ -162,7 +162,7 @@ $COMMENT_OUT : (
                 @content;
             }
         }
-        @else if $media == 'chrome1OrSafariLte4' { // Chrome 1, Safari ~4.1
+        @else if $media == 'chromeLte5OrSafariLte4' { // Chrome 1, Safari ~4.1
             @media screen and (min-width:0\-) {
                 @content;
             }
