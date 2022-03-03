@@ -9,7 +9,7 @@ blockquote hr,
 h5,
 h6,
 table {
-  border-color: #777
+  border-color: #717e73
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -32,23 +32,11 @@ dd,
 li {
   margin-bottom: .3em
 }
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
 h6 {
-  color: #777
+  color: #717e73
 }
 .note .box,
 .note .hscroll,
@@ -69,7 +57,14 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.AMeta,
+.Pager span,
+.caption,
 .h1,
+.js-bqCite,
+.js-bqLink,
+.links a,
+.prettyprint,
 dl,
 h1,
 h2,
@@ -82,21 +77,49 @@ table,
 textarea {
   line-height: 1.2
 }
+blockquote .tl tr code,
+blockquote .tl tr var,
+blockquote code,
+blockquote tbody th,
+blockquote var,
+tbody th code,
+tbody th var,
+thead td,
+thead th {
+  background: #717e73;
+  color: #f8fbfa
+}
 .baseColor,
 .medal {
-  background: #f8fbf8
+  background: #f8fbfa
 }
 .Magazine-date,
 .aa {
   font-family: monospace
 }
+.chatMember,
+.chatTitle,
+.h1,
+caption,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+thead {
+  page-break-after: avoid
+}
 blockquote,
 code,
 tbody th,
 var {
-  background: #ddd
+  background: #bddac8
 }
+.LinkList a,
 .Magazine-item,
+.RichLink-sep a,
 .SearchResult div div,
 .caption,
 .commonForm-pair,
@@ -133,8 +156,8 @@ html {
 }
 body {
   line-height: 1.9;
-  background: #1a1a1a;
-  color: #111
+  background: #010e06;
+  color: #021605
 }
 :active,
 :focus {
@@ -187,7 +210,7 @@ del {
 }
 h4 {
   border-width: 0 0 0 .7em;
-  border-color: #111;
+  border-color: #021605;
   padding: 0 0 0 .3em
 }
 h5 {
@@ -206,8 +229,9 @@ dfn {
 *,
 blockquote :link img,
 blockquote :visited img,
+blockquote tbody th,
 hr {
-  border-color: #ddd
+  border-color: #bddac8
 }
 .AMeta,
 .Label a,
@@ -241,6 +265,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -271,9 +296,8 @@ a:focus:hover {
 }
 a,
 tbody th {
-  border-color: #f8fbf8
+  border-color: #f8fbfa
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -285,18 +309,18 @@ tbody th {
 .tl thead td,
 .tl thead th,
 :visited {
-  color: #111
+  color: #021605
 }
 .ribbon :link:hover,
 :link:hover,
 form :focus {
-  color: #3079ed;
-  border-color: #3079ed
+  color: #29a119;
+  border-color: #29a119
 }
 .ribbon :link img,
 .ribbon :visited img,
 .ribbon a {
-  border-color: #1a1a1a
+  border-color: #010e06
 }
 :visited:hover {
   color: #419;
@@ -308,7 +332,7 @@ form :focus {
 .ribbon a,
 :link .RichLink-meta,
 :visited .RichLink-meta {
-  color: #bbb
+  color: #92a094
 }
 a:active,
 a:active *,
@@ -322,7 +346,7 @@ a:focus * {
 .ribbon,
 .ribbon .AHead h1,
 .ribbon :visited {
-  color: #fff
+  color: #ecfae8
 }
 .ribbon :visited:hover {
   color: #b3f;
@@ -330,7 +354,7 @@ a:focus * {
 }
 a:active,
 a:focus {
-  background-color: #3079ed!important
+  background-color: #29a119!important
 }
 h2 {
   margin: 0;
@@ -345,7 +369,7 @@ textarea {
   padding: .45em .4em
 }
 .wn {
-  color: red!important
+  color: #ca088a!important
 }
 textarea {
   overflow: auto;
@@ -355,29 +379,23 @@ hr {
   height: 0;
   margin: 2em 1em
 }
-#lE,
-#lF,
-.tl tfoot th,
-table {
-  border-width: 1px 0 0
-}
 tr hr {
   margin: 1em 9%
 }
 :link img,
 :visited img {
-  border-color: #f8fbf8;
+  border-color: #f8fbfa;
   border-width: 2px
 }
 :link:active img,
 :link:focus img,
 :visited:active img,
 :visited:focus img {
-  border-color: #3079ed!important
+  border-color: #29a119!important
 }
 .ABody h2,
 .Cover h2 {
-  border-color: #3079ed
+  border-color: #29a119
 }
 :link:hover img,
 :visited:hover img {
@@ -420,6 +438,7 @@ li blockquote p {
   margin: .5em 0
 }
 table {
+  border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
   border-spacing: 0
@@ -430,15 +449,13 @@ th {
 }
 td {
   padding: .5em 0;
-  border-color: #f8fbf8 #f8fbf8 #ddd
+  border-color: #f8fbfa #f8fbfa #bddac8
 }
 thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  border-color: #bddac8 #79877c
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -451,7 +468,7 @@ tfoot td {
 }
 tfoot td,
 tfoot th {
-  border-color: #777 #f8fbf8
+  border-color: #717e73 #f8fbfa
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
@@ -464,28 +481,25 @@ blockquote tbody th :link,
 blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
-  color: #f8fbf8
+  color: #f8fbfa
 }
+.Magazine-main,
 blockquote h3,
-blockquote table {
-  border-color: #111
+blockquote table,
+kbd {
+  border-color: #021605
 }
 blockquote thead td,
 blockquote thead th {
-  background: #111;
-  border-color: #ddd #252525
-}
-blockquote tbody th {
-  background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  background: #021605;
+  border-color: #bddac8 #152a19
 }
 blockquote td {
-  border-color: #ddd #ddd #777
+  border-color: #bddac8 #bddac8 #717e73
 }
 blockquote tfoot td,
 blockquote tfoot th {
-  border-color: #111 #ddd
+  border-color: #021605 #bddac8
 }
 .Cover-btn,
 .commonForm-send,
@@ -499,7 +513,7 @@ blockquote tfoot th {
   text-transform: uppercase
 }
 .ribbon * {
-  border-color: #2a2a2a
+  border-color: #052209
 }
 .lW,
 .lX {
@@ -594,8 +608,8 @@ caption {
 .Subscribe a:focus,
 .btn:active,
 .btn:focus {
-  border-color: #3079ed;
-  color: #3079ed;
+  border-color: #29a119;
+  color: #29a119;
   border-style: dotted;
   outline: 0
 }
@@ -603,12 +617,12 @@ caption {
 .btn:link {
   background: #bbe;
   border-color: #bbe;
-  color: #1a1a1a
+  color: #010e06
 }
 .btn:visited {
-  background: #1a1a1a;
-  border-color: #fff;
-  color: #fff
+  background: #010e06;
+  border-color: #ecfae8;
+  color: #ecfae8
 }
 .commonForm-pair {
   display: inline-table;
@@ -648,14 +662,14 @@ caption {
   line-height: 1.6
 }
 .medal {
-  border-color: #f8fbf8;
-  color: #111
+  border-color: #f8fbfa;
+  color: #021605
 }
 :link .medal,
 :visited .medal {
-  border-color: #111;
-  background: #111;
-  color: #f8fbf8
+  border-color: #021605;
+  background: #021605;
+  color: #f8fbfa
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -688,11 +702,11 @@ caption {
 }
 .Cover-btn :link i,
 .Magazine-jump :link i {
-  border-color: #24c #f8fbf8
+  border-color: #24c #f8fbfa
 }
 .Cover-btn :visited i,
 .Magazine-jump :visited i {
-  border-color: #f8fbf8 #111
+  border-color: #f8fbfa #021605
 }
 .Cover-btn :link:active i,
 .Cover-btn :link:focus i,
@@ -702,7 +716,7 @@ caption {
 .Magazine-jump :link:focus i,
 .Magazine-jump :visited:active i,
 .Magazine-jump :visited:focus i {
-  border-color: #3079ed #f8fbf8
+  border-color: #29a119 #f8fbfa
 }
 .AAuthor {
   display: inline-table;
@@ -729,7 +743,7 @@ caption {
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  color: #3079ed;
+  color: #29a119;
   margin: 2em 0 1em
 }
 .ABody h3 {
@@ -741,18 +755,18 @@ caption {
   margin: 0 .5em 1em
 }
 .AHead {
-  color: #777
+  color: #717e73
 }
 .AHead h1 {
   font-size: 2em;
-  color: #111;
+  color: #021605;
   padding: 2em 0;
   margin: 0;
   text-align: left
 }
 .AHead-labels {
   margin-top: .5em;
-  color: #1a1a1a
+  color: #010e06
 }
 .AHead-labels i,
 .Magazine-m,
@@ -772,19 +786,22 @@ kbd {
   display: inline-block
 }
 .AHead-labels a:visited {
-  background: #1a1a1a;
-  border-color: #bbb;
-  color: #bbb
+  background: #010e06;
+  border-color: #92a094;
+  color: #92a094
 }
 .AHead-labels a:link:hover {
   border-color: #bbe;
-  color: #1a1a1a
+  color: #010e06
 }
 .Attribution {
   padding: 1em 0;
   text-align: center
 }
 .Attribution small,
+.caption,
+.js-bqCite,
+.js-bqLink,
 .prettyprint code {
   font-size: .875em
 }
@@ -805,7 +822,7 @@ kbd {
 }
 .BreadcrumbList {
   padding: 1em 0;
-  color: #777;
+  color: #717e73;
   line-height: 1.2
 }
 .Comment h3,
@@ -818,7 +835,7 @@ kbd {
   margin-left: 3%
 }
 .Comment div {
-  color: #777;
+  color: #717e73;
   font-size: 93%
 }
 .Comment p {
@@ -850,8 +867,8 @@ kbd {
   width: 100%
 }
 .Cover h2 {
-  background: #3079ed;
-  color: #f8fbf8;
+  background: #29a119;
+  color: #f8fbfa;
   font-size: .825em;
   padding: .6em;
   border-width: 1px
@@ -869,12 +886,12 @@ kbd {
 }
 .Cover-meta {
   display: block;
-  color: #777
+  color: #717e73
 }
 .Subscribe div,
 .ribbon .Label div,
 .ribbon .TxtNavi {
-  color: #1a1a1a
+  color: #010e06
 }
 .Label a {
   margin: 0 0 1.7em;
@@ -886,22 +903,21 @@ kbd {
 }
 .LinkList a,
 .RichLink-sep a {
-  page-break-inside: avoid;
   display: block;
   cursor: pointer;
   text-decoration: none!important;
-  background: #111;
-  color: #f8fbf8
+  background: #021605;
+  color: #f8fbfa
 }
 .LinkList :link,
 .RichLink-sep :link {
-  background: #f8fbf8;
+  background: #f8fbfa;
   color: #24c
 }
 .LinkList :visited,
 .RichLink-sep :visited {
-  background: #f8fbf8;
-  color: #111
+  background: #f8fbfa;
+  color: #021605
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -913,36 +929,30 @@ blockquote tbody th code,
 blockquote tbody th var,
 thead code,
 thead var {
-  background: #ddd;
-  color: #111
-}
-.tl td,
-.tl th,
-pre code,
-pre var {
-  background: 0 0!important
+  background: #bddac8;
+  color: #021605
 }
 .ribbon .LinkList a,
 .ribbon .RichLink-sep a {
-  background: #fff;
-  color: #1a1a1a
+  background: #ecfae8;
+  color: #010e06
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
-  background: #1a1a1a;
+  background: #010e06;
   color: #bbe
 }
 .ribbon .LinkList :visited,
 .ribbon .RichLink-sep :visited {
-  background: #1a1a1a;
-  color: #fff
+  background: #010e06;
+  color: #ecfae8
 }
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
 .ribbon .RichLink-sep :link:hover,
 .ribbon .RichLink-sep :visited:hover {
-  background: #2a2a2a;
-  color: #fff
+  background: #052209;
+  color: #ecfae8
 }
 .LinkList a {
   line-height: 1.1;
@@ -970,10 +980,12 @@ pre var {
   display: inline-table;
   margin-left: 5.5em;
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em;
-  border-color: #111
+  padding-left: 1.5em
 }
 .aa,
+.chat,
+.chatMember,
+.mona,
 blockquote,
 kbd {
   border-width: 1px
@@ -1014,18 +1026,18 @@ kbd {
 .RichLink a {
   display: inline-table;
   padding: 1em .5em 0;
-  border-color: #2a2a2a!important
+  border-color: #052209!important
 }
 .baseColor .RichLink a {
-  border-color: #ddd!important
+  border-color: #bddac8!important
 }
 .RichLink-meta {
-  color: #2a2a2a;
+  color: #052209;
   font-size: .875em;
   margin: 1.143em 0
 }
 .baseColor .RichLink-meta {
-  color: #ddd
+  color: #bddac8
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -1108,40 +1120,40 @@ kbd {
 .Subscribe .atom:link {
   background: #dd6502;
   border-color: #dd6502;
-  color: #1a1a1a
+  color: #010e06
 }
 .Subscribe .atom:visited {
-  background: #1a1a1a;
+  background: #010e06;
   border-color: #dd6502;
   color: #dd6502
 }
 .Subscribe .rss:link {
   background: #dd8902;
   border-color: #dd8902;
-  color: #1a1a1a
+  color: #010e06
 }
 .Subscribe .rss:visited {
-  background: #1a1a1a;
+  background: #010e06;
   border-color: #dd8902;
   color: #dd8902
 }
 .Subscribe .fl:link {
   background: #53bb45;
   border-color: #53bb45;
-  color: #1a1a1a
+  color: #010e06
 }
 .Subscribe .fl:visited {
-  background: #1a1a1a;
+  background: #010e06;
   border-color: #53bb45;
   color: #53bb45
 }
 .Subscribe .stm:link {
   background: #8bc53f;
   border-color: #8bc53f;
-  color: #1a1a1a
+  color: #010e06
 }
 .Subscribe .stm:visited {
-  background: #1a1a1a;
+  background: #010e06;
   border-color: #8bc53f;
   color: #8bc53f
 }
@@ -1149,17 +1161,21 @@ kbd {
   padding: 1em 0;
   line-height: 1.2;
   text-align: right;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .aa,
 .note .aa,
+.note .mona,
 .note .prettyprint,
 blockquote,
 dl .aa,
+dl .mona,
 dl .prettyprint,
 li .aa,
+li .mona,
 li .prettyprint,
 tr .aa,
+tr .mona,
 tr .prettyprint {
   padding: 1em
 }
@@ -1168,16 +1184,6 @@ tr .prettyprint {
   background: #0a0809;
   border-color: #0a0809;
   line-height: 1
-}
-.tl,
-.tl th {
-  border-width: 0
-}
-.js-bqCite,
-.js-bqLink {
-  line-height: 1.2;
-  margin: 0;
-  font-size: .875em
 }
 .aa,
 .aa code,
@@ -1195,10 +1201,15 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
+.js-bqLink {
+  color: #24c;
+  margin: 0
+}
 .js-bqCite {
   display: block;
   text-align: right;
-  color: #777
+  color: #717e73;
+  margin: 0
 }
 .box {
   display: inline-table;
@@ -1221,6 +1232,90 @@ blockquote .tl tbody th :visited {
   float: left;
   margin: 0 1em 1em 0
 }
+.chat {
+  color: #fff;
+  background: #7493c2;
+  border-color: #f8fbfa;
+  padding-bottom: 1em;
+  margin: 1em 0;
+  text-align: center
+}
+.chatTitle {
+  background: #273248;
+  border-color: #273248;
+  border-width: 0 0 1px;
+  padding: 1em 2%
+}
+.chat h2,
+.chat h3,
+.chat h4,
+.chat h5,
+.chat h6,
+.chat p {
+  page-break-inside: avoid;
+  page-break-after: avoid;
+  font-size: 1em;
+  color: #fff;
+  background: #5d769e;
+  border-color: #5d769e;
+  border-width: 1px;
+  margin: 1em 2%;
+  padding: .4em 2%;
+  display: inline-block;
+  line-height: 1.2
+}
+.chatL,
+.chatR {
+  position: relative;
+  margin: 1em 0;
+  text-align: left
+}
+.chatL {
+  padding: 0 20% 0 4em
+}
+.chatR {
+  padding: 0 4em 0 20%
+}
+.chatL p,
+.chatR p {
+  margin: .4em 0;
+  display: block;
+  text-align: left;
+  color: #111
+}
+.chatL .chatMember,
+.chatL p {
+  background: #fff;
+  border-color: #fff
+}
+.chatR .chatMember,
+.chatR p {
+  background: #85e445;
+  border-color: #85e445
+}
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: 0 0!important
+}
+.chatMember {
+  position: absolute;
+  top: -.414em;
+  overflow: hidden;
+  text-align: center!important;
+  width: 2em;
+  height: 1em;
+  line-height: 1;
+  padding: .914em .414em;
+  color: #111
+}
+.chatL .chatMember {
+  left: .4em
+}
+.chatR .chatMember {
+  right: .4em
+}
 .hscroll {
   overflow-x: auto;
   overflow-y: hidden;
@@ -1232,7 +1327,6 @@ blockquote .tl tbody th :visited {
   overflow: auto
 }
 kbd {
-  border-color: #111;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1245,30 +1339,23 @@ a:active code,
 a:active var,
 a:focus code,
 a:focus var {
-  background: #3079ed
+  background: #29a119
 }
 pre code,
 pre var {
   padding: 0;
   margin: 0
 }
-blockquote .tl tr code,
-blockquote .tl tr var,
-blockquote code,
-blockquote var,
-tbody th code,
-tbody th var {
-  background: #777;
-  color: #f8fbf8
+.mona {
+  line-height: 1.125;
+  background: #bcd;
+  border-color: #bcd;
+  color: #00193d;
+  padding: 1em
 }
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
-}
-.Pager span,
-.caption {
-  display: block;
-  line-height: 1.2
+.tl,
+.tl th {
+  border-width: 0
 }
 .note {
   padding-left: 25%;
@@ -1296,8 +1383,8 @@ dl.note dd {
   margin-left: 1em
 }
 .caption {
-  text-align: center;
-  font-size: .875em
+  display: block;
+  text-align: center
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1308,11 +1395,16 @@ dl.note dd {
 .tl thead td {
   border-width: 0 0 1px .3em
 }
+#lE,
+#lF,
+.tl tfoot th {
+  border-width: 1px 0 0
+}
 .tl tfoot td,
 .tl tfoot th,
 .tl thead td,
 .tl thead th {
-  border-color: #ddd;
+  border-color: #bddac8;
   padding-top: .5em;
   padding-bottom: .5em
 }
@@ -1323,7 +1415,7 @@ dl.note dd {
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #ddd;
+  border-color: #bddac8;
   border-style: solid
 }
 .tl tfoot td {
@@ -1331,8 +1423,7 @@ dl.note dd {
   border-style: solid dotted
 }
 .AMeta {
-  padding: .5em 0;
-  line-height: 1.2
+  padding: .5em 0
 }
 .AMeta div {
   margin: .5em 0;
@@ -1341,7 +1432,7 @@ dl.note dd {
 }
 .Pager {
   position: relative;
-  color: #f8fbf8;
+  color: #f8fbfa;
   height: 4em
 }
 .Pager-next {
@@ -1358,11 +1449,12 @@ dl.note dd {
 .Pager span {
   position: absolute;
   top: 1em;
+  display: block;
   width: 32%
 }
 .Pager i {
   display: inline-block;
-  border-color: #f8fbf8 #777
+  border-color: #f8fbfa #717e73
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1374,28 +1466,28 @@ dl.note dd {
 }
 .Pager :focus i,
 .Pager a:active i {
-  border-color: #3079ed #fff
+  border-color: #29a119 #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
-  border-color: #777 #f8fbf8
+  border-color: #717e73 #f8fbfa
 }
 .Pager-top :focus i,
 .Pager-top a:active i {
-  border-color: #fff #3079ed
+  border-color: #fff #29a119
 }
 .SocialBtns {
   padding: 1em 0 .5em;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
   border-color: #1b95e0;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .SocialBtns .tw:visited {
-  background: #f8fbf8;
+  background: #f8fbfa;
   border-color: #1b95e0;
   color: #1b95e0
 }
@@ -1412,10 +1504,10 @@ dl.note dd {
 .SocialBtns .hb:link {
   background: #008fde;
   border-color: #008fde;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .SocialBtns .hb:visited {
-  background: #f8fbf8;
+  background: #f8fbfa;
   border-color: #008fde;
   color: #008fde
 }
@@ -1432,20 +1524,20 @@ dl.note dd {
 .SocialBtns .pk:link {
   background: #ee4056;
   border-color: #ee4056;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .SocialBtns .pk:visited {
-  background: #f8fbf8;
+  background: #f8fbfa;
   border-color: #ee4056;
   color: #ee4056
 }
 .SocialBtns .ln:link {
   background: #00c300;
   border-color: #00c300;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .SocialBtns .ln:visited {
-  background: #f8fbf8;
+  background: #f8fbfa;
   border-color: #00c300;
   color: #00c300
 }
@@ -1457,8 +1549,7 @@ dl.note dd {
   color: #fff;
   border-width: 1px;
   border-color: #333;
-  padding: 1em;
-  line-height: 1.2
+  padding: 1em
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1474,17 +1565,30 @@ em {
 strong {
   background: #6cf
 }
+#lE,
+#lF {
+  border-top: .3em solid #29a119
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
-  color: #f8fbf8
+  color: #f8fbfa
 }
 .baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+  background: #f8fbfa;
+  border-color: #021605;
+  color: #021605
+}
+@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
+  .chatL p:after,
+  .chatR p:after {
+    border-bottom-color: inherit!important;
+    border-left-color: transparent;
+    border-right-color: transparent
+  }
 }
 @media print {
+  .chat,
   blockquote code,
   blockquote var,
   table,
@@ -1571,6 +1675,8 @@ strong {
   .Cover h3,
   .aa,
   .baseColor,
+  .chat,
+  .mona,
   .ribbon,
   body {
     background: #fff;
@@ -1763,7 +1869,9 @@ strong {
     margin: 0 0 .5em
   }
   .aa,
+  .mona,
   .note .aa,
+  .note .mona,
   .note .prettyprint,
   .prettyprint {
     padding: 1em 3%
@@ -1788,6 +1896,23 @@ strong {
   .box img {
     margin: 0 1em 1em 3%
   }
+  .chatTitle,
+  .prettyprint {
+    background: #fff
+  }
+  .chat .chatMember,
+  .chat h2,
+  .chat h3,
+  .chat h4,
+  .chat h5,
+  .chat h6,
+  .chat p,
+  .chatL p,
+  .chatR p {
+    color: #000;
+    background: #fff;
+    border-color: #666
+  }
   .hscroll {
     overflow-x: visible;
     overflow-y: visible
@@ -1803,6 +1928,7 @@ strong {
     border-width: 1px;
     border-color: #ccc
   }
+  #lF,
   pre code {
     border: 0
   }
@@ -1815,8 +1941,5 @@ strong {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .prettyprint {
-    background: #fff
   }
 }

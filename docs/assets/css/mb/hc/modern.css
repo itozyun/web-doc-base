@@ -39,7 +39,9 @@ tbody td {
   border-width: 0 0 1px
 }
 .Cover-btn i,
-.Pager i {
+.Pager i,
+.chatL p:after,
+.chatR p:after {
   display: none
 }
 .jsCanRotate .Cover-btn i {
@@ -60,6 +62,21 @@ tbody td {
 .RichLink a {
   border-width: 0
 }
+.jsCanRotate .chatL p:after,
+.jsCanRotate .chatR p:after {
+  width: .4em;
+  height: .4em;
+  display: block;
+  transform: rotate(-45deg)
+}
+.jsCanRotate .chatL p:after {
+  border-width: 1px 0 0 1px;
+  left: -.3em
+}
+.jsCanRotate .chatR p:after {
+  border-width: 0 1px 1px 0;
+  right: -.3em
+}
 .tl {
   border-collapse: collapse
 }
@@ -78,4 +95,21 @@ tbody td {
 .jsPica:active,
 .jsPica:focus {
   outline: 0
+}
+@media (max-width:319px) {
+  .jsCanRotate .chatL p:after,
+  .jsCanRotate .chatR p:after {
+    width: .3em;
+    height: .3em
+  }
+  .jsCanRotate .chatL p:after {
+    border-width: 1px 1px 0 0;
+    top: -.35em;
+    left: 1.15em
+  }
+  .jsCanRotate .chatR p:after {
+    border-width: 1px 1px 0 0;
+    top: -.35em;
+    right: 1.15em
+  }
 }
