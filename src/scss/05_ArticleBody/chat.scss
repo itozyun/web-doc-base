@@ -224,11 +224,13 @@
         }
     }
 
-    @media only screen and (-ms-high-contrast:active) and (max-width: 319px) {
-        .chatL p:after, .chatR p:after {
-            border-bottom-color : inherit !important;
-            border-left-color   : transparent;
-            border-right-color  : transparent;
+    @if $UA_Modern {
+        @media only screen and (-ms-high-contrast:active) and (max-width: 319px) {
+            .chatL p:after, .chatR p:after {
+                border-bottom-color : inherit !important;
+                border-left-color   : transparent;
+                border-right-color  : transparent;
+            }
         }
     }
 

@@ -106,8 +106,7 @@ table {
         tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
             border-bottom-width : 0;
         }        
-    }
-    @if( $CANUSE_LAST_CHILD_SELECTOR == false and $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
+    }@else if( $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
         tfoot tr:first-child th,
         tfoot tr:first-child td {
             @include highContrast {
@@ -209,8 +208,8 @@ td {
 tfoot td {
     @include highContrastForIE10ToEdge {
         // border-bottom-color : transparent;
-        border-left-color   : transparent;
-        border-right-color  : transparent;
+        border-left-color  : transparent;
+        border-right-color : transparent;
     }
 }
 

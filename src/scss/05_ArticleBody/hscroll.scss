@@ -10,9 +10,10 @@
         //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
         -webkit-overflow-scrolling : touch;
     }
-
-    overflow-x    : auto;
-    overflow-y    : hidden;
+    @if( $IS_OLD_OPERA == false ){
+        overflow-x    : auto;
+        overflow-y    : hidden;
+    }
     @if( $UA_IE5 or $UA_IE55 ){
         width         : 100%;
     }
@@ -79,8 +80,10 @@
         @if( $IS_NOT_IE ){
             overflow   : visible;
         }
-        overflow-x : visible;
-        overflow-y : visible;
+        @if( $IS_OLD_OPERA == false ){
+            overflow-x : visible;
+            overflow-y : visible;
+        }
     }
         .hscroll table {
             width       : 100%;

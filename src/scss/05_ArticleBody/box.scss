@@ -72,8 +72,10 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    .box > p:first-of-type {
-        margin-top : math.div(-$PHONE-LINE-HEIGHT-EM + 1em, 4);
+    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+        .box > p:first-of-type {
+            margin-top : math.div(-$PHONE-LINE-HEIGHT-EM + 1em, 4);
+        }
     }
     .box {
         img, .caption, iframe
@@ -100,15 +102,19 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .box > p:first-of-type {
-        margin-top : math.div(-$WATCH-LINE-HEIGHT-EM + 1em, 4);
+    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+        .box > p:first-of-type {
+            margin-top : math.div(-$WATCH-LINE-HEIGHT-EM + 1em, 4);
+        }
     }
 }
 
 /*  patch for Safari 3.2.3
 --------------------------------------------------------------------------------------*/
 @include media(chromeLte5OrSafariLte4){
-    .box > p:first-of-type {
-        margin-top : auto;
+    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+        .box > p:first-of-type {
+            margin-top : auto;
+        }
     }
 }

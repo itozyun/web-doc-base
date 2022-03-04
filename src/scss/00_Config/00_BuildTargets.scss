@@ -157,7 +157,7 @@
     $Option_baseFontSize18     : true;
     /* //_}+baseFontSize18 */
     $Option_baseFontSize18     : false !default;
-// PC サイズ以上のスクリーンのレイアウトを無効にします
+// PC サイズ以上のビューポートのレイアウトを無効にします
     /* //_{+mobileOnly */
     $Option_mobileOnly         : true;
     /* //_}+mobileOnly */
@@ -257,6 +257,6 @@
     $CANUSE_DISPLAY_INLINE_BLOCK     : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
     $CANUSE_CAN_BOX_SIZING           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_1ST_CHILD_SELECTOR       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
-    $CANUSE_LAST_CHILD_SELECTOR      : $UA_Modern or $IS_LEGACY or $UA_IE9;
-    $CANUSE_1ST_OF_TYPE_SELECTOR     : $UA_Modern or $IS_OLD_OPERA or $IS_IE8_OR_9;
+    $CANUSE_LAST_CHILD_SELECTOR      : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
+    $CANUSE_1ST_OF_TYPE_SELECTOR     : $UA_Modern or $IS_IE8_OR_9;
     $CANUSE_BORDER_TRANSPARENT       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
