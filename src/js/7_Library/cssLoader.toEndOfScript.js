@@ -12,11 +12,14 @@ if(
 ){
     if( p_Presto < 9 || // document.write でないと、コンテンツ量によって CSS が一部しか適用されない不具合に遭遇する
         p_Gecko  < 1 || // Gecko 0.9.4 以下で確認 0.9.6 では発生しない document.write でないと css が適用されない
-        !p_Tasman && !window.addEventListener // Tasman 以外で addEventListener をサポートしないブラウザ(未確認)
+        !p_Tasman && !window.addEventListener // Tasman 以外で addEventListener をサポートしないブラウザ, Opera 7.x (未確認)
     ){
         document.write(
             '<link href="' + p_assetUrl + p_cssDir + p_screenModeDir + p_cssName + '" rel="stylesheet"' +
-                ( p_Presto < 8 ? '' : ' media="screen,handheld,print"' ) + // Opera 7.54u2, media があると view > fullscreen でスタイルが適用されない
+                (
+                    p_Presto < 8 ? '' : // Opera 7.54u2, media があると view > fullscreen でスタイルが適用されない
+                                   ' media="screen,handheld,projection,print"' // Opera 8, projection が無いと view > fullscreen でスタイルが適用されない
+                ) + 
             '>'
         );
     } else if(
