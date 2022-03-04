@@ -57,9 +57,9 @@ var
  * 7_Library/detectImageTurnedOff.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED   = 'img-loaded',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'img-loaded',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_DISABLED = 'img-disabled',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
 
 /** ===========================================================================
  * 7_Library/PicaThumbnail.js
