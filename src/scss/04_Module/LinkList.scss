@@ -19,6 +19,14 @@
         /* href がない場合 current を示す塗りになる */
         background       : $COLOR_Default_text;
         color            : $COLOR_Default_fill;
+
+        @if( $UA_Modern ){ // https://twitter.com/itozyun/status/1499739713884016642
+            overflow : hidden;   // Opera 9.6-
+            height   : auto;     // Opera 9.6-
+            &:focus ::selection { // Opera 9.5+
+                background-color : transparent;
+            }
+        }
     }
     :link {
         background : $COLOR_Default_fill;
