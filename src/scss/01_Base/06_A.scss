@@ -78,11 +78,21 @@ a:active
 , a:focus
 /* //_}#can-focus-pseudo-class */
 {
-    background-color : $COLOR_ACCENT !important;
-    color            : #fff        !important;
+    @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+        background-color : Highlight !important;
+        & * {
+            color : HighlightText !important;
+        }
+        .ribbon & {
+            outline  : HighlightText solid 2px;
+        }
+    } @else {
+        background-color : $COLOR_ACCENT !important;
+        color            : #fff        !important;
 
-    & * {
-        color : #fff !important;
+        & * {
+            color : #fff !important;
+        }
     }
 }
 

@@ -231,9 +231,11 @@ tfoot td {
         , :focus
         /* //_}#can-focus-pseudo-class */
         {
-            background   : #fff !important;
-            color        : $COLOR_ACCENT !important;
-        }        
+            @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR == false ){
+                background : #fff !important;
+                color      : $COLOR_ACCENT !important;
+            }
+        }
     }
 }
 

@@ -29,7 +29,11 @@
         , a:focus &
         /* //_}#can-focus-pseudo-class */
         {
-            background : $COLOR_ACCENT;
+            @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+                background : Highlight;
+            } @else {
+                background : $COLOR_ACCENT;
+            }
         }
 
         pre & {

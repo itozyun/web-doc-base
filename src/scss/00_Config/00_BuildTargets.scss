@@ -240,6 +240,7 @@
     $IS_WIN_IE      : $IS_LTE_WIN_IE8 or $UA_IE9;
     $IS_IE8_OR_9    : $UA_IE8 or $UA_IE9;
 
+    $FOCUSED_COLOR_IS_SYSTEM_COLOR : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
     $DARK_THEME_ALLWAYS : false;
 
     $CANUSE_CSS_MEDIA_QUERY          : $UA_Modern or $UA_IE9 or $UA_Opera9;
