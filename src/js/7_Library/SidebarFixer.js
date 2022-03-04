@@ -41,7 +41,8 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_sidebarY = 0,
     SidebarFixer_lastScrollY = 0,
     SidebarFixer_use3D,
-    SidebarFixer_skipScroll,
+    SidebarFixer_aboutFocuedElement,
+    SidebarFixer_ignoreScrollAfterFocus,
     SidebarFixer_dummyScrollTimerID,
     SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' );
 
@@ -163,8 +164,14 @@ function SidebarFixer_getFinite( arg ){
  */
 function SidebarFixer_onscroll( param ){
     if( !p_cssAvailability ){
-        SidebarFixer_skipScroll = undefined;
+        SidebarFixer_aboutFocuedElement = undefined;
         return;
+    };
+    if( SidebarFixer_ignoreScrollAfterFocus && !SidebarFixer_aboutFocuedElement ){
+        if( ( new Date - 0 ) < SidebarFixer_ignoreScrollAfterFocus ){
+            return;
+        };
+        SidebarFixer_ignoreScrollAfterFocus = undefined;
     };
 
     if( param === SidebarFixer_ONSCROL_FROM_TIMER ){
@@ -183,11 +190,13 @@ function SidebarFixer_onscroll( param ){
         SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
     };
 
-    if( SidebarFixer_skipScroll ){
-        SidebarFixer_fix( SidebarFixer_lastScrollY, 0, SidebarFixer_skipScroll[ 0 ], SidebarFixer_skipScroll[ 1 ] );
-        SidebarFixer_skipScroll = undefined;
+    if( SidebarFixer_aboutFocuedElement ){
+        SidebarFixer_fix( undefined, SidebarFixer_aboutFocuedElement[ 0 ], SidebarFixer_aboutFocuedElement[ 1 ] );
+        // focus 直後に発生する scroll をスキップする
+        SidebarFixer_ignoreScrollAfterFocus = ( new Date - 0 ) + 99;
+        SidebarFixer_aboutFocuedElement = undefined;
     } else {
-        SidebarFixer_fix( SidebarFixer_lastScrollY );
+        SidebarFixer_fix();
     };
 
     if( DEFINE_WEB_DOC_BASE__DEBUG ){
@@ -199,140 +208,201 @@ function SidebarFixer_onWindowBlur(){
     if( DEFINE_WEB_DOC_BASE__DEBUG ){
         SidebarFixer_showEvent( 'w.blur' );
     };
-    SidebarFixer_fix( SidebarFixer_lastScrollY );
+    SidebarFixer_fix();
 };
 
 /**
- * @param {number} scrollY
- * @param {number|boolean=} wheelDeltaY
- * @param {number|boolean=} focusedElementY
- * @param {number|boolean=} focusedElementHeight
+ * @param {number|undefined=} wheelDeltaY
+ * @param {number=} focusedElementY
+ * @param {number=} focusedElementHeight
  */
-function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElementHeight ){
-    var elmMain       = SidebarFixer_elmMain,
+function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
+    var scrollY       = SidebarFixer_lastScrollY,
+        elmMain       = SidebarFixer_elmMain,
         isMultiColumn = SidebarFixer_elmSide.offsetTop === elmMain.offsetTop,
         sidebarY      = 0,
         css           = '',
-        mainInViewPort, nocancelWheel;
+        preventWheel  = true;
 
-    function createPositioning( y ){
+    function createPositioning( _sliderY ){
         var sidebarWidth;
 
-        sidebarY = y;
+        sidebarY = _sliderY;
         if( SidebarFixer_transformProp ){
             css = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_use3D ? '3D(0,' : '(0,' ) +  /* 3D は Android 3.1 ではマスト */
-                  y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
+                  _sliderY + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
                   ';-webkit-overflow-scrolling:touch;';
         } else {
             if( SidebarFixer_useClip ){
                 sidebarWidth = SidebarFixer_elmSide.offsetWidth;
             };
             if( SidebarFixer_positionFixed ){
-                if( y !== 0 ){
-                    css = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( y - scrollY + mainColY ) + 'px';
+                if( _sliderY !== 0 ){
+                    css = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( _sliderY - scrollY + containerY ) + 'px';
                 };
             } else {
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
-                css = 'position:absolute;left:0;width:100%;top:' + y + 'px';
+                css = 'position:absolute;left:0;width:100%;top:' + _sliderY + 'px';
             };
 
             if( sidebarWidth && css ){
                 css += ';' +
                     (
-                    y < 0 ? 
-                        'clip:rect(' + ( -y ) + 'px ' + sidebarWidth + 'px ' + ( scrollY + visibleHeight - y - mainColY ) + 'px 0)' :
-                    y + sidebarHeight < mainColY + visibleHeight ?
+                    _sliderY < 0 ? 
+                        'clip:rect(' + ( -_sliderY ) + 'px ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
+                    _sliderY + sidebarHeight < containerHeight ?
                         'clip:rect(0 ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
-                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( scrollY + visibleHeight - y - mainColY ) + 'px 0)'
+                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( containerHeight - _sliderY ) + 'px 0)'
                     );
+                if( !( p_Trident < 8 ) ){
+                    css = css.split( ' ' ).join( ',' );
+                };
             };
         };
     };
 
     if( isMultiColumn ){
-        var viewportHeight = SidebarFixer_getFinite( window.innerHeight, SidebarFixer_elmRoot.offsetHeight ),
-            mainColHeight  = elmMain.offsetHeight,
-            sidebarHeight  = SidebarFixer_elmWrap.offsetHeight,
-            mainColY       = 0,
-            sidebarIsLower = sidebarHeight < mainColHeight,
-            elm            = elmMain,
-            scrollLimit,
-            focusedElementT, focusedElementB;
+        var containerY = 0,
+            elm        = elmMain;
 
         while( elm && elm !== p_body ){
-            mainColY += elm.offsetTop;
+            containerY += elm.offsetTop;
             elm = elm.offsetParent;
         };
-        var outOnViewPort   = mainColY + mainColHeight <= scrollY, // メインカラムはビューポートより上
-            outsideViewPort = scrollY + viewportHeight <= mainColY,  // メインカラムはビューポートより下
-            topInViewPort   = ( scrollY < mainColY ) && ( mainColY < scrollY + viewportHeight ), // メインカラムの始点はビューポート内
-            btmInViewPort   = ( scrollY < mainColY + mainColHeight ) && ( mainColY + mainColHeight < scrollY + viewportHeight ), // メインカラムの終点はビューポート内
-            visibleHeight   = ( mainColY + mainColHeight - scrollY ) < viewportHeight ? ( mainColY + mainColHeight - scrollY ) : viewportHeight, // メインカラムのビューポート内分の高さ、最大はビューポートの高さと同じ
-            sideInViewPort  = sidebarHeight <= visibleHeight; // サイドバーの高さはメインカラムの可視の高さに収まる
 
-        mainInViewPort = topInViewPort && btmInViewPort; // メインカラムはビューポート内に収まる
+        var viewportHeight         = SidebarFixer_getFinite( window.innerHeight, SidebarFixer_elmRoot.offsetHeight ),
+            mainColHeight          = elmMain.offsetHeight,
+            sidebarHeight          = SidebarFixer_elmWrap.offsetHeight,
+            containerHeight        = sidebarHeight < mainColHeight ? mainColHeight : sidebarHeight,
+            viewportTop            = scrollY,
+            viewportBottom         = viewportTop + viewportHeight,
+            containerTop           = containerY,
+            containerBottom        = containerTop + containerHeight,
+            sidebarTop             = containerY + SidebarFixer_sidebarY,
+            sidebarBottom          = sidebarTop + sidebarHeight,
+            visibleContainerTop    = viewportTop     < containerTop   ? containerTop    : viewportTop,
+            visibleContainerBottom = containerBottom < viewportBottom ? containerBottom : viewportBottom,
+            visibleContainerHeight = visibleContainerBottom - visibleContainerTop;
 
         if( 0 <= focusedElementY ){
-            if( !sideInViewPort ){
-                focusedElementT = focusedElementY + mainColY + SidebarFixer_sidebarY;
-                focusedElementB = focusedElementHeight + focusedElementT;
-                if( scrollY + visibleHeight < focusedElementB ){
-                    createPositioning( scrollY + visibleHeight - mainColY - focusedElementY - focusedElementHeight );
-                } else if( focusedElementT < scrollY ){
-                    createPositioning( scrollY - mainColY - focusedElementY );
+            var focusedElementTop    = containerY + focusedElementY,
+                focusedElementBottom = focusedElementTop + focusedElementHeight;
+
+            // 4. Tabキーでのフォーカス移動
+            // 4.1 サイドバーの高さ ≦ コンテナの可視部分の高さ 
+            if( sidebarHeight <= visibleContainerHeight ){
+                // スライドなし
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.1' );
+            } else
+            // 4.2 サイドバー下のフォーカスを得た要素の高さ ≦ コンテナの可視部分の高さ 
+            if( focusedElementHeight <= visibleContainerHeight ){
+                if( visibleContainerTop <= focusedElementTop && focusedElementBottom <= visibleContainerBottom ){
+                    // 4.2.1 完全に可視部分に入っている場合は移動しない
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.1' );
+                } else if( visibleContainerTop <= focusedElementTop && focusedElementTop <= visibleContainerBottom ){
+                    // 4.2.2 要素の天がコンテナの可視部分に入っている場合、可視部分の底と要素の底を合わせる
+                    createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.2' );
+                } else if( visibleContainerTop <= focusedElementBottom && focusedElementBottom <= visibleContainerBottom ){
+                    // 4.2.3 要素の底がコンテナの可視部分に入っている場合、可視部分の天と要素の天を合わせる
+                    createPositioning( visibleContainerTop - containerY - focusedElementY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.3' );
+                } else if( focusedElementBottom < visibleContainerTop ){
+                    // 4.2.4 要素は可視部分より上、可視部分の天と要素の天を合わせる
+                    createPositioning( visibleContainerTop - containerY - focusedElementY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.4' );
                 } else {
-                    if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                        SidebarFixer_updateSidebar( SidebarFixer_sidebarY, sidebarHeight, mainColY, mainColHeight, viewportHeight, focusedElementY );
-                    };
-                    return;
+                    // 4.2.5 要素は可視部分より下、可視部分の底と要素の底を合わせる
+                    createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.5' );
                 };
             } else {
-                if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                    SidebarFixer_updateSidebar( SidebarFixer_sidebarY, sidebarHeight, mainColY, mainColHeight, viewportHeight, focusedElementY );
-                };
-                return;
+            // 4.3 サイドバー下のフォーカスを得た要素の高さ > コンテナの可視部分の高さ
+                // 4.3 コンテナの可視部分の天と要素の天を合わせる 
+                createPositioning( visibleContainerTop - containerY - focusedElementY );
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.3' );
             };
         } else if( !wheelDeltaY ){
-            if( sidebarIsLower ){
-                if( topInViewPort || outsideViewPort ){
+            // 2. ドキュメントのスクロールでの動作
+            // 2.1 サイドバーの高さ ≧ メインコンテンツの高さ
+            if( mainColHeight <= sidebarHeight ){
+                // スライドなし
+            } else
+            // 2.2 コンテナはビューポートの外
+            // 2.2.1 ビューポートのトップより上、サイドバーはコンテナの底へ。
+            if( containerBottom <= viewportTop ){
+                createPositioning( containerHeight - sidebarHeight );
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.2.1' );
+            } else
+            // 2.2.2 ビューポートのボトムより下、サイドバーはコンテナの天へ。
+            if( viewportBottom <= containerTop ){
+                createPositioning( 0 );
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.2.2' );
+            } else
+            // 2.3 サイドバーの高さ ≦ コンテナの可視部分の高さ 
+            if( sidebarHeight <= visibleContainerHeight ){
+                createPositioning( visibleContainerTop - containerY );
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.3' );
+            } else {
+                // 2.4 サイドバーの高さ > コンテナの可視部分の高さ
+                // 2.4.1 サイドバーの天がコンテナの可視部分の天より下なら、サイドバーの天をコンテナの可視部分の天に揃える
+                if( visibleContainerTop < sidebarTop ){
+                    createPositioning( visibleContainerTop - containerY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.4.1' );
+                } else
+                // 2.4.2 サイドバーの底がコンテナの可視部分の底より上なら、サイドバーの底をコンテナの可視部分の底に揃える
+                if( sidebarBottom < visibleContainerBottom ){
+                    createPositioning( visibleContainerBottom - containerY - sidebarHeight );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.4.2' );
+                } else
+                // 2.4.3 スクロール量 < containerY + サイドバーの高さ - コンテナの可視部分の高さ
+                if( scrollY < containerY + sidebarHeight - visibleContainerHeight ){
+                    // サイドバーはコンテナの天
                     createPositioning( 0 );
-                } else if( sideInViewPort ){
-                    createPositioning( scrollY - mainColY );
-                } else if( btmInViewPort || outOnViewPort ){
-                    createPositioning( mainColHeight - sidebarHeight );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.4.3' );
                 } else {
-                    scrollLimit = scrollY + viewportHeight - mainColY - sidebarHeight;
-                    scrollLimit = scrollLimit < 0 ? 0 : scrollLimit;
-                    createPositioning( scrollLimit );
+                    // サイドバーの底はコンテナの可視部分の底 
+                    createPositioning( visibleContainerBottom - containerY - sidebarHeight );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.4.4' );
                 };
             };
         } else {
-            // マウスが sidebar にホバーしている
-            if( sideInViewPort ){
-                nocancelWheel = true;
+            // 3. サイドバー上でのマウスホイールでの動作
+            // 3.1 サイドバーの高さ ≦ コンテナの可視部分の高さ 
+            if( sidebarHeight <= visibleContainerHeight ){
+                preventWheel = false;
+                DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.1' );
             } else {
+            // 3.2 サイドバーの高さ > コンテナの可視部分の高さ 
                 sidebarY = SidebarFixer_sidebarY - wheelDeltaY * 60;
-                if( 0 < wheelDeltaY ){
-                    scrollLimit = scrollY + viewportHeight - mainColY - sidebarHeight;
-                    scrollLimit = mainColHeight - sidebarHeight < scrollLimit ? mainColHeight - sidebarHeight : scrollLimit;
-                    sidebarY    = sidebarY < scrollLimit ? scrollLimit : sidebarY;
+                // 3.2.1 サイドバーの天の最小値は、コンテナの可視部分の底 - コンテナのy - サイドバーの高さ。
+                var minLimitOfSidebarY = visibleContainerBottom - containerY - sidebarHeight;
+                // 3.2.2 サイドバーの天の最大値は、コンテナの可視部分の天 - コンテナのy。 
+                var maxLimitOfSidebarY = visibleContainerTop - containerY;
+                if( sidebarY < minLimitOfSidebarY ){
+                    createPositioning( minLimitOfSidebarY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.1' );
+                } else
+                if( maxLimitOfSidebarY < sidebarY ){
+                    createPositioning( maxLimitOfSidebarY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.2' );
                 } else {
-                    scrollLimit = scrollY - mainColY < 0 ? 0 : scrollY - mainColY;
-                    sidebarY    = scrollLimit < sidebarY ? scrollLimit : sidebarY;
+                    createPositioning( sidebarY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.3' );
                 };
-                createPositioning( sidebarY );
             };
         };
     };
     if( DEFINE_WEB_DOC_BASE__DEBUG ){
-        SidebarFixer_updateSidebar( sidebarY, sidebarHeight, mainColY, mainColHeight, viewportHeight, focusedElementY || '-' );
+        SidebarFixer_updateSidebar( sidebarY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-' );
     };
+
 
     p_DOM_setCssText( SidebarFixer_elmWrap, css );
 
     SidebarFixer_sidebarY = sidebarY;
 
-    return isMultiColumn && !mainInViewPort && !nocancelWheel;
+    return isMultiColumn && preventWheel;
 };
 
 function SidebarFixer_onwheel( e ){
@@ -355,7 +425,7 @@ function SidebarFixer_onwheel( e ){
     };
     var hitChild = this !== e.target,
         deltaY   = hitChild && SidebarFixer_getFinite( e.deltaY, e.wheelDeltaY / 120, e.wheelDelta / -120,  e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 1 ) ),
-        cancel   = hitChild && deltaY && SidebarFixer_fix( SidebarFixer_lastScrollY, deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 );
+        cancel   = hitChild && deltaY && SidebarFixer_fix( deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 );
 
     if( cancel ){
         e.preventDefault();
@@ -395,11 +465,16 @@ function SidebarFixer_onfocus( e ){
             elm  = elm.offsetParent;
         };
 
-        SidebarFixer_skipScroll = [ y, h ];
-        if( SidebarFixer_dummyScrollTimerID ){
-            p_clearTimer( SidebarFixer_dummyScrollTimerID );
+        
+        if( p_Trident < 9 ){ // focusin 後に scroll が起きない
+            SidebarFixer_fix( undefined, y, h );
+        } else {
+            SidebarFixer_aboutFocuedElement = [ y, h ];
+            if( SidebarFixer_dummyScrollTimerID ){
+                p_clearTimer( SidebarFixer_dummyScrollTimerID );
+            };
+            SidebarFixer_dummyScrollTimerID = p_setTimer( SidebarFixer_onscroll, SidebarFixer_ONSCROL_FROM_TIMER ); // scroll が起きない場合がある!
         };
-        SidebarFixer_dummyScrollTimerID = p_setTimer( SidebarFixer_onscroll, SidebarFixer_ONSCROL_FROM_TIMER ); // scroll が起きない場合がある!
 
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_updateElementFocused( y, h );
@@ -439,7 +514,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_positionFixed ){
             );
 
             var elmContainer = p_DOM_insertElement( elmTestRoot, 'div' );
-            
+            // pos:static はあと for ie7
             SidebarFixer_elmDisplayValues = p_DOM_insertElement( elmContainer, 'span' );
             SidebarFixer_elmDisplayScroll = p_DOM_insertElement( elmContainer, 'span' );
 
@@ -456,7 +531,6 @@ if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_positionFixed ){
 
             SidebarFixer_elmFocused = p_DOM_insertElement( SidebarFixer_elmSidebar, 'div' );
             p_DOM_setCssText( SidebarFixer_elmFocused, 'position:absolute;left:0;top:0;width:54px;line-height:0;font-size:0;background:#66c' );
-
             return true;
         }
     );
@@ -481,16 +555,16 @@ function SidebarFixer_updateViewport(){
         SidebarFixer_elmDisplayScroll.innerHTML = ' scrl:' + ( SidebarFixer_lastScrollY | 0 );
     };
 };
-function SidebarFixer_updateSidebar( sidebarY, sidebarHeight, mainColY, mainColHeight, viewportHeight, focusedElementY ){
+function SidebarFixer_updateSidebar( sidebarY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY ){
     if( SidebarFixer_elmSidebar ){
-        p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarY + mainColY ) / 10 | 0 ) + 'px' );
+        p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarY + containerY ) / 10 | 0 ) + 'px' );
         p_DOM_setStyle( SidebarFixer_elmSidebar, 'height', ( sidebarHeight / 10 | 0 ) + 'px' );
 
         p_DOM_setStyle( SidebarFixer_elmViewport, 'height', ( viewportHeight / 10 | 0 ) + 'px' );
 
         p_DOM_setStyle( SidebarFixer_elmDocument, 'height', ( p_body.scrollHeight / 10 | 0 ) + 'px' );
 
-        SidebarFixer_elmDisplayValues.textContent = 'y:' + mainColY + '/' + sidebarY + ', h:' + mainColHeight + '/' + sidebarHeight + ' fy:' + focusedElementY;
+        SidebarFixer_elmDisplayValues.textContent = 'y:' + containerY + '/' + sidebarY + ', h:' + containerHeight + '/' + sidebarHeight + ' fy:' + focusedElementY;
     };
 };
 function SidebarFixer_updateElementFocused( y, h ){

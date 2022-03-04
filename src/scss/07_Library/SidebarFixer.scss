@@ -58,6 +58,9 @@
         .lS {
             overflow : hidden;
         }
+        #jsSide {
+            position : relative; // transform に必要
+        }
     }
     @if( $UA_IE7 ){
         .lW {
