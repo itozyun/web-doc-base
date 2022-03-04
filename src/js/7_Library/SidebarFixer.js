@@ -291,30 +291,40 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             // 4. Tabキーでのフォーカス移動
             // 4.1 サイドバーの高さ ≦ コンテナの可視部分の高さ 
             if( sidebarHeight <= visibleContainerHeight ){
-                // スライドなし
+                // 可視部分の天と要素の天を合わせる
+                createPositioning( visibleContainerTop - containerY - focusedElementY );
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.1' );
             } else
             // 4.2 サイドバー下のフォーカスを得た要素の高さ ≦ コンテナの可視部分の高さ 
             if( focusedElementHeight <= visibleContainerHeight ){
-                if( visibleContainerTop <= focusedElementTop && focusedElementBottom <= visibleContainerBottom ){
-                    // 4.2.1 完全に可視部分に入っている場合は移動しない
-                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.1' );
-                } else if( visibleContainerTop <= focusedElementTop && focusedElementTop <= visibleContainerBottom ){
-                    // 4.2.2 要素の天がコンテナの可視部分に入っている場合、可視部分の底と要素の底を合わせる
+                if( sidebarHeight - focusedElementY <= visibleContainerHeight ){
+                    // 4.2.1 要素の天をコンテナの可視部分の天に合わせると、サイドバー下に隙間が出来る場合、可視部分の底と要素の底を合わせる
                     createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
-                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.2' );
-                } else if( visibleContainerTop <= focusedElementBottom && focusedElementBottom <= visibleContainerBottom ){
-                    // 4.2.3 要素の底がコンテナの可視部分に入っている場合、可視部分の天と要素の天を合わせる
-                    createPositioning( visibleContainerTop - containerY - focusedElementY );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.1' );
+                } else if( visibleContainerTop <= focusedElementTop && focusedElementBottom <= visibleContainerBottom ){
+                    // 4.2.2 完全に可視部分に入っている場合は移動しない
+                    // 但し、サイドバー上に隙間が出来る場合、可視部分の天と要素の天を合わせる
+                    if( visibleContainerTop < containerY + sidebarY ){
+                        createPositioning( visibleContainerTop - containerY - focusedElementY );
+                        DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.2' );
+                    };
+                    // DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.2' );
+                } else if( visibleContainerTop <= focusedElementTop && focusedElementTop <= visibleContainerBottom ){
+                    // 4.2.3 要素の天がコンテナの可視部分に入っている場合、可視部分の底と要素の底を合わせる
+                    createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.3' );
-                } else if( focusedElementBottom < visibleContainerTop ){
-                    // 4.2.4 要素は可視部分より上、可視部分の天と要素の天を合わせる
+                } else if( visibleContainerTop <= focusedElementBottom && focusedElementBottom <= visibleContainerBottom ){
+                    // 4.2.4 要素の底がコンテナの可視部分に入っている場合、可視部分の天と要素の天を合わせる
                     createPositioning( visibleContainerTop - containerY - focusedElementY );
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.4' );
-                } else {
-                    // 4.2.5 要素は可視部分より下、可視部分の底と要素の底を合わせる
-                    createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                } else if( focusedElementBottom < visibleContainerTop ){
+                    // 4.2.5 要素は可視部分より上、可視部分の天と要素の天を合わせる
+                    createPositioning( visibleContainerTop - containerY - focusedElementY );
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.5' );
+                } else {
+                    // 4.2.6 要素は可視部分より下、可視部分の底と要素の底を合わせる
+                    createPositioning( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                    DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2.6' );
                 };
             } else {
             // 4.3 サイドバー下のフォーカスを得た要素の高さ > コンテナの可視部分の高さ
@@ -339,7 +349,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 createPositioning( 0 );
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.2.2' );
             } else
-            // 2.3 サイドバーの高さ ≦ コンテナの可視部分の高さ 
+            // 2.3 サイドバーの高さ ≦ コンテナの可視部分の高さ、サイドバーの天をコンテナの可視部分の天に揃える
             if( sidebarHeight <= visibleContainerHeight ){
                 createPositioning( visibleContainerTop - containerY );
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '2.3' );
