@@ -181,7 +181,7 @@ body {
 body,
 input,
 textarea {
-  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -215,11 +215,6 @@ th {
 blockquote,
 q {
   quotes: none
-}
-q:after,
-q:before {
-  content: "";
-  content: none
 }
 sub,
 sup {
@@ -1816,14 +1811,6 @@ strong {
   background: #f8fbfa;
   border-color: #021605;
   color: #021605
-}
-@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
-  .chatL p:after,
-  .chatR p:after {
-    border-bottom-color: inherit!important;
-    border-left-color: transparent;
-    border-right-color: transparent
-  }
 }
 @media print {
   .lW,

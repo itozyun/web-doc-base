@@ -134,7 +134,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-.LinkList a,
 .Search .btn,
 .chatMember,
 .lW,
@@ -264,11 +263,6 @@ var {
 blockquote,
 q {
   quotes: none
-}
-q:after,
-q:before {
-  content: "";
-  content: none
 }
 sub,
 sup {
@@ -1514,7 +1508,13 @@ kbd {
   cursor: pointer;
   text-decoration: none!important;
   background: #021605;
-  color: #f8fbfa
+  color: #f8fbfa;
+  overflow: hidden;
+  height: auto
+}
+.LinkList a:focus ::selection,
+.RichLink-sep a:focus ::selection {
+  background-color: transparent
 }
 .LinkList :link,
 .RichLink-sep :link {
@@ -1563,15 +1563,11 @@ thead var {
 }
 .LinkList a {
   line-height: 1.1;
-  padding: 1em .5em .8em;
-  height: auto
+  padding: 1em .5em .8em
 }
 .LinkList a:active:hover,
 .LinkList a:focus:hover {
   text-decoration: underline!important
-}
-.LinkList a:focus::selection {
-  background-color: transparent
 }
 .RichLink {
   padding: 0 0 1em;
@@ -3623,8 +3619,7 @@ only screen and (max-width:240px) {
     background: #f8fbfa
   }
 }
-@media only screen and (-ms-high-contrast:active),
-only screen and (forced-colors:active) {
+@media only screen and (-ms-high-contrast:active) {
   .AMeta,
   .Pager,
   .SocialBtns,

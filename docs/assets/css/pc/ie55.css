@@ -1610,14 +1610,6 @@ strong {
   border-color: #021605;
   color: #021605
 }
-@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
-  .chatL p:after,
-  .chatR p:after {
-    border-bottom-color: inherit!important;
-    border-left-color: transparent;
-    border-right-color: transparent
-  }
-}
 @media print {
   .chat,
   blockquote code,

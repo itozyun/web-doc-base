@@ -243,11 +243,6 @@ blockquote,
 q {
   quotes: none
 }
-q:after,
-q:before {
-  content: "";
-  content: none
-}
 small {
   font-size: 75%
 }
@@ -2072,14 +2067,6 @@ strong {
   background: #f8fbfa;
   border-color: #021605;
   color: #021605
-}
-@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
-  .chatL p:after,
-  .chatR p:after {
-    border-bottom-color: inherit!important;
-    border-left-color: transparent;
-    border-right-color: transparent
-  }
 }
 @media print {
   .ico-author:after,

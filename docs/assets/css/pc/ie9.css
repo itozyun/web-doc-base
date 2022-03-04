@@ -228,11 +228,6 @@ blockquote,
 q {
   quotes: none
 }
-q:after,
-q:before {
-  content: "";
-  content: none
-}
 small {
   font-size: 75%
 }
@@ -2777,14 +2772,6 @@ screen and (max-width:950px) {
   .chatR p:after {
     border-color: #85e445 transparent;
     right: 1em
-  }
-}
-@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
-  .chatL p:after,
-  .chatR p:after {
-    border-bottom-color: inherit!important;
-    border-left-color: transparent;
-    border-right-color: transparent
   }
 }
 @media screen and (max-width:240px) {
