@@ -32,7 +32,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
                 // Presto
                 ( p_Presto < 9 )
             ),
-    SidebarFixer_useClip = SidebarFixer_positionFixed || p_Trident < 7,
+    SidebarFixer_USE_CLIP = SidebarFixer_positionFixed || p_Trident < 7,
     SidebarFixer_elmRoot,
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
@@ -233,7 +233,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                   _sliderY + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
                   ';-webkit-overflow-scrolling:touch;';
         } else {
-            if( SidebarFixer_useClip ){
+            if( SidebarFixer_USE_CLIP ){
                 sidebarWidth = SidebarFixer_elmSide.offsetWidth;
             };
             if( SidebarFixer_positionFixed ){
@@ -397,7 +397,6 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
         SidebarFixer_updateSidebar( sidebarY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-' );
     };
 
-
     p_DOM_setCssText( SidebarFixer_elmWrap, css );
 
     SidebarFixer_sidebarY = sidebarY;
@@ -466,7 +465,11 @@ function SidebarFixer_onfocus( e ){
         };
 
         
-        if( p_Trident < 9 ){ // focusin 後に scroll が起きない
+        if( p_Trident < 9 || p_Presto ){ // focusin 後に scroll が起きない
+            if( p_Presto ){
+                // scrollY 再取得
+                SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+            };
             SidebarFixer_fix( undefined, y, h );
         } else {
             SidebarFixer_aboutFocuedElement = [ y, h ];
