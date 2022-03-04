@@ -32,6 +32,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
                 // Presto
                 ( p_Presto < 9 )
             ),
+    SidebarFixer_useClip = SidebarFixer_positionFixed || p_Trident < 7,
     SidebarFixer_elmRoot,
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
@@ -215,8 +216,7 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
         mainInViewPort, nocancelWheel;
 
     function createPositioning( y ){
-        var useClip = SidebarFixer_positionFixed || p_Trident < 7,
-            sidebarWidth;
+        var sidebarWidth;
 
         sidebarY = y;
         if( SidebarFixer_transformProp ){
@@ -224,7 +224,7 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
                   y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
                   ';-webkit-overflow-scrolling:touch;';
         } else {
-            if( useClip ){
+            if( SidebarFixer_useClip ){
                 sidebarWidth = SidebarFixer_elmSide.offsetWidth;
             };
             if( SidebarFixer_positionFixed ){
@@ -236,7 +236,7 @@ function SidebarFixer_fix( scrollY, wheelDeltaY, focusedElementY, focusedElement
                 css = 'position:absolute;left:0;width:100%;top:' + y + 'px';
             };
 
-            if( useClip ){
+            if( sidebarWidth && css ){
                 css += ';' +
                     (
                     y < 0 ? 
