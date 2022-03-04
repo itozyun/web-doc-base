@@ -418,7 +418,7 @@ a:active,
 a:active *,
 a:focus,
 a:focus * {
-  color: #fff!important
+  color: HighlightText!important
 }
 .ribbon :link {
   color: #bbe
@@ -438,7 +438,7 @@ a:focus * {
 }
 a:active,
 a:focus {
-  background-color: #29a119!important
+  background-color: Highlight!important
 }
 h2 {
   border-width: 0 0 2px;
@@ -654,8 +654,8 @@ tbody :hover td {
 tbody :hover th :focus,
 tbody :hover th :link:active,
 tbody :hover th :visited:active {
-  background: #fff!important;
-  color: #29a119!important
+  background: HighlightText!important;
+  color: Highligh!important
 }
 .Cover-btn,
 .commonForm-send,
@@ -1531,7 +1531,7 @@ a:active code,
 a:active var,
 a:focus code,
 a:focus var {
-  background: #29a119
+  background: Highlight
 }
 pre code,
 pre var {
@@ -1770,9 +1770,6 @@ dl.note dd {
   background: #f8fbfa;
   border-color: #00c300;
   color: #00c300
-}
-.img-disabled img {
-  display: none!important
 }
 .prettyprint {
   background: #333;

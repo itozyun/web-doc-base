@@ -1812,6 +1812,7 @@ pre var {
   color: #111;
   border-radius: 1.414em
 }
+#jsSide,
 .Pager,
 .links a,
 .tl td,
@@ -2092,9 +2093,6 @@ dl.note dd {
   background: #f8fbfa;
   border-color: #00c300;
   color: #00c300
-}
-.img-disabled img {
-  display: none!important
 }
 .prettyprint {
   background: #333;

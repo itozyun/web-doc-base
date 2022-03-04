@@ -1997,9 +1997,6 @@ dl.note dd {
   border-color: #00c300;
   color: #00c300
 }
-.img-disabled img {
-  display: none!important
-}
 .prettyprint {
   background: #333;
   color: #fff;

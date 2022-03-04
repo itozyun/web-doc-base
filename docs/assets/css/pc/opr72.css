@@ -390,7 +390,7 @@ hr {
 }
 a:active,
 a:active * {
-  color: #fff!important
+  color: HighlightText!important
 }
 .ribbon :link {
   color: #bbe
@@ -409,7 +409,7 @@ a:active * {
   border-color: #b3f
 }
 a:active {
-  background-color: #29a119!important
+  background-color: Highlight!important
 }
 h2 {
   border-width: 0 0 2px;
@@ -1454,7 +1454,7 @@ var {
 }
 a:active code,
 a:active var {
-  background: #29a119
+  background: Highlight
 }
 pre code,
 pre var {
@@ -1683,9 +1683,6 @@ dl.note dd {
   background: #f8fbfa;
   border-color: #00c300;
   color: #00c300
-}
-.img-disabled img {
-  display: none!important
 }
 .prettyprint {
   background: #333;

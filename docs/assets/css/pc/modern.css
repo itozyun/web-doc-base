@@ -110,6 +110,7 @@ h2:after {
 .aa {
   font-family: monospace
 }
+.LinkList a,
 .Search .btn,
 .chatMember,
 .lW,
@@ -1552,11 +1553,15 @@ thead var {
 }
 .LinkList a {
   line-height: 1.1;
-  padding: 1em .5em .8em
+  padding: 1em .5em .8em;
+  height: auto
 }
 .LinkList a:active:hover,
 .LinkList a:focus:hover {
   text-decoration: underline!important
+}
+.LinkList a:focus::selection {
+  background-color: transparent
 }
 .Magazine-item {
   padding: 1em 0;
@@ -2292,9 +2297,6 @@ dl.note dd {
   content: ":)";
   visibility: hidden;
   font: 7px/1 a
-}
-.img-disabled img {
-  display: none!important
 }
 .prettyprint {
   background: #333;
@@ -4133,7 +4135,8 @@ only screen and (max-width:240px) {
     background: #f8fbfa
   }
 }
-@media only screen and (-ms-high-contrast:active) {
+@media only screen and (-ms-high-contrast:active),
+only screen and (forced-colors:active) {
   .AMeta,
   .Pager,
   .SocialBtns,
