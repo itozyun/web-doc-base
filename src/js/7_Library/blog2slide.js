@@ -81,7 +81,7 @@ function blog2slide_onFullscreenChange(){
         p_DOM_remove( blog2slide_elmH1 );
         p_DOM_removeAttribute( blog2slide_elmRoot, 'id' );
         p_DOM_removeAttribute( blog2slide_elmCurrent, 'id' );
-        blog2slide_elmCurrent = document.onkeydown = null;
+        blog2slide_elmCurrent = document.onkeydown = undefined;
     };
 };
 

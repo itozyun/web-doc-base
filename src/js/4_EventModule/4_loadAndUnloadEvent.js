@@ -12,8 +12,8 @@ p_listenUnloadEvent = function( callback ){
  * export to moduleGlobal
  */
 m_initEventHandler = function( e ){
-    p_removeEventListener( window, 'load', m_initEventHandler );
-    m_initEventHandler = null;
+    p_removeEventListener( window, 'load', /** @type {Function} */ (m_initEventHandler) );
+    m_initEventHandler = undefined;
 
     m_dispatchEvent( p_loadEventCallbacks, e );
 };
@@ -29,7 +29,7 @@ var Event_unloadEventCallbacks = [];
 if( p_WebKit <= 419.3 ){ // Safari 2-
     p_setTimer( _Event_onloadDoesnotWorkSafari );
 } else {
-    p_addEventListener( window, 'load', m_initEventHandler );
+    p_addEventListener( window, 'load', /** @type {Function} */ (m_initEventHandler) );
 };
     function _Event_onloadDoesnotWorkSafari(){
         if( m_initEventHandler ){

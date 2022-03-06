@@ -92,7 +92,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                     eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
                 } else {
                     eventTarget[ onType ] = p_emptyFunction;
-                    eventTarget[ onType ] = null;
+                    eventTarget[ onType ] = undefined;
                 };
             };
         };
@@ -126,7 +126,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                 eventTarget.__handleEvent__ = listener.callback;
                 eventTarget.__handleEvent__( e );
                 eventTarget.__handleEvent__ = p_emptyFunction;
-                eventTarget.__handleEvent__ = null;
+                eventTarget.__handleEvent__ = undefined;
             } else if( p_Presto < 7.2 && eventTarget === document && listener.eventTarget === window ){
                 window.__handleEvent__ = listener.callback;
                 window.__handleEvent__( e );
@@ -135,7 +135,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         };
 
         if( p_Trident ){
-            e.preventDefault = e.stopPropagation = null;
+            e.preventDefault = e.stopPropagation = undefined;
             return e.returnValue;
         } else if( EventTarget_PATCH_OLD_WEBKIT ){
             if( e.defaultPrevented ){
@@ -146,7 +146,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
             if( stopPropagation && !EventTarget_safariPreventDefault ){
                 e._stopPropagation();
             };
-            e._stopPropagation = e.stopPropagation = null;
+            e._stopPropagation = e.stopPropagation = undefined;
         };
     };
 

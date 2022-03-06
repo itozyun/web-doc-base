@@ -31,32 +31,32 @@ var _wdb_ontimer;
 var _wdb_onlooptimer;
 
 /**
- * @type {?function(!Event=)|null}
+ * @type {function(!Event=)|undefined}
  */
 function onload(){};
 
 /**
- * @type {?function(!Event)|null}
+ * @type {function(!Event)|undefined}
  */
 function onunload(){};
 
 /**
- * @type {?function(!Event=)|null}
+ * @type {function(!Event=)|undefined}
  */
 function onscroll(){};
 
 /**
- * @type {?function(!Event)|null}
+ * @type {function(!Event)|undefined}
  */
 function onresize(){};
 
 /**
- * @type {?function(!Event)|null}
+ * @type {function(!Event)|undefined}
  */
 function onbeforeprint(){};
 
 /**
- * @type {?function(!Event)|null}
+ * @type {function(!Event)|undefined}
  */
 function onafterprint(){};
 

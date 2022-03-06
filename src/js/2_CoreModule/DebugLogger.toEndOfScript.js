@@ -14,7 +14,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
 
         if( DebugLogger_elm ){
             Debug.log = function( text ){
-                p_DOM_insertElement( DebugLogger_elm, 'P', null, text );
+                p_DOM_insertElement( DebugLogger_elm, 'P', undefined, text );
             };
             Debug.error = function( text ){
                 p_DOM_insertElement( DebugLogger_elm, 'P', { style : { color : 'red' } }, text );

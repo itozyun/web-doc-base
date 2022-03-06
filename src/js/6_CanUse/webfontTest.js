@@ -45,7 +45,7 @@ var webFontTest_maybeCanUseWebFont;
  *    Android 4 - UCBrowser
  *    Windows Phone 7 - IE9
  */
-/** @type {Function|null} */
+/** @type {Function|undefined} */
 var webFontTest_testMaybeCanUseWebFont = function(){
     var blocklist =
             p_WebKit < 525 || // Safari <3.1
@@ -82,7 +82,7 @@ var webFontTest_testMaybeCanUseWebFont = function(){
         p_CSSOM_deleteStyleSheet( styleSheet );
     };
 
-    webFontTest_testMaybeCanUseWebFont = null;
+    webFontTest_testMaybeCanUseWebFont = undefined;
 
     return webFontTest_maybeCanUseWebFont = !!result;
 };
@@ -100,7 +100,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
         if( styleSheetDataURIWebFont && !result ){
             p_CSSOM_deleteStyleSheet( styleSheetDataURIWebFont );
         };
-        onCompleteHandler = elmSpan = elmDiv = defaultWidth = styleSheetDataURIWebFont = null;
+        onCompleteHandler = elmSpan = elmDiv = defaultWidth = styleSheetDataURIWebFont = undefined;
     };
 
     if( DEFINE_WEB_DOC_BASE__DEBUG && 1 <= DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE ){
@@ -286,7 +286,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
         };
         p_DOM_remove( elmSpan );
         if( p_Trident < 5 ){
-            elmSpan = null;
+            elmSpan = undefined;
         };
         return ( result = detected + canLig );
     };

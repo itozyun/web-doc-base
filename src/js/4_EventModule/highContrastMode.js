@@ -19,8 +19,9 @@ var Event_highContrastMode_callbacks = [];
 var Event_highContrastMode_timerID,
     Event_highContrastMode_isHighContrust,
     Event_highContrastMode_isBlackOnWhite,
-    Event_highContrastMode_isWhiteOnBlack,
-    Event_highContrastMode_test;
+    Event_highContrastMode_isWhiteOnBlack;
+/** @type {Function|undefined} */
+var Event_highContrastMode_test;
 
 function Event_highContrastMode_getState(){
     return p_highContrastModeState = !Event_highContrastMode_isHighContrust ? 0 :
@@ -67,7 +68,7 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
             highContrastModeState = p_highContrastModeState;
 
         computedStyle = defaultView ?
-            defaultView.getComputedStyle( m_elmTest, null ) :
+            defaultView.getComputedStyle( /** @type {Element} */ (m_elmTest), null ) :
             m_elmTest.currentStyle;
 
         color   = ( computedStyle && computedStyle.color || '' ).split( ' ' ).join( '' );
@@ -99,9 +100,9 @@ if( 10 <= p_Trident || p_EdgeHTML || ( p_Windows && p_ChromiumEdge ) ){
             if( p_Gecko < 60 || p_Goanna ){
                 Event_highContrastMode_test();
             } else if( Event_highContrastMode_test() ){ // IE9- or Gecko60+
-                Event_highContrastMode_timerID = p_setLoopTimer( Event_highContrastMode_test /* , 1000 */ );
+                Event_highContrastMode_timerID = p_setLoopTimer( /** @type {Function} */ (Event_highContrastMode_test) /* , 1000 */ );
             };
-            Event_highContrastMode_test = null;
+            Event_highContrastMode_test = undefined;
         }
     );
 };

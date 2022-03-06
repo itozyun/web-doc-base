@@ -2,11 +2,11 @@
  * module global
  */
 
-/** @type {Function|null} */
+/** @type {Function|undefined} */
 var m_initEventHandler;
 /** @type {Function|undefined} */
 var m_matchMedia = window.matchMedia;
-/** @type {Element|null} */
+/** @type {Element|undefined} */
 var m_elmTest;
 
 /**

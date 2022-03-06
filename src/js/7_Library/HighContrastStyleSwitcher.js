@@ -1,7 +1,7 @@
 if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR ){
     var HighContrastStyleSwitcher_elmStyle,
     /**
-     * @type {?function()|null}
+     * @type {Function|undefined}
      */
         HighContrastStyleSwitcher_init = function(){
             HighContrastStyleSwitcher_elmStyle = p_DOM_insertElement(
@@ -20,7 +20,7 @@ if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR ){
             if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
                 p_DOM_addClassName( p_body, 'jsCanRotate' );
             };
-            HighContrastStyleSwitcher_init = null;
+            HighContrastStyleSwitcher_init = undefined;
         };
 
     p_listenHighContrustModeChange(

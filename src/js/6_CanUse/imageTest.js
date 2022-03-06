@@ -44,7 +44,7 @@ function imageTest( callback, imageUrl ){ // callback, url,
             p_imageEnabled = p_imageEnabled || result;
             p_setTimer( callback, result );
             img.onerror = img.onload = p_emptyFunction;
-            img = callback = null;
+            img = callback = undefined;
         } else {
             --counter;
             // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!

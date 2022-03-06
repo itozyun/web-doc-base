@@ -75,7 +75,7 @@ if( !p_isMobile && !p_cloudRendering ){
                 { id : DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID }
             );
 
-            p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
+            DEFINE_WEB_DOC_BASE__DEBUG && p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
             if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 ) ){
                 if( p_Trident < 6 ){
@@ -146,7 +146,8 @@ if( !p_isMobile && !p_cloudRendering ){
                 };
             };
 
-            p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
+            DEFINE_WEB_DOC_BASE__DEBUG && p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
+
             if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 ) ){
                 if( p_Trident < 6 ){
                     // 
@@ -580,9 +581,9 @@ function SidebarFixer_onfocus( e ){
 /** ===========================================================================
  * for activeElement
  */
-var SidebarFixer_watchActiveElementTimerID,
-    SidebarFixer_currentActiveElement,
-    SidebarFixer_memoryErrorHandler;
+var SidebarFixer_watchActiveElementTimerID;
+var SidebarFixer_currentActiveElement;
+var SidebarFixer_memoryErrorHandler;
 
 p_Trident < 6 && p_listenCssAvailabilityChange(
     function( cssAvailability ){
@@ -609,13 +610,13 @@ function SidebarFixer_watchActiveElement(){
         SidebarFixer_onfocus( { target : activeElement } );
     };
 
-    window.onerror = SidebarFixer_memoryErrorHandler;
+    window.onerror = /** @type {Function} */ (SidebarFixer_memoryErrorHandler);
     SidebarFixer_memoryErrorHandler = undefined;
 };
 
 function SidebarFixer_watchActiveElementErrorHandler(){
     Debug.log( 'error!' );
-    window.onerror = SidebarFixer_memoryErrorHandler;
+    window.onerror = /** @type {Function} */ (SidebarFixer_memoryErrorHandler);
     SidebarFixer_memoryErrorHandler = SidebarFixer_currentActiveElement = undefined;
     return true;
 };
