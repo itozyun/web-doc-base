@@ -12,7 +12,7 @@ _p_Timer_remove = Timer_remove;
  */
 /** @type {Array<Object>} */
 var TIMER_LISTENERS = [];
-var TIMER_INTERVAL = 64,
+var TIMER_INTERVAL = 16,
     timerUID = 0,
     timerClearID;
 

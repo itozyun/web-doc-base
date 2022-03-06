@@ -47,6 +47,11 @@
             }
         }
     }
+    @if( $IS_Opera7x ){
+        #jsSidebarFixer {
+            position : relative; /* for Opera ~7.27, absolute が不正 */
+        }
+    }
     @if( $IS_Opera7x or $UA_Opera8 ){
         #jsMain {
             position : relative; /* for Opera <9, relativeが無いと位置が取れない */
@@ -57,9 +62,6 @@
         // sidebar が header, footer に重なる問題の解決
         .lS {
             overflow : hidden;
-        }
-        #jsSide {
-            position : relative; // transform に必要
         }
     }
     @if( $UA_IE7 ){

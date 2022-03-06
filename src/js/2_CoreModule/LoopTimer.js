@@ -13,7 +13,7 @@ _p_LoopTimer_remove = LoopTimer_remove;
 /** @type {Array<Object>} */
 var LOOP_LISTENERS = [];
 
-var LOOP_INTERVAL = 999,
+var LOOP_INTERVAL = 500,
     loopTimerUID = 0,
     loopTimerClearID;
 

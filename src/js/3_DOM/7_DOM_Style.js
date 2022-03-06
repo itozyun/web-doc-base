@@ -14,7 +14,7 @@ function DOM_setStyle( elm, name, value ){
 function DOM_setCssText( elm, cssText ){
     var i = -1, styles, style, nameAndValue;
 
-    if( p_Presto < 9 || p_Trident < 5.5 ){ // IE5 : cssText では SidebarFixer が scroll イベントで動かない
+    if( p_Trident < 5.5 ){ // IE5 : cssText では SidebarFixer が scroll イベントで動かない
         if( cssText ){
             styles = cssText.split( ';' );
 
@@ -22,6 +22,12 @@ function DOM_setCssText( elm, cssText ){
                 nameAndValue = style.split( ':' );
                 DOM_setStyle( elm, nameAndValue[ 0 ], style.substr( nameAndValue[ 0 ].length + 1 ) ); // IE の filter には : を含むので nameAndValue[ 1 ] とはしない。例 filter:progid:DXImageTransform.Microsoft.Shadow()
             };
+        } else {
+            elm.removeAttribute( 'style' );
+        };
+    } else if( p_Presto < 9 || p_Gecko < 1 ){
+        if( cssText ){
+            elm.setAttribute( 'style' , cssText );
         } else {
             elm.removeAttribute( 'style' );
         };
