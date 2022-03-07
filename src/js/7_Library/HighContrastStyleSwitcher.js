@@ -27,7 +27,7 @@ if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR ){
         function( highContrastState ){
             if( highContrastState && !HighContrastStyleSwitcher_elmStyle ){
                 HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();
-            } else {
+            } else if( HighContrastStyleSwitcher_elmStyle ){
                 highContrastState ? p_head.appendChild( HighContrastStyleSwitcher_elmStyle ) : p_DOM_remove( HighContrastStyleSwitcher_elmStyle );
             };
         }
