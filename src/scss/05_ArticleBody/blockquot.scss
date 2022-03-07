@@ -2,7 +2,7 @@
 /*  blockquote
 --------------------------------------------------------------------------------------*/
 blockquote {
-    @include hMargin(1, 1em, 1em);
+    @include responsive-horizontal-margin(1, 1em, 1em);
     padding      : 1em;
     border-width : 1px;
     background   : $COLOR_Default_casual_fill;
@@ -34,7 +34,7 @@ blockquote {
     blockquote:before,
     /* //_}#can-content */
     .js-bqLink {
-        @include hMargin(2, 0, 0);
+        @include responsive-horizontal-margin(2, 0, 0);
         font-size   : 0.875em;
         line-height : 1.2;
         color       : $COLOR_Default_link;
@@ -43,7 +43,7 @@ blockquote {
     blockquote:after,
     /* //_}#can-content */
     .js-bqCite {
-        @include hMargin(2, 0, 0);
+        @include responsive-horizontal-margin(2, 0, 0);
         @include unbreak-pane; /* 長い url 用 */
         display     : block;
         font-size   : 0.875em;

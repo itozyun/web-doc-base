@@ -3,7 +3,7 @@
 @if( $Option_aa ){
     .aa {
         @include lineHeight(1, 0);
-        @include hPadding(1, 1em, 1em);
+        @include responsive-horizontal-padding(1, 1em, 1em);
 
         margin       : 1em 0;
         border-width : 1px;

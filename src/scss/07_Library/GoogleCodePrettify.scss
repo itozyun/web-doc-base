@@ -6,7 +6,7 @@
         background : #333;
         color      : #fff;
 
-        @include hPadding(1, 1em, 1em);
+        @include responsive-horizontal-padding(1, 1em, 1em);
         @include lineHeight(1.2, 0);
 
         border-width : 1px;

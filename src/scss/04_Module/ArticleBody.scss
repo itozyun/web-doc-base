@@ -20,14 +20,14 @@
 /*  h1
 --------------------------------------------------------------------------------------*/
 .ABody h1 {
-    @include hMargin(2, 3em, 3em);
+    @include responsive-horizontal-margin(2, 3em, 3em);
     font-size : 2em;
 }
 
 /*  h2
 --------------------------------------------------------------------------------------*/
 .ABody h2 {
-    @include hMargin(2, 2em, 1em);
+    @include responsive-horizontal-margin(2, 2em, 1em);
     font-size      : 1.5em;
     border-width   : 0.2em 0 0;
     padding        : 1.4em 0 .6em;
@@ -47,7 +47,7 @@
 /*  h3
 --------------------------------------------------------------------------------------*/
 .ABody h3 {
-    @include hMargin(2, 2.4em, 1.2em);
+    @include responsive-horizontal-margin(2, 2.4em, 1.2em);
     font-weight    : bold;
     font-size      : 1.25em;
     border-width   : 0.1em 0 0;

@@ -1,10 +1,10 @@
-@mixin hMargin($ratio, $marginTop, $marginBottom, $parentHasMarginForPC : 0, $maxWidth : 0){
+@mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $zeroHorizontalMarginWhenXGA : 0){
     @if( $Option_mobileOnly == false ){
         @if 1 < $ratio {
             & {
                 margin  : $marginTop 0 $marginBottom;
             }
-        } @else if $parentHasMarginForPC == 1 {
+        } @else if $zeroHorizontalMarginWhenXGA == 1 {
             & {
                 margin  : $marginTop 0 $marginBottom;
             }
@@ -42,13 +42,13 @@
 
 
 h4, h5, h6 {
-    @include hMargin(2, 1.5em, 0.8em);
+    @include responsive-horizontal-margin(2, 1.5em, 0.8em);
 }
 
 p, ul, ol, dl,
 table,
 img, iframe {
-    @include hMargin(1, 1em, 1em);
+    @include responsive-horizontal-margin(1, 1em, 1em);
 }
 
 pre {
@@ -56,7 +56,7 @@ pre {
 }
 
 caption {
-    @include hMargin(1, 1.5em, #{$BASE_LINE_HEIGHT_EM - 1.2em}); // $WATCH_LINE_HEIGHT
+    @include responsive-horizontal-margin(1, 1.5em, #{$BASE_LINE_HEIGHT_EM - 1.2em}); // $WATCH_LINE_HEIGHT
 }
 
 img, iframe {
@@ -88,15 +88,15 @@ img, iframe {
 
 tr blockquote {
     p, pre {
-        @include hMargin(1, 1em, 1em);
+        @include responsive-horizontal-margin(1, 1em, 1em);
     }
 }
 
 hr {
-    @include hMargin(.5, 2em, 2em);
+    @include responsive-horizontal-margin(.5, 2em, 2em);
 }
 
-@mixin hPadding($ratio, $paddingTop, $paddingBottom){
+@mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom){
     & {
         padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
     }

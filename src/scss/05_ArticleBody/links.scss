@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------------*/
 .links {
     @include pre-wrap;
-    @include hMargin(1, 1em, 1em);
+    @include responsive-horizontal-margin(1, 1em, 1em);
 }
 
     .links a {

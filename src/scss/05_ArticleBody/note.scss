@@ -1,7 +1,7 @@
 /*  note
 --------------------------------------------------------------------------------------*/
 .note {
-    @include hMargin(1, 1em, 1em);
+    @include responsive-horizontal-margin(1, 1em, 1em);
     padding-left : 25%;
 
     p, ul, ol, dl,

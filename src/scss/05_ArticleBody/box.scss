@@ -20,7 +20,7 @@
     }
 
     p, dl, ul, ol {
-        @include hMargin(1, 0, 1em, 1);
+        @include responsive-horizontal-margin(1, 0, 1em, 1);
     }
     ul, ol {
         list-style-position : inside;
