@@ -185,7 +185,7 @@ const assetsDirToJSDir      = 'js',
       assetsDirToCSSDir     = 'css',
       cssDirToDesktopDir    = 'pc',
       cssDirToMobileDir     = 'mb',
-      toHighContrastModeDir = 'hc';
+      toForcedColorsModeDir = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -203,7 +203,7 @@ gulp.task('js', gulp.series(
                     './.submodules/what-browser-am-i/src/js/0_global/*.js',
                     '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
                     './src/js/**/*.js',
-                    '!./src/js/4_EventModule/prefersColor.js',
+                    '!./src/js/4_EventModule/prefersColorScheme.js',
                     '!./src/js/4_EventModule/print.js',
                     '!./src/js/6_CanUse/cssGeneratedContent.js',
                     '!./src/js/6_CanUse/dataUriTest.js',
@@ -228,7 +228,7 @@ gulp.task('js', gulp.series(
                             'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir     + '"',
                             'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir    + '"',
                             'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir     + '"',
-                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + toHighContrastModeDir + '"',
+                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + toForcedColorsModeDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
                         ],
                         compilation_level : 'ADVANCED',
@@ -310,7 +310,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(CSShack({ hcdir : toHighContrastModeDir }))
+        .pipe(CSShack({ forcedColorsCSSDir : toForcedColorsModeDir }))
         .pipe(cleanCSS({
             format : 'beautify',
             compatibility : { properties : { ieFilters : true } },

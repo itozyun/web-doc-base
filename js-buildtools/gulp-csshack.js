@@ -25,7 +25,7 @@ module.exports = function( options ){
             newCss = PostCSS.parse('@charset "UTF-8"');
 
             css.walkAtRules( function( rule ){
-                if( opts.hcdir ){
+                if( opts.forcedColorsCSSDir ){
                     if( rule.name === 'media' && rule.params === TARGET_HC_MEDIA_QUERY ){
                         rule.clone().walkRules( function( r ){
                             newCss.append( r );
@@ -67,7 +67,7 @@ module.exports = function( options ){
                 };
                 this.push(new Vinyl({
                     base     : '/',
-                    path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.hcdir + '/' + file.basename,
+                    path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '' ) + '/' + opts.forcedColorsCSSDir + '/' + file.basename,
                     contents : Buffer.from(newCss.toString())
                 }));
             };
