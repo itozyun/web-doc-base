@@ -1,20 +1,25 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-p_listenPrefersColorChange = function( callback ){
-    Event_prefersColorChangeEventCallbacks.push( callback );
+p_listenPrefersColorSchemeChange = function( callback ){
+    if( Event_prefersColorSchemeChangeEventCallbacks ){
+        Event_prefersColorSchemeChangeEventCallbacks.push( callback );
+    };
 };
 
 /** ===========================================================================
  * private
  */
-/** @type {Array<Function>} */
-var Event_prefersColorChangeEventCallbacks = []; 
+/** @type {Array<Function>|undefined} */
+var Event_prefersColorSchemeChangeEventCallbacks = []; 
 
-if( m_matchMedia ){
-    m_matchMedia( 'only screen and (prefers-color-scheme:dark)' ).addListener(
+if( m_matchMedia && ( m_matchMedia( '(prefers-color-scheme:light)' ).matches || m_matchMedia( '(prefers-color-scheme:dark)' ).matches ) ){
+    m_initMediaQueryList( '(prefers-color-scheme:dark)',
         function( mediaQueryList ){
-            m_lazyDispatchEvent( Event_prefersColorChangeEventCallbacks, mediaQueryList.matches );
+            Debug.log( '(prefers-color-scheme:dark):' + mediaQueryList.matches );
+            m_lazyDispatchEvent( Event_prefersColorSchemeChangeEventCallbacks, mediaQueryList.matches );
         }
     );
+} else {
+    Event_prefersColorSchemeChangeEventCallbacks = undefined;
 };

@@ -8,9 +8,10 @@ var p_addEventListener,
     p_listenPrintEvent,
     p_listenCssAvailabilityChange,
     p_listenImageReady,
-    p_listenPrefersColorChange,
-    p_listenHighContrustModeChange,
+    p_listenPrefersColorSchemeChange,
+    p_listenForcedColorsChange,
 
-    p_cssAvailability,
-    p_highContrastModeState = 0,
+    p_cssAvailability, // TODO AuthorCSS ?
+    p_forcedColorsState,
+    p_canuseNativeForcedColors,
     p_printEventDisabled;

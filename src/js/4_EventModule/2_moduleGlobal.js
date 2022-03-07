@@ -9,6 +9,21 @@ var m_matchMedia = window.matchMedia;
 /** @type {Element|undefined} */
 var m_elmTest;
 
+/** @type {Function|undefined} */
+var m_initMediaQueryList = function( media, listener ){
+    p_listenCssAvailabilityChange(
+        function( cssAvailability ){
+            if( cssAvailability ){
+                var mediaQueryList = m_matchMedia( media );
+
+                listener( mediaQueryList );
+                mediaQueryList.addListener( listener );
+                return true;
+            };
+        }
+    );
+};
+
 /**
  * @param {Array.<Function>} callbackList
  * @param {*=} param
@@ -54,6 +69,8 @@ function _m_lazyDispatchEvent(){
 // p_listenLoadEvent が存在しない為、配列を触る
 p_loadEventCallbacks.push(
     function(){
+        m_initMediaQueryList = undefined;
+
         // Create a test div
         m_elmTest = p_DOM_insertElement(
             p_body,

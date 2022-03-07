@@ -1,10 +1,10 @@
-if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR ){
-    var HighContrastStyleSwitcher_elmStyle,
+if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR && !p_canuseNativeForcedColors ){
+    var ForcedColorsStyleSwitcher_elmStyle,
     /**
      * @type {Function|undefined}
      */
-        HighContrastStyleSwitcher_init = function(){
-            HighContrastStyleSwitcher_elmStyle = p_DOM_insertElement(
+        ForcedColorsStyleSwitcher_init = function(){
+            ForcedColorsStyleSwitcher_elmStyle = p_DOM_insertElement(
                 p_head, 'link',
                 {
                     type  : 'text/css',
@@ -20,15 +20,15 @@ if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR ){
             if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
                 p_DOM_addClassName( p_body, 'jsCanRotate' );
             };
-            HighContrastStyleSwitcher_init = undefined;
+            ForcedColorsStyleSwitcher_init = undefined;
         };
 
-    p_listenHighContrustModeChange(
-        function( highContrastState ){
-            if( highContrastState && !HighContrastStyleSwitcher_elmStyle ){
-                HighContrastStyleSwitcher_init && HighContrastStyleSwitcher_init();
-            } else if( HighContrastStyleSwitcher_elmStyle ){
-                highContrastState ? p_head.appendChild( HighContrastStyleSwitcher_elmStyle ) : p_DOM_remove( HighContrastStyleSwitcher_elmStyle );
+    p_listenForcedColorsChange(
+        function( forcedColorsState ){
+            if( forcedColorsState && !ForcedColorsStyleSwitcher_elmStyle ){
+                ForcedColorsStyleSwitcher_init && ForcedColorsStyleSwitcher_init();
+            } else if( ForcedColorsStyleSwitcher_elmStyle ){
+                forcedColorsState ? p_head.appendChild( ForcedColorsStyleSwitcher_elmStyle ) : p_DOM_remove( ForcedColorsStyleSwitcher_elmStyle );
             };
         }
     );

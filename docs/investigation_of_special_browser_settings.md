@@ -17,7 +17,7 @@
 |1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
 |2 | `p_generatedContentEnabled` | number or undefined  |       | `p_listenLoadEvent` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P |
 |3 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
-|4 | `p_highContrastModeState`   | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
+|4 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
 |5 | `p_printEventDisabled`      | boolean              |       | allways             |                                                                      |
 |6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenLoadEvent` | undefined : `document.images.length == 0`                            |
 
@@ -37,9 +37,9 @@
 ## 2. Special event listeners
 
 1. `p_listenCssAvailabilityChange`
-2. `p_listenHighContrustModeChange`
+2. `p_listenForcedColorsChange`
 3. `p_listenImageReady`
-4. `p_listenPrefersColorChange`
+4. `p_listenPrefersColorSchemeChange`
 5. `p_listenPrintEvent`
 
 コールバックで `true` を返すとリスナを解除できる。
@@ -56,13 +56,13 @@ p_listenCssAvailabilityChange(
 );
 ~~~
 
-### 2. `p_listenHighContrustModeChange`
+### 2. `p_listenForcedColorsChange`
 
 Windows 用ブラウザの一部が備える Web サイトのハイコントラストモードの状態変化をコールバックします。
 
 ~~~js
-p_listenHighContrustModeChange(
-    function( highContrastModeState ){
+p_listenForcedColorsChange(
+    function( forcedColorsState ){
 
     }
 );
@@ -81,12 +81,12 @@ p_listenImageReady(
 );
 ~~~
 
-### 4. `p_listenPrefersColorChange`
+### 4. `p_listenPrefersColorSchemeChange`
 
 ダークモードの死活をコールバックします。
 
 ~~~js
-p_listenPrefersColorChange(
+p_listenPrefersColorSchemeChange(
     function( isDrakMode ){
 
     }
