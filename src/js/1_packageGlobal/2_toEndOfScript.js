@@ -1,4 +1,4 @@
-p_scripts = document.scripts || p_DOM_getElementsByTagNameFromDocument( 'script' ), // for NN9
+p_scripts = document.scripts || p_DOM_getElementsByTagNameFromDocument( 'script' ); // for NN9
 
 p_assetUrl = p_scripts[ p_scripts.length - 1 ].src.split( '/' ); // IE7- では要素に書いてある内容. それ以外は absolute URL.
 --p_assetUrl.length;

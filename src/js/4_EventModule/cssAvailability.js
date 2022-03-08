@@ -15,6 +15,7 @@ function Event_cssAvailability_check(){
     
     if( p_cssAvailability !== _cssAvailability ){
         m_lazyDispatchEvent( Event_cssAvailabilityCallbacks, p_cssAvailability = _cssAvailability );
+        Debug.log( 'p_cssAvailability:' + p_cssAvailability );
     };
 };
 

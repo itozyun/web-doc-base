@@ -17,7 +17,7 @@ if( m_matchMedia && ( m_matchMedia( '(prefers-color-scheme:light)' ).matches || 
     m_initMediaQueryList( '(prefers-color-scheme:dark)',
         function( mediaQueryList ){
             Debug.log( '(prefers-color-scheme:dark):' + mediaQueryList.matches );
-            m_lazyDispatchEvent( Event_prefersColorSchemeChangeEventCallbacks, mediaQueryList.matches );
+            m_lazyDispatchEvent( /** @type {Array<Function>} */ (Event_prefersColorSchemeChangeEventCallbacks), mediaQueryList.matches );
         }
     );
 } else {

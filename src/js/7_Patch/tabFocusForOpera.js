@@ -21,5 +21,18 @@
                 p_DOM_setAttribute( elm, 'tabindex', '0' );
             };
         };
+
+        //if( p_Presto < 9.5 ){
+        //    p_addEventListener( p_body, 'DOMFocusIn', /** @type {Function} */ (forceRedrawForOpera), false );
+        //};
+        //forceRedrawForOpera = undefined;
     }
 );
+
+/* var forceRedrawForOpera = function( e ){
+    var elmFocused = e.target || e.srcElement;
+
+    if( p_DOM_contains( p_body, elmFocused ) ){
+        elmFocused.offsetTop;
+    };
+}; */
