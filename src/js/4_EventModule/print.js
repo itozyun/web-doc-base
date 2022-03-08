@@ -2,7 +2,9 @@
  * export to packageGlobal
  */
 p_listenPrintEvent = function( callback ){
-    Event_printEventCallbacks.push( callback );
+    if( !p_printEventDisabled ){
+        Event_printEventCallbacks.push( callback );
+    };
 };
 
 /** ===========================================================================
