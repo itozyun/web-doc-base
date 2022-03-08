@@ -42,7 +42,7 @@
         border-color   : $COLOR_Default_casual_fill;
         border-style   : solid;
         @include highContrastForIE10ToEdge {
-            border-color : inherit;
+            // border-color : inherit; ??
         }
 
         @if( $CANUSE_1ST_CHILD_SELECTOR ){
@@ -89,18 +89,21 @@
             border-color : $COLOR_Default_fill;
             @include border-radius(.35em);
             @if( $UA_Modern ){
-                @media only screen and (-ms-high-contrast : black-on-white) {
+                @include highContrastForIEGte9Gecko {
+                    filter : invert(1);
+                }
+                @include highContrastForChromiumEdge {
+                    border-color : Window;
+                }
+                @include highContrastForIE10ToEdge {
+                    border-color : Window;
+                }
+                /* @media only screen and (-ms-high-contrast : black-on-white) {
                     & { border-color : #fff; }
                 }
                 @media only screen and (-ms-high-contrast : white-on-black) {
                     & { border-color : #000; }
-                }
-                @include highContrastForIEGte9Gecko {
-                    filter : invert(100%);
-                }
-                @include highContrastForChromiumEdge {
-                    filter : invert(100%);
-                }
+                } */
             }
             @if( $UA_IE8 ){
                 @include highContrastForIEGte9Gecko {

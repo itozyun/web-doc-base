@@ -78,6 +78,12 @@
             border-color : $COLOR_Print_casual_text transparent;
         }
     }
+    @include highContrastForChromiumEdge {
+        & {
+            border-left-color  : Window !important;
+            border-right-color : Window !important;
+        }
+    }
     @include highContrastForIE10ToEdge {
         & {
             border-left-color  : transparent !important;
@@ -113,6 +119,12 @@
     @include media(print) {
         &, .ribbon & {
             border-color : transparent $COLOR_Print_casual_text;
+        }
+    }
+    @include highContrastForChromiumEdge {
+        & {
+            border-top-color    : Window !important;
+            border-bottom-color : Window !important;
         }
     }
     @include highContrastForIE10ToEdge {

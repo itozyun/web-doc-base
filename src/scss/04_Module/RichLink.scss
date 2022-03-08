@@ -26,7 +26,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 .RichLink {
     @include stackableModule;
     @include highContrast {
-        padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
+        padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
     }
     @if( $UA_Modern ){
         /* Opera 9.52~9.64 横スクロールバーの出現を抑止

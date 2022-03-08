@@ -180,7 +180,8 @@ $COMMENT_OUT : (
 
 @mixin highContrast {
     @if( $UA_Modern ){
-        @media only screen and (-ms-high-contrast:active) {
+        @media only screen and (-ms-high-contrast:active),
+               only screen and (forced-colors:active) {
             & { @content; }
         }
     }
@@ -202,7 +203,8 @@ $COMMENT_OUT : (
 @mixin highContrastForChromiumEdge {
     @if( $UA_Modern ){
         @media only screen and (-ms-high-contrast:active) and (prefers-color-scheme:dark),
-               only screen and (-ms-high-contrast:active) and (prefers-color-scheme:light) {
+               only screen and (-ms-high-contrast:active) and (prefers-color-scheme:light),
+               only screen and (forced-colors:active) {
             & { @content; }
         }
     }

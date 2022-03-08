@@ -198,16 +198,12 @@ table {
 
 @include tableColor( $COLOR_Default_text, $COLOR_Default_fill, $COLOR_Default_casual_text, $COLOR_Default_casual_fill );
 
-td {
-    @include highContrastForIE10ToEdge {
-        // border-top-color   : transparent;
-        border-left-color  : transparent;
-        border-right-color : transparent;
+td, tfoot td {
+    @include highContrastForChromiumEdge {
+        border-left-color  : Window;
+        border-right-color : Window;
     }
-}
-tfoot td {
     @include highContrastForIE10ToEdge {
-        // border-bottom-color : transparent;
         border-left-color  : transparent;
         border-right-color : transparent;
     }

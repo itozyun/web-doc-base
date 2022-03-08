@@ -65,6 +65,12 @@
             border-color : transparent $COLOR_Watch_text;
         }
     }
+    @include highContrastForChromiumEdge {
+        & i {
+            border-top-color         : Window;
+            border-bottom-color      : Window;
+        }
+    }
     @include highContrastForIE10ToEdge {
         & i {
             border-top-color    : transparent;
@@ -79,14 +85,13 @@
         .jsCanRotate
         /* //_}^@ie9 */
         & i {
+            border-width : 0 .15em .15em 0;
             @if( $UA_IE9 == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                 display : inline-block;
             }
             @if( $CANUSE_DISPLAY_INLINE_BLOCK == false ){
                 display : inline;
             }
-            /* border-color  : #fff; */
-            border-width  : 0 .15em .15em 0;        
             @if( $UA_Modern ){
                 width         : .45em;
                 height        : .45em;
@@ -109,16 +114,6 @@
                 }
                 filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
             }
-        }
-    }
-    @include highContrastForChromiumEdge {
-        & i {
-            display       : inline-block;
-            border-width  : 0 .15em .15em 0;
-            width         : .45em;
-            height        : .45em;
-            transform     : rotate(-45deg);
-            top           : 0;
         }
     }
 }

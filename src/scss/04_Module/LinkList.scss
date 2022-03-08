@@ -76,7 +76,7 @@
         /* href がない場合 current カラーになる */
         a {
             background : $COLOR_Watch_casual_text;
-            color      : $COLOR_Watch_fill;            
+            color      : $COLOR_Watch_fill;
         }
         & :link {
             background : $COLOR_Watch_fill;
@@ -100,6 +100,13 @@
             }
         }
     }
+    /*  forced-colors
+    --------------------------------------------------------------------------------------*/
+    @include highContrast {
+        a:hover {
+            text-decoration : underline !important;
+        }
+    }
 }
 
 .LinkList {
@@ -111,15 +118,15 @@
     a {
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
-        @include highContrast {
-            margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
-        }
         &:active:hover
         /* //_{#can-focus-pseudo-class */
         , &:focus:hover
         /* //_}#can-focus-pseudo-class */
         {
             text-decoration : underline !important;
+        }
+        @include highContrast {
+            margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
         }
     }
 }

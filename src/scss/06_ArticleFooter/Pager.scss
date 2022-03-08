@@ -85,6 +85,10 @@
                             border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
                         }
 
+                        @include highContrastForChromiumEdge {
+                            border-top-color    : Window;
+                            border-bottom-color : Window;
+                        }
                         @include highContrastForIE10ToEdge {
                             border-top-color    : transparent;
                             border-bottom-color : transparent;
@@ -125,8 +129,13 @@
                         } @else {
                             border-color : $COLOR_Default_casual_text $COLOR_Default_fill;
                         }
+                        @include highContrastForChromiumEdge {
+                            border-left-color  : Window;
+                            border-right-color : Window;
+                        }
                         @include highContrastForIE10ToEdge {
-                            border-color : inherit transparent;
+                            border-left-color  : transparent;
+                            border-right-color : transparent;
                         }
                     }
                     .Pager-top a:active i

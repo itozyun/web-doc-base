@@ -124,30 +124,13 @@
                 }
                 .chatL p:after, .chatR p:after {
                     @include highContrastForChromiumEdge {
-                        display   : block;
-                        width     : .4em;
-                        height    : .4em;
-                        transform : rotate(-45deg);
+                        border-top-color    : Window;
+                        border-bottom-color : Window;
                     }
-                }
-                .chatL p:after {
-                    @include highContrastForChromiumEdge {
-                        border-width : 1px 0 0 1px;
-                        left         : -0.3em;
+                    @include highContrastForIE10ToEdge {
+                        border-top-color    : transparent;
+                        border-bottom-color : transparent;
                     }
-                }
-                .chatR p:after {
-                    @include highContrastForChromiumEdge {
-                        border-width : 0 1px 1px 0;
-                        right        : -0.3em;
-                    }
-                }
-            }
-
-            .chatL p:after, .chatR p:after {
-                @include highContrastForIE10ToEdge {
-                    border-top-color    : transparent;
-                    border-bottom-color : transparent;
                 }
             }
 

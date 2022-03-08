@@ -171,3 +171,11 @@
         }
     }
 }
+img {
+    @include highContrastForChromiumEdge {
+        filter : brightness(100%);
+    }
+    @include highContrastForIE10ToEdge {
+        filter : brightness(100%);
+    }
+}
