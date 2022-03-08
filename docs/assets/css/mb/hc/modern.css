@@ -45,19 +45,25 @@ tbody td {
   display: none
 }
 .jsCanRotate .Cover-btn i {
-  display: inline-block;
   border-width: 0 .15em .15em 0;
+  display: inline-block;
   width: .45em;
   height: .45em;
   transform: rotate(-45deg);
   top: 0
 }
-.LinkList,
-.RichLink {
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
+.LinkList {
   padding: 2px 0
 }
 .LinkList a {
   margin: 0 2px
+}
+.RichLink {
+  padding: 2px
 }
 .RichLink a {
   border-width: 0
@@ -77,11 +83,11 @@ tbody td {
   border-width: 0 1px 1px 0;
   right: -.3em
 }
+.tl tbody td:after {
+  filter: invert(1)
+}
 .tl {
   border-collapse: collapse
-}
-.tl tbody td:after {
-  filter: invert(100%)
 }
 .Pager {
   text-align: center;

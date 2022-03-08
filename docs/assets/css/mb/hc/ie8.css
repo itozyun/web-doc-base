@@ -48,31 +48,37 @@ tfoot tr:first-child th {
   display: none
 }
 .jsCanRotate .Cover-btn i {
-  display: inline-block;
   border-width: 0 .15em .15em 0;
+  display: inline-block;
   width: .35em;
   height: .35em;
   top: -.3em;
   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M22=1, M12=1, M21=-1, sizingMethod="auto expand")
 }
-.LinkList,
-.RichLink {
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
+.LinkList {
   padding: 2px 0
 }
 .LinkList a {
   margin: 0 2px
 }
+.RichLink {
+  padding: 2px
+}
 .RichLink a {
   border-width: 0
-}
-.tl {
-  border-collapse: collapse
 }
 .tl tbody td:after {
   top: 1.2em;
   left: -.13em;
   border-width: 0;
   outline: solid .35em
+}
+.tl {
+  border-collapse: collapse
 }
 .Pager {
   text-align: center;

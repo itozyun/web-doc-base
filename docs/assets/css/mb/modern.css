@@ -2393,7 +2393,7 @@ blockquote hr {
 }
 @media only screen and (min-width:741px) {
   body {
-    font-size: 1 em
+    font-size: 1em
   }
 }
 @media handheld,
@@ -3619,7 +3619,8 @@ only screen and (max-width:240px) {
     background: #f8fbfa
   }
 }
-@media only screen and (-ms-high-contrast:active) {
+@media only screen and (forced-colors:active),
+only screen and (-ms-high-contrast:active) {
   .AMeta,
   .Pager,
   .SocialBtns,
@@ -3640,6 +3641,9 @@ only screen and (max-width:240px) {
   a:focus {
     outline: solid 2px
   }
+  img {
+    filter: brightness(100%)
+  }
   table {
     border-spacing: 2px;
     border-collapse: separate
@@ -3659,59 +3663,45 @@ only screen and (max-width:240px) {
   tbody td {
     border-width: 0 0 1px
   }
-  td,
-  tfoot td {
-    border-left-color: transparent;
-    border-right-color: transparent
-  }
+  .Cover-btn i,
+  .Pager i,
+  .chatL p:after,
+  .chatR p:after,
   .ico-label:after {
-    border-top-color: transparent!important;
-    border-bottom-color: transparent!important
+    border-top-color: Window;
+    border-bottom-color: Window
   }
+  .Pager-top i,
   .ico-comment:after,
   .ico-pen:after {
-    border-left-color: transparent!important;
-    border-right-color: transparent!important
+    border-left-color: Window;
+    border-right-color: Window
   }
-  .Cover-btn i,
-  .chatL p:after,
-  .chatR p:after {
-    border-top-color: transparent;
-    border-bottom-color: transparent
+  .LinkList a:hover,
+  .RichLink-sep a:hover {
+    text-decoration: underline!important
   }
-  .LinkList,
-  .RichLink {
+  .LinkList {
     padding: 2px 0
   }
   .LinkList a {
     margin: 0 2px
   }
+  .RichLink {
+    padding: 2px
+  }
   .RichLink a {
     border-width: 0
+  }
+  .tl tbody td:after {
+    border-color: Window
   }
   .tl {
     border-collapse: collapse
   }
-  .tl td,
-  .tl tfoot td {
-    border-color: inherit
-  }
-  .Pager {
-    text-align: center;
-    height: auto;
-    padding: 1em 0
-  }
-  .Pager span {
-    position: static;
-    display: inline
-  }
-  .Pager i {
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    display: none
-  }
-  .Pager-top i {
-    border-color: inherit transparent
+  td,
+  tfoot td {
+    border-color: inherits
   }
   .jsPica:active,
   .jsPica:focus {
@@ -3727,46 +3717,5 @@ only screen and (max-width:240px) {
 @media only screen and (-webkit-min-device-pixel-ratio:0) {
   .mona {
     font-family: "MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif
-  }
-}
-@media only screen and (-ms-high-contrast:black-on-white) {
-  .tl tbody td:after {
-    border-color: #fff
-  }
-}
-@media only screen and (-ms-high-contrast:white-on-black) {
-  .tl tbody td:after {
-    border-color: #000
-  }
-}
-@media only screen {
-  @media (-ms-high-contrast:active) and (prefers-color-scheme:dark),
-  (-ms-high-contrast:active) and (prefers-color-scheme:light) {
-    .Cover-btn i {
-      display: inline-block;
-      border-width: 0 .15em .15em 0;
-      width: .45em;
-      height: .45em;
-      transform: rotate(-45deg);
-      top: 0
-    }
-    .chatL p:after,
-    .chatR p:after {
-      display: block;
-      width: .4em;
-      height: .4em;
-      transform: rotate(-45deg)
-    }
-    .chatL p:after {
-      border-width: 1px 0 0 1px;
-      left: -.3em
-    }
-    .chatR p:after {
-      border-width: 0 1px 1px 0;
-      right: -.3em
-    }
-    .tl tbody td:after {
-      filter: invert(100%)
-    }
   }
 }

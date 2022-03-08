@@ -46,12 +46,18 @@ tbody td {
   -ms-transform: rotate(-45deg);
   top: 0
 }
-.LinkList,
-.RichLink {
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
+.LinkList {
   padding: 2px 0
 }
 .LinkList a {
   margin: 0 2px
+}
+.RichLink {
+  padding: 2px
 }
 .RichLink a {
   border-width: 0
