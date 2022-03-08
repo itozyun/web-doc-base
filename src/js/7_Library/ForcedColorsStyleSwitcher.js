@@ -26,7 +26,7 @@ if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR && !p_canuseNativeForcedColors ){
     p_listenForcedColorsChange(
         function( forcedColorsState ){
             if( forcedColorsState && !ForcedColorsStyleSwitcher_elmStyle ){
-                ForcedColorsStyleSwitcher_init && ForcedColorsStyleSwitcher_init();
+                ForcedColorsStyleSwitcher_init();
             } else if( ForcedColorsStyleSwitcher_elmStyle ){
                 forcedColorsState ? p_head.appendChild( ForcedColorsStyleSwitcher_elmStyle ) : p_DOM_remove( ForcedColorsStyleSwitcher_elmStyle );
             };

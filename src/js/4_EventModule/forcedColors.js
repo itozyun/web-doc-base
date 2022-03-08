@@ -16,18 +16,16 @@ p_listenForcedColorsChange = function( callback ){
  *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
  *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
  */
-/** @type {Array<Function>|undefiend} */
+/** @type {!Array.<Function>|undefined} */
 var Event_forcedColors_callbacks = [];
 var Event_forcedColors_WORK_ONCE = p_Gecko < 60 || p_Goanna;
-var Event_forcedColors_timerID,
-    Event_forcedColors_isActive,
+var Event_forcedColors_isActive,
     Event_forcedColors_isBlackOnWhite,
     Event_forcedColors_isWhiteOnBlack;
 /** @type {Function|undefined} */
 var Event_forcedColors_test;
 
 /**
-  * @nosideeffect
   * @type {Function|undefined} */
 var Event_forcedColors_getState = function(){
     return p_forcedColorsState = !Event_forcedColors_isActive ? 0 :
@@ -46,7 +44,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         '(forced-colors:active)',
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
-            m_lazyDispatchEvent( Event_forcedColors_callbacks, Event_forcedColors_getState() );
+            m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), Event_forcedColors_getState() );
             Debug.log( '(forced-colors:active):' + p_forcedColorsState );
         }
     );
@@ -57,7 +55,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isBlackOnWhite = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( Event_forcedColors_callbacks, p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:black-on-white):' + p_forcedColorsState );
             };
         }
@@ -66,7 +64,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isWhiteOnBlack = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( Event_forcedColors_callbacks, p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:white-on-black):' + p_forcedColorsState );
             };
         }
@@ -75,7 +73,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( Event_forcedColors_callbacks, p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:active):' + p_forcedColorsState );
             };
         }
@@ -111,9 +109,8 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
-                m_lazyDispatchEvent( Event_forcedColors_callbacks, p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
             };
-            return true;
         };
 
         function isBlack( color ){
@@ -132,9 +129,9 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
     
                 if( Event_forcedColors_WORK_ONCE ){
                     Event_forcedColors_test();
-                    Event_forcedColors_callbacks.length = 0;
+                    Event_forcedColors_callbacks = undefined;
                 } else if( Event_forcedColors_test() ){ // IE9- or Gecko60+
-                    Event_forcedColors_timerID = p_setLoopTimer( /** @type {Function} */ (Event_forcedColors_test) /* , 1000 */ );
+                    p_setLoopTimer( /** @type {Function} */ (Event_forcedColors_test) /* , 1000 */ );
                 };
                 Event_forcedColors_test = undefined;
                 return true;

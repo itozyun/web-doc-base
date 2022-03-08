@@ -92,7 +92,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                     eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
                 } else {
                     eventTarget[ onType ] = p_emptyFunction;
-                    eventTarget[ onType ] = undefined;
+                    eventTarget[ onType ] = null; // undefined だと error https://twitter.com/itozyun/status/1501010455007207424
                 };
             };
         };
