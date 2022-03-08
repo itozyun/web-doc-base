@@ -28,6 +28,10 @@ $COMMENT_OUT : (
     'dark_theme'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}^+mobileOnly */
 
+    'forced_colors_native'             : if($UA_Modern, 1, 0),
+    'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE, 1, 0),
+    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE, 1, 0),
+
     'print'        : 1,
     'onlyIE10To11' : if($UA_Modern, 1, 0),
     'onlyOpera'    : if($UA_Modern, 1, 0),
@@ -167,6 +171,32 @@ $COMMENT_OUT : (
                 @content;
             }
         }
+        @else if $media == 'forced_colors_native' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
+            @media only screen and (forced-colors:active),
+                   only screen and (-ms-high-contrast:active){
+                @content;
+            }
+        }
+        @else if $media == 'forced_colors_fallback' { // IE5~9, Firefox
+            @if( $UA_Modern or $IS_WIN_IE ){
+                @media only dynamic-css and (-ms-high-contrast:active){
+                    @content;
+                }
+            }
+        }
+        @else if $media == 'forced_colors_native_or_fallback' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+  // IE5~9, Firefox
+            @if( $UA_Modern ){
+                @media only screen and (forced-colors:active),
+                       only screen and (-ms-high-contrast:active){
+                    @content;
+                }
+            }
+            @if( $UA_Modern or $IS_WIN_IE ){
+                @media only dynamic-css and (-ms-high-contrast:active){
+                    @content;
+                }
+            }
+        }
     }
     @else if map-get($COMMENT_OUT, $media) != 0 {
         body {
@@ -174,46 +204,6 @@ $COMMENT_OUT : (
         }
         body:before {
             content : "@media() : error-arg! #{$media}";
-        }
-    }
-}
-
-@mixin highContrast {
-    @if( $UA_Modern ){
-        @media only screen and (-ms-high-contrast:active),
-               only screen and (forced-colors:active) {
-            & { @content; }
-        }
-    }
-    @if( $UA_Modern or $IS_WIN_IE ){
-        @media only dynamic-css and (-ms-high-contrast:active) {
-            & { @content; }
-        }
-    }
-}
-
-@mixin highContrastForIEGte9Gecko {
-    @if( $UA_Modern or $IS_WIN_IE ){
-        @media only dynamic-css and (-ms-high-contrast:active) {
-            & { @content; }
-        }
-    }
-}
-
-@mixin highContrastForChromiumEdge {
-    @if( $UA_Modern ){
-        @media only screen and (-ms-high-contrast:active) and (prefers-color-scheme:dark),
-               only screen and (-ms-high-contrast:active) and (prefers-color-scheme:light),
-               only screen and (forced-colors:active) {
-            & { @content; }
-        }
-    }
-}
-
-@mixin highContrastForIE10ToEdge {
-    @if( $UA_Modern ){
-        @media only screen and (-ms-high-contrast:active) {
-            & { @content; }
         }
     }
 }

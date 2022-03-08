@@ -14,15 +14,6 @@
 }
 
 /* //_{#can-focus-pseudo-class */
-:link:focus img, :visited:focus img,
-/* //_}#can-focus-pseudo-class */
-:link:active img, :visited:active img {
-    @include highContrast {
-        border-style : dotted;
-    }
-}
-
-/* //_{#can-focus-pseudo-class */
 :link:focus img,
 :visited:focus img,
 /* //_}#can-focus-pseudo-class */
@@ -46,5 +37,16 @@
         blockquote & {
             border-color : transparent;
         }
+    }
+}
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native_or_fallback){
+/* //_{#can-focus-pseudo-class */
+    :link:focus img, :visited:focus img,
+    /* //_}#can-focus-pseudo-class */
+    :link:active img, :visited:active img {
+        border-style : dotted;
     }
 }

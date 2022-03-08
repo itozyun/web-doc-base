@@ -77,18 +77,23 @@
                     border-width : .3em 0 .3em 0.6em;
                     right        : -0.6em;
                 }
-
-                @if( $UA_IE8 == false ){ /* 疑似要素に Transform が効かない */
-                    /* //_{^@ie9 */
+                /*  Forced colors
+                --------------------------------------------------------------------------------------*/
+                @include media(forced_colors_native){
                     .chatL p:after, .chatR p:after {
-                        @include highContrastForIEGte9Gecko {
+                        border-top-color    : Window;
+                        border-bottom-color : Window;
+                    }
+                }
+                @if( $UA_IE8 == false ){ /* 疑似要素に Transform が効かない */
+                    @include media(forced_colors_fallback){
+                        /* //_{^@ie9 */
+                        .chatL p:after, .chatR p:after {
                             display : none;
                         }
-                    }
-                    .jsCanRotate {
-                    /* //_}^@ie9 */
-                        .chatL p:after, .chatR p:after {
-                            @include highContrastForIEGte9Gecko {
+                        .jsCanRotate {
+                        /* //_}^@ie9 */
+                            .chatL p:after, .chatR p:after {
                                 width  : .4em;
                                 height : .4em;
                                 /* border-color : #fff; */
@@ -102,34 +107,17 @@
                                     -ms-transform : rotate(-45deg);
                                 }
                             }
-                            /* //_{@ie8 */
-                            // filter : progid:DXImageTransform.Microsoft.Matrix(M11=1,M22=1,M12=1,M21=-1,sizingMethod="auto expand");
-                            /* //_}@ie8 */
-                        }
-                        .chatL p:after {
-                            @include highContrastForIEGte9Gecko {
+                            .chatL p:after {
                                 border-width : 1px 0 0 1px;
                                 left         : -0.3em;
                             }
-                        }
-                        .chatR p:after {
-                            @include highContrastForIEGte9Gecko {
+                            .chatR p:after {
                                 border-width : 0 1px 1px 0;
                                 right        : -0.3em;
                             }
+                        /* //_{^@ie9 */
                         }
-                    /* //_{^@ie9 */
-                    }
-                    /* //_}^@ie9 */
-                }
-                .chatL p:after, .chatR p:after {
-                    @include highContrastForChromiumEdge {
-                        border-top-color    : Window;
-                        border-bottom-color : Window;
-                    }
-                    @include highContrastForIE10ToEdge {
-                        border-top-color    : transparent;
-                        border-bottom-color : transparent;
+                        /* //_}^@ie9 */
                     }
                 }
             }

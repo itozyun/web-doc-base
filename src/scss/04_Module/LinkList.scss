@@ -100,9 +100,9 @@
             }
         }
     }
-    /*  forced-colors
+    /*  Forced colors
     --------------------------------------------------------------------------------------*/
-    @include highContrast {
+    @include media(forced_colors_native_or_fallback){
         a:hover {
             text-decoration : underline !important;
         }
@@ -112,9 +112,6 @@
 .LinkList {
     @extend %linkCommon;
     @include stackableModule;
-    @include highContrast {
-        padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
-    }
     a {
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
@@ -125,8 +122,15 @@
         {
             text-decoration : underline !important;
         }
-        @include highContrast {
-            margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
+    }
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
+        & {
+            padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
+            a {
+                margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
+            }
         }
     }
 }

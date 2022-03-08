@@ -6,7 +6,12 @@
 --------------------------------------------------------------------------------------*/
 @mixin article-footer-item {
     border-width : 0 0 1px;
-    @include highContrast {
-        border-style : dotted;
+
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
+        & {
+            border-style : dotted;
+        }
     }
 }

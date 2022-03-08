@@ -1,10 +1,6 @@
 .tl {
     border-width : 0;
 
-    @include highContrast {
-        border-collapse: collapse;
-    }
-
     th, td {
         background : none !important;
     }
@@ -41,9 +37,6 @@
         border-width   : 0 0 0 .3em;
         border-color   : $COLOR_Default_casual_fill;
         border-style   : solid;
-        @include highContrastForIE10ToEdge {
-            // border-color : inherit; ??
-        }
 
         @if( $CANUSE_1ST_CHILD_SELECTOR ){
             & > *:first-child {
@@ -89,28 +82,22 @@
             border-color : $COLOR_Default_fill;
             @include border-radius(.35em);
             @if( $UA_Modern ){
-                @include highContrastForIEGte9Gecko {
-                    filter : invert(1);
+                /*  Forced colors
+                --------------------------------------------------------------------------------------*/
+                @include media(forced_colors_native){
+                    & { border-color : Window; }
                 }
-                @include highContrastForChromiumEdge {
-                    border-color : Window;
+                @include media(forced_colors_fallback){
+                    & { filter : invert(1); }
                 }
-                @include highContrastForIE10ToEdge {
-                    border-color : Window;
-                }
-                /* @media only screen and (-ms-high-contrast : black-on-white) {
-                    & { border-color : #fff; }
-                }
-                @media only screen and (-ms-high-contrast : white-on-black) {
-                    & { border-color : #000; }
-                } */
-            }
-            @if( $UA_IE8 ){
-                @include highContrastForIEGte9Gecko {
-                    top          : 1.2em;
-                    left         : -.13em;
-                    border-width : 0;
-                    outline      : .35em solid invert;
+            }@else if( $UA_IE8 ){
+                @include media(forced_colors_fallback){
+                    & {
+                        top          : 1.2em;
+                        left         : -.13em;
+                        border-width : 0;
+                        outline      : .35em solid invert;
+                    }
                 }
             }
         }
@@ -130,9 +117,6 @@
     tfoot td {
         border-width : 1px 0 0 .3em;
         border-style : solid dotted;
-        @include highContrastForIE10ToEdge {
-            border-color : inherit;
-        }
     }
     tfoot th, tfoot td {
         border-color   : $COLOR_Default_casual_fill;
@@ -240,6 +224,19 @@ blockquote .tl {
             color : $COLOR_Watch_visited;
         }
     }  
+}
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native_or_fallback){
+    .tl {
+        border-collapse : collapse;
+    }
+}
+@include media(forced_colors_native){
+    td, tfoot td {
+        border-color : inherits;
+    }
 }
 
 /*  Print

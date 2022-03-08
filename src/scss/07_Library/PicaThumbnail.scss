@@ -1,10 +1,10 @@
 /*  PicaThumbnail
 --------------------------------------------------------------------------------------*/
-/* //_{#can-focus-pseudo-class */
-.jsPica:focus,
-/* //_}#can-focus-pseudo-class */
-.jsPica:active {
-    @include highContrast {
+@include media(forced_colors_native_or_fallback){
+    /* //_{#can-focus-pseudo-class */
+    .jsPica:focus,
+    /* //_}#can-focus-pseudo-class */
+    .jsPica:active {
         outline : 0;
     }
 }

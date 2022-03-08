@@ -15,10 +15,12 @@
         color       : $COLOR_Default_fill; /* , を消す */
         height      : 4em;
 
-        @include highContrast {
-            text-align : center;
-            height     : auto;
-            padding    : 1em 0;
+        @include media(forced_colors_fallback){
+            & {
+                text-align : center;
+                height     : auto;
+                padding    : 1em 0;
+            }
         }
     }
         .Pager-next { left  :   0; }
@@ -36,11 +38,13 @@
                 /* text-overflow : ellipsis; */
                 line-height   : 1.2;
 
-                @include highContrast {
-                    position : static;
-                    display  : inline;
-                    @if( $UA_IE55 or $UA_IE5  ){
-                        width    : auto;
+                @include media(forced_colors_fallback){
+                    & {
+                        position : static;
+                        display  : inline;
+                        @if( $UA_IE55 or $UA_IE5  ){
+                            width : auto;
+                        }
                     }
                 }
             }
@@ -84,17 +88,16 @@
                         } @else {
                             border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
                         }
-
-                        @include highContrastForChromiumEdge {
-                            border-top-color    : Window;
-                            border-bottom-color : Window;
-                        }
-                        @include highContrastForIE10ToEdge {
-                            border-top-color    : transparent;
-                            border-bottom-color : transparent;
-                        }
-                        @include highContrast {
-                            display : none;
+                        /*  Forced colors
+                        --------------------------------------------------------------------------------------*/
+                        & {
+                            @include media(forced_colors_native){
+                                border-top-color    : Window;
+                                border-bottom-color : Window;
+                            }
+                            @include media(forced_colors_fallback){
+                                display : none;
+                            }
                         }
                     }
                     .Pager-next i {
@@ -129,13 +132,13 @@
                         } @else {
                             border-color : $COLOR_Default_casual_text $COLOR_Default_fill;
                         }
-                        @include highContrastForChromiumEdge {
-                            border-left-color  : Window;
-                            border-right-color : Window;
-                        }
-                        @include highContrastForIE10ToEdge {
-                            border-left-color  : transparent;
-                            border-right-color : transparent;
+                        /*  Forced colors
+                        --------------------------------------------------------------------------------------*/
+                        @include media(forced_colors_native){
+                            & {
+                                border-left-color  : Window;
+                                border-right-color : Window;
+                            }
                         }
                     }
                     .Pager-top a:active i

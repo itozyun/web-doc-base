@@ -139,9 +139,6 @@ textarea {
     form :focus {
         color        : $COLOR_ACCENT;
         border-color : $COLOR_ACCENT;
-        @include highContrast {
-            border-style : dotted;
-        }
     }
 }
 
@@ -163,6 +160,16 @@ textarea {
     @if( $CANUSE_ATTR_SELECTOR ){
         [type="submit"] {
             background : $COLOR_Watch_casual_fill;
+        }
+    }
+}
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native_or_fallback){
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        form :focus {
+            border-style : dotted;
         }
     }
 }

@@ -8,15 +8,15 @@
         outline : 0;
     }
 
-    /* //_{#can-focus-pseudo-class */
-    a:focus,
-    /* //_}#can-focus-pseudo-class */
-    a:active {
-        @include highContrast {
+    @include media(forced_colors_native_or_fallback){
+        /* //_{#can-focus-pseudo-class */
+        a:focus,
+        /* //_}#can-focus-pseudo-class */
+        a:active {
             outline : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH solid;
         }
     }
-    
+
     /* b, */
     strong, em, dt {
         font-weight : bold;

@@ -171,11 +171,11 @@
         }
     }
 }
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
 img {
-    @include highContrastForChromiumEdge {
-        filter : brightness(100%);
-    }
-    @include highContrastForIE10ToEdge {
+    @include media(forced_colors_native){
         filter : brightness(100%);
     }
 }

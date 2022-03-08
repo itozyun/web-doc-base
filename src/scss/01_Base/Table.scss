@@ -42,23 +42,12 @@ table {
         empty-cells       : show;
         border-spacing    : 0;
         @include lineHeight(1.2, 1);
-        @include highContrast {
-            border-width    : 2px 0 0;
-            border-spacing  : 2px;
-            border-collapse : separate;
-        }
     }
 
     /* thead, caption { Firefox Chrome で機能せず
         @include unbreak-inside;
         @include unbreak-after;
     } */
-
-    thead, th {
-        @include highContrast {
-            font-weight : bold;
-        }
-    }
 
     th, td {
         @include unbreak-pane; /* table がカラムを割るのを防ぐ */
@@ -73,10 +62,6 @@ table {
 
     td {
         padding : 0.5em 0;
-        @include highContrast {
-            padding      : 0.5em 0.25em;
-            border-style : dotted;
-        }        
     }
 
     thead td {
@@ -86,10 +71,6 @@ table {
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
-        @include highContrast {
-            border-width : 0 0 2px;
-            padding      : 0.5em;
-        }
     }
 
     tbody th {
@@ -97,22 +78,11 @@ table {
     }
     tbody td {
         border-width : 0 0.5em 1px;
-        @include highContrast {
-            border-width : 0 0 1px;
-        }
     }
 
     @if( $CANUSE_LAST_CHILD_SELECTOR ){
         tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
             border-bottom-width : 0;
-        }        
-    }@else if( $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
-        tfoot tr:first-child th,
-        tfoot tr:first-child td {
-            @include highContrast {
-                position : relative;
-                top      : -3px; 
-            }
         }
     }
 
@@ -121,9 +91,6 @@ table {
     }
     tfoot td {
         border-width : 2px 0.5em 0;
-        @include highContrast {
-            border-width : 2px 0 0;
-        }
     }
 
 /*  color
@@ -198,17 +165,6 @@ table {
 
 @include tableColor( $COLOR_Default_text, $COLOR_Default_fill, $COLOR_Default_casual_text, $COLOR_Default_casual_fill );
 
-td, tfoot td {
-    @include highContrastForChromiumEdge {
-        border-left-color  : Window;
-        border-right-color : Window;
-    }
-    @include highContrastForIE10ToEdge {
-        border-left-color  : transparent;
-        border-right-color : transparent;
-    }
-}
-
 @if( $CANUSE_HOVER_PSEUDO_CLASS ){
     tbody :hover th {
         background   : $COLOR_ACCENT;
@@ -242,6 +198,45 @@ td, tfoot td {
 
     tbody :hover td {
         border-color : $COLOR_Watch_fill $COLOR_Watch_fill $COLOR_ACCENT;
+    }
+}
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native){
+    td, tfoot td {
+        border-left-color  : Window;
+        border-right-color : Window;
+    }
+}
+@include media(forced_colors_native_or_fallback){
+    table {
+        border-width    : 2px 0 0;
+        border-spacing  : 2px;
+        border-collapse : separate;
+    }
+    thead, th {
+        font-weight : bold;
+    }
+    td {
+        padding      : 0.5em 0.25em;
+        border-style : dotted;
+    }
+    thead th, thead td {
+        border-width : 0 0 2px;
+        padding      : 0.5em;
+    }
+    tbody td {
+        border-width : 0 0 1px;
+    }
+    @if( $CANUSE_LAST_CHILD_SELECTOR == false and $CANUSE_1ST_CHILD_SELECTOR ){ // 該当は ie8 だけ
+        tfoot tr:first-child th,
+        tfoot tr:first-child td {
+            position : relative;
+            top      : -3px;
+        }
+    }
+    tfoot td {
+        border-width : 2px 0 0;
     }
 }
 

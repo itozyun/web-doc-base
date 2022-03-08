@@ -65,19 +65,16 @@
             border-color : transparent $COLOR_Watch_text;
         }
     }
-    @include highContrastForChromiumEdge {
+
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native){
         & i {
-            border-top-color         : Window;
-            border-bottom-color      : Window;
+            border-top-color    : Window;
+            border-bottom-color : Window;
         }
     }
-    @include highContrastForIE10ToEdge {
-        & i {
-            border-top-color    : transparent;
-            border-bottom-color : transparent;
-        }
-    }
-    @include highContrastForIEGte9Gecko {
+    @include media(forced_colors_fallback) {
         /* //_{^@ie9 */
         & i {
             display : none;
