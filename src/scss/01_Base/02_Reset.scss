@@ -26,13 +26,13 @@
         quotes : none;
     }
     
-    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+    /* @if( $CANUSE_CSS_GENERATED_CONTENT ){
         q:before,
         q:after {
             content : '';
             content : none;
         }
-    }
+    } */
     
     small {
         font-size: 75%;
