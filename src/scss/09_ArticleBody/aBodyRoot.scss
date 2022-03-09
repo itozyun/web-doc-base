@@ -26,7 +26,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
     .aBodyRoot {
-        line-height : $PHONE_LINE_HEIGHT;
+        line-height : $PARAGRAPH_LINE_HEIGHT_PHONE;
     }
 }
 
@@ -34,7 +34,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
     .aBodyRoot {
-        line-height : $WATCH_LINE_HEIGHT;
+        line-height : $PARAGRAPH_LINE_HEIGHT_WATCH;
     }
 }
 

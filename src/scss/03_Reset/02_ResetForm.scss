@@ -39,7 +39,7 @@ textarea, input {
          /* padding-left : 1px;1px : 0pxだとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
     }
     @if( $IS_OLD_OPERA == false ){
-        padding : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) $FORM_ITEM_PADDING_LR;
+        padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) $FORM_ITEM_PADDING_LR;
     } @else {
         // padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
     }
@@ -76,10 +76,10 @@ input {
     }
     @if( $UA_IE55 or $UA_IE5 or $IS_OLD_GECKO ){
         line-height : 1;
-        height      : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
+        height      : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
     }
     @if( $IS_OLD_OPERA ){
-        height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         @if( $IS_Opera7x == false ){
             line-height : 1; // Opera 7.x input[type=text] に触れなくなる
         }

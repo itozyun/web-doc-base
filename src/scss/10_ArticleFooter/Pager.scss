@@ -53,7 +53,7 @@
                         zoom : 1;
                     }
                     @if( $UA_IE5 ){
-                        width : 100%; /* <- ?? height : $BASE_LINE_HEIGHT_EM; */
+                        width : 100%; /* <- ?? height : $PARAGRAPH_LINE_HEIGHT_EM; */
                     }
                 }
                 @if( $IS_LTE_WIN_IE6 == false ){

@@ -47,12 +47,12 @@
     cursor       : pointer;
     text-align   : center;
     @if( $IS_LEGACY ){
-        line-height : $BASE_LINE_HEIGHT_EM;
+        line-height : $PARAGRAPH_LINE_HEIGHT_EM;
         padding     : 0 1em;
     }
     @if( $IS_LEGACY == false ){
         line-height : 1;
-        padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
+        padding     : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
     }
     @if( $UA_Modern or $UA_IE9 ){
         vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
@@ -63,7 +63,7 @@
     }
 
     @if( $UA_IE55 or $UA_IE5 or $IS_LEGACY ){
-        height : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
     }
 
     &:link:hover, &:visited:hover {

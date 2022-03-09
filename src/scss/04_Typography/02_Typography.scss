@@ -120,7 +120,7 @@
         margin-bottom : .3em;
     }
     dt {
-        margin-top : #{$BASE_LINE_HEIGHT_EM - 1.2em};
+        margin-top : #{$PARAGRAPH_LINE_HEIGHT_EM - 1.2em};
     }
     dd {
         margin-bottom : .3em;
@@ -193,7 +193,7 @@
         margin-bottom : .2em;
     }
     dt {
-        margin-top : #{$PHONE_LINE_HEIGHT_EM - 1.2em};
+        margin-top : #{$PARAGRAPH_LINE_HEIGHT_PHONE_EM - 1.2em};
     }
     dd, li {
         margin-bottom : .2em;
@@ -211,7 +211,7 @@
         margin-bottom : .1em;
     }
     dt {
-        margin-top : #{$WATCH_LINE_HEIGHT_EM - 1.2em};
+        margin-top : #{$PARAGRAPH_LINE_HEIGHT_WATCH_EM - 1.2em};
     }
     dd {
         margin-bottom : .1em;

@@ -2,14 +2,6 @@
  *    ie5 は <p> に続く <table> の前に </p> が必要
 --------------------------------------------------------------------------------------*/
 table {
-    /* width : 100% - $CONTENT_MARGIN_LR * 2; */
-
-    @include media(WSXGA) {
-        & {
-            // width : 100% - $CONTENT_MARGIN_LR_WSXGA * 2;
-        }
-    }
-
     @include media(tablet) {
         & {
             width : 100% - $TABLET_H_SPACE * 2;
@@ -46,7 +38,7 @@ table {
     }
 
     caption {
-        @include responsive-horizontal-margin(1, 1.5em, #{$BASE_LINE_HEIGHT_EM - 1.2em}); // $WATCH_LINE_HEIGHT
+        @include responsive-horizontal-margin(1, 1.5em, #{$PARAGRAPH_LINE_HEIGHT_EM - 1.2em}); // $PARAGRAPH_LINE_HEIGHT_WATCH
     }
 
     tr {

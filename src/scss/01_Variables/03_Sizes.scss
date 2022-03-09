@@ -1,14 +1,31 @@
-$BASE_LINE_HEIGHT      : 1.9 !default;
-$BASE_LINE_HEIGHT_EM   : 1em * $BASE_LINE_HEIGHT;
+/*  font-size
+--------------------------------------------------------------------------------------*/
+$FONTSIZE_DEFAULT : 16;
 
-$PHONE_LINE_HEIGHT     : 1.6 !default;
-$PHONE_LINE_HEIGHT_EM  : 1em * $PHONE_LINE_HEIGHT;
+@if( $Option_baseFontSize18 ){
+    $FONTSIZE_UPPER_TABLET : 18;
+}
 
-$WATCH_LINE_HEIGHT     : 1.4 !default;
-$WATCH_LINE_HEIGHT_EM  : 1em * $WATCH_LINE_HEIGHT;
+$FONTSIZE_UPPER_TABLET : $FONTSIZE_DEFAULT !default;
 
-$PRINT_LINE_HEIGHT     : 1.5 !default;
+/*  line-height
+--------------------------------------------------------------------------------------*/
+$BASE_LINE_HEIGHT                : 1.2 !default;
+$BASE_LINE_HEIGHT_EM             : 1em * $BASE_LINE_HEIGHT;
 
+$PARAGRAPH_LINE_HEIGHT           : 1.9 !default;
+$PARAGRAPH_LINE_HEIGHT_EM        : 1em * $PARAGRAPH_LINE_HEIGHT;
+
+$PARAGRAPH_LINE_HEIGHT_PHONE     : 1.6 !default;
+$PARAGRAPH_LINE_HEIGHT_PHONE_EM  : 1em * $PARAGRAPH_LINE_HEIGHT_PHONE;
+
+$PARAGRAPH_LINE_HEIGHT_WATCH     : 1.4 !default;
+$PARAGRAPH_LINE_HEIGHT_WATCH_EM  : 1em * $PARAGRAPH_LINE_HEIGHT_WATCH;
+
+$PARAGRAPH_LINE_HEIGHT_PRINT     : 1.5 !default;
+
+/*  column sizes
+--------------------------------------------------------------------------------------*/
 $PC_SUB_COLUMN_RATIO   : 0.3 !default;
 $PC_MAIN_COLUMN_RATIO  : 1 - $PC_SUB_COLUMN_RATIO;
 $PC_COLUMN_GAP_RATIO   : 0.027 !default;
@@ -31,9 +48,8 @@ $TABLET_H_SPACE          : 3% !default;
 $PHABLET_H_SPACE         : 2% !default;
 $PHONE_H_SPACE           : 1% !default;
 
-$CONTENT_MARGIN_LR       : 2% !default;
-$CONTENT_MARGIN_LR_WSXGA : math.div($CONTENT-MARGIN-LR, 2);
-
+/*  border, outline
+--------------------------------------------------------------------------------------*/
 $BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
 
 /* //_{#ie7-win,#legacy,@ie5mac */
@@ -45,12 +61,3 @@ $INPUT_BORDER_WIDTH   : 2px !default;
 $FORM_ITEM_PADDING_LR : 8px !default;
 
 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH : 2px !default;
-
-$FONTSIZE_DEFAULT : 16;
-
-
-@if( $Option_baseFontSize18 ){
-    $FONTSIZE_UPPER_TABLET : 18;
-}
-
-$FONTSIZE_UPPER_TABLET : $FONTSIZE_DEFAULT !default;
