@@ -1,0 +1,76 @@
+/*
+ * https://qiita.com/tmiame/items/8816d970eacaf450911f
+ * Mixin for placeholder
+ * @include placeholder-color(#00ff00);
+ */
+@mixin placeholder-color($color) {
+    @if( $UA_Modern ){
+        &:placeholder-shown {
+            color : $color;
+        }
+        &::-webkit-input-placeholder {
+            color : $color;
+        }
+        &:-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &::-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &:-ms-input-placeholder {
+            color : $color;
+        }
+    }
+}
+
+@if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+    form :focus {
+        color        : $COLOR_ACCENT;
+        border-color : $COLOR_ACCENT;
+    }
+}
+
+@if( $UA_Modern ){
+    form :invalid {
+        color : $COLOR_WARN;
+    }
+}
+
+textarea, input {
+    @extend %UDFontFamily;
+    border-width : $INPUT_BORDER_WIDTH;
+    @include placeholder-color( $COLOR_Light_casual_text );
+
+    @if( $IS_OLD_OPERA == false ){
+        padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) $FORM_ITEM_PADDING_LR;
+    } @else {
+        // padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
+    }
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    textarea, input {
+        background : $COLOR_Dark_fill;
+        color      : $COLOR_Dark_text;
+        @include placeholder-color( $COLOR_Dark_casual_text );
+    }
+    @if( $CANUSE_ATTR_SELECTOR ){
+        [type=submit] {
+            background : $COLOR_Dark_casual_fill;
+        }
+    }
+}
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native_or_fallback){
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        form :focus {
+            border-style : dotted;
+        }
+    }
+}
