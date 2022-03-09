@@ -1,0 +1,107 @@
+/*  reset
+--------------------------------------------------------------------------------------*/
+    /* remember to define focus styles! */
+    /* //_{#can-focus-pseudo-class */
+    :focus,
+    /* //_}#can-focus-pseudo-class */
+    :active {
+        outline : 0;
+    }
+
+    @include media(forced_colors_native_or_fallback){
+        /* //_{#can-focus-pseudo-class */
+        a:focus,
+        /* //_}#can-focus-pseudo-class */
+        a:active {
+            outline : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH solid;
+        }
+    }
+
+    /* b, */
+    strong, em, dt {
+        font-weight : bold;
+    }
+    
+    blockquote, q {
+        quotes : none;
+    }
+    
+    /* @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        q:before,
+        q:after {
+            content : '';
+            content : none;
+        }
+    } */
+    
+    small {
+        font-size: 75%;
+    }
+
+    @if( $IS_NOT_IE ){
+        sub,
+        sup {
+            font-size      : 75%;
+            line-height    : 0;
+            position       : relative;
+            vertical-align : baseline;
+        }
+        sup {
+            top: -0.5em;
+        }
+        sub {
+            bottom: -0.25em;
+        }
+    }
+    
+    @if( $UA_IE9 ){
+        svg {
+            overflow : hidden;
+        }
+        img:not([src*=".svg"]){ // svg だと height が狂う, 併せて要 viewBox 属性, svg 圧縮ツールで削らないこと
+            height : auto;
+        }
+    } @else {
+        img {
+            @if( $UA_IE7 ){
+                -ms-interpolation-mode : bicubic;
+            }
+            height : auto;
+        }
+    }
+
+    dfn, cite, code, var, samp, kbd, q {
+        font-style : normal;
+    }
+
+    pre {
+        @if( $IS_NOT_IE ){
+            white-space : pre; /* CSS 2.0 */
+        }
+        @include pre-wrap;
+    }
+
+    @if( $UA_IE5 ){
+        pre code,
+        pre samp { width : 100%; }
+    }
+
+    /* remember to highlight inserts somehow! */
+    ins { text-decoration : none; }
+    del { text-decoration : line-through; }
+
+    @if( $UA_IE9 or $UA_Modern ){
+        figure {
+            margin : 0;
+        }
+    }
+
+/*  bugfix
+--------------------------------------------------------------------------------------*/
+    @if( $UA_Opera8 or $IS_Opera7x ){
+        h1, h2, h3, h4, h5, h6 {
+            br {
+                display : block;
+            }
+        }
+    }

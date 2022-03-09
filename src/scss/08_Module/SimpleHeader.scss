@@ -1,0 +1,99 @@
+/* [module] Header
+ *  出現位置は #lH .lMi 下で固定
+ *
+--------------------------------------------------------------------------------------*/
+
+@if( $Option_simpleHeader ){
+    #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
+    #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
+        padding-top : 1em;
+        @if( $UA_IE5 == false ){
+            padding-bottom : 1em;
+        }
+    }
+
+    #lE, #lF {
+        border-width : 1px 0 0;
+    }
+
+    .Header {
+        @include lineHeight(1, 1);
+    }
+
+        .Header h1, .h1 {
+            @if( $Option_mobileOnly == false ){
+                display   : inline;
+            }
+            font-size : 1.5em;
+            margin    : 0 0.5em 0 0;
+        }
+        .Header h1 {
+            @include lineHeight(1, 0);
+            padding : 0;
+        }
+
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
+        .Header {
+            text-align : center;
+        }
+    }
+
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        #lH .lMi {
+            @if( $UA_IE5 == false ){
+                padding-bottom : 0;
+            }
+        }
+
+        .Header {
+            text-align : center;
+        }
+            .Header h1, .h1 {
+                display : block;
+                margin  : 0 0 0.5em;
+            }
+    }
+
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
+        .Header h1, .h1 {
+            font-size : 1.2em;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        #lH {
+            font-size : 0.875em;
+        }
+        #lH .lMi {
+            padding : .5em 0;
+        }
+
+        .Header {
+            text-align : left;
+        }
+            .h1 {
+                font-size : 1em;
+            }
+            .Header h1 {
+                @if( $Option_mobileOnly == false ){
+                    display    : block;
+                }
+                text-align : center;
+                margin     : 0 0 0.5em;
+            }
+            @if( $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false ){
+                .Header h1+span {
+                    display    : block;
+                    text-align : center;
+                }
+            }
+    }
+}

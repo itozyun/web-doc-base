@@ -1,0 +1,32 @@
+hr {
+    border-width : 0 0 1px; /* for high contrast mode */
+    @if( $UA_IE9 or $UA_Modern ){
+        height       : 1px;
+        border-color : transparent;
+    }
+    @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
+        height       : 0;
+        border-color : $COLOR_Default_casual_fill;
+        blockquote & {
+            border-color : $COLOR_Default_casual_text;
+        }       
+    }
+    @include responsive-horizontal-margin(.5, 2em, 2em);
+}
+
+tr hr {
+    margin : 1em 9%;
+}
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    hr {
+        @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
+            border-color : $COLOR_Watch_casual_fill;
+            blockquote & {
+                border-color : $COLOR_Watch_casual_text;
+            }
+        }
+    }
+}

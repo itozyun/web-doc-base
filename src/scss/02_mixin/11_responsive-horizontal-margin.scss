@@ -1,0 +1,41 @@
+@mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $zeroHorizontalMarginWhenXGA : 0){
+    @if( $Option_mobileOnly == false ){
+        @if 1 < $ratio {
+            & {
+                margin  : $marginTop 0 $marginBottom;
+            }
+        } @else if $zeroHorizontalMarginWhenXGA == 1 {
+            & {
+                margin  : $marginTop 0 $marginBottom;
+            }
+        } @else {
+            & {
+                margin  : $marginTop 1em $marginBottom;
+            } 
+        }
+    }
+
+    @include media(tablet_print) {
+        & {
+            margin  : $marginTop math.div($TABLET-H-SPACE, $ratio) $marginBottom;
+        }
+    }
+
+    @include media(phablet) {
+        & {
+            margin  : $marginTop math.div($PHABLET-H-SPACE, $ratio) $marginBottom;
+        }
+    }
+
+    @include media(phone) {
+        & {
+            margin  : $marginTop math.div($PHONE-H-SPACE, $ratio) $marginBottom;
+        }
+    }
+
+    @include media(watch) {
+        & {
+            margin  : $marginTop 0 $marginBottom;
+        }
+    }
+}

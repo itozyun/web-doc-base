@@ -1,0 +1,54 @@
+/*  :link > img
+--------------------------------------------------------------------------------------*/
+%InteractiveObject {
+    :link &, :visited & {
+        border-color : $COLOR_Default_fill;
+        border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+    
+        blockquote & {
+            border-color : $COLOR_Default_casual_fill;
+        }
+    
+        .ribbon & {
+            border-color : $COLOR_Ribbon_fill;
+        }
+    }
+    
+    /* //_{#can-focus-pseudo-class */
+    :link:focus &,
+    :visited:focus &,
+    /* //_}#can-focus-pseudo-class */
+    :link:active &,
+    :visited:active & {
+        border-color : $COLOR_ACCENT !important;
+    }
+    
+    @if( $UA_Gck-097 == false ){ /* 下ではチラツキが激しい */
+        :link:hover &, :visited:hover & {
+            position : relative;
+            top      : 2px;
+        }
+    }
+    
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        :link &, :visited & {
+            border-color : transparent; // filter: brightness(85%); の影響を避ける
+            blockquote & {
+                border-color : transparent;
+            }
+        }
+    }
+    
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
+    /* //_{#can-focus-pseudo-class */
+        :link:focus &, :visited:focus &,
+        /* //_}#can-focus-pseudo-class */
+        :link:active &, :visited:active & {
+            border-style : dotted;
+        }
+    }
+}

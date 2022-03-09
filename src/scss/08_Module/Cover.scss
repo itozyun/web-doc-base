@@ -1,0 +1,238 @@
+/* [module] Cover
+ *  出現位置は #lB .lM1|.lM2 下で固定
+ *
+ * .Cover
+ *   article
+ *     div.Cover-img
+ *       img
+ *       div
+ *         h2
+ *         h3
+ *     div.Cover-meta
+ *       i
+ *     p
+ *     div.Cover-btn
+ *       .btn
+ *     
+--------------------------------------------------------------------------------------*/
+@if( $Option_blog ){
+    .Cover {
+        @include clearfix;
+        margin  : 3.52em 0;
+        /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
+        @include lineHeight(1.4, 1);
+    }
+        .Cover-img {
+            position  : relative;
+            @if( $UA_IE5 == false ){
+                height    : 100%;
+            }
+            margin    : 0 0 0.6em;
+        }
+            .Cover img {
+                margin  : 0;
+                display : block;
+                width   : 100%;
+                @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                    max-width : 100%;
+                }
+            }
+            .Cover .img-loaded div {
+                position : absolute;
+                @if( $UA_IE5 ){
+                    @include clearfix;
+                    top      : 0;
+                } @else {
+                    bottom   : 0;
+                }
+                left     : 0;
+                width    : 100%;
+            }
+                @if( $UA_IE5 ){
+                    .Cover .img-loaded h2 {
+                        float : left;
+                    }
+                }
+
+                .Cover h2 {
+                    @include inline-block;
+                    @if( $UA_IE7 or $UA_IE6 ){
+                        display      : inline;
+                        zoom         : 1;
+                    }
+                    @if( $UA_IE5 or $UA_IE55 ){
+                        display      : inline;
+                        height       : 2.2em;
+                    }
+                    background   : $COLOR_ACCENT;
+                    border-color : $COLOR_ACCENT;
+                    color        : $COLOR_Default_fill;
+                    font-size    : 0.825em;
+                    padding      : 0.6em;
+                    border-width : 1px; /* for high contrast mode */
+                }
+                @if( $CANUSE_CSS_GENERATED_BLOCK ){
+                    .Cover h2:after {
+                        @if( $IS_Opera7x or $UA_Opera8 ){
+                            width : 0;      /* for Opera 7-8 */
+                        } @else {
+                            display : none; /* for iOS4 content:none では消えない */
+                        }
+                    }
+                }
+                .Cover h3 {
+                    font-size  : 1.33em;
+                    padding    : 0.37em;
+                    margin     : 0;
+                    color      : #fff;
+                    @if( $UA_IE9 == false ){
+                        /* clean-css ignore:start */
+                        background : #000;
+                        /* clean-css ignore:end */
+                    }
+                    @if( $UA_Modern or $UA_IE9 ){
+                        background : rgba( 0, 0, 0, .65);
+                    }
+                }
+        .Cover-meta {
+            display    : block;
+            color      : $COLOR_Default_casual_text;
+            margin     : 0 0.5em;
+        }
+            .Cover-meta span {
+                @include inline-block;
+            }
+        .Cover p {
+            margin     : 0.6em 0.5em;
+        }
+        .Cover-btn {
+            text-align : right;
+
+            @if( $IS_LEGACY == false and $IS_LTE_WIN_IE6 == false ){
+                @extend %MoreIcon;
+            }
+        }
+
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
+        .Cover img {
+            width    : auto;
+            float    : left;
+            margin   : 0 1em 1em 0;
+        }
+            .Cover .img-loaded div {
+                position   : static;
+                padding    : 0 0 1em;
+            }
+            .Cover-img div {
+                padding    : 1em;
+            }
+                .Cover h2 {
+                    font-size  : 1em;
+                    padding    : 0.5em;
+                }
+                .Cover h3 {
+                    background : transparent;
+                    color      : $COLOR_Default_text;
+                    padding    : 0.77em 0 0 0;
+                }
+        .Cover-meta, .Cover p {
+            margin-right : 1em;
+        }
+    }
+
+    /*  WQXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WQXGA) {
+        .Cover img {
+            margin   : 0 2em 1em 0;
+        }
+            .Cover .img-loaded div {
+                padding    : 0 0 2em;
+            }
+                .Cover h3 {
+                    font-size : 1.5em;
+                    padding   : 0.67em 0 0 0;
+                }
+        .Cover-meta, .Cover p {
+            margin-right : 2em;
+        }
+    }
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
+        .Cover {
+            margin : 2em auto;
+        }
+    }
+
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+        .Cover {
+            max-width : 400px;
+        }
+    }
+
+    /*  Phone-
+    --------------------------------------------------------------------------------------*/
+    @include media(smallphone) {
+        .Cover img {
+            width    : auto;
+            margin   : 0 1em 1em 0;
+        }
+            .Cover .img-loaded div {
+                position   : static;
+                padding    : 0;
+            }
+                .Cover h2 {
+                    /* float      : left; */
+                    display    : inline-block;
+                    font-size  : 1em;
+                    padding    : 0.5em;
+                    margin     : 0 .5em .5em 0;
+                }
+                .Cover h3 {
+                    background : transparent;
+                    color      : $COLOR_Default_text;
+                    font-size  : 1.5em;
+                    padding    : 0 0 0.33em;
+                }
+        .Cover-meta, .Cover p {
+            margin-left  : 0;
+            margin-right : 0;
+        }
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        .Cover h3 {
+            color   : $COLOR_Watch_text;
+        }    
+        .Cover-meta {
+            color   : $COLOR_Watch_casual_text;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .Cover .img-loaded div {
+            position : static;
+        }
+            .Cover h2 {
+                border-width : 1px;
+                border-color : #000;
+                margin-top   : 1em;
+            }
+            .Cover h2, .Cover h3 {
+                background : #fff;
+                color      : #000;
+            }
+        .Cover-btn {
+            display : none;
+        }
+    }
+}

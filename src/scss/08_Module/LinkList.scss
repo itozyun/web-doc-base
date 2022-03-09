@@ -1,0 +1,67 @@
+/* [module] LinkList
+ *  出現位置は [#lB|#lF] [.lMi|.lSi] 下
+ *
+ *  div.LinkList
+ *   div
+ *    a
+--------------------------------------------------------------------------------------*/
+.LinkList {
+    @extend %LinkListItemBase;
+    @include stackableModule;
+    a {
+        line-height : 1.1;
+        padding     : 1em 0.5em 0.8em;
+        &:active:hover
+        /* //_{#can-focus-pseudo-class */
+        , &:focus:hover
+        /* //_}#can-focus-pseudo-class */
+        {
+            text-decoration : underline !important;
+        }
+    }
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
+        & {
+            padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH 0;
+            a {
+                margin : 0 $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
+            }
+        }
+    }
+}
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .lM .LinkList {
+        @include stackableModule(.2em);
+
+        div {
+            display : inline-block;
+            margin  : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH; /* for highContrast */
+        }
+    }
+}
+
+/*  Phablet
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .LinkList {
+        text-align : center;
+        @include stackableModule(.2em);
+
+        div {
+            display : inline-block;
+            margin  : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH; /* for highContrast */
+        }
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .LinkList a {
+        padding : 0.5em 0;
+    }
+}

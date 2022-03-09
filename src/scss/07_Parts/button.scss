@@ -1,0 +1,52 @@
+/* [parts] button
+ *
+ * .btn:link | input[type=submit].btn
+--------------------------------------------------------------------------------------*/
+.btn {
+    @extend %ButtonBase;
+    @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_text, $COLOR_Ribbon_fill );
+}
+
+input.btn {
+    @if( $UA_IE5 or $UA_IE55 ){
+        padding : .3em 1em #{$BASE_LINE_HEIGHT_EM - 1.3em};
+    }
+    @if( $UA_IE7 or $UA_IE6 ){
+        height  : #{$BASE_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+        padding : .25em 1em #{$BASE_LINE_HEIGHT_EM - 1.25em};
+    }
+    @if( $IS_Opera7x ){
+        padding : 0; // for Opera 7.x
+    }
+    @if( $IS_OLD_GECKO ){
+        & {
+            line-height : 1;
+            padding     : math.div($BASE-LINE-HEIGHT-EM - 1em, 2) 1em;
+        }
+    }
+}
+
+@if( $UA_Modern ){
+    /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
+    * iOSでのデフォルトスタイルをリセット */
+    input.btn::-webkit-search-decoration {
+        display : none;
+    }
+    input.btn:focus {
+        outline-offset : -2px;
+    }
+}
+
+/* //_<bottom50 */
+.baseColor .btn {
+    @include button-colors( $COLOR_Default_link, $COLOR_Default_text, $COLOR_Default_fill );
+}
+/* //_>bottom50 */
+
+/*  Dark theme
+--------------------------------------------------------------------------------------*/
+@include media(dark_theme) {
+    .baseColor .btn {
+        @include button-colors( $COLOR_Watch_link, $COLOR_Watch_text, $COLOR_Watch_fill );
+    }
+}

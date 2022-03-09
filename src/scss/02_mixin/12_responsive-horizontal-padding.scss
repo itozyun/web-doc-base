@@ -1,0 +1,32 @@
+@mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom){
+    & {
+        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
+    }
+    li &, dl &, tr &, .note & {
+        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
+    }
+
+    @include media(tablet_print) {
+        &, .note & {
+            padding : $paddingTop #{$TABLET_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(phablet) {
+        &, .note & {
+            padding : $paddingTop #{$PHABLET_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(phone) {
+        &, .note & {
+            padding : $paddingTop #{$PHONE_H_SPACE} $paddingBottom;
+        }
+    }
+
+    @include media(watch) {
+        &, .note & {
+            padding : $paddingTop 2px $paddingBottom;
+        }
+    }   
+}

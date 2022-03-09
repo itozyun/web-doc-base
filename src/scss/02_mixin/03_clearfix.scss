@@ -1,0 +1,57 @@
+/* ClearFix
+ *   https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
+--------------------------------------------------------------------------------------*/
+
+@mixin create-CSS-generated-block() {
+    & {
+        /* Gecko <=1.9.0 do not support CSS-P. */
+        /* Opera <7.20, do not support CSS-P. */
+        @if( $CANUSE_CSS_GENERATED_BLOCK ){
+            content : " ";
+            display : block;
+        }
+    }
+}
+
+@mixin clearfix {
+    @if( $UA_IE9 or $UA_IE8 or $UA_IE7 ){
+        overflow : hidden;
+    }
+    @if( $UA_IE6 or $UA_IE55 ){
+        zoom : 1;
+    }
+    @if( $UA_IE5 ){
+        height : 1%;
+    }
+    @if( $UA_MacIE5 ){
+        display : inline-table;
+    }
+    @if( $UA_Gck-097 or $UA_Gck101-121 ){
+        position : relative; /* for Gecko 0.9.4.1, 1.0.2 */
+    }
+
+    @if( $IS_NOT_IE ){
+        &:after {
+            visibility : hidden;
+            clear      : both;
+            @if( $UA_Gck130-190 ){
+                content : ".";    /* for Gecko 1.3~1.5 */
+            } @else {
+                content : "";
+            };
+            @if( $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 ){
+                height : 0;       /* for Gecko 0.9~1.7.5 & Opera 9~11(+contentEditable) */
+            }
+            @if( $UA_Gck101-121 ){
+                display : inline; /* Gecko 1.0.2 で隙間が出来るのを回避 */
+            } @else if( $UA_Modern or $IS_OLD_OPERA or $UA_Gck130-190 ){
+                display : block;  /* for Gecko 1.3~ & Opera */
+            }
+            @if( $UA_Gck130-190 ){
+                @-moz-document url-prefix() { /* override Gecko 1.8~ */
+                    content : "";
+                }
+            }
+        }
+    }
+}

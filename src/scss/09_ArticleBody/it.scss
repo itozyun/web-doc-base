@@ -1,0 +1,102 @@
+/* it
+--------------------------------------------------------------------------------------*/
+@if( $Option_it ){
+    code, var, kbd, samp /* , pre, tt */ {
+        @extend %CodingFontFamily;
+    }
+
+    kbd {
+        @include inline-block;
+        border-width   : 1px;
+        border-color   : $COLOR_Default_text;
+        cursor         : pointer;
+        letter-spacing : -1px;
+        padding        : 0 .4em;
+        margin         : 0 .1em;
+
+        @include border-radius(3px);
+        @if( $CANUSE_HOVER_PSEUDO_CLASS ){
+            &:hover {
+                position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
+                top      : -0.1em;
+            }
+        }
+    }
+
+    code, var {
+        background : $COLOR_Default_casual_fill;
+        padding    : .1em .4em;
+        margin     : 0 .1em;
+
+        a:active &
+        /* //_{#can-focus-pseudo-class */
+        , a:focus &
+        /* //_}#can-focus-pseudo-class */
+        {
+            @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+                background : Highlight;
+            } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+                background : $COLOR_ACCENT;
+            }
+        }
+
+        pre & {
+            background : none !important;
+            padding    : 0;
+            margin     : 0;
+        }
+
+        blockquote &, tbody th &, blockquote .tl tr & {
+            background : $COLOR_Default_casual_text;
+            color      : $COLOR_Default_fill;
+        }
+        thead &, blockquote tbody th &, .tl tr & {
+            background : $COLOR_Default_casual_fill;
+            color      : $COLOR_Default_text;
+        }
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        kbd {
+            border-color : $COLOR_Watch_text;
+        }
+        code, var {
+            background : $COLOR_Watch_casual_fill;
+
+            blockquote &, tbody th &, blockquote .tl tr & {
+                background : $COLOR_Watch_casual_text;
+                color      : $COLOR_Watch_fill;
+            }
+            thead &, blockquote tbody th &, .tl tr & {
+                background : $COLOR_Watch_casual_fill;
+                color      : $COLOR_Watch_text;
+            }
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        kbd {
+            border-color : $COLOR_Print_text;
+        }
+        code, var {
+            background   : none;
+            border-width : 1px;
+            border-color : $COLOR_Print_casual_fill;
+
+            blockquote &, tbody th &, thead & {
+                border-color : $COLOR_Print_casual_text;
+            }
+            blockquote &, tbody th &, blockquote .tl tr &,
+            thead &, blockquote tbody th &, .tl tr & {
+                color : $COLOR_Print_text;
+            }
+        }
+        pre code {
+            border : 0;
+        }
+    }
+}
