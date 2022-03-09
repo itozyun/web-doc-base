@@ -15,6 +15,26 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
+.Cover-btn i,
+.Magazine-jump i,
+.Pager i,
+.chatL p:after,
+.chatR p:after {
+  display: none
+}
+.jsCanRotate .Cover-btn i,
+.jsCanRotate .Magazine-jump i {
+  border-width: 0 .15em .15em 0;
+  display: inline-block;
+  width: .45em;
+  height: .45em;
+  transform: rotate(-45deg);
+  top: 0
+}
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
 a:active,
 a:focus {
   outline: solid 2px
@@ -37,26 +57,6 @@ thead th {
 }
 tbody td {
   border-width: 0 0 1px
-}
-.Cover-btn i,
-.Magazine-jump i,
-.Pager i,
-.chatL p:after,
-.chatR p:after {
-  display: none
-}
-.jsCanRotate .Cover-btn i,
-.jsCanRotate .Magazine-jump i {
-  border-width: 0 .15em .15em 0;
-  display: inline-block;
-  width: .45em;
-  height: .45em;
-  transform: rotate(-45deg);
-  top: 0
-}
-.LinkList a:hover,
-.RichLink-sep a:hover {
-  text-decoration: underline!important
 }
 .LinkList {
   padding: 2px 0

@@ -12,6 +12,10 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
 a:active {
   outline: solid 2px
 }
@@ -33,10 +37,6 @@ thead th {
 }
 tbody td {
   border-width: 0 0 1px
-}
-.LinkList a:hover,
-.RichLink-sep a:hover {
-  text-decoration: underline!important
 }
 .LinkList {
   padding: 2px 0
