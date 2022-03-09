@@ -33,7 +33,6 @@ blockquote {
     .js-bqLink {
         @include responsive-horizontal-margin(2, 0, 0);
         font-size   : 0.875em;
-        line-height : 1.2;
         color       : $COLOR_Default_link;
     }
     /* //_{#can-content */
@@ -44,7 +43,6 @@ blockquote {
         @include unbreak-pane; /* 長い url 用 */
         display     : block;
         font-size   : 0.875em;
-        line-height : 1.2;
         text-align  : right;
         color       : $COLOR_Default_casual_text;
     }

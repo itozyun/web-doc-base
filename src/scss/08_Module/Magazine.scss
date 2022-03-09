@@ -52,10 +52,9 @@
         @include clearfix;
         @include unbreak-inside;
         padding : 1em 0;
-        @include lineHeight(1.2, 1);
     }
         .Magazine-date {
-            @include lineHeight(1, 1);
+            @include line-height(1, 1);
 
             display     : block;
             float       : left;

@@ -7,8 +7,6 @@
 
     .links a {
         padding-left : 1em;
-        @include lineHeight(1.2, 1);
-
         @include inline-block;
         
         @if( $CANUSE_CSS_GENERATED_BLOCK ){

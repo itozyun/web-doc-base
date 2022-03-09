@@ -20,7 +20,7 @@
         @include clearfix;
         margin  : 3.52em 0;
         /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
-        @include lineHeight(1.4, 1);
+        @include line-height(1.4, 1);
     }
         .Cover-img {
             position  : relative;

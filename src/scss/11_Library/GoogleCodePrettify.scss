@@ -5,12 +5,9 @@
         /* @include unbreak-inside; */
         background : #333;
         color      : #fff;
-
-        @include responsive-horizontal-padding(1, 1em, 1em);
-        @include lineHeight(1.2, 0);
-
         border-width : 1px;
         border-color : #333;
+        @include responsive-horizontal-padding(1, 1em, 1em);
     }
         .prettyprint code {
             font-size : 0.875em;

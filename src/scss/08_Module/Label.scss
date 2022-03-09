@@ -25,7 +25,6 @@
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                     @include inline-block;
                     margin      : 0 0 1.7em;
-                    line-height : 1.2;
                 } @else {
                     line-height : 2.8;
                 }

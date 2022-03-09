@@ -9,7 +9,6 @@
 --------------------------------------------------------------------------------------*/
 .SearchResult {
     margin-bottom : 2em;
-    @include lineHeight(1.2, 1);
 }
     .SearchResult p {
         margin : 0.5em;
@@ -31,6 +30,7 @@
             .SearchResult div p {
                 margin : 0.2em 0 0;
                 color  : #545454;
+                @include line-height(1.2, 0);
             }
                 .SearchResult div span {
                     color : #808080;

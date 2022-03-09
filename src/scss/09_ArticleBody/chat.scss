@@ -29,7 +29,6 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
         .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
             @include unbreak-inside;
             @include unbreak-after;
-            @include lineHeight(1.2, 0);
             font-size    : 1em;
             color        : #fff;
             background   : #5D769E;
@@ -39,6 +38,9 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
             padding      : .4em $CAHT_HORIZONTAL_MARGIN;
             @include inline-block;
             @include border-radius(.4em);
+        }
+        .chat p {
+            @include line-height(1.2, 0);
         }
         .chatL, .chatR {
             position   : relative;

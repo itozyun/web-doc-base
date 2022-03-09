@@ -139,10 +139,9 @@
             }
 
             .AHead-labels a {
-            @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-                display : inline;
-            }
-                line-height  : 1.2;
+                @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
+                    display : inline;
+                }
                 border-width : 0;
                 padding      : 0;
                 margin       : 0;

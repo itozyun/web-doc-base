@@ -48,11 +48,11 @@
 
     @if( $UA_IE5 ){
         * {
-            line-height : $PARAGRAPH_LINE_HEIGHT;
+            line-height : $BASE_LINE_HEIGHT;
         }
     } @else {
         body {
-            line-height : $PARAGRAPH_LINE_HEIGHT;
+            line-height : $BASE_LINE_HEIGHT;
         }
     }
 
@@ -69,13 +69,5 @@
 @include media(watch) {
     body {
         font-size : 0.75em;
-    }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    body {
-        line-height : $PARAGRAPH_LINE_HEIGHT_PRINT; /* for paper save */
     }
 }

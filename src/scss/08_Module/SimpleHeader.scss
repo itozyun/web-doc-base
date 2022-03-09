@@ -17,7 +17,7 @@
     }
 
     .Header {
-        @include lineHeight(1, 1);
+        @include line-height(1, 1);
     }
 
         .Header h1, .h1 {
@@ -28,7 +28,7 @@
             margin    : 0 0.5em 0 0;
         }
         .Header h1 {
-            @include lineHeight(1, 0);
+            @include line-height(1, 0);
             padding : 0;
         }
 

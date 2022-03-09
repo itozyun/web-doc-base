@@ -5,7 +5,6 @@
 .BreadcrumbList {
     padding : 1em 0;
     color   : $COLOR_Default_casual_text;
-    @include lineHeight(1.2, 0);
 
     a {
         @if( $UA_Gck-097 == false ){

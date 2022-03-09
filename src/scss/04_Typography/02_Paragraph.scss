@@ -1,0 +1,35 @@
+/*  line-height for <p>
+--------------------------------------------------------------------------------------*/
+p {
+    @include line-height($PARAGRAPH_LINE_HEIGHT, 0);
+}
+
+tr, li, dd {
+    p {
+        @include line-height($BASE_LINE_HEIGHT, 0);
+    }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    p {
+        line-height : $PARAGRAPH_LINE_HEIGHT_PHONE;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    p {
+        line-height : $PARAGRAPH_LINE_HEIGHT_WATCH;
+    }
+}
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    p {
+        @include line-height($PARAGRAPH_LINE_HEIGHT_PRINT, 0);/* for paper saving */
+    }
+}

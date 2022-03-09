@@ -22,22 +22,6 @@
     :visited:hover { color : $COLOR_Default_visited_hover; }
 }
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .aBodyRoot {
-        line-height : $PARAGRAPH_LINE_HEIGHT_PHONE;
-    }
-}
-
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .aBodyRoot {
-        line-height : $PARAGRAPH_LINE_HEIGHT_WATCH;
-    }
-}
-
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {

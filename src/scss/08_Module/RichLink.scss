@@ -33,7 +33,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 }
     .RichLink-sep {
         @extend %LinkListItemBase;
-        @include lineHeight(1.4, 1);
+        @include line-height(1.4, 1);
     }
         .RichLink a {
             @include clearfix;

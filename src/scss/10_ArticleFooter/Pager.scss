@@ -36,7 +36,6 @@
                 /* overflow      : hidden; */
                 /* white-space   : nowrap; */
                 /* text-overflow : ellipsis; */
-                line-height   : 1.2;
 
                 @include media(forced_colors_fallback){
                     & {

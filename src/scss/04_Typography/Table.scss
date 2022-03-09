@@ -33,12 +33,11 @@ table {
         border-collapse : collapse;
         empty-cells     : show;
         border-spacing  : 0;
-        @include lineHeight(1.2, 1);
         @include responsive-horizontal-margin(1, 1em, 1em);
     }
 
     caption {
-        @include responsive-horizontal-margin(1, 1.5em, #{$PARAGRAPH_LINE_HEIGHT_EM - 1.2em}); // $PARAGRAPH_LINE_HEIGHT_WATCH
+        @include responsive-horizontal-margin(1, 1.5em, #{$PARAGRAPH_LINE_HEIGHT_EM - $BASE_LINE_HEIGHT_EM}); // $PARAGRAPH_LINE_HEIGHT_WATCH
     }
 
     tr {

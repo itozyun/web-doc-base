@@ -1,4 +1,4 @@
-@mixin lineHeight($height, $onlyChildren) {
+@mixin line-height($height, $onlyChildren) {
     $VALID_LINEHEIGHT : if($UA_IE5, false, true);
 
     @if $VALID_LINEHEIGHT or $onlyChildren == 0 {

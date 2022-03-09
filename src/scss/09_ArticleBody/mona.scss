@@ -2,7 +2,7 @@
 /* http://b4t.jp/823 */
 @if( $Option_mona ){
     %Mona {
-        @include lineHeight(1.125, 0);
+        @include line-height(1.125, 0);
 
         @if( $IS_LTE_WIN_IE6 ){
             font-family:Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
