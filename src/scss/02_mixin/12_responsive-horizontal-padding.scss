@@ -8,19 +8,19 @@
 
     @include media(tablet_print) {
         &, .note & {
-            padding : $paddingTop #{$TABLET_H_SPACE} $paddingBottom;
+            padding : $paddingTop $TABLET_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 
     @include media(phablet) {
         &, .note & {
-            padding : $paddingTop #{$PHABLET_H_SPACE} $paddingBottom;
+            padding : $paddingTop $PHABLET_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 
     @include media(phone) {
         &, .note & {
-            padding : $paddingTop #{$PHONE_H_SPACE} $paddingBottom;
+            padding : $paddingTop $PHONE_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 

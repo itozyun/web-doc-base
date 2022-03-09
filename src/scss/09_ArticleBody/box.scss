@@ -52,7 +52,7 @@
         img, .caption, iframe
         //, embed, object, video
         {
-            margin  : 0 1em 1em $TABLET_H_SPACE;
+            margin  : 0 1em 1em $TABLET_HORIZONTAL_MARGIN;
         }
     }
 }
@@ -64,7 +64,7 @@
         img, .caption, iframe
         //, embed, object, video
         {
-            margin  : 0 1em 1em $PHABLET_H_SPACE;
+            margin  : 0 1em 1em $PHABLET_HORIZONTAL_MARGIN;
         }
     }
 }
@@ -81,7 +81,7 @@
         img, .caption, iframe
         //, embed, object, video
         {
-            margin  : 0 1em 1em $PHONE_H_SPACE;
+            margin  : 0 1em 1em $PHONE_HORIZONTAL_MARGIN;
         }
     }
 }

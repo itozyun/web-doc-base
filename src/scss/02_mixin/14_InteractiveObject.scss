@@ -13,23 +13,21 @@
             border-color : $COLOR_Ribbon_fill;
         }
     }
-    
-    /* //_{#can-focus-pseudo-class */
-    :link:focus &,
-    :visited:focus &,
-    /* //_}#can-focus-pseudo-class */
-    :link:active &,
-    :visited:active & {
-        border-color : $COLOR_ACCENT !important;
+
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        :link:active &, :visited:active & { border-color : $COLOR_ACCENT !important; }
     }
-    
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        :link:focus &, :visited:focus & { border-color : $COLOR_ACCENT !important; }
+    }
+
     @if( $UA_Gck-097 == false ){ /* 下ではチラツキが激しい */
         :link:hover &, :visited:hover & {
             position : relative;
             top      : 2px;
         }
     }
-    
+
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
@@ -44,11 +42,11 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
-    /* //_{#can-focus-pseudo-class */
-        :link:focus &, :visited:focus &,
-        /* //_}#can-focus-pseudo-class */
-        :link:active &, :visited:active & {
-            border-style : dotted;
+        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+            :link:active &, :visited:active & { border-style : dotted;; }
+        }
+        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+            :link:focus &, :visited:focus & { border-style : dotted;; }
         }
     }
 }

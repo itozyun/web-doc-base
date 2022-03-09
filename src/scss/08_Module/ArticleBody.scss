@@ -89,8 +89,8 @@
         text-align : center;
     }
     .ABody h1, .ABody h2, .ABody h3 {
-        padding-left  : math.div($TABLET-H-SPACE, 2);
-        padding-right : math.div($TABLET-H-SPACE, 2);
+        padding-left  : math.div($TABLET_HORIZONTAL_MARGIN, 2);
+        padding-right : math.div($TABLET_HORIZONTAL_MARGIN, 2);
     }
 }
 
@@ -98,8 +98,8 @@
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
     .ABody h1, .ABody h2, .ABody h3 {
-        padding-left   : math.div($PHABLET-H-SPACE, 2);
-        padding-right  : math.div($PHABLET-H-SPACE, 2);
+        padding-left   : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
+        padding-right  : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
     }
 }
 
@@ -113,8 +113,8 @@
         font-size : 1.25em;
     }
     .ABody h1, .ABody h2, .ABody h3 {
-        padding-left  : math.div($PHONE-H-SPACE, 2);
-        padding-right : math.div($PHONE-H-SPACE, 2);
+        padding-left  : math.div($PHONE_HORIZONTAL_MARGIN, 2);
+        padding-right : math.div($PHONE_HORIZONTAL_MARGIN, 2);
     }
 }
 

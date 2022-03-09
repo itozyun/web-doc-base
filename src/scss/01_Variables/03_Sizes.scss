@@ -44,9 +44,10 @@ $WQXGA_COLUMN_GAP_EM     : 2.6em !default;
 $WQXGA_MAX_WIDTH_EM      : 150em !default;
 
 $TABLET_MAX_WIDTH_EM     : 50em !default;
-$TABLET_H_SPACE          : 3% !default;
-$PHABLET_H_SPACE         : 2% !default;
-$PHONE_H_SPACE           : 1% !default;
+
+$TABLET_HORIZONTAL_MARGIN  : 3% !default;
+$PHABLET_HORIZONTAL_MARGIN : 2% !default;
+$PHONE_HORIZONTAL_MARGIN   : 1% !default;
 
 /*  border, outline
 --------------------------------------------------------------------------------------*/
@@ -60,4 +61,4 @@ $FORM_ITEM_PADDING_LR : 0.4em !default;
 $INPUT_BORDER_WIDTH   : 2px !default;
 $FORM_ITEM_PADDING_LR : 8px !default;
 
-$HIGH_CONTRUST_FOCUS_BORDER_WIDTH : 2px !default;
+$FORCED_COLORS_FOCUS_BORDER_WIDTH : 2px !default;

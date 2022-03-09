@@ -116,7 +116,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     .RichLink-meta {
         font-size : 1em * $RICHLINK_TEXT_SIZE;
-        margin    : math.div(1em, $RICHLINK-TEXT-SIZE) 0;
+        margin    : math.div(1em, $RICHLINK_TEXT_SIZE) 0;
         span {
             @include inline-block;
         }
@@ -137,7 +137,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         @if( $UA_IE7 or $UA_IE6 ){
             padding : 0;
         } @else {
-            padding : 0 0 math.div(0.8em, $RICHLINK-TEXT-SIZE);
+            padding : 0 0 math.div(0.8em, $RICHLINK_TEXT_SIZE);
         }
     }
 
@@ -175,7 +175,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
             margin : 0 0.5em 0.6em 0;
         }
         .RichLink b {
-            padding   : 0 0 math.div(0.5em, $RICHLINK-TEXT-SIZE);
+            padding   : 0 0 math.div(0.5em, $RICHLINK_TEXT_SIZE);
             font-size : 1em;
         }
 }
@@ -248,7 +248,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_fallback){
     .RichLink {
-        padding : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH;
+        padding : $FORCED_COLORS_FOCUS_BORDER_WIDTH;
         a {
             border-width : 0;
         }

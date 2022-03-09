@@ -4,19 +4,19 @@
 table {
     @include media(tablet) {
         & {
-            width : 100% - $TABLET_H_SPACE * 2;
+            width : 100% - $TABLET_HORIZONTAL_MARGIN * 2;
         }
     }
 
     @include media(phablet) {
         & {
-            width : 100% - $PHABLET_H_SPACE * 2;
+            width : 100% - $PHABLET_HORIZONTAL_MARGIN * 2;
         }
     }
 
     @include media(phone) {
         & {
-            width : 100% - $PHONE_H_SPACE * 2;
+            width : 100% - $PHONE_HORIZONTAL_MARGIN * 2;
         }
     }
 

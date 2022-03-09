@@ -20,7 +20,7 @@
                 border-color : $COLOR_Light_text;
             }
         }
-        @media (min-width: #{1em * math.div($MEDIAQUERY-TABLET-MAX-PX + 1, 16)}) and (prefers-color-scheme:dark) {
+        @media (min-width: #{1em * math.div($MEDIAQUERY_TABLET_MAX_PX + 1, 16)}) and (prefers-color-scheme:dark) {
             #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
                 border-color : $COLOR_Ribbon_text;
             }

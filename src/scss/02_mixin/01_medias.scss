@@ -49,7 +49,7 @@ $COMMENT_OUT : (
                 /* //_{@modern */
                 only
                 /* //_}@modern */
-                screen and (min-width: #{1em * math.div($MEDIAQUERY-TABLET-MAX-PX + 1, $FONTSIZE-UPPER-TABLET)})
+                screen and (min-width: #{1em * math.div($MEDIAQUERY_TABLET_MAX_PX + 1, $FONTSIZE_UPPER_TABLET)})
                 { @content; }
         }
         @else if $media == 'WSXGA' {

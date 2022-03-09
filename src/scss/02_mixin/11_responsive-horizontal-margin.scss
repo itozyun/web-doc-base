@@ -17,25 +17,25 @@
 
     @include media(tablet_print) {
         & {
-            margin  : $marginTop math.div($TABLET-H-SPACE, $ratio) $marginBottom;
+            margin : $marginTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
         }
     }
 
     @include media(phablet) {
         & {
-            margin  : $marginTop math.div($PHABLET-H-SPACE, $ratio) $marginBottom;
+            margin : $marginTop math.div($PHABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
         }
     }
 
     @include media(phone) {
         & {
-            margin  : $marginTop math.div($PHONE-H-SPACE, $ratio) $marginBottom;
+            margin : $marginTop math.div($PHONE_HORIZONTAL_MARGIN, $ratio) $marginBottom;
         }
     }
 
     @include media(watch) {
         & {
-            margin  : $marginTop 0 $marginBottom;
+            margin : $marginTop 0 $marginBottom;
         }
     }
 }

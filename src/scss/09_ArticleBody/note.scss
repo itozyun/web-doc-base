@@ -32,19 +32,19 @@ dl.note dd {
     blockquote dl {
         @include media(tablet_print) {
             & {
-                margin-right : $TABLET_H_SPACE;
+                margin-right : $TABLET_HORIZONTAL_MARGIN;
             }
         }
     
         @include media(phablet) {
             & {
-                margin-right : $PHABLET_H_SPACE;
+                margin-right : $PHABLET_HORIZONTAL_MARGIN;
             }
         }
     
         @include media(phone) {
             & {
-                margin-right : $PHONE_H_SPACE;
+                margin-right : $PHONE_HORIZONTAL_MARGIN;
             }
         }
     
