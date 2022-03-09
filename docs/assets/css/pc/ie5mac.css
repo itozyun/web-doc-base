@@ -109,7 +109,7 @@ blockquote :visited img {
 .Subscribe a,
 .btn {
   display: inline-block;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1;
@@ -138,7 +138,7 @@ tr p {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -288,9 +288,7 @@ small {
 }
 input,
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  padding: .45em .4em
+  font-size: 1em
 }
 img {
   height: auto
@@ -312,12 +310,6 @@ del {
 textarea {
   overflow: auto;
   margin: 0
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 * {
   border-style: solid;
@@ -504,6 +496,12 @@ tbody th {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -537,6 +535,11 @@ a:focus * {
 a:active,
 a:focus {
   background-color: #29a119!important
+}
+input,
+textarea {
+  border-width: .1em;
+  padding: .45em .4em
 }
 h2 {
   margin: 0;
@@ -963,8 +966,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Magazine-item {
@@ -1473,8 +1476,8 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
+.Pager :active i,
+.Pager :focus i {
   border-color: #29a119 #fff
 }
 .Pager-top i {
@@ -1482,8 +1485,8 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 #f8fbfa
 }
-.Pager-top :focus i,
-.Pager-top a:active i {
+.Pager-top :active i,
+.Pager-top :focus i {
   border-color: #fff #29a119
 }
 .SocialBtns {

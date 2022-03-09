@@ -263,7 +263,7 @@ blockquote :visited img {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -410,11 +410,6 @@ ins {
 del {
   text-decoration: line-through
 }
-input,
-textarea {
-  border-width: 2px;
-  padding: .45em 8px
-}
 input {
   font-size: 1em;
   box-sizing: content-box;
@@ -432,12 +427,6 @@ textarea {
   font-size: 1em;
   overflow: auto;
   margin: 0
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 *,
 :after,
@@ -642,6 +631,12 @@ tbody th {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -683,6 +678,11 @@ h2:after {
 a:active,
 a:focus {
   background-color: #29a119!important
+}
+input,
+textarea {
+  border-width: 2px;
+  padding: .45em 8px
 }
 h2 {
   margin: 0;
@@ -796,9 +796,8 @@ tbody :hover td {
   border-color: #f8fbfa #f8fbfa #29a119;
   color: #29a119
 }
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
+tbody :hover th a:active,
+tbody :hover th a:focus {
   background: #fff!important;
   color: #29a119!important
 }
@@ -1361,8 +1360,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Header,
@@ -1895,8 +1894,8 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
+.Pager :active i,
+.Pager :focus i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1904,8 +1903,8 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top :focus i,
-.Pager-top a:active i {
+.Pager-top :active i,
+.Pager-top :focus i {
   border-color: #fff transparent
 }
 .SocialBtns {

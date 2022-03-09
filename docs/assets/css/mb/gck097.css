@@ -170,37 +170,23 @@ blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-.AHead-labels a:link:active,
 .AHead-labels a:link:focus,
-.AHead-labels a:visited:active,
 .AHead-labels a:visited:focus,
-.Subscribe .atom:link:active,
 .Subscribe .atom:link:focus,
-.Subscribe .atom:visited:active,
 .Subscribe .atom:visited:focus,
-.Subscribe .fl:link:active,
 .Subscribe .fl:link:focus,
-.Subscribe .fl:visited:active,
 .Subscribe .fl:visited:focus,
-.Subscribe .rss:link:active,
 .Subscribe .rss:link:focus,
-.Subscribe .rss:visited:active,
 .Subscribe .rss:visited:focus,
-.Subscribe .stm:link:active,
 .Subscribe .stm:link:focus,
-.Subscribe .stm:visited:active,
 .Subscribe .stm:visited:focus,
-.btn:link:active,
 .btn:link:focus,
-.btn:visited:active,
 .btn:visited:focus,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
 :link:focus img,
-:visited:active img,
 :visited:focus img {
   border-color: #29a119!important
 }
@@ -209,7 +195,7 @@ blockquote :visited img {
 .Subscribe a,
 .btn {
   display: -moz-inline-box;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
@@ -228,17 +214,12 @@ blockquote :visited img {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
 a:focus:hover {
   text-decoration: underline
 }
-.AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
 .SocialBtns a:focus,
-.Subscribe a:active,
 .Subscribe a:focus,
-.btn:active,
 .btn:focus {
   border-color: #29a119;
   color: #29a119;
@@ -303,7 +284,6 @@ thead var {
   background: #052209;
   color: #ecfae8
 }
-:active,
 :focus {
   outline: 0
 }
@@ -324,10 +304,7 @@ sup {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: .1em;
-  padding: .45em .4em;
-  -moz-box-sizing: border-box
+  margin: 0
 }
 sup {
   top: -.5em
@@ -360,25 +337,15 @@ pre {
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
-.aBodyRoot a:active,
 .aBodyRoot a:focus,
 :link,
 :visited,
-a:active,
 a:focus,
 ins {
   text-decoration: none
 }
 del {
   text-decoration: line-through
-}
-input[type=submit] {
-  -moz-box-sizing: content-box
-}
-:-gck-lte142,
-_:-moz-any-link,
-input[type=submit] {
-  -moz-box-sizing: border-box
 }
 input {
   line-height: 1;
@@ -396,17 +363,19 @@ tr p {
 [type=hidden] {
   display: none
 }
+input[type=submit] {
+  -moz-box-sizing: content-box
+}
+:-gck-lte142,
+_:-moz-any-link,
+input[type=submit] {
+  -moz-box-sizing: border-box
+}
 input[type=submit]:-moz-focus-inner {
   border: 0
 }
 textarea {
   overflow: auto
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 *,
 .tl,
@@ -538,25 +507,15 @@ li ul {
   margin-top: 0;
   margin-bottom: 0
 }
-.SocialBtns .hb:link:active,
 .SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
 .SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
 .SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
 .SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
 .SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
 .SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
 .SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
 .SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
 .baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
 .baseColor .btn:visited:focus,
 .chat,
 a,
@@ -575,6 +534,12 @@ tbody th {
 .tl thead th,
 :visited {
   color: #021605
+}
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
 }
 :visited:hover {
   color: #419;
@@ -599,6 +564,12 @@ tbody th {
   color: #b3f;
   border-color: #b3f
 }
+a:focus {
+  background-color: #ecf1bf!important
+}
+.ribbon a:focus {
+  background-color: #666!important
+}
 :target,
 :target * {
   background: #29a119!important;
@@ -608,6 +579,12 @@ tbody th {
 .baseColor,
 .medal {
   background: #f8fbfa
+}
+input,
+textarea {
+  -moz-box-sizing: border-box;
+  border-width: .1em;
+  padding: .45em .4em
 }
 h2 {
   border-width: 0 0 2px;
@@ -1080,8 +1057,7 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Header,
@@ -1560,8 +1536,7 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
+.Pager :focus i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1569,8 +1544,7 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top :focus i,
-.Pager-top a:active i {
+.Pager-top :focus i {
   border-color: #fff transparent
 }
 .SocialBtns {
@@ -1598,13 +1572,9 @@ dl.note dd {
   border-color: #3b5999;
   color: #3b5999
 }
-.SocialBtns .fb:link:active,
 .SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:active,
 .SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:active,
 .SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:active,
 .SocialBtns .pt:visited:focus {
   border-color: #fff
 }

@@ -168,7 +168,7 @@ blockquote :visited img {
 .Subscribe a,
 .btn {
   display: inline-block;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
@@ -191,7 +191,7 @@ th {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -304,10 +304,7 @@ sup {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: .1em;
-  padding: .45em .4em;
-  -moz-box-sizing: border-box
+  margin: 0
 }
 sup {
   top: -.5em
@@ -389,12 +386,6 @@ input::-moz-focus-inner {
 }
 textarea {
   overflow: auto
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 * {
   border-style: solid;
@@ -571,6 +562,12 @@ tbody th {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -617,6 +614,12 @@ a:focus {
 .baseColor,
 .medal {
   background: #f8fbfa
+}
+input,
+textarea {
+  -moz-box-sizing: border-box;
+  border-width: .1em;
+  padding: .45em .4em
 }
 h2 {
   margin: 0;
@@ -727,9 +730,8 @@ tbody :hover td {
   border-color: #f8fbfa #f8fbfa #29a119;
   color: #29a119
 }
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
+tbody :hover th a:active,
+tbody :hover th a:focus {
   background: #fff!important;
   color: #29a119!important
 }
@@ -1078,8 +1080,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Magazine-date {
@@ -1624,8 +1626,8 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
+.Pager :active i,
+.Pager :focus i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1633,8 +1635,8 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top :focus i,
-.Pager-top a:active i {
+.Pager-top :active i,
+.Pager-top :focus i {
   border-color: #fff transparent
 }
 .SocialBtns {

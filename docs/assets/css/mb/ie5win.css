@@ -181,7 +181,7 @@ hr {
 .SocialBtns a,
 .Subscribe a,
 .btn {
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1;
@@ -362,11 +362,6 @@ pre {
 }
 del {
   text-decoration: line-through
-}
-input,
-textarea {
-  border-width: .1em;
-  padding: .45em .4em
 }
 input {
   font-size: 1em;
@@ -561,6 +556,11 @@ a:active * {
 }
 a:active {
   background-color: #29a119!important
+}
+input,
+textarea {
+  border-width: .1em;
+  padding: .45em .4em
 }
 h2 {
   margin: 0;
@@ -1007,7 +1007,7 @@ kbd {
 .chatMember {
   line-height: 1
 }
-.LinkList a:active:hover {
+.LinkList :active:hover {
   text-decoration: underline!important
 }
 .RichLink a {

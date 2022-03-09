@@ -182,7 +182,7 @@ blockquote :visited img {
 .btn {
   display: inline-block;
   vertical-align: top;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
@@ -205,7 +205,7 @@ th {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -374,11 +374,6 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-.Search input,
-input,
-textarea {
-  border-width: .1em
-}
 input {
   height: 2.1em;
   line-height: 1
@@ -392,12 +387,6 @@ tr p {
 }
 textarea {
   overflow: auto
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 *,
 .tl,
@@ -453,19 +442,6 @@ acronym,
 dfn {
   text-decoration: none;
   cursor: help
-}
-.AMeta,
-.Pager,
-.SocialBtns,
-.tl thead th,
-hr,
-tbody th,
-th {
-  border-width: 0 0 1px
-}
-h2:after,
-tfoot th {
-  border-width: 2px 0 0
 }
 dd,
 li {
@@ -571,6 +547,12 @@ tbody th {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -578,6 +560,10 @@ tbody th {
 .ribbon a {
   color: #92a094;
   border-color: #010e06
+}
+a:active,
+a:active * {
+  color: #fff!important
 }
 .ABody h2,
 .Cover h2,
@@ -602,17 +588,35 @@ h2:after {
   color: #b3f;
   border-color: #b3f
 }
-a:active,
+a:active {
+  background-color: #29a119!important
+}
 a:focus {
   background-color: Highlight!important
 }
-a:active *,
 a:focus * {
   color: HighlightText!important
 }
-.ribbon a:active,
 .ribbon a:focus {
   outline: HighlightText solid 2px
+}
+.Search input,
+input,
+textarea {
+  border-width: .1em
+}
+.AMeta,
+.Pager,
+.SocialBtns,
+.tl thead th,
+hr,
+tbody th,
+th {
+  border-width: 0 0 1px
+}
+h2:after,
+tfoot th {
+  border-width: 2px 0 0
 }
 h2 {
   margin: 0;
@@ -1090,8 +1094,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Magazine-date {
@@ -1626,8 +1630,8 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :focus i,
-.Pager a:active i {
+.Pager :active i,
+.Pager :focus i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1635,8 +1639,8 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top :focus i,
-.Pager-top a:active i {
+.Pager-top :active i,
+.Pager-top :focus i {
   border-color: #fff transparent
 }
 .SocialBtns {

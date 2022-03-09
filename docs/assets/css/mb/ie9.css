@@ -262,7 +262,7 @@ blockquote :visited img {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -421,11 +421,6 @@ ins {
 del {
   text-decoration: line-through
 }
-input,
-textarea {
-  border-width: 2px;
-  padding: .45em 8px
-}
 input {
   font-size: 1em;
   box-sizing: content-box;
@@ -442,12 +437,6 @@ tr p {
 textarea {
   font-size: 1em;
   overflow: auto
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
 }
 *,
 :after,
@@ -641,6 +630,12 @@ li ul {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -693,6 +688,11 @@ a:focus {
 .wn,
 .wn:after {
   color: #ca088a!important
+}
+input,
+textarea {
+  border-width: 2px;
+  padding: .45em 8px
 }
 h2 {
   border-width: 0 0 2px;
@@ -822,9 +822,8 @@ tbody :hover td {
   border-color: #f8fbfa #f8fbfa #29a119;
   color: #29a119
 }
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
+tbody :hover th a:active,
+tbody :hover th a:focus {
   background: #fff!important;
   color: #29a119!important
 }
@@ -1056,8 +1055,8 @@ strong {
 .ribbon .ico-label:after {
   border-color: transparent #92a094
 }
+.Pager :active i,
 .Pager :focus i,
-.Pager a:active i,
 :target .ico-label:after {
   border-color: transparent #fff
 }
@@ -1125,8 +1124,8 @@ a:focus .ico-pen:after {
 .ribbon .ico-pen:after {
   border-color: #92a094 transparent
 }
+.Pager-top :active i,
 .Pager-top :focus i,
-.Pager-top a:active i,
 :target .ico-comment:after,
 :target .ico-pen:after {
   border-color: #fff transparent
@@ -1437,8 +1436,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Header,

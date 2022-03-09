@@ -145,7 +145,7 @@ blockquote :visited img {
 .btn {
   display: inline-table;
   vertical-align: top;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
@@ -173,7 +173,7 @@ input.btn {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover {
+a:active {
   text-decoration: underline
 }
 .AHead-labels a:active,
@@ -277,8 +277,7 @@ sup {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: .1em
+  margin: 0
 }
 .chat p,
 body,
@@ -555,6 +554,10 @@ a:active * {
 }
 a:active {
   background-color: #29a119!important
+}
+input,
+textarea {
+  border-width: .1em
 }
 h2 {
   margin: 0;
@@ -1001,7 +1004,7 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover {
+.LinkList :active {
   text-decoration: underline!important
 }
 .Magazine-date {
@@ -1509,7 +1512,7 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager a:active i {
+.Pager :active i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1517,7 +1520,7 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top a:active i {
+.Pager-top :active i {
   border-color: #fff transparent
 }
 .SocialBtns {

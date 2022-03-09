@@ -203,7 +203,7 @@ blockquote :visited img {
 .SocialBtns a,
 .Subscribe a,
 .btn {
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1;
@@ -374,11 +374,6 @@ ins {
 }
 del {
   text-decoration: line-through
-}
-input,
-textarea {
-  border-width: .1em;
-  padding: .45em .4em
 }
 input {
   font-size: 1em;
@@ -605,6 +600,11 @@ a:active * {
 a:active {
   background-color: #29a119!important
 }
+input,
+textarea {
+  border-width: .1em;
+  padding: .45em .4em
+}
 h2 {
   margin: 0;
   border-width: 0 0 2px;
@@ -709,8 +709,7 @@ tbody :hover td {
   border-color: #f8fbfa #f8fbfa #29a119;
   color: #29a119
 }
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
+tbody :hover th a:active {
   background: #fff!important;
   color: #29a119!important
 }
@@ -1087,7 +1086,7 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover {
+.LinkList :active:hover {
   text-decoration: underline!important
 }
 .Header,
@@ -1554,7 +1553,7 @@ dl.note dd {
   margin-left: .5em;
   left: .5em
 }
-.Pager a:active i {
+.Pager :active i {
   border-color: transparent #fff
 }
 .Pager-top i {
@@ -1562,7 +1561,7 @@ dl.note dd {
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top a:active i {
+.Pager-top :active i {
   border-color: #fff transparent
 }
 .SocialBtns {

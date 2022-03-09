@@ -47,6 +47,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+a,
+h6 {
+  color: #717e73
+}
 .Magazine-label,
 .RichLink b,
 .SearchResult cite,
@@ -231,7 +235,7 @@ th {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover,
+a:active,
 a:focus:hover {
   text-decoration: underline
 }
@@ -283,10 +287,6 @@ a:focus .ico-label:after {
   color: #f8fbfa;
   overflow: hidden;
   height: auto
-}
-a,
-h6 {
-  color: #717e73
 }
 .LinkList a:focus ::selection,
 .RichLink-sep a:focus ::selection {
@@ -367,9 +367,7 @@ sup {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: 2px;
-  padding: .45em 8px
+  margin: 0
 }
 sup {
   top: -.5em
@@ -433,28 +431,6 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-input:placeholder-shown,
-textarea:placeholder-shown {
-  color: #717e73
-}
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: #717e73
-}
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: #717e73;
-  opacity: 1
-}
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: #717e73;
-  opacity: 1
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: #717e73
-}
 input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -481,16 +457,6 @@ textarea {
   overflow: auto;
   resize: vertical;
   background-image: none
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
-}
-form :invalid {
-  color: #ca088a;
-  box-shadow: none
 }
 *,
 :after,
@@ -738,6 +704,12 @@ h2 {
 :visited {
   color: #021605
 }
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
 :visited:hover {
   color: #419;
   border-color: #419
@@ -790,6 +762,37 @@ a:focus {
 .wn,
 .wn:after {
   color: #ca088a!important
+}
+form :invalid {
+  box-shadow: none;
+  color: #ca088a
+}
+input,
+textarea {
+  border-width: 2px;
+  padding: .45em 8px
+}
+input:placeholder-shown,
+textarea:placeholder-shown {
+  color: #717e73
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #717e73
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #717e73;
+  opacity: 1
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #717e73;
+  opacity: 1
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #717e73
 }
 h2 {
   margin: 0;
@@ -930,9 +933,8 @@ tbody :hover td {
   border-color: #f8fbfa #f8fbfa #29a119;
   color: #29a119
 }
-tbody :hover th :focus,
-tbody :hover th :link:active,
-tbody :hover th :visited:active {
+tbody :hover th a:active,
+tbody :hover th a:focus {
   background: #fff!important;
   color: #29a119!important
 }
@@ -1185,8 +1187,8 @@ input.btn:focus {
 .ribbon .ico-label:after {
   border-color: transparent #92a094
 }
+.Pager :active i,
 .Pager :focus i,
-.Pager a:active i,
 :target .ico-label:after {
   border-color: transparent #fff
 }
@@ -1252,8 +1254,8 @@ a:focus .ico-pen:after {
 .ribbon .ico-pen:after {
   border-color: #92a094 transparent
 }
+.Pager-top :active i,
 .Pager-top :focus i,
-.Pager-top a:active i,
 :target .ico-comment:after,
 :target .ico-pen:after {
   border-color: #fff transparent
@@ -1569,8 +1571,8 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover,
-.LinkList a:focus:hover {
+.LinkList :active,
+.LinkList :focus:hover {
   text-decoration: underline!important
 }
 .Magazine-item {
@@ -3267,7 +3269,8 @@ only screen and (max-width:359px) {
     margin: 0 auto 1em
   }
 }
-@media only screen and (-ms-high-contrast:active) and (max-width:319px) {
+@media only screen and (forced-colors:active) and (max-width:319px),
+only screen and (-ms-high-contrast:active) and (max-width:319px) {
   .chatL p:after,
   .chatR p:after {
     border-bottom-color: inherit!important;
@@ -3358,28 +3361,6 @@ only screen and (max-width:240px) {
   tbody th,
   var {
     background: #222
-  }
-  input:placeholder-shown,
-  textarea:placeholder-shown {
-    color: #999
-  }
-  input::-webkit-input-placeholder,
-  textarea::-webkit-input-placeholder {
-    color: #999
-  }
-  input:-moz-placeholder,
-  textarea:-moz-placeholder {
-    color: #999;
-    opacity: 1
-  }
-  input::-moz-placeholder,
-  textarea::-moz-placeholder {
-    color: #999;
-    opacity: 1
-  }
-  input:-ms-input-placeholder,
-  textarea:-ms-input-placeholder {
-    color: #999
   }
   .Magazine,
   .Magazine-main,
@@ -3477,6 +3458,28 @@ only screen and (max-width:240px) {
   :visited:hover {
     color: #b3f;
     border-color: #b3f
+  }
+  input:placeholder-shown,
+  textarea:placeholder-shown {
+    color: #999
+  }
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #999
+  }
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #999;
+    opacity: 1
+  }
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: #999;
+    opacity: 1
+  }
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #999
   }
   td {
     border-color: #000 #000 #222

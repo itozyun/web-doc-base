@@ -205,7 +205,7 @@ blockquote :visited img {
 .btn {
   display: inline-block;
   vertical-align: top;
-  border-width: 2px;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9em;
@@ -236,7 +236,7 @@ h6 br {
 .btn:visited:hover,
 :link:hover,
 :visited:hover,
-a:active:hover {
+a:active {
   text-decoration: underline
 }
 .AHead-labels a:active,
@@ -321,8 +321,7 @@ sup {
 input,
 textarea {
   font-size: 1em;
-  margin: 0;
-  border-width: .1em
+  margin: 0
 }
 .chat p,
 body,
@@ -578,6 +577,10 @@ h2:after {
 }
 a:active {
   background-color: #29a119!important
+}
+input,
+textarea {
+  border-width: .1em
 }
 h2 {
   border-width: 0 0 2px;
@@ -1059,7 +1062,7 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
-.LinkList a:active:hover {
+.LinkList :active {
   text-decoration: underline!important
 }
 .RichLink a {
@@ -1069,10 +1072,6 @@ kbd {
 }
 .baseColor .RichLink a {
   border-color: #bddac8!important
-}
-.Pager a:active i,
-.chatL p:after {
-  border-color: transparent #fff
 }
 .RichLink-meta {
   color: #052209;
@@ -1340,6 +1339,7 @@ blockquote:after {
   display: block
 }
 .chatL p:after {
+  border-color: transparent #fff;
   border-width: .3em .6em .3em 0;
   left: -.6em
 }
@@ -1551,12 +1551,15 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
+.Pager :active i {
+  border-color: transparent #fff
+}
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
   border-color: #717e73 transparent
 }
-.Pager-top a:active i {
+.Pager-top :active i {
   border-color: #fff transparent
 }
 .SocialBtns {
