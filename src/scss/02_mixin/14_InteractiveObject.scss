@@ -21,7 +21,7 @@
         :link:focus &, :visited:focus & { border-color : $COLOR_ACCENT !important; }
     }
 
-    @if( $UA_Gck-097 == false ){ /* 下ではチラツキが激しい */
+    @if( $UA_Gck-097 == false and $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
         :link:hover &, :visited:hover & {
             position : relative;
             top      : 2px;
