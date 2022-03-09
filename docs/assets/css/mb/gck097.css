@@ -216,23 +216,6 @@ blockquote :visited img {
   padding: 0 1em;
   height: 2.1em
 }
-.AMeta,
-.Pager span,
-.caption,
-.h1,
-.prettyprint,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-table,
-textarea {
-  line-height: 1.2
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -401,6 +384,13 @@ input {
   line-height: 1;
   height: 2.1em
 }
+.chat p,
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 .AHead-labels i,
 .RichLink br,
 [type=hidden] {
@@ -437,9 +427,11 @@ html {
   height: 100%
 }
 body {
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 h1,
 h2,
@@ -503,6 +495,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -777,7 +770,8 @@ strong {
   padding: 0 3%
 }
 #lB .lSi,
-.AAuthor {
+.AAuthor,
+.Header h1 {
   padding: 0
 }
 .AAuthor:after,
@@ -859,6 +853,10 @@ input.btn {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
 }
 .medal {
   border-color: #f8fbfa;
@@ -992,12 +990,7 @@ input.btn {
 }
 .BreadcrumbList {
   color: #717e73;
-  line-height: 1.2;
   padding: 1em 0 0
-}
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1091,6 +1084,12 @@ kbd {
 .LinkList a:focus:hover {
   text-decoration: underline!important
 }
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
+}
 .RichLink a {
   padding: 1em .5em 0;
   border-width: 0 0 1px;
@@ -1154,12 +1153,7 @@ _:-moz-any-link {
   height: 2.1em
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
-}
-.Header,
-.Header h1 {
-  line-height: 1
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1172,7 +1166,8 @@ _:-moz-any-link {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1190,9 +1185,6 @@ _:-moz-any-link {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
-}
-.Header h1 {
-  padding: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1236,7 +1228,6 @@ _:-moz-any-link {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1244,8 +1235,7 @@ _:-moz-any-link {
   margin: 1em 0;
   font-family: monospace;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .note .aa,
 .note .mona,
@@ -1297,7 +1287,6 @@ blockquote:after {
 .js-bqLink,
 blockquote:before {
   font-size: .875em;
-  line-height: 1.2;
   color: #24c;
   margin: 0 1.5%
 }
@@ -1305,7 +1294,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #717e73;
   margin: 0 1.5%
@@ -1354,8 +1342,7 @@ blockquote:after {
   border-width: 1px;
   margin: 1em 2%;
   padding: .4em 2%;
-  display: -moz-inline-box;
-  line-height: 1.2
+  display: -moz-inline-box
 }
 .chatL,
 .chatR {
@@ -1398,7 +1385,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1448,10 +1434,6 @@ tbody th var {
 }
 .links {
   white-space: -moz-pre-wrap
-}
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
 }
 .links [href]:before {
   content: ">";
@@ -1762,7 +1744,7 @@ li.L8 {
   th {
     font-weight: 700
   }
-  body {
+  p {
     line-height: 1.5
   }
   .ADesc,
@@ -1910,7 +1892,6 @@ li.L8 {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

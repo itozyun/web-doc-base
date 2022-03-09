@@ -156,23 +156,6 @@ blockquote :visited img {
 th {
   text-align: left
 }
-.AMeta,
-.Pager span,
-.caption,
-.h1,
-.prettyprint,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-table,
-textarea {
-  line-height: 1.2
-}
 .Header h1,
 body,
 input.btn {
@@ -297,6 +280,13 @@ textarea {
   margin: 0;
   border-width: .1em
 }
+.chat p,
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 sup {
   top: -.5em
 }
@@ -395,9 +385,11 @@ html {
   height: 100%
 }
 body {
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -472,6 +464,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -901,7 +894,8 @@ var {
   border-color: #bbe;
   color: #010e06
 }
-.Attribution {
+.Attribution,
+.Magazine-item {
   padding: 1em 0
 }
 .Attribution small,
@@ -923,8 +917,7 @@ var {
 }
 .BreadcrumbList {
   padding: 1em 0;
-  color: #717e73;
-  line-height: 1.2
+  color: #717e73
 }
 .BreadcrumbList a,
 .Cover-meta span,
@@ -1011,10 +1004,6 @@ kbd {
 .LinkList a:active:hover {
   text-decoration: underline!important
 }
-.Magazine-item {
-  padding: 1em 0;
-  line-height: 1.2
-}
 .Magazine-date {
   display: block;
   float: left;
@@ -1063,6 +1052,12 @@ kbd {
 }
 .RichLink-sep {
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .RichLink a {
   padding: 1em .5em 0;
@@ -1117,12 +1112,7 @@ kbd {
   overflow: hidden
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
-}
-.Header,
-.Header h1 {
-  line-height: 1
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1135,7 +1125,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1192,7 +1183,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1215,8 +1205,7 @@ tr .prettyprint {
 .aa {
   margin: 1em 0;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .aa,
 .aa code,
@@ -1243,7 +1232,6 @@ blockquote:after {
 .js-bqLink,
 blockquote:before {
   font-size: .875em;
-  line-height: 1.2;
   color: #24c;
   margin: 0
 }
@@ -1251,7 +1239,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #717e73;
   margin: 0
@@ -1304,8 +1291,7 @@ blockquote:after {
   margin: 1em 2%;
   padding: .4em 2%;
   display: inline-table;
-  vertical-align: top;
-  line-height: 1.2
+  vertical-align: top
 }
 .chatL,
 .chatR {
@@ -1348,7 +1334,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1393,10 +1378,6 @@ tbody th var {
 .links {
   white-space: -o-pre-wrap;
   margin: 1em
-}
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
 }
 .links [href]:before {
   content: ">"
@@ -1704,7 +1685,7 @@ li.L8 {
   th {
     font-weight: 700
   }
-  body {
+  p {
     line-height: 1.5
   }
   h4,
@@ -1928,7 +1909,6 @@ li.L8 {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

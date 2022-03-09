@@ -186,6 +186,18 @@ hr {
   padding: .45em 1em;
   height: 2.1em
 }
+*,
+.SearchResult div p *,
+.chat p,
+.chat p *,
+dd p,
+dd p *,
+li p,
+li p *,
+tr p,
+tr p * {
+  line-height: 1.2
+}
 .lMi,
 .lSi,
 .lW {
@@ -365,44 +377,6 @@ input {
   line-height: 1;
   height: 2.1em
 }
-.AMeta *,
-.BreadcrumbList *,
-.Magazine-item *,
-.Pager span,
-.SearchResult *,
-.caption,
-.caption *,
-.chat h2 *,
-.chat h3 *,
-.chat h4 *,
-.chat h5 *,
-.chat h6 *,
-.chat p *,
-.h1,
-.h1 *,
-.links a *,
-.prettyprint,
-.prettyprint *,
-dl,
-dl *,
-h1,
-h1 *,
-h2,
-h2 *,
-h3,
-h3 *,
-h4,
-h4 *,
-h5,
-h5 *,
-h6,
-h6 *,
-li,
-li *,
-table *,
-textarea {
-  line-height: 1.2
-}
 textarea {
   font-size: 1em;
   overflow: auto;
@@ -410,8 +384,7 @@ textarea {
 }
 * {
   border-style: solid;
-  border-width: 0;
-  line-height: 1.9
+  border-width: 0
 }
 html {
   font-size: 100%
@@ -426,6 +399,10 @@ body,
 html {
   margin: 0;
   height: 100%
+}
+p,
+p * {
+  line-height: 1.9
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -527,7 +504,6 @@ a,
 tbody th {
   border-color: #f8fbfa
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -931,8 +907,7 @@ input.btn {
 }
 .BreadcrumbList {
   padding: 1em 0;
-  color: #717e73;
-  line-height: 1.2
+  color: #717e73
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1015,7 +990,9 @@ input.btn {
 .Header h1,
 .Header h1 *,
 .Magazine-date *,
-.aa * {
+.aa,
+.aa *,
+.chatMember {
   line-height: 1
 }
 .LinkList a:active:hover {
@@ -1147,7 +1124,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1207,7 +1185,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1230,13 +1207,7 @@ tr .prettyprint {
 .aa {
   margin: 1em 0;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
-}
-.js-bqCite,
-.js-bqLink {
-  margin: 0;
-  line-height: 1.2
+  border-color: #0a0809
 }
 .aa,
 .aa code,
@@ -1254,9 +1225,14 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
+.js-bqLink {
+  color: #24c;
+  margin: 0
+}
 .js-bqCite {
   text-align: right;
-  color: #717e73
+  color: #717e73;
+  margin: 0
 }
 .box {
   height: 1%;
@@ -1307,8 +1283,7 @@ blockquote .tl tbody th :visited {
   border-color: #5d769e;
   border-width: 1px;
   margin: 1em 2%;
-  padding: .4em 2%;
-  line-height: 1.2
+  padding: .4em 2%
 }
 .chatL,
 .chatR {
@@ -1351,7 +1326,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1434,11 +1408,11 @@ pre var {
 dl.note dd {
   margin-left: 1em
 }
-.caption * {
-  float: none!important
-}
 .caption img {
   margin: 0 0 .5em!important
+}
+.caption * {
+  float: none!important
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1614,7 +1588,8 @@ dl.note dd {
   table {
     width: 100%
   }
-  body {
+  p,
+  p * {
     line-height: 1.5
   }
   h4,
@@ -1818,7 +1793,6 @@ dl.note dd {
     color: #000
   }
   .AHead-labels a {
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

@@ -224,23 +224,6 @@ h5 br,
 h6 br {
   display: block
 }
-.AMeta,
-.Pager span,
-.caption,
-.h1,
-.prettyprint,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-table,
-textarea {
-  line-height: 1.2
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -341,6 +324,13 @@ textarea {
   margin: 0;
   border-width: .1em
 }
+.chat p,
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 sup {
   top: -.5em
 }
@@ -409,9 +399,11 @@ html {
 }
 body {
   padding: 0;
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -475,6 +467,7 @@ ol,
 ul {
   padding-left: 2em
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -693,6 +686,12 @@ blockquote tfoot th {
 .r {
   text-align: right
 }
+.ABody h1,
+.ABody h2,
+.ABody h3,
+.AHead h1,
+.Attribution,
+.Header,
 .Search,
 .c,
 .lW {
@@ -749,6 +748,7 @@ strong {
 }
 #lB .lSi,
 .AAuthor,
+.Header h1,
 input.btn {
   padding: 0
 }
@@ -827,6 +827,10 @@ input.btn {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
 }
 .medal {
   border-color: #f8fbfa;
@@ -908,7 +912,6 @@ input.btn {
 .ABody h1,
 .ABody h2,
 .ABody h3 {
-  text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
 }
@@ -924,8 +927,7 @@ input.btn {
   font-size: 2em;
   color: #021605;
   padding: 2em 0;
-  margin: 0;
-  text-align: center
+  margin: 0
 }
 .Attribution small,
 .RichLink-meta,
@@ -950,8 +952,7 @@ input.btn {
   color: #010e06
 }
 .Attribution {
-  padding: 1em 0;
-  text-align: center
+  padding: 1em 0
 }
 .BlogArchive,
 .Comment,
@@ -968,12 +969,7 @@ input.btn {
 }
 .BreadcrumbList {
   color: #717e73;
-  line-height: 1.2;
   padding: 1em 0 0
-}
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
 }
 .BreadcrumbList a,
 .Cover-meta span,
@@ -1098,6 +1094,12 @@ kbd {
   width: auto;
   line-height: 0
 }
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
+}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
@@ -1123,8 +1125,7 @@ kbd {
   padding-right: 0
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1137,7 +1138,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1150,19 +1152,11 @@ kbd {
   padding-top: 1em;
   padding-bottom: 1em
 }
-.Header {
-  line-height: 1;
-  text-align: center
-}
 .Header h1,
 .h1 {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
-}
-.Header h1 {
-  padding: 0;
-  line-height: 1
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1206,7 +1200,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1214,8 +1207,7 @@ kbd {
   margin: 1em 0;
   font-family: monospace;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .note .aa,
 .note .mona,
@@ -1268,7 +1260,6 @@ blockquote:after {
 .js-bqLink,
 blockquote:before {
   font-size: .875em;
-  line-height: 1.2;
   color: #24c;
   margin: 0 1.5%
 }
@@ -1276,7 +1267,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #717e73;
   margin: 0 1.5%
@@ -1326,8 +1316,7 @@ blockquote:after {
   margin: 1em 2%;
   padding: .4em 2%;
   display: inline-block;
-  vertical-align: top;
-  line-height: 1.2
+  vertical-align: top
 }
 .chatL {
   padding: 0 20% 0 4em
@@ -1382,7 +1371,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1430,10 +1418,6 @@ tbody th var {
 }
 .links {
   white-space: -o-pre-wrap
-}
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
 }
 .links [href]:before {
   content: ">";
@@ -1742,7 +1726,7 @@ li.L8 {
   th {
     font-weight: 700
   }
-  body {
+  p {
     line-height: 1.5
   }
   .ADesc,
@@ -1893,7 +1877,6 @@ li.L8 {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

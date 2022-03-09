@@ -267,15 +267,6 @@ blockquote :visited img {
   padding: .45em 1em;
   vertical-align: top
 }
-.AMeta,
-.Pager span,
-.caption,
-dl,
-li,
-table,
-textarea {
-  line-height: 1.2
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
 .SocialBtns a:link:hover,
@@ -497,6 +488,13 @@ input {
   line-height: 1;
   height: 1em
 }
+.chat p,
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 input::-moz-focus-inner {
   border: 0
 }
@@ -538,9 +536,11 @@ html {
   height: 100%
 }
 body {
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 .h1,
 h1,
@@ -553,8 +553,7 @@ h6 {
   -moz-break-after: avoid;
   column-break-after: avoid;
   break-after: avoid;
-  page-break-after: avoid;
-  line-height: 1.2
+  page-break-after: avoid
 }
 caption,
 dt,
@@ -674,6 +673,7 @@ ul {
   padding-left: 2em;
   list-style-position: outside
 }
+.links a,
 dl ol,
 dl ul,
 li ol,
@@ -1006,7 +1006,8 @@ strong {
 .lXi {
   padding: 0 3%
 }
-#lB .lSi {
+#lB .lSi,
+.Header h1 {
   padding: 0
 }
 .AAuthor:after,
@@ -1335,6 +1336,10 @@ a:focus .ico-pen:after {
   height: 1.6em;
   line-height: 1.6
 }
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
 :link .medal,
 :visited .medal {
   border-color: #021605;
@@ -1486,12 +1491,7 @@ kbd {
 }
 .BreadcrumbList {
   color: #717e73;
-  line-height: 1.2;
   padding: 1em 0 0
-}
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1574,8 +1574,7 @@ kbd {
   color: #010e06
 }
 .Label a {
-  margin: 0 0 1.7em;
-  line-height: 1.2
+  margin: 0 0 1.7em
 }
 #lF .Label a,
 .lS .Label a {
@@ -1592,6 +1591,12 @@ kbd {
 .RichLink {
   padding: 0 0 1em;
   overflow-x: hidden
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .RichLink a {
   padding: 1em .5em 0;
@@ -1673,12 +1678,7 @@ kbd {
   text-overflow: ellipsis
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
-}
-.Header,
-.Header h1 {
-  line-height: 1
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1691,7 +1691,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1709,9 +1710,6 @@ kbd {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
-}
-.Header h1 {
-  padding: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1755,7 +1753,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1763,8 +1760,7 @@ kbd {
   margin: 1em 0;
   font-family: monospace;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .note .aa,
 .note .mona,
@@ -1817,7 +1813,6 @@ blockquote:after {
 .js-bqLink,
 blockquote:before {
   font-size: .875em;
-  line-height: 1.2;
   color: #24c;
   margin: 0 1.5%
 }
@@ -1825,7 +1820,6 @@ blockquote:before {
 blockquote:after {
   display: block;
   font-size: .875em;
-  line-height: 1.2;
   text-align: right;
   color: #717e73;
   margin: 0 1.5%
@@ -1886,8 +1880,7 @@ tr .box > p:first-of-type {
   display: inline-block;
   -webkit-border-radius: .4em;
   -moz-border-radius: .4em;
-  border-radius: .4em;
-  line-height: 1.2
+  border-radius: .4em
 }
 .chatL {
   padding: 0 20% 0 4em
@@ -1947,7 +1940,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111;
   -webkit-border-radius: 1.414em;
@@ -2017,10 +2009,6 @@ tbody th var {
 .links {
   white-space: -webkit-pre-wrap;
   white-space: pre-wrap
-}
-.links a {
-  padding-left: 1em;
-  line-height: 1.2
 }
 .links [href]:before {
   content: ">";
@@ -2296,8 +2284,7 @@ h1#blog2slide-current {
   background: #333;
   color: #fff;
   border-width: 1px;
-  border-color: #333;
-  line-height: 1.2
+  border-color: #333
 }
 code .atv,
 code .str {
@@ -2566,6 +2553,9 @@ only screen and (max-width:479px) {
   .AHead h1 {
     text-align: center
   }
+  p {
+    line-height: 1.6
+  }
   h4,
   h5,
   h6 {
@@ -2652,9 +2642,6 @@ only screen and (max-width:479px) {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 1%
-  }
-  .aBodyRoot {
-    line-height: 1.6
   }
   .js-bqCite,
   .js-bqLink,
@@ -3140,6 +3127,9 @@ only screen and (max-width:240px) {
   body {
     font-size: .75em
   }
+  p {
+    line-height: 1.4
+  }
   h4,
   h5,
   h6 {
@@ -3215,9 +3205,6 @@ only screen and (max-width:240px) {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 2px
-  }
-  .aBodyRoot {
-    line-height: 1.4
   }
   .box dl,
   .box ol,
@@ -3399,7 +3386,7 @@ only screen and (-ms-high-contrast:active) {
   th {
     font-weight: 700
   }
-  body {
+  p {
     line-height: 1.5
   }
   .ADesc,
@@ -3561,7 +3548,6 @@ only screen and (-ms-high-contrast:active) {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

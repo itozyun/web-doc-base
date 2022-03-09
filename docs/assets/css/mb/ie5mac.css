@@ -134,24 +134,11 @@ blockquote :visited img {
   line-height: 1;
   padding: .45em 1em
 }
-.AMeta,
-.Pager span,
-.caption,
-.h1,
-.js-bqCite,
-.js-bqLink,
-.links a,
-.prettyprint,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-table,
-textarea {
+.chat p,
+body,
+dd p,
+li p,
+tr p {
   line-height: 1.2
 }
 .AHead-labels a:link:hover,
@@ -356,9 +343,11 @@ html {
   height: 100%
 }
 body {
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -699,7 +688,8 @@ strong {
   padding: 0 3%
 }
 #lB .lSi,
-.AAuthor {
+.AAuthor,
+.Header h1 {
   padding: 0
 }
 .lM1,
@@ -763,6 +753,10 @@ strong {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
 }
 .medal {
   border-color: #f8fbfa;
@@ -910,12 +904,7 @@ kbd {
 }
 .BreadcrumbList {
   color: #717e73;
-  line-height: 1.2;
   padding: 1em 0 0
-}
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
 }
 .Comment h3,
 .SearchResult h3 {
@@ -982,8 +971,7 @@ kbd {
   color: #010e06
 }
 .Label a {
-  margin: 0 0 1.7em;
-  line-height: 1.2
+  margin: 0 0 1.7em
 }
 #lF .Label a,
 .lS .Label a {
@@ -996,6 +984,12 @@ kbd {
 .LinkList a:active:hover,
 .LinkList a:focus:hover {
   text-decoration: underline!important
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .RichLink a {
   display: inline-table;
@@ -1060,12 +1054,7 @@ kbd {
   overflow: hidden
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
-}
-.Header,
-.Header h1 {
-  line-height: 1
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1078,7 +1067,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1096,9 +1086,6 @@ kbd {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
-}
-.Header h1 {
-  padding: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1142,7 +1129,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1150,8 +1136,7 @@ kbd {
   margin: 1em 0;
   font-family: monospace;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .js-bqCite,
 .js-bqLink {
@@ -1253,8 +1238,7 @@ blockquote {
   border-width: 1px;
   margin: 1em 2%;
   padding: .4em 2%;
-  display: inline-block;
-  line-height: 1.2
+  display: inline-block
 }
 .chatL,
 .chatR {
@@ -1297,7 +1281,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1586,7 +1569,7 @@ dl.note dd {
   thead var {
     border-color: #666
   }
-  body {
+  p {
     line-height: 1.5
   }
   .ADesc,
@@ -1727,7 +1710,6 @@ dl.note dd {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0

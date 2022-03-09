@@ -119,24 +119,11 @@ blockquote :visited img {
 th {
   text-align: left
 }
-.AMeta,
-.Pager span,
-.caption,
-.h1,
-.js-bqCite,
-.js-bqLink,
-.links a,
-.prettyprint,
-dl,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-table,
-textarea {
+.chat p,
+body,
+dd p,
+li p,
+tr p {
   line-height: 1.2
 }
 .AHead-labels a:link:hover,
@@ -351,9 +338,11 @@ html {
   height: 100%
 }
 body {
-  line-height: 1.9;
   background: #010e06;
   color: #021605
+}
+p {
+  line-height: 1.9
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -900,8 +889,7 @@ kbd {
 }
 .BreadcrumbList {
   padding: 1em 0;
-  color: #717e73;
-  line-height: 1.2
+  color: #717e73
 }
 .Comment h3,
 .SearchResult h3 {
@@ -965,8 +953,7 @@ kbd {
   color: #010e06
 }
 .Label a {
-  margin: 0 0 1.7em;
-  line-height: 1.2
+  margin: 0 0 1.7em
 }
 #lF .Label a,
 .lS .Label a {
@@ -982,8 +969,7 @@ kbd {
 }
 .Magazine-item {
   display: inline-table;
-  padding: 1em 0;
-  line-height: 1.2
+  padding: 1em 0
 }
 .Magazine-date {
   display: block;
@@ -1040,6 +1026,12 @@ kbd {
 }
 .RichLink-sep {
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .RichLink a {
   display: inline-table;
@@ -1103,12 +1095,7 @@ kbd {
   overflow: hidden
 }
 .SearchResult {
-  margin-bottom: 2em;
-  line-height: 1.2
-}
-.Header,
-.Header h1 {
-  line-height: 1
+  margin-bottom: 2em
 }
 .SearchResult p {
   margin: .5em
@@ -1121,7 +1108,8 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454
+  color: #545454;
+  line-height: 1.2
 }
 .SearchResult div span {
   color: grey
@@ -1181,7 +1169,6 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  line-height: 1.2;
   text-align: right;
   color: #f8fbfa
 }
@@ -1204,8 +1191,7 @@ tr .prettyprint {
 .aa {
   margin: 1em 0;
   background: #0a0809;
-  border-color: #0a0809;
-  line-height: 1
+  border-color: #0a0809
 }
 .aa,
 .aa code,
@@ -1283,8 +1269,7 @@ blockquote .tl tbody th :visited {
   border-width: 1px;
   margin: 1em 2%;
   padding: .4em 2%;
-  display: inline-block;
-  line-height: 1.2
+  display: inline-block
 }
 .chatL,
 .chatR {
@@ -1328,7 +1313,6 @@ pre var {
   text-align: center!important;
   width: 2em;
   height: 1em;
-  line-height: 1;
   padding: .914em .414em;
   color: #111
 }
@@ -1614,7 +1598,7 @@ dl.note dd {
   table {
     width: 100%
   }
-  body {
+  p {
     line-height: 1.5
   }
   h4,
@@ -1820,7 +1804,6 @@ dl.note dd {
   }
   .AHead-labels a {
     display: inline;
-    line-height: 1.2;
     border-width: 0;
     padding: 0;
     margin: 0
