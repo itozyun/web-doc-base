@@ -12,7 +12,7 @@
         @include article-footer-item;
 
         position    : relative;
-        color       : $COLOR_Default_fill; /* , を消す */
+        color       : $COLOR_Light_fill; /* , を消す */
         height      : 4em;
 
         @include media(forced_colors_fallback){
@@ -83,9 +83,9 @@
                         }
 
                         @if( $CANUSE_BORDER_TRANSPARENT ){
-                            border-color : transparent $COLOR_Default_casual_text;
+                            border-color : transparent $COLOR_Light_casual_text;
                         } @else {
-                            border-color : $COLOR_Default_fill $COLOR_Default_casual_text;
+                            border-color : $COLOR_Light_fill $COLOR_Light_casual_text;
                         }
                         /*  Forced colors
                         --------------------------------------------------------------------------------------*/
@@ -127,9 +127,9 @@
                         margin-right : 0.5em;
 
                         @if( $CANUSE_BORDER_TRANSPARENT ){
-                            border-color : $COLOR_Default_casual_text transparent;
+                            border-color : $COLOR_Light_casual_text transparent;
                         } @else {
-                            border-color : $COLOR_Default_casual_text $COLOR_Default_fill;
+                            border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
                         }
                         /*  Forced colors
                         --------------------------------------------------------------------------------------*/
@@ -168,13 +168,13 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         .Pager {
-            color : $COLOR_Watch_fill; /* , を消す */
+            color : $COLOR_Dark_fill; /* , を消す */
         }
         .Pager i {
-            border-color : transparent $COLOR_Watch_casual_text;
+            border-color : transparent $COLOR_Dark_casual_text;
         }
         .Pager-top i {
-            border-color : $COLOR_Watch_casual_text transparent;
+            border-color : $COLOR_Dark_casual_text transparent;
         }
     }
 

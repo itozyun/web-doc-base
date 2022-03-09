@@ -11,7 +11,7 @@
 
         @include media(onlyIE10To11){
             #blog2slide-root:-ms-fullscreen {
-                background : $COLOR_Default_fill;
+                background : $COLOR_Light_fill;
             }
         }
 

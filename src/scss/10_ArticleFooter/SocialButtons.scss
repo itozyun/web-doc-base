@@ -14,7 +14,7 @@
     @if( $IS_LTE_WIN_IE7 ){
         padding : 1em 0;
     }
-    color   : $COLOR_Default_fill; /* , を消す */
+    color   : $COLOR_Light_fill; /* , を消す */
 
     a {
         @extend %ButtonBase;
@@ -22,22 +22,22 @@
     }
 
     .tw {
-        @include button-colors( #1B95E0, #1B95E0, $COLOR_Default_fill, 1 );
+        @include button-colors( #1B95E0, #1B95E0, $COLOR_Light_fill, 1 );
     }
     .fb {
         @include button-colors( #3B5999, #3B5999, #fff, 1 );
     }
     .hb {
-        @include button-colors( #008FDE, #008FDE, $COLOR_Default_fill, 1 );
+        @include button-colors( #008FDE, #008FDE, $COLOR_Light_fill, 1 );
     }
     .pt {
         @include button-colors( #BD081C, #BD081C, #fff, 1 );
     }
     .pk {
-        @include button-colors( #EE4056, #EE4056, $COLOR_Default_fill, 1 );
+        @include button-colors( #EE4056, #EE4056, $COLOR_Light_fill, 1 );
     }
     .ln {
-        @include button-colors( #00C300, #00C300, $COLOR_Default_fill, 1 );
+        @include button-colors( #00C300, #00C300, $COLOR_Light_fill, 1 );
     }
 }
 
@@ -53,10 +53,10 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .SocialBtns {
-        color      : $COLOR_Watch_fill; /* , を消す */
+        color      : $COLOR_Dark_fill; /* , を消す */
     }
     .SocialBtns :visited {
-        background : $COLOR_Watch_fill;
+        background : $COLOR_Dark_fill;
     }
 }
 

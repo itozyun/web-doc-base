@@ -36,22 +36,22 @@ img { //, iframe, embed, object, video
 /* a タグの色
 --------------------------------------------------------------------------------------*/
 a {
-    color        : $COLOR_Default_casual_text;
-    border-color : $COLOR_Default_fill;
+    color        : $COLOR_Light_casual_text;
+    border-color : $COLOR_Light_fill;
 }
 :link          {
-    color        : $COLOR_Default_link;
+    color        : $COLOR_Light_link;
 }
 :visited       {
-    color        : $COLOR_Default_text;
+    color        : $COLOR_Light_text;
 }
 :link:hover    {
-    color        : $COLOR_Default_hover;
-    border-color : $COLOR_Default_hover;
+    color        : $COLOR_Light_hover;
+    border-color : $COLOR_Light_hover;
 }
 :visited:hover {
-    color        : $COLOR_Default_visited_hover;
-    border-color : $COLOR_Default_visited_hover;
+    color        : $COLOR_Light_visited_hover;
+    border-color : $COLOR_Light_visited_hover;
 }
 
 .ribbon {
@@ -115,23 +115,23 @@ a:active
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     a {
-        color        : $COLOR_Watch_casual_text;
-        border-color : $COLOR_Watch_fill;
+        color        : $COLOR_Dark_casual_text;
+        border-color : $COLOR_Dark_fill;
     }
     :link          {
-        color        : $COLOR_Watch_link;
+        color        : $COLOR_Dark_link;
         
     }
     :visited       {
-        color        : $COLOR_Watch_visited;
+        color        : $COLOR_Dark_visited;
     }
     :link:hover    {
-        color        : $COLOR_Watch_hover;
-        border-color : $COLOR_Watch_hover;
+        color        : $COLOR_Dark_hover;
+        border-color : $COLOR_Dark_hover;
     }
     :visited:hover {
-        color        : $COLOR_Watch_visited_hover;
-        border-color : $COLOR_Watch_visited_hover;
+        color        : $COLOR_Dark_visited_hover;
+        border-color : $COLOR_Dark_visited_hover;
     }
 }
 

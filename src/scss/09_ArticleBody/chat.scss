@@ -12,7 +12,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     .chat {
         color          : #fff;
         background     : #7493C2;
-        border-color   : $COLOR_Default_fill;
+        border-color   : $COLOR_Light_fill;
         border-width   : 1px;
         padding-bottom : 1em;
         margin         : 1em 0;
@@ -238,7 +238,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         .chat {
-            border-color : $COLOR_Watch_fill;
+            border-color : $COLOR_Dark_fill;
         }
     }
 

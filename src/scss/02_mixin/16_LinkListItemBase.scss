@@ -10,8 +10,8 @@
         text-decoration : none !important;
 
         /* href がない場合 current を示す塗りになる */
-        background       : $COLOR_Default_text;
-        color            : $COLOR_Default_fill;
+        background       : $COLOR_Light_text;
+        color            : $COLOR_Light_fill;
 
         @if( $UA_Modern ){ // https://twitter.com/itozyun/status/1499739713884016642
             overflow : hidden;   // Opera 9.6-
@@ -22,27 +22,27 @@
         }
     }
     :link {
-        background : $COLOR_Default_fill;
-        color      : $COLOR_Default_link;
+        background : $COLOR_Light_fill;
+        color      : $COLOR_Light_link;
     }
     :visited {
-        background : $COLOR_Default_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
-        color      : $COLOR_Default_text;
+        background : $COLOR_Light_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
+        color      : $COLOR_Light_text;
     }
     :link:hover, :visited:hover {
-        background : $COLOR_Default_casual_fill;
-        color      : $COLOR_Default_text;
+        background : $COLOR_Light_casual_fill;
+        color      : $COLOR_Light_text;
     }
 
     /*  Tablet
     --------------------------------------------------------------------------------------*/
-    @if $COLOR_Default_fill != $COLOR_Sidebar_fill {
+    @if $COLOR_Light_fill != $COLOR_Sidebar_fill {
         @include media(tablet) {
             #lB .lS & :link, #lB .lS & :visited {
                 background : $COLOR_Sidebar_fill;
             }
             #lB .lS & :link:hover, #lB .lS & :visited:hover {
-                background : $COLOR_Default_casual_fill;
+                background : $COLOR_Light_casual_fill;
             }
         }
     }
@@ -68,28 +68,28 @@
     @include media(dark_theme) {
         /* href がない場合 current カラーになる */
         a {
-            background : $COLOR_Watch_casual_text;
-            color      : $COLOR_Watch_fill;
+            background : $COLOR_Dark_casual_text;
+            color      : $COLOR_Dark_fill;
         }
         & :link {
-            background : $COLOR_Watch_fill;
-            color      : $COLOR_Watch_link;
+            background : $COLOR_Dark_fill;
+            color      : $COLOR_Dark_link;
         }
         & :visited {
-            background : $COLOR_Watch_fill;
-            color      : $COLOR_Watch_text;
+            background : $COLOR_Dark_fill;
+            color      : $COLOR_Dark_text;
         }
         & :link:hover, & :visited:hover {
-            background : $COLOR_Watch_casual_fill;
-            color      : $COLOR_Watch_text;
+            background : $COLOR_Dark_casual_fill;
+            color      : $COLOR_Dark_text;
         }
 
-        @if $COLOR_Watch_fill != $COLOR_Sidebar_fill {
+        @if $COLOR_Dark_fill != $COLOR_Sidebar_fill {
             #lB .lS & :link, #lB .lS & :visited {
-                background : $COLOR_Watch_fill;
+                background : $COLOR_Dark_fill;
             }
             #lB .lS & :link:hover, #lB .lS & :visited:hover {
-                background : $COLOR_Watch_casual_fill;
+                background : $COLOR_Dark_casual_fill;
             }
         }
     }

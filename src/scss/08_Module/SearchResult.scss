@@ -69,7 +69,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .SearchResult :visited {
-        color : $COLOR_Watch_link;
+        color : $COLOR_Dark_link;
     }
     .SearchResult div p {
         color : #808080;

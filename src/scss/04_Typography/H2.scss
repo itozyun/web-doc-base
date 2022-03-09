@@ -20,11 +20,11 @@ h2 {
             left         : 0;
             bottom       : -2px;
             border-width : 2px 0 0;
-            border-color : $COLOR_Default_accent;
+            border-color : $COLOR_Light_accent;
         }
 
         .ribbon &:after {
-            @if $COLOR_Default_accent != $COLOR_Ribbon_accent {
+            @if $COLOR_Light_accent != $COLOR_Ribbon_accent {
                 border-color : $COLOR_Ribbon_accent;
             }
         }
@@ -72,9 +72,9 @@ h2 {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     h2:after {
-        @if $COLOR_Default_accent != $COLOR_Watch_accent {
-            background : $COLOR_Watch_accent;
-            color      : $COLOR_Watch_accent;
+        @if $COLOR_Light_accent != $COLOR_Dark_accent {
+            background : $COLOR_Dark_accent;
+            color      : $COLOR_Dark_accent;
         }
     }
 }

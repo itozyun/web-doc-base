@@ -46,7 +46,7 @@ textarea, input {
     @if( $IS_OLD_GECKO ){
         -moz-box-sizing : border-box;
     }
-    @include placeholder-color( $COLOR_Default_casual_text );
+    @include placeholder-color( $COLOR_Light_casual_text );
 }
 
 @if( $UA_Gck-097 ){
@@ -153,13 +153,13 @@ textarea {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     textarea, input {
-        background : $COLOR_Watch_fill;
-        color      : $COLOR_Watch_text;
-        @include placeholder-color( $COLOR_Watch_casual_text );
+        background : $COLOR_Dark_fill;
+        color      : $COLOR_Dark_text;
+        @include placeholder-color( $COLOR_Dark_casual_text );
     }
     @if( $CANUSE_ATTR_SELECTOR ){
         [type="submit"] {
-            background : $COLOR_Watch_casual_fill;
+            background : $COLOR_Dark_casual_fill;
         }
     }
 }

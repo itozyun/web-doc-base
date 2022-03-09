@@ -8,7 +8,7 @@
     kbd {
         @include inline-block;
         border-width   : 1px;
-        border-color   : $COLOR_Default_text;
+        border-color   : $COLOR_Light_text;
         cursor         : pointer;
         letter-spacing : -1px;
         padding        : 0 .4em;
@@ -24,7 +24,7 @@
     }
 
     code, var {
-        background : $COLOR_Default_casual_fill;
+        background : $COLOR_Light_casual_fill;
         padding    : .1em .4em;
         margin     : 0 .1em;
 
@@ -47,12 +47,12 @@
         }
 
         blockquote &, tbody th &, blockquote .tl tr & {
-            background : $COLOR_Default_casual_text;
-            color      : $COLOR_Default_fill;
+            background : $COLOR_Light_casual_text;
+            color      : $COLOR_Light_fill;
         }
         thead &, blockquote tbody th &, .tl tr & {
-            background : $COLOR_Default_casual_fill;
-            color      : $COLOR_Default_text;
+            background : $COLOR_Light_casual_fill;
+            color      : $COLOR_Light_text;
         }
     }
 
@@ -60,18 +60,18 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         kbd {
-            border-color : $COLOR_Watch_text;
+            border-color : $COLOR_Dark_text;
         }
         code, var {
-            background : $COLOR_Watch_casual_fill;
+            background : $COLOR_Dark_casual_fill;
 
             blockquote &, tbody th &, blockquote .tl tr & {
-                background : $COLOR_Watch_casual_text;
-                color      : $COLOR_Watch_fill;
+                background : $COLOR_Dark_casual_text;
+                color      : $COLOR_Dark_fill;
             }
             thead &, blockquote tbody th &, .tl tr & {
-                background : $COLOR_Watch_casual_fill;
-                color      : $COLOR_Watch_text;
+                background : $COLOR_Dark_casual_fill;
+                color      : $COLOR_Dark_text;
             }
         }
     }

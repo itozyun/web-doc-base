@@ -2,11 +2,11 @@
 --------------------------------------------------------------------------------------*/
 %InteractiveObject {
     :link &, :visited & {
-        border-color : $COLOR_Default_fill;
+        border-color : $COLOR_Light_fill;
         border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
     
         blockquote & {
-            border-color : $COLOR_Default_casual_fill;
+            border-color : $COLOR_Light_casual_fill;
         }
     
         .ribbon & {

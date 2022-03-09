@@ -7,7 +7,7 @@
  *    +ArticleLabels
 --------------------------------------------------------------------------------------*/
     .AHead {
-        color  : $COLOR_Default_casual_text;
+        color  : $COLOR_Light_casual_text;
         margin : 2em 0;
     }
         .AHead h1 {
@@ -15,7 +15,7 @@
                 @extend %MinchoFontFamily;
             }
             font-size : 2em;
-            color     : $COLOR_Default_text;
+            color     : $COLOR_Light_text;
             padding   : 2em 0;
             margin    : 0;
 
@@ -60,10 +60,10 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .AHead {
-        color : $COLOR_Watch_casual_text;
+        color : $COLOR_Dark_casual_text;
     }
         .AHead h1 {
-            color : $COLOR_Watch_text;
+            color : $COLOR_Dark_text;
         }
 }
 

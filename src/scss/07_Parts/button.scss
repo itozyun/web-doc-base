@@ -39,7 +39,7 @@ input.btn {
 
 /* //_<bottom50 */
 .baseColor .btn {
-    @include button-colors( $COLOR_Default_link, $COLOR_Default_text, $COLOR_Default_fill );
+    @include button-colors( $COLOR_Light_link, $COLOR_Light_text, $COLOR_Light_fill );
 }
 /* //_>bottom50 */
 
@@ -47,6 +47,6 @@ input.btn {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .baseColor .btn {
-        @include button-colors( $COLOR_Watch_link, $COLOR_Watch_text, $COLOR_Watch_fill );
+        @include button-colors( $COLOR_Dark_link, $COLOR_Dark_text, $COLOR_Dark_fill );
     }
 }

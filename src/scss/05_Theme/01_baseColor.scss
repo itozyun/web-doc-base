@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------------*/
 body {
     background : $COLOR_Ribbon_fill;
-    color      : $COLOR_Default_text;
+    color      : $COLOR_Light_text;
 }
 @if( $UA_Gck-097 ){
     .ribbon {
@@ -10,14 +10,14 @@ body {
     }
 }
 .baseColor {
-    background : $COLOR_Default_fill;
+    background : $COLOR_Light_fill;
 }
 .ribbon {
     color      : $COLOR_Ribbon_text;
 }
 
 * {
-    border-color : $COLOR_Default_casual_fill;
+    border-color : $COLOR_Light_casual_fill;
 }
 .ribbon * {
     border-color : $COLOR_Ribbon_casual_fill;
@@ -36,16 +36,16 @@ body {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     * {
-        border-color : $COLOR_Watch_casual_fill;
+        border-color : $COLOR_Dark_casual_fill;
     }
     body {
-        color : $COLOR_Watch_text;
+        color : $COLOR_Dark_text;
     }
     .baseColor {
-        background : $COLOR_Watch_fill;
+        background : $COLOR_Dark_fill;
     }
     #lB .lS {
-        background : $COLOR_Watch_fill;
+        background : $COLOR_Dark_fill;
     }
 }
 

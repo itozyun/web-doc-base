@@ -7,7 +7,7 @@
         @include stackableModule;
     }
         .Label div {
-            color : $COLOR_Default_fill; /* , を消す */
+            color : $COLOR_Light_fill; /* , を消す */
         
             @if( $IS_WIN_IE ){
                 text-justify : inter-ideograph;
@@ -57,7 +57,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         .Label div {
-            color : $COLOR_Watch_fill; /* , を消す */
+            color : $COLOR_Dark_fill; /* , を消す */
         }
     }
 }

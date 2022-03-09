@@ -25,17 +25,17 @@
         --------------------------------------------------------------------------------------*/
         @include media(dark_theme) {
             &:link {
-                color : $COLOR_Watch_fill;
+                color : $COLOR_Dark_fill;
             }
             &:visited {
-                background : $COLOR_Watch_fill;
+                background : $COLOR_Dark_fill;
             }
             &:link:active, &:visited:active
             /* //_{#can-focus-pseudo-class */
             , &:link:focus, &:visited:focus
             /* //_}#can-focus-pseudo-class */
             {
-                border-color : $COLOR_Watch_fill;
+                border-color : $COLOR_Dark_fill;
             }
         }
     }

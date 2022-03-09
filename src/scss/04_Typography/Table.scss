@@ -161,7 +161,7 @@ table {
     }
 }
 
-@include tableColor( $COLOR_Default_text, $COLOR_Default_fill, $COLOR_Default_casual_text, $COLOR_Default_casual_fill );
+@include tableColor( $COLOR_Light_text, $COLOR_Light_fill, $COLOR_Light_casual_text, $COLOR_Light_casual_fill );
 
 @if( $CANUSE_HOVER_PSEUDO_CLASS ){
     tbody :hover th {
@@ -172,7 +172,7 @@ table {
         }
     }
     tbody :hover td {
-        border-color : $COLOR_Default_fill $COLOR_Default_fill $COLOR_ACCENT;
+        border-color : $COLOR_Light_fill $COLOR_Light_fill $COLOR_ACCENT;
         color        : $COLOR_ACCENT;
     }
     tbody :hover th {
@@ -192,10 +192,10 @@ table {
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
-    @include tableColor( $COLOR_Watch_text, $COLOR_Watch_fill, $COLOR_Watch_casual_text, $COLOR_Watch_casual_fill );
+    @include tableColor( $COLOR_Dark_text, $COLOR_Dark_fill, $COLOR_Dark_casual_text, $COLOR_Dark_casual_fill );
 
     tbody :hover td {
-        border-color : $COLOR_Watch_fill $COLOR_Watch_fill $COLOR_ACCENT;
+        border-color : $COLOR_Dark_fill $COLOR_Dark_fill $COLOR_ACCENT;
     }
 }
 /*  Forced colors

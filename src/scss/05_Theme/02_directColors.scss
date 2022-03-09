@@ -38,9 +38,9 @@ strong {
 hr {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#111111+50,111111+100&0+0,1+50,0+100 */
     @if( $UA_Modern ){
-        background : $COLOR_Default_casual_fill;
+        background : $COLOR_Light_casual_fill;
         blockquote & {
-            background : $COLOR_Default_casual_text;
+            background : $COLOR_Light_casual_text;
         }
     }
     @if( $UA_IE9 ){

@@ -31,15 +31,15 @@
     /*  color
     --------------------------------------------------------------------------------------*/
     .medal {
-        border-color : $COLOR_Default_fill;
-        background   : $COLOR_Default_fill;
-        color        : $COLOR_Default_text;
+        border-color : $COLOR_Light_fill;
+        background   : $COLOR_Light_fill;
+        color        : $COLOR_Light_text;
     }
 
     :link .medal, :visited .medal {
-        border-color : $COLOR_Default_text;
-        background   : $COLOR_Default_text;
-        color        : $COLOR_Default_fill;
+        border-color : $COLOR_Light_text;
+        background   : $COLOR_Light_text;
+        color        : $COLOR_Light_fill;
     }
 
     .medal-gold {
@@ -62,15 +62,15 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         .medal {
-            border-color : $COLOR_Watch_casual_fill;
-            background   : $COLOR_Watch_casual_fill;
-            color        : $COLOR_Watch_text;
+            border-color : $COLOR_Dark_casual_fill;
+            background   : $COLOR_Dark_casual_fill;
+            color        : $COLOR_Dark_text;
         }
         
         :link .medal, :visited .medal {
-            border-color : $COLOR_Watch_casual_text;
-            background   : $COLOR_Watch_casual_text;
-            color        : $COLOR_Watch_fill;
+            border-color : $COLOR_Dark_casual_text;
+            background   : $COLOR_Dark_casual_text;
+            color        : $COLOR_Dark_fill;
         }
     }
 }

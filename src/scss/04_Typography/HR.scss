@@ -6,9 +6,9 @@ hr {
     }
     @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
         height       : 0;
-        border-color : $COLOR_Default_casual_fill;
+        border-color : $COLOR_Light_casual_fill;
         blockquote & {
-            border-color : $COLOR_Default_casual_text;
+            border-color : $COLOR_Light_casual_text;
         }       
     }
     @include responsive-horizontal-margin(.5, 2em, 2em);
@@ -23,9 +23,9 @@ tr hr {
 @include media(dark_theme) {
     hr {
         @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
-            border-color : $COLOR_Watch_casual_fill;
+            border-color : $COLOR_Dark_casual_fill;
             blockquote & {
-                border-color : $COLOR_Watch_casual_text;
+                border-color : $COLOR_Dark_casual_text;
             }
         }
     }

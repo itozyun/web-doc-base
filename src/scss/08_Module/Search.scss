@@ -24,7 +24,7 @@ $SEARCH_BTN_WIDTH : 3em;
     .Search-txt {
         margin-right : $INPUT_BORDER_WIDTH * 2;
         @if( $IS_Opera7x ){
-            background : $COLOR_Default_casual_fill; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
+            background : $COLOR_Light_casual_fill; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
         }
     }
     .Search input {
@@ -138,7 +138,7 @@ $SEARCH_BTN_WIDTH : 3em;
 
         @if( $UA_Modern ){
             &:invalid {
-                color : $COLOR_Default_casual_text; /* ie10,11 で赤字を上書き */
+                color : $COLOR_Light_casual_text; /* ie10,11 で赤字を上書き */
             }
         }
     }

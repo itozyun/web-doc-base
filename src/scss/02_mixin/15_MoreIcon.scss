@@ -31,16 +31,16 @@
 
     & :link i {
         @if( $CANUSE_BORDER_TRANSPARENT ){
-            border-color : transparent $COLOR_Default_fill;
+            border-color : transparent $COLOR_Light_fill;
         } @else {
-            border-color : $COLOR_Default_link $COLOR_Default_fill;
+            border-color : $COLOR_Light_link $COLOR_Light_fill;
         }
     }
     & :visited i {
         @if( $CANUSE_BORDER_TRANSPARENT ){
-            border-color : transparent $COLOR_Default_text;
+            border-color : transparent $COLOR_Light_text;
         } @else {
-            border-color : $COLOR_Default_fill $COLOR_Default_text;
+            border-color : $COLOR_Light_fill $COLOR_Light_text;
         }
     }
     & :link:active i, & :visited:active i
@@ -49,9 +49,9 @@
     /* //_}#can-focus-pseudo-class */
     {
         @if( $CANUSE_BORDER_TRANSPARENT ){
-            border-color : transparent $COLOR_Default_fill;
+            border-color : transparent $COLOR_Light_fill;
         } @else {
-            border-color : $COLOR_ACCENT $COLOR_Default_fill;
+            border-color : $COLOR_ACCENT $COLOR_Light_fill;
         }
     }
 
@@ -59,10 +59,10 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         & :link i {
-            border-color : transparent $COLOR_Watch_fill;
+            border-color : transparent $COLOR_Dark_fill;
         }
         & :visited i {
-            border-color : transparent $COLOR_Watch_text;
+            border-color : transparent $COLOR_Dark_text;
         }
     }
 

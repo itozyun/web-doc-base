@@ -16,7 +16,7 @@
         }
 
         &, tbody :hover td {
-            color : $COLOR_Default_fill; /* , を消す */
+            color : $COLOR_Light_fill; /* , を消す */
         }
 
         a {
@@ -37,7 +37,7 @@
     --------------------------------------------------------------------------------------*/
         @include media(dark_theme) {
             &, tbody :hover td {
-                color : $COLOR_Watch_fill; /* , を消す */
+                color : $COLOR_Dark_fill; /* , を消す */
             }
         }
     }

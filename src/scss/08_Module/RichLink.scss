@@ -61,11 +61,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
         border-color : $COLOR_Ribbon_casual_fill !important;
     }
     .baseColor .RichLink a {
-        border-color : $COLOR_Default_casual_fill !important;
+        border-color : $COLOR_Light_casual_fill !important;
     }
     @include media(dark_theme) { 
         .baseColor .RichLink a {
-            border-color : $COLOR_Watch_casual_fill !important;
+            border-color : $COLOR_Dark_casual_fill !important;
         }
     }
 
@@ -79,11 +79,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     .baseColor .RichLink-meta {
-        color : $COLOR_Default_casual_fill;
+        color : $COLOR_Light_casual_fill;
     }
     :link, :visited {
         .baseColor & .RichLink-meta {
-            color : $COLOR_Default_casual_text;
+            color : $COLOR_Light_casual_text;
         }
     }
     @include media(chromeLte5OrSafariLte4){
@@ -235,11 +235,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .baseColor .RichLink-meta {
-        color : $COLOR_Watch_casual_fill;
+        color : $COLOR_Dark_casual_fill;
     }
     :link, :visited {
         .baseColor & .RichLink-meta {
-            color : $COLOR_Watch_casual_text;
+            color : $COLOR_Dark_casual_text;
         }
     }
 }

@@ -5,14 +5,14 @@ blockquote {
     @include responsive-horizontal-margin(1, 1em, 1em);
     padding      : 1em;
     border-width : 1px;
-    background   : $COLOR_Default_casual_fill;
+    background   : $COLOR_Light_casual_fill;
     blockquote {
-        border-color : $COLOR_Default_casual_text;
+        border-color : $COLOR_Light_casual_text;
     }
 }
 
     blockquote h3 {
-        border-color : $COLOR_Default_text;
+        border-color : $COLOR_Light_text;
     }
 
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
@@ -33,7 +33,7 @@ blockquote {
     .js-bqLink {
         @include responsive-horizontal-margin(2, 0, 0);
         font-size   : 0.875em;
-        color       : $COLOR_Default_link;
+        color       : $COLOR_Light_link;
     }
     /* //_{#can-content */
     blockquote:after,
@@ -44,7 +44,7 @@ blockquote {
         display     : block;
         font-size   : 0.875em;
         text-align  : right;
-        color       : $COLOR_Default_casual_text;
+        color       : $COLOR_Light_casual_text;
     }
 
 /* Tablet
@@ -59,19 +59,19 @@ blockquote {
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     blockquote {
-        background : $COLOR_Watch_casual_fill;
-        color      : $COLOR_Watch_text;
+        background : $COLOR_Dark_casual_fill;
+        color      : $COLOR_Dark_text;
         blockquote {
-            border-color : $COLOR_Watch_casual_text;
+            border-color : $COLOR_Dark_casual_text;
         }
     }
         blockquote h3 {
-            border-color : $COLOR_Watch_text;
+            border-color : $COLOR_Dark_text;
         }
 
         blockquote:before,
         .js-bqLink {
-            color : $COLOR_Watch_link;
+            color : $COLOR_Dark_link;
         }
 }
 

@@ -18,8 +18,8 @@
 
 /* .aBodyRoot 内では訪問済のリンクは紫になる */
 .aBodyRoot {
-    :visited       { color : $COLOR_Default_visited; }
-    :visited:hover { color : $COLOR_Default_visited_hover; }
+    :visited       { color : $COLOR_Light_visited; }
+    :visited:hover { color : $COLOR_Light_visited_hover; }
 }
 
 /*  Dark theme
@@ -27,8 +27,8 @@
 @include media(dark_theme) {
     /* .aBodyRoot 内では訪問済のリンクは紫になる */
     .aBodyRoot {
-        :visited       { color : $COLOR_Watch_visited; }
-        :visited:hover { color : $COLOR_Watch_visited_hover; }
+        :visited       { color : $COLOR_Dark_visited; }
+        :visited:hover { color : $COLOR_Dark_visited_hover; }
     }
 }
 

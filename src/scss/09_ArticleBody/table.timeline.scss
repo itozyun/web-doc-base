@@ -6,7 +6,7 @@
     }
     
     thead th, thead td, tbody th {
-        color : $COLOR_Default_text;
+        color : $COLOR_Light_text;
     }
 
     thead th {
@@ -17,7 +17,7 @@
     }
 
     thead th, thead td {
-        border-color   : $COLOR_Default_casual_fill;
+        border-color   : $COLOR_Light_casual_fill;
         padding-top    : .5em;
         padding-bottom : .5em;
     }
@@ -35,7 +35,7 @@
         padding        : .5em .8em;
         vertical-align : top;
         border-width   : 0 0 0 .3em;
-        border-color   : $COLOR_Default_casual_fill;
+        border-color   : $COLOR_Light_casual_fill;
         border-style   : solid;
 
         @if( $CANUSE_1ST_CHILD_SELECTOR ){
@@ -70,7 +70,7 @@
             width        : 0;
             height       : 0;
             border-width : .6em;
-            border-color : $COLOR_Default_casual_fill;
+            border-color : $COLOR_Light_casual_fill;
             @include border-radius(.6em);
         }
         tbody td:after {
@@ -79,7 +79,7 @@
             width        : 0;
             height       : 0;
             border-width : .35em;
-            border-color : $COLOR_Default_fill;
+            border-color : $COLOR_Light_fill;
             @include border-radius(.35em);
             @if( $UA_Modern ){
                 /*  Forced colors
@@ -119,7 +119,7 @@
         border-style : solid dotted;
     }
     tfoot th, tfoot td {
-        border-color   : $COLOR_Default_casual_fill;
+        border-color   : $COLOR_Light_casual_fill;
         padding-top    : .5em;
         padding-bottom : .5em;
     }
@@ -147,10 +147,10 @@
 
     thead, tbody th {
         :link, :link:hover {
-            color : $COLOR_Default_link;
+            color : $COLOR_Light_link;
         }
         :visited, :visited:hover {
-            color : $COLOR_Default_visited;
+            color : $COLOR_Light_visited;
         }
     }
 }
@@ -159,19 +159,19 @@ blockquote .tl {
     thead th, thead td,
     td,
     tfoot th, tfoot td {
-        border-color : $COLOR_Default_casual_text;
+        border-color : $COLOR_Light_casual_text;
     }
     
     @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
         tbody td:before {
-            border-color : $COLOR_Default_casual_text;
+            border-color : $COLOR_Light_casual_text;
         }
         tbody td:after {
-            border-color : $COLOR_Default_casual_fill;
+            border-color : $COLOR_Light_casual_fill;
         }
     }
     tbody th :visited {
-        color : $COLOR_Default_visited;
+        color : $COLOR_Light_visited;
     }
 }
 
@@ -180,29 +180,29 @@ blockquote .tl {
 @include media(dark_theme) {
     .tl {
         thead th, thead td, tbody th {
-            color : $COLOR_Watch_text;
+            color : $COLOR_Dark_text;
         }
 
         thead th, thead td,
         td,
         tfoot th, tfoot td {
-            border-color : $COLOR_Watch_casual_fill;
+            border-color : $COLOR_Dark_casual_fill;
         }
         @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
             tbody td:before {
-                border-color : $COLOR_Watch_casual_fill;
+                border-color : $COLOR_Dark_casual_fill;
             }
             tbody td:after {
-                border-color : $COLOR_Watch_fill;
+                border-color : $COLOR_Dark_fill;
             }
         }
 
         thead, tbody th {
             :link, :link:hover {
-                color : $COLOR_Watch_link;
+                color : $COLOR_Dark_link;
             }
             :visited, :visited:hover {
-                color : $COLOR_Watch_visited;
+                color : $COLOR_Dark_visited;
             }
         }      
     }
@@ -210,18 +210,18 @@ blockquote .tl {
         thead th, thead td,
         td,
         tfoot th, tfoot td {
-            border-color : $COLOR_Watch_casual_text;
+            border-color : $COLOR_Dark_casual_text;
         }
         @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
             tbody td:before {
-                border-color : $COLOR_Watch_casual_text;
+                border-color : $COLOR_Dark_casual_text;
             }
             tbody td:after {
-                border-color : $COLOR_Watch_casual_fill;
+                border-color : $COLOR_Dark_casual_fill;
             }
         }
         tbody th :visited {
-            color : $COLOR_Watch_visited;
+            color : $COLOR_Dark_visited;
         }
     }  
 }

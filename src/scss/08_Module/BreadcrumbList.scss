@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------------------*/
 .BreadcrumbList {
     padding : 1em 0;
-    color   : $COLOR_Default_casual_text;
+    color   : $COLOR_Light_casual_text;
 
     a {
         @if( $UA_Gck-097 == false ){
@@ -24,7 +24,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
     .BreadcrumbList  {
-        color : $COLOR_Watch_casual_text;
+        color : $COLOR_Dark_casual_text;
     }
 }
 

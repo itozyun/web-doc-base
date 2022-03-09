@@ -17,7 +17,7 @@
         /* ホバーで色を変えてスクロール可能をあることを知らせる */
         @include media(pc) {
             #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
-                border-color : $COLOR_Default_text;
+                border-color : $COLOR_Light_text;
             }
         }
         @media (min-width: #{1em * math.div($MEDIAQUERY-TABLET-MAX-PX + 1, 16)}) and (prefers-color-scheme:dark) {

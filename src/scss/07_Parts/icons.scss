@@ -19,10 +19,10 @@
 }
 @mixin icon-border {
     & {
-        border-color    : $COLOR_Default_casual_text;
+        border-color    : $COLOR_Light_casual_text;
     }
     a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
-        border-color    : $COLOR_Default_fill;
+        border-color    : $COLOR_Light_fill;
     }
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text;
@@ -37,7 +37,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         & {
-            border-color : $COLOR_Watch_casual_text;
+            border-color : $COLOR_Dark_casual_text;
         }
     }
     /*  Print
@@ -50,10 +50,10 @@
 }
 @mixin icon-border-fill-transparent {
     & {
-        border-color    : $COLOR_Default_casual_text transparent;
+        border-color    : $COLOR_Light_casual_text transparent;
     }
     a:focus &, a:active & {
-        border-color    : $COLOR_Default_fill transparent;
+        border-color    : $COLOR_Light_fill transparent;
     }
     .ribbon & {
         border-color    : $COLOR_Ribbon_casual_text transparent;
@@ -68,7 +68,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         & {
-            border-color : $COLOR_Watch_casual_text transparent;
+            border-color : $COLOR_Dark_casual_text transparent;
         }
     }
     /*  Forced colors
@@ -89,10 +89,10 @@
 }
 @mixin icon-border-transparent-fill {
     & {
-        border-color    : transparent $COLOR_Default_casual_text;
+        border-color    : transparent $COLOR_Light_casual_text;
     }
     a:focus &, a:active & {
-        border-color    : transparent $COLOR_Default_fill;
+        border-color    : transparent $COLOR_Light_fill;
     }
     .ribbon & {
         border-color    : transparent $COLOR_Ribbon_casual_text;
@@ -107,7 +107,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         & {
-            border-color : transparent $COLOR_Watch_casual_text;
+            border-color : transparent $COLOR_Dark_casual_text;
         }
     }
     /*  Forced colors
