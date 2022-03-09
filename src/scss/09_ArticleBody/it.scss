@@ -28,15 +28,22 @@
         padding    : .1em .4em;
         margin     : 0 .1em;
 
-        a:active &
-        /* //_{#can-focus-pseudo-class */
-        , a:focus &
-        /* //_}#can-focus-pseudo-class */
-        {
-            @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
-                background : Highlight;
-            } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
-                background : $COLOR_ACCENT;
+        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+            a:active & {
+                @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+                    background : Highlight;
+                } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+                    background : $COLOR_ACCENT;
+                }
+            }
+        }
+        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+            a:focus & {
+                @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+                    background : Highlight;
+                } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+                    background : $COLOR_ACCENT;
+                }
             }
         }
 

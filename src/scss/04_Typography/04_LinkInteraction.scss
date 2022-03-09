@@ -4,18 +4,24 @@
 /* //_{#ie6-win */
 a, /* link の無い a には下線をつけない */
 /* //_}#ie6-win */
-:link, :visited,
-/* //_{#can-focus-pseudo-class */
-a:focus,
-/* //_}#can-focus-pseudo-class */
-a:active
-{ text-decoration : none; }
+:link, :visited { text-decoration : none; }
 
-:link:hover, :visited:hover,
-/* //_{#can-focus-pseudo-class */
-a:focus:hover,
-/* //_}#can-focus-pseudo-class */
-a:active:hover { text-decoration : underline; }
+a {
+    @include active-focus-pseudo-class {
+        text-decoration : none;
+    }
+}
+
+:link:hover, :visited:hover { text-decoration : underline; }
+
+@if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
+    a:active:hover { text-decoration : underline; }
+} @else if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+    a:active { text-decoration : underline; }
+}
+@if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+    a:focus:hover { text-decoration : underline;; }
+}
 
 img { //, iframe, embed, object, video
     @extend %InteractiveObject;
@@ -77,25 +83,40 @@ a {
 
 /* :active, :focus 時の配色は同じ
 --------------------------------------------------------------------------------------*/
-a:active
-/* //_{#can-focus-pseudo-class */
-, a:focus
-/* //_}#can-focus-pseudo-class */
-{
-    @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
-        background-color : Highlight !important;
-        & * {
-            color : HighlightText !important;
-        }
-        .ribbon & {
-            outline  : HighlightText solid 2px;
-        }
-    } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+@if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+    a:active {
         background-color : $COLOR_ACCENT !important;
         color            : #fff        !important;
 
         & * {
             color : #fff !important;
+        }
+    }
+    a:focus {
+        background-color : Highlight !important;
+        & * {
+            color : HighlightText !important;
+        }
+        .ribbon & {
+            outline  : HighlightText solid $FORCED_COLORS_FOCUS_BORDER_WIDTH;
+        }
+    }
+} @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR ){
+    a:focus {
+        background-color : $COLOR_Sidebar_fill !important;
+        .ribbon & {
+            background-color : #666 !important;
+        }
+    }
+} @else {
+    a {
+        @include active-focus-pseudo-class {
+            background-color : $COLOR_ACCENT !important;
+            color            : #fff        !important;
+    
+            & * {
+                color : #fff !important;
+            }
         }
     }
 }

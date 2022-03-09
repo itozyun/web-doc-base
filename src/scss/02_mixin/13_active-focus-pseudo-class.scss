@@ -1,0 +1,13 @@
+@mixin active-focus-pseudo-class {
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        &:active {
+            @content;
+        }
+    }
+
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        &:focus {
+            @content;
+        }
+    }
+}

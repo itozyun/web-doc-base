@@ -1,19 +1,18 @@
 /*  reset
 --------------------------------------------------------------------------------------*/
     /* remember to define focus styles! */
-    /* //_{#can-focus-pseudo-class */
-    :focus,
-    /* //_}#can-focus-pseudo-class */
-    :active {
-        outline : 0;
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        :active { outline : 0; }
+    }
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        :focus { outline : 0; }
     }
 
     @include media(forced_colors_native_or_fallback){
-        /* //_{#can-focus-pseudo-class */
-        a:focus,
-        /* //_}#can-focus-pseudo-class */
-        a:active {
-            outline : $HIGH_CONTRUST_FOCUS_BORDER_WIDTH solid;
+        a {
+            @include active-focus-pseudo-class {
+                outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+            }
         }
     }
 

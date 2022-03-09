@@ -10,13 +10,13 @@
         color        : $visited;
     }
 
-    &:link:active, &:visited:active
-    /* //_{#can-focus-pseudo-class */
-    , &:link:focus, &:visited:focus
-    /* //_}#can-focus-pseudo-class */
-    {
-        @if( $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $IS_NOT_IE ){
-            border-color : $fill; /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
+    @if( $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $IS_NOT_IE ){
+        /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
+        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+            &:link:active, &:visited:active { border-color : $fill; }
+        }
+        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+            &:link:focus, &:visited:focus { border-color : $fill; }
         }
     }
 
@@ -30,12 +30,11 @@
             &:visited {
                 background : $COLOR_Dark_fill;
             }
-            &:link:active, &:visited:active
-            /* //_{#can-focus-pseudo-class */
-            , &:link:focus, &:visited:focus
-            /* //_}#can-focus-pseudo-class */
-            {
-                border-color : $COLOR_Dark_fill;
+            @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+                &:link:active, &:visited:active { border-color : $COLOR_Dark_fill; }
+            }
+            @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+                &:link:focus, &:visited:focus { border-color : $COLOR_Dark_fill; }
             }
         }
     }
@@ -43,7 +42,7 @@
 
 %ButtonBase {
     @include inline-block;
-    border-width : 2px;
+    border-width : $INPUT_BORDER_WIDTH;
     cursor       : pointer;
     text-align   : center;
     @if( $IS_LEGACY ){
@@ -70,20 +69,6 @@
         text-decoration : underline;
     }
 
-    @if( $IS_LTE_WIN_IE7 == false ){
-        // IE7 以下にはデザインが適用されない
-        &:active
-        /* //_{#can-focus-pseudo-class */
-        , &:focus
-        /* //_}#can-focus-pseudo-class */
-        {
-            border-color : $COLOR_ACCENT; /* input.btn に対して適用, a:link には上書きされる */
-            color        : $COLOR_ACCENT;
-            border-style : dotted;
-            outline      : 0;
-        }
-    }
-
     @if( $IS_LTE_WIN_IE7 ){
         &:link:active, &:visited:active {
             @if( $UA_IE5 or $UA_IE55 ){
@@ -92,6 +77,16 @@
             color        : $COLOR_ACCENT;
             border-style : dotted;
             outline      : 0;
+        }
+    } @else {
+        // IE7 以下にはデザインが適用されない
+        & {
+            @include active-focus-pseudo-class {
+                border-color : $COLOR_ACCENT; /* input.btn に対して適用, a:link には上書きされる */
+                color        : $COLOR_ACCENT;
+                border-style : dotted;
+                outline      : 0;
+            }
         }
     }
 }

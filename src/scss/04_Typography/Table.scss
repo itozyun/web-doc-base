@@ -175,12 +175,8 @@ table {
         border-color : $COLOR_Light_fill $COLOR_Light_fill $COLOR_ACCENT;
         color        : $COLOR_ACCENT;
     }
-    tbody :hover th {
-        :link:active, :visited:active
-        /* //_{#can-focus-pseudo-class */
-        , :focus
-        /* //_}#can-focus-pseudo-class */
-        {
+    tbody :hover th a {
+        @include active-focus-pseudo-class {
             @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR == false and $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
                 background : #fff !important;
                 color      : $COLOR_ACCENT !important;

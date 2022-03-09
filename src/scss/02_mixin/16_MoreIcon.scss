@@ -43,15 +43,22 @@
             border-color : $COLOR_Light_fill $COLOR_Light_text;
         }
     }
-    & :link:active i, & :visited:active i
-    /* //_{#can-focus-pseudo-class */
-    , & :link:focus i, & :visited:focus i
-    /* //_}#can-focus-pseudo-class */
-    {
-        @if( $CANUSE_BORDER_TRANSPARENT ){
-            border-color : transparent $COLOR_Light_fill;
-        } @else {
-            border-color : $COLOR_ACCENT $COLOR_Light_fill;
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        & :link:active i, & :visited:active i {
+            @if( $CANUSE_BORDER_TRANSPARENT ){
+                border-color : transparent $COLOR_Light_fill;
+            } @else {
+                border-color : $COLOR_ACCENT $COLOR_Light_fill;
+            }
+        }
+    }
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        & :link:focus i, & :visited:focus i {
+            @if( $CANUSE_BORDER_TRANSPARENT ){
+                border-color : transparent $COLOR_Light_fill;
+            } @else {
+                border-color : $COLOR_ACCENT $COLOR_Light_fill;
+            }
         }
     }
 

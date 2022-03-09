@@ -5,11 +5,12 @@
     /* //_{#ie6-win */
     a, /* link の無い a には下線をつけない */
     /* //_}#ie6-win */
-    :link:hover, :visited:hover, a:active
-    /* //_{#can-focus-pseudo-class */
-    , a:focus
-    /* //_}#can-focus-pseudo-class */
-    { text-decoration : none; }
+    :link:hover, :visited:hover { text-decoration : none; }
+    a {
+        @include active-focus-pseudo-class {
+            text-decoration : none;
+        }
+    }
 
     :link, :visited {
         text-decoration : underline;

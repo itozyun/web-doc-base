@@ -11,14 +11,16 @@
     a {
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
-        &:active:hover
-        /* //_{#can-focus-pseudo-class */
-        , &:focus:hover
-        /* //_}#can-focus-pseudo-class */
-        {
-            text-decoration : underline !important;
-        }
     }
+    @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
+        :active:hover { text-decoration : underline !important; }
+    } @else if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        :active { text-decoration : underline !important; }
+    }
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        :focus:hover { text-decoration : underline !important; }
+    }
+
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
