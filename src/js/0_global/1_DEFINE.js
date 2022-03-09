@@ -25,7 +25,7 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR   = 'mb',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR = 'hc',
+    DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR = 'hc',
 
 /** ===========================================================================
  * 7_Library/blockquot.js

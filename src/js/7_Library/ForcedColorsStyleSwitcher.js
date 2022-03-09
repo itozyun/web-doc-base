@@ -1,4 +1,4 @@
-if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR && !p_canuseNativeForcedColors ){
+if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors ){
     var ForcedColorsStyleSwitcher_elmStyle,
     /**
      * @type {Function|undefined}
@@ -13,7 +13,7 @@ if( DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR && !p_canuseNativeForcedColors ){
                     href  : p_assetUrl +
                                 p_cssDir +
                                 p_screenModeDir +
-                                DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR + '/' + p_cssName
+                                DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR + '/' + p_cssName
                 }
             );
 

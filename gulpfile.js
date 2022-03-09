@@ -181,11 +181,11 @@ gulp.task('btoa', gulp.series(
  *  /assets/css/
  *  /assets/css/hc/
  */
-const assetsDirToJSDir      = 'js',
-      assetsDirToCSSDir     = 'css',
-      cssDirToDesktopDir    = 'pc',
-      cssDirToMobileDir     = 'mb',
-      toForcedColorsModeDir = 'hc';
+const assetsDirToJSDir     = 'js',
+      assetsDirToCSSDir    = 'css',
+      cssDirToDesktopDir   = 'pc',
+      cssDirToMobileDir    = 'mb',
+      toForcedColorsCSSDir = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
@@ -224,11 +224,11 @@ gulp.task('js', gulp.series(
                         externs           : externs,
                         define            : [
                             'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir      + '"',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir     + '"',
-                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir    + '"',
-                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir     + '"',
-                            'DEFINE_WEB_DOC_BASE__HIGH_CONTRAST_CSS_DIR="' + toForcedColorsModeDir + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir     + '"',
+                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir    + '"',
+                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir   + '"',
+                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
+                            'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
                         ],
                         compilation_level : 'ADVANCED',
@@ -310,7 +310,7 @@ gulp.task('css', function(){
                 }
             }
         }))
-        .pipe(CSShack({ forcedColorsCSSDir : toForcedColorsModeDir }))
+        .pipe(CSShack({ forcedColorsCSSDir : toForcedColorsCSSDir }))
         .pipe(cleanCSS({
             format : 'beautify',
             compatibility : { properties : { ieFilters : true } },
