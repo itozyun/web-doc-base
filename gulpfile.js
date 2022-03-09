@@ -209,7 +209,7 @@ gulp.task('js', gulp.series(
                     '!./src/js/6_CanUse/dataUriTest.js',
                     '!./src/js/6_CanUse/webfontTest.js',
                     '!./src/js/graph/**/*.js',
-                    '!./src/js/7_Library/GoogleCodePrettify.js'
+                    '!./src/js/8_Library/GoogleCodePrettify.js'
                 ]
             ).pipe(
                 gulpDPZ(
