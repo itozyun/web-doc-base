@@ -8,16 +8,8 @@
         :focus { outline : 0; }
     }
 
-    @include media(forced_colors_native_or_fallback){
-        a {
-            @include active-focus-pseudo-class {
-                outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
-            }
-        }
-    }
-
     /* b, */
-    strong, em, dt {
+    /* strong, em, */ dt {
         font-weight : bold;
     }
     
@@ -80,7 +72,17 @@
         @include pre-wrap;
     }
 
-    @if( $UA_IE5 ){
+
+    ul, ol {
+        @if( $UA_Modern ){
+            list-style-position : outside; /* android opera12 ?? */
+        }
+        @if( $UA_IE5 or $UA_IE55 ){
+            margin-left : 0;
+        }
+    }
+
+    @if( $UA_IE5 and $Option_IT ){
         pre code,
         pre samp { width : 100%; }
     }

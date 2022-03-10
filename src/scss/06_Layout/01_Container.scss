@@ -22,11 +22,13 @@
 // https://twitter.com/itozyun/status/1496641802740600832
 $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 
+$LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
+
 @if( $Option_mobileOnly == false ){
     /*  wrapper
     --------------------------------------------------------------------------------------*/
     .lW {
-        @if( $IS_IE8_OR_9 == false and $LAYOUT_FIX_FOR_Opera75 == false ){
+        @if( $LAYOUT_BY_DISPLAY_TABLE == false and $LAYOUT_FIX_FOR_Opera75 == false ){
             @include clearfix;
         }
         @if( $UA_Gck-097 ){
@@ -59,7 +61,7 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     /*  main
     --------------------------------------------------------------------------------------*/    
         .lM {
-            @if( $IS_IE8_OR_9 == false ){
+            @if( $LAYOUT_BY_DISPLAY_TABLE == false ){
                 width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
                 float : left;
             }
@@ -79,7 +81,7 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     --------------------------------------------------------------------------------------*/
         .lS {
             width : 100% * $PC_SUB_COLUMN_RATIO;
-            @if( $IS_IE8_OR_9 == false ){
+            @if( $LAYOUT_BY_DISPLAY_TABLE == false ){
                 float : right;
             }
         }
@@ -119,9 +121,7 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
     */
 
-    @if( $IS_IE8_OR_9 ){
-        /*  float-layout -> table-layout
-        --------------------------------------------------------------------------------------*/
+    @if( $LAYOUT_BY_DISPLAY_TABLE ){
         .lW {
             display      : table;
             table-layout : fixed;
@@ -206,14 +206,14 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
             }
         }
         .lW {
-            @if( $IS_IE8_OR_9 ){
+            @if( $LAYOUT_BY_DISPLAY_TABLE ){
                 display : block;
             }
         }
             .lM, .lS {
                 float : none;
                 width : auto;
-                @if( $IS_IE8_OR_9 ){
+                @if( $LAYOUT_BY_DISPLAY_TABLE ){
                     display : block;
                 }
             }
@@ -227,7 +227,7 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     }
 }
 
-/* #lB > .lX の際に footer の塗りがはみ出さないようにする  */
+/* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
 .lX {
     @if( $IS_IE8_OR_9 or $UA_Modern ){
         overflow : hidden; /* この指定が無いと塗りがはみ出る */

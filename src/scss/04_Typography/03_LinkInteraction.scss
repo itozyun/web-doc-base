@@ -23,10 +23,6 @@ a {
     a:focus:hover { text-decoration : underline;; }
 }
 
-img { //, iframe, embed, object, video
-    @extend %InteractiveObject;
-}
-
 /*  transition
 --------------------------------------------------------------------------------------*/
 @if( $UA_Modern ){
@@ -105,7 +101,7 @@ a {
     a:focus {
         background-color : $COLOR_Sidebar_fill !important;
         .ribbon & {
-            background-color : #666 !important;
+            background-color : #777 !important;
         }
     }
 } @else {
@@ -153,6 +149,16 @@ a {
     :visited:hover {
         color        : $COLOR_Dark_visited_hover;
         border-color : $COLOR_Dark_visited_hover;
+    }
+}
+
+/*  Forced colors
+--------------------------------------------------------------------------------------*/
+@include media(forced_colors_native_or_fallback){
+    a {
+        @include active-focus-pseudo-class {
+            outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+        }
     }
 }
 

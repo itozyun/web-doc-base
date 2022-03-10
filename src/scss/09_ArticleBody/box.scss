@@ -38,8 +38,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
     .box {
-        break-inside                : avoid;
-        -webkit-column-break-inside : avoid;
+        @include unbreak-inside;
     }
 }
 

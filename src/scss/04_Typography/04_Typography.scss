@@ -13,25 +13,27 @@
         @include responsive-horizontal-margin(2, 1.5em, 0.8em);
     }
     h4 {
-        font-size      : 1em;
-        border-width   : 0 0 0 0.7em;
-        border-color   : $COLOR_Light_text;
-        padding        : 0 0 0 0.3em;
+        font-size    : 1em;
+        border-width : 0 0 0 0.7em;
+        border-color : $COLOR_Light_text;
+        padding      : 0 0 0 0.3em;
     }
     h5 {
-        font-size      : 1em;
-        border-width   : 0 0 0 0.5em;
-        border-color   : $COLOR_Light_casual_text;
-        padding        : 0 0 0 0.5em;
+        font-size    : 1em;
+        border-width : 0 0 0 0.5em;
+        border-color : $COLOR_Light_casual_text;
+        padding      : 0 0 0 0.5em;
     }
     h6 {
-        font-size      : 1em;
-        border-width   : 0 0 0 0.3em;
-        border-color   : $COLOR_Light_casual_text;
-        color          : $COLOR_Light_casual_text;
-        padding        : 0 0 0 0.7em;
+        font-size    : 1em;
+        border-width : 0 0 0 0.3em;
+        border-color : $COLOR_Light_casual_text;
+        color        : $COLOR_Light_casual_text;
+        padding      : 0 0 0 0.7em;
     }
 
+/*  Inline Level Elements
+--------------------------------------------------------------------------------------*/
     strong, em {
         font-style : normal;
     }
@@ -64,10 +66,14 @@
 
 /*  object
 --------------------------------------------------------------------------------------*/
+    img { //, iframe, embed, object, video
+        @extend %InteractiveObject;
+        @include unbreak-inside;
+    }
+
     img, iframe
     // , embed, object, video
     {
-        @include unbreak-inside;
         @include responsive-horizontal-margin(1, 1em, 1em);
         @if( $CANUSE_MARGIN_AUTO ){
             margin : 1em auto;
@@ -87,35 +93,39 @@
     
             @include media(tablet_print) {
                 & {
-                    max-width  : #{100% - $TABLET_HORIZONTAL_MARGIN * 2};
+                    max-width : #{100% - $TABLET_HORIZONTAL_MARGIN * 2};
                 }
             }
             @include media(phablet) {
                 & {
-                    max-width  : #{100% - $PHABLET_HORIZONTAL_MARGIN * 2};
+                    max-width : #{100% - $PHABLET_HORIZONTAL_MARGIN * 2};
                 }
             }
             @include media(phone) {
                 & {
-                    max-width  : #{100% - $PHONE_HORIZONTAL_MARGIN * 2};
+                    max-width : #{100% - $PHONE_HORIZONTAL_MARGIN * 2};
                 }
             }
             @include media(watch) {
                 & {
-                    max-width  : 100%;
+                    max-width : 100%;
                 }
             }
         }
     }
 
 /*  List, dl
---------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------*/
+    ul, ol {
+        padding-left : 2em;
+    }
     li {
         margin-top    : .3em;
         margin-bottom : .3em;
     }
     dt {
         margin-top : #{$PARAGRAPH_LINE_HEIGHT_EM - $BASE_LINE_HEIGHT_EM};
+        @include unbreak-after;
     }
     dd {
         margin-bottom : .3em;
@@ -125,20 +135,9 @@
         @include unbreak-inside;
     }
 
-    dt {
-        @include unbreak-after;
-    }
-
 /*  Nesting
 --------------------------------------------------------------------------------------*/
     ul, ol {
-        padding-left : 2em;
-        @if( $UA_Modern ){
-            list-style-position : outside; /* android opera12 ?? */
-        }
-        @if( $UA_IE5 or $UA_IE55 ){
-            margin-left : 0;
-        }
         li &, dl & {
             padding-left : 1em;
         }
@@ -236,8 +235,8 @@
 
 /*  Forced colors
 --------------------------------------------------------------------------------------*/
-img {
-    @include media(forced_colors_native){
+@include media(forced_colors_native){
+    img {
         filter : brightness(100%);
     }
 }
