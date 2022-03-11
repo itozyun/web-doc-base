@@ -271,7 +271,16 @@ const plumber     = require("gulp-plumber"),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
       CSShack     = require('./js-buildtools/gulp-csshack.js'),
-      finalizeCSS = require("./js-buildtools/gulp-finalize-css.js");
+      finalizeCSS = require("./js-buildtools/gulp-finalize-css.js"),
+      CleanCSSOption = {
+            compatibility : { properties : { ieFilters : true } },
+            //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
+            level : { 1 : { roundingPrecision : 3 },
+                      2 : { all : true, removeUnusedAtRules : false,
+                            skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor' ]
+                          }
+                    }
+      };
 
 gulp.task('css', function(){
     return gulp.src([
@@ -294,40 +303,19 @@ gulp.task('css', function(){
         .pipe(sass())
         .pipe(gcm())
         .pipe(cleanCSS({
-            format : 'beautify',
             compatibility : { properties : { ieFilters : true } },
-            //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
             level: {
-                1: {
-                    // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-                    roundingPrecision : 3
+                1: { roundingPrecision : 3
                 },
                 2: {
                     all : true,
-                    removeUnusedAtRules : false,
-                    // overrideProperties  : false,
-                    skipProperties : [ 'display', 'cursor' ]
+                    removeUnusedAtRules : false
                 }
             }
         }))
+        .pipe(cleanCSS( CleanCSSOption )) // For more optimization!
         .pipe(CSShack({ forcedColorsCSSDir : toForcedColorsCSSDir }))
-        .pipe(cleanCSS({
-            format : 'beautify',
-            compatibility : { properties : { ieFilters : true } },
-            //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
-            level: {
-                1: {
-                    // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-                    roundingPrecision : 3
-                },
-                2: {
-                    all : true,
-                    removeUnusedAtRules : false,
-                    // overrideProperties  : false,
-                    skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor' ]
-                }
-            } 
-        }))
+        .pipe(cleanCSS( ( CleanCSSOption.format = 'beautify', CleanCSSOption ) ))
         .pipe(finalizeCSS())
         .pipe(gulp.dest( './docs/assets/' + assetsDirToCSSDir ));
 });

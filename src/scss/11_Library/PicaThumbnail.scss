@@ -23,6 +23,7 @@
 }
 
 .jsPica img {
+    /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-in;
     }
@@ -32,8 +33,10 @@
     @if( $UA_Modern ){
         cursor : zoom-in;
     }
+    /* clean-css ignore:end */
 }
 .jsPicaLarge img {
+    /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-out;
     }
@@ -43,6 +46,7 @@
     @if( $UA_Modern ){
         cursor : zoom-out;
     }
+    /* clean-css ignore:end */
 }
 
     .jsPicaLarge img {
