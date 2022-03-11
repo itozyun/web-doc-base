@@ -84,7 +84,7 @@
             }
             .Header h1 {
                 @if( $Option_mobileOnly == false ){
-                    display    : block;
+                    display : block;
                 }
                 text-align : center;
                 margin     : 0 0 0.5em;
