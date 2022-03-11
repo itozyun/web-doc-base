@@ -1,4 +1,6 @@
-/*
+/**
+ * @see https://outcloud.blogspot.com/2022/03/sidebarfixer.html
+ *
  * 途中でサイドバーの要素が変化する -> 公開メソッドを未実装
  */
 var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
@@ -243,43 +245,43 @@ function SidebarFixer_onWindowBlur(){
  * @return {boolean|Array.<number>|undefined} ホイールイベントをキャンセルするか? または SidebarFixer_focuedElementYAndHeight の保持する用
  */
 function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
-    var scrollY       = SidebarFixer_lastScrollY,
-        elmMain       = SidebarFixer_elmMain,
-        isMultiColumn = SidebarFixer_elmSide.offsetTop === elmMain.offsetTop,
-        sidebarY      = 0,
-        cssText       = '',
-        preventWheel  = true;
+    var scrollY        = SidebarFixer_lastScrollY,
+        elmMain        = SidebarFixer_elmMain,
+        isMultiColumn  = SidebarFixer_elmSide.offsetTop === elmMain.offsetTop,
+        sidebarOffsetY = 0,
+        cssText        = '',
+        preventWheel   = true;
 
-    function createCSSTextBySidebarY( _sliderY ){
+    function createCSSTextBySidebarOffsetY( _y ){
         var sidebarWidth;
 
-        sidebarY = _sliderY;
+        sidebarOffsetY = _y;
         if( SidebarFixer_transformProp ){
             cssText = SidebarFixer_transformProp + ':translate' + ( SidebarFixer_use3D ? '3D(0,' : '(0,' ) +  /* 3D は Android 3.1 ではマスト */
-                      _sliderY + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
-                      ';-webkit-overflow-scrolling:touch;';
-        } else if( _sliderY !== 0 ){
+                      _y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
+                      ';-webkit-overflow-scrolling:touch';
+        } else if( _y !== 0 ){
             if( !SidebarFixer_USE_POSITION_RELATIVE && ( SidebarFixer_USE_CLIP || SidebarFixer_CANUSE_POSITION_FIXED ) ){
                 sidebarWidth = SidebarFixer_elmSide.offsetWidth;
             };
             if( SidebarFixer_CANUSE_POSITION_FIXED ){
-                cssText = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( _sliderY - scrollY + containerY ) + 'px';
+                cssText = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( _y - scrollY + containerY ) + 'px';
             } else if( SidebarFixer_USE_POSITION_RELATIVE ){
                 // pos:absolute でないと動作しない
-                cssText = 'top:' + _sliderY + 'px;left:0';
+                cssText = 'top:' + _y + 'px;left:0';
             } else {
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
-                cssText = 'position:absolute;left:0;width:100%;top:' + _sliderY + 'px';
+                cssText = 'position:absolute;left:0;width:100%;top:' + _y + 'px';
             };
 
             if( SidebarFixer_USE_CLIP && cssText ){
                 cssText += ';' +
                     (
-                    _sliderY < 0 ? 
-                        'clip:rect(' + ( -_sliderY ) + 'px ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
-                    _sliderY + sidebarHeight < containerHeight ?
+                    _y < 0 ? 
+                        'clip:rect(' + ( -_y ) + 'px ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
+                    _y + sidebarHeight < containerHeight ?
                         'clip:rect(0 ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
-                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( containerHeight - _sliderY ) + 'px 0)'
+                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( containerHeight - _y ) + 'px 0)'
                     );
                 if( !( p_Trident < 8 ) ){
                     cssText = cssText.split( ' ' ).join( ',' );
@@ -295,7 +297,8 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             SIDEBAR_TOP_TO_VISIBLE_CONTAINER_TOP               = 3,
             FOCUSED_ELEMENT_TOP_TO_VISIBLE_CONTAINER_TOP       = 4,
             FOCUSED_ELEMENT_BOTTOM_TO_VISIBLE_CONTAINER_BOTTOM = 5,
-            SKIP_ACTION                                        = 6;
+            SIDEBAR_OFFSET_Y_IS_CALCURATED                     = 6,
+            SKIP_ACTION                                        = 7;
 
         var action     = SIDEBAR_TOP_TO_CONTAINER_TOP,
             containerY = 0,
@@ -367,7 +370,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 } else if( visibleContainerTop <= focusedElementTop && focusedElementBottom <= visibleContainerBottom ){
                     // 4.3.2 完全に可視部分に入っている場合は移動しない
                     // 但し、サイドバー上に隙間が出来る場合、可視部分の天と要素の天を合わせる
-                    if( visibleContainerTop < containerY + sidebarY ){
+                    if( visibleContainerTop < containerY + sidebarOffsetY ){
                         action = FOCUSED_ELEMENT_TOP_TO_VISIBLE_CONTAINER_TOP;
                         DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.3.2' );
                     };
@@ -400,27 +403,27 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             // 3. サイドバー上でのマウスホイールでの動作
             // 3.1 サイドバーの高さ ≦ コンテナの可視部分の高さ
             if( sidebarHeight <= visibleContainerHeight ){
+                action = SKIP_ACTION;
                 preventWheel = false;
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.1' );
             } else {
             // 3.2 サイドバーの高さ > コンテナの可視部分の高さ
-                sidebarY = sidebarOffsetY - wheelDeltaY * 60;
+                sidebarOffsetY = sidebarOffsetY - wheelDeltaY * 60;
                 // 3.2.1 サイドバーの天の最小値は、コンテナの可視部分の地 - コンテナのy - サイドバーの高さ。
                 var minLimitOfSidebarY = visibleContainerBottom - containerY - sidebarHeight;
                 // 3.2.2 サイドバーの天の最大値は、コンテナの可視部分の天 - コンテナのy。
                 var maxLimitOfSidebarY = visibleContainerTop - containerY;
-                if( sidebarY < minLimitOfSidebarY ){
-                    createCSSTextBySidebarY( minLimitOfSidebarY );
+                if( sidebarOffsetY < minLimitOfSidebarY ){
+                    sidebarOffsetY = minLimitOfSidebarY;
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.1' );
                 } else
-                if( maxLimitOfSidebarY < sidebarY ){
-                    createCSSTextBySidebarY( maxLimitOfSidebarY );
+                if( maxLimitOfSidebarY < sidebarOffsetY ){
+                    sidebarOffsetY = maxLimitOfSidebarY;
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.2' );
                 } else {
-                    createCSSTextBySidebarY( sidebarY );
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '3.2.3' );
                 };
-                action = SKIP_ACTION;
+                action = SIDEBAR_OFFSET_Y_IS_CALCURATED;
             };
         } else {
             // 2. ドキュメントのスクロールでの動作
@@ -468,34 +471,36 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
         };
         switch( action ){
             case SIDEBAR_TOP_TO_CONTAINER_TOP :
-                createCSSTextBySidebarY( 0 );
+                createCSSTextBySidebarOffsetY( 0 );
                 break;
             case SIDEBAR_BOTTOM_TO_CONTAINER_BOTTOM :
-                createCSSTextBySidebarY( containerHeight - sidebarHeight );
+                createCSSTextBySidebarOffsetY( containerHeight - sidebarHeight );
                 break;
             case SIDEBAR_BOTTOM_TO_VISIBLE_CONTAINER_BOTTOM :
-                createCSSTextBySidebarY( visibleContainerBottom - containerY - sidebarHeight );
+                createCSSTextBySidebarOffsetY( visibleContainerBottom - containerY - sidebarHeight );
                 break;
             case SIDEBAR_TOP_TO_VISIBLE_CONTAINER_TOP :
-                createCSSTextBySidebarY( visibleContainerTop - containerY );
+                createCSSTextBySidebarOffsetY( visibleContainerTop - containerY );
                 break;
             case FOCUSED_ELEMENT_TOP_TO_VISIBLE_CONTAINER_TOP : // 可視部分の天と要素の天を合わせる
-                createCSSTextBySidebarY( visibleContainerTop - containerY - focusedElementY );
+                createCSSTextBySidebarOffsetY( visibleContainerTop - containerY - focusedElementY );
                 break;
             case FOCUSED_ELEMENT_BOTTOM_TO_VISIBLE_CONTAINER_BOTTOM : // 可視部分の地と要素の地を合わせる
-                createCSSTextBySidebarY( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                createCSSTextBySidebarOffsetY( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+            case SIDEBAR_OFFSET_Y_IS_CALCURATED :
+                createCSSTextBySidebarOffsetY( sidebarOffsetY );
                 break;
         };
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
-            SidebarFixer_updateSidebar( sidebarY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-' );
+            SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-' );
         };
     } else if( DEFINE_WEB_DOC_BASE__DEBUG ){
-        SidebarFixer_updateSidebar( sidebarY, '-', '-', '-', '-', '-' );
+        SidebarFixer_updateSidebar( sidebarOffsetY, '-', '-', '-', '-', '-' );
     };
 
     p_DOM_setCssText( SidebarFixer_elmWrap, cssText );
 
-    SidebarFixer_sidebarOffsetY = sidebarY;
+    SidebarFixer_sidebarOffsetY = sidebarOffsetY;
 
     return isMultiColumn && preventWheel;
 };
@@ -698,16 +703,16 @@ function SidebarFixer_updateViewport(){
         // Debug.log( 'scrollY:' + SidebarFixer_lastScrollY );
     };
 };
-function SidebarFixer_updateSidebar( sidebarY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY ){
+function SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY ){
     if( SidebarFixer_elmSidebar ){
-        p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarY + containerY ) / 10 | 0 ) + 'px' );
+        p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarOffsetY + containerY ) / 10 | 0 ) + 'px' );
         p_DOM_setStyle( SidebarFixer_elmSidebar, 'height', ( sidebarHeight / 10 | 0 ) + 'px' );
 
         p_DOM_setStyle( SidebarFixer_elmViewport, 'height', ( viewportHeight / 10 | 0 ) + 'px' );
 
         p_DOM_setStyle( SidebarFixer_elmDocument, 'height', ( p_body.scrollHeight / 10 | 0 ) + 'px' );
 
-        SidebarFixer_elmDisplayValues.textContent = 'y:' + containerY + '/' + sidebarY + ', h:' + containerHeight + '/' + sidebarHeight + ' fy:' + focusedElementY;
+        SidebarFixer_elmDisplayValues.textContent = 'y:' + containerY + '/' + sidebarOffsetY + ', h:' + containerHeight + '/' + sidebarHeight + ' fy:' + focusedElementY;
     };
 };
 function SidebarFixer_updateElementFocused( y, h ){
