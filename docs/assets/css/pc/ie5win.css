@@ -19,6 +19,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -441,11 +442,13 @@ a:active * {
 a:active {
   background-color: #29a119!important
 }
+.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6 {
+h6,
+th {
   font-weight: 400
 }
 .ABody h3,
@@ -453,10 +456,6 @@ h6 {
 .Magazine-date,
 h2 {
   font-weight: 700
-}
-.RichLink b,
-th {
-  font-weight: 400
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -840,9 +839,6 @@ input.btn {
 .ADesc p {
   margin: 0 .5em 1em
 }
-.AHead {
-  color: #717e73
-}
 .AHead h1 {
   font-size: 2em;
   color: #021605;
@@ -927,7 +923,8 @@ input.btn {
 .Cover-img {
   margin: 0 0 .6em
 }
-.Cover img {
+.Cover img,
+.Magazine .box {
   margin: 0
 }
 .Cover .img-loaded div {
@@ -1021,9 +1018,6 @@ kbd {
   width: 80%;
   float: left;
   line-height: 1.6
-}
-.Magazine .box {
-  margin: 0
 }
 .Magazine blockquote,
 .Magazine dl,

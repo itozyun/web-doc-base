@@ -16,6 +16,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -926,9 +927,6 @@ strong {
 }
 .ADesc p {
   margin: 0 .5em 1em
-}
-.AHead {
-  color: #717e73
 }
 .AHead h1 {
   font-size: 2em;
@@ -1931,7 +1929,7 @@ screen and (max-width:950px) {
     width: 94%
   }
   #lB .lS {
-    background: #ecf1bf
+    background: #ebeed5
   }
   .lMi,
   .lMz .lMh,
@@ -2503,7 +2501,9 @@ screen and (max-width:240px) {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  input,
+  textarea {
     color: #eee
   }
   :link:hover {
@@ -2554,10 +2554,6 @@ screen and (max-width:240px) {
   h5,
   h6 {
     border-color: #999
-  }
-  input,
-  textarea {
-    color: #eee
   }
   .ABody h1,
   .ABody h2,

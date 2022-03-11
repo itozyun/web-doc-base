@@ -12,6 +12,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -263,6 +264,8 @@ a:focus:hover {
   display: inline-block;
   margin-left: .5em
 }
+.Cover img,
+.Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
 .RichLink b,
@@ -1184,10 +1187,6 @@ a:focus .ico-pen:after {
 kbd {
   display: inline-block
 }
-.Cover img,
-.Cover-meta {
-  display: block
-}
 .ABody h3 {
   font-size: 1.25em;
   border-width: .1em 0 0;
@@ -1195,9 +1194,6 @@ kbd {
 }
 .ADesc p {
   margin: 0 .5em 1em
-}
-.AHead {
-  color: #717e73
 }
 .AHead h1 {
   font-size: 2em;

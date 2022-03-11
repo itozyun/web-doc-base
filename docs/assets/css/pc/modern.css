@@ -555,20 +555,14 @@ a:focus {
   color: #ca088a!important
 }
 .h1,
+caption,
+dt,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  -webkit-column-break-after: avoid;
-  -moz-break-after: avoid;
-  column-break-after: avoid;
-  break-after: avoid;
-  page-break-after: avoid
-}
-caption,
-dt,
+h6,
 thead {
   -webkit-column-break-after: avoid;
   -moz-break-after: avoid;
@@ -1411,7 +1405,9 @@ kbd {
 .ADesc p {
   margin: 0 .5em 1em
 }
-.AHead {
+.AHead,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta {
   color: #717e73
 }
 .AHead h1 {
@@ -1633,10 +1629,6 @@ kbd {
 }
 .baseColor .RichLink-meta {
   color: #bddac8
-}
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta {
-  color: #717e73
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -2794,7 +2786,7 @@ only screen and (max-width:950px) {
     width: 94%
   }
   #lB .lS {
-    background: #ecf1bf
+    background: #ebeed5
   }
   .lMi,
   .lMz .lMh,
@@ -3294,6 +3286,7 @@ only screen and (max-width:240px) {
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
   .RichLink-sep :visited:hover,
+  .medal,
   .tl tr code,
   .tl tr var,
   blockquote,
@@ -3337,7 +3330,9 @@ only screen and (max-width:240px) {
   .tl thead td,
   .tl thead th,
   :visited,
-  body {
+  body,
+  input,
+  textarea {
     color: #eee
   }
   :link:hover {
@@ -3386,10 +3381,6 @@ only screen and (max-width:240px) {
   }
   img {
     filter: brightness(85%)
-  }
-  input,
-  textarea {
-    color: #eee
   }
   input:placeholder-shown,
   textarea:placeholder-shown {
@@ -3547,10 +3538,6 @@ only screen and (max-width:240px) {
   .ico-comment:after,
   .ico-pen:after {
     border-color: #999 transparent
-  }
-  .medal {
-    background: #222;
-    color: #eee
   }
   :link .medal,
   :visited .medal {

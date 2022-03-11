@@ -16,6 +16,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -436,7 +437,7 @@ form :focus {
   border-color: #b3f
 }
 a:focus {
-  background-color: #ecf1bf!important
+  background-color: #ebeed5!important
 }
 .ribbon a:focus {
   background-color: #777!important
@@ -447,11 +448,13 @@ a:focus {
   color: #fff!important;
   border-color: #fff!important
 }
+.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6 {
+h6,
+th {
   font-weight: 400
 }
 .ABody h3,
@@ -460,10 +463,6 @@ h6 {
 .links [href]:before,
 h2 {
   font-weight: 700
-}
-.RichLink b,
-th {
-  font-weight: 400
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -888,9 +887,6 @@ input.btn {
 }
 .ADesc p {
   margin: 0 .5em 1em
-}
-.AHead {
-  color: #717e73
 }
 .AHead h1 {
   font-size: 2em;

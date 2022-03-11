@@ -16,6 +16,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -937,9 +938,6 @@ strong {
 .ADesc p {
   margin: 0 .5em 1em
 }
-.AHead {
-  color: #717e73
-}
 .AHead h1 {
   font-size: 2em;
   color: #021605;
@@ -1844,6 +1842,7 @@ li.L8 {
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
   .RichLink-sep :visited:hover,
+  .medal,
   .tl tr code,
   .tl tr var,
   blockquote,
@@ -1918,7 +1917,9 @@ li.L8 {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  input,
+  textarea {
     color: #eee
   }
   :link:hover {
@@ -1971,10 +1972,6 @@ li.L8 {
   h5,
   h6 {
     border-color: #999
-  }
-  input,
-  textarea {
-    color: #eee
   }
   h2:after {
     width: 33%;
@@ -2099,10 +2096,6 @@ li.L8 {
   .Magazine img,
   .commonForm-wrap {
     margin-left: 0
-  }
-  .medal {
-    background: #222;
-    color: #eee
   }
   :link .medal,
   :visited .medal {

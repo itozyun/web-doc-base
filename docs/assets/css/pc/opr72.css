@@ -16,6 +16,7 @@ h6,
 table {
   border-color: #717e73
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -872,9 +873,6 @@ var {
 }
 .ADesc p {
   margin: 0 .5em 1em
-}
-.AHead {
-  color: #717e73
 }
 .AHead h1 {
   font-size: 2em;
