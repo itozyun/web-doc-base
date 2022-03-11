@@ -8,6 +8,14 @@
         :focus { outline : 0; }
     }
 
+    @if( $UA_Modern ){
+        // https://shanabrian.com/web/html-css-js-technics/other-ie10-11-bug-01.php
+        // IE10、IE11、Windows 8 Edgeでページ全体のスクロールバーがコンテンツと重なる
+        html {
+            -ms-overflow-style : -ms-autohiding-scrollbar; // https://qumeru.com/magazine/libraries/stylesheet/posts/60 スクロール中のみスクロールバーを表示
+        }
+    }
+
     /* b, */
     /* strong, em, */ dt {
         font-weight : bold;
