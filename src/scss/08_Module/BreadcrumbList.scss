@@ -40,9 +40,8 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .BreadcrumbList {
-        font-size     : .83em;
-        padding       : 0.5em 0;
-        border-bottom : 0.18em solid $COLOR_Print_text; /* 0.15 / .83 */
-        color         : $COLOR_Print_casual_text !important;
+        font-size : .83em;
+        padding   : 0.5em 0;
+        color     : $COLOR_Print_casual_text !important;
     }
 }

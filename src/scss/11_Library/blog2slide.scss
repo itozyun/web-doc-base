@@ -40,7 +40,7 @@
         @include media(WSXGA) {
             #blog2slide-root {
                 -webkit-column-count : 1;
-                -moz-column-count : 1;
+                   -moz-column-count : 1;
                         column-count : 1;
             }
         }
