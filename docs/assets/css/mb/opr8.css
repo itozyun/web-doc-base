@@ -1000,8 +1000,8 @@ strong {
   border-width: 0 0 1px
 }
 .BreadcrumbList {
-  color: #717e73;
-  padding: 1em 0 0
+  padding: 1em 0;
+  color: #717e73
 }
 .BreadcrumbList a,
 .Cover-meta span,

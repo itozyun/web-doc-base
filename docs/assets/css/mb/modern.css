@@ -456,6 +456,7 @@ textarea {
   border-width: 0
 }
 html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -1462,8 +1463,8 @@ kbd {
   border-width: 0 0 1px
 }
 .BreadcrumbList {
-  color: #717e73;
-  padding: 1em 0 0
+  padding: 1em 0;
+  color: #717e73
 }
 .Comment h3,
 .SearchResult h3 {

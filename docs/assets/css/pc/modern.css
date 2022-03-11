@@ -446,6 +446,7 @@ textarea {
   border-width: 0
 }
 html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -2820,9 +2821,6 @@ only screen and (max-width:950px) {
   }
   .mspacer {
     margin: 1em .5em!important
-  }
-  .BreadcrumbList {
-    padding: 1em 0 0
   }
   .Magazine img {
     margin-left: 0

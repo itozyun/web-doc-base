@@ -1773,6 +1773,7 @@ li.L8 {
 }
 @media handheld {
   .AHead,
+  .BreadcrumbList,
   .Cover-meta,
   .baseColor :link .RichLink-meta,
   .baseColor :visited .RichLink-meta,
@@ -2133,10 +2134,6 @@ li.L8 {
   .AHead-labels a {
     display: block;
     margin: .5em
-  }
-  .BreadcrumbList {
-    color: #999;
-    padding: 1em 0 0
   }
   .Cover {
     max-width: 400px
