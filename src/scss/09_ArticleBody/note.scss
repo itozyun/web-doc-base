@@ -55,8 +55,11 @@ dl.note dd {
         }
     }
 }
-.note {
-    @if( $UA_Modern ){
+
+/*  WSXGA. print
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA_print) {
+    .note {
         -webkit-column-span : all;
            -moz-column-span : all;
                 column-span : all;

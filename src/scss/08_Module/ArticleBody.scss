@@ -54,16 +54,13 @@
     padding        : 1.4em 0 .6em;
 }
 
-/*  WSXGA
+/*  WSXGA, print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
+@include media(WSXGA_print) {
     .ABody, .ABody blockquote {
         -webkit-column-count : 2;
-        -webkit-column-gap   : $WSXGA_COLUMN_GAP_EM;
            -moz-column-count : 2;
-           -moz-column-gap   : $WSXGA_COLUMN_GAP_EM;
                 column-count : 2;
-                column-gap   : $WSXGA_COLUMN_GAP_EM;
     }
         .ABody .aBodyRoot > *:first-child {
             margin-top : 0;
@@ -80,6 +77,13 @@
                         column-span : all;
             }
         }
+}
+@include media(WSXGA) {
+    .ABody, .ABody blockquote {
+        -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
+           -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
+                column-gap : $WSXGA_COLUMN_GAP_EM;
+    }
 }
 
 /*  Tablet
@@ -132,5 +136,12 @@
 @include media(print) {
     .ABody {
         margin : 0;
+    }
+    @if( $UA_Modern ){
+        .ABody, .ABody blockquote {
+            -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
+               -moz-column-gap : $PRINT_COLUMN_GAP_EM;
+                    column-gap : $PRINT_COLUMN_GAP_EM;
+        }
     }
 }

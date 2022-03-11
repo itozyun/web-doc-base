@@ -121,7 +121,7 @@
 
     /*  WSXGA
     --------------------------------------------------------------------------------------*/
-    @include media(WSXGA) {
+    @include media(WSXGA_print) {
         .Magazine-sep {
             display      : table;
             table-layout : fixed;
@@ -131,14 +131,18 @@
                 display        : table-cell;
                 vertical-align : top;
                 width          : 50%;
-                padding        : 1em 0 1em 1em;
-            }
-            .Magazine-item:first-child {
-                padding : 1em 1em 1em 0;
             }
             .Magazine-only .aBodyRoot {
                 font-size : 1em;
             }
+    }
+    @include media(WSXGA) {
+        .Magazine-item {
+            padding : 1em 0 1em math.div($WSXGA_COLUMN_GAP_EM, 2);
+        }
+        .Magazine-item:first-child {
+            padding : 1em math.div($WSXGA_COLUMN_GAP_EM, 2) 1em 0;
+        }
     }
 
     /*  Tablet
@@ -212,6 +216,12 @@
     @include media(print) {
         .Magazine .aBodyRoot {
             width : auto;
+        }
+        .Magazine-item {
+            padding : 1em 0 1em math.div($PRINT_COLUMN_GAP_EM, 2);
+        }
+        .Magazine-item:first-child {
+            padding : 1em math.div($PRINT_COLUMN_GAP_EM, 2) 1em 0;
         }
         .Magazine-jump { display : none; }
     }

@@ -52,17 +52,19 @@
         .hscroll pre samp { width : auto; }
     }
 
-/*  WSXGA
+/*  WSXGA. print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
+@include media(WSXGA_print) {
     .hscroll {
         -webkit-column-span : all;
            -moz-column-span : all;
                 column-span : all;
     }
-        .hscroll > *, .hscroll table {
-            margin : 2em auto;
-        }
+}
+@include media(WSXGA) {
+    .hscroll > *, .hscroll table {
+        margin : 2em auto;
+    }
 }
 
 /*  Tablet
