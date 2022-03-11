@@ -65,7 +65,7 @@ a {
         color        : $COLOR_Ribbon_link;
     }
     :visited       {
-        color        : $COLOR_Ribbon_visited;
+        color        : $COLOR_Ribbon_text;
     }
     :link:hover    {
         color        : $COLOR_Ribbon_hover;
@@ -140,7 +140,7 @@ a {
         
     }
     :visited       {
-        color        : $COLOR_Dark_visited;
+        color        : $COLOR_Dark_text;
     }
     :link:hover    {
         color        : $COLOR_Dark_hover;

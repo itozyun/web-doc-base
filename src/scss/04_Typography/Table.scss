@@ -78,7 +78,7 @@ table {
         border-width : 0 0.5em 1px;
     }
 
-    @if( $CANUSE_LAST_CHILD_SELECTOR ){
+    @if( $CANUSE_LAST_CHILD_SELECTOR and $CANUSE_NOT_SELECTOR ){
         tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
             border-bottom-width : 0;
         }

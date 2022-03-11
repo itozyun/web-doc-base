@@ -9,10 +9,6 @@
         cursor          : pointer;
         text-decoration : none !important;
 
-        /* href がない場合 current を示す塗りになる */
-        background       : $COLOR_Light_text;
-        color            : $COLOR_Light_fill;
-
         @if( $UA_Modern ){ // https://twitter.com/itozyun/status/1499739713884016642
             overflow : hidden;   // Opera 9.6-
             height   : auto;     // Opera 9.6-
@@ -21,14 +17,30 @@
             }
         }
     }
-    :link {
-        background : $COLOR_Light_fill;
-        color      : $COLOR_Light_link;
+    @if( $CANUSE_NOT_SELECTOR == false ){
+        a {
+            background : $COLOR_Light_text;
+            color      : $COLOR_Light_fill;
+        }
+        :link {
+            background : transparent;
+            color      : $COLOR_Light_link;
+        }
+        :visited {
+            background : transparent;
+            color      : $COLOR_Light_text;
+        }
+    } @else {
+        a:not([href]) {
+            /* href がない場合 current を示す塗りになる */
+            background : $COLOR_Light_text;
+            color      : $COLOR_Light_fill;
+        }
+        :visited {
+            // color : $COLOR_Light_text;
+        }
     }
-    :visited {
-        background : $COLOR_Light_fill; /* Edge のみ transparent で上書きできないので背景色を指定 */
-        color      : $COLOR_Light_text;
-    }
+
     :link:hover, :visited:hover {
         background : $COLOR_Light_casual_fill;
         color      : $COLOR_Light_text;
@@ -36,63 +48,65 @@
 
     /*  Tablet
     --------------------------------------------------------------------------------------*/
-    @if $COLOR_Light_fill != $COLOR_Sidebar_fill {
-        @include media(tablet) {
-            #lB .lS & :link, #lB .lS & :visited {
-                background : $COLOR_Sidebar_fill;
-            }
-            #lB .lS & :link:hover, #lB .lS & :visited:hover {
-                background : $COLOR_Light_casual_fill;
-            }
+    @if( $CANUSE_NOT_SELECTOR == false ){
+        a {
+            background : $COLOR_Ribbon_text;
+            color      : $COLOR_Ribbon_fill;
+        }
+        .ribbon & :link {
+            background : transparent;
+            color      : $COLOR_Ribbon_link;
+        }
+        .ribbon & :visited {
+            background : transparent;
+            color      : $COLOR_Ribbon_text;
+        }
+    } @else {
+        .ribbon & a:not([href]) {
+            /* href がない場合 current を示す塗りになる */
+            background : $COLOR_Ribbon_text;
+            color      : $COLOR_Ribbon_fill;
+        }
+        .ribbon & :visited {
+            // color : $COLOR_Ribbon_text;
         }
     }
 
-    .ribbon & a {
-        background : $COLOR_Ribbon_text;
-        color      : $COLOR_Ribbon_fill;
-    }
-    .ribbon & :link {
-        background : $COLOR_Ribbon_fill;
-        color      : $COLOR_Ribbon_link;
-    }
-    .ribbon & :visited {
-        background : $COLOR_Ribbon_fill;
-        color      : $COLOR_Ribbon_text;
-    }
     .ribbon & :link:hover, .ribbon & :visited:hover {
         background : $COLOR_Ribbon_casual_fill;
         color      : $COLOR_Ribbon_text;
     }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        @if( $CANUSE_NOT_SELECTOR == false ){
+            :link {
+                color : $COLOR_Print_link;
+            }
+            :visited {
+                color : $COLOR_Print_text;
+            }
+        }
+    }
+
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         /* href がない場合 current カラーになる */
-        a {
+        a:not([href]) {
             background : $COLOR_Dark_casual_text;
             color      : $COLOR_Dark_fill;
         }
-        & :link {
-            background : $COLOR_Dark_fill;
-            color      : $COLOR_Dark_link;
-        }
         & :visited {
-            background : $COLOR_Dark_fill;
-            color      : $COLOR_Dark_text;
+            // color : $COLOR_Dark_text;
         }
         & :link:hover, & :visited:hover {
             background : $COLOR_Dark_casual_fill;
             color      : $COLOR_Dark_text;
         }
-
-        @if $COLOR_Dark_fill != $COLOR_Sidebar_fill {
-            #lB .lS & :link, #lB .lS & :visited {
-                background : $COLOR_Dark_fill;
-            }
-            #lB .lS & :link:hover, #lB .lS & :visited:hover {
-                background : $COLOR_Dark_casual_fill;
-            }
-        }
     }
+
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
