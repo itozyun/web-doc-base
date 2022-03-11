@@ -12,6 +12,14 @@ h6,
 table {
   border-color: #717e73
 }
+.Comment div,
+.Cover-meta,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #717e73
+}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -31,14 +39,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Comment div,
-.Cover-meta,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #717e73
-}
 .Magazine-label,
 .RichLink b,
 .SearchResult cite,
@@ -51,6 +51,10 @@ td,
 th {
   word-break: break-all;
   word-wrap: break-word
+}
+.baseColor,
+.medal {
+  background: #f8fbfa
 }
 .links,
 .mspacer,
@@ -108,9 +112,7 @@ pre {
 .Magazine h3,
 .Magazine-date,
 .links [href]:before,
-dt,
-em,
-strong {
+dt {
   font-weight: 700
 }
 .RichLink b,
@@ -137,7 +139,6 @@ h3,
 h4,
 h5,
 h6,
-iframe,
 img,
 li,
 tr {
@@ -296,18 +297,17 @@ a:focus .ico-label:after {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
-  background: #021605;
-  color: #f8fbfa
+  background: #ecfae8;
+  color: #010e06
 }
 .LinkList :link,
 .RichLink-sep :link {
-  background: #f8fbfa;
+  background: 0 0;
   color: #24c
 }
 .LinkList :visited,
-.RichLink-sep :visited,
-.medal {
-  background: #f8fbfa;
+.RichLink-sep :visited {
+  background: 0 0;
   color: #021605
 }
 .LinkList :link:hover,
@@ -331,19 +331,14 @@ a:focus var,
 tbody :hover th {
   background: #29a119
 }
-.ribbon .LinkList a,
-.ribbon .RichLink-sep a {
-  background: #ecfae8;
-  color: #010e06
-}
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
-  background: #010e06;
+  background: 0 0;
   color: #bbe
 }
 .ribbon .LinkList :visited,
 .ribbon .RichLink-sep :visited {
-  background: #010e06;
+  background: 0 0;
   color: #ecfae8
 }
 .ribbon .LinkList :link:hover,
@@ -356,6 +351,9 @@ tbody :hover th {
 :active,
 :focus {
   outline: 0
+}
+dt {
+  margin-top: .7em
 }
 blockquote,
 q {
@@ -447,113 +445,6 @@ body {
 p {
   line-height: 1.9
 }
-h4 {
-  border-width: 0 0 0 .7em;
-  border-color: #021605;
-  padding: 0 0 0 .3em
-}
-h5 {
-  border-width: 0 0 0 .5em;
-  padding: 0 0 0 .5em
-}
-h6 {
-  border-width: 0 0 0 .3em;
-  padding: 0 0 0 .7em
-}
-abbr[title],
-acronym,
-dfn,
-q[cite],
-q[title] {
-  border-bottom: 1px dotted
-}
-abbr[title],
-acronym,
-dfn {
-  text-decoration: none;
-  cursor: help
-}
-.AMeta,
-.Label a,
-.Pager,
-.RichLink a,
-.SocialBtns,
-.tl thead th,
-hr,
-tbody th,
-th {
-  border-width: 0 0 1px
-}
-h2:after,
-tfoot th {
-  border-width: 2px 0 0
-}
-dd,
-li {
-  margin-bottom: .3em
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
-}
-iframe,
-img {
-  max-width: 100%
-}
-li {
-  margin-top: .3em
-}
-dt {
-  margin-top: .7em
-}
-ol,
-ul {
-  padding-left: 2em
-}
-.links a,
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
-.hscroll table,
-tr ol,
-tr ul {
-  margin-bottom: .5em
-}
-.AHead-labels a,
-.SocialBtns a,
-.Subscribe a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
-li blockquote,
-li dl,
-li p,
-li pre,
-li table,
-tr blockquote,
-tr dl,
-tr p,
-tr pre {
-  margin: 0 0 .5em
-}
-dd blockquote p,
-li blockquote p,
-tr blockquote p {
-  margin: .5em 0
-}
-dd ol,
-dd ul,
-li ol,
-li ul {
-  margin-top: 0;
-  margin-bottom: 0
-}
 .SocialBtns .hb:link:active,
 .SocialBtns .hb:link:focus,
 .SocialBtns .hb:visited:active,
@@ -612,6 +503,7 @@ tbody th {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -638,14 +530,6 @@ a:focus,
 a:focus * {
   color: #fff!important
 }
-.ABody h2,
-.Cover h2,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
-h2:after {
-  border-color: #29a119
-}
 .ribbon :link {
   color: #bbe
 }
@@ -665,6 +549,118 @@ h2:after {
 a:active,
 a:focus {
   background-color: #29a119!important
+}
+h4 {
+  border-width: 0 0 0 .7em;
+  border-color: #021605;
+  padding: 0 0 0 .3em
+}
+h5 {
+  border-width: 0 0 0 .5em;
+  padding: 0 0 0 .5em
+}
+h6 {
+  border-width: 0 0 0 .3em;
+  padding: 0 0 0 .7em
+}
+abbr[title],
+acronym,
+dfn,
+q[cite],
+q[title] {
+  border-bottom: 1px dotted
+}
+abbr[title],
+acronym,
+dfn {
+  text-decoration: none;
+  cursor: help
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+hr,
+tbody th,
+th {
+  border-width: 0 0 1px
+}
+h2:after,
+tfoot th {
+  border-width: 2px 0 0
+}
+.ABody h2,
+.Cover h2,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+h2:after {
+  border-color: #29a119
+}
+dd,
+li {
+  margin-bottom: .3em
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
+}
+iframe,
+img {
+  max-width: 100%
+}
+ol,
+ul {
+  padding-left: 2em
+}
+li {
+  margin-top: .3em
+}
+.links a,
+dl ol,
+dl ul,
+li ol,
+li ul {
+  padding-left: 1em
+}
+.hscroll table,
+tr ol,
+tr ul {
+  margin-bottom: .5em
+}
+.AHead-labels a,
+.SocialBtns a,
+.Subscribe a,
+dd blockquote,
+dd dl,
+dd p,
+dd pre,
+dd table,
+li blockquote,
+li dl,
+li p,
+li pre,
+li table,
+tr blockquote,
+tr dl,
+tr p,
+tr pre {
+  margin: 0 0 .5em
+}
+dd blockquote p,
+li blockquote p,
+tr blockquote p {
+  margin: .5em 0
+}
+dd ol,
+dd ul,
+li ol,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0
 }
 input,
 textarea {
@@ -806,9 +802,6 @@ p {
 }
 .uc {
   text-transform: uppercase
-}
-.baseColor {
-  background: #f8fbfa
 }
 .ribbon * {
   border-color: #052209
@@ -2125,8 +2118,48 @@ li.L8 {
   th {
     font-weight: 700
   }
+  .LinkList :link,
+  .RichLink-sep :link,
+  .ribbon :link,
+  :link,
+  blockquote tbody th :link,
+  blockquote thead th :link,
+  thead :link {
+    color: #006
+  }
+  .AHead-labels,
+  .LinkList :visited,
+  .RichLink-sep :visited,
+  .aa code,
+  .aa var,
+  .tl tr code,
+  .tl tr var,
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  blockquote var,
+  code .pln,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead var {
+    color: #000
+  }
   p {
     line-height: 1.5
+  }
+  .ribbon a,
+  a {
+    color: #666
+  }
+  .ribbon :visited,
+  :visited,
+  blockquote tbody th :visited,
+  blockquote thead th :visited,
+  thead :visited {
+    color: #606
   }
   h4,
   h5,
@@ -2148,24 +2181,6 @@ li.L8 {
   iframe,
   img {
     max-width: 94%
-  }
-  .ribbon a,
-  a {
-    color: #666
-  }
-  .ribbon :link,
-  :link,
-  blockquote tbody th :link,
-  blockquote thead th :link,
-  thead :link {
-    color: #006
-  }
-  .ribbon :visited,
-  :visited,
-  blockquote tbody th :visited,
-  blockquote thead th :visited,
-  thead :visited {
-    color: #606
   }
   #lB .lS,
   #lF .lW,
@@ -2268,6 +2283,9 @@ li.L8 {
   #lB .lM {
     padding-bottom: 2em
   }
+  #lF .lX {
+    border-top: .15em solid #000
+  }
   .lW,
   .lX {
     width: 100%;
@@ -2288,9 +2306,6 @@ li.L8 {
   .lSi,
   .lXi {
     margin: 0
-  }
-  #lF .lX {
-    border-top: .15em solid #000
   }
   .ico-label:after,
   .ribbon .ico-label:after {
@@ -2342,24 +2357,6 @@ li.L8 {
     text-align: center;
     color: #000!important
   }
-  .AHead-labels,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  code .pln,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
-    color: #000
-  }
   .AHead-labels i {
     display: inline-block
   }
@@ -2380,7 +2377,6 @@ li.L8 {
   .BreadcrumbList {
     font-size: .83em;
     padding: .5em 0;
-    border-bottom: .18em solid #000;
     color: #666!important
   }
   .RichLink b,
@@ -2397,6 +2393,12 @@ li.L8 {
     border-width: 1px;
     border-color: #000;
     margin-top: 1em
+  }
+  .Magazine-item {
+    padding: 1em 0 1em 1en
+  }
+  .Magazine-item:first-child {
+    padding: 1em 1en 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0

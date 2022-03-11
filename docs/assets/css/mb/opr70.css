@@ -16,6 +16,14 @@ h6,
 table {
   border-color: #717e73
 }
+.Comment div,
+.Cover-meta,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #717e73
+}
 dd,
 li {
   margin-bottom: .3em
@@ -39,37 +47,15 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Comment div,
-.Cover-meta,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #717e73
-}
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
-.Search-txt,
-blockquote,
-code,
-tbody th,
-var {
-  background: #bddac8
-}
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #ecf1bf
-}
 .lM1,
 .lM2,
 .lS1,
 .lS2 {
   width: 48.5%
+}
+.baseColor,
+.medal {
+  background: #f8fbfa
 }
 .links,
 .note,
@@ -131,7 +117,6 @@ h3,
 h4,
 h5,
 h6,
-iframe,
 img,
 li,
 tr {
@@ -153,11 +138,6 @@ var {
   border-color: #f8fbfa;
   border-width: 2px
 }
-*,
-blockquote :link img,
-blockquote :visited img {
-  border-color: #bddac8
-}
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
 .Subscribe .atom:link:active,
@@ -171,8 +151,14 @@ blockquote :visited img {
 .btn:link:active,
 .btn:visited:active,
 .ribbon :link img,
-.ribbon :visited img {
+.ribbon :visited img,
+.ribbon a {
   border-color: #010e06
+}
+*,
+blockquote :link img,
+blockquote :visited img {
+  border-color: #bddac8
 }
 :link:active img,
 :visited:active img {
@@ -224,19 +210,12 @@ a:active {
 .RichLink-sep a {
   display: block;
   cursor: pointer;
-  text-decoration: none!important;
+  text-decoration: none!important
+}
+.LinkList a:not([href]),
+.RichLink-sep a:not([href]) {
   background: #021605;
   color: #f8fbfa
-}
-.LinkList :link,
-.RichLink-sep :link {
-  background: #f8fbfa;
-  color: #24c
-}
-.LinkList :visited,
-.RichLink-sep :visited {
-  background: #f8fbfa;
-  color: #021605
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -256,20 +235,10 @@ a:active code,
 a:active var {
   background: #29a119
 }
-.ribbon .LinkList a,
-.ribbon .RichLink-sep a {
+.ribbon .LinkList a:not([href]),
+.ribbon .RichLink-sep a:not([href]) {
   background: #ecfae8;
   color: #010e06
-}
-.ribbon .LinkList :link,
-.ribbon .RichLink-sep :link {
-  background: #010e06;
-  color: #bbe
-}
-.ribbon .LinkList :visited,
-.ribbon .RichLink-sep :visited {
-  background: #010e06;
-  color: #ecfae8
 }
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
@@ -281,10 +250,9 @@ a:active var {
 :active {
   outline: 0
 }
-dt,
-em,
-strong {
-  font-weight: 700
+dt {
+  font-weight: 700;
+  margin-top: .7em
 }
 blockquote,
 q {
@@ -390,6 +358,69 @@ body {
 p {
   line-height: 1.9
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:visited:active,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:visited:active,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:visited:active,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:visited:active,
+.baseColor .btn:link:active,
+.baseColor .btn:visited:active,
+.chat,
+a {
+  border-color: #f8fbfa
+}
+.tl tbody th :link,
+.tl tbody th :link:hover,
+.tl thead :link,
+.tl thead :link:hover,
+:link {
+  color: #24c
+}
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited {
+  color: #021605
+}
+.ribbon :link:hover,
+:link:hover {
+  color: #29a119;
+  border-color: #29a119
+}
+:visited:hover {
+  color: #419;
+  border-color: #419
+}
+.ADesc,
+.ribbon .AHead,
+.ribbon .BreadcrumbList,
+.ribbon a,
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #92a094
+}
+a:active,
+a:active * {
+  color: #fff!important
+}
+.ribbon :link {
+  color: #bbe
+}
+.ribbon,
+.ribbon .AHead h1,
+.ribbon :visited {
+  color: #ecfae8
+}
+.ribbon :visited:hover {
+  color: #b3f;
+  border-color: #b3f
+}
+a:active {
+  background-color: #29a119!important
+}
 h1,
 h2,
 h3,
@@ -432,6 +463,10 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+.ABody h2,
+.Cover h2 {
+  border-color: #29a119
+}
 #lB .lS,
 #lE,
 #lF,
@@ -445,15 +480,12 @@ img {
   max-width: 100%;
   max-width: 94%
 }
-li {
-  margin-top: .3em
-}
-dt {
-  margin-top: .7em
-}
 ol,
 ul {
   padding-left: 2em
+}
+li {
+  margin-top: .3em
 }
 .links a,
 dl ol,
@@ -497,70 +529,6 @@ li ol,
 li ul {
   margin-top: 0;
   margin-bottom: 0
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
-}
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
-  color: #24c
-}
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited {
-  color: #021605
-}
-.ribbon :link:hover,
-:link:hover {
-  color: #29a119;
-  border-color: #29a119
-}
-:visited:hover {
-  color: #419;
-  border-color: #419
-}
-.ribbon a {
-  color: #92a094;
-  border-color: #010e06
-}
-a:active,
-a:active * {
-  color: #fff!important
-}
-.ABody h2,
-.Cover h2 {
-  border-color: #29a119
-}
-.ribbon :link {
-  color: #bbe
-}
-.ribbon,
-.ribbon .AHead h1,
-.ribbon :visited {
-  color: #ecfae8
-}
-.ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
-}
-a:active {
-  background-color: #29a119!important
 }
 input,
 textarea {
@@ -608,6 +576,10 @@ thead th {
   background: #717e73;
   border-color: #bddac8 #79877c;
   color: #f8fbfa
+}
+tbody th {
+  background: #bddac8;
+  border-color: #f8fbfa
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -674,9 +646,6 @@ blockquote tfoot th {
 .uc {
   text-transform: uppercase
 }
-.baseColor {
-  background: #f8fbfa
-}
 .ribbon * {
   border-color: #052209
 }
@@ -710,6 +679,7 @@ strong {
   max-width: 100%
 }
 #lB .lS {
+  background: #ecf1bf;
   padding-bottom: 1em
 }
 .lMi,
@@ -806,7 +776,6 @@ input.btn {
 }
 .medal {
   border-color: #f8fbfa;
-  background: #f8fbfa;
   color: #021605
 }
 :link .medal,
@@ -830,12 +799,11 @@ input.btn {
   background: #c47222;
   color: #e6d6a9
 }
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #92a094
+.Search-txt,
+blockquote,
+code,
+var {
+  background: #bddac8
 }
 #lF .lM .mspacer,
 .Cover p {
@@ -1764,6 +1732,9 @@ li.L8 {
   #lB .lM {
     padding-bottom: 2em
   }
+  #lF .lX {
+    border-top: .15em solid #000
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1795,9 +1766,6 @@ li.L8 {
   .lMz .lMh,
   .lXi {
     padding: 0
-  }
-  #lF .lX {
-    border-top: .15em solid #000
   }
   .AHead {
     color: #666!important
@@ -1840,7 +1808,6 @@ li.L8 {
   .BreadcrumbList {
     font-size: .83em;
     padding: .5em 0;
-    border-bottom: .18em solid #000;
     color: #666!important
   }
   .Cover .img-loaded div {

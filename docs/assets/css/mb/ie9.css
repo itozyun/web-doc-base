@@ -10,6 +10,14 @@ h5,
 h6 {
   border-color: #717e73
 }
+.Comment div,
+.Cover-meta,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #717e73
+}
 dd,
 li {
   margin-bottom: .3em
@@ -33,14 +41,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Comment div,
-.Cover-meta,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #717e73
-}
 figure,
 h2,
 textarea {
@@ -57,13 +57,6 @@ td,
 th {
   word-break: break-all;
   word-wrap: break-word
-}
-#lB .lS,
-#lB .lS .LinkList :link,
-#lB .lS .LinkList :visited,
-#lB .lS .RichLink-sep :link,
-#lB .lS .RichLink-sep :visited {
-  background: #ecf1bf
 }
 .lM1,
 .lM2,
@@ -124,10 +117,6 @@ thead {
 svg {
   overflow: hidden
 }
-#lB .lS .LinkList :link:hover,
-#lB .lS .LinkList :visited:hover,
-#lB .lS .RichLink-sep :link:hover,
-#lB .lS .RichLink-sep :visited:hover,
 blockquote,
 code,
 tbody th,
@@ -157,7 +146,6 @@ h3,
 h4,
 h5,
 h6,
-iframe,
 img,
 li,
 tr {
@@ -301,19 +289,12 @@ a:focus .ico-label:after {
 .RichLink-sep a {
   display: block;
   cursor: pointer;
-  text-decoration: none!important;
+  text-decoration: none!important
+}
+.LinkList a:not([href]),
+.RichLink-sep a:not([href]) {
   background: #021605;
   color: #f8fbfa
-}
-.LinkList :link,
-.RichLink-sep :link {
-  background: #f8fbfa;
-  color: #24c
-}
-.LinkList :visited,
-.RichLink-sep :visited {
-  background: #f8fbfa;
-  color: #021605
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -336,20 +317,10 @@ a:focus var,
 tbody :hover th {
   background: #29a119
 }
-.ribbon .LinkList a,
-.ribbon .RichLink-sep a {
+.ribbon .LinkList a:not([href]),
+.ribbon .RichLink-sep a:not([href]) {
   background: #ecfae8;
   color: #010e06
-}
-.ribbon .LinkList :link,
-.ribbon .RichLink-sep :link {
-  background: #010e06;
-  color: #bbe
-}
-.ribbon .LinkList :visited,
-.ribbon .RichLink-sep :visited {
-  background: #010e06;
-  color: #ecfae8
 }
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
@@ -362,10 +333,9 @@ tbody :hover th {
 :focus {
   outline: 0
 }
-dt,
-em,
-strong {
-  font-weight: 700
+dt {
+  font-weight: 700;
+  margin-top: .7em
 }
 h1,
 h2,
@@ -465,43 +435,6 @@ body {
 p {
   line-height: 1.9
 }
-h4 {
-  border-width: 0 0 0 .7em;
-  border-color: #021605;
-  padding: 0 0 0 .3em
-}
-h5 {
-  border-width: 0 0 0 .5em;
-  padding: 0 0 0 .5em
-}
-h6 {
-  border-width: 0 0 0 .3em;
-  padding: 0 0 0 .7em
-}
-abbr[title],
-acronym,
-dfn,
-q[cite],
-q[title] {
-  border-bottom: 1px dotted
-}
-abbr[title],
-acronym,
-dfn {
-  text-decoration: none;
-  cursor: help
-}
-.AMeta,
-.Label a,
-.Pager,
-.RichLink a,
-.SocialBtns,
-.tl thead th,
-hr,
-tbody th,
-th {
-  border-width: 0 0 1px
-}
 .SocialBtns .hb:link:active,
 .SocialBtns .hb:link:focus,
 .SocialBtns .hb:visited:active,
@@ -553,6 +486,116 @@ a:focus .ico-sylinder:before,
 tbody th {
   border-color: #f8fbfa
 }
+.tl tbody th :link,
+.tl tbody th :link:hover,
+.tl thead :link,
+.tl thead :link:hover,
+:link {
+  color: #24c
+}
+.medal,
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited {
+  color: #021605
+}
+.ribbon :link:hover,
+:link:hover,
+form :focus {
+  color: #29a119;
+  border-color: #29a119
+}
+:visited:hover {
+  color: #419;
+  border-color: #419
+}
+.ribbon a {
+  color: #92a094;
+  border-color: #010e06
+}
+.ribbon :link {
+  color: #bbe
+}
+.ribbon,
+.ribbon .AHead h1,
+.ribbon :visited {
+  color: #ecfae8
+}
+:target,
+:target *,
+a:active,
+a:active *,
+a:focus,
+a:focus * {
+  color: #fff!important
+}
+.ribbon :visited:hover {
+  color: #b3f;
+  border-color: #b3f
+}
+a:active,
+a:focus {
+  background-color: #29a119!important
+}
+:target,
+:target * {
+  background: #29a119!important;
+  border-color: #fff!important
+}
+.baseColor,
+.medal {
+  background: #f8fbfa
+}
+.wn,
+.wn:after {
+  color: #ca088a!important
+}
+h4 {
+  border-width: 0 0 0 .7em;
+  border-color: #021605;
+  padding: 0 0 0 .3em
+}
+h5 {
+  border-width: 0 0 0 .5em;
+  padding: 0 0 0 .5em
+}
+h6 {
+  border-width: 0 0 0 .3em;
+  padding: 0 0 0 .7em
+}
+abbr[title],
+acronym,
+dfn,
+q[cite],
+q[title] {
+  border-bottom: 1px dotted
+}
+abbr[title],
+acronym,
+dfn {
+  text-decoration: none;
+  cursor: help
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+hr,
+tbody th,
+th {
+  border-width: 0 0 1px
+}
+.ABody h2,
+.Cover h2,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+h2:after {
+  border-color: #29a119
+}
 iframe,
 img {
   max-width: 100%;
@@ -563,15 +606,12 @@ a iframe,
 a img {
   display: block
 }
-li {
-  margin-top: .3em
-}
-dt {
-  margin-top: .7em
-}
 ol,
 ul {
   padding-left: 2em
+}
+li {
+  margin-top: .3em
 }
 .links a,
 dl ol,
@@ -615,79 +655,6 @@ li ol,
 li ul {
   margin-top: 0;
   margin-bottom: 0
-}
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
-  color: #24c
-}
-.medal,
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited {
-  color: #021605
-}
-.ribbon :link:hover,
-:link:hover,
-form :focus {
-  color: #29a119;
-  border-color: #29a119
-}
-:visited:hover {
-  color: #419;
-  border-color: #419
-}
-.ribbon a {
-  color: #92a094;
-  border-color: #010e06
-}
-.ABody h2,
-.Cover h2,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
-h2:after {
-  border-color: #29a119
-}
-.ribbon :link {
-  color: #bbe
-}
-.ribbon,
-.ribbon .AHead h1,
-.ribbon :visited {
-  color: #ecfae8
-}
-:target,
-:target *,
-a:active,
-a:active *,
-a:focus,
-a:focus * {
-  color: #fff!important
-}
-.ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
-}
-a:active,
-a:focus {
-  background-color: #29a119!important
-}
-:target,
-:target * {
-  background: #29a119!important;
-  border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #f8fbfa
-}
-.wn,
-.wn:after {
-  color: #ca088a!important
 }
 input,
 textarea {
@@ -888,6 +855,7 @@ strong {
   max-width: 100%
 }
 #lB .lS {
+  background: #ecf1bf;
   padding-bottom: 1em
 }
 .lMi,
@@ -2475,6 +2443,15 @@ div .box .jsCapLarge {
   }
 }
 @media screen and (max-width:240px) {
+  .AHead,
+  .BreadcrumbList,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  a,
+  h6 {
+    color: #999
+  }
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -2526,8 +2503,8 @@ div .box .jsCapLarge {
   .Cover-btn :visited i {
     border-color: transparent #eee
   }
-  .LinkList a,
-  .RichLink-sep a,
+  .LinkList a:not([href]),
+  .RichLink-sep a:not([href]),
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
@@ -2537,33 +2514,20 @@ div .box .jsCapLarge {
     background: #999;
     color: #000
   }
-  .LinkList :link,
-  .RichLink-sep :link {
-    background: #000;
-    color: #bbe
-  }
-  .LinkList :visited,
-  .RichLink-sep :visited,
-  input,
-  textarea {
-    background: #000;
-    color: #eee
-  }
-  .AHead,
-  .BreadcrumbList,
-  .Cover-meta,
-  .baseColor :link .RichLink-meta,
-  .baseColor :visited .RichLink-meta,
-  a,
-  h6 {
-    color: #999
+  [type=submit],
+  code,
+  tbody th,
+  var {
+    background: #222
   }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
   .RichLink-sep :visited:hover,
+  .medal,
   .tl tr code,
   .tl tr var,
+  blockquote,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -2572,10 +2536,6 @@ div .box .jsCapLarge {
     color: #eee
   }
   #lB .lS,
-  #lB .lS .LinkList :link,
-  #lB .lS .LinkList :visited,
-  #lB .lS .RichLink-sep :link,
-  #lB .lS .RichLink-sep :visited,
   .SocialBtns .fb:visited,
   .SocialBtns .hb:visited,
   .SocialBtns .ln:visited,
@@ -2583,20 +2543,10 @@ div .box .jsCapLarge {
   .SocialBtns .pt:visited,
   .SocialBtns .tw:visited,
   .SocialBtns :visited,
-  .baseColor {
+  .baseColor,
+  input,
+  textarea {
     background: #000
-  }
-  #lB .lS .LinkList :link:hover,
-  #lB .lS .LinkList :visited:hover,
-  #lB .lS .RichLink-sep :link:hover,
-  #lB .lS .RichLink-sep :visited:hover,
-  .medal,
-  [type=submit],
-  blockquote,
-  code,
-  tbody th,
-  var {
-    background: #222
   }
   body {
     font-size: .75em;
@@ -2604,34 +2554,6 @@ div .box .jsCapLarge {
   }
   p {
     line-height: 1.4
-  }
-  h4,
-  h5,
-  h6 {
-    margin: 1.5em 0 .8em
-  }
-  dd,
-  li {
-    margin-bottom: .1em
-  }
-  iframe,
-  img {
-    max-width: 100%
-  }
-  dd {
-    margin-left: .5em
-  }
-  li {
-    margin-top: .1em
-  }
-  dt {
-    margin-top: .2em
-  }
-  blockquote h3,
-  blockquote table,
-  h4,
-  kbd {
-    border-color: #eee
   }
   .SocialBtns .fb:link:active,
   .SocialBtns .fb:link:focus,
@@ -2677,14 +2599,13 @@ div .box .jsCapLarge {
   blockquote:before {
     color: #bbe
   }
-  .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  :visited,
-  blockquote .tl tbody th :visited {
-    color: #eae
+  .AHead h1,
+  .Cover h3,
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  :visited {
+    color: #eee
   }
   :link:hover {
     color: #29a119;
@@ -2693,6 +2614,38 @@ div .box .jsCapLarge {
   :visited:hover {
     color: #b3f;
     border-color: #b3f
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 0 .8em
+  }
+  dd,
+  li {
+    margin-bottom: .1em
+  }
+  iframe,
+  img {
+    max-width: 100%
+  }
+  dd {
+    margin-left: .5em
+  }
+  li {
+    margin-top: .1em
+  }
+  dt {
+    margin-top: .2em
+  }
+  blockquote h3,
+  blockquote table,
+  h4,
+  kbd {
+    border-color: #eee
+  }
+  input,
+  textarea {
+    color: #eee
   }
   .ABody h1,
   .ABody h2,
@@ -2799,15 +2752,6 @@ div .box .jsCapLarge {
     border-color: #bbe;
     color: #000
   }
-  .AHead h1,
-  .Cover h3,
-  .medal,
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  blockquote {
-    color: #eee
-  }
   .baseColor .btn:visited {
     background: #000;
     border-color: #eee;
@@ -2869,6 +2813,14 @@ div .box .jsCapLarge {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 2px
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  blockquote .tl tbody th :visited {
+    color: #eae
   }
   .aBodyRoot :visited:hover {
     color: #b3f
@@ -3048,6 +3000,9 @@ div .box .jsCapLarge {
   #lB .lM {
     padding-bottom: 2em
   }
+  #lF .lX {
+    border-top: .15em solid #000
+  }
   .lM,
   .lX {
     max-width: 100%
@@ -3056,9 +3011,6 @@ div .box .jsCapLarge {
   .lMz .lMh,
   .lXi {
     padding: 0
-  }
-  #lF .lX {
-    border-top: .15em solid #000
   }
   .ico-label:after,
   .ribbon .ico-label:after {
@@ -3114,7 +3066,6 @@ div .box .jsCapLarge {
   .BreadcrumbList {
     font-size: .83em;
     padding: .5em 0;
-    border-bottom: .18em solid #000;
     color: #666!important
   }
   .Cover .img-loaded div {
