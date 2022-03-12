@@ -86,7 +86,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
             color : $COLOR_Light_casual_text;
         }
     }
-    @include media(chromeLte5OrSafariLte4){
+    @include media(chromeLte5SafariLte4){
         .RichLink-meta {
             background : transparent !important; // Chrome 1~5 で塗りが乱れる問題の修正, 8 では解消
         }
@@ -143,7 +143,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_print) {
+@include media(WSXGA_landscapePrint) {
     .lM .RichLink-sep {
         display      : table;
         table-layout : fixed;

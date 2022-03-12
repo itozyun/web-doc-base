@@ -123,7 +123,7 @@
 
     /*  WSXGA
     --------------------------------------------------------------------------------------*/
-    @include media(WSXGA_print) {
+    @include media(WSXGA_landscapePrint) {
         .Magazine-sep {
             display      : table;
             table-layout : fixed;

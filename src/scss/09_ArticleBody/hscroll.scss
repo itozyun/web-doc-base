@@ -54,7 +54,7 @@
 
 /*  WSXGA. print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_print) {
+@include media(WSXGA_landscapePrint) {
     .hscroll {
         -webkit-column-span : all;
            -moz-column-span : all;

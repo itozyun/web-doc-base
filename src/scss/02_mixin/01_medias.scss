@@ -4,41 +4,42 @@ $MEDIAQUERY_PHABLET_MAX_PX : 740;
 
 $COMMENT_OUT : (
 /* //_{+mobileOnly */
-    'WQXGA'        : 0,
-    'WSXGA'        : 0,
-    'WSXGA_print'  : if($UA_Modern, 1, 0),
-    'pc'           : 0,
-    'tablet_print' : 2,
-    'tablet'       : 2,
-    'phablet'      : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'phone'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'smallphone'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'watch'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'dark_theme'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'WQXGA'                : 0,
+    'WSXGA'                : 0,
+    'WSXGA_landscapePrint' : if($UA_Modern, 1, 0),
+    'pc'                   : 0,
+    'tablet_print'         : 2,
+    'tablet'               : 2,
+    'phablet'              : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'phone'                : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'smallphone'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'watch'                : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'dark_theme'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}+mobileOnly */
 /* //_{^+mobileOnly */
-    'WQXGA'        : if($UA_Modern, 1, 0),
-    'WSXGA'        : if($UA_Modern, 1, 0),
-    'WSXGA_print'  : if($UA_Modern, 1, 0),
-    'pc'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'tablet_print' : 1,
-    'tablet'       : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'phablet'      : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'phone'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'smallphone'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'watch'        : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
-    'dark_theme'   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'WQXGA'                : if($UA_Modern, 1, 0),
+    'WSXGA'                : if($UA_Modern, 1, 0),
+    'WSXGA_landscapePrint' : if($UA_Modern, 1, 0),
+    'pc'                   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'tablet_print'         : 1,
+    'tablet'               : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'phablet'              : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'phone'                : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'smallphone'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'watch'                : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'dark_theme'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}^+mobileOnly */
+    'print'                : 1,
+    'landscapePrint'       : if($UA_Modern, 1, 0),
 
     'forced_colors_native'             : if($UA_Modern, 1, 0),
     'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE, 1, 0),
     'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE, 1, 0),
 
-    'print'        : 1,
-    'onlyIE10To11' : if($UA_Modern, 1, 0),
-    'onlyOpera'    : if($UA_Modern, 1, 0),
-    'onlySafari'   : if($UA_Modern, 1, 0),
-    'chromeLte5OrSafariLte4' : if($UA_Modern, 1, 0)
+    'onlyIE10To11'         : if($UA_Modern, 1, 0),
+    'onlyOpera'            : if($UA_Modern, 1, 0),
+    'onlySafari'           : if($UA_Modern, 1, 0),
+    'chromeLte5SafariLte4' : if($UA_Modern, 1, 0)
 ) !default;
 
 @mixin media($media) {
@@ -64,7 +65,7 @@ $COMMENT_OUT : (
                 @content;
             }
         }
-        @else if $media == 'WSXGA_print' {
+        @else if $media == 'WSXGA_landscapePrint' {
             @if( $Option_mobileOnly ){
                 @media only print and (orientation: landscape){
                     @content;
@@ -163,6 +164,11 @@ $COMMENT_OUT : (
                 @content;
             }
         }
+        @else if $media == 'landscapePrint' {
+            @media only print and (orientation: landscape){
+                @content;
+            }
+        }
         // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
         @else if $media == 'onlyIE10To11' {
             @media screen\0 {
@@ -179,7 +185,7 @@ $COMMENT_OUT : (
                 @content;
             }
         }
-        @else if $media == 'chromeLte5OrSafariLte4' { // Chrome 1, Safari ~4.1
+        @else if $media == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
             @media screen and (min-width:0\-) {
                 @content;
             }

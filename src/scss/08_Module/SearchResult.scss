@@ -43,7 +43,7 @@
 
 /*  WSXGA, print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_print) {
+@include media(WSXGA_landscapePrint) {
     .SearchResult-multi {
         -webkit-column-count : 2;
            -moz-column-count : 2;

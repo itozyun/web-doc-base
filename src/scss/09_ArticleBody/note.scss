@@ -58,7 +58,7 @@ dl.note dd {
 
 /*  WSXGA. print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_print) {
+@include media(WSXGA_landscapePrint) {
     .note {
         -webkit-column-span : all;
            -moz-column-span : all;

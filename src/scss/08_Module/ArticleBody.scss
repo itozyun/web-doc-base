@@ -56,7 +56,7 @@
 
 /*  WSXGA, print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_print) {
+@include media(WSXGA_landscapePrint) {
     .ABody, .ABody blockquote {
         -webkit-column-count : 2;
            -moz-column-count : 2;
@@ -64,9 +64,6 @@
     }
         .ABody .aBodyRoot > *:first-child {
             margin-top : 0;
-        }
-        .ABody h1, .ABody h2 {
-            text-align : center;
         }
         h1, h2,
         blockquote, blockquote:before, blockquote:after,
@@ -83,6 +80,9 @@
         -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
            -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
                 column-gap : $WSXGA_COLUMN_GAP_EM;
+    }
+    .ABody h1, .ABody h2 {
+        text-align : center;
     }
 }
 
@@ -135,13 +135,17 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .ABody {
-        margin : 0;
+        margin : 0 0 2em;
     }
-    @if( $UA_Modern ){
-        .ABody, .ABody blockquote {
-            -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
-               -moz-column-gap : $PRINT_COLUMN_GAP_EM;
-                    column-gap : $PRINT_COLUMN_GAP_EM;
-        }
+}
+
+@include media(landscapePrint){
+    .ABody, .ABody blockquote {
+        -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
+           -moz-column-gap : $PRINT_COLUMN_GAP_EM;
+                column-gap : $PRINT_COLUMN_GAP_EM;
+    }
+    .ABody h1, .ABody h2, .ABody h3 {
+        text-align : left;
     }
 }

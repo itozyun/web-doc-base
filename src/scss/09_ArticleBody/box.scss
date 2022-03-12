@@ -110,10 +110,8 @@
 
 /*  patch for Safari 3.2.3
 --------------------------------------------------------------------------------------*/
-@include media(chromeLte5OrSafariLte4){
-    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
-        .box > p:first-of-type {
-            margin-top : auto;
-        }
+@include media(chromeLte5SafariLte4){
+    .box > p:first-of-type {
+        margin-top : auto;
     }
 }
