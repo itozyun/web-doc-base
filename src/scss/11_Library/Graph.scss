@@ -3,8 +3,8 @@
 /* //_{#can-svg */
 .graph {
     @include unbreak-inside;
-    position : relative;
     @include responsive-horizontal-margin(1, 1em, 1em);
+    position : relative;
     padding  : 0 0 1em 0;
 }
 .graph svg {

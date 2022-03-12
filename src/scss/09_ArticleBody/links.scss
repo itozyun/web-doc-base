@@ -43,7 +43,7 @@
                 content : "+";
             }
         }
-        .links [href*="web.archive."]:before {
+        .links [href*="/web.archive."]:before {
             content : "*";
         }
     }

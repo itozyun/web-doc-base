@@ -90,7 +90,7 @@
             border-color : $COLOR_Print_text;
         }
         code, var {
-            background   : none;
+            background   : none !important;
             border-width : 1px;
             border-color : $COLOR_Print_casual_fill;
 
