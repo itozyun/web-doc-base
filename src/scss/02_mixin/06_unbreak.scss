@@ -1,19 +1,17 @@
 
 @mixin avoid-column-break-inside {
-    -webkit-column-break-inside : avoid;
-    break-inside                : avoid-column;
+    @if( $UA_Modern ){
+        -webkit-column-break-inside : avoid;
+        break-inside                : avoid-column;
+    }
 }
 
 @mixin avoid-page-break-inside {
     @include media(print){
         @if( $UA_Modern ){
-            break-inside      : avoid-page;
-            page-break-inside : avoid;
+            break-inside : avoid-page;
         }
-        @if( $IS_OLD_OPERA ){
-            page-break-inside : avoid;
-        }
-        @if( $IS_IE8_OR_9 ){
+        @if( $UA_Modern or $IS_OLD_OPERA or $IS_IE8_OR_9 ){
             page-break-inside : avoid;
         }
     }
@@ -27,20 +25,18 @@
 }
 
 @mixin avoid-column-break-after {
-    -webkit-column-break-after : avoid;
-    break-after                : avoid-column;
+    @if( $UA_Modern ){
+        -webkit-column-break-after : avoid;
+        break-after                : avoid-column;
+    }
 }
 
 @mixin avoid-page-break-after {
     @include media(print){
         @if( $UA_Modern ){
-            break-after      : avoid-page;
-            page-break-after : avoid;
+            break-after : avoid-page;
         }
-        @if( $IS_OLD_OPERA ){
-            page-break-after : avoid;
-        }
-        @if( $IS_WIN_IE ){
+        @if( $UA_Modern or $IS_OLD_OPERA or $IS_IE8_OR_9 ){
             page-break-after : avoid;
         }
     }
