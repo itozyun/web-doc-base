@@ -240,3 +240,11 @@
         filter : brightness(100%);
     }
 }
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    blockquote pre {
+        margin : 1em;
+    }
+}
