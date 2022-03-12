@@ -37,11 +37,14 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        .aBodyRoot :link:after {
+        .aBodyRoot a[href]:after {
             content     : " ("attr(href)") ";
             font-size   : 0.875em;
             color       : $COLOR_Print_link;
         }
+
+        [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
+        [href*="/blogger.googleusercontent.com/img/"]:after, /* 新しい Blogger 画像の url 置き場 */
         [href$=".jpeg"]:after,
         [href$=".JPEG"]:after,
         [href$=".JPG"]:after,
