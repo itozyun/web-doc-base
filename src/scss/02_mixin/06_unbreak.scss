@@ -1,9 +1,7 @@
 
 @mixin avoid-column-break-inside {
-    @include media(WSXGA_landscapePrint) {
-        -webkit-column-break-inside : avoid;
-        break-inside                : avoid-column;
-    }
+    -webkit-column-break-inside : avoid;
+    break-inside                : avoid-column;
 }
 
 @mixin avoid-page-break-inside {
@@ -22,15 +20,15 @@
 }
 
 @mixin unbreak-inside {
-    @include avoid-column-break-inside;
+    @include media(WSXGA_landscapePrint) {
+        @include avoid-column-break-inside;
+    }
     @include avoid-page-break-inside;
 }
 
 @mixin avoid-column-break-after {
-    @include media(WSXGA_landscapePrint) {
-        -webkit-column-break-after : avoid;
-        break-after                : avoid-column;
-    }
+    -webkit-column-break-after : avoid;
+    break-after                : avoid-column;
 }
 
 @mixin avoid-page-break-after {
@@ -49,7 +47,9 @@
 }
 
 @mixin unbreak-after {
-    @include avoid-column-break-after;
+    @include media(WSXGA_landscapePrint) {
+        @include avoid-column-break-after;
+    }
     @include avoid-page-break-after;
 }
 
