@@ -90,20 +90,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -131,25 +117,6 @@ var {
 .links,
 pre {
   white-space: pre-wrap
-}
-.LinkList a,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -601,17 +568,10 @@ img {
   max-width: 100%;
   max-width: 94%
 }
-.Cover img,
 .Cover-meta,
-.Header h1,
-.RichLink b,
-.Search,
-.Search-txt,
 .commonForm,
-.h1,
 a iframe,
-a img,
-blockquote:before {
+a img {
   display: block
 }
 ol,
@@ -1359,6 +1319,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
+  display: block;
   width: 100%
 }
 .Cover .img-loaded div {
@@ -1438,6 +1399,7 @@ kbd {
   margin: 0 .6em 1em 0
 }
 .RichLink b {
+  display: block;
   font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
@@ -1450,6 +1412,7 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .Search {
+  display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
@@ -1466,6 +1429,7 @@ kbd {
   text-align: left
 }
 .Search-txt {
+  display: block;
   width: 100%;
   left: -22px
 }
@@ -1513,6 +1477,7 @@ kbd {
 .Header h1,
 .h1 {
   font-size: 1.5em;
+  display: block;
   margin: 0 0 .5em
 }
 .Subscribe .atom:link {
@@ -1608,7 +1573,8 @@ blockquote {
   padding: 1em 1px
 }
 blockquote:before {
-  content: attr(title)
+  content: attr(title);
+  display: block
 }
 blockquote:after {
   content: attr(cite)
@@ -1669,8 +1635,6 @@ tr .box > p:first-of-type {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1796,7 +1760,7 @@ tbody th var {
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
 }
-.links [href*="web.archive."]:before {
+.links [href*="/web.archive."]:before {
   content: "*"
 }
 .mona {
@@ -2876,14 +2840,29 @@ div .box .jsCapLarge {
   thead var {
     border-color: #666
   }
-  .ABody,
-  .lM,
-  .lX {
-    margin: 0
+  .chatMember,
+  .chatTitle,
+  caption,
+  dt,
+  thead {
+    page-break-after: avoid
   }
   code .typ,
   th {
     font-weight: 700
+  }
+  .LinkList a,
+  .RichLink-sep a,
+  .SearchResult div div,
+  .box,
+  .caption,
+  .commonForm-pair,
+  dd,
+  dt,
+  img,
+  li,
+  tr {
+    page-break-inside: avoid
   }
   p {
     line-height: 1.5
@@ -2907,6 +2886,25 @@ div .box .jsCapLarge {
   thead :visited {
     color: #606
   }
+  .chat h2,
+  .chat h3,
+  .chat h4,
+  .chat h5,
+  .chat h6,
+  .chat p,
+  .h1,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-inside: avoid;
+    page-break-after: avoid
+  }
+  blockquote pre {
+    margin: 1em
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -2925,6 +2923,8 @@ div .box .jsCapLarge {
   [href$=".jpeg"]:after,
   [href$=".jpg"]:after,
   [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
   [href^="#"]:after,
   [href^="mailto:"]:after,
   [href^="tel:"]:after,
@@ -3001,6 +3001,7 @@ div .box .jsCapLarge {
   }
   .lM,
   .lX {
+    margin: 0;
     max-width: 100%
   }
   .lMi,
@@ -3017,6 +3018,9 @@ div .box .jsCapLarge {
   .ribbon .ico-comment:after,
   .ribbon .ico-pen:after {
     border-color: #666 transparent
+  }
+  .ABody {
+    margin: 0 0 2em
   }
   .AHead {
     color: #666!important
@@ -3093,7 +3097,7 @@ div .box .jsCapLarge {
     text-align: center
   }
   .AMeta-cita:after,
-  .aBodyRoot :link:after {
+  .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
@@ -3109,8 +3113,8 @@ div .box .jsCapLarge {
   .chatL p,
   .chatR p {
     color: #000;
-    background: #fff;
-    border-color: #666
+    border-color: #666;
+    background: #fff
   }
   blockquote {
     background: 0 0;
@@ -3167,7 +3171,7 @@ div .box .jsCapLarge {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

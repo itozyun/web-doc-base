@@ -36,44 +36,11 @@ h6 {
 .chatR {
   position: relative
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 blockquote,
 code,
 tbody th,
 var {
   background: #bddac8
-}
-.LinkList a,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -470,7 +437,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover img,
 .Cover-meta,
 .commonForm,
 a iframe,
@@ -925,6 +891,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
+  display: block;
   width: 100%
 }
 .Cover .img-loaded div {
@@ -1212,8 +1179,6 @@ blockquote {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1595,6 +1560,9 @@ dl.note dd {
   thead :visited {
     color: #606
   }
+  blockquote pre {
+    margin: 1em
+  }
   table {
     margin: 1em 0;
     width: 100%
@@ -1682,7 +1650,6 @@ dl.note dd {
   .noprint {
     display: none
   }
-  .ABody,
   .hscroll pre,
   .lM,
   .lX {
@@ -1692,6 +1659,9 @@ dl.note dd {
   .lMz .lMh,
   .lXi {
     padding: 0
+  }
+  .ABody {
+    margin: 0 0 2em
   }
   .AHead h1 {
     color: #000!important
@@ -1770,7 +1740,7 @@ dl.note dd {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

@@ -94,20 +94,6 @@ th {
 .chatR {
   position: relative
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 blockquote,
 code,
 tbody th,
@@ -118,26 +104,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.LinkList a,
-.Magazine-item,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -923,6 +889,10 @@ input.btn {
 .Cover-img {
   margin: 0 0 .6em
 }
+.Cover-meta,
+.SearchResult div div {
+  margin: 0 .5em
+}
 .Cover img,
 .Magazine .box {
   margin: 0
@@ -950,10 +920,6 @@ input.btn {
 .Magazine h3,
 .Magazine-yy {
   font-size: 2em
-}
-.Cover-meta,
-.SearchResult div div {
-  margin: 0 .5em
 }
 .Label div {
   color: #f8fbfa;
@@ -1258,8 +1224,6 @@ blockquote .tl tbody th :visited {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1614,6 +1578,26 @@ dl.note dd {
   thead :visited {
     color: #606
   }
+  .chat h2,
+  .chat h3,
+  .chat h4,
+  .chat h5,
+  .chat h6,
+  .chat p,
+  .chatMember,
+  .chatTitle,
+  .h1,
+  caption,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  thead {
+    page-break-after: avoid
+  }
   h4,
   h5,
   h6 {
@@ -1630,6 +1614,9 @@ dl.note dd {
   tr blockquote pre,
   ul {
     margin: 1em 3%
+  }
+  blockquote pre {
+    margin: 1em
   }
   hr {
     margin: 2em 6%
@@ -1720,7 +1707,6 @@ dl.note dd {
   .lS {
     float: none
   }
-  .ABody,
   .lMi,
   .lMz,
   .lSi,
@@ -1762,6 +1748,9 @@ dl.note dd {
     text-align: center;
     padding-left: 1.5%;
     padding-right: 1.5%
+  }
+  .ABody {
+    margin: 0 0 2em
   }
   .ADesc {
     margin: 1em 0;
@@ -1902,7 +1891,7 @@ dl.note dd {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

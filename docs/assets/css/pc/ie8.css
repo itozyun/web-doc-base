@@ -71,20 +71,6 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -124,26 +110,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.LinkList a,
-.Magazine-item,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .lM,
 .lS,
@@ -264,7 +230,6 @@ a:focus:hover {
   display: inline-block;
   margin-left: .5em
 }
-.Cover img,
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
@@ -1279,6 +1244,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
+  display: block;
   max-width: 100%
 }
 .Cover .img-loaded div {
@@ -1639,8 +1605,6 @@ tr .box > p:first-of-type {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1763,7 +1727,7 @@ tbody th var {
   width: 1em;
   text-align: center
 }
-.links [href*="web.archive."]:before {
+.links [href*="/web.archive."]:before {
   content: "*"
 }
 .mona {
@@ -2072,6 +2036,18 @@ li.L8 {
   color: #021605
 }
 @media print {
+  .links,
+  .note,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 3%
+  }
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -2110,6 +2086,27 @@ li.L8 {
   thead var {
     border-color: #666
   }
+  .LinkList a,
+  .Magazine-item,
+  .RichLink-sep a,
+  .SearchResult div div,
+  .box,
+  .caption,
+  .commonForm-pair,
+  dd,
+  dt,
+  img,
+  li,
+  tr {
+    page-break-inside: avoid
+  }
+  .chatMember,
+  .chatTitle,
+  caption,
+  dt,
+  thead {
+    page-break-after: avoid
+  }
   code .typ,
   th {
     font-weight: 700
@@ -2146,6 +2143,7 @@ li.L8 {
   p {
     line-height: 1.5
   }
+  .ADesc,
   .ribbon a,
   a {
     color: #666
@@ -2157,26 +2155,33 @@ li.L8 {
   thead :visited {
     color: #606
   }
+  .chat h2,
+  .chat h3,
+  .chat h4,
+  .chat h5,
+  .chat h6,
+  .chat p,
+  .h1,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-inside: avoid;
+    page-break-after: avoid
+  }
   h4,
   h5,
   h6 {
     margin: 1.5em 1.5% .8em
   }
-  .links,
-  .note,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 3%
-  }
   iframe,
   img {
     max-width: 94%
+  }
+  blockquote pre {
+    margin: 1em
   }
   #lB .lS,
   #lF .lW,
@@ -2197,6 +2202,8 @@ li.L8 {
   [href$=".jpeg"]:after,
   [href$=".jpg"]:after,
   [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
   h2:after {
     display: none
   }
@@ -2266,6 +2273,10 @@ li.L8 {
     background: #fff;
     color: #000
   }
+  .AHead,
+  .BreadcrumbList {
+    color: #666!important
+  }
   *,
   .ribbon * {
     border-color: #ccc
@@ -2296,7 +2307,6 @@ li.L8 {
   .lS {
     float: none
   }
-  .ABody,
   .lMi,
   .lMz,
   .lSi,
@@ -2337,17 +2347,17 @@ li.L8 {
     padding-left: 1.5%;
     padding-right: 1.5%
   }
-  .ADesc {
-    margin: 1em 0;
-    color: #666
+  .ABody {
+    margin: 0 0 2em
+  }
+  .ADesc,
+  .AHead,
+  blockquote {
+    margin: 1em 0
   }
   .ADesc p,
   .box {
     margin: 1em 0 0
-  }
-  .AHead {
-    margin: 1em 0;
-    color: #666!important
   }
   .AHead h1 {
     text-align: center;
@@ -2372,8 +2382,7 @@ li.L8 {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0;
-    color: #666!important
+    padding: .5em 0
   }
   .RichLink b,
   .h1 {
@@ -2433,7 +2442,7 @@ li.L8 {
     padding: 1em 3%
   }
   .AMeta-cita:after,
-  .aBodyRoot :link:after {
+  .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
@@ -2449,8 +2458,8 @@ li.L8 {
   .chatL p,
   .chatR p {
     color: #000;
-    background: #fff;
-    border-color: #666
+    border-color: #666;
+    background: #fff
   }
   .js-bqCite,
   .js-bqLink,
@@ -2460,8 +2469,7 @@ li.L8 {
   }
   blockquote {
     padding: 1em 1px;
-    background: 0 0;
-    margin: 1em 0
+    background: 0 0
   }
   .box dl,
   .box ol,
@@ -2525,7 +2533,7 @@ li.L8 {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

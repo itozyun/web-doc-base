@@ -93,20 +93,6 @@ sub,
 sup {
   position: relative
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 blockquote,
 code,
 tbody th,
@@ -117,25 +103,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.LinkList a,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -1290,8 +1257,6 @@ blockquote:after {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1402,7 +1367,7 @@ tbody th var {
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
 }
-.links [href*="web.archive."]:before {
+.links [href*="/web.archive."]:before {
   content: "*"
 }
 .mona {
@@ -1690,11 +1655,6 @@ li.L8 {
   thead var {
     border-color: #666
   }
-  .ABody,
-  .lM,
-  .lX {
-    margin: 0
-  }
   code .typ,
   th {
     font-weight: 700
@@ -1720,6 +1680,9 @@ li.L8 {
   blockquote thead th :visited,
   thead :visited {
     color: #606
+  }
+  blockquote pre {
+    margin: 1em
   }
   table {
     margin: 1em 0;
@@ -1807,6 +1770,8 @@ li.L8 {
   [href$=".jpeg"]:after,
   [href$=".jpg"]:after,
   [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
   [href^="#"]:after,
   [href^="mailto:"]:after,
   [href^="tel:"]:after {
@@ -1814,12 +1779,16 @@ li.L8 {
   }
   .lM,
   .lX {
+    margin: 0;
     max-width: 100%
   }
   .lMi,
   .lMz .lMh,
   .lXi {
     padding: 0
+  }
+  .ABody {
+    margin: 0 0 2em
   }
   .AHead {
     color: #666!important
@@ -1893,7 +1862,7 @@ li.L8 {
     text-align: center
   }
   .AMeta-cita:after,
-  .aBodyRoot :link:after {
+  .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
@@ -1936,7 +1905,7 @@ li.L8 {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

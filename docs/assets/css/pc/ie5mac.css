@@ -28,45 +28,11 @@ h6 {
 .aa {
   font-family: monospace
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 blockquote,
 code,
 tbody th,
 var {
   background: #bddac8
-}
-.LinkList a,
-.Magazine-item,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -468,7 +434,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover img,
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
@@ -912,9 +877,9 @@ kbd {
 .SearchResult div div {
   margin: 0 .5em
 }
-.Cover img,
-.Magazine .box {
-  margin: 0
+.Cover img {
+  margin: 0;
+  display: block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -998,6 +963,9 @@ kbd {
   width: 80%;
   float: left;
   line-height: 1.6
+}
+.Magazine .box {
+  margin: 0
 }
 .Magazine blockquote,
 .Magazine dl,
@@ -1249,8 +1217,6 @@ blockquote .tl tbody th :visited {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1646,6 +1612,9 @@ dl.note dd {
   ul {
     margin: 1em 3%
   }
+  blockquote pre {
+    margin: 1em
+  }
   hr {
     margin: 2em 6%
   }
@@ -1735,7 +1704,6 @@ dl.note dd {
   .lS {
     float: none
   }
-  .ABody,
   .hscroll pre,
   .lMi,
   .lMz,
@@ -1778,6 +1746,9 @@ dl.note dd {
     text-align: center;
     padding-left: 1.5%;
     padding-right: 1.5%
+  }
+  .ABody {
+    margin: 0 0 2em
   }
   .ADesc {
     margin: 1em 0;
@@ -1915,7 +1886,7 @@ dl.note dd {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }

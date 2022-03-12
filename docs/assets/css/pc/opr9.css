@@ -63,20 +63,6 @@ sup {
 .aa {
   font-family: monospace
 }
-.chatMember,
-.chatTitle,
-.h1,
-caption,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-thead {
-  page-break-after: avoid
-}
 blockquote,
 code,
 tbody th,
@@ -98,26 +84,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.LinkList a,
-.Magazine-item,
-.RichLink-sep a,
-.SearchResult div div,
-.caption,
-.commonForm-pair,
-.h1,
-dd,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-li,
-tr {
-  page-break-inside: avoid
 }
 .tl td,
 .tl th {
@@ -1005,6 +971,10 @@ kbd {
   height: 100%;
   margin: 0 0 .6em
 }
+.Cover-meta,
+.SearchResult div div {
+  margin: 0 .5em
+}
 .Cover img {
   margin: 0;
   display: block;
@@ -1035,10 +1005,6 @@ kbd {
 .Magazine h3,
 .Magazine-yy {
   font-size: 2em
-}
-.Cover-meta,
-.SearchResult div div {
-  margin: 0 .5em
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1362,8 +1328,6 @@ blockquote:after {
 .chat h5,
 .chat h6,
 .chat p {
-  page-break-inside: avoid;
-  page-break-after: avoid;
   font-size: 1em;
   color: #fff;
   background: #5d769e;
@@ -1488,7 +1452,7 @@ tbody th var {
   width: 1em;
   text-align: center
 }
-.links [href*="web.archive."]:before {
+.links [href*="/web.archive."]:before {
   content: "*"
 }
 .mona {
@@ -2755,10 +2719,31 @@ screen and (max-width:240px) {
   thead var {
     border-color: #666
   }
+  .LinkList a,
+  .Magazine-item,
+  .RichLink-sep a,
+  .SearchResult div div,
+  .box,
+  .caption,
+  .commonForm-pair,
+  dd,
+  dt,
+  img,
+  li,
+  tr {
+    page-break-inside: avoid
+  }
   .Header h1,
   .Header h1 + span {
     text-align: center;
     display: block
+  }
+  .chatMember,
+  .chatTitle,
+  caption,
+  dt,
+  thead {
+    page-break-after: avoid
   }
   code .typ,
   th {
@@ -2786,6 +2771,25 @@ screen and (max-width:240px) {
   thead :visited {
     color: #606
   }
+  .chat h2,
+  .chat h3,
+  .chat h4,
+  .chat h5,
+  .chat h6,
+  .chat p,
+  .h1,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-inside: avoid;
+    page-break-after: avoid
+  }
+  blockquote pre {
+    margin: 1em
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -2805,6 +2809,8 @@ screen and (max-width:240px) {
   [href$=".jpeg"]:after,
   [href$=".jpg"]:after,
   [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
   [href^="#"]:after,
   [href^="mailto:"]:after,
   [href^="tel:"]:after,
@@ -2880,7 +2886,7 @@ screen and (max-width:240px) {
     border-top: .15em solid #000
   }
   .ABody {
-    margin: 0
+    margin: 0 0 2em
   }
   .AHead {
     color: #666!important
@@ -2933,11 +2939,11 @@ screen and (max-width:240px) {
     border-color: #000;
     margin-top: 1em
   }
-  .Magazine .aBodyRoot {
-    width: auto
-  }
   .Magazine-item {
     padding: 1em 0 1em 1en
+  }
+  .Magazine .aBodyRoot {
+    width: auto
   }
   .Magazine-item:first-child {
     padding: 1em 1en 1em 0
@@ -2958,7 +2964,7 @@ screen and (max-width:240px) {
     margin: 0 0 .5em
   }
   .AMeta-cita:after,
-  .aBodyRoot :link:after {
+  .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
@@ -2974,8 +2980,8 @@ screen and (max-width:240px) {
   .chatL p,
   .chatR p {
     color: #000;
-    background: #fff;
-    border-color: #666
+    border-color: #666;
+    background: #fff
   }
   blockquote {
     background: 0 0;
@@ -3029,7 +3035,7 @@ screen and (max-width:240px) {
   }
   code,
   var {
-    background: 0 0;
+    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }
