@@ -9,6 +9,7 @@ $CaptionedObjectFontSize : 0.875em;
 
 .caption {
     @include unbreak-pane;
+    @include unbreak-inside;
     display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
     text-align : center;
     font-size  : 0.875em;
@@ -19,8 +20,6 @@ $CaptionedObjectFontSize : 0.875em;
     @if( $CANUSE_MAX_AND_MIN_SIZES ){
         max-width  : 100%;
     }
-
-    @include unbreak-inside;
 
     img /* , .box & img */ {
         margin : 0 0 .5em !important;

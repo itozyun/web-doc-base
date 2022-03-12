@@ -4,7 +4,7 @@
         * { zoom : 1; }
     }
     a {
-        @include unbreak-inside;
+        @include avoid-page-break-inside;
         display         : block;
         cursor          : pointer;
         text-decoration : none !important;
