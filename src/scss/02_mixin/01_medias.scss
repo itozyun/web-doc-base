@@ -20,7 +20,7 @@ $COMMENT_OUT : (
     'WQXGA'                : if($UA_Modern, 1, 0),
     'WSXGA'                : if($UA_Modern, 1, 0),
     'WSXGA_landscapePrint' : if($UA_Modern, 1, 0),
-    'pc'                   : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
+    'pc'                   : if($CANUSE_CSS_MEDIA_QUERY, 1, 0),
     'tablet_print'         : 1,
     'tablet'               : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
     'phablet'              : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
@@ -29,6 +29,7 @@ $COMMENT_OUT : (
     'watch'                : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
     'dark_theme'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}^+mobileOnly */
+    'screen'               : 1,
     'print'                : 1,
     'landscapePrint'       : if($UA_Modern, 1, 0),
 
@@ -157,6 +158,15 @@ $COMMENT_OUT : (
                 }@else if( $UA_Opera8 ){
                     @media handheld{ @content; }
                 }
+            }
+        }
+        @else if $media == 'screen' {
+            @if( $UA_Modern ){
+                @media screen,handheld,tv{ @content; }
+            } @else if( $UA_Opera9 or $UA_Opera8 ){
+                @media screen,handheld{ @content; }
+            } @else {
+                @media screen{ @content; }
             }
         }
         @else if $media == 'print' {

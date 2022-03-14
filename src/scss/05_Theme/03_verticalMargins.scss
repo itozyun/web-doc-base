@@ -1,9 +1,10 @@
-#lE .lM, #lE .lS {
-    padding-bottom : 0;
-}
-
-#lB .lM {
-    padding-bottom : 4em;
+@include media(screen) {
+    #lB .lM {
+        padding-bottom : 4em;
+    }
+    #lB .lS {
+        padding-bottom : 1em;
+    }    
 }
 
 @if( $UA_Gck-097 or $UA_Gck101-121 ){
@@ -12,9 +13,6 @@
     }
 }
 
-#lB .lS {
-    padding-bottom : 1em;
-}
 
 @mixin stackableModule( $top : 0, $LR : 0 ) {
     padding : $top $LR 1em;
@@ -28,29 +26,11 @@
     }
 }
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    #lE .lS {
-        padding-top : 0;
-    }
-}
 
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
     #lB .lS {
-        padding-bottom : 2em;
-    }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    #lE .lW {
-        padding-bottom : 0;
-    }
-    #lB .lM {
         padding-bottom : 2em;
     }
 }

@@ -25,117 +25,123 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 
 @if( $Option_mobileOnly == false ){
-    /*  wrapper
-    --------------------------------------------------------------------------------------*/
-    .lW {
+    .lW { // clearfix を同時に指定するために screen の外へ
         @if( $LAYOUT_BY_DISPLAY_TABLE == false and $LAYOUT_FIX_FOR_Opera75 == false ){
             @include clearfix;
         }
-        @if( $UA_Gck-097 ){
-            position : relative; // clearfix
-        }
     }
 
-    .lW, .lX {
-        width : 98%;
-        @if( $CANUSE_MAX_AND_MIN_SIZES ){
-            max-width : $PC_MAX_WIDTH_EM;
-        }
-        @if( $LAYOUT_FIX_FOR_Opera75 == false ){
-            @if( $CANUSE_MARGIN_AUTO ){
-                margin : 0 auto;
+    @include media(screen) {
+        /*  wrapper
+        --------------------------------------------------------------------------------------*/
+        .lW {
+            @if( $UA_Gck-097 ){
+                position : relative; // clearfix
             }
         }
-    }
 
-    @if( $LAYOUT_FIX_FOR_Opera75 ){
-        body {
-            text-align : center;
-        }
         .lW, .lX {
-            @include inline-block;
-            text-align : left;
+            width : 98%;
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : $PC_MAX_WIDTH_EM;
+            }
+            @if( $LAYOUT_FIX_FOR_Opera75 == false ){
+                @if( $CANUSE_MARGIN_AUTO ){
+                    margin : 0 auto;
+                }
+            }
         }
-    }
 
-    /*  main
-    --------------------------------------------------------------------------------------*/    
-        .lM {
-            @if( $LAYOUT_BY_DISPLAY_TABLE == false ){
+        @if( $LAYOUT_FIX_FOR_Opera75 ){
+            body {
+                text-align : center;
+            }
+            .lW, .lX {
+                @include inline-block;
+                text-align : left;
+            }
+        }
+
+        /*  main
+        --------------------------------------------------------------------------------------*/
+            .lM {
+                @if( $IS_LTE_WIN_IE6 ){
+                    overflow-x : hidden; /* カラム落ち対策 */
+                }
+            }
+                .lMi, .lMz {
+                    @if( $LAYOUT_FIX_FOR_Opera75 ){
+                        padding-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
+                    } @else {
+                        margin-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
+                    }
+                }
+
+        /*  sub
+        --------------------------------------------------------------------------------------*/
+            .lS {
+                width : 100% * $PC_SUB_COLUMN_RATIO;
+            }
+                .lSi {
+                    @if( $UA_IE6 ){
+                        width  : 82%;
+                    }
+                    @if( $UA_IE55 ){
+                        width  : 100%;
+                    }
+                    @if( $LAYOUT_FIX_FOR_Opera75 ){
+                        padding : 0 math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_SUB_COLUMN_RATIO);
+                    } @else {
+                        margin : 0 math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_SUB_COLUMN_RATIO);
+                    }
+                }
+
+        /*  x-column
+        --------------------------------------------------------------------------------------*/
+            .lXi {
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    padding : 0 100% * $PC_COLUMN_GAP_RATIO;
+                } @else {
+                    margin : 0 100% * $PC_COLUMN_GAP_RATIO;
+                }
+            }
+        /*
+        * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
+        */
+
+        @if( $LAYOUT_BY_DISPLAY_TABLE ){
+            .lW {
+                display      : table;
+                table-layout : fixed;
+            }
+                .lM, .lS {
+                    display        : table-cell;
+                    vertical-align : top; /* Safari 3.2, ie8 で大切 */
+                }
+                .lM {
+                    width : 100% * $PC_MAIN_COLUMN_RATIO;
+                }
+                    .lMi, .lMz {
+                        margin-right : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
+                    }
+        } @else {
+            .lM {
                 width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
                 float : left;
             }
-            @if( $IS_LTE_WIN_IE6 ){
-                overflow-x : hidden; /* カラム落ち対策 */
-            }
-        }
-            .lMi, .lMz {
-                @if( $LAYOUT_FIX_FOR_Opera75 ){
-                    padding-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
-                } @else {
-                    margin-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
-                }
-            }
-
-    /*  sub
-    --------------------------------------------------------------------------------------*/
-        .lS {
-            width : 100% * $PC_SUB_COLUMN_RATIO;
-            @if( $LAYOUT_BY_DISPLAY_TABLE == false ){
+            .lS {
                 float : right;
             }
         }
-            .lSi {
-                @if( $UA_IE6 ){
-                    width  : 82%;
-                }
-                @if( $UA_IE55 ){
-                    width  : 100%;
-                }
-                @if( $LAYOUT_FIX_FOR_Opera75 ){
-                    padding : 0 math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_SUB_COLUMN_RATIO);
-                } @else {
-                    margin : 0 math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_SUB_COLUMN_RATIO);
-                }
-            }
+    }
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
         .lSi {
             @if( $UA_IE6 ){
-                width  : 100%;
+                width : 100%;
             }
         }
-    }
-
-    /*  x-column
-    --------------------------------------------------------------------------------------*/
-        .lXi {
-            @if( $LAYOUT_FIX_FOR_Opera75 ){
-                padding : 0 100% * $PC_COLUMN_GAP_RATIO;
-            } @else {
-                margin : 0 100% * $PC_COLUMN_GAP_RATIO;
-            }
-        }
-    /*
-    * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
-    */
-
-    @if( $LAYOUT_BY_DISPLAY_TABLE ){
-        .lW {
-            display      : table;
-            table-layout : fixed;
-        }
-            .lM, .lS {
-                display        : table-cell;
-                vertical-align : top; /* Safari 3.2, ie8 で大切 */
-            }
-            .lM {
-                width : 100% * $PC_MAIN_COLUMN_RATIO;
-            }
-                .lMi, .lMz {
-                    margin-right : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
-                }
     }
 }
 
@@ -195,10 +201,10 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
         }
 }
 
-/*  Tablet & Print
+/*  Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly == false ){
-    @include media(tablet_print) {/* float-layout -> table-layout も併せて変更 */
+    @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
         .lW, .lX {
             width : 100%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
@@ -247,10 +253,13 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
             width      : 100%; /* この指定が無いと横スクロールが出る  */
             overflow-x : hidden;
         }
-        @if( $LAYOUT_FIX_FOR_Opera75 ){
-            text-align : center;
-        }
     }
+    @include media(screen) {
+        .lW {
+            @if( $LAYOUT_FIX_FOR_Opera75 ){
+                text-align : center;
+            }
+        }
         .lM, .lS, #lB .lSi, .lX {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $TABLET_MAX_WIDTH_EM;
@@ -267,16 +276,25 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                 max-width : 100%;
             }
         }
+    }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@include media(tablet) {
-    .lMi, .lMz .lMh, .lSi, .lXi {
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
+@if( $Option_mobileOnly ){
+    @include media(screen) {
+        .lMi, .lMz .lMh, .lSi, .lXi {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
     }
-    #lB .lSi {
-        padding : 0;
+} @else {
+    @include media(tablet) {
+        .lMi, .lMz .lMh, .lSi, .lXi {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
+        #lB .lSi {
+            padding : 0;
+        }
     }
 }
 
@@ -309,17 +327,5 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 @include media(print) {
     #lH .lS, #lB .lS, #lF .lW {
         display : none;
-    }
-
-    @if( $Option_mobileOnly ){
-        .lM, .lX {
-            margin : 0;
-            @if( $CANUSE_MAX_AND_MIN_SIZES ){
-                max-width : 100%;
-            }
-        }
-        .lMi, .lMz .lMh, .lXi {
-            padding : 0;
-        }
     }
 }
