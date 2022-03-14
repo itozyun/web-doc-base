@@ -1,0 +1,26 @@
+/*  justify ie5 ff1, opera10 以降,
+--------------------------------------------------------------------------------------*/
+@mixin text-justify {
+    @if( $IS_WIN_IE ){
+        /* ie11(ie5 モード)で英日交じりの文字組が酷いので、外す -> inter-word にしたら良さげ */
+        & {
+            // text-justify : inter-ideograph;
+            text-justify : inter-word;
+            line-break   : normal;
+            text-align   : justify; /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? -> inter-word にしてしばらく試す */
+        }
+    }
+
+    @if( $UA_Modern ){
+        /* ie10 ~ Edge */
+        /* https://spyweb.media/2017/12/04/ie-edge-css-hacks/ */
+        & [_lazyhack_="_:-ms-lang(x)"] {
+            text-align   : justify;
+            text-justify : inter-word; /* 均等割付が綺麗でない - > inter-word でリトライ */
+        }
+
+        @include media(onlyOpera) { /* Opera 10 以上 */
+            & { text-align : justify; }
+        }
+    }
+}
