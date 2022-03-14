@@ -22,6 +22,10 @@
                -moz-text-size-adjust : 100%; /* 2 */
                 -ms-text-size-adjust : 100%; /* 2 */
                  /* text-size-adjust : 100%; 2 */
+// https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L29
+            text-rendering           : optimizeLegibility !important;
+             -webkit-font-smoothing  : antialiased !important;
+            -moz-osx-font-smoothing  : grayscale;
         }
         @if( $Option_mobileOnly == false and $UA_IE6 ){
             overflow-x : hidden;

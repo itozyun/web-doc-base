@@ -1,9 +1,11 @@
 @mixin border-radius($value) {
     @if( $UA_Modern ){
+// https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L51
+         -khtml-border-radius : $value; /* some linux browsers */
         -webkit-border-radius : $value;
            -moz-border-radius : $value;
     }
     @if( $UA_Modern or $UA_IE9 ){
-            border-radius : $value;
+        border-radius : $value;
     }
 }
