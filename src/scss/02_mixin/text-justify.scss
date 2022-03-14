@@ -14,12 +14,12 @@
     @if( $UA_Modern ){
         /* ie10 ~ Edge */
         /* https://spyweb.media/2017/12/04/ie-edge-css-hacks/ */
-        & [_lazyhack_="_:-ms-lang(x)"] {
+        @include css-hack(ie10ToEdgeHTML) {
             text-align   : justify;
             text-justify : inter-word; /* 均等割付が綺麗でない - > inter-word でリトライ */
         }
 
-        @include media(onlyOpera) { /* Opera 10 以上 */
+        @include css-hack(onlyOpera) { /* Opera 10 以上 */
             & { text-align : justify; }
         }
     }

@@ -1,12 +1,15 @@
-
-@mixin avoid-column-break-inside {
+/**
+https://caniuse.com/?search=page-break
+https://developer.mozilla.org/ja/docs/Web/CSS/break-after
+ */
+@mixin unbreak-column-inside {
     @if( $UA_Modern ){
         -webkit-column-break-inside : avoid;
         break-inside                : avoid-column;
     }
 }
 
-@mixin avoid-page-break-inside {
+@mixin unbreak-page-inside {
     @include media(print){
         @if( $UA_Modern ){
             break-inside : avoid-page;
@@ -19,19 +22,19 @@
 
 @mixin unbreak-inside {
     @include media(WSXGA_landscapePrint) {
-        @include avoid-column-break-inside;
+        @include unbreak-column-inside;
     }
-    @include avoid-page-break-inside;
+    @include unbreak-page-inside;
 }
 
-@mixin avoid-column-break-after {
+@mixin unbreak-column-after {
     @if( $UA_Modern ){
         -webkit-column-break-after : avoid;
         break-after                : avoid-column;
     }
 }
 
-@mixin avoid-page-break-after {
+@mixin unbreak-page-after {
     @include media(print){
         @if( $UA_Modern ){
             break-after : avoid-page;
@@ -44,12 +47,12 @@
 
 @mixin unbreak-after {
     @include media(WSXGA_landscapePrint) {
-        @include avoid-column-break-after;
+        @include unbreak-column-after;
     }
-    @include avoid-page-break-after;
+    @include unbreak-page-after;
 }
 
-@mixin unbreak-pane {
+@mixin unbreak-box-with-long-text {
     @if( $UA_MacIE5 == false and $IS_OLD_GECKO == false and $IS_OLD_OPERA == false ){
         word-break  : break-all;     /* IE 5+ */
     }

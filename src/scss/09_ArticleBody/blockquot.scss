@@ -40,7 +40,7 @@ blockquote {
     /* //_}#can-content */
     .js-bqCite {
         @include responsive-horizontal-margin(2, 0, 0);
-        @include unbreak-pane; /* 長い url 用 */
+        @include unbreak-box-with-long-text; /* 長い url 用 */
         display     : block;
         font-size   : 0.875em;
         text-align  : right;

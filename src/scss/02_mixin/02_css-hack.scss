@@ -1,0 +1,60 @@
+$COMMENT_OUT_CSS_HACK : (
+    'ie10ToEdgeHTML'       : if($UA_Modern, 1, 0),
+    'onlyIE10To11'         : if($UA_Modern, 1, 0),
+    'onlyOpera'            : if($UA_Modern, 1, 0),
+    'onlySafari'           : if($UA_Modern, 1, 0),
+    'chromeLte5SafariLte4' : if($UA_Modern, 1, 0),
+    'chromeGte2To5'        : if($UA_Modern, 1, 0),
+    'gecko120To121'        : if($UA_Gck101-121, 1, 0)
+) !default;
+
+@mixin css-hack($targetGroup) {
+    @if map-get($COMMENT_OUT_CSS_HACK, $targetGroup) == 1 {
+        @if $targetGroup == 'ie10ToEdgeHTML' { // IE10 ~ EdgeHTML 18
+            & [_lazyhack_="_:-ms-lang(x)"] {
+                @content;
+            }
+        }
+        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
+        @else if $targetGroup == 'onlyIE10To11' {
+            @media screen\0 {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'onlyOpera' {
+            @media not aural and (1) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'onlySafari' {
+            @media only screen and (-webkit-min-device-pixel-ratio:0) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
+            @media screen and (min-width:0\-) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeGte2To5' { // Chrome 2~5
+            & [_lazyhack_="_:increment|_:not(*:root)"] {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'gecko120To121' { // Gecko 1.2.0~1.2.1
+            @if( $UA_Gck101-121 ){
+                & [_lazyhack_="_:lang(x)"] {
+                    @content;
+                }
+            }
+        }
+    }
+    @else if map-get($COMMENT_OUT_CSS_HACK, $targetGroup) != 0 {
+        body {
+            color : pink !important;
+        }
+        body:before {
+            content : "@css-hack() : error-arg! #{$targetGroup}";
+        }
+    }
+}

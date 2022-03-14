@@ -86,7 +86,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
             color : $COLOR_Light_casual_text;
         }
     }
-    @include media(chromeLte5SafariLte4){
+    @include css-hack(chromeLte5SafariLte4){
         .RichLink-meta {
             background : transparent !important; // Chrome 1~5 で塗りが乱れる問題の修正, 8 では解消
         }
@@ -132,7 +132,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         margin : 0 0 1em 0.6em;
     }
     .RichLink b {
-        @include unbreak-pane;
+        @include unbreak-box-with-long-text;
         font-size : 1em * $RICHLINK_TEXT_SIZE;
         @if( $UA_IE7 or $UA_IE6 ){
             padding : 0;

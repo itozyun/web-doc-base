@@ -17,5 +17,5 @@
         white-space : pre-wrap;         /* CSS 2.1, ie8+ */
     }
     /*  white-space : pre-line;            CSS 3.0 */
-    @include unbreak-pane;
+    @include unbreak-box-with-long-text;
 }

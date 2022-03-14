@@ -103,7 +103,7 @@
 
 /*  patch for Safari 3.2.3
 --------------------------------------------------------------------------------------*/
-@include media(chromeLte5SafariLte4){
+@include css-hack(chromeLte5SafariLte4){
     .box > p:first-of-type {
         margin-top : auto;
     }

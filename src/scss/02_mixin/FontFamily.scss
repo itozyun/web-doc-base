@@ -61,7 +61,7 @@
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
 
-        @include media(onlySafari) {
+        @include css-hack(onlySafari) {
             & {
                 font-family :
                     -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
@@ -77,7 +77,7 @@
                     "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
             }
         }
-        @include media(onlyIE10To11){
+        @include css-hack(onlyIE10To11){
             & {
                 font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif; // (4)
             }
@@ -89,7 +89,7 @@
             /* "BIZ UD明朝", "BIZ UDMincho", */
             "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 
-        @include media(onlyIE10To11){
+        @include css-hack(onlyIE10To11){
             & {
                 transform   : rotate(.03deg); // (5)
                 font-weight : 700;

@@ -8,7 +8,7 @@
 $CaptionedObjectFontSize : 0.875em;
 
 .caption {
-    @include unbreak-pane;
+    @include unbreak-box-with-long-text;
     @include unbreak-inside;
     display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
     text-align : center;

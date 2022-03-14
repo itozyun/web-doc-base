@@ -9,11 +9,11 @@
                 transition          : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
     }
     // Chrome 1 でフォーカスしたリンク文字が消える問題の修正。
-    @include media(chromeLte5SafariLte4){
+    @include css-hack(chromeLte5SafariLte4){
         & {
             -webkit-transition-property : border-color; // for Chrome 1
         }
-        & [_lazyhack_="_:increment|_:not(*:root)"] {
+        @include css-hack(chromeGte2To5){
             -webkit-transition-property : background-color, color, border-color; // override for Chrome 2~5
         }
     }

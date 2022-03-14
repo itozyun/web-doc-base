@@ -2,7 +2,7 @@ $MEDIAQUERY_TABLET_MAX_PX : 950;
 
 $MEDIAQUERY_PHABLET_MAX_PX : 740;
 
-$COMMENT_OUT : (
+$COMMENT_OUT_AT_MEDIA : (
 /* //_{+mobileOnly */
     'WQXGA'                : 0,
     'WSXGA'                : 0,
@@ -35,19 +35,14 @@ $COMMENT_OUT : (
 
     'forced_colors_native'             : if($UA_Modern, 1, 0),
     'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE, 1, 0),
-    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE, 1, 0),
-
-    'onlyIE10To11'         : if($UA_Modern, 1, 0),
-    'onlyOpera'            : if($UA_Modern, 1, 0),
-    'onlySafari'           : if($UA_Modern, 1, 0),
-    'chromeLte5SafariLte4' : if($UA_Modern, 1, 0)
+    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE, 1, 0)
 ) !default;
 
 @mixin media($media) {
-    @if map-get($COMMENT_OUT, $media) == 2 {
+    @if map-get($COMMENT_OUT_AT_MEDIA, $media) == 2 {
         @content;
     }
-    @else if map-get($COMMENT_OUT, $media) == 1 {
+    @else if map-get($COMMENT_OUT_AT_MEDIA, $media) == 1 {
         @if $media == 'pc' {
             @media
                 /* //_{@modern */
@@ -179,27 +174,6 @@ $COMMENT_OUT : (
                 @content;
             }
         }
-        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
-        @else if $media == 'onlyIE10To11' {
-            @media screen\0 {
-                @content;
-            }
-        }
-        @else if $media == 'onlyOpera' {
-            @media not aural and (1) {
-                @content;
-            }
-        }
-        @else if $media == 'onlySafari' {
-            @media only screen and (-webkit-min-device-pixel-ratio:0) {
-                @content;
-            }
-        }
-        @else if $media == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
-            @media screen and (min-width:0\-) {
-                @content;
-            }
-        }
         @else if $media == 'forced_colors_native' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
             @media only screen and (forced-colors:active),
                    only screen and (-ms-high-contrast:active){
@@ -227,7 +201,7 @@ $COMMENT_OUT : (
             }
         }
     }
-    @else if map-get($COMMENT_OUT, $media) != 0 {
+    @else if map-get($COMMENT_OUT_AT_MEDIA, $media) != 0 {
         body {
             color : red !important;
         }

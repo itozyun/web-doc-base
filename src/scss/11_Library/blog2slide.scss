@@ -9,7 +9,7 @@
             overflow : auto;
         }
 
-        @include media(onlyIE10To11){
+        @include css-hack(onlyIE10To11){
             #blog2slide-root:-ms-fullscreen {
                 background : $COLOR_Light_fill;
             }

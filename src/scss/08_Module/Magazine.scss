@@ -92,7 +92,7 @@
                 padding     : 0;
             }
             .Magazine-label {
-                @include unbreak-pane;
+                @include unbreak-box-with-long-text;
                 margin     : .5em 0 .8em;
             }
             .Magazine .aBodyRoot {
