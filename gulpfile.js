@@ -280,7 +280,7 @@ const plumber     = require("gulp-plumber"),
                         2 : { all : true, removeUnusedAtRules : false }
                     }
       },
-      CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
+      CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', 'white-space', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
 
 gulp.task('css', function(){
     return gulp.src([

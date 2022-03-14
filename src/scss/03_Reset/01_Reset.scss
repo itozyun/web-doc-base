@@ -74,9 +74,6 @@
     }
 
     pre {
-        @if( $IS_NOT_IE ){
-            white-space : pre; /* CSS 2.0 */
-        }
         @include pre-wrap;
     }
 
