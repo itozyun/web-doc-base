@@ -1,4 +1,4 @@
-@mixin button-colors( $link, $visited, $fill, $opt_need_bgcolor_for_Watch : 0 ){
+@mixin button-colors( $link, $visited, $fill ){
     &:link {
         background   : $link;
         border-color : $link;
@@ -17,25 +17,6 @@
         }
         @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
             &:link:focus, &:visited:focus { border-color : $fill; }
-        }
-    }
-
-    @if $opt_need_bgcolor_for_Watch == 1 {
-        /*  Dark theme
-        --------------------------------------------------------------------------------------*/
-        @include media(dark_theme) {
-            &:link {
-                color : $COLOR_Dark_fill;
-            }
-            &:visited {
-                background : $COLOR_Dark_fill;
-            }
-            @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-                &:link:active, &:visited:active { border-color : $COLOR_Dark_fill; }
-            }
-            @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-                &:link:focus, &:visited:focus { border-color : $COLOR_Dark_fill; }
-            }
         }
     }
 }
