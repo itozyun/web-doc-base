@@ -67,12 +67,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-body,
-form,
-h2,
-html {
-  margin: 0
-}
 #lH .lSi,
 .AAuthor,
 .Comment p,
@@ -100,9 +94,54 @@ kbd,
 var {
   margin: 0 .1em
 }
+.links,
+pre {
+  white-space: -moz-pre-wrap
+}
 .tl td,
 .tl th {
   vertical-align: top
+}
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  display: -moz-inline-box;
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.9em;
+  padding: 0 1em;
+  height: 2.1em
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:focus:hover,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:focus:hover {
+  text-decoration: underline
+}
+.AHead-labels a:focus,
+.SocialBtns :focus,
+.Subscribe a:focus,
+.btn:focus {
+  border-color: #29a119;
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
+}
+*,
+input[type=submit]:focus {
+  border-style: solid
 }
 body,
 input,
@@ -144,46 +183,6 @@ blockquote :visited img {
 :link:focus img,
 :visited:focus img {
   border-color: #29a119!important
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: -moz-inline-box;
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.9em;
-  padding: 0 1em;
-  height: 2.1em
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:focus:hover {
-  text-decoration: underline
-}
-.AHead-labels a:focus,
-.SocialBtns :focus,
-.Subscribe a:focus,
-.btn:focus {
-  border-color: #29a119;
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
-}
-*,
-input[type=submit]:focus {
-  border-style: solid
 }
 .LinkList a,
 .RichLink-sep a {
@@ -262,10 +261,14 @@ strong,
 var {
   font-style: normal
 }
+.ADesc,
+.RichLink p,
 pre {
-  white-space: pre;
-  white-space: -moz-pre-wrap;
   margin: 1em 0
+}
+form,
+h2 {
+  margin: 0
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -338,6 +341,7 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 body {
@@ -822,10 +826,6 @@ input.btn {
 .ABody h3 {
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc,
-.RichLink p {
-  margin: 1em 0
 }
 .ADesc p,
 .box {
@@ -1318,9 +1318,6 @@ tbody th code,
 tbody th var {
   background: #717e73;
   color: #f8fbfa
-}
-.links {
-  white-space: -moz-pre-wrap
 }
 .links [href]:before {
   content: ">";

@@ -100,6 +100,58 @@ var {
 .tl th {
   vertical-align: top
 }
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  height: 2.1em
+}
+*,
+.SearchResult div p *,
+.chat p,
+.chat p *,
+dd p,
+dd p *,
+li p,
+li p *,
+tr p,
+tr p * {
+  line-height: 1.2
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:active:hover,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active:hover {
+  text-decoration: underline
+}
+.AHead-labels a:link:active,
+.AHead-labels a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
+.Subscribe a:link:active,
+.Subscribe a:visited:active,
+.btn:link:active,
+.btn:visited:active {
+  border-color: #29a119;
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
+}
 body,
 input,
 textarea {
@@ -137,57 +189,6 @@ hr {
   position: relative;
   top: 2px
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  height: 2.1em
-}
-*,
-.SearchResult div p *,
-.chat p,
-.chat p *,
-dd p,
-dd p *,
-li p,
-li p *,
-tr p,
-tr p * {
-  line-height: 1.2
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active:hover {
-  text-decoration: underline
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.SocialBtns :link:active,
-.SocialBtns :visited:active,
-.Subscribe a:link:active,
-.Subscribe a:visited:active,
-.btn:link:active,
-.btn:visited:active {
-  border-color: #29a119;
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
-}
 .LinkList a,
 .RichLink-sep a {
   display: block;
@@ -203,7 +204,6 @@ a:active:hover {
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
-.aBodyRoot a,
 .aBodyRoot a:active,
 :link,
 :visited,

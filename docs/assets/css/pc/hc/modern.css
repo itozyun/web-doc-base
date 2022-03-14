@@ -15,6 +15,10 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
+.LinkList a:hover,
+.RichLink-sep a:hover {
+  text-decoration: underline!important
+}
 .Cover-btn i,
 .Magazine-jump i,
 .Pager i,
@@ -30,10 +34,6 @@ tfoot td {
   height: .45em;
   transform: rotate(-45deg);
   top: 0
-}
-.LinkList a:hover,
-.RichLink-sep a:hover {
-  text-decoration: underline!important
 }
 a:active,
 a:focus {

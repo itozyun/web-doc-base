@@ -63,11 +63,61 @@ sub,
 sup {
   position: relative
 }
+.links,
+pre {
+  white-space: -o-pre-wrap
+}
 .Cover img,
 .caption,
 iframe,
 img {
   max-width: 100%
+}
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  display: inline-table;
+  vertical-align: top;
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.9em;
+  padding: 0 1em;
+  height: 2.1em
+}
+.AHead h1,
+th {
+  text-align: left
+}
+.Header h1,
+body,
+input.btn {
+  padding: 0
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active {
+  text-decoration: underline
+}
+.AHead-labels a:active,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
+  border-color: #29a119;
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
 }
 body,
 input,
@@ -115,52 +165,6 @@ blockquote :visited img {
 :visited:hover img {
   position: relative;
   top: 2px
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: inline-table;
-  vertical-align: top;
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.9em;
-  padding: 0 1em;
-  height: 2.1em
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.Header h1,
-body,
-input.btn {
-  padding: 0
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active {
-  text-decoration: underline
-}
-.AHead-labels a:active,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  border-color: #29a119;
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
 }
 .LinkList a,
 .RichLink-sep a {
@@ -251,9 +255,8 @@ strong,
 var {
   font-style: normal
 }
+.RichLink p,
 pre {
-  white-space: pre;
-  white-space: -o-pre-wrap;
   margin: 1em 0
 }
 .BlogArchive :link:hover,
@@ -262,7 +265,6 @@ pre {
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
-.aBodyRoot a:active,
 :link,
 :visited,
 a:active,
@@ -291,6 +293,7 @@ h6 br {
 form {
   margin: 0
 }
+.links,
 .mspacer,
 blockquote,
 dl,
@@ -997,9 +1000,6 @@ kbd {
   margin: 0 .6em 1em 0;
   width: auto
 }
-.RichLink p {
-  margin: 1em 0
-}
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
@@ -1283,10 +1283,6 @@ tbody th code,
 tbody th var {
   background: #717e73;
   color: #f8fbfa
-}
-.links {
-  white-space: -o-pre-wrap;
-  margin: 1em
 }
 .links [href]:before {
   content: ">"

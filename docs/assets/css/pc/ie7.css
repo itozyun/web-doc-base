@@ -107,6 +107,49 @@ var {
 .tl th {
   vertical-align: top
 }
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  zoom: 1
+}
+.AHead h1,
+th {
+  text-align: left
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:active:hover,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active:hover {
+  text-decoration: underline
+}
+.AHead-labels a:link:active,
+.AHead-labels a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
+.Subscribe a:link:active,
+.Subscribe a:visited:active,
+.btn:link:active,
+.btn:visited:active {
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
+}
 body,
 input,
 textarea {
@@ -153,70 +196,6 @@ blockquote :visited img {
 :visited:hover img {
   position: relative;
   top: 2px
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  zoom: 1
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active:hover {
-  text-decoration: underline
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.SocialBtns :link:active,
-.SocialBtns :visited:active,
-.Subscribe a:link:active,
-.Subscribe a:visited:active,
-.btn:link:active,
-.btn:visited:active {
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
-}
-.Cover-btn i,
-.Magazine-jump i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  zoom: 1;
-  left: .5em;
-  height: 0;
-  width: 0
-}
-.Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :visited:active i,
-.Magazine-jump :link i,
-.Magazine-jump :link:active i,
-.Magazine-jump :visited:active i {
-  border-color: transparent #f8fbfa
-}
-.Cover-btn :visited i,
-.Magazine-jump :visited i {
-  border-color: transparent #021605
 }
 .LinkList a,
 .RichLink-sep a {
@@ -272,6 +251,28 @@ tbody :hover th {
 .ribbon .RichLink-sep :visited:hover {
   background: #052209;
   color: #ecfae8
+}
+.Cover-btn i,
+.Magazine-jump i {
+  border-width: .5em 0 .5em .7em;
+  position: relative;
+  top: .15em;
+  zoom: 1;
+  left: .5em;
+  height: 0;
+  width: 0
+}
+.Cover-btn :link i,
+.Cover-btn :link:active i,
+.Cover-btn :visited:active i,
+.Magazine-jump :link i,
+.Magazine-jump :link:active i,
+.Magazine-jump :visited:active i {
+  border-color: transparent #f8fbfa
+}
+.Cover-btn :visited i,
+.Magazine-jump :visited i {
+  border-color: transparent #021605
 }
 :active {
   outline: 0

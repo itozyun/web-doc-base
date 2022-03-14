@@ -71,12 +71,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-body,
-form,
-h2,
-html {
-  margin: 0
-}
 .Cover-img,
 .chatL,
 .chatR,
@@ -88,6 +82,53 @@ code,
 kbd,
 var {
   margin: 0 .1em
+}
+.links,
+pre {
+  white-space: -o-pre-wrap
+}
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  display: inline-table;
+  vertical-align: top;
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.9em;
+  padding: 0 1em;
+  height: 2.1em
+}
+.AAuthor,
+.Header h1,
+body,
+input.btn {
+  padding: 0
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active {
+  text-decoration: underline
+}
+.AHead-labels a:active,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
+  border-color: #29a119;
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
 }
 body,
 input,
@@ -135,49 +176,6 @@ blockquote :visited img {
 :visited:hover img {
   position: relative;
   top: 2px
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: inline-table;
-  vertical-align: top;
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.9em;
-  padding: 0 1em;
-  height: 2.1em
-}
-.AAuthor,
-.Header h1,
-body,
-input.btn {
-  padding: 0
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active {
-  text-decoration: underline
-}
-.AHead-labels a:active,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  border-color: #29a119;
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
 }
 .LinkList a,
 .RichLink-sep a {
@@ -268,10 +266,15 @@ strong,
 var {
   font-style: normal
 }
+.AAuthor,
+.ADesc,
+.RichLink p,
 pre {
-  white-space: pre;
-  white-space: -o-pre-wrap;
   margin: 1em 0
+}
+form,
+h2 {
+  margin: 0
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -279,7 +282,6 @@ pre {
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
-.aBodyRoot a:active,
 :link,
 :visited,
 a:active,
@@ -322,6 +324,7 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 body {
@@ -756,11 +759,6 @@ var {
   top: .4em;
   float: left;
   margin: 0 1em 1em 0
-}
-.AAuthor,
-.ADesc,
-.RichLink p {
-  margin: 1em 0
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -1269,9 +1267,6 @@ tbody th code,
 tbody th var {
   background: #717e73;
   color: #f8fbfa
-}
-.links {
-  white-space: -o-pre-wrap
 }
 .links [href]:before {
   content: ">";

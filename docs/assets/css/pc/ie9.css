@@ -96,6 +96,52 @@ iframe,
 img {
   max-width: 100%
 }
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a,
+.btn {
+  display: inline-block;
+  border-width: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  vertical-align: top
+}
+.AHead h1,
+th {
+  text-align: left
+}
+.AHead-labels a:link:hover,
+.AHead-labels a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
+.Subscribe a:link:hover,
+.Subscribe a:visited:hover,
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:focus:hover,
+.btn:link:hover,
+.btn:visited:hover,
+:link:hover,
+:visited:hover,
+a:active,
+a:focus:hover {
+  text-decoration: underline
+}
+.AHead-labels a:active,
+.AHead-labels a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
+.Subscribe a:active,
+.Subscribe a:focus,
+.btn:active,
+.btn:focus {
+  border-color: #29a119;
+  color: #29a119;
+  border-style: dotted;
+  outline: 0
+}
 body,
 input,
 textarea {
@@ -168,77 +214,6 @@ blockquote :visited img {
   position: relative;
   top: 2px
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: inline-block;
-  border-width: 2px;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  vertical-align: top
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active,
-a:focus:hover {
-  text-decoration: underline
-}
-.AHead-labels a:active,
-.AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
-.Subscribe a:active,
-.Subscribe a:focus,
-.btn:active,
-.btn:focus {
-  border-color: #29a119;
-  color: #29a119;
-  border-style: dotted;
-  outline: 0
-}
-.Cover-btn i,
-.Magazine-jump i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :link:focus i,
-.Cover-btn :visited:active i,
-.Cover-btn :visited:focus i,
-.Magazine-jump :link i,
-.Magazine-jump :link:active i,
-.Magazine-jump :link:focus i,
-.Magazine-jump :visited:active i,
-.Magazine-jump :visited:focus i,
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #f8fbfa
-}
-.Cover-btn :visited i,
-.Magazine-jump :visited i {
-  border-color: transparent #021605
-}
 .LinkList a,
 .RichLink-sep a {
   display: block;
@@ -282,6 +257,32 @@ tbody :hover th {
 .ribbon .RichLink-sep :visited:hover {
   background: #052209;
   color: #ecfae8
+}
+.Cover-btn i,
+.Magazine-jump i {
+  border-width: .5em 0 .5em .7em;
+  position: relative;
+  top: .15em;
+  display: inline-block;
+  margin-left: .5em
+}
+.Cover-btn :link i,
+.Cover-btn :link:active i,
+.Cover-btn :link:focus i,
+.Cover-btn :visited:active i,
+.Cover-btn :visited:focus i,
+.Magazine-jump :link i,
+.Magazine-jump :link:active i,
+.Magazine-jump :link:focus i,
+.Magazine-jump :visited:active i,
+.Magazine-jump :visited:focus i,
+a:active .ico-label:after,
+a:focus .ico-label:after {
+  border-color: transparent #f8fbfa
+}
+.Cover-btn :visited i,
+.Magazine-jump :visited i {
+  border-color: transparent #021605
 }
 :active,
 :focus {
@@ -332,7 +333,6 @@ pre {
 .Label a:visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
-.aBodyRoot a:active,
 .aBodyRoot a:focus,
 :link,
 :visited,
@@ -2696,14 +2696,6 @@ screen and (max-width:950px) {
   blockquote :visited img {
     border-color: transparent
   }
-  .Cover-btn :link i,
-  .Magazine-jump :link i {
-    border-color: transparent #000
-  }
-  .Cover-btn :visited i,
-  .Magazine-jump :visited i {
-    border-color: transparent #eee
-  }
   .LinkList a:not([href]),
   .RichLink-sep a:not([href]),
   blockquote .tl tr code,
@@ -2741,6 +2733,14 @@ screen and (max-width:950px) {
   input,
   textarea {
     background: #000
+  }
+  .Cover-btn :link i,
+  .Magazine-jump :link i {
+    border-color: transparent #000
+  }
+  .Cover-btn :visited i,
+  .Magazine-jump :visited i {
+    border-color: transparent #eee
   }
   body {
     font-size: .75em;
