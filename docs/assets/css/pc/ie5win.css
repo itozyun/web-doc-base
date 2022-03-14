@@ -1,12 +1,4 @@
 @charset "UTF-8";
-.Cover img,
-.Pager a,
-.commonForm-wrap *,
-.lX,
-pre code,
-pre samp {
-  width: 100%
-}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -65,10 +57,6 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-.lM,
-.lX {
-  overflow-x: hidden
-}
 .baseColor,
 .medal {
   background: #f8fbfa
@@ -84,6 +72,14 @@ pre,
 td,
 th {
   word-break: break-all
+}
+.Cover img,
+.Pager a,
+.commonForm-wrap *,
+.lX,
+pre code,
+pre samp {
+  width: 100%
 }
 #jsMain,
 #jsSide,
@@ -147,7 +143,7 @@ hr {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   border-width: .1em;
@@ -156,6 +152,10 @@ hr {
   line-height: 1;
   padding: .45em 1em;
   height: 2.1em
+}
+.AHead h1,
+th {
+  text-align: left
 }
 *,
 .SearchResult div p *,
@@ -169,15 +169,10 @@ tr p,
 tr p * {
   line-height: 1.2
 }
-.lMi,
-.lSi,
-.lW {
-  height: 1%
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -191,8 +186,8 @@ a:active:hover {
 }
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
-.SocialBtns a:link:active,
-.SocialBtns a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
 .Subscribe a:link:active,
 .Subscribe a:visited:active,
 .btn:link:active,
@@ -207,6 +202,7 @@ a:active:hover {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -456,7 +452,6 @@ th {
 }
 .Cover img,
 .Cover-meta,
-.Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
 .Pager span,
@@ -489,7 +484,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -550,7 +545,6 @@ caption {
   margin: 1.5em 1em .7em
 }
 th {
-  text-align: left;
   padding: .5em
 }
 td {
@@ -611,25 +605,10 @@ blockquote tfoot th {
 .r {
   text-align: right
 }
+.Attribution,
 .c,
-.caption,
-.e6C {
+.caption {
   text-align: center
-}
-.AHead h1,
-.lW,
-.lX {
-  text-align: left
-}
-.Label div,
-blockquote,
-p {
-  line-break: normal;
-  text-align: justify
-}
-blockquote,
-p {
-  text-justify: inter-word
 }
 .uc {
   text-transform: uppercase
@@ -646,49 +625,15 @@ em {
 strong {
   background: #6cf
 }
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
 .lMi,
-.lMz {
-  margin-left: 3.857%
+.lSi,
+.lW {
+  height: 1%
 }
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-.e6BR,
-.e6L,
-.e6R {
-  display: none
+.lX {
+  overflow-x: hidden
 }
 .Cover .img-loaded h2,
-.Magazine-date,
 .lM1 {
   float: left
 }
@@ -820,6 +765,12 @@ input.btn {
 .aa {
   font-family: monospace
 }
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
+}
 .AHead-labels a:visited {
   background: #010e06;
   border-color: #92a094;
@@ -830,8 +781,7 @@ input.btn {
   color: #010e06
 }
 .Attribution {
-  padding: 1em 0;
-  text-align: center
+  padding: 1em 0
 }
 .Attribution small,
 .caption,
@@ -923,7 +873,9 @@ input.btn {
 }
 .Label div {
   color: #f8fbfa;
-  text-justify: inter-ideograph
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -953,6 +905,10 @@ input.btn {
 .Magazine-item {
   height: 1%;
   padding: 1em 0
+}
+.Magazine-date {
+  display: block;
+  float: left
 }
 .Magazine-dd,
 .Magazine-mm {
@@ -1516,6 +1472,51 @@ dl.note dd {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    overflow-x: hidden;
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+  .e6BR,
+  .e6L,
+  .e6R {
+    display: none
+  }
+  .e6C {
+    text-align: center
+  }
+  .lW,
+  .lX {
+    text-align: left
+  }
+}
 @media print {
   .chat,
   blockquote code,
@@ -1530,10 +1531,17 @@ dl.note dd {
   thead var {
     border-color: #666
   }
-  .lW,
-  .lX,
-  table {
-    width: 100%
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1578,26 +1586,6 @@ dl.note dd {
   thead :visited {
     color: #606
   }
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatMember,
-  .chatTitle,
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
-  }
   h4,
   h5,
   h6 {
@@ -1625,7 +1613,8 @@ dl.note dd {
     margin: 1.5em 3% .7em
   }
   table {
-    margin: 1em 0
+    margin: 1em 0;
+    width: 100%
   }
   th {
     font-weight: 700
@@ -1686,44 +1675,8 @@ dl.note dd {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
   }
   .AAuthor {
     margin: 1em 0;
@@ -1762,7 +1715,8 @@ dl.note dd {
   }
   .AHead {
     margin: 1em 0;
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1801,11 +1755,14 @@ dl.note dd {
     border-color: #000;
     margin-top: 1em
   }
+  .Magazine .aBodyRoot {
+    width: auto
+  }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -1824,7 +1781,8 @@ dl.note dd {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     display: block;
@@ -1838,6 +1796,11 @@ dl.note dd {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 3%
+  }
+  .AMeta,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
   }
   .js-bqCite,
   .js-bqLink {

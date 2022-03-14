@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -111,8 +117,6 @@ h6,
 th {
   font-weight: 400
 }
-.lM,
-.lS,
 .tl td,
 .tl th {
   vertical-align: top
@@ -179,7 +183,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -195,8 +199,8 @@ th {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -211,8 +215,8 @@ a:focus:hover {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -229,18 +233,6 @@ a:focus:hover {
   top: .15em;
   display: inline-block;
   margin-left: .5em
-}
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
 }
 .Cover-btn :link i,
 .Cover-btn :link:active i,
@@ -265,6 +257,7 @@ a:focus .ico-label:after {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -576,9 +569,16 @@ kbd,
 var {
   margin: 0 .1em
 }
-iframe,
-img {
-  max-width: 100%
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.Search,
+.Search-txt,
+.commonForm,
+a iframe,
+a img {
+  display: block
 }
 ol,
 ul {
@@ -600,7 +600,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -650,7 +650,8 @@ h2:after {
   position: absolute;
   left: 0;
   bottom: -2px;
-  content: " "
+  content: " ";
+  display: block
 }
 .wn:after {
   background: #ca088a!important
@@ -762,12 +763,6 @@ tbody :hover th a:focus {
 .c {
   text-align: center
 }
-blockquote,
-p {
-  text-justify: inter-word;
-  line-break: normal;
-  text-align: justify
-}
 .uc {
   text-transform: uppercase
 }
@@ -779,52 +774,6 @@ em {
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
-}
-.lW {
-  display: table;
-  table-layout: fixed
-}
-.lM,
-.lS {
-  display: table-cell
-}
-.lM {
-  width: 70%
-}
-.lMi,
-.lMz {
-  margin-right: 3.857%
 }
 .lM1 {
   float: left
@@ -1244,8 +1193,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  max-width: 100%
+  display: block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1446,7 +1394,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1770,8 +1719,7 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
-  max-width: 100%
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -2035,6 +1983,49 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lW {
+    display: table;
+    table-layout: fixed
+  }
+  .lM,
+  .lS {
+    display: table-cell;
+    vertical-align: top
+  }
+  .lM {
+    width: 70%
+  }
+  .lMi,
+  .lMz {
+    margin-right: 3.857%
+  }
+}
 @media print {
   .links,
   .note,
@@ -2189,8 +2180,6 @@ li.L8 {
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -2206,11 +2195,6 @@ li.L8 {
   [href*="/viewer.diagrams.net/?"]:after,
   h2:after {
     display: none
-  }
-  .lM,
-  .lS,
-  .lW {
-    display: block
   }
   hr {
     margin: 2em 6%
@@ -2273,45 +2257,12 @@ li.L8 {
     background: #fff;
     color: #000
   }
-  .AHead,
-  .BreadcrumbList {
-    color: #666!important
-  }
   *,
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
   }
   .ico-label:after,
   .ribbon .ico-label:after {
@@ -2359,6 +2310,10 @@ li.L8 {
   .box {
     margin: 1em 0 0
   }
+  .AHead {
+    color: #666!important;
+    padding: 0 3%
+  }
   .AHead h1 {
     text-align: center;
     color: #000!important
@@ -2382,7 +2337,8 @@ li.L8 {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0
+    padding: .5em 0;
+    color: #666!important
   }
   .RichLink b,
   .h1 {
@@ -2400,10 +2356,13 @@ li.L8 {
     margin-top: 1em
   }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
+  }
+  .Magazine .aBodyRoot {
+    width: auto
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -2422,7 +2381,8 @@ li.L8 {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     display: block;
@@ -2550,6 +2510,14 @@ li.L8 {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta {
+    padding: 0 3%
+  }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
   }
   code .atv,
   code .str {

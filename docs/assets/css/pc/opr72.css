@@ -78,6 +78,12 @@ h6,
 th {
   font-weight: 400
 }
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 body,
 input,
 textarea {
@@ -126,7 +132,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -138,21 +144,9 @@ blockquote :visited img {
   padding: 0 1em;
   height: 2.1em
 }
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.commonForm,
-a iframe,
-a img,
-h1 br,
-h2 br,
-h2:after,
-h3 br,
-h4 br,
-h5 br,
-h6 br {
-  display: block
+.AHead h1,
+th {
+  text-align: left
 }
 .Header h1,
 body,
@@ -161,8 +155,8 @@ input.btn {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -175,7 +169,7 @@ a:active {
   text-decoration: underline
 }
 .AHead-labels a:active,
-.SocialBtns a:active,
+.SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
   border-color: #29a119;
@@ -292,6 +286,21 @@ ins {
 del {
   text-decoration: line-through
 }
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.commonForm,
+a iframe,
+a img,
+h1 br,
+h2 br,
+h3 br,
+h4 br,
+h5 br,
+h6 br {
+  display: block
+}
 .Magazine .box,
 form {
   margin: 0
@@ -337,8 +346,7 @@ html {
 }
 body {
   background: #010e06;
-  color: #021605;
-  text-align: center
+  color: #021605
 }
 p {
   line-height: 1.9
@@ -463,10 +471,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-iframe,
-img {
-  max-width: 100%
-}
 ol,
 ul {
   padding-left: 2em
@@ -487,7 +491,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -535,7 +539,8 @@ h2:after {
   position: absolute;
   left: 0;
   bottom: -2px;
-  content: " "
+  content: " ";
+  display: block
 }
 .chatL,
 .chatL p,
@@ -565,7 +570,6 @@ caption {
   margin: 1.5em 1em .7em
 }
 th {
-  text-align: left;
   padding: .5em
 }
 td {
@@ -635,6 +639,7 @@ blockquote tfoot th {
 .r {
   text-align: right
 }
+.Attribution,
 .c {
   text-align: center
 }
@@ -649,44 +654,6 @@ em {
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  display: inline-block;
-  vertical-align: top;
-  text-align: left
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  padding-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  padding: 0 9%
-}
-.lXi {
-  padding: 0 2.7%
 }
 .AAuthor:after,
 .Comment p:after,
@@ -844,8 +811,7 @@ var {
   font-size: 2em;
   color: #021605;
   padding: 2em 0;
-  margin: 0;
-  text-align: left
+  margin: 0
 }
 .AHead-labels {
   margin-top: .5em;
@@ -866,9 +832,9 @@ var {
   border-color: #bbe;
   color: #010e06
 }
-.Attribution {
-  padding: 1em 0;
-  text-align: center
+.Attribution,
+.Magazine-item {
+  padding: 1em 0
 }
 .Attribution small,
 .prettyprint code {
@@ -933,8 +899,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -976,9 +941,6 @@ kbd {
 }
 .LinkList :active {
   text-decoration: underline!important
-}
-.Magazine-item {
-  padding: 1em 0
 }
 .Magazine-date {
   display: block;
@@ -1111,7 +1073,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1420,8 +1383,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1662,6 +1624,45 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left
+  }
+  body {
+    text-align: center
+  }
+  .lMi,
+  .lMz {
+    padding-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    padding: 0 9%
+  }
+  .lXi {
+    padding: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+}
 @media print {
   .links,
   .note,
@@ -1686,13 +1687,6 @@ li.L8 {
   thead th,
   thead var {
     border-color: #666
-  }
-  .AAuthor,
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    padding: 0
   }
   .LinkList a,
   .Magazine-item,
@@ -1772,23 +1766,15 @@ li.L8 {
   h2:after {
     width: 0
   }
-  .lW,
-  .lX,
-  table {
-    width: 100%
-  }
   hr {
     margin: 2em 6%
   }
   caption {
     margin: 1.5em 3% .7em
   }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
   table {
-    margin: 1em 0
+    margin: 1em 0;
+    width: 100%
   }
   thead td,
   thead th {
@@ -1845,30 +1831,8 @@ li.L8 {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .lW,
-  .lX {
-    max-width: 100%
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
   }
   #lB .lS,
   #lF .lW,
@@ -1876,8 +1840,6 @@ li.L8 {
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -1895,6 +1857,10 @@ li.L8 {
   [href^="mailto:"]:after,
   [href^="tel:"]:after {
     display: none
+  }
+  .AAuthor {
+    margin: 1em 0;
+    padding: 0
   }
   .AAuthor img {
     float: left;
@@ -1919,12 +1885,18 @@ li.L8 {
   .ABody {
     margin: 0 0 2em
   }
+  .ADesc,
+  .AHead,
+  blockquote {
+    margin: 1em 0
+  }
   .ADesc p,
   .box {
     margin: 1em 0 0
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1983,10 +1955,13 @@ li.L8 {
     margin-top: 1em
   }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
+  }
+  .Magazine .aBodyRoot {
+    width: auto
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -2005,7 +1980,8 @@ li.L8 {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     display: block;
@@ -2130,6 +2106,14 @@ li.L8 {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta {
+    padding: 0 3%
+  }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
   }
   code .atv,
   code .str {

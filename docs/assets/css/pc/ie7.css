@@ -5,6 +5,12 @@ td,
 th {
   word-break: break-all
 }
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -149,7 +155,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   border-width: .1em;
@@ -163,16 +169,10 @@ blockquote :visited img {
 th {
   text-align: left
 }
-.Label div,
-blockquote,
-p {
-  line-break: normal;
-  text-align: justify
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -186,8 +186,8 @@ a:active:hover {
 }
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
-.SocialBtns a:link:active,
-.SocialBtns a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
 .Subscribe a:link:active,
 .Subscribe a:visited:active,
 .btn:link:active,
@@ -223,6 +223,7 @@ a:active:hover {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -483,10 +484,6 @@ th {
 .tl tbody :hover th {
   border-color: #29a119
 }
-iframe,
-img {
-  max-width: 100%
-}
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
@@ -522,7 +519,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -672,12 +669,9 @@ tbody :hover th a:active {
   text-align: right
 }
 .Attribution,
-.c {
+.c,
+.caption {
   text-align: center
-}
-blockquote,
-p {
-  text-justify: inter-word
 }
 .uc {
   text-transform: uppercase
@@ -690,42 +684,6 @@ em {
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
 }
 .lM1 {
   float: left
@@ -965,8 +923,7 @@ input.btn {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -995,7 +952,9 @@ input.btn {
 }
 .Label div {
   color: #f8fbfa;
-  text-justify: inter-ideograph
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1156,7 +1115,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1439,10 +1399,6 @@ tbody th var {
 dl.note dd {
   margin-left: 1em
 }
-.caption {
-  text-align: center;
-  max-width: 100%
-}
 .caption img {
   margin: 0 0 .5em!important
 }
@@ -1690,6 +1646,40 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+}
 @media print {
   .chat,
   blockquote code,
@@ -1708,6 +1698,18 @@ li.L8 {
   .Header h1 + span {
     display: block;
     text-align: center
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
   }
   code .typ,
   th {
@@ -1755,26 +1757,6 @@ li.L8 {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatMember,
-  .chatTitle,
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
   }
   h4,
   h5,
@@ -1866,49 +1848,8 @@ li.L8 {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
   }
   .AAuthor {
     margin: 1em 0;
@@ -1947,7 +1888,8 @@ li.L8 {
   }
   .AHead {
     margin: 1em 0;
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1986,11 +1928,14 @@ li.L8 {
     border-color: #000;
     margin-top: 1em
   }
+  .Magazine .aBodyRoot {
+    width: auto
+  }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -2009,7 +1954,8 @@ li.L8 {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     margin: 0 0 .5em
@@ -2021,6 +1967,11 @@ li.L8 {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 3%
+  }
+  .AMeta,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
   }
   .js-bqCite,
   .js-bqLink {

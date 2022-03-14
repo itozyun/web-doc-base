@@ -84,6 +84,12 @@ th {
 .tl th {
   vertical-align: top
 }
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 @font-face {
   font-family: "YuGothic M";
   src: local("Yu Gothic Medium"),local("Yu Gothic");
@@ -160,7 +166,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -177,8 +183,8 @@ th {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -193,8 +199,8 @@ a:focus:hover {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -412,7 +418,10 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility!important;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale
 }
 h4,
 h5,
@@ -571,10 +580,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-iframe,
-img {
-  max-width: 100%
-}
 .Magazine-mm,
 .Magazine-yy,
 .RichLink b,
@@ -601,7 +606,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -852,12 +857,6 @@ tbody :hover th a:focus {
 .c {
   text-align: center
 }
-_:-ms-lang(x),
-p,
-blockquote {
-  text-align: justify;
-  text-justify: inter-word
-}
 .uc {
   text-transform: uppercase
 }
@@ -882,18 +881,6 @@ strong {
   background: -ms-linear-gradient(top,rgba(0,0,0,0) 0,rgba(102,204,255,0) 60%,#6cf 61%,#6cf 100%);
   background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(255,255,102,0) 60%,#6cf 61%,#6cf 100%)
 }
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
@@ -910,30 +897,6 @@ strong {
   content: "";
   height: 0;
   display: block
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
 }
 .lM1 {
   float: left
@@ -1022,6 +985,7 @@ input.btn:focus {
   left: 0;
   width: .7em;
   height: .7em;
+  -khtml-border-radius: .5em;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
   border-radius: .5em;
@@ -1103,6 +1067,7 @@ input.btn:focus {
   left: .3em;
   width: .45em;
   height: 0;
+  -khtml-border-radius: .225em;
   -webkit-border-radius: .225em;
   -moz-border-radius: .225em;
   border-radius: .225em;
@@ -1114,6 +1079,7 @@ input.btn:focus {
   left: .1em;
   width: 0;
   height: 0;
+  -khtml-border-radius: .3em .3em 0 0;
   -webkit-border-radius: .3em .3em 0 0;
   -moz-border-radius: .3em .3em 0 0;
   border-radius: .3em .3em 0 0;
@@ -1150,6 +1116,12 @@ input.btn:focus {
   border-width: .25em .25em 0;
   border-color: #717e73 transparent
 }
+.ico-chain:after,
+.ico-chain:before {
+  width: .3em;
+  height: .3em;
+  -khtml-border-radius: .2em
+}
 a:active .ico-comment:after,
 a:active .ico-pen:after,
 a:focus .ico-comment:after,
@@ -1169,8 +1141,6 @@ a:focus .ico-pen:after {
 .ico-chain:before {
   top: .05em;
   left: .05em;
-  width: .3em;
-  height: .3em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
   border-radius: .2em;
@@ -1180,8 +1150,6 @@ a:focus .ico-pen:after {
 .ico-chain:after {
   top: .3em;
   left: .3em;
-  width: .3em;
-  height: .3em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
   border-radius: .2em;
@@ -1203,6 +1171,7 @@ a:focus .ico-pen:after {
   top: .15em;
   left: .2em;
   border-width: .1em;
+  -khtml-border-radius: .25em;
   -webkit-border-radius: .25em;
   -moz-border-radius: .25em;
   border-radius: .25em
@@ -1212,6 +1181,7 @@ a:focus .ico-pen:after {
   left: 0;
   width: .7em;
   height: .45em;
+  -khtml-border-radius: .2em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
   border-radius: .2em;
@@ -1428,8 +1398,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1644,7 +1613,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1811,6 +1781,7 @@ tr .box > p:first-of-type {
   margin: 1em 2%;
   padding: .4em 2%;
   display: inline-block;
+  -khtml-border-radius: .4em;
   -webkit-border-radius: .4em;
   -moz-border-radius: .4em;
   border-radius: .4em
@@ -1870,6 +1841,7 @@ pre var {
   height: 1em;
   padding: .914em .414em;
   color: #111;
+  -khtml-border-radius: 1.414em;
   -webkit-border-radius: 1.414em;
   -moz-border-radius: 1.414em;
   border-radius: 1.414em
@@ -1912,6 +1884,7 @@ kbd {
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em;
+  -khtml-border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px
@@ -2001,8 +1974,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -2050,6 +2022,7 @@ dl.note dd {
   height: 0;
   border-width: .6em;
   border-color: #bddac8;
+  -khtml-border-radius: .6em;
   -webkit-border-radius: .6em;
   -moz-border-radius: .6em;
   border-radius: .6em
@@ -2061,6 +2034,7 @@ dl.note dd {
   height: 0;
   border-width: .35em;
   border-color: #f8fbfa;
+  -khtml-border-radius: .35em;
   -webkit-border-radius: .35em;
   -moz-border-radius: .35em;
   border-radius: .35em
@@ -2307,6 +2281,42 @@ div .box .jsPicaLarge img {
   background: #f8fbfa;
   border-color: #021605;
   color: #021605
+}
+@media screen,
+handheld,
+tv {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
 }
 @media screen and (min-width:0\-) {
   :link,
@@ -2610,6 +2620,11 @@ only screen and (max-width:950px) {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -2619,30 +2634,6 @@ only screen and (max-width:950px) {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  #lE .lS {
-    padding-top: 0
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .lM,
-  .lS {
-    float: none;
-    width: auto
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
   }
   .AAuthor {
     padding: 0
@@ -2730,17 +2721,33 @@ only screen and (max-width:950px) {
   #lF .lX {
     border-width: 1px 0 0
   }
+  table {
+    width: 94%
+  }
+  #lB .lS {
+    background: #ebeed5
+  }
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
+  .lM,
+  .lS {
+    float: none;
+    width: auto
+  }
   .lM1,
   .lM2,
   .lS1,
   .lS2 {
     width: 48.5%
   }
-  table {
-    width: 94%
-  }
-  #lB .lS {
-    background: #ebeed5
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    margin: 0
   }
   .lMi,
   .lMz .lMh,
@@ -3193,8 +3200,8 @@ only screen and (max-width:359px) {
     margin: 0 auto 1em
   }
 }
-@media only screen and (forced-colors:active) and (max-width:319px),
-only screen and (-ms-high-contrast:active) and (max-width:319px) {
+@media only screen and (forced-colors:active) and (max-width:359px),
+only screen and (-ms-high-contrast:active) and (max-width:359px) {
   .chatL p:after,
   .chatR p:after {
     border-bottom-color: inherit!important;
@@ -3252,13 +3259,6 @@ only screen and (max-width:240px) {
     color: #eee
   }
   #lB .lS,
-  .SocialBtns .fb:visited,
-  .SocialBtns .hb:visited,
-  .SocialBtns .ln:visited,
-  .SocialBtns .pk:visited,
-  .SocialBtns .pt:visited,
-  .SocialBtns .tw:visited,
-  .SocialBtns :visited,
   .baseColor,
   input,
   textarea {
@@ -3358,30 +3358,6 @@ only screen and (max-width:240px) {
   textarea:-ms-input-placeholder {
     color: #999
   }
-  .SocialBtns .fb:link:active,
-  .SocialBtns .fb:link:focus,
-  .SocialBtns .fb:visited:active,
-  .SocialBtns .fb:visited:focus,
-  .SocialBtns .hb:link:active,
-  .SocialBtns .hb:link:focus,
-  .SocialBtns .hb:visited:active,
-  .SocialBtns .hb:visited:focus,
-  .SocialBtns .ln:link:active,
-  .SocialBtns .ln:link:focus,
-  .SocialBtns .ln:visited:active,
-  .SocialBtns .ln:visited:focus,
-  .SocialBtns .pk:link:active,
-  .SocialBtns .pk:link:focus,
-  .SocialBtns .pk:visited:active,
-  .SocialBtns .pk:visited:focus,
-  .SocialBtns .pt:link:active,
-  .SocialBtns .pt:link:focus,
-  .SocialBtns .pt:visited:active,
-  .SocialBtns .pt:visited:focus,
-  .SocialBtns .tw:link:active,
-  .SocialBtns .tw:link:focus,
-  .SocialBtns .tw:visited:active,
-  .SocialBtns .tw:visited:focus,
   .baseColor .btn:link:active,
   .baseColor .btn:link:focus,
   .baseColor .btn:visited:active,
@@ -3409,12 +3385,6 @@ only screen and (max-width:240px) {
   .Label div,
   .Pager,
   .SocialBtns,
-  .SocialBtns .fb:link,
-  .SocialBtns .hb:link,
-  .SocialBtns .ln:link,
-  .SocialBtns .pk:link,
-  .SocialBtns .pt:link,
-  .SocialBtns .tw:link,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
@@ -3528,6 +3498,48 @@ only screen and (max-width:240px) {
   }
   .aBodyRoot :visited:hover {
     color: #b3f
+  }
+  .SocialBtns .fb :link,
+  .SocialBtns .hb :link,
+  .SocialBtns .ln :link,
+  .SocialBtns .ok :link,
+  .SocialBtns .pt :link,
+  .SocialBtns .tw :link {
+    color: #000!important
+  }
+  .SocialBtns .fb :visited,
+  .SocialBtns .hb :visited,
+  .SocialBtns .ln :visited,
+  .SocialBtns .ok :visited,
+  .SocialBtns .pt :visited,
+  .SocialBtns .tw :visited {
+    background: #000!important
+  }
+  .SocialBtns .fb:link:active,
+  .SocialBtns .fb:link:focus,
+  .SocialBtns .fb:visited:active,
+  .SocialBtns .fb:visited:focus,
+  .SocialBtns .hb:link:active,
+  .SocialBtns .hb:link:focus,
+  .SocialBtns .hb:visited:active,
+  .SocialBtns .hb:visited:focus,
+  .SocialBtns .ln:link:active,
+  .SocialBtns .ln:link:focus,
+  .SocialBtns .ln:visited:active,
+  .SocialBtns .ln:visited:focus,
+  .SocialBtns .ok:link:active,
+  .SocialBtns .ok:link:focus,
+  .SocialBtns .ok:visited:active,
+  .SocialBtns .ok:visited:focus,
+  .SocialBtns .pt:link:active,
+  .SocialBtns .pt:link:focus,
+  .SocialBtns .pt:visited:active,
+  .SocialBtns .pt:visited:focus,
+  .SocialBtns .tw:link:active,
+  .SocialBtns .tw:link:focus,
+  .SocialBtns .tw:visited:active,
+  .SocialBtns .tw:visited:focus {
+    border-color: #000!important
   }
 }
 @media handheld,
@@ -3645,11 +3657,14 @@ only screen and (max-width:240px) {
     margin-right: 0
   }
 }
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media only screen and (-webkit-min-device-pixel-ratio:0) {
   body,
   input,
   textarea {
     font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  }
+  .mona {
+    font-family: "MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif
   }
 }
 @media screen\0 {
@@ -3690,6 +3705,14 @@ only screen and (-ms-high-contrast:active) {
   tfoot td {
     border-width: 2px 0 0
   }
+  .Pager-top i,
+  .ico-comment:after,
+  .ico-pen:after,
+  td,
+  tfoot td {
+    border-left-color: Window;
+    border-right-color: Window
+  }
   .Cover-btn i,
   .Magazine-jump i,
   .Pager i,
@@ -3728,12 +3751,6 @@ only screen and (-ms-high-contrast:active) {
   }
   tbody td {
     border-width: 0 0 1px
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after {
-    border-left-color: Window;
-    border-right-color: Window
   }
   .LinkList {
     padding: 2px 0
@@ -3882,8 +3899,6 @@ only screen and (-ms-high-contrast:active) {
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -3962,12 +3977,6 @@ only screen and (-ms-high-contrast:active) {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
   }
@@ -3985,7 +3994,8 @@ only screen and (-ms-high-contrast:active) {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important
@@ -4039,18 +4049,22 @@ only screen and (-ms-high-contrast:active) {
     margin-top: 1em
   }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
+  }
+  .AMeta,
+  .Header {
+    padding: 0 3%
   }
   .Magazine .aBodyRoot {
     width: auto
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .SearchResult-multi {
-    -webkit-column-gap: 2en;
-    -moz-column-gap: 2en;
-    column-gap: 2en
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
   }
   #lH {
     font-size: .875em
@@ -4156,6 +4170,11 @@ only screen and (-ms-high-contrast:active) {
   blockquote .tl tbody td:after {
     border-color: #fff
   }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
+  }
   code .atv,
   code .str {
     color: #060
@@ -4183,27 +4202,23 @@ only screen and (-ms-high-contrast:active) {
     color: #003
   }
 }
-@media not aural and (1) {
-  blockquote,
-  p {
-    text-align: justify
-  }
-}
 @media only print and (orientation:landscape) {
   .ABody,
   .ABody blockquote {
-    -webkit-column-gap: 2en;
-    -moz-column-gap: 2en;
-    column-gap: 2en
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
   }
   .ABody h1,
   .ABody h2,
   .ABody h3 {
     text-align: left
   }
-}
-@media only screen and (-webkit-min-device-pixel-ratio:0) {
-  .mona {
-    font-family: "MS PGothic AA","ＭＳ Ｐゴシック","MS PGothic","MS Pｺﾞｼｯｸ","MS Pゴシック","ＭＳＰゴシック","MSPゴシック",IPAMonaPGothic,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",Mona,sans-serif
+  .AHead,
+  .AMeta,
+  .Header,
+  .Pager,
+  .SocialBtns {
+    padding: 0 1.5%
   }
 }

@@ -95,7 +95,7 @@ tbody td {
 .jsPica:focus {
   outline: 0
 }
-@media (max-width:319px) {
+@media (max-width:359px) {
   .chatL p:after,
   .chatR p:after {
     border-width: 1px 1px 0 0;

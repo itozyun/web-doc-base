@@ -63,6 +63,12 @@ sub,
 sup {
   position: relative
 }
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 body,
 input,
 textarea {
@@ -111,7 +117,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-table;
@@ -134,8 +140,8 @@ input.btn {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -148,7 +154,7 @@ a:active {
   text-decoration: underline
 }
 .AHead-labels a:active,
-.SocialBtns a:active,
+.SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
   border-color: #29a119;
@@ -456,10 +462,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-iframe,
-img {
-  max-width: 100%
-}
 ol,
 ul {
   padding-left: 2em
@@ -480,7 +482,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -629,18 +631,6 @@ em {
 strong {
   background: #6cf
 }
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
@@ -656,30 +646,6 @@ strong {
   clear: both;
   content: "";
   display: block
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
 }
 .lM1 {
   float: left
@@ -905,8 +871,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1078,7 +1043,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1369,8 +1335,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1611,6 +1576,40 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+}
 @media print {
   .links,
   .note,
@@ -1776,37 +1775,8 @@ li.L8 {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
   }
   #lB .lS,
   #lF .lW,
@@ -1814,8 +1784,6 @@ li.L8 {
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -1871,7 +1839,8 @@ li.L8 {
     margin: 1em 0 0
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1935,10 +1904,13 @@ li.L8 {
     margin-top: 1em
   }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
+  }
+  .Magazine .aBodyRoot {
+    width: auto
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -1957,7 +1929,8 @@ li.L8 {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     margin: 0 0 .5em
@@ -2046,6 +2019,14 @@ li.L8 {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta {
+    padding: 0 3%
+  }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
   }
   code .atv,
   code .str {

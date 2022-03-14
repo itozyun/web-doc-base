@@ -84,6 +84,12 @@ h6,
 th {
   font-weight: 400
 }
+.Cover img,
+.caption,
+iframe,
+img {
+  max-width: 100%
+}
 body,
 input,
 textarea {
@@ -145,7 +151,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -163,8 +169,8 @@ th {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -179,8 +185,8 @@ a:focus:hover {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -497,10 +503,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-iframe,
-img {
-  max-width: 100%
-}
 ol,
 ul {
   padding-left: 2em
@@ -521,7 +523,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -714,18 +716,6 @@ em {
 strong {
   background: #6cf
 }
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
@@ -741,30 +731,6 @@ strong {
   clear: both;
   content: "";
   display: block
-}
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
 }
 .lM1 {
   float: left
@@ -996,8 +962,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1168,7 +1133,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1485,8 +1451,7 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1733,6 +1698,41 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen,
+handheld {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+}
 @media handheld {
   .AHead,
   .BreadcrumbList,
@@ -1817,19 +1817,6 @@ li.L8 {
     background: #222;
     color: #eee
   }
-  #lB .lS,
-  .SocialBtns .fb:visited,
-  .SocialBtns .hb:visited,
-  .SocialBtns .ln:visited,
-  .SocialBtns .pk:visited,
-  .SocialBtns .pt:visited,
-  .SocialBtns .tw:visited,
-  .SocialBtns :visited,
-  .baseColor,
-  input,
-  textarea {
-    background: #000
-  }
   body {
     font-size: .75em;
     color: #eee
@@ -1837,30 +1824,6 @@ li.L8 {
   p {
     line-height: 1.4
   }
-  .SocialBtns .fb:link:active,
-  .SocialBtns .fb:link:focus,
-  .SocialBtns .fb:visited:active,
-  .SocialBtns .fb:visited:focus,
-  .SocialBtns .hb:link:active,
-  .SocialBtns .hb:link:focus,
-  .SocialBtns .hb:visited:active,
-  .SocialBtns .hb:visited:focus,
-  .SocialBtns .ln:link:active,
-  .SocialBtns .ln:link:focus,
-  .SocialBtns .ln:visited:active,
-  .SocialBtns .ln:visited:focus,
-  .SocialBtns .pk:link:active,
-  .SocialBtns .pk:link:focus,
-  .SocialBtns .pk:visited:active,
-  .SocialBtns .pk:visited:focus,
-  .SocialBtns .pt:link:active,
-  .SocialBtns .pt:link:focus,
-  .SocialBtns .pt:visited:active,
-  .SocialBtns .pt:visited:focus,
-  .SocialBtns .tw:link:active,
-  .SocialBtns .tw:link:focus,
-  .SocialBtns .tw:visited:active,
-  .SocialBtns .tw:visited:focus,
   .baseColor .btn:link:active,
   .baseColor .btn:link:focus,
   .baseColor .btn:visited:active,
@@ -1881,9 +1844,7 @@ li.L8 {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited,
-  input,
-  textarea {
+  :visited {
     color: #eee
   }
   :link:hover {
@@ -1937,6 +1898,11 @@ li.L8 {
   h6 {
     border-color: #999
   }
+  input,
+  textarea {
+    background: #000;
+    color: #eee
+  }
   h2:after {
     width: 33%;
     left: 33%;
@@ -1969,12 +1935,6 @@ li.L8 {
   .BlogArchive,
   .BlogArchive tbody :hover td,
   .Pager,
-  .SocialBtns .fb:link,
-  .SocialBtns .hb:link,
-  .SocialBtns .ln:link,
-  .SocialBtns .pk:link,
-  .SocialBtns .pt:link,
-  .SocialBtns .tw:link,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
@@ -2019,7 +1979,12 @@ li.L8 {
     border-color: #222
   }
   #lB .lS {
+    background: #ebeed5;
     padding-bottom: 2em
+  }
+  #lB .lS,
+  .baseColor {
+    background: #000
   }
   em {
     background: #4e4e1f
@@ -2027,20 +1992,36 @@ li.L8 {
   strong {
     background: #1c3a49
   }
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
+  .commonForm label,
+  .lM,
+  .lM1,
+  .lM2,
+  .lS,
+  .lS1,
+  .lS2 {
+    float: none;
+    width: auto
+  }
+  .SearchResult div div,
+  .js-bqCite,
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi,
+  blockquote:after {
+    margin: 0
+  }
   #lB .lSi,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
     padding: 0
-  }
-  .commonForm label,
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    float: none;
-    width: auto
   }
   #lB .lS1,
   #lB .lS2 {
@@ -2137,7 +2118,8 @@ li.L8 {
   }
   .Magazine {
     margin: 1em 0 0;
-    border-width: .5em 0 0
+    border-width: .5em 0 0;
+    border-color: #021605
   }
   .Magazine-item {
     padding: 1em 0 0
@@ -2186,11 +2168,6 @@ li.L8 {
   }
   .baseColor .RichLink-meta {
     color: #222
-  }
-  .SearchResult div div,
-  .js-bqCite,
-  blockquote:after {
-    margin: 0
   }
   .SearchResult div p {
     color: grey
@@ -2292,6 +2269,48 @@ li.L8 {
   }
   .Pager-top i {
     border-color: #999 transparent
+  }
+  .SocialBtns .fb :link,
+  .SocialBtns .hb :link,
+  .SocialBtns .ln :link,
+  .SocialBtns .ok :link,
+  .SocialBtns .pt :link,
+  .SocialBtns .tw :link {
+    color: #000!important
+  }
+  .SocialBtns .fb :visited,
+  .SocialBtns .hb :visited,
+  .SocialBtns .ln :visited,
+  .SocialBtns .ok :visited,
+  .SocialBtns .pt :visited,
+  .SocialBtns .tw :visited {
+    background: #000!important
+  }
+  .SocialBtns .fb:link:active,
+  .SocialBtns .fb:link:focus,
+  .SocialBtns .fb:visited:active,
+  .SocialBtns .fb:visited:focus,
+  .SocialBtns .hb:link:active,
+  .SocialBtns .hb:link:focus,
+  .SocialBtns .hb:visited:active,
+  .SocialBtns .hb:visited:focus,
+  .SocialBtns .ln:link:active,
+  .SocialBtns .ln:link:focus,
+  .SocialBtns .ln:visited:active,
+  .SocialBtns .ln:visited:focus,
+  .SocialBtns .ok:link:active,
+  .SocialBtns .ok:link:focus,
+  .SocialBtns .ok:visited:active,
+  .SocialBtns .ok:visited:focus,
+  .SocialBtns .pt:link:active,
+  .SocialBtns .pt:link:focus,
+  .SocialBtns .pt:visited:active,
+  .SocialBtns .pt:visited:focus,
+  .SocialBtns .tw:link:active,
+  .SocialBtns .tw:link:focus,
+  .SocialBtns .tw:visited:active,
+  .SocialBtns .tw:visited:focus {
+    border-color: #000!important
   }
 }
 @media print {
@@ -2440,12 +2459,6 @@ li.L8 {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
   }
@@ -2455,8 +2468,6 @@ li.L8 {
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -2479,7 +2490,8 @@ li.L8 {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important
@@ -2530,13 +2542,17 @@ li.L8 {
     margin-top: 1em
   }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
+  }
+  .AMeta,
+  .Header {
+    padding: 0 3%
   }
   .Magazine .aBodyRoot {
     width: auto
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   #lH {
     font-size: .875em
@@ -2637,6 +2653,11 @@ li.L8 {
   blockquote .tl tbody td:after {
     border-color: #fff
   }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
+  }
   code .atv,
   code .str {
     color: #060
@@ -2685,6 +2706,11 @@ handheld {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -2694,30 +2720,6 @@ handheld {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  #lE .lS {
-    padding-top: 0
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .lM,
-  .lS {
-    float: none;
-    width: auto
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
   }
   .AAuthor {
     padding: 0

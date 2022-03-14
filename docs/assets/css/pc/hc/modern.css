@@ -104,7 +104,7 @@ tbody td {
 .jsPica:focus {
   outline: 0
 }
-@media (max-width:319px) {
+@media (max-width:359px) {
   .jsCanRotate .chatL p:after,
   .jsCanRotate .chatR p:after {
     width: .3em;

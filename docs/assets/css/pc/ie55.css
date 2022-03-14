@@ -81,12 +81,6 @@ th {
 .chatR {
   position: relative
 }
-.Search .btn,
-.chatMember,
-.e6C,
-.e6C .lW {
-  overflow: hidden
-}
 blockquote,
 code,
 tbody th,
@@ -101,11 +95,6 @@ var {
 .tl td,
 .tl th {
   vertical-align: top
-}
-.e6BR,
-.jsCapLarge,
-.jsPicaLarge img {
-  clear: both
 }
 body,
 input,
@@ -143,7 +132,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   border-width: .1em;
@@ -157,16 +146,10 @@ blockquote :visited img {
 th {
   text-align: left
 }
-.Label div,
-blockquote,
-p {
-  line-break: normal;
-  text-align: justify
-}
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -180,8 +163,8 @@ a:active:hover {
 }
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
-.SocialBtns a:link:active,
-.SocialBtns a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
 .Subscribe a:link:active,
 .Subscribe a:visited:active,
 .btn:link:active,
@@ -197,6 +180,7 @@ a:active:hover {
 .RichLink-sep *,
 .TxtNavi a,
 .lMi,
+.lSi,
 .lW {
   zoom: 1
 }
@@ -205,6 +189,7 @@ a:active:hover {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -482,7 +467,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -616,10 +601,6 @@ blockquote tfoot th {
 .caption {
   text-align: center
 }
-blockquote,
-p {
-  text-justify: inter-word
-}
 .uc {
   text-transform: uppercase
 }
@@ -632,75 +613,8 @@ em {
 strong {
   background: #6cf
 }
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%;
-  margin: 0 auto
-}
-.lM {
-  width: 67.3%;
-  float: left;
-  overflow-x: hidden
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  width: 100%;
-  margin: 0 9%;
-  zoom: 1
-}
-.e6L,
-.e6R {
-  width: 50%;
-  height: 1px
-}
-.lXi {
-  margin: 0 2.7%
-}
-.e6L {
-  float: left;
-  margin-right: -35em
-}
-.e6R {
-  float: right;
-  margin-left: -35em
-}
-.e6C,
 .lM1 {
   float: left
-}
-#lB,
-#lH,
-.commonForm-wrap *,
-.e6C .lW {
-  width: 100%
-}
-.e6C {
-  margin: 0!important
-}
-.e6BR {
-  height: 1px;
-  line-height: 1px;
-  display: block;
-  margin-bottom: -1px
 }
 .lM2 {
   float: right
@@ -732,6 +646,10 @@ input.btn {
   float: left;
   width: 7em;
   padding: .45em 0 0
+}
+.Cover img,
+.commonForm-wrap * {
+  width: 100%
 }
 .ABody h2,
 .ABody h3 {
@@ -927,8 +845,7 @@ input.btn {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -957,7 +874,9 @@ input.btn {
 }
 .Label div {
   color: #f8fbfa;
-  text-justify: inter-ideograph
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1097,7 +1016,8 @@ kbd {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  right: .05em
+  right: .05em;
+  overflow: hidden
 }
 .SearchResult {
   margin-bottom: 2em
@@ -1121,7 +1041,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1308,6 +1229,7 @@ pre var {
 .chatMember {
   position: absolute;
   top: -.414em;
+  overflow: hidden;
   text-align: center!important;
   width: 2em;
   height: 1em;
@@ -1441,7 +1363,8 @@ dl.note dd {
 }
 .jsCapLarge,
 .jsPicaLarge img {
-  margin: 0 auto 1em
+  margin: 0 auto 1em;
+  clear: both
 }
 .Pager {
   color: #f8fbfa;
@@ -1555,6 +1478,74 @@ dl.note dd {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  .e6C,
+  .e6C .lW {
+    overflow: hidden
+  }
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%;
+    margin: 0 auto
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  #lB,
+  #lH,
+  .e6C .lW,
+  .lSi {
+    width: 100%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    overflow-x: hidden;
+    width: 67.3%;
+    float: left
+  }
+  .e6L,
+  .e6R {
+    width: 50%;
+    height: 1px
+  }
+  .lS {
+    float: right
+  }
+  .e6L {
+    float: left;
+    margin-right: -35em
+  }
+  .e6R {
+    float: right;
+    margin-left: -35em
+  }
+  .e6C {
+    margin: 0!important;
+    float: left
+  }
+  .e6BR {
+    clear: both;
+    height: 1px;
+    line-height: 1px;
+    display: block;
+    margin-bottom: -1px
+  }
+}
 @media print {
   .chat,
   blockquote code,
@@ -1569,10 +1560,17 @@ dl.note dd {
   thead var {
     border-color: #666
   }
-  .lW,
-  .lX,
-  table {
-    width: 100%
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1616,26 +1614,6 @@ dl.note dd {
   thead :visited {
     color: #606
   }
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatMember,
-  .chatTitle,
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
-  }
   h4,
   h5,
   h6 {
@@ -1663,7 +1641,8 @@ dl.note dd {
     margin: 1.5em 3% .7em
   }
   table {
-    margin: 1em 0
+    margin: 1em 0;
+    width: 100%
   }
   th {
     font-weight: 700
@@ -1724,44 +1703,8 @@ dl.note dd {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
   }
   .AAuthor {
     margin: 1em 0;
@@ -1800,7 +1743,8 @@ dl.note dd {
   }
   .AHead {
     margin: 1em 0;
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1839,11 +1783,14 @@ dl.note dd {
     border-color: #000;
     margin-top: 1em
   }
+  .Magazine .aBodyRoot {
+    width: auto
+  }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -1862,7 +1809,8 @@ dl.note dd {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     display: block;
@@ -1876,6 +1824,11 @@ dl.note dd {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 3%
+  }
+  .AMeta,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
   }
   .js-bqCite,
   .js-bqLink {

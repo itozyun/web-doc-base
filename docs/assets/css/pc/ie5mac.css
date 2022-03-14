@@ -75,7 +75,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -98,8 +98,8 @@ tr p {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -114,8 +114,8 @@ a:focus:hover {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -155,6 +155,7 @@ a:focus:hover {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -470,7 +471,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -615,40 +616,6 @@ em {
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lB .lS,
-#lH .lMi,
-#lH .lSi {
-  padding-bottom: 1em
-}
-.lW,
-.lX {
-  width: 98%
-}
-.lM {
-  width: 67.3%;
-  float: left
-}
-.lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lS {
-  width: 30%;
-  float: right
-}
-.lSi {
-  margin: 0 9%
-}
-.lXi {
-  margin: 0 2.7%
 }
 .lM1 {
   float: left
@@ -1073,7 +1040,8 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em
+  padding-top: 1em;
+  padding-bottom: 1em
 }
 .Header h1,
 .h1 {
@@ -1534,6 +1502,38 @@ dl.note dd {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lS {
+    padding-bottom: 1em
+  }
+  .lW,
+  .lX {
+    width: 98%
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lS {
+    width: 30%
+  }
+  .lSi {
+    margin: 0 9%
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lM {
+    width: 67.3%;
+    float: left
+  }
+  .lS {
+    float: right
+  }
+}
 @media print {
   .chat,
   blockquote code,
@@ -1548,10 +1548,17 @@ dl.note dd {
   thead var {
     border-color: #666
   }
-  .lW,
-  .lX,
-  table {
-    width: 100%
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1622,7 +1629,8 @@ dl.note dd {
     margin: 1.5em 3% .7em
   }
   table {
-    margin: 1em 0
+    margin: 1em 0;
+    width: 100%
   }
   th {
     font-weight: 700
@@ -1683,45 +1691,8 @@ dl.note dd {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lS {
-    padding-top: 0
-  }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .Magazine .aBodyRoot,
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .hscroll pre,
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
   }
   .AAuthor {
     margin: 1em 0;
@@ -1760,7 +1731,8 @@ dl.note dd {
   }
   .AHead {
     margin: 1em 0;
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     text-align: center;
@@ -1800,11 +1772,14 @@ dl.note dd {
     border-color: #000;
     margin-top: 1em
   }
+  .Magazine .aBodyRoot {
+    width: auto
+  }
   .Magazine-item {
-    padding: 1em 0 1em 1en
+    padding: 1em 0 1em 1em
   }
   .Magazine-item:first-child {
-    padding: 1em 1en 1em 0
+    padding: 1em 1em 1em 0
   }
   .lS .RichLink a {
     padding: .7em .5em 0
@@ -1823,7 +1798,8 @@ dl.note dd {
     padding: .5em 0
   }
   .Header {
-    text-align: left
+    text-align: left;
+    padding: 0 3%
   }
   .Header h1 {
     display: block;
@@ -1837,6 +1813,11 @@ dl.note dd {
   .note .prettyprint,
   .prettyprint {
     padding: 1em 3%
+  }
+  .AMeta,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
   }
   .js-bqCite,
   .js-bqLink {
@@ -1883,6 +1864,9 @@ dl.note dd {
     width: 100%;
     margin: 0;
     white-space: normal
+  }
+  .hscroll pre {
+    margin: 0
   }
   code,
   var {

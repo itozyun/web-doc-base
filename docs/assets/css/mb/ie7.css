@@ -160,7 +160,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   border-width: .1em;
@@ -172,8 +172,8 @@ blockquote :visited img {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -187,8 +187,8 @@ a:active:hover {
 }
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
-.SocialBtns a:link:active,
-.SocialBtns a:visited:active,
+.SocialBtns :link:active,
+.SocialBtns :visited:active,
 .Subscribe a:link:active,
 .Subscribe a:visited:active,
 .btn:link:active,
@@ -218,6 +218,7 @@ a:active:hover {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  background: #021605;
   background: #ecfae8;
   color: #010e06
 }
@@ -296,7 +297,6 @@ strong,
 var {
   font-style: normal
 }
-.AAuthor,
 .ADesc,
 .RichLink p,
 pre {
@@ -527,7 +527,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -684,65 +684,20 @@ tbody :hover th a:active {
 .c {
   text-align: center
 }
-.Label div,
-blockquote,
-p {
-  line-break: normal;
-  text-align: justify
-}
-blockquote,
-p {
-  text-justify: inter-word
-}
 .uc {
   text-transform: uppercase
 }
 .ribbon * {
   border-color: #052209
 }
+#lB .lS {
+  background: #ebeed5
+}
 em {
   background: #ff6
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS,
-#lH .lMi {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lE .lS {
-  padding-top: 0
-}
-#lB .lSi,
-.lM,
-.lS,
-.lX {
-  max-width: 50em;
-  margin: 0 auto
-}
-#lB .lS,
-.Cover img,
-.caption {
-  max-width: 100%
-}
-#lB .lS {
-  background: #ebeed5;
-  padding-bottom: 1em
-}
-.lMi,
-.lMz .lMh,
-.lSi,
-.lXi {
-  padding: 0 3%
-}
-#lB .lSi,
-.AAuthor,
-.Header h1 {
-  padding: 0
 }
 .lM1,
 .lS1 {
@@ -850,6 +805,10 @@ input.btn {
 }
 .lS .mspacer {
   margin: .6em 0
+}
+.AAuthor {
+  margin: 1em 0;
+  padding: 0
 }
 .AAuthor img {
   top: .4em;
@@ -991,7 +950,8 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1018,7 +978,9 @@ kbd {
 }
 .Label div {
   color: #f8fbfa;
-  text-justify: inter-ideograph
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1135,6 +1097,12 @@ kbd {
 .h1 {
   font-size: 1.5em;
   margin: 0 0 .5em
+}
+.Header h1 {
+  padding: 0
+}
+#lH .lMi {
+  padding-bottom: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1416,7 +1384,8 @@ dl.note dd {
 }
 .caption {
   text-align: center;
-  font-size: .875em
+  font-size: .875em;
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1661,6 +1630,28 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lSi,
+  .lM,
+  .lS,
+  .lX {
+    max-width: 50em;
+    margin: 0 auto
+  }
+  #lB .lS {
+    padding-bottom: 1em;
+    max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
+  }
+}
 @media print {
   .chat,
   blockquote code,
@@ -1674,6 +1665,17 @@ li.L8 {
   thead th,
   thead var {
     border-color: #666
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
   }
   code .typ,
   th {
@@ -1722,26 +1724,6 @@ li.L8 {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatMember,
-  .chatTitle,
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
   }
   blockquote pre {
     margin: 1em
@@ -1802,46 +1784,19 @@ li.L8 {
     background: #fff;
     color: #000
   }
-  .AHead,
-  .BreadcrumbList {
-    color: #666!important
-  }
   *,
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
   }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
-  }
-  .lM,
-  .lX {
-    margin: 0;
-    max-width: 100%
-  }
-  .lMi,
-  .lMz .lMh,
-  .lXi {
-    padding: 0
-  }
   .ABody {
     margin: 0 0 2em
+  }
+  .AHead {
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important
@@ -1861,7 +1816,14 @@ li.L8 {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0
+    padding: .5em 0;
+    color: #666!important
+  }
+  .AMeta,
+  .Header,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
   }
   .Cover .img-loaded div {
     position: static

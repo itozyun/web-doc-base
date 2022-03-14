@@ -137,7 +137,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -149,23 +149,16 @@ blockquote :visited img {
   padding: 0 1em;
   height: 2.1em
 }
-.Cover-meta,
-.commonForm,
-a iframe,
-a img,
-h1 br,
-h2 br,
-h2:after,
-h3 br,
-h4 br,
-h5 br,
-h6 br {
-  display: block
+.AAuthor,
+.Header h1,
+body,
+input.btn {
+  padding: 0
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -178,7 +171,7 @@ a:active {
   text-decoration: underline
 }
 .AHead-labels a:active,
-.SocialBtns a:active,
+.SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
   border-color: #29a119;
@@ -304,6 +297,18 @@ ins {
 del {
   text-decoration: line-through
 }
+.Cover-meta,
+.commonForm,
+a iframe,
+a img,
+h1 br,
+h2 br,
+h3 br,
+h4 br,
+h5 br,
+h6 br {
+  display: block
+}
 input {
   height: 2.1em
 }
@@ -330,7 +335,6 @@ html {
   height: 100%
 }
 body {
-  padding: 0;
   background: #010e06;
   color: #021605
 }
@@ -481,7 +485,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -528,7 +532,8 @@ h2:after {
   position: absolute;
   left: 0;
   bottom: -2px;
-  content: " "
+  content: " ";
+  display: block
 }
 .chatL,
 .chatL p,
@@ -633,8 +638,7 @@ blockquote tfoot th {
 .Attribution,
 .Header,
 .Search,
-.c,
-.lW {
+.c {
   text-align: center
 }
 .uc {
@@ -643,52 +647,14 @@ blockquote tfoot th {
 .ribbon * {
   border-color: #052209
 }
+#lB .lS {
+  background: #ebeed5
+}
 em {
   background: #ff6
 }
 strong {
   background: #6cf
-}
-#lE .lM,
-#lE .lS,
-#lH .lMi {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lE .lS {
-  padding-top: 0
-}
-#lB .lSi,
-.lM,
-.lS,
-.lX {
-  max-width: 50em;
-  display: inline-block;
-  vertical-align: top;
-  text-align: left
-}
-#lB .lS,
-.Cover img,
-.caption {
-  max-width: 100%
-}
-#lB .lS {
-  background: #ebeed5;
-  padding-bottom: 1em
-}
-.lMi,
-.lMz .lMh,
-.lSi,
-.lXi {
-  padding: 0 3%
-}
-#lB .lSi,
-.AAuthor,
-.Header h1,
-input.btn {
-  padding: 0
 }
 .AAuthor:after,
 .Comment p:after,
@@ -955,7 +921,8 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1088,6 +1055,9 @@ kbd {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
+}
+#lH .lMi {
+  padding-bottom: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1405,7 +1375,8 @@ dl.note dd {
   display: block;
   text-align: center;
   font-size: .875em;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1638,6 +1609,33 @@ li.L8 {
   border-color: #021605;
   color: #021605
 }
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  .lW {
+    text-align: center
+  }
+  #lB .lSi,
+  .lM,
+  .lS,
+  .lX {
+    max-width: 50em;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left
+  }
+  #lB .lS {
+    padding-bottom: 1em;
+    max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
+  }
+}
 @media print {
   blockquote code,
   blockquote var,
@@ -1778,12 +1776,6 @@ li.L8 {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
   }
@@ -1792,8 +1784,6 @@ li.L8 {
   #lH .lS,
   .CmtForm,
   .Cover-btn,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -1812,21 +1802,12 @@ li.L8 {
   [href^="tel:"]:after {
     display: none
   }
-  .lM,
-  .lX {
-    margin: 0;
-    max-width: 100%
-  }
-  .lMi,
-  .lMz .lMh,
-  .lXi {
-    padding: 0
-  }
   .ABody {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important
@@ -1867,6 +1848,10 @@ li.L8 {
     font-size: .83em;
     padding: .5em 0;
     color: #666!important
+  }
+  .AMeta,
+  .Header {
+    padding: 0 3%
   }
   .Cover .img-loaded div {
     position: static
@@ -1979,6 +1964,11 @@ li.L8 {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
   }
   code .atv,
   code .str {

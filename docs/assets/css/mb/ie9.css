@@ -194,7 +194,7 @@ blockquote :visited img {
   top: 2px
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 .btn {
   display: inline-block;
@@ -207,8 +207,8 @@ blockquote :visited img {
 }
 .AHead-labels a:link:hover,
 .AHead-labels a:visited:hover,
-.SocialBtns a:link:hover,
-.SocialBtns a:visited:hover,
+.SocialBtns :link:hover,
+.SocialBtns :visited:hover,
 .Subscribe a:link:hover,
 .Subscribe a:visited:hover,
 .aBodyRoot :link,
@@ -223,8 +223,8 @@ a:focus:hover {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -594,7 +594,7 @@ tr ul {
   margin-bottom: .5em
 }
 .AHead-labels a,
-.SocialBtns a,
+.SocialBtns *,
 .Subscribe a,
 dd blockquote,
 dd dl,
@@ -777,64 +777,20 @@ tbody :hover th a:focus {
 .c {
   text-align: center
 }
-.Label div,
-blockquote,
-p {
-  line-break: normal;
-  text-align: justify
-}
-blockquote,
-p {
-  text-justify: inter-word
-}
 .uc {
   text-transform: uppercase
 }
 .ribbon * {
   border-color: #052209
 }
+#lB .lS {
+  background: #ebeed5
+}
 em {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iI2ZmZmY2NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmNjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
 }
 strong {
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYxJSIgc3RvcC1jb2xvcj0iIzY2Y2NmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2NmNjZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-}
-#lE .lM,
-#lE .lS,
-#lH .lMi {
-  padding-bottom: 0
-}
-#lB .lM {
-  padding-bottom: 4em
-}
-#lE .lS {
-  padding-top: 0
-}
-#lB .lSi,
-.lM,
-.lS,
-.lX {
-  max-width: 50em;
-  margin: 0 auto
-}
-#lB .lS,
-.Cover img,
-.caption {
-  max-width: 100%
-}
-#lB .lS {
-  background: #ebeed5;
-  padding-bottom: 1em
-}
-.lMi,
-.lMz .lMh,
-.lSi,
-.lXi {
-  padding: 0 3%
-}
-#lB .lSi,
-.Header h1 {
-  padding: 0
 }
 .lM1,
 .lS1 {
@@ -1320,7 +1276,8 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1345,7 +1302,9 @@ kbd {
 }
 .Label div {
   color: #f8fbfa;
-  text-justify: inter-ideograph
+  text-justify: inter-ideograph;
+  line-break: normal;
+  text-align: justify
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1479,6 +1438,12 @@ kbd {
   font-size: 1.5em;
   display: block;
   margin: 0 0 .5em
+}
+.Header h1 {
+  padding: 0
+}
+#lH .lMi {
+  padding-bottom: 0
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1806,7 +1771,8 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em
+  font-size: .875em;
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -2048,6 +2014,28 @@ div .box .jsCapLarge {
   background: #f8fbfa;
   border-color: #021605;
   color: #021605
+}
+@media screen {
+  #lB .lM {
+    padding-bottom: 4em
+  }
+  #lB .lSi,
+  .lM,
+  .lS,
+  .lX {
+    max-width: 50em;
+    margin: 0 auto
+  }
+  #lB .lS {
+    padding-bottom: 1em;
+    max-width: 100%
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
+  }
 }
 @media screen and (max-width:740px) {
   .links,
@@ -2498,13 +2486,6 @@ div .box .jsCapLarge {
     color: #eee
   }
   #lB .lS,
-  .SocialBtns .fb:visited,
-  .SocialBtns .hb:visited,
-  .SocialBtns .ln:visited,
-  .SocialBtns .pk:visited,
-  .SocialBtns .pt:visited,
-  .SocialBtns .tw:visited,
-  .SocialBtns :visited,
   .baseColor,
   input,
   textarea {
@@ -2517,30 +2498,6 @@ div .box .jsCapLarge {
   p {
     line-height: 1.4
   }
-  .SocialBtns .fb:link:active,
-  .SocialBtns .fb:link:focus,
-  .SocialBtns .fb:visited:active,
-  .SocialBtns .fb:visited:focus,
-  .SocialBtns .hb:link:active,
-  .SocialBtns .hb:link:focus,
-  .SocialBtns .hb:visited:active,
-  .SocialBtns .hb:visited:focus,
-  .SocialBtns .ln:link:active,
-  .SocialBtns .ln:link:focus,
-  .SocialBtns .ln:visited:active,
-  .SocialBtns .ln:visited:focus,
-  .SocialBtns .pk:link:active,
-  .SocialBtns .pk:link:focus,
-  .SocialBtns .pk:visited:active,
-  .SocialBtns .pk:visited:focus,
-  .SocialBtns .pt:link:active,
-  .SocialBtns .pt:link:focus,
-  .SocialBtns .pt:visited:active,
-  .SocialBtns .pt:visited:focus,
-  .SocialBtns .tw:link:active,
-  .SocialBtns .tw:link:focus,
-  .SocialBtns .tw:visited:active,
-  .SocialBtns .tw:visited:focus,
   .baseColor .btn:link:active,
   .baseColor .btn:link:focus,
   .baseColor .btn:visited:active,
@@ -2643,12 +2600,6 @@ div .box .jsCapLarge {
   .Label div,
   .Pager,
   .SocialBtns,
-  .SocialBtns .fb:link,
-  .SocialBtns .hb:link,
-  .SocialBtns .ln:link,
-  .SocialBtns .pk:link,
-  .SocialBtns .pt:link,
-  .SocialBtns .tw:link,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
@@ -2800,6 +2751,48 @@ div .box .jsCapLarge {
   .note blockquote ul {
     margin-right: 0
   }
+  .SocialBtns .fb :link,
+  .SocialBtns .hb :link,
+  .SocialBtns .ln :link,
+  .SocialBtns .ok :link,
+  .SocialBtns .pt :link,
+  .SocialBtns .tw :link {
+    color: #000!important
+  }
+  .SocialBtns .fb :visited,
+  .SocialBtns .hb :visited,
+  .SocialBtns .ln :visited,
+  .SocialBtns .ok :visited,
+  .SocialBtns .pt :visited,
+  .SocialBtns .tw :visited {
+    background: #000!important
+  }
+  .SocialBtns .fb:link:active,
+  .SocialBtns .fb:link:focus,
+  .SocialBtns .fb:visited:active,
+  .SocialBtns .fb:visited:focus,
+  .SocialBtns .hb:link:active,
+  .SocialBtns .hb:link:focus,
+  .SocialBtns .hb:visited:active,
+  .SocialBtns .hb:visited:focus,
+  .SocialBtns .ln:link:active,
+  .SocialBtns .ln:link:focus,
+  .SocialBtns .ln:visited:active,
+  .SocialBtns .ln:visited:focus,
+  .SocialBtns .ok:link:active,
+  .SocialBtns .ok:link:focus,
+  .SocialBtns .ok:visited:active,
+  .SocialBtns .ok:visited:focus,
+  .SocialBtns .pt:link:active,
+  .SocialBtns .pt:link:focus,
+  .SocialBtns .pt:visited:active,
+  .SocialBtns .pt:visited:focus,
+  .SocialBtns .tw:link:active,
+  .SocialBtns .tw:link:focus,
+  .SocialBtns .tw:visited:active,
+  .SocialBtns .tw:visited:focus {
+    border-color: #000!important
+  }
 }
 @media print {
   .ico-author:after,
@@ -2910,8 +2903,6 @@ div .box .jsCapLarge {
   #lH .lS,
   .CmtForm,
   .Cover-btn,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -2990,24 +2981,8 @@ div .box .jsCapLarge {
   .ribbon * {
     border-color: #ccc
   }
-  #lE .lW {
-    padding-bottom: 0
-  }
-  #lB .lM {
-    padding-bottom: 2em
-  }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .lM,
-  .lX {
-    margin: 0;
-    max-width: 100%
-  }
-  .lMi,
-  .lMz .lMh,
-  .lXi {
-    padding: 0
   }
   .ico-label:after,
   .ribbon .ico-label:after {
@@ -3023,7 +2998,8 @@ div .box .jsCapLarge {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important
+    color: #666!important;
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important
@@ -3067,6 +3043,10 @@ div .box .jsCapLarge {
     font-size: .83em;
     padding: .5em 0;
     color: #666!important
+  }
+  .AMeta,
+  .Header {
+    padding: 0 3%
   }
   .Cover .img-loaded div {
     position: static
@@ -3182,6 +3162,11 @@ div .box .jsCapLarge {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%;
+    display: none
   }
   code .atv,
   code .str {
