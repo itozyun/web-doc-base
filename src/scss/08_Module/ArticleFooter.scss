@@ -14,4 +14,15 @@
             border-style : dotted;
         }
     }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
+    }
+    /*  WSXGA, print
+    --------------------------------------------------------------------------------------*/
+    @include media(landscapePrint) {
+        padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
+    }
 }

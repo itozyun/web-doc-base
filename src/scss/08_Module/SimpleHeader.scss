@@ -78,6 +78,7 @@
 
         .Header {
             text-align : left;
+            padding    : 0 $TABLET_HORIZONTAL_MARGIN;
         }
             .h1 {
                 font-size : 1em;
@@ -95,5 +96,12 @@
                     text-align : center;
                 }
             }
+    }
+    /*  WSXGA, print
+    --------------------------------------------------------------------------------------*/
+    @include media(landscapePrint) {
+        .Header {
+            padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
+        }
     }
 }

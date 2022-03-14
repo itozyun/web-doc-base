@@ -71,10 +71,18 @@
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     .AHead {
-        color : $COLOR_Print_casual_text !important;
+        color   : $COLOR_Print_casual_text !important;
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
     .AHead h1 {
         color : $COLOR_Print_text !important;
+    }
+}
+/*  WSXGA, print
+--------------------------------------------------------------------------------------*/
+@include media(landscapePrint) {
+    .AHead {
+        padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
     }
 }
 
