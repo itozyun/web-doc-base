@@ -61,7 +61,7 @@
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
 
-        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        @include media(onlySafari) {
             & {
                 font-family :
                     -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
