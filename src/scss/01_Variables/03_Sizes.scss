@@ -49,7 +49,9 @@ $TABLET_HORIZONTAL_MARGIN  : 3% !default;
 $PHABLET_HORIZONTAL_MARGIN : 2% !default;
 $PHONE_HORIZONTAL_MARGIN   : 1% !default;
 
-$PRINT_COLUMN_GAP_EM : 2en !default;
+$PRINT_COLUMN_GAP_EM : 2em !default;
+
+$SMALL_PHONE_MAX_WIDTH : 359px !default;
 
 /*  border, outline
 --------------------------------------------------------------------------------------*/

@@ -272,15 +272,15 @@ const plumber     = require("gulp-plumber"),
       cleanCSS    = require("gulp-clean-css"),
       CSShack     = require('./js-buildtools/gulp-csshack.js'),
       finalizeCSS = require("./js-buildtools/gulp-finalize-css.js"),
-      CleanCSSOption = {
+      CLEAN_CSS_OPTION = {
             compatibility : { properties : { ieFilters : true } },
             //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
-            level : { 1 : { roundingPrecision : 3 },
-                      2 : { all : true, removeUnusedAtRules : false,
-                            skipProperties : [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor' ]
-                          }
+            level : {
+                        1 : { roundingPrecision : 3 },
+                        2 : { all : true, removeUnusedAtRules : false }
                     }
-      };
+      },
+      CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
 
 gulp.task('css', function(){
     return gulp.src([
@@ -302,20 +302,11 @@ gulp.task('css', function(){
         )
         .pipe(sass())
         .pipe(gcm())
-        .pipe(cleanCSS({
-            compatibility : { properties : { ieFilters : true } },
-            level: {
-                1: { roundingPrecision : 3
-                },
-                2: {
-                    all : true,
-                    removeUnusedAtRules : false
-                }
-            }
-        }))
-        .pipe(cleanCSS( CleanCSSOption )) // For more optimization!
-        .pipe(CSShack({ forcedColorsCSSDir : toForcedColorsCSSDir }))
-        .pipe(cleanCSS( ( CleanCSSOption.format = 'beautify', CleanCSSOption ) ))
+        .pipe(cleanCSS( CLEAN_CSS_OPTION ))
+        // For more optimization!, https://twitter.com/itozyun/status/1502829749873233927 
+        .pipe(cleanCSS( ( CLEAN_CSS_OPTION.level[ 2 ].skipProperties = CLEAN_CSS_SKIP_PROPS, CLEAN_CSS_OPTION ) ))
+        .pipe(CSShack( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } ))
+        .pipe(cleanCSS( ( CLEAN_CSS_OPTION.format = 'beautify', CLEAN_CSS_OPTION ) ))
         .pipe(finalizeCSS())
         .pipe(gulp.dest( './docs/assets/' + assetsDirToCSSDir ));
 });
