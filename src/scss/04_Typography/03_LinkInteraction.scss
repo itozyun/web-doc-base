@@ -20,7 +20,7 @@ a {
     a:active { text-decoration : underline; }
 }
 @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-    a:focus:hover { text-decoration : underline;; }
+    a:focus:hover { text-decoration : underline; }
 }
 
 /*  transition

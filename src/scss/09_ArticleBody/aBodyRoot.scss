@@ -1,19 +1,22 @@
 /* a タグの下線
 --------------------------------------------------------------------------------------*/
-/* 下線あり -> hover -> 下線なし 但し, focus:hover active:hover では下線が付く*/
+/* 下線あり -> hover -> 下線なし 但し, focus:hover active では下線が付く*/
 .aBodyRoot {
-    /* //_{#ie6-win */
-    a, /* link の無い a には下線をつけない */
-    /* //_}#ie6-win */
+    :link, :visited { text-decoration : underline; }
     :link:hover, :visited:hover { text-decoration : none; }
-    a {
-        @include active-focus-pseudo-class {
-            text-decoration : none;
-        }
+
+    @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
+        a:active { text-decoration : none; }
+    }
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        a:focus { text-decoration : none; }
     }
 
-    :link, :visited {
-        text-decoration : underline;
+    @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
+        a:active:hover { text-decoration : underline; }
+    }
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        a:focus:hover { text-decoration : underline; }
     }
 }
 
