@@ -4,6 +4,32 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.chat,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -154,9 +180,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -192,10 +216,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+a:active img,
+a:focus img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -290,7 +312,6 @@ var {
   font-style: normal
 }
 .ADesc,
-.RichLink p,
 .chatL,
 .chatR,
 pre {
@@ -371,31 +392,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -730,10 +726,10 @@ strong {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
-  visibility: hidden;
-  clear: both;
   content: "";
-  display: block
+  display: block;
+  visibility: hidden;
+  clear: both
 }
 .lM1,
 .lS1 {
@@ -1029,12 +1025,6 @@ kbd {
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   padding: 1em .5em 0;
   border-width: 0 0 1px;
@@ -1060,6 +1050,16 @@ kbd {
 .RichLink img {
   float: left;
   margin: 0 .6em 1em 0
+}
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1345,8 +1345,8 @@ pre var {
   right: .4em
 }
 .hscroll {
-  overflow: auto;
-  margin: 1em 0
+  margin: 1em 0;
+  overflow: auto
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1756,10 +1756,8 @@ handheld {
   ul {
     margin: 1em 0
   }
-  :link img,
-  :visited img,
-  blockquote :link img,
-  blockquote :visited img {
+  a img,
+  blockquote a img {
     border-color: transparent
   }
   .LinkList a:not([href]),
@@ -2023,7 +2021,8 @@ handheld {
   .Cover h2,
   .LinkList div,
   .chatMember {
-    display: inline-block
+    display: inline-block;
+    vertical-align: top
   }
   .Cover {
     max-width: 400px

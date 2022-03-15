@@ -1,4 +1,9 @@
 @charset "UTF-8";
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -20,6 +25,25 @@ a,
 h6 {
   color: #717e73
 }
+.note .box,
+.note .hscroll,
+.tl td > :first-child,
+dl .box,
+dl .hscroll,
+dl iframe,
+dl img,
+li .box,
+li .hscroll,
+li iframe,
+li img,
+tr .box,
+tr .hscroll,
+tr iframe,
+tr img,
+tr ol,
+tr ul {
+  margin-top: 0
+}
 .baseColor,
 .medal {
   background: #f8fbfa
@@ -27,6 +51,20 @@ h6 {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+.links,
+.mspacer,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em
 }
 blockquote,
 code,
@@ -101,9 +139,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -115,10 +151,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+a:active img,
+a:focus img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -132,8 +166,7 @@ blockquote :visited img {
   cursor: pointer;
   text-decoration: none!important;
   background: #021605;
-  background: #ecfae8;
-  color: #010e06
+  color: #f8fbfa
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -180,6 +213,11 @@ a:active var,
 a:focus code,
 a:focus var {
   background: #29a119
+}
+.LinkList .ribbon a,
+.RichLink-sep .ribbon a {
+  background: #ecfae8;
+  color: #010e06
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
@@ -288,10 +326,6 @@ body {
 p {
   line-height: 1.9
 }
-a,
-tbody th {
-  border-color: #f8fbfa
-}
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -389,42 +423,8 @@ th {
 .Cover h2 {
   border-color: #29a119
 }
-.RichLink p,
 pre {
   margin: 1em 0
-}
-.note .box,
-.note .hscroll,
-.tl td > :first-child,
-dl .box,
-dl .hscroll,
-dl iframe,
-dl img,
-li .box,
-li .hscroll,
-li iframe,
-li img,
-tr .box,
-tr .hscroll,
-tr iframe,
-tr img,
-tr ol,
-tr ul {
-  margin-top: 0
-}
-.links,
-.mspacer,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em
 }
 dd,
 li {
@@ -951,12 +951,6 @@ kbd {
 .RichLink-sep {
   line-height: 1.4
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   display: inline-table;
   padding: 1em .5em 0;
@@ -984,6 +978,16 @@ kbd {
   float: left;
   margin: 0 .6em 1em 0
 }
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
+}
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
@@ -991,7 +995,7 @@ kbd {
 .RichLink b {
   display: block;
   font-size: .875em;
-  padding: 0 0 .914em
+  padding: 0 0 1.143em
 }
 .Search {
   position: relative;
@@ -1246,9 +1250,9 @@ pre var {
   right: .4em
 }
 .hscroll {
+  margin: 1em 0;
   overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
+  overflow-y: hidden
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1757,10 +1761,6 @@ dl.note dd {
     padding: .5em 0;
     color: #666!important
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .Cover {
     margin: 2em auto
   }
@@ -1781,16 +1781,6 @@ dl.note dd {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em
-  }
   #lH {
     font-size: .875em
   }
@@ -1800,6 +1790,9 @@ dl.note dd {
   .Header {
     text-align: left;
     padding: 0 3%
+  }
+  .h1 {
+    font-size: 1em
   }
   .Header h1 {
     display: block;

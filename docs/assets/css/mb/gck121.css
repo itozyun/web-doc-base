@@ -4,6 +4,23 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:focus,
+.chat,
+.medal,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -16,6 +33,7 @@ h6,
 table {
   border-color: #717e73
 }
+.BreadcrumbList,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -47,6 +65,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+#lB .lS,
+body {
+  background: #ebeed5
+}
 .lM1,
 .lM2,
 .lS1,
@@ -66,6 +88,12 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
+}
+body,
+form,
+h2,
+html {
+  margin: 0
 }
 #lB .lMi,
 #lB .lSi,
@@ -158,9 +186,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -168,24 +194,7 @@ blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-.AHead-labels a:link:focus,
-.AHead-labels a:visited:focus,
-.Subscribe .atom:link:focus,
-.Subscribe .atom:visited:focus,
-.Subscribe .fl:link:focus,
-.Subscribe .fl:visited:focus,
-.Subscribe .rss:link:focus,
-.Subscribe .rss:visited:focus,
-.Subscribe .stm:link:focus,
-.Subscribe .stm:visited:focus,
-.btn:link:focus,
-.btn:visited:focus,
-.ribbon :link img,
-.ribbon :visited img {
-  border-color: #010e06
-}
-:link:focus img,
-:visited:focus img {
+a:focus img {
   border-color: #29a119!important
 }
 .LinkList a,
@@ -211,21 +220,6 @@ thead code,
 thead var {
   background: #bddac8;
   color: #021605
-}
-.ribbon .LinkList a:not([href]),
-.ribbon .RichLink-sep a:not([href]) {
-  background: #ecfae8;
-  color: #010e06
-}
-.ribbon .LinkList :link:hover,
-.ribbon .LinkList :visited:hover,
-.ribbon .RichLink-sep :link:hover,
-.ribbon .RichLink-sep :visited:hover {
-  background: #052209;
-  color: #ecfae8
-}
-:focus {
-  outline: 0
 }
 dt {
   font-weight: 700;
@@ -265,14 +259,8 @@ strong,
 var {
   font-style: normal
 }
-.ADesc,
-.RichLink p,
 pre {
   margin: 1em 0
-}
-form,
-h2 {
-  margin: 0
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -323,30 +311,18 @@ h6 {
 }
 body,
 html {
-  margin: 0;
   height: 100%
 }
+.medal,
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited,
 body {
-  background: #010e06;
   color: #021605
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:focus,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -355,13 +331,6 @@ tbody th {
 :link {
   color: #24c
 }
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited {
-  color: #021605
-}
-.ribbon :link:hover,
 :link:hover,
 form :focus {
   color: #29a119;
@@ -371,27 +340,11 @@ form :focus {
   color: #419;
   border-color: #419
 }
-.ribbon a {
-  color: #92a094;
-  border-color: #010e06
-}
-.ribbon :link {
-  color: #bbe
-}
-.ribbon,
-.ribbon .AHead h1,
-.ribbon :visited {
-  color: #ecfae8
-}
-.ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
-}
+.tl tbody th a:focus,
+.tl thead td a:focus,
+.tl thead th a:focus,
 a:focus {
   background-color: #ebeed5!important
-}
-.ribbon a:focus {
-  background-color: #777!important
 }
 :target,
 :target * {
@@ -528,6 +481,7 @@ h2 {
   color: #ca088a!important
 }
 hr {
+  display: -moz-inline-box;
   height: 0;
   border-color: #bddac8;
   margin: 2em 6%
@@ -622,6 +576,12 @@ blockquote tfoot th {
 blockquote tbody :hover td {
   border-color: #bddac8 #bddac8 #29a119
 }
+blockquote tbody th a:focus,
+thead a:focus,
+thead td a:focus,
+thead th a:focus {
+  background-color: #29a119!important
+}
 tbody :hover th {
   background: #29a119;
   color: #fff
@@ -655,12 +615,6 @@ tbody :hover td {
 .uc {
   text-transform: uppercase
 }
-.ribbon * {
-  border-color: #052209
-}
-#lB .lS {
-  background: #ebeed5
-}
 em {
   background: #ff6
 }
@@ -680,11 +634,8 @@ strong {
 .RichLink a:after,
 .box:after,
 .commonForm-pair:after {
-  visibility: hidden;
-  clear: both;
   content: "";
-  height: 0;
-  display: inline
+  clear: both
 }
 .lM1,
 .lS1 {
@@ -702,7 +653,6 @@ strong {
   width: 45.5%;
   padding: 0 3% 0 0
 }
-.AHead-labels a:link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -712,6 +662,18 @@ strong {
   background: #010e06;
   border-color: #ecfae8;
   color: #ecfae8
+}
+.Subscribe .atom:link:focus,
+.Subscribe .atom:visited:focus,
+.Subscribe .fl:link:focus,
+.Subscribe .fl:visited:focus,
+.Subscribe .rss:link:focus,
+.Subscribe .rss:visited:focus,
+.Subscribe .stm:link:focus,
+.Subscribe .stm:visited:focus,
+.btn:link:focus,
+.btn:visited:focus {
+  border-color: #010e06
 }
 input.btn {
   line-height: 1;
@@ -757,10 +719,6 @@ input.btn {
 .RichLink-sep {
   line-height: 1.4
 }
-.medal {
-  border-color: #f8fbfa;
-  color: #021605
-}
 :link .medal,
 :visited .medal {
   border-color: #021605;
@@ -781,13 +739,6 @@ input.btn {
   border-color: #c47222;
   background: #c47222;
   color: #e6d6a9
-}
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #92a094
 }
 #lF .lM .mspacer,
 .Cover p {
@@ -833,13 +784,14 @@ input.btn {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
-.ADesc p,
-.box {
-  margin: 1em 0 0
-}
+.ADesc,
 .AHead {
   color: #717e73;
   margin: 1em 0
+}
+.ADesc p,
+.box {
+  margin: 1em 0 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -854,22 +806,28 @@ input.btn {
 }
 .AHead-labels {
   margin-top: .5em;
-  color: #010e06
+  color: #ebeed5
 }
 .AHead-labels i,
 .RichLink br {
   display: none
 }
+.AHead-labels a:link {
+  background: #24c;
+  border-color: #24c;
+  color: #ebeed5
+}
 .AHead-labels a:visited {
-  background: #010e06;
-  border-color: #92a094;
-  color: #92a094
+  background: #ebeed5;
+  border-color: #717e73;
+  color: #717e73
 }
-.AHead-labels a:link:hover {
-  border-color: #bbe;
-  color: #010e06
+.AHead-labels a:link:focus,
+.AHead-labels a:visited:focus {
+  border-color: #ebeed5
 }
-.Attribution {
+.Attribution,
+.BreadcrumbList {
   padding: 1em 0
 }
 .BlogArchive,
@@ -884,10 +842,6 @@ input.btn {
 .Label a {
   line-height: 2.8;
   border-width: 0 0 1px
-}
-.BreadcrumbList {
-  padding: 1em 0;
-  color: #717e73
 }
 .BreadcrumbList a,
 .Cover-meta span,
@@ -960,11 +914,6 @@ kbd {
 .Cover {
   margin: 2em auto
 }
-.Subscribe div,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #010e06
-}
 #lF .Label a,
 .lS .Label a {
   line-height: 2.4
@@ -975,12 +924,6 @@ kbd {
 }
 .LinkList :focus:hover {
   text-decoration: underline!important
-}
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
 }
 .RichLink a {
   padding: 1em .5em 0;
@@ -995,6 +938,10 @@ kbd {
   color: #052209;
   margin: 1.143em 0
 }
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #92a094
+}
 .baseColor .RichLink-meta {
   color: #bddac8
 }
@@ -1008,6 +955,16 @@ kbd {
 .RichLink img {
   float: left;
   margin: 0 .6em 1em 0
+}
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1086,6 +1043,9 @@ kbd {
 }
 #lH .lMi {
   padding-bottom: 0
+}
+.Subscribe div {
+  color: #010e06
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1294,10 +1254,9 @@ pre var {
   right: .4em
 }
 .hscroll {
-  overflow: auto;
+  margin: 1em 0;
   overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
+  overflow-y: hidden
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1731,13 +1690,11 @@ li.L8 {
   .aa,
   .baseColor,
   .mona,
-  .ribbon,
   body {
     background: #fff;
     color: #000
   }
-  *,
-  .ribbon * {
+  * {
     border-color: #ccc
   }
   #lF .lX {

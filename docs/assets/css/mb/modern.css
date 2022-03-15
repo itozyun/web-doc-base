@@ -4,6 +4,58 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.medal,
+a,
+a img,
+a:active .ico-author:after,
+a:active .ico-author:before,
+a:active .ico-chain:after,
+a:active .ico-chain:before,
+a:active .ico-clock:after,
+a:active .ico-clock:before,
+a:active .ico-comment:before,
+a:active .ico-flag:after,
+a:active .ico-flag:before,
+a:active .ico-label:before,
+a:active .ico-pen:before,
+a:active .ico-sylinder:after,
+a:active .ico-sylinder:before,
+a:focus .ico-author:after,
+a:focus .ico-author:before,
+a:focus .ico-chain:after,
+a:focus .ico-chain:before,
+a:focus .ico-clock:after,
+a:focus .ico-clock:before,
+a:focus .ico-comment:before,
+a:focus .ico-flag:after,
+a:focus .ico-flag:before,
+a:focus .ico-label:before,
+a:focus .ico-pen:before,
+a:focus .ico-sylinder:after,
+a:focus .ico-sylinder:before,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -185,9 +237,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -224,10 +274,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+a:active img,
+a:focus img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -358,7 +406,6 @@ var {
   font-style: normal
 }
 .ADesc,
-.RichLink p,
 .chatL,
 .chatR,
 pre {
@@ -461,8 +508,7 @@ p {
   transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
 }
 a {
-  color: #717e73;
-  border-color: #f8fbfa
+  color: #717e73
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -716,56 +762,6 @@ thead th {
   border-color: #bddac8 #79877c;
   color: #f8fbfa
 }
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
-.medal,
-a:active .ico-author:after,
-a:active .ico-author:before,
-a:active .ico-chain:after,
-a:active .ico-chain:before,
-a:active .ico-clock:after,
-a:active .ico-clock:before,
-a:active .ico-comment:before,
-a:active .ico-flag:after,
-a:active .ico-flag:before,
-a:active .ico-label:before,
-a:active .ico-pen:before,
-a:active .ico-sylinder:after,
-a:active .ico-sylinder:before,
-a:focus .ico-author:after,
-a:focus .ico-author:before,
-a:focus .ico-chain:after,
-a:focus .ico-chain:before,
-a:focus .ico-clock:after,
-a:focus .ico-clock:before,
-a:focus .ico-comment:before,
-a:focus .ico-flag:after,
-a:focus .ico-flag:before,
-a:focus .ico-label:before,
-a:focus .ico-pen:before,
-a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before,
-tbody th {
-  border-color: #f8fbfa
-}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -881,11 +877,11 @@ strong {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
+  content: "";
+  display: block;
   visibility: hidden;
   clear: both;
-  content: "";
-  height: 0;
-  display: block
+  height: 0
 }
 .lM1,
 .lS1 {
@@ -1458,12 +1454,6 @@ kbd {
   padding: 0 0 1em;
   overflow-x: hidden
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   padding: 1em .5em 0;
   border-color: #052209!important
@@ -1492,6 +1482,16 @@ kbd {
 .RichLink img {
   float: left;
   margin: 0 .6em 1em 0
+}
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .RichLink b {
   display: block;
@@ -1819,11 +1819,11 @@ pre var {
   right: .4em
 }
 .hscroll {
+  margin: 1em 0;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   overflow-x: auto;
   overflow-y: hidden;
-  margin: 1em 0
+  -webkit-overflow-scrolling: touch
 }
 .hscroll::-webkit-scrollbar {
   height: 5px
@@ -2691,10 +2691,8 @@ only screen and (max-width:240px) {
   table {
     border-color: #999
   }
-  :link img,
-  :visited img,
-  blockquote :link img,
-  blockquote :visited img {
+  a img,
+  blockquote a img {
     border-color: transparent
   }
   .LinkList a:not([href]),
@@ -3134,10 +3132,8 @@ only screen and (-ms-high-contrast:active) {
   .AMeta,
   .Pager,
   .SocialBtns,
-  :link:active img,
-  :link:focus img,
-  :visited:active img,
-  :visited:focus img,
+  a:active img,
+  a:focus img,
   blockquote,
   form :focus,
   td {

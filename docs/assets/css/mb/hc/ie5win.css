@@ -2,8 +2,7 @@
 .AMeta,
 .Pager,
 .SocialBtns,
-:link:active img,
-:visited:active img,
+a:active img,
 blockquote,
 td {
   border-style: dotted

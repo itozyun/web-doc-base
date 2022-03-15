@@ -4,6 +4,23 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:focus,
+.chat,
+.medal,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -16,7 +33,7 @@ h6,
 table {
   border-color: #717e73
 }
-.AHead,
+.BreadcrumbList,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -67,6 +84,10 @@ tr ul {
 sub,
 sup {
   position: relative
+}
+.hscroll pre,
+textarea {
+  overflow: auto
 }
 blockquote,
 code,
@@ -144,9 +165,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -154,24 +173,7 @@ blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-.AHead-labels a:link:focus,
-.AHead-labels a:visited:focus,
-.Subscribe .atom:link:focus,
-.Subscribe .atom:visited:focus,
-.Subscribe .fl:link:focus,
-.Subscribe .fl:visited:focus,
-.Subscribe .rss:link:focus,
-.Subscribe .rss:visited:focus,
-.Subscribe .stm:link:focus,
-.Subscribe .stm:visited:focus,
-.btn:link:focus,
-.btn:visited:focus,
-.ribbon :link img,
-.ribbon :visited img {
-  border-color: #010e06
-}
-:link:focus img,
-:visited:focus img {
+a:focus img {
   border-color: #29a119!important
 }
 .LinkList a,
@@ -197,21 +199,6 @@ thead code,
 thead var {
   background: #bddac8;
   color: #021605
-}
-.ribbon .LinkList a:not([href]),
-.ribbon .RichLink-sep a:not([href]) {
-  background: #ecfae8;
-  color: #010e06
-}
-.ribbon .LinkList :link:hover,
-.ribbon .LinkList :visited:hover,
-.ribbon .RichLink-sep :link:hover,
-.ribbon .RichLink-sep :visited:hover {
-  background: #052209;
-  color: #ecfae8
-}
-:focus {
-  outline: 0
 }
 dt {
   font-weight: 700;
@@ -251,7 +238,8 @@ strong,
 var {
   font-style: normal
 }
-.RichLink p,
+.chat,
+.hscroll,
 pre {
   margin: 1em 0
 }
@@ -319,6 +307,14 @@ a iframe,
 a img {
   display: block
 }
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
+}
 input[type=submit] {
   -moz-box-sizing: content-box
 }
@@ -330,12 +326,9 @@ input[type=submit] {
 input[type=submit]:-moz-focus-inner {
   border: 0
 }
-textarea {
-  overflow: auto
-}
 *,
-.tl,
-.tl th {
+.RichLink a img,
+.tl {
   border-width: 0
 }
 html {
@@ -353,26 +346,11 @@ html {
   height: 100%
 }
 body {
-  background: #010e06;
+  background: #ebeed5;
   color: #021605
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:focus,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -381,13 +359,13 @@ tbody th {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
 :visited {
   color: #021605
 }
-.ribbon :link:hover,
 :link:hover,
 form :focus {
   color: #29a119;
@@ -397,32 +375,21 @@ form :focus {
   color: #419;
   border-color: #419
 }
-.ribbon a {
-  color: #92a094;
-  border-color: #010e06
-}
-.ribbon :link {
-  color: #bbe
-}
-.ribbon .AHead h1,
-.ribbon :visited {
-  color: #ecfae8
-}
-.ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
-}
+.tl tbody th a:focus,
+.tl thead td a:focus,
+.tl thead th a:focus,
 a:focus {
   background-color: #ebeed5!important
-}
-.ribbon a:focus {
-  background-color: #777!important
 }
 :target,
 :target * {
   background: #29a119!important;
   color: #fff!important;
   border-color: #fff!important
+}
+.baseColor,
+.medal {
+  background: #f8fbfa
 }
 .RichLink b,
 h1,
@@ -637,6 +604,12 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #021605 #bddac8
 }
+blockquote tbody th a:focus,
+thead a:focus,
+thead td a:focus,
+thead th a:focus {
+  background-color: #29a119!important
+}
 .Cover-btn,
 .commonForm-send,
 .r {
@@ -648,17 +621,6 @@ blockquote tfoot th {
 }
 .uc {
   text-transform: uppercase
-}
-.ribbon {
-  background: #010e06;
-  color: #ecfae8
-}
-.baseColor,
-.medal {
-  background: #f8fbfa
-}
-.ribbon * {
-  border-color: #052209
 }
 em {
   background: #ff6
@@ -680,10 +642,8 @@ strong {
 .lMi:after,
 .lSi:after,
 .lW:after {
-  visibility: hidden;
-  clear: both;
   content: "";
-  height: 0
+  clear: both
 }
 .lM1 {
   float: left
@@ -695,7 +655,6 @@ strong {
 .lM2 {
   width: 47.91%
 }
-.AHead-labels a:link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -705,6 +664,18 @@ strong {
   background: #010e06;
   border-color: #ecfae8;
   color: #ecfae8
+}
+.Subscribe .atom:link:focus,
+.Subscribe .atom:visited:focus,
+.Subscribe .fl:link:focus,
+.Subscribe .fl:visited:focus,
+.Subscribe .rss:link:focus,
+.Subscribe .rss:visited:focus,
+.Subscribe .stm:link:focus,
+.Subscribe .stm:visited:focus,
+.btn:link:focus,
+.btn:visited:focus {
+  border-color: #010e06
 }
 input.btn {
   line-height: 1;
@@ -744,10 +715,6 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
-.medal {
-  border-color: #f8fbfa;
-  color: #021605
-}
 :link .medal,
 :visited .medal {
   border-color: #021605;
@@ -768,13 +735,6 @@ input.btn {
   border-color: #c47222;
   background: #c47222;
   color: #e6d6a9
-}
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #92a094
 }
 #lF .lM .mspacer,
 .Cover p {
@@ -804,8 +764,8 @@ input.btn {
   margin: 3.5em 0 2em
 }
 .ADesc,
-.AHead,
-.SearchResult-multi {
+.AHead {
+  color: #717e73;
   margin: 2em 0
 }
 .ABody h1 {
@@ -834,18 +794,24 @@ input.btn {
 }
 .AHead-labels {
   margin-top: .5em;
-  color: #010e06
+  color: #ebeed5
+}
+.AHead-labels a:link {
+  background: #24c;
+  border-color: #24c;
+  color: #ebeed5
 }
 .AHead-labels a:visited {
-  background: #010e06;
-  border-color: #92a094;
-  color: #92a094
+  background: #ebeed5;
+  border-color: #717e73;
+  color: #717e73
 }
-.AHead-labels a:link:hover {
-  border-color: #bbe;
-  color: #010e06
+.AHead-labels a:link:focus,
+.AHead-labels a:visited:focus {
+  border-color: #ebeed5
 }
 .Attribution,
+.BreadcrumbList,
 .Magazine-item {
   padding: 1em 0
 }
@@ -865,10 +831,6 @@ input.btn {
 .Label a {
   line-height: 2.8;
   border-width: 0 0 1px
-}
-.BreadcrumbList {
-  padding: 1em 0;
-  color: #717e73
 }
 .Comment h3,
 .SearchResult h3 {
@@ -907,13 +869,6 @@ input.btn {
   margin: 0;
   width: 100%
 }
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.links a,
-kbd {
-  display: -moz-inline-box
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -937,11 +892,6 @@ kbd {
 .Magazine h3,
 .Magazine-yy {
   font-size: 2em
-}
-.Subscribe div,
-.ribbon .Label div,
-.ribbon .TxtNavi {
-  color: #010e06
 }
 #lF .Label a,
 .lS .Label a {
@@ -967,14 +917,6 @@ kbd {
   margin-left: 5.5em;
   border-width: 0 0 0 .5em;
   padding-left: 1.5em
-}
-.aa,
-.chat,
-.chatMember,
-.mona,
-blockquote,
-kbd {
-  border-width: 1px
 }
 .Magazine h3 {
   margin: .2em 0 0;
@@ -1003,16 +945,9 @@ kbd {
 .RichLink-sep {
   line-height: 1.4
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   padding: 1em .5em 0;
   border-width: 0 0 1px;
-  overflow: hidden;
   border-color: #052209!important
 }
 .baseColor .RichLink a {
@@ -1022,6 +957,10 @@ kbd {
   color: #052209;
   font-size: .875em;
   margin: 1.143em 0
+}
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #92a094
 }
 .baseColor .RichLink-meta {
   color: #bddac8
@@ -1035,15 +974,34 @@ kbd {
 }
 .RichLink img {
   float: left;
-  margin: 0 .6em 1em 0
+  padding: 0 .6em 1em 0;
+  margin: 0
+}
+.aa,
+.chat,
+.chatMember,
+.mona,
+blockquote,
+kbd {
+  border-width: 1px
+}
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
-  margin: 0 0 1em .6em
+  padding: 0 0 1em .6em
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 .914em
+  padding: 0 0 1.143em
 }
 #lH .lSi {
   padding-right: 3.1em
@@ -1087,6 +1045,9 @@ _:-moz-any-link {
 .SearchResult div span {
   color: grey
 }
+.SearchResult-multi {
+  margin: 2em 0
+}
 #lH .lMi,
 #lH .lSi {
   padding-top: 1em;
@@ -1100,6 +1061,9 @@ _:-moz-any-link {
 }
 .Header h1 {
   padding: 0
+}
+.Subscribe div {
+  color: #010e06
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1226,7 +1190,6 @@ blockquote:after {
   color: #fff;
   background: #7493c2;
   padding-bottom: 1em;
-  margin: 1em 0;
   text-align: center
 }
 .chatTitle {
@@ -1300,16 +1263,9 @@ pre var {
 .chatR .chatMember {
   right: .4em
 }
-.hscroll {
-  overflow: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
-}
 .hscroll pre {
   margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
+  white-space: pre
 }
 kbd {
   cursor: pointer;
@@ -1406,6 +1362,7 @@ dl.note dd {
 }
 .tl th {
   padding: .5em .8em .5em .5em;
+  border-width: 0;
   text-align: left
 }
 .tl td {
@@ -1625,9 +1582,6 @@ li.L8 {
   #lB .lS {
     padding-bottom: 1em
   }
-  .lW {
-    position: relative
-  }
   .lW,
   .lX {
     width: 98%;
@@ -1773,13 +1727,11 @@ li.L8 {
   .aa,
   .baseColor,
   .mona,
-  .ribbon,
   body {
     background: #fff;
     color: #000
   }
-  *,
-  .ribbon * {
+  * {
     border-color: #ccc
   }
   #lF .lX {
@@ -1895,10 +1847,6 @@ li.L8 {
     padding: .5em 0;
     color: #666!important
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .Cover {
     margin: 2em auto
   }
@@ -1919,16 +1867,6 @@ li.L8 {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em
-  }
   #lH {
     font-size: .875em
   }
@@ -1938,6 +1876,9 @@ li.L8 {
   .Header {
     text-align: left;
     padding: 0 3%
+  }
+  .h1 {
+    font-size: 1em
   }
   .Header h1 {
     margin: 0 0 .5em
@@ -1997,9 +1938,7 @@ li.L8 {
     background: #fff
   }
   .hscroll {
-    overflow: visible;
-    overflow-x: visible;
-    overflow-y: visible
+    overflow: visible
   }
   .hscroll table {
     width: 100%;

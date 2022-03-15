@@ -4,6 +4,21 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:visited:active,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:visited:active,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:visited:active,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:visited:active,
+.baseColor .btn:link:active,
+.baseColor .btn:visited:active,
+.chat,
+a,
+a img {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -134,22 +149,6 @@ a:active {
   border-style: dotted;
   outline: 0
 }
-body,
-input,
-textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
-}
-code,
-kbd,
-samp,
-var {
-  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
-}
-:link img,
-:visited img {
-  border-color: #f8fbfa;
-  border-width: 2px
-}
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
 .Subscribe .atom:link:active,
@@ -167,13 +166,26 @@ var {
 .ribbon a {
   border-color: #010e06
 }
+body,
+input,
+textarea {
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+}
+code,
+kbd,
+samp,
+var {
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
+}
+a img {
+  border-width: 2px
+}
 *,
 blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-:link:active img,
-:visited:active img {
+a:active img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -269,7 +281,6 @@ strong,
 var {
   font-style: normal
 }
-.RichLink p,
 .chatL,
 .chatR,
 pre {
@@ -355,20 +366,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
-.chat,
-a {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -670,10 +667,10 @@ strong {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after {
-  visibility: hidden;
-  clear: both;
   content: "";
-  display: block
+  display: block;
+  visibility: hidden;
+  clear: both
 }
 .lM1 {
   float: left
@@ -1025,6 +1022,10 @@ kbd {
   width: auto;
   line-height: 0
 }
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
 .Header,
 .Header h1,
 .aa,
@@ -1037,7 +1038,7 @@ kbd {
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 .914em
+  padding: 0 0 1.143em
 }
 .Search-txt {
   margin-right: .2em
@@ -1297,8 +1298,8 @@ pre var {
   right: .4em
 }
 .hscroll {
-  overflow: auto;
-  margin: 1em 0
+  margin: 1em 0;
+  overflow: auto
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1935,10 +1936,6 @@ li.L8 {
     padding: .5em 0;
     color: #666!important
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .Cover {
     margin: 2em auto
   }
@@ -1959,16 +1956,6 @@ li.L8 {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em
-  }
   #lH {
     font-size: .875em
   }
@@ -1978,6 +1965,9 @@ li.L8 {
   .Header {
     text-align: left;
     padding: 0 3%
+  }
+  .h1 {
+    font-size: 1em
   }
   .Header h1 {
     display: block;

@@ -4,6 +4,32 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.chat,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -59,6 +85,10 @@ sub,
 sup {
   position: relative
 }
+.hscroll pre,
+textarea {
+  overflow: auto
+}
 blockquote,
 code,
 tbody th,
@@ -84,6 +114,7 @@ img {
 .SocialBtns *,
 .Subscribe a,
 .btn {
+  display: -moz-inline-box;
   display: inline-block;
   border-width: .1em;
   cursor: pointer;
@@ -137,9 +168,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -175,10 +204,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+a:active img,
+a:focus img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -272,7 +299,6 @@ strong,
 var {
   font-style: normal
 }
-.RichLink p,
 pre {
   margin: 1em 0
 }
@@ -328,9 +354,6 @@ input:-moz-focus-inner {
 input::-moz-focus-inner {
   border: 0
 }
-textarea {
-  overflow: auto
-}
 * {
   border-style: solid;
   border-width: 0
@@ -355,31 +378,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -584,6 +582,7 @@ h2 {
   color: #ca088a!important
 }
 hr {
+  display: -moz-inline-box;
   height: 0;
   border-color: #bddac8;
   margin: 2em 1em
@@ -720,11 +719,12 @@ strong {
 .lMi:after,
 .lSi:after,
 .lW:after {
-  visibility: hidden;
   clear: both;
   content: ".";
   height: 0;
-  display: block
+  display: block;
+  visibility: hidden;
+  font-size: .1px
 }
 .lM1 {
   float: left
@@ -920,6 +920,7 @@ input.btn {
 .TxtNavi a,
 .links a,
 kbd {
+  display: -moz-inline-box;
   display: inline-block
 }
 .Comment h3,
@@ -963,6 +964,7 @@ kbd {
   width: 100%
 }
 .Cover h2 {
+  display: -moz-inline-box;
   display: inline-block;
   color: #f8fbfa;
   font-size: .825em;
@@ -1046,12 +1048,6 @@ kbd {
 .RichLink-sep {
   line-height: 1.4
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   padding: 1em .5em 0;
   border-width: 0 0 1px;
@@ -1079,13 +1075,23 @@ kbd {
   float: left;
   margin: 0 .6em 1em 0
 }
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
+}
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 .914em
+  padding: 0 0 1.143em
 }
 #lH .lSi {
   padding-right: 3.1em
@@ -1306,6 +1312,7 @@ blockquote:after {
   border-width: 1px;
   margin: 1em 2%;
   padding: .4em 2%;
+  display: -moz-inline-box;
   display: inline-block
 }
 .chatL,
@@ -1359,15 +1366,13 @@ pre var {
   right: .4em
 }
 .hscroll {
-  overflow: auto;
+  margin: 1em 0;
   overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
+  overflow-y: hidden
 }
 .hscroll pre {
   margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
+  white-space: pre
 }
 kbd {
   cursor: pointer;
@@ -1517,6 +1522,7 @@ dl.note dd {
   width: 32%
 }
 .Pager i {
+  display: -moz-inline-box;
   display: inline-block;
   vertical-align: text-top;
   border-color: transparent #717e73
@@ -1968,10 +1974,6 @@ li.L8 {
     padding: .5em 0;
     color: #666!important
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .Cover {
     margin: 2em auto
   }
@@ -1992,16 +1994,6 @@ li.L8 {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em
-  }
   #lH {
     font-size: .875em
   }
@@ -2011,6 +2003,9 @@ li.L8 {
   .Header {
     text-align: left;
     padding: 0 3%
+  }
+  .h1 {
+    font-size: 1em
   }
   .Header h1 {
     margin: 0 0 .5em

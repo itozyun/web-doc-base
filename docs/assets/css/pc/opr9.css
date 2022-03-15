@@ -4,6 +4,32 @@ sub,
 sup {
   font-size: 75%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:link:focus,
+.SocialBtns .hb:visited:active,
+.SocialBtns .hb:visited:focus,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:link:focus,
+.SocialBtns .ln:visited:active,
+.SocialBtns .ln:visited:focus,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:link:focus,
+.SocialBtns .pk:visited:active,
+.SocialBtns .pk:visited:focus,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:link:focus,
+.SocialBtns .tw:visited:active,
+.SocialBtns .tw:visited:focus,
+.baseColor .btn:link:active,
+.baseColor .btn:link:focus,
+.baseColor .btn:visited:active,
+.baseColor .btn:visited:focus,
+.chat,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -156,9 +182,7 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
 }
 *,
@@ -194,10 +218,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #010e06
 }
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img {
+a:active img,
+a:focus img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -282,7 +304,6 @@ strong,
 var {
   font-style: normal
 }
-.RichLink p,
 .chatL,
 .chatR,
 pre {
@@ -364,31 +385,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -718,11 +714,11 @@ strong {
 .lMi:after,
 .lSi:after,
 .lW:after {
+  content: "";
+  display: block;
   visibility: hidden;
   clear: both;
-  content: "";
-  height: 0;
-  display: block
+  height: 0
 }
 .lM1 {
   float: left
@@ -1070,13 +1066,17 @@ kbd {
   float: left;
   margin: 0 .6em 1em 0
 }
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 .914em
+  padding: 0 0 1.143em
 }
 .Search {
   height: 1.9em;
@@ -1368,8 +1368,8 @@ pre var {
   right: .4em
 }
 .hscroll {
-  overflow: auto;
-  margin: 1em 0
+  margin: 1em 0;
+  overflow: auto
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1809,17 +1809,6 @@ screen and (max-width:950px) {
   .Cover {
     margin: 2em auto
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em;
-    font-size: 1em
-  }
   .aa,
   .mona,
   .note .aa,
@@ -1917,6 +1906,17 @@ screen and (max-width:950px) {
   }
   .Magazine img {
     margin-left: 0
+  }
+  .lS .RichLink a {
+    padding: .7em .5em 0
+  }
+  .lS .RichLink img {
+    float: left;
+    margin: 0 .5em .6em 0
+  }
+  .RichLink b {
+    padding: 0 0 .571em;
+    font-size: 1em
   }
   #lH .lMi {
     padding-bottom: 0
@@ -2353,10 +2353,8 @@ screen and (max-width:240px) {
   ul {
     margin: 1em 0
   }
-  :link img,
-  :visited img,
-  blockquote :link img,
-  blockquote :visited img {
+  a img,
+  blockquote a img {
     border-color: transparent
   }
   .LinkList a:not([href]),

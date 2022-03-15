@@ -5,6 +5,39 @@ td,
 th {
   word-break: break-all
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:visited:active,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:visited:active,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:visited:active,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:visited:active,
+.baseColor .btn:link:active,
+.baseColor .btn:visited:active,
+.chat,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
+.AHead-labels a:link:active,
+.AHead-labels a:visited:active,
+.Subscribe .atom:link:active,
+.Subscribe .atom:visited:active,
+.Subscribe .fl:link:active,
+.Subscribe .fl:visited:active,
+.Subscribe .rss:link:active,
+.Subscribe .rss:visited:active,
+.Subscribe .stm:link:active,
+.Subscribe .stm:visited:active,
+.btn:link:active,
+.btn:visited:active,
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #010e06
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -148,35 +181,15 @@ samp,
 var {
   font-family: "Courier New",monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.Subscribe .atom:link:active,
-.Subscribe .atom:visited:active,
-.Subscribe .fl:link:active,
-.Subscribe .fl:visited:active,
-.Subscribe .rss:link:active,
-.Subscribe .rss:visited:active,
-.Subscribe .stm:link:active,
-.Subscribe .stm:visited:active,
-.btn:link:active,
-.btn:visited:active,
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #010e06
 }
 *,
 blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-:link:active img,
-:visited:active img {
+a:active img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -199,8 +212,7 @@ blockquote :visited img {
   cursor: pointer;
   text-decoration: none!important;
   background: #021605;
-  background: #ecfae8;
-  color: #010e06
+  color: #f8fbfa
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -245,6 +257,11 @@ thead var {
 a:active code,
 a:active var {
   background: #29a119
+}
+.LinkList .ribbon a,
+.RichLink-sep .ribbon a {
+  background: #ecfae8;
+  color: #010e06
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
@@ -292,7 +309,6 @@ var {
   font-style: normal
 }
 .ADesc,
-.RichLink p,
 pre {
   margin: 1em 0
 }
@@ -340,21 +356,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .js-bqLink,
 .tl tbody th :link,
@@ -805,8 +806,8 @@ input.btn {
   font-size: .875em
 }
 .AHead-labels {
-  font-family: "MS Gothic",sans-serif;
   margin-top: .5em;
+  font-family: "MS Gothic",sans-serif;
   color: #010e06
 }
 .AHead-labels i,
@@ -940,12 +941,6 @@ kbd {
 .LinkList :active:hover {
   text-decoration: underline!important
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   zoom: 1;
   padding: 1em .5em;
@@ -973,12 +968,22 @@ kbd {
   float: left;
   margin: 0 .6em 1em 0
 }
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
+}
 .RichLink b {
   padding: 0 0 .571em;
   font-size: 1em
 }
 .lS .RichLink a {
-  padding: .7em .5em 0
+  padding: .7em .5em
 }
 .lS .RichLink img {
   float: left;
@@ -1246,9 +1251,9 @@ pre var {
   right: .4em
 }
 .hscroll {
+  margin: 1em 0;
   overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
+  overflow-y: hidden
 }
 .hscroll pre {
   margin: 0 0 .5em;

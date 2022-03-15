@@ -2,10 +2,8 @@
 .AMeta,
 .Pager,
 .SocialBtns,
-:link:active img,
-:link:focus img,
-:visited:active img,
-:visited:focus img,
+a:active img,
+a:focus img,
 blockquote,
 form :focus,
 td {

@@ -11,6 +11,39 @@ iframe,
 img {
   max-width: 100%
 }
+.SocialBtns .hb:link:active,
+.SocialBtns .hb:visited:active,
+.SocialBtns .ln:link:active,
+.SocialBtns .ln:visited:active,
+.SocialBtns .pk:link:active,
+.SocialBtns .pk:visited:active,
+.SocialBtns .tw:link:active,
+.SocialBtns .tw:visited:active,
+.baseColor .btn:link:active,
+.baseColor .btn:visited:active,
+.chat,
+a,
+a img,
+tbody th {
+  border-color: #f8fbfa
+}
+.AHead-labels a:link:active,
+.AHead-labels a:visited:active,
+.Subscribe .atom:link:active,
+.Subscribe .atom:visited:active,
+.Subscribe .fl:link:active,
+.Subscribe .fl:visited:active,
+.Subscribe .rss:link:active,
+.Subscribe .rss:visited:active,
+.Subscribe .stm:link:active,
+.Subscribe .stm:visited:active,
+.btn:link:active,
+.btn:visited:active,
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #010e06
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -161,35 +194,15 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-:link img,
-:visited img {
-  border-color: #f8fbfa;
+a img {
   border-width: 2px
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.Subscribe .atom:link:active,
-.Subscribe .atom:visited:active,
-.Subscribe .fl:link:active,
-.Subscribe .fl:visited:active,
-.Subscribe .rss:link:active,
-.Subscribe .rss:visited:active,
-.Subscribe .stm:link:active,
-.Subscribe .stm:visited:active,
-.btn:link:active,
-.btn:visited:active,
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #010e06
 }
 *,
 blockquote :link img,
 blockquote :visited img {
   border-color: #bddac8
 }
-:link:active img,
-:visited:active img {
+a:active img {
   border-color: #29a119!important
 }
 :link:hover img,
@@ -203,8 +216,7 @@ blockquote :visited img {
   cursor: pointer;
   text-decoration: none!important;
   background: #021605;
-  background: #ecfae8;
-  color: #010e06
+  color: #f8fbfa
 }
 .LinkList :link,
 .RichLink-sep :link {
@@ -234,6 +246,11 @@ a:active code,
 a:active var,
 tbody :hover th {
   background: #29a119
+}
+.LinkList .ribbon a,
+.RichLink-sep .ribbon a {
+  background: #ecfae8;
+  color: #010e06
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
@@ -303,7 +320,6 @@ strong,
 var {
   font-style: normal
 }
-.RichLink p,
 pre {
   margin: 1em 0
 }
@@ -364,21 +380,6 @@ body {
 }
 p {
   line-height: 1.9
-}
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
-.chat,
-a,
-tbody th {
-  border-color: #f8fbfa
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -822,8 +823,8 @@ input.btn {
   margin: 0
 }
 .AHead-labels {
-  font-family: Meiryo,"MS PGothic",sans-serif;
   margin-top: .5em;
+  font-family: Meiryo,"MS PGothic",sans-serif;
   color: #010e06
 }
 .Magazine-date,
@@ -1028,12 +1029,6 @@ kbd {
 .RichLink-sep {
   line-height: 1.4
 }
-.Header,
-.Header h1,
-.aa,
-.chatMember {
-  line-height: 1
-}
 .RichLink a {
   padding: 1em .5em;
   border-width: 0 0 1px;
@@ -1060,6 +1055,16 @@ kbd {
 .RichLink img {
   float: left;
   margin: 0 .6em 1em 0
+}
+.RichLink p {
+  margin: 1em 0;
+  line-height: 1.2
+}
+.Header,
+.Header h1,
+.aa,
+.chatMember {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1324,9 +1329,9 @@ kbd:hover {
   right: .4em
 }
 .hscroll {
+  margin: 1em 0;
   overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0
+  overflow-y: hidden
 }
 .hscroll pre {
   margin: 0 0 .5em;
@@ -1914,10 +1919,6 @@ li.L8 {
     padding: .5em 0;
     color: #666!important
   }
-  .RichLink b,
-  .h1 {
-    font-size: 1em
-  }
   .Cover {
     margin: 2em auto
   }
@@ -1938,16 +1939,6 @@ li.L8 {
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
-  .lS .RichLink a {
-    padding: .7em .5em 0
-  }
-  .lS .RichLink img {
-    float: left;
-    margin: 0 .5em .6em 0
-  }
-  .RichLink b {
-    padding: 0 0 .571em
-  }
   #lH {
     font-size: .875em
   }
@@ -1957,6 +1948,9 @@ li.L8 {
   .Header {
     text-align: left;
     padding: 0 3%
+  }
+  .h1 {
+    font-size: 1em
   }
   .Header h1 {
     margin: 0 0 .5em
