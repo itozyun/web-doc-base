@@ -6,6 +6,7 @@
 var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_ID_OF_WHEEL_ELEMENTS                = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
     SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
+    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( ( p_Trident < 9 ) || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
     /*
      * positionFixed
      *   original :
@@ -309,6 +310,8 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             elm = elm.offsetParent;
         };
 
+        sidebarOffsetY = SidebarFixer_sidebarOffsetY;
+
         var viewportHeight         = SidebarFixer_getFinite( window.innerHeight, SidebarFixer_elmRoot.offsetHeight ),
             mainColHeight          = elmMain.offsetHeight,
             sidebarHeight          = SidebarFixer_elmWrap.offsetHeight,
@@ -317,7 +320,6 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             viewportBottom         = viewportTop + viewportHeight,
             containerTop           = containerY,
             containerBottom        = containerTop + containerHeight,
-            sidebarOffsetY         = SidebarFixer_sidebarOffsetY,
             currentSidebarTop      = containerY + sidebarOffsetY,
             currentSidebarBottom   = currentSidebarTop + sidebarHeight,
             visibleContainerTop    = viewportTop     < containerTop   ? containerTop    : viewportTop,
@@ -492,10 +494,10 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 break;
         };
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
-            SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-' );
+            SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY || '-', focusedElementHeight || '-' );
         };
     } else if( DEFINE_WEB_DOC_BASE__DEBUG ){
-        SidebarFixer_updateSidebar( sidebarOffsetY, '-', '-', '-', '-', '-' );
+        SidebarFixer_updateSidebar( sidebarOffsetY, '-', '-', '-', '-', '-', '-' );
     };
 
     p_DOM_setCssText( SidebarFixer_elmWrap, cssText );
@@ -548,10 +550,10 @@ function SidebarFixer_onfocus( e ){
         return;
     };
 
-    var useTransform = !!SidebarFixer_transformProp,
-        elmFocused   = e.target || e.srcElement,
-        y            = 0,
-        h, elm;
+    var useContains     = !!SidebarFixer_transformProp || p_Gecko,
+        elmFocused      = e.target || e.srcElement,
+        focusedElementY = 0,
+        focusedElementHeight, elm;
 
     if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
@@ -559,18 +561,18 @@ function SidebarFixer_onfocus( e ){
             p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementblur );
         };
 
-        h = elmFocused.offsetHeight;
+        focusedElementHeight = elmFocused.offsetHeight;
         elm = elmFocused;
-        while( elm && ( useTransform ? p_DOM_contains( SidebarFixer_elmWrap, elm ) : ( SidebarFixer_elmWrap !== elm ) ) ){
-            y   += elm.offsetTop;
-            elm  = elm.offsetParent;
+        while( elm && ( useContains ? p_DOM_contains( SidebarFixer_elmWrap, elm ) : ( SidebarFixer_elmWrap !== elm ) ) ){
+            focusedElementY += elm.offsetTop;
+            elm = elm.offsetParent;
         };
 
-        if( ( p_Trident < 9 ) || p_Presto || p_Gecko < 1.3 ){ // focusin 後に scroll が起きない
+        if( !SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT ){
             SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
-            SidebarFixer_fix( undefined, y, h );
+            SidebarFixer_fix( undefined, focusedElementY, focusedElementHeight );
         } else {
-            SidebarFixer_focuedElementYAndHeight = [ y, h ];
+            SidebarFixer_focuedElementYAndHeight = [ focusedElementY, focusedElementHeight ];
             if( SidebarFixer_dummyScrollTimerID ){
                 p_clearTimer( SidebarFixer_dummyScrollTimerID );
             };
@@ -578,7 +580,7 @@ function SidebarFixer_onfocus( e ){
         };
 
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
-            SidebarFixer_updateElementFocused( y, h );
+            SidebarFixer_updateElementFocused( focusedElementY, focusedElementHeight );
         };
     };
 };
@@ -703,7 +705,7 @@ function SidebarFixer_updateViewport(){
         // Debug.log( 'scrollY:' + SidebarFixer_lastScrollY );
     };
 };
-function SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY ){
+function SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, containerHeight, viewportHeight, focusedElementY, focusedElementHeight ){
     if( SidebarFixer_elmSidebar ){
         p_DOM_setStyle( SidebarFixer_elmSidebar, 'top', ( ( sidebarOffsetY + containerY ) / 10 | 0 ) + 'px' );
         p_DOM_setStyle( SidebarFixer_elmSidebar, 'height', ( sidebarHeight / 10 | 0 ) + 'px' );
@@ -712,7 +714,7 @@ function SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, 
 
         p_DOM_setStyle( SidebarFixer_elmDocument, 'height', ( p_body.scrollHeight / 10 | 0 ) + 'px' );
 
-        SidebarFixer_elmDisplayValues.textContent = 'y:' + containerY + '/' + sidebarOffsetY + ', h:' + containerHeight + '/' + sidebarHeight + ' fy:' + focusedElementY;
+        SidebarFixer_elmDisplayValues.textContent = 'conY:' + containerY + '/sidY' + sidebarOffsetY + ', conH:' + containerHeight + '/sidH' + sidebarHeight + ' focY:' + focusedElementY + ' focH:' + focusedElementHeight;
     };
 };
 function SidebarFixer_updateElementFocused( y, h ){
