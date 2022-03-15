@@ -173,7 +173,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     @include media(smallphone) {
         .chatMember {
             position : static;
-            display  : inline-block;
+            @include inline-block;
         }
         .chatL {
             padding : 0 9% 0 $CAHT_HORIZONTAL_MARGIN;

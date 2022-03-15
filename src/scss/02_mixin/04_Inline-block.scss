@@ -2,10 +2,13 @@
     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
         @if( $UA_Opera70 ){
             display : inline-table;
-        }@else if( $UA_Gck-097 or $UA_Gck101-121 ){
+        }@else if( $UA_Gck-097 or $UA_Gck101-121 or $UA_Gck130-190 ){
             // https://www.brunildo.org/test/inline-block4.html
-            display : -moz-inline-box; /* Gecko 0.9.4.1 */
+            display : -moz-inline-box; /* Gecko 0.9.4.1 ~ 1.8 */
             // -moz-box-orient : vertical;
+            @if( $UA_Gck130-190 ){
+                display : inline-block; // for Gecko 1.9.0
+            }
         } @else {
             display : inline-block;
         }
