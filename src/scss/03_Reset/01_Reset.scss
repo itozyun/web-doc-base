@@ -4,8 +4,10 @@
     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
         :active { outline : 0; }
     }
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-        :focus { outline : 0; }
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+            :focus { outline : 0; } // Gecko 1.8~
+        }
     }
 
     @if( $UA_Modern ){

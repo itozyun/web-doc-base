@@ -240,8 +240,8 @@
     $IS_WIN_IE      : $IS_LTE_WIN_IE8 or $UA_IE9;
     $IS_IE8_OR_9    : $UA_IE8 or $UA_IE9;
 
-    $FOCUSED_COLOR_IS_SYSTEM_COLOR : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
-    $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
+    $FOCUSED_COLOR_IS_SYSTEM_COLOR   : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
+    $TEXT_COLOR_CANT_CHANGE_FOCUSING : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
     $DARK_THEME_ALLWAYS : false;
 
     $ACTIVE_BEHAVES_LIKE_FOCUS : $IS_LTE_WIN_IE7; // :active を実装するがそのふるまいは :focus

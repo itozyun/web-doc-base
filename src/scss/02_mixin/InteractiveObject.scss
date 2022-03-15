@@ -1,24 +1,27 @@
 /*  :link > img
 --------------------------------------------------------------------------------------*/
 %InteractiveObject {
-    :link &, :visited & {
+    a & {
         border-color : $COLOR_Light_fill;
         border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
-    
+    }
+    :link &, :visited & {
         blockquote & {
             border-color : $COLOR_Light_casual_fill;
         }
-    
-        .ribbon & {
-            border-color : $COLOR_Ribbon_fill;
+
+        @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+            .ribbon & {
+                border-color : $COLOR_Ribbon_fill;
+            }
         }
     }
 
     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-        :link:active &, :visited:active & { border-color : $COLOR_ACCENT !important; }
+        a:active & { border-color : $COLOR_ACCENT !important; }
     }
     @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-        :link:focus &, :visited:focus & { border-color : $COLOR_ACCENT !important; }
+        a:focus & { border-color : $COLOR_ACCENT !important; }
     }
 
     @if( $UA_Gck-097 == false and $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
@@ -31,7 +34,7 @@
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
-        :link &, :visited & {
+        a & {
             border-color : transparent; // filter: brightness(85%); の影響を避ける
             blockquote & {
                 border-color : transparent;
@@ -43,10 +46,10 @@
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
         @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-            :link:active &, :visited:active & { border-style : dotted;; }
+            a:active & { border-style : dotted; }
         }
         @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-            :link:focus &, :visited:focus & { border-style : dotted;; }
+            a:focus & { border-style : dotted; }
         }
     }
 }

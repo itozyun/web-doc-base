@@ -23,12 +23,14 @@
                 text-align : left;
             }
         }
-    .ribbon .AHead {
-        color : $COLOR_Ribbon_casual_text;
-    }
-        .ribbon .AHead h1 {
-            color : $COLOR_Ribbon_text;
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        .ribbon .AHead {
+            color : $COLOR_Ribbon_casual_text;
         }
+            .ribbon .AHead h1 {
+                color : $COLOR_Ribbon_text;
+            }
+    }
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
@@ -93,6 +95,7 @@
 --------------------------------------------------------------------------------------*/
 @if( $Option_ArticleLabels ){
     .AHead-labels {
+        margin-top : 0.5em;
     /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
         @if( $UA_IE7 or $UA_IE8 ){
             font-family : Meiryo, "MS PGothic", sans-serif;
@@ -100,8 +103,11 @@
         @if( $IS_LTE_WIN_IE6 ){
             font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
         }
-        margin-top : 0.5em;
-        color      : $COLOR_Ribbon_fill; /* , を消す */
+        @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+            color : $COLOR_Sidebar_fill;
+        } @else {
+            color : $COLOR_Ribbon_fill; /* , を消す */
+        }
         @if( $UA_Modern ){
             vertical-align : middle; /* ie11 のガタツキを修正 */
         }
@@ -111,10 +117,16 @@
         }
         .AHead-labels a {
             @extend %ButtonBase;
-            @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
-            &:link:hover { /* .ribbon :link:hover の上書き */
-                border-color : $COLOR_Ribbon_link;
-                color        : $COLOR_Ribbon_fill;
+            @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+                @include button-colors( $COLOR_Light_link, $COLOR_Light_casual_text, $COLOR_Sidebar_fill );
+            } @else {
+                @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+            }
+            @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+                &:link:hover { /* .ribbon :link:hover の上書き */
+                    border-color : $COLOR_Ribbon_link;
+                    color        : $COLOR_Ribbon_fill;
+                }
             }
             margin : 0 0 0.5em;
         }

@@ -18,8 +18,10 @@
                 /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
             }
         }
-        .ribbon .Label div {
-            color : $COLOR_Ribbon_fill; /* , を消す */
+        @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+            .ribbon .Label div {
+                color : $COLOR_Ribbon_fill; /* , を消す */
+            }
         }
             .Label a {
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){

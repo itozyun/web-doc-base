@@ -159,25 +159,32 @@ table {
             }
         }
     }
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+        thead th a:focus, thead td a:focus,
+        thead a:focus,
+        blockquote tbody th a:focus {
+            background-color : $COLOR_ACCENT !important;
+        }
+    }
 }
 
 @include tableColor( $COLOR_Light_text, $COLOR_Light_fill, $COLOR_Light_casual_text, $COLOR_Light_casual_fill );
 
 @if( $CANUSE_HOVER_PSEUDO_CLASS ){
     tbody :hover th {
-        background   : $COLOR_ACCENT;
-        color        : #fff;
+        background : $COLOR_ACCENT;
+        color      : #fff;
         :link, :visited {
-            color    : #fff;
+            color : #fff;
         }
     }
     tbody :hover td {
         border-color : $COLOR_Light_fill $COLOR_Light_fill $COLOR_ACCENT;
         color        : $COLOR_ACCENT;
     }
-    tbody :hover th a {
-        @include active-focus-pseudo-class {
-            @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR == false and $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+    @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR == false and $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        tbody :hover th a {
+            @include active-focus-pseudo-class {
                 background : #fff !important;
                 color      : $COLOR_ACCENT !important;
             }

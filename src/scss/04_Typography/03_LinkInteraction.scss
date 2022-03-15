@@ -56,24 +56,26 @@ a {
     border-color : $COLOR_Light_visited_hover;
 }
 
-.ribbon {
-    a              {
-        color        : $COLOR_Ribbon_casual_text;
-        border-color : $COLOR_Ribbon_fill;
-    }
-    :link          {
-        color        : $COLOR_Ribbon_link;
-    }
-    :visited       {
-        color        : $COLOR_Ribbon_text;
-    }
-    :link:hover    {
-        color        : $COLOR_Ribbon_hover;
-        border-color : $COLOR_Ribbon_hover;
-    }
-    :visited:hover {
-        color        : $COLOR_Ribbon_visited_hover;
-        border-color : $COLOR_Ribbon_visited_hover;
+@if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+    .ribbon {
+        a              {
+            color        : $COLOR_Ribbon_casual_text;
+            border-color : $COLOR_Ribbon_fill;
+        }
+        :link          {
+            color        : $COLOR_Ribbon_link;
+        }
+        :visited       {
+            color        : $COLOR_Ribbon_text;
+        }
+        :link:hover    {
+            color        : $COLOR_Ribbon_hover;
+            border-color : $COLOR_Ribbon_hover;
+        }
+        :visited:hover {
+            color        : $COLOR_Ribbon_visited_hover;
+            border-color : $COLOR_Ribbon_visited_hover;
+        }
     }
 }
 
@@ -97,12 +99,9 @@ a {
             outline  : HighlightText solid $FORCED_COLORS_FOCUS_BORDER_WIDTH;
         }
     }
-} @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR ){
+} @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
     a:focus {
         background-color : $COLOR_Sidebar_fill !important;
-        .ribbon & {
-            background-color : #777 !important;
-        }
     }
 } @else {
     a {

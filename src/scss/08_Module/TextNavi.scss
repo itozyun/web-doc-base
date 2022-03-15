@@ -18,8 +18,10 @@
         }
     }
 
-    .ribbon .TxtNavi {
-        color : $COLOR_Ribbon_fill; /* , を消す */
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        .ribbon .TxtNavi {
+            color : $COLOR_Ribbon_fill; /* , を消す */
+        }
     }
 
     /*  Dark theme

@@ -9,6 +9,12 @@
         color : $COLOR_Light_text;
     }
 
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+        thead th a:focus, thead td a:focus, tbody th a:focus {
+            background-color : $COLOR_Sidebar_fill !important;
+        }
+    }
+
     thead th {
         border-width : 0 0 1px 0;
     }

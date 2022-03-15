@@ -32,7 +32,7 @@
             a:active & {
                 @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
                     background : Highlight;
-                } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+                } @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
                     background : $COLOR_ACCENT;
                 }
             }
@@ -41,7 +41,7 @@
             a:focus & {
                 @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
                     background : Highlight;
-                } @else if( $FOCUSED_TEXT_COLOR_IS_SYSTEM_COLOR == false ){
+                } @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
                     background : $COLOR_ACCENT;
                 }
             }

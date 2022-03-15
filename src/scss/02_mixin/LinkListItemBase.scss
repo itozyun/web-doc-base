@@ -46,35 +46,37 @@
         color      : $COLOR_Light_text;
     }
 
-    /*  Tablet
+    /*  ribbon
     --------------------------------------------------------------------------------------*/
-    @if( $CANUSE_NOT_SELECTOR == false ){
-        a {
-            background : $COLOR_Ribbon_text;
-            color      : $COLOR_Ribbon_fill;
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        @if( $CANUSE_NOT_SELECTOR == false ){
+            .ribbon a {
+                background : $COLOR_Ribbon_text;
+                color      : $COLOR_Ribbon_fill;
+            }
+            .ribbon & :link {
+                background : transparent;
+                color      : $COLOR_Ribbon_link;
+            }
+            .ribbon & :visited {
+                background : transparent;
+                color      : $COLOR_Ribbon_text;
+            }
+        } @else {
+            .ribbon & a:not([href]) {
+                /* href がない場合 current を示す塗りになる */
+                background : $COLOR_Ribbon_text;
+                color      : $COLOR_Ribbon_fill;
+            }
+            .ribbon & :visited {
+                // color : $COLOR_Ribbon_text;
+            }
         }
-        .ribbon & :link {
-            background : transparent;
-            color      : $COLOR_Ribbon_link;
-        }
-        .ribbon & :visited {
-            background : transparent;
+
+        .ribbon & :link:hover, .ribbon & :visited:hover {
+            background : $COLOR_Ribbon_casual_fill;
             color      : $COLOR_Ribbon_text;
         }
-    } @else {
-        .ribbon & a:not([href]) {
-            /* href がない場合 current を示す塗りになる */
-            background : $COLOR_Ribbon_text;
-            color      : $COLOR_Ribbon_fill;
-        }
-        .ribbon & :visited {
-            // color : $COLOR_Ribbon_text;
-        }
-    }
-
-    .ribbon & :link:hover, .ribbon & :visited:hover {
-        background : $COLOR_Ribbon_casual_fill;
-        color      : $COLOR_Ribbon_text;
     }
 
     /*  Print
