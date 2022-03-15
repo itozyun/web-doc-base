@@ -32,14 +32,6 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
     }
 
     @include media(screen) {
-        /*  wrapper
-        --------------------------------------------------------------------------------------*/
-        .lW {
-            @if( $UA_Gck-097 ){
-                position : relative; // clearfix
-            }
-        }
-
         .lW, .lX {
             width : 98%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
