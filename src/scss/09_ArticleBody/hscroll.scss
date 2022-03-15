@@ -2,22 +2,23 @@
  * http://webcommu.net/phone-table-scroll/
  */
 .hscroll {
-    @if( $IS_NOT_IE ){
-        overflow      : auto;
+    margin : 1em 0;
+
+    @if( $IS_NOT_IE and $UA_Gck-097 == false and $UA_Gck101-121 == false and $UA_Gck130-190 == false ){
+        overflow : auto;
+    }
+    @if( $CANUSE_OVERFLOW_X_AND_Y ){
+        overflow-x : auto;
+        overflow-y : hidden;
     }
     @if( $UA_Modern ){
         // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
         //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
         -webkit-overflow-scrolling : touch;
     }
-    @if( $IS_OLD_OPERA == false ){
-        overflow-x    : auto;
-        overflow-y    : hidden;
-    }
     @if( $UA_IE5 or $UA_IE55 ){
-        width         : 100%;
+        width : 100%;
     }
-    margin        : 1em 0;
 
     li &, dl &, tr &, .note & {
         margin-top : 0;
@@ -82,7 +83,7 @@
         @if( $IS_NOT_IE ){
             overflow   : visible;
         }
-        @if( $IS_OLD_OPERA == false ){
+        @if( $CANUSE_OVERFLOW_X_AND_Y ){
             overflow-x : visible;
             overflow-y : visible;
         }
