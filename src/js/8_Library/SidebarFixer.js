@@ -6,7 +6,7 @@
 var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_ID_OF_WHEEL_ELEMENTS                = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
     SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
-    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( ( p_Trident < 9 ) || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
+    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( 6 <= p_Trident && p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
     /*
      * positionFixed
      *   original :
@@ -557,7 +557,7 @@ function SidebarFixer_onfocus( e ){
 
     if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
-            SidebarFixer_showEvent( e.type );
+            SidebarFixer_showEvent( e.type || 'ie5focus' );
             p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementblur );
         };
 
@@ -636,7 +636,7 @@ function SidebarFixer_onActiveElementblur(){
     SidebarFixer_updateElementFocused( 0, 0 );
 };
 
-if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_CANUSE_POSITION_FIXED ){
+if( DEFINE_WEB_DOC_BASE__DEBUG ){
     var SidebarFixer_elmDisplayValues,
         SidebarFixer_elmDisplayScroll,
         SidebarFixer_elmDisplayEvents,
@@ -651,9 +651,23 @@ if( DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_CANUSE_POSITION_FIXED ){
             if( !cssAvailability ) return;
             if( !p_elmMain ) return true;
 
-            var elmTestRoot = p_DOM_insertElement( p_body, 'div' );
+            var childNodes = p_DOM_getChildNodes( p_body );
+            var elmTestRoot = p_DOM_insertElementBefore( childNodes[ 0 ], 'div' );
 
-            p_DOM_setCssText( elmTestRoot, 'position:fixed;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );
+            if( !SidebarFixer_CANUSE_POSITION_FIXED ){
+                // https://web.archive.org/web/20190125194249/http://css-eblog.com/csstechnique/position-fixed-forie6.html
+                for( ; childNodes.length; ){
+                    elmTestRoot.appendChild( childNodes.shift() );
+                };
+                p_DOM_setCssText( elmTestRoot, 'width:100%; height:100%; overflow:auto; position:relative;' );
+
+                elmTestRoot = p_DOM_insertElementAfter( elmTestRoot, 'div' );
+                p_DOM_setCssText( p_html, 'overflow:hidden' );
+                p_DOM_setCssText( p_body, 'overflow:hidden' );
+                p_DOM_setCssText( elmTestRoot, 'position:absolute;z-index:9999;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );
+            } else {
+                p_DOM_setCssText( elmTestRoot, 'position:fixed;z-index:9999;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );
+            };
 
             p_DOM_insertElement( elmTestRoot, 'div', undefined,
                 ( p_cssTransformName ? 'transform' + ( SidebarFixer_use3D ? '3D' : '' ) : ( SidebarFixer_CANUSE_POSITION_FIXED ? 'pos:fixed' : 'pos:absolute' ) )
@@ -714,7 +728,7 @@ function SidebarFixer_updateSidebar( sidebarOffsetY, sidebarHeight, containerY, 
 
         p_DOM_setStyle( SidebarFixer_elmDocument, 'height', ( p_body.scrollHeight / 10 | 0 ) + 'px' );
 
-        SidebarFixer_elmDisplayValues.textContent = 'conY:' + containerY + '/sidY' + sidebarOffsetY + ', conH:' + containerHeight + '/sidH' + sidebarHeight + ' focY:' + focusedElementY + ' focH:' + focusedElementHeight;
+        SidebarFixer_elmDisplayValues.innerHTML = 'conY:' + containerY + '/sidY' + sidebarOffsetY + ', conH:' + containerHeight + '/sidH' + sidebarHeight + ', focY:' + focusedElementY + ' focH:' + focusedElementHeight;
     };
 };
 function SidebarFixer_updateElementFocused( y, h ){

@@ -77,4 +77,27 @@
             position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
         }
     }
+    @if( $IS_LTE_WIN_IE7 ){
+        /**
+         * フォーカス要素のサイドバー上の y 座標の取得に offsetTop を使っているが hasLayout フラグが立っていないと
+         * 文書上の y 座標が返る問題。
+         * 
+         *  offsetTop/offsetLeft/offsetParentの闇
+         *    https://susie-t.hatenadiary.org/entry/20061004/1159942798
+         *    > つまりIEには、offsetParentになる要素の条件について以下があるということです。
+         *    > Y対象要素がposition指定なし(またはstatic)のとき、ノードツリー上方で直近のwidthもしくはheightが指定されている要素。
+         *
+         *  hasLayout
+         *    http://zero.css-happylife.com/property/haslayout.shtml
+         *    > 尚、body, img, object, hr, input, button, textarea, table, tr, th, td, frameset, frame, iframe, marqueeなどは
+         *    > 「true」で固定になっているため変更できません。
+         */
+        #jsSidebarFixer, #jsSidebarFixer div, #jsSidebarFixer a {
+            @if( $UA_IE5 ){
+                height : 1%;
+            } @else {
+                zoom : 1;
+            }
+        }
+    }
 }
