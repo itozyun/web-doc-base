@@ -27,7 +27,7 @@
     cursor       : pointer;
     text-align   : center;
     @if( $IS_LEGACY ){
-        line-height : $PARAGRAPH_LINE_HEIGHT_EM;
+        line-height : $PARAGRAPH_LINE_HEIGHT;
         padding     : 0 1em;
     }
     @if( $IS_LEGACY == false ){
@@ -37,7 +37,7 @@
     @if( $UA_Modern or $UA_IE9 ){
         vertical-align : top; /* ie9-11 で 日本語を含むボタンと、英字のみで高さが揃わない。 */
     }
-    
+
     @if( $UA_IE7 or $UA_IE6 ){
         zoom : 1;
     }
@@ -46,12 +46,10 @@
         height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
     }
 
-    &:link:hover, &:visited:hover {
-        text-decoration : underline;
-    }
-
+    /* input.btn に対して適用, a:link, a:visited には上書きされる */
     @if( $IS_LTE_WIN_IE7 ){
-        &:link:active, &:visited:active {
+        // IE7 以下にはデザインが適用されない
+        &:active {
             @if( $UA_IE5 or $UA_IE55 ){
                 border-color : $COLOR_ACCENT;
             }
@@ -60,10 +58,9 @@
             outline      : 0;
         }
     } @else {
-        // IE7 以下にはデザインが適用されない
         & {
             @include active-focus-pseudo-class {
-                border-color : $COLOR_ACCENT; /* input.btn に対して適用, a:link には上書きされる */
+                border-color : $COLOR_ACCENT;
                 color        : $COLOR_ACCENT;
                 border-style : dotted;
                 outline      : 0;
