@@ -105,7 +105,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
         p_notUndefined( p_style[ 'transform' ] ) ? 'transform' : 
         p_notUndefined( p_style[ '-o-transform' ] ) ? '-o-transform' : 
         p_notUndefined( p_style[ '-ms-transform' ] ) ? '-ms-transform' : 
-        p_notUndefined( p_style[ '-moz-transform' ] ) ? '-moz-transform' : 
+        p_notUndefined( p_style[ 'MozTransform' ] ) ? '-moz-transform' : 
         p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
 
     // nodeCleaner もアクセスするので packageGlobal に公開する

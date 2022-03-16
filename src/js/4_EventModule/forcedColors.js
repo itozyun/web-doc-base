@@ -91,7 +91,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
      *   https://mspoweruser.com/microsoft-brings-high-contrast-mode-to-chromium-based-edge/
      *   Currently, the High Contrast mode is hidden behind a flag ...
      */
-} else if( p_Trident < 10 || ( p_Windows && ( 44 <= p_Gecko || p_Goanna ) ) ){
+} else if( p_Trident < 10 || ( p_Windows && ( 1.8 <= p_Gecko || p_Goanna ) ) ){
     Event_forcedColors_test = function(){
         var defaultView = document.defaultView,
             computedStyle, color, bgColor;
@@ -105,19 +105,21 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
 
         if( color ){
             Event_forcedColors_isActive = color !== '#123456' && color !== 'rgb(18,52,86)';
-            Event_forcedColors_isBlackOnWhite = isBlack( color ) && isWhite( bgColor );
-            Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor );
+            Event_forcedColors_isBlackOnWhite = isBlack( color ) && isWhite( bgColor, true );
+            Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor, true );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
                 m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
             };
         };
 
-        function isBlack( color ){
-            return color === '#000000' || color === 'rgb(0,0,0)';
+        function isBlack( color, isBG ){
+            Debug.log( 'isBlack:' + color );
+            return color === '#000000' || color === 'rgb(0,0,0)' || isBG && color === 'transparent'; // transparent は Gecko 1.8.1.12
         };
-        function isWhite( color ){
-            return color === '#ffffff' || color === 'rgb(255,255,255)';
+        function isWhite( color, isBG ){
+            Debug.log( 'isWhite:' + color );
+            return color === '#ffffff' || color === 'rgb(255,255,255)' || isBG && color === 'transparent';
         };
     };
 

@@ -34,8 +34,8 @@ $COMMENT_OUT_AT_MEDIA : (
     'landscapePrint'       : if($UA_Modern, 1, 0),
 
     'forced_colors_native'             : if($UA_Modern, 1, 0),
-    'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE, 1, 0),
-    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE, 1, 0)
+    'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0),
+    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0)
 ) !default;
 
 @mixin media($media) {
@@ -181,7 +181,7 @@ $COMMENT_OUT_AT_MEDIA : (
             }
         }
         @else if $media == 'forced_colors_fallback' { // IE5~9, Firefox
-            @if( $UA_Modern or $IS_WIN_IE ){
+            @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
                 @media only dynamic-css and (-ms-high-contrast:active){
                     @content;
                 }
@@ -194,7 +194,7 @@ $COMMENT_OUT_AT_MEDIA : (
                     @content;
                 }
             }
-            @if( $UA_Modern or $IS_WIN_IE ){
+            @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
                 @media only dynamic-css and (-ms-high-contrast:active){
                     @content;
                 }

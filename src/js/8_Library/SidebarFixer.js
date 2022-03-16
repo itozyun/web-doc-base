@@ -120,10 +120,9 @@ if( !p_isMobile && !p_cloudRendering ){
                 !( p_Chromium < 2 )          // Chrome 1 描画が欠ける
             ){
                 SidebarFixer_use3D = p_notUndefined( p_style[ 'perspective'         ] ) ||
-                                     p_notUndefined( p_style[ '-moz-perspective'    ] ) ||
+                                     p_notUndefined( p_style[ 'MozPerspective'      ] ) ||
                                      p_notUndefined( p_style[ '-webkit-perspective' ] );
             };
-
 
             SidebarFixer_onscroll();
             return true;
