@@ -196,7 +196,9 @@ const externs = [
          './src/js-externs/externs.js'
       ];
 
-gulp.task('js', gulp.series(
+var debug = false;
+
+gulp.task('__js', gulp.series(
     function(){
         return gulp.src(
                 [
@@ -229,7 +231,9 @@ gulp.task('js', gulp.series(
                             'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir   + '"',
                             'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
                             'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
-                            'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"'
+                            'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
+                            'DEFINE_WEB_DOC_BASE__DEBUG=' + debug,
+                            'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"'
                         ],
                         compilation_level : 'ADVANCED',
                         // compilation_level : 'WHITESPACE_ONLY',
@@ -254,12 +258,18 @@ gulp.task('js', gulp.series(
                 formatting        : 'PRETTY_PRINT',
                 language_in       : 'ECMASCRIPT3',
                 language_out      : 'ECMASCRIPT3',
-                js_output_file    : 'min.js'
+                js_output_file    : debug ? 'debug.js' : 'main.js'
             }
         )
         .src()
         .pipe(gulp.dest( './docs/assets/' + assetsDirToJSDir ));
     }
+));
+
+gulp.task( 'js', gulp.series(
+    '__js',
+    function( cb ){ debug = true; cb(); },
+    '__js'
 ));
 
 /* -------------------------------------------------------
@@ -310,3 +320,25 @@ gulp.task('css', function(){
         .pipe(finalizeCSS())
         .pipe(gulp.dest( './docs/assets/' + assetsDirToCSSDir ));
 });
+
+/* -------------------------------------------------------
+ *  gulp html
+ */
+
+const pageFragumentToFullPage = require( './js-buildtools/gulp-generate-full-webdoc/index.js' ),
+      pageBase = require( './src/html/pageBase.js' );
+
+gulp.task( 'html', gulp.series(
+    'whatbrowserami',
+    function(){
+        const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
+
+        pageBase.site.inlineScript = minjs;
+
+        return gulp.src( [ './src/html/**/*.html',  './src/html/**/*.md' ] )
+            .pipe( plumber() )
+            .pipe( pageFragumentToFullPage( pageBase, __dirname + '/src/html/' ) )
+            // .pipe( formatHtml )
+            .pipe( gulp.dest( './docs/_/' ) );
+    } )
+);
