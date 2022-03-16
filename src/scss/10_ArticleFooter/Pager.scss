@@ -11,9 +11,9 @@
     .Pager {
         @include article-footer-item;
 
-        position    : relative;
-        color       : $COLOR_Light_fill; /* , を消す */
-        height      : 4em;
+        position : relative;
+        color    : $COLOR_Light_fill; /* , を消す */
+        height   : 4em;
 
         @include media(forced_colors_fallback){
             & {
@@ -41,7 +41,7 @@
                     & {
                         position : static;
                         display  : inline;
-                        @if( $UA_IE55 or $UA_IE5  ){
+                        @if( $UA_IE55 or $UA_IE5 ){
                             width : auto;
                         }
                     }
@@ -55,30 +55,27 @@
                         width : 100%; /* <- ?? height : $PARAGRAPH_LINE_HEIGHT_EM; */
                     }
                 }
-                @if( $IS_LTE_WIN_IE6 == false ){
+                @if( $IS_LTE_WIN_IE6 == false ){ /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
                     .Pager i { /* i を絶対配置にすると、Opera mini で表示されない */
                         @include inline-block;
                         @if( $IS_LEGACY ){
                             vertical-align : text-top;
                         }
                         @if( $IS_LTE_WIN_IE7 ){
-                            height         : 0;
-                            width          : 0;
-                        }
-                        @if( $IS_LTE_WIN_IE6 ){
-                            line-height    : 0; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
+                            height : 0;
+                            width  : 0;
                         }
 
                         @if( $IS_LTE_WIN_IE7 ){
                             position       : relative;
                             @if( $UA_IE7 ){
-                                zoom       : 1;
+                                zoom : 1;
                             }
                             @if( $UA_IE7 or $UA_IE6 ){
-                                top        : -.5em;
+                                top : -.5em;
                             }
-                            @if( $UA_IE55 or $UA_IE5  ){
-                                top        : .5em;
+                            @if( $UA_IE55 or $UA_IE5 ){
+                                top : .5em;
                             }
                         }
 
@@ -107,7 +104,7 @@
                         border-width : 0.5em 0 0.5em 0.7em;
                         margin-left  : 0.5em;
                         @if( $IS_LTE_WIN_IE7 ){
-                            left         : 0.5em;
+                            left : 0.5em;
                         }
                     }
                     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){

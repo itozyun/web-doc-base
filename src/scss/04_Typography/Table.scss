@@ -153,7 +153,7 @@ table {
         }
 
         tbody th {
-            :link   , :link:hover,
+            :link, :link:hover,
             .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
                 color : $fill;
             }

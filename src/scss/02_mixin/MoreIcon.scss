@@ -23,7 +23,7 @@
             width        : 0;
         }
 
-        @if( $UA_IE55 or $UA_IE5  ){
+        @if( $UA_IE55 or $UA_IE5 ){
             top          : 0.5em;
             line-height  : 0;
         }  
