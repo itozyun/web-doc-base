@@ -333,6 +333,9 @@ li p,
 tr p {
   line-height: 1.2
 }
+[type=hidden] {
+  display: none!important
+}
 input:-moz-focus-inner {
   border: 0
 }
