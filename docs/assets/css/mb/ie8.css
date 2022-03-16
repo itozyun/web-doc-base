@@ -186,23 +186,6 @@ pre {
   line-height: 1;
   padding: .45em 1em
 }
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.aBodyRoot a:focus:hover,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active,
-a:focus:hover {
-  text-decoration: underline
-}
 .AHead-labels a:active,
 .AHead-labels a:focus,
 .SocialBtns :active,
@@ -455,6 +438,15 @@ body {
 }
 p {
   line-height: 1.9
+}
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:focus:hover,
+:link:hover,
+:visited:hover,
+a:active,
+a:focus:hover {
+  text-decoration: underline
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,

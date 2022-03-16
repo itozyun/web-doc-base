@@ -111,7 +111,7 @@ pre {
   border-width: .1em;
   cursor: pointer;
   text-align: center;
-  line-height: 1.9em;
+  line-height: 1.9;
   padding: 0 1em;
   height: 2.1em
 }
@@ -120,21 +120,6 @@ pre {
 body,
 input.btn {
   padding: 0
-}
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active {
-  text-decoration: underline
 }
 .AHead-labels a:active,
 .SocialBtns :active,
@@ -356,6 +341,13 @@ body {
 }
 p {
   line-height: 1.9
+}
+.aBodyRoot :link,
+.aBodyRoot :visited,
+:link:hover,
+:visited:hover,
+a:active {
+  text-decoration: underline
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -594,8 +586,6 @@ tfoot td,
 tfoot th {
   border-color: #717e73 #f8fbfa
 }
-.BlogArchive,
-.BlogArchive tbody :hover td,
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,

@@ -5,15 +5,11 @@ td,
 th {
   word-break: break-all
 }
+.medal,
 a,
 a img,
 tbody th {
   border-color: #f8fbfa
-}
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #010e06
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -90,14 +86,9 @@ ul {
 .Cover-img,
 .Search,
 .chatL,
-.chatR {
+.chatR,
+:hover img {
   position: relative
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #bddac8
 }
 code,
 kbd,
@@ -119,34 +110,19 @@ var {
   padding: .45em 1em;
   height: 2.1em
 }
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.aBodyRoot a:active:hover,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active:hover {
-  text-decoration: underline
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.SocialBtns :link:active,
-.SocialBtns :visited:active,
-.Subscribe a:link:active,
-.Subscribe a:visited:active,
-.btn:link:active,
-.btn:visited:active {
+.AHead-labels a:active,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
   border-color: #29a119;
   color: #29a119;
   border-style: dotted;
   outline: 0
+}
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #010e06
 }
 body,
 input,
@@ -170,9 +146,7 @@ blockquote :visited img {
 a:active img {
   border-color: #29a119!important
 }
-:link:hover img,
-:visited:hover img {
-  position: relative;
+:hover img {
   top: 2px
 }
 .BreadcrumbList a,
@@ -192,16 +166,11 @@ a:active img {
   background: #021605;
   color: #f8fbfa
 }
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
+.BlogArchive :hover,
+.Label a:hover,
 .aBodyRoot a:active,
 :link,
 :visited,
-a,
 a:active,
 acronym,
 dfn,
@@ -218,10 +187,14 @@ ins {
   background: 0 0;
   color: #021605
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #bddac8
+}
+.LinkList :hover,
+.RichLink-sep :hover,
 .tl tr code,
 .tl tr var,
 blockquote tbody th code,
@@ -251,10 +224,8 @@ a:active var {
   background: 0 0;
   color: #ecfae8
 }
-.ribbon .LinkList :link:hover,
-.ribbon .LinkList :visited:hover,
-.ribbon .RichLink-sep :link:hover,
-.ribbon .RichLink-sep :visited:hover {
+.ribbon .LinkList :hover,
+.ribbon .RichLink-sep :hover {
   background: #052209;
   color: #ecfae8
 }
@@ -335,6 +306,12 @@ body {
 p {
   line-height: 1.9
 }
+.aBodyRoot :link,
+.aBodyRoot :visited,
+:hover,
+a:active:hover {
+  text-decoration: underline
+}
 .js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -343,6 +320,7 @@ p {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -563,8 +541,6 @@ tfoot td,
 tfoot th {
   border-color: #717e73 #f8fbfa
 }
-.BlogArchive,
-.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -694,10 +670,6 @@ input.btn {
 .Cover,
 .RichLink-sep {
   line-height: 1.4
-}
-.medal {
-  border-color: #f8fbfa;
-  color: #021605
 }
 :link .medal,
 :visited .medal {
@@ -1014,8 +986,7 @@ kbd {
 }
 #lH .lMi,
 #lH .lSi {
-  padding-top: 1em;
-  padding-bottom: 1em
+  padding-top: 1em
 }
 .Header h1,
 .h1 {
@@ -1110,6 +1081,9 @@ tr .prettyprint {
 .aa code,
 .aa var {
   color: #00ac06
+}
+.aBodyRoot :hover {
+  text-decoration: none!important
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,

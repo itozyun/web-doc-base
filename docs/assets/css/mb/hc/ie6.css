@@ -11,8 +11,8 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
-.LinkList a:hover,
-.RichLink-sep a:hover {
+.LinkList :hover,
+.RichLink-sep :hover {
   text-decoration: underline!important
 }
 a:active {

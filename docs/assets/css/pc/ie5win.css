@@ -1,14 +1,22 @@
 @charset "UTF-8";
+.Header *,
+.Header h1,
+.Header h1 *,
+.Magazine-date *,
+.aa,
+.aa *,
+.chatMember,
+code,
+input,
+p *,
+var {
+  line-height: 1
+}
 .medal,
 a,
 a img,
 tbody th {
   border-color: #f8fbfa
-}
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #010e06
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -98,19 +106,15 @@ pre samp {
 .Pager,
 .Search,
 .chatL,
-.chatR {
+.chatR,
+:hover img {
   position: relative
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #bddac8
 }
 code,
 kbd,
 var {
-  margin: 0 .1em
+  margin: 0 .1em;
+  padding: 0 .4em
 }
 .tl td,
 .tl th {
@@ -136,41 +140,23 @@ th {
 .chat p,
 .chat p *,
 dd p,
-dd p *,
 li p,
-li p *,
-tr p,
-tr p * {
+tr p {
   line-height: 1.2
 }
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.aBodyRoot a:active:hover,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active:hover {
-  text-decoration: underline
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.SocialBtns :link:active,
-.SocialBtns :visited:active,
-.Subscribe a:link:active,
-.Subscribe a:visited:active,
-.btn:link:active,
-.btn:visited:active {
+.AHead-labels a:active,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
   border-color: #29a119;
   color: #29a119;
   border-style: dotted;
   outline: 0
+}
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #010e06
 }
 body,
 input,
@@ -196,9 +182,7 @@ hr {
 a:active img {
   border-color: #29a119!important
 }
-:link:hover img,
-:visited:hover img {
-  position: relative;
+:hover img {
   top: 2px
 }
 .LinkList a,
@@ -209,16 +193,11 @@ a:active img {
   background: #021605;
   color: #f8fbfa
 }
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
+.BlogArchive :hover,
+.Label a:hover,
 .aBodyRoot a:active,
 :link,
 :visited,
-a,
 a:active,
 acronym,
 dfn,
@@ -235,10 +214,14 @@ ins {
   background: 0 0;
   color: #021605
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
+blockquote,
+code,
+tbody th,
+var {
+  background: #bddac8
+}
+.LinkList :hover,
+.RichLink-sep :hover,
 .tl tr code,
 .tl tr var,
 blockquote tbody th code,
@@ -280,10 +263,8 @@ a:active var {
   background: 0 0;
   color: #ecfae8
 }
-.ribbon .LinkList :link:hover,
-.ribbon .LinkList :visited:hover,
-.ribbon .RichLink-sep :link:hover,
-.ribbon .RichLink-sep :visited:hover {
+.ribbon .LinkList :hover,
+.ribbon .RichLink-sep :hover {
   background: #052209;
   color: #ecfae8
 }
@@ -323,7 +304,6 @@ del {
 }
 input {
   font-size: 1em;
-  line-height: 1;
   height: 2.1em
 }
 textarea {
@@ -349,9 +329,17 @@ html {
   margin: 0;
   height: 100%
 }
-p,
-p * {
+p {
   line-height: 1.9
+}
+p * {
+  vertical-align: text-top
+}
+.aBodyRoot :link,
+.aBodyRoot :visited,
+:hover,
+a:active:hover {
+  text-decoration: underline
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -401,6 +389,18 @@ a:active * {
 .ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
+}
+#jsSidebarFixer,
+#jsSidebarFixer a,
+#jsSidebarFixer div,
+.lMi,
+.lSi,
+.lW,
+:link,
+:visited,
+code,
+var {
+  height: 1%
 }
 a:active {
   background-color: #29a119!important
@@ -571,8 +571,6 @@ tfoot td,
 tfoot th {
   border-color: #717e73 #f8fbfa
 }
-.BlogArchive,
-.BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -625,11 +623,6 @@ em {
 }
 strong {
   background: #6cf
-}
-.lMi,
-.lSi,
-.lW {
-  height: 1%
 }
 .lX {
   overflow-x: hidden
@@ -902,15 +895,6 @@ input.btn {
   display: block;
   float: left
 }
-.Header *,
-.Header h1,
-.Header h1 *,
-.Magazine-date *,
-.aa,
-.aa *,
-.chatMember {
-  line-height: 1
-}
 .Magazine-dd,
 .Magazine-mm {
   font-size: 4em
@@ -1124,6 +1108,9 @@ tr .prettyprint {
 .aa var {
   color: #00ac06
 }
+.aBodyRoot :hover {
+  text-decoration: none!important
+}
 .aBodyRoot :visited,
 .tl tbody th :visited,
 .tl tbody th :visited:hover,
@@ -1264,12 +1251,7 @@ pre var {
 }
 kbd {
   cursor: pointer;
-  letter-spacing: -1px;
-  padding: 0 .4em
-}
-code,
-var {
-  padding: .1em .4em
+  letter-spacing: -1px
 }
 pre code,
 pre var {
@@ -1576,8 +1558,7 @@ dl.note dd {
   thead var {
     color: #000
   }
-  p,
-  p * {
+  p {
     line-height: 1.5
   }
   .ribbon a,

@@ -155,30 +155,10 @@ var {
 th {
   text-align: left
 }
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.aBodyRoot a:active:hover,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active:hover {
-  text-decoration: underline
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.SocialBtns :link:active,
-.SocialBtns :visited:active,
-.Subscribe a:link:active,
-.Subscribe a:visited:active,
-.btn:link:active,
-.btn:visited:active {
+.AHead-labels a:active,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
   color: #29a119;
   border-style: dotted;
   outline: 0
@@ -380,6 +360,14 @@ body {
 }
 p {
   line-height: 1.9
+}
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:active:hover,
+:link:hover,
+:visited:hover,
+a:active:hover {
+  text-decoration: underline
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -887,6 +875,9 @@ input.btn {
   padding: 1em 0;
   color: #717e73
 }
+#jsSidebarFixer,
+#jsSidebarFixer a,
+#jsSidebarFixer div,
 .BreadcrumbList a,
 .Pager a,
 .TxtNavi a {

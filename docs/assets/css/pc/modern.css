@@ -163,23 +163,6 @@ img {
 th {
   text-align: left
 }
-.AHead-labels a:link:hover,
-.AHead-labels a:visited:hover,
-.SocialBtns :link:hover,
-.SocialBtns :visited:hover,
-.Subscribe a:link:hover,
-.Subscribe a:visited:hover,
-.aBodyRoot :link,
-.aBodyRoot :visited,
-.aBodyRoot a:focus:hover,
-.btn:link:hover,
-.btn:visited:hover,
-:link:hover,
-:visited:hover,
-a:active,
-a:focus:hover {
-  text-decoration: underline
-}
 .AHead-labels a:active,
 .AHead-labels a:focus,
 .SocialBtns :active,
@@ -495,6 +478,15 @@ body {
 }
 p {
   line-height: 1.9
+}
+.aBodyRoot :link,
+.aBodyRoot :visited,
+.aBodyRoot a:focus:hover,
+:link:hover,
+:visited:hover,
+a:active,
+a:focus:hover {
+  text-decoration: underline
 }
 :link,
 :visited {
@@ -2320,14 +2312,7 @@ tv {
   :visited,
   :visited *,
   h2 {
-    -webkit-transition-property: border-color
-  }
-  :link *,
-  :link,
-  :visited *,
-  :visited,
-  h2,_:increment,_:not(:root) {
-    -webkit-transition-property: background-color,color,border-color
+    -webkit-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
   }
   .RichLink-meta {
     background: 0 0!important
