@@ -15,8 +15,10 @@
             }
         }
 
-        &, tbody :hover td {
-            color : $COLOR_Light_fill; /* , を消す */
+        @if( $CANUSE_HOVER_PSEUDO_CLASS ){
+            &, tbody :hover td {
+                color : $COLOR_Light_fill; /* , を消す */
+            }
         }
 
         a {
@@ -29,8 +31,14 @@
             border-width : 0 0 1px;
         }
 
-        :link:hover, :visited:hover {
-            text-decoration : none;
+        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+            :hover {
+                text-decoration : none;
+            }
+        } @else {
+            :link:hover, :visited:hover {
+                text-decoration : none;
+            }
         }
 
     /*  Dark theme

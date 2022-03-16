@@ -25,9 +25,16 @@
     }
 
     @if( $UA_Gck-097 == false and $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
-        :link:hover &, :visited:hover & {
-            position : relative;
-            top      : 2px;
+        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+            :hover & {
+                position : relative;
+                top      : 2px;
+            }
+        } @else {
+            :link:hover &, :visited:hover & {
+                position : relative;
+                top      : 2px;
+            }
         }
     }
 

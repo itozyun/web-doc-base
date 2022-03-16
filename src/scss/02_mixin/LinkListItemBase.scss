@@ -41,9 +41,16 @@
         }
     }
 
-    :link:hover, :visited:hover {
-        background : $COLOR_Light_casual_fill;
-        color      : $COLOR_Light_text;
+    @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+        :hover {
+            background : $COLOR_Light_casual_fill;
+            color      : $COLOR_Light_text;
+        }
+    } @else {
+        :link:hover, :visited:hover {
+            background : $COLOR_Light_casual_fill;
+            color      : $COLOR_Light_text;
+        }
     }
 
     /*  ribbon
@@ -73,9 +80,16 @@
             }
         }
 
-        .ribbon & :link:hover, .ribbon & :visited:hover {
-            background : $COLOR_Ribbon_casual_fill;
-            color      : $COLOR_Ribbon_text;
+        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+            .ribbon & :hover {
+                background : $COLOR_Ribbon_casual_fill;
+                color      : $COLOR_Ribbon_text;
+            }
+        } @else {
+            .ribbon & :link:hover, .ribbon & :visited:hover {
+                background : $COLOR_Ribbon_casual_fill;
+                color      : $COLOR_Ribbon_text;
+            }
         }
     }
 
@@ -112,8 +126,14 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
-        a:hover {
-            text-decoration : underline !important;
+        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+            :hover {
+                text-decoration : underline !important;
+            }
+        } @else {
+            a:hover {
+                text-decoration : underline !important;
+            }
         }
     }
 }

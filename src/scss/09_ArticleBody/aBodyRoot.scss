@@ -3,7 +3,12 @@
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active では下線が付く*/
 .aBodyRoot {
     :link, :visited { text-decoration : underline; }
-    :link:hover, :visited:hover { text-decoration : none; }
+
+    @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+        :hover { text-decoration : none !important; } // 詳細度を上げないと上書きできない(IE6-)
+    } @else {
+        :link:hover, :visited:hover { text-decoration : none; }
+    }
 
     @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
         a:active { text-decoration : none; }
@@ -13,7 +18,11 @@
     }
 
     @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
-        a:active:hover { text-decoration : underline; }
+        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+            // :active:hover { text-decoration : underline !important; } // 上書きできない!(IE6-)
+        } @else {
+            a:active:hover { text-decoration : underline; }
+        }
     }
     @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
         a:focus:hover { text-decoration : underline; }
