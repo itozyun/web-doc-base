@@ -1,12 +1,18 @@
 /*  line-height for <p>
 --------------------------------------------------------------------------------------*/
 p {
-    @include line-height($PARAGRAPH_LINE_HEIGHT, 0);
+    line-height : $PARAGRAPH_LINE_HEIGHT;
+    @if( $UA_IE5 ){
+        * {
+            vertical-align : text-top;
+            line-height    : 1;
+        }
+    }
 }
 
 tr, li, dd {
     p {
-        @include line-height($BASE_LINE_HEIGHT, 0);
+        line-height : $BASE_LINE_HEIGHT;
     }
 }
 
@@ -30,6 +36,6 @@ tr, li, dd {
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     p {
-        @include line-height($PARAGRAPH_LINE_HEIGHT_PRINT, 0);/* for paper saving */
+        line-height : $PARAGRAPH_LINE_HEIGHT_PRINT;/* for paper saving */
     }
 }

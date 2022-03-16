@@ -25,8 +25,15 @@
 
     code, var {
         background : $COLOR_Light_casual_fill;
-        padding    : .1em .4em;
         margin     : 0 .1em;
+
+        @if( $UA_IE5 ){
+            padding     : 0 .4em;
+            line-height : 1;
+            height      : 1%; // hasLayout=true にしないと塗りがランダムかつ頻繁に欠落する
+        } @else {
+            padding : .1em .4em;
+        }
 
         @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
             a:active & {
