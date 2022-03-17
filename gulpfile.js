@@ -295,9 +295,9 @@ const plumber     = require("gulp-plumber"),
 gulp.task('css', function(){
     return gulp.src([
             "./src/scss/01_Variables/01_BuildTargets.scss",
-            "./src/scss.docs/docs_color.scss",
+            // "./src/scss.docs/docs_color.scss",
             "./src/scss/**/*.scss",
-            "./src/scss.docs/**.scss"
+            // "./src/scss.docs/**.scss"
         ])
         .pipe(plumber())
         .pipe(
