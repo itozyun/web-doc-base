@@ -4,6 +4,12 @@ sub,
 sup {
   font-size: 75%
 }
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 .SocialBtns .hb:link:focus,
 .SocialBtns .hb:visited:focus,
 .SocialBtns .ln:link:focus,
@@ -14,12 +20,11 @@ sup {
 .SocialBtns .tw:visited:focus,
 .baseColor .btn:link:focus,
 .baseColor .btn:visited:focus,
-.chat,
 .medal,
 a,
 a img,
 tbody th {
-  border-color: #f8fbfa
+  border-color: #fdeeb7
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -31,7 +36,7 @@ blockquote hr,
 h5,
 h6,
 table {
-  border-color: #717e73
+  border-color: #8a7322
 }
 .BreadcrumbList,
 .Comment div,
@@ -40,7 +45,7 @@ table {
 .baseColor :visited .RichLink-meta,
 a,
 h6 {
-  color: #717e73
+  color: #8a7322
 }
 dd,
 li {
@@ -67,7 +72,7 @@ tr ul {
 }
 #lB .lS,
 body {
-  background: #ebeed5
+  background: #fffd93
 }
 .lM1,
 .lM2,
@@ -89,22 +94,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-#lH .lSi,
-.AAuthor,
-.Comment p,
-.Cover,
-.Cover-img,
-.RichLink a,
-.box,
-.chatL,
-.chatR,
-.commonForm-pair,
-.lMi,
-.lSi,
-sub,
-sup {
-  position: relative
-}
 .hscroll pre,
 textarea {
   overflow: auto
@@ -113,7 +102,7 @@ blockquote,
 code,
 tbody th,
 var {
-  background: #bddac8
+  background: #e7d182
 }
 code,
 kbd,
@@ -127,6 +116,21 @@ pre {
 .tl td,
 .tl th {
   vertical-align: top
+}
+#lH .lSi,
+.AAuthor,
+.Comment p,
+.Cover,
+.Cover-img,
+.Pager,
+.RichLink a,
+.box,
+.commonForm-pair,
+.lMi,
+.lSi,
+sub,
+sup {
+  position: relative
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -144,8 +148,8 @@ pre {
 .SocialBtns :focus,
 .Subscribe a:focus,
 .btn:focus {
-  border-color: #29a119;
-  color: #29a119;
+  border-color: #0d5bb5;
+  color: #0d5bb5;
   border-style: dotted;
   outline: 0
 }
@@ -170,10 +174,10 @@ a img {
 *,
 blockquote :link img,
 blockquote :visited img {
-  border-color: #bddac8
+  border-color: #e7d182
 }
 a:focus img {
-  border-color: #29a119!important
+  border-color: #0d5bb5!important
 }
 .LinkList a,
 .RichLink-sep a {
@@ -183,8 +187,8 @@ a:focus img {
 }
 .LinkList a:not([href]),
 .RichLink-sep a:not([href]) {
-  background: #021605;
-  color: #f8fbfa
+  background: #06284e;
+  color: #fdeeb7
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -196,8 +200,8 @@ blockquote tbody th code,
 blockquote tbody th var,
 thead code,
 thead var {
-  background: #bddac8;
-  color: #021605
+  background: #e7d182;
+  color: #06284e
 }
 dt {
   font-weight: 700;
@@ -237,7 +241,6 @@ strong,
 var {
   font-style: normal
 }
-.chat,
 .hscroll,
 pre {
   margin: 1em 0
@@ -265,13 +268,6 @@ del {
 input {
   line-height: 1;
   height: 2.1em
-}
-.chat p,
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
 }
 .AHead-labels i,
 .RichLink br,
@@ -308,7 +304,8 @@ input[type=submit]:-moz-focus-inner {
 }
 *,
 .RichLink a img,
-.tl {
+.tl,
+.tl th {
   border-width: 0
 }
 html {
@@ -331,7 +328,7 @@ html {
 .tl thead th,
 :visited,
 body {
-  color: #021605
+  color: #06284e
 }
 p {
   line-height: 1.9
@@ -353,8 +350,8 @@ a:focus:hover {
 }
 :link:hover,
 form :focus {
-  color: #29a119;
-  border-color: #29a119
+  color: #0d5bb5;
+  border-color: #0d5bb5
 }
 :visited:hover {
   color: #419;
@@ -364,17 +361,17 @@ form :focus {
 .tl thead td a:focus,
 .tl thead th a:focus,
 a:focus {
-  background-color: #ebeed5!important
+  background-color: #fffd93!important
 }
 :target,
 :target * {
-  background: #29a119!important;
+  background: #0d5bb5!important;
   color: #fff!important;
   border-color: #fff!important
 }
 .baseColor,
 .medal {
-  background: #f8fbfa
+  background: #fdeeb7
 }
 h1,
 h2,
@@ -385,7 +382,7 @@ h6 {
 }
 h4 {
   border-width: 0 0 0 .7em;
-  border-color: #021605;
+  border-color: #06284e;
   padding: 0 0 0 .3em
 }
 h5 {
@@ -419,8 +416,9 @@ th {
   border-width: 0 0 1px
 }
 .ABody h2,
+.ABody h2 *,
 .Cover h2 {
-  border-color: #29a119
+  border-color: #0d5bb5
 }
 iframe,
 img {
@@ -490,11 +488,11 @@ h2 {
   font-weight: 700
 }
 .wn {
-  color: #ca088a!important
+  color: #c00!important
 }
 hr {
   height: 0;
-  border-color: #bddac8;
+  border-color: #e7d182;
   margin: 2em 6%
 }
 tr hr {
@@ -517,15 +515,15 @@ th {
 }
 td {
   padding: .5em 0;
-  border-color: #f8fbfa #f8fbfa #bddac8
+  border-color: #fdeeb7 #fdeeb7 #e7d182
 }
 thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #717e73;
-  border-color: #bddac8 #79877c;
-  color: #f8fbfa
+  background: #8a7322;
+  border-color: #e7d182 #937c2c;
+  color: #fdeeb7
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -548,7 +546,7 @@ tfoot td {
 }
 tfoot td,
 tfoot th {
-  border-color: #717e73 #f8fbfa
+  border-color: #8a7322 #fdeeb7
 }
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
@@ -559,34 +557,34 @@ blockquote tbody th :link,
 blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
-  color: #f8fbfa
+  color: #fdeeb7
 }
 blockquote h3,
 blockquote table {
-  border-color: #021605
+  border-color: #06284e
 }
 blockquote thead td,
 blockquote thead th {
-  background: #021605;
-  border-color: #bddac8 #152a19
+  background: #06284e;
+  border-color: #e7d182 #1d3953
 }
 blockquote tbody th {
-  background: #717e73;
-  border-color: #bddac8;
-  color: #f8fbfa
+  background: #8a7322;
+  border-color: #e7d182;
+  color: #fdeeb7
 }
 blockquote td {
-  border-color: #bddac8 #bddac8 #717e73
+  border-color: #e7d182 #e7d182 #8a7322
 }
 blockquote tfoot td,
 blockquote tfoot th {
-  border-color: #021605 #bddac8
+  border-color: #06284e #e7d182
 }
 blockquote tbody th a:focus,
 thead a:focus,
 thead td a:focus,
 thead th a:focus {
-  background-color: #29a119!important
+  background-color: #0d5bb5!important
 }
 .Cover-btn,
 .commonForm-send,
@@ -644,12 +642,12 @@ strong {
 .btn:link {
   background: #bbe;
   border-color: #bbe;
-  color: #010e06
+  color: #062241
 }
 .btn:visited {
-  background: #010e06;
-  border-color: #ecfae8;
-  color: #ecfae8
+  background: #062241;
+  border-color: #fed33b;
+  color: #fed33b
 }
 .Subscribe .atom:link:focus,
 .Subscribe .atom:visited:focus,
@@ -661,7 +659,7 @@ strong {
 .Subscribe .stm:visited:focus,
 .btn:link:focus,
 .btn:visited:focus {
-  border-color: #010e06
+  border-color: #062241
 }
 input.btn {
   line-height: 1;
@@ -707,9 +705,9 @@ input.btn {
 }
 :link .medal,
 :visited .medal {
-  border-color: #021605;
-  background: #021605;
-  color: #f8fbfa
+  border-color: #06284e;
+  background: #06284e;
+  color: #fdeeb7
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -745,11 +743,6 @@ input.btn {
   float: left;
   margin: 0 1em 1em 0
 }
-.Pager span,
-.Search .btn {
-  position: absolute;
-  top: 1em
-}
 .ABody {
   margin: 3.5em 0 2em
 }
@@ -760,7 +753,7 @@ input.btn {
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  color: #29a119;
+  color: #0d5bb5;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
@@ -777,7 +770,7 @@ input.btn {
 }
 .ADesc,
 .AHead {
-  color: #717e73;
+  color: #8a7322;
   margin: 1em 0
 }
 .ADesc p,
@@ -786,7 +779,7 @@ input.btn {
 }
 .AHead h1 {
   font-size: 2em;
-  color: #021605;
+  color: #06284e;
   padding: 2em 0;
   margin: 0
 }
@@ -797,21 +790,21 @@ input.btn {
 }
 .AHead-labels {
   margin-top: .5em;
-  color: #ebeed5
+  color: #fffd93
 }
 .AHead-labels a:link {
   background: #24c;
   border-color: #24c;
-  color: #ebeed5
+  color: #fffd93
 }
 .AHead-labels a:visited {
-  background: #ebeed5;
-  border-color: #717e73;
-  color: #717e73
+  background: #fffd93;
+  border-color: #8a7322;
+  color: #8a7322
 }
 .AHead-labels a:link:focus,
 .AHead-labels a:visited:focus {
-  border-color: #ebeed5
+  border-color: #fffd93
 }
 .Attribution,
 .BreadcrumbList {
@@ -849,9 +842,7 @@ input.btn {
 }
 .Cover h2,
 .aa,
-.chat,
-.chatMember,
-.mona,
+.prettyprint,
 blockquote,
 kbd {
   border-width: 1px
@@ -874,7 +865,9 @@ kbd {
   max-width: 100%
 }
 .Header h1,
+.Pager span,
 .RichLink b,
+.caption,
 .h1,
 .js-bqCite,
 blockquote:after {
@@ -888,10 +881,16 @@ blockquote:after {
   width: 100%
 }
 .Cover h2 {
-  background: #29a119;
-  color: #f8fbfa;
+  background: #0d5bb5;
+  color: #fdeeb7;
   font-size: .825em;
   padding: .6em
+}
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: 0 0!important
 }
 .Cover h3 {
   font-size: 1.33em;
@@ -917,21 +916,26 @@ blockquote:after {
 .RichLink a {
   padding: 1em .5em 0;
   border-width: 0 0 1px;
-  border-color: #052209!important
+  border-color: #08366b!important
+}
+.Pager span,
+.Search .btn {
+  position: absolute;
+  top: 1em
 }
 .baseColor .RichLink a {
-  border-color: #bddac8!important
+  border-color: #e7d182!important
 }
 .RichLink-meta {
-  color: #052209;
+  color: #08366b;
   margin: 1.143em 0
 }
 :link .RichLink-meta,
 :visited .RichLink-meta {
-  color: #92a094
+  color: #ffeba1
 }
 .baseColor .RichLink-meta {
-  color: #bddac8
+  color: #e7d182
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -951,8 +955,7 @@ blockquote:after {
 }
 .Header,
 .Header h1,
-.aa,
-.chatMember {
+.aa {
   line-height: 1
 }
 .lS .RichLink img {
@@ -1030,52 +1033,52 @@ _:-moz-any-link {
   padding-bottom: 0
 }
 .Subscribe div {
-  color: #010e06
+  color: #062241
 }
 .Subscribe .atom:link {
   background: #dd6502;
   border-color: #dd6502;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .atom:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #dd6502;
   color: #dd6502
 }
 .Subscribe .rss:link {
   background: #dd8902;
   border-color: #dd8902;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .rss:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #dd8902;
   color: #dd8902
 }
 .Subscribe .fl:link {
   background: #53bb45;
   border-color: #53bb45;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .fl:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #53bb45;
   color: #53bb45
 }
 .Subscribe .stm:link {
   background: #8bc53f;
   border-color: #8bc53f;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .stm:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #8bc53f;
   color: #8bc53f
 }
 .TxtNavi {
   padding: 1em 0;
   text-align: right;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .aa {
   margin: 1em 0;
@@ -1084,23 +1087,17 @@ _:-moz-any-link {
   border-color: #0a0809
 }
 .note .aa,
-.note .mona,
 .note .prettyprint,
 dl .aa,
-dl .mona,
 dl .prettyprint,
 li .aa,
-li .mona,
 li .prettyprint,
 tr .aa,
-tr .mona,
 tr .prettyprint {
   padding: 1em
 }
 .aa,
-.mona,
 .note .aa,
-.note .mona,
 .note .prettyprint,
 .prettyprint {
   padding: 1em 3%
@@ -1124,10 +1121,10 @@ blockquote .tl tbody th :visited {
 blockquote {
   padding: 1em 1px
 }
-blockquote:before {
+blockquote[title]:before {
   content: attr(title)
 }
-blockquote:after {
+blockquote[cite]:after {
   content: attr(cite)
 }
 .js-bqLink,
@@ -1140,7 +1137,7 @@ blockquote:before {
 blockquote:after {
   font-size: .875em;
   text-align: right;
-  color: #717e73;
+  color: #8a7322;
   margin: 0 1.5%
 }
 .box dl,
@@ -1159,83 +1156,6 @@ blockquote:after {
   float: left;
   margin: 0 1em 1em 3%
 }
-.chat {
-  color: #fff;
-  background: #7493c2;
-  padding-bottom: 1em;
-  text-align: center
-}
-.chatTitle {
-  background: #273248;
-  border-color: #273248;
-  border-width: 0 0 1px;
-  padding: 1em 2%
-}
-.chat h2,
-.chat h3,
-.chat h4,
-.chat h5,
-.chat h6,
-.chat p {
-  font-size: 1em;
-  color: #fff;
-  background: #5d769e;
-  border-color: #5d769e;
-  border-width: 1px;
-  margin: 1em 2%;
-  padding: .4em 2%;
-  display: -moz-inline-box
-}
-.chatL,
-.chatR {
-  margin: 1em 0;
-  text-align: left
-}
-.chatL {
-  padding: 0 20% 0 4em
-}
-.chatR {
-  padding: 0 4em 0 20%
-}
-.chatL p,
-.chatR p {
-  margin: .4em 0;
-  display: block;
-  text-align: left;
-  color: #111
-}
-.chatL .chatMember,
-.chatL p {
-  background: #fff;
-  border-color: #fff
-}
-.chatR .chatMember,
-.chatR p {
-  background: #85e445;
-  border-color: #85e445
-}
-.tl td,
-.tl th,
-pre code,
-pre var {
-  background: 0 0!important
-}
-.chatMember {
-  position: absolute;
-  top: -.414em;
-  overflow: hidden;
-  text-align: center!important;
-  width: 2em;
-  height: 1em;
-  padding: .914em .414em;
-  color: #111
-}
-.chatL .chatMember {
-  left: .4em
-}
-.chatR .chatMember {
-  right: .4em
-}
 .hscroll pre {
   margin: 0 0 .5em;
   white-space: pre
@@ -1244,7 +1164,7 @@ pre var {
   white-space: nowrap
 }
 kbd {
-  border-color: #021605;
+  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1264,8 +1184,8 @@ blockquote code,
 blockquote var,
 tbody th code,
 tbody th var {
-  background: #717e73;
-  color: #f8fbfa
+  background: #8a7322;
+  color: #fdeeb7
 }
 .links [href]:before {
   content: ">";
@@ -1276,13 +1196,6 @@ tbody th var {
 }
 .links [href*="/web.archive."]:before {
   content: "*"
-}
-.mona {
-  font-family: "IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,Mona,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","ＭＳＰゴシック","MSPゴシック","MS Pｺﾞｼｯｸ","MS PGothic",sans-serif;
-  line-height: 1.125;
-  background: #bcd;
-  border-color: #bcd;
-  color: #00193d
 }
 .note {
   padding-left: 25%
@@ -1315,7 +1228,6 @@ dl.note dd {
   margin-right: 3%
 }
 .caption {
-  display: block;
   text-align: center;
   font-size: .875em;
   width: 100%;
@@ -1334,19 +1246,18 @@ dl.note dd {
 .tl tfoot th,
 .tl thead td,
 .tl thead th {
-  border-color: #bddac8;
+  border-color: #e7d182;
   padding-top: .5em;
   padding-bottom: .5em
 }
 .tl th {
   padding: .5em .8em .5em .5em;
-  border-width: 0;
   text-align: left
 }
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #bddac8;
+  border-color: #e7d182;
   border-style: solid
 }
 .tl tfoot td {
@@ -1362,8 +1273,7 @@ dl.note dd {
   text-indent: -1.2em
 }
 .Pager {
-  position: relative;
-  color: #f8fbfa;
+  color: #fdeeb7;
   height: 4em
 }
 .Pager-next {
@@ -1378,13 +1288,12 @@ dl.note dd {
   text-align: right
 }
 .Pager span {
-  display: block;
   width: 32%
 }
 .Pager i {
   display: -moz-inline-box;
   vertical-align: text-top;
-  border-color: transparent #717e73
+  border-color: transparent #8a7322
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1400,23 +1309,23 @@ dl.note dd {
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
-  border-color: #717e73 transparent
+  border-color: #8a7322 transparent
 }
 .Pager-top :focus i {
   border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0 .5em;
-  color: #f8fbfa;
+  color: #fdeeb7;
   text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
   border-color: #1b95e0;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .tw:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #1b95e0;
   color: #1b95e0
 }
@@ -1439,10 +1348,10 @@ dl.note dd {
 .SocialBtns .hb:link {
   background: #008fde;
   border-color: #008fde;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .hb:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #008fde;
   color: #008fde
 }
@@ -1459,27 +1368,26 @@ dl.note dd {
 .SocialBtns .pk:link {
   background: #ee4056;
   border-color: #ee4056;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .pk:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #ee4056;
   color: #ee4056
 }
 .SocialBtns .ln:link {
   background: #00c300;
   border-color: #00c300;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .ln:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #00c300;
   color: #00c300
 }
 .prettyprint {
   background: #333;
   color: #fff;
-  border-width: 1px;
   border-color: #333
 }
 code .atv,
@@ -1536,19 +1444,15 @@ li.L8 {
 .box .jsCapLarge {
   float: none
 }
-#lE,
-#lF {
-  border-top: .3em solid #29a119
-}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .baseColor .btn:visited {
-  background: #f8fbfa;
-  border-color: #021605;
-  color: #021605
+  background: #fdeeb7;
+  border-color: #06284e;
+  color: #06284e
 }
 @media screen {
   #lB .lM {
@@ -1663,7 +1567,6 @@ li.L8 {
   .Cover h3,
   .aa,
   .baseColor,
-  .mona,
   body {
     background: #fff;
     color: #000
@@ -1782,27 +1685,9 @@ li.L8 {
     font-size: .875em;
     color: #006
   }
-  .chat,
-  .chat .chatMember,
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatL p,
-  .chatR p {
-    color: #000;
-    background: #fff;
-    border-color: #666
-  }
   blockquote {
     background: 0 0;
     margin: 1em 0
-  }
-  .chatTitle,
-  .prettyprint {
-    background: #fff
   }
   .hscroll {
     overflow: visible
@@ -1822,7 +1707,6 @@ li.L8 {
     border-width: 1px;
     border-color: #ccc
   }
-  #lF,
   pre code {
     border: 0
   }
@@ -1834,6 +1718,9 @@ li.L8 {
   .SocialBtns {
     padding: 0 3%;
     display: none
+  }
+  .prettyprint {
+    background: #fff
   }
   code .atv,
   code .str {

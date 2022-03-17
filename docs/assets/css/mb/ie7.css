@@ -5,6 +5,12 @@ td,
 th {
   word-break: break-all
 }
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
 .SocialBtns .hb:link:active,
 .SocialBtns .hb:visited:active,
 .SocialBtns .ln:link:active,
@@ -15,11 +21,11 @@ th {
 .SocialBtns .tw:visited:active,
 .baseColor .btn:link:active,
 .baseColor .btn:visited:active,
-.chat,
+.medal,
 a,
 a img,
 tbody th {
-  border-color: #f8fbfa
+  border-color: #fdeeb7
 }
 .AHead-labels a:link:active,
 .AHead-labels a:visited:active,
@@ -36,7 +42,7 @@ tbody th {
 .ribbon :link img,
 .ribbon :visited img,
 .ribbon a {
-  border-color: #010e06
+  border-color: #062241
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -48,7 +54,7 @@ blockquote hr,
 h5,
 h6,
 table {
-  border-color: #717e73
+  border-color: #8a7322
 }
 .Comment div,
 .Cover-meta,
@@ -56,7 +62,7 @@ table {
 .baseColor :visited .RichLink-meta,
 a,
 h6 {
-  color: #717e73
+  color: #8a7322
 }
 dd,
 li {
@@ -94,7 +100,14 @@ th {
 }
 .baseColor,
 .medal {
-  background: #f8fbfa
+  background: #fdeeb7
+}
+.Cover-btn i,
+.Cover-img,
+.Pager,
+.Search,
+kbd:hover {
+  position: relative
 }
 .links,
 .note,
@@ -110,22 +123,12 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-.Cover-btn i,
-.Cover-img,
-.Pager,
-.Search,
-.chatL,
-.chatR,
-kbd:hover {
-  position: relative
-}
 .AAuthor,
 .Comment p,
 .Cover,
 .RichLink a,
 .Search .btn,
 .box,
-.chatMember,
 .lMi,
 .lSi {
   overflow: hidden
@@ -134,7 +137,7 @@ blockquote,
 code,
 tbody th,
 var {
-  background: #bddac8
+  background: #e7d182
 }
 code,
 kbd,
@@ -160,7 +163,7 @@ var {
 .SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
-  color: #29a119;
+  color: #0d5bb5;
   border-style: dotted;
   outline: 0
 }
@@ -181,10 +184,10 @@ a img {
 *,
 blockquote :link img,
 blockquote :visited img {
-  border-color: #bddac8
+  border-color: #e7d182
 }
 a:active img {
-  border-color: #29a119!important
+  border-color: #0d5bb5!important
 }
 :link:hover img,
 :visited:hover img {
@@ -196,8 +199,8 @@ a:active img {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
-  background: #021605;
-  color: #f8fbfa
+  background: #06284e;
+  color: #fdeeb7
 }
 .LinkList :link,
 .RichLink-sep :link {
@@ -207,7 +210,7 @@ a:active img {
 .LinkList :visited,
 .RichLink-sep :visited {
   background: 0 0;
-  color: #021605
+  color: #06284e
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -219,19 +222,19 @@ blockquote tbody th code,
 blockquote tbody th var,
 thead code,
 thead var {
-  background: #bddac8;
-  color: #021605
+  background: #e7d182;
+  color: #06284e
 }
 .Cover h2,
 a:active code,
 a:active var,
 tbody :hover th {
-  background: #29a119
+  background: #0d5bb5
 }
 .LinkList .ribbon a,
 .RichLink-sep .ribbon a {
-  background: #ecfae8;
-  color: #010e06
+  background: #fed33b;
+  color: #062241
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
@@ -241,14 +244,14 @@ tbody :hover th {
 .ribbon .LinkList :visited,
 .ribbon .RichLink-sep :visited {
   background: 0 0;
-  color: #ecfae8
+  color: #fed33b
 }
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
 .ribbon .RichLink-sep :link:hover,
 .ribbon .RichLink-sep :visited:hover {
-  background: #052209;
-  color: #ecfae8
+  background: #08366b;
+  color: #fed33b
 }
 .Cover-btn i {
   border-width: .5em 0 .5em .7em;
@@ -261,10 +264,10 @@ tbody :hover th {
 .Cover-btn :link i,
 .Cover-btn :link:active i,
 .Cover-btn :visited:active i {
-  border-color: transparent #f8fbfa
+  border-color: transparent #fdeeb7
 }
 .Cover-btn :visited i {
-  border-color: transparent #021605
+  border-color: transparent #06284e
 }
 :active {
   outline: 0
@@ -320,13 +323,6 @@ input {
   line-height: 1;
   height: 1em
 }
-.chat p,
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 textarea {
   font-size: 1em;
   overflow: auto;
@@ -351,8 +347,8 @@ html {
   height: 100%
 }
 body {
-  background: #010e06;
-  color: #021605
+  background: #062241;
+  color: #06284e
 }
 p {
   line-height: 1.9
@@ -373,16 +369,17 @@ a:active:hover {
 :link {
   color: #24c
 }
+.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
 :visited {
-  color: #021605
+  color: #06284e
 }
 .ribbon :link:hover,
 :link:hover {
-  color: #29a119;
-  border-color: #29a119
+  color: #0d5bb5;
+  border-color: #0d5bb5
 }
 :visited:hover {
   color: #419;
@@ -394,7 +391,7 @@ a:active:hover {
 .ribbon a,
 :link .RichLink-meta,
 :visited .RichLink-meta {
-  color: #92a094
+  color: #ffeba1
 }
 a:active,
 a:active * {
@@ -406,14 +403,14 @@ a:active * {
 .ribbon,
 .ribbon .AHead h1,
 .ribbon :visited {
-  color: #ecfae8
+  color: #fed33b
 }
 .ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
 }
 a:active {
-  background-color: #29a119!important
+  background-color: #0d5bb5!important
 }
 .RichLink b,
 h1,
@@ -430,7 +427,7 @@ h2 {
 }
 h4 {
   border-width: 0 0 0 .7em;
-  border-color: #021605;
+  border-color: #06284e;
   padding: 0 0 0 .3em
 }
 h5 {
@@ -464,18 +461,11 @@ th {
   border-width: 0 0 1px
 }
 .ABody h2,
+.ABody h2 *,
 .Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover th {
-  border-color: #29a119
-}
-#lB .lS,
-#lE,
-#lF,
-#lF .lX,
-.tl tfoot th,
-table {
-  border-width: 1px 0 0
+  border-color: #0d5bb5
 }
 iframe,
 img {
@@ -483,14 +473,12 @@ img {
   max-width: 94%
 }
 .Cover-meta,
-.Header h1,
 .Pager span,
 .RichLink b,
 .Search,
 .Search-txt,
 .caption,
 .commonForm,
-.h1,
 .js-bqCite,
 .jsPicaLarge,
 .links a,
@@ -559,12 +547,20 @@ h2 {
   font-size: 1.1em
 }
 .wn {
-  color: #ca088a!important
+  color: #c00!important
 }
 hr {
   height: 0;
-  border-color: #bddac8;
+  border-color: #e7d182;
   margin: 2em 6%
+}
+#lB .lS,
+#lE,
+#lF,
+#lF .lX,
+.tl tfoot th,
+table {
+  border-width: 1px 0 0
 }
 tr hr {
   margin: 1em 9%
@@ -584,15 +580,15 @@ th {
 }
 td {
   padding: .5em 0;
-  border-color: #f8fbfa #f8fbfa #bddac8
+  border-color: #fdeeb7 #fdeeb7 #e7d182
 }
 thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #717e73;
-  border-color: #bddac8 #79877c;
-  color: #f8fbfa
+  background: #8a7322;
+  border-color: #e7d182 #937c2c;
+  color: #fdeeb7
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -605,7 +601,7 @@ tfoot td {
 }
 tfoot td,
 tfoot th {
-  border-color: #717e73 #f8fbfa
+  border-color: #8a7322 #fdeeb7
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
@@ -617,31 +613,31 @@ blockquote tbody th :link,
 blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
-  color: #f8fbfa
+  color: #fdeeb7
 }
 blockquote h3,
 blockquote table {
-  border-color: #021605
+  border-color: #06284e
 }
 blockquote thead td,
 blockquote thead th {
-  background: #021605;
-  border-color: #bddac8 #152a19
+  background: #06284e;
+  border-color: #e7d182 #1d3953
 }
 blockquote tbody th {
-  background: #717e73;
-  border-color: #bddac8;
-  color: #f8fbfa
+  background: #8a7322;
+  border-color: #e7d182;
+  color: #fdeeb7
 }
 blockquote td {
-  border-color: #bddac8 #bddac8 #717e73
+  border-color: #e7d182 #e7d182 #8a7322
 }
 blockquote tfoot td,
 blockquote tfoot th {
-  border-color: #021605 #bddac8
+  border-color: #06284e #e7d182
 }
 blockquote tbody :hover td {
-  border-color: #bddac8 #bddac8 #29a119
+  border-color: #e7d182 #e7d182 #0d5bb5
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
@@ -653,12 +649,12 @@ tbody :hover th :visited {
   color: #fff
 }
 tbody :hover td {
-  border-color: #f8fbfa #f8fbfa #29a119;
-  color: #29a119
+  border-color: #fdeeb7 #fdeeb7 #0d5bb5;
+  color: #0d5bb5
 }
 tbody :hover th a:active {
   background: #fff!important;
-  color: #29a119!important
+  color: #0d5bb5!important
 }
 .Cover-btn,
 .commonForm-send,
@@ -678,10 +674,10 @@ tbody :hover th a:active {
   text-transform: uppercase
 }
 .ribbon * {
-  border-color: #052209
+  border-color: #08366b
 }
 #lB .lS {
-  background: #ebeed5
+  background: #fffd93
 }
 em {
   background: #ff6
@@ -709,12 +705,12 @@ strong {
 .btn:link {
   background: #bbe;
   border-color: #bbe;
-  color: #010e06
+  color: #062241
 }
 .btn:visited {
-  background: #010e06;
-  border-color: #ecfae8;
-  color: #ecfae8
+  background: #062241;
+  border-color: #fed33b;
+  color: #fed33b
 }
 input.btn {
   height: 2.1em;
@@ -761,15 +757,11 @@ input.btn {
 .RichLink-sep {
   line-height: 1.4
 }
-.medal {
-  border-color: #f8fbfa;
-  color: #021605
-}
 :link .medal,
 :visited .medal {
-  border-color: #021605;
-  background: #021605;
-  color: #f8fbfa
+  border-color: #06284e;
+  background: #06284e;
+  color: #fdeeb7
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -815,7 +807,7 @@ input.btn {
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  color: #29a119;
+  color: #0d5bb5;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
@@ -834,12 +826,12 @@ input.btn {
   margin: 1em 0 0
 }
 .AHead {
-  color: #717e73;
+  color: #8a7322;
   margin: 1em 0
 }
 .AHead h1 {
   font-size: 2em;
-  color: #021605;
+  color: #06284e;
   padding: 2em 0;
   margin: 0
 }
@@ -851,20 +843,20 @@ input.btn {
 .AHead-labels {
   margin-top: .5em;
   font-family: Meiryo,"MS PGothic",sans-serif;
-  color: #010e06
+  color: #062241
 }
 .AHead-labels i,
 .RichLink br {
   display: none
 }
 .AHead-labels a:visited {
-  background: #010e06;
-  border-color: #92a094;
-  color: #92a094
+  background: #062241;
+  border-color: #ffeba1;
+  color: #ffeba1
 }
 .AHead-labels a:link:hover {
   border-color: #bbe;
-  color: #010e06
+  color: #062241
 }
 .Attribution {
   padding: 1em 0
@@ -896,7 +888,7 @@ input.btn {
 }
 .BreadcrumbList {
   padding: 1em 0;
-  color: #717e73
+  color: #8a7322
 }
 .BreadcrumbList a,
 .Pager a,
@@ -922,9 +914,6 @@ input.btn {
 }
 .Cover h2,
 .aa,
-.chat,
-.chatMember,
-.mona,
 blockquote,
 kbd {
   border-width: 1px
@@ -952,9 +941,15 @@ kbd {
 .Cover h2 {
   display: inline;
   zoom: 1;
-  color: #f8fbfa;
+  color: #fdeeb7;
   font-size: .825em;
   padding: .6em
+}
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: 0 0!important
 }
 .Cover h3 {
   font-size: 1.33em;
@@ -967,7 +962,7 @@ kbd {
   margin: 2em auto
 }
 .Label div {
-  color: #f8fbfa;
+  color: #fdeeb7;
   text-justify: inter-ideograph;
   line-break: normal;
   text-align: justify
@@ -975,7 +970,7 @@ kbd {
 .Subscribe div,
 .ribbon .Label div,
 .ribbon .TxtNavi {
-  color: #010e06
+  color: #062241
 }
 #lF .Label a,
 .lS .Label a {
@@ -991,17 +986,17 @@ kbd {
 .RichLink a {
   padding: 1em .5em;
   border-width: 0 0 1px;
-  border-color: #052209!important
+  border-color: #08366b!important
 }
 .baseColor .RichLink a {
-  border-color: #bddac8!important
+  border-color: #e7d182!important
 }
 .RichLink-meta {
-  color: #052209;
+  color: #08366b;
   margin: 1.143em 0
 }
 .baseColor .RichLink-meta {
-  color: #bddac8
+  color: #e7d182
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -1020,8 +1015,7 @@ kbd {
 }
 .Header,
 .Header h1,
-.aa,
-.chatMember {
+.aa {
   line-height: 1
 }
 .RichLink b {
@@ -1090,6 +1084,7 @@ kbd {
 .Header h1,
 .h1 {
   font-size: 1.5em;
+  display: block;
   margin: 0 0 .5em
 }
 .Header h1 {
@@ -1101,47 +1096,47 @@ kbd {
 .Subscribe .atom:link {
   background: #dd6502;
   border-color: #dd6502;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .atom:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #dd6502;
   color: #dd6502
 }
 .Subscribe .rss:link {
   background: #dd8902;
   border-color: #dd8902;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .rss:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #dd8902;
   color: #dd8902
 }
 .Subscribe .fl:link {
   background: #53bb45;
   border-color: #53bb45;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .fl:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #53bb45;
   color: #53bb45
 }
 .Subscribe .stm:link {
   background: #8bc53f;
   border-color: #8bc53f;
-  color: #010e06
+  color: #062241
 }
 .Subscribe .stm:visited {
-  background: #010e06;
+  background: #062241;
   border-color: #8bc53f;
   color: #8bc53f
 }
 .TxtNavi {
   padding: 1em 0;
   text-align: right;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .aa {
   margin: 1em 0;
@@ -1154,24 +1149,22 @@ kbd {
   margin: 0 1.5%;
   font-size: .875em
 }
+.tl,
+.tl th {
+  border-width: 0
+}
 .note .aa,
-.note .mona,
 .note .prettyprint,
 dl .aa,
-dl .mona,
 dl .prettyprint,
 li .aa,
-li .mona,
 li .prettyprint,
 tr .aa,
-tr .mona,
 tr .prettyprint {
   padding: 1em
 }
 .aa,
-.mona,
 .note .aa,
-.note .mona,
 .note .prettyprint,
 .prettyprint {
   padding: 1em 3%
@@ -1197,7 +1190,7 @@ blockquote {
 }
 .js-bqCite {
   text-align: right;
-  color: #717e73
+  color: #8a7322
 }
 .box dl,
 .box ol,
@@ -1215,82 +1208,6 @@ blockquote {
   float: left;
   margin: 0 1em 1em 3%
 }
-.chat {
-  color: #fff;
-  background: #7493c2;
-  padding-bottom: 1em;
-  margin: 1em 0;
-  text-align: center
-}
-.chatTitle {
-  background: #273248;
-  border-color: #273248;
-  border-width: 0 0 1px;
-  padding: 1em 2%
-}
-.chat h2,
-.chat h3,
-.chat h4,
-.chat h5,
-.chat h6,
-.chat p {
-  font-size: 1em;
-  color: #fff;
-  background: #5d769e;
-  border-color: #5d769e;
-  border-width: 1px;
-  margin: 1em 2%;
-  padding: .4em 2%
-}
-.chatL,
-.chatR {
-  margin: 1em 0;
-  text-align: left
-}
-.chatL {
-  padding: 0 20% 0 4em
-}
-.chatR {
-  padding: 0 4em 0 20%
-}
-.chatL p,
-.chatR p {
-  margin: .4em 0;
-  display: block;
-  text-align: left;
-  color: #111
-}
-.chatL .chatMember,
-.chatL p {
-  background: #fff;
-  border-color: #fff
-}
-.chatR .chatMember,
-.chatR p {
-  background: #85e445;
-  border-color: #85e445
-}
-.tl td,
-.tl th,
-pre code,
-pre var {
-  background: 0 0!important
-}
-.chatMember {
-  position: absolute;
-  top: -.414em;
-  text-align: center!important;
-  width: 2em;
-  height: 1em;
-  padding: .914em .414em;
-  color: #111
-}
-.chatL .chatMember {
-  left: .4em
-}
-.chatR .chatMember {
-  right: .4em
-}
 .hscroll {
   margin: 1em 0;
   overflow-x: auto;
@@ -1305,7 +1222,7 @@ pre var {
   white-space: nowrap
 }
 kbd {
-  border-color: #021605;
+  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1328,23 +1245,12 @@ blockquote code,
 blockquote var,
 tbody th code,
 tbody th var {
-  background: #717e73;
-  color: #f8fbfa
+  background: #8a7322;
+  color: #fdeeb7
 }
 .links a {
   padding-left: 1em;
   zoom: 1
-}
-.mona {
-  font-family: Mona,"IPA モナー Pゴシック","IPA mona PGothic","IPA MONAPGOTHIC",IPAMonaPGothic,"MS PGothic AA","ＭＳ Ｐゴシック","MS Pゴシック","MS PGothic","MS Pｺﾞｼｯｸ","ＭＳＰゴシック","MSPゴシック",sans-serif;
-  line-height: 1.125;
-  background: #bcd;
-  border-color: #bcd;
-  color: #00193d
-}
-.tl,
-.tl th {
-  border-width: 0
 }
 .note {
   padding-left: 25%
@@ -1394,7 +1300,7 @@ dl.note dd {
 .tl tfoot th,
 .tl thead td,
 .tl thead th {
-  border-color: #bddac8;
+  border-color: #e7d182;
   padding-top: .5em;
   padding-bottom: .5em
 }
@@ -1405,7 +1311,7 @@ dl.note dd {
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #bddac8;
+  border-color: #e7d182;
   border-style: solid
 }
 .tl tfoot td {
@@ -1413,7 +1319,7 @@ dl.note dd {
   border-style: solid dotted
 }
 .tl tbody :hover th {
-  background: #29a119!important;
+  background: #0d5bb5!important;
   color: #fff
 }
 .AMeta {
@@ -1425,7 +1331,7 @@ dl.note dd {
   text-indent: -1.2em
 }
 .Pager {
-  color: #f8fbfa;
+  color: #fdeeb7;
   height: 4em
 }
 .Pager-next {
@@ -1450,7 +1356,7 @@ dl.note dd {
   position: relative;
   zoom: 1;
   top: -.5em;
-  border-color: transparent #717e73
+  border-color: transparent #8a7322
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1467,23 +1373,23 @@ dl.note dd {
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
-  border-color: #717e73 transparent
+  border-color: #8a7322 transparent
 }
 .Pager-top :active i {
   border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0;
-  color: #f8fbfa;
+  color: #fdeeb7;
   text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
   border-color: #1b95e0;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .tw:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #1b95e0;
   color: #1b95e0
 }
@@ -1506,10 +1412,10 @@ dl.note dd {
 .SocialBtns .hb:link {
   background: #008fde;
   border-color: #008fde;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .hb:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #008fde;
   color: #008fde
 }
@@ -1526,20 +1432,20 @@ dl.note dd {
 .SocialBtns .pk:link {
   background: #ee4056;
   border-color: #ee4056;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .pk:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #ee4056;
   color: #ee4056
 }
 .SocialBtns .ln:link {
   background: #00c300;
   border-color: #00c300;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .SocialBtns .ln:visited {
-  background: #f8fbfa;
+  background: #fdeeb7;
   border-color: #00c300;
   color: #00c300
 }
@@ -1610,19 +1516,15 @@ li.L8 {
 .jsPicaLarge:hover img {
   top: 0
 }
-#lE,
-#lF {
-  border-top: .3em solid #29a119
-}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
-  color: #f8fbfa
+  color: #fdeeb7
 }
 .baseColor .btn:visited {
-  background: #f8fbfa;
-  border-color: #021605;
-  color: #021605
+  background: #fdeeb7;
+  border-color: #06284e;
+  color: #06284e
 }
 @media screen {
   #lB .lM {
@@ -1647,7 +1549,6 @@ li.L8 {
   }
 }
 @media print {
-  .chat,
   blockquote code,
   blockquote var,
   table,
@@ -1771,8 +1672,6 @@ li.L8 {
   .Cover h3,
   .aa,
   .baseColor,
-  .chat,
-  .mona,
   .ribbon,
   body {
     background: #fff;
@@ -1851,23 +1750,6 @@ li.L8 {
     background: 0 0;
     margin: 1em 0
   }
-  .chatTitle,
-  .prettyprint {
-    background: #fff
-  }
-  .chat .chatMember,
-  .chat h2,
-  .chat h3,
-  .chat h4,
-  .chat h5,
-  .chat h6,
-  .chat p,
-  .chatL p,
-  .chatR p {
-    color: #000;
-    background: #fff;
-    border-color: #666
-  }
   .hscroll {
     overflow-x: visible;
     overflow-y: visible
@@ -1888,13 +1770,15 @@ li.L8 {
     border-width: 1px;
     border-color: #ccc
   }
-  #lF,
   pre code {
     border: 0
   }
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    background: #fff
   }
   code .atv,
   code .str {

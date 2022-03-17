@@ -60,20 +60,6 @@ tbody td {
 .RichLink a {
   border-width: 0
 }
-.chatL p:after,
-.chatR p:after {
-  width: .4em;
-  height: .4em;
-  -ms-transform: rotate(-45deg)
-}
-.chatL p:after {
-  border-width: 1px 0 0 1px;
-  left: -.3em
-}
-.chatR p:after {
-  border-width: 0 1px 1px 0;
-  right: -.3em
-}
 .tl {
   border-collapse: collapse
 }
@@ -92,19 +78,4 @@ tbody td {
 .jsPica:active,
 .jsPica:focus {
   outline: 0
-}
-@media (max-width:359px) {
-  .chatL p:after,
-  .chatR p:after {
-    border-width: 1px 1px 0 0;
-    top: -.35em;
-    width: .3em;
-    height: .3em
-  }
-  .chatL p:after {
-    left: 1.15em
-  }
-  .chatR p:after {
-    right: 1.15em
-  }
 }
