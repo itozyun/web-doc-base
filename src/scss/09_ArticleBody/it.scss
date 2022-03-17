@@ -37,11 +37,7 @@
 
         @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
             a:active & {
-                @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
-                    background : Highlight;
-                } @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
-                    background : $COLOR_ACCENT;
-                }
+                background : $COLOR_ACCENT;
             }
         }
         @if( $CANUSE_FOCUS_PSEUDO_CLASS ){

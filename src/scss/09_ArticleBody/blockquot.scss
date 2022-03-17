@@ -16,13 +16,13 @@ blockquote {
     }
 
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        blockquote:before {
+        blockquote[title]:before {
             content : attr(title);
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 display : block;
             }
         }
-        blockquote:after {
+        blockquote[cite]:after {
             content : attr(cite);
         }
     }
@@ -46,6 +46,17 @@ blockquote {
         text-align  : right;
         color       : $COLOR_Light_casual_text;
     }
+
+/*  WSXGA, print
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA_landscapePrint) {
+    /* //_{#can-content */
+    blockquote:before,
+    /* //_}#can-content */
+    .js-bqLink {
+        margin : 0 0 1em;
+    }
+}
 
 /* Tablet
 --------------------------------------------------------------------------------------*/
