@@ -164,13 +164,13 @@ th {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 *,
 :after,
 :before,
-input[type=submit]:focus {
+[type=submit]:focus {
   border-style: solid
 }
 body,
@@ -233,12 +233,19 @@ a:focus img {
 .RichLink-sep a {
   display: block;
   cursor: pointer;
-  text-decoration: none!important
-}
-.LinkList a:not([href]),
-.RichLink-sep a:not([href]) {
+  text-decoration: none!important;
   background: #06284e;
   color: #fdeeb7
+}
+.LinkList :link,
+.RichLink-sep :link {
+  background: 0 0;
+  color: #24c
+}
+.LinkList a:visited,
+.RichLink-sep a:visited {
+  background: 0 0;
+  color: #06284e
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -259,10 +266,20 @@ a:active var,
 tbody :hover th {
   background: #0d5bb5
 }
-.ribbon .LinkList a:not([href]),
-.ribbon .RichLink-sep a:not([href]) {
+.LinkList .ribbon a,
+.RichLink-sep .ribbon a {
   background: #fed33b;
   color: #062241
+}
+.ribbon .LinkList :link,
+.ribbon .RichLink-sep :link {
+  background: 0 0;
+  color: #bbe
+}
+.ribbon .LinkList :visited,
+.ribbon .RichLink-sep :visited {
+  background: 0 0;
+  color: #fed33b
 }
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
@@ -429,6 +446,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -765,10 +783,10 @@ strong {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {
@@ -779,8 +797,7 @@ strong {
   margin: 0 0 1em 8em
 }
 .commonForm-wrap * {
-  width: 100%;
-  float: right
+  width: 100%
 }
 .medal,
 .medal-bronze,
@@ -1570,7 +1587,8 @@ li.L8 {
   color: #06284e
 }
 @media screen,
-handheld {
+handheld,
+projection {
   #lB .lM {
     padding-bottom: 4em
   }
@@ -2217,6 +2235,35 @@ handheld {
   th {
     font-weight: 700
   }
+  .LinkList :link,
+  .RichLink-sep :link,
+  .ribbon :link,
+  :link,
+  blockquote tbody th :link,
+  blockquote thead th :link,
+  thead :link {
+    color: #006
+  }
+  .AHead-labels,
+  .LinkList :visited,
+  .RichLink-sep :visited,
+  .aa code,
+  .aa var,
+  .tl tr code,
+  .tl tr var,
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  blockquote var,
+  code .pln,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead var {
+    color: #000
+  }
   p {
     line-height: 1.5
   }
@@ -2224,13 +2271,6 @@ handheld {
   .ribbon a,
   a {
     color: #666
-  }
-  .ribbon :link,
-  :link,
-  blockquote tbody th :link,
-  blockquote thead th :link,
-  thead :link {
-    color: #006
   }
   .ribbon :visited,
   :visited,
@@ -2339,24 +2379,6 @@ handheld {
   }
   .AHead h1 {
     color: #000!important
-  }
-  .AHead-labels,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  code .pln,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
-    color: #000
   }
   .AHead-labels a {
     display: inline;

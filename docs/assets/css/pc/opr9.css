@@ -166,8 +166,8 @@ th {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 body,
 input,
@@ -234,12 +234,19 @@ h2:after {
 .RichLink-sep a {
   display: block;
   cursor: pointer;
-  text-decoration: none!important
-}
-.LinkList a:not([href]),
-.RichLink-sep a:not([href]) {
+  text-decoration: none!important;
   background: #06284e;
   color: #fdeeb7
+}
+.LinkList :link,
+.RichLink-sep :link {
+  background: 0 0;
+  color: #24c
+}
+.LinkList a:visited,
+.RichLink-sep a:visited {
+  background: 0 0;
+  color: #06284e
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -409,6 +416,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -755,10 +763,14 @@ strong {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
+}
+.Cover img,
+.commonForm-wrap * {
+  width: 100%
 }
 .ABody h2,
 .ABody h3 {
@@ -767,10 +779,6 @@ strong {
 .commonForm-wrap {
   display: block;
   margin: 0 0 1em 8em
-}
-.commonForm-wrap * {
-  width: 100%;
-  float: right
 }
 .medal,
 .medal-bronze,
@@ -951,8 +959,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -1580,7 +1587,8 @@ div .box .jsCapLarge {
   color: #06284e
 }
 @media screen,
-handheld {
+handheld,
+projection {
   #lB .lM {
     padding-bottom: 4em
   }
@@ -2192,8 +2200,8 @@ screen and (max-width:240px) {
   blockquote a img {
     border-color: transparent
   }
-  .LinkList a:not([href]),
-  .RichLink-sep a:not([href]),
+  .LinkList a,
+  .RichLink-sep a,
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
@@ -2216,6 +2224,16 @@ screen and (max-width:240px) {
   input,
   textarea {
     background: #000
+  }
+  .LinkList :link,
+  .RichLink-sep :link {
+    background: 0 0;
+    color: #bbe
+  }
+  .LinkList :visited,
+  .RichLink-sep :visited {
+    background: 0 0;
+    color: #fed33b
   }
   .LinkList :link:hover,
   .LinkList :visited:hover,

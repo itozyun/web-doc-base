@@ -148,12 +148,14 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+aside,
 body,
 figure,
 h2,
 html {
   margin: 0
 }
+[type=submit],
 blockquote,
 code,
 hr,
@@ -197,8 +199,8 @@ pre {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 @font-face {
   font-family: "YuGothic M";
@@ -345,7 +347,7 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
-  outline: 0
+  outline: transparent solid 2px
 }
 dt {
   font-weight: 700;
@@ -419,6 +421,10 @@ ins {
 del {
   text-decoration: line-through
 }
+aside {
+  padding: 0;
+  border: 0
+}
 input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -431,7 +437,13 @@ input {
   line-height: 1;
   height: 1em
 }
-input::-moz-focus-inner {
+[type=submit]::-webkit-search-decoration {
+  display: none
+}
+[type=submit]:focus {
+  outline-offset: -2px
+}
+::-moz-focus-inner {
   border: 0
 }
 textarea {
@@ -478,7 +490,8 @@ p {
 :link:hover,
 :visited:hover,
 a:active,
-a:focus:hover {
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 :link,
@@ -514,6 +527,7 @@ a {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -554,10 +568,6 @@ a:focus {
 :target * {
   background: #0d5bb5!important;
   border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #fdeeb7
 }
 .wn,
 .wn:after {
@@ -696,6 +706,10 @@ textarea::-moz-placeholder {
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #8a7322
+}
+.baseColor,
+.medal {
+  background: #fdeeb7
 }
 h2 {
   border-width: 0 0 2px;
@@ -899,20 +913,14 @@ strong {
   border-color: #fed33b;
   color: #fed33b
 }
-input.btn::-webkit-search-decoration {
-  display: none
-}
-input.btn:focus {
-  outline-offset: -2px
-}
 .commonForm-pair {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {
@@ -2102,6 +2110,7 @@ div .box .jsPicaLarge img {
 }
 @media screen,
 handheld,
+projection,
 tv {
   #lB .lM {
     padding-bottom: 4em
@@ -2937,6 +2946,7 @@ only screen and (-ms-high-contrast:active) {
   a:active img,
   a:focus img,
   blockquote,
+  form :active,
   form :focus,
   td {
     border-style: dotted
@@ -2962,10 +2972,6 @@ only screen and (-ms-high-contrast:active) {
   .ico-label:after {
     border-top-color: Window;
     border-bottom-color: Window
-  }
-  a:active,
-  a:focus {
-    outline: solid 2px
   }
   img {
     filter: brightness(100%)

@@ -26,23 +26,23 @@ Array.prototype.unshift || (Array.prototype.unshift = function() {
   return T;
 });
 Array.prototype.splice || (Array.prototype.splice = function(L, l) {
-  var T = arguments, f = T.length - 2 - l, Ua = this.slice(L, L + l), ja;
+  var T = arguments, f = T.length - 2 - l, Ua = this.slice(L, L + l), ka;
   if (0 < f) {
     var Q = this.length - 1;
-    for (ja = L + l; Q >= ja; --Q) {
+    for (ka = L + l; Q >= ka; --Q) {
       this[Q + f] = this[Q];
     }
   } else {
     if (0 > f) {
       Q = L + l;
-      for (ja = this.length; Q < ja; ++Q) {
+      for (ka = this.length; Q < ka; ++Q) {
         this[Q + f] = this[Q];
       }
       this.length += f;
     }
   }
   Q = 2;
-  for (ja = T.length; Q < ja; ++Q) {
+  for (ka = T.length; Q < ka; ++Q) {
     this[Q - 2 + L] = T[Q];
   }
   return Ua;
@@ -66,26 +66,26 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
   }
   return -1;
 });
-(function(L, l, T, f, Ua, ja, Q, ub, t) {
+(function(L, l, T, f, Ua, ka, Q, ub, t) {
   function N(r) {
     if (L[0] === r) {
       return Ka === Ka + "" ? Q(Ka) : Ka;
     }
   }
   function ea(r) {
-    var C = L[3];
+    var D = L[3];
     if (L[2] === r) {
-      return C === C + "" ? Q(C) : C;
+      return D === D + "" ? Q(D) : D;
     }
   }
-  var ca = f.body, Ea = ca.style, La, Va, Ma, Ka = L[1], u = N(2) || N(3), ra = N(7), vb = N(5) || N(6), B = N(8) || N(9), M = N(11) || N(12), db = M && 0 <= L.conpare(Ka, "1.9.1"), wb = N(13), Wa = N(15);
-  ja = N(16) || N(17);
+  var ca = f.body, Fa = ca.style, La, Va, Ma, Ka = L[1], u = N(2) || N(3), ra = N(7), vb = N(5) || N(6), A = N(8) || N(9), M = N(11) || N(12), eb = M && 0 <= L.conpare(Ka, "1.9.1"), wb = N(13), Wa = N(15);
+  ka = N(16) || N(17);
   var Jb = N(10) || N(25), Na = N(20) || N(22);
   Na || N(23) || N(21) || N(24);
   var Kb = Na && Q(Ua.userAgent.split("Edg/")[1]);
   Ua = Q(Ua.appVersion.split("Trident/")[1]) + 4;
-  var xb = ea(35) || ea(36) || ea(37), Lb = !u && !ra && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), yb = (ra ? "ie5mac" : 5.5 > u ? "ie5win" : 6 > u ? "ie55" : 10 > u ? "ie" + (u | 0) : 7.2 > B ? "opr70" : 8 > B ? "opr72" : 9.5 > B ? "opr" + (B | 0) : M && !db ? 1.3 <= M ? "gck190" : 1 <= M ? "gck121" : "gck097" : "modern") + ".css", jb = "", Zb = ea(1) || ea(2) || ea(3) || 
-  ea(4) || ea(8) || ea(9) || ea(10), Mb, Nb = Ea.transform !== t ? "transform" : Ea["-o-transform"] !== t ? "-o-transform" : Ea["-ms-transform"] !== t ? "-ms-transform" : Ea.MozTransform !== t ? "-moz-transform" : Ea["-webkit-transform"] !== t ? "-webkit-transform" : "", kb = [], Ob, ka, lb, mb, Pb, Qb, Rb, Sb;
+  var xb = ea(35) || ea(36) || ea(37), Lb = !u && !ra && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), yb = (ra ? "ie5mac" : 5.5 > u ? "ie5win" : 6 > u ? "ie55" : 10 > u ? "ie" + (u | 0) : 7.2 > A ? "opr70" : 8 > A ? "opr72" : 9.5 > A ? "opr" + (A | 0) : M && !eb ? 1.3 <= M ? "gck190" : 1 <= M ? "gck121" : "gck097" : "modern") + ".css", jb = "", Zb = ea(1) || ea(2) || ea(3) || 
+  ea(4) || ea(8) || ea(9) || ea(10), Mb, Nb = Fa.transform !== t ? "transform" : Fa["-o-transform"] !== t ? "-o-transform" : Fa["-ms-transform"] !== t ? "-ms-transform" : Fa.MozTransform !== t ? "-moz-transform" : Fa["-webkit-transform"] !== t ? "-webkit-transform" : "", kb = [], Ob, la, lb, mb, Pb, Qb, Rb, Sb;
   (function() {
     function r() {
       for (var b, g = 0, m = new Date - 0; g < K.length;) {
@@ -93,34 +93,34 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       }
       a = K.length ? setTimeout(r, da) : 0;
     }
-    function C() {
-      for (var b, g = 0; g < I.length; ++g) {
-        b = I[g], b.f();
+    function D() {
+      for (var b, g = 0; g < E.length; ++g) {
+        b = E[g], b.f();
       }
     }
-    function p() {
+    function n() {
       U && (U = clearInterval(U));
     }
-    function x() {
+    function v() {
       a && (a = clearTimeout(a));
     }
     mb = function(b) {
-      I.length || (U = setInterval(C, H));
-      I.push({f:b, v:++fa});
+      E.length || (U = setInterval(D, C));
+      E.push({f:b, v:++fa});
       return fa;
     };
     Pb = function() {
-      U && (p(), U = setInterval(C, H));
+      U && (n(), U = setInterval(D, C));
     };
-    Qb = p;
-    var I = [], H = 500, fa = 0, U;
+    Qb = n;
+    var E = [], C = 500, fa = 0, U;
     if (5 > u || ra) {
-      l._wdb_onlooptimer = C, C = "_wdb_onlooptimer()";
+      l._wdb_onlooptimer = D, D = "_wdb_onlooptimer()";
     }
-    ka = function(b, g, m) {
+    la = function(b, g, m) {
       K.length || (a = setTimeout(r, da));
-      K.push({f:b, p:g, v:++la, t:new Date - 0 + (da < m ? m : da)});
-      return la;
+      K.push({f:b, p:g, v:++ma, t:new Date - 0 + (da < m ? m : da)});
+      return ma;
     };
     lb = function(b) {
       for (var g = K.length, m; m = K[--g];) {
@@ -132,60 +132,60 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       return 0;
     };
     Rb = function() {
-      a && (x(), a = setTimeout(r, da));
+      a && (v(), a = setTimeout(r, da));
     };
-    Sb = x;
-    var K = [], da = 16, la = 0, a;
+    Sb = v;
+    var K = [], da = 16, ma = 0, a;
     if (5 > u || ra) {
       l._wdb_ontimer = r, r = "_wdb_ontimer()";
     }
   })();
-  var Oa, eb, zb, sa, Pa, Tb, Ab, ta, Bb, Ub, Fa, fb, nb, ma, Xa, Ga, Cb, Vb, ob, Db, Qa, Ra, Ya;
+  var Oa, Xa, zb, sa, Pa, Tb, Ab, ta, Bb, Ub, Ga, fb, nb, ha, Ya, va, Cb, Vb, ob, Db, Qa, Ra, Za;
   (function() {
     function r(a, b, g) {
-      var m = ["<", a], v = 1, y, X;
+      var m = ["<", a], w = 1, y, X;
       if (b) {
         for (y in b) {
           var J = b[y];
           if (null != J && "" !== J) {
             if ("style" === y) {
-              m[++v] = ' style="';
+              m[++w] = ' style="';
               for (X in J) {
-                for (var na = ++v, D, F = [], Z = X.split(""), va = Z.length; va;) {
-                  D = Z[--va], "A" <= D && "Z" >= D && (D = "-" + D.toLowerCase()), F[va] = D;
+                for (var na = ++w, F, H = [], Z = X.split(""), wa = Z.length; wa;) {
+                  F = Z[--wa], "A" <= F && "Z" >= F && (F = "-" + F.toLowerCase()), H[wa] = F;
                 }
-                m[na] = F.join("") + ":" + J[X] + ";";
+                m[na] = H.join("") + ":" + J[X] + ";";
               }
-              m[++v] = '"';
+              m[++w] = '"';
             } else {
-              "className" === y && (y = "class"), m[++v] = " " + y + '="' + J + '"';
+              "className" === y && (y = "class"), m[++w] = " " + y + '="' + J + '"';
             }
           }
         }
       }
-      m[++v] = ">";
-      null != g && (K && "font" !== a ? m[++v] = "<FONT>" + g + "</FONT>" : m[++v] = g);
-      m[++v] = "</" + a + ">";
+      m[++w] = ">";
+      null != g && (K && "font" !== a ? m[++w] = "<FONT>" + g + "</FONT>" : m[++w] = g);
+      m[++w] = "</" + a + ">";
       return m.join("");
     }
-    function C(a) {
-      return p(f, a);
+    function D(a) {
+      return n(f, a);
     }
-    function p(a, b) {
-      var g = "*" === b && 6 > u ? "*" !== b ? a.all.tags(b.toUpperCase()) : a.all : a.getElementsByTagName(b), m = [], v = 0, y;
-      for (y = g.length; v < y; ++v) {
-        m[v] = g[v];
+    function n(a, b) {
+      var g = "*" === b && 6 > u ? "*" !== b ? a.all.tags(b.toUpperCase()) : a.all : a.getElementsByTagName(b), m = [], w = 0, y;
+      for (y = g.length; w < y; ++w) {
+        m[w] = g[w];
       }
       return m;
     }
-    function x(a) {
+    function v(a) {
       return K ? a.parentElement : a.parentNode;
     }
-    function I(a, b, g, m, v, y) {
+    function E(a, b, g, m, w, y) {
       if (K) {
         var X = 0 === a ? "beforebegin" : 1 === a ? "afterend" : "beforeend", J = Pa(2 > a ? sa(b) : b);
         J = 2 > a ? J.indexOf(b) + a : J.length;
-        b.insertAdjacentHTML(X, r(g, m, v));
+        b.insertAdjacentHTML(X, r(g, m, w));
         return Pa(b)[J];
       }
       b = da ? f.createElement(r(g, m)) : y ? f.createElementNS("http://www.w3.org/2000/svg", g) : f.createElement(g);
@@ -204,17 +204,17 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
                 }
                 break;
               default:
-                Xa(b, X, g);
+                Ya(b, X, g);
             }
           }
         }
       }
-      la || null != v && H(b, v);
+      ma || null != w && C(b, w);
       return b;
     }
-    function H(a, b) {
+    function C(a, b) {
       if (K) {
-        return I(2, a, "font", t, b);
+        return E(2, a, "font", t, b);
       }
       var g = f.createTextNode("" + b);
       a.appendChild(g);
@@ -227,14 +227,14 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       return -1 !== (" " + a.className + " ").indexOf(" " + b + " ");
     }
     var K = 5 > u;
-    La = C("html")[0];
-    Va = C("head")[0];
+    La = D("html")[0];
+    Va = D("head")[0];
     Oa = function(a) {
       return l[a] || f[a] || f.getElementById(a);
     };
-    eb = C;
-    zb = p;
-    sa = x;
+    Xa = D;
+    zb = n;
+    sa = v;
     Pa = function(a) {
       a = K ? a.children : a.childNodes;
       for (var b = [], g = a.length; g;) {
@@ -243,11 +243,11 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       return b;
     };
     Tb = function(a) {
-      var b = !(7.03 < B && 7.2 > B) && a.children;
+      var b = !(7.03 < A && 7.2 > A) && a.children;
       a = b ? b : a.childNodes;
-      for (var g = [], m = a.length, v = -1, y; m;) {
+      for (var g = [], m = a.length, w = -1, y; m;) {
         if (y = a[--m], b || 1 === y.nodeType) {
-          K && "FONT" === y.tagName || (g[++v] = y);
+          K && "FONT" === y.tagName || (g[++w] = y);
         }
       }
       return g;
@@ -255,18 +255,18 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
     Ab = function(a) {
       return K ? a.children.length ? a.children[0] : null : a.firstChild;
     };
-    ta = function(a, b, g, m, v) {
-      b = I(2, a, b, g, m, v);
-      K || (a.appendChild(b), la && null != m && H(b, m));
+    ta = function(a, b, g, m, w) {
+      b = E(2, a, b, g, m, w);
+      K || (a.appendChild(b), ma && null != m && C(b, m));
       return b;
     };
-    Bb = function(a, b, g, m, v) {
-      b = I(0, a, b, g, m, v);
-      K || (x(a).insertBefore(b, a), la && null != m && H(b, m));
+    Bb = function(a, b, g, m, w) {
+      b = E(0, a, b, g, m, w);
+      K || (v(a).insertBefore(b, a), ma && null != m && C(b, m));
       return b;
     };
-    Ub = H;
-    Fa = function(a) {
+    Ub = C;
+    Ga = function(a) {
       K ? a.outerHTML = "" : sa(a).removeChild(a);
     };
     fb = function(a, b) {
@@ -279,17 +279,17 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
         }
       }
     };
-    var da = 9 > u, la = 9 > u;
+    var da = 9 > u, ma = 9 > u;
     nb = function(a) {
       return a.tagName.toUpperCase();
     };
-    ma = function(a, b) {
+    ha = function(a, b) {
       return a.getAttribute(b) || "";
     };
-    Xa = function(a, b, g) {
+    Ya = function(a, b, g) {
       a.setAttribute(b, g);
     };
-    Ga = function(a, b) {
+    va = function(a, b) {
       a.removeAttribute(b);
     };
     Cb = function(a, b) {
@@ -312,237 +312,237 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
     Ra = function(a, b, g) {
       a.style[b] = g;
     };
-    Ya = function(a, b) {
-      var g = -1, m, v;
+    Za = function(a, b) {
+      var g = -1, m, w;
       if (5.5 > u) {
         if (b) {
-          for (m = b.split(";"); v = m[++g];) {
-            var y = v.split(":");
-            a.style[y[0]] = v.substr(y[0].length + 1);
+          for (m = b.split(";"); w = m[++g];) {
+            var y = w.split(":");
+            a.style[y[0]] = w.substr(y[0].length + 1);
           }
         } else {
           a.removeAttribute("style");
         }
       } else {
-        9 > B || 1 > M ? b ? a.setAttribute("style", b) : a.removeAttribute("style") : a.style.cssText = b;
+        9 > A || 1 > M ? b ? a.setAttribute("style", b) : a.removeAttribute("style") : a.style.cssText = b;
       }
     };
     kb.splice(0, 0, function() {
       function a(J) {
         J = Pa(J);
-        for (var na = J.length, D, F, Z; na;) {
-          if (D = J[--na], F = D.nodeType, 8 === F) {
-            b && y.push(D);
+        for (var na = J.length, F, H, Z; na;) {
+          if (F = J[--na], H = F.nodeType, 8 === H) {
+            b && y.push(F);
           } else {
-            if (1 === F) {
-              switch(F = nb(D), "/" === F.charAt(0) && (F = F.substr(1), X[F] = !0), F) {
+            if (1 === H) {
+              switch(H = nb(F), "/" === H.charAt(0) && (H = H.substr(1), X[H] = !0), H) {
                 case "STYLE":
-                  if (8 <= B && 9 > B) {
+                  if (8 <= A && 9 > A) {
                     break;
                   }
                 case "LINK":
-                  K || g || fb(Va, D) || v.push(D);
+                  K || g || fb(Va, F) || w.push(F);
                   break;
                 case "META":
-                  F = ma(D, "name") || ma(D, "property");
+                  H = ha(F, "name") || ha(F, "property");
                   for (Z = m.length; Z;) {
-                    if (0 === F.indexOf(m[--Z])) {
-                      y.push(D);
+                    if (0 === H.indexOf(m[--Z])) {
+                      y.push(F);
                       break;
                     }
                   }
                   break;
                 case "SCRIPT":
-                  if (Cb(D, "async")) {
+                  if (Cb(F, "async")) {
                     break;
                   }
                 case "NOSCRIPT":
-                  if (Cb(D, "skip-cleanup")) {
+                  if (Cb(F, "skip-cleanup")) {
                     break;
                   }
                 case "!":
-                  y.push(D);
+                  y.push(F);
                   break;
                 case "SOURCE":
-                  l.HTMLSourceElement || y.push(D);
+                  l.HTMLSourceElement || y.push(F);
                   break;
                 default:
-                  X[F] ? y.push(D) : Pa(D).length && a(D);
+                  X[H] ? y.push(F) : Pa(F).length && a(F);
               }
             }
           }
         }
-        for (; v[0];) {
-          Va.appendChild(v.pop());
+        for (; w[0];) {
+          Va.appendChild(w.pop());
         }
         for (; y[0];) {
-          Fa(y.pop());
+          Ga(y.pop());
         }
       }
       Ma = Oa("jsMain");
-      var b = !(8 > B || 5 > u || ra || .9 > M), g = 7 > u, m = ["og:", "twitter:", "fb:"], v = [], y = [], X = {};
+      var b = !(8 > A || 5 > u || ra || .9 > M), g = 7 > u, m = ["og:", "twitter:", "fb:"], w = [], y = [], X = {};
       a(La);
     });
   })();
-  var Y, ba, wa, Sa, Eb, pb, gb, Fb, Wb, hb, xa, Gb;
+  var Y, ba, xa, Sa, Eb, pb, gb, Fb, Wb, hb, ya, Gb;
   (function() {
     function r() {
-      return xa = ya ? Ta ? 2 : Ha ? 3 : 1 : 0;
+      return ya = za ? Ta ? 2 : Ha ? 3 : 1 : 0;
     }
-    function C(d, h) {
+    function D(d, h) {
       gb(function(q) {
         if (q) {
           return q = b(d), h(q), q.addListener(h), !0;
         }
       });
     }
-    function p(d, h) {
+    function n(d, h) {
       for (var q = 0; q < d.length; ++q) {
         !0 === d[q](h) && (d.splice(q, 1), --q);
       }
     }
-    function x(d, h) {
-      v && !m.length && ka(I);
+    function v(d, h) {
+      w && !m.length && la(E);
       m.push(d, h);
     }
-    function I() {
+    function E() {
       var d = m, h;
       for (m = []; h = d.shift();) {
-        p(h, d.shift());
+        n(h, d.shift());
       }
     }
-    function H(d) {
+    function C(d) {
       var h = d || event;
       d = y[h.type];
-      var q = -1, n, z;
+      var q = -1, p, z;
       for (u ? (h.preventDefault = function() {
         h.returnValue = !1;
       }, h.stopPropagation = function() {
         h.cancelBubble = !0;
       }) : J && (h.u = h.stopPropagation, h.stopPropagation = function() {
         z = !0;
-      }); n = d[++q];) {
-        n.i === this ? (this.g = n.h, this.g(h), this.g = T, this.g = t) : 7.2 > B && this === f && n.i === l && (l.g = n.h, l.g(h), delete l.g);
+      }); p = d[++q];) {
+        p.i === this ? (this.g = p.h, this.g(h), this.g = T, this.g = t) : 7.2 > A && this === f && p.i === l && (l.g = p.h, l.g(h), delete l.g);
       }
       if (u) {
         return h.preventDefault = h.stopPropagation = t, h.returnValue;
       }
-      J && (h.defaultPrevented && "click" === h.type && "A" === h.target.tagName && (D = !0), z && !D && h.u(), h.u = h.stopPropagation = t);
+      J && (h.defaultPrevented && "click" === h.type && "A" === h.target.tagName && (F = !0), z && !F && h.u(), h.u = h.stopPropagation = t);
     }
     function fa() {
-      if (F) {
+      if (H) {
         var d = f.readyState;
-        "loaded" === d || "complete" === d ? F() : ka(fa);
+        "loaded" === d || "complete" === d ? H() : la(fa);
       }
     }
     function U(d) {
-      p(Z, d);
+      n(Z, d);
     }
     function K() {
       var d = 9 === g.offsetWidth;
-      hb !== d && x(va, hb = d);
+      hb !== d && v(wa, hb = d);
     }
     function da() {
-      !F && za && (lb(za), za = ka(la));
+      !H && Aa && (lb(Aa), Aa = la(ma));
     }
-    function la() {
-      za = 0;
-      p(Za);
+    function ma() {
+      Aa = 0;
+      n($a);
     }
     function a(d) {
-      F || p(Aa, d);
+      H || n(Ba, d);
     }
-    var b = l.matchMedia, g, m = [], v;
+    var b = l.matchMedia, g, m = [], w;
     kb.push(function() {
-      C = t;
+      D = t;
       g = ta(ca, "div", {"aria-hidden":"true", style:{position:"absolute", top:0, left:0, width:"9px", height:"9px", visibility:"hidden"}});
-      wa(function() {
-        v = !0;
-        m.length && ka(I);
+      xa(function() {
+        w = !0;
+        m.length && la(E);
       });
     });
-    Y = function(d, h, q, n) {
+    Y = function(d, h, q, p) {
       if (na) {
-        d.addEventListener(h, q, n ? Lb ? n : n.capture : !1);
+        d.addEventListener(h, q, p ? Lb ? p : p.capture : !1);
       } else {
         var z = {i:d, h:q};
-        n = y[h];
-        var R = "on" + h, Ba, c;
-        if (n) {
-          for (Ba = n.length; c = n[--Ba];) {
+        p = y[h];
+        var R = "on" + h, Ca, c;
+        if (p) {
+          for (Ca = p.length; c = p[--Ca];) {
             if (c.i === d && c.h === q) {
               return;
             }
           }
           y[h].push(z);
         } else {
-          y[h] = n = [z], X || (h = d[R], "function" === typeof h && h !== H && n.unshift({i:d, h:h}));
+          y[h] = p = [z], X || (h = d[R], "function" === typeof h && h !== C && p.unshift({i:d, h:h}));
         }
-        X ? d.attachEvent(R, H) : d[R] = H;
+        X ? d.attachEvent(R, C) : d[R] = C;
       }
     };
-    ba = function(d, h, q, n) {
+    ba = function(d, h, q, p) {
       if (na) {
-        d.removeEventListener(h, q, n ? Lb ? n : n.capture : !1);
+        d.removeEventListener(h, q, p ? Lb ? p : p.capture : !1);
       } else {
-        n = y[h];
+        p = y[h];
         h = "on" + h;
-        var z, R, Ba;
-        if (n) {
-          for (z = n.length; R = n[--z];) {
-            R.i === d && (R.h === q ? n.splice(z, 1) : Ba = !0);
+        var z, R, Ca;
+        if (p) {
+          for (z = p.length; R = p[--z];) {
+            R.i === d && (R.h === q ? p.splice(z, 1) : Ca = !0);
           }
-          Ba || (X ? d.detachEvent(h, H) : (d[h] = T, d[h] = null));
+          Ca || (X ? d.detachEvent(h, C) : (d[h] = T, d[h] = null));
         }
       }
     };
-    var y = {}, X = !1, J = 525.13 > Wa, na = !J && !ra && l.addEventListener, D;
+    var y = {}, X = !1, J = 525.13 > Wa, na = !J && !ra && l.addEventListener, F;
     J && La.addEventListener("click", function(d) {
-      if (D) {
-        return D = !1, d.preventDefault(), !1;
+      if (F) {
+        return F = !1, d.preventDefault(), !1;
       }
     });
-    wa = function(d) {
+    xa = function(d) {
       kb.push(d);
     };
     Sa = function(d) {
       Z.push(d);
     };
-    var F = function(d) {
-      ba(l, "load", F);
-      F = t;
-      p(kb, d);
+    var H = function(d) {
+      ba(l, "load", H);
+      H = t;
+      n(kb, d);
     }, Z = [];
-    419.3 >= Wa ? ka(fa) : Y(l, "load", F);
+    419.3 >= Wa ? la(fa) : Y(l, "load", H);
     (u || 1.8 > M) && Y(l, "unload", U);
     gb = function(d) {
-      va.push(d);
+      wa.push(d);
     };
-    var va = [];
-    wa(function() {
+    var wa = [];
+    xa(function() {
       K();
       mb(K);
     });
     Wb = function(d) {
       S && S.push(d);
     };
-    var S = [], ib = 60 > M || wb, ya, Ha, Ta;
+    var S = [], ib = 60 > M || wb, za, Ha, Ta;
     if (89 <= M || 89 <= Na || xb && 79 <= Kb || b && (b("(forced-colors:none)").matches || b("(forced-colors:active)").matches)) {
-      Gb = !0, C("(forced-colors:active)", function(d) {
-        ya = d.matches;
-        x(S, r());
+      Gb = !0, D("(forced-colors:active)", function(d) {
+        za = d.matches;
+        v(S, r());
       });
     } else {
       if (10 <= u || vb || xb && Kb) {
-        Gb = !0, C("(-ms-high-contrast:black-on-white)", function(d) {
-          ya = Ha = d.matches;
-          xa !== r() && x(S, xa);
-        }), C("(-ms-high-contrast:white-on-black)", function(d) {
-          ya = Ta = d.matches;
-          xa !== r() && x(S, xa);
-        }), C("(-ms-high-contrast:active)", function(d) {
-          ya = d.matches;
-          xa !== r() && x(S, xa);
+        Gb = !0, D("(-ms-high-contrast:black-on-white)", function(d) {
+          za = Ha = d.matches;
+          ya !== r() && v(S, ya);
+        }), D("(-ms-high-contrast:white-on-black)", function(d) {
+          za = Ta = d.matches;
+          ya !== r() && v(S, ya);
+        }), D("(-ms-high-contrast:active)", function(d) {
+          za = d.matches;
+          ya !== r() && v(S, ya);
         });
       } else {
         if (10 > u || xb && (1.8 <= M || wb)) {
@@ -553,10 +553,10 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
             function h(z, R) {
               return "#ffffff" === z || "rgb(255,255,255)" === z || R && "transparent" === z;
             }
-            var q = f.defaultView, n = q ? q.getComputedStyle(g, null) : g.currentStyle;
-            q = (n && n.color || "").split(" ").join("");
-            n = (n && n.backgroundColor || "").split(" ").join("");
-            q && (ya = "#123456" !== q && "rgb(18,52,86)" !== q, Ha = d(q) && h(n, !0), Ta = h(q) && d(n, !0), xa !== r() && x(S, xa));
+            var q = f.defaultView, p = q ? q.getComputedStyle(g, null) : g.currentStyle;
+            q = (p && p.color || "").split(" ").join("");
+            p = (p && p.backgroundColor || "").split(" ").join("");
+            q && (za = "#123456" !== q && "rgb(18,52,86)" !== q, Ha = d(q) && h(p, !0), Ta = h(q) && d(p, !0), ya !== r() && v(S, ya));
           };
           gb(function(d) {
             if (d) {
@@ -569,287 +569,294 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       }
     }
     Fb = function(d) {
-      Ca.push(d);
+      Da.push(d);
     };
-    var Ca = [], ha = 7.5 <= B && 8 > B;
-    ha && function() {
+    var Da = [], ia = 7.5 <= A && 8 > A;
+    ia && function() {
       for (var d = f.images, h = d.length, q; h;) {
-        q = d[--h], q.s = q.src, Ga(q, "src");
+        q = d[--h], q.s = q.src, va(q, "src");
       }
     }();
-    wa(function() {
+    xa(function() {
       function d() {
-        n && (z = q[--n], ha && Xa(z, "src", z.s), Ob(h, ha ? z.s : z.src));
+        p && (z = q[--p], ia && Ya(z, "src", z.s), Ob(h, ia ? z.s : z.src));
       }
       function h(R) {
-        p(Ca, {m:z, o:R});
+        n(Da, {m:z, o:R});
         d();
       }
-      var q = f.images || eb("img"), n = q.length;
-      if (12 > B || 532 > Wa) {
+      var q = f.images || Xa("img"), p = q.length;
+      if (12 > A || 532 > Wa) {
         d();
       } else {
-        for (; n;) {
-          var z = q[--n];
-          x(Ca, {m:z, o:9 > u ? z.complete : 0 <= z.naturalWidth ? z.naturalWidth : z.width});
+        for (; p;) {
+          var z = q[--p];
+          v(Da, {m:z, o:9 > u ? z.complete : 0 <= z.naturalWidth ? z.naturalWidth : z.width});
         }
       }
     });
     Eb = function(d) {
-      Za.push(d);
+      $a.push(d);
     };
-    var Za = [], za;
+    var $a = [], Aa;
     Y(l, "resize", da);
     Sa(function() {
-      za && clearTimeout(za);
+      Aa && clearTimeout(Aa);
       ba(l, "resize", da);
     });
     pb = function(d) {
-      Aa.push(d);
+      Ba.push(d);
     };
-    var Aa = [], $a = 0, Ia = 1 > M || 1.2 <= M && 1.8 > M || 7.2 >= B;
+    var Ba = [], ab = 0, Ia = 1 > M || 1.2 <= M && 1.8 > M || 7.2 >= A;
     Ia ? mb(function() {
       var d = l.scrollY || ca.scrollTop;
-      $a !== d && ($a = d, a());
+      ab !== d && (ab = d, a());
     }) : Y(l, "scroll", a);
     Sa(function() {
       Ia || ba(l, "scroll", a);
     });
   })();
   (function() {
-    var r = 1 > M || 8 <= B && 9 > B, C = 7.2 <= B && 8 > B;
-    u || !r && !C && function() {
-      var p = ta(La, "style"), x = !(!p.styleSheet && !p.sheet);
-      Fa(p);
-      return x;
-    }() || !Wa || r || C || function() {
-      var p = ta(La, "style");
-      Ub(p, "");
-      var x = !(!p.styleSheet && !p.sheet);
-      Fa(p);
-      return x;
+    var r = 1 > M || 8 <= A && 9 > A, D = 7.2 <= A && 8 > A;
+    u || !r && !D && function() {
+      var n = ta(La, "style"), v = !(!n.styleSheet && !n.sheet);
+      Ga(n);
+      return v;
+    }() || !Wa || r || D || function() {
+      var n = ta(La, "style");
+      Ub(n, "");
+      var v = !(!n.styleSheet && !n.sheet);
+      Ga(n);
+      return v;
     }();
   })();
   (function() {
-    9 > u && wa(function() {
+    9 > u && xa(function() {
       var r = ta(ca, "div");
-      Ya(r, "position:absolute;top:0;left:0;width:1px;height:1px;line-height:1px;filter:dropshadow() progid:DXImageTransform.Microsoft.Shadow()");
+      Za(r, "position:absolute;top:0;left:0;width:1px;height:1px;line-height:1px;filter:dropshadow() progid:DXImageTransform.Microsoft.Shadow()");
       Mb = 1 < r.offsetHeight;
-      Ya(r, "");
-      Fa(r);
+      Za(r, "");
+      Ga(r);
     });
-    Ob = function(r, C) {
-      function p() {
-        I || !H || x.complete ? (ka(r, !!x.width), x.onerror = x.onload = T, x = r = t) : (--H, ka(p));
+    Ob = function(r, D) {
+      function n() {
+        E || !C || v.complete ? (la(r, !!v.width), v.onerror = v.onload = T, v = r = t) : (--C, la(n));
       }
-      var x = new Image, I, H = 99;
-      x.onerror = function() {
-        I = !0;
+      var v = new Image, E, C = 99;
+      v.onerror = function() {
+        E = !0;
       };
-      x.onload = function() {
-        I = !0;
+      v.onload = function() {
+        E = !0;
       };
-      x.src = C;
-      ka(p);
+      v.src = D;
+      la(n);
     };
   })();
   (function() {
     if (!Gb) {
-      var r, C = function() {
+      var r, D = function() {
         r = ta(Va, "link", {type:"text/css", rel:"stylesheet", media:"screen", href:pa + "css/" + jb + "hc/" + yb});
         (Nb || 5.5 <= u && 9 > u && Mb) && Qa(ca, "jsCanRotate");
-        C = t;
+        D = t;
       };
-      Wb(function(p) {
-        p && !r ? C() : r && (p ? Va.appendChild(r) : Fa(r));
+      Wb(function(n) {
+        n && !r ? D() : r && (n ? Va.appendChild(r) : Ga(r));
       });
     }
-    Fb(function(p) {
-      var x = p.m;
-      p = p.o;
-      var I = sa(x);
-      !Db(I, "aBodyRoot") && p ? Qa(I, "img-loaded") : p || ma(x, "alt") || Ra(x, "display", "none");
+    Fb(function(n) {
+      var v = n.m;
+      n = n.o;
+      var E = sa(v);
+      !Db(E, "aBodyRoot") && n ? Qa(E, "img-loaded") : n || ha(v, "alt") || Ra(v, "display", "none");
     });
-    8 <= B && wa(function() {
-      for (var p = eb("a"), x = p.length, I = 0, H; I < x; ++I) {
-        H = p[I], "-1" === ma(H, "tabindex") ? Ga(H, "tabindex") : ma(H, "href") && Xa(H, "tabindex", "0");
+    A && xa(function() {
+      if (8 <= A) {
+        for (var n = Xa("a"), v = n.length, E = 0, C; E < v; ++E) {
+          C = n[E], "-1" === ha(C, "tabindex") ? va(C, "tabindex") : ha(C, "href") && Ya(C, "tabindex", "0");
+        }
+      }
+      n = Xa("input");
+      E = 0;
+      for (v = n.length; E < v; ++E) {
+        C = n[E], "hidden" === ha(C, "type") && va(C, "tabindex");
       }
     });
   })();
   (function() {
     function r(c) {
-      var e = c.keyCode || c.M, k = m.length, w, E, A, Da;
+      var e = c.keyCode || c.M, k = m.length, x, G, B, Ea;
       if ("keydown" !== c.type || 13 === e) {
         for (; k;) {
           if (e = m[--k], e.l === this || e.j === this) {
             k = e.l;
-            var G = w = e.j;
+            var I = x = e.j;
             if (e.C) {
-              if (Ra(k, "width", e.L), k.src = e.K, ob(G, e.F), k = e.A) {
-                Ya(k, e.D), ob(k, "caption jsCap");
+              if (Ra(k, "width", e.L), k.src = e.K, ob(I, e.F), k = e.A) {
+                Za(k, e.D), ob(k, "caption jsCap");
               }
             } else {
-              if (E = e.B) {
-                for (delete e.B; w = sa(w);) {
-                  if (Db(w, "caption")) {
-                    e.A = w, e.D = w.style.cssText, Qa(w, "jsCap");
+              if (G = e.B) {
+                for (delete e.B; x = sa(x);) {
+                  if (Db(x, "caption")) {
+                    e.A = x, e.D = x.style.cssText, Qa(x, "jsCap");
                   } else {
-                    var O = nb(w);
+                    var O = nb(x);
                     if ("DIV" === O || "P" === O || "BLOCKQUOT" === O) {
                       break;
                     }
                   }
                 }
-                w = w.offsetWidth - 4 - 1;
-                1600 < w && (w = 1600);
+                x = x.offsetWidth - 4 - 1;
+                1600 < x && (x = 1600);
                 if (e.H) {
-                  E = E.split("=");
-                  O = E.length;
-                  if (A = E[O - 1]) {
-                    (Da = Q(A.substr(1))) && A === "s" + Da ? E[O - 1] = "w" + w : E[O] = "w" + w;
+                  G = G.split("=");
+                  O = G.length;
+                  if (B = G[O - 1]) {
+                    (Ea = Q(B.substr(1))) && B === "s" + Ea ? G[O - 1] = "w" + x : G[O] = "w" + x;
                   }
-                  E = E.join("=");
+                  G = G.join("=");
                 } else {
-                  if (0 < E.indexOf(".bp.blogspot.com/")) {
-                    E = E.split("/");
-                    O = E.length;
-                    if (A = E[O - 2]) {
-                      (Da = Q(A.substr(1))) && A === "s" + Da ? E[O - 2] = "w" + w : E.splice(O - 1, 0, "w" + w);
+                  if (0 < G.indexOf(".bp.blogspot.com/")) {
+                    G = G.split("/");
+                    O = G.length;
+                    if (B = G[O - 2]) {
+                      (Ea = Q(B.substr(1))) && B === "s" + Ea ? G[O - 2] = "w" + x : G.splice(O - 1, 0, "w" + x);
                     }
-                    E = E.join("/");
+                    G = G.join("/");
                   }
                 }
-                e.I = E;
+                e.I = G;
               }
-              e.F = Vb(G);
-              Qa(G, "jsPicaLarge");
+              e.F = Vb(I);
+              Qa(I, "jsPicaLarge");
               Ra(k, "width", "");
               k.src = e.I;
               if (k = e.A) {
-                Ya(k, ""), Qa(k, "jsCapLarge");
+                Za(k, ""), Qa(k, "jsCapLarge");
               }
             }
             e.C = !e.C;
             break;
           }
         }
-        C(c);
+        D(c);
       }
     }
-    function C(c) {
+    function D(c) {
       c.preventDefault();
       c.stopPropagation();
     }
-    function p(c) {
-      for (var e = arguments, k = 0, w = e.length; k < w; ++k) {
+    function n(c) {
+      for (var e = arguments, k = 0, x = e.length; k < x; ++k) {
         if (isFinite(e[k])) {
           return e[k];
         }
       }
       return 0;
     }
-    function x(c) {
+    function v(c) {
       var e = oa;
       if (hb) {
-        if (Ca && !e) {
-          if (new Date - 0 < Ca) {
+        if (Da && !e) {
+          if (new Date - 0 < Da) {
             return;
           }
-          Ca = t;
+          Da = t;
         }
-        7 === c ? ha = 0 : (ha && (ha = lb(ha)), Ha = p(l.pageYOffset, l.scrollY, F.scrollTop, ca.scrollTop));
-        e ? (oa = I(t, e[0], e[1])) || (Ca = new Date - 0 + 99) : I();
+        7 === c ? ia = 0 : (ia && (ia = lb(ia)), Ha = n(l.pageYOffset, l.scrollY, H.scrollTop, ca.scrollTop));
+        e ? (oa = E(t, e[0], e[1])) || (Da = new Date - 0 + 99) : E();
       } else {
         oa = t;
       }
     }
-    function I(c, e, k) {
-      function w(qa) {
-        G = qa;
+    function E(c, e, k) {
+      function x(qa) {
+        I = qa;
         if (ib) {
           O = ib + ":translate" + (Ta ? "3D(0," : "(0,") + qa + (Ta ? "px,0)" : "px)") + ";-webkit-overflow-scrolling:touch";
         } else {
           if (0 !== qa) {
-            if (!D && (na || J)) {
+            if (!F && (na || J)) {
               var qb = Z.offsetWidth;
             }
-            O = J ? "position:fixed;width:" + qb + "px;top:" + (qa - E + P) + "px" : D ? "top:" + qa + "px;left:0" : "position:absolute;left:0;width:100%;top:" + qa + "px";
+            O = J ? "position:fixed;width:" + qb + "px;top:" + (qa - G + P) + "px" : F ? "top:" + qa + "px;left:0" : "position:absolute;left:0;width:100%;top:" + qa + "px";
             na && O && (O += ";" + (0 > qa ? "clip:rect(" + -qa + "px " + qb + "px " + aa + "px 0)" : qa + aa < rb ? "clip:rect(0 " + qb + "px " + aa + "px 0)" : "clip:rect(0 " + qb + "px " + (rb - qa) + "px 0)"), 8 > u || (O = O.split(" ").join(",")));
           }
         }
       }
-      var E = Ha, A = va, Da = Z.offsetTop === A.offsetTop, G = 0, O = "", ia = !0;
-      if (Da) {
-        for (var V = 0, P = 0, W = A; W && W !== ca;) {
+      var G = Ha, B = wa, Ea = Z.offsetTop === B.offsetTop, I = 0, O = "", ja = !0;
+      if (Ea) {
+        for (var V = 0, P = 0, W = B; W && W !== ca;) {
           P += W.offsetTop, W = W.offsetParent;
         }
-        G = ya;
-        var Hb = p(l.innerHeight, F.offsetHeight), Ib = A.offsetHeight, aa = S.offsetHeight, rb = aa < Ib ? Ib : aa, Ja = E, ab = Ja + Hb, sb = P, tb = sb + rb, Xb = P + G, $b = Xb + aa;
-        A = Ja < sb ? sb : Ja;
-        W = tb < ab ? tb : ab;
-        var bb = W - A;
+        I = za;
+        var Hb = n(l.innerHeight, H.offsetHeight), Ib = B.offsetHeight, aa = S.offsetHeight, rb = aa < Ib ? Ib : aa, Ja = G, bb = Ja + Hb, sb = P, tb = sb + rb, Xb = P + I, $b = Xb + aa;
+        B = Ja < sb ? sb : Ja;
+        W = tb < bb ? tb : bb;
+        var cb = W - B;
         Ja = tb <= Ja;
-        ab = ab <= sb;
+        bb = bb <= sb;
         if (e !== t) {
-          ia = P + e;
-          c = ia + k;
-          var cb;
-          if (Ja || ab) {
-            return Hb <= k ? cb = P : cb = Ja ? tb - k : P + k - Hb, Ca = t, l.scroll(p(l.pageXOffset, l.scrollX, F.scrollLeft, ca.scrollLeft), cb), oa;
+          ja = P + e;
+          c = ja + k;
+          var db;
+          if (Ja || bb) {
+            return Hb <= k ? db = P : db = Ja ? tb - k : P + k - Hb, Da = t, l.scroll(n(l.pageXOffset, l.scrollX, H.scrollLeft, ca.scrollLeft), db), oa;
           }
-          aa <= bb ? V = 4 : k <= bb ? aa - e <= bb ? V = 2 : A <= ia && c <= W ? A < P + G && (V = 4) : V = A <= ia && ia <= W ? 5 : A <= c && c <= W ? 4 : c < A ? 4 : 5 : V = 4;
-          ia = t;
+          aa <= cb ? V = 4 : k <= cb ? aa - e <= cb ? V = 2 : B <= ja && c <= W ? B < P + I && (V = 4) : V = B <= ja && ja <= W ? 5 : B <= c && c <= W ? 4 : c < B ? 4 : 5 : V = 4;
+          ja = t;
         } else {
-          c !== t ? aa <= bb ? (V = 7, ia = !1) : (G -= 60 * c, V = W - P - aa, cb = A - P, G < V ? G = V : cb < G && (G = cb), V = 6) : Ib <= aa || (Ja ? V = 1 : ab || (aa <= bb ? V = 3 : A < Xb ? V = 3 : $b < W ? V = 2 : E < P + aa - bb || (V = 2)));
+          c !== t ? aa <= cb ? (V = 7, ja = !1) : (I -= 60 * c, V = W - P - aa, db = B - P, I < V ? I = V : db < I && (I = db), V = 6) : Ib <= aa || (Ja ? V = 1 : bb || (aa <= cb ? V = 3 : B < Xb ? V = 3 : $b < W ? V = 2 : G < P + aa - cb || (V = 2)));
         }
         switch(V) {
           case 0:
-            w(0);
+            x(0);
             break;
           case 1:
-            w(rb - aa);
+            x(rb - aa);
             break;
           case 2:
-            w(W - P - aa);
+            x(W - P - aa);
             break;
           case 3:
-            w(A - P);
+            x(B - P);
             break;
           case 4:
-            w(A - P - e);
+            x(B - P - e);
             break;
           case 5:
-            w(W - P - (e + k));
+            x(W - P - (e + k));
           case 6:
-            w(G);
+            x(I);
         }
       }
-      Ya(S, O);
-      ya = G;
-      return Da && ia;
+      Za(S, O);
+      za = I;
+      return Ea && ja;
     }
-    function H(c) {
+    function C(c) {
       if (hb) {
-        M && (Ha = p(l.pageYOffset, F.scrollTop, ca.scrollTop));
-        var e = this !== c.target, k = e && p(c.deltaY, c.wheelDeltaY / 120, c.wheelDelta / -120, c.detail / ("MozMousePixelScroll" === c.type ? 45 : 1));
-        e && k && I(9 >= k ? -9 >= k ? -3 : k : 3) && (c.preventDefault(), c.stopPropagation());
+        M && (Ha = n(l.pageYOffset, H.scrollTop, ca.scrollTop));
+        var e = this !== c.target, k = e && n(c.deltaY, c.wheelDeltaY / 120, c.wheelDelta / -120, c.detail / ("MozMousePixelScroll" === c.type ? 45 : 1));
+        e && k && E(9 >= k ? -9 >= k ? -3 : k : 3) && (c.preventDefault(), c.stopPropagation());
       }
     }
     function fa(c) {
-      for (var e = c.target, k = -1, w; w = v[++k];) {
-        fb(w, e) && H(c);
+      for (var e = c.target, k = -1, x; x = w[++k];) {
+        fb(x, e) && C(c);
       }
     }
     function U(c) {
       if (hb) {
         var e = !!ib || M, k = c.target || c.srcElement;
         c = 0;
-        var w;
+        var x;
         if (fb(S, k)) {
-          for (w = k.offsetHeight; k && (e ? fb(S, k) : S !== k);) {
+          for (x = k.offsetHeight; k && (e ? fb(S, k) : S !== k);) {
             c += k.offsetTop, k = k.offsetParent;
           }
-          X ? (oa = [c, w], ha && lb(ha), ha = ka(x, 7)) : (Ha = p(l.pageYOffset, l.scrollY, F.scrollTop, ca.scrollTop), I(t, c, w));
+          X ? (oa = [c, x], ia && lb(ia), ia = la(v, 7)) : (Ha = n(l.pageYOffset, l.scrollY, H.scrollTop, ca.scrollTop), E(t, c, x));
         }
       }
     }
@@ -857,26 +864,26 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
       Ia = l.onerror;
       l.onerror = da;
       var c = f.activeElement;
-      $a !== c && ($a = c, U({target:c}));
+      ab !== c && (ab = c, U({target:c}));
       l.onerror = Ia;
       Ia = t;
     }
     function da() {
       l.onerror = Ia;
-      Ia = $a = t;
+      Ia = ab = t;
       return !0;
     }
-    function la() {
+    function ma() {
       d.call(h);
     }
     function a() {
-      f.fullscreenElement || f.fullscreen || f.webkitIsFullscreen || f.msFullscreenElement || l.fullScreen ? (Xa(h, "id", "blog2slide-root"), z[1].parentNode.insertBefore(q, z[1]), b(), f.onkeydown = g) : n && (Fa(q), Ga(h, "id"), Ga(n, "id"), n = f.onkeydown = t);
+      f.fullscreenElement || f.fullscreen || f.webkitIsFullscreen || f.msFullscreenElement || l.fullScreen ? (Ya(h, "id", "blog2slide-root"), z[1].parentNode.insertBefore(q, z[1]), b(), f.onkeydown = g) : p && (Ga(q), va(h, "id"), va(p, "id"), p = f.onkeydown = t);
     }
     function b() {
-      n && Ga(n, "id");
-      R = 0 < R ? Ba < R ? Ba : R : 0;
-      n = z[R];
-      Xa(n, "id", "blog2slide-current");
+      p && va(p, "id");
+      R = 0 < R ? Ca < R ? Ca : R : 0;
+      p = z[R];
+      Ya(p, "id", "blog2slide-current");
     }
     function g(c) {
       if ("ArrowRight" === c.key || 39 === c.keyCode) {
@@ -891,21 +898,21 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
     Jb || (Fb(function(c) {
       if (c.o && Ma) {
         c = c.m;
-        var e = sa(c), k = "", w;
+        var e = sa(c), k = "", x;
         if ("A" === nb(e) && 1 === Tb(e).length) {
-          var E = ma(e, "href"), A = E.split("?")[0].split("#")[0].split(".");
-          A = (A[A.length - 1] || "").toLowerCase();
-          if ((w = 0 < E.indexOf("blogger.googleusercontent.com/img/")) || 0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + A + ".")) {
-            Y(e, "keydown", r), Y(c, "click", r), Y(e, "click", C), 9 > B || (k = c.offsetWidth - 4 + "px", Ra(c, "width", k)), Qa(e, "jsPica"), m.push({j:e, K:c.src, L:k, B:E, l:c, H:w});
+          var G = ha(e, "href"), B = G.split("?")[0].split("#")[0].split(".");
+          B = (B[B.length - 1] || "").toLowerCase();
+          if ((x = 0 < G.indexOf("blogger.googleusercontent.com/img/")) || 0 <= ".jpg.png.gif.bmp.jpeg.webp.".indexOf("." + B + ".")) {
+            Y(e, "keydown", r), Y(c, "click", r), Y(e, "click", D), 9 > A || (k = c.offsetWidth - 4 + "px", Ra(c, "width", k)), Qa(e, "jsPica"), m.push({j:e, K:c.src, L:k, B:G, l:c, H:x});
           }
         }
       }
     }), Sa(function(c, e) {
       for (c = -1; e = m[++c];) {
-        ba(e.j, "keydown", r), ba(e.l, "click", r), ba(e.j, "click", C);
+        ba(e.j, "keydown", r), ba(e.l, "click", r), ba(e.j, "click", D);
       }
     }));
-    var v = ["jsSidebarFixer1", "jsSidebarFixer2"], y = M || wb || vb, X = !(6 <= u && 9 > u || B || 1 <= M && 1.3 > M), J = !(5 > N(16) || 5 > N(17) || 2.2 > N(21) || 6 > N(12) || ea(30) && 534 > Wa || ea(32) || 7 > u || 9 > B || 1 > M), na = J || 7 > u || 1 > M, D = 7.5 > B, F, Z, va, S, ib = Nb, ya = 0, Ha = 0, Ta, oa, Ca, ha, Za = M && 0 <= L.conpare(Ka, "0.9.7"), za = M && 0 >= L.conpare(Ka, "0.9.4");
+    var w = ["jsSidebarFixer1", "jsSidebarFixer2"], y = M || wb || vb, X = !(6 <= u && 9 > u || A || 1 <= M && 1.3 > M), J = !(5 > N(16) || 5 > N(17) || 2.2 > N(21) || 6 > N(12) || ea(30) && 534 > Wa || ea(32) || 7 > u || 9 > A || 1 > M), na = J || 7 > u || 1 > M, F = 7.5 > A, H, Z, wa, S, ib = Nb, za = 0, Ha = 0, Ta, oa, Da, ia, $a = M && 0 <= L.conpare(Ka, "0.9.7"), Aa = M && 0 >= L.conpare(Ka, "0.9.4");
     Yb || Jb || (gb(function(c) {
       if (c) {
         if (!Ma) {
@@ -913,92 +920,92 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(L, l) {
         }
         c = -1;
         var e;
-        F = "CSS1Compat" !== f.compatMode ? ca : La || ca;
+        H = "CSS1Compat" !== f.compatMode ? ca : La || ca;
         Z = Oa("jsSide");
-        va = Ma;
+        wa = Ma;
         if (!Z) {
           return !0;
         }
-        pb(x);
-        Eb(x);
+        pb(v);
+        Eb(v);
         S = Bb(Ab(Z), "div", {id:"jsSidebarFixer"});
-        for (8 > B || za || 6 > u || (u || ra ? Y(S, "focusin", U) : y ? Y(f, "focus", U, {capture:!0, passive:!1}) : Y(S, "DOMFocusIn", U, !1)); 1 < Pa(Z).length;) {
+        for (8 > A || Aa || 6 > u || (u || ra ? Y(S, "focusin", U) : y ? Y(f, "focus", U, {capture:!0, passive:!1}) : Y(S, "DOMFocusIn", U, !1)); 1 < Pa(Z).length;) {
           S.appendChild(Pa(Z)[1]);
         }
-        for (Za && !db && Y(f, "DOMMouseScroll", fa, !1); e = v[++c];) {
+        for ($a && !eb && Y(f, "DOMMouseScroll", fa, !1); e = w[++c];) {
           var k = Oa(e);
-          k.onwheel !== t ? Y(k, "wheel", H, {passive:!1}) : db ? Y(k, "MozMousePixelScroll", H, !1) : Za ? v[c] = Oa(e) : (k.onmousewheel !== t || 9 <= B) && Y(k, "mousewheel", H, !1);
+          k.onwheel !== t ? Y(k, "wheel", C, {passive:!1}) : eb ? Y(k, "MozMousePixelScroll", C, !1) : $a ? w[c] = Oa(e) : (k.onmousewheel !== t || 9 <= A) && Y(k, "mousewheel", C, !1);
         }
-        u || vb || 2 > Na || (Ta = Ea.perspective !== t || Ea.MozPerspective !== t || Ea["-webkit-perspective"] !== t);
-        x();
+        u || vb || 2 > Na || (Ta = Fa.perspective !== t || Fa.MozPerspective !== t || Fa["-webkit-perspective"] !== t);
+        v();
         return !0;
       }
     }), Sa(function() {
       var c = -1, e;
-      if (Za && !db) {
+      if ($a && !eb) {
         ba(f, "DOMMouseScroll", fa, !1);
       } else {
-        for (; e = v[++c];) {
-          e = Oa(e), e.onwheel !== t ? ba(e, "wheel", H, {passive:!1}) : db ? ba(e, "MozMousePixelScroll", H, !1) : (e.onmousewheel !== t || 9 <= B) && ba(e, "mousewheel", H, !1);
+        for (; e = w[++c];) {
+          e = Oa(e), e.onwheel !== t ? ba(e, "wheel", C, {passive:!1}) : eb ? ba(e, "MozMousePixelScroll", C, !1) : (e.onmousewheel !== t || 9 <= A) && ba(e, "mousewheel", C, !1);
         }
       }
-      8 > B || za || 6 > u || (u || ra ? ba(S, "focusin", U, !1) : y ? ba(f, "focus", U, {capture:!0, passive:!1}) : ba(S, "DOMFocusIn", U, !1));
-      Aa && clearInterval(Aa);
+      8 > A || Aa || 6 > u || (u || ra ? ba(S, "focusin", U, !1) : y ? ba(f, "focus", U, {capture:!0, passive:!1}) : ba(S, "DOMFocusIn", U, !1));
+      Ba && clearInterval(Ba);
     }));
-    var Aa, $a, Ia;
+    var Ba, ab, Ia;
     6 > u && gb(function(c) {
       if (!Ma) {
         return !0;
       }
-      c ? Aa = setInterval(K, 333) : Aa && (clearInterval(Aa), Aa = 0);
+      c ? Ba = setInterval(K, 333) : Ba && (clearInterval(Ba), Ba = 0);
     });
-    wa(function() {
-      function c(Da, G, O, ia) {
-        var V = ia ? "div" : "cite";
-        if (0 === G.indexOf("urn:isbn:")) {
-          G = G.substr(9).toUpperCase().split("-").join("");
-          if (13 === G.length) {
-            G = G.toString().slice(3, -1);
+    xa(function() {
+      function c(Ea, I, O, ja) {
+        var V = ja ? "div" : "cite";
+        if (0 === I.indexOf("urn:isbn:")) {
+          I = I.substr(9).toUpperCase().split("-").join("");
+          if (13 === I.length) {
+            I = I.toString().slice(3, -1);
             for (var P = 0, W = 0; 9 > W; W++) {
-              P += (G.charAt(W) - 0) * (10 - W);
+              P += (I.charAt(W) - 0) * (10 - W);
             }
             P = (11 - P % 11) % 11;
             P = 10 === P ? "X" : P.toString();
-            G += P;
+            I += P;
           }
-          10 === G.length && (G = "//www.amazon.co.jp/exec/obidos/ASIN/" + G + "/itozyun-22/ref=nosim/");
+          10 === I.length && (I = "//www.amazon.co.jp/exec/obidos/ASIN/" + I + "/itozyun-22/ref=nosim/");
         }
-        O = ia ? Bb(Ab(k), V, {className:O}) : ta(k, V, {className:O});
-        ta(O, "a", 0 === G.indexOf("http") ? {target:"_blank", rel:"nofollow noopener noreferrer", G:!0, href:G, J:B ? "0" : t} : {G:!0, href:G, J:B ? "0" : t}, Da);
+        O = ja ? Bb(Ab(k), V, {className:O}) : ta(k, V, {className:O});
+        ta(O, "a", 0 === I.indexOf("http") ? {target:"_blank", rel:"nofollow noopener noreferrer", G:!0, href:I, J:A ? "0" : t} : {G:!0, href:I, J:A ? "0" : t}, Ea);
       }
       if (Ma) {
-        for (var e = zb(Ma, "blockquote"), k, w = -1, E, A; k = e[++w];) {
-          E = ma(k, "title"), A = ma(k, "cite"), E && A ? (Ga(k, "title"), c(E, A, "js-bqLink", !0)) : A && (Ga(k, "cite"), c(l.decodeURI ? decodeURI(A) : A, A, "js-bqCite"));
+        for (var e = zb(Ma, "blockquote"), k, x = -1, G, B; k = e[++x];) {
+          G = ha(k, "title"), B = ha(k, "cite"), G && B ? (va(k, "title"), c(G, B, "js-bqLink", !0)) : B && (va(k, "cite"), c(l.decodeURI ? decodeURI(B) : B, B, "js-bqCite"));
         }
       }
     });
-    var d, h, q, n, z, R, Ba;
-    wa(function() {
+    var d, h, q, p, z, R, Ca;
+    xa(function() {
       var c = Oa("blog2slide-start");
       if (c) {
         var e = f.onfullscreenchange !== t ? "f" : f.onmozfullscreenchange !== t ? "mozF" : f.onwebkitfullscreenchange !== t ? "webkitF" : 0;
         d = c.requestFullscreen || c.webkitRequestFullscreen || c.mozRequestFullscreen || c.msRequestFullscreen;
-        0 !== e || d ? (c.innerHTML = '<button class="btn">\u30b9\u30e9\u30a4\u30c9\u3092\u958b\u59cb\u3059\u308b</button>', Y(c.firstChild, "click", la), c = sa(c), h = sa(c), z = zb(c, "section"), q = f.createElement("h1"), q.innerHTML = eb("h1")[0].innerHTML, Ba = z.length, z.splice(0, 0, q), 0 !== e ? Y(f, e + "ullscreenchange", a) : u ? Y(f, "MSFullscreenChange", a, !1) : Eb(a)) : Fa(c);
+        0 !== e || d ? (c.innerHTML = '<button class="btn">\u30b9\u30e9\u30a4\u30c9\u3092\u958b\u59cb\u3059\u308b</button>', Y(c.firstChild, "click", ma), c = sa(c), h = sa(c), z = zb(c, "section"), q = f.createElement("h1"), q.innerHTML = Xa("h1")[0].innerHTML, Ca = z.length, z.splice(0, 0, q), 0 !== e ? Y(f, e + "ullscreenchange", a) : u ? Y(f, "MSFullscreenChange", a, !1) : Eb(a)) : Ga(c);
       }
     });
   })();
-  ub = f.scripts || eb("script");
+  ub = f.scripts || Xa("script");
   var pa = ub[ub.length - 1].src.split("/");
   --pa.length;
   "js" === pa[pa.length - 1] && --pa.length;
   (pa = pa.join("/")) && (pa += "/");
-  var Yb = Zb || "1" === ma(ca, "mob");
+  var Yb = Zb || "1" === ha(ca, "mob");
   jb = (Yb ? "mb" : "pc") + "/";
-  6.1 > ja && pb(Pb);
+  6.1 > ka && pb(Pb);
   Sa(Qb);
-  6.1 > ja && pb(Rb);
+  6.1 > ka && pb(Rb);
   Sa(Sb);
-  10 > u && (11 !== Ua || 5 !== u) || (9 > B || 1 > M || !ra && !l.addEventListener ? f.write('<link href="' + pa + "css/" + jb + yb + '" rel="stylesheet"' + (8 > B ? "" : ' media="screen,handheld,projection,print"') + ">") : (9.5 > B || 1.5 > M || 532 >= Wa || 2 > Na || 4 <= Na && 8 > Na) && wa(function() {
+  10 > u && (11 !== Ua || 5 !== u) || (9 > A || 1 > M || !ra && !l.addEventListener ? f.write('<link href="' + pa + "css/" + jb + yb + '" rel="stylesheet"' + (8 > A ? "" : ' media="screen,handheld,projection,print"') + ">") : (9.5 > A || 1.5 > M || 532 >= Wa || 2 > Na || 4 <= Na && 8 > Na) && xa(function() {
     ta(Va, "link", {href:pa + "css/" + jb + yb, rel:"stylesheet", media:"screen,handheld,projection,tv,print"});
   }));
 })(ua, this, function() {

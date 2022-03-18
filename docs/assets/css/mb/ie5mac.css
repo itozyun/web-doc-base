@@ -109,8 +109,8 @@ var {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 body,
 input,
@@ -173,8 +173,8 @@ ins {
   background: 0 0;
   color: #24c
 }
-.LinkList :visited,
-.RichLink-sep :visited {
+.LinkList a:visited,
+.RichLink-sep a:visited {
   background: 0 0;
   color: #06284e
 }
@@ -327,6 +327,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -644,10 +645,10 @@ strong {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {

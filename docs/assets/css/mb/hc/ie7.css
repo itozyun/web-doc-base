@@ -4,6 +4,7 @@
 .SocialBtns,
 a:active img,
 blockquote,
+form :active,
 td {
   border-style: dotted
 }
@@ -26,9 +27,6 @@ tfoot td {
   height: .35em;
   top: 0;
   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M22=1, M12=1, M21=-1, sizingMethod="auto expand")
-}
-a:active {
-  outline: solid 2px
 }
 table {
   border-spacing: 2px;

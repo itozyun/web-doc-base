@@ -159,14 +159,6 @@ var {
   padding: .45em 1em;
   zoom: 1
 }
-.AHead-labels a:active,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
-}
 body,
 input,
 textarea {
@@ -207,8 +199,8 @@ a:active img {
   background: 0 0;
   color: #24c
 }
-.LinkList :visited,
-.RichLink-sep :visited {
+.LinkList a:visited,
+.RichLink-sep a:visited {
   background: 0 0;
   color: #06284e
 }
@@ -270,7 +262,7 @@ tbody :hover th {
   border-color: transparent #06284e
 }
 :active {
-  outline: 0
+  outline: transparent solid 2px
 }
 dt {
   font-weight: 700;
@@ -358,7 +350,8 @@ p {
 .aBodyRoot a:active:hover,
 :link:hover,
 :visited:hover,
-a:active:hover {
+a:active:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .js-bqLink,
@@ -464,7 +457,9 @@ th {
 .ABody h2 *,
 .Cover h2,
 .tl tbody :hover td,
-.tl tbody :hover th {
+.tl tbody :hover th,
+input:hover,
+textarea:hover {
   border-color: #0d5bb5
 }
 iframe,
@@ -721,10 +716,10 @@ input.btn {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {

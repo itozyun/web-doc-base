@@ -4,6 +4,7 @@
 .SocialBtns,
 a:active img,
 blockquote,
+form :active,
 td {
   border-style: dotted
 }
@@ -15,7 +16,7 @@ tfoot td {
 .RichLink-sep :hover {
   text-decoration: underline!important
 }
-a:active {
+:active {
   outline: solid 2px
 }
 table {

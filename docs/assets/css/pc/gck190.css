@@ -93,6 +93,7 @@ sup {
 textarea {
   overflow: auto
 }
+[type=submit],
 blockquote,
 code,
 tbody th,
@@ -141,7 +142,6 @@ th {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
   outline: 0
 }
 body,
@@ -325,16 +325,16 @@ ul {
   margin: 1em
 }
 input {
-  line-height: 1;
-  height: 2.1em
+  height: 2.1em;
+  line-height: 1
 }
 [type=hidden] {
   display: none!important
 }
-input:-moz-focus-inner {
+:-moz-focus-inner {
   border: 0
 }
-input::-moz-focus-inner {
+::-moz-focus-inner {
   border: 0
 }
 * {
@@ -368,7 +368,8 @@ p {
 :link:hover,
 :visited:hover,
 a:active,
-a:focus:hover {
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -387,6 +388,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -427,10 +429,6 @@ a:focus {
 :target * {
   background: #0d5bb5!important;
   border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #fdeeb7
 }
 .RichLink b,
 h1,
@@ -566,6 +564,10 @@ textarea {
   border-width: .1em;
   padding: .45em .4em
 }
+.baseColor,
+.medal {
+  background: #fdeeb7
+}
 h2 {
   margin: 0;
   border-width: 0 0 2px;
@@ -576,10 +578,10 @@ h2 {
   color: #c00!important
 }
 hr {
-  display: -moz-inline-box;
   height: 0;
   border-color: #e7d182;
-  margin: 2em 1em
+  margin: 2em 1em;
+  display: -moz-inline-box
 }
 tr hr {
   margin: 1em 9%
@@ -749,10 +751,14 @@ input.btn {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
+}
+.Cover img,
+.commonForm-wrap * {
+  width: 100%
 }
 .ABody h2,
 .ABody h3 {
@@ -761,10 +767,6 @@ input.btn {
 .commonForm-wrap {
   display: block;
   margin: 0 0 1em 8em
-}
-.commonForm-wrap * {
-  width: 100%;
-  float: right
 }
 .medal,
 .medal-bronze,
@@ -944,8 +946,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover .img-loaded div {
   position: absolute;

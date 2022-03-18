@@ -133,6 +133,7 @@ th {
 svg {
   overflow: hidden
 }
+[type=submit],
 blockquote,
 code,
 tbody th,
@@ -179,8 +180,8 @@ th {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 body,
 input,
@@ -322,7 +323,7 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
-  outline: 0
+  outline: transparent solid 2px
 }
 dt {
   font-weight: 700;
@@ -434,7 +435,8 @@ p {
 :link:hover,
 :visited:hover,
 a:active,
-a:focus:hover {
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -453,6 +455,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -493,10 +496,6 @@ a:focus {
 :target * {
   background: #0d5bb5!important;
   border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #fdeeb7
 }
 .wn,
 .wn:after {
@@ -622,6 +621,10 @@ input,
 textarea {
   border-width: 2px;
   padding: .45em 8px
+}
+.baseColor,
+.medal {
+  background: #fdeeb7
 }
 h2 {
   margin: 0;
@@ -797,10 +800,10 @@ strong {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {

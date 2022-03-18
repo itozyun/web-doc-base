@@ -80,10 +80,6 @@ body {
 .lS2 {
   width: 48.5%
 }
-#lB .lMi,
-#lB .lSi,
-#lF .lMi,
-#lF .lSi,
 .AAuthor,
 .Comment p,
 .Cover,
@@ -93,6 +89,8 @@ body {
 .Search,
 .box,
 .commonForm-pair,
+.lMi,
+.lSi,
 kbd:hover,
 sub,
 sup {
@@ -118,6 +116,7 @@ h2,
 html {
   margin: 0
 }
+[type=submit],
 blockquote,
 code,
 tbody th,
@@ -155,11 +154,11 @@ pre {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 *,
-input[type=submit]:focus {
+[type=submit]:focus {
   border-style: solid
 }
 body,
@@ -266,10 +265,10 @@ del {
   text-decoration: line-through
 }
 input {
-  line-height: 1;
-  height: 2.1em
+  height: 2.1em;
+  line-height: 1
 }
-input[type=submit]:-moz-focus-inner {
+:-moz-focus-inner {
   border: 0
 }
 textarea {
@@ -309,7 +308,8 @@ p {
 .aBodyRoot a:focus:hover,
 :link:hover,
 :visited:hover,
-a:focus:hover {
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -339,10 +339,6 @@ a:focus {
   background: #0d5bb5!important;
   color: #fff!important;
   border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #fdeeb7
 }
 h1,
 h2,
@@ -467,6 +463,10 @@ textarea {
   border-width: .1em;
   padding: .45em .4em
 }
+.baseColor,
+.medal {
+  background: #fdeeb7
+}
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
@@ -477,10 +477,10 @@ h2 {
   color: #c00!important
 }
 hr {
-  display: -moz-inline-box;
   height: 0;
   border-color: #e7d182;
-  margin: 2em 6%
+  margin: 2em 6%;
+  display: -moz-inline-box
 }
 tr hr {
   margin: 1em 9%
@@ -620,16 +620,14 @@ strong {
 #lB .lM {
   padding-top: 2em
 }
-#lB .lMi:after,
-#lB .lSi:after,
-#lF .lMi:after,
-#lF .lSi:after,
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
 .RichLink a:after,
 .box:after,
-.commonForm-pair:after {
+.commonForm-pair:after,
+.lMi:after,
+.lSi:after {
   content: "";
   clear: both
 }
@@ -679,10 +677,10 @@ input.btn {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {
@@ -693,8 +691,7 @@ input.btn {
   margin: 0 0 1em 8em
 }
 .commonForm-wrap * {
-  width: 100%;
-  float: right
+  width: 100%
 }
 .medal,
 .medal-bronze,
@@ -1516,18 +1513,15 @@ li.L8 {
     line-height: 1.5
   }
   .ADesc,
-  .ribbon a,
   a {
     color: #666
   }
-  .ribbon :link,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
   thead :link {
     color: #006
   }
-  .ribbon :visited,
   :visited,
   blockquote tbody th :visited,
   blockquote thead th :visited,

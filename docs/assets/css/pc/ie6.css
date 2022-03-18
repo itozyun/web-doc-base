@@ -147,14 +147,6 @@ var {
 th {
   text-align: left
 }
-.AHead-labels a:active,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
-}
 body,
 input,
 textarea {
@@ -214,16 +206,16 @@ ins {
   background: 0 0;
   color: #24c
 }
-.LinkList :visited,
-.RichLink-sep :visited {
-  background: 0 0;
-  color: #06284e
-}
 blockquote,
 code,
 tbody th,
 var {
   background: #e7d182
+}
+.LinkList a:visited,
+.RichLink-sep a:visited {
+  background: 0 0;
+  color: #06284e
 }
 .LinkList :hover,
 .RichLink-sep :hover,
@@ -648,10 +640,10 @@ input.btn {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .ABody h2,
 .ABody h3 {

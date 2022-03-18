@@ -119,10 +119,6 @@ th {
 .lS2 {
   width: 48.5%
 }
-.baseColor,
-.medal {
-  background: #fdeeb7
-}
 .Cover-btn i,
 .Cover-img,
 .Pager,
@@ -161,6 +157,7 @@ ul {
 .lX {
   overflow: hidden
 }
+[type=submit],
 blockquote,
 code,
 tbody th,
@@ -201,8 +198,8 @@ pre {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 body,
 input,
@@ -273,8 +270,8 @@ a:focus img {
   background: 0 0;
   color: #24c
 }
-.LinkList :visited,
-.RichLink-sep :visited {
+.LinkList a:visited,
+.RichLink-sep a:visited {
   background: 0 0;
   color: #06284e
 }
@@ -341,7 +338,7 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
-  outline: 0
+  outline: transparent solid 2px
 }
 dt {
   font-weight: 700;
@@ -441,7 +438,8 @@ p {
 :link:hover,
 :visited:hover,
 a:active,
-a:focus:hover {
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -460,6 +458,7 @@ a:focus:hover {
 }
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #0d5bb5;
   border-color: #0d5bb5
@@ -613,6 +612,10 @@ input,
 textarea {
   border-width: 2px;
   padding: .45em 8px
+}
+.baseColor,
+.medal {
+  background: #fdeeb7
 }
 h2 {
   margin: 0;
@@ -800,10 +803,10 @@ strong {
   margin-bottom: 1em
 }
 .commonForm label {
-  display: block;
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0;
+  display: block
 }
 .Cover img,
 .commonForm-wrap * {

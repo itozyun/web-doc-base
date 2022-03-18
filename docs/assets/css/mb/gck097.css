@@ -98,6 +98,7 @@ ul {
 textarea {
   overflow: auto
 }
+[type=submit],
 blockquote,
 code,
 tbody th,
@@ -150,11 +151,11 @@ sup {
 .btn:focus {
   border-color: #0d5bb5;
   color: #0d5bb5;
-  border-style: dotted;
-  outline: 0
+  outline: 0;
+  border-style: dotted
 }
 *,
-input[type=submit]:focus {
+[type=submit]:focus {
   border-style: solid
 }
 body,
@@ -190,10 +191,8 @@ a:focus img {
   background: #06284e;
   color: #fdeeb7
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
+.LinkList :hover,
+.RichLink-sep :hover,
 .tl tr code,
 .tl tr var,
 blockquote tbody th code,
@@ -249,12 +248,8 @@ form,
 h2 {
   margin: 0
 }
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
+.BlogArchive :hover,
+.Label a:hover,
 .aBodyRoot a:focus,
 :link,
 :visited,
@@ -266,8 +261,8 @@ del {
   text-decoration: line-through
 }
 input {
-  line-height: 1;
-  height: 2.1em
+  height: 2.1em;
+  line-height: 1
 }
 .AHead-labels i,
 .RichLink br,
@@ -277,8 +272,8 @@ input {
 .Cover img,
 .Cover-meta,
 .commonForm,
-.commonForm label,
 .commonForm-wrap,
+.commonForm-wrap *,
 a iframe,
 a img {
   display: block
@@ -292,14 +287,19 @@ kbd {
   display: -moz-inline-box
 }
 input[type=submit] {
+  text-align: center;
   -moz-box-sizing: content-box
 }
-:-gck-lte142,
-_:-moz-any-link,
-input[type=submit] {
+.jsPicaLarge img,
+input,
+textarea {
   -moz-box-sizing: border-box
 }
-input[type=submit]:-moz-focus-inner {
+
+input[type=submit],_:-moz-any-link {
+  -moz-box-sizing: border-box
+}
+:-moz-focus-inner {
   border: 0
 }
 *,
@@ -336,8 +336,7 @@ p {
 .aBodyRoot :link,
 .aBodyRoot :visited,
 .aBodyRoot a:focus:hover,
-:link:hover,
-:visited:hover,
+:hover,
 a:focus:hover {
   text-decoration: underline
 }
@@ -368,10 +367,6 @@ a:focus {
   background: #0d5bb5!important;
   color: #fff!important;
   border-color: #fff!important
-}
-.baseColor,
-.medal {
-  background: #fdeeb7
 }
 h1,
 h2,
@@ -477,9 +472,12 @@ li ul {
 }
 input,
 textarea {
-  -moz-box-sizing: border-box;
   border-width: .1em;
   padding: .45em .4em
+}
+.baseColor,
+.medal {
+  background: #fdeeb7
 }
 h2 {
   border-width: 0 0 2px;
@@ -663,6 +661,10 @@ strong {
 }
 input.btn {
   line-height: 1;
+  padding: 0;
+  height: 1.9em
+}
+input.btn,_:-moz-any-link {
   padding: .45em 1em
 }
 .commonForm-pair {
@@ -671,18 +673,24 @@ input.btn {
 .commonForm label {
   float: left;
   width: 7em;
-  padding: .45em 0 0
+  padding: .45em 0
 }
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
+.commonForm label,_:-moz-any-link {
+  float: none;
+  width: auto
+}
 .commonForm-wrap {
   margin: 0 0 1em 8em
 }
+.commonForm-wrap,_:-moz-any-link {
+  margin: .5em 1em
+}
 .commonForm-wrap * {
-  width: 100%;
-  float: right
+  width: 100%
 }
 .medal,
 .medal-bronze,
@@ -986,9 +994,7 @@ pre var {
   padding-right: 0;
   overflow: hidden
 }
-.Search .btn,
-:-gck-lte142,
-_:-moz-any-link {
+.Search .btn,_:-moz-any-link {
   width: 3em;
   right: 0;
   height: 2.1em
@@ -1106,6 +1112,9 @@ tr .prettyprint {
 .aa code,
 .aa var {
   color: #00ac06
+}
+.aBodyRoot :hover {
+  text-decoration: none!important
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1438,8 +1447,7 @@ li.L8 {
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  max-width: 100%;
-  -moz-box-sizing: border-box
+  max-width: 100%
 }
 .box .jsCapLarge {
   float: none
@@ -1497,18 +1505,15 @@ li.L8 {
     line-height: 1.5
   }
   .ADesc,
-  .ribbon a,
   a {
     color: #666
   }
-  .ribbon :link,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
   thead :link {
     color: #006
   }
-  .ribbon :visited,
   :visited,
   blockquote tbody th :visited,
   blockquote thead th :visited,

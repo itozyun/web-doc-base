@@ -5,6 +5,7 @@
 a:active img,
 a:focus img,
 blockquote,
+form :active,
 form :focus,
 td {
   border-style: dotted
@@ -17,8 +18,8 @@ tfoot td {
 .RichLink-sep a:hover {
   text-decoration: underline!important
 }
-a:active,
-a:focus {
+:active,
+:focus {
   outline: solid 2px
 }
 table {
