@@ -8,17 +8,27 @@
  * C15: CSSを用いて、ユーザーインタフェースコンポーネントがフォーカスを受けとったときの表示を変更する
  *   https://waic.jp/docs/NOTE-WCAG20-TECHS-20120103/C15.html
  */
-8 <= p_Presto && p_listenLoadEvent(
-    function( e ){
-        var anchorList = p_DOM_getElementsByTagNameFromDocument( 'a' ),
+p_Presto && p_listenLoadEvent(
+    function(){
+        if( 8 <= p_Presto ){
+            var anchorList = p_DOM_getElementsByTagNameFromDocument( 'a' ),
             l = anchorList.length, i = 0, elm;
 
-        for( ; i < l ; ++i ){
-            elm = anchorList[ i ];
-            if( p_DOM_getAttribute( elm, 'tabindex' ) === '-1' ){
+            for( ; i < l ; ++i ){
+                elm = anchorList[ i ];
+                if( p_DOM_getAttribute( elm, 'tabindex' ) === '-1' ){
+                    p_DOM_removeAttribute( elm, 'tabindex' );
+                } else if( p_DOM_getAttribute( elm, 'href' ) ){
+                    p_DOM_setAttribute( elm, 'tabindex', '0' );
+                };
+            };
+        };
+        var inputList = p_DOM_getElementsByTagNameFromDocument( 'input' );
+
+        for( i = 0, l = inputList.length; i < l ; ++i ){
+            elm = inputList[ i ];
+            if( p_DOM_getAttribute( elm, 'type' ) === 'hidden' ){
                 p_DOM_removeAttribute( elm, 'tabindex' );
-            } else if( p_DOM_getAttribute( elm, 'href' ) ){
-                p_DOM_setAttribute( elm, 'tabindex', '0' );
             };
         };
 
