@@ -24,7 +24,7 @@
         a:focus & { border-color : $COLOR_ACCENT !important; }
     }
 
-    @if( $UA_Gck-097 == false and $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
+    @if( $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
         @if( $LIMITED_HOVER_PSEUDO_CLASS ){
             :hover & {
                 position : relative;
