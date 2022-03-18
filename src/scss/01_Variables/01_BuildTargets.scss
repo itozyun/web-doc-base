@@ -245,7 +245,7 @@
     $DARK_THEME_ALLWAYS : false;
 
     $ACTIVE_BEHAVES_LIKE_FOCUS  : $IS_LTE_WIN_IE7; // :active を実装するがそのふるまいは :focus
-    $LIMITED_HOVER_PSEUDO_CLASS : $IS_LTE_WIN_IE6; // :hover は a[href] にしか働かない
+    $LIMITED_HOVER_PSEUDO_CLASS : $IS_LTE_WIN_IE6 or $UA_Gck-097; // :hover は a[href] にしか働かない
     $FORCED_COLORS_SUPPORT      : $UA_Modern or $IS_WIN_IE or $UA_Gck130-190;
     $LIMITED_FORM_ITEM_STYLING  : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
 
@@ -258,8 +258,8 @@
     $CANUSE_MAX_AND_MIN_SIZES        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_OVERFLOW_X_AND_Y         : $UA_Modern or $IS_WIN_IE or $UA_MacIE5 or $UA_Gck101-121 or $UA_Gck130-190; // Gecko 1.9.0~ ?
     $CANUSE_MARGIN_AUTO              : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
-    $CANUSE_HOVER_PSEUDO_CLASS       : $UA_Modern or $UA_Gck101-121 or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7; // Gecko 1.1+
-    $CANUSE_ACTIVE_PSEUDO_CLASS      : $UA_Modern or $UA_Gck130-190 or $IS_OLD_OPERA or $IS_WIN_IE or $UA_MacIE5; // Gecko 1.1 :active のスタイルが :focus と同じ
+    $CANUSE_HOVER_PSEUDO_CLASS       : $UA_Modern or $UA_Gck101-121 or $UA_Gck130-190 or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_IE7; // Gecko 1.1+
+    $CANUSE_ACTIVE_PSEUDO_CLASS      : $UA_Modern or $UA_Gck130-190 or $IS_OLD_OPERA or $IS_WIN_IE or $UA_MacIE5; // Gecko 1.8 :active のスタイルが :focus と同じ, 1.9 以降両方に設定が必要
     $CANUSE_FOCUS_PSEUDO_CLASS       : $UA_Modern or $IS_OLD_GECKO or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.6 から a 要素のタブフォーカスをサポート。
     $CANUSE_EMPTY_PSEUDO_CLASS       : $UA_Modern or $IS_LEGACY or $UA_IE9;
     $CANUSE_TARGET_PSEUDO_CLASS      : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
