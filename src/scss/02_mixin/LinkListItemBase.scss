@@ -17,18 +17,26 @@
             }
         }
     }
-    @if( $CANUSE_NOT_SELECTOR == false ){
+    @if( $CANUSE_NOT_SELECTOR == false or $UA_Opera9 ){
         a {
             background : $COLOR_Light_text;
             color      : $COLOR_Light_fill;
         }
         :link {
-            background : transparent;
-            color      : $COLOR_Light_link;
+            @if( $UA_Opera70 ){
+                background : $COLOR_Light_fill;
+            } @else {
+                background : transparent;
+            }
+            color : $COLOR_Light_link;
         }
-        :visited {
-            background : transparent;
-            color      : $COLOR_Light_text;
+        a:visited {
+            @if( $UA_Opera70 ){
+                background : $COLOR_Light_fill;
+            } @else {
+                background : transparent;
+            }
+            color : $COLOR_Light_text;
         }
     } @else {
         a:not([href]) {
@@ -62,12 +70,20 @@
                 color      : $COLOR_Ribbon_fill;
             }
             .ribbon & :link {
-                background : transparent;
-                color      : $COLOR_Ribbon_link;
+                @if( $UA_Opera70 ){
+                    background : $COLOR_Ribbon_fill;
+                } @else {
+                    background : transparent;
+                }
+                color : $COLOR_Ribbon_link;
             }
             .ribbon & :visited {
-                background : transparent;
-                color      : $COLOR_Ribbon_text;
+                @if( $UA_Opera70 ){
+                    background : $COLOR_Ribbon_fill;
+                } @else {
+                    background : transparent;
+                }
+                color : $COLOR_Ribbon_text;
             }
         } @else {
             .ribbon & a:not([href]) {
@@ -110,12 +126,24 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         /* href がない場合 current カラーになる */
-        a:not([href]) {
-            background : $COLOR_Dark_casual_text;
-            color      : $COLOR_Dark_fill;
-        }
-        & :visited {
-            // color : $COLOR_Dark_text;
+        @if( $UA_Opera9 ){ // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
+            & a {
+                background : $COLOR_Dark_casual_text;
+                color      : $COLOR_Dark_fill;
+            }
+            & :link {
+                background : transparent;
+                color      : $COLOR_Dark_link;
+            }
+            & :visited {
+                background : transparent;
+                color      : $COLOR_Dark_text;
+            }
+        } @else {
+            & a:not([href]) {
+                background : $COLOR_Dark_casual_text;
+                color      : $COLOR_Dark_fill;
+            }
         }
         & :link:hover, & :visited:hover {
             background : $COLOR_Dark_casual_fill;
