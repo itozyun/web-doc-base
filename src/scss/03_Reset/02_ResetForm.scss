@@ -1,9 +1,26 @@
-@if( $IS_OLD_OPERA or $IS_OLD_GECKO ){
-    form {
+/*  Reset form
+--------------------------------------------------------------------------------------*/
+form {
+    @if( $IS_OLD_OPERA or $IS_OLD_GECKO ){
         margin : 0;
+    }
+
+    :invalid {
+        @if( $UA_Modern ){
+            box-shadow : none; /* firefox45 */
+        }
     }
 }
 
+
+input, textarea {
+    @if( $IS_OLD_GECKO ){
+        -moz-box-sizing : border-box;
+    }
+}
+
+/*  input
+--------------------------------------------------------------------------------------*/
 input {
     font-size : 1em;
 
@@ -20,11 +37,7 @@ input {
         line-height : 1;
         height      : 1em;
     }
-    @if( $UA_IE55 or $UA_IE5 or $IS_OLD_GECKO ){
-        line-height : 1;
-        height      : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; 
-    }
-    @if( $IS_OLD_OPERA ){
+    @if( $UA_IE55 or $UA_IE5 or $IS_OLD_GECKO or $IS_OLD_OPERA ){
         height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         @if( $IS_Opera7x == false ){
             line-height : 1; // Opera 7.x input[type=text] に触れなくなる
@@ -38,65 +51,79 @@ input {
     }
 }
 
-@if( $UA_Opera8 ){
-    input[type=submit]:focus {
-        border-style : solid;
+/*  [type=hidden]
+--------------------------------------------------------------------------------------*/
+[type=hidden] {
+    @if( $UA_Gck-097 or $UA_Opera72 ){
+        display: none; // for Gecko 0.9.6, Opera 7.2~7.5
+    }
+    @if( $UA_Gck130-190 ){
+        display: none !important; // 強制カラーモードで必要. Gecko 1.8.1.12 で確認
     }
 }
 
-@if( $IS_OLD_GECKO ){
-    textarea, input {
-        -moz-box-sizing : border-box;
-    }
+
+/*  [type=submit]
+--------------------------------------------------------------------------------------*/
+input[type=submit] {
     @if( $UA_Gck-097 ){
-        [type=hidden] {
-            display: none; // Only for Gecko 0.9.6
-        }
-        input[type=submit] {
-            -moz-box-sizing : content-box; /* Gecko 0.8.1 */
-        }
-        :-gck-lte142, _:-moz-any-link, input[type=submit] {
-            -moz-box-sizing : border-box; /* Gecko 0.9.4~1.4.2 */
+        text-align      : center;
+        -moz-box-sizing : content-box; /* Gecko 0.8.1 */
+        @include css-hack(gecko094To097){
+            -moz-box-sizing : border-box; /* Gecko 0.9.4~ */
         }
     }
-    @if( $UA_Gck-097 or $UA_Gck101-121 ){
-        input[type=submit]:focus {
+}
+
+[type=submit] {
+    @if( $UA_Opera72 ){
+        border : 0;
+    }
+
+    &:focus {
+        @if( $UA_Opera8 ){
             border-style : solid;
         }
-        input[type=submit]:-moz-focus-inner /* , button:-moz-focus-inner */ {
-            border : 0;
+        @if( $UA_Gck-097 or $UA_Gck101-121 ){
+            border-style : solid;
         }
     }
-    
-    @if( $UA_Gck130-190 ){
-        [type=hidden] {
-            display: none !important; // ハイコントラストモードで必要. Gecko 1.8.1.12 で確認
+
+    @if( $UA_Modern ){
+        /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
+         * iOSでのデフォルトスタイルをリセット */
+        &::-webkit-search-decoration {
+            display : none;
         }
-        input:-moz-focus-inner /* , button:-moz-focus-inner */ {
-            border : 0; /* Gecko 1.3.1~1.8.1 */
+        &:focus {
+            outline-offset : -2px;
         }
     }
 }
 
-@if( $UA_Modern or $UA_Gck130-190 ){
-    input::-moz-focus-inner /* , button::-moz-focus-inner */ {
-        border : 0; /* Gecko 1.9.0 */
+:-moz-focus-inner /* , button:-moz-focus-inner */ {
+    @if( $UA_Gck-097 or $UA_Gck101-121 or $UA_Gck130-190 ){
+        border : 0;
+    }
+}
+::-moz-focus-inner /* , button::-moz-focus-inner */ {
+    @if( $UA_Modern or $UA_Gck130-190 ){
+        border : 0; /* Gecko 1.9.0+ */
     }
 }
 
+/*  textarea
+--------------------------------------------------------------------------------------*/
 textarea {
-    font-size   : 1em;
-    overflow    : auto;
-    margin      : 0;
+    font-size : 1em;
+    overflow  : auto;
+    margin    : 0;
 
     @if( $UA_Modern ){
         resize           : vertical;
         background-image : none; /* Android Firefox */
     }
-}
-
-@if( $UA_Modern ){
-    form :invalid {
-        box-shadow : none; /* firefox45 */
+    @if( $UA_Opera70 ){
+        background : Window;
     }
 }

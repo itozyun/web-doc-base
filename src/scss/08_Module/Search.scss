@@ -24,13 +24,19 @@ $SEARCH_BTN_WIDTH : 3em;
     .Search-txt {
         margin-right : $INPUT_BORDER_WIDTH * 2;
         @if( $IS_Opera7x ){
-            background : $COLOR_Light_casual_fill; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
+            background : Window; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
+        }
+        @if( $UA_Opera72 ){
+            outline: 0;
         }
     }
     .Search input {
         @if( $IS_Opera7x ){
-            border-width : 0;
+            border-width : 0; // 7.2~ にはネイティブの枠線がある, 7.0 にはない
             padding      : 0;
+            @if( $UA_Opera70 ){
+                outline: InactiveBorder solid $INPUT_BORDER_WIDTH;
+            }
         } @else {
             border-width : $INPUT_BORDER_WIDTH;
         }
@@ -68,14 +74,15 @@ $SEARCH_BTN_WIDTH : 3em;
         }
         .Search .btn {
             position : absolute;
-            height   : $PARAGRAPH_LINE_HEIGHT_EM;
             width    : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
             right    : $FORM_ITEM_PADDING_LR * 2;
-        }
-        :-gck-lte142, _:-moz-any-link, .Search .btn { /* Gecko 0.9.4~1.4.2 */
-            width  : $SEARCH_BTN_WIDTH;
-            right  : 0;
-            height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2}; /* Gecko 0.9.4~1.4.2 */
+            height   : $PARAGRAPH_LINE_HEIGHT_EM;
+            /* Gecko 0.9.4~ */
+            @include css-hack(gecko094To097){
+                width  : $SEARCH_BTN_WIDTH;
+                right  : 0;
+                height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+            }
         }
     } @else if( $UA_Gck101-121 or $UA_Gck130-190 ){
         .Search {

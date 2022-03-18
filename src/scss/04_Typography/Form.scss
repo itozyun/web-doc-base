@@ -25,28 +25,52 @@
     }
 }
 
-@if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-    form :focus {
-        color        : $COLOR_ACCENT;
-        border-color : $COLOR_ACCENT;
+form * {
+    @if( $IS_Opera7x == false and    // Opera 7.2, フォーム部品に触れなくなる
+         $IS_LTE_WIN_IE7 == false ){ // 部品に対して :active, :hover が無い
+        @include active-focus-pseudo-class {
+            color        : $COLOR_ACCENT;
+            border-color : $COLOR_ACCENT;
+        }
     }
-}
 
-@if( $UA_Modern ){
-    form :invalid {
-        color : $COLOR_WARN;
+    &:focus {
+        @if( $UA_Opera70 ){
+            color        : $COLOR_ACCENT;
+            border-color : $COLOR_ACCENT;
+        }
+    }
+    &:invalid {
+        @if( $UA_Modern ){
+            color : $COLOR_WARN;
+        }
     }
 }
 
 textarea, input {
     @extend %UDFontFamily;
-    border-width : $INPUT_BORDER_WIDTH;
     @include placeholder-color( $COLOR_Light_casual_text );
+
+    @if( $UA_Opera72 == false ){
+        border-width : $INPUT_BORDER_WIDTH;
+    } @else if( $LIMITED_FORM_ITEM_STYLING ){
+        border-color : InactiveBorder; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
+    }
 
     @if( $IS_OLD_OPERA == false ){
         padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) $FORM_ITEM_PADDING_LR;
-    } @else {
-        // padding      : 0; // Opera 8~ では padding が無視, Opera 7 では 0 に
+    }
+
+    &:hover {
+        @if( $UA_IE7 ){
+            border-color : $COLOR_ACCENT; // IE7, form :focus が使えない代わり
+        }
+    }
+}
+
+@if( $CANUSE_ATTR_SELECTOR and $LIMITED_FORM_ITEM_STYLING == false ){
+    [type=submit] {
+        background : $COLOR_Light_casual_fill;
     }
 }
 
@@ -68,8 +92,8 @@ textarea, input {
 /*  Forced colors
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_fallback){
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-        form :focus {
+    form * {
+        @include active-focus-pseudo-class {
             border-style : dotted;
         }
     }

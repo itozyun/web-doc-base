@@ -13,37 +13,51 @@
 }
 
     .commonForm-pair {
-        @include clearfix;
+        @if( $UA_IE5 == false ){
+            @include clearfix;
+        }
         @include unbreak-inside;
-
         margin-bottom : 1em;
     }
         .commonForm label {
             @if( $UA_IE5 == false ){
-                display : block;
                 float   : left;
                 width   : 7em;
-                padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0 0;
+                padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0;
+                @if( $UA_Gck-097 ){
+                    @include css-hack(gecko094To097){
+                        float : none; // Gecko 0.9+ でラベルが消えるので左右に並べない
+                        width : auto;
+                    }
+                } @else {
+                    display : block; // Gecko 0.9.4 でフォームが消える!
+                }
             }
         }
 
         .commonForm-wrap {
             display : block;
-            @if( $UA_IE5 == false and $IS_LEGACY == false ){
-                margin  : 0 #{($INPUT_BORDER_WIDTH + $FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
-            }
             @if( $IS_LEGACY ){
-                margin  : 0 0 1em 8em;
+                margin : 0 0 1em 8em;
+                @if( $UA_Gck-097 ){
+                    @include css-hack(gecko094To097){
+                        margin : 0.5em 1em;
+                    }
+                }
+            } @else if( $UA_IE5 == false ){
+                margin : 0 #{($INPUT_BORDER_WIDTH + $FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+            } @else {
+                margin : 0.5em 1em;
             }
         }
 
             .commonForm-wrap * {
                 width : 100%;
-            /* //_{@ie7,@ie6 */ /* 上に出来る余白を消す、ie5 はカラムが壊れる */
-                float : left;
-            /* //_}@ie7,@ie6 */
-                @if( $IS_LEGACY ){
-                    float : right; /* Opera ~8 右に揃える */
+                @if( $UA_IE7 or $UA_IE6 ){
+                    float : left; /* 上に出来る余白を消す、ie5 はカラムが壊れる */
+                }
+                @if( $UA_Gck-097 ){
+                    display : block; /* 上に出来る余白を消す */
                 }
             }
 

@@ -19,21 +19,23 @@ input.btn {
         padding : 0; // for Opera 7.x
     }
     @if( $IS_OLD_GECKO ){
-        & {
+        @if( $UA_Gck-097 ){
+            line-height : 1;
+            padding     : 0;
+            height      : $PARAGRAPH_LINE_HEIGHT_EM;
+            @include css-hack(gecko094To097){
+                padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
+            }
+        } @else {
             line-height : 1;
             padding     : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
         }
     }
-}
 
-@if( $UA_Modern ){
-    /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
-    * iOSでのデフォルトスタイルをリセット */
-    input.btn::-webkit-search-decoration {
-        display : none;
-    }
-    input.btn:focus {
-        outline-offset : -2px;
+    @if( $CANUSE_HOVER_PSEUDO_CLASS and $IS_OLD_OPERA == false ){
+        &:hover {
+            text-decoration : underline;
+        }
     }
 }
 
