@@ -48,22 +48,21 @@
 
     /* input.btn に対して適用, a:link, a:visited には上書きされる */
     @if( $IS_LTE_WIN_IE7 ){
-        // IE7 以下にはデザインが適用されない
+        // IE7 以下, form 部品にデザインが適用されない, IE7 で :active {outline:} のみ?
         &:active {
             @if( $UA_IE5 or $UA_IE55 ){
                 border-color : $COLOR_ACCENT;
             }
-            color        : $COLOR_ACCENT;
-            border-style : dotted;
-            outline      : 0;
         }
     } @else {
         & {
             @include active-focus-pseudo-class {
                 border-color : $COLOR_ACCENT;
                 color        : $COLOR_ACCENT;
-                border-style : dotted;
                 outline      : 0;
+                @if( $UA_Gck130-190 == false ){
+                    border-style : dotted; // Gecko 1.8 で塗りが汚い
+                }
             }
         }
     }
