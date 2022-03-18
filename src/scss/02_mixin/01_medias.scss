@@ -155,11 +155,11 @@ $COMMENT_OUT_AT_MEDIA : (
                 }
             }
         }
-        @else if $media == 'screen' {
+        @else if $media == 'screen' { // @media print で上書きを失くすために screen で設定する
             @if( $UA_Modern ){
-                @media screen,handheld,tv{ @content; }
+                @media screen,handheld,projection,tv{ @content; }
             } @else if( $UA_Opera9 or $UA_Opera8 ){
-                @media screen,handheld{ @content; }
+                @media screen,handheld,projection{ @content; } // handheld は small screen モードに, projection は full screen モードに必要
             } @else {
                 @media screen{ @content; }
             }

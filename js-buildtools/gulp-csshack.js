@@ -56,9 +56,12 @@ module.exports = function( options ){
                         rulesOnlyScreen.push( rule.clone() );
                         rule.remove();
                         updateCurrentFile = true;
-                    } else if( rule.params === 'screen' || rule.params.replace(/\s/g, '') === 'screen,handheld' || rule.params.replace(/\s/g, '') === 'screen,handheld,tv' ){
-                        screenMediaBlock = rule;
-                        updateCurrentFile = true;
+                    } else {
+                        var mediaList = rule.params.replace(/\s/g, '').split( ',' );
+                        if( 0 <= mediaList.indexOf( 'screen' ) && mediaList.indexOf( 'print' ) === -1 && rule.params.indexOf( '(' ) === -1 ){
+                            screenMediaBlock = rule;
+                            updateCurrentFile = true;
+                        };
                     };
                 };
             });
