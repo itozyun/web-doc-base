@@ -5,6 +5,7 @@ $COMMENT_OUT_CSS_HACK : (
     'onlySafari'           : if($UA_Modern, 1, 0),
     'chromeLte5SafariLte4' : if($UA_Modern, 1, 0),
     'chromeGte2To5'        : if($UA_Modern, 1, 0),
+    'gecko094To097'        : if($UA_Gck-097, 1, 0),
     'gecko120To121'        : if($UA_Gck101-121, 1, 0)
 ) !default;
 
@@ -41,11 +42,14 @@ $COMMENT_OUT_CSS_HACK : (
                 @content;
             }
         }
+        @else if $targetGroup == 'gecko094To097' { // Gecko 0.9.4~0.9.7
+            & [_lazyhack_="_:-moz-any-link"] {
+                @content;
+            }
+        }
         @else if $targetGroup == 'gecko120To121' { // Gecko 1.2.0~1.2.1
-            @if( $UA_Gck101-121 ){
-                & [_lazyhack_="_:lang(x)"] {
-                    @content;
-                }
+            & [_lazyhack_="_:lang(x)"] {
+                @content;
             }
         }
     }

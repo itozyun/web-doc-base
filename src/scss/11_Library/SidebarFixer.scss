@@ -37,9 +37,8 @@
             @if( $UA_Gck-097 or $UA_Gck101-121 ){
                 overflow : visible;
                 @if( $UA_Gck101-121 ){
-                    /* override Gecko 1.2~1.8.1 */
-                    & [_lazyhack_="_:lang(x)"] {
-                        overflow : hidden;
+                    @include css-hack(gecko120To121) {
+                        overflow : hidden; /* override Gecko 1.2~ */
                     }
                 }
             } @else {
