@@ -155,7 +155,13 @@ a {
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    a       , .ribbon a        { color : $COLOR_Print_casual_text; }
-    :link   , .ribbon :link    { color : $COLOR_Print_link; }
-    :visited, .ribbon :visited { color : $COLOR_Print_visited; }
+    a        { color : $COLOR_Print_casual_text; }
+    :link    { color : $COLOR_Print_link; }
+    :visited { color : $COLOR_Print_visited; }
+
+    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+        .ribbon a        { color : $COLOR_Print_casual_text; }
+        .ribbon :link    { color : $COLOR_Print_link; }
+        .ribbon :visited { color : $COLOR_Print_visited; }
+    }
 }
