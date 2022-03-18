@@ -246,6 +246,7 @@
 
     $ACTIVE_BEHAVES_LIKE_FOCUS  : $IS_LTE_WIN_IE7; // :active を実装するがそのふるまいは :focus
     $LIMITED_HOVER_PSEUDO_CLASS : $IS_LTE_WIN_IE6; // :hover は a[href] にしか働かない
+    $FORCED_COLORS_SUPPORT      : $UA_Modern or $IS_WIN_IE or $UA_Gck130-190;
 
     $CANUSE_CSS_MEDIA_QUERY          : $UA_Modern or $UA_IE9 or $UA_Opera9;
     $CANUSE_SVG                      : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;

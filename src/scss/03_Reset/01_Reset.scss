@@ -1,12 +1,33 @@
 /*  reset
 --------------------------------------------------------------------------------------*/
-    /* remember to define focus styles! */
+    /* (forced-colors:active) のフォールバックが出来ない場合も、フォーカスのアウトラインが消えないように無色で塗ります
+     */
     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-        :active { outline : 0; }
+        @if( $FORCED_COLORS_SUPPORT and $CANUSE_BORDER_TRANSPARENT and $UA_Gck130-190 == false ){
+            :active { outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent; }
+        } @else {
+            :active { outline : 0; }
+        }
     }
     @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
         @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-            :focus { outline : 0; } // Gecko 1.8~
+            @if( $FORCED_COLORS_SUPPORT and $CANUSE_BORDER_TRANSPARENT and $UA_Gck130-190 == false ){ // Gecko 1.8 transparent 不可
+                :focus { outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent; }
+            } @else {
+                :focus { outline : 0; }
+            }
+        }
+    }
+
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
+        @if( $CANUSE_BORDER_TRANSPARENT == false or $UA_Gck130-190 ){
+            * {
+                @include active-focus-pseudo-class {
+                    outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+                }
+            }
         }
     }
 

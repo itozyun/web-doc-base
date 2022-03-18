@@ -152,16 +152,6 @@ a {
     }
 }
 
-/*  Forced colors
---------------------------------------------------------------------------------------*/
-@include media(forced_colors_native_or_fallback){
-    a {
-        @include active-focus-pseudo-class {
-            outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
-        }
-    }
-}
-
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
