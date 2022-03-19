@@ -53,7 +53,8 @@ textarea, input {
 
     @if( $UA_Opera72 == false ){
         border-width : $INPUT_BORDER_WIDTH;
-    } @else if( $LIMITED_FORM_ITEM_STYLING ){
+    }
+    @if( $LIMITED_FORM_ITEM_STYLING ){
         border-color : InactiveBorder; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
     }
 
