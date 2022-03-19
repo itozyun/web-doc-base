@@ -191,7 +191,7 @@ a:active img {
   color: #fdeeb7
 }
 .BlogArchive :hover,
-.Label a:hover,
+.Label :hover,
 .aBodyRoot a:active,
 :link,
 :visited,
@@ -494,6 +494,7 @@ li ul {
 input,
 textarea {
   border-width: .1em;
+  border-color: InactiveBorder;
   padding: .45em .4em
 }
 h2 {

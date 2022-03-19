@@ -296,8 +296,8 @@ pre {
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
+.Label :link:hover,
+.Label :visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
 .aBodyRoot a:active,
@@ -533,6 +533,7 @@ li ul {
 input,
 textarea {
   border-width: .1em;
+  border-color: InactiveBorder;
   padding: .45em .4em
 }
 h2 {

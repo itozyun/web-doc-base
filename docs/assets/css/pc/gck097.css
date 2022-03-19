@@ -226,7 +226,7 @@ pre {
   margin: 1em 0
 }
 .BlogArchive :hover,
-.Label a:hover,
+.Label :hover,
 .aBodyRoot a:focus,
 :link,
 :visited,

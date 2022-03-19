@@ -10,17 +10,6 @@ li p,
 tr p {
   line-height: 1.2
 }
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
-.medal,
 a,
 a img,
 tbody th {
@@ -130,15 +119,6 @@ body,
 input.btn {
   padding: 0
 }
-.AHead-labels a:active,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  border-color: #0d5bb5;
-  color: #0d5bb5;
-  outline: 0;
-  border-style: dotted
-}
 body,
 input,
 textarea {
@@ -158,24 +138,9 @@ blockquote :link img,
 blockquote :visited img {
   border-color: #e7d182
 }
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.Subscribe .atom:link:active,
-.Subscribe .atom:visited:active,
-.Subscribe .fl:link:active,
-.Subscribe .fl:visited:active,
-.Subscribe .rss:link:active,
-.Subscribe .rss:visited:active,
-.Subscribe .stm:link:active,
-.Subscribe .stm:visited:active,
-.btn:link:active,
-.btn:visited:active,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #062241
-}
-a:active img {
-  border-color: #0d5bb5!important
 }
 :link:hover img,
 :visited:hover img {
@@ -196,8 +161,7 @@ a:active img {
   color: #24c
 }
 .LinkList a:visited,
-.RichLink-sep a:visited,
-.medal {
+.RichLink-sep a:visited {
   background: #fdeeb7;
   color: #06284e
 }
@@ -213,12 +177,6 @@ thead code,
 thead var {
   background: #e7d182;
   color: #06284e
-}
-.Cover h2,
-a:active code,
-a:active var,
-tbody :hover th {
-  background: #0d5bb5
 }
 .LinkList .ribbon a,
 .RichLink-sep .ribbon a {
@@ -241,9 +199,6 @@ tbody :hover th {
 .ribbon .RichLink-sep :visited:hover {
   background: #08366b;
   color: #fed33b
-}
-:active {
-  outline: 0
 }
 dt {
   font-weight: 700;
@@ -299,13 +254,12 @@ h2 {
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
-.Label a:link:hover,
-.Label a:visited:hover,
+.Label :link:hover,
+.Label :visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
 :link,
 :visited,
-a:active,
 ins {
   text-decoration: none
 }
@@ -359,8 +313,7 @@ p {
 .aBodyRoot :link,
 .aBodyRoot :visited,
 :link:hover,
-:visited:hover,
-a:active {
+:visited:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -390,10 +343,6 @@ form :focus {
   color: #ffeba1;
   border-color: #062241
 }
-a:active,
-a:active * {
-  color: #fff!important
-}
 .ribbon :link {
   color: #bbe
 }
@@ -405,9 +354,6 @@ a:active * {
 .ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
-}
-a:active {
-  background-color: #0d5bb5!important
 }
 h1,
 h2,
@@ -515,7 +461,8 @@ li ul {
 }
 input,
 textarea {
-  border-width: .1em
+  border-width: .1em;
+  border-color: InactiveBorder
 }
 h2 {
   border-width: 0 0 2px;
@@ -618,11 +565,14 @@ blockquote tfoot th {
 blockquote tbody :hover td {
   border-color: #e7d182 #e7d182 #0d5bb5
 }
+tbody :hover th {
+  background: #0d5bb5;
+  color: #fff
+}
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
 code .pln,
 code .pun,
-tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
@@ -630,10 +580,6 @@ tbody :hover th :visited {
 tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
-}
-tbody :hover th a:active {
-  background: #fff!important;
-  color: #0d5bb5!important
 }
 .Cover-btn,
 .commonForm-send,
@@ -746,6 +692,11 @@ strong {
 .Cover,
 .RichLink-sep {
   line-height: 1.4
+}
+.medal {
+  border-color: #fdeeb7;
+  background: #fdeeb7;
+  color: #06284e
 }
 :link .medal,
 :visited .medal {
@@ -925,6 +876,7 @@ kbd {
 }
 .Cover h2 {
   display: inline-table;
+  background: #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
@@ -957,9 +909,6 @@ pre var {
 .LinkList a {
   line-height: 1.1;
   padding: 1em .5em .8em
-}
-.LinkList :active {
-  text-decoration: underline!important
 }
 .RichLink a {
   padding: 1em .5em 0;
@@ -1348,16 +1297,10 @@ dl.note dd {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
 }
-.Pager :active i {
-  border-color: transparent #fff
-}
 .Pager-top i {
   border-width: 0 .45em .9em;
   margin-right: .5em;
   border-color: #8a7322 transparent
-}
-.Pager-top :active i {
-  border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -1383,12 +1326,6 @@ dl.note dd {
   background: #fff;
   border-color: #3b5999;
   color: #3b5999
-}
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:visited:active,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:visited:active {
-  border-color: #fff
 }
 .SocialBtns .hb:link {
   background: #008fde;
