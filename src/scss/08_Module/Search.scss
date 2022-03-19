@@ -26,9 +26,6 @@ $SEARCH_BTN_WIDTH : 3em;
         @if( $IS_Opera7x ){
             background : Window; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
         }
-        @if( $UA_Opera72 ){
-            outline: 0;
-        }
     }
     .Search input {
         @if( $IS_Opera7x ){

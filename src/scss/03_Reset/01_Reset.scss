@@ -43,11 +43,11 @@
     /* strong, em, */ dt {
         font-weight : bold;
     }
-    
+
     blockquote, q {
         quotes : none;
     }
-    
+
     /* @if( $CANUSE_CSS_GENERATED_CONTENT ){
         q:before,
         q:after {
@@ -55,7 +55,7 @@
             content : none;
         }
     } */
-    
+
     small {
         font-size: 75%;
     }
@@ -75,7 +75,7 @@
             bottom: -0.25em;
         }
     }
-    
+
     @if( $UA_IE9 ){
         svg {
             overflow : hidden;
@@ -92,14 +92,15 @@
         }
     }
 
-    dfn, cite, code, var, samp, kbd, q {
-        font-style : normal;
+    dfn, q, cite { font-style : normal; }
+
+    @if( $Option_IT ){
+        code, var, samp, kbd { font-style : normal; }
     }
 
     pre {
         @include pre-wrap;
     }
-
 
     ul, ol {
         @if( $UA_Modern ){
