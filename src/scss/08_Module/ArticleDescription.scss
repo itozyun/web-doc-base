@@ -5,7 +5,7 @@
 @if( $Option_blog ){
     .ADesc {
         margin : 2em 0;
-        @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
             color : $COLOR_Light_casual_text;
         } @else {
             color : $COLOR_Ribbon_casual_text;

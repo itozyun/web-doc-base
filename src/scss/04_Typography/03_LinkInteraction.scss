@@ -9,7 +9,7 @@ a {
     }
 }
 
-@if( $LIMITED_HOVER_PSEUDO_CLASS ){
+@if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
     :hover { text-decoration : underline; }
 } @else {
     :link:hover, :visited:hover { text-decoration : underline; }
@@ -57,7 +57,7 @@ a {
     border-color : $COLOR_Light_visited_hover;
 }
 
-@if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
     .ribbon {
         a              {
             color        : $COLOR_Ribbon_casual_text;
@@ -82,7 +82,7 @@ a {
 
 /* :active, :focus 時の配色は同じ
 --------------------------------------------------------------------------------------*/
-@if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+@if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
     a:active {
         background-color : $COLOR_ACCENT !important;
         color            : #fff        !important;
@@ -95,7 +95,7 @@ a {
             outline  : HighlightText solid $FORCED_COLORS_FOCUS_BORDER_WIDTH; // Highlight 色が暗いので ,ribbon の中では白いアウトラインをつける
         }
     }
-} @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+} @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
     a:focus {
         background-color : $COLOR_Sidebar_fill !important;
     }
@@ -159,7 +159,7 @@ a {
     :link    { color : $COLOR_Print_link; }
     :visited { color : $COLOR_Print_visited; }
 
-    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
         .ribbon a        { color : $COLOR_Print_casual_text; }
         .ribbon :link    { color : $COLOR_Print_link; }
         .ribbon :visited { color : $COLOR_Print_visited; }

@@ -9,7 +9,7 @@
         color : $COLOR_Light_text;
     }
 
-    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
         thead th a:focus, thead td a:focus, tbody th a:focus {
             background-color : $COLOR_Sidebar_fill !important;
         }
@@ -44,7 +44,7 @@
         border-color   : $COLOR_Light_casual_fill;
         border-style   : solid;
 
-        @if( $CANUSE_1ST_CHILD_SELECTOR ){
+        @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
             & > *:first-child {
                 margin-top : 0;
             }

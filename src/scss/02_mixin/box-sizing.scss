@@ -1,5 +1,5 @@
 @mixin box-sizing($value) {
-    @if( $CANUSE_CAN_BOX_SIZING ){
+    @if( $CANUSE_BOX_SIZING ){
         @if( $UA_Modern or $IS_OLD_GECKO ){
             -moz-box-sizing : $value; /* firefox 4 でもこちら */
         }

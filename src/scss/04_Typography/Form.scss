@@ -54,7 +54,7 @@ textarea, input {
     @if( $UA_Opera72 == false ){
         border-width : $INPUT_BORDER_WIDTH;
     }
-    @if( $LIMITED_FORM_ITEM_STYLING ){
+    @if( $LIMITED_STYLING_OF_ITEMS_IN_FORM ){
         border-color : InactiveBorder; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
     }
 
@@ -69,7 +69,7 @@ textarea, input {
     }
 }
 
-@if( $CANUSE_ATTR_SELECTOR and $LIMITED_FORM_ITEM_STYLING == false ){
+@if( $CANUSE_ATTRIBUTE_SELECTOR and $LIMITED_STYLING_OF_ITEMS_IN_FORM == false ){
     [type=submit] {
         background : $COLOR_Light_casual_fill;
     }
@@ -83,7 +83,7 @@ textarea, input {
         color      : $COLOR_Dark_text;
         @include placeholder-color( $COLOR_Dark_casual_text );
     }
-    @if( $CANUSE_ATTR_SELECTOR ){
+    @if( $CANUSE_ATTRIBUTE_SELECTOR ){
         [type=submit] {
             background : $COLOR_Dark_casual_fill;
         }

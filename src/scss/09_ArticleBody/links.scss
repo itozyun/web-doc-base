@@ -38,7 +38,7 @@
             }
             font-weight : bold;
         }
-        @if( $CANUSE_NOT_SELECTOR and $IS_OLD_OPERA == false ){
+        @if( $CANUSE_NEGATIVE_PSEUDO_CLASS and $IS_OLD_OPERA == false ){
             .links [href^="/"]:not([href^="//"]):before {
                 content : "+";
             }

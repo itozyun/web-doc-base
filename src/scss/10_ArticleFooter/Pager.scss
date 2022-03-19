@@ -79,7 +79,7 @@
                             }
                         }
 
-                        @if( $CANUSE_BORDER_TRANSPARENT ){
+                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                             border-color : transparent $COLOR_Light_casual_text;
                         } @else {
                             border-color : $COLOR_Light_fill $COLOR_Light_casual_text;
@@ -109,7 +109,7 @@
                     }
                     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
                         .Pager :active i {
-                            @if( $CANUSE_BORDER_TRANSPARENT ){
+                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                                 border-color : transparent #fff;
                             } @else {
                                 border-color : $COLOR_ACCENT #fff;
@@ -118,7 +118,7 @@
                     }
                     @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
                         .Pager :focus i {
-                            @if( $CANUSE_BORDER_TRANSPARENT ){
+                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                                 border-color : transparent #fff;
                             } @else {
                                 border-color : $COLOR_ACCENT #fff;
@@ -130,7 +130,7 @@
                         border-width : 0 0.45em 0.9em;
                         margin-right : 0.5em;
 
-                        @if( $CANUSE_BORDER_TRANSPARENT ){
+                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                             border-color : $COLOR_Light_casual_text transparent;
                         } @else {
                             border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
@@ -146,7 +146,7 @@
                     }
                     @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
                         .Pager-top :active i {
-                            @if( $CANUSE_BORDER_TRANSPARENT ){
+                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                                 border-color : #fff transparent;
                             } @else {
                                 border-color : #fff $COLOR_ACCENT;
@@ -155,7 +155,7 @@
                     }
                     @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
                         .Pager-top :focus i {
-                            @if( $CANUSE_BORDER_TRANSPARENT ){
+                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                                 border-color : #fff transparent;
                             } @else {
                                 border-color : #fff $COLOR_ACCENT;

@@ -17,7 +17,7 @@
             }
         }
     }
-    @if( $CANUSE_NOT_SELECTOR == false or $UA_Opera9 ){
+    @if( $CANUSE_NEGATIVE_PSEUDO_CLASS == false or $UA_Opera9 ){
         a {
             background : $COLOR_Light_text;
             color      : $COLOR_Light_fill;
@@ -49,7 +49,7 @@
         }
     }
 
-    @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+    @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
         :hover {
             background : $COLOR_Light_casual_fill;
             color      : $COLOR_Light_text;
@@ -63,8 +63,8 @@
 
     /*  ribbon
     --------------------------------------------------------------------------------------*/
-    @if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
-        @if( $CANUSE_NOT_SELECTOR == false ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+        @if( $CANUSE_NEGATIVE_PSEUDO_CLASS == false ){
             .ribbon a {
                 background : $COLOR_Ribbon_text;
                 color      : $COLOR_Ribbon_fill;
@@ -96,7 +96,7 @@
             }
         }
 
-        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
             .ribbon & :hover {
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
@@ -112,7 +112,7 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        @if( $CANUSE_NOT_SELECTOR == false ){
+        @if( $CANUSE_NEGATIVE_PSEUDO_CLASS == false ){
             :link {
                 color : $COLOR_Print_link;
             }
@@ -154,7 +154,7 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
-        @if( $LIMITED_HOVER_PSEUDO_CLASS ){
+        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
             :hover {
                 text-decoration : underline !important;
             }

@@ -240,32 +240,35 @@
     $IS_WIN_IE      : $IS_LTE_WIN_IE8 or $UA_IE9;
     $IS_IE8_OR_9    : $UA_IE8 or $UA_IE9;
 
-    $FOCUSED_COLOR_IS_SYSTEM_COLOR   : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
-    $TEXT_COLOR_CANT_CHANGE_FOCUSING : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
+    $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
+    $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS   : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
 
-    $ACTIVE_BEHAVES_LIKE_FOCUS  : $IS_LTE_WIN_IE7; // :active を実装するがそのふるまいは :focus
-    $LIMITED_HOVER_PSEUDO_CLASS : $IS_LTE_WIN_IE6 or $UA_Gck-097; // :hover は a[href] にしか働かない
-    $FORCED_COLORS_SUPPORT      : $UA_Modern or $IS_WIN_IE or $UA_Gck130-190;
-    $LIMITED_FORM_ITEM_STYLING  : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
+    $ACTIVE_BEHAVES_LIKE_FOCUS        : $IS_LTE_WIN_IE7; // :active を実装するがそのふるまいは :focus
+    $RESTRICTED_HOVER_PSEUDO_CLASS    : $IS_LTE_WIN_IE6 or $UA_Gck-097; // :hover は a[href] にしか働かない
+    $LIMITED_STYLING_OF_ITEMS_IN_FORM : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
 
     $CANUSE_CSS_MEDIA_QUERY          : $UA_Modern or $UA_IE9 or $UA_Opera9;
+    $FORCED_COLORS_SUPPORT           : $UA_Modern or $IS_WIN_IE or $UA_Gck130-190;
     $CANUSE_SVG                      : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
+
     $CANUSE_CSS_GENERATED_CONTENT    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
     $CANUSE_CSS_GENERATED_BLOCK      : $CANUSE_CSS_GENERATED_CONTENT and $IS_OLD_GECKO == false and $UA_Opera70 == false;
     $CANUSE_GOOD_CSS_GENERATED_BLOCK : $UA_Modern or $IS_IE8_OR_9;
-    $CANUSE_ATTR_SELECTOR            : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+
     $CANUSE_MAX_AND_MIN_SIZES        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_OVERFLOW_X_AND_Y         : $UA_Modern or $IS_WIN_IE or $UA_MacIE5 or $UA_Gck101-121 or $UA_Gck130-190; // Gecko 1.9.0~ ?
     $CANUSE_MARGIN_AUTO              : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
+    $CANUSE_DISPLAY_INLINE_BLOCK     : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_BOX_SIZING               : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $CANUSE_TRANSPARENT_BORDER_COLOR : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+
+    $CANUSE_ATTRIBUTE_SELECTOR       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_HOVER_PSEUDO_CLASS       : $UA_Modern or $UA_Gck101-121 or $UA_Gck130-190 or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_IE7; // Gecko 1.1+
-    $CANUSE_ACTIVE_PSEUDO_CLASS      : $UA_Modern or $UA_Gck130-190 or $IS_OLD_OPERA or $IS_WIN_IE or $UA_MacIE5; // Gecko 1.8 :active のスタイルが :focus と同じ, 1.9 以降両方に設定が必要
+    $CANUSE_ACTIVE_PSEUDO_CLASS      : $UA_Modern or $UA_Gck130-190 or $IS_WIN_IE or $UA_MacIE5; // Gecko 1.8 :active のスタイルが :focus と同じ, 1.9 以降両方に設定が必要
     $CANUSE_FOCUS_PSEUDO_CLASS       : $UA_Modern or $IS_OLD_GECKO or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.6 から a 要素のタブフォーカスをサポート。
     $CANUSE_EMPTY_PSEUDO_CLASS       : $UA_Modern or $IS_LEGACY or $UA_IE9;
     $CANUSE_TARGET_PSEUDO_CLASS      : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
-    $CANUSE_DISPLAY_INLINE_BLOCK     : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
-    $CANUSE_CAN_BOX_SIZING           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
-    $CANUSE_1ST_CHILD_SELECTOR       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
-    $CANUSE_LAST_CHILD_SELECTOR      : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
-    $CANUSE_NOT_SELECTOR             : $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 or $UA_IE9; // Opera 9, @media 内に :not() を含むと、そのメディアブロックのスタイルがあたる
-    $CANUSE_1ST_OF_TYPE_SELECTOR     : $UA_Modern or $IS_IE8_OR_9;
-    $CANUSE_BORDER_TRANSPARENT       : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_1ST_CHILD_PSEUDO_CLASS   : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
+    $CANUSE_LAST_CHILD_PSEUDO_CLASS  : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
+    $CANUSE_NEGATIVE_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 or $UA_IE9; // Opera 9, @media 内に :not() を含むと、そのメディアブロックのスタイルがあたる
+    $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS : $UA_Modern or $IS_IE8_OR_9;

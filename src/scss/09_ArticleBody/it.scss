@@ -42,9 +42,9 @@
         }
         @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
             a:focus & {
-                @if( $FOCUSED_COLOR_IS_SYSTEM_COLOR ){
+                @if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
                     background : Highlight;
-                } @else if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+                } @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
                     background : $COLOR_ACCENT;
                 }
             }

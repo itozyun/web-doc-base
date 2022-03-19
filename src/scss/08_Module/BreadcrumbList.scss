@@ -16,7 +16,7 @@
     }
 }
 
-@if( $TEXT_COLOR_CANT_CHANGE_FOCUSING == false ){
+@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
     .ribbon .BreadcrumbList {
         color : $COLOR_Ribbon_casual_text;
     }

@@ -11,7 +11,7 @@
 
     margin : 1em 1em 0;
 
-    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+    @if( $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS ){
         & > p:first-of-type {
             margin-top : math.div(-$PARAGRAPH_LINE_HEIGHT_EM + 1em, 4);
         }
@@ -68,7 +68,7 @@
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+    @if( $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS ){
         .box > p:first-of-type {
             margin-top : math.div(-$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
         }
@@ -98,7 +98,7 @@
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    @if( $CANUSE_1ST_OF_TYPE_SELECTOR ){
+    @if( $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS ){
         .box > p:first-of-type {
             margin-top : math.div(-$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);
         }
