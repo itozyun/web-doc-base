@@ -141,18 +141,14 @@ $COMMENT_OUT_AT_MEDIA : (
             }
         }
         @else if $media == 'dark_theme' {
-            @if $DARK_THEME_ALLWAYS {
-                @content;
-            } @else {
-                @if( $UA_IE9 ){
-                    @media screen and (max-width: 240px){ @content; }
-                }@else if( $UA_Opera9 ){
-                    @media handheld, screen and (max-width: 240px){ @content; }
-                }@else if( $CANUSE_CSS_MEDIA_QUERY ){
-                    @media handheld, only screen and (prefers-color-scheme:dark), only screen and (max-width: 240px){ @content; }
-                }@else if( $UA_Opera8 ){
-                    @media handheld{ @content; }
-                }
+            @if( $UA_IE9 ){
+                @media screen and (max-width: 240px){ @content; }
+            }@else if( $UA_Opera9 ){
+                @media handheld, screen and (max-width: 240px){ @content; }
+            }@else if( $CANUSE_CSS_MEDIA_QUERY ){
+                @media handheld, only screen and (prefers-color-scheme:dark), only screen and (max-width: 240px){ @content; }
+            }@else if( $UA_Opera8 ){
+                @media handheld{ @content; }
             }
         }
         @else if $media == 'screen' { // @media print で上書きを失くすために screen で設定する

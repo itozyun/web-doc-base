@@ -42,21 +42,6 @@ $COLOR_Dark_visited       : #eae !default;
 $COLOR_Dark_hover         : $COLOR_Ribbon_hover !default;
 $COLOR_Dark_visited_hover : $COLOR_Ribbon_visited_hover !default;
 
-@if( $DARK_THEME_ALLWAYS ){
-    $COLOR_Sidebar_fill        : $COLOR_Dark_fill;
-
-    $COLOR_Light_fill          : $COLOR_Dark_fill;
-    $COLOR_Light_text          : $COLOR_Dark_text;
-    $COLOR_Light_casual_fill   : $COLOR_Dark_casual_fill;
-    $COLOR_Light_casual_text   : $COLOR_Dark_casual_text;
-    $COLOR_Light_accent        : $COLOR_Dark_accent;
-    
-    $COLOR_Light_link          : $COLOR_Dark_link;
-    $COLOR_Light_visited       : $COLOR_Dark_visited;
-    $COLOR_Light_hover         : $COLOR_Dark_hover;
-    $COLOR_Light_visited_hover : $COLOR_Dark_visited_hover;
-};
-
 /*  印刷用カラー
 --------------------------------------------------------------------------------------*/
 $COLOR_Print_fill          : #fff !default;
