@@ -83,15 +83,19 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
      * IE, EdgeHTML
      *   IE10 以降で完全なサポート。
      * Firefox
-     *   OS 側の色設定は無視。初期は onload 時のコントラストモードを反映。途中から閲覧中のモード切替に対応(Gecko60 辺り?)
+     *   リンク色と訪問済みリンク色はブラウザ側で設定。
+     *   Gecko 1.8.1+ : onload 時のコントラストモードを反映。1.8.0.5 では反映しない。https://twitter.com/itozyun/status/1505351173045637122
+     *   Gecko ??+ : 途中から閲覧中のモード切替に対応(Gecko60 辺り?)
+     *   Gecko 89+(81+) : (forced-colors) をサポート, 81 の時点でシステムカラーによる上書きに非対応
      * Goanna 4.3
-     *   OS 側の色設定は無視。onload 時のコントラストモードを反映。
+     *   リンク色と訪問済みリンク色はブラウザ側で設定。
+     *   onload 時のコントラストモードを反映。
      * Chromium Edge Canary v79.0.305.0
-     *   閲覧中のモード切替に対応。-ms-high-contrast に対応、但し色の再設定は出来ない。７
+     *   閲覧中のモード切替に対応。-ms-high-contrast に対応、但し色の再設定は出来ない。
      *   https://mspoweruser.com/microsoft-brings-high-contrast-mode-to-chromium-based-edge/
      *   Currently, the High Contrast mode is hidden behind a flag ...
      */
-} else if( p_Trident < 10 || ( p_Windows && ( 1.8 <= p_Gecko || p_Goanna ) ) ){
+} else if( p_Trident < 10 || ( p_Windows && ( p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.8.1' ) || p_Goanna ) ) ){
     Event_forcedColors_test = function(){
         var defaultView = document.defaultView,
             computedStyle, color, bgColor;
@@ -112,14 +116,23 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
                 m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
             };
         };
-
-        function isBlack( color, isBG ){
+        /**
+         * @param {string} color
+         * @param {boolean=} isBackground
+         * @return {boolean|undefined}
+         */
+        function isBlack( color, isBackground ){
             Debug.log( 'isBlack:' + color );
-            return color === '#000000' || color === 'rgb(0,0,0)' || isBG && color === 'transparent'; // transparent は Gecko 1.8.1.12
+            return color === '#000000' || color === 'rgb(0,0,0)' || isBackground && color === 'transparent'; // transparent は Gecko 1.8.1.12
         };
-        function isWhite( color, isBG ){
+        /**
+         * @param {string} color 
+         * @param {boolean=} isBackground 
+         * @return {boolean|undefined}
+         */
+        function isWhite( color, isBackground ){
             Debug.log( 'isWhite:' + color );
-            return color === '#ffffff' || color === 'rgb(255,255,255)' || isBG && color === 'transparent';
+            return color === '#ffffff' || color === 'rgb(255,255,255)' || isBackground && color === 'transparent';
         };
     };
 
