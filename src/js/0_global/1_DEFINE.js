@@ -28,7 +28,7 @@ var
     DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR = 'hc',
 
 /** ===========================================================================
- * 7_Library/blockquot.js
+ * 8_Library/blockquot.js
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_LINK = 'js-bqLink',
@@ -38,7 +38,7 @@ var
     DEFINE_WEB_DOC_BASE__AMAZON_ID                = '',
 
 /** ===========================================================================
- * 7_Library/blog2slide.js
+ * 8_Library/blog2slide.js
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID   = 'blog2slide-start',
@@ -48,13 +48,13 @@ var
     DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID = 'blog2slide-current',
 
 /** ===========================================================================
- * 7_Library/cssLoader.toEndOfScript.js
+ * 7_Patch/cssLoader.toEndOfScript.js
  */
 /** @define {boolean} */
     DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS = true,
 
 /** ===========================================================================
- * 7_Library/detectImageTurnedOff.js
+ * 7_Patch/detectImageTurnedOff.js
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'img-loaded',
@@ -62,7 +62,7 @@ var
     DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
 
 /** ===========================================================================
- * 7_Library/PicaThumbnail.js
+ * 8_Library/PicaThumbnail.js
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET = 'jsPica',
@@ -76,7 +76,7 @@ var
     DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE  = 'jsCapLarge',
 
 /** ===========================================================================
- * 7_Library/SidebarFixer.js
+ * 8_Library/SidebarFixer.js
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID       = 'jsSidebarFixer',

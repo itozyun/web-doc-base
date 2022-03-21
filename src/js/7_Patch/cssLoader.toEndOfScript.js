@@ -1,4 +1,4 @@
-/** @see/docs/bootsequence.md */
+/** @see docs/06_development/04_BootSequence.html */
 if(
 /**
  * IE10以上またはIE以外

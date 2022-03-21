@@ -1,4 +1,5 @@
-/** @see/docs/bootsequence.md */
+/** @see docs/06_development/04_BootSequence.html */
+
 if( DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS ){
     var cssAndJsLoader_presto =
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Presto       ) ||
