@@ -214,9 +214,9 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
         /**********************************************************************
          * page.directories
          */
-            page.directories = [ { title : 'github', path : '//itozyun.github.io/web-doc-base/' } ];
+            page.directories = [ { title : 'github', path : '//github.com/itozyun/web-doc-base/' } ];
             if( page.path !== 'index.html' ){
-                page.directories = [ { title : 'github', path : '//itozyun.github.io/web-doc-base/' }, { title : '目次', path : '' } ];
+                page.directories.push( { title : '目次', path : '' } );
                 for( var depth = 0, pathElements, path; pathElements = page.path.replace( '/index.html', '' ).split( '/' ), depth < pathElements.length - 1; ++depth ){
                     pathElements.splice( depth + 1 );
                     path = pathElements.join( '/' ) + '/';
