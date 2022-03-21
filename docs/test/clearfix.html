@@ -14,13 +14,13 @@
 </head>
 <body size="1">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
 clearfix のテスト,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
-<a href="getInlineJs.html">Web 文書用のインライン js</a>,
-<a href="test.cssom.html">CSSOM のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
 <a href="importHack.html">import のテスト</a>,
-<a href="testImageLoading.html">Test Image loading</a>,
-<a href="test.icon.html">アイコンのテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="icon.html">アイコンのテスト</a>,
 <a href="richlink.html">RichLink のテスト</a>
 <hr>
 
@@ -90,11 +90,11 @@ clearfix のテスト,
 
 <h2>Gecko と Presto Opera 用の CSS ハックのテスト</h2>
 <p>Gecko または Presto Opera の場合、以下にコンテンツが表示されます。</p>
-<p id="isGecko094-49"><span class="gecko094-49">Gecko 0.9.4-49</span> のブラウザです。</p>
+<p id="isGecko091-49"><span class="gecko091-49">Gecko 0.9.1-49</span> のブラウザです。</p>
 <p id="isGecko12-181"><span class="gecko12-181">Gecko 1.2-1.8.1</span> です。</p>
 <p id="isGecko-15"><span class="gecko-15">Gecko -1.5</span> です。</p>
 <p id="isGecko-181"><span class="gecko-181">Gecko -1.8.1</span> です。</p>
-<p id="isGecko094-142"><span class="gecko094-142">Gecko 0.9.4-1.4.2</span> のブラウザです。</p>
+<p id="isGecko091-142"><span class="gecko091-142">Gecko 0.9.1-1.4.2</span> のブラウザです。</p>
 <p id="isGecko15-173"><span class="gecko15-173">Gecko 1.5-1.7.3</span> のブラウザです。</p>
 <p id="isGecko18"><span class="gecko18">Gecko 1.8</span> のブラウザです。</p>
 <p id="isGecko18-"><span class="gecko18-">Gecko 1.8-</span> です。</p>
@@ -151,41 +151,43 @@ clearfix のテスト,
 <tr>
 <th>Windows XPsp3 Mozilla 0.8.1(Gecko 0.8.1)<td><span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 6.2.3(Gecko 0.9.4.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Mozilla 0.9.1(Gecko 0.9.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.02(Gecko 1.0.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 6.2.3(Gecko 0.9.4.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.1(Gecko 1.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 7.02(Gecko 1.0.2)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.2.1(Gecko 1.2.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Mozilla 1.1(Gecko 1.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.3.1(Gecko 1.3.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Mozilla 1.2.1(Gecko 1.2.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.1(Gecko 1.4)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Mozilla 1.3.1(Gecko 1.3.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.4.2(Gecko 1.4.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko094-142">Gecko 0.9.4-1.4.2</span>
+<th>Windows XPsp3 Netscape Navigator 7.1(Gecko 1.4)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.5(Gecko 1.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.4.2(Gecko 1.4.2)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko091-142">Gecko 0.9.1-1.4.2</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.6(Gecko 1.6)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.5(Gecko 1.5)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko-15">Gecko -1.5</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Mozilla 1.7.13(Gecko 1.7.13)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.6(Gecko 1.6)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 7.2(Gecko 1.7.2)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Mozilla 1.7.13(Gecko 1.7.13)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Firefox 1.0 Preview Release(Gecko 1.7.3)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
+<th>Windows XPsp3 Netscape Navigator 7.2(Gecko 1.7.2)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 8.1.3(Gecko 1.7.5)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>
+<th>Windows XPsp3 Firefox 1.0 Preview Release(Gecko 1.7.3)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko15-173">Gecko 1.5-1.7.3</span>
 <tr>
-<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Netscape Navigator 8.1.3(Gecko 1.7.5)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>
 <tr>
-<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12, Gecko 1.8.1)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
+<th>Windows XPsp3 Firefox 1.5.0.9(Gecko 1.8.0.9)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.0.9(Firefox 1.9.0.9)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>
+<th>Windows XPsp3 Netscape Navigator 9.0.0.6(Firefox 2.0.0.12, Gecko 1.8.1)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko12-181">Gecko 1.2-1.8.1</span>, <span class="gecko-181">Gecko -1.8.1</span>, <span class="gecko18">Gecko 1.8</span>, <span class="gecko18-">Gecko 1.8-</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.5.19(Firefox 1.9.1.19)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>
+<th>Windows XPsp3 Firefox 3.0.9(Firefox 1.9.0.9)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>
 <tr>
-<th>Windows XPsp3 Firefox 3.6.28(Firefox 1.9.2.28)<td><span class="gecko094-49">Gecko 0.9.4-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>, <span class="firefox36-">Firefox 3.6-</span>  
+<th>Windows XPsp3 Firefox 3.5.19(Firefox 1.9.1.19)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>
+<tr>
+<th>Windows XPsp3 Firefox 3.6.28(Firefox 1.9.2.28)<td><span class="gecko091-49">Gecko 0.9.1-49</span>, <span class="gecko18-">Gecko 1.8-</span>, <span class="firefox30-36">Firefox 3.0-3.6</span>, <span class="firefox35-36">Firefox 3.5-3.6</span>, <span class="firefox36-">Firefox 3.6-</span>  
 </table>
 
 <hr>
@@ -309,11 +311,11 @@ clearfix のテスト,
     .opera80-96   { background: #fcc; }
     .opera95-12   { background: #ccf; }
 
-    .gecko094-142 { background: #999; }
+    .gecko091-142 { background: #999; }
     .gecko-15     { background: #ddd; }
     .gecko15-173  { background: #d99; }
     .gecko-181    { background: #dd9; }
-    .gecko094-49  { background: #ddd; }
+    .gecko091-49  { background: #ddd; }
     .gecko18-     { background: #d9d; }
     .firefox30-36 { background: #9dd; }
     .firefox35-36 { background: #9d9; }
@@ -322,8 +324,8 @@ clearfix のテスト,
     .gecko12-181  { background: #9ad; }
     .gecko18      { background: #aad; }
 
-    #isGecko094-49 { display : none }
-    _:-moz-any-link, /*:root*/ #isGecko094-49 { display : block }
+    #isGecko091-49 { display : none }
+    _:-moz-any-link, /*:root*/ #isGecko091-49 { display : block }
 
     #isGecko12-181 { display : none }
     #isGecko-15 { display : none }
@@ -336,8 +338,8 @@ clearfix のテスト,
         #isGecko-181 { display : block }
     }
 
-    #isGecko094-142 { display : none }
-    :-gck-lte142, _:-moz-any-link, /*:root*/ #isGecko094-142 { display : block; }
+    #isGecko091-142 { display : none }
+    :-gck-lte142, _:-moz-any-link, /*:root*/ #isGecko091-142 { display : block; }
 
     #isGecko15-173 { display : none }
     /*_:-moz-tree-row(hover),*/ _::-moz-viewport, #isGecko15-173 { display : block }

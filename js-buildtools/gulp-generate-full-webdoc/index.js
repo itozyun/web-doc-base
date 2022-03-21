@@ -58,6 +58,7 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
                 file.markdown = file.contents.toString( encoding );
                 file.contents = Buffer.from( marked.parse( file.markdown, { gfm : false, langPrefix : 'lang-' } ) );
                 file.extname  = '.html';
+                file.path = file.path
             };
             file._encoding = encoding;
             files.push( file );
@@ -75,13 +76,17 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
 
         files.sort(
             function( file1, file2 ){
-                return file1.path.split( '\\' ).join( '/' ).replace( '/index.html', '' ) < file2.path.split( '\\' ).join( '/' ).replace( '/index.html', '' ) ? -1 : 1;
+                return pathToURL( file1.path ) < pathToURL( file2.path ) ? -1 : 1;
             }
         );
 
         function getPageByPath( path ){
             var i = -1, page;
-            
+
+            if( path.charAt( path.length - 1 ) === '/' ){
+                path += 'index.html';
+            };
+
             for( ; page = pages[ ++i ]; ){
                 if( page.path === path ){
                     return page;
@@ -190,6 +195,14 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
                 };
             };
         /**********************************************************************
+         * textarea
+         */
+            var textarea = document.querySelectorAll( 'textarea[id="what-browser-am-i"]' )[ 0 ];
+            if( textarea ){
+                textarea.textContent = page.site.inlineScript;
+            };
+
+        /**********************************************************************
          * page.articleBody
          */
             page.articleBody = jsdomToString( jsdom, document.documentElement, false );
@@ -205,9 +218,9 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
             if( page.path !== 'index.html' ){
                 page.directories = [ { title : 'github', path : '//itozyun.github.io/web-doc-base/' }, { title : '目次', path : '' } ];
                 for( var depth = 0, pathElements, path; pathElements = page.path.replace( '/index.html', '' ).split( '/' ), depth < pathElements.length - 1; ++depth ){
-                    pathElements.splice( depth + 1, pathElements.length - depth + 1 );
+                    pathElements.splice( depth + 1 );
                     path = pathElements.join( '/' ) + '/';
-                    page.directories.push( { title : ( getPageByPath( path + 'index.html' ) || {} ).title || 'NO TITLE!', path : path } );
+                    page.directories.push( { title : ( getPageByPath( path ) || {} ).title || 'NO TITLE!', path : path } );
                 };
             };
         };
@@ -224,15 +237,20 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
             }
         );
     /**========================================================================
-     |  章の目次
+     |  目次と子ページをリンクする
      */
         for( let page, i = -1; page = pages[ ++i ]; ){
             if( page.path !== 'index.html' ){
                 if( 0 < page.path.indexOf( '/index.html' ) ){
+                    var dir = pathToDirectory( page.path );
                     page.templete = 'index';
                     page.links = [ null, [] ];
                     for( let _page, j = -1; _page = pages[ ++j ]; ){
-                        if( _page !== page && 0 <= _page.path.indexOf( page.path.replace( '/index.html', '' ) ) ){
+                        let _dir = pathToDirectory( _page.path );
+                        if( _page !== page &&
+                            ( _dir === dir ||
+                            isIndexPage( _page.path ) && _dir.indexOf( dir ) === 0 && getDepthFromDirectory( _dir ) === getDepthFromDirectory( dir ) + 1 )
+                        ){
                             page.links[ 1 ].push( _page );
                         };
                     };
@@ -246,19 +264,26 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
      */
         let htmlTOC = '';
         for( let page, i = -1; page = pages[ ++i ]; ){
-            console.log( '>> ' + page.path )
+            console.log( '>> ' + page.path, getDepthFromDirectory( pathToDirectory( page.path ) ) )
             if( page !== pageRoot ){
-                if( page.templete === 'index' ){
-                    htmlTOC += '<li><a href="' + page.path.replace( '/index.html', '/' ) + '">' + page.title.split( '. ' ).pop() + '</a>';
-                    htmlTOC += '<ol>';
-                    for( let _page, j = -1; _page = page.links[ 1 ][ ++j ]; ){
-                        htmlTOC += '<li><a href="' + _page.path + '">' + _page.title + '</a>';
-                    };
-                    htmlTOC += '</ol>';
-                } else if( !page.path.match( '/' ) ){
+                if( page.templete === 'index' && getDepthFromDirectory( pathToDirectory( page.path ) ) === 1 ){
+                    createTOCOfIndexPage( page, 1 );
+                } else if( getDepthFromDirectory( pathToDirectory( page.path ) ) === 0 ){
                     htmlTOC += '<li><a href="' + page.path + '">' + page.title.split( '. ' ).pop() + '</a>';
                 };
             };
+        };
+        function createTOCOfIndexPage( page, depth ){
+            htmlTOC += '<li><a href="' + pathToURL( page.path ) + '">' + page.title.split( '. ' ).pop() + '</a>';
+            htmlTOC += '<ol>';
+            for( let _page, j = -1; _page = page.links[ 1 ][ ++j ]; ){
+                if( _page.templete === 'index' ){
+                    createTOCOfIndexPage( _page, depth + 1 );
+                } else if( getDepthFromDirectory( pathToDirectory( _page.path ) ) === depth ){
+                    htmlTOC += '<li><a href="' + _page.path + '">' + _page.title + '</a>';
+                };
+            };
+            htmlTOC += '</ol>';
         };
         pageRoot.articleBody += '<ol>' + htmlTOC + '</ol>';
     /**========================================================================
@@ -280,9 +305,9 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
         for( var i = 0, l = pages.length; i < l; ++i ){
             page = pages[ i ];
             // next, prev
-            if( page.path !== 'index.html' ){
+            if( page !== pageRoot ){
                 page.next = pages[ i + 1 ];
-                if( page.path.match( '/index.html' ) ){
+                if( isIndexPage( page.path ) ){
                     // 
                 } else {
                     page.prev = pages[ i - 1 ];
@@ -334,6 +359,25 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
                 };
         };
         return html;
+    };
+
+    function pathToDirectory( path ){
+        var dir = path.split( '\\' ).join( '/' ).split( '/' );
+
+        dir.pop();
+        return dir.join( '/' ) + '/';
+    };
+
+    function pathToURL( path ){
+        return path.split( '\\' ).join( '/' ).replace( '/index.html', '/' );
+    };
+
+    function isIndexPage( path ){
+        return path.split( '/' ).pop() === 'index.html';
+    };
+
+    function getDepthFromDirectory( path ){
+        return path === '/' ? 0 : path.split( '/' ).length - 1;
     };
 };
 

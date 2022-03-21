@@ -27,7 +27,7 @@ module.exports = function( page, pages ){
     const canonicalURL = ( site.canonicalHomepageURL + page.path ).replace( '/index.html', '/' );
     const URL = ( ( site.homepageURL || site.canonicalHomepageURL ) + page.path ).replace( '/index.html', '/' );
     const depth = page.path.split( '/' ).length;
-    const dir = '../'.repeat( depth ); // -1 今だけ /_/
+    const dir = '../'.repeat( depth - 1 );
 
     function isLayout( obj ){
         if( Layout.MainColumn.separete === ( obj.layout || obj ) ){

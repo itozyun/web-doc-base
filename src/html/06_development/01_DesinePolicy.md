@@ -24,3 +24,5 @@ web-doc-base の各パーツはフラットデザインから派生したモダ�
 
 この CSS 設計方法は、`px` ベースのレイアウトとは異なるややこしさがあります。この手法について「[解像度に依存しないモバイルユーザーインターフェース](http://web.archive.org/web/20120716033656/http://www.extjs.co.jp/blog/2010/08/24/resolution-independent-mobile-ui)」が詳しい記事です。
 
+しかし、Gecko で表示が微妙な時はこのフォントサイズが原因であったりします。
+

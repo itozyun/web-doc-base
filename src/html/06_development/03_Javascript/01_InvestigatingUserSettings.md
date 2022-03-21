@@ -1,27 +1,29 @@
-# Investigation of special browser settings
+# ユーザー設定の調査
 
-1. Special browser status flags
-2. Special event listeners
+1. ブラウザの状態フラグ
+2. イベントリスナの登録
+3. 機能検出用関数
 
-## 1. Special browser status flags
+## 1. ブラウザの状態フラグ
 
 1. CSS は有効か？
 2. `:before`, `:after` 疑似要素によるコンテンツの生成が出来るか？
 3. `-ms-filter` は有効か？
-4. ハイコントラストモードの状態
+4. 強制カラーモードの状態
 5. print イベントのコールバックの可否
 6. 画像が有効か？
 
 |  | valiable                    | type                 | value | available           | note                                                                 |
 |:-|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
-|1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
-|2 | `p_generatedContentEnabled` | number or undefined  |       | `p_listenLoadEvent` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P |
+|  | `p_canuseNativeForcedColors`| boolean or undefined |       | from the beginning  |                                                                      |
+|5 | `p_printEventDisabled`      | boolean              |       | from the beginning  |                                                                      |
+|2 | `p_cssGeneratedContentGrade`| number or undefined  || `p_listenCssAvailabilityChange` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
 |3 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
+|1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
 |4 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
-|5 | `p_printEventDisabled`      | boolean              |       | allways             |                                                                      |
-|6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenLoadEvent` | undefined : `document.images.length == 0`                            |
+|6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenImageReady` | undefined : `document.images.length == 0`                            |
 
-`p_generatedContentEnabled` の判定用に、メインの CSS に下記スタイルを入れておく。
+`p_cssGeneratedContentGrade` の判定用に、メインの CSS に下記スタイルを入れておく。
 
 ~~~css
 #jsCanUseContent {
@@ -34,7 +36,7 @@
 }
 ~~~
 
-## 2. Special event listeners
+## 2. イベントリスナの登録
 
 1. `p_listenCssAvailabilityChange`
 2. `p_listenForcedColorsChange`
@@ -58,12 +60,22 @@ p_listenCssAvailabilityChange(
 
 ### 2. `p_listenForcedColorsChange`
 
-Windows 用ブラウザの一部が備える Web サイトのハイコントラストモードの状態変化をコールバックします。
+Web サイトの強制カラーモード(旧名、ハイコントラストモード)の状態変化をコールバックします。
+
+ネイティブサポートの有無で処理を切り替える場合 `p_canuseNativeForcedColors` で判断します。
+
+1. ネイティブサポート Chromium Edge 79+, Firefox 89+(81+), Chrome 89+(79+)
+2. `(-ms-high-contrast:*)` のサポート IE 10+, EdgeHTML 12+
+3. Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8+(文書読み込み時点のモードを反映)
 
 ~~~js
 p_listenForcedColorsChange(
     function( forcedColorsState ){
-
+        if( p_canuseNativeForcedColors ){
+            // Native suport of (forced-colors:*) or (-ms-high-contrast:*)
+        } else {
+            //
+        };
     }
 );
 ~~~
@@ -105,7 +117,7 @@ p_listenPrintEvent(
 );
 ~~~
 
-## Special methods
+## 3. 機能検出用関数
 
 1. `p_dataUriTest`
 2. `p_imageTest`
@@ -113,7 +125,9 @@ p_listenPrintEvent(
 
 ### 1. `p_dataUriTest`
 
-`p_webFontTest` が使用しています。
+Data　URI スキームが使用できるか？ 1x1 サイズの透過 gif イメージを生成して調査します。`p_webFontTest` が使用しています。
+
+IE8+ では画像に対してのみ Data　URI スキームが使えます。画像を無効にした場合、このテストも `false` を返します。
 
 ~~~js
 p_dataUriTest(
@@ -125,14 +139,16 @@ p_dataUriTest(
 
 ### 2. `p_imageTest`
 
-`imageUrl` が描画されたか？で画像表示に制限が無いか？確認する。
+`imageURL` が描画されたか？で画像表示に制限が無いか？確認する。
+
+一部のブラウザは `p_listenImageReady` の判定の為にこの関数を呼び出しています。
 
 ~~~js
 p_imageTest(
     function( imageEnabled ){
 
     },
-    imageUrl
+    imageURL
 );
 ~~~
 
@@ -142,10 +158,12 @@ p_imageTest(
 
 Web フォントの読み込み完了のテスト、フォールバックのダウンロードから読み込みのテスト、リガチャのテストを行います。
 
-1. フォント名
+1. フォントファミリー名
 2. メインの CSS に下記スタイルを入れておく。隠し要素のサイズを測って CSS の読み込み完了を検出する `<div class="myIconFont-testCssReady"></div>`
 3. Web フォントを DATA URI スキームで埋め込んだ CSS を用意し、パスをここに書く
-4. リガチャはキャラクターと合字の長さが一致するかを調べる
+4. 第四引数と第五引数はリガチャのテスト用。合字になる文字列(第四引数)とキャラクター(第五引数)の文字幅が一致するか？調べる
+5. 合字になるキャラクター
+6. インターバルタイム(デフォルトは5000ミリ秒)
 
 ~~~js
 p_webFontTest(
@@ -168,6 +186,8 @@ p_webFontTest(
 ~~~
 
 #### メインの CSS
+
+次の CSS をメイン CSS に追加しておくこと。
 
 ~~~css
 @font-face {
@@ -221,4 +241,8 @@ p_webFontTest(
     font-weight : normal;
     font-style  : normal;
 }
+~~~
+### Data URI スキーム化した Web フォントを埋め込んだ .css
+
+~~~css
 ~~~

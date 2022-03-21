@@ -48,20 +48,8 @@ CSS の設計は CSS 設計手法 BEM を参考に、細分化したものです
 
 `min-Module`, `min-Module_item--modifier`
 
-### 11. ArticleBody 用スタイル
+### 11. ArticleBody 下のスタイル
 
-### 10. ArtickeFooter のアイテム
+### 10. ArtickeFooter モジュールのアイテム
 
 ### 11. ライブラリ用のスタイル
-
-## ワンポイント
-
-### line-height の指定
-
-読みやすい行間は 1.6～2 とされています。しかし body { line-height:2 } とはしません。
-ヘッダーや li の行間も空いてしまい読みづらくなるからです。
-
-### `@media print` で `screen` 用の指定を上書きしない
-
-レイアウト用のプロパティは `@media screen` 内に書くと、`@media print` で上書きしてリセットにする指定を無くすことが出来ます。
-印刷メディア用のプロパティは

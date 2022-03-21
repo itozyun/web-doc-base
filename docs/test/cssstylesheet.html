@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <style>/*<!--*/
+      div {margin:6px 0px;}
+      span {font-size:12px;border:1px solid gray;background-color:#dddddd;padding:4px;cursor:pointer;}
+      #dump {border:1px solid gray; background: #dddddd;margin:5px;}
+      /*-->*/</style>
+
+    <script>//<!--
+      function iframeDoc(id)
+      {
+        if (document.all) {
+          // IE
+          return frames[id].document;
+        } else {
+          // Mozilla
+          return document.getElementById(id).contentDocument;
+        }
+      }
+
+      function onLoad()
+      {
+        dumpCSSRule("frame");
+      }
+
+      function addRule(iframeid, selector, rule)
+      {
+        var ss = iframeDoc(iframeid).styleSheets[0];
+
+        if (document.all) {
+          ss.addRule(selector, rule);
+        } else {
+          ss.insertRule(selector + " {" + rule + "}", ss.cssRules.length);
+        }
+        dumpCSSRule(iframeid);
+      }
+
+      function clearAllRules(iframeid)
+      {
+        var ss = iframeDoc(iframeid).styleSheets[0];
+
+        if (document.all) {
+          while (ss.rules.length)
+            ss.removeRule(0);
+        } else {
+          while (ss.cssRules.length)
+            ss.deleteRule(0);
+        }
+        dumpCSSRule(iframeid);
+      }
+
+      function dumpCSSRule(iframeid)
+      {
+        var doc = iframeDoc(iframeid);
+        var html = "";
+
+        for (var i = 0 ; i < doc.styleSheets.length ; i++) {
+          var ss = doc.styleSheets[i];	// stylesheet obj.
+          html += "StyleSheet#" + i + "<br>";
+
+          // スタイルシート内のルールのダンプ
+          var rules;
+          if (document.all) {
+            rules = ss.rules;
+          } else {
+            rules = ss.cssRules;
+          }
+          for (var j = 0 ; j < rules.length ; j++) {
+            html += "Rule#" + j + ":" + rules[j].selectorText +
+                      "{" + rules[j].style.cssText + "}" + "<br>";
+          }
+          html += "<br>";
+        }
+        document.getElementById("dump").innerHTML = html;
+      }
+
+      //--></script>
+  </head>
+
+  <body onload="onLoad()">
+    <p><a href="https://www.bit-hive.com/~tomita/JS/CSSRules/">オリジナル</a>
+    <h1>スタイルシートのルールの更新</h1>
+
+    <p>追加をクリックすると、iframe内のスタイルシートにCSSルールを追加します。</p>
+
+    <div><span onclick="addRule('frame', 'body', 'background-color: #8888ff')">追加</span>
+      body {background-color: #8888ff}</div>
+    <div><span onclick="addRule('frame', 'h1', 'color:red;font-size:130%;')">追加</span>
+      h1 {color:red;font-size:130%;}</div>
+    <div><span onclick="addRule('frame', '.p1', 'color:yellow')">追加</span>
+      .p1 {color:yellow}</div>
+    <div><span onclick="addRule('frame', '.p2', 'color:blue')">追加</span>
+      .p2 {color:blue}</div>
+
+    <div><span onclick="clearAllRules('frame');">
+      ルールの全削除</span></div>
+    <iframe id="frame" src="test.cssstylesheet.frame.html"></iframe>
+
+    <br><br>
+    <div>CSS Rulesのダンプ</div>
+    <div id="dump"></div>
+
+  </body>
+</html>

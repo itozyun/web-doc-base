@@ -178,7 +178,7 @@
 
 ### `@media (-ms-high-contrast:active) and (prefers-color-scheme:light)`, `@media (-ms-high-contrast:active) and (prefers-color-scheme:dark)` のテスト
 
-Chromium 版 Edge のハイコントラストモード限定でスタイルを適用されます。
+Chromium 版 Edge の強制カラーモード限定でスタイルを適用されます。
 
 
 パッチの項も参照。ツール項も参照。

@@ -54,28 +54,6 @@ gulp.task( 'whatbrowserami', gulp.series(
  */
 gulp.task('docs', gulp.series(
     'whatbrowserami',
-    function( cb ){
-        const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
-
-        return gulp.src( ['./docs/getInlineJs.html' ])
-            .pipe(
-                gulpJSDOM(
-                    function( document ){
-                        var elm = document.getElementsByTagName( 'script' )[ 0 ];
-
-                        if( elm ){
-                            elm.textContent = minjs;
-                        };
-
-                        elm = document.getElementsByTagName( 'textarea' )[ 0 ];
-
-                        if( elm ){
-                            elm.value = minjs;
-                        };
-                    }
-                )
-            ).pipe(gulp.dest('./docs'));
-    },
     function(){
         return gulp.src( [
             './.submodules/what-browser-am-i/src/js/**/*.js',
@@ -115,7 +93,7 @@ gulp.task('docs', gulp.series(
     function( cb ){
         const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
 
-        return gulp.src( [ './docs/testImageLoading.html' ] )
+        return gulp.src( [ './docs/test/check-image-loading.html' ] )
             .pipe(
                 gulpJSDOM(
                     function( document ){
@@ -339,6 +317,6 @@ gulp.task( 'html', gulp.series(
             .pipe( plumber() )
             .pipe( pageFragumentToFullPage( pageBase, __dirname + '/src/html/' ) )
             // .pipe( formatHtml )
-            .pipe( gulp.dest( './docs/_/' ) );
+            .pipe( gulp.dest( './docs/' ) );
     } )
 );

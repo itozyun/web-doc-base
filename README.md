@@ -10,7 +10,7 @@ Super project for itozyun's Web document projects.
 3. Build CSS for each browsers (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7\~7.1x, Opera 7.20\~7.5x, Opera 8\~8.5x, Opera 9\~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
 4. Responsive Web Design for the 8 types of device (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. Reduce ink to print (`@media print`)
-6. High contrast mode support (`@media (-ms-high-contrast:active)`)
+6. Forced colors support (`@media (forced-colors:active)`, `@media (-ms-high-contrast:active)`)
 7. Drak mode support (`(prefers-color-scheme:dark)`)
 8. Legacy browsers support
 
@@ -21,7 +21,7 @@ itozyun の Web ドキュメント・プロジェクトの親プロジェクト�
 3. ブラウザ別に CSS をビルド (modern [IE10+, Gecko 1.9.1+, Goanna, Opera 9.5+, Safari, Chrome], IE9, IE8, IE7, IE6, IE5.5, IE5, Opera 7\~7.1x, Opera 7.20\~7.5x, Opera 8\~8.5x, Opera 9\~9.2x, Gecko ~0.9.7, Gecko ~1.2.1, Gecko ~1.9.0)
 4. レスポンシブデザインは8種類のデバイスのために用意 (WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch)
 5. インクを節約して印刷 (`@media print`)
-6. ハイコントラストモードのサポート (`@media (-ms-high-contrast:active)`)
+6. 強制カラーモードのサポート (`@media (forced-colors:active)`, `@media (-ms-high-contrast:active)`)
 7. ダークモードのサポート (`(prefers-color-scheme:dark)`)
 8. 古いブラウザのサポート
 
@@ -30,31 +30,28 @@ Javascript によって提供される機能
 
 1. User Agent detection [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
 2. Optimal viewport based on user agent judgment [src](./src/js-inline/dynamicViewPort.js)
-3. Adjustment of sidebar [src](./src/js/7_Library/SidebarFixer.js)
-4. Click thumbnail image to enlarge [src](./src/js/7_Library/PicaThumnail.js)
-5. Extension of `<blockquote>` [src](./src/js/7_Library/blockquot.js)
+3. Adjustment of sidebar [src](./src/js/8_Library/SidebarFixer.js)
+4. Click thumbnail image to enlarge [src](./src/js/8_Library/PicaThumnail.js)
+5. Extension of `<blockquote>` [src](./src/js/8_Library/blockquot.js)
 
 ---
 
 1. ユーザーエージェント判定 [Demo](https://itozyun.github.io/what-browser-am-i/) [src itozyun/what-browser-am-i](https://github.com/itozyun/waht-browser-am-i/)
 2. ユーザーエージェント判定を元にした最適な viewport [src](./src/js-inline/dynamicViewPort.js)
-3. サイドバーの追従 [src](./src/js/7_Library/SidebarFixer.js)
-4. サムネイル画像をクリックで拡大 [src](./src/js/7_Library/PicaThumnail.js)
-5. `<blockquote>` の拡張 [src](./src/js/7_Library/blockquot.js)
+3. サイドバーの追従 [src](./src/js/8_Library/SidebarFixer.js)
+4. サムネイル画像をクリックで拡大 [src](./src/js/8_Library/PicaThumnail.js)
+5. `<blockquote>` の拡張 [src](./src/js/8_Library/blockquot.js)
 
 ### Links
 
-* [Demo](https://itozyun.github.io/web-doc-base/)
-* [clearfixのテスト](https://itozyun.github.io/web-doc-base/clearfix.html)
-* [疑似要素のテスト](https://itozyun.github.io/web-doc-base/cssGeneratedContent.html)
-* [Web 文書用のインライン js](https://itozyun.github.io/web-doc-base/getInlineJs.html)
-* [CSSOM のテスト](https://itozyun.github.io/web-doc-base/test.cssom.html)
-* [import のテスト](https://itozyun.github.io/web-doc-base/importHack.html)
-* [Test Image loading](https://itozyun.github.io/web-doc-base/testImageLoading.html)
-* [アイコンのテスト](https://itozyun.github.io/web-doc-base/test.icon.html)
-* [RichLink のテスト](https://itozyun.github.io/web-doc-base/richlink.html)
-* [Investigation of special browser settings](./docs/investigation_of_special_browser_settings.md)
-* [ブートシーケンス](./docs/bootsequence.md)
+* [Document](https://itozyun.github.io/web-doc-base/)
+* [clearfixのテスト](https://itozyun.github.io/web-doc-base/test/clearfix.html)
+* [疑似要素のテスト](https://itozyun.github.io/web-doc-base/test/cssGeneratedContent.html)
+* [CSSOM のテスト](https://itozyun.github.io/web-doc-base/test/test/cssom.html)
+* [import のテスト](https://itozyun.github.io/web-doc-base/test/importHack.html)
+* [Check Image loading](https://itozyun.github.io/web-doc-base/test/check-image-loading.html)
+* [アイコンのテスト](https://itozyun.github.io/web-doc-base/test/icon.html)
+* [RichLink のテスト](https://itozyun.github.io/web-doc-base/test/richlink.html)
 
 ## References
 参照プロジェクト

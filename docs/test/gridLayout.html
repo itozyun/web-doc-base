@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<thead>
+<style>
+    html, body {
+
+    }
+    #layout-by-grid, #single-colmun {
+        display : none;
+    }
+    #layout-by-float {
+        display : inline;
+    }
+
+    .root, .lX {
+        overflow : hidden; /* clearfix */
+    }
+    .footer {
+        background : #29243f;
+        color      : #fff;
+        padding    : 1em 0;
+        text-align : center;
+    }
+    .lX {
+        background : #633f68;
+    }
+        .lXM {
+            background : #ffa4a4;
+        }
+        .lXS {
+            background : #d691e4;
+        }
+        .lM {
+            background : #96d472;
+        }
+        .lS {
+            background : #fff066;
+        }
+        .lM, .lXM {
+            float      : left;
+            width      : 75%;
+            width      : calc(50% + 12em);
+        }
+        .lS, .lXS {
+            float      : right;
+            width      : 25%;
+            width      : calc(50% - 12em);
+        }
+            .lXXi, .lXMi, .lXSi, .lMi, .lSi {
+                padding : 1em 0;
+            }
+            .lMi, .lXMi {
+                margin    : 0 0 0 10%;
+                width     : auto;
+                margin    : calc(0%) 0 0 auto; /* reset */
+                width     : calc(38em); /* reset */
+                max-width : 100%;
+            }
+            .lMi {
+                background : #92b47f;
+            }
+            .lSi, .lXSi {
+                margin    : 0 30% 0 0;
+                width     : auto;
+                margin    : calc(0%) auto 0 0; /* reset */
+                width     : calc(16em); /* reset */
+                max-width : 100%;
+            }
+            .lSi {
+                background : #c7c18a;
+            }
+    @media only screen and (min-width: 100em){
+        @supports (display: grid) {
+            #layout-by-grid {
+                display : inline;
+            }
+            #layout-by-float, #single-colmun {
+                display : none;
+            }
+            .root {
+                display               : grid; /* グリッドレイアウト */
+                grid-template-rows    : auto 1fr;
+                grid-template-columns : calc(50%+25em) 1fr;
+
+            }
+            .lX {
+                grid-row    : 1 / 2;
+                grid-column : 1 / 2;
+            }
+                .lXi, .lMi {
+                    margin : 0 0 0 auto;
+                    width  : 66em;
+                }
+                .lXMi, .lXSi {
+                    margin : 0;
+                    width  : auto;
+                }
+            .lM {
+                grid-row    : 2 / 3;
+                grid-column : 1 / 2;
+                width       : auto;
+            }
+            .lS {
+                grid-row    : 1 / 3;
+                grid-column : 2 / 3;
+                width       : auto;
+            }
+                .lSi {
+                    width : 22em;
+                    /* margin : 0 calc(100% - 23em) 0 0; */
+                }
+        }
+        .lMi {
+            -webkit-column-count : 2;
+            -webkit-column-gap   : 2em;
+               -moz-column-count : 2;
+               -moz-column-gap   : 2em;
+                    column-count : 2;
+                    column-gap   : 2em;
+        }
+/* for IE11~10 vvv */
+        .root {
+                display          : -ms-grid; 
+                -ms-grid-rows    : auto 1fr;
+                -ms-grid-columns : 75%/* calc(50%+25em) 不可 */ 1fr;
+        }
+        .lX {
+            -ms-grid-row         : 1;
+            -ms-grid-row-span    : 1;
+            -ms-grid-column      : 1;
+            -ms-grid-column-span : 1;
+        }
+        .lM {
+            -ms-grid-row         : 2;
+            -ms-grid-row-span    : 1;
+            -ms-grid-column      : 1;
+            -ms-grid-column-span : 1;
+        }
+        .lS {
+            -ms-grid-row         : 1;
+            -ms-grid-row-span    : 2;
+            -ms-grid-column      : 2;
+            -ms-grid-column-span : 1;
+        }
+    }
+    @media screen and (-ms-high-contrast:active) and (min-width: 100em), screen and (-ms-high-contrast:none) and (min-width: 100em) {
+        .lM, .lS {
+            width : auto;
+        }
+            .lXi, .lMi {
+                margin    : 0 0 0 10%;
+                width     : auto;
+                /* margin : 0 0 0 calc(100% - 69em); */
+            }
+            .lXMi, .lXSi {
+                margin : 0;
+                width : auto;
+            }
+            .lSi {
+                margin    : 0 30% 0 0;
+                width     : auto;
+                /* margin : 0 calc(100% - 23em) 0 0; */
+            }
+    }
+/* for IE11~10 ^^^ */
+
+/* for tablet */
+    @media only screen and (max-width: 60em){
+        #single-colmun {
+            display : inline;
+        }
+        #layout-by-float, #layout-by-grid {
+            display : none;
+        }
+        .lM, .lXM {
+            float      : none;
+            width      : 100%;
+        }
+        .lS, .lXS {
+            float      : none;
+            width      : 100%;
+        }
+        .lMi, .lXMi {
+            margin    : 0;
+            width     : 99%;
+            margin     : 0 auto;
+            max-width  : 40em;
+        }
+        .lSi, .lXSi {
+            margin    : 0;
+            width     : 99%;
+            margin     : 0 auto;
+            max-width  : 40em;
+        }
+    }
+
+/* mesure */
+    .lM_m {
+        background    : #96d472;
+        float         : left;
+        width         : 50%;
+        margin-right : 12em;
+    }
+    .lS_m {
+        background  : #fff066;
+        float       : left;
+        width       : 50%;
+        margin-left : -12em; /* ネガティブマージンで可能 */
+    }
+    .lMi_m {
+        position   : relative;
+        left       : 12em;
+        width      : 38em;
+        background : #92b47f;
+        padding    : 1em 0;
+        float      : right;
+    }
+    .lSi_m {
+        background : #c7c18a;
+        padding    : 1em 0 1em 12em;
+        width      : 16em;
+    }
+</style>
+<body>
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
+clearfix のテスト,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
+<a href="importHack.html">import のテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="richlink.html">RichLink のテスト</a>
+<main>
+    <article>
+        <div class="root">
+            <div class="lW">
+                <div class="lM_m">
+                    <div class="lMi_m"></div>
+                </div>
+                <div class="lS_m">
+                    <div class="lSi_m"></div>
+                </div>
+            </div>
+        </div>
+        <div class="root">
+            <div class="lX">
+                <div class="lXi">
+                    <div class="lXM">
+                        <div class="lXMi"><h1>フルHDに近いウィンドウサイズではヘッダー部分にサイドバーがねじり込まれるレイアウト</h1></div>
+                    </div>
+                    <div class="lXS">
+                        <div class="lXSi"><p>現在のレイアウトは、<span id="layout-by-grid">CSS Grid</span><span id="layout-by-float">float</span><span id="single-colmun">single column</span> です。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lM">
+                <div class="lMi">
+                    <h2>CSS Grid を使う</h2>
+                    <p>ずっと敬遠してきた Grid レイアウトにようやく取り組みました。最新のブラウザでは動くんじゃないっすか、で済ませられない性分なので
+                    フォールバックが継ぎ目無く行われるのか？の膨大な確認作業に挑むだけの必要性にこれまでは遭遇しませんでした。(*1)
+                    <p>しかしいよいよ、Grid でしか実現できないレイアウトの要請に遭遇したので重い腰を上げたのでした。
+                    <h2>レイアウト上の要請</h2>
+                    <p>Web サイトではフル HD 向けデザインを提供してきました。その際に、ヘッダーに空いたスペースが気になって、この部分までサイドバーの表示に使いたいと考えてきました。
+                    <p>CSS-P によるダイナミックスタイル(*2)以外で、そもそもこのようなレイアウトは可能なのか？実を言うと、半信半疑なところからの出発でした。
+                    <p>諸々調べて、CSS grid で可能なこと。実現には、マークアップの変更から取り組む必要があることが分かりました。
+
+                    <h2>マークアップ</h2>
+                    <h3>旧来のマークアップ</h3>
+                    <h3>CSS Gridの適用できるマークアップ</h3>
+
+                    <h2>使用プロパティ</h2>
+                    <ol>
+                    <li>CSS Grid
+                    <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@supports">開発者向けのウェブ技術 &gt; CSS: カスケーディングスタイルシート &gt; @supports</a>
+                    <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/calc()">開発者向けのウェブ技術 &gt; CSS: カスケーディングスタイルシート &gt; calc()</a>
+                    <li>column-count
+                    </ol>
+
+                    <h2>マークアップの変更に伴う要素の幅の出し方の変更</h2>
+                    <p>ネガティブマージンで
+                    
+                    <h3><del>calc()</del></h3>
+                    <p>メインカラムの幅 50% + (40em - 16em) / 2 -> calc(50% + 12em)
+                    <p>サイドバーの幅 50% - (40em - 16em) / 2 -> calc(50% - 12em)
+                    <h3><del></del>非対応環境のフォールバック</h3>
+                    <p>フォールバックは % 指定で無難な感じに
+                    <p>width 50% + padding-left : 12em;
+
+                    <h3>IE &gt;9 向けのフォールバック</h3>
+                    <p>IE は CSS メディアクエリに9から対応します。しかしこの時点では column-count(*3) に対応しないので、そもそものフルHD向けレイアウトは用意していません。
+                    <p>今回はIE &gt;9については条件付きコメントで、旧来のマークアップと CSS を使います。
+                </div>
+            </div>
+            <div class="lS">
+                <div class="lSi">
+                    <aside>
+                        <ol>
+                        <li><p>float と position, display:table, display:inline-block で殆んどのレイアウトが足ります。IE 5+, Gecko 1+ といった2000年前後の Web ブラウザでも閲覧性を維持できます。
+                        <li><p>このようなデザインは DHTML, CSS-P をサポートする IE4 から原理的には可能です。しかし Javascript が無効の環境でもレイアウトを実現するには、Grid の登場を待つ必要がありました。
+                        <li><p>記事本文を column-count で2列にすることで、一行あたり40文字程度をキープ出来ます。このプロパティをサポートしないブラウザだと間抜けなことになります。現在確認しているものは、Opera 12 です。
+                        </ol>
+                        <h2>昔ながらの2カラムデザインの思考過程</h2>
+                        <p>メインカラムとサイドバーのあるレイアウトの、各カラムのサイズを決める作業を考えてみます。
+                        <p>まずはメインカラムの幅を決定します。人間が読みやすい一行の文字数は25~40文字とされています。この中から選びます。
+                            続いて、サイドバーの幅を検討します。これには、メインカラムとの白銀比を使うとします。
+                        <p>メインカラムとサイドバーを足し、これに余白を加味することでページの幅(max-width)が決定します。
+                        <p>ここまでピクセルサイズが登場しないのは、フォントサイズベースのレイアウトをしている為です。この件については参照します。
+                    </aside>
+                </div>
+            </div>
+        </div>
+        <div class="footer">(c) web-doc-base</div>
+    </article>
+</main>
