@@ -142,3 +142,14 @@
             }
         }
     }
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+    @include media(print){
+        @if( $CANUSE_CSS_GENERATED_CONTENT ){
+            // content : attr(href) をボックス幅で改行する, Firefox では不要だった
+            body {
+                @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506654336876974080
+            }
+        }
+    }
