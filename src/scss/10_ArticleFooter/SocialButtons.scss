@@ -1,82 +1,79 @@
-/* =====================================================================================
- * //_{+SocialBtns
- */
-
 /* [ArticleFooter Item] SocialBtns
  *
  * .SocialBtns
  *   a
 --------------------------------------------------------------------------------------*/
-.SocialBtns {
-    @include article-footer-item;
-
-    padding : 1em 0 0.5em;
-    @if( $IS_LTE_WIN_IE7 ){
-        padding : 1em 0;
-    }
-    color : $COLOR_Light_fill; /* , を消す */
-
-    * {
-        @extend %ButtonBase;
-        margin : 0 0 0.5em;
-    }
-
-    .tw {
-        @include button-colors( #1B95E0, #1B95E0, $COLOR_Light_fill );
-    }
-    .fb {
-        @include button-colors( #3B5999, #3B5999, #fff );
-    }
-    .hb {
-        @include button-colors( #008FDE, #008FDE, $COLOR_Light_fill );
-    }
-    .pt {
-        @include button-colors( #BD081C, #BD081C, #fff );
-    }
-    .pk {
-        @include button-colors( #EE4056, #EE4056, $COLOR_Light_fill );
-    }
-    .ln {
-        @include button-colors( #00C300, #00C300, $COLOR_Light_fill );
-    }
-}
-
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet) {
+@if( $Option_SocialBtns ){
     .SocialBtns {
-        text-align : center;
+        @include article-footer-item;
+
+        padding : 1em 0 0.5em;
+        @if( $IS_LTE_WIN_IE7 ){
+            padding : 1em 0;
+        }
+        color : $COLOR_Light_fill; /* , を消す */
+
+        * {
+            @extend %ButtonBase;
+            margin : 0 0 0.5em;
+        }
+
+        .tw {
+            @include button-colors( #1B95E0, #1B95E0, $COLOR_Light_fill );
+        }
+        .fb {
+            @include button-colors( #3B5999, #3B5999, #fff );
+        }
+        .hb {
+            @include button-colors( #008FDE, #008FDE, $COLOR_Light_fill );
+        }
+        .pt {
+            @include button-colors( #BD081C, #BD081C, #fff );
+        }
+        .pk {
+            @include button-colors( #EE4056, #EE4056, $COLOR_Light_fill );
+        }
+        .ln {
+            @include button-colors( #00C300, #00C300, $COLOR_Light_fill );
+        }
     }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .SocialBtns {
-        color : $COLOR_Dark_fill; /* , を消す */
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        .SocialBtns {
+            text-align : center;
+        }
+    }
 
-        .tw, .fb, .hb, .pt, .ok, .ln {
-            :link {
-                color : $COLOR_Dark_fill !important;
-            }
-            :visited {
-                background : $COLOR_Dark_fill !important;
-            }
-            @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-                &:link:active, &:visited:active { border-color : $COLOR_Dark_fill !important; }
-            }
-            @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-                &:link:focus, &:visited:focus { border-color : $COLOR_Dark_fill !important; }
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        .SocialBtns {
+            color : $COLOR_Dark_fill; /* , を消す */
+
+            .tw, .fb, .hb, .pt, .ok, .ln {
+                :link {
+                    color : $COLOR_Dark_fill !important;
+                }
+                :visited {
+                    background : $COLOR_Dark_fill !important;
+                }
+                @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+                    &:link:active, &:visited:active { border-color : $COLOR_Dark_fill !important; }
+                }
+                @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+                    &:link:focus, &:visited:focus { border-color : $COLOR_Dark_fill !important; }
+                }
             }
         }
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .SocialBtns {
-        display : none;
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .SocialBtns {
+            display : none;
+        }
     }
 }
-/* //_}+SocialBtns */

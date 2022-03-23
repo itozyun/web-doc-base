@@ -93,25 +93,14 @@ table {
 
 /*  color
 --------------------------------------------------------------------------------------*/
-@mixin tableColor( $text, $fill, $casual_text, $casual_fill ){
+@mixin table-colors( $text, $fill, $casual_text, $casual_fill ){
     table {
         @if( $UA_IE5 or $UA_IE55 ){
-            color        : $text;
+            color : $text;
         }
         border-color : $casual_text;
     }
-    tbody th {
-        background   : $casual_fill;
-        border-color : $fill;
-    }
-    td {
-        border-color : $fill $fill $casual_fill;
-    }
 
-    tfoot th,
-    tfoot td {
-        border-color : $casual_text $fill;
-    }
     thead th, thead td {
         background   : $casual_text;
         border-color : $casual_fill mix( $casual_text, $casual_fill, 90% );
@@ -125,6 +114,20 @@ table {
             color : $fill;
         }
     }
+
+    tbody th {
+        background   : $casual_fill;
+        border-color : $fill;
+    }
+    td {
+        border-color : $fill $fill $casual_fill;
+    }
+
+    tfoot th,
+    tfoot td {
+        border-color : $casual_text $fill;
+    }
+
     blockquote {
         table {
             border-color : $text;
@@ -137,6 +140,10 @@ table {
             background   : $casual_text;
             border-color : $casual_fill;
             color        : $fill;
+            :link, :link:hover,
+            .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
+                color : $fill;
+            }
         }
         td {
             border-color : $casual_fill $casual_fill $casual_text;
@@ -151,24 +158,10 @@ table {
                 border-color : $casual_fill $casual_fill $COLOR_ACCENT;
             }
         }
-
-        tbody th {
-            :link, :link:hover,
-            .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
-                color : $fill;
-            }
-        }
-    }
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
-        thead th a:focus, thead td a:focus,
-        thead a:focus,
-        blockquote tbody th a:focus {
-            background-color : $COLOR_ACCENT !important;
-        }
     }
 }
 
-@include tableColor( $COLOR_Light_text, $COLOR_Light_fill, $COLOR_Light_casual_text, $COLOR_Light_casual_fill );
+@include table-colors( $COLOR_Light_text, $COLOR_Light_fill, $COLOR_Light_casual_text, $COLOR_Light_casual_fill );
 
 @if( $CANUSE_HOVER_PSEUDO_CLASS ){
     tbody :hover th {
@@ -192,10 +185,18 @@ table {
     }
 }
 
+@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
+    thead th a:focus, thead td a:focus,
+    thead a:focus,
+    blockquote tbody th a:focus {
+        background-color : $COLOR_ACCENT !important; // テキスト色が明るいのでアクセント職で塗れる
+    }
+}
+
 /*  Dark theme
 --------------------------------------------------------------------------------------*/
 @include media(dark_theme) {
-    @include tableColor( $COLOR_Dark_text, $COLOR_Dark_fill, $COLOR_Dark_casual_text, $COLOR_Dark_casual_fill );
+    @include table-colors( $COLOR_Dark_text, $COLOR_Dark_fill, $COLOR_Dark_casual_text, $COLOR_Dark_casual_fill );
 
     tbody :hover td {
         border-color : $COLOR_Dark_fill $COLOR_Dark_fill $COLOR_ACCENT;

@@ -50,9 +50,9 @@
 @include media(print) {
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
         .aBodyRoot a[href]:after {
-            content     : " ("attr(href)") ";
-            font-size   : 0.875em;
-            color       : $COLOR_Print_link;
+            content   : " ("attr(href)") ";
+            font-size : 0.875em;
+            color     : $COLOR_Print_link;
         }
 
         [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
@@ -64,15 +64,16 @@
         [href$=".gif"]:after,
         [href$=".GIF"]:after,
         [href$=".png"]:after,
-        [href$=".PNG"]:after
-        /* //_{^@ie8 */
-        ,
-        [href^="#"]:after, /* 文書内リンクは非表示 */
-        [href^="mailto:"]:after,
-        [href^="tel:"]:after
-        /* //_}^@ie8 */
-        {
+        [href$=".PNG"]:after {
             display : none; /* for iOS4 content : none だけでは消えない */
+        }
+
+        @if( $UA_IE8 == false ){
+            [href^="#"]:after, /* 文書内リンクは非表示 */
+            [href^="mailto:"]:after,
+            [href^="tel:"]:after {
+                display : none; /* for iOS4 content : none だけでは消えない */
+            }
         }
     }
 }
