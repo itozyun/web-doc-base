@@ -41,7 +41,7 @@
     /*  Dark theme
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
-        a & {
+        :link &, :visited & { // <- こちらで無いと上書きできない a & {
             border-color : transparent; // filter: brightness(85%); の影響を避ける
             blockquote & {
                 border-color : transparent;
