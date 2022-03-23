@@ -2,9 +2,10 @@
 --------------------------------------------------------------------------------------*/
 @if( $Option_GoogleCodePrettify ){
     .prettyprint {
-        /* @include unbreak-inside; */
-        background : #333;
-        color      : #fff;
+        @include media(screen) {
+            background : #333;
+            color      : #fff;
+        }
         border-width : 1px;
         border-color : #333;
         @include responsive-horizontal-padding(1, 1em, 1em);
@@ -36,9 +37,6 @@
     }
 
     @include media(print) {
-        .prettyprint {
-            background : #fff;
-        }
         @if( $IS_LTE_IE55 == false ){ 
             code .str { color: #060; }
             code .kwd { color: #006; font-weight: bold; }

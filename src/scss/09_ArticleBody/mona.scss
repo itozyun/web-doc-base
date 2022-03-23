@@ -34,18 +34,10 @@
         @include responsive-horizontal-padding(1, 1em, 1em);
 
         border-width : 1px;
-
-        background   : #bcd;
         border-color : #bcd;
-        color        : #00193d;
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .mona {
-            background : #fff;
-            color      : $COLOR_Print_text;
+        @include media(screen) {
+            background : #bcd;
+            color      : #00193d;
         }
     }
 }

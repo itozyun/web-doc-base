@@ -9,24 +9,16 @@
         border-width : 1px;
 
         font-family  : monospace;
-
-        background   : #0A0809;
         border-color : #0A0809;
+
+        @include media(screen) {
+            background : #0A0809;
+        }
     }
 
     .aa, .aa code, .aa var {
-        color : #00ac06;
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .aa {
-            background : #fff;
-            color      : $COLOR_Print_text;
-        }
-        .aa code, .aa var {
-            color      : $COLOR_Print_text;
+        @include media(screen) {
+            color : #00ac06;
         }
     }
 }

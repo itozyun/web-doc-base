@@ -4,24 +4,27 @@
 .hscroll {
     margin : 1em 0;
 
-    @if( $IS_NOT_IE and $UA_Gck-097 == false and $UA_Gck101-121 == false and $UA_Gck130-190 == false ){
-        overflow : auto;
-    }
-    @if( $CANUSE_OVERFLOW_X_AND_Y ){
-        overflow-x : auto;
-        overflow-y : hidden;
-    }
-    @if( $UA_Modern ){
-        // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
-        //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
-        -webkit-overflow-scrolling : touch;
-    }
     @if( $UA_IE5 or $UA_IE55 ){
         width : 100%;
     }
 
     li &, dl &, tr &, .note & {
         margin-top : 0;
+    }
+
+    @include media(screen) {
+        @if( $IS_NOT_IE and $UA_Gck-097 == false and $UA_Gck101-121 == false and $UA_Gck130-190 == false ){
+            overflow : auto;
+        }
+        @if( $CANUSE_OVERFLOW_X_AND_Y ){
+            overflow-x : auto;
+            overflow-y : hidden;
+        }
+        @if( $UA_Modern ){
+            // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
+            //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
+            -webkit-overflow-scrolling : touch;
+        }
     }
 }
 
@@ -45,8 +48,10 @@
     }
     .hscroll pre {
         margin      : 0 0 0.5em;
-        white-space : pre;
-        overflow    : auto;
+        @include media(screen) {
+            overflow    : auto;
+            white-space : pre;
+        }
     }
     @if( $UA_IE5 ){
         .hscroll pre code,
@@ -72,29 +77,24 @@
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
     .hscroll table {
-        white-space  : nowrap;
+        @if( $Option_mobileOnly ){
+            @include media(screen) {
+                white-space : nowrap;
+            }
+        } @else {
+            white-space : nowrap;
+        }
     }
 }
 
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    .hscroll {
-        @if( $IS_NOT_IE ){
-            overflow   : visible;
-        }
-        @if( $CANUSE_OVERFLOW_X_AND_Y ){
-            overflow-x : visible;
-            overflow-y : visible;
-        }
+    .hscroll table {
+        width  : 100%;
+        margin : 0;
     }
-        .hscroll table {
-            width       : 100%;
-            margin      : 0;
-            white-space : normal;
-        }
-        .hscroll pre {
-            margin      : 0;
-            @include pre-wrap;
-        }
+    .hscroll pre {
+        margin : 0;
+    }
 }

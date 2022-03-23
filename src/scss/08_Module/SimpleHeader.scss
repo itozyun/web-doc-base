@@ -22,7 +22,7 @@
 
         .Header h1, .h1 {
             @if( $Option_mobileOnly == false ){
-                display   : inline;
+                display : inline;
             }
             font-size : 1.5em;
             margin    : 0 0.5em 0 0;
@@ -50,11 +50,19 @@
         }
 
         .Header {
-            text-align : center;
+            @if( $Option_mobileOnly ){
+                @include media(screen) {
+                    text-align : center;
+                }
+            } @else {
+                text-align : center;
+            }
         }
             .Header h1, .h1 {
-                display : block;
-                margin  : 0 0 0.5em;
+                @if( $Option_mobileOnly == false ){
+                    display : block;
+                }
+                margin : 0 0 0.5em;
             }
     }
 
@@ -77,12 +85,12 @@
         }
 
         .Header {
-            text-align : left;
-            padding    : 0 $TABLET_HORIZONTAL_MARGIN;
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
             .h1 {
                 font-size : 1em;
             }
+            // 記事でない場合、サイトタイトルをセンタリング
             .Header h1 {
                 @if( $Option_mobileOnly == false ){
                     display : block;

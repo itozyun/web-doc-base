@@ -16,14 +16,8 @@
     border-top : 0.3em solid $COLOR_THEME;
 }
 
-#lF {
-    border-top : 0.3em solid $COLOR_THEME;
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
+@include media(screen) {
     #lF {
-        border : 0;
+        border-top : 0.3em solid $COLOR_THEME;
     }
 }

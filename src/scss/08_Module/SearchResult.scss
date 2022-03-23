@@ -85,7 +85,7 @@
 
 /*  Print
 --------------------------------------------------------------------------------------*/
-@include media(print) {
+@include media(landscapePrint) {
     @if( $UA_Modern ){
         .SearchResult-multi {
             -webkit-column-gap : $PRINT_COLUMN_GAP_EM;

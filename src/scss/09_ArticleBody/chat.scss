@@ -10,8 +10,10 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
 
 @if( $Option_chat ){
     .chat {
-        color          : #fff;
-        background     : #7493C2;
+        @include media(screen) {
+            color      : #fff;
+            background : #7493C2;
+        }
         border-color   : $COLOR_Light_fill;
         border-width   : 1px;
         padding-bottom : 1em;
@@ -20,7 +22,9 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
         .chatTitle {
             @include unbreak-after;
-            background   : #273248;
+            @include media(screen) {
+                background : #273248;
+            }
             border-color : #273248;
             border-width : 0 0 1px;
             padding      : 1em $CAHT_HORIZONTAL_MARGIN;
@@ -29,11 +33,14 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
         .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
             @include unbreak-inside;
             @include unbreak-after;
-            font-size    : 1em;
-            color        : #fff;
-            background   : #5D769E;
+            
+            @include media(screen) {
+                color      : #fff;
+                background : #5D769E;
+            }
             border-color : #5D769E;
             border-width : 1px;
+            font-size    : 1em;
             margin       : 1em $CAHT_HORIZONTAL_MARGIN;
             padding      : .4em $CAHT_HORIZONTAL_MARGIN;
             @include inline-block;
@@ -85,8 +92,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
                 --------------------------------------------------------------------------------------*/
                 @include media(forced_colors_native){
                     .chatL p:after, .chatR p:after {
-                        border-top-color    : Window;
-                        border-bottom-color : Window;
+                        border-color : Window inherit;
                     }
                 }
                 @if( $UA_IE8 == false ){ /* 疑似要素に Transform が効かない */
@@ -203,9 +209,8 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
         @media only screen and (forced-colors:active) and (max-width: $SMALL_PHONE_MAX_WIDTH),
                only screen and (-ms-high-contrast:active) and (max-width: $SMALL_PHONE_MAX_WIDTH) {
             .chatL p:after, .chatR p:after {
-                border-bottom-color : inherit !important;
-                border-left-color   : transparent;
-                border-right-color  : transparent;
+                border-color : inherit transparent !important;
+                border-color : inherit Window !important;
             }
         }
     }
@@ -247,18 +252,11 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     --------------------------------------------------------------------------------------*/
     @include media(print) {
         .chat {
-            background   : $COLOR_Print_fill;
-            color        : $COLOR_Print_text;
             border-color : $COLOR_Print_casual_text;
         }
-            .chatTitle {
-                background : $COLOR_Print_fill;
-            }
             .chat p,
             .chat h2, .chat h3, .chat h4, .chat h5, .chat h6,
             .chatR p, .chatL p, .chat .chatMember {
-                color        : $COLOR_Print_text;
-                background   : $COLOR_Print_fill;
                 border-color : $COLOR_Print_casual_text;
             }
 

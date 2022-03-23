@@ -49,15 +49,17 @@
         }
     }
 
-    @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
-        :hover {
-            background : $COLOR_Light_casual_fill;
-            color      : $COLOR_Light_text;
-        }
-    } @else {
-        :link:hover, :visited:hover {
-            background : $COLOR_Light_casual_fill;
-            color      : $COLOR_Light_text;
+    @include media(screen){
+        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+            :hover {
+                background : $COLOR_Light_casual_fill;
+                color      : $COLOR_Light_text;
+            }
+        } @else {
+            :link:hover, :visited:hover {
+                background : $COLOR_Light_casual_fill;
+                color      : $COLOR_Light_text;
+            }
         }
     }
 

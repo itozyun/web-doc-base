@@ -24,7 +24,6 @@
     }
 
     code, var {
-        background : $COLOR_Light_casual_fill;
         margin     : 0 .1em;
 
         @if( $UA_IE5 ){
@@ -56,13 +55,17 @@
             margin     : 0;
         }
 
-        blockquote &, tbody th &, blockquote .tl tr & {
-            background : $COLOR_Light_casual_text;
-            color      : $COLOR_Light_fill;
-        }
-        thead &, blockquote tbody th &, .tl tr & {
+        @include media(screen) {
             background : $COLOR_Light_casual_fill;
-            color      : $COLOR_Light_text;
+
+            blockquote &, tbody th &, blockquote .tl tr & {
+                background : $COLOR_Light_casual_text;
+                color      : $COLOR_Light_fill;
+            }
+            thead &, blockquote tbody th &, .tl tr & {
+                background : $COLOR_Light_casual_fill;
+                color      : $COLOR_Light_text;
+            }
         }
     }
 
@@ -93,16 +96,11 @@
             border-color : $COLOR_Print_text;
         }
         code, var {
-            background   : none !important;
             border-width : 1px;
             border-color : $COLOR_Print_casual_fill;
 
             blockquote &, tbody th &, thead & {
                 border-color : $COLOR_Print_casual_text;
-            }
-            blockquote &, tbody th &, blockquote .tl tr &,
-            thead &, blockquote tbody th &, .tl tr & {
-                color : $COLOR_Print_text;
             }
         }
         pre code {
