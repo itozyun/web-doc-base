@@ -52,11 +52,17 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
     @include unbreak-page-after;
 }
 
-@mixin unbreak-box-with-long-text {
+@mixin unbreak-box-with-long-text { // block レベル要素
     @if( $UA_MacIE5 == false and $IS_OLD_GECKO == false and $IS_OLD_OPERA == false ){
-        word-break  : break-all;     /* IE 5+ */
+        word-break : break-all; /* IE 5+ */
     }
+}
+
+@mixin unbreak-box-by-long-text { // inline レベル要素
     @if( $UA_IE55 or $UA_IE6 or $UA_IE7 or $UA_IE8 or $UA_IE9 or $UA_Modern ){
-        word-wrap   : break-word;    /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+        word-wrap : break-word; /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+    }
+    @if( $UA_Modern ){
+    //    overflow-wrap : anywhere;
     }
 }

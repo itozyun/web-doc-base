@@ -151,7 +151,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     }
     .RichLink b {
-        @include unbreak-box-with-long-text;
+        @include unbreak-box-by-long-text;
         font-size : 1em * $RICHLINK_TEXT_SIZE;
         @if( $UA_IE7 or $UA_IE6 ){
             padding : 0;
