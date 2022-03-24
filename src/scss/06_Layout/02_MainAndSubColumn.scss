@@ -1,6 +1,4 @@
-/* .lX
- *    .lXi
- * .lW
+/* .lW
  *   .lM
  *     .lMi|.lMz
  *        .lMf + .lMh
@@ -15,13 +13,6 @@
  *    * 上記以外のブラウザ 
  *
 --------------------------------------------------------------------------------------*/
-// Opera 7.54u2,「スモール・スクリーン・レンダリング」によってコンテンツが左に寄る問題を回避, ~7.2x では発生しない
-// Opera 7.20~7.5x は親要素の text-align : center でセンタリング
-// https://twitter.com/itozyun/status/1496632445567115264
-// Opera 7.54u2, margin が反映されないので padding を使う
-// https://twitter.com/itozyun/status/1496641802740600832
-$LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
-
 $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 
 @if( $Option_mobileOnly == false ){
@@ -32,8 +23,8 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
     }
 
     @include media(screen) {
-        .lW, .lX {
-            width : 98%;
+        .lW {
+            width : $PC_WIDTH_PERCENT;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $PC_MAX_WIDTH_EM;
             }
@@ -45,10 +36,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
         }
 
         @if( $LAYOUT_FIX_FOR_Opera75 ){
-            body {
-                text-align : center;
-            }
-            .lW, .lX {
+            .lW {
                 @include inline-block;
                 text-align : left;
             }
@@ -88,19 +76,6 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                     }
                 }
 
-        /*  x-column
-        --------------------------------------------------------------------------------------*/
-            .lXi {
-                @if( $LAYOUT_FIX_FOR_Opera75 ){
-                    padding : 0 100% * $PC_COLUMN_GAP_RATIO;
-                } @else {
-                    margin : 0 100% * $PC_COLUMN_GAP_RATIO;
-                }
-            }
-        /*
-        * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
-        */
-
         @if( $LAYOUT_BY_DISPLAY_TABLE ){
             .lW {
                 display      : table;
@@ -117,6 +92,10 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                         margin-right : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
                     }
         } @else {
+       /* memo : サイドバーを塗りたい場合
+        * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
+        * 高さを求めて32767px 
+        */
             .lM {
                 width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
                 float : left;
@@ -140,8 +119,8 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
 @include media(WQXGA) {
-    .lW, .lX {
-        width     : 96%;
+    .lW {
+        width     : $WQXGA_WIDTH_PERCENT;
         max-width : $WQXGA_MAX_WIDTH_EM;
     }
         .lM {
@@ -160,16 +139,13 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
             .lSi {
                 margin : 0 math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO);
             }
-        .lXi {
-            margin : 0 $WQXGA_COLUMN_GAP_PCT;
-        }
 }
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
-    .lW, .lX {
-        width     : 96%;
+    .lW {
+        width     : $WSXGA_WIDTH_PERCENT;
         max-width : $WSXGA_MAX_WIDTH_EM;
     }
         .lM {
@@ -188,16 +164,13 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
             .lSi {
                 margin : 0 math.div($WSXGA_COLUMN_GAP_PCT, $WSXGA_SUB_COLUMN_RATIO);
             }
-        .lXi {
-            margin : 0 $WSXGA_COLUMN_GAP_PCT;
-        }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly == false ){
     @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
-        .lW, .lX {
+        .lW {
             width : 100%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
@@ -215,7 +188,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                     display : block;
                 }
             }
-                .lMi, .lMz, .lSi, .lXi {
+                .lMi, .lMz, .lSi {
                     @if( $LAYOUT_FIX_FOR_Opera75 ){
                         padding : 0;
                     } @else {
@@ -225,17 +198,8 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
     }
 }
 
-/* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
-.lX {
-    @if( $IS_IE8_OR_9 or $UA_Modern ){
-        overflow : hidden; /* この指定が無いと塗りがはみ出る */
-    }
-    @if( $UA_IE5 ){
-        width      : 100%; /* この指定が無いと横スクロールが出る  */
-        overflow-x : hidden;
-    }
-}
-
+/*  mobileOnly は始めから Tablet
+--------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly ){
     .lW {
         @if( $UA_IE8 or $UA_Modern ){
@@ -252,7 +216,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                 text-align : center;
             }
         }
-        .lM, .lS, #lB .lSi, .lX {
+        .lM, .lS, #lB .lSi {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $TABLET_MAX_WIDTH_EM;
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
@@ -275,13 +239,13 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly ){
     @include media(screen) {
-        .lMi, .lMz .lMh, .lSi, .lXi {
+        .lMi, .lMz .lMh, .lSi {
             padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
     }
 } @else {
     @include media(tablet) {
-        .lMi, .lMz .lMh, .lSi, .lXi {
+        .lMi, .lMz .lMh, .lSi {
             padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
         #lB .lSi {
@@ -293,7 +257,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 /*  PHABLET
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi {
         padding : 0 $PHABLET_HORIZONTAL_MARGIN;
     }
 }
@@ -301,7 +265,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 /*  Phone
 --------------------------------------------------------------------------------------*/
 @include media(phone) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi {
         padding : 0 $PHONE_HORIZONTAL_MARGIN;
     }
 }
@@ -309,7 +273,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 /*  Watch
 --------------------------------------------------------------------------------------*/
 @include media(watch) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi, .lXi {
+    .lMi, .lMz .lMh, .lSi, #lB .lSi {
         padding : 0;
     }
 }

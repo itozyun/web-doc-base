@@ -1,0 +1,170 @@
+/* .lX
+ *    .lXi
+--------------------------------------------------------------------------------------*/
+// Opera 7.54u2,「スモール・スクリーン・レンダリング」によってコンテンツが左に寄る問題を回避, ~7.2x では発生しない
+// Opera 7.20~7.5x は親要素の text-align : center でセンタリング
+// https://twitter.com/itozyun/status/1496632445567115264
+// Opera 7.54u2, margin が反映されないので padding を使う
+// https://twitter.com/itozyun/status/1496641802740600832
+$LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
+
+@if( $Option_mobileOnly == false ){
+    .lX { // clearfix を同時に指定するために screen の外へ
+        @if( $LAYOUT_FIX_FOR_Opera75 == false ){
+            @include clearfix;
+        }
+    }
+
+    @include media(screen) {
+        .lX {
+            width : $PC_WIDTH_PERCENT;
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : $PC_MAX_WIDTH_EM;
+            }
+            @if( $LAYOUT_FIX_FOR_Opera75 == false ){
+                @if( $CANUSE_MARGIN_AUTO ){
+                    margin : 0 auto;
+                }
+            }
+        }
+
+        @if( $LAYOUT_FIX_FOR_Opera75 ){
+            body {
+                text-align : center;
+            }
+            .lX {
+                @include inline-block;
+                text-align : left;
+            }
+        }
+
+        /*  inner
+        --------------------------------------------------------------------------------------*/
+            .lXi {
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    padding : 0 100% * $PC_COLUMN_GAP_RATIO;
+                } @else {
+                    margin : 0 100% * $PC_COLUMN_GAP_RATIO;
+                }
+            }
+            .lX1 {
+                float : left;
+            }
+            .lX2 {
+                float : right;
+            }
+    }
+}
+
+/*  WQXGA
+--------------------------------------------------------------------------------------*/
+@include media(WQXGA) {
+    .lX {
+        width     : $WQXGA_WIDTH_PERCENT;
+        max-width : $WQXGA_MAX_WIDTH_EM;
+    }
+        .lXi {
+            margin : 0 $WQXGA_COLUMN_GAP_PCT;
+        }
+}
+
+/*  WSXGA
+--------------------------------------------------------------------------------------*/
+@include media(WSXGA) {
+    .lX {
+        width     : $WSXGA_WIDTH_PERCENT;
+        max-width : $WSXGA_MAX_WIDTH_EM;
+    }
+        .lXi {
+            margin : 0 $WSXGA_COLUMN_GAP_PCT;
+        }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@if( $Option_mobileOnly == false ){
+    @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
+        .lX {
+            width : 100%;
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+        }
+            .lXi {
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    padding : 0;
+                } @else {
+                    margin : 0;
+                }
+            }
+    }
+}
+
+/* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
+.lX {
+    @if( $IS_IE8_OR_9 or $UA_Modern ){
+        overflow : hidden; /* この指定が無いと塗りがはみ出る */
+    }
+    @if( $UA_IE5 ){
+        width      : 100%; /* この指定が無いと横スクロールが出る  */
+        overflow-x : hidden;
+    }
+}
+
+/*  mobileOnly は始めから Tablet
+--------------------------------------------------------------------------------------*/
+@if( $Option_mobileOnly ){
+    @include media(screen) {
+        .lX {
+            @if( $CANUSE_MAX_AND_MIN_SIZES ){
+                max-width : $TABLET_MAX_WIDTH_EM;
+                @if( $LAYOUT_FIX_FOR_Opera75 ){
+                    @include inline-block;
+                    text-align : left;
+                } @else {
+                    margin : 0 auto;
+                }
+            }
+        }
+    }
+}
+
+/*  Tablet
+--------------------------------------------------------------------------------------*/
+@if( $Option_mobileOnly ){
+    @include media(screen) {
+        .lXi {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+} @else {
+    @include media(tablet) {
+        .lXi {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+}
+
+/*  PHABLET
+--------------------------------------------------------------------------------------*/
+@include media(phablet) {
+    .lXi {
+        padding : 0 $PHABLET_HORIZONTAL_MARGIN;
+    }
+}
+
+/*  Phone
+--------------------------------------------------------------------------------------*/
+@include media(phone) {
+    .lXi {
+        padding : 0 $PHONE_HORIZONTAL_MARGIN;
+    }
+}
+
+/*  Watch
+--------------------------------------------------------------------------------------*/
+@include media(watch) {
+    .lXi {
+        padding : 0;
+    }
+}
