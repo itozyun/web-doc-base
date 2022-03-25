@@ -99,19 +99,22 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     
     p_iefilterEnabled,
     p_imageEnabled,
-    p_generatedContentEnabled,
+    p_cssGeneratedContentGrade,
 
     p_cssTransformName =
         p_notUndefined( p_style[ 'transform' ] ) ? 'transform' : 
         p_notUndefined( p_style[ '-o-transform' ] ) ? '-o-transform' : 
         p_notUndefined( p_style[ '-ms-transform' ] ) ? '-ms-transform' : 
         p_notUndefined( p_style[ 'MozTransform' ] ) ? '-moz-transform' : 
-        p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '',
+        p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '';
 
-    // nodeCleaner もアクセスするので packageGlobal に公開する
-    p_loadEventCallbacks = [],
+/** @type {!Array.<!Function>|undefined} */
+var p_loadEventCallbacks = []; // nodeCleaner もアクセスするので packageGlobal に公開する
 
-    p_dataUriTest,
+/** @type {!Array.<!Function>} */
+var p_cssAvailabilityCallbacks = [];
+
+var p_dataUriTest,
     p_imageTest,
     p_webFontTest;
 

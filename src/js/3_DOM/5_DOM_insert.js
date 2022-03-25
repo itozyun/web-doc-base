@@ -27,7 +27,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
      * @param {Object=} attrs
      * @param {string|number=} textContent
      * @param {boolean=} isSVG
-     * @return {Element}
+     * @return {!Element}
      */
     function DOM_createElement( insertPosition, targetNode, tag, attrs, textContent, isSVG ){
         var elm, position, childNodes, nodeIndex,
@@ -82,7 +82,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
  * @param {Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
- * @return {Element}
+ * @return {!Element}
  */
 function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
     // https://web.archive.org/web/20110527084958/http://msdn.microsoft.com:80/ja-jp/library/bb250448(v=VS.85).aspx
@@ -105,7 +105,7 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
  * @param {Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
- * @return {Element}
+ * @return {!Element}
  */
 function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
     var elm = DOM_createElement( 0, targetNode, tag, attrs, textContent, isSVG );
@@ -126,7 +126,7 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
  * @param {Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
- * @return {Element}
+ * @return {!Element}
  */
 function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
     var elm = DOM_createElement( 1, targetNode, tag, attrs, textContent, isSVG ),
@@ -248,7 +248,7 @@ function DOM_contains( parentNode, childNode ){
  */
 function DOM_getInnerHTML( elm ){
     if( m_isIE4DOM ){
-        return elm.innerHTML.split( '<FONT>' ).join( '' ).split( '</FONT>' ).join( '' );
+        return elm.innerHTML.split( '<FONT>' ).join( '' ).split( '<\/FONT>' ).join( '' );
     };
     return elm.innerHTML;
 };

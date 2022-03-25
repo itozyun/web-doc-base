@@ -2,13 +2,16 @@
  * export to packageGlobal
  */
 p_listenImageReady = function( callback ){
+    if( DEFINE_WEB_DOC_BASE__DEBUG && !p_loadEventCallbacks ){
+        alert( 'p_listenImageReady is called back for images present at load time.' );
+    };
     Event_imageReadyCallbacks.push( callback );
 };
 
 /** ===========================================================================
  * private
  */
-/** @type {Array<Function>} */
+/** @type {Array.<!Function>|undefined} */
 var Event_imageReadyCallbacks = [];
 
 var killSmartRendering = 7.5 <= p_Presto && p_Presto < 8;
@@ -41,7 +44,11 @@ p_listenLoadEvent(
                 img    = imgs[ --i ];
                 result = p_Trident < 9 ? img.complete : 0 <= img.naturalWidth ? img.naturalWidth : img.width;
                 p_imageEnabled = p_imageEnabled || !!result;
-                m_lazyDispatchEvent( Event_imageReadyCallbacks, { img : img, imgReady : result } );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
+            };
+            Event_imageReadyCallbacks = undefined;
+            if( !DEFINE_WEB_DOC_BASE__DEBUG ){
+                p_listenImageReady = undefined;
             };
         };
 
@@ -52,11 +59,16 @@ p_listenLoadEvent(
                     p_DOM_setAttribute( img, 'src', img._src );
                 };
                 p_imageTest( testCallback, killSmartRendering ? img._src : img.src );
+            } else {
+                Event_imageReadyCallbacks = undefined;
+                if( !DEFINE_WEB_DOC_BASE__DEBUG ){
+                    p_listenImageReady = undefined;
+                };
             };
         };
 
         function testCallback( result ){
-            m_dispatchEvent( Event_imageReadyCallbacks, { img : img, imgReady : result } );
+            m_dispatchEvent( /** @type {!Array.<!Function>} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
             testForPresto();
         };
     }

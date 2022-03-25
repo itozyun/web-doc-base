@@ -8,7 +8,7 @@ p_listenScrollEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {Array<Function>} */
+/** @type {!Array.<!Function>} */
 var  Event_scrollEventCallbacks = [];
 /** @type {number} */
 var  Event_lastScrollY          = 0;
@@ -19,7 +19,7 @@ var Event_NO_SCROLL_EVENT       = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1
  * @param {Event=} e
  */
 function Event_scrollEventHandler( e ){
-    if( !m_initEventHandler ){
+    if( !p_loadEventCallbacks ){
         m_dispatchEvent( Event_scrollEventCallbacks, e );
     };
 };

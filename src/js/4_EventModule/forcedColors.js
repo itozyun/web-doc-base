@@ -16,7 +16,7 @@ p_listenForcedColorsChange = function( callback ){
  *   Detecting if images are disabled in browsers > Checking for Windows High Contrast
  *   https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/
  */
-/** @type {!Array.<Function>|undefined} */
+/** @type {!Array.<!Function>|undefined} */
 var Event_forcedColors_callbacks = [];
 var Event_forcedColors_WORK_ONCE = p_Gecko < 60 || p_Goanna;
 var Event_forcedColors_isActive,
@@ -44,7 +44,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         '(forced-colors:active)',
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
-            m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), Event_forcedColors_getState() );
+            m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), Event_forcedColors_getState() );
             Debug.log( '(forced-colors:active):' + p_forcedColorsState );
         }
     );
@@ -55,7 +55,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isBlackOnWhite = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:black-on-white):' + p_forcedColorsState );
             };
         }
@@ -64,7 +64,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isWhiteOnBlack = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:white-on-black):' + p_forcedColorsState );
             };
         }
@@ -73,7 +73,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
-                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:active):' + p_forcedColorsState );
             };
         }
@@ -95,7 +95,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
      *   https://mspoweruser.com/microsoft-brings-high-contrast-mode-to-chromium-based-edge/
      *   Currently, the High Contrast mode is hidden behind a flag ...
      */
-} else if( p_Trident < 10 || ( p_Windows && ( p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.8.1' ) || p_Goanna ) ) ){
+} else if( p_Windows && ( p_Trident || p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.8.1' ) || p_Goanna ) ){
     Event_forcedColors_test = function(){
         var defaultView = document.defaultView,
             computedStyle, color, bgColor;
@@ -113,7 +113,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor, true );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
-                m_lazyDispatchEvent( /** @type {!Array.<Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
             };
         };
         /**

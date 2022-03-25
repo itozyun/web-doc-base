@@ -2,51 +2,52 @@
  * module global
  */
 
-/** @type {Function|undefined} */
-var m_initEventHandler;
-/** @type {Function|undefined} */
+/** @type {!Function|undefined} */
 var m_matchMedia = window.matchMedia;
-/** @type {Element|undefined} */
+/** @type {!Element|undefined} */
 var m_elmTest;
 
-/** @type {Function|undefined} */
+/** @type {!Function|undefined} */
 var m_initMediaQueryList = function( media, listener ){
     p_listenCssAvailabilityChange(
-        function( cssAvailability ){
-            if( cssAvailability ){
-                var mediaQueryList = m_matchMedia( media );
+        function(){
+            var mediaQueryList = m_matchMedia( media );
 
-                listener( mediaQueryList );
-                mediaQueryList.addListener( listener );
-                return true;
-            };
+            listener( mediaQueryList );
+            mediaQueryList.addListener( listener );
+            return true;
         }
     );
 };
 
 /**
- * @param {Array.<Function>} callbackList
+ * @param {!Array.<!Function>} callbackList
  * @param {*=} param
+ * @param {boolean=} deleteCallbackList
  */
-function m_dispatchEvent( callbackList, param ){
+function m_dispatchEvent( callbackList, param, deleteCallbackList ){
     for( var i = 0; i < callbackList.length; ++i ){ // callbackList は callback 中にも追加される
         if( callbackList[ i ]( param ) === true ){ // true が戻された場合、
             callbackList.splice( i, 1 );
             --i;
         };
     };
+    if( deleteCallbackList ){
+        callbackList.length = 0;
+    };
 };
 
 /** onload 後にタイマーを挟んで dispatch する
  * 
- * @param {Array.<Function>} callbackList
+ * @param {!Array.<!Function>} callbackList
  * @param {*=} param
+ * @param {boolean=} deleteCallbackList
  */
-function m_lazyDispatchEvent( callbackList, param ){
+function m_lazyDispatchEvent( callbackList, param, deleteCallbackList ){
     if( Event_loaded && !Event_lazyCallbacks.length ){
         p_setTimer( _m_lazyDispatchEvent );
     };
-    Event_lazyCallbacks.push( callbackList, param );
+    Event_lazyCallbacks.push( callbackList, param, deleteCallbackList );
 };
 
 /** ===========================================================================
@@ -62,7 +63,7 @@ function _m_lazyDispatchEvent(){
     Event_lazyCallbacks = []; // lazyDispatch 中の lazyDispatch は新しい配列に追加される
 
     while( callbackList = lazyCallbacks.shift() ){
-        m_dispatchEvent( callbackList, lazyCallbacks.shift() );
+        m_dispatchEvent( callbackList, lazyCallbacks.shift(), lazyCallbacks.shift() );
     };
 };
 

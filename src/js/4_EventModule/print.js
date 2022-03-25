@@ -10,7 +10,7 @@ p_listenPrintEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {Array<Function>} */
+/** @type {!Array.<!Function>} */
 var Event_printEventCallbacks = [];
 
 // https://developer.mozilla.org/ja/docs/Web/API/WindowEventHandlers/onbeforeprint
@@ -27,7 +27,8 @@ if( window.onbeforeprint ){
         }
     );
 } else if( m_matchMedia ){
-    m_matchMedia( 'print' ).addListener(
+    m_initMediaQueryList(
+        'print',
         function( mediaQueryList ){
             m_dispatchEvent( Event_printEventCallbacks, mediaQueryList.matches );
         }

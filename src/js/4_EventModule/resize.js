@@ -8,7 +8,7 @@ p_listenResizeEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {Array<Function>} */
+/** @type {!Array.<!Function>} */
 var Event_resizeEventCallbacks = [];
 var Event_resizeTimerID;
 
@@ -18,7 +18,7 @@ p_addEventListener( window, 'resize', Event_resizeEventHandler );
  * @param {Event=} e
  */
 function Event_resizeEventHandler( e ){
-    if( !m_initEventHandler ){
+    if( !p_loadEventCallbacks ){
         Event_resetTimer();
     };
 };
