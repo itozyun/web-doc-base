@@ -3,7 +3,20 @@
  * .btn:link | input[type=submit].btn
 --------------------------------------------------------------------------------------*/
 .btn {
-    @extend %ButtonBase;
+    @if( $UA_Opera72 ){
+        border-width : $INPUT_BORDER_WIDTH;
+        cursor       : pointer;
+        text-align   : center;
+        padding      : 0 1em;
+        height       : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+
+        // 次のプロパティが [type=submit] に設定されていると Windows Opera 7.2 ハイコントラストモードでフォーカス時にクラッシュ
+        //display: inline-block;
+        //vertical-align: top;
+        //line-height: 1.9;
+    } @else {
+        @extend %ButtonBase;
+    }
     @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_text, $COLOR_Ribbon_fill );
 }
 

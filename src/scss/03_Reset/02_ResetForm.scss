@@ -19,6 +19,36 @@ input, textarea {
     }
 }
 
+// ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
+@if( $UA_MacIE5 == false and ( $FORCED_COLORS_SUPPORT == false or $UA_Modern or $UA_Gck130-190 ) ){
+    @include media(screen) {
+        input, textarea {
+            @if( $UA_Opera70 ){
+                background : #fff;
+                color      : $COLOR_Light_text;
+            } @else if( $UA_Opera72 ){
+                background : Window;
+                color      : WindowText;
+            } @else {
+                background : $COLOR_Light_fill;
+                color      : $COLOR_Light_text;
+            }
+        }
+        [type=submit] {
+            @if( $UA_Opera72 ){
+                color : $COLOR_Light_text;
+            } @else {
+                background : $COLOR_Light_casual_fill;
+            }
+            &:focus {
+                @if( $UA_Opera72 ){
+                    top : 0; // ポロパティと値は何でも良い, ハイコントラストモード時に、ボタンがフォーカスされた際に背景が黒くなるのを防ぐ
+                }
+            }
+        }
+    }
+}
+
 /*  input
 --------------------------------------------------------------------------------------*/
 input {

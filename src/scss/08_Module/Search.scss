@@ -23,18 +23,13 @@ $SEARCH_BTN_WIDTH : 3em;
 
     .Search-txt {
         margin-right : $INPUT_BORDER_WIDTH * 2;
-        @if( $IS_Opera7x ){
-            background : Window; // フォーカスすると枠線が消えて背景色が乗る 7.20~7.54u2
-        }
     }
     .Search input {
-        @if( $IS_Opera7x ){
+        @if( $UA_Opera70 ){
             border-width : 0; // 7.2~ にはネイティブの枠線がある, 7.0 にはない
-            padding      : 0;
-            @if( $UA_Opera70 ){
-                outline: InactiveBorder solid $INPUT_BORDER_WIDTH;
-            }
-        } @else {
+            outline      : $COLOR_Light_casual_fill solid $INPUT_BORDER_WIDTH; // 7.0 では枠線を outline で書くことができる, 7.2 では意図しない描画になる
+        }
+        @if( $UA_Opera8 ) {
             border-width : $INPUT_BORDER_WIDTH;
         }
     }

@@ -53,9 +53,9 @@ textarea, input {
 
     @if( $UA_Opera72 == false ){
         border-width : $INPUT_BORDER_WIDTH;
-    }
-    @if( $LIMITED_STYLING_OF_ITEMS_IN_FORM ){
-        border-color : InactiveBorder; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
+        @if( $LIMITED_STYLING_OF_ITEMS_IN_FORM ){
+            border-color : $COLOR_Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
+        }
     }
 
     @if( $IS_OLD_OPERA == false ){
