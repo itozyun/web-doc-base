@@ -102,17 +102,16 @@ tr ul {
   margin-top: 0
 }
 .Magazine-label,
-.RichLink b,
-.SearchResult cite,
 .caption,
-.js-bqCite,
 .links,
-blockquote:after,
 pre,
 td,
 th {
-  word-break: break-all;
-  word-wrap: break-word
+  word-break: break-all
+}
+[type=submit],
+tbody th {
+  background: #e7d182
 }
 .Magazine-date,
 .aa {
@@ -133,12 +132,13 @@ th {
 svg {
   overflow: hidden
 }
-[type=submit],
-blockquote,
-code,
-tbody th,
-var {
-  background: #e7d182
+.Cover h2,
+a:active code,
+a:active var,
+a:focus code,
+a:focus var,
+tbody :hover th {
+  background: #0d5bb5
 }
 .links,
 pre {
@@ -262,27 +262,6 @@ a:focus img {
   background: #06284e;
   color: #fdeeb7
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
-.tl tr code,
-.tl tr var,
-blockquote tbody th code,
-blockquote tbody th var,
-thead code,
-thead var {
-  background: #e7d182;
-  color: #06284e
-}
-.Cover h2,
-a:active code,
-a:active var,
-a:focus code,
-a:focus var,
-tbody :hover th {
-  background: #0d5bb5
-}
 .ribbon .LinkList a:not([href]),
 .ribbon .RichLink-sep a:not([href]) {
   background: #fed33b;
@@ -358,6 +337,7 @@ strong,
 var {
   font-style: normal
 }
+.hscroll,
 pre {
   margin: 1em 0
 }
@@ -589,6 +569,7 @@ tr ul {
 .AHead-labels a,
 .SocialBtns *,
 .Subscribe a,
+.hscroll pre,
 dd blockquote,
 dd dl,
 dd p,
@@ -694,10 +675,6 @@ tfoot th {
 tfoot td {
   border-width: 2px .5em 0
 }
-tfoot td,
-tfoot th {
-  border-color: #8a7322 #fdeeb7
-}
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .aBodyRoot blockquote tbody th :visited,
@@ -709,6 +686,10 @@ blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
   color: #fdeeb7
+}
+tfoot td,
+tfoot th {
+  border-color: #8a7322 #fdeeb7
 }
 .Magazine-main,
 blockquote h3,
@@ -1389,6 +1370,7 @@ kbd {
 }
 .RichLink b {
   font-weight: 400;
+  word-wrap: break-word;
   font-size: .875em;
   padding: 0 0 1.143em
 }
@@ -1435,7 +1417,8 @@ kbd:hover {
   color: #1a0dab
 }
 .SearchResult cite {
-  color: #006621
+  color: #006621;
+  word-wrap: break-word
 }
 .SearchResult div p {
   margin: .2em 0 0;
@@ -1523,17 +1506,11 @@ tr .prettyprint {
 }
 .aa {
   margin: 1em 0;
-  background: #0a0809;
   border-color: #0a0809
 }
 .tl,
 .tl th {
   border-width: 0
-}
-.aa,
-.aa code,
-.aa var {
-  color: #00ac06
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1561,6 +1538,7 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  word-break: break-all;
   display: block;
   font-size: .875em;
   text-align: right;
@@ -1592,16 +1570,6 @@ tr .box > p:first-of-type {
   float: left;
   margin: 0 1em 1em 0
 }
-.hscroll {
-  margin: 1em 0;
-  overflow-x: auto;
-  overflow-y: hidden
-}
-.hscroll pre {
-  margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1619,15 +1587,6 @@ pre code,
 pre var {
   padding: 0;
   margin: 0
-}
-blockquote .tl tr code,
-blockquote .tl tr var,
-blockquote code,
-blockquote var,
-tbody th code,
-tbody th var {
-  background: #8a7322;
-  color: #fdeeb7
 }
 .links [href]:before {
   content: ">";
@@ -1844,8 +1803,6 @@ dl.note dd {
   color: #00c300
 }
 .prettyprint {
-  background: #333;
-  color: #fff;
   border-width: 1px;
   border-color: #333;
   padding: 1em
@@ -1911,17 +1868,46 @@ div .box .jsCapLarge {
   color: #06284e
 }
 @media screen {
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #e7d182;
+    color: #06284e
+  }
   #lB .lM {
     padding-bottom: 4em
   }
   #lB .lS {
     padding-bottom: 1em
   }
-  .lW,
   .lX {
-    width: 98%;
-    max-width: 70em;
     margin: 0 auto
+  }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lX1 {
+    float: left
+  }
+  .lX2 {
+    float: right
+  }
+  .lW {
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed
   }
   .lMi,
   .lMz {
@@ -1932,13 +1918,6 @@ div .box .jsCapLarge {
   }
   .lSi {
     margin: 0 9%
-  }
-  .lXi {
-    margin: 0 2.7%
-  }
-  .lW {
-    display: table;
-    table-layout: fixed
   }
   .lM,
   .lS {
@@ -1951,6 +1930,40 @@ div .box .jsCapLarge {
   .lMi,
   .lMz {
     margin-right: 3.857%
+  }
+  .aa {
+    background: #0a0809
+  }
+  .aa,
+  .aa code,
+  .aa var {
+    color: #00ac06
+  }
+  blockquote,
+  code,
+  var {
+    background: #e7d182
+  }
+  .hscroll {
+    overflow-x: auto;
+    overflow-y: hidden
+  }
+  .hscroll pre {
+    overflow: auto;
+    white-space: pre
+  }
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #8a7322;
+    color: #fdeeb7
+  }
+  .prettyprint {
+    background: #333;
+    color: #fff
   }
 }
 @media print,
@@ -2060,32 +2073,10 @@ screen and (max-width:950px) {
   #lF .lX {
     border-width: 1px 0 0
   }
-  .lM,
-  .lS,
-  .lW {
-    display: block
-  }
-  table {
-    width: 94%
-  }
-  #lB .lS {
-    background: #fffd93
-  }
   .lW,
   .lX {
     width: 100%;
     max-width: 100%
-  }
-  .lM,
-  .lS {
-    float: none;
-    width: auto
-  }
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    width: 48.5%
   }
   .lMi,
   .lMz,
@@ -2098,6 +2089,28 @@ screen and (max-width:950px) {
   .lSi,
   .lXi {
     padding: 0 3%
+  }
+  .lM,
+  .lS,
+  .lW {
+    display: block
+  }
+  table {
+    width: 94%
+  }
+  #lB .lS {
+    background: #fffd93
+  }
+  .lM,
+  .lS {
+    float: none;
+    width: auto
+  }
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    width: 48.5%
   }
   #lB .lSi {
     padding: 0
@@ -2529,8 +2542,10 @@ screen and (max-width:950px) {
   ul {
     margin: 1em 0
   }
-  a img,
-  blockquote a img {
+  :link img,
+  :visited img,
+  blockquote :link img,
+  blockquote :visited img {
     border-color: transparent
   }
   .LinkList a:not([href]),
@@ -2698,13 +2713,6 @@ screen and (max-width:950px) {
   caption {
     margin: 1.5em 0 .7em
   }
-  td {
-    border-color: #000 #000 #062241
-  }
-  tfoot td,
-  tfoot th {
-    border-color: #ffeba1 #000
-  }
   thead td,
   thead th {
     background: #ffeba1;
@@ -2726,6 +2734,13 @@ screen and (max-width:950px) {
   thead :link,
   thead :link:hover {
     color: #000
+  }
+  td {
+    border-color: #000 #000 #062241
+  }
+  tfoot td,
+  tfoot th {
+    border-color: #ffeba1 #000
   }
   blockquote thead td,
   blockquote thead th {
@@ -2980,9 +2995,16 @@ screen and (max-width:950px) {
   tr {
     page-break-inside: avoid
   }
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   code .typ,
   th {
     font-weight: 700
+  }
+  body {
+    word-break: break-all
   }
   p {
     line-height: 1.5
@@ -3009,33 +3031,7 @@ screen and (max-width:950px) {
   blockquote pre {
     margin: 1em
   }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
-  .TxtNavi,
-  .js-bqLink a:after,
-  .noprint,
-  [href$=".GIF"]:after,
-  [href$=".JPEG"]:after,
-  [href$=".JPG"]:after,
-  [href$=".PNG"]:after,
-  [href$=".gif"]:after,
-  [href$=".jpeg"]:after,
-  [href$=".jpg"]:after,
-  [href$=".png"]:after,
-  [href*="/blogger.googleusercontent.com/img/"]:after,
-  [href*="/viewer.diagrams.net/?"]:after,
-  [href^="#"]:after,
-  [href^="mailto:"]:after,
-  [href^="tel:"]:after,
-  h2:after {
-    display: none
-  }
   table {
-    margin: 1em 0;
     width: 100%
   }
   thead td,
@@ -3081,7 +3077,6 @@ screen and (max-width:950px) {
   }
   .Cover h2,
   .Cover h3,
-  .aa,
   .baseColor,
   .ribbon,
   body {
@@ -3094,6 +3089,30 @@ screen and (max-width:950px) {
   }
   #lF .lX {
     border-top: .15em solid #000
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Magazine-jump,
+  .TxtNavi,
+  .js-bqLink a:after,
+  .noprint,
+  [href$=".GIF"]:after,
+  [href$=".JPEG"]:after,
+  [href$=".JPG"]:after,
+  [href$=".PNG"]:after,
+  [href$=".gif"]:after,
+  [href$=".jpeg"]:after,
+  [href$=".jpg"]:after,
+  [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
+  [href^="#"]:after,
+  [href^="mailto:"]:after,
+  [href^="tel:"]:after {
+    display: none
   }
   .ico-label:after,
   .ribbon .ico-label:after {
@@ -3116,21 +3135,7 @@ screen and (max-width:950px) {
     color: #000!important
   }
   .AHead-labels,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  code .pln,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
+  code .pln {
     color: #000
   }
   .AHead-labels i {
@@ -3171,10 +3176,6 @@ screen and (max-width:950px) {
   .Magazine-item {
     padding: 1em 0 1em 1em
   }
-  .AMeta,
-  .Header {
-    padding: 0 3%
-  }
   .Magazine .aBodyRoot {
     width: auto
   }
@@ -3187,8 +3188,9 @@ screen and (max-width:950px) {
   #lH .lMi {
     padding: .5em 0
   }
+  .AMeta,
   .Header {
-    text-align: left
+    padding: 0 3%
   }
   .h1 {
     font-size: 1em
@@ -3202,28 +3204,15 @@ screen and (max-width:950px) {
     font-size: .875em;
     color: #006
   }
-  blockquote {
-    background: 0 0;
-    margin: 1em 0
-  }
-  .hscroll {
-    overflow-x: visible;
-    overflow-y: visible
-  }
   .hscroll table {
     width: 100%;
-    margin: 0;
-    white-space: normal
+    margin: 0
   }
   .hscroll pre {
-    margin: 0;
-    white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word
+    margin: 0
   }
   code,
   var {
-    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }
@@ -3238,9 +3227,6 @@ screen and (max-width:950px) {
   .SocialBtns {
     padding: 0 3%;
     display: none
-  }
-  .prettyprint {
-    background: #fff
   }
   code .atv,
   code .str {

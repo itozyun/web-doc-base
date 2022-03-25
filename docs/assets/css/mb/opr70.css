@@ -11,8 +11,7 @@ tr p {
   line-height: 1.2
 }
 a,
-a img,
-tbody th {
+a img {
   border-color: #fdeeb7
 }
 blockquote .tl td,
@@ -58,6 +57,12 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+blockquote tbody th,
+thead td,
+thead th {
+  background: #8a7322;
+  color: #fdeeb7
+}
 .lM1,
 .lM2,
 .lS1,
@@ -77,12 +82,6 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em 3%
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #e7d182
 }
 code,
 kbd,
@@ -135,7 +134,11 @@ a img {
 }
 *,
 blockquote :link img,
-blockquote :visited img {
+blockquote :visited img,
+blockquote tbody th,
+hr,
+input,
+textarea {
   border-color: #e7d182
 }
 .ribbon :link img,
@@ -163,19 +166,6 @@ blockquote :visited img {
 .LinkList a:visited,
 .RichLink-sep a:visited {
   background: #fdeeb7;
-  color: #06284e
-}
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
-.tl tr code,
-.tl tr var,
-blockquote tbody th code,
-blockquote tbody th var,
-thead code,
-thead var {
-  background: #e7d182;
   color: #06284e
 }
 .LinkList .ribbon a,
@@ -245,6 +235,7 @@ var {
 }
 .AAuthor,
 .ADesc,
+.hscroll,
 pre {
   margin: 1em 0
 }
@@ -431,6 +422,7 @@ tr ul {
 .AHead-labels a,
 .SocialBtns *,
 .Subscribe a,
+.hscroll pre,
 dd blockquote,
 dd dl,
 dd p,
@@ -461,8 +453,7 @@ li ul {
 }
 input,
 textarea {
-  border-width: .1em;
-  border-color: InactiveBorder
+  border-width: .1em
 }
 h2 {
   border-width: 0 0 2px;
@@ -475,7 +466,6 @@ h2 {
 }
 hr {
   height: 0;
-  border-color: #e7d182;
   margin: 2em 6%
 }
 #lB .lS,
@@ -511,9 +501,11 @@ thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #8a7322;
-  border-color: #e7d182 #937c2c;
-  color: #fdeeb7
+  border-color: #e7d182 #937c2c
+}
+tbody th {
+  background: #e7d182;
+  border-color: #fdeeb7
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -523,10 +515,6 @@ tfoot th {
 }
 tfoot td {
   border-width: 2px .5em 0
-}
-tfoot td,
-tfoot th {
-  border-color: #8a7322 #fdeeb7
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
@@ -541,6 +529,10 @@ thead :link,
 thead :link:hover {
   color: #fdeeb7
 }
+tfoot td,
+tfoot th {
+  border-color: #8a7322 #fdeeb7
+}
 blockquote h3,
 blockquote table {
   border-color: #06284e
@@ -549,11 +541,6 @@ blockquote thead td,
 blockquote thead th {
   background: #06284e;
   border-color: #e7d182 #1d3953
-}
-blockquote tbody th {
-  background: #8a7322;
-  border-color: #e7d182;
-  color: #fdeeb7
 }
 blockquote td {
   border-color: #e7d182 #e7d182 #8a7322
@@ -591,7 +578,6 @@ tbody :hover td {
 .ABody h3,
 .AHead h1,
 .Attribution,
-.Header,
 .Search,
 .c {
   text-align: center
@@ -965,12 +951,10 @@ pre var {
   font-size: 1em
 }
 .Search-txt {
-  margin-right: .2em;
-  background: Window
+  margin-right: .2em
 }
 .Search input {
-  padding: 0;
-  outline: InactiveBorder solid .1em
+  outline: #e7d182 solid .1em
 }
 .Search .btn {
   white-space: nowrap;
@@ -1009,7 +993,6 @@ pre var {
 .Header h1,
 .h1 {
   font-size: 1.5em;
-  display: block;
   margin: 0 0 .5em
 }
 #lH .lMi {
@@ -1063,7 +1046,6 @@ pre var {
 .aa {
   margin: 1em 0;
   font-family: monospace;
-  background: #0a0809;
   border-color: #0a0809
 }
 .note .aa,
@@ -1081,11 +1063,6 @@ tr .prettyprint {
 .note .prettyprint,
 .prettyprint {
   padding: 1em 3%
-}
-.aa,
-.aa code,
-.aa var {
-  color: #00ac06
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1137,18 +1114,6 @@ blockquote:after {
   float: left;
   margin: 0 1em 1em 3%
 }
-.hscroll {
-  margin: 1em 0;
-  overflow: auto
-}
-.hscroll pre {
-  margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
-}
-.hscroll table {
-  white-space: nowrap
-}
 kbd {
   border-color: #06284e;
   cursor: pointer;
@@ -1166,15 +1131,6 @@ pre code,
 pre var {
   padding: 0;
   margin: 0
-}
-blockquote .tl tr code,
-blockquote .tl tr var,
-blockquote code,
-blockquote var,
-tbody th code,
-tbody th var {
-  background: #8a7322;
-  color: #fdeeb7
 }
 .links [href]:before {
   content: ">";
@@ -1368,8 +1324,6 @@ dl.note dd {
   color: #00c300
 }
 .prettyprint {
-  background: #333;
-  color: #fff;
   border-width: 1px;
   border-color: #333
 }
@@ -1434,6 +1388,34 @@ li.L8 {
   color: #06284e
 }
 @media screen {
+  .hscroll,
+  .hscroll pre {
+    overflow: auto
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #e7d182;
+    color: #06284e
+  }
+  input,
+  textarea {
+    background: #fff;
+    color: #06284e
+  }
+  [type=submit],
+  blockquote,
+  code,
+  var {
+    background: #e7d182
+  }
   #lB .lM {
     padding-bottom: 4em
   }
@@ -1444,15 +1426,45 @@ li.L8 {
     max-width: 50em;
     margin: 0 auto
   }
-  #lB .lS {
-    padding-bottom: 1em;
-    max-width: 100%
-  }
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
     padding: 0 3%
+  }
+  #lB .lS {
+    padding-bottom: 1em;
+    max-width: 100%
+  }
+  .Header {
+    text-align: center
+  }
+  .aa {
+    background: #0a0809
+  }
+  .aa,
+  .aa code,
+  .aa var {
+    color: #00ac06
+  }
+  .hscroll pre {
+    white-space: pre
+  }
+  .hscroll table {
+    white-space: nowrap
+  }
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #8a7322;
+    color: #fdeeb7
+  }
+  .prettyprint {
+    background: #333;
+    color: #fff
   }
 }
 @media print {
@@ -1500,6 +1512,10 @@ li.L8 {
   thead var {
     border-color: #666
   }
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1516,21 +1532,7 @@ li.L8 {
   .AHead-labels,
   .LinkList :visited,
   .RichLink-sep :visited,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  code .pln,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
+  code .pln {
     color: #000
   }
   p {
@@ -1552,7 +1554,6 @@ li.L8 {
     margin: 1em
   }
   table {
-    margin: 1em 0;
     width: 100%
   }
   thead td,
@@ -1598,7 +1599,6 @@ li.L8 {
   }
   .Cover h2,
   .Cover h3,
-  .aa,
   .baseColor,
   .ribbon,
   body {
@@ -1664,10 +1664,6 @@ li.L8 {
     padding: .5em 0;
     color: #666!important
   }
-  .AMeta,
-  .Header {
-    padding: 0 3%
-  }
   .Cover .img-loaded div {
     position: static
   }
@@ -1682,8 +1678,9 @@ li.L8 {
   #lH .lMi {
     padding: .5em 0
   }
+  .AMeta,
   .Header {
-    text-align: left
+    padding: 0 3%
   }
   .h1 {
     font-size: 1em
@@ -1702,25 +1699,15 @@ li.L8 {
     font-size: .875em;
     color: #006
   }
-  blockquote {
-    background: 0 0;
-    margin: 1em 0
-  }
-  .hscroll {
-    overflow: visible
-  }
   .hscroll table {
     width: 100%;
-    margin: 0;
-    white-space: normal
+    margin: 0
   }
   .hscroll pre {
-    margin: 0;
-    white-space: -o-pre-wrap
+    margin: 0
   }
   code,
   var {
-    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }
@@ -1735,9 +1722,6 @@ li.L8 {
   .SocialBtns {
     padding: 0 3%;
     display: none
-  }
-  .prettyprint {
-    background: #fff
   }
   code .atv,
   code .str {

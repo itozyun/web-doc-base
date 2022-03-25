@@ -6,8 +6,7 @@ tr p {
   line-height: 1.2
 }
 a,
-a img,
-tbody th {
+a img {
   border-color: #fdeeb7
 }
 blockquote .tl td,
@@ -58,25 +57,6 @@ tr ul {
 .baseColor,
 .medal {
   background: #fdeeb7
-}
-.links,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
-blockquote,
-code,
-tbody th,
-var {
-  background: #e7d182
 }
 .tl td,
 .tl th {
@@ -168,6 +148,13 @@ dfn,
 ins {
   text-decoration: none
 }
+.Cover h2,
+a:active code,
+a:active var,
+a:focus code,
+a:focus var {
+  background: #0d5bb5
+}
 .LinkList :link,
 .RichLink-sep :link {
   background: 0 0;
@@ -177,26 +164,6 @@ ins {
 .RichLink-sep a:visited {
   background: 0 0;
   color: #06284e
-}
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
-.tl tr code,
-.tl tr var,
-blockquote tbody th code,
-blockquote tbody th var,
-thead code,
-thead var {
-  background: #e7d182;
-  color: #06284e
-}
-.Cover h2,
-a:active code,
-a:active var,
-a:focus code,
-a:focus var {
-  background: #0d5bb5
 }
 .LinkList .ribbon a,
 .RichLink-sep .ribbon a {
@@ -410,8 +377,22 @@ th {
   border-color: #0d5bb5
 }
 .ADesc,
+.hscroll,
 pre {
   margin: 1em 0
+}
+.links,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
 }
 dd,
 li {
@@ -457,6 +438,7 @@ tr ul {
 .AHead-labels a,
 .SocialBtns *,
 .Subscribe a,
+.hscroll pre,
 dd blockquote,
 dd dl,
 dd p,
@@ -540,6 +522,10 @@ thead th {
   border-color: #e7d182 #937c2c;
   color: #fdeeb7
 }
+tbody th {
+  background: #e7d182;
+  border-color: #fdeeb7
+}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -548,10 +534,6 @@ tfoot th {
 }
 tfoot td {
   border-width: 2px .5em 0
-}
-tfoot td,
-tfoot th {
-  border-color: #8a7322 #fdeeb7
 }
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
@@ -563,6 +545,10 @@ blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
   color: #fdeeb7
+}
+tfoot td,
+tfoot th {
+  border-color: #8a7322 #fdeeb7
 }
 blockquote h3,
 blockquote table {
@@ -595,7 +581,6 @@ blockquote tfoot th {
 .ABody h3,
 .AHead h1,
 .Attribution,
-.Header,
 .c {
   text-align: center
 }
@@ -1009,7 +994,6 @@ pre var {
 .Header h1,
 .h1 {
   font-size: 1.5em;
-  display: block;
   margin: 0 0 .5em
 }
 .Header h1 {
@@ -1066,7 +1050,6 @@ pre var {
 .aa {
   margin: 1em 0;
   font-family: monospace;
-  background: #0a0809;
   border-color: #0a0809
 }
 .js-bqCite,
@@ -1093,11 +1076,6 @@ tr .prettyprint {
 .note .prettyprint,
 .prettyprint {
   padding: 1em 3%
-}
-.aa,
-.aa code,
-.aa var {
-  color: #00ac06
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1138,19 +1116,6 @@ blockquote {
   float: left;
   margin: 0 1em 1em 3%
 }
-.hscroll {
-  margin: 1em 0;
-  overflow-x: auto;
-  overflow-y: hidden
-}
-.hscroll pre {
-  margin: 0 0 .5em;
-  white-space: pre;
-  overflow: auto
-}
-.hscroll table {
-  white-space: nowrap
-}
 kbd {
   border-color: #06284e;
   cursor: pointer;
@@ -1165,15 +1130,6 @@ pre code,
 pre var {
   padding: 0;
   margin: 0
-}
-blockquote .tl tr code,
-blockquote .tl tr var,
-blockquote code,
-blockquote var,
-tbody th code,
-tbody th var {
-  background: #8a7322;
-  color: #fdeeb7
 }
 .note {
   padding-left: 25%;
@@ -1362,8 +1318,6 @@ dl.note dd {
   color: #00c300
 }
 .prettyprint {
-  background: #333;
-  color: #fff;
   border-width: 1px;
   border-color: #333
 }
@@ -1389,6 +1343,19 @@ dl.note dd {
   color: #06284e
 }
 @media screen {
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #e7d182;
+    color: #06284e
+  }
   #lB .lM {
     padding-bottom: 4em
   }
@@ -1400,6 +1367,46 @@ dl.note dd {
   .lSi,
   .lXi {
     padding: 0 3%
+  }
+  .Header {
+    text-align: center
+  }
+  .aa {
+    background: #0a0809
+  }
+  .aa,
+  .aa code,
+  .aa var {
+    color: #00ac06
+  }
+  blockquote,
+  code,
+  var {
+    background: #e7d182
+  }
+  .hscroll {
+    overflow-x: auto;
+    overflow-y: hidden
+  }
+  .hscroll pre {
+    overflow: auto;
+    white-space: pre
+  }
+  .hscroll table {
+    white-space: nowrap
+  }
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #8a7322;
+    color: #fdeeb7
+  }
+  .prettyprint {
+    background: #333;
+    color: #fff
   }
 }
 @media print {
@@ -1414,6 +1421,10 @@ dl.note dd {
   thead th,
   thead var {
     border-color: #666
+  }
+  blockquote,
+  table {
+    margin: 1em 0
   }
   #lB .lS,
   #lF .lW,
@@ -1437,21 +1448,7 @@ dl.note dd {
   }
   .AHead-labels,
   .LinkList :visited,
-  .RichLink-sep :visited,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
+  .RichLink-sep :visited {
     color: #000
   }
   p {
@@ -1473,7 +1470,6 @@ dl.note dd {
     margin: 1em
   }
   table {
-    margin: 1em 0;
     width: 100%
   }
   th {
@@ -1522,7 +1518,6 @@ dl.note dd {
   }
   .Cover h2,
   .Cover h3,
-  .aa,
   .baseColor,
   .ribbon,
   body {
@@ -1585,9 +1580,6 @@ dl.note dd {
   #lH .lMi {
     padding: .5em 0
   }
-  .Header {
-    text-align: left
-  }
   .h1 {
     font-size: 1em
   }
@@ -1595,25 +1587,15 @@ dl.note dd {
     text-align: center;
     margin: 0 0 .5em
   }
-  blockquote {
-    background: 0 0;
-    margin: 1em 0
-  }
-  .hscroll {
-    overflow-x: visible;
-    overflow-y: visible
-  }
   .hscroll table {
     width: 100%;
-    margin: 0;
-    white-space: normal
+    margin: 0
   }
   .hscroll pre {
     margin: 0
   }
   code,
   var {
-    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }
@@ -1623,8 +1605,5 @@ dl.note dd {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .prettyprint {
-    background: #fff
   }
 }

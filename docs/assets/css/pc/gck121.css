@@ -66,6 +66,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+[type=submit],
+tbody th {
+  background: #e7d182
+}
 #jsSide,
 .AAuthor,
 .Comment p,
@@ -81,6 +85,7 @@ tr ul {
 .lMi,
 .lSi,
 .lW,
+.lX,
 kbd:hover,
 sub,
 sup {
@@ -89,13 +94,6 @@ sup {
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-[type=submit],
-blockquote,
-code,
-tbody th,
-var {
-  background: #e7d182
 }
 .links,
 pre {
@@ -118,10 +116,6 @@ img {
 
 .lW,_:lang(x) {
   overflow: hidden
-}
-.hscroll pre,
-textarea {
-  overflow: auto
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -185,19 +179,6 @@ a:focus img {
   background: #06284e;
   color: #fdeeb7
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
-.tl tr code,
-.tl tr var,
-blockquote tbody th code,
-blockquote tbody th var,
-thead code,
-thead var {
-  background: #e7d182;
-  color: #06284e
-}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -236,6 +217,7 @@ strong,
 var {
   font-style: normal
 }
+.hscroll,
 pre {
   margin: 1em 0
 }
@@ -279,6 +261,9 @@ input {
 }
 :-moz-focus-inner {
   border: 0
+}
+textarea {
+  overflow: auto
 }
 *,
 .tl,
@@ -450,6 +435,7 @@ tr ul {
 .AHead-labels a,
 .SocialBtns *,
 .Subscribe a,
+.hscroll pre,
 dd blockquote,
 dd dl,
 dd p,
@@ -542,10 +528,6 @@ tfoot th {
 tfoot td {
   border-width: 2px .5em 0
 }
-tfoot td,
-tfoot th {
-  border-color: #8a7322 #fdeeb7
-}
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Label div,
@@ -558,6 +540,10 @@ blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
   color: #fdeeb7
+}
+tfoot td,
+tfoot th {
+  border-color: #8a7322 #fdeeb7
 }
 .Magazine-main,
 blockquote h3,
@@ -585,16 +571,17 @@ blockquote tfoot th {
 blockquote tbody :hover td {
   border-color: #e7d182 #e7d182 #0d5bb5
 }
-blockquote tbody th a:focus,
-thead a:focus,
-thead td a:focus,
-thead th a:focus {
-  background-color: #0d5bb5!important
-}
 tbody :hover th {
   background: #0d5bb5;
   color: #fff
 }
+.tl tbody :hover th,
+blockquote tbody th a:focus,
+tbody :hover th a,
+thead a:focus {
+  background: #0d5bb5!important
+}
+.tl tbody :hover th,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
 code .pln,
@@ -638,9 +625,13 @@ strong {
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after,
-.lW:after {
+.lW:after,
+.lX:after {
   content: "";
   clear: both
+}
+.lW {
+  overflow: visible
 }
 .lM1 {
   float: left
@@ -1136,13 +1127,7 @@ tr .prettyprint {
 }
 .aa {
   margin: 1em 0;
-  background: #0a0809;
   border-color: #0a0809
-}
-.aa,
-.aa code,
-.aa var {
-  color: #00ac06
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1194,15 +1179,6 @@ blockquote:after {
   float: left;
   margin: 0 1em 1em 0
 }
-.hscroll {
-  margin: 1em 0;
-  overflow-x: auto;
-  overflow-y: hidden
-}
-.hscroll pre {
-  margin: 0 0 .5em;
-  white-space: pre
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1219,15 +1195,6 @@ pre code,
 pre var {
   padding: 0;
   margin: 0
-}
-blockquote .tl tr code,
-blockquote .tl tr var,
-blockquote code,
-blockquote var,
-tbody th code,
-tbody th var {
-  background: #8a7322;
-  color: #fdeeb7
 }
 .links [href]:before {
   content: ">"
@@ -1299,10 +1266,6 @@ dl.note dd {
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
-}
-.tl tbody :hover th {
-  background: #0d5bb5!important;
-  color: #fff
 }
 .AMeta {
   padding: .5em 0
@@ -1428,8 +1391,6 @@ dl.note dd {
   color: #00c300
 }
 .prettyprint {
-  background: #333;
-  color: #fff;
   border-color: #333;
   padding: 1em
 }
@@ -1483,9 +1444,6 @@ li.L8 {
 .box .jsCapLarge {
   float: none
 }
-.lW {
-  overflow: visible
-}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1497,6 +1455,30 @@ li.L8 {
   color: #06284e
 }
 @media screen {
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    background: #e7d182;
+    color: #06284e
+  }
+  input,
+  textarea {
+    background: #fdeeb7;
+    color: #06284e
+  }
+  [type=submit],
+  blockquote,
+  code,
+  var {
+    background: #e7d182
+  }
   #lB .lM {
     padding-bottom: 4em
   }
@@ -1509,6 +1491,16 @@ li.L8 {
     max-width: 70em;
     margin: 0 auto
   }
+  .lXi {
+    margin: 0 2.7%
+  }
+  .lX1 {
+    float: left
+  }
+  .lS,
+  .lX2 {
+    float: right
+  }
   .lMi,
   .lMz {
     margin-left: 3.857%
@@ -1519,15 +1511,38 @@ li.L8 {
   .lSi {
     margin: 0 9%
   }
-  .lXi {
-    margin: 0 2.7%
-  }
   .lM {
     width: 67.3%;
     float: left
   }
-  .lS {
-    float: right
+  .aa {
+    background: #0a0809
+  }
+  .aa,
+  .aa code,
+  .aa var {
+    color: #00ac06
+  }
+  .hscroll {
+    overflow-x: auto;
+    overflow-y: hidden
+  }
+  .hscroll pre {
+    overflow: auto;
+    white-space: pre
+  }
+  blockquote .tl tr code,
+  blockquote .tl tr var,
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #8a7322;
+    color: #fdeeb7
+  }
+  .prettyprint {
+    background: #333;
+    color: #fff
   }
 }
 @media print {
@@ -1642,7 +1657,6 @@ li.L8 {
   }
   .Cover h2,
   .Cover h3,
-  .aa,
   .baseColor,
   body {
     background: #fff;
@@ -1723,21 +1737,7 @@ li.L8 {
     color: #000!important
   }
   .AHead-labels,
-  .aa code,
-  .aa var,
-  .tl tr code,
-  .tl tr var,
-  blockquote .tl tr code,
-  blockquote .tl tr var,
-  blockquote code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  blockquote var,
-  code .pln,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
+  code .pln {
     color: #000
   }
   .AHead-labels a {
@@ -1790,8 +1790,8 @@ li.L8 {
   #lH .lMi {
     padding: .5em 0
   }
+  .AMeta,
   .Header {
-    text-align: left;
     padding: 0 3%
   }
   .h1 {
@@ -1820,7 +1820,6 @@ li.L8 {
   }
   blockquote {
     padding: 1em 1px;
-    background: 0 0;
     margin: 1em 0
   }
   .box dl,
@@ -1834,23 +1833,15 @@ li.L8 {
   .box img {
     margin: 0 1em 1em 3%
   }
-  .hscroll {
-    overflow: visible;
-    overflow-x: visible;
-    overflow-y: visible
-  }
   .hscroll table {
     width: 100%;
-    margin: 0;
-    white-space: normal
+    margin: 0
   }
   .hscroll pre {
-    margin: 0;
-    white-space: -moz-pre-wrap
+    margin: 0
   }
   code,
   var {
-    background: 0 0!important;
     border-width: 1px;
     border-color: #ccc
   }
@@ -1867,16 +1858,10 @@ li.L8 {
   blockquote .tl tbody td:after {
     border-color: #fff
   }
-  .AMeta {
-    padding: 0 3%
-  }
   .Pager,
   .SocialBtns {
     padding: 0 3%;
     display: none
-  }
-  .prettyprint {
-    background: #fff
   }
   code .atv,
   code .str {
