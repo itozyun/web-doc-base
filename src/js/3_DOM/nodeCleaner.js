@@ -30,7 +30,7 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
 
                     switch( tag ){
                         case 'STYLE' :
-                            if( 8 <= p_Presto && p_Presto < 9 ) break; /* Opera 8 は <style> の移動が反映されない */
+                            if( 7.2 <= p_Presto && p_Presto < 9 ) break; /* Opera 7.20~8 は <style> の移動が反映されない */
                         case 'LINK' :
                             !m_isIE4DOM && !hasDynamicStyleBug && /* IE6 で link を移動すると style の適用がガタガタ */
                                 !p_DOM_contains( p_head, kid ) && nodesToGoUnderHead.push( kid );
