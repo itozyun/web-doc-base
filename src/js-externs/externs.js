@@ -1,11 +1,6 @@
 /**
  * @const
  */
-var ua = {};
-
-/**
- * @const
- */
 var IE4DOM = {
     tags : function(){}
 };
@@ -96,3 +91,6 @@ CanvasRenderingContext2D.prototype.mozDrawText = function(){};
 
 /** @type {number}  */
 var __vml = 0;
+
+// http://help.dottoro.com/ljnillej.php
+var operaObject = { postError : function(){} };
