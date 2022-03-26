@@ -3,7 +3,9 @@
 %InteractiveObject {
     a & {
         border-color : $COLOR_Light_fill;
-        border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        @include media(screen){ // 印刷には border は無しで縦横4px大きく
+            border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        }
     }
     :link &, :visited & {
         blockquote & {
