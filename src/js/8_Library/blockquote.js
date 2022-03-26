@@ -42,8 +42,8 @@ p_listenLoadEvent(
                 p_DOM_insertElement( elm, tag, { className : className } );
             
             p_DOM_insertElement( elmCite, 'a',
-                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener noreferrer', hidefocus : true, href : link, tabindex : p_Presto ? '0' : undefined } :
-                                        { hidefocus : true, href : link, tabindex : p_Presto ? '0' : undefined },
+                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener noreferrer', href : link, tabindex : p_Presto ? '0' : undefined } :
+                                        { href : link, tabindex : p_Presto ? '0' : undefined },
                                     title
                                );
         };

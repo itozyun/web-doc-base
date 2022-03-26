@@ -20,7 +20,7 @@ module.exports = function( underMainColmun, maxLink, site, currentPage, links, o
 function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrentPage, opt_numberOfMedal ){
     if( underMainColmun ){
         return '' +
-`<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}${createAttribute( 'hidefocus', true, !isCurrentPage)}>
+`<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}>
 <h3>
     <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 125, 125 ) }" width="125" height="125">
     ${link.title}
@@ -48,7 +48,7 @@ function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrent
     };
     // console.dir( link )
     return '' +
-`<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}${createAttribute( 'hidefocus', true, !isCurrentPage)}>
+`<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}>
 <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 50, 50 ) }" width="50" height="50">
 <b>${link.title}</b>
 </a>`;

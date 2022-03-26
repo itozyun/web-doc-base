@@ -677,7 +677,7 @@ return '' +
                         html += ' / ';
                     };
                     dirPage = directories[ i ];
-                    html += '<a itemprop="item" hidefocus="true" href="' + getRelativePath( page.path, dirPage.path ) + '"' + createAttribute( 'rel', 'nofollow', isExternalURL( dirPage.path ) ) + '>' +
+                    html += '<a itemprop="item" href="' + getRelativePath( page.path, dirPage.path ) + '"' + createAttribute( 'rel', 'nofollow', isExternalURL( dirPage.path ) ) + '>' +
                             '<span itemprop="name">' + dirPage.title + '</span>' +
                             '<meta itemprop="position" content="' + ( i + 1 ) + '">' +
                             '</a>';
@@ -696,9 +696,9 @@ return '' +
             return page.prev || page.next ? '' +
 `<div class="TxtNavi">
     <nav role="navigation">
-    ${createElement( 'a', { href : getRelativePath( page.path, page.prev && page.prev.path || '' ), title : page.prev && page.prev.title, hidefocus : true }, '前', !!page.prev )}
+    ${createElement( 'a', { href : getRelativePath( page.path, page.prev && page.prev.path || '' ), title : page.prev && page.prev.title }, '前', !!page.prev )}
     ${page.prev && page.next ? ', ' : ''}
-    ${createElement( 'a', { href : getRelativePath( page.path, page.next && page.next.path || '' ), title : page.next && page.next.title, hidefocus : true }, '次', !!page.next )}
+    ${createElement( 'a', { href : getRelativePath( page.path, page.next && page.next.path || '' ), title : page.next && page.next.title }, '次', !!page.next )}
     </nav>
 </div>` : '';
         },
@@ -711,7 +711,7 @@ return '' +
 <b:loop values='data:post.labels' var='label' index='i'>
     <b:if cond='data:i != 0'>,<b:else/>&lt;div class='AHead-labels'&gt;<i class='ico-label' expr:title='data:messages.labels'></i>
     </b:if>
-    <a expr:href='data:label.url' rel='tag' hidefocus='true'><data:label.name/></a>
+    <a expr:href='data:label.url' rel='tag'><data:label.name/></a>
 </b:loop>
 &lt;/div&gt;
 </b:if>`
@@ -747,7 +747,7 @@ return '' +
 `<div class='AAuthor'>
     <img src='${resizeImage( page.author.photo, 50 )}' alt=''/>
     <!-- i class='ico-author' expr:title='data:messages.postedBy'></i-->
-    <a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank' hidefocus='true'>
+    <a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank'>
         ${page.author.name}
     </a>
     <!-- 投稿者 ${page.author.name} -->
