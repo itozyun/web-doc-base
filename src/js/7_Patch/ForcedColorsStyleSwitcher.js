@@ -1,10 +1,10 @@
 if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors ){
-    var ForcedColorsStyleSwitcher_elmStyle,
+    var ForcedColorsStyleSwitcher_elmLink,
     /**
      * @type {Function|undefined}
      */
         ForcedColorsStyleSwitcher_init = function(){
-            ForcedColorsStyleSwitcher_elmStyle = p_DOM_insertElement(
+            ForcedColorsStyleSwitcher_elmLink = p_DOM_insertElement(
                 p_head, 'link',
                 {
                     type  : 'text/css',
@@ -26,10 +26,10 @@ if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors ){
 
     p_listenForcedColorsChange(
         function( forcedColorsState ){
-            if( forcedColorsState && !ForcedColorsStyleSwitcher_elmStyle ){
+            if( forcedColorsState && !ForcedColorsStyleSwitcher_elmLink ){
                 ForcedColorsStyleSwitcher_init();
-            } else if( ForcedColorsStyleSwitcher_elmStyle ){
-                forcedColorsState ? p_head.appendChild( ForcedColorsStyleSwitcher_elmStyle ) : p_DOM_remove( ForcedColorsStyleSwitcher_elmStyle );
+            } else if( ForcedColorsStyleSwitcher_elmLink ){
+                forcedColorsState ? p_head.appendChild( ForcedColorsStyleSwitcher_elmLink ) : p_DOM_remove( ForcedColorsStyleSwitcher_elmLink );
             };
         }
     );
