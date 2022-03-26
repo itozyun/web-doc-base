@@ -145,9 +145,6 @@ samp,
 var {
   font-family: "Courier New",monospace
 }
-a img {
-  border-width: 2px
-}
 *,
 blockquote :link img,
 blockquote :visited img,
@@ -1323,6 +1320,9 @@ dl.note dd {
   .e6C,
   .e6C .lW {
     overflow: hidden
+  }
+  a img {
+    border-width: 2px
   }
   .LinkList :hover,
   .RichLink-sep :hover,

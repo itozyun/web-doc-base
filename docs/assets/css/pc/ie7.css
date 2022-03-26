@@ -21,27 +21,9 @@ tr p {
 .SocialBtns .tw:visited:active,
 .baseColor .btn:link:active,
 .baseColor .btn:visited:active,
-.medal,
 a,
 a img {
   border-color: #fdeeb7
-}
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.Subscribe .atom:link:active,
-.Subscribe .atom:visited:active,
-.Subscribe .fl:link:active,
-.Subscribe .fl:visited:active,
-.Subscribe .rss:link:active,
-.Subscribe .rss:visited:active,
-.Subscribe .stm:link:active,
-.Subscribe .stm:visited:active,
-.btn:link:active,
-.btn:visited:active,
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #062241
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -170,8 +152,22 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-a img {
-  border-width: 2px
+.AHead-labels a:link:active,
+.AHead-labels a:visited:active,
+.Subscribe .atom:link:active,
+.Subscribe .atom:visited:active,
+.Subscribe .fl:link:active,
+.Subscribe .fl:visited:active,
+.Subscribe .rss:link:active,
+.Subscribe .rss:visited:active,
+.Subscribe .stm:link:active,
+.Subscribe .stm:visited:active,
+.btn:link:active,
+.btn:visited:active,
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #062241
 }
 *,
 blockquote :link img,
@@ -358,7 +354,6 @@ input.btn:hover {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -724,6 +719,10 @@ input.btn {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.medal {
+  border-color: #fdeeb7;
+  color: #06284e
 }
 :link .medal,
 :visited .medal {
@@ -1498,6 +1497,9 @@ li.L8 {
   color: #06284e
 }
 @media screen {
+  a img {
+    border-width: 2px
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,

@@ -30,7 +30,6 @@ tr p {
 .baseColor .btn:link:focus,
 .baseColor .btn:visited:active,
 .baseColor .btn:visited:focus,
-.medal,
 a,
 a img,
 a:active .ico-author:after,
@@ -231,9 +230,6 @@ kbd,
 samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
-}
-a img {
-  border-width: 2px
 }
 *,
 blockquote .tl tbody td:after,
@@ -498,7 +494,6 @@ a {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -1176,6 +1171,10 @@ a:focus .ico-pen:after {
 .Cover,
 .RichLink-sep {
   line-height: 1.4
+}
+.medal {
+  border-color: #fdeeb7;
+  color: #06284e
 }
 :link .medal,
 :visited .medal {
@@ -2059,6 +2058,9 @@ div .box .jsPicaLarge img {
 handheld,
 projection,
 tv {
+  a img {
+    border-width: 2px
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,

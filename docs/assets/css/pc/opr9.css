@@ -20,7 +20,6 @@ tr p {
 .SocialBtns .tw:visited:focus,
 .baseColor .btn:link:focus,
 .baseColor .btn:visited:focus,
-.medal,
 a,
 a img {
   border-color: #fdeeb7
@@ -159,9 +158,6 @@ kbd,
 samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
-}
-a img {
-  border-width: 2px
 }
 *,
 blockquote :link img,
@@ -359,7 +355,6 @@ a:focus:hover {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -746,6 +741,10 @@ strong {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.medal {
+  border-color: #fdeeb7;
+  color: #06284e
 }
 :link .medal,
 :visited .medal {
@@ -1517,6 +1516,9 @@ projection {
   .hscroll,
   .hscroll pre {
     overflow: auto
+  }
+  a img {
+    border-width: 2px
   }
   .LinkList :link:hover,
   .LinkList :visited:hover,

@@ -74,12 +74,6 @@ tr ul {
 tbody th {
   background: #e7d182
 }
-:target,
-:target *,
-blockquote tbody th a:focus,
-thead a:focus {
-  background: #0d5bb5!important
-}
 #lB .lS,
 body {
   background: #fffd93
@@ -167,9 +161,6 @@ kbd,
 samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
-}
-a img {
-  border-width: 2px
 }
 *,
 blockquote :link img,
@@ -352,11 +343,6 @@ form :focus {
 .tl thead th a:focus,
 a:focus {
   background-color: #fffd93!important
-}
-:target,
-:target * {
-  color: #fff!important;
-  border-color: #fff!important
 }
 h1,
 h2,
@@ -568,6 +554,10 @@ blockquote td {
 blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
+}
+blockquote tbody th a:focus,
+thead a:focus {
+  background: #0d5bb5!important
 }
 .Cover-btn,
 .commonForm-send,
@@ -1421,6 +1411,9 @@ li.L8 {
   color: #06284e
 }
 @media screen {
+  a img {
+    border-width: 2px
+  }
   .LinkList :hover,
   .RichLink-sep :hover,
   .tl tr code,

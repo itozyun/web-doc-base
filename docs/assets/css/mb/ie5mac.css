@@ -103,9 +103,6 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-a img {
-  border-width: 2px
-}
 *,
 blockquote :link img,
 blockquote :visited img {
@@ -1343,6 +1340,9 @@ dl.note dd {
   color: #06284e
 }
 @media screen {
+  a img {
+    border-width: 2px
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,

@@ -30,7 +30,6 @@ tr p {
 .baseColor .btn:link:focus,
 .baseColor .btn:visited:active,
 .baseColor .btn:visited:focus,
-.medal,
 a,
 a img,
 tbody th {
@@ -159,9 +158,6 @@ kbd,
 samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
-}
-a img {
-  border-width: 2px
 }
 *,
 blockquote :link img,
@@ -367,7 +363,6 @@ input.btn:hover {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
@@ -772,6 +767,10 @@ input.btn {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
+}
+.medal {
+  border-color: #fdeeb7;
+  color: #06284e
 }
 :link .medal,
 :visited .medal {
@@ -1560,6 +1559,9 @@ li.L8 {
   color: #06284e
 }
 @media screen {
+  a img {
+    border-width: 2px
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
