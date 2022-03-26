@@ -113,7 +113,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor, true );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState, Event_forcedColors_WORK_ONCE );
             };
         };
         /**
