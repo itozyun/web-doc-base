@@ -124,11 +124,11 @@ $SEARCH_BTN_WIDTH : 3em;
         width   : 100%; /* Opera <=8.5 で無視されるので <input size> 指定する */
 
         @if( $UA_Opera9 ){
-            box-sizing  : content-box; /* Opera 9.0~9.27 */
+            @include box-sizing(content-box); /* Opera 9.0~9.27 */
             height      : #{$PARAGRAPH_LINE_HEIGHT_EM - $INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
             line-height : #{$PARAGRAPH_LINE_HEIGHT_EM - $INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
         }
-        
+
         @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 ){
             left : -#{$INPUT_BORDER_WIDTH * 3 + $FORM_ITEM_PADDING_LR * 2};
         } @else {
