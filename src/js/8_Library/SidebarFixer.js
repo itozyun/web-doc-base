@@ -575,7 +575,7 @@ function SidebarFixer_onfocus( e ){
             if( SidebarFixer_dummyScrollTimerID ){
                 p_clearTimer( SidebarFixer_dummyScrollTimerID );
             };
-            SidebarFixer_dummyScrollTimerID = p_setTimer( SidebarFixer_onscroll, SidebarFixer_ONSCROL_FROM_TIMER ); // scroll が起きない場合がある!
+            SidebarFixer_dummyScrollTimerID = p_setTimer( SidebarFixer_onscroll, SidebarFixer_ONSCROL_FROM_TIMER, p_Gecko < 1 ? 500 : 0 ); // Gecko 0.9.5 はかなり遅れてスクロールが起こる
         };
 
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
