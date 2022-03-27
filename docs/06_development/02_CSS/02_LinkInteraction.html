@@ -89,7 +89,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lM">
 <div class="lMi"><div class="BreadcrumbList" itemscope itemtype="http://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        <a itemprop="item" hidefocus="true" href="//github.com/itozyun/web-doc-base/" rel="nofollow"><span itemprop="name">github</span><meta itemprop="position" content="1"></a> / <a itemprop="item" hidefocus="true" href="../../"><span itemprop="name">目次</span><meta itemprop="position" content="2"></a> / <a itemprop="item" hidefocus="true" href="../"><span itemprop="name">6. web-doc-base を拡張する為の技術情報</span><meta itemprop="position" content="3"></a> / <a itemprop="item" hidefocus="true" href="./"><span itemprop="name">2. CSS をカスタムする為の情報</span><meta itemprop="position" content="4"></a>
+        <a itemprop="item" href="//github.com/itozyun/web-doc-base/" rel="nofollow"><span itemprop="name">github</span><meta itemprop="position" content="1"></a> / <a itemprop="item" href="../../"><span itemprop="name">目次</span><meta itemprop="position" content="2"></a> / <a itemprop="item" href="../"><span itemprop="name">6. web-doc-base を拡張する為の技術情報</span><meta itemprop="position" content="3"></a> / <a itemprop="item" href="./"><span itemprop="name">2. CSS をカスタムする為の情報</span><meta itemprop="position" content="4"></a>
     </span>
 </div>
 </div><!-- lMi -->
@@ -98,10 +98,10 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi"><div class="TxtNavi">
     <nav role="navigation">
     
-<a href="01_CSSOrganisation.html" title="CSS の設計" hidefocus>前</a>
+<a href="01_CSSOrganisation.html" title="CSS の設計">前</a>
     , 
     
-<a href="03_ColorManagment.html" title="色の管理" hidefocus>次</a>
+<a href="03_ColorManagment.html" title="色の管理">次</a>
     </nav>
 </div>
 </div>
@@ -128,7 +128,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lS1"><div class='AAuthor'>
     <img src='//3.bp.blogspot.com/-yV0t7h21w6w/VsSS3s6f0fI/AAAAAAAAQow/w1e_E4SwEtk/w50/%25E5%2586%2599%25E7%259C%259F.jpg' alt=''/>
     <!-- i class='ico-author' expr:title='data:messages.postedBy'></i-->
-    <a href='//twitter.com/itozyun/' rel='author' title='author profile' target='_blank' hidefocus='true'>
+    <a href='//twitter.com/itozyun/' rel='author' title='author profile' target='_blank'>
         itozyun
     </a>
     <!-- 投稿者 itozyun -->
@@ -156,7 +156,123 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 
 
 <p>工事中です。</p>
+<p>多くのブラウザは <kbd>Tab</kbd> キーで、文書中の要素とフォーム部品に順にフォーカスを当てる機能を備えています。この中にはデフォルトで無効で、設定画面から有効にするものもあります。</p>
+<p>プロジェクトは、フォーカスされた要素に適切にスタイルを設定して、ユーザーの閲覧を助けます。</p>
+<p>同様にして、要素へのホバーとアクティブ化にも適切にスタイルを設定します。</p>
+<p>リンク(未訪問)、訪問済のリンクに応じた、ホバー・アクティブ化・フォーカスにそれぞれスタイルを設定します。</p>
+<p>これらダイナミック疑似クラスの実装は羽陽曲折を経て、現在のソレになりました。web-doc-base はブラウザ毎の実装状況を SCSS 変数のフラグにして、ブラウザ別 CSS を実現します。</p>
 <p><a href="//outcloud.blogspot.com/2016/10/link-interaction.html">リンクテキストのインタラクションを整理する</a></p>
+<h2 id="基本的なダイナミック疑似クラスの実装状況とスタイルの制限">基本的なダイナミック疑似クラスの実装状況とスタイルの制限</h2>
+<table>
+<thead>
+<tr>
+<th rowspan="2">ブラウザ</th><th colspan="3"><code>&lt;a&gt;</code></th><th colspan="3"><code>&lt;form&gt;</code>部品</th><th rowspan="2">:target
+</th></tr><tr>
+<th>:hover</th><th>:active</th><th>:focus</th><th>:hover</th><th>:active</th><th>:focus
+</th></tr></thead><tbody>
+<tr>
+<th>IE ~6(*2)</th><td>✔</td><td>✔</td><td><code>:active</code> で代替</td><td>×</td><td>×</td><td>×</td><td>×
+</td></tr><tr>
+<th>IE 7(*2)</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>(*10)</td><td>×</td><td>×
+</td></tr><tr>
+<th>IE 8</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>IE 9+</th><td colspan="7">✔
+</td></tr><tr>
+<th>Opera 7~7.20(*1)</th><td>×</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 7.23~7.5(*1)</th><td>✔</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 8~9.27</th><td>✔</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 9.5</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td>:focus で代替(*4)</td><td>✔</td><td>✔
+</td></tr><tr>
+<th>Opera 9.6+</th><td colspan="7">✔
+</td></tr><tr>
+<th>Gecko ~0.9.9(*2, *6)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔(*3,*5)</td><td><code>:focus</code> で代替(*4)</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Gecko 1.0~1.2(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*9)</td><td>×
+</td></tr><tr>
+<th>Gecko 1.3(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*7, *8)</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.4~1.7(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*7)</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.8+</th><td colspan="7">✔
+</td></tr></tbody></table>
+
+<ol>
+<li>Opera 7.x : 動的疑似クラスで <code>outline-color</code> の変更が出来ない.</li>
+<li>outline が無い</li>
+<li>枠線への :hover のみ</li>
+<li>ラベルのクリックでテキスト色が紫色になる</li>
+<li>type=text だけ枠線は固定</li>
+<li>Gecko 0.8.1 迄はタブフォーカス移動が同一の階層内に限る制限がある</li>
+<li>ファイルアップロードボタン、チェック系に色が付かない、点線のみ</li>
+<li>画像送信ボタンの画像にもフォーカス色が付く</li>
+<li>ファイルアップロードボタンが変化しない</li>
+<li>ボタン系のみ :hover 色が適用される</li>
+<li>フォーカスのテキスト色・背景色は固定</li>
+</ol>
+<h2 id="デフォルトのボックスモデルとボックスモデルの制限">デフォルトのボックスモデルとボックスモデルの制限</h2>
+<p>B は border-box, C は content-box です。</p>
+<table>
+<thead>
+<tr>
+<th rowspan="2">ブラウザ</th><th colspan="3">テキスト入力</th><th colspan="3"><code>&lt;textarea&gt;</code></th><th colspan="3">ボタン</th><th colspan="3">チェック</th><th colspan="3">リスト
+</th></tr><tr>
+<th>デフォルト</th><th>box-sizing変更</th><th>padding </th><th>デフォルト</th><th>box-sizing変更</th><th>padding </th><th>デフォルト</th><th>box-sizing変更</th><th>padding </th><th>デフォルト</th><th>box-sizing変更</th><th>padding </th><th>デフォルト</th><th>box-sizing変更</th><th>padding
+</th></tr></thead><tbody>
+
+<tr>
+<th>IE 5.5</th><td>B</td><td>×</td><td>✔ </td><td>B</td><td>×</td><td>✔ </td><td>B</td><td>×</td><td>✔ </td><td>B</td><td>×</td><td>✔ </td><td>-</td><td>-</td><td>×
+</td></tr><tr>
+<th>IE 6~7</th><td>C</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>C(*1)</td><td>×</td><td>✔ </td><td>-</td><td>-</td><td>×
+
+</td></tr><tr>
+<th>Opera 7~7.54u2</th><td>C</td><td>×</td><td>× </td><td>B</td><td>×</td><td>× </td><td>C(*1)</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>× </td><td>-</td><td>-</td><td>×
+</td></tr><tr>
+<th>Opera 8~8.54</th><td>B</td><td>×</td><td>(*2) </td><td>C</td><td>×</td><td>✔(*3) </td><td>C</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>(*2) </td><td>-</td><td>-</td><td>×
+</td></tr><tr>
+<th>Opera 9~9.27</th><td>C</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>C</td><td>×</td><td>✔(*4) </td><td>C</td><td>×</td><td>(*2) </td><td>-</td><td>-</td><td>×
+</td></tr><tr>
+<th>Opera 9.50~</th><td>C</td><td>✔</td><td>✔ </td><td>B</td><td>×</td><td>✔ </td><td>B</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>-</td><td>-</td><td>✔(*4)
+
+</td></tr><tr>
+<th>Gecko 0.6</th><td>B</td><td>✔</td><td>✔ </td><td>B</td><td>×</td><td>✔ </td><td>B</td><td>✔</td><td>✔ </td><td>B</td><td>✔</td><td>✔ </td><td>B(*5)</td><td>-</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.0</th><td>B</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>B</td><td>✔</td><td>✔(*7) </td><td>B</td><td>✔</td><td>✔ </td><td>B(*5)</td><td>-</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.3</th><td>C</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>B(*6)</td><td>✔</td><td>✔(*7) </td><td>B</td><td>✔</td><td>✔ </td><td>B(*5)</td><td>-</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.6</th><td>C</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>B(*6)</td><td>✔</td><td>✔(*7) </td><td>B</td><td>✔</td><td>× </td><td>B(*5)</td><td>-</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.8</th><td>C</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>B(*6)</td><td>✔</td><td>✔(*7) </td><td>B</td><td>✔</td><td>✔(*8) </td><td>B(*5)</td><td>-</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.9</th><td>C</td><td>✔</td><td>✔ </td><td>C</td><td>×</td><td>✔ </td><td>B(*6)</td><td>✔</td><td>✔(*7) </td><td>B</td><td>×</td><td>× </td><td>C</td><td>-</td><td>✔
+</td></tr></tbody></table>
+
+<ol>
+<li>但しファイルのアップロードボタンは border-box</li>
+<li>横方向だけ padding が増える</li>
+<li>アップロードボタンは横方向だけ padding が増える</li>
+<li>リストボックスは横方向だけ padding が増える</li>
+<li>但し、リストボックスは content-box</li>
+<li>但し、画像送信ボタンは content-box</li>
+<li>アップロードボタンは padding が変化しない</li>
+<li>border 無し</li>
+</ol>
+<ul>
+<li>デフォルトの box-sizing : C or B</li>
+<li>box-sizing の変更は可能か?</li>
+<li>スタイリング :hover :active : focus<ul>
+<li>padding</li>
+<li>bgcolor</li>
+<li>color</li>
+<li>border-color</li>
+<li>outline-color</li>
+</ul>
+</li>
+</ul>
 
     </div>
 </div>
@@ -171,33 +287,33 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../../08_test/" hidefocus>
+<div class="RichLink-sep"><a role="listitem" href="../../08_test/01_Color.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>システムカラー</b>
+</a><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>リンク要素のインタラクションについて</b>
+</a><a role="listitem" href="../../08_test/">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>8. テストページ</b>
-</a><a role="listitem" href="../../02_features/02_DarkModeAndForcedColors.html" hidefocus>
+</a><a role="listitem" href="../../04_markup/">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ダークモードと強制カラー(ハイコントラスト)モード</b>
-</a><a role="listitem" href="../03_Javascript/01_InvestigatingUserSettings.html" hidefocus>
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ユーザー設定の調査</b>
-</a><a role="listitem" href="../03_Javascript/" hidefocus>
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>3. Javascript をカスタムする為の情報</b>
-</a><a role="listitem" href="./" hidefocus>
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>2. CSS をカスタムする為の情報</b>
-</a><a role="listitem" href="../../08_test/03_CSShackPlayground.html" hidefocus>
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>CSSハックプレイグラウンド</b>
-</a><a role="listitem" href="../../08_test/01_Color.html" hidefocus>
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>Color</b>
-</a><a role="listitem" href="04_etc.html" hidefocus>
+<b>4. マークアップを確認する</b>
+</a><a role="listitem" href="04_etc.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>ワンポイント</b>
-</a><a role="listitem" href="01_CSSOrganisation.html" hidefocus>
+</a><a role="listitem" href="../../08_test/allcasts.html">
+<img alt="" role="presentation" src="//1.bp.blogspot.com/-muIzrtXyUTE/VgDos4QOJQI/AAAAAAAAQVo/U8kg6H26RYA/s50-c/blogger-image--1589508341.jpg" width="50" height="50">
+<b>オールキャストページ</b>
+</a><a role="listitem" href="../../02_features/02_DarkModeAndForcedColors.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>CSS の設計</b>
+<b>ダークモードと強制カラー(ハイコントラスト)モード</b>
+</a><a role="listitem" href="../03_Javascript/01_InvestigatingUserSettings.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ユーザー設定の調査</b>
+</a><a role="listitem" href="../03_Javascript/">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>3. Javascript をカスタムする為の情報</b>
 </a>
 </div>
 </div>
