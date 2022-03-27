@@ -27,7 +27,7 @@
     }
 
     @if( $UA_Gck-097 == false and $UA_Gck101-121 == false ){ /* 下ではチラツキが激しい */
-        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             :hover & {
                 position : relative;
                 top      : 2px;

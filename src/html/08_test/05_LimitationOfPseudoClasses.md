@@ -25,7 +25,7 @@ Gecko ~1.8.1.12 :focus に指定したスタイルがクリック(:active)にも
 
 0.6~0.9.4 タブフォーカスの移動が微妙
 
-1. :active が focus 相当の動作 ie7- `$ACTIVE_BEHAVES_LIKE_FOCUS` フォーカスした要素へのホバー
+1. :active が focus 相当の動作 ie7- `$ACTIVE_ON_LINK_BEHAVES_FOCUS` フォーカスした要素へのホバー
 2. $TEXT_COLOR_CANT_CHANGE_FOCUSING : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
 3. $FOCUSED_COLOR_IS_SYSTEM_COLOR   : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
 

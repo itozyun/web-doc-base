@@ -50,7 +50,7 @@
     }
 
     @include media(screen){
-        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             :hover {
                 background : $COLOR_Light_casual_fill;
                 color      : $COLOR_Light_text;
@@ -98,7 +98,7 @@
             }
         }
 
-        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             .ribbon & :hover {
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
@@ -156,7 +156,7 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
-        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             :hover {
                 text-decoration : underline !important;
             }

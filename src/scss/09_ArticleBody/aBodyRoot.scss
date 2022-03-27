@@ -4,21 +4,21 @@
 .aBodyRoot {
     :link, :visited { text-decoration : underline; }
 
-    @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+    @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
         :hover { text-decoration : none !important; } // 詳細度を上げないと上書きできない(IE6-)
     } @else {
         :link:hover, :visited:hover { text-decoration : none; }
     }
 
-    @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
+    @if( $ACTIVE_ON_LINK_BEHAVES_FOCUS ){
         a:active { text-decoration : none; }
     }
     @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
         a:focus { text-decoration : none; }
     }
 
-    @if( $ACTIVE_BEHAVES_LIKE_FOCUS ){
-        @if( $RESTRICTED_HOVER_PSEUDO_CLASS ){
+    @if( $ACTIVE_ON_LINK_BEHAVES_FOCUS ){
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             // :active:hover { text-decoration : underline !important; } // 上書きできない!(IE6-)
         } @else {
             a:active:hover { text-decoration : underline; }
