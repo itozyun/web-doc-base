@@ -14,8 +14,10 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
-.LinkList a:hover,
-.RichLink-sep a:hover {
+.LinkList :link:hover,
+.LinkList :visited:hover,
+.RichLink-sep :link:hover,
+.RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
 .Cover-btn i {

@@ -16,9 +16,6 @@ tfoot td {
 .RichLink-sep :hover {
   text-decoration: underline!important
 }
-:active {
-  outline: solid 2px
-}
 table {
   border-spacing: 2px;
   border-collapse: separate

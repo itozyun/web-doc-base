@@ -4,22 +4,21 @@ sub,
 sup {
   font-size: 75%
 }
+*,
+[type=submit]:focus {
+  border-style: solid
+}
 body,
 dd p,
 li p,
 tr p {
   line-height: 1.2
 }
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:focus,
+.SocialBtns .hb:focus,
+.SocialBtns .ln:focus,
+.SocialBtns .pk:focus,
+.SocialBtns .tw:focus,
+.baseColor .btn:focus,
 .medal,
 a,
 a img,
@@ -107,6 +106,12 @@ var {
 pre {
   white-space: -moz-pre-wrap
 }
+.tl tbody th a:focus,
+.tl thead td a:focus,
+.tl thead th a:focus,
+a:focus {
+  background-color: #fffd93!important
+}
 .tl td,
 .tl th {
   vertical-align: top
@@ -122,34 +127,10 @@ pre {
 .commonForm-pair,
 .lMi,
 .lSi,
+kbd:hover,
 sub,
 sup {
   position: relative
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: -moz-inline-box;
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.9;
-  padding: 0 1em;
-  height: 2.1em
-}
-.AHead-labels a:focus,
-.SocialBtns :focus,
-.Subscribe a:focus,
-.btn:focus {
-  border-color: #0d5bb5;
-  color: #0d5bb5;
-  outline: 0;
-  border-style: dotted
-}
-*,
-[type=submit]:focus {
-  border-style: solid
 }
 body,
 input,
@@ -176,6 +157,19 @@ a:focus img {
   cursor: pointer;
   text-decoration: none!important
 }
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
+.Label :link:hover,
+.Label :visited:hover,
+.aBodyRoot :link:hover,
+.aBodyRoot :visited:hover,
+.aBodyRoot a:focus,
+:link,
+:visited,
+a:focus,
+ins {
+  text-decoration: none
+}
 .LinkList a:not([href]),
 .RichLink-sep a:not([href]) {
   background: #06284e;
@@ -194,6 +188,13 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
+.Header,
+.Header h1,
+.aa,
+input,
+input.btn {
+  line-height: 1
+}
 input,
 textarea {
   font-size: 1em;
@@ -207,6 +208,10 @@ sub {
 }
 img {
   height: auto
+}
+.btn,
+input {
+  height: 2.1em
 }
 cite,
 code,
@@ -227,43 +232,13 @@ form,
 h2 {
   margin: 0
 }
-.BlogArchive :hover,
-.Label :hover,
-.aBodyRoot a:focus,
-:link,
-:visited,
-a:focus,
-ins {
-  text-decoration: none
-}
 del {
   text-decoration: line-through
-}
-input {
-  height: 2.1em;
-  line-height: 1
 }
 .AHead-labels i,
 .RichLink br,
 [type=hidden] {
   display: none
-}
-.Cover img,
-.Cover-meta,
-.commonForm,
-.commonForm-wrap,
-.commonForm-wrap *,
-a iframe,
-a img {
-  display: block
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
 }
 input[type=submit] {
   text-align: center;
@@ -312,14 +287,17 @@ html {
 body {
   color: #06284e
 }
+.btn,
 p {
   line-height: 1.9
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
 .aBodyRoot a:focus:hover,
-:hover,
-a:focus:hover {
+:link:hover,
+:visited:hover,
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
 .tl tbody th :link,
@@ -337,12 +315,6 @@ form :focus {
 :visited:hover {
   color: #419;
   border-color: #419
-}
-.tl tbody th a:focus,
-.tl thead td a:focus,
-.tl thead th a:focus,
-a:focus {
-  background-color: #fffd93!important
 }
 h1,
 h2,
@@ -388,13 +360,31 @@ th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2 {
+.Cover h2,
+.tl tbody :hover td,
+.tl tbody :hover th {
   border-color: #0d5bb5
 }
 iframe,
 img {
   max-width: 100%;
   max-width: 94%
+}
+.Cover img,
+.Cover-meta,
+.commonForm,
+a iframe,
+a img {
+  display: block
+}
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.btn,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
 }
 ol,
 ul {
@@ -415,9 +405,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
 .hscroll pre,
 dd blockquote,
 dd dl,
@@ -519,6 +506,8 @@ tfoot th {
 tfoot td {
   border-width: 2px .5em 0
 }
+.BlogArchive,
+.BlogArchive tbody :hover td,
 .Label div,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
@@ -555,20 +544,37 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
 }
+blockquote tbody :hover td {
+  border-color: #e7d182 #e7d182 #0d5bb5
+}
+tbody :hover th {
+  background: #0d5bb5;
+  color: #fff
+}
+.tl tbody :hover th,
 blockquote tbody th a:focus,
+tbody :hover th a,
 thead a:focus {
   background: #0d5bb5!important
+}
+.tl tbody :hover th,
+.tl tbody :hover th :link,
+.tl tbody :hover th :visited,
+code .pln,
+code .pun,
+tbody :hover th :link,
+tbody :hover th :visited {
+  color: #fff
+}
+tbody :hover td {
+  border-color: #fdeeb7 #fdeeb7 #0d5bb5;
+  color: #0d5bb5
 }
 .Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
 }
-.ABody h1,
-.ABody h2,
-.ABody h3,
-.AHead h1,
-.Attribution,
 .c {
   text-align: center
 }
@@ -611,6 +617,20 @@ strong {
   width: 45.5%;
   padding: 0 3% 0 0
 }
+.btn {
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  padding: 0 1em
+}
+.AHead-labels a:focus,
+.SocialBtns :focus,
+.Subscribe a:focus,
+.btn:focus {
+  border-color: #0d5bb5;
+  color: #0d5bb5;
+  border-style: dotted
+}
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -621,20 +641,14 @@ strong {
   border-color: #fed33b;
   color: #fed33b
 }
-.Subscribe .atom:link:focus,
-.Subscribe .atom:visited:focus,
-.Subscribe .fl:link:focus,
-.Subscribe .fl:visited:focus,
-.Subscribe .rss:link:focus,
-.Subscribe .rss:visited:focus,
-.Subscribe .stm:link:focus,
-.Subscribe .stm:visited:focus,
-.btn:link:focus,
-.btn:visited:focus {
+.Subscribe .atom:focus,
+.Subscribe .fl:focus,
+.Subscribe .rss:focus,
+.Subscribe .stm:focus,
+.btn:focus {
   border-color: #062241
 }
 input.btn {
-  line-height: 1;
   padding: 0;
   height: 1.9em
 }
@@ -658,13 +672,15 @@ input.btn,_:-moz-any-link {
   width: auto
 }
 .commonForm-wrap {
+  display: block;
   margin: 0 0 1em 8em
 }
 .commonForm-wrap,_:-moz-any-link {
   margin: .5em 1em
 }
 .commonForm-wrap * {
-  width: 100%
+  width: 100%;
+  display: block
 }
 .medal,
 .medal-bronze,
@@ -680,10 +696,6 @@ input.btn,_:-moz-any-link {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
-}
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
 }
 :link .medal,
 :visited .medal {
@@ -747,6 +759,7 @@ input.btn,_:-moz-any-link {
 .ABody h1,
 .ABody h2,
 .ABody h3 {
+  text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
 }
@@ -763,7 +776,8 @@ input.btn,_:-moz-any-link {
   font-size: 2em;
   color: #06284e;
   padding: 2em 0;
-  margin: 0
+  margin: 0;
+  text-align: center
 }
 .Attribution small,
 .RichLink-meta,
@@ -774,23 +788,46 @@ input.btn,_:-moz-any-link {
   margin-top: .5em;
   color: #fffd93
 }
-.AHead-labels a:link {
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a {
+  display: -moz-inline-box;
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.9;
+  padding: 0 1em;
+  height: 2.1em;
+  margin: 0 0 .5em
+}
+.Pager span,
+.RichLink b,
+.caption,
+.js-bqCite,
+blockquote:after {
+  display: block;
+  display: block
+}
+.Cover,
+.RichLink-sep {
+  line-height: 1.4
+}
+.AHead-labels :link {
   background: #24c;
   border-color: #24c;
   color: #fffd93
 }
-.AHead-labels a:visited {
+.AHead-labels :visited {
   background: #fffd93;
   border-color: #8a7322;
   color: #8a7322
 }
-.AHead-labels a:link:focus,
-.AHead-labels a:visited:focus {
+.AHead-labels :focus {
   border-color: #fffd93
 }
-.Attribution,
-.BreadcrumbList {
-  padding: 1em 0
+.Attribution {
+  padding: 1em 0;
+  text-align: center
 }
 .BlogArchive,
 .Comment,
@@ -799,6 +836,10 @@ input.btn,_:-moz-any-link {
 .RichLink,
 .Subscribe {
   padding: 0 0 1em
+}
+.BreadcrumbList,
+.TxtNavi {
+  padding: 1em 0
 }
 .BlogArchive a,
 .Label a {
@@ -846,14 +887,6 @@ kbd {
   width: 100%;
   max-width: 100%
 }
-.Pager span,
-.RichLink b,
-.caption,
-.js-bqCite,
-blockquote:after {
-  display: block;
-  display: block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -898,11 +931,6 @@ pre var {
   border-width: 0 0 1px;
   border-color: #08366b!important
 }
-.Pager span,
-.Search .btn {
-  position: absolute;
-  top: 1em
-}
 .baseColor .RichLink a {
   border-color: #e7d182!important
 }
@@ -933,11 +961,6 @@ pre var {
   margin: 1em 0;
   line-height: 1.2
 }
-.Header,
-.Header h1,
-.aa {
-  line-height: 1
-}
 .lS .RichLink img {
   padding: 0 0 1em .6em;
   float: left;
@@ -959,6 +982,8 @@ pre var {
   height: 2.1em
 }
 .Search .btn {
+  top: 1em;
+  position: absolute;
   width: 2em;
   right: .8em;
   white-space: nowrap;
@@ -1054,7 +1079,6 @@ pre var {
   color: #8bc53f
 }
 .TxtNavi {
-  padding: 1em 0;
   text-align: right;
   color: #fdeeb7
 }
@@ -1078,9 +1102,6 @@ tr .prettyprint {
 .note .prettyprint,
 .prettyprint {
   padding: 1em 3%
-}
-.aBodyRoot :hover {
-  text-decoration: none!important
 }
 .aBodyRoot :visited,
 .tl tbody th :visited,
@@ -1136,6 +1157,9 @@ kbd {
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
+}
+kbd:hover {
+  top: -.1em
 }
 code,
 var {
@@ -1247,6 +1271,8 @@ dl.note dd {
   text-align: right
 }
 .Pager span {
+  position: absolute;
+  top: 1em;
   width: 32%
 }
 .Pager i {
@@ -1298,10 +1324,8 @@ dl.note dd {
   border-color: #3b5999;
   color: #3b5999
 }
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:focus {
+.SocialBtns .fb:focus,
+.SocialBtns .pt:focus {
   border-color: #fff
 }
 .SocialBtns .hb:link {
@@ -1366,10 +1390,6 @@ code .dec,
 code .lit {
   color: #3387cc
 }
-code .pln,
-code .pun {
-  color: #fff
-}
 code .atn {
   color: #bdb76b
 }
@@ -1397,9 +1417,6 @@ li.L8 {
   height: auto;
   max-width: 100%
 }
-.box .jsCapLarge {
-  float: none
-}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1414,8 +1431,10 @@ li.L8 {
   a img {
     border-width: 2px
   }
-  .LinkList :hover,
-  .RichLink-sep :hover,
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
   .tl tr code,
   .tl tr var,
   blockquote tbody th code,

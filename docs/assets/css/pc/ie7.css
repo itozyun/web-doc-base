@@ -11,16 +11,11 @@ li p,
 tr p {
   line-height: 1.2
 }
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:visited:active,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:visited:active,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:visited:active,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:visited:active,
-.baseColor .btn:link:active,
-.baseColor .btn:visited:active,
+.SocialBtns .hb:active,
+.SocialBtns .ln:active,
+.SocialBtns .pk:active,
+.SocialBtns .tw:active,
+.baseColor .btn:active,
 a,
 a img {
   border-color: #fdeeb7
@@ -89,9 +84,20 @@ thead th {
   background: #8a7322;
   color: #fdeeb7
 }
+.Header,
+.Header h1,
+.aa,
+.btn,
+input {
+  line-height: 1
+}
 .baseColor,
 .medal {
   background: #fdeeb7
+}
+.AHead h1,
+th {
+  text-align: left
 }
 .AAuthor,
 .Comment p,
@@ -126,21 +132,6 @@ th {
 .tl th {
   vertical-align: top
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  zoom: 1
-}
-.AHead h1,
-th {
-  text-align: left
-}
 body,
 input,
 textarea {
@@ -152,18 +143,12 @@ samp,
 var {
   font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
 }
-.AHead-labels a:link:active,
-.AHead-labels a:visited:active,
-.Subscribe .atom:link:active,
-.Subscribe .atom:visited:active,
-.Subscribe .fl:link:active,
-.Subscribe .fl:visited:active,
-.Subscribe .rss:link:active,
-.Subscribe .rss:visited:active,
-.Subscribe .stm:link:active,
-.Subscribe .stm:visited:active,
-.btn:link:active,
-.btn:visited:active,
+.AHead-labels :active,
+.Subscribe .atom:active,
+.Subscribe .fl:active,
+.Subscribe .rss:active,
+.Subscribe .stm:active,
+.btn:active,
 .ribbon :link img,
 .ribbon :visited img,
 .ribbon a {
@@ -193,6 +178,19 @@ a:active img {
   text-decoration: none!important;
   background: #06284e;
   color: #fdeeb7
+}
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
+.Label :link:hover,
+.Label :visited:hover,
+.aBodyRoot :link:hover,
+.aBodyRoot :visited:hover,
+.aBodyRoot a:active,
+:link,
+:visited,
+a:active,
+ins {
+  text-decoration: none
 }
 .Cover h2,
 a:active code,
@@ -242,20 +240,15 @@ tbody :hover th {
   height: 0;
   width: 0
 }
+.Cover-btn :active i,
 .Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :visited:active i,
-.Magazine-jump :link i,
-.Magazine-jump :link:active i,
-.Magazine-jump :visited:active i {
+.Magazine-jump :active i,
+.Magazine-jump :link i {
   border-color: transparent #fdeeb7
 }
 .Cover-btn :visited i,
 .Magazine-jump :visited i {
   border-color: transparent #06284e
-}
-:active {
-  outline: transparent solid 2px
 }
 dt {
   font-weight: 700;
@@ -287,25 +280,11 @@ var {
 pre {
   margin: 1em 0
 }
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label :link:hover,
-.Label :visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
-.aBodyRoot a:active,
-:link,
-:visited,
-a:active,
-ins {
-  text-decoration: none
-}
 del {
   text-decoration: line-through
 }
 input {
   font-size: 1em;
-  line-height: 1;
   height: 1em
 }
 textarea {
@@ -489,9 +468,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
 .hscroll pre,
 dd blockquote,
 dd dl,
@@ -641,7 +617,7 @@ tbody :hover th a:active {
 .r {
   text-align: right
 }
-.Attribution,
+.btn,
 .c,
 .caption {
   text-align: center
@@ -668,7 +644,13 @@ strong {
 .lM2 {
   width: 47.91%
 }
-.AHead-labels a:link,
+.btn {
+  border-width: .1em;
+  cursor: pointer;
+  padding: .45em 1em;
+  zoom: 1
+}
+.AHead-labels :link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -808,18 +790,29 @@ input.btn {
 .RichLink br {
   display: none
 }
-.AHead-labels a:visited {
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a {
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  zoom: 1;
+  margin: 0 0 .5em
+}
+.AHead-labels :visited {
   background: #062241;
   border-color: #ffeba1;
   color: #ffeba1
 }
-.AHead-labels a:link:hover {
+.AHead-labels :link:hover {
   border-color: #bbe;
   color: #062241
 }
-.Attribution,
-.Magazine-item {
-  padding: 1em 0
+.Attribution {
+  padding: 1em 0;
+  text-align: center
 }
 .Attribution small,
 .caption,
@@ -945,6 +938,9 @@ pre var {
 .LinkList :active:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0
+}
 .Magazine-date {
   display: block;
   float: left;
@@ -1027,11 +1023,6 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.2
-}
-.Header,
-.Header h1,
-.aa {
-  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1374,10 +1365,8 @@ dl.note dd {
   border-color: #3b5999;
   color: #3b5999
 }
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:visited:active,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:visited:active {
+.SocialBtns .fb:active,
+.SocialBtns .pt:active {
   border-color: #fff
 }
 .SocialBtns .hb:link {
@@ -1471,9 +1460,6 @@ li.L8 {
   height: auto;
   max-width: 100%;
   border-width: 0
-}
-.box .jsCapLarge {
-  float: none
 }
 .jsPicaLarge {
   zoom: 1;

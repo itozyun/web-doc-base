@@ -10,6 +10,11 @@ a,
 a img {
   border-color: #fdeeb7
 }
+.ribbon :link img,
+.ribbon :visited img,
+.ribbon a {
+  border-color: #062241
+}
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -78,6 +83,10 @@ thead th {
 .medal {
   background: #fdeeb7
 }
+.AHead h1,
+th {
+  text-align: left
+}
 code,
 kbd,
 var {
@@ -104,35 +113,6 @@ th {
 .Search,
 :hover img {
   position: relative
-}
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em;
-  height: 2.1em
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.ABody h2,
-.ABody h2 *,
-.AHead-labels a:active,
-.Cover h2,
-.SocialBtns :active,
-.Subscribe a:active,
-.btn:active {
-  border-color: #0d5bb5
-}
-.ribbon :link img,
-.ribbon :visited img,
-.ribbon a {
-  border-color: #062241
 }
 body,
 input,
@@ -228,9 +208,6 @@ a:active var {
   background: #08366b;
   color: #fed33b
 }
-:active {
-  outline: 0
-}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -242,8 +219,17 @@ q {
 small {
   font-size: 75%
 }
+input,
+textarea {
+  font-size: 1em
+}
 img {
   height: auto
+}
+.btn,
+input {
+  line-height: 1;
+  height: 2.1em
 }
 cite,
 code,
@@ -262,13 +248,7 @@ pre {
 del {
   text-decoration: line-through
 }
-input {
-  font-size: 1em;
-  height: 2.1em;
-  line-height: 1
-}
 textarea {
-  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -396,6 +376,15 @@ tbody th,
 th {
   border-width: 0 0 1px
 }
+.ABody h2,
+.ABody h2 *,
+.AHead-labels a:active,
+.Cover h2,
+.SocialBtns :active,
+.Subscribe a:active,
+.btn:active {
+  border-color: #0d5bb5
+}
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
@@ -430,9 +419,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
 .hscroll pre,
 dd blockquote,
 dd dl,
@@ -560,7 +546,7 @@ blockquote tfoot th {
 .r {
   text-align: right
 }
-.Attribution,
+.btn,
 .c,
 .caption {
   text-align: center
@@ -587,7 +573,12 @@ strong {
 .lM2 {
   width: 47.91%
 }
-.AHead-labels a:link,
+.btn {
+  border-width: .1em;
+  cursor: pointer;
+  padding: .45em 1em
+}
+.AHead-labels :link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -723,17 +714,29 @@ input.btn {
 .RichLink br {
   display: none
 }
-.AHead-labels a:visited {
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a {
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  height: 2.1em;
+  margin: 0 0 .5em
+}
+.AHead-labels :visited {
   background: #062241;
   border-color: #ffeba1;
   color: #ffeba1
 }
-.AHead-labels a:link:hover {
+.AHead-labels :link:hover {
   border-color: #bbe;
   color: #062241
 }
 .Attribution {
-  padding: 1em 0
+  padding: 1em 0;
+  text-align: center
 }
 .Attribution small,
 .caption,
@@ -1302,9 +1305,6 @@ dl.note dd {
 .jsPicaLarge img {
   width: 100%;
   height: auto
-}
-.box .jsCapLarge {
-  float: none
 }
 .baseColor .btn:link {
   background: #24c;

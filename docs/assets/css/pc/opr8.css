@@ -4,22 +4,23 @@ sub,
 sup {
   font-size: 75%
 }
+*,
+.tl td,
+[type=submit]:focus,
+h2:after {
+  border-style: solid
+}
 body,
 dd p,
 li p,
 tr p {
   line-height: 1.2
 }
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:focus,
+.SocialBtns .hb:focus,
+.SocialBtns .ln:focus,
+.SocialBtns .pk:focus,
+.SocialBtns .tw:focus,
+.baseColor .btn:focus,
 a,
 a img {
   border-color: #fdeeb7
@@ -74,6 +75,10 @@ thead th {
 .medal {
   background: #fdeeb7
 }
+.AHead h1,
+th {
+  text-align: left
+}
 .Magazine-date,
 .aa {
   font-family: monospace
@@ -120,38 +125,6 @@ sup {
 .lW {
   overflow: hidden
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: inline-block;
-  vertical-align: top;
-  border-width: .1em;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1.9;
-  padding: 0 1em;
-  height: 2.1em
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.AHead-labels a:focus,
-.SocialBtns :focus,
-.Subscribe a:focus,
-.btn:focus {
-  border-color: #0d5bb5;
-  color: #0d5bb5;
-  outline: 0;
-  border-style: dotted
-}
-*,
-:after,
-:before,
-[type=submit]:focus {
-  border-style: solid
-}
 body,
 input,
 textarea {
@@ -172,18 +145,12 @@ input,
 textarea {
   border-color: #e7d182
 }
-.AHead-labels a:link:focus,
-.AHead-labels a:visited:focus,
-.Subscribe .atom:link:focus,
-.Subscribe .atom:visited:focus,
-.Subscribe .fl:link:focus,
-.Subscribe .fl:visited:focus,
-.Subscribe .rss:link:focus,
-.Subscribe .rss:visited:focus,
-.Subscribe .stm:link:focus,
-.Subscribe .stm:visited:focus,
-.btn:link:focus,
-.btn:visited:focus,
+.AHead-labels :focus,
+.Subscribe .atom:focus,
+.Subscribe .fl:focus,
+.Subscribe .rss:focus,
+.Subscribe .stm:focus,
+.btn:focus,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #062241
@@ -203,6 +170,19 @@ a:focus img {
   text-decoration: none!important;
   background: #06284e;
   color: #fdeeb7
+}
+.BlogArchive :link:hover,
+.BlogArchive :visited:hover,
+.Label :link:hover,
+.Label :visited:hover,
+.aBodyRoot :link:hover,
+.aBodyRoot :visited:hover,
+.aBodyRoot a:focus,
+:link,
+:visited,
+a:focus,
+ins {
+  text-decoration: none
 }
 .LinkList :link,
 .RichLink-sep :link {
@@ -251,7 +231,11 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
+.AHead-labels a,
 .Cover h2,
+.SocialBtns *,
+.Subscribe a,
+.btn,
 .tl td,
 .tl th {
   vertical-align: top
@@ -270,6 +254,10 @@ sub {
 img {
   height: auto
 }
+.btn,
+input {
+  height: 2.1em
+}
 cite,
 code,
 dfn,
@@ -284,19 +272,6 @@ var {
 .hscroll,
 pre {
   margin: 1em 0
-}
-.BlogArchive :link:hover,
-.BlogArchive :visited:hover,
-.Label :link:hover,
-.Label :visited:hover,
-.aBodyRoot :link:hover,
-.aBodyRoot :visited:hover,
-.aBodyRoot a:focus,
-:link,
-:visited,
-a:focus,
-ins {
-  text-decoration: none
 }
 del {
   text-decoration: line-through
@@ -334,8 +309,10 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
+.Header,
+.Header h1,
+.aa,
 input {
-  height: 2.1em;
   line-height: 1
 }
 textarea {
@@ -343,9 +320,7 @@ textarea {
 }
 *,
 .tl,
-.tl th,
-:after,
-:before {
+.tl th {
   border-width: 0
 }
 html {
@@ -367,6 +342,7 @@ body {
   background: #062241;
   color: #06284e
 }
+.btn,
 p {
   line-height: 1.9
 }
@@ -377,6 +353,9 @@ p {
 :visited:hover,
 a:focus:hover {
   text-decoration: underline
+}
+a:focus {
+  background-color: Highlight!important
 }
 .tl tbody th :link,
 .tl tbody th :link:hover,
@@ -428,9 +407,6 @@ a:active * {
 a:active {
   background-color: #0d5bb5!important
 }
-a:focus {
-  background-color: Highlight!important
-}
 a:focus * {
   color: HighlightText!important
 }
@@ -476,6 +452,12 @@ h2:after,
 tfoot th {
   border-width: 2px 0 0
 }
+.Search input,
+.btn,
+input,
+textarea {
+  border-width: .1em
+}
 .ABody h2,
 .ABody h2 *,
 .Cover h2,
@@ -512,9 +494,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
 .hscroll pre,
 dd blockquote,
 dd dl,
@@ -543,11 +522,6 @@ li ol,
 li ul {
   margin-top: 0;
   margin-bottom: 0
-}
-.Search input,
-input,
-textarea {
-  border-width: .1em
 }
 h2 {
   margin: 0;
@@ -672,7 +646,7 @@ tbody :hover td {
 .r {
   text-align: right
 }
-.Attribution,
+.btn,
 .c {
   text-align: center
 }
@@ -715,7 +689,21 @@ strong {
 .lM2 {
   width: 47.91%
 }
-.AHead-labels a:link,
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 1em
+}
+.AHead-labels a:focus,
+.SocialBtns :focus,
+.Subscribe a:focus,
+.btn:focus {
+  border-color: #0d5bb5;
+  color: #0d5bb5;
+  outline: 0;
+  border-style: dotted
+}
+.AHead-labels :link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -858,18 +846,30 @@ strong {
 .RichLink br {
   display: none
 }
-.AHead-labels a:visited {
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a {
+  display: inline-block;
+  border-width: .1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.9;
+  padding: 0 1em;
+  height: 2.1em;
+  margin: 0 0 .5em
+}
+.AHead-labels :visited {
   background: #062241;
   border-color: #ffeba1;
   color: #ffeba1
 }
-.AHead-labels a:link:hover {
+.AHead-labels :link:hover {
   border-color: #bbe;
   color: #062241
 }
-.Attribution,
-.Magazine-item {
-  padding: 1em 0
+.Attribution {
+  padding: 1em 0;
+  text-align: center
 }
 .Attribution small,
 .prettyprint code {
@@ -982,6 +982,9 @@ pre var {
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0
+}
 .Magazine-date {
   display: block;
   float: left;
@@ -1059,11 +1062,6 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.2
-}
-.Header,
-.Header h1,
-.aa {
-  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1239,14 +1237,14 @@ code,
 var {
   padding: .1em .4em
 }
-a:focus code,
-a:focus var {
-  background: Highlight
-}
 pre code,
 pre var {
   padding: 0;
   margin: 0
+}
+a:focus code,
+a:focus var {
+  background: Highlight
 }
 .links [href]:before {
   content: ">";
@@ -1312,8 +1310,7 @@ dl.note dd {
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #e7d182;
-  border-style: solid
+  border-color: #e7d182
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1400,10 +1397,8 @@ dl.note dd {
   border-color: #3b5999;
   color: #3b5999
 }
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:focus {
+.SocialBtns .fb:focus,
+.SocialBtns .pt:focus {
   border-color: #fff
 }
 .SocialBtns .hb:link {
@@ -1496,9 +1491,6 @@ li.L8 {
   height: auto;
   max-width: 100%;
   box-sizing: border-box
-}
-.box .jsCapLarge {
-  float: none
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1696,8 +1688,7 @@ projection {
   p {
     line-height: 1.4
   }
-  .baseColor .btn:link:focus,
-  .baseColor .btn:visited:focus,
+  .baseColor .btn:focus,
   a,
   tbody th {
     border-color: #000
@@ -2141,18 +2132,12 @@ projection {
   .SocialBtns .tw :visited {
     background: #000!important
   }
-  .SocialBtns .fb:link:focus,
-  .SocialBtns .fb:visited:focus,
-  .SocialBtns .hb:link:focus,
-  .SocialBtns .hb:visited:focus,
-  .SocialBtns .ln:link:focus,
-  .SocialBtns .ln:visited:focus,
-  .SocialBtns .ok:link:focus,
-  .SocialBtns .ok:visited:focus,
-  .SocialBtns .pt:link:focus,
-  .SocialBtns .pt:visited:focus,
-  .SocialBtns .tw:link:focus,
-  .SocialBtns .tw:visited:focus {
+  .SocialBtns .fb:focus,
+  .SocialBtns .hb:focus,
+  .SocialBtns .ln:focus,
+  .SocialBtns .ok:focus,
+  .SocialBtns .pt:focus,
+  .SocialBtns .tw:focus {
     border-color: #000!important
   }
 }

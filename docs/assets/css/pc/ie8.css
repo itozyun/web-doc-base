@@ -11,26 +11,16 @@ li p,
 tr p {
   line-height: 1.2
 }
-.SocialBtns .hb:link:active,
-.SocialBtns .hb:link:focus,
-.SocialBtns .hb:visited:active,
-.SocialBtns .hb:visited:focus,
-.SocialBtns .ln:link:active,
-.SocialBtns .ln:link:focus,
-.SocialBtns .ln:visited:active,
-.SocialBtns .ln:visited:focus,
-.SocialBtns .pk:link:active,
-.SocialBtns .pk:link:focus,
-.SocialBtns .pk:visited:active,
-.SocialBtns .pk:visited:focus,
-.SocialBtns .tw:link:active,
-.SocialBtns .tw:link:focus,
-.SocialBtns .tw:visited:active,
-.SocialBtns .tw:visited:focus,
-.baseColor .btn:link:active,
-.baseColor .btn:link:focus,
-.baseColor .btn:visited:active,
-.baseColor .btn:visited:focus,
+.SocialBtns .hb:active,
+.SocialBtns .hb:focus,
+.SocialBtns .ln:active,
+.SocialBtns .ln:focus,
+.SocialBtns .pk:active,
+.SocialBtns .pk:focus,
+.SocialBtns .tw:active,
+.SocialBtns .tw:focus,
+.baseColor .btn:active,
+.baseColor .btn:focus,
 a,
 a img,
 a:active .ico-author:after,
@@ -115,6 +105,17 @@ th {
 tbody th {
   background: #e7d182
 }
+.Header,
+.Header h1,
+.aa,
+.btn,
+input {
+  line-height: 1
+}
+.AHead h1,
+th {
+  text-align: left
+}
 .links,
 .mspacer,
 blockquote,
@@ -166,34 +167,6 @@ th {
 .tl th {
   vertical-align: top
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
-.btn {
-  display: inline-block;
-  border-width: 2px;
-  cursor: pointer;
-  text-align: center;
-  line-height: 1;
-  padding: .45em 1em
-}
-.AHead h1,
-th {
-  text-align: left
-}
-.AHead-labels a:active,
-.AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
-.Subscribe a:active,
-.Subscribe a:focus,
-.btn:active,
-.btn:focus {
-  border-color: #0d5bb5;
-  color: #0d5bb5;
-  outline: 0;
-  border-style: dotted
-}
 body,
 input,
 textarea {
@@ -211,30 +184,18 @@ blockquote :link img,
 blockquote :visited img {
   border-color: #e7d182
 }
-.AHead-labels a:link:active,
-.AHead-labels a:link:focus,
-.AHead-labels a:visited:active,
-.AHead-labels a:visited:focus,
-.Subscribe .atom:link:active,
-.Subscribe .atom:link:focus,
-.Subscribe .atom:visited:active,
-.Subscribe .atom:visited:focus,
-.Subscribe .fl:link:active,
-.Subscribe .fl:link:focus,
-.Subscribe .fl:visited:active,
-.Subscribe .fl:visited:focus,
-.Subscribe .rss:link:active,
-.Subscribe .rss:link:focus,
-.Subscribe .rss:visited:active,
-.Subscribe .rss:visited:focus,
-.Subscribe .stm:link:active,
-.Subscribe .stm:link:focus,
-.Subscribe .stm:visited:active,
-.Subscribe .stm:visited:focus,
-.btn:link:active,
-.btn:link:focus,
-.btn:visited:active,
-.btn:visited:focus,
+.AHead-labels :active,
+.AHead-labels :focus,
+.Subscribe .atom:active,
+.Subscribe .atom:focus,
+.Subscribe .fl:active,
+.Subscribe .fl:focus,
+.Subscribe .rss:active,
+.Subscribe .rss:focus,
+.Subscribe .stm:active,
+.Subscribe .stm:focus,
+.btn:active,
+.btn:focus,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #062241
@@ -255,6 +216,10 @@ a:focus img {
   text-decoration: none!important;
   background: #06284e;
   color: #fdeeb7
+}
+a:active,
+a:focus {
+  background-color: #0d5bb5!important
 }
 .Cover h2,
 a:active code,
@@ -304,16 +269,24 @@ tbody :hover th {
   display: inline-block;
   margin-left: .5em
 }
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.Search,
+.Search-txt,
+.commonForm,
+a iframe,
+a img,
+h2:after {
+  display: block
+}
+.Cover-btn :active i,
+.Cover-btn :focus i,
 .Cover-btn :link i,
-.Cover-btn :link:active i,
-.Cover-btn :link:focus i,
-.Cover-btn :visited:active i,
-.Cover-btn :visited:focus i,
+.Magazine-jump :active i,
+.Magazine-jump :focus i,
 .Magazine-jump :link i,
-.Magazine-jump :link:active i,
-.Magazine-jump :link:focus i,
-.Magazine-jump :visited:active i,
-.Magazine-jump :visited:focus i,
 a:active .ico-label:after,
 a:focus .ico-label:after {
   border-color: transparent #fdeeb7
@@ -360,10 +333,10 @@ pre {
 .Label :visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
+.aBodyRoot a:active,
 .aBodyRoot a:focus,
 :link,
 :visited,
-a:active,
 a:focus,
 ins {
   text-decoration: none
@@ -374,7 +347,6 @@ del {
 input {
   font-size: 1em;
   box-sizing: content-box;
-  line-height: 1;
   height: 1em
 }
 textarea {
@@ -382,9 +354,7 @@ textarea {
   overflow: auto;
   margin: 0
 }
-*,
-:after,
-:before {
+* {
   border-style: solid;
   border-width: 0
 }
@@ -469,10 +439,6 @@ a:focus * {
   color: #b3f;
   border-color: #b3f
 }
-a:active,
-a:focus {
-  background-color: #0d5bb5!important
-}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #06284e;
@@ -532,17 +498,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
-.commonForm,
-a iframe,
-a img {
-  display: block
-}
 ol,
 ul {
   padding-left: 2em
@@ -562,9 +517,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.AHead-labels a,
-.SocialBtns *,
-.Subscribe a,
 .hscroll pre,
 dd blockquote,
 dd dl,
@@ -618,8 +570,8 @@ h2:after {
   position: absolute;
   left: 0;
   bottom: -2px;
-  content: " ";
-  display: block
+  border-style: solid;
+  content: " "
 }
 .wn:after {
   background: #c00!important
@@ -732,7 +684,7 @@ tbody :hover th a:focus {
 .r {
   text-align: right
 }
-.Attribution,
+.btn,
 .c {
   text-align: center
 }
@@ -758,7 +710,26 @@ strong {
 .lM2 {
   width: 47.91%
 }
-.AHead-labels a:link,
+.btn {
+  display: inline-block;
+  border-width: 2px;
+  cursor: pointer;
+  padding: .45em 1em
+}
+.AHead-labels a:active,
+.AHead-labels a:focus,
+.SocialBtns :active,
+.SocialBtns :focus,
+.Subscribe a:active,
+.Subscribe a:focus,
+.btn:active,
+.btn:focus {
+  border-color: #0d5bb5;
+  color: #0d5bb5;
+  outline: 0;
+  border-style: dotted
+}
+.AHead-labels :link,
 .btn:link {
   background: #bbe;
   border-color: #bbe;
@@ -820,6 +791,7 @@ strong {
 .ico-sylinder:before {
   text-indent: -1em;
   position: absolute;
+  border-style: solid;
   margin-top: .1em;
   content: " ";
   display: block
@@ -1101,18 +1073,29 @@ kbd {
 .aa {
   font-family: monospace
 }
-.AHead-labels a:visited {
+.AHead-labels a,
+.SocialBtns *,
+.Subscribe a {
+  display: inline-block;
+  border-width: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+  padding: .45em 1em;
+  margin: 0 0 .5em
+}
+.AHead-labels :visited {
   background: #062241;
   border-color: #ffeba1;
   color: #ffeba1
 }
-.AHead-labels a:link:hover {
+.AHead-labels :link:hover {
   border-color: #bbe;
   color: #062241
 }
-.Attribution,
-.Magazine-item {
-  padding: 1em 0
+.Attribution {
+  padding: 1em 0;
+  text-align: center
 }
 .Attribution small,
 .prettyprint code {
@@ -1226,6 +1209,9 @@ pre var {
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0
+}
 .Magazine-date {
   display: block;
   float: left;
@@ -1307,11 +1293,6 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.2
-}
-.Header,
-.Header h1,
-.aa {
-  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1708,14 +1689,10 @@ dl.note dd {
   border-color: #3b5999;
   color: #3b5999
 }
-.SocialBtns .fb:link:active,
-.SocialBtns .fb:link:focus,
-.SocialBtns .fb:visited:active,
-.SocialBtns .fb:visited:focus,
-.SocialBtns .pt:link:active,
-.SocialBtns .pt:link:focus,
-.SocialBtns .pt:visited:active,
-.SocialBtns .pt:visited:focus {
+.SocialBtns .fb:active,
+.SocialBtns .fb:focus,
+.SocialBtns .pt:active,
+.SocialBtns .pt:focus {
   border-color: #fff
 }
 .SocialBtns .hb:link {
@@ -1809,9 +1786,6 @@ li.L8 {
   height: auto;
   max-width: 100%;
   box-sizing: border-box
-}
-.box .jsCapLarge {
-  float: none
 }
 .baseColor .btn:link {
   background: #24c;
