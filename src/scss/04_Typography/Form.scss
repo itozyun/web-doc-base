@@ -26,18 +26,17 @@
 }
 
 form * {
-    @if( $IS_Opera7x == false and    // Opera 7.2, フォーム部品に触れなくなる
-         $IS_LTE_WIN_IE7 == false ){ // 部品に対して :active, :hover が無い
-        @include active-focus-pseudo-class {
-            color        : $COLOR_ACCENT;
-            border-color : $COLOR_ACCENT;
-        }
+    @include active-focus-pseudo-class( false ) {
+        color        : $COLOR_ACCENT;
+        border-color : $COLOR_ACCENT;
     }
 
     &:focus {
-        @if( $UA_Opera70 ){
-            color        : $COLOR_ACCENT;
-            border-color : $COLOR_ACCENT;
+        @if( $IS_Opera7x ){
+            color : $COLOR_ACCENT;
+            @if( $UA_Opera70 ){
+                border-color : $COLOR_ACCENT;
+            }
         }
     }
     &:invalid {

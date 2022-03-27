@@ -107,21 +107,14 @@
                             left : 0.5em;
                         }
                     }
-                    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-                        .Pager :active i {
-                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                border-color : transparent #fff;
-                            } @else {
-                                border-color : $COLOR_ACCENT #fff;
-                            }
-                        }
-                    }
-                    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-                        .Pager :focus i {
-                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                border-color : transparent #fff;
-                            } @else {
-                                border-color : $COLOR_ACCENT #fff;
+                    .Pager * {
+                        @include active-focus-pseudo-class {
+                            i {
+                                @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                                    border-color : transparent #fff;
+                                } @else {
+                                    border-color : $COLOR_ACCENT #fff;
+                                }
                             }
                         }
                     }
@@ -144,21 +137,15 @@
                             }
                         }
                     }
-                    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-                        .Pager-top :active i {
-                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                border-color : #fff transparent;
-                            } @else {
-                                border-color : #fff $COLOR_ACCENT;
-                            }
-                        }
-                    }
-                    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-                        .Pager-top :focus i {
-                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                border-color : #fff transparent;
-                            } @else {
-                                border-color : #fff $COLOR_ACCENT;
+
+                    .Pager-top * {
+                        @include active-focus-pseudo-class {
+                            i {
+                                @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                                    border-color : #fff transparent;
+                                } @else {
+                                    border-color : #fff $COLOR_ACCENT;
+                                }
                             }
                         }
                     }

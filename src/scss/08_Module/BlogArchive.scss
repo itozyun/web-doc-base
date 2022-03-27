@@ -35,7 +35,7 @@
             :hover {
                 text-decoration : none;
             }
-        } @else {
+        } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
             :link:hover, :visited:hover {
                 text-decoration : none;
             }

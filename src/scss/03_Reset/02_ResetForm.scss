@@ -23,7 +23,7 @@ input, textarea {
 @if( $UA_MacIE5 == false and ( $FORCED_COLORS_SUPPORT == false or $UA_Modern or $UA_Gck130-190 ) ){
     @include media(screen) {
         input, textarea {
-            @if( $UA_Opera70 ){
+            @if( $IS_Opera7x ){
                 background : #fff;
                 color      : $COLOR_Light_text;
             } @else if( $UA_Opera72 ){
@@ -35,11 +35,7 @@ input, textarea {
             }
         }
         [type=submit] {
-            @if( $UA_Opera72 ){
-                color : $COLOR_Light_text;
-            } @else {
-                background : $COLOR_Light_casual_fill;
-            }
+            background : $COLOR_Light_casual_fill;
             &:focus {
                 @if( $UA_Opera72 ){
                     top : 0; // ポロパティと値は何でも良い, ハイコントラストモード時に、ボタンがフォーカスされた際に背景が黒くなるのを防ぐ
@@ -107,7 +103,7 @@ input[type=submit] {
 
 [type=submit] {
     @if( $UA_Opera72 ){
-        border : 0;
+        // border : 0;
     }
 
     &:focus {

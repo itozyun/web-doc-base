@@ -41,20 +41,21 @@
         font-style : normal;
     }
 
-    @if( $CANUSE_ATTRIBUTE_SELECTOR ){
-        q[title], q[cite] {
-            border-bottom : 1px dotted;
-        }
-    }
-
-    dfn,
-    /* //_{#can-attr-selector */
-    abbr[title],
-    /* //_}#can-attr-selector */
-    acronym {
+    %HelpContent {
         border-bottom   : 1px dotted;
         text-decoration : none;
         cursor          : help;
+    }
+    dfn, acronym { @extend %HelpContent; }
+
+    @if( $CANUSE_ATTRIBUTE_SELECTOR ){
+        @if( $CANUSE_ATTRIBUTE_SELECTOR ){
+            abbr[title] { @extend %HelpContent; }
+        }
+
+        q[title], q[cite] {
+            border-bottom : 1px dotted;
+        }
     }
 
 /*  Block Level Elements

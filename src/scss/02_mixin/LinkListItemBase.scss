@@ -55,7 +55,7 @@
                 background : $COLOR_Light_casual_fill;
                 color      : $COLOR_Light_text;
             }
-        } @else {
+        } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
             :link:hover, :visited:hover {
                 background : $COLOR_Light_casual_fill;
                 color      : $COLOR_Light_text;
@@ -103,7 +103,7 @@
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
             }
-        } @else {
+        } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
             .ribbon & :link:hover, .ribbon & :visited:hover {
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
@@ -160,8 +160,8 @@
             :hover {
                 text-decoration : underline !important;
             }
-        } @else {
-            a:hover {
+        } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
+            :link:hover, :visited:hover {
                 text-decoration : underline !important;
             }
         }

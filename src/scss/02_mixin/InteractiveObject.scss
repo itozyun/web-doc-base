@@ -19,10 +19,10 @@
         }
     }
 
-    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS or $ACTIVE_PSEUDO_CLASS_ONLY_LINK ){
         a:active & { border-color : $COLOR_ACCENT !important; }
     }
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
         a:focus & { border-color : $COLOR_ACCENT !important; }
     }
 
@@ -32,7 +32,7 @@
                 position : relative;
                 top      : 2px;
             }
-        } @else {
+        } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
             :link:hover &, :visited:hover & {
                 position : relative;
                 top      : 2px;
@@ -54,10 +54,10 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
-        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+        @if( $CANUSE_ACTIVE_PSEUDO_CLASS or $ACTIVE_PSEUDO_CLASS_ONLY_LINK ){
             a:active & { border-style : dotted; }
         }
-        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+        @if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
             a:focus & { border-style : dotted; }
         }
     }

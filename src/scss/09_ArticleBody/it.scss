@@ -34,21 +34,6 @@
             padding : .1em .4em;
         }
 
-        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-            a:active & {
-                background : $COLOR_ACCENT;
-            }
-        }
-        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-            a:focus & {
-                @if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
-                    background : Highlight;
-                } @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
-                    background : $COLOR_ACCENT;
-                }
-            }
-        }
-
         pre & {
             background : none !important;
             padding    : 0;
@@ -65,6 +50,18 @@
             thead &, blockquote tbody th &, .tl tr & {
                 background : $COLOR_Light_casual_fill;
                 color      : $COLOR_Light_text;
+            }
+        }
+    }
+
+    a {
+        @include active-focus-pseudo-class {
+            code, var {
+                @if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
+                    background : Highlight;
+                } @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+                    background : $COLOR_ACCENT;
+                }
             }
         }
     }

@@ -3,24 +3,20 @@
 /* 記事の外では 下線なし -> hover -> 下線あり */
 :link, :visited { text-decoration : none; }
 
-a {
-    @include active-focus-pseudo-class {
-        text-decoration : none;
-    }
-}
-
 @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
     :hover { text-decoration : underline; }
-} @else {
+} @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
     :link:hover, :visited:hover { text-decoration : underline; }
 }
 
 @if( $ACTIVE_ON_LINK_BEHAVES_FOCUS ){
+    a:active { text-decoration : none; }
     a:active:hover { text-decoration : underline; }
-} @else if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+} @else if( $CANUSE_ACTIVE_PSEUDO_CLASS or $ACTIVE_PSEUDO_CLASS_ONLY_LINK ){
     a:active { text-decoration : underline; }
 }
-@if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+@if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
+    a:focus { text-decoration : none; }
     a:focus:hover { text-decoration : underline; }
 }
 
@@ -48,13 +44,15 @@ a {
 :visited       {
     color        : $COLOR_Light_text;
 }
-:link:hover    {
-    color        : $COLOR_Light_hover;
-    border-color : $COLOR_Light_hover;
-}
-:visited:hover {
-    color        : $COLOR_Light_visited_hover;
-    border-color : $COLOR_Light_visited_hover;
+@if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+    :link:hover    {
+        color        : $COLOR_Light_hover;
+        border-color : $COLOR_Light_hover;
+    }
+    :visited:hover {
+        color        : $COLOR_Light_visited_hover;
+        border-color : $COLOR_Light_visited_hover;
+    }
 }
 
 @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
@@ -69,13 +67,15 @@ a {
         :visited       {
             color        : $COLOR_Ribbon_text;
         }
-        :link:hover    {
-            color        : $COLOR_Ribbon_hover;
-            border-color : $COLOR_Ribbon_hover;
-        }
-        :visited:hover {
-            color        : $COLOR_Ribbon_visited_hover;
-            border-color : $COLOR_Ribbon_visited_hover;
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+            :link:hover    {
+                color        : $COLOR_Ribbon_hover;
+                border-color : $COLOR_Ribbon_hover;
+            }
+            :visited:hover {
+                color        : $COLOR_Ribbon_visited_hover;
+                border-color : $COLOR_Ribbon_visited_hover;
+            }
         }
     }
 }

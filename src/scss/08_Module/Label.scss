@@ -38,7 +38,7 @@
                 .Label :hover {
                     text-decoration : none;
                 }
-            } @else {
+            } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
                 .Label {
                     :link:hover, :visited:hover { /* 詳細度の為に a: が必要 */
                         text-decoration : none;

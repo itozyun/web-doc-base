@@ -14,7 +14,7 @@
         color : $COLOR_Light_fill; /* , を消す */
 
         * {
-            @extend %ButtonBase;
+            @include button-base;
             margin : 0 0 0.5em;
         }
 
@@ -59,11 +59,8 @@
                 :visited {
                     background : $COLOR_Dark_fill !important;
                 }
-                @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-                    &:link:active, &:visited:active { border-color : $COLOR_Dark_fill !important; }
-                }
-                @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-                    &:link:focus, &:visited:focus { border-color : $COLOR_Dark_fill !important; }
+                @include active-focus-pseudo-class {
+                    border-color : $COLOR_Dark_fill !important;
                 }
             }
         }

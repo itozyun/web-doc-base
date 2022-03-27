@@ -26,8 +26,8 @@ $SEARCH_BTN_WIDTH : 3em;
     }
     .Search input {
         @if( $UA_Opera70 ){
-            border-width : 0; // 7.2~ にはネイティブの枠線がある, 7.0 にはない
-            outline      : $COLOR_Light_casual_fill solid $INPUT_BORDER_WIDTH; // 7.0 では枠線を outline で書くことができる, 7.2 では意図しない描画になる
+            border-width : 0; // 7.2~ のネイティブの枠線を border-style:solid で上書きし、height を設定するとマウスホバーで要素のサイズが変化するようになる!
+            outline      : $COLOR_Light_casual_fill solid $INPUT_BORDER_WIDTH; // 7.0 では枠線を outline で書くことができる
         }
         @if( $UA_Opera8 ) {
             border-width : $INPUT_BORDER_WIDTH;
@@ -145,15 +145,13 @@ $SEARCH_BTN_WIDTH : 3em;
 
 @if( $UA_Opera8 == false and $IS_Opera7x == false and $IS_OLD_GECKO == false ){
     .Search input {
-        /* //_{#can-hover-pseudo-class */
-        &:hover,
-        /* //_}#can-hover-pseudo-class */
-        &:active
-        /* //_{#can-focus-pseudo-class */
-        , &:focus
-        /* //_}#can-focus-pseudo-class */
-        {
+        @include active-focus-pseudo-class{
             z-index : 1;
+        }
+        @if( $HOVER_PSEUDO_CLASS_ONLY_FORM or $CANUSE_HOVER_PSEUDO_CLASS ){
+            &:hover {
+                z-index : 1;
+            }
         }
     }
 }

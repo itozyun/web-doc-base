@@ -12,7 +12,7 @@
         color : $COLOR_Ribbon_fill; /* , を消す */
     }
         a {
-            @extend %ButtonBase;
+            @include button-base;
             margin : 0 0 0.5em;
         }
         .atom {

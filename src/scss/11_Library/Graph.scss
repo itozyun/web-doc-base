@@ -1,52 +1,50 @@
 
-/* //_{+graph */
-/* //_{#can-svg */
-.graph {
-    @include unbreak-inside;
-    @include responsive-horizontal-margin(1, 1em, 1em);
-    position : relative;
-    padding  : 0 0 1em 0;
-}
-.graph svg {
-    display : block;
-}
-.graph-caption {
-    @include unbreak-after;
-    display      : inline;
-    border-width : 0 0 0 1em;
-    margin       : 0 1em 0 0;
-    padding      : 0 0 0 .5em;
-}
-
-/*  Bable2D
---------------------------------------------------------------------------------------*/
-.graph-labelX div, .graph-labelY div {
-    position : absolute;
-}
-.graph-labelY {
-    position : relative;
-    height   : 100%;
-    padding  : 0 0 0 1em;
-}
-    .graph-labelY div {
-        left   : 0;
-    }
-.graph-labelX {
-    position : relative;
-    margin   : 0 0 0 1em;
-}
-    .graph-labelX div {
-        top        : 0;
-        text-align : center;
-    }
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
+@if( $Option_graph and $CANUSE_SVG ){
     .graph {
-        width  : 50%;
-        margin : 0 auto;
+        @include unbreak-inside;
+        @include responsive-horizontal-margin(1, 1em, 1em);
+        position : relative;
+        padding  : 0 0 1em 0;
+    }
+    .graph svg {
+        display : block;
+    }
+    .graph-caption {
+        @include unbreak-after;
+        display      : inline;
+        border-width : 0 0 0 1em;
+        margin       : 0 1em 0 0;
+        padding      : 0 0 0 .5em;
+    }
+
+    /*  Bable2D
+    --------------------------------------------------------------------------------------*/
+    .graph-labelX div, .graph-labelY div {
+        position : absolute;
+    }
+    .graph-labelY {
+        position : relative;
+        height   : 100%;
+        padding  : 0 0 0 1em;
+    }
+        .graph-labelY div {
+            left   : 0;
+        }
+    .graph-labelX {
+        position : relative;
+        margin   : 0 0 0 1em;
+    }
+        .graph-labelX div {
+            top        : 0;
+            text-align : center;
+        }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .graph {
+            width  : 50%;
+            margin : 0 auto;
+        }
     }
 }
-/* //_}#can-svg */
-/* //_}+graph */

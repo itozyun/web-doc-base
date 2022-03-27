@@ -1,11 +1,11 @@
-@mixin active-focus-pseudo-class {
-    @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+@mixin active-focus-pseudo-class($isLink : true) {
+    @if( $CANUSE_ACTIVE_PSEUDO_CLASS or ($isLink and $ACTIVE_PSEUDO_CLASS_ONLY_LINK) ){
         &:active {
             @content;
         }
     }
 
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS or ( $isLink and $FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false ) ){
         &:focus {
             @content;
         }

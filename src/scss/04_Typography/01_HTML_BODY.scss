@@ -1,13 +1,17 @@
 @charset "utf-8";
 
 /*  global
---------------------------------------------------------------------------------------*/ 
-    * {
-        border-style : solid;
-        border-width : 0;
-    }
-    @if( $CANUSE_CSS_GENERATED_BLOCK ){
-        :before, :after {
+--------------------------------------------------------------------------------------*/
+    @if( $UA_Opera72 ){
+        h2, h3, h4, h5, h6,
+        div, p, blockquote, pre,
+        a, b, hr, img, code, var, kbd,
+        table, th, td {
+            border-style : solid;
+            border-width : 0;
+        }
+    } @else {
+        * {
             border-style : solid;
             border-width : 0;
         }

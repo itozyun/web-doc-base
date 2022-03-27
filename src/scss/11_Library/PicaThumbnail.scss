@@ -1,11 +1,12 @@
 /*  PicaThumbnail
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_fallback){
-    /* //_{#can-focus-pseudo-class */
-    .jsPica:focus,
-    /* //_}#can-focus-pseudo-class */
-    .jsPica:active {
-        outline : 0;
+    @if( $CANUSE_OUTLINE ){
+        .jsPica {
+            @include active-focus-pseudo-class{
+                outline : 0;
+            }
+        }
     }
 }
 
@@ -62,9 +63,7 @@
         }
         @include box-sizing(border-box);
     }
-    /* //_{#can-mq */
-    div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#can-mq */
+        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         .box .jsPicaLarge img {
             @if( $UA_Modern ){
                 float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
@@ -79,13 +78,13 @@
             margin : 0 0 1em;
         }
     }
-    /* //_{#can-mq */
-    div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-    /* //_}#can-mq */
+        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         .box .jsCapLarge {
-            float : none;
-            @if( $UA_Modern ){
-                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+            @if( $CANUSE_CSS_MEDIA_QUERY ){
+                float : none;
+                @if( $UA_Modern ){
+                    margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+                }
             }
         }
 

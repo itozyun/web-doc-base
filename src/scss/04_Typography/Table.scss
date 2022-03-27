@@ -107,11 +107,14 @@ table {
         color        : $fill;
     }
     thead {
-        :link, :link:hover {
+        :link,
+        .aBodyRoot & :visited {
             color : $fill;
-        }
-        .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
-            color : $fill;
+            @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+                &:hover {
+                    color : $fill;
+                }
+            }
         }
     }
 
@@ -140,9 +143,14 @@ table {
             background   : $casual_text;
             border-color : $casual_fill;
             color        : $fill;
-            :link, :link:hover,
-            .aBodyRoot & :visited, .aBodyRoot & :visited:hover {
+            :link,
+            .aBodyRoot & :visited {
                 color : $fill;
+                @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+                    &:hover {
+                        color : $fill;
+                    }
+                }
             }
         }
         td {

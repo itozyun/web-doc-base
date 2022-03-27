@@ -29,18 +29,14 @@ blockquote {
         }
     }
 
-    /* //_{#can-content */
-    blockquote:before,
-    /* //_}#can-content */
-    .js-bqLink {
+    %BlockquoteLink {
         @include responsive-horizontal-margin(2, 0, 0);
         font-size   : 0.875em;
         color       : $COLOR_Light_link;
     }
-    /* //_{#can-content */
-    blockquote:after,
-    /* //_}#can-content */
-    .js-bqCite {
+    .js-bqLink { @extend %BlockquoteLink; }
+
+    %BlockquoteCite {
         @include responsive-horizontal-margin(2, 0, 0);
         @include unbreak-box-with-long-text; /* 長い url 用 */
         display     : block;
@@ -48,13 +44,17 @@ blockquote {
         text-align  : right;
         color       : $COLOR_Light_casual_text;
     }
+    .js-bqCite { @extend %BlockquoteCite; }
+
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        blockquote:before { @extend %BlockquoteLink; }
+        blockquote:after { @extend %BlockquoteCite; }
+    }
 
 /*  WSXGA, print
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA_landscapePrint) {
-    /* //_{#can-content */
     blockquote:before,
-    /* //_}#can-content */
     .js-bqLink {
         margin : 0 0 1em;
     }

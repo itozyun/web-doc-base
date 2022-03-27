@@ -17,40 +17,8 @@
  *  //@ie55
  *  //@ie5win
  *  //@ie5mac
- * 
- * 2.Group
- *  //#opr7x[@opr70,@opr72]
- *  //#old-opera[#opr7x,@opr8,@opr9]
- *  //#old-gecko[@gck097,@gck121,@gck190]
- *  //#legacy[#old-opera,#old-gecko]
- *  //#notie[@modern,#legacy]
- *  //#ie55-[@ie5win,@ie5mac,@ie55]
- *  //#ie6-win[@ie5win,@ie55,@ie6]
- *  //#ie7-win[@ie5win,@ie55,@ie6,@ie7]
- *  //#ie8-win[@ie5win,@ie55,@ie6,@ie7,@ie8]
- *  //#ie89[@ie8,@ie9]
- *  //#ie[@ie5win,@ie55,@ie6,@ie7,@ie8,@ie9]
  *
- *  //#can-mq[@modern,@ie9,@opr9]
- *  //#can-svg[@modern,@ie9]
- *  //#can-content[@modern,#legacy,@ie9,@ie8]
- *  //#can-attr-selector[@modern,#legacy,@ie9,@ie8,@ie7]
- *  //#can-max-min[@modern,#legacy,@ie9,@ie8,@ie7]
- *  //#can-margin-auto[@modern,#legacy,@ie9,@ie8,@ie7,@ie6,@ie55]
- *  //#can-hover-pseudo-class[@modern,@gck121,@gck190,@opr8,@opr9,@ie9,@ie8,@ie7]
- *  //#can-focus-pseudo-class[@modern,@opr8,@opr9,@gck097,@gck121,@gck190,@ie9,@ie8,@ie5mac]
- *  //#can-empty-pseudo-class[@modern,#legacy,@ie9]
- *  //#can-target-pseudo-class[@modern,@gck097,@gck121,@gck190,@ie9]
- *  //#can-inline-block[@modern,#legacy,@ie9,@ie8,@ie5mac]
- *  //#can-box-sizing[@modern,#legacy,@ie9,@ie8]
- *    https://developer.mozilla.org/ja/docs/Web/CSS/box-sizing
- *      -moz-: | -webkit-: Safari 3~5.1, AOPS 2~
- *  //#can-1stChild[@modern,#legacy,@ie9,@ie8,@ie7,@ie5mac]
- *  //#can-lastChild[@modern,#legacy,@ie9]
- *  //#can-1stOfType[@modern,#old-opera,@ie9,@ie8]
- *  //#can-transparent[@modern,#legacy,@ie9,@ie8,@ie7]
- *
- * 3.Options
+ * 2.Options
  *  //+baseFontSize18
  *  //+mobileOnly
  *  //+SocialBtns
@@ -246,21 +214,21 @@
     $CANUSE_HOVER_PSEUDO_CLASS        : $UA_Modern or $IS_OLD_GECKO or $UA_Opera72 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
 
 // :active
-    $ACTIVE_ON_LINK_BEHAVES_FOCUS     : $IS_LTE_WIN_IE6; // a:active を実装するがそのふるまいは a:focus
+    $ACTIVE_ON_LINK_BEHAVES_FOCUS     : $IS_LTE_WIN_IE7; // a:active を実装するがそのふるまいは a:focus
     $ACTIVE_PSEUDO_CLASS_ONLY_LINK    : $IS_LTE_WIN_IE7;
     $FOCUS_APPLIED_TO_ACTIVE          : $UA_Gck-097 or $UA_Gck101-121; // Gecko ~1.7, :focus のスタイルが :active にも適用される.
-    $CANUSE_ACTIVE_PSEUDO_CLASS       : $UA_Modern or $UA_Gck130-190 or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko ~1.7, :active のスタイルが :focus と同じ, 1.8 以降両方に設定が必要
+    $CANUSE_ACTIVE_PSEUDO_CLASS       : $UA_Modern or $UA_Gck130-190 or $IS_IE8_OR_9 or $UA_MacIE5;
 
 // :focus
     $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.
     $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS   : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない
-    $FOCUS_PSEUDO_CLASS_ONLY_LINK        : $UA_IE7; // :focus は a[href] にしか働かない
-    $CANUSE_FOCUS_PSEUDO_CLASS           : $UA_Modern or $IS_OLD_GECKO or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.6 から a 要素のタブフォーカスをサポート。
+    $FOCUS_PSEUDO_CLASS_ONLY_LINK        : $UA_IE7 or $UA_Opera72; // :focus は a[href] にしか働かない
+    $CANUSE_FOCUS_PSEUDO_CLASS           : $UA_Modern or $IS_OLD_GECKO or $UA_Opera70 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5;
 
 // styling
     $LIMITED_STYLING_OF_ITEMS_IN_FORM : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
     $CANUSE_TRANSPARENT_BORDER_COLOR  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_OUTLINE                   : $UA_Modern or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9; // IE8+, Gecko 1.8+, Opera 8+
+    $CANUSE_OUTLINE                   : $UA_Modern or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 or $IS_WIN_IE; // IE8+, Gecko 1.8+, Opera 8+
     $CANUSE_LIMITED_OUTLINE           : $IS_Opera7x; // 動的疑似クラスで(色の)変更が出来ない
 
 // @media

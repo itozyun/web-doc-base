@@ -115,20 +115,24 @@
         .AHead-labels i {
             display : none;
         }
-        .AHead-labels a {
-            @extend %ButtonBase;
-            @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
-                @include button-colors( $COLOR_Light_link, $COLOR_Light_casual_text, $COLOR_Sidebar_fill );
-            } @else {
-                @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+        .AHead-labels {
+            a {
+                @include button-base;
+                margin : 0 0 0.5em;
+            }
+            * {
+                @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
+                    @include button-colors( $COLOR_Light_link, $COLOR_Light_casual_text, $COLOR_Sidebar_fill );
+                } @else {
+                    @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_casual_text, $COLOR_Ribbon_fill );
+                }
             }
             @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
-                &:link:hover { /* .ribbon :link:hover の上書き */
+                :link:hover { /* .ribbon :link:hover の上書き */
                     border-color : $COLOR_Ribbon_link;
                     color        : $COLOR_Ribbon_fill;
                 }
             }
-            margin : 0 0 0.5em;
         }
 
     /*  Phone-

@@ -1,3 +1,5 @@
+$LIMITED_DASHED_BOREDER_PAINTING : $UA_IE5 or $UA_IE55;
+
 @mixin button-colors( $link, $visited, $fill ){
     &:link {
         background   : $link;
@@ -10,18 +12,17 @@
         color        : $visited;
     }
 
-    @if( $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $IS_NOT_IE ){
+    @if( $LIMITED_DASHED_BOREDER_PAINTING == false ){
         /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
-        @if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
-            &:link:active, &:visited:active { border-color : $fill; }
-        }
-        @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
-            &:link:focus, &:visited:focus { border-color : $fill; }
+        & {
+            @include active-focus-pseudo-class{
+                border-color : $fill;
+            }
         }
     }
 }
 
-%ButtonBase {
+@mixin button-base( $isLink : true ){
     @include inline-block;
     border-width : $INPUT_BORDER_WIDTH;
     cursor       : pointer;
@@ -48,18 +49,21 @@
 
     /* input.btn に対して適用, a:link, a:visited には上書きされる */
     @if( $IS_LTE_WIN_IE7 ){
-        // IE7 以下, form 部品にデザインが適用されない, IE7 で :active {outline:} のみ?
-        &:active {
-            @if( $UA_IE5 or $UA_IE55 ){
-                border-color : $COLOR_ACCENT;
+        @if( $isLink ){
+            &:active {
+                @if( $LIMITED_DASHED_BOREDER_PAINTING ){
+                    border-color : $COLOR_ACCENT;
+                }
             }
         }
     } @else {
         & {
-            @include active-focus-pseudo-class {
+            @include active-focus-pseudo-class( $isLink ) {
                 border-color : $COLOR_ACCENT;
                 color        : $COLOR_ACCENT;
-                outline      : 0;
+                @if( $CANUSE_OUTLINE ){
+                    outline : 0;
+                }
                 @if( $UA_Gck130-190 == false ){
                     border-style : dotted; // Gecko 1.8 で塗りが汚い
                 }

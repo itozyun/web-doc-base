@@ -14,10 +14,10 @@
     }
     @if( $ACTIVE_ON_LINK_BEHAVES_FOCUS ){
         :active:hover { text-decoration : underline !important; }
-    } @else if( $CANUSE_ACTIVE_PSEUDO_CLASS ){
+    } @else if( $CANUSE_ACTIVE_PSEUDO_CLASS or $ACTIVE_PSEUDO_CLASS_ONLY_LINK ){
         :active { text-decoration : underline !important; }
     }
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS ){
+    @if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
         :focus:hover { text-decoration : underline !important; }
     }
 

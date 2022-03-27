@@ -15,7 +15,7 @@
         //vertical-align: top;
         //line-height: 1.9;
     } @else {
-        @extend %ButtonBase;
+        @include button-base;
     }
     @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_text, $COLOR_Ribbon_fill );
 }
