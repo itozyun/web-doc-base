@@ -10,7 +10,9 @@
 <a href="../test/importHack.html">import のテスト</a>,
 <a href="../test/check-image-loading.html">Check Image loading</a>,
 <a href="../test/icon.html">アイコンのテスト</a>,
-<a href="../test/richlink.html">RichLink のテスト</a>
+<a href="../test/richlink.html">RichLink のテスト</a>,
+<a href="../test/form.html">フォーム部品の実装状況</a>
+<a href="../test/dynamic-pseudo-classes.html">動的疑似クラス</a>
 
-<noscript><p class="wn">javascript が無効です</noscript>
+<noscript><p class="wn">javascript が無効です</p></noscript>
 

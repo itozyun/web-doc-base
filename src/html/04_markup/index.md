@@ -16,7 +16,7 @@
 <div class='mspacer'>
     <form action='' class='commonForm' method='post'>
         <div class='commonForm-pair'>
-            <label for='cf_msg'>web-doc-base</label>
+            <label for='what-browser-am-i'>web-doc-base</label>
             <span class='commonForm-wrap'>
                 <textarea cols="80" rows="10" id="what-browser-am-i" spellcheck="false"></textarea>
             </span>

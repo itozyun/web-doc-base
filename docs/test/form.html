@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>フォーム部品の実装状況</title>
+<style>
+    * {
+        vertical-align : top;
+    }
+    fieldset {
+        border-spacing : 1em .5em;
+    }
+
+    @media \0 all{
+        fieldset{display:block !important}
+        legend{display:block !important}
+        div label,
+        div input, 
+        div textarea, 
+        div select{display:inline !important}
+    }
+
+    @media all and(-o-:0),not all and(-o-:0){
+        html:first-child fieldset{display:block}
+        html:first-child legend{display:block}
+        html:first-child div label,
+        html:first-child div input, 
+        html:first-child div textarea, 
+        html:first-child div select{display:inline}
+        :_{top:0} /* Opera ~7.11 skip next rule */
+    }
+    fieldset { display : table; }
+
+    @media all and(-o-:0),not all and(-o-:0){ :_{top:0} /* Opera ~7.11 skip next rule */ }
+    legend { display : table-caption; }
+
+    @media all and(-o-:0),not all and(-o-:0){ :_{top:0} /* Opera ~7.11 skip next rule */ }
+    div { display : table-row; }
+
+    @media all and(-o-:0),not all and(-o-:0){ :_{top:0} /* Opera ~7.11 skip next rule */ }
+    div label, div input, div textarea, div select { display : table-cell; }
+</style>
+</head>
+<body>
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
+<a href="clearfix.html">clearfix のテスト</a>,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
+<a href="importHack.html">import のテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="richlink.html">RichLink のテスト</a>,
+フォーム部品の実装状況,
+<a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>
+<hr>
+
+<h1>フォーム部品の実装状況</h1>
+
+<form action='dynamic-pseudo-classes.html' method='get'>
+<fieldset>
+    <legend>type=hidden</legend>
+    <p>hidden 属性の input 要素です。非表示になっているか確認します。ごく一部の環境で display:none 等が必要です。
+    <input type="hidden" name="value_of_hidden" value="hidden">
+</fieldset>
+
+<fieldset>
+    <legend>テキスト</legend>
+    <div><label for="input_text">テキスト（1行）</label><input id="input_text" name="value_input_text" type="text"></div>
+    <div><label for="input_password">パスワード</label><input id="input_password" name="value_input_password" type="password"></div>
+    <div><label for="textarea">テキストエリア（複数行）</label><textarea id="textarea" name="value_textarea"></textarea></div>
+</fieldset>
+
+<fieldset>
+    <legend>ボタン</legend>
+    <div><label>送信ボタン</label><input type="submit"> value は未設定でデフォルト値が表示されます</div>
+    <div><label>送信ボタン(画像有効)</label><input type="image" src="now30_button.gif" alt="ボタン(画像有効)"></div>
+    <div><label>送信ボタン(画像リンク失敗)</label><input type="image" src="" alt="ボタン(画像リンク失敗)"></div>
+    <div><label>ファイル選択ボタン</label><input type="file"></div>
+    <div><label>リセットボタン</label><input type="reset"></div>
+    <div><label>汎用ボタン</label><input type="button" value="ボタン"></div>
+</fieldset>
+
+<fieldset>
+    <legend>チェック</legend>
+    <div><label>チェックボックス</label>
+        <input type="checkbox">チェックボックス</input></div>
+    <div><label>ラジオボタン</label>
+        <input type="radio" name="radio" checked>ラジオ1</input>
+        <input type="radio" name="radio">ラジオ2</input></div>
+</fieldset>
+
+<fieldset>
+    <legend>リスト</legend>
+
+    <div><label>ドロップダウンメニュー</label>
+        <select>
+            <option>リスト1</option><option>リスト2</option><option>リスト3</option>
+        </select></div>
+    <div><label>リストボックス</label>
+        <select size="3">
+            <option>リスト1</option><option>リスト2</option><option>リスト3</option><option>リスト4</option>
+        </select></div>
+    <div><label>リストボックス（複数選択）</label>
+        <select size="3" multiple>
+            <option selected>リスト1</option><option>リスト2</option><option selected>リスト3</option>
+        </select></div>
+</fieldset>
+
+<fieldset>
+    <legend>HTML5 で追加された要素と type</legend>
+
+    <div><label>検索キーワードの入力フィールド</label><input type="search"></div>
+    <div><label>電話番号</label><input type="tel"></div>
+    <div><label>URL</label><input type="url"></div>
+    <div><label for="input_email">Eメール</label><input id="input_email" name="value_input_email" type="email"></div>
+    <div><label>日時（タイムゾーン有）</label><input type="datetime"> 廃止された値</div>
+    <div><label>日時（タイムゾーン無）</label><input type="datetime-local"></div>
+    <div><label>日</label><input type="date"></div>
+    <div><label>月</label><input type="month"></div>
+    <div><label>週</label><input type="week"></div>
+    <div><label>時刻（タイムゾーン無）</label><input type="time"></div>
+
+    <div><label>数値入力フィールド</label><input type="number" name="num" min="0" value="0"></div>
+    <div><label>スライダーで数値（割合）の選択</label><input type="range" name="num" min="0" max="100" value="50"></div>
+    <div><label>色の選択</label><input type="color"></div>
+</fieldset>
+
+</form>
+
+<p>バナー画像は <a href="https://web.archive.org/web/19961026040131/http://www3.netscape.com/comprod/mirror/netscape_now_program.html">NETSCAPE NOW PROGRAM</a> より。

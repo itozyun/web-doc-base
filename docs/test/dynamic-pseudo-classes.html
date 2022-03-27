@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>フォーム部品のスタイリングのテスト</title>
+<style>
+    .content-box input, .content-box textarea, .content-box select {
+           -moz-box-sizing : content-box !important;
+        -webkit-box-sizing : content-box !important;
+                box-sizing : content-box !important;
+    }
+    .border-box input, .border-box textarea, .border-box select {
+           -moz-box-sizing : border-box !important;
+        -webkit-box-sizing : border-box !important;
+                box-sizing : border-box !important;
+    }
+    input {
+        height      : 2.2em;
+    }
+    .content-box input {
+        line-height : 2.2;
+    }
+    .border-box input {
+        height      : 2.2em;
+        line-height : 1;
+    }
+    table {
+        width : 100%;
+    }
+    th, td {
+        text-align: left;
+        vertical-align : top;
+        padding : .5em;
+    }
+    input, textarea, select {
+        border  : .3em solid #ccc;
+        outline : .3em solid #aaa;
+        text-decoration : none;
+        padding : 0;
+    }
+    .padding-more input, .padding-more textarea, .padding-more select {
+        padding : 1em;
+    }
+    a:hover, input:hover, textarea:hover, select:hover {
+        color           : #fff;
+        background      : #030;
+        border-color    : #278b00;
+        outline-color   : #5eff00;
+        text-decoration : underline;
+    }
+    a:focus, input:focus, textarea:focus, select:focus {
+        color         : #fff;
+        background    : #003;
+        border-color  : #3952df;
+        outline-color : blue;
+        text-decoration : underline;
+    }
+    a:active, input:active, textarea:active, select:active {
+        color         : #fff;
+        background    : #300;
+        border-color  : #8b0000;
+        outline-color : #ff0000;
+        text-decoration : underline;
+    }
+    a:focus {
+        outline: 2px solid blue;
+    }
+    a:active {
+        outline: 2px solid #ff0000;
+    }
+
+    label:hover {
+        color : #060;
+        text-decoration : underline;
+    }
+    label:active {
+        color : #900;
+    }
+    label:focus {
+        color : #006;
+    }
+
+    a:active:hover, input:active:hover, textarea:active:hover, select:active:hover,
+    a:focus:hover, input:focus:hover, textarea:focus:hover, select:focus:hover {
+        text-decoration : none;
+    }
+    :target {
+        background : #000;
+        color      : #fff;
+    }
+</style>
+<script>
+    var styleSheetDisabled = false;
+
+    function onButtonClick( action ){
+        if( styleSheetDisabled ){
+            document.body.className = '';
+            styleSheetDisabled = false;
+            update( 'paddingを増やす' );
+        } else {
+            document.body.className = 'padding-more';
+            styleSheetDisabled = true;
+            update( 'paddingを減らす' );
+        };
+        function update( text ){
+            var button = document.getElementById('padding-less-button');
+
+            if( button.textContent ){
+                button.textContent = text;
+            } else {
+                button.innerHTML = text;
+            };
+        }
+    };
+</script>
+</head>
+<body>
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
+<a href="clearfix.html">clearfix のテスト</a>,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
+<a href="importHack.html">import のテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="richlink.html">RichLink のテスト</a>,
+<a href="form.html">フォーム部品の実装状況</a>,
+フォーム部品のスタイリングのテスト
+<hr>
+
+<h1 id="top" name="top">フォーム部品のスタイリングのテスト</h1>
+
+<button onclick="onButtonClick();" id="padding-less-button" style="font-size:1em">paddingを増やす</button>
+
+<table>
+<thead>
+<tr>
+<th width="25%">概要<th width="25%">default<th width="25%">content-box<th width="25%">border-box
+<tbody>
+<tr>
+<th colspan="4" bgcolor="yellow">テキスト
+<tr>
+<th><label for="type_text">テキスト（1行）</label>
+<td><input id="type_text" name="type_text" type="text" value="input[type=text]">
+<td class="content-box"><input id="2_type_text" name="type_text" type="text" value="input[type=text]">
+<td class="border-box"><input id="3_type_text" name="type_text" type="text" value="input[type=text]">
+<tr>
+<th><label for="type_password">パスワード</label>
+<td><input id="type_password" name="type_password" type="password">
+<td class="content-box"><input id="2_type_password" name="type_password" type="password">
+<td class="border-box"><input id="3_type_password" name="type_password" type="password">
+<tr>
+<th colspan="4" bgcolor="yellow">テキストエリア
+<tr>
+<th><label for="elm_textarea">テキストエリア（複数行）</label>
+<td><textarea id="elm_textarea" name="textarea">textarea</textarea>
+<td class="content-box"><textarea id="2_elm_textarea" name="textarea">textarea</textarea>
+<td class="border-box"><textarea id="2_elm_textarea" name="textarea">textarea</textarea>
+<tr>
+<th colspan="4" bgcolor="yellow">ボタン
+<tr>
+<th><label for="type_submit">送信ボタン</label><td><input id="type_submit" type="submit">
+<td class="content-box"><input id="2_type_submit" type="submit">
+<td class="border-box"><input id="3_type_submit" type="submit">
+<tr>
+<th><label for="type_image">画像送信ボタン</label><td><input id="type_image" type="image" src="now30_button.gif" alt="ボタン(画像有効)">
+<td class="content-box"><input id="2_type_image" type="image" src="now30_button.gif" alt="ボタン(画像有効)">
+<td class="border-box"><input id="3_type_image" type="image" src="now30_button.gif" alt="ボタン(画像有効)">
+<tr>
+<th><label for="type_file">ファイル選択ボタン</label>
+<td><input id="type_file" name="file" type="file">
+<td class="content-box"><input id="2_type_file" name="file" type="file">
+<td class="border-box"><input id="3_type_file" name="file" type="file">
+<tr>
+<th colspan="4" bgcolor="yellow">チェック
+<tr>
+<th><label for="type_checkbox">チェックボックス</label>
+<td><input id="type_checkbox" name="checkbox" type="checkbox">チェックボックス</input>
+<td class="content-box"><input id="2_type_checkbox" name="checkbox" type="checkbox">チェックボックス</input>
+<td class="border-box"><input id="3_type_checkbox" name="checkbox" type="checkbox">チェックボックス</input>
+<tr>
+<th><label for="type_radio">ラジオボタン</label>
+<td><input id="type_radio" name="radio1" type="radio">ラジオ1</input><input name="radio1" type="radio">ラジオ2</input>
+<td class="content-box"><input id="2_type_radio" name="radio2" type="radio">ラジオ1</input><input name="radio2" type="radio">ラジオ2</input>
+<td class="border-box"><input id="3_type_radio" name="radio3" type="radio">ラジオ1</input><input name="radio3" type="radio">ラジオ2</input>
+<tr>
+<th colspan="4" bgcolor="yellow">リスト
+<tr>
+<th><label for="elm_select">ドロップダウンメニュー</label>
+<td><select id="elm_select" name="select">
+        <option>リスト1</option><option>リスト2</option><option>リスト3</option>
+    </select>
+<td class="content-box"><select id="2_elm_select" name="select">
+        <option>リスト1</option><option>リスト2</option><option>リスト3</option>
+    </select>
+<td class="border-box"><select id="2_elm_select" name="select">
+        <option>リスト1</option><option>リスト2</option><option>リスト3</option>
+    </select>
+<tr>
+<th><label for="elm_select_size3">リストボックス</label>
+<td><select id="elm_select_size3" name="select_size3" size="3">
+        <option selected>リスト1</option><option>リスト2</option><option>リスト3</option><option>リスト4</option>
+    </select>
+<td class="content-box"><select id="2_elm_select_size3" name="select_size3" size="3">
+        <option selected>リスト1</option><option>リスト2</option><option>リスト3</option><option>リスト4</option>
+    </select>
+<td class="border-box"><select id="2_elm_select_size3" name="select_size3" size="3">
+        <option selected>リスト1</option><option>リスト2</option><option>リスト3</option><option>リスト4</option>
+    </select>
+<tr>
+<th><label for="elm_select_size3_multiple">リストボックス（複数選択）</label>
+<td><select id="elm_select_size3_multiple" name="select_size3_multiple" size="3" multiple>
+        <option selected>リスト1</option><option>リスト2</option><option selected>リスト3</option>
+    </select>
+<td class="content-box"><select id="2_elm_select_size3_multiple" name="select_size3_multiple" size="3" multiple>
+    <option selected>リスト1</option><option>リスト2</option><option selected>リスト3</option>
+</select>
+<td class="border-box"><select id="2_elm_select_size3_multiple" name="select_size3_multiple" size="3" multiple>
+    <option selected>リスト1</option><option>リスト2</option><option selected>リスト3</option>
+</select>
+</table>
+
+<p><a href="#top" tabindex="0">トップへ</a>
+<p>バナー画像は <a tabindex="0" href="https://web.archive.org/web/19961026040131/http://www3.netscape.com/comprod/mirror/netscape_now_program.html">NETSCAPE NOW PROGRAM</a> より。
