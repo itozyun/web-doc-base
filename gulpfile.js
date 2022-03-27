@@ -170,7 +170,6 @@ const assetsDirToJSDir     = 'js',
  */
 const externs = [
          './.submodules/what-browser-am-i/src/js-externs/externs.js',
-         './node_modules/google-closure-compiler/contrib/externs/svg.js',
          './src/js-externs/externs.js'
       ];
 
