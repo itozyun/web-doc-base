@@ -109,7 +109,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                     w = parent.offsetWidth - PicaThumbnail_MARGIN_LR - 1;
                     if( 1600 < w ) w = 1600;
 
-                    if( obj.isGoogleUserContent ){
+                    if( obj.isGoogleUserContent && 0 < src.split( '/' ).pop().indexOf( '=' ) ){
                         elms = src.split( '=' );
                         l    = elms.length;
                         if( size = elms[ l - 1 ] ){
