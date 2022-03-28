@@ -2,11 +2,7 @@
 --------------------------------------------------------------------------------------*/
 $FONTSIZE_DEFAULT : 16;
 
-@if( $Option_baseFontSize18 ){
-    $FONTSIZE_UPPER_TABLET : 18;
-}
-
-$FONTSIZE_UPPER_TABLET : $FONTSIZE_DEFAULT !default;
+$FONTSIZE_UPPER_TABLET : if($Option_baseFontSize18, 18, $FONTSIZE_DEFAULT) !default;
 
 /*  line-height
 --------------------------------------------------------------------------------------*/
