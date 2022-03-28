@@ -51,6 +51,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
             }
         }
             .RichLink b {
+                @include unbreak-box-with-long-text; // https://twitter.com/itozyun/status/1508417782496387079
                 display     : block;
                 font-weight : normal;
             }
@@ -151,7 +152,6 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
     }
     .RichLink b {
-        @include unbreak-box-by-long-text;
         font-size : 1em * $RICHLINK_TEXT_SIZE;
         @if( $UA_IE7 or $UA_IE6 ){
             padding : 0;
