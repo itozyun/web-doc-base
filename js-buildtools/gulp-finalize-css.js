@@ -16,6 +16,23 @@ module.exports = function(){
             let css = PostCSS.parse( file.contents.toString( encoding ) ),
                 rulesAddToEnd = [], updateCurrentFile;
 
+            css.walkRules(
+                function( rule ){
+                    var selector = rule.selector.split( ':before:hover'  ).join( ':hover:before'  )
+                                                .split( ':before:active' ).join( ':active:before' )
+                                                .split( ':before:focus'  ).join( ':focus:before'  )
+                                                .split( ':before:target' ).join( ':target:before' )
+                                                .split( ':after:hover'   ).join( ':hover:after'   )
+                                                .split( ':after:active'  ).join( ':active:after'  )
+                                                .split( ':after:focus'   ).join( ':focus:after'   )
+                                                .split( ':after:target'  ).join( ':target:after'  );
+                    if( selector !== rule.selector ){
+                        rule.selector = selector;
+                        updateCurrentFile = true;
+                    };
+                }
+            );
+
             css.walkDecls(
                 function( decl ){
                     var marker           = '[_lazyhack_="',
