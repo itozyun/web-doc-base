@@ -156,6 +156,8 @@
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
     @include media(forced_colors_native_or_fallback){
+        padding : $FORCED_COLORS_FOCUS_BORDER_WIDTH;
+
         @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
             :hover {
                 text-decoration : underline !important;

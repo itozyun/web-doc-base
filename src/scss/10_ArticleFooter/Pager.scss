@@ -87,9 +87,8 @@
                         /*  Forced colors
                         --------------------------------------------------------------------------------------*/
                         & {
-                            @include media(forced_colors_native){
-                                border-top-color    : Window;
-                                border-bottom-color : Window;
+                            @include media(forced_colors_native_or_ms){
+                                border-color : Window currentColor;
                             }
                             @include media(forced_colors_fallback){
                                 display : none;
@@ -131,10 +130,10 @@
                         /*  Forced colors
                         --------------------------------------------------------------------------------------*/
                         @include media(forced_colors_native){
-                            & {
-                                border-left-color  : Window;
-                                border-right-color : Window;
-                            }
+                            border-color : currentColor Window;
+                        }
+                        @include media(forced_colors_ms){
+                            border-color : currentColor transparent;
                         }
                     }
 

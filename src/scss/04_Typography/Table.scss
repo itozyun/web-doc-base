@@ -214,10 +214,9 @@ table {
 }
 /*  Forced colors
 --------------------------------------------------------------------------------------*/
-@include media(forced_colors_native){
+@include media(forced_colors_native_or_ms){
     td, tfoot td {
-        border-left-color  : Window;
-        border-right-color : Window;
+        border-color : currentColor Window;
     }
 }
 @include media(forced_colors_native_or_fallback){

@@ -132,6 +132,14 @@ module.exports = function( options ){
                 };
             });
 
+            css.walkAtRules( function( rule ){
+                if( rule.name === 'media' && 0 <= rule.params.indexOf( 'only screen and (forced-colors:' ) ){ // -ms-high-contrast:active より後へ
+                    rulesAddToEnd.push( rule );
+                    rule.remove();
+                    updateCurrentFile = true;
+                };
+            });
+
             if( rulesOnlyScreen.length ){
                 onlyScreenMediaBlock = PostCSS.atRule( { name : 'media', params : 'only screen' } );
                 css.append( onlyScreenMediaBlock );

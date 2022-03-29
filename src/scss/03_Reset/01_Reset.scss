@@ -3,23 +3,31 @@
     /* (forced-colors:active) のフォールバックが出来ない場合も、フォーカスのアウトラインが消えないように無色で塗ります
      */
     @if( $CANUSE_OUTLINE ){
-        * {
-            @include active-focus-pseudo-class( false ) {
-                @if( $FORCED_COLORS_SUPPORT and $UA_Gck130-190 == false ){ // Gecko 1.8 transparent 不可
-                    outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
-                } @else {
+        @if( $UA_Modern or $IS_IE8_OR_9 ){
+            * {
+                @include active-focus-pseudo-class{
                     outline : 0;
                 }
             }
-        }
-
-        /*  Forced colors
-        --------------------------------------------------------------------------------------*/
-        @include media(forced_colors_native_or_fallback){
-            @if( $UA_Gck130-190 ){
-                * {
-                    @include active-focus-pseudo-class {
-                        outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+            a, input, textarea, select, button { // IE11 でクリックするたびにその要素に枠線が付くので個別に指定する
+                @include active-focus-pseudo-class{
+                    outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
+                }
+            }
+        } @else {
+            * {
+                @include active-focus-pseudo-class( false ) {
+                    @if( $FORCED_COLORS_SUPPORT and $UA_Gck130-190 == false ){ // Gecko 1.8 transparent 不可
+                        outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
+                    } @else {
+                        outline : 0;
+                    }
+                    /*  Forced colors
+                    --------------------------------------------------------------------------------------*/
+                    @include media(forced_colors_native_or_fallback){
+                        @if( $UA_Gck130-190 ){
+                            outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+                        }
                     }
                 }
             }

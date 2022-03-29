@@ -69,10 +69,9 @@
 
     /*  Forced colors
     --------------------------------------------------------------------------------------*/
-    @include media(forced_colors_native){
+    @include media(forced_colors_native_or_ms){
         & i {
-            border-top-color    : Window;
-            border-bottom-color : Window;
+            border-color : Window currentColor;
         }
     }
     @include media(forced_colors_fallback) {

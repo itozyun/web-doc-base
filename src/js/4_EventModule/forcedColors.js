@@ -22,13 +22,13 @@ var Event_forcedColors_WORK_ONCE = p_Gecko < 60 || p_Goanna;
 var Event_forcedColors_isActive,
     Event_forcedColors_isBlackOnWhite,
     Event_forcedColors_isWhiteOnBlack;
-/** @type {Function|undefined} */
+/** @type {!Function|undefined} */
 var Event_forcedColors_test;
 
 /**
-  * @type {Function|undefined} */
+  * @type {!Function|undefined} */
 var Event_forcedColors_getState = function(){
-    return p_forcedColorsState = !Event_forcedColors_isActive ? 0 :
+    return !Event_forcedColors_isActive ? 0 :
           ( Event_forcedColors_isWhiteOnBlack  ? 2 :
           ( Event_forcedColors_isBlackOnWhite  ? 3 : 1 ) );
 };
@@ -44,7 +44,8 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         '(forced-colors:active)',
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
-            m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), Event_forcedColors_getState() );
+            p_forcedColorsState = Event_forcedColors_getState();
+            m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
             Debug.log( '(forced-colors:active):' + p_forcedColorsState );
         }
     );
@@ -55,6 +56,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isBlackOnWhite = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
+                p_forcedColorsState = Event_forcedColors_getState();
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:black-on-white):' + p_forcedColorsState );
             };
@@ -64,6 +66,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = Event_forcedColors_isWhiteOnBlack = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
+                p_forcedColorsState = Event_forcedColors_getState();
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:white-on-black):' + p_forcedColorsState );
             };
@@ -73,6 +76,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
+                p_forcedColorsState = Event_forcedColors_getState();
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:active):' + p_forcedColorsState );
             };
@@ -112,6 +116,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isBlackOnWhite = isBlack( color ) && isWhite( bgColor, true );
             Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor, true );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
+                p_forcedColorsState = Event_forcedColors_getState();
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (Event_forcedColors_callbacks), p_forcedColorsState, Event_forcedColors_WORK_ONCE );
             };
@@ -145,7 +150,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
                 if( Event_forcedColors_WORK_ONCE ){
                     Event_forcedColors_test();
                     Event_forcedColors_callbacks = undefined;
-                } else if( Event_forcedColors_test() ){ // IE9- or Gecko60+
+                } else { // IE9- or Gecko60+
                     p_setLoopTimer( /** @type {Function} */ (Event_forcedColors_test) /* , 1000 */ );
                 };
                 Event_forcedColors_test = undefined;

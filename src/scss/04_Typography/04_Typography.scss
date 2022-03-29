@@ -239,7 +239,7 @@
 
 /*  Forced colors
 --------------------------------------------------------------------------------------*/
-@include media(forced_colors_native){
+@include media(forced_colors_native_or_ms){
     img {
         filter : brightness(100%);
     }

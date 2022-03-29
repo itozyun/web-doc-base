@@ -274,7 +274,6 @@ $RICHLINK_TEXT_SIZE : 0.875;
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_fallback){
     .RichLink {
-        padding : $FORCED_COLORS_FOCUS_BORDER_WIDTH;
         a {
             border-width : 0;
         }

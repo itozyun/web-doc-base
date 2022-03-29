@@ -90,9 +90,9 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
                 }
                 /*  Forced colors
                 --------------------------------------------------------------------------------------*/
-                @include media(forced_colors_native){
+                @include media(forced_colors_native_or_ms){
                     .chatL p:after, .chatR p:after {
-                        border-color : Window inherit;
+                        border-color : Window currentColor;
                     }
                 }
                 @if( $UA_IE8 == false ){ /* 疑似要素に Transform が効かない */

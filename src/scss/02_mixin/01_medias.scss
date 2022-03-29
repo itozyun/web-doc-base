@@ -34,6 +34,8 @@ $COMMENT_OUT_AT_MEDIA : (
     'landscapePrint'       : if($UA_Modern, 1, 0),
 
     'forced_colors_native'             : if($UA_Modern, 1, 0),
+    'forced_colors_ms'                 : if($UA_Modern, 1, 0),
+    'forced_colors_native_or_ms'       : if($UA_Modern, 1, 0),
     'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0),
     'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0)
 ) !default;
@@ -170,7 +172,17 @@ $COMMENT_OUT_AT_MEDIA : (
                 @content;
             }
         }
-        @else if $media == 'forced_colors_native' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
+        @else if $media == 'forced_colors_native' { // Edge 79+, Chrome 89+, Firefox 89+
+            @media only screen and (forced-colors:active){
+                @content;
+            }
+        }
+        @else if $media == 'forced_colors_ms' { // IE10+, EdgeHTML, Edge 79+
+            @media only screen and (-ms-high-contrast:active){
+                @content;
+            }
+        }
+        @else if $media == 'forced_colors_native_or_ms' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
             @media only screen and (forced-colors:active),
                    only screen and (-ms-high-contrast:active){
                 @content;
