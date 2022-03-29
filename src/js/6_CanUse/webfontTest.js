@@ -45,7 +45,7 @@ var webFontTest_maybeCanUseWebFont;
  *    Android 4 - UCBrowser
  *    Windows Phone 7 - IE9
  */
-/** @type {Function|undefined} */
+/** @type {!Function|undefined} */
 var webFontTest_testMaybeCanUseWebFont = function(){
     var blocklist =
             p_WebKit < 525 || // Safari <3.1
