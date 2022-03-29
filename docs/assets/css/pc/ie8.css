@@ -94,6 +94,7 @@ tr ul {
   margin-top: 0
 }
 .Magazine-label,
+.RichLink b,
 .caption,
 .links,
 pre,
@@ -297,6 +298,18 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
+  outline: 0
+}
+a:active,
+a:focus,
+button:active,
+button:focus,
+input:active,
+input:focus,
+select:active,
+select:focus,
+textarea:active,
+textarea:focus {
   outline: transparent solid 2px
 }
 dt {
@@ -1299,7 +1312,6 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
-  word-wrap: break-word;
   font-size: .875em;
   padding: 0 0 1.143em
 }

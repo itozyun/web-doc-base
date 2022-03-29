@@ -14,6 +14,10 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
+.LinkList,
+.RichLink-sep {
+  padding: 2px
+}
 .LinkList :link:hover,
 .LinkList :visited:hover,
 .RichLink-sep :link:hover,
@@ -47,17 +51,14 @@ thead th {
 tbody td {
   border-width: 0 0 1px
 }
-.LinkList {
-  padding: 2px 0
-}
-.LinkList a {
-  margin: 0 2px
-}
-.RichLink {
-  padding: 2px
-}
 .RichLink a {
   border-width: 0
+}
+.tl tbody td:after {
+  top: 1.2em;
+  left: -.13em;
+  border-width: 0;
+  outline: solid .35em
 }
 .tl {
   border-collapse: collapse

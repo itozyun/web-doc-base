@@ -74,6 +74,16 @@ thead th {
 .medal {
   background: #fdeeb7
 }
+.RichLink b,
+.caption,
+.js-bqCite,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .links,
 .note,
 blockquote,
@@ -92,15 +102,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.caption,
-.js-bqCite,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .tl td,
 .tl th {
@@ -897,17 +898,16 @@ pre var {
 .aa {
   line-height: 1
 }
-.RichLink b {
-  word-wrap: break-word;
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
+}
+.RichLink b {
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 .Search {
   height: 1.9em;

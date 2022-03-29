@@ -80,6 +80,16 @@ input {
 .medal {
   background: #fdeeb7
 }
+.RichLink b,
+.caption,
+.js-bqCite,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .Cover-btn i,
 .Cover-img,
 .Pager,
@@ -115,15 +125,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.caption,
-.js-bqCite,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .tl td,
 .tl th {
@@ -977,17 +978,16 @@ pre var {
   margin: 1em 0;
   line-height: 1.2
 }
-.RichLink b {
-  word-wrap: break-word;
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .lS .RichLink a {
   padding: .7em .5em
 }
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
+}
+.RichLink b {
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 .Search {
   height: 1.9em;

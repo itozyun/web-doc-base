@@ -97,6 +97,17 @@ var {
 .medal {
   background: #fdeeb7
 }
+.Magazine-label,
+.RichLink b,
+.caption,
+.js-bqCite,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .AHead h1,
 th {
   text-align: left
@@ -114,16 +125,6 @@ kbd,
 var {
   margin: 0 .1em;
   padding: 0 .4em
-}
-.Magazine-label,
-.caption,
-.js-bqCite,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .tl td,
 .tl th {

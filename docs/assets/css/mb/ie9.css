@@ -97,6 +97,7 @@ h2,
 textarea {
   margin: 0
 }
+.RichLink b,
 .caption,
 .links,
 pre,
@@ -281,6 +282,18 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
+  outline: 0
+}
+a:active,
+a:focus,
+button:active,
+button:focus,
+input:active,
+input:focus,
+select:active,
+select:focus,
+textarea:active,
+textarea:focus {
   outline: transparent solid 2px
 }
 dt {
@@ -1305,19 +1318,18 @@ pre var {
   margin: 1em 0;
   line-height: 1.2
 }
-.RichLink b {
-  display: block;
-  font-weight: 400;
-  word-wrap: break-word;
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
+}
+.RichLink b {
+  display: block;
+  font-weight: 400;
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 .Search {
   display: block;

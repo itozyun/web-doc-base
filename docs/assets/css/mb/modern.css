@@ -103,6 +103,7 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.RichLink b,
 .caption,
 .links,
 pre,
@@ -287,6 +288,18 @@ a:focus .ico-label:after {
 }
 :active,
 :focus {
+  outline: 0
+}
+a:active,
+a:focus,
+button:active,
+button:focus,
+input:active,
+input:focus,
+select:active,
+select:focus,
+textarea:active,
+textarea:focus {
   outline: transparent solid 2px
 }
 dt {
@@ -1446,19 +1459,18 @@ pre var {
   margin: 1em 0;
   line-height: 1.2
 }
-.RichLink b {
-  display: block;
-  font-weight: 400;
-  word-wrap: break-word;
-  padding: 0 0 .571em;
-  font-size: 1em
-}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
 .lS .RichLink img {
   float: left;
   margin: 0 .5em .6em 0
+}
+.RichLink b {
+  display: block;
+  font-weight: 400;
+  padding: 0 0 .571em;
+  font-size: 1em
 }
 .Search {
   display: block;
@@ -2914,92 +2926,6 @@ only screen and (max-width:240px) {
     background: #fdeeb7
   }
 }
-@media only screen and (forced-colors:active),
-only screen and (-ms-high-contrast:active) {
-  .AMeta,
-  .Pager,
-  .SocialBtns,
-  a:active img,
-  a:focus img,
-  blockquote,
-  form :active,
-  form :focus,
-  td {
-    border-style: dotted
-  }
-  table,
-  tfoot td {
-    border-width: 2px 0 0
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after,
-  td,
-  tfoot td {
-    border-left-color: Window;
-    border-right-color: Window
-  }
-  .LinkList :link:hover,
-  .LinkList :visited:hover,
-  .RichLink-sep :link:hover,
-  .RichLink-sep :visited:hover {
-    text-decoration: underline!important
-  }
-  .Cover-btn i,
-  .Pager i,
-  .ico-label:after {
-    border-top-color: Window;
-    border-bottom-color: Window
-  }
-  img {
-    filter: brightness(100%)
-  }
-  table {
-    border-spacing: 2px;
-    border-collapse: separate
-  }
-  th,
-  thead {
-    font-weight: 700
-  }
-  td {
-    padding: .5em .25em
-  }
-  thead td,
-  thead th {
-    border-width: 0 0 2px;
-    padding: .5em
-  }
-  tbody td {
-    border-width: 0 0 1px
-  }
-  .LinkList {
-    padding: 2px 0
-  }
-  .LinkList a {
-    margin: 0 2px
-  }
-  .RichLink {
-    padding: 2px
-  }
-  .RichLink a {
-    border-width: 0
-  }
-  .tl tbody td:after {
-    border-color: Window
-  }
-  .tl {
-    border-collapse: collapse
-  }
-  td,
-  tfoot td {
-    border-color: inherits
-  }
-  .jsPica:active,
-  .jsPica:focus {
-    outline: 0
-  }
-}
 @media print {
   .LinkList a,
   .RichLink-sep a,
@@ -3415,5 +3341,97 @@ only screen and (-ms-high-contrast:active) {
   .js-bqLink,
   blockquote:before {
     margin: 0 0 1em
+  }
+}
+@media only screen and (-ms-high-contrast:active) {
+  .ico-label:after {
+    border-color: transparent currentColor
+  }
+  .Pager-top i,
+  .ico-comment:after,
+  .ico-pen:after {
+    border-color: currentColor transparent
+  }
+}
+@media only screen and (forced-colors:active),
+only screen and (-ms-high-contrast:active) {
+  .AMeta,
+  .Pager,
+  .SocialBtns,
+  a:active img,
+  a:focus img,
+  blockquote,
+  form :active,
+  form :focus,
+  td {
+    border-style: dotted
+  }
+  table,
+  tfoot td {
+    border-width: 2px 0 0
+  }
+  .LinkList,
+  .RichLink-sep {
+    padding: 2px
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover {
+    text-decoration: underline!important
+  }
+  .Cover-btn i,
+  .Pager i {
+    border-color: Window currentColor
+  }
+  img {
+    filter: brightness(100%)
+  }
+  td,
+  tfoot td {
+    border-color: currentColor Window;
+    border-color: currentColor
+  }
+  table {
+    border-spacing: 2px;
+    border-collapse: separate
+  }
+  th,
+  thead {
+    font-weight: 700
+  }
+  td {
+    padding: .5em .25em
+  }
+  thead td,
+  thead th {
+    border-width: 0 0 2px;
+    padding: .5em
+  }
+  tbody td {
+    border-width: 0 0 1px
+  }
+  .RichLink a {
+    border-width: 0
+  }
+  .tl tbody td:after {
+    border-color: Window
+  }
+  .tl {
+    border-collapse: collapse
+  }
+  .jsPica:active,
+  .jsPica:focus {
+    outline: 0
+  }
+}
+@media only screen and (forced-colors:active) {
+  .ico-label:after {
+    border-color: Window currentColor
+  }
+  .Pager-top i,
+  .ico-comment:after,
+  .ico-pen:after {
+    border-color: currentColor Window
   }
 }

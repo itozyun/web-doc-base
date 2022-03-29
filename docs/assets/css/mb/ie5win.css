@@ -85,6 +85,16 @@ var {
 .medal {
   background: #fdeeb7
 }
+.RichLink b,
+.caption,
+.js-bqCite,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .links,
 .note,
 blockquote,
@@ -104,15 +114,6 @@ kbd,
 var {
   margin: 0 .1em;
   padding: 0 .4em
-}
-.caption,
-.js-bqCite,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .tl td,
 .tl th {

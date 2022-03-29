@@ -95,6 +95,17 @@ input {
 .medal {
   background: #fdeeb7
 }
+.Magazine-label,
+.RichLink b,
+.caption,
+.js-bqCite,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .AHead h1,
 th {
   text-align: left
@@ -117,16 +128,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.Magazine-label,
-.caption,
-.js-bqCite,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .tl td,
 .tl th {
@@ -1029,7 +1030,6 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
-  word-wrap: break-word;
   font-size: .875em;
   padding: 0
 }
