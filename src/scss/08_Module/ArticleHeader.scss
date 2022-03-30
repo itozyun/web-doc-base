@@ -16,7 +16,7 @@
             }
             font-size : 2em;
             color     : $COLOR_Light_text;
-            padding   : 2em 0;
+            padding   : 0 0 2em;
             margin    : 0;
 
             @if( $Option_mobileOnly == false ){
