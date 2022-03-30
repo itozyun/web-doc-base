@@ -228,7 +228,7 @@
 // styling
     $LIMITED_STYLING_OF_ITEMS_IN_FORM : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
     $CANUSE_TRANSPARENT_BORDER_COLOR  : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_OUTLINE                   : $UA_Modern or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 or $IS_WIN_IE; // IE8+, Gecko 1.8+, Opera 8+
+    $CANUSE_OUTLINE                   : $UA_Modern or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9; // IE8+, Gecko 1.8+, Opera 8+
     $CANUSE_LIMITED_OUTLINE           : $IS_Opera7x; // 動的疑似クラスで(色の)変更が出来ない
 
 // @media
