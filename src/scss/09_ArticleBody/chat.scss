@@ -111,7 +111,8 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
                                     display : block;
                                 }
                                 @if( $UA_Modern ){
-                                    transform : rotate(-45deg);
+                                    -moz-transform : rotate(-45deg);
+                                         transform : rotate(-45deg);
                                 }
                                 @if( $UA_IE9 ){
                                     -ms-transform : rotate(-45deg);
@@ -206,10 +207,13 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 
     @if $UA_Modern {
-        @media only screen and (forced-colors:active) and (max-width: $SMALL_PHONE_MAX_WIDTH),
-               only screen and (-ms-high-contrast:active) and (max-width: $SMALL_PHONE_MAX_WIDTH) {
+        @media only screen and (-ms-high-contrast:active) and (max-width: $SMALL_PHONE_MAX_WIDTH) {
             .chatL p:after, .chatR p:after {
                 border-color : inherit transparent !important;
+            }
+        }
+        @media only screen and (forced-colors:active) and (max-width: $SMALL_PHONE_MAX_WIDTH){
+            .chatL p:after, .chatR p:after {
                 border-color : inherit Window !important;
             }
         }

@@ -9,7 +9,7 @@
                     outline : 0;
                 }
             }
-            a, input, textarea, select, button { // IE11 でクリックするたびにその要素に枠線が付くので個別に指定する
+            a, input, textarea, select, button { // IE8~11 でクリックするたびにその要素に枠線が付くので個別に指定する
                 @include active-focus-pseudo-class{
                     outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
                 }
@@ -17,16 +17,12 @@
         } @else {
             * {
                 @include active-focus-pseudo-class( false ) {
-                    @if( $FORCED_COLORS_SUPPORT and $UA_Gck130-190 == false ){ // Gecko 1.8 transparent 不可
-                        outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
-                    } @else {
-                        outline : 0;
-                    }
+                    outline : 0;
                     /*  Forced colors
                     --------------------------------------------------------------------------------------*/
-                    @include media(forced_colors_native_or_fallback){
+                    @include media(forced_colors_fallback){
                         @if( $UA_Gck130-190 ){
-                            outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid;
+                            outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid; // Gecko 1.8 transparent 不可
                         }
                     }
                 }

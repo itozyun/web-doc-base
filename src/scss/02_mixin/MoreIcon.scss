@@ -95,10 +95,11 @@
                     display : inline;
                 }
                 @if( $UA_Modern ){
-                    width         : .45em;
-                    height        : .45em;
-                    transform     : rotate(-45deg);
-                    top           : 0;
+                    width          : .45em;
+                    height         : .45em;
+                    -moz-transform : rotate(-45deg);
+                    transform      : rotate(-45deg);
+                    top            : 0;
                 }
                 @if( $UA_IE9 ){
                     width         : .45em;
