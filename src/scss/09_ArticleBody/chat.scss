@@ -216,7 +216,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 
     @if( $UA_IE9 or $UA_Modern ){
-        @media only dynamic-css and (-ms-high-contrast:active) and (max-width:$SMALL_PHONE_MAX_WIDTH) {
+        @media only use-pollyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_WIDTH) {
             /* //_{^@ie9 */
             .jsCanRotate {
             /* //_}^@ie9 */

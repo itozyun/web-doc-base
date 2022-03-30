@@ -2,8 +2,8 @@
 // Delete " [navigator-lte7]" and add ", :-o-prefocus, _:-moz-any-link".
 // Delete " [opera-lte720]" and add ",x:not(\\)" to .cleardix selector.
 
-const TARGET_HC_MEDIA_QUERY            = 'only dynamic-css and (-ms-high-contrast:active)',
-      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only dynamic-css and (-ms-high-contrast:active) and (max-width:###px)',
+const TARGET_HC_MEDIA_QUERY            = 'only use-pollyfill and (forced-colors:active)',
+      TARGET_HC_SMALLPHONE_MEDIA_QUERY = 'only use-pollyfill and (forced-colors:active) and (max-width:###px)',
       PluginError = require('plugin-error'),
       Transform   = require('stream').Transform,
       PostCSS     = require('postcss'),

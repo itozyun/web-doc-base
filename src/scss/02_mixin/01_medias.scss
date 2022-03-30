@@ -188,14 +188,14 @@ $COMMENT_OUT_AT_MEDIA : (
                 @content;
             }
         }
-        @else if $media == 'forced_colors_fallback' { // IE5~9, Firefox
+        @else if $media == 'forced_colors_fallback' { // IE5~9, Gecko 1.8.1~, Goanna
             @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
-                @media only dynamic-css and (-ms-high-contrast:active){
+                @media only use-pollyfill and (forced-colors:active){
                     @content;
                 }
             }
         }
-        @else if $media == 'forced_colors_native_or_fallback' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+  // IE5~9, Firefox
+        @else if $media == 'forced_colors_native_or_fallback' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+, IE5~9, Gecko 1.8.1~, Goanna
             @if( $UA_Modern ){
                 @media only screen and (forced-colors:active),
                        only screen and (-ms-high-contrast:active){
@@ -203,7 +203,7 @@ $COMMENT_OUT_AT_MEDIA : (
                 }
             }
             @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
-                @media only dynamic-css and (-ms-high-contrast:active){
+                @media only use-pollyfill and (forced-colors:active){
                     @content;
                 }
             }
