@@ -102,10 +102,10 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_cssGeneratedContentGrade,
 
     p_cssTransformName =
-        p_notUndefined( p_style[ 'transform' ] ) ? 'transform' : 
-        p_notUndefined( p_style[ '-o-transform' ] ) ? '-o-transform' : 
-        p_notUndefined( p_style[ '-ms-transform' ] ) ? '-ms-transform' : 
-        p_notUndefined( p_style[ 'MozTransform' ] ) ? '-moz-transform' : 
+        p_notUndefined( p_style[ 'transform'         ] ) ? 'transform' : 
+        p_notUndefined( p_style[ '-o-transform'      ] ) ? '-o-transform' : 
+        p_notUndefined( p_style[ '-ms-transform'     ] ) ? '-ms-transform' : 
+        p_notUndefined( p_style[ 'MozTransform'      ] ) ? '-moz-transform' : 
         p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '';
 
 /** @type {!Array.<!Function>|undefined} */
@@ -113,6 +113,9 @@ var p_loadEventCallbacks = []; // nodeCleaner もアクセスするので packag
 
 /** @type {!Array.<!Function>} */
 var p_cssAvailabilityCallbacks = [];
+
+/** @type {!Array.<!Function>|undefined} */
+var p_forcedColorsChangeCallbacks = [];
 
 var p_dataUriTest,
     p_imageTest,

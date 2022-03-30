@@ -1,9 +1,8 @@
-if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors ){
-    var ForcedColorsStyleSwitcher_elmLink,
-    /**
-     * @type {!Function|undefined}
-     */
-        ForcedColorsStyleSwitcher_init = function(){
+if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors && p_forcedColorsChangeCallbacks ){
+    var ForcedColorsStyleSwitcher_elmLink;
+
+    /** @type {!Function|undefined} */
+    var ForcedColorsStyleSwitcher_init = function(){
             ForcedColorsStyleSwitcher_elmLink = p_DOM_insertElement(
                 p_head, 'link',
                 {
