@@ -95,8 +95,8 @@ input[type=submit] {
     @if( $UA_Gck-097 ){
         text-align : center;
         @include box-sizing(content-box); /* Gecko 0.8.1 */
-        @include css-hack(gecko094To097){
-            @include box-sizing(border-box); /* Gecko 0.9.4~ */
+        @include css-hack(gecko091To099){
+            @include box-sizing(border-box); /* Gecko 0.9.1~ */
         }
     }
 }

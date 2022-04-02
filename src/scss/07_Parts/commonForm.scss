@@ -25,7 +25,7 @@
                 width   : 7em;
                 padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0;
                 @if( $UA_Gck-097 ){
-                    @include css-hack(gecko094To097){
+                    @include css-hack(gecko091To099){
                         float : none; // Gecko 0.9+ でラベルが消えるので左右に並べない
                         width : auto;
                     }
@@ -40,7 +40,7 @@
             @if( $IS_LEGACY ){
                 margin : 0 0 1em 8em;
                 @if( $UA_Gck-097 ){
-                    @include css-hack(gecko094To097){
+                    @include css-hack(gecko091To099){
                         margin : 0.5em 1em;
                     }
                 }

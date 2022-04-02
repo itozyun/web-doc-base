@@ -6,7 +6,7 @@ $COMMENT_OUT_CSS_HACK : (
     'onlySafari'           : if($UA_Modern, 1, 0),
     'chromeLte5SafariLte4' : if($UA_Modern, 1, 0),
     'chromeGte2To5'        : if($UA_Modern, 1, 0),
-    'gecko094To097'        : if($UA_Gck-097, 1, 0),
+    'gecko091To099'        : if($UA_Gck-097, 1, 0),
     'gecko120To121'        : if($UA_Gck101-121, 1, 0)
 ) !default;
 
@@ -49,7 +49,7 @@ $COMMENT_OUT_CSS_HACK : (
                 @content;
             }
         }
-        @else if $targetGroup == 'gecko094To097' { // Gecko 0.9.4~0.9.7
+        @else if $targetGroup == 'gecko091To099' { // Gecko 0.9.1~0.9.7
             & [_lazyhack_="_:-moz-any-link"] {
                 @content;
             }
