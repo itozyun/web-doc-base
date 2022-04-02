@@ -18,8 +18,8 @@ p_listenForcedColorsChange = function( callback ){
  */
 var Event_forcedColors_WORK_ONCE = p_Gecko < 60 || p_Goanna;
 var Event_forcedColors_isActive,
-    Event_forcedColors_isBlackOnWhite,
-    Event_forcedColors_isWhiteOnBlack;
+    Event_forcedColors_isDarkOnLight,
+    Event_forcedColors_isLightOnDark;
 /** @type {!Function|undefined} */
 var Event_forcedColors_test;
 
@@ -27,8 +27,8 @@ var Event_forcedColors_test;
   * @type {!Function|undefined} */
 var Event_forcedColors_getState = function(){
     return !Event_forcedColors_isActive ? 0 :
-          ( Event_forcedColors_isWhiteOnBlack  ? 2 :
-          ( Event_forcedColors_isBlackOnWhite  ? 3 : 1 ) );
+          ( Event_forcedColors_isLightOnDark  ? 2 :
+          ( Event_forcedColors_isDarkOnLight  ? 3 : 1 ) );
 };
 
 if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) ||
@@ -52,7 +52,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
 
     m_initMediaQueryList( '(-ms-high-contrast:black-on-white)',
         function( mediaQueryList ){
-            Event_forcedColors_isActive = Event_forcedColors_isBlackOnWhite = mediaQueryList.matches;
+            Event_forcedColors_isActive = Event_forcedColors_isDarkOnLight = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
@@ -62,7 +62,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
     );
     m_initMediaQueryList( '(-ms-high-contrast:white-on-black)',
         function( mediaQueryList ){
-            Event_forcedColors_isActive = Event_forcedColors_isWhiteOnBlack = mediaQueryList.matches;
+            Event_forcedColors_isActive = Event_forcedColors_isLightOnDark = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
                 m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
@@ -111,8 +111,8 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
 
         if( color ){
             Event_forcedColors_isActive = color !== '#123456' && color !== 'rgb(18,52,86)';
-            Event_forcedColors_isBlackOnWhite = isBlack( color ) && isWhite( bgColor, true );
-            Event_forcedColors_isWhiteOnBlack = isWhite( color ) && isBlack( bgColor, true );
+            Event_forcedColors_isDarkOnLight = getBrightness( color ) < getBrightness( bgColor, true );
+            Event_forcedColors_isLightOnDark = getBrightness( color ) > getBrightness( bgColor, true );
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
@@ -121,21 +121,22 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         };
         /**
          * @param {string} color
-         * @param {boolean=} isBackground
-         * @return {boolean|undefined}
-         */
-        function isBlack( color, isBackground ){
-            Debug.log( 'isBlack:' + color );
-            return color === '#000000' || color === 'rgb(0,0,0)' || isBackground && color === 'transparent'; // transparent は Gecko 1.8.1.12
-        };
-        /**
-         * @param {string} color 
          * @param {boolean=} isBackground 
-         * @return {boolean|undefined}
+         * @return {number}
          */
-        function isWhite( color, isBackground ){
-            Debug.log( 'isWhite:' + color );
-            return color === '#ffffff' || color === 'rgb(255,255,255)' || isBackground && color === 'transparent';
+        function getBrightness( color, isBackground ){
+            if( isBackground && color === 'transparent' ){ // transparent は Gecko 1.8.1.12
+                return 255 * 3 / 2;
+            };
+            if( color.charAt( 0 ) === '#' ){
+                return parseInt( '0x' + color.substr( 1, 2 ), 16 ) +
+                       parseInt( '0x' + color.substr( 3, 2 ), 16 ) +
+                       parseInt( '0x' + color.substr( 5, 2 ), 16 );
+            };
+            var colors = color.split( '(' )[ 1 ].split( ',' );
+            return parseFloat( colors[ 0 ] ) +
+                   parseFloat( colors[ 1 ] ) +
+                   parseFloat( colors[ 2 ] );
         };
     };
 

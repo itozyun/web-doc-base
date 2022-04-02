@@ -20,7 +20,7 @@
 |2 | `p_cssGeneratedContentGrade`| number or undefined  || `p_listenCssAvailabilityChange` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
 |3 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
 |1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
-|4 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
+|4 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, light-on-dark : 2, dark-on-light : 3         |
 |6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenImageReady` | undefined : `document.images.length == 0`                            |
 
 `p_cssGeneratedContentGrade` の判定用に、メインの CSS に下記スタイルを入れておく。
@@ -67,6 +67,8 @@ Web サイトの強制カラーモード(旧名、ハイコントラストモー
 1. ネイティブサポート Chromium Edge 79+, Firefox 89+(81+), Chrome 89+(79+)
 2. `(-ms-high-contrast:*)` のサポート IE 10+, EdgeHTML 12+
 3. Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8+(文書読み込み時点のモードを反映)
+
+`light-on-dark`, `dark-on-light` の検出は、`(-ms-high-contrast:*)` と `(forced-colors:*)` を非サポートの環境に限定する?
 
 ~~~js
 p_listenForcedColorsChange(
