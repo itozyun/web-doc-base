@@ -1,4 +1,5 @@
 $COMMENT_OUT_CSS_HACK : (
+    'onlyEdgeHTML'         : if($UA_Modern, 1, 0),
     'ie10ToEdgeHTML'       : if($UA_Modern, 1, 0),
     'onlyIE10To11'         : if($UA_Modern, 1, 0),
     'onlyOpera'            : if($UA_Modern, 1, 0),
@@ -11,7 +12,13 @@ $COMMENT_OUT_CSS_HACK : (
 
 @mixin css-hack($targetGroup) {
     @if map-get($COMMENT_OUT_CSS_HACK, $targetGroup) == 1 {
-        @if $targetGroup == 'ie10ToEdgeHTML' { // IE10 ~ EdgeHTML 18
+        @if $targetGroup == 'onlyEdgeHTML' { // EdgeHTML 12~18
+            & [_lazyhack_="_:-ms-lang(x)|_:-webkit-full-screen"] {
+                @content;
+            }
+        }
+        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
+        @else if $targetGroup == 'ie10ToEdgeHTML' { // IE10 ~ EdgeHTML 18
             & [_lazyhack_="_:-ms-lang(x)"] {
                 @content;
             }
