@@ -1,17 +1,13 @@
-/**
- * @const
- */
-var IE4DOM = {
-    tags : function(){}
-};
+/** @type {function(string):HTMLCollection} IE4 DOM*/
+document.all.tags = function(){};
 
 /**
- * @type {function()}
+ * @type {!function()}
  */
-var emptyFunction;
+var emptyFunction = function(){};
 
 /**
- * @type {Event} 
+ * @type {!Event|undefined} 
  */
 var event;
 
@@ -93,4 +89,5 @@ CanvasRenderingContext2D.prototype.mozDrawText = function(){};
 var __vml = 0;
 
 // http://help.dottoro.com/ljnillej.php
-var operaObject = { postError : function(){} };
+/** @type {function()} */
+opera.postError = function(){};

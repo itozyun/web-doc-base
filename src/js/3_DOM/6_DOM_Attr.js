@@ -36,7 +36,7 @@ function DOM_getAttribute( elm, name ){
 /** 3.
  * @param {Element} elm
  * @param {string} name
- * @param {string} value
+ * @param {string|number} value
  */
 function DOM_setAttribute( elm, name, value ){
     elm.setAttribute( name, value );
