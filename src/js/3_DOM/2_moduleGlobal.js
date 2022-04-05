@@ -1,5 +1,7 @@
 var m_isIE4DOM = p_Trident < 5;
 
+var m_FAKE_TEXTNODE_TAGNAME = 'font';
+
 /**
  * @param {string} tagName
  * @param {Object=} attrs
@@ -32,8 +34,8 @@ function m_toHTMLString( tagName, attrs, textContent ){
     html[ ++j ] = '>';
 
     if( textContent != null ){
-        if( m_isIE4DOM && tagName !== 'font' ){
-            html[ ++j ] = '<FONT>' + textContent + '</FONT>';
+        if( m_isIE4DOM && tagName !== m_FAKE_TEXTNODE_TAGNAME ){
+            html[ ++j ] = '<' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>' + textContent + '</' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>';
         } else {
             html[ ++j ] = textContent;
         };

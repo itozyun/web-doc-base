@@ -18,7 +18,7 @@ p_DOM_getInnerHTML         = DOM_getInnerHTML;
 /** @type {boolean} */
 var DOM_nonStandardElementCreation   = p_Trident < 9;
 /** @type {boolean} */
-var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
+var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
 
     /**
      * @param {number} insertPosition
@@ -40,38 +40,45 @@ var DOM_hasMemoryLeakInOrderOfAppend = p_Trident < 9;
             childNodes = p_DOM_getChildNodes( insertPosition < 2 ? p_DOM_getParentNode( targetNode ) : targetNode );
             nodeIndex  = insertPosition < 2 ? childNodes.indexOf( targetNode ) + insertPosition : childNodes.length;
             targetNode.insertAdjacentHTML( position, m_toHTMLString( tag, attrs, textContent ) );
-            return p_DOM_getChildNodes( targetNode )[ nodeIndex ];
+            elm = p_DOM_getChildNodes( targetNode )[ nodeIndex ];
+            if( textContent != null ){
+                if( tag === m_FAKE_TEXTNODE_TAGNAME ){
+                    elm.nodeType = 3;
+                } else {
+                    elm.children[ 0 ].nodeType = 3;
+                };
+            };
         } else if( DOM_nonStandardElementCreation ){
             elm = document.createElement( m_toHTMLString( tag, attrs ) );
         } else {
             elm = isSVG ? document.createElementNS( 'http://www.w3.org/2000/svg', tag ) : document.createElement( tag );
-        };
-    
-        if( attrs && !DOM_nonStandardElementCreation ){
-            for( name in attrs ){
-                value = attrs[ name ];
-                if( value || value === 0 ){
-                    switch( name ){
-                        case 'class' :
-                        case 'className' :
-                            p_DOM_setClassName( elm, value );
-                            break;
-                        case 'style' :
-                            elmStyle = elm.style;
-                            for( styleName in value ){
-                                elmStyle[ styleName ] = value[ styleName ];
-                            };
-                            break;
-                        default :
-                            p_DOM_setAttribute( elm, name, value );
-                            break;
+
+            if( attrs ){
+                for( name in attrs ){
+                    value = attrs[ name ];
+                    if( value || value === 0 ){
+                        switch( name ){
+                            case 'class' :
+                            case 'className' :
+                                p_DOM_setClassName( elm, value );
+                                break;
+                            case 'style' :
+                                elmStyle = elm.style;
+                                for( styleName in value ){
+                                    elmStyle[ styleName ] = value[ styleName ];
+                                };
+                                break;
+                            default :
+                                p_DOM_setAttribute( elm, name, value );
+                                break;
+                        };
                     };
                 };
             };
-        };
 
-        if( !DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_insertTextNode( elm, textContent );
+            if( !DOM_hasMemoryLeakInOrderOfAppend ){
+                textContent != null && DOM_insertTextNode( elm, textContent );
+            };
         };
         return elm;
     };
@@ -155,11 +162,11 @@ function DOM_insertTextNode( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 2, targetNode, 'font', undefined, textContent ));
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 2, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
         targetNode.appendChild( textNode );
-        return textNode; 
+        return textNode;
     };
 };
 
@@ -172,12 +179,12 @@ function DOM_insertTextNodeBefore( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 0, targetNode, 'font', undefined, textContent ));
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 0, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
 
         p_DOM_getParentNode( targetNode ).insertBefore( textNode, targetNode );
-        return textNode; 
+        return textNode;
     };
 };
 
@@ -190,7 +197,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
     var textNode, nextSibling;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 1, targetNode, 'font', undefined, textContent ));
+        return /** @type {HTMLFontElement} */ (DOM_createElement( 1, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode    = document.createTextNode( '' + textContent ),
         nextSibling = targetNode.nextSibling;
@@ -198,7 +205,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
         nextSibling ?
             p_DOM_getParentNode( targetNode ).insertBefore( textNode, nextSibling ) :
             p_DOM_getParentNode( targetNode ).appendChild( textNode );
-        return textNode; 
+        return textNode;
     };
 };
 
@@ -254,3 +261,5 @@ function DOM_getInnerHTML( elm ){
 };
 
 // Text.setTextContent()
+// https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/
+// .innerHTML += '...' -> insertAdjacentHTML
