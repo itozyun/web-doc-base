@@ -2,30 +2,27 @@
     & {
         padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
     }
-    li &, dl &, tr &, .note & {
-        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
-    }
 
     @include media(tablet_print) {
-        &, .note & {
+        & {
             padding : $paddingTop $TABLET_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 
     @include media(phablet) {
-        &, .note & {
+        & {
             padding : $paddingTop $PHABLET_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 
     @include media(phone) {
-        &, .note & {
+        & {
             padding : $paddingTop $PHONE_HORIZONTAL_MARGIN $paddingBottom;
         }
     }
 
     @include media(watch) {
-        &, .note & {
+        & {
             padding : $paddingTop 2px $paddingBottom;
         }
     }   
