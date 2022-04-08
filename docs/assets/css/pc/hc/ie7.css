@@ -75,6 +75,3 @@ tfoot tr:first-child th {
   position: static;
   display: inline
 }
-.jsPica:active {
-  outline: 0
-}

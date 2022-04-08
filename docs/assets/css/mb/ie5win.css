@@ -21,6 +21,7 @@ h6,
 table {
   border-color: #8a7322
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -234,9 +235,9 @@ strong,
 var {
   font-style: normal
 }
-.ADesc,
 pre {
-  margin: 1em 0
+  margin: 1em 0;
+  padding: 1em 3%
 }
 del {
   text-decoration: line-through
@@ -697,6 +698,10 @@ input.btn {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ADesc,
+.AHead {
+  margin: 1em 0
+}
 .ABody h1 {
   font-size: 2em;
   margin: 3em 1.5%
@@ -722,14 +727,10 @@ input.btn {
 .ADesc p {
   margin: 1em 0 0
 }
-.AHead {
-  color: #8a7322;
-  margin: 1em 0
-}
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0;
   text-align: center
 }
@@ -1038,23 +1039,6 @@ pre var {
 .tl th {
   border-width: 0
 }
-.aa,
-.note .aa,
-.note .prettyprint,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
-.aa,
-.note .aa,
-.note .prettyprint,
-.prettyprint {
-  padding: 1em 3%
-}
 .aBodyRoot :hover {
   text-decoration: none!important
 }
@@ -1280,6 +1264,11 @@ dl.note dd {
   border-width: 1px;
   border-color: #333
 }
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #aeaeae
+}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
@@ -1379,6 +1368,34 @@ dl.note dd {
     background: #333;
     color: #fff
   }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
+  }
 }
 @media print {
   blockquote code,
@@ -1408,6 +1425,10 @@ dl.note dd {
   .noprint {
     display: none
   }
+  code .typ,
+  th {
+    font-weight: 700
+  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -1419,7 +1440,8 @@ dl.note dd {
   }
   .AHead-labels,
   .LinkList :visited,
-  .RichLink-sep :visited {
+  .RichLink-sep :visited,
+  code .pln {
     color: #000
   }
   p {
@@ -1442,9 +1464,6 @@ dl.note dd {
   }
   table {
     width: 100%
-  }
-  th {
-    font-weight: 700
   }
   thead td,
   thead th {
@@ -1575,5 +1594,31 @@ dl.note dd {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #060
+  }
+  code .kwd,
+  code .tag {
+    color: #006;
+    font-weight: 700
+  }
+  code .com {
+    color: #600;
+    font-style: italic
+  }
+  code .atn,
+  code .typ {
+    color: #404
+  }
+  code .lit {
+    color: #044
+  }
+  code .pun {
+    color: #440
+  }
+  code .dec {
+    color: #003
   }
 }

@@ -107,6 +107,12 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+body,
+form,
+h2,
+html {
+  margin: 0
+}
 code,
 kbd,
 var {
@@ -269,14 +275,9 @@ strong,
 var {
   font-style: normal
 }
-.ADesc,
-.hscroll,
 pre {
-  margin: 1em 0
-}
-form,
-h2 {
-  margin: 0
+  margin: 1em 0;
+  padding: 1em 3%
 }
 del {
   text-decoration: line-through
@@ -285,12 +286,7 @@ del {
 .commonForm,
 a iframe,
 a img,
-h1 br,
-h2 br,
-h3 br,
-h4 br,
-h5 br,
-h6 br {
+br {
   display: block
 }
 .Header,
@@ -318,7 +314,6 @@ h6 {
 }
 body,
 html {
-  margin: 0;
   height: 100%
 }
 body {
@@ -612,8 +607,6 @@ tbody :hover th {
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
@@ -817,6 +810,10 @@ strong {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
+.ADesc,
+.hscroll {
+  margin: 1em 0
+}
 .ADesc p,
 .box {
   margin: 1em 0 0
@@ -828,7 +825,7 @@ strong {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0;
   text-align: center
 }
@@ -1124,22 +1121,6 @@ pre var {
   font-family: monospace;
   border-color: #0a0809
 }
-.note .aa,
-.note .prettyprint,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
-.aa,
-.note .aa,
-.note .prettyprint,
-.prettyprint {
-  padding: 1em 3%
-}
 .aBodyRoot :visited,
 .tl tbody th :visited,
 .tl tbody th :visited:hover,
@@ -1420,28 +1401,6 @@ dl.note dd {
 .prettyprint {
   border-color: #333
 }
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1450,16 +1409,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1561,6 +1510,34 @@ projection {
     background: #333;
     color: #fff
   }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
+  }
 }
 @media handheld {
   blockquote .tl td,
@@ -1582,14 +1559,6 @@ projection {
   a,
   h6 {
     color: #ffeba1
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3,
-  .RichLink a,
-  h2 {
-    padding-left: 0;
-    padding-right: 0
   }
   .AHead,
   .AHead h1,
@@ -1702,6 +1671,17 @@ projection {
   h5,
   h6 {
     margin: 1.5em 0 .8em
+  }
+  pre {
+    padding: 1em 2px
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3,
+  .RichLink a,
+  h2 {
+    padding-left: 0;
+    padding-right: 0
   }
   dd,
   li {
@@ -1945,12 +1925,6 @@ projection {
   .Header h1,
   .h1 {
     font-size: 1.2em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 2px
   }
   .aBodyRoot :visited,
   .tl tbody th :visited,

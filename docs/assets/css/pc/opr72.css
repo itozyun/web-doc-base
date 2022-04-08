@@ -59,11 +59,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Header h1,
-body,
-input.btn {
-  padding: 0
-}
 .baseColor,
 .medal {
   background: #fdeeb7
@@ -75,6 +70,10 @@ th {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+blockquote,
+pre {
+  padding: 1em
 }
 .links,
 pre {
@@ -254,6 +253,11 @@ var {
 pre {
   margin: 1em 0
 }
+.Header h1,
+body,
+input.btn {
+  padding: 0
+}
 del {
   text-decoration: line-through
 }
@@ -264,12 +268,7 @@ del {
 .commonForm,
 a iframe,
 a img,
-h1 br,
-h2 br,
-h3 br,
-h4 br,
-h5 br,
-h6 br {
+br {
   display: block
 }
 .Magazine .box,
@@ -620,8 +619,6 @@ blockquote tbody :hover td {
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -816,7 +813,7 @@ strong {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0
 }
 .AHead-labels {
@@ -1146,18 +1143,6 @@ kbd {
   text-align: right;
   color: #fdeeb7
 }
-.aa,
-.note .aa,
-.note .prettyprint,
-blockquote,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
 .aa {
   margin: 1em 0;
   border-color: #0a0809
@@ -1433,30 +1418,7 @@ dl.note dd {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333;
-  padding: 1em
-}
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
+  border-color: #333
 }
 ol.linenums {
   margin-top: 0;
@@ -1466,16 +1428,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1596,6 +1548,34 @@ li.L8 {
     background: #333;
     color: #fff
   }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
+  }
 }
 @media print {
   .links,
@@ -1693,6 +1673,9 @@ li.L8 {
   h5,
   h6 {
     margin: 1.5em 1.5% .8em
+  }
+  pre {
+    padding: 1em 3%
   }
   iframe,
   img {
@@ -1894,12 +1877,6 @@ li.L8 {
   }
   .Header h1 {
     margin: 0 0 .5em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 3%
   }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {

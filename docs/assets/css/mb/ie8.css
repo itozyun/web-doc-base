@@ -331,10 +331,9 @@ strong,
 var {
   font-style: normal
 }
-.ADesc,
-.hscroll,
 pre {
-  margin: 1em 0
+  margin: 1em 0;
+  padding: 1em 3%
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -669,8 +668,6 @@ blockquote tbody :hover td {
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -1074,6 +1071,10 @@ kbd {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
+.ADesc,
+.hscroll {
+  margin: 1em 0
+}
 .ADesc p,
 .box {
   margin: 1em 0 0
@@ -1085,7 +1086,7 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0;
   text-align: center
 }
@@ -1399,22 +1400,6 @@ pre var {
 .tl th {
   border-width: 0
 }
-.note .aa,
-.note .prettyprint,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
-.aa,
-.note .aa,
-.note .prettyprint,
-.prettyprint {
-  padding: 1em 3%
-}
 .aBodyRoot :visited,
 .tl tbody th :visited,
 .tl tbody th :visited:hover,
@@ -1725,28 +1710,6 @@ dl.note dd {
   border-width: 1px;
   border-color: #333
 }
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1755,16 +1718,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1858,6 +1811,34 @@ li.L8 {
   .prettyprint {
     background: #333;
     color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
   }
 }
 @media print {

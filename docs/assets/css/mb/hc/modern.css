@@ -33,6 +33,7 @@ tfoot td {
   display: inline-block;
   width: .45em;
   height: .45em;
+  -moz-transform: rotate(-45deg);
   transform: rotate(-45deg);
   top: 0
 }

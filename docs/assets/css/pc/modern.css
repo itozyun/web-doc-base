@@ -131,6 +131,10 @@ th {
 .aa {
   font-family: monospace
 }
+blockquote,
+pre {
+  padding: 1em
+}
 .Cover h2,
 a:active code,
 a:active var,
@@ -774,8 +778,6 @@ blockquote tbody :hover td {
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -1272,7 +1274,7 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0
 }
 .AHead-labels {
@@ -1646,18 +1648,6 @@ kbd:hover {
   text-align: right;
   color: #fdeeb7
 }
-.aa,
-.note .aa,
-.note .prettyprint,
-blockquote,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
 .aa {
   margin: 1em 0;
   border-color: #0a0809
@@ -2002,30 +1992,7 @@ dl.note dd {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333;
-  padding: 1em
-}
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
+  border-color: #333
 }
 ol.linenums {
   margin-top: 0;
@@ -2035,16 +2002,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsCap,
 .jsPica img {
@@ -2192,6 +2149,34 @@ tv {
   .prettyprint {
     background: #333;
     color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
   }
 }
 @media screen and (min-width:0\-) {
@@ -2482,6 +2467,9 @@ only screen and (max-width:950px) {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  pre {
+    padding: 1em 3%
+  }
   .AAuthor,
   .ADesc,
   .AHead {
@@ -2529,12 +2517,6 @@ only screen and (max-width:950px) {
   }
   .Cover {
     margin: 2em auto
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 3%
   }
   blockquote {
     padding: 1em 1px
@@ -2683,6 +2665,9 @@ only screen and (max-width:740px) {
   h6 {
     margin: 1.5em 1% .8em
   }
+  pre {
+    padding: 1em 2%
+  }
   iframe,
   img {
     max-width: 96%
@@ -2793,12 +2778,6 @@ only screen and (max-width:740px) {
   .RichLink h3 * {
     font-size: .769em
   }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 2%
-  }
   .js-bqCite,
   .js-bqLink,
   blockquote:after,
@@ -2852,6 +2831,9 @@ only screen and (max-width:479px) {
   h5,
   h6 {
     margin: 1.5em .5% .8em
+  }
+  pre {
+    padding: 1em 1%
   }
   iframe,
   img {
@@ -2926,12 +2908,6 @@ only screen and (max-width:479px) {
   .Header h1,
   .h1 {
     font-size: 1.2em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 1%
   }
   .js-bqCite,
   .js-bqLink,
@@ -3368,6 +3344,9 @@ only screen and (max-width:240px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  pre {
+    padding: 1em 2px
+  }
   dd,
   li {
     margin-bottom: .1em
@@ -3430,12 +3409,6 @@ only screen and (max-width:240px) {
   blockquote:after,
   blockquote:before {
     margin: 0
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 2px
   }
   .box dl,
   .box ol,

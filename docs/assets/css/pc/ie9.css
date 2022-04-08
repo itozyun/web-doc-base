@@ -122,6 +122,10 @@ th {
 .aa {
   font-family: monospace
 }
+blockquote,
+pre {
+  padding: 1em
+}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -679,8 +683,6 @@ blockquote tbody :hover td {
 }
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -1119,7 +1121,7 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0
 }
 .AHead-labels {
@@ -1479,18 +1481,6 @@ kbd:hover {
   text-align: right;
   color: #fdeeb7
 }
-.aa,
-.note .aa,
-.note .prettyprint,
-blockquote,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
 .aa {
   margin: 1em 0;
   border-color: #0a0809
@@ -1791,30 +1781,7 @@ dl.note dd {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333;
-  padding: 1em
-}
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
+  border-color: #333
 }
 ol.linenums {
   margin-top: 0;
@@ -1824,16 +1791,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1955,6 +1912,34 @@ div .box .jsCapLarge {
     background: #333;
     color: #fff
   }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
+  }
 }
 @media print,
 screen and (max-width:950px) {
@@ -1976,6 +1961,9 @@ screen and (max-width:950px) {
   h5,
   h6 {
     margin: 1.5em 1.5% .8em
+  }
+  pre {
+    padding: 1em 3%
   }
   .AAuthor,
   .ADesc,
@@ -2024,12 +2012,6 @@ screen and (max-width:950px) {
   }
   .Cover {
     margin: 2em auto
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 3%
   }
   blockquote {
     padding: 1em 1px
@@ -2178,6 +2160,9 @@ screen and (max-width:950px) {
   h6 {
     margin: 1.5em 1% .8em
   }
+  pre {
+    padding: 1em 2%
+  }
   iframe,
   img {
     max-width: 96%
@@ -2288,12 +2273,6 @@ screen and (max-width:950px) {
   .RichLink h3 * {
     font-size: .769em
   }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 2%
-  }
   .js-bqCite,
   .js-bqLink,
   blockquote:after,
@@ -2344,6 +2323,9 @@ screen and (max-width:950px) {
   h5,
   h6 {
     margin: 1.5em .5% .8em
+  }
+  pre {
+    padding: 1em 1%
   }
   iframe,
   img {
@@ -2418,12 +2400,6 @@ screen and (max-width:950px) {
   .Header h1,
   .h1 {
     font-size: 1.2em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 1%
   }
   .js-bqCite,
   .js-bqLink,
@@ -2633,6 +2609,9 @@ screen and (max-width:950px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  pre {
+    padding: 1em 2px
+  }
   dd,
   li {
     margin-bottom: .1em
@@ -2835,12 +2814,6 @@ screen and (max-width:950px) {
   }
   .SearchResult div span {
     color: #545454
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 2px
   }
   .aBodyRoot :visited,
   .tl tbody th :visited,

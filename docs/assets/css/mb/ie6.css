@@ -26,6 +26,7 @@ h6,
 table {
   border-color: #8a7322
 }
+.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -245,10 +246,9 @@ strong,
 var {
   font-style: normal
 }
-.ADesc,
-.hscroll,
 pre {
-  margin: 1em 0
+  margin: 1em 0;
+  padding: 1em 3%
 }
 del {
   text-decoration: line-through
@@ -690,6 +690,11 @@ input.btn {
 .ABody {
   margin: 3.5em 0 2em
 }
+.ADesc,
+.AHead,
+.hscroll {
+  margin: 1em 0
+}
 .ABody h1 {
   font-size: 2em;
   margin: 3em 1.5%
@@ -715,14 +720,10 @@ input.btn {
 .ADesc p {
   margin: 1em 0 0
 }
-.AHead {
-  color: #8a7322;
-  margin: 1em 0
-}
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0;
   text-align: center
 }
@@ -1043,22 +1044,6 @@ pre var {
 .tl th {
   border-width: 0
 }
-.note .aa,
-.note .prettyprint,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
-.aa,
-.note .aa,
-.note .prettyprint,
-.prettyprint {
-  padding: 1em 3%
-}
 .aBodyRoot :hover {
   text-decoration: none!important
 }
@@ -1285,32 +1270,6 @@ dl.note dd {
   border-width: 1px;
   border-color: #333
 }
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .pln,
-code .pun {
-  color: #fff
-}
-code .atn {
-  color: #bdb76b
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1319,16 +1278,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1454,6 +1403,34 @@ li.L8 {
   .prettyprint {
     background: #333;
     color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
   }
 }
 @media print {

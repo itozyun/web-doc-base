@@ -113,6 +113,12 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+body,
+form,
+h2,
+html {
+  margin: 0
+}
 code,
 kbd,
 var {
@@ -224,13 +230,9 @@ strong,
 var {
   font-style: normal
 }
-.hscroll,
 pre {
-  margin: 1em 0
-}
-form,
-h2 {
-  margin: 0
+  margin: 1em 0;
+  padding: 1em 3%
 }
 del {
   text-decoration: line-through
@@ -257,7 +259,6 @@ h6 {
 }
 body,
 html {
-  margin: 0;
   height: 100%
 }
 .medal,
@@ -547,8 +548,6 @@ thead a:focus {
 .tl tbody :hover th,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
-code .pln,
-code .pun,
 tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
@@ -751,7 +750,7 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0;
   text-align: center
 }
@@ -1057,22 +1056,6 @@ pre var {
   font-family: monospace;
   border-color: #0a0809
 }
-.note .aa,
-.note .prettyprint,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
-.aa,
-.note .aa,
-.note .prettyprint,
-.prettyprint {
-  padding: 1em 3%
-}
 .aBodyRoot :visited,
 .tl tbody th :visited,
 .tl tbody th :visited:hover,
@@ -1122,6 +1105,9 @@ blockquote:after {
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.hscroll {
+  margin: 1em 0
 }
 kbd {
   border-color: #06284e;
@@ -1342,28 +1328,6 @@ dl.note dd {
 .prettyprint {
   border-color: #333
 }
-code .atv,
-code .str {
-  color: #65b042
-}
-code .kwd {
-  color: #e28964
-}
-code .com {
-  color: #aeaeae;
-  font-style: italic
-}
-code .tag,
-code .typ {
-  color: #89bdff
-}
-code .dec,
-code .lit {
-  color: #3387cc
-}
-code .atn {
-  color: #bdb76b
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1372,16 +1336,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-  list-style-type: none
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1481,6 +1435,34 @@ li.L8 {
   .prettyprint {
     background: #333;
     color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
   }
 }
 @media print {

@@ -1,4 +1,22 @@
 @charset "UTF-8";
+blockquote,
+pre {
+  padding: 1em
+}
+.links,
+.mspacer,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em
+}
 body,
 dd p,
 li p,
@@ -58,20 +76,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.links,
-.mspacer,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em
 }
 blockquote tbody th,
 thead td,
@@ -697,7 +701,7 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 2em 0;
+  padding: 0 0 2em;
   margin: 0
 }
 .AHead-labels {
@@ -1059,18 +1063,6 @@ kbd {
   text-align: right;
   color: #fdeeb7
 }
-.aa,
-.note .aa,
-.note .prettyprint,
-blockquote,
-dl .aa,
-dl .prettyprint,
-li .aa,
-li .prettyprint,
-tr .aa,
-tr .prettyprint {
-  padding: 1em
-}
 .aa {
   margin: 1em 0;
   border-color: #0a0809
@@ -1208,11 +1200,6 @@ dl.note dd {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em;
-  clear: both
-}
 .Pager {
   color: #fdeeb7;
   height: 4em
@@ -1299,8 +1286,17 @@ dl.note dd {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333;
-  padding: 1em
+  border-color: #333
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #aeaeae
+}
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em;
+  clear: both
 }
 .jsPicaLarge img {
   width: 100%;
@@ -1435,6 +1431,34 @@ dl.note dd {
     background: #333;
     color: #fff
   }
+  code .atv,
+  code .str {
+    color: #65b042
+  }
+  code .kwd {
+    color: #e28964
+  }
+  code .com {
+    color: #aeaeae;
+    font-style: italic
+  }
+  code .tag,
+  code .typ {
+    color: #89bdff
+  }
+  code .dec,
+  code .lit {
+    color: #3387cc
+  }
+  code .pun {
+    color: #dbdbdb
+  }
+  code .pln {
+    color: #d4d4d4
+  }
+  code .atn {
+    color: #bdb76b
+  }
 }
 @media print {
   blockquote code,
@@ -1461,6 +1485,10 @@ dl.note dd {
   .noprint {
     display: none
   }
+  code .typ,
+  th {
+    font-weight: 700
+  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -1472,7 +1500,8 @@ dl.note dd {
   }
   .AHead-labels,
   .LinkList :visited,
-  .RichLink-sep :visited {
+  .RichLink-sep :visited,
+  code .pln {
     color: #000
   }
   p {
@@ -1493,6 +1522,9 @@ dl.note dd {
   h5,
   h6 {
     margin: 1.5em 1.5% .8em
+  }
+  pre {
+    padding: 1em 3%
   }
   .links,
   .note,
@@ -1518,9 +1550,6 @@ dl.note dd {
   table {
     margin: 1em 0;
     width: 100%
-  }
-  th {
-    font-weight: 700
   }
   thead td,
   thead th {
@@ -1657,6 +1686,12 @@ dl.note dd {
   .Magazine-item {
     padding: 1em 0 1em 1em
   }
+  .AMeta,
+  .Header,
+  .Pager,
+  .SocialBtns {
+    padding: 0 3%
+  }
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0
   }
@@ -1666,12 +1701,6 @@ dl.note dd {
   #lH .lMi {
     padding: .5em 0
   }
-  .AMeta,
-  .Header,
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%
-  }
   .h1 {
     font-size: 1em
   }
@@ -1679,12 +1708,6 @@ dl.note dd {
     display: block;
     text-align: center;
     margin: 0 0 .5em
-  }
-  .aa,
-  .note .aa,
-  .note .prettyprint,
-  .prettyprint {
-    padding: 1em 3%
   }
   .js-bqCite,
   .js-bqLink {
@@ -1729,5 +1752,31 @@ dl.note dd {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  code .atv,
+  code .str {
+    color: #060
+  }
+  code .kwd,
+  code .tag {
+    color: #006;
+    font-weight: 700
+  }
+  code .com {
+    color: #600;
+    font-style: italic
+  }
+  code .atn,
+  code .typ {
+    color: #404
+  }
+  code .lit {
+    color: #044
+  }
+  code .pun {
+    color: #440
+  }
+  code .dec {
+    color: #003
   }
 }
