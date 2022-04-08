@@ -8,13 +8,12 @@
         }
         border-width : 1px;
         border-color : #333;
-        @include responsive-horizontal-padding(1, 1em, 1em);
-    }
-        .prettyprint code {
+        code {
             font-size : 0.875em;
         }
+    }
 
-    @if( $IS_LTE_IE55 == false ){
+    @include media(screen) {
         /* Pretty printing styles. Used with prettify.js. */
         /* Vim sunburst theme by David Leibovic */
         code .str { color: #65B042; } /* string  - green */
@@ -22,33 +21,31 @@
         code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */
         code .typ { color: #89bdff; } /* type - light blue */
         code .lit { color: #3387CC; } /* literal - blue */
-        code .pun { color: #fff; } /* punctuation - white */
-        code .pln { color: #fff; } /* plaintext - white */
+        code .pun { color: #dbdbdb; } /* punctuation - white */
+        code .pln { color: #d4d4d4; } /* plaintext - white */
         code .tag { color: #89bdff; } /* html/xml tag    - light blue */
         code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */
         code .atv { color: #65B042; } /* html/xml attribute value - green */
         code .dec { color: #3387CC; } /* decimal - blue */
-
-        /* Specify class=linenums on a pre to get line numbering */
-        ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */
-        li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
-        /* Alternate shading for lines */
-        li.L1,li.L3,li.L5,li.L7,li.L9 { }
     }
 
+    /* Specify class=linenums on a pre to get line numbering */
+    ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */
+    li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { /* list-style-type: none */ }
+    /* Alternate shading for lines */
+    li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
     @include media(print) {
-        @if( $IS_LTE_IE55 == false ){ 
-            code .str { color: #060; }
-            code .kwd { color: #006; font-weight: bold; }
-            code .com { color: #600; font-style: italic; }
-            code .typ { color: #404; font-weight: bold; }
-            code .lit { color: #044; }
-            code .pun { color: #440; }
-            code .pln { color: #000; }
-            code .tag { color: #006; font-weight: bold; }
-            code .atn { color: #404; }
-            code .atv { color: #060; }
-            code .dec { color: #003; }
-        }
+        code .str { color: #060; }
+        code .kwd { color: #006; font-weight: bold; }
+        code .com { color: #600; font-style: italic; }
+        code .typ { color: #404; font-weight: bold; }
+        code .lit { color: #044; }
+        code .pun { color: #440; }
+        code .pln { color: #000; }
+        code .tag { color: #006; font-weight: bold; }
+        code .atn { color: #404; }
+        code .atv { color: #060; }
+        code .dec { color: #003; }
     }
 }
