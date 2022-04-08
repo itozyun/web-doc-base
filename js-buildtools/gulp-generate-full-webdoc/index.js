@@ -26,12 +26,12 @@ renderer.code = function( code, infostring, escaped ){
     if( 0 <= html.indexOf( classStart ) ){
         const classEnd = html.indexOf( '"', classStart.length );
         const langClass = html.substring( classStart.length, classEnd );
-        html = html.replace( '<pre><code class="' + langClass + '">', '<pre class="prettyprint ' + langClass + '"><code>' );
+        html = html.replace( '<pre><code class="' + langClass + '">', '<pre class="' + langClass + '"><code>' );
     };
     return html;
 };
 
-marked.setOptions( { renderer: renderer } );
+marked.setOptions( { langPrefix : 'prettyprint lang-', renderer: renderer } );
 
 module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
     const files = [];
@@ -56,7 +56,7 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
         if( file.isBuffer() ){
             if( file.extname === '.md' ){
                 file.markdown = file.contents.toString( encoding );
-                file.contents = Buffer.from( marked.parse( file.markdown, { gfm : false, langPrefix : 'lang-' } ) );
+                file.contents = Buffer.from( marked.parse( file.markdown ) );
                 file.extname  = '.html';
                 file.path = file.path
             };
