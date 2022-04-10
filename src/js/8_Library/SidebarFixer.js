@@ -358,8 +358,8 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             } else
             // 4.2 サイドバーの高さ ≦ コンテナの可視部分の高さ
             if( sidebarHeight <= visibleContainerHeight ){
-                // 可視部分の天と要素の天を合わせる
-                action = FOCUSED_ELEMENT_TOP_TO_VISIBLE_CONTAINER_TOP;
+                // サイドバーの天をコンテナの可視部分の天に揃える
+                action = SIDEBAR_TOP_TO_VISIBLE_CONTAINER_TOP;
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.2' );
             } else
             // 4.3 サイドバー下のフォーカスを得た要素の高さ ≦ コンテナの可視部分の高さ 
