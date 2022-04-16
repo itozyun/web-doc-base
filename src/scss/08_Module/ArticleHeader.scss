@@ -44,6 +44,9 @@
     .AHead { margin : 1em 0; }
     .AHead h1 { text-align : center; }
 }
+@include media(tablet) {
+    .AHead h1 { padding : 2em 0; }
+}
 
 /*  Phone
 --------------------------------------------------------------------------------------*/
@@ -77,10 +80,11 @@
         padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
     .AHead h1 {
-        color : $COLOR_Print_text !important;
+        color   : $COLOR_Print_text !important;
+        padding : 1em 0;
     }
 }
-/*  WSXGA, print
+/*  landscape Print
 --------------------------------------------------------------------------------------*/
 @include media(landscapePrint) {
     .AHead {

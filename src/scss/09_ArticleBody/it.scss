@@ -18,7 +18,7 @@
         @if( $CANUSE_HOVER_PSEUDO_CLASS ){
             &:hover {
                 position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
-                top      : -0.1em;
+                top      : -2px;
             }
         }
     }
