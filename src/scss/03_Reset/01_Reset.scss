@@ -9,7 +9,7 @@
                     outline : 0;
                 }
             }
-            a, input, textarea, select, button { // IE8~11 でクリックするたびにその要素に枠線が付くので個別に指定する
+            a, input, textarea, select, button { // IE8~11 のハイコントラストモードでクリックするたびに要素に枠線が付くので個別に指定する
                 @include active-focus-pseudo-class{
                     outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
                 }

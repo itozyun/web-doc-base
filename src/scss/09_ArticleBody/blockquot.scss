@@ -100,7 +100,7 @@ blockquote {
 --------------------------------------------------------------------------------------*/
 @include media(print) {
     blockquote {
-        margin     : 1em 0;
+        margin : 1em 0;
     }
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
         .js-bqLink a:after {

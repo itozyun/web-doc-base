@@ -49,9 +49,7 @@
     dfn, acronym { @extend %HelpContent; }
 
     @if( $CANUSE_ATTRIBUTE_SELECTOR ){
-        @if( $CANUSE_ATTRIBUTE_SELECTOR ){
-            abbr[title] { @extend %HelpContent; }
-        }
+        abbr[title] { @extend %HelpContent; }
 
         q[title], q[cite] {
             border-bottom : 1px dotted;
