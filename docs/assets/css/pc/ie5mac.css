@@ -1644,7 +1644,8 @@ ol.linenums {
   }
   .AHead h1 {
     text-align: center;
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels a {
     display: inline;

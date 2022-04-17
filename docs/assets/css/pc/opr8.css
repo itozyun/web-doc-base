@@ -1216,7 +1216,7 @@ kbd {
   padding: 0 .4em
 }
 kbd:hover {
-  top: -.1em
+  top: -2px
 }
 code,
 var {
@@ -1236,9 +1236,6 @@ a:focus var {
   left: -.5em;
   width: 1em;
   text-align: center
-}
-.links [href*="/web.archive."]:before {
-  content: "*"
 }
 .note {
   padding-left: 25%;
@@ -1910,6 +1907,7 @@ projection {
     margin: 2.4em 0 1.2em
   }
   .AHead h1 {
+    padding: 2em 0;
     font-size: 1.5em
   }
   .AHead-labels {
@@ -2272,20 +2270,7 @@ projection {
   .Magazine-jump,
   .TxtNavi,
   .js-bqLink a:after,
-  .noprint,
-  [href$=".GIF"]:after,
-  [href$=".JPEG"]:after,
-  [href$=".JPG"]:after,
-  [href$=".PNG"]:after,
-  [href$=".gif"]:after,
-  [href$=".jpeg"]:after,
-  [href$=".jpg"]:after,
-  [href$=".png"]:after,
-  [href*="/blogger.googleusercontent.com/img/"]:after,
-  [href*="/viewer.diagrams.net/?"]:after,
-  [href^="#"]:after,
-  [href^="mailto:"]:after,
-  [href^="tel:"]:after {
+  .noprint {
     display: none
   }
   .ABody {
@@ -2296,7 +2281,8 @@ projection {
     padding: 0 3%
   }
   .AHead h1 {
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels a {
     display: inline;
@@ -2355,12 +2341,6 @@ projection {
   .Header h1 {
     margin: 0 0 .5em
   }
-  .AMeta-cita:after,
-  .aBodyRoot a[href]:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
-  }
   .hscroll table {
     width: 100%;
     margin: 0
@@ -2379,6 +2359,11 @@ projection {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta-cita:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
   }
   .Pager,
   .SocialBtns {

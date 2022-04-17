@@ -1132,9 +1132,9 @@ kbd {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 0 0 2em;
   margin: 0;
-  text-align: center
+  text-align: center;
+  padding: 2em 0
 }
 .Attribution small,
 .RichLink-meta,
@@ -1520,7 +1520,7 @@ kbd {
   border-radius: 3px
 }
 kbd:hover {
-  top: -.1em
+  top: -2px
 }
 code,
 var {
@@ -2792,7 +2792,8 @@ div .box .jsCapLarge {
     padding: 0 3%
   }
   .AHead h1 {
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels,
   code .pln {

@@ -726,9 +726,9 @@ input.btn {
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
-  padding: 0 0 2em;
   margin: 0;
-  text-align: center
+  text-align: center;
+  padding: 2em 0
 }
 .Attribution small,
 .RichLink-meta,
@@ -1099,9 +1099,6 @@ pre var {
 .links [href]:before {
   content: ">";
   font-weight: 700
-}
-.links [href*="/web.archive."]:before {
-  content: "*"
 }
 .note {
   padding-left: 25%
@@ -1581,20 +1578,7 @@ ol.linenums {
   .Cover-btn,
   .TxtNavi,
   .js-bqLink a:after,
-  .noprint,
-  [href$=".GIF"]:after,
-  [href$=".JPEG"]:after,
-  [href$=".JPG"]:after,
-  [href$=".PNG"]:after,
-  [href$=".gif"]:after,
-  [href$=".jpeg"]:after,
-  [href$=".jpg"]:after,
-  [href$=".png"]:after,
-  [href*="/blogger.googleusercontent.com/img/"]:after,
-  [href*="/viewer.diagrams.net/?"]:after,
-  [href^="#"]:after,
-  [href^="mailto:"]:after,
-  [href^="tel:"]:after {
+  .noprint {
     display: none
   }
   .ABody {
@@ -1605,7 +1589,8 @@ ol.linenums {
     padding: 0 3%
   }
   .AHead h1 {
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels a {
     display: inline;
@@ -1655,12 +1640,6 @@ ol.linenums {
     display: block;
     text-align: center
   }
-  .AMeta-cita:after,
-  .aBodyRoot a[href]:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
-  }
   .hscroll table {
     width: 100%;
     margin: 0
@@ -1679,6 +1658,11 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta-cita:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
   }
   .Pager,
   .SocialBtns {

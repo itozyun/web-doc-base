@@ -1219,7 +1219,7 @@ kbd {
   padding: 0 .4em
 }
 kbd:hover {
-  top: -.1em
+  top: -2px
 }
 code,
 var {
@@ -1742,6 +1742,9 @@ screen and (max-width:950px) {
   }
   .mspacer {
     margin: 1em .5em!important
+  }
+  .AHead h1 {
+    padding: 2em 0
   }
   .Magazine img {
     margin-left: 0
@@ -2655,7 +2658,8 @@ screen and (max-width:240px) {
     padding: 0 3%
   }
   .AHead h1 {
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels,
   code .pln {

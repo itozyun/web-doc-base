@@ -1256,7 +1256,7 @@ kbd {
   padding: 0 .4em
 }
 kbd:hover {
-  top: -.1em
+  top: -2px
 }
 code,
 var {
@@ -1820,7 +1820,8 @@ ol.linenums {
   }
   .AHead h1 {
     text-align: center;
-    color: #000!important
+    color: #000!important;
+    padding: 1em 0
   }
   .AHead-labels,
   code .pln {
