@@ -14,9 +14,13 @@ LVHA 順
 
 :hover に反応する要素が `a[href]` しかない為、`a:hover` を `:hover` に省略できる
 
+:hover での CSS-P が不可, Gecko 0.9.6
+
 ### :active
 
 Gecko ~1.8.1.12 :focus に指定したスタイルがクリック(:active)にも適用される.
+
+IE ~11 では、a:active を :active にすると body:active にマッチする為、省略できない
 
 ### :focus 
 

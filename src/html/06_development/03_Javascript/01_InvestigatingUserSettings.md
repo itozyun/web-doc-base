@@ -6,22 +6,23 @@
 
 ## 1. ブラウザの状態フラグ
 
-1. CSS は有効か？
-2. `:before`, `:after` 疑似要素によるコンテンツの生成が出来るか？
-3. `-ms-filter` は有効か？
-4. 強制カラーモードの状態
-5. print イベントのコールバックの可否
-6. 画像が有効か？
+1. ブラウザは `(forced-colors:*)`, `(-ms-high-contrast:*)` メディア特性をサポートするか？
+2. ブラウザは `print` イベントをサポートするか？
+3. `:before`, `:after` 疑似要素によるコンテンツの生成が出来るか？
+4. ユーザー設定で `-ms-filter` は有効か？ IE4~9 用。
+5. ユーザー設定で CSS は有効か？
+6. 強制カラーモードの状態
+7. ユーザー設定で画像が有効か？
 
-|  | valiable                    | type                 | value | available           | note                                                                 |
+|  | variable                    | type                 | value | available           | note                                                                 |
 |:-|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
-|  | `p_canuseNativeForcedColors`| boolean or undefined |       | from the beginning  |                                                                      |
-|5 | `p_printEventDisabled`      | boolean              |       | from the beginning  |                                                                      |
-|2 | `p_cssGeneratedContentGrade`| number or undefined  || `p_listenCssAvailabilityChange` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
-|3 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
-|1 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
-|4 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, light-on-dark : 2, dark-on-light : 3         |
-|6 | `p_imageEnabled`            | boolean or undefined |       | `p_listenImageReady` | undefined : `document.images.length == 0`                            |
+|1 | `p_canuseNativeForcedColors`| boolean or undefined |       | from the beginning  |                                                                      |
+|2 | `p_printEventDisabled`      | boolean              |       | from the beginning  |                                                                      |
+|3 | `p_cssGeneratedContentGrade`| number or undefined  || `p_listenCssAvailabilityChange` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
+|4 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
+|5 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
+|6 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, light-on-dark : 2, dark-on-light : 3         |
+|7 | `p_imageEnabled`            | boolean or undefined |       | `p_listenImageReady` | undefined : `document.images.length == 0`                            |
 
 `p_cssGeneratedContentGrade` の判定用に、メインの CSS に下記スタイルを入れておく。
 
@@ -66,7 +67,7 @@ Web サイトの強制カラーモード(旧名、ハイコントラストモー
 
 1. ネイティブサポート Chromium Edge 79+, Firefox 89+(81+), Chrome 89+(79+)
 2. `(-ms-high-contrast:*)` のサポート IE 10+, EdgeHTML 12+
-3. Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8+(文書読み込み時点のモードを反映)
+3. Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8.1+(文書読み込み時点のモードを反映)
 
 `light-on-dark`, `dark-on-light` の検出は、`(-ms-high-contrast:*)` と `(forced-colors:*)` を非サポートの環境に限定する?
 
@@ -163,7 +164,7 @@ Web フォントの読み込み完了のテスト、フォールバックのダ�
 1. フォントファミリー名
 2. メインの CSS に下記スタイルを入れておく。隠し要素のサイズを測って CSS の読み込み完了を検出する `<div class="myIconFont-testCssReady"></div>`
 3. Web フォントを DATA URI スキームで埋め込んだ CSS を用意し、パスをここに書く
-4. 第四引数と第五引数はリガチャのテスト用。合字になる文字列(第四引数)とキャラクター(第五引数)の文字幅が一致するか？調べる
+4. 第4引数と第5引数はリガチャのテスト用。合字になる文字列(第4引数)とキャラクター(第5引数)の文字幅が一致するか？調べる
 5. 合字になるキャラクター
 6. インターバルタイム(デフォルトは5000ミリ秒)
 

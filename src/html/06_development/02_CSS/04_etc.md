@@ -18,3 +18,8 @@
 ## CSS Generated Content の実装状況は4種類以上
 
 `ms-filter` が絡むと5種類
+
+## 動的疑似クラスの要素セレクタの省略
+
+a:hover がリンク要素限定の IE6 以下などでは、a を省略する。
+しかし IE では body:active になるので省略できない。

@@ -12,7 +12,8 @@
 <a href="../test/icon.html">アイコンのテスト</a>,
 <a href="../test/richlink.html">RichLink のテスト</a>,
 <a href="../test/form.html">フォーム部品の実装状況</a>
-<a href="../test/dynamic-pseudo-classes.html">動的疑似クラス</a>
+<a href="../test/dynamic-pseudo-classes.html">動的疑似クラス</a>,
+<a href="../test/attr-selectors.html">属性セレクターのテスト</a>
 
 <noscript><p class="wn">javascript が無効です</p></noscript>
 
