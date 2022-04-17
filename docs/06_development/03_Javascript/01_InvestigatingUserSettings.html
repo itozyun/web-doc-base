@@ -162,22 +162,82 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 </ol>
 <h2 id="1-ブラウザの状態フラグ">1. ブラウザの状態フラグ</h2>
 <ol>
-<li>CSS は有効か？</li>
+<li>ブラウザは <code>(forced-colors:*)</code>, <code>(-ms-high-contrast:*)</code> メディア特性をサポートするか？</li>
+<li>ブラウザは <code>print</code> イベントをサポートするか？</li>
 <li><code>:before</code>, <code>:after</code> 疑似要素によるコンテンツの生成が出来るか？</li>
-<li><code>-ms-filter</code> は有効か？</li>
+<li>ユーザー設定で <code>-ms-filter</code> は有効か？ IE4~9 用。</li>
+<li>ユーザー設定で CSS は有効か？</li>
 <li>強制カラーモードの状態</li>
-<li>print イベントのコールバックの可否</li>
-<li>画像が有効か？</li>
+<li>ユーザー設定で画像が有効か？</li>
 </ol>
-<p>|  | valiable                    | type                 | value | available           | note                                                                 |
-|:-|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
-|  | <code>p_canuseNativeForcedColors</code>| boolean or undefined |       | from the beginning  |                                                                      |
-|5 | <code>p_printEventDisabled</code>      | boolean              |       | from the beginning  |                                                                      |
-|2 | <code>p_cssGeneratedContentGrade</code>| number or undefined  || <code>p_listenCssAvailabilityChange</code> | undefined : <code>p_cssAvailability == false</code>, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
-|3 | <code>p_iefilterEnabled</code>         | boolean or undefined |       | <code>p_listenLoadEvent</code> |                                                                      |
-|1 | <code>p_cssAvailability</code>         | boolean              |       | <code>p_listenLoadEvent</code> |                                                                      |
-|4 | <code>p_forcedColorsState</code>       | number               | 0~3   | <code>p_listenLoadEvent</code> | none : 0, active : 1, white-on-black : 2, black-on-white : 3         |
-|6 | <code>p_imageEnabled</code>            | boolean or undefined |       | <code>p_listenImageReady</code> | undefined : <code>document.images.length == 0</code>                            |</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">variable</th>
+<th align="left">type</th>
+<th align="left">value</th>
+<th align="left">available</th>
+<th align="left">note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>p_canuseNativeForcedColors</code></td>
+<td align="left">boolean or undefined</td>
+<td align="left"></td>
+<td align="left">from the beginning</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>p_printEventDisabled</code></td>
+<td align="left">boolean</td>
+<td align="left"></td>
+<td align="left">from the beginning</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><code>p_cssGeneratedContentGrade</code></td>
+<td align="left">number or undefined</td>
+<td align="left"></td>
+<td align="left"><code>p_listenCssAvailabilityChange</code></td>
+<td align="left">undefined : <code>p_cssAvailability == false</code>, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"><code>p_iefilterEnabled</code></td>
+<td align="left">boolean or undefined</td>
+<td align="left"></td>
+<td align="left"><code>p_listenLoadEvent</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"><code>p_cssAvailability</code></td>
+<td align="left">boolean</td>
+<td align="left"></td>
+<td align="left"><code>p_listenLoadEvent</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"><code>p_forcedColorsState</code></td>
+<td align="left">number</td>
+<td align="left">0~3</td>
+<td align="left"><code>p_listenLoadEvent</code></td>
+<td align="left">none : 0, active : 1, light-on-dark : 2, dark-on-light : 3</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left"><code>p_imageEnabled</code></td>
+<td align="left">boolean or undefined</td>
+<td align="left"></td>
+<td align="left"><code>p_listenImageReady</code></td>
+<td align="left">undefined : <code>document.images.length == 0</code></td>
+</tr>
+</tbody></table>
 <p><code>p_cssGeneratedContentGrade</code> の判定用に、メインの CSS に下記スタイルを入れておく。</p>
 <pre class="prettyprint lang-css"><code>#jsCanUseContent {
     font       : 0/0 a;
@@ -211,8 +271,9 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <ol>
 <li>ネイティブサポート Chromium Edge 79+, Firefox 89+(81+), Chrome 89+(79+)</li>
 <li><code>(-ms-high-contrast:*)</code> のサポート IE 10+, EdgeHTML 12+</li>
-<li>Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8+(文書読み込み時点のモードを反映)</li>
+<li>Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8.1+(文書読み込み時点のモードを反映)</li>
 </ol>
+<p><code>light-on-dark</code>, <code>dark-on-light</code> の検出は、<code>(-ms-high-contrast:*)</code> と <code>(forced-colors:*)</code> を非サポートの環境に限定する?</p>
 <pre class="prettyprint lang-js"><code>p_listenForcedColorsChange(
     function( forcedColorsState ){
         if( p_canuseNativeForcedColors ){
@@ -280,7 +341,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <li>フォントファミリー名</li>
 <li>メインの CSS に下記スタイルを入れておく。隠し要素のサイズを測って CSS の読み込み完了を検出する <code>&lt;div class="myIconFont-testCssReady"&gt;&lt;/div&gt;</code></li>
 <li>Web フォントを DATA URI スキームで埋め込んだ CSS を用意し、パスをここに書く</li>
-<li>第四引数と第五引数はリガチャのテスト用。合字になる文字列(第四引数)とキャラクター(第五引数)の文字幅が一致するか？調べる</li>
+<li>第4引数と第5引数はリガチャのテスト用。合字になる文字列(第4引数)とキャラクター(第5引数)の文字幅が一致するか？調べる</li>
 <li>合字になるキャラクター</li>
 <li>インターバルタイム(デフォルトは5000ミリ秒)</li>
 </ol>
@@ -373,33 +434,33 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../../08_test/01_Color.html">
+<div class="RichLink-sep"><a role="listitem" href="../01_DesinePolicy.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>デザインの背景</b>
+</a><a role="listitem" href="../02_CSS/04_etc.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ワンポイント</b>
+</a><a role="listitem" href="../../08_test/05_LimitationOfPseudoClasses.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>スタイリングの制限</b>
+</a><a role="listitem" href="../../08_test/">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>8. テストページ</b>
+</a><a role="listitem" href="../04_BootSequence.html">
+<img alt="" role="presentation" src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/w480/s50-c/boot.drawio.png" width="50" height="50">
+<b>ブートシーケンス</b>
+</a><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ユーザー設定の調査</b>
+</a><a role="listitem" href="../../08_test/01_Color.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>システムカラー</b>
 </a><a role="listitem" href="../02_CSS/02_LinkInteraction.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>リンク要素のインタラクションについて</b>
-</a><a role="listitem" href="../../08_test/">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>8. テストページ</b>
 </a><a role="listitem" href="../../04_markup/">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>4. マークアップを確認する</b>
-</a><a role="listitem" href="../02_CSS/04_etc.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ワンポイント</b>
-</a><a role="listitem" href="../../08_test/allcasts.html">
-<img alt="" role="presentation" src="//1.bp.blogspot.com/-muIzrtXyUTE/VgDos4QOJQI/AAAAAAAAQVo/U8kg6H26RYA/s50-c/blogger-image--1589508341.jpg" width="50" height="50">
-<b>オールキャストページ</b>
-</a><a role="listitem" href="../../02_features/02_DarkModeAndForcedColors.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ダークモードと強制カラー(ハイコントラスト)モード</b>
-</a><a role="listitem">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ユーザー設定の調査</b>
-</a><a role="listitem" href="./">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>3. Javascript をカスタムする為の情報</b>
 </a>
 </div>
 </div>

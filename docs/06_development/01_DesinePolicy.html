@@ -158,8 +158,8 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <p>工事中です。</p>
 <p>web-doc-base のデザインについて解説します。もちろん、あなたの継承プロジェクトではこれを上書きして一向に構いません。</p>
 <h2 id="モダン-ui">モダン UI</h2>
-<p>web-doc-base の各パーツはフラットデザインから派生したモダン UI(メトロ UI)の影響を受けています。</p>
-<p>モダン UI は、フォントサイズと十分な余白を駆使してレイアウトします。角丸やドロップシャドウ、グラデーションといった端末にとって負荷の高い描画を控える、ミニマリストなデザインです。様々なスクリーンサイズやカラースキーム、ブラウザの新旧を問わずサポートを目指す本プロジェクトとの相性は良いと考えます。</p>
+<p>web-doc-base のボタン状リンクとフォーム部品はフラットデザインから派生したモダン UI(メトロ UI)の影響を受けています。このプロジェクトを始めた時期が、モダン UI が現役の時期と重なります。</p>
+<p>モダン UI は、フォントサイズと十分な余白を駆使してレイアウトします。角丸やドロップシャドウ、グラデーションといった端末にとって負荷の高い描画を控える、ミニマリストなデザインです。様々なスクリーンサイズやカラースキーム、ブラウザの新旧を問わずサポートを目指す本プロジェクトとの相性は良いです。</p>
 <p>一時このモダン UI にならったアプリケーションをいくつか見ましたが、デザイナーの関与がないとなかなかに良いものにならないようです。現在は、同様にフラットデザインから派生したマテリアルデザインが主流です。</p>
 <h2 id="ユニバーサルデザインフォントの利用">ユニバーサルデザインフォントの利用</h2>
 <p>プロジェクトでは本文にユニバーサルデザインフォントを用います。UDフォントは様々な長所を備えますが、デザイン性が低いのが難点です。</p>
@@ -167,7 +167,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <h2 id="レイアウトを-font-size-基準に行う">レイアウトを font-size 基準に行う</h2>
 <p>プロジェクトはユーザーがブラウザに設定したフォントサイズを尊重し CSS で不用意に上書きしません。この為に <code>font-size</code> の指定には <code>%</code>, <code>em</code> を使っています。その他のコンポーネントもフォントサイズの変化に追従するように <code>width</code>, <code>padding</code>, <code>margin</code>, <code>border-width</code> 等は基本的に <code>em</code> で指定します。</p>
 <p>この CSS 設計方法は、<code>px</code> ベースのレイアウトとは異なるややこしさがあります。この手法について「<a href="http://web.archive.org/web/20120716033656/http://www.extjs.co.jp/blog/2010/08/24/resolution-independent-mobile-ui">解像度に依存しないモバイルユーザーインターフェース</a>」が詳しい記事です。</p>
-<p>しかし、Gecko で表示が微妙な時はこのフォントサイズが原因であったりします。</p>
+<p>しかし、Gecko で表示が微妙な時はサイズへの em 指定が原因であったりします。</p>
 
     </div>
 </div>
@@ -182,33 +182,33 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../08_test/01_Color.html">
+<div class="RichLink-sep"><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>デザインの背景</b>
+</a><a role="listitem" href="02_CSS/04_etc.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ワンポイント</b>
+</a><a role="listitem" href="../08_test/05_LimitationOfPseudoClasses.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>スタイリングの制限</b>
+</a><a role="listitem" href="../08_test/">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>8. テストページ</b>
+</a><a role="listitem" href="04_BootSequence.html">
+<img alt="" role="presentation" src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/w480/s50-c/boot.drawio.png" width="50" height="50">
+<b>ブートシーケンス</b>
+</a><a role="listitem" href="03_Javascript/01_InvestigatingUserSettings.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ユーザー設定の調査</b>
+</a><a role="listitem" href="../08_test/01_Color.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>システムカラー</b>
 </a><a role="listitem" href="02_CSS/02_LinkInteraction.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>リンク要素のインタラクションについて</b>
-</a><a role="listitem" href="../08_test/">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>8. テストページ</b>
 </a><a role="listitem" href="../04_markup/">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>4. マークアップを確認する</b>
-</a><a role="listitem" href="02_CSS/04_etc.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ワンポイント</b>
-</a><a role="listitem" href="../08_test/allcasts.html">
-<img alt="" role="presentation" src="//1.bp.blogspot.com/-muIzrtXyUTE/VgDos4QOJQI/AAAAAAAAQVo/U8kg6H26RYA/s50-c/blogger-image--1589508341.jpg" width="50" height="50">
-<b>オールキャストページ</b>
-</a><a role="listitem" href="../02_features/02_DarkModeAndForcedColors.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ダークモードと強制カラー(ハイコントラスト)モード</b>
-</a><a role="listitem" href="03_Javascript/01_InvestigatingUserSettings.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ユーザー設定の調査</b>
-</a><a role="listitem" href="03_Javascript/">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>3. Javascript をカスタムする為の情報</b>
 </a>
 </div>
 </div>
