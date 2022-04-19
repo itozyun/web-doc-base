@@ -168,3 +168,18 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
         padding : 0;
     }
 }
+
+/*  Print
+--------------------------------------------------------------------------------------*/
+@include media(print) {
+    .Xi {
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
+    }
+}
+/*  landscape Print
+--------------------------------------------------------------------------------------*/
+@include media(landscapePrint) {
+    .Xi {
+        padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
+    }
+}

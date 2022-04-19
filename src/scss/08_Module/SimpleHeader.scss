@@ -81,11 +81,8 @@
             font-size : 0.875em;
         }
         #lH .lMi {
-            padding : .5em 0;
-        }
-
-        .Header {
-            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+            padding-top    : .5em;
+            padding-bottom : .5em;
         }
             .h1 {
                 font-size : 1em;
@@ -104,12 +101,5 @@
                     text-align : center;
                 }
             }
-    }
-    /*  WSXGA, print
-    --------------------------------------------------------------------------------------*/
-    @include media(landscapePrint) {
-        .Header {
-            padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
-        }
     }
 }

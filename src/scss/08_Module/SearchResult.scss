@@ -83,7 +83,7 @@
     }
 }
 
-/*  Print
+/*  landscape Print
 --------------------------------------------------------------------------------------*/
 @include media(landscapePrint) {
     @if( $UA_Modern ){

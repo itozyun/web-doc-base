@@ -1,5 +1,5 @@
 /* [module] ArticleHeader
- *  出現位置は #lE .lMf | #lB .lMf
+ *  出現位置は #lE .lMf | #lB .lMz .lMf
  *
  *  div.AHead
  *    h1
@@ -75,9 +75,11 @@
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
+    .lMz .AHead {
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
+    }
     .AHead {
         color   : $COLOR_Print_casual_text !important;
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
     .AHead h1 {
         color   : $COLOR_Print_text !important;
