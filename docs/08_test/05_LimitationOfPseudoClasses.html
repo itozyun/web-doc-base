@@ -155,31 +155,103 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
     <div class='aBodyRoot'>
 
 
-<h2 id="疑似クラスによるスタイルの制限">疑似クラスによるスタイルの制限</h2>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/CSS/Pseudo-classes">MDN &gt; 擬似クラス</a></p>
-<p>LVHA 順</p>
-<p><a href="https://waic.jp/docs/WCAG-TECHS/ua-notes/css.html">CSSの達成方法のためのユーザーエージェントサポートノート</a></p>
-<h3 id="hover">:hover</h3>
-<p><code>a[href]</code> のみ, IE6-, Gecko 1- <code>$LIMITED_HOVER_PSEUDO_CLASS</code></p>
-<p>:hover に反応する要素が <code>a[href]</code> しかない為、<code>a:hover</code> を <code>:hover</code> に省略できる</p>
-<p>:hover での CSS-P が不可, Gecko 0.9.6</p>
-<h3 id="active">:active</h3>
-<p>Gecko ~1.8.1.12 :focus に指定したスタイルがクリック(:active)にも適用される.</p>
-<p>IE ~11 では、a:active を :active にすると body:active にマッチする為、省略できない</p>
-<h3 id="focus">:focus</h3>
-<p>フォーム部品へのタブフォーカス IE5 で可能, Opera 7 で可能, Gecko
-リンク要素へのタブフォーカス IE(*1), Gecko 0.9.6+(*2), Opera 8+(*3)</p>
-<p>0.6~0.9.4 タブフォーカスの移動が微妙</p>
+<p>CSS によるスタイル変更の制限について調べた内容を書いていきます．</p>
+<p>このページの内容のテストに <a href="../test/form.html">フォーム部品の実装状況</a><a href="../test/dynamic-pseudo-classes.html">動的疑似クラス</a> を使いました．</p>
+<h2 id="各疑似クラスのスタイリングの制限">各疑似クラスのスタイリングの制限</h2>
+<h3 id="hover"><code>:hover</code></h3>
 <ol>
-<li>:active が focus 相当の動作 ie7- <code>$ACTIVE_ON_LINK_BEHAVES_FOCUS</code> フォーカスした要素へのホバー</li>
-<li>$TEXT_COLOR_CANT_CHANGE_FOCUSING : $UA_Gck-097 or $UA_Gck101-121; // :focus 要素のテキストカラーの変更が出来ない</li>
-<li>$FOCUSED_COLOR_IS_SYSTEM_COLOR   : $UA_Opera8 or $UA_Opera9; // Opera 8~9, The :focus color cannot be changed from the system color.</li>
+<li><code>$HOVER_PSEUDO_CLASS_ONLY_LINK</code><ul>
+<li>IE6 以下は <code>:hover</code> は <code>a[href]</code> にしか働かない為、<code>a:hover</code> を <code>:hover</code> に省略できる．</li>
+</ul>
+</li>
+<li><code>$HOVER_PSEUDO_CLASS_ONLY_FORM</code><ul>
+<li>Opera 7~7.20, <code>:hover</code> は form 部品にしか働かない．</li>
+</ul>
+</li>
+<li><code>$CANUSE_HOVER_PSEUDO_CLASS</code><ul>
+<li>IE8 以上, Opera 7.2 以上, Gecko．</li>
+</ul>
+</li>
 </ol>
-<h2 id="フォーム部品へのスタイルの制限">フォーム部品へのスタイルの制限</h2>
-<h3 id="limited_form_item_styling---is_old_opera-or-is_lte_win_ie7">$LIMITED_FORM_ITEM_STYLING  : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;</h3>
-<p>これらの環境では様々な程度で、フォーム部品の CSS スタイリングに制限がある</p>
-<p>その為、デフォルトのスタイリングを尊重する。しかし、フォーカスや :active に対しては、</p>
-<p>また Opera 7.2~7.5 には <code>form :focus</code> にスタイルを設定すると input, textarea に触れなくなる、というバグがある為、フォーカス時のスタイルを諦める。</p>
+<h3 id="active"><code>:active</code></h3>
+<p>IE11 以下では、<code>a:active</code> を <code>:active</code> にすると全ての非インタラクティブな要素(<code>&lt;div&gt;</code> 等)へのクリックで <code>:active</code> になる為、省略できない．</p>
+<ol>
+<li><code>$ACTIVE_ON_LINK_BEHAVES_FOCUS</code>, <code>$ACTIVE_PSEUDO_CLASS_ONLY_LINK</code><ul>
+<li>IE7 以下はリンク要素への <code>:active</code> を実装するがそのふるまいは <code>a:focus</code></li>
+</ul>
+</li>
+<li><code>$FOCUS_APPLIED_TO_ACTIVE</code><ul>
+<li>Gecko ~1.7, <code>:focus</code> のスタイルが <code>:active</code> にも適用される.</li>
+</ul>
+</li>
+<li><code>$CANUSE_ACTIVE_PSEUDO_CLASS</code><ul>
+<li>IE8 以上, Gecko 1.8 以上</li>
+</ul>
+</li>
+</ol>
+<h3 id="focus"><code>:focus</code></h3>
+<ol>
+<li><code>$FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR</code><ul>
+<li>Opera 8~9, <code>:focus</code> のテキスト色はシステムカラー(<code>HighlightText</code>)で固定されている．必要に応じて背景色に <code>background-color:Highlight</code> を指定してコントラストを確保できるようにする．</li>
+</ul>
+</li>
+<li><code>$CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS</code><ul>
+<li>Gecko ~1.2.1, <code>:focus</code> セレクタでテキスト色の上書きが出来ない．</li>
+</ul>
+</li>
+<li><code>$FOCUS_PSEUDO_CLASS_ONLY_LINK</code><ul>
+<li>IE7, Opera 7.2～7.5, <code>:focus</code> はリンク要素にしか働かない．</li>
+</ul>
+</li>
+<li><code>$CANUSE_FOCUS_PSEUDO_CLASS</code><ul>
+<li>IE8 以上, Opera 7～7.1, Opera 8 以上, Gecko</li>
+</ul>
+</li>
+</ol>
+<h4 id="タブフォーカスについて">タブフォーカスについて</h4>
+<p>タブキーでフォーカスの移動が出来るか？<code>:active</code> のスタイルが適用されるケースも含む．</p>
+<ol>
+<li>フォーム部品へのタブフォーカス<ul>
+<li>IE, Opera 7～7.1x, Opera 8 以上, Gecko</li>
+</ul>
+</li>
+<li>リンク要素へのタブフォーカス<ul>
+<li>IE, Opera 7 以上, Gecko</li>
+</ul>
+</li>
+</ol>
+<p>Opera ～7.5, Gecko 0.6～0.9.4 はタブフォーカスの移動が奇妙．近い階層でないとフォーカスが移動しないようだ．</p>
+<h2 id="フォーム部品へのスタイリングの制限">フォーム部品へのスタイリングの制限</h2>
+<h3 id="limited_styling_of_items_in_form"><code>$LIMITED_STYLING_OF_ITEMS_IN_FORM</code></h3>
+<p>Opera 9.27 以下, IE7 以下では様々な程度で、フォーム部品のスタイリングに制限がある．</p>
+<p>その為、デフォルトのスタイルを尊重する。しかし、<code>:focus</code> や <code>:active</code> では枠線色を変更する．</p>
+<p>また Opera 7.2~7.5 には <code>form :focus</code> にスタイルを設定すると <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code> に触れなくなるバグがある為、フォーカス時のスタイルを諦める．</p>
+<h2 id="この他の制限">この他の制限</h2>
+<ol>
+<li><code>$CANUSE_TRANSPARENT_BORDER_COLOR</code><ul>
+<li>主に枠線を使って書く三角形で使用する．IE6以下をの除く</li>
+</ul>
+</li>
+<li><code>$CANUSE_OUTLINE</code><ul>
+<li>IE8 以上, Gecko 1.8 以上, Opera 8 以上</li>
+</ul>
+</li>
+<li><code>$CANUSE_LIMITED_OUTLINE</code><ul>
+<li>Opera 7.x, 動的疑似クラスで <code>outline</code> の(色の)変更が出来ない</li>
+</ul>
+</li>
+</ol>
+<h2 id="リンク">リンク</h2>
+<ul>
+<li>LVHA 順について<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/Pseudo-classes">MDN &gt; 擬似クラス</a></li>
+</ul>
+</li>
+<li>ウェブアクセシビリティに関する文書の日本語訳で IE6 時代のもの。ブラウザ毎の差異を紹介しつつ、各インタラクションに適切にスタイリングをするように案内している。<ul>
+<li><a href="https://waic.jp/docs/WCAG-TECHS/ua-notes/css.html">CSSの達成方法のためのユーザーエージェントサポートノート</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </div>
@@ -194,15 +266,15 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../06_development/01_DesinePolicy.html">
+<div class="RichLink-sep"><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>スタイリングの制限</b>
+</a><a role="listitem" href="../06_development/01_DesinePolicy.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>デザインの背景</b>
 </a><a role="listitem" href="../06_development/02_CSS/04_etc.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>ワンポイント</b>
-</a><a role="listitem">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>スタイリングの制限</b>
 </a><a role="listitem" href="./">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>8. テストページ</b>
