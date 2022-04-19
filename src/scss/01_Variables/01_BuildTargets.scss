@@ -252,8 +252,8 @@
 
 // Useful CSS Selectors
     $CANUSE_ATTRIBUTE_SELECTOR        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_UNIQUE_ATTRIBUTE_SELECTOR : $UA_Modern or $IS_OLD_GECKO or $UA_Opera72 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_ALL_ATTRIBUTE_SELECTORS   : $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_CUSTOM_ATTRIBUTE_SELECTOR : $UA_Modern or $IS_OLD_GECKO or $UA_Opera72 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
+    $CANUSE_ALL_ATTRIBUTE_SELECTORS   : $UA_Modern or $UA_Gck101-121 or $UA_Gck130-190 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
     $CANUSE_EMPTY_PSEUDO_CLASS        : $UA_Modern or $IS_LEGACY or $UA_IE9;
     $CANUSE_TARGET_PSEUDO_CLASS       : $UA_Modern or $UA_Gck130-190 or $UA_IE9;
     $CANUSE_1ST_CHILD_PSEUDO_CLASS    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_MacIE5;
