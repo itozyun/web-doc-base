@@ -61,12 +61,6 @@ tbody td {
 .RichLink a {
   border-width: 0
 }
-.tl tbody td:after {
-  filter: invert(1)
-}
-.tl {
-  border-collapse: collapse
-}
 .Pager {
   text-align: center;
   height: auto;
@@ -75,6 +69,12 @@ tbody td {
 .Pager span {
   position: static;
   display: inline
+}
+.tl tbody td:after {
+  filter: invert(1)
+}
+.tl {
+  border-collapse: collapse
 }
 .jsPica:active,
 .jsPica:focus {

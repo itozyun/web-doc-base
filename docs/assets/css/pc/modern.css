@@ -122,10 +122,31 @@ thead th {
 th {
   text-align: left
 }
+.Cover img,
+iframe,
+img {
+  max-width: 100%
+}
 .Search .btn,
 .lW,
 .lX {
   overflow: hidden
+}
+#jsSide,
+.Cover-btn i,
+.Cover-img,
+.Magazine-jump i,
+.Pager,
+.Search,
+.links a,
+.tl td,
+:link:hover img,
+:visited:hover img,
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
 }
 .Magazine-date,
 .aa {
@@ -163,12 +184,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.Cover img,
-.caption,
-iframe,
-img {
-  max-width: 100%
 }
 @font-face {
   font-family: "YuGothic M";
@@ -223,7 +238,6 @@ a:focus img {
 }
 :link:hover img,
 :visited:hover img {
-  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -258,7 +272,6 @@ a:focus img {
 .Cover-btn i,
 .Magazine-jump i {
   border-width: .5em 0 .5em .7em;
-  position: relative;
   top: .15em;
   display: inline-block;
   margin-left: .5em
@@ -303,7 +316,6 @@ q {
 sub,
 sup {
   line-height: 0;
-  position: relative;
   vertical-align: baseline
 }
 input,
@@ -666,8 +678,7 @@ textarea:-ms-input-placeholder {
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em;
-  position: relative
+  font-size: 1.1em
 }
 h2:after {
   width: 5em;
@@ -736,6 +747,9 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
+.Pager,
+.SocialBtns,
+.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1363,7 +1377,6 @@ kbd {
   line-height: 1.4
 }
 .Cover-img {
-  position: relative;
   height: 100%;
   margin: 0 0 .6em
 }
@@ -1452,11 +1465,6 @@ h1#blog2slide-current {
   border-width: 0 0 0 .5em;
   padding-left: 1.5em
 }
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .Magazine h3 {
   margin: .2em 0 0;
   padding: 0
@@ -1527,7 +1535,6 @@ kbd {
   padding: 0 0 1.143em
 }
 .Search {
-  position: relative;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
@@ -1535,13 +1542,6 @@ kbd {
 .Search input {
   position: absolute;
   top: 0
-}
-#jsSide,
-.Pager,
-.links a,
-.tl td,
-kbd:hover {
-  position: relative
 }
 .Search-txt {
   width: 100%;
@@ -1645,8 +1645,125 @@ kbd:hover {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right;
+  text-align: right
+}
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  display: block;
+  width: 32%
+}
+.caption,
+.jsPicaLarge img {
+  width: 100%;
+  max-width: 100%
+}
+.Pager i {
+  display: inline-block;
+  border-color: transparent #8a7322
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em
+}
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
   color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1787,8 +1904,7 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
-  width: 100%
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1856,116 +1972,6 @@ dl.note dd {
   background: #0d5bb5!important;
   color: #fff
 }
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
-}
-.Pager i {
-  display: inline-block;
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  color: #fdeeb7
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
-  color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
-}
 #blog2slide-root {
   margin: 0 auto;
   overflow: auto
@@ -2020,9 +2026,7 @@ ol.linenums {
   cursor: -webkit-zoom-out;
   cursor: -moz-zoom-out;
   cursor: zoom-out;
-  width: 100%;
   height: auto;
-  max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
@@ -2912,6 +2916,13 @@ only screen and (max-width:479px) {
   .h1 {
     font-size: 1.2em
   }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
+  }
   .js-bqCite,
   .js-bqLink,
   blockquote:after,
@@ -2937,13 +2948,6 @@ only screen and (max-width:479px) {
   .note blockquote p,
   .note blockquote ul {
     margin-right: 1%
-  }
-  .Pager-next i,
-  .Pager-top i {
-    margin-right: .2em
-  }
-  .Pager-prev i {
-    margin-left: .2em
   }
 }
 @media handheld,
@@ -3277,17 +3281,6 @@ only screen and (max-width:240px) {
   .SearchResult div span {
     color: #545454
   }
-  .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  blockquote .tl tbody th :visited {
-    color: #eae
-  }
-  .aBodyRoot :visited:hover {
-    color: #b3f
-  }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
   .SocialBtns .ln :link,
@@ -3317,6 +3310,17 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #000!important
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  .aBodyRoot :visited:hover {
+    color: #b3f
   }
 }
 @media handheld,
@@ -3625,12 +3629,20 @@ only screen and (max-width:240px) {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .Xi,
+  .lMh,
+  .lMi,
+  .lMz .AHead {
+    padding: 0 3%
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
+  .Pager,
+  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -3663,8 +3675,7 @@ only screen and (max-width:240px) {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important;
-    padding: 0 3%
+    color: #666!important
   }
   .AHead h1 {
     color: #000!important;
@@ -3722,11 +3733,8 @@ only screen and (max-width:240px) {
     font-size: .875em
   }
   #lH .lMi {
-    padding: .5em 0
-  }
-  .AMeta,
-  .Header {
-    padding: 0 3%
+    padding-top: .5em;
+    padding-bottom: .5em
   }
   .h1 {
     font-size: 1em
@@ -3759,11 +3767,6 @@ only screen and (max-width:240px) {
   blockquote .tl tbody td:after {
     border-color: #fff
   }
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%;
-    display: none
-  }
   code .atv,
   code .str {
     color: #060
@@ -3791,17 +3794,13 @@ only screen and (max-width:240px) {
     color: #003
   }
 }
-@media only screen and (-ms-high-contrast:active) {
-  .ico-label:after {
-    border-color: transparent currentColor
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after {
-    border-color: currentColor transparent
-  }
-}
 @media only print and (orientation:landscape) {
+  .AHead,
+  .Xi,
+  .lMh,
+  .lMi {
+    padding: 0 1.5%
+  }
   .ABody,
   .ABody blockquote,
   .SearchResult-multi {
@@ -3814,12 +3813,15 @@ only screen and (max-width:240px) {
   .ABody h3 {
     text-align: left
   }
-  .AHead,
-  .AMeta,
-  .Header,
-  .Pager,
-  .SocialBtns {
-    padding: 0 1.5%
+}
+@media only screen and (-ms-high-contrast:active) {
+  .ico-label:after {
+    border-color: transparent currentColor
+  }
+  .Pager-top i,
+  .ico-comment:after,
+  .ico-pen:after {
+    border-color: currentColor transparent
   }
 }
 @media only screen and (forced-colors:active),

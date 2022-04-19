@@ -263,7 +263,12 @@ a:focus img {
   display: inline-block;
   margin-left: .5em
 }
+.Cover img,
 .Cover-meta,
+.Pager span,
+.RichLink b,
+.Search,
+.Search-txt,
 .commonForm,
 a iframe,
 a img,
@@ -636,6 +641,9 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
+.Pager,
+.SocialBtns,
+.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1098,6 +1106,7 @@ a:focus .ico-pen:after {
 .Cover h2,
 .Cover-meta span,
 .Label a,
+.Pager i,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -1233,7 +1242,6 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
   width: 100%;
   max-width: 100%
 }
@@ -1327,13 +1335,11 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  display: block;
   font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
-  display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
@@ -1343,7 +1349,6 @@ pre var {
   top: 0
 }
 .Search-txt {
-  display: block;
   width: 100%;
   left: -22px
 }
@@ -1442,8 +1447,114 @@ pre var {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right;
+  text-align: right
+}
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  width: 32%
+}
+.Pager i {
+  border-color: transparent #8a7322
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em;
+  text-align: center
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
   color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1640,117 +1751,6 @@ dl.note dd {
 .tl tbody :hover th {
   background: #0d5bb5!important;
   color: #fff
-}
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
-}
-.Pager i {
-  display: inline-block;
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  color: #fdeeb7;
-  text-align: center
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
-  color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
 }
 .prettyprint {
   border-width: 1px;
@@ -2118,6 +2118,13 @@ div .box .jsCapLarge {
   .h1 {
     font-size: 1.2em
   }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
+  }
   .js-bqCite,
   .js-bqLink,
   blockquote:after,
@@ -2143,13 +2150,6 @@ div .box .jsCapLarge {
   .note blockquote p,
   .note blockquote ul {
     margin-right: 1%
-  }
-  .Pager-next i,
-  .Pager-top i {
-    margin-right: .2em
-  }
-  .Pager-prev i {
-    margin-left: .2em
   }
 }
 @media screen and (max-width:359px) {
@@ -2528,32 +2528,6 @@ div .box .jsCapLarge {
   .SearchResult div span {
     color: #545454
   }
-  .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  blockquote .tl tbody th :visited {
-    color: #eae
-  }
-  .aBodyRoot :visited:hover {
-    color: #b3f
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 0 1em
-  }
-  .box > p:first-of-type {
-    margin-top: -.1em
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 0
-  }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
   .SocialBtns .ln :link,
@@ -2583,6 +2557,32 @@ div .box .jsCapLarge {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #000!important
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  .aBodyRoot :visited:hover {
+    color: #b3f
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 0 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.1em
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 0
   }
 }
 @media print {
@@ -2751,11 +2751,19 @@ div .box .jsCapLarge {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .Xi,
+  .lMh,
+  .lMi,
+  .lMz .AHead {
+    padding: 0 3%
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
   .CmtForm,
   .Cover-btn,
+  .Pager,
+  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -2788,8 +2796,7 @@ div .box .jsCapLarge {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important;
-    padding: 0 3%
+    color: #666!important
   }
   .AHead h1 {
     color: #000!important;
@@ -2833,11 +2840,8 @@ div .box .jsCapLarge {
     font-size: .875em
   }
   #lH .lMi {
-    padding: .5em 0
-  }
-  .AMeta,
-  .Header {
-    padding: 0 3%
+    padding-top: .5em;
+    padding-bottom: .5em
   }
   .h1 {
     font-size: 1em
@@ -2874,11 +2878,6 @@ div .box .jsCapLarge {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%;
-    display: none
   }
   code .atv,
   code .str {

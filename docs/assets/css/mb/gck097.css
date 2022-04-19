@@ -83,6 +83,22 @@ body {
 .lS2 {
   width: 48.5%
 }
+#lH .lSi,
+.AAuthor,
+.Comment p,
+.Cover,
+.Cover-img,
+.Pager,
+.RichLink a,
+.box,
+.commonForm-pair,
+.lMi,
+.lSi,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
 .links,
 .note,
 blockquote,
@@ -117,26 +133,6 @@ pre {
 .tl thead th a:focus,
 a:focus {
   background-color: #fffd93!important
-}
-.tl td,
-.tl th {
-  vertical-align: top
-}
-#lH .lSi,
-.AAuthor,
-.Comment p,
-.Cover,
-.Cover-img,
-.Pager,
-.RichLink a,
-.box,
-.commonForm-pair,
-.lMi,
-.lSi,
-kbd:hover,
-sub,
-sup {
-  position: relative
 }
 body,
 input,
@@ -212,6 +208,7 @@ sup {
 sub {
   bottom: -.25em
 }
+.jsPicaLarge img,
 img {
   height: auto
 }
@@ -263,8 +260,7 @@ textarea {
 }
 *,
 .RichLink a img,
-.tl,
-.tl th {
+.tl {
   border-width: 0
 }
 html {
@@ -510,6 +506,9 @@ tfoot td {
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Label div,
+.Pager,
+.SocialBtns,
+.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -570,6 +569,7 @@ tbody :hover td {
   color: #0d5bb5
 }
 .Cover-btn,
+.TxtNavi,
 .commonForm-send,
 .r {
   text-align: right
@@ -800,10 +800,7 @@ input.btn,_:-moz-any-link {
   margin: 0 0 .5em
 }
 .Pager span,
-.RichLink b,
-.caption,
-.js-bqCite,
-blockquote:after {
+.RichLink b {
   display: block;
   display: block
 }
@@ -930,6 +927,11 @@ pre var {
   border-width: 0 0 1px;
   border-color: #08366b!important
 }
+.Pager span,
+.Search .btn {
+  position: absolute;
+  top: 1em
+}
 .baseColor .RichLink a {
   border-color: #e7d182!important
 }
@@ -981,8 +983,6 @@ pre var {
   height: 2.1em
 }
 .Search .btn {
-  top: 1em;
-  position: absolute;
   width: 2em;
   right: .8em;
   white-space: nowrap;
@@ -1077,9 +1077,131 @@ pre var {
   border-color: #8bc53f;
   color: #8bc53f
 }
-.TxtNavi {
-  text-align: right;
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  width: 32%
+}
+.caption,
+.jsPicaLarge img {
+  width: 100%;
+  max-width: 100%
+}
+.Pager i {
+  display: -moz-inline-box;
+  vertical-align: text-top;
+  border-color: transparent #8a7322
+}
+.tl td,
+.tl th {
+  vertical-align: top
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager :focus i {
+  border-color: transparent #fff
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.Pager-top :focus i {
+  border-color: #fff transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em;
+  text-align: center
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
   color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .fb:focus,
+.SocialBtns .pt:focus {
+  border-color: #fff
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1114,6 +1236,7 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  display: block;
   font-size: .875em;
   text-align: right;
   color: #8a7322;
@@ -1197,10 +1320,9 @@ dl.note dd {
   margin-right: 3%
 }
 .caption {
+  display: block;
   text-align: center;
-  font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1221,6 +1343,7 @@ dl.note dd {
 }
 .tl th {
   padding: .5em .8em .5em .5em;
+  border-width: 0;
   text-align: left
 }
 .tl td {
@@ -1233,127 +1356,6 @@ dl.note dd {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  width: 32%
-}
-.Pager i {
-  display: -moz-inline-box;
-  vertical-align: text-top;
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.Pager-top :focus i {
-  border-color: #fff transparent
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  color: #fdeeb7;
-  text-align: center
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
-  color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .fb:focus,
-.SocialBtns .pt:focus {
-  border-color: #fff
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
-}
 .prettyprint {
   border-color: #333
 }
@@ -1365,11 +1367,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
-}
-.jsPicaLarge img {
-  width: 100%;
-  height: auto;
-  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1589,11 +1586,19 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .Xi,
+  .lMh,
+  .lMi,
+  .lMz .AHead {
+    padding: 0 3%
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
   .CmtForm,
   .Cover-btn,
+  .Pager,
+  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint,
@@ -1616,8 +1621,7 @@ ol.linenums {
     margin: 0 0 2em
   }
   .AHead {
-    color: #666!important;
-    padding: 0 3%
+    color: #666!important
   }
   .AHead h1 {
     color: #000!important;
@@ -1658,11 +1662,8 @@ ol.linenums {
     font-size: .875em
   }
   #lH .lMi {
-    padding: .5em 0
-  }
-  .AMeta,
-  .Header {
-    padding: 0 3%
+    padding-top: .5em;
+    padding-bottom: .5em
   }
   .h1 {
     font-size: 1em
@@ -1699,11 +1700,6 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%;
-    display: none
   }
   code .atv,
   code .str {

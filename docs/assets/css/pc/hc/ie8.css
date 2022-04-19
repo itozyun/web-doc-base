@@ -65,15 +65,6 @@ tfoot tr:first-child th {
 .RichLink a {
   border-width: 0
 }
-.tl tbody td:after {
-  top: 1.2em;
-  left: -.13em;
-  border-width: 0;
-  outline: solid .35em
-}
-.tl {
-  border-collapse: collapse
-}
 .Pager {
   text-align: center;
   height: auto;
@@ -82,6 +73,15 @@ tfoot tr:first-child th {
 .Pager span {
   position: static;
   display: inline
+}
+.tl tbody td:after {
+  top: 1.2em;
+  left: -.13em;
+  border-width: 0;
+  outline: solid .35em
+}
+.tl {
+  border-collapse: collapse
 }
 .jsPica:active,
 .jsPica:focus {

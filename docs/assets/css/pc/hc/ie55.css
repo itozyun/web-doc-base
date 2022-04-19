@@ -42,9 +42,6 @@ tbody td {
 .RichLink a {
   border-width: 0
 }
-.tl {
-  border-collapse: collapse
-}
 .Pager {
   text-align: center;
   height: auto;
@@ -54,4 +51,7 @@ tbody td {
   position: static;
   display: inline;
   width: auto
+}
+.tl {
+  border-collapse: collapse
 }

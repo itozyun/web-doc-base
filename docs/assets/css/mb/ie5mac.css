@@ -69,6 +69,12 @@ tr ul {
 .medal {
   background: #fdeeb7
 }
+.Cover-btn i,
+.Cover-img,
+.Pager,
+.Search {
+  position: relative
+}
 .links,
 blockquote,
 dl,
@@ -85,12 +91,6 @@ ul {
 .tl td,
 .tl th {
   vertical-align: top
-}
-.Cover-btn i,
-.Cover-img,
-.Pager,
-.Search {
-  position: relative
 }
 body,
 input,
@@ -365,7 +365,12 @@ var {
   margin: 0 .1em
 }
 .Cover-meta,
+.Pager span,
+.RichLink b,
+.Search,
+.Search-txt,
 .commonForm,
+.js-bqCite,
 a iframe,
 a img {
   display: block
@@ -491,6 +496,9 @@ tfoot td {
   border-width: 2px .5em 0
 }
 .Label div,
+.Pager,
+.SocialBtns,
+.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot thead :visited,
 blockquote tbody th :link,
@@ -547,6 +555,8 @@ strong {
 }
 .Comment p,
 .Cover,
+.RichLink a,
+.box,
 .lMi,
 .lSi {
   display: inline-table
@@ -709,7 +719,8 @@ strong {
   padding-left: 1.5%;
   padding-right: 1.5%
 }
-.ADesc p {
+.ADesc p,
+.box {
   margin: 1em 0 0
 }
 .AHead h1 {
@@ -737,6 +748,7 @@ strong {
 .Cover h2,
 .Cover-meta span,
 .Label a,
+.Pager i,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -874,7 +886,6 @@ pre var {
   text-decoration: underline!important
 }
 .RichLink a {
-  display: inline-table;
   padding: 1em .5em 0;
   border-color: #08366b!important
 }
@@ -916,12 +927,10 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  display: block;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
-  display: block;
   height: 1.9em;
   padding: 0 3em 0 0
 }
@@ -930,7 +939,6 @@ pre var {
   top: 0
 }
 .Search-txt {
-  display: block;
   width: 100%;
   left: .05em
 }
@@ -1025,8 +1033,128 @@ pre var {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right;
+  text-align: right
+}
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  width: 32%
+}
+.Pager i {
+  border-color: #fdeeb7 #8a7322
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager :active i,
+.Pager :focus i {
+  border-color: #0d5bb5 #fff
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 #fdeeb7
+}
+.Pager-top :active i,
+.Pager-top :focus i {
+  border-color: #fff #0d5bb5
+}
+.SocialBtns {
+  padding: 1em 0 .5em;
+  text-align: center
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
   color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .fb:active,
+.SocialBtns .fb:focus,
+.SocialBtns .pt:active,
+.SocialBtns .pt:focus {
+  border-color: #fff
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1057,13 +1185,8 @@ blockquote {
   padding: 1em 1px
 }
 .js-bqCite {
-  display: block;
   text-align: right;
   color: #8a7322
-}
-.box {
-  display: inline-table;
-  margin: 1em 0 0
 }
 .box dl,
 .box ol,
@@ -1162,131 +1285,6 @@ dl.note dd {
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
-}
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
-}
-.Pager i {
-  display: inline-block;
-  border-color: #fdeeb7 #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager :active i,
-.Pager :focus i {
-  border-color: #0d5bb5 #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 #fdeeb7
-}
-.Pager-top :active i,
-.Pager-top :focus i {
-  border-color: #fff #0d5bb5
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  color: #fdeeb7;
-  text-align: center
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
-  color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .fb:active,
-.SocialBtns .fb:focus,
-.SocialBtns .pt:active,
-.SocialBtns .pt:focus {
-  border-color: #fff
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
 }
 .prettyprint {
   border-width: 1px;
@@ -1426,17 +1424,6 @@ ol.linenums {
   table {
     margin: 1em 0
   }
-  #lB .lS,
-  #lF .lW,
-  #lH .lS,
-  .CmtForm,
-  .Cover-btn,
-  .Pager,
-  .SocialBtns,
-  .TxtNavi,
-  .noprint {
-    display: none
-  }
   code .typ,
   th {
     font-weight: 700
@@ -1526,6 +1513,10 @@ ol.linenums {
     background: #fff;
     color: #000
   }
+  .AHead,
+  .BreadcrumbList {
+    color: #666!important
+  }
   *,
   .ribbon * {
     border-color: #ccc
@@ -1533,12 +1524,25 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .Xi,
+  .lMh,
+  .lMi,
+  .lMz .AHead {
+    padding: 0 3%
+  }
+  #lB .lS,
+  #lF .lW,
+  #lH .lS,
+  .CmtForm,
+  .Cover-btn,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .noprint {
+    display: none
+  }
   .ABody {
     margin: 0 0 2em
-  }
-  .AHead {
-    color: #666!important;
-    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;
@@ -1560,14 +1564,7 @@ ol.linenums {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0;
-    color: #666!important
-  }
-  .AMeta,
-  .Header,
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%
+    padding: .5em 0
   }
   .Cover .img-loaded div {
     position: static
@@ -1581,7 +1578,8 @@ ol.linenums {
     font-size: .875em
   }
   #lH .lMi {
-    padding: .5em 0
+    padding-top: .5em;
+    padding-bottom: .5em
   }
   .h1 {
     font-size: 1em

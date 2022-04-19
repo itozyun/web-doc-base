@@ -79,6 +79,22 @@ thead th {
 th {
   text-align: left
 }
+.Cover img,
+iframe,
+img {
+  max-width: 100%
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Pager,
+.links a,
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
 .Magazine-date,
 .aa {
   font-family: monospace
@@ -106,24 +122,6 @@ h5,
 h6,
 th {
   font-weight: 400
-}
-.Cover img,
-.caption,
-iframe,
-img {
-  max-width: 100%
-}
-#jsMain,
-#jsSide,
-.Cover-img,
-.Pager,
-.links [href]:before,
-.links a,
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
 }
 .Search .btn,
 .lW {
@@ -234,15 +232,6 @@ sub,
 sup {
   line-height: 0;
   vertical-align: baseline
-}
-.AHead-labels a,
-.Cover h2,
-.SocialBtns *,
-.Subscribe a,
-.btn,
-.tl td,
-.tl th {
-  vertical-align: top
 }
 input,
 textarea {
@@ -589,6 +578,9 @@ tfoot td {
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Label div,
+.Pager,
+.SocialBtns,
+.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -688,6 +680,7 @@ strong {
 }
 .btn {
   display: inline-block;
+  vertical-align: top;
   cursor: pointer;
   padding: 0 1em
 }
@@ -847,6 +840,7 @@ strong {
 .SocialBtns *,
 .Subscribe a {
   display: inline-block;
+  vertical-align: top;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -940,6 +934,7 @@ kbd {
 }
 .Cover h2 {
   display: inline-block;
+  vertical-align: top;
   background: #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
@@ -1152,8 +1147,135 @@ kbd {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right;
+  text-align: right
+}
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  display: block;
+  width: 32%
+}
+.caption,
+.jsPicaLarge img {
+  width: 100%;
+  max-width: 100%
+}
+.Pager i {
+  display: inline-block;
+  vertical-align: text-top;
+  border-color: transparent #8a7322
+}
+.tl td,
+.tl th {
+  vertical-align: top
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager :focus i {
+  border-color: transparent #fff
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.Pager-top :focus i {
+  border-color: #fff transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
   color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .fb:focus,
+.SocialBtns .pt:focus {
+  border-color: #fff
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1233,6 +1355,7 @@ a:focus var {
 }
 .links [href]:before {
   content: ">";
+  position: relative;
   left: -.5em;
   width: 1em;
   text-align: center
@@ -1265,8 +1388,7 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
-  width: 100%
+  font-size: .875em
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1302,127 +1424,6 @@ dl.note dd {
   background: #0d5bb5!important;
   color: #fff
 }
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
-}
-.Pager i {
-  display: inline-block;
-  vertical-align: text-top;
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.Pager-top :focus i {
-  border-color: #fff transparent
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  color: #fdeeb7
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
-  color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .fb:focus,
-.SocialBtns .pt:focus {
-  border-color: #fff
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
-}
 .prettyprint {
   border-color: #333
 }
@@ -1436,9 +1437,7 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
-  width: 100%;
   height: auto;
-  max-width: 100%;
   box-sizing: border-box
 }
 .baseColor .btn:link {
@@ -2041,43 +2040,6 @@ projection {
     margin: 0 0 .5em;
     font-size: 1.2em
   }
-  .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  blockquote .tl tbody th :visited {
-    color: #eae
-  }
-  .aBodyRoot :visited:hover {
-    color: #b3f
-  }
-  .js-bqLink,
-  blockquote:before {
-    margin: 0;
-    color: #bbe
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 0 1em
-  }
-  .box .caption,
-  .box iframe,
-  .box img {
-    margin: 0 auto 1em;
-    float: none
-  }
-  .hscroll table {
-    white-space: nowrap
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 0
-  }
   .Pager-next i,
   .Pager-top i {
     margin-right: .2em
@@ -2114,6 +2076,43 @@ projection {
   .SocialBtns .pt:focus,
   .SocialBtns .tw:focus {
     border-color: #000!important
+  }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  .aBodyRoot :visited:hover {
+    color: #b3f
+  }
+  .js-bqLink,
+  blockquote:before {
+    margin: 0;
+    color: #bbe
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 0 1em
+  }
+  .box .caption,
+  .box iframe,
+  .box img {
+    margin: 0 auto 1em;
+    float: none
+  }
+  .hscroll table {
+    white-space: nowrap
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 0
   }
 }
 @media print {
@@ -2255,6 +2254,10 @@ projection {
     background: #fff;
     color: #000
   }
+  .AHead,
+  .BreadcrumbList {
+    color: #666!important
+  }
   *,
   .ribbon * {
     border-color: #ccc
@@ -2262,12 +2265,20 @@ projection {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .Xi,
+  .lMh,
+  .lMi,
+  .lMz .AHead {
+    padding: 0 3%
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
   .CmtForm,
   .Cover-btn,
   .Magazine-jump,
+  .Pager,
+  .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
   .noprint {
@@ -2275,10 +2286,6 @@ projection {
   }
   .ABody {
     margin: 0 0 2em
-  }
-  .AHead {
-    color: #666!important;
-    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;
@@ -2305,8 +2312,7 @@ projection {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0;
-    color: #666!important
+    padding: .5em 0
   }
   .Cover .img-loaded div {
     position: static
@@ -2329,17 +2335,19 @@ projection {
     font-size: .875em
   }
   #lH .lMi {
-    padding: .5em 0
-  }
-  .AMeta,
-  .Header {
-    padding: 0 3%
+    padding-top: .5em;
+    padding-bottom: .5em
   }
   .h1 {
     font-size: 1em
   }
   .Header h1 {
     margin: 0 0 .5em
+  }
+  .AMeta-cita:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
   }
   .hscroll table {
     width: 100%;
@@ -2359,16 +2367,6 @@ projection {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .AMeta-cita:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
-  }
-  .Pager,
-  .SocialBtns {
-    padding: 0 3%;
-    display: none
   }
   code .atv,
   code .str {
