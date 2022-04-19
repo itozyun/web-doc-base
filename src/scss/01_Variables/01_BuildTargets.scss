@@ -236,7 +236,7 @@
     $FORCED_COLORS_SUPPORT           : $UA_Modern or $IS_WIN_IE or $UA_Gck130-190;
 
 // SVG
-    $CANUSE_SVG                      : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190;
+    $CANUSE_SVG                      : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gck130-190 or $UA_IE9;
 
 // CSS Generated Content
     $CANUSE_CSS_GENERATED_CONTENT    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
