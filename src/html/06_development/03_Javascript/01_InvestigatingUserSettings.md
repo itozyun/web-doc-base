@@ -13,16 +13,18 @@
 5. ユーザー設定で CSS は有効か？
 6. 強制カラーモードの状態
 7. ユーザー設定で画像が有効か？
+8. Data URI スキームが使えるか？
 
-|  | variable                    | type                 | value | available           | note                                                                 |
-|:-|:----------------------------|:---------------------|:------|:--------------------|:---------------------------------------------------------------------|
-|1 | `p_canuseNativeForcedColors`| boolean or undefined |       | from the beginning  |                                                                      |
-|2 | `p_printEventDisabled`      | boolean              |       | from the beginning  |                                                                      |
+|  | variable                    | type                 | value | available            | note                                                                 |
+|:-|:----------------------------|:---------------------|:------|:---------------------|:---------------------------------------------------------------------|
+|1 | `p_canuseNativeForcedColors`| boolean or undefined |       | from the beginning   |                                                                      |
+|2 | `p_printEventDisabled`      | boolean              |       | from the beginning   |                                                                      |
 |3 | `p_cssGeneratedContentGrade`| number or undefined  || `p_listenCssAvailabilityChange` | undefined : `p_cssAvailability == false`, 0:none, 1:enabled, 2:CSS-P, 3:Inline Block + CSS-P |
-|4 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent` |                                                                      |
-|5 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent` |                                                                      |
-|6 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent` | none : 0, active : 1, light-on-dark : 2, dark-on-light : 3         |
+|4 | `p_iefilterEnabled`         | boolean or undefined |       | `p_listenLoadEvent`  |                                                                      |
+|5 | `p_cssAvailability`         | boolean              |       | `p_listenLoadEvent`  |                                                                      |
+|6 | `p_forcedColorsState`       | number               | 0~3   | `p_listenLoadEvent`  | none : 0, active : 1, light-on-dark : 2, dark-on-light : 3           |
 |7 | `p_imageEnabled`            | boolean or undefined |       | `p_listenImageReady` | undefined : `document.images.length == 0`                            |
+|8 | `p_dataURITestResult`       | boolean or undefined |       | `p_dataURITest`      |                                                                      |
 
 `p_cssGeneratedContentGrade` の判定用に、メインの CSS に下記スタイルを入れておく。
 

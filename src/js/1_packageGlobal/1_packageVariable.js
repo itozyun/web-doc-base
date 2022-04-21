@@ -100,6 +100,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_iefilterEnabled,
     p_imageEnabled,
     p_cssGeneratedContentGrade,
+    p_dataURITestResult,
 
     p_cssTransformName =
         p_notUndefined( p_style[ 'transform'         ] ) ? 'transform' : 
@@ -117,7 +118,7 @@ var p_cssAvailabilityCallbacks = [];
 /** @type {!Array.<!Function>|undefined} */
 var p_forcedColorsChangeCallbacks = [];
 
-var p_dataUriTest,
+var p_dataURITest,
     p_imageTest,
     p_webFontTest;
 
