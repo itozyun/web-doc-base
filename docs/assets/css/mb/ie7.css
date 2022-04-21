@@ -93,7 +93,8 @@ th {
 .Cover-btn i,
 .Cover-img,
 .Pager,
-.Search {
+.Search,
+kbd:hover {
   position: relative
 }
 .links,
@@ -409,7 +410,6 @@ dfn {
 }
 .AMeta,
 .Pager,
-.RichLink a,
 .SocialBtns,
 .tl thead th,
 hr,
@@ -559,9 +559,6 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
-.Pager,
-.SocialBtns,
-.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -834,8 +831,7 @@ input.btn {
   border-color: #bbe;
   color: #062241
 }
-.Attribution,
-.SocialBtns {
+.Attribution {
   padding: 1em 0;
   text-align: center
 }
@@ -955,6 +951,7 @@ pre var {
 }
 .RichLink a {
   padding: 1em .5em;
+  border-width: 0 0 1px;
   border-color: #08366b!important
 }
 .baseColor .RichLink a {
@@ -1099,126 +1096,8 @@ pre var {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right
-}
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  width: 32%
-}
-.Pager i {
-  height: 0;
-  width: 0;
-  position: relative;
-  zoom: 1;
-  top: -.5em;
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em;
-  left: .5em
-}
-.Pager :active i {
-  border-color: transparent #fff
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.Pager-top :active i {
-  border-color: #fff transparent
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
+  text-align: right;
   color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .fb:active,
-.SocialBtns .pt:active {
-  border-color: #fff
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1275,7 +1154,6 @@ kbd {
   padding: 0 .4em
 }
 kbd:hover {
-  position: relative;
   top: -2px
 }
 code,
@@ -1360,6 +1238,131 @@ dl.note dd {
 .tl tbody :hover th {
   background: #0d5bb5!important;
   color: #fff
+}
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  color: #fdeeb7;
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  width: 32%
+}
+.Pager i {
+  height: 0;
+  width: 0;
+  position: relative;
+  zoom: 1;
+  top: -.5em;
+  border-color: transparent #8a7322
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em;
+  left: .5em
+}
+.Pager :active i {
+  border-color: transparent #fff
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.Pager-top :active i {
+  border-color: #fff transparent
+}
+.SocialBtns {
+  padding: 1em 0;
+  color: #fdeeb7;
+  text-align: center
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
+  color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .fb:active,
+.SocialBtns .pt:active {
+  border-color: #fff
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
 }
 .prettyprint {
   border-width: 1px;

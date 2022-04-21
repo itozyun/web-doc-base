@@ -83,22 +83,6 @@ body {
 .lS2 {
   width: 48.5%
 }
-#lH .lSi,
-.AAuthor,
-.Comment p,
-.Cover,
-.Cover-img,
-.Pager,
-.RichLink a,
-.box,
-.commonForm-pair,
-.lMi,
-.lSi,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .links,
 .note,
 blockquote,
@@ -133,6 +117,26 @@ pre {
 .tl thead th a:focus,
 a:focus {
   background-color: #fffd93!important
+}
+.tl td,
+.tl th {
+  vertical-align: top
+}
+#lH .lSi,
+.AAuthor,
+.Comment p,
+.Cover,
+.Cover-img,
+.Pager,
+.RichLink a,
+.box,
+.commonForm-pair,
+.lMi,
+.lSi,
+kbd:hover,
+sub,
+sup {
+  position: relative
 }
 body,
 input,
@@ -208,7 +212,6 @@ sup {
 sub {
   bottom: -.25em
 }
-.jsPicaLarge img,
 img {
   height: auto
 }
@@ -260,7 +263,8 @@ textarea {
 }
 *,
 .RichLink a img,
-.tl {
+.tl,
+.tl th {
   border-width: 0
 }
 html {
@@ -506,9 +510,6 @@ tfoot td {
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Label div,
-.Pager,
-.SocialBtns,
-.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -569,7 +570,6 @@ tbody :hover td {
   color: #0d5bb5
 }
 .Cover-btn,
-.TxtNavi,
 .commonForm-send,
 .r {
   text-align: right
@@ -800,7 +800,10 @@ input.btn,_:-moz-any-link {
   margin: 0 0 .5em
 }
 .Pager span,
-.RichLink b {
+.RichLink b,
+.caption,
+.js-bqCite,
+blockquote:after {
   display: block;
   display: block
 }
@@ -927,11 +930,6 @@ pre var {
   border-width: 0 0 1px;
   border-color: #08366b!important
 }
-.Pager span,
-.Search .btn {
-  position: absolute;
-  top: 1em
-}
 .baseColor .RichLink a {
   border-color: #e7d182!important
 }
@@ -983,6 +981,8 @@ pre var {
   height: 2.1em
 }
 .Search .btn {
+  top: 1em;
+  position: absolute;
   width: 2em;
   right: .8em;
   white-space: nowrap;
@@ -1077,6 +1077,156 @@ pre var {
   border-color: #8bc53f;
   color: #8bc53f
 }
+.TxtNavi {
+  text-align: right;
+  color: #fdeeb7
+}
+.aa {
+  margin: 1em 0;
+  font-family: monospace;
+  border-color: #0a0809
+}
+.aBodyRoot :visited,
+.tl tbody th :visited,
+.tl tbody th :visited:hover,
+.tl thead :visited,
+.tl thead :visited:hover,
+blockquote .tl tbody th :visited {
+  color: #717
+}
+.aBodyRoot :visited:hover {
+  color: #419
+}
+blockquote {
+  padding: 1em 1px
+}
+blockquote[title]:before {
+  content: attr(title)
+}
+blockquote[cite]:after {
+  content: attr(cite)
+}
+.js-bqLink,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0 1.5%
+}
+.js-bqCite,
+blockquote:after {
+  font-size: .875em;
+  text-align: right;
+  color: #8a7322;
+  margin: 0 1.5%
+}
+.box dl,
+.box ol,
+.box p,
+.box ul {
+  margin: 0 3% 1em
+}
+.box ol,
+.box ul {
+  list-style-position: inside
+}
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 3%
+}
+.hscroll {
+  margin: 1em 0
+}
+kbd {
+  border-color: #06284e;
+  cursor: pointer;
+  letter-spacing: -1px;
+  padding: 0 .4em
+}
+kbd:hover {
+  top: -2px
+}
+code,
+var {
+  padding: .1em .4em
+}
+pre code,
+pre var {
+  padding: 0;
+  margin: 0
+}
+.links [href]:before {
+  content: ">";
+  font-weight: 700
+}
+.note {
+  padding-left: 25%
+}
+.note .box,
+.note blockquote,
+.note dl,
+.note iframe,
+.note img,
+.note ol,
+.note p,
+.note ul {
+  margin-right: 0
+}
+.note .box iframe,
+.note .box img,
+.note blockquote dl,
+.note blockquote ol,
+.note blockquote p,
+.note blockquote ul {
+  margin-right: 1em
+}
+dl.note dd {
+  margin-left: 1em
+}
+.note blockquote dl,
+.note blockquote ol,
+.note blockquote p,
+.note blockquote ul {
+  margin-right: 3%
+}
+.caption {
+  text-align: center;
+  font-size: .875em;
+  width: 100%;
+  max-width: 100%
+}
+.caption img {
+  margin: 0 0 .5em!important
+}
+.caption * {
+  float: none!important
+}
+.tl thead td {
+  border-width: 0 0 1px .3em
+}
+.tl tfoot td,
+.tl tfoot th,
+.tl thead td,
+.tl thead th {
+  border-color: #e7d182;
+  padding-top: .5em;
+  padding-bottom: .5em
+}
+.tl th {
+  padding: .5em .8em .5em .5em;
+  text-align: left
+}
+.tl td {
+  padding: .5em .8em;
+  border-width: 0 0 0 .3em;
+  border-color: #e7d182;
+  border-style: solid
+}
+.tl tfoot td {
+  border-width: 1px 0 0 .3em;
+  border-style: solid dotted
+}
 .AMeta {
   padding: .5em 0
 }
@@ -1086,6 +1236,7 @@ pre var {
   text-indent: -1.2em
 }
 .Pager {
+  color: #fdeeb7;
   height: 4em
 }
 .Pager-next {
@@ -1100,21 +1251,14 @@ pre var {
   text-align: right
 }
 .Pager span {
+  position: absolute;
+  top: 1em;
   width: 32%
-}
-.caption,
-.jsPicaLarge img {
-  width: 100%;
-  max-width: 100%
 }
 .Pager i {
   display: -moz-inline-box;
   vertical-align: text-top;
   border-color: transparent #8a7322
-}
-.tl td,
-.tl th {
-  vertical-align: top
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1137,6 +1281,7 @@ pre var {
 }
 .SocialBtns {
   padding: 1em 0 .5em;
+  color: #fdeeb7;
   text-align: center
 }
 .SocialBtns .tw:link {
@@ -1203,159 +1348,6 @@ pre var {
   border-color: #00c300;
   color: #00c300
 }
-.aa {
-  margin: 1em 0;
-  font-family: monospace;
-  border-color: #0a0809
-}
-.aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-blockquote .tl tbody th :visited {
-  color: #717
-}
-.aBodyRoot :visited:hover {
-  color: #419
-}
-blockquote {
-  padding: 1em 1px
-}
-blockquote[title]:before {
-  content: attr(title)
-}
-blockquote[cite]:after {
-  content: attr(cite)
-}
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0 1.5%
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #8a7322;
-  margin: 0 1.5%
-}
-.box dl,
-.box ol,
-.box p,
-.box ul {
-  margin: 0 3% 1em
-}
-.box ol,
-.box ul {
-  list-style-position: inside
-}
-.box .caption,
-.box iframe,
-.box img {
-  float: left;
-  margin: 0 1em 1em 3%
-}
-.hscroll {
-  margin: 1em 0
-}
-kbd {
-  border-color: #06284e;
-  cursor: pointer;
-  letter-spacing: -1px;
-  padding: 0 .4em
-}
-kbd:hover {
-  top: -2px
-}
-code,
-var {
-  padding: .1em .4em
-}
-pre code,
-pre var {
-  padding: 0;
-  margin: 0
-}
-.links [href]:before {
-  content: ">";
-  font-weight: 700
-}
-.links [href^="/"]:not([href^="//"]):before {
-  content: "+"
-}
-.links [href*="/web.archive."]:before {
-  content: "*"
-}
-.note {
-  padding-left: 25%
-}
-.note .box,
-.note blockquote,
-.note dl,
-.note iframe,
-.note img,
-.note ol,
-.note p,
-.note ul {
-  margin-right: 0
-}
-.note .box iframe,
-.note .box img,
-.note blockquote dl,
-.note blockquote ol,
-.note blockquote p,
-.note blockquote ul {
-  margin-right: 1em
-}
-dl.note dd {
-  margin-left: 1em
-}
-.note blockquote dl,
-.note blockquote ol,
-.note blockquote p,
-.note blockquote ul {
-  margin-right: 3%
-}
-.caption {
-  display: block;
-  text-align: center;
-  font-size: .875em
-}
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
-}
-.tl thead td {
-  border-width: 0 0 1px .3em
-}
-.tl tfoot td,
-.tl tfoot th,
-.tl thead td,
-.tl thead th {
-  border-color: #e7d182;
-  padding-top: .5em;
-  padding-bottom: .5em
-}
-.tl th {
-  padding: .5em .8em .5em .5em;
-  border-width: 0;
-  text-align: left
-}
-.tl td {
-  padding: .5em .8em;
-  border-width: 0 0 0 .3em;
-  border-color: #e7d182;
-  border-style: solid
-}
-.tl tfoot td {
-  border-width: 1px 0 0 .3em;
-  border-style: solid dotted
-}
 .prettyprint {
   border-color: #333
 }
@@ -1367,6 +1359,11 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge img {
   margin: 0 auto 1em
+}
+.jsPicaLarge img {
+  width: 100%;
+  height: auto;
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1436,6 +1433,10 @@ ol.linenums {
   .aa code,
   .aa var {
     color: #00ac06
+  }
+  .hscroll {
+    overflow: auto;
+    height: auto
   }
   .hscroll pre {
     overflow: auto;
@@ -1601,20 +1602,7 @@ ol.linenums {
   .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
-  .noprint,
-  [href$=".GIF"]:after,
-  [href$=".JPEG"]:after,
-  [href$=".JPG"]:after,
-  [href$=".PNG"]:after,
-  [href$=".gif"]:after,
-  [href$=".jpeg"]:after,
-  [href$=".jpg"]:after,
-  [href$=".png"]:after,
-  [href*="/blogger.googleusercontent.com/img/"]:after,
-  [href*="/viewer.diagrams.net/?"]:after,
-  [href^="#"]:after,
-  [href^="mailto:"]:after,
-  [href^="tel:"]:after {
+  .noprint {
     display: none
   }
   .ABody {
@@ -1676,12 +1664,6 @@ ol.linenums {
     display: block;
     text-align: center
   }
-  .AMeta-cita:after,
-  .aBodyRoot a[href]:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
-  }
   .hscroll table {
     width: 100%;
     margin: 0
@@ -1700,6 +1682,11 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .AMeta-cita:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
   }
   code .atv,
   code .str {

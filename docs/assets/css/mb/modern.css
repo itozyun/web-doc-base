@@ -127,11 +127,6 @@ thead th {
 .lS2 {
   width: 48.5%
 }
-.Search .btn,
-.lW,
-.lX {
-  overflow: hidden
-}
 .Cover-btn i,
 .Cover-img,
 .Pager,
@@ -145,6 +140,11 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.Search .btn,
+.lW,
+.lX {
+  overflow: hidden
 }
 #blog2slide-start button,
 .links,
@@ -385,12 +385,6 @@ input {
 [type=submit]::-webkit-search-decoration {
   display: none
 }
-.Cover img,
-.Cover-meta,
-.Pager span,
-.RichLink b,
-.Search,
-.Search-txt,
 .commonForm,
 a iframe,
 a img,
@@ -729,9 +723,6 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
-.Pager,
-.SocialBtns,
-.TxtNavi,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1232,7 +1223,6 @@ a:focus .ico-pen:after {
 .Cover h2,
 .Cover-meta span,
 .Label a,
-.Pager i,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -1280,12 +1270,6 @@ kbd {
   margin-top: .5em;
   color: #062241;
   vertical-align: middle
-}
-.Comment div,
-.Cover-meta,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta {
-  color: #8a7322
 }
 .tl td,
 .tl th {
@@ -1350,6 +1334,7 @@ kbd {
   margin-left: 3%
 }
 .Comment div {
+  color: #8a7322;
   font-size: 93%
 }
 .Comment p {
@@ -1378,6 +1363,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
+  display: block;
   width: 100%;
   max-width: 100%
 }
@@ -1405,6 +1391,10 @@ kbd {
 pre code,
 pre var {
   background: 0 0!important
+}
+.Cover-meta {
+  display: block;
+  color: #8a7322
 }
 .Cover {
   margin: 2em auto
@@ -1451,6 +1441,10 @@ pre var {
 .baseColor .RichLink-meta {
   color: #e7d182
 }
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta {
+  color: #8a7322
+}
 .RichLink h3 {
   font-size: 1.5em;
   margin: 0 0 .4em
@@ -1474,21 +1468,27 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
+  display: block;
   font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
+  display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
+}
+.Search-txt,
+.caption {
+  width: 100%;
+  display: block
 }
 .Search input {
   position: absolute;
   top: 0
 }
 .Search-txt {
-  width: 100%;
   left: -22px
 }
 .Search-txt:invalid {
@@ -1589,119 +1589,8 @@ pre var {
 }
 .TxtNavi {
   padding: 1em 0;
-  text-align: right
-}
-.AMeta {
-  padding: .5em 0
-}
-.AMeta div {
-  margin: .5em 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em
-}
-.Pager {
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
-.Pager span {
-  position: absolute;
-  top: 1em;
-  width: 32%
-}
-.caption,
-.jsPicaLarge img {
-  width: 100%;
-  max-width: 100%
-}
-.Pager i {
-  border-color: transparent #8a7322
-}
-.Pager-next i {
-  border-width: .5em .7em .5em 0;
-  margin-right: .5em
-}
-.Pager-prev i {
-  border-width: .5em 0 .5em .7em;
-  margin-left: .5em
-}
-.Pager-top i {
-  border-width: 0 .45em .9em;
-  margin-right: .5em;
-  border-color: #8a7322 transparent
-}
-.SocialBtns {
-  padding: 1em 0 .5em;
-  text-align: center
-}
-.SocialBtns .tw:link {
-  background: #1b95e0;
-  border-color: #1b95e0;
+  text-align: right;
   color: #fdeeb7
-}
-.SocialBtns .tw:visited {
-  background: #fdeeb7;
-  border-color: #1b95e0;
-  color: #1b95e0
-}
-.SocialBtns .fb:link {
-  background: #3b5999;
-  border-color: #3b5999;
-  color: #fff
-}
-.SocialBtns .fb:visited {
-  background: #fff;
-  border-color: #3b5999;
-  color: #3b5999
-}
-.SocialBtns .hb:link {
-  background: #008fde;
-  border-color: #008fde;
-  color: #fdeeb7
-}
-.SocialBtns .hb:visited {
-  background: #fdeeb7;
-  border-color: #008fde;
-  color: #008fde
-}
-.SocialBtns .pt:link {
-  background: #bd081c;
-  border-color: #bd081c;
-  color: #fff
-}
-.SocialBtns .pt:visited {
-  background: #fff;
-  border-color: #bd081c;
-  color: #bd081c
-}
-.SocialBtns .pk:link {
-  background: #ee4056;
-  border-color: #ee4056;
-  color: #fdeeb7
-}
-.SocialBtns .pk:visited {
-  background: #fdeeb7;
-  border-color: #ee4056;
-  color: #ee4056
-}
-.SocialBtns .ln:link {
-  background: #00c300;
-  border-color: #00c300;
-  color: #fdeeb7
-}
-.SocialBtns .ln:visited {
-  background: #fdeeb7;
-  border-color: #00c300;
-  color: #00c300
 }
 .aa {
   margin: 1em 0;
@@ -1848,9 +1737,9 @@ dl.note dd {
   margin-right: 3%
 }
 .caption {
-  display: block;
   text-align: center;
-  font-size: .875em
+  font-size: .875em;
+  max-width: 100%
 }
 .caption img {
   margin: 0 0 .5em!important
@@ -1918,6 +1807,117 @@ dl.note dd {
   background: #0d5bb5!important;
   color: #fff
 }
+.AMeta {
+  padding: .5em 0
+}
+.AMeta div {
+  margin: .5em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em
+}
+.Pager {
+  color: #fdeeb7;
+  height: 4em
+}
+.Pager-next {
+  left: 0
+}
+.Pager-top {
+  left: 34%;
+  text-align: center
+}
+.Pager-prev {
+  right: 0;
+  text-align: right
+}
+.Pager span {
+  position: absolute;
+  top: 1em;
+  display: block;
+  width: 32%
+}
+.Pager i {
+  display: inline-block;
+  border-color: transparent #8a7322
+}
+.Pager-next i {
+  border-width: .5em .7em .5em 0;
+  margin-right: .5em
+}
+.Pager-prev i {
+  border-width: .5em 0 .5em .7em;
+  margin-left: .5em
+}
+.Pager-top i {
+  border-width: 0 .45em .9em;
+  margin-right: .5em;
+  border-color: #8a7322 transparent
+}
+.SocialBtns {
+  padding: 1em 0 .5em;
+  color: #fdeeb7;
+  text-align: center
+}
+.SocialBtns .tw:link {
+  background: #1b95e0;
+  border-color: #1b95e0;
+  color: #fdeeb7
+}
+.SocialBtns .tw:visited {
+  background: #fdeeb7;
+  border-color: #1b95e0;
+  color: #1b95e0
+}
+.SocialBtns .fb:link {
+  background: #3b5999;
+  border-color: #3b5999;
+  color: #fff
+}
+.SocialBtns .fb:visited {
+  background: #fff;
+  border-color: #3b5999;
+  color: #3b5999
+}
+.SocialBtns .hb:link {
+  background: #008fde;
+  border-color: #008fde;
+  color: #fdeeb7
+}
+.SocialBtns .hb:visited {
+  background: #fdeeb7;
+  border-color: #008fde;
+  color: #008fde
+}
+.SocialBtns .pt:link {
+  background: #bd081c;
+  border-color: #bd081c;
+  color: #fff
+}
+.SocialBtns .pt:visited {
+  background: #fff;
+  border-color: #bd081c;
+  color: #bd081c
+}
+.SocialBtns .pk:link {
+  background: #ee4056;
+  border-color: #ee4056;
+  color: #fdeeb7
+}
+.SocialBtns .pk:visited {
+  background: #fdeeb7;
+  border-color: #ee4056;
+  color: #ee4056
+}
+.SocialBtns .ln:link {
+  background: #00c300;
+  border-color: #00c300;
+  color: #fdeeb7
+}
+.SocialBtns .ln:visited {
+  background: #fdeeb7;
+  border-color: #00c300;
+  color: #00c300
+}
 #blog2slide-root {
   margin: 0 auto;
   overflow: auto
@@ -1975,7 +1975,9 @@ ol.linenums {
   cursor: -webkit-zoom-out;
   cursor: -moz-zoom-out;
   cursor: zoom-out;
+  width: 100%;
   height: auto;
+  max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
@@ -2058,7 +2060,6 @@ tv {
     color: #00ac06
   }
   .hscroll {
-    overflow: auto;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch
@@ -2364,13 +2365,6 @@ only screen and (max-width:479px) {
   .h1 {
     font-size: 1.2em
   }
-  .Pager-next i,
-  .Pager-top i {
-    margin-right: .2em
-  }
-  .Pager-prev i {
-    margin-left: .2em
-  }
   .js-bqCite,
   .js-bqLink,
   blockquote:after,
@@ -2396,6 +2390,13 @@ only screen and (max-width:479px) {
   .note blockquote p,
   .note blockquote ul {
     margin-right: 1%
+  }
+  .Pager-next i,
+  .Pager-top i {
+    margin-right: .2em
+  }
+  .Pager-prev i {
+    margin-left: .2em
   }
 }
 @media handheld,
@@ -2717,6 +2718,17 @@ only screen and (max-width:240px) {
   .SearchResult div span {
     color: #545454
   }
+  .aBodyRoot :visited,
+  .tl tbody th :visited,
+  .tl tbody th :visited:hover,
+  .tl thead :visited,
+  .tl thead :visited:hover,
+  blockquote .tl tbody th :visited {
+    color: #eae
+  }
+  .aBodyRoot :visited:hover {
+    color: #b3f
+  }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
   .SocialBtns .ln :link,
@@ -2746,17 +2758,6 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #000!important
-  }
-  .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  blockquote .tl tbody th :visited {
-    color: #eae
-  }
-  .aBodyRoot :visited:hover {
-    color: #b3f
   }
 }
 @media handheld,
