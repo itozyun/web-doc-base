@@ -2,7 +2,7 @@
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ワンポイント</title>
+<title>色の管理</title>
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no"><style><!--
 @media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>
 <script><!--
@@ -29,13 +29,13 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 //--></script>
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <meta name="description" content="ogp用概要をここにも表示">
-<meta property="og:title" name="twitter:title" content="ワンポイント">
+<meta property="og:title" name="twitter:title" content="色の管理">
 <meta property="og:description" name="twitter:description" content="ogp用概要をここにも表示">
 <meta property="og:image" name="twitter:image" content="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/w1200-h630/NicePageBuilder_package.jpg">
 <meta property="og:image;width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://itozyun.github.io/web-doc-base/06_development/02_CSS/04_etc.html">
+<meta property="og:url" content="https://itozyun.github.io/web-doc-base/06_development/02_CSS/04_ColorManagment.html">
 <meta property="og:site_name" content="web-doc-base">
 <meta property="twitter:card" content="summary_large_image">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,7 +46,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="disabled-adaptations" content="watch">
-<link rel="canonical" href="https://itozyun.github.io/web-doc-base/06_development/02_CSS/04_etc.html">
+<link rel="canonical" href="https://itozyun.github.io/web-doc-base/06_development/02_CSS/04_ColorManagment.html">
 <link rel="alternate" type="application/atom+xml" title="web-doc-base - Atom" href="https://itozyun.github.io/web-doc-base/feed/atom.xml">
 <link rel="alternate" type="application/rss+xml" title="web-doc-base - RSS" href="https://itozyun.github.io/web-doc-base/feed/rss.xml">
 </head>
@@ -98,10 +98,10 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi"><div class="TxtNavi">
     <nav role="navigation">
     
-<a href="03_ColorManagment.html" title="色の管理">前</a>
+<a href="03_FormItems.html" title="フォーム部品のスタイリング">前</a>
     , 
     
-<a href="../03_Javascript/" title="3. Javascript をカスタムする為の情報">次</a>
+<a href="05_etc.html" title="ワンポイント">次</a>
     </nav>
 </div>
 </div>
@@ -111,11 +111,11 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lM">
 <div class="lMi"><div class='AHead'>
 <header>
-    <h1>ワンポイント</h1>
+    <h1>色の管理</h1>
     <div>
         <i class='ico-clock' title='投稿日時'></i>
-        <time datetime='2022-03-20T04:08:00.000Z' aria-label='2022年3月20日日曜日 13時8分'>
-        2022年03月20日日曜日 13:08
+        <time datetime='2022-03-14T04:02:00.000Z' aria-label='2022年3月14日月曜日 13時2分'>
+        2022年03月14日月曜日 13:02
         </time>
     </div>
     
@@ -155,22 +155,8 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
     <div class='aBodyRoot'>
 
 
-<h2 id="line-height-の指定">line-height の指定</h2>
-<p>読みやすい行間は 1.6～2 とされています。しかし body { line-height:2 } とはしません。
-ヘッダーや li の行間も空いてしまい読みづらくなるからです。</p>
-<h2 id="media-print-で-screen-用の指定を上書きしない"><code>@media print</code> で <code>screen</code> 用の指定を上書きしない</h2>
-<p>いくつかの分類のプロパティは <code>@media screen</code> 内に書くことで、<code>@media print</code> での上書きリセット指定を不要に出来ます。</p>
-<ul>
-<li>メインとサイドバーの2カラムレイアウト</li>
-<li>背景色の塗りとテキストカラー(印刷メディアでインクをセーブするために、背景色を白にしている場合)</li>
-<li>overflow スクロールのコントロール</li>
-</ul>
-<h2 id="border-系の指定を全ての要素にしておく">border 系の指定を全ての要素にしておく</h2>
-<h2 id="css-generated-content-の実装状況は4種類以上">CSS Generated Content の実装状況は4種類以上</h2>
-<p><code>ms-filter</code> が絡むと5種類</p>
-<h2 id="動的疑似クラスの要素セレクタの省略">動的疑似クラスの要素セレクタの省略</h2>
-<p>a:hover がリンク要素限定の IE6 以下などでは、a を省略する。
-しかし IE では body:active になるので省略できない。</p>
+<p>工事中です。</p>
+<p>ページで使用する色を厳選してメリハリを付けるための仕組み</p>
 
     </div>
 </div>
@@ -185,33 +171,33 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../../08_test/05_LimitationOfPseudoClasses.html">
+<div class="RichLink-sep"><a role="listitem" href="02_Interaction.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>リンク要素とフォーム部品のインタラクションについて</b>
+</a><a role="listitem" href="03_FormItems.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>フォーム部品のスタイリング</b>
+</a><a role="listitem" href="../04_BootSequence.html">
+<img alt="" role="presentation" src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/s50-c/boot.drawio.png" width="50" height="50">
+<b>ブートシーケンス</b>
+</a><a role="listitem" href="05_etc.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ワンポイント</b>
+</a><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>色の管理</b>
+</a><a role="listitem" href="../../08_test/">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>8. テストページ</b>
+</a><a role="listitem" href="01_CSSOrganisation.html">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>CSS の設計</b>
+</a><a role="listitem" href="../../08_test/05_LimitationOfPseudoClasses.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>スタイリングの制限</b>
 </a><a role="listitem" href="../01_DesinePolicy.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>デザインの背景</b>
-</a><a role="listitem">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ワンポイント</b>
-</a><a role="listitem" href="../../08_test/">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>8. テストページ</b>
-</a><a role="listitem" href="../04_BootSequence.html">
-<img alt="" role="presentation" src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/w480/s50-c/boot.drawio.png" width="50" height="50">
-<b>ブートシーケンス</b>
-</a><a role="listitem" href="../03_Javascript/01_InvestigatingUserSettings.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ユーザー設定の調査</b>
-</a><a role="listitem" href="../../08_test/01_Color.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>システムカラー</b>
-</a><a role="listitem" href="02_LinkInteraction.html">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>リンク要素のインタラクションについて</b>
-</a><a role="listitem" href="../../04_markup/">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>4. マークアップを確認する</b>
 </a>
 </div>
 </div>

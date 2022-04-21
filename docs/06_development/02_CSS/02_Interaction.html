@@ -2,7 +2,7 @@
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>3. Javascript をカスタムする為の情報</title>
+<title>リンク要素とフォーム部品のインタラクションについて</title>
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no"><style><!--
 @media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>
 <script><!--
@@ -29,13 +29,13 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 //--></script>
 <meta http-equiv="x-dns-prefetch-control" content="on">
 <meta name="description" content="ogp用概要をここにも表示">
-<meta property="og:title" name="twitter:title" content="3. Javascript をカスタムする為の情報">
+<meta property="og:title" name="twitter:title" content="リンク要素とフォーム部品のインタラクションについて">
 <meta property="og:description" name="twitter:description" content="ogp用概要をここにも表示">
 <meta property="og:image" name="twitter:image" content="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/w1200-h630/NicePageBuilder_package.jpg">
 <meta property="og:image;width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://itozyun.github.io/web-doc-base/06_development/03_Javascript/">
+<meta property="og:url" content="https://itozyun.github.io/web-doc-base/06_development/02_CSS/02_Interaction.html">
 <meta property="og:site_name" content="web-doc-base">
 <meta property="twitter:card" content="summary_large_image">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,7 +46,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="disabled-adaptations" content="watch">
-<link rel="canonical" href="https://itozyun.github.io/web-doc-base/06_development/03_Javascript/">
+<link rel="canonical" href="https://itozyun.github.io/web-doc-base/06_development/02_CSS/02_Interaction.html">
 <link rel="alternate" type="application/atom+xml" title="web-doc-base - Atom" href="https://itozyun.github.io/web-doc-base/feed/atom.xml">
 <link rel="alternate" type="application/rss+xml" title="web-doc-base - RSS" href="https://itozyun.github.io/web-doc-base/feed/rss.xml">
 </head>
@@ -80,6 +80,8 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <!--[if lte IE 6]></div><br class="e6BR"></div><![endif]-->
 </div>
 <a name="top" id="top"></a>
+<main>
+<article>
 <div id="lE" class="ribbon">
 <!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->
 <!--[if !IE]><!--><noscript><div class="lX" id="-o-"><div class="lXi"><style>/*<![CDATA[*/#-o- p{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o- p:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o- p:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o- p:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*]]>*/</style><p nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></p></div></div></noscript><!--<![endif]-->
@@ -87,7 +89,7 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lM">
 <div class="lMi"><div class="BreadcrumbList" itemscope itemtype="http://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        <a itemprop="item" href="//github.com/itozyun/web-doc-base/" rel="nofollow"><span itemprop="name">github</span><meta itemprop="position" content="1"></a> / <a itemprop="item" href="../../"><span itemprop="name">目次</span><meta itemprop="position" content="2"></a> / <a itemprop="item" href="../"><span itemprop="name">6. web-doc-base を拡張する為の技術情報</span><meta itemprop="position" content="3"></a>
+        <a itemprop="item" href="//github.com/itozyun/web-doc-base/" rel="nofollow"><span itemprop="name">github</span><meta itemprop="position" content="1"></a> / <a itemprop="item" href="../../"><span itemprop="name">目次</span><meta itemprop="position" content="2"></a> / <a itemprop="item" href="../"><span itemprop="name">6. web-doc-base を拡張する為の技術情報</span><meta itemprop="position" content="3"></a> / <a itemprop="item" href="./"><span itemprop="name">2. CSS をカスタムする為の情報</span><meta itemprop="position" content="4"></a>
     </span>
 </div>
 </div><!-- lMi -->
@@ -96,10 +98,46 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <div class="lSi"><div class="TxtNavi">
     <nav role="navigation">
     
+<a href="01_CSSOrganisation.html" title="CSS の設計">前</a>
+    , 
     
-    
-<a href="01_InvestigatingUserSettings.html" title="ユーザー設定の調査">次</a>
+<a href="03_FormItems.html" title="フォーム部品のスタイリング">次</a>
     </nav>
+</div>
+</div>
+</div>
+</div>
+<div class="lW">
+<div class="lM">
+<div class="lMi"><div class='AHead'>
+<header>
+    <h1>リンク要素とフォーム部品のインタラクションについて</h1>
+    <div>
+        <i class='ico-clock' title='投稿日時'></i>
+        <time datetime='2022-03-14T04:03:00.000Z' aria-label='2022年3月14日月曜日 13時3分'>
+        2022年03月14日月曜日 13:03
+        </time>
+    </div>
+    
+</header>
+</div>
+</div><!-- lMi -->
+</div><!-- lM -->
+<div class="lS">
+<div class="lSi">
+<div class="lS1"><div class='AAuthor'>
+    <img src='//3.bp.blogspot.com/-yV0t7h21w6w/VsSS3s6f0fI/AAAAAAAAQow/w1e_E4SwEtk/w50/%25E5%2586%2599%25E7%259C%259F.jpg' alt=''/>
+    <!-- i class='ico-author' expr:title='data:messages.postedBy'></i-->
+    <a href='//twitter.com/itozyun/' rel='author' title='author profile' target='_blank'>
+        itozyun
+    </a>
+    <!-- 投稿者 itozyun -->
+    2003年から HTML を書いてます。
+</div>
+</div>
+<div class="lS2"><div class='ADesc'>
+    <p>ogp用概要をここにも表示
+</div>
 </div>
 </div>
 </div>
@@ -110,13 +148,6 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 <!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->
 <div class="lW">
 <div class="lM" id="jsMain">
-<main>
-<div class="lMi"><header>
-    <div class='AHead'>
-        <h1>3. Javascript をカスタムする為の情報</h1>
-    </div>
-</header>
-</div><!-- lMi -->
 <div class="lMz">
 <div class="lMf">
 <article>
@@ -125,82 +156,98 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 
 
 <p>工事中です。</p>
-<h2 id="控えめな-javascript-について">控えめな Javascript について</h2>
-<p>web-doc-base はウェブ文書プロジェクトでから、Javascript は閲覧を助けるためだけに使われています。主たるコンテンツを Javascript で提供することはありません。</p>
+<p>多くのブラウザは <kbd>Tab</kbd> キーで、文書中の要素とフォーム部品に順にフォーカスを当てる機能を備えています。この中にはデフォルトで無効で、設定画面から有効にするものもあります。</p>
+<p>プロジェクトは、フォーカスされた要素に適切にスタイルを設定して、ユーザーの閲覧を助けます。</p>
+<p>同様にして、要素へのホバーとアクティブ化にも適切にスタイルを設定します。</p>
+<p>リンク(未訪問)、訪問済のリンクに応じた、ホバー・アクティブ化・フォーカスにそれぞれスタイルを設定します。</p>
+<p>これらダイナミック疑似クラスの実装は羽陽曲折を経て、現在のソレになりました。web-doc-base はブラウザ毎の実装状況を SCSS 変数のフラグにして、ブラウザ別 CSS を実現します。</p>
+<p><a href="//outcloud.blogspot.com/2016/10/link-interaction.html">リンクテキストのインタラクションを整理する</a></p>
+<h2 id="基本的なダイナミック疑似クラスの実装状況とスタイルの制限">基本的なダイナミック疑似クラスの実装状況とスタイルの制限</h2>
+<div class="hscroll">
+<table>
+<thead>
+<tr>
+<th rowspan="2">ブラウザ</th><th colspan="3"><code>&lt;a&gt;</code></th><th colspan="3"><code>&lt;form&gt;</code>部品</th><th rowspan="2">:target
+</th></tr><tr>
+<th>:hover</th><th>:active</th><th>:focus</th><th>:hover</th><th>:active</th><th>:focus
+</th></tr></thead><tbody>
+<tr>
+<th>IE ~6(*2)</th><td>✔</td><td>✔</td><td><code>:active</code> で代替</td><td>×</td><td>×</td><td>×</td><td>×
+</td></tr><tr>
+<th>IE 7(*2)</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>(*10)</td><td>×</td><td>×
+</td></tr><tr>
+<th>IE 8</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>IE 9+</th><td colspan="7">✔
+</td></tr><tr>
+<th>Opera 7~7.20(*1)</th><td>×</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 7.23~7.5(*1)</th><td>✔</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 8~9.27</th><td>✔</td><td>✔</td><td>✔(*11)</td><td>✔</td><td>✔</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Opera 9.5</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td>:focus で代替(*4)</td><td>✔</td><td>✔
+</td></tr><tr>
+<th>Opera 9.6+</th><td colspan="7">✔
+</td></tr><tr>
+<th>Gecko ~0.9.9(*2, *6)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔(*3,*5)</td><td><code>:focus</code> で代替(*4)</td><td>✔</td><td>×
+</td></tr><tr>
+<th>Gecko 1.0~1.2(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*9)</td><td>×
+</td></tr><tr>
+<th>Gecko 1.3(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*7, *8)</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.4~1.7(*2)</th><td>✔</td><td><code>:focus</code> で代替</td><td>✔</td><td>✔</td><td><code>:focus</code> で代替(*4)</td><td>✔(*7)</td><td>✔
+</td></tr><tr>
+<th>Gecko 1.8+</th><td colspan="7">✔
+</td></tr></tbody></table>
+</div>
+
+<ol>
+<li>Opera 7.x : 動的疑似クラスで <code>outline-color</code> の変更が出来ない.</li>
+<li>outline が無い</li>
+<li>枠線への :hover のみ</li>
+<li>ラベルのクリックでテキスト色が紫色になる</li>
+<li>type=text だけ枠線は固定</li>
+<li>Gecko 0.8.1 迄はタブフォーカス移動が同一の階層内に限る制限がある</li>
+<li>ファイルアップロードボタン、チェック系に色が付かない、点線のみ</li>
+<li>画像送信ボタンの画像にもフォーカス色が付く</li>
+<li>ファイルアップロードボタンが変化しない</li>
+<li>ボタン系のみ :hover 色が適用される</li>
+<li>フォーカスのテキスト色・背景色は固定</li>
+</ol>
 
     </div>
 </div>
 </article>
 </div>
-</div><!-- lMz -->
-<div class="lMi"><h2>この章の記事</h2>
-<div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="01_InvestigatingUserSettings.html">
-<h3>
-    <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s125-c/NicePageBuilder_package.jpg" width="125" height="125">
-    ユーザー設定の調査
-</h3>
-<div class="RichLink-meta">
-    <span>
-        <i class="ico-clock" title="投稿日時"></i>
-        <time datetime='2020-09-04T01:07:00.000Z' aria-label='2020年9月4日金曜日 10時7分'>
-        2020/09/04 10:07
-        </time>
-    </span><br>
-    <span>
-        <i class="ico-pen" title="更新日時"></i>
-        <time datetime='2022-04-08T22:24:00.000Z' aria-label='2022年4月9日土曜日 7時24分'>
-        2022/04/09 07:24
-        </time>
-    </span>
-    <span aria-label="ラベル">
-        <i class="ico-label"></i>
-        Firefox, Web開発, クロスブラウザ, テキストブラウザ
-    </span>
-</div>
-<p aria-hidden="true">
-
-ブラウザの状態フラグ
-イベントリスナの登録
-機能検出用関数
-
-1. ブラウザの状態フラグ
-
-ブラウザは (forced-colors:*), (-ms-hi…</p>
-</a>
-</div>
-</div>
-</div><!-- lMi -->
-<div class="lMz">
 <div class="lMh"><div class='AFoot'>
 </div>
 </div>
 </div><!-- lMz -->
-</main>
 </div><!-- lM -->
 <div class="lS" id="jsSide">
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../02_CSS/02_Interaction.html">
+<div class="RichLink-sep"><a role="listitem">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>リンク要素とフォーム部品のインタラクションについて</b>
-</a><a role="listitem" href="../02_CSS/03_FormItems.html">
+</a><a role="listitem" href="03_FormItems.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>フォーム部品のスタイリング</b>
 </a><a role="listitem" href="../04_BootSequence.html">
 <img alt="" role="presentation" src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/s50-c/boot.drawio.png" width="50" height="50">
 <b>ブートシーケンス</b>
-</a><a role="listitem" href="../02_CSS/05_etc.html">
+</a><a role="listitem" href="05_etc.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>ワンポイント</b>
-</a><a role="listitem" href="../02_CSS/04_ColorManagment.html">
+</a><a role="listitem" href="04_ColorManagment.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>色の管理</b>
 </a><a role="listitem" href="../../08_test/">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>8. テストページ</b>
-</a><a role="listitem" href="../02_CSS/01_CSSOrganisation.html">
+</a><a role="listitem" href="01_CSSOrganisation.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>CSS の設計</b>
 </a><a role="listitem" href="../../08_test/05_LimitationOfPseudoClasses.html">
@@ -222,6 +269,8 @@ d&&(M[3]=Ga(d)));h&&(M[0]=h,k&&(M[1]=Ga(k)));var Ha=N(8)||N(9),ma=N(11),la=N(7),
 </div>
 <!--[if lte IE 6]></div><br class="e6BR"></div><![endif]-->
 </div>
+</article>
+</main>
 <footer>
 <div id="lF" class="ribbon">
 <!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->
