@@ -12,7 +12,7 @@ web-doc-base を使った Web 文書のブートシーケンス、CSS の読み�
 
 ## 2. ビルドオプション
 
-<img src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/w480/boot.drawio.png">
+<img src="//1.bp.blogspot.com/-lfBxArKqjgI/YZxlbuwWxyI/AAAAAAAASzw/_A8PfSFEpCEEkjL1nhzsVB8nZimS2LZ-wCLcBGAsYHQ/s480/boot.drawio.png">
 
 ~~~js
 var
