@@ -19,15 +19,15 @@
  */
 
 // Data URI スキームをサポートするが Web フォントには使えない環境
-var TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_Chromium < 2 ||
+var webFontText_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_Chromium < 2 ||
                                             p_Presto  < 12; // Windows Opera 12.18 で確認
-var TEST_WEBFONT_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + ( new Date - 0 ) + '_' );
-var TEST_WEBFONT_LOADED_EMBEDED_WEBFONT   = 5000;
-var TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT = 100;
-var TEST_WEBFONT_TEST_STRING              = 'mmmmmmmmmmlli';
+var webFontText_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + ( new Date - 0 ) + '_' );
+var webFontText_LOADED_EMBEDED_WEBFONT   = 5000;
+var webFontText_INTERVAL_EMBEDED_WEBFONT = 100;
+var webFontText_TEST_STRING              = 'mmmmmmmmmmlli';
     // http://defghi1977-onblog.blogspot.jp/2013/02/canvasweb.html
     // ※なお，webkitでは代替フォントとしてmonospaceを使うと上手く行きませんでした．
-var TEST_WEBFONT_BASE_FONT                = [/*'monospace',*/ 'sans-serif', 'serif']; // monospace は Chrome で具合が悪い
+var webFontText_BASE_FONT                = [/*'monospace',*/ 'sans-serif', 'serif']; // monospace は Chrome で具合が悪い
 
 var webFontTest_maybeCanUseWebFont;
 
@@ -91,7 +91,7 @@ var webFontTest_testMaybeCanUseWebFont = function(){
  * export to packageGlobal
  */
 p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts, testIdAndClassName, opt_ligTest, opt_ligTestChar, opt_intervalTime ){
-    var intervalTime = opt_intervalTime || TEST_WEBFONT_LOADED_EMBEDED_WEBFONT,
+    var intervalTime = opt_intervalTime || webFontText_LOADED_EMBEDED_WEBFONT,
         startTime, canUseDataURI,
         elmSpan, elmDiv, defaultWidth, result, styleSheetDataURIWebFont;
 
@@ -104,7 +104,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
     };
 
     if( DEFINE_WEB_DOC_BASE__DEBUG && 1 <= DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE ){
-        targetWebFontName = TEST_WEBFONT_PREFIX + targetWebFontName;
+        targetWebFontName = webFontText_PREFIX + targetWebFontName;
         Debug.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE );
     };
 
@@ -146,7 +146,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
                 } else {
                     Debug.log( '[webFontTest] mesureWebFont() : false' );
                     // Firefox 72 では、このタイミングで判定に失敗する模様
-                    // intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT; 100ms でもフォントの判定に失敗する。
+                    // intervalTime = webFontText_INTERVAL_EMBEDED_WEBFONT; 100ms でもフォントの判定に失敗する。
                     testWebFont( true );
                 };
             },
@@ -188,7 +188,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
             Debug.log( '[webFontTest] testWebFont timeout!' );
             if( canUseDataURI ){
                 callback( 0 );
-            } else if( TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT ){
+            } else if( webFontText_NO_SUPPORT_DATA_URI_FONT ){
                 p_setTimer( callback, 0 );
             } else {
                 p_dataUriTest( onTestDataURIComplete );
@@ -232,11 +232,11 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
             },
         //we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
-            TEST_WEBFONT_TEST_STRING
+            webFontText_TEST_STRING
         );
         defaultWidth = {};
     
-        while( font = TEST_WEBFONT_BASE_FONT[ ++i ] ) {
+        while( font = webFontText_BASE_FONT[ ++i ] ) {
             //get the default width for the three base fonts
             p_DOM_setStyle( elmSpan, 'fontFamily', font );
             defaultWidth[ font ] = elmSpan.offsetWidth; //width for the default font
@@ -262,14 +262,14 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
                             fontSize   : '72px'
                         }
                     },
-                    TEST_WEBFONT_TEST_STRING
+                    webFontText_TEST_STRING
                 );
             };
         } else {
             p_body.appendChild( elmSpan );
         };
 
-        while( font = TEST_WEBFONT_BASE_FONT[ ++i ] ) {
+        while( font = webFontText_BASE_FONT[ ++i ] ) {
             // name of the font along with the base font for fallback.
             p_DOM_setStyle( elmSpan, 'fontFamily', '"' + testFontName + '",' + font );
             if( elmSpan.offsetWidth !== defaultWidth[ font ] /* || elmSpan.offsetHeight !== defaultHeight[ font ] */){
@@ -282,7 +282,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
             w = elmSpan.offsetWidth;
             elmSpan.innerHTML = opt_ligTestChar;
             canLig = w === elmSpan.offsetWidth ? 1 : 0;
-            elmSpan.innerHTML = TEST_WEBFONT_TEST_STRING;
+            elmSpan.innerHTML = webFontText_TEST_STRING;
         };
         p_DOM_remove( elmSpan );
         if( p_Trident < 5 ){
@@ -320,7 +320,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
                 styleSheetDataURIWebFont = p_CSSOM_createStyleSheet();
                 p_CSSOM_insertRuleToStyleSheet( styleSheetDataURIWebFont, '@import', embededWebFonts[ embededWebFontName ] );
                 p_setTimer( testImportedCssReady, true );
-            } else if( checkTime( TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT ) ){
+            } else if( checkTime( webFontText_INTERVAL_EMBEDED_WEBFONT ) ){
                 Debug.log( '[webFontTest] timeout! ' + embededWebFontName );
                 delete embededWebFonts[ embededWebFontName ];
                 p_setTimer( testDataURIWebFont, true );
@@ -338,7 +338,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( '[webFontTest] testImportedCssReady start!' );
                 if( DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE < 2 ){
-                    targetWebFontName = targetWebFontName.replace( TEST_WEBFONT_PREFIX, '' );
+                    targetWebFontName = targetWebFontName.replace( webFontText_PREFIX, '' );
                 };
                 Debug.log( '[webFontTest] targetWebFontName : ' + targetWebFontName );
             };
@@ -348,19 +348,19 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, embededWebFonts,
         if( 1 < elmDiv.offsetWidth ){
             Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + elmDiv.offsetWidth );
             p_DOM_remove( elmDiv );
-            intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT;
+            intervalTime = webFontText_INTERVAL_EMBEDED_WEBFONT;
             p_setTimer( testWebFont, true );
         } else if( checkTime( intervalTime ) ){
             /**
              * offsetWidth = 9 にならない問題
              *  1. Windows Safari 3.2.3   WebKit 525.29 で必要. Windows Safari 4.0.5 WebKit 531 でこの処理は不要.
-             *  2. Windows Chrome 1.0.154 WebKit 525.19 でも発生したが TEST_WEBFONT_NO_SUPPORT_DATA_URI_FONT の為
+             *  2. Windows Chrome 1.0.154 WebKit 525.19 でも発生したが webFontText_NO_SUPPORT_DATA_URI_FONT の為
              *     ここには至らない. Windows Iron 2.0.168 Webkit 530.4 でこの処理は不要.
              */
             if( p_WebKit < 528 ){
                 Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + elmDiv.offsetWidth );
                 p_DOM_remove( elmDiv );
-                intervalTime = TEST_WEBFONT_INTERVAL_EMBEDED_WEBFONT;
+                intervalTime = webFontText_INTERVAL_EMBEDED_WEBFONT;
                 p_setTimer( testWebFont, true );
             } else {
                 Debug.log( '[webFontTest] testImportedCssReady timeout!' );
