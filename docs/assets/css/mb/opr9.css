@@ -1436,6 +1436,10 @@ div .box .jsCapLarge {
 @media screen,
 handheld,
 projection {
+  .hscroll,
+  .hscroll pre {
+    overflow: auto
+  }
   a img {
     border-width: 2px
   }
@@ -1494,12 +1498,7 @@ projection {
   .aa var {
     color: #00ac06
   }
-  .hscroll {
-    overflow: auto;
-    height: auto
-  }
   .hscroll pre {
-    overflow: auto;
     white-space: pre
   }
   .hscroll table {

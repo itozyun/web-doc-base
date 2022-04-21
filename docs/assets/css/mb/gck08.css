@@ -237,23 +237,9 @@ pre {
 del {
   text-decoration: line-through
 }
-.AHead-labels i,
-.RichLink br,
-[type=hidden] {
-  display: none
-}
 input[type=submit] {
   text-align: center;
   -moz-box-sizing: content-box
-}
-.jsPicaLarge img,
-input,
-textarea {
-  -moz-box-sizing: border-box
-}
-
-input[type=submit],_:-moz-any-link {
-  -moz-box-sizing: border-box
 }
 :-moz-focus-inner {
   border: 0
@@ -437,6 +423,7 @@ li ul {
 }
 input,
 textarea {
+  -moz-box-sizing: border-box;
   border-width: .1em;
   padding: .45em .4em
 }
@@ -648,11 +635,8 @@ strong {
   border-color: #062241
 }
 input.btn {
-  padding: 0;
-  height: 1.9em
-}
-input.btn,_:-moz-any-link {
-  padding: .45em 1em
+  height: 1.9em;
+  padding: 0
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -666,16 +650,9 @@ input.btn,_:-moz-any-link {
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
-.commonForm label,_:-moz-any-link {
-  float: none;
-  width: auto
-}
 .commonForm-wrap {
   display: block;
   margin: 0 0 1em 8em
-}
-.commonForm-wrap,_:-moz-any-link {
-  margin: .5em 1em
 }
 .commonForm-wrap * {
   width: 100%;
@@ -786,6 +763,10 @@ input.btn,_:-moz-any-link {
 .AHead-labels {
   margin-top: .5em;
   color: #fffd93
+}
+.AHead-labels i,
+.RichLink br {
+  display: none
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -990,11 +971,6 @@ pre var {
   padding-right: 0;
   overflow: hidden
 }
-.Search .btn,_:-moz-any-link {
-  width: 3em;
-  right: 0;
-  height: 2.1em
-}
 .SearchResult {
   margin-bottom: 2em
 }
@@ -1159,6 +1135,12 @@ pre var {
 .links [href]:before {
   content: ">";
   font-weight: 700
+}
+.links [href^="/"]:not([href^="//"]):before {
+  content: "+"
+}
+.links [href*="/web.archive."]:before {
+  content: "*"
 }
 .note {
   padding-left: 25%
@@ -1363,7 +1345,8 @@ ol.linenums {
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  max-width: 100%
+  max-width: 100%;
+  -moz-box-sizing: border-box
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1376,6 +1359,10 @@ ol.linenums {
   color: #06284e
 }
 @media screen {
+  .hscroll,
+  .hscroll pre {
+    overflow: auto
+  }
   a img {
     border-width: 2px
   }
@@ -1434,12 +1421,7 @@ ol.linenums {
   .aa var {
     color: #00ac06
   }
-  .hscroll {
-    overflow: auto;
-    height: auto
-  }
   .hscroll pre {
-    overflow: auto;
     white-space: pre
   }
   .hscroll table {
@@ -1602,7 +1584,20 @@ ol.linenums {
   .SocialBtns,
   .TxtNavi,
   .js-bqLink a:after,
-  .noprint {
+  .noprint,
+  [href$=".GIF"]:after,
+  [href$=".JPEG"]:after,
+  [href$=".JPG"]:after,
+  [href$=".PNG"]:after,
+  [href$=".gif"]:after,
+  [href$=".jpeg"]:after,
+  [href$=".jpg"]:after,
+  [href$=".png"]:after,
+  [href*="/blogger.googleusercontent.com/img/"]:after,
+  [href*="/viewer.diagrams.net/?"]:after,
+  [href^="#"]:after,
+  [href^="mailto:"]:after,
+  [href^="tel:"]:after {
     display: none
   }
   .ABody {
@@ -1664,6 +1659,12 @@ ol.linenums {
     display: block;
     text-align: center
   }
+  .AMeta-cita:after,
+  .aBodyRoot a[href]:after {
+    content: " (" attr(href) ") ";
+    font-size: .875em;
+    color: #006
+  }
   .hscroll table {
     width: 100%;
     margin: 0
@@ -1682,11 +1683,6 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .AMeta-cita:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
   }
   code .atv,
   code .str {

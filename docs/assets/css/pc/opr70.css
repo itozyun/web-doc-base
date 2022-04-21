@@ -1351,6 +1351,10 @@ ol.linenums {
   color: #06284e
 }
 @media screen {
+  .hscroll,
+  .hscroll pre {
+    overflow: auto
+  }
   a img {
     border-width: 2px
   }
@@ -1409,12 +1413,7 @@ ol.linenums {
   .aa var {
     color: #00ac06
   }
-  .hscroll {
-    overflow: auto;
-    height: auto
-  }
   .hscroll pre {
-    overflow: auto;
     white-space: pre
   }
   blockquote .tl tr code,
