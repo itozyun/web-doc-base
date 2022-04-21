@@ -13,12 +13,11 @@
     }
 
     @include media(screen) {
-        @if( $IS_NOT_IE and $UA_Gck-097 == false and $UA_Gck101-121 == false and $UA_Gck130-190 == false ){
-            overflow : auto;
-        }
         @if( $CANUSE_OVERFLOW_X_AND_Y ){
             overflow-x : auto;
             overflow-y : hidden;
+        } @else {
+            overflow : auto;
         }
         @if( $UA_Modern ){
             // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
