@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>属性セレクターのテスト</title>
+<title>属性セレクタのテスト</title>
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="HandheldFriendly" content="true">
 <meta name="mobileoptimized" content="0">
@@ -47,10 +47,10 @@ p {
 <a href="richlink.html">RichLink のテスト</a>,
 <a href="form.html">フォーム部品の実装状況</a>,
 <a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>,
-属性セレクターのテスト
+属性セレクタのテスト
 <hr>
 
-<h1>属性セレクターのテスト結果</h1>
+<h1>属性セレクタのテスト結果</h1>
 <table border="1">
 <thead>
 <tr><th><th>1. [attr]<th>2. [attr="value"]<th>3. [attr~="value"]<th>4. [attr|="value"]<th>5. [attr^=value]<th>6. [attr$=value]<th>7. [attr*=value]
@@ -70,7 +70,7 @@ p {
 <li>ブラウザがクラッシュするので一部の CSS を削除してテスト
 </ol>
 
-<h2>属性セレクターのテスト</h2>
+<h2>属性セレクタのテスト</h2>
 <ol>
     <li>[lang] 属性を持つ
     <p class="has"><span lang>lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
@@ -78,7 +78,7 @@ p {
     <p class="equal"><span lang>lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
     <li>[lang~="en"] 空白区切りの語のリストの中で完全に一致するものがある
     <p class="member"><span lang>lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>, <span lang="en en-US">lang="en en-US"</span>
-    <li>[lang|="en"] <q title="MDN &gt; 属性セレクター" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
+    <li>[lang|="en"] <q title="MDN &gt; 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
     <p class="hyphen"><span lang>lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
     <li>[lang^=en] valude で始まる
     <p class="start"><span lang>lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
@@ -96,7 +96,7 @@ p {
     <p class="equal"><span attr>attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
     <li>[attr~="value"] 空白区切りの語のリストの中で完全に一致するものがある
     <p class="member"><span attr>attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>, <span attr="value value-1">attr="value value-1"</span>
-    <li>[attr|="value"] <q title="MDN &gt; 属性セレクター" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
+    <li>[attr|="value"] <q title="MDN &gt; 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
     <p class="hyphen"><span attr>attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
     <li>[attr^=value] valude で始まる
     <p class="start"><span attr>attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>

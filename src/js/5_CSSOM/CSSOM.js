@@ -324,8 +324,8 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             } else {
                 styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
             };
-            // IE8 マルチセレクターは分割して登録される
-            // IE7- マルチセレクターは、引数が無効です。
+            // IE8 マルチセレクタは分割して登録される
+            // IE7- マルチセレクタは、引数が無効です。
             newCSSRule._indexEnd = ruleIndex + ( rawCSSRules.length - totalRules - 1 );
             if( ( rawCSSRules.length - totalRules ) === 0 ){ // @font-face{..} は styleSheet.cssText には存在するが rules には存在しない
                 Debug.log( '[CSSOM] rule追加に失敗! ' + cssText );
@@ -364,7 +364,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             styleSheet.insertRule( 'z{a:0}', ruleIndex );
             CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText; */
         } else {
-            styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクターの扱いは?
+            styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクタの扱いは?
         };
     };
 
