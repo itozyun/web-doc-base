@@ -14,7 +14,7 @@ var
     DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID     = 'jsSide',
 
 /** ===========================================================================
- * assets directory path
+ * Path of the assets directories
  */
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR   = 'js',
@@ -26,6 +26,57 @@ var
     DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR   = 'mb',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR = 'hc',
+
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_MODERN  = 'modern',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_MACIE5  = 'ie5mac',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE5     = 'ie5win',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE55    = 'ie55',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE6     = 'ie6',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE7     = 'ie7',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE8     = 'ie8',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE9     = 'ie9',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA70 = 'opr70',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA72 = 'opr72',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA8  = 'opr8',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA9  = 'opr9',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO07 = 'gck07',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO08 = 'gck08',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO09 = 'gck09',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO12 = 'gck12',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO13 = 'gck13',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO19 = 'gck19',
+
+/** ===========================================================================
+ * 7_Patch/cssLoader.toEndOfScript.js
+ */
+/** @define {boolean} */
+    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS = true,
+
+/** ===========================================================================
+ * 7_Patch/detectImageTurnedOff.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'img-loaded',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
 
 /** ===========================================================================
  * 8_Library/blockquot.js
@@ -46,20 +97,6 @@ var
     DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID    = 'blog2slide-root',
     /** @define {string} */
     DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID = 'blog2slide-current',
-
-/** ===========================================================================
- * 7_Patch/cssLoader.toEndOfScript.js
- */
-/** @define {boolean} */
-    DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS = true,
-
-/** ===========================================================================
- * 7_Patch/detectImageTurnedOff.js
- */
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'img-loaded',
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
 
 /** ===========================================================================
  * 8_Library/PicaThumbnail.js

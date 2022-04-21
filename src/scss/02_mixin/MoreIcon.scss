@@ -75,7 +75,7 @@
         }
     }
     @include media(forced_colors_fallback) {
-        @if( $UA_Gck130-190 ){
+        @if( $UA_Gecko19 ){
             & i {
                 display : none;
             }

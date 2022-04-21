@@ -51,7 +51,7 @@ $SEARCH_BTN_WIDTH : 3em;
     .Search-txt {
         width : 100%;
     }
-    @if( $UA_Gck-097 ){
+    @if( $IS_LTE_GECKO09 ){
         // 基準は #lH .lS, .Search-txt は通常配置, .Search .btn は絶対配置
         @if( $Option_simpleHeader ){
             #lH .lSi {
@@ -66,17 +66,17 @@ $SEARCH_BTN_WIDTH : 3em;
         }
         .Search .btn {
             position : absolute;
-            width    : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
-            right    : $FORM_ITEM_PADDING_LR * 2;
-            height   : $PARAGRAPH_LINE_HEIGHT_EM;
-            /* Gecko 0.9.1~ */
-            @include css-hack(gecko091To099){
+            @if( $UA_Gecko09 ){ // border-box
                 width  : $SEARCH_BTN_WIDTH;
                 right  : 0;
                 height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+            } @else { // content-box
+                width  : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
+                right  : $FORM_ITEM_PADDING_LR * 2;
+                height : $PARAGRAPH_LINE_HEIGHT_EM;
             }
         }
-    } @else if( $UA_Gck101-121 or $UA_Gck130-190 ){
+    } @else if( $UA_Gecko12 or $IS_GECKO13_TO_19 ){
         .Search {
             position : relative;
             display  : block;

@@ -24,8 +24,8 @@
                 float   : left;
                 width   : 7em;
                 padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0;
-                @if( $UA_Gck-097 ){
-                    @include css-hack(gecko091To099){
+                @if( $IS_LTE_GECKO09 ){
+                    @if( $UA_Gecko09 ){
                         float : none; // Gecko 0.9+ でラベルが消えるので左右に並べない
                         width : auto;
                     }
@@ -38,11 +38,10 @@
         .commonForm-wrap {
             display : block;
             @if( $IS_LEGACY ){
-                margin : 0 0 1em 8em;
-                @if( $UA_Gck-097 ){
-                    @include css-hack(gecko091To099){
-                        margin : 0.5em 1em;
-                    }
+                @if( $UA_Gecko09 ){
+                    margin : 0.5em 1em;
+                } @else {
+                    margin : 0 0 1em 8em;
                 }
             } @else if( $UA_IE5 == false ){
                 margin : 0 #{($INPUT_BORDER_WIDTH + $FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
@@ -56,7 +55,7 @@
                 @if( $UA_IE7 or $UA_IE6 ){
                     float : left; /* 上に出来る余白を消す、ie5 はカラムが壊れる */
                 }
-                @if( $UA_Gck-097 ){
+                @if( $IS_LTE_GECKO09 ){
                     display : block; /* 上に出来る余白を消す */
                 }
             }

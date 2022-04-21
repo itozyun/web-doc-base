@@ -35,7 +35,7 @@
     }
 }
 
-@if( $UA_Gck-097 or $UA_Gck101-121 or $UA_Gck130-190 ){
+@if( $IS_OLD_GECKO ){
     hr { display: -moz-inline-box; } // .box 内の hr が img に重なるのを妨げる
 }
 

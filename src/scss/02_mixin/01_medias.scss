@@ -36,8 +36,8 @@ $COMMENT_OUT_AT_MEDIA : (
     'forced_colors_native'             : if($UA_Modern, 1, 0),
     'forced_colors_ms'                 : if($UA_Modern, 1, 0),
     'forced_colors_native_or_ms'       : if($UA_Modern, 1, 0),
-    'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0),
-    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE or $UA_Gck130-190, 1, 0)
+    'forced_colors_fallback'           : if($UA_Modern or $IS_WIN_IE or $UA_Gecko19, 1, 0),
+    'forced_colors_native_or_fallback' : if($UA_Modern or $IS_WIN_IE or $UA_Gecko19, 1, 0)
 ) !default;
 
 @mixin media($media) {
@@ -189,7 +189,7 @@ $COMMENT_OUT_AT_MEDIA : (
             }
         }
         @else if $media == 'forced_colors_fallback' { // IE5~9, Gecko 1.8.1~, Goanna
-            @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
+            @if( $UA_Modern or $IS_WIN_IE or $UA_Gecko19 ){
                 @media only use-pollyfill and (forced-colors:active){
                     @content;
                 }
@@ -202,7 +202,7 @@ $COMMENT_OUT_AT_MEDIA : (
                     @content;
                 }
             }
-            @if( $UA_Modern or $IS_WIN_IE or $UA_Gck130-190 ){
+            @if( $UA_Modern or $IS_WIN_IE or $UA_Gecko19 ){
                 @media only use-pollyfill and (forced-colors:active){
                     @content;
                 }

@@ -28,7 +28,7 @@
     @if( $UA_Modern ){
         cursor : -webkit-zoom-in;
     }
-    @if( $UA_Modern or $UA_Gck130-190 ){ // Gecko 1.4+
+    @if( $UA_Modern or $UA_Gecko19 ){ // Gecko 1.4+
         cursor : -moz-zoom-in;
     }
     @if( $UA_Modern ){
@@ -41,7 +41,7 @@
     @if( $UA_Modern ){
         cursor : -webkit-zoom-out;
     }
-    @if( $UA_Modern or $UA_Gck130-190 ){ // Gecko 1.4+
+    @if( $UA_Modern or $UA_Gecko19 ){ // Gecko 1.4+
         cursor : -moz-zoom-out;
     }
     @if( $UA_Modern ){

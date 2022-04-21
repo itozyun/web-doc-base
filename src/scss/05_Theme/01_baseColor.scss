@@ -20,7 +20,7 @@ body {
 @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
     .ribbon {
         color : $COLOR_Ribbon_text;
-        @if( $UA_Gck-097 ){
+        @if( $UA_Gecko08 ){
             background : $COLOR_Sidebar_fill; // Only for Gecko 0.8.1
         }
     }

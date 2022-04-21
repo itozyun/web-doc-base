@@ -32,12 +32,13 @@ input.btn {
         padding : 0; // for Opera 7.x
     }
     @if( $IS_OLD_GECKO ){
-        @if( $UA_Gck-097 ){
+        @if( $IS_LTE_GECKO09 ){
             line-height : 1;
-            padding     : 0;
             height      : $PARAGRAPH_LINE_HEIGHT_EM;
-            @include css-hack(gecko091To099){
+            @if( $UA_Gecko09 ){
                 padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
+            } @else {
+                padding : 0;
             }
         } @else {
             line-height : 1;

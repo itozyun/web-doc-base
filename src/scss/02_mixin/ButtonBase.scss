@@ -64,7 +64,7 @@ $LIMITED_DASHED_BOREDER_PAINTING : $UA_IE5 or $UA_IE55;
                 @if( $CANUSE_OUTLINE ){
                     outline : 0;
                 }
-                @if( $UA_Gck130-190 == false ){
+                @if( $UA_Gecko19 == false ){
                     border-style : dotted; // Gecko 1.8 で塗りが汚い
                 }
             }

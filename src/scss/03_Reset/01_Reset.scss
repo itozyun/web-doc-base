@@ -21,7 +21,7 @@
                     /*  Forced colors
                     --------------------------------------------------------------------------------------*/
                     @include media(forced_colors_fallback){
-                        @if( $UA_Gck130-190 ){
+                        @if( $UA_Gecko19 ){
                             outline : $FORCED_COLORS_FOCUS_BORDER_WIDTH solid; // Gecko 1.8 transparent 不可
                         }
                     }

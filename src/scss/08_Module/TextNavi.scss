@@ -9,7 +9,7 @@
         color       : $COLOR_Light_fill; /* , を消す */
 
         a {
-            @if( $UA_Gck-097 == false ){
+            @if( $IS_LTE_GECKO09 == false ){
                 @include inline-block; /* Gecko 0.9.7 だけ崩れる */
             }
             @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){

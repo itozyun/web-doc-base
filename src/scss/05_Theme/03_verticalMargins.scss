@@ -7,7 +7,7 @@
     }    
 }
 
-@if( $UA_Gck-097 or $UA_Gck101-121 ){
+@if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
     #lB .lM {
         padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
     }

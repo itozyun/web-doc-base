@@ -34,9 +34,9 @@
             position : relative;
         }
         .lW {
-            @if( $UA_Gck-097 or $UA_Gck101-121 ){
+            @if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
                 overflow : visible;
-                @if( $UA_Gck101-121 ){
+                @if( $UA_Gecko12 ){
                     @include css-hack(gecko120To121) {
                         overflow : hidden; /* override Gecko 1.2~ */
                     }

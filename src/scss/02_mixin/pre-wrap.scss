@@ -7,14 +7,14 @@
         // white-space : -pre-wrap;     /* Opera 4-6 */
         white-space : -o-pre-wrap;      /* Opera 7 */
     }
-    @if( $UA_Gck-097 or $UA_Gck101-121 or $UA_Gck130-190 ){
+    @if( $IS_LTE_GECKO09 or $UA_Gecko12 or $IS_GECKO13_TO_19 ){
         white-space : -moz-pre-wrap;    /* Firefox 1.0-2.0 */
     }
     @if( $UA_Modern ){
         white-space : -webkit-pre-wrap; /* Chrome, Safari */
     }
     //  white-space : -hp-pre-wrap;     /* HP Printers */
-    @if( $UA_IE8 or $UA_IE9 or $UA_Modern or $UA_Gck130-190 or $UA_Opera8 or $UA_Opera9 ){
+    @if( $UA_IE8 or $UA_IE9 or $UA_Modern or $UA_Gecko19 or $UA_Opera8 or $UA_Opera9 ){
         white-space : pre-wrap;         /* CSS 2.1, ie8+ */
     }
     //  white-space : pre-line;         /* CSS 3.0 */
