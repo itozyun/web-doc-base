@@ -22,7 +22,7 @@ if( DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID ){
                     // Opera : CSS-P をサポートするのは 7.20 以降
                     7.2 <= p_Presto                           ? 2 : // 親が Block 要素の場合 CSS-P が可能
                     6   <= p_Presto || p_Gecko                ? 1 : // CSS-P 等は不可能
-                                                                0;  // 非サポート(以下のテストを通過したら 1 とする)
+                                                                0;  // 非サポート(以下のテストを通過したら 2 とする)
                 if( !p_cssGeneratedContentGrade && !p_Trident && !p_Tasman ){
                     var elm = p_DOM_insertElement(
                         p_body,
