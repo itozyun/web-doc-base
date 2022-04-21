@@ -49,11 +49,12 @@ function cssAndJsLoader_onload(){
     var link      = document.createElement( 'link' ),
         noscripts = document.getElementsByTagName( 'noscript' ),
         cssName   = (
-                cssAndJsLoader_tasman             ? 'ie5mac' :
-                cssAndJsLoader_presto  < 9.5      ? 'opr9'   :
-                ( cssAndJsLoader_gecko && ua.conpare( engineVersion, '1.9.1' ) < 0 ) ?
-                    ( 1.3 <= cssAndJsLoader_gecko ? 'gck190' : 'gck121'
-                ) : 'modern'
+                cssAndJsLoader_tasman                      ? 'ie5mac' :
+                cssAndJsLoader_presto  < 9.5               ? 'opr9'   :
+                ( cssAndJsLoader_gecko &&
+                  ua.conpare( engineVersion, '1.9.1' ) < 0
+                )                                          ? 'gck190'
+                                                           : 'modern'
             ) + '.css',
         dir, i = 0, l = noscripts.length, noscript, content, end, start;
 
