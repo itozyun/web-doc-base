@@ -49,7 +49,7 @@ $COMMENT_OUT_CSS_HACK : (
                 @content;
             }
         }
-        @else if $targetGroup == 'gecko091To099' { // Gecko 0.9.1~0.9.7
+        @else if $targetGroup == 'gecko091To099' { // Gecko 0.9.1~0.9.9
             & [_lazyhack_="_:-moz-any-link"] {
                 @content;
             }
