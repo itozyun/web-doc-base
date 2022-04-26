@@ -7,6 +7,8 @@ const gulp            = require('gulp'),
       tempDir         = require('os').tmpdir() + '/' + moduleName,
       globalVariables = 'document,navigator,screen,parseFloat,Number';
 
+var minify = true;
+
 /* -------------------------------------------------------
  *  gulp whatbrowserami
  */
@@ -15,7 +17,7 @@ gulp.task( 'whatbrowserami', gulp.series(
         return gulp.src( [
             './.submodules/what-browser-am-i/src/js/**/*.js',
             '!./.submodules/what-browser-am-i/src/4_brand.js',
-            './src/js-inline/*.js'
+            minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
             ] ).pipe(
                 gulpDPZ(
                     {
@@ -29,11 +31,11 @@ gulp.task( 'whatbrowserami', gulp.series(
                     {
                         externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
                         define            : [
-                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=false'
+                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=' + minify,
+                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=' + !minify,
+                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=' + !minify,
+                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=' + !minify,
+                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=' + !minify
                         ],
                         compilation_level : 'ADVANCED',
                         //compilation_level : 'WHITESPACE_ONLY',
@@ -41,7 +43,7 @@ gulp.task( 'whatbrowserami', gulp.series(
                         warning_level     : 'VERBOSE',
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
-                        output_wrapper    : 'ua=[];%output%',
+                        output_wrapper    : 'ua=' + ( minify ? '[]' : '{}' ) + ';%output%',
                         js_output_file    : tempJsName
                     }
                 )
@@ -53,47 +55,15 @@ gulp.task( 'whatbrowserami', gulp.series(
  *  gulp docs
  */
 gulp.task('docs', gulp.series(
+    function(cb){
+        minify = false;
+        cb();
+    },
     'whatbrowserami',
     function(){
-        return gulp.src( [
-            './.submodules/what-browser-am-i/src/js/**/*.js',
-            '!./.submodules/what-browser-am-i/src/4_brand.js',
-            './src/js-inline/dynamicViewPort.js'
-            ] ).pipe(
-                gulpDPZ(
-                    {
-                        labelPackageGlobal : '*',
-                        packageGlobalArgs  : [ 'ua,window,document,navigator,screen,parseFloat,Number,undefined', 'ua,window,document,navigator,screen,parseFloat,Number,void 0' ],
-                        basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
-                    }
-                )
-            ).pipe(
-                ClosureCompiler(
-                    {
-                        externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
-                        define            : [
-                            // 'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=false',
-                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=false'
-                        ],
-                        compilation_level : 'ADVANCED',
-                        //compilation_level : 'WHITESPACE_ONLY',
-                        //formatting        : 'PRETTY_PRINT',
-                        warning_level     : 'VERBOSE',
-                        language_in       : 'ECMASCRIPT3',
-                        language_out      : 'ECMASCRIPT3',
-                        output_wrapper    : 'ua=[];%output%',
-                        js_output_file    : tempJsName
-                    }
-                )
-            ).pipe(gulp.dest( tempDir ));
-    },
-    function( cb ){
         const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
 
-        return gulp.src( [ './docs/test/check-image-loading.html' ] )
+        return gulp.src( [ './docs/test/check-image-loading.html', './docs/test/attr-selectors.html' ] )
             .pipe(
                 gulpJSDOM(
                     function( document ){
@@ -104,7 +74,7 @@ gulp.task('docs', gulp.series(
                         };
                     }
                 )
-            ).pipe(gulp.dest('./docs'));
+            ).pipe(gulp.dest('./docs/test'));
     }
 ));
 
@@ -317,5 +287,6 @@ gulp.task( 'html', gulp.series(
             .pipe( pageFragumentToFullPage( pageBase, __dirname + '/src/html/' ) )
             // .pipe( formatHtml )
             .pipe( gulp.dest( './docs/' ) );
-    } )
+    } ),
+    'docs'
 );
