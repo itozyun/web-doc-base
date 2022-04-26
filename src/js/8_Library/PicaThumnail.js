@@ -102,7 +102,9 @@ function PicaThumbnail_onClickThumbnail( e ){
                             p_DOM_addClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
                         } else {
                             tag = p_DOM_getTagName( parent );
-                            if( tag === 'DIV' || tag === 'P' || tag === 'BLOCKQUOT' ) break;
+                            if( tag === 'DIV' || tag === 'P'  || tag === 'BLOCKQUOT' ||
+                                tag === 'LI'  || tag === 'DD' || tag === 'TD' || tag === 'TH' ||
+                                tag === 'FORM' || tag === 'PRE' ) break;
                         };
                     };
 
