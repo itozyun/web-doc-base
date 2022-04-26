@@ -33,10 +33,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
                     margin : 0 auto;
                 }
             }
-        }
-
-        @if( $LAYOUT_FIX_FOR_Opera75 ){
-            .lW {
+            @if( $LAYOUT_FIX_FOR_Opera75 ){
                 @include inline-block;
                 text-align : left;
             }
@@ -175,17 +172,16 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
             }
-        }
-        .lW {
             @if( $LAYOUT_BY_DISPLAY_TABLE ){
                 display : block;
             }
         }
             .lM, .lS {
-                float : none;
                 width : auto;
                 @if( $LAYOUT_BY_DISPLAY_TABLE ){
                     display : block;
+                } @else {
+                    float : none;
                 }
             }
                 .lMi, .lMz, .lSi {
