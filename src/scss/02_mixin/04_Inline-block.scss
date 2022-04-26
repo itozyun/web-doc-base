@@ -3,12 +3,13 @@
         @if( $UA_Opera70 ){
             display : inline-table;
         }@else if( $IS_LTE_GECKO09 or $UA_Gecko12 or $IS_GECKO13_TO_19 ){
-            // https://www.brunildo.org/test/inline-block4.html
-            display : -moz-inline-box; /* Gecko 0.9.4.1 ~ 1.8 */
+            /* clean-css ignore:start */
+            display : -moz-inline-box; // Gecko 0.9.4.1 ~ 1.8, https://www.brunildo.org/test/inline-block4.html
             // -moz-box-orient : vertical;
             @if( $UA_Gecko19 ){
                 display : inline-block; // for Gecko 1.9.0
             }
+            /* clean-css ignore:end */
         } @else {
             display : inline-block;
         }
