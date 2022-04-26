@@ -66,15 +66,14 @@ $SEARCH_BTN_WIDTH : 3em;
         }
         .Search .btn {
             position : absolute;
-            @if( $UA_Gecko09 ){ // border-box
-                width  : $SEARCH_BTN_WIDTH;
-                right  : 0;
-                height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-            } @else { // content-box
-                width  : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
-                right  : $FORM_ITEM_PADDING_LR * 2;
-                height : $PARAGRAPH_LINE_HEIGHT_EM;
+            @if( $UA_Gecko09 ){ // border-box -> content-box
+                @include box-sizing(content-box); // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
+                padding     : 0;                  // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
+                line-height : $PARAGRAPH_LINE_HEIGHT;
             }
+            width  : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
+            right  : $FORM_ITEM_PADDING_LR * 2;
+            height : $PARAGRAPH_LINE_HEIGHT_EM;
         }
     } @else if( $UA_Gecko12 or $IS_GECKO13_TO_19 ){
         .Search {
