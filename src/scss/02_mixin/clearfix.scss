@@ -40,6 +40,10 @@
             } @else if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
                 content : "";
                 clear   : both;
+                @if( $IS_LTE_GECKO09 ){ /* この指定が無いとマージンが消える */
+                    display : block;
+                    height  : 0.1px;
+                }
             } @else if( $IS_GECKO13_TO_19 ){
                 content    : ".";   /* for Gecko 1.3~1.5 */
                 height     : 0;     /* for Gecko 0.9~1.7.5 */
