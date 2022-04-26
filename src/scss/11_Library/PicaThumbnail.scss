@@ -99,13 +99,15 @@
     }
 }
 
-@if( $UA_IE7 or $UA_IE6 ){
+@if( $CANUSE_BOX_SIZING and $IS_LTE_IE55 == false ){
     /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
     .jsPicaLarge {
         display : block;
-        zoom    : 1;
         clear   : both; /* ギャラリーでの回り込みの解除 */
         padding : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        @if( $UA_IE7 or $UA_IE6 ){
+            zoom : 1;
+        }
         img {
             border-width : 0;
         }

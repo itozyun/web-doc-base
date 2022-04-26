@@ -230,8 +230,8 @@
 
 // ;hover
     $HOVER_PSEUDO_CLASS_ONLY_LINK : $IS_LTE_WIN_IE6; // :hover は a[href] にしか働かない
-    $HOVER_PSEUDO_CLASS_ONLY_FORM : $UA_Opera70;     // Opera 7~7.11, :hover は form 部品にしか働かない
-    $CANUSE_HOVER_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $UA_Opera72 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_IE7;
+    $HOVER_PSEUDO_CLASS_ONLY_FORM : false;     // Opera 7~7.11, :hover は form 部品にしか働かない
+    $CANUSE_HOVER_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_IE7;
 
 // :active
     $ACTIVE_ON_LINK_BEHAVES_FOCUS  : $IS_LTE_WIN_IE7; // a:active を実装するがそのふるまいは a:focus
@@ -265,9 +265,9 @@
 
 // Useful CSS Properties
     $CANUSE_MAX_AND_MIN_SIZES    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_OVERFLOW_X_AND_Y     : $UA_Modern or $IS_WIN_IE or $UA_MacIE5 or $UA_Gecko12 or $IS_GECKO13_TO_19; // Gecko 1.9.0~ ?
+    $CANUSE_OVERFLOW_X_AND_Y     : $UA_Modern or $IS_WIN_IE or $UA_MacIE5 or $UA_Gecko12 or $IS_GECKO13_TO_19;
     $CANUSE_MARGIN_AUTO          : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
-    $CANUSE_DISPLAY_INLINE_BLOCK : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_MacIE5;
+    $CANUSE_DISPLAY_INLINE_BLOCK : $UA_Modern or $UA_Gecko09 or $UA_Gecko12 or $IS_GECKO13_TO_19 or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.4.1~
     $CANUSE_BOX_SIZING           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
 
 // Useful CSS Selectors
