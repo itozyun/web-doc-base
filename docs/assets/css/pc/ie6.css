@@ -117,10 +117,6 @@ var {
 .tl th {
   vertical-align: top
 }
-.jsPicaLarge:hover,
-:hover img {
-  top: 2px
-}
 #jsMain,
 #jsSide,
 .Cover-img,
@@ -162,6 +158,9 @@ textarea {
 }
 a:active img {
   border-color: #0d5bb5!important
+}
+:hover img {
+  top: 2px
 }
 #jsSidebarFixer,
 #jsSidebarFixer a,
@@ -410,7 +409,6 @@ th {
 .caption,
 .commonForm,
 .js-bqCite,
-.jsPicaLarge,
 .links a,
 a iframe,
 a img {
@@ -780,8 +778,8 @@ input.btn {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1313,16 +1311,7 @@ ol.linenums {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
-  border-width: 0
-}
-.jsPicaLarge {
-  zoom: 1;
-  clear: both;
-  padding: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
+  height: auto
 }
 .baseColor .btn:link {
   background: #24c;

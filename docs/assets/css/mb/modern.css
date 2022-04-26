@@ -237,6 +237,7 @@ a:active img,
 a:focus img {
   border-color: #0d5bb5!important
 }
+.jsPicaLarge:hover,
 :link:hover img,
 :visited:hover img {
   top: 2px
@@ -1317,8 +1318,8 @@ kbd {
   word-wrap: normal
 }
 .BlogArchive a {
-  margin: 0 0 1em;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  margin: 0 0 1em
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1980,12 +1981,21 @@ ol.linenums {
   max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border-width: 0
 }
 div .box .jsCapLarge,
 div .box .jsPicaLarge img {
   float: none;
   margin: 0 0 1em
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

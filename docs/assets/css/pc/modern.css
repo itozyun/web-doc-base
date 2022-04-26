@@ -1328,8 +1328,8 @@ kbd {
   word-wrap: normal
 }
 .BlogArchive a {
-  margin: 0 0 1em;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  margin: 0 0 1em
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -2025,12 +2025,24 @@ ol.linenums {
   max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border-width: 0
 }
 div .box .jsCapLarge,
 div .box .jsPicaLarge img {
   float: none;
   margin: 0 0 1em
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 #jsSidebarFixer {
   -webkit-backface-visibility: hidden;
@@ -2576,8 +2588,8 @@ only screen and (max-width:950px) {
   }
   .lM,
   .lS {
-    float: none;
-    width: auto
+    width: auto;
+    float: none
   }
   .lM1,
   .lM2,

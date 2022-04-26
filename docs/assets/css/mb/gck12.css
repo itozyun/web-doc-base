@@ -352,6 +352,7 @@ img {
   max-width: 100%;
   max-width: 94%
 }
+.Cover img,
 .Cover-meta,
 .Pager span,
 .RichLink b,
@@ -359,12 +360,15 @@ img {
 .Search input,
 .caption,
 .commonForm,
+.jsPicaLarge,
 a iframe,
 a img {
   display: block
 }
 .BreadcrumbList a,
+.Cover h2,
 .Cover-meta span,
+.Pager i,
 .RichLink-meta span,
 .TxtNavi a,
 .btn,
@@ -814,8 +818,8 @@ input.btn {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .Comment h3,
 .SearchResult h3 {
@@ -851,7 +855,6 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
   width: 100%;
   max-width: 100%
 }
@@ -862,7 +865,6 @@ kbd {
   width: 100%
 }
 .Cover h2 {
-  display: -moz-inline-box;
   background: #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
@@ -1233,7 +1235,6 @@ dl.note dd {
   width: 32%
 }
 .Pager i {
-  display: -moz-inline-box;
   vertical-align: text-top;
   border-color: transparent #8a7322
 }
@@ -1341,7 +1342,18 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

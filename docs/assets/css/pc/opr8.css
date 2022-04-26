@@ -882,8 +882,8 @@ strong {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1439,7 +1439,19 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1857,11 +1869,16 @@ projection {
   .lXi {
     padding: 0
   }
-  .commonForm label,
+  .Magazine .aBodyRoot,
+  .Magazine-jump,
   .lM,
+  .lS {
+    width: auto;
+    float: none
+  }
+  .commonForm label,
   .lM1,
   .lM2,
-  .lS,
   .lS1,
   .lS2 {
     float: none;
@@ -1996,11 +2013,6 @@ projection {
   }
   .Magazine h3 {
     font-size: 1.3em
-  }
-  .Magazine .aBodyRoot,
-  .Magazine-jump {
-    width: auto;
-    float: none
   }
   .Magazine-jump .btn {
     margin: 0 1em 0 0

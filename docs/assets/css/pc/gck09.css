@@ -217,6 +217,7 @@ pre {
 del {
   text-decoration: line-through
 }
+.Cover img,
 .Magazine .box,
 form {
   margin: 0
@@ -241,6 +242,33 @@ ul {
 .RichLink br,
 [type=hidden] {
   display: none
+}
+.Cover img,
+.Cover-meta,
+.Magazine-date,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.commonForm,
+.commonForm-wrap,
+.commonForm-wrap *,
+.medal,
+.medal-bronze,
+.medal-gold,
+.medal-silver,
+a iframe,
+a img {
+  display: block;
+  display: block
+}
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.btn,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
 }
 .c,
 input[type=submit] {
@@ -382,25 +410,6 @@ code,
 kbd,
 var {
   margin: 0 .1em
-}
-.Cover img,
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.commonForm,
-a iframe,
-a img {
-  display: block
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
 }
 ol,
 ul {
@@ -607,7 +616,9 @@ strong {
 .lW:after,
 .lX:after {
   content: "";
-  clear: both
+  clear: both;
+  display: block;
+  height: .1px
 }
 .lW {
   overflow: visible
@@ -665,23 +676,21 @@ input.btn {
   float: none;
   width: auto
 }
+.Cover img,
+.commonForm-wrap * {
+  width: 100%
+}
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
-  display: block;
   margin: .5em 1em
-}
-.commonForm-wrap * {
-  width: 100%;
-  display: block
 }
 .medal,
 .medal-bronze,
 .medal-gold,
 .medal-silver {
-  display: block;
   float: left;
   margin: 0 .6em 1em 0;
   border-width: 1px;
@@ -811,8 +820,8 @@ input.btn {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList,
 .Magazine-item {
@@ -843,13 +852,13 @@ input.btn {
   height: 100%;
   margin: 0 0 .6em
 }
+.Search,
+.Search .btn {
+  height: 1.9em
+}
 .Cover-meta,
 .SearchResult div div {
   margin: 0 .5em
-}
-.Cover img {
-  margin: 0;
-  width: 100%
 }
 .Cover .img-loaded div {
   position: absolute;
@@ -893,7 +902,6 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-date {
-  display: block;
   float: left;
   line-height: 1
 }
@@ -981,13 +989,11 @@ kbd {
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 1.143em
+  padding: 0 0 1.143em;
+  display: block
 }
 #lH .lSi {
   padding-right: 3.1em
-}
-.Search {
-  height: 1.9em
 }
 .Search-txt {
   width: 100%;
@@ -996,12 +1002,12 @@ kbd {
 .Search .btn {
   top: 1em;
   position: absolute;
-  width: 3em;
-  right: 0;
-  height: 2.1em;
+  -moz-box-sizing: content-box;
+  padding: 0;
+  line-height: 1.9;
+  width: 2em;
+  right: .8em;
   white-space: nowrap;
-  padding-left: 0;
-  padding-right: 0;
   overflow: hidden
 }
 .SearchResult {
@@ -1373,7 +1379,19 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

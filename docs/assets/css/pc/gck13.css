@@ -235,6 +235,7 @@ pre {
 del {
   text-decoration: line-through
 }
+.Cover img,
 .Magazine .box,
 form {
   margin: 0
@@ -414,6 +415,7 @@ kbd,
 var {
   margin: 0 .1em
 }
+.Cover img,
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
@@ -426,6 +428,7 @@ a img {
   display: block
 }
 .BreadcrumbList a,
+.Cover h2,
 .Cover-meta span,
 .RichLink-meta span,
 .TxtNavi a,
@@ -641,8 +644,7 @@ strong {
   content: ".";
   height: 0;
   display: block;
-  visibility: hidden;
-  font-size: .1px
+  visibility: hidden
 }
 .lM1 {
   float: left
@@ -849,8 +851,8 @@ input.btn {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -885,10 +887,6 @@ input.btn {
 .SearchResult div div {
   margin: 0 .5em
 }
-.Cover img {
-  margin: 0;
-  display: block
-}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -896,7 +894,6 @@ input.btn {
   width: 100%
 }
 .Cover h2 {
-  display: -moz-inline-box;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em;
@@ -1171,22 +1168,6 @@ blockquote:after {
 .box {
   margin: 1em 1em 0
 }
-@-moz-document url-prefix() {
-  .AAuthor:after,
-  .Comment p:after,
-  .Cover:after,
-  .Magazine-item:after,
-  .Magazine-main:after,
-  .RichLink a:after,
-  .box:after,
-  .commonForm-pair:after,
-  .lMi:after,
-  .lSi:after,
-  .lW:after,
-  .lX:after {
-    content: ""
-  }
-}
 .box dl,
 .box ol,
 .box p,
@@ -1433,7 +1414,19 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

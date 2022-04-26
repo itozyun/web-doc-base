@@ -439,7 +439,6 @@ img {
 .caption,
 .commonForm,
 .js-bqCite,
-.jsPicaLarge,
 .links a,
 a iframe,
 a img {
@@ -849,8 +848,8 @@ input.btn {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1380,19 +1379,7 @@ ol.linenums {
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  max-width: 100%;
-  border-width: 0
-}
-.jsPicaLarge {
-  zoom: 1;
-  clear: both;
-  padding: 2px
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;

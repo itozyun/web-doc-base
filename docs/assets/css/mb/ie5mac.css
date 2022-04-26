@@ -783,8 +783,8 @@ kbd {
   word-break: normal
 }
 .BlogArchive a {
-  margin: 0 0 1em;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  margin: 0 0 1em
 }
 .BreadcrumbList {
   padding: 1em 0;

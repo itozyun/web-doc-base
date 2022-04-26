@@ -881,8 +881,8 @@ strong {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1411,7 +1411,19 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

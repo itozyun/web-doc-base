@@ -359,19 +359,14 @@ img {
 }
 .Cover img,
 .Cover-meta,
+.Pager span,
+.RichLink b,
+.caption,
 .commonForm,
+.jsPicaLarge,
 a iframe,
 a img {
   display: block
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
 }
 ol,
 ul {
@@ -443,7 +438,8 @@ h2 {
 hr {
   height: 0;
   border-color: #e7d182;
-  margin: 2em 6%
+  margin: 2em 6%;
+  display: -moz-inline-box
 }
 tr hr {
   margin: 1em 9%
@@ -585,7 +581,9 @@ strong {
 .lMi:after,
 .lSi:after {
   content: "";
-  clear: both
+  clear: both;
+  display: block;
+  height: .1px
 }
 .lM1,
 .lS1 {
@@ -771,7 +769,6 @@ input.btn {
 .AHead-labels a,
 .SocialBtns *,
 .Subscribe a {
-  display: -moz-inline-box;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -779,14 +776,6 @@ input.btn {
   padding: 0 1em;
   height: 2.1em;
   margin: 0 0 .5em
-}
-.Pager span,
-.RichLink b,
-.caption,
-.js-bqCite,
-blockquote:after {
-  display: block;
-  display: block
 }
 .Cover,
 .RichLink-sep {
@@ -823,8 +812,8 @@ blockquote:after {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1090,6 +1079,7 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  display: block;
   font-size: .875em;
   text-align: right;
   color: #8a7322;
@@ -1232,7 +1222,6 @@ dl.note dd {
   width: 32%
 }
 .Pager i {
-  display: -moz-inline-box;
   vertical-align: text-top;
   border-color: transparent #8a7322
 }
@@ -1340,7 +1329,18 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1596,7 +1596,6 @@ ol.linenums {
     color: #000
   }
   .AHead-labels a {
-    display: inline;
     border-width: 0;
     padding: 0;
     margin: 0

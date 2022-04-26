@@ -242,6 +242,36 @@ del {
 [type=hidden] {
   display: none
 }
+.Cover img,
+.Cover-meta,
+.Pager span,
+.RichLink b,
+.caption,
+.commonForm,
+.commonForm-wrap,
+.commonForm-wrap *,
+.js-bqCite,
+.jsPicaLarge,
+.medal,
+.medal-bronze,
+.medal-gold,
+.medal-silver,
+a iframe,
+a img,
+blockquote:after {
+  display: block;
+  display: block
+}
+.Cover h2,
+.Cover-meta span,
+.Pager i,
+.RichLink-meta span,
+.btn,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
+}
 .c,
 input[type=submit] {
   text-align: center
@@ -361,22 +391,6 @@ iframe,
 img {
   max-width: 100%;
   max-width: 94%
-}
-.Cover img,
-.Cover-meta,
-.commonForm,
-a iframe,
-a img {
-  display: block
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
 }
 ol,
 ul {
@@ -587,7 +601,9 @@ strong {
 .lMi:after,
 .lSi:after {
   content: "";
-  clear: both
+  clear: both;
+  display: block;
+  height: .1px
 }
 .lM1,
 .lS1 {
@@ -653,18 +669,15 @@ input.btn {
   padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
-  display: block;
   margin: .5em 1em
 }
 .commonForm-wrap * {
-  width: 100%;
-  display: block
+  width: 100%
 }
 .medal,
 .medal-bronze,
 .medal-gold,
 .medal-silver {
-  display: block;
   float: left;
   margin: 0 .6em 1em 0;
   border-width: 1px;
@@ -778,14 +791,6 @@ input.btn {
   height: 2.1em;
   margin: 0 0 .5em
 }
-.Pager span,
-.RichLink b,
-.caption,
-.js-bqCite,
-blockquote:after {
-  display: block;
-  display: block
-}
 .Cover,
 .RichLink-sep {
   line-height: 1.4
@@ -821,8 +826,8 @@ blockquote:after {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .Comment h3,
 .SearchResult h3 {
@@ -851,6 +856,10 @@ kbd {
 .Cover-img {
   height: 100%;
   margin: 0 0 .6em
+}
+.Search,
+.Search .btn {
+  height: 1.9em
 }
 .Cover-meta,
 .SearchResult div div {
@@ -942,6 +951,7 @@ pre var {
 }
 .RichLink b {
   font-weight: 400;
+  display: block;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -951,9 +961,6 @@ pre var {
 #lH .lSi {
   padding-right: 3.1em
 }
-.Search {
-  height: 1.9em
-}
 .Search-txt {
   width: 100%;
   height: 2.1em
@@ -961,12 +968,12 @@ pre var {
 .Search .btn {
   top: 1em;
   position: absolute;
-  width: 3em;
-  right: 0;
-  height: 2.1em;
+  -moz-box-sizing: content-box;
+  padding: 0;
+  line-height: 1.9;
+  width: 2em;
+  right: .8em;
   white-space: nowrap;
-  padding-left: 0;
-  padding-right: 0;
   overflow: hidden
 }
 .SearchResult {
@@ -1236,7 +1243,6 @@ dl.note dd {
   width: 32%
 }
 .Pager i {
-  display: -moz-inline-box;
   vertical-align: text-top;
   border-color: transparent #8a7322
 }
@@ -1344,7 +1350,18 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
+  border-width: 0
+}
+.jsPicaLarge {
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;

@@ -867,8 +867,8 @@ strong {
 }
 .BlogArchive a,
 .Label a {
-  line-height: 2.8;
-  border-width: 0 0 1px
+  border-width: 0 0 1px;
+  line-height: 2.8
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -1018,7 +1018,8 @@ pre var {
   width: 100%;
   display: block
 }
-.Search input {
+.Search input,
+.jsPicaLarge:hover img {
   top: 0
 }
 .Search-txt {
@@ -1418,10 +1419,19 @@ ol.linenums {
   width: 100%;
   height: auto;
   max-width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border-width: 0
 }
 div .box .jsCapLarge {
   float: none
+}
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge:hover {
+  top: 2px
 }
 .baseColor .btn:link {
   background: #24c;
