@@ -24,14 +24,13 @@
             }
         }
             .Label a {
+                border-width : 0 0 1px;
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                     @include inline-block;
                     margin : 0 0 1.7em;
                 } @else {
                     line-height : 2.8;
                 }
-
-                border-width : 0 0 1px;
             }
 
             @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
