@@ -10,10 +10,8 @@ CSS によるスタイル変更の制限について調べた内容を書いて�
 
 1. `$HOVER_PSEUDO_CLASS_ONLY_LINK`
    * IE6 以下は `:hover` は `a[href]` にしか働かない為、`a:hover` を `:hover` に省略できる．
-2. `$HOVER_PSEUDO_CLASS_ONLY_FORM`
-   * Opera 7~7.20, `:hover` は form 部品にしか働かない．
-3. `$CANUSE_HOVER_PSEUDO_CLASS`
-   * IE8 以上, Opera 7.2 以上, Gecko．
+2. `$CANUSE_HOVER_PSEUDO_CLASS`
+   * IE8 以上, Opera, Gecko．
 
 ### `:active`
 

@@ -33,7 +33,7 @@
 <tr>
 <th>IE 9+<td colspan=7>✔
 <tr>
-<th>Opera 7~7.20(*1)<td>×<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
+<th>Opera 7~7.20(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>
 <th>Opera 7.23~7.5(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>

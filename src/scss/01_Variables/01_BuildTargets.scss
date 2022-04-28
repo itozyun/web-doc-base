@@ -230,7 +230,6 @@
 
 // ;hover
     $HOVER_PSEUDO_CLASS_ONLY_LINK : $IS_LTE_WIN_IE6; // :hover は a[href] にしか働かない
-    $HOVER_PSEUDO_CLASS_ONLY_FORM : false;     // Opera 7~7.11, :hover は form 部品にしか働かない
     $CANUSE_HOVER_PSEUDO_CLASS    : $UA_Modern or $IS_OLD_GECKO or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_IE7;
 
 // :active

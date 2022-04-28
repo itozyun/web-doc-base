@@ -147,7 +147,7 @@ $SEARCH_BTN_WIDTH : 3em;
         @include active-focus-pseudo-class{
             z-index : 1;
         }
-        @if( $HOVER_PSEUDO_CLASS_ONLY_FORM or $CANUSE_HOVER_PSEUDO_CLASS ){
+        @if( $CANUSE_HOVER_PSEUDO_CLASS ){
             &:hover {
                 z-index : 1;
             }
