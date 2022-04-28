@@ -39,7 +39,7 @@
 <tr>
 <th>Opera 8~9.27<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>
-<th>Opera 9.5<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td>:focus</code> で代替(*4)<td>✔<td>✔
+<th>Opera 9.5<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔<td>✔
 <tr>
 <th>Opera 9.6+<td colspan=7>✔
 <tr>
