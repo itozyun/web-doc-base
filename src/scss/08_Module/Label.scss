@@ -18,7 +18,7 @@
                 /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
             }
         }
-        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
             .ribbon .Label div {
                 color : $COLOR_Ribbon_fill; /* , を消す */
             }

@@ -65,7 +65,7 @@
 
     /*  ribbon
     --------------------------------------------------------------------------------------*/
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
         @if( $CANUSE_NEGATIVE_PSEUDO_CLASS == false ){
             .ribbon a {
                 background : $COLOR_Ribbon_text;

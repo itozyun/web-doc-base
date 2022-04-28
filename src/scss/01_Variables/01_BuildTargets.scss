@@ -209,6 +209,12 @@
     /* //_}+chat */
     $Option_chat               : false !default;
 
+// Ribbon
+    /* //_{+nouse_ribbon */
+    $Option_useRibbon          : false;
+    /* //_}+nouse_ribbon */
+    $Option_useRibbon          : true !default;
+
 /* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 ||
 || 3. Groups

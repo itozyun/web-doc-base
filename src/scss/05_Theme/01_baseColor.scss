@@ -17,7 +17,7 @@ body {
     border-color : $COLOR_Light_casual_fill;
 }
 
-@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
     .ribbon {
         color : $COLOR_Ribbon_text;
         @if( $UA_Gecko08 ){
@@ -65,7 +65,7 @@ body {
     * {
         border-color : $COLOR_Print_casual_fill;
     }
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
         .ribbon {
             background : $COLOR_Print_fill;
             color      : $COLOR_Print_text;

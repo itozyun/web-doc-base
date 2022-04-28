@@ -26,8 +26,10 @@
     a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
         border-color    : $COLOR_Light_fill;
     }
-    .ribbon & {
-        border-color    : $COLOR_Ribbon_casual_text;
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+        .ribbon & {
+            border-color : $COLOR_Ribbon_casual_text;
+        }
     }
     @if( $CANUSE_TARGET_PSEUDO_CLASS ){
         :target & {
@@ -45,20 +47,27 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        &, .ribbon & {
+        & {
             border-color : $COLOR_Print_casual_text;
+        }
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+            .ribbon & {
+                border-color : $COLOR_Print_casual_text;
+            }
         }
     }
 }
 @mixin icon-border-fill-transparent {
     & {
-        border-color    : $COLOR_Light_casual_text transparent;
+        border-color : $COLOR_Light_casual_text transparent;
     }
     a:focus &, a:active & {
-        border-color    : $COLOR_Light_fill transparent;
+        border-color : $COLOR_Light_fill transparent;
     }
-    .ribbon & {
-        border-color    : $COLOR_Ribbon_casual_text transparent;
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+        .ribbon & {
+            border-color : $COLOR_Ribbon_casual_text transparent;
+        }
     }
     @if( $CANUSE_TARGET_PSEUDO_CLASS ){
         :target & {
@@ -88,20 +97,27 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        &, .ribbon & {
+        & {
             border-color : $COLOR_Print_casual_text transparent;
+        }
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+            .ribbon & {
+                border-color : $COLOR_Print_casual_text transparent;
+            }
         }
     }
 }
 @mixin icon-border-transparent-fill {
     & {
-        border-color    : transparent $COLOR_Light_casual_text;
+        border-color : transparent $COLOR_Light_casual_text;
     }
     a:focus &, a:active & {
-        border-color    : transparent $COLOR_Light_fill;
+        border-color : transparent $COLOR_Light_fill;
     }
-    .ribbon & {
-        border-color    : transparent $COLOR_Ribbon_casual_text;
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+        .ribbon & {
+            border-color : transparent $COLOR_Ribbon_casual_text;
+        }
     }
     @if( $CANUSE_TARGET_PSEUDO_CLASS ){
         :target & {
@@ -131,8 +147,13 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        &, .ribbon & {
+        & {
             border-color : transparent $COLOR_Print_casual_text;
+        }
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+            .ribbon & {
+                border-color : transparent $COLOR_Print_casual_text;
+            }
         }
     }
 }

@@ -18,7 +18,7 @@
         }
     }
 
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false ){
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
         .ribbon .TxtNavi {
             color : $COLOR_Ribbon_fill; /* , を消す */
         }
