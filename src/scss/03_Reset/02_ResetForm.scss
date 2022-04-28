@@ -80,7 +80,7 @@ input {
 /*  [type=hidden]
 --------------------------------------------------------------------------------------*/
 [type=hidden] {
-    @if( $UA_Gecko09 or $UA_Opera72 ){
+    @if( $UA_Opera72 ){
         display: none; // for Gecko 0.9.6, Opera 7.2~7.5
     }
     @if( $UA_Gecko19 ){

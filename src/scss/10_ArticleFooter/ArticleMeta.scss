@@ -19,7 +19,7 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        @if( $CANUSE_CSS_GENERATED_CONTENT and $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
             .AMeta-cita:after {
                 content   : " ("attr(href)") ";
                 font-size : 0.875em;
