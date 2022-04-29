@@ -5,13 +5,14 @@
 @if( $Option_blog ){
     .AAuthor {
         @include clearfix;
-        margin  : 2em 0;
-        padding : 0 0.5em 1em;
+        margin  : 2em 0.5em;
         
         img {
             float  : right;
             margin : 0 0 1em 1em;
-            top    : .4em;
+        }
+        p {
+            margin : 0;
         }
     }
 
@@ -20,7 +21,6 @@
     @include media(tablet_print) {
         .AAuthor {
             margin  : 1em 0;
-            padding : 0;
 
             img {
                 float  : left;

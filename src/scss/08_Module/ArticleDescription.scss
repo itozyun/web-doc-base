@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
     .ADesc {
-        margin : 2em 0;
+        margin : 2em .5em;
         @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
             color : $COLOR_Light_casual_text;
         } @else {
@@ -12,7 +12,7 @@
         }
 
         p {
-            margin : 0 0.5em 1em;
+            margin : 0;
         }
     }
 
@@ -21,10 +21,6 @@
     @include media(tablet_print) {
         .ADesc {
             margin : 1em 0;
-
-            p {
-                margin : 1em 0 0;
-            }
         }
     }
     /*  Print
