@@ -747,7 +747,7 @@ return '' +
 `<div class='AAuthor'>
     <img src='${resizeImage( page.author.photo, 50 )}' alt=''/>
     <!-- i class='ico-author' expr:title='data:messages.postedBy'></i-->
-    <a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank'>
+    <p><a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank'>
         ${page.author.name}
     </a>
     <!-- 投稿者 ${page.author.name} -->
