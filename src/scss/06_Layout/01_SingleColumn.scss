@@ -172,14 +172,14 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    .Xi {
+    .lXi {
         padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
 }
 /*  landscape Print
 --------------------------------------------------------------------------------------*/
 @include media(landscapePrint) {
-    .Xi {
+    .lXi {
         padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
     }
 }
