@@ -1,9 +1,4 @@
 @charset "UTF-8";
-.Magazine .box,
-figure,
-textarea {
-  margin: 0
-}
 body,
 dd p,
 li p,
@@ -66,7 +61,6 @@ h5,
 h6 {
   border-color: #8a7322
 }
-.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -259,6 +253,13 @@ a iframe,
 a img,
 h2:after {
   display: block
+}
+.AAuthor p,
+.ADesc p,
+.Magazine .box,
+figure,
+textarea {
+  margin: 0
 }
 .Cover-btn :active i,
 .Cover-btn :focus i,
@@ -721,6 +722,7 @@ strong {
 .lM1 {
   float: left
 }
+.AAuthor img,
 .lM2 {
   float: right
 }
@@ -1062,21 +1064,12 @@ a:focus .ico-pen:after {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
-}
-.AAuthor img {
-  float: right;
-  top: .4em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -1115,8 +1108,9 @@ kbd {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1416,6 +1410,9 @@ kbd:hover {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -1955,6 +1952,10 @@ div .box .jsCapLarge {
 }
 @media print,
 screen and (max-width:950px) {
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   .links,
   .note,
   blockquote,
@@ -1977,11 +1978,6 @@ screen and (max-width:950px) {
   pre {
     padding: 1em 3%
   }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
-  }
   iframe,
   img {
     max-width: 94%
@@ -1992,8 +1988,24 @@ screen and (max-width:950px) {
   caption {
     margin: 1.5em 3% .7em
   }
-  .AAuthor {
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
+  }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
   }
   .AAuthor img {
     float: left;
@@ -2015,10 +2027,6 @@ screen and (max-width:950px) {
     padding-left: 1.5%;
     padding-right: 1.5%
   }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
   .AHead h1 {
     text-align: center
   }
@@ -2039,6 +2047,9 @@ screen and (max-width:950px) {
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,
@@ -2089,28 +2100,12 @@ screen and (max-width:950px) {
   .lS {
     width: auto
   }
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    width: 48.5%
-  }
   #lB .lSi {
     padding: 0
   }
-  .lS1 {
-    float: left
-  }
-  .lS2 {
-    float: right
-  }
-  #lB .lS1 {
-    width: 45.5%;
-    padding: 0 0 0 3%
-  }
-  #lB .lS2 {
-    width: 45.5%;
-    padding: 0 3% 0 0
+  .lM1,
+  .lM2 {
+    width: 48.5%
   }
   .mspacer {
     margin: 1em .5em!important
@@ -2966,9 +2961,6 @@ screen and (max-width:950px) {
   th {
     font-weight: 700
   }
-  body {
-    word-break: break-all
-  }
   p {
     line-height: 1.5
   }
@@ -3053,10 +3045,10 @@ screen and (max-width:950px) {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -3165,6 +3157,9 @@ screen and (max-width:950px) {
   }
   .Header h1 {
     margin: 0 0 .5em
+  }
+  body {
+    word-break: break-all
   }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {

@@ -37,7 +37,6 @@ h6,
 table {
   border-color: #8a7322
 }
-.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -132,7 +131,7 @@ sup {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -290,6 +289,8 @@ a img,
 br {
   display: block
 }
+.AAuthor p,
+.ADesc p,
 .Magazine .box,
 form {
   margin: 0
@@ -679,6 +680,7 @@ strong {
 .lM1 {
   float: left
 }
+.AAuthor img,
 .lM2 {
   float: right
 }
@@ -789,21 +791,12 @@ strong {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
-}
-.AAuthor img {
-  float: right;
-  top: .4em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -824,8 +817,9 @@ strong {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1095,6 +1089,9 @@ kbd {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -2278,10 +2275,10 @@ projection {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -2376,11 +2373,6 @@ projection {
   blockquote .tl tbody td:after {
     border-color: #fff
   }
-  .AMeta-cita:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
-  }
   code .atv,
   code .str {
     color: #060
@@ -2410,6 +2402,10 @@ projection {
 }
 @media print,
 handheld {
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   .links,
   .note,
   blockquote,
@@ -2432,11 +2428,6 @@ handheld {
   pre {
     padding: 1em 3%
   }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
-  }
   iframe,
   img {
     max-width: 94%
@@ -2447,8 +2438,24 @@ handheld {
   caption {
     margin: 1.5em 3% .7em
   }
-  .AAuthor {
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
+  }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
   }
   .AAuthor img {
     float: left;
@@ -2470,10 +2477,6 @@ handheld {
     padding-left: 1.5%;
     padding-right: 1.5%
   }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
   .AHead h1 {
     text-align: center
   }
@@ -2494,6 +2497,9 @@ handheld {
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,

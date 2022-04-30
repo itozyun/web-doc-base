@@ -41,7 +41,6 @@ h6,
 table {
   border-color: #8a7322
 }
-.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -124,7 +123,7 @@ img {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -259,6 +258,8 @@ ins {
 del {
   text-decoration: line-through
 }
+.AAuthor p,
+.ADesc p,
 .Cover img,
 .Magazine .box,
 form {
@@ -671,6 +672,7 @@ strong {
 .lM1 {
   float: left
 }
+.AAuthor img,
 .lM2 {
   float: right
 }
@@ -790,21 +792,12 @@ input.btn {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
-}
-.AAuthor img {
-  float: right;
-  top: .4em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -821,8 +814,9 @@ input.btn {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1100,6 +1094,9 @@ kbd {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -1645,6 +1642,10 @@ ol.linenums {
   thead var {
     border-color: #666
   }
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1652,6 +1653,7 @@ ol.linenums {
   p {
     line-height: 1.5
   }
+  .ADesc,
   .ribbon a,
   a {
     color: #666
@@ -1703,8 +1705,14 @@ ol.linenums {
   caption {
     margin: 1.5em 3% .7em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
   table {
-    margin: 1em 0;
+    margin: 1em 0
+  }
+  table {
     width: 100%
   }
   thead td,
@@ -1763,10 +1771,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -1795,9 +1803,19 @@ ol.linenums {
   [href^="tel:"]:after {
     display: none
   }
-  .AAuthor {
-    margin: 1em 0;
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
   }
   .AAuthor img {
     float: left;
@@ -1822,16 +1840,7 @@ ol.linenums {
   .ABody {
     margin: 0 0 2em
   }
-  .ADesc {
-    margin: 1em 0;
-    color: #666
-  }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
   .AHead {
-    margin: 1em 0;
     color: #666!important
   }
   .AHead h1 {
@@ -1913,14 +1922,16 @@ ol.linenums {
     margin: 0 1.5%
   }
   blockquote {
-    padding: 1em 1px;
-    margin: 1em 0
+    padding: 1em 1px
   }
   .box dl,
   .box ol,
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,

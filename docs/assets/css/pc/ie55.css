@@ -45,7 +45,6 @@ h6,
 table {
   border-color: #8a7322
 }
-.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -664,21 +663,19 @@ input.btn {
 }
 .AAuthor {
   zoom: 1;
-  margin: 2em 0;
-  padding: 0 .5em 1em
+  margin: 2em .5em
 }
 .AAuthor img {
   float: right;
-  margin: 0 0 1em 1em;
-  top: .4em
+  margin: 0 0 1em 1em
+}
+.AAuthor p,
+.ADesc p,
+.Magazine .box {
+  margin: 0
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -695,8 +692,12 @@ input.btn {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.ADesc {
+  margin: 2em .5em
+}
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -896,9 +897,6 @@ kbd {
   float: left;
   line-height: 1.6
 }
-.Magazine .box {
-  margin: 0
-}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1004,6 +1002,9 @@ kbd {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -1473,6 +1474,10 @@ ol.linenums {
   thead var {
     border-color: #666
   }
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1495,6 +1500,7 @@ ol.linenums {
   p {
     line-height: 1.5
   }
+  .ADesc,
   .ribbon a,
   a {
     color: #666
@@ -1535,8 +1541,14 @@ ol.linenums {
   caption {
     margin: 1.5em 3% .7em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
   table {
-    margin: 1em 0;
+    margin: 1em 0
+  }
+  table {
     width: 100%
   }
   thead td,
@@ -1588,6 +1600,10 @@ ol.linenums {
     background: #fff;
     color: #000
   }
+  .AHead,
+  .BreadcrumbList {
+    color: #666!important
+  }
   *,
   .ribbon * {
     border-color: #ccc
@@ -1595,10 +1611,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -1613,9 +1629,19 @@ ol.linenums {
   .noprint {
     display: none
   }
-  .AAuthor {
-    margin: 1em 0;
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
   }
   .AAuthor img {
     float: left;
@@ -1640,18 +1666,6 @@ ol.linenums {
   .ABody {
     margin: 0 0 2em
   }
-  .ADesc {
-    margin: 1em 0;
-    color: #666
-  }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
-  .AHead {
-    margin: 1em 0;
-    color: #666!important
-  }
   .AHead h1 {
     text-align: center;
     color: #000!important;
@@ -1672,8 +1686,7 @@ ol.linenums {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0;
-    color: #666!important
+    padding: .5em 0
   }
   .Cover {
     margin: 2em auto
@@ -1715,14 +1728,16 @@ ol.linenums {
     margin: 0 1.5%
   }
   blockquote {
-    padding: 1em 1px;
-    margin: 1em 0
+    padding: 1em 1px
   }
   .box dl,
   .box ol,
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,

@@ -45,10 +45,6 @@ a,
 h6 {
   color: #8a7322
 }
-dd,
-li {
-  margin-bottom: .3em
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -95,31 +91,6 @@ sup {
   position: relative
 }
 .links,
-.note,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
-body,
-form,
-h2,
-html {
-  margin: 0
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
-}
-.links,
 pre {
   white-space: pre-wrap
 }
@@ -130,7 +101,7 @@ pre {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -273,6 +244,34 @@ pre {
 del {
   text-decoration: line-through
 }
+.AAuthor p,
+.ADesc p,
+form {
+  margin: 0
+}
+dd,
+li {
+  margin-bottom: .3em
+}
+.links,
+.note,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
+}
 .Header,
 .Header h1,
 .aa,
@@ -298,6 +297,7 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 body {
@@ -487,6 +487,7 @@ li ul {
   margin-bottom: 0
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -759,14 +760,14 @@ strong {
 .mspacer {
   margin: 1em .5em!important
 }
+.AAuthor,
+.ADesc,
+.hscroll {
+  margin: 1em 0
+}
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
-}
-.AAuthor {
-  margin: 1em 0;
-  padding: 0
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -799,14 +800,6 @@ strong {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc,
-.hscroll {
-  margin: 1em 0
-}
-.ADesc p,
-.box {
-  margin: 1em 0 0
 }
 .AHead {
   color: #8a7322;
@@ -1179,6 +1172,9 @@ blockquote:after {
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.box {
+  margin: 1em 0 0
 }
 kbd {
   border-color: #06284e;
@@ -2364,10 +2360,10 @@ screen and (max-width:240px) {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,

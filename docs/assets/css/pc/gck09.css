@@ -37,6 +37,8 @@ h6,
 table {
   border-color: #8a7322
 }
+.ADesc,
+.AHead,
 .BreadcrumbList,
 .Comment div,
 .Cover-meta,
@@ -121,7 +123,7 @@ img {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -217,7 +219,8 @@ pre {
 del {
   text-decoration: line-through
 }
-.Cover img,
+.AAuthor p,
+.ADesc p,
 .Magazine .box,
 form {
   margin: 0
@@ -235,40 +238,6 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-[type=hidden] {
-  display: none
-}
-.Cover img,
-.Cover-meta,
-.Magazine-date,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.commonForm,
-.commonForm-wrap,
-.commonForm-wrap *,
-.medal,
-.medal-bronze,
-.medal-gold,
-.medal-silver,
-a iframe,
-a img {
-  display: block;
-  display: block
-}
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
 }
 .c,
 input[type=submit] {
@@ -410,6 +379,25 @@ code,
 kbd,
 var {
   margin: 0 .1em
+}
+.Cover img,
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.commonForm,
+a iframe,
+a img {
+  display: block
+}
+.Cover h2,
+.Cover-meta span,
+.RichLink-meta span,
+.btn,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
 }
 ol,
 ul {
@@ -626,6 +614,7 @@ strong {
 .lM1 {
   float: left
 }
+.AAuthor img,
 .lM2 {
   float: right
 }
@@ -676,21 +665,23 @@ input.btn {
   float: none;
   width: auto
 }
-.Cover img,
-.commonForm-wrap * {
-  width: 100%
-}
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
+  display: block;
   margin: .5em 1em
+}
+.commonForm-wrap * {
+  width: 100%;
+  display: block
 }
 .medal,
 .medal-bronze,
 .medal-gold,
 .medal-silver {
+  display: block;
   float: left;
   margin: 0 .6em 1em 0;
   border-width: 1px;
@@ -733,21 +724,12 @@ input.btn {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
-}
-.AAuthor img {
-  float: right;
-  top: .4em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead {
-  color: #8a7322;
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -764,8 +746,9 @@ input.btn {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.AHead,
+.SearchResult-multi {
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -776,6 +759,12 @@ input.btn {
 .AHead-labels {
   margin-top: .5em;
   color: #fffd93
+}
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -860,6 +849,10 @@ input.btn {
 .SearchResult div div {
   margin: 0 .5em
 }
+.Cover img {
+  margin: 0;
+  width: 100%
+}
 .Cover .img-loaded div {
   position: absolute;
   bottom: 0;
@@ -902,6 +895,7 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-date {
+  display: block;
   float: left;
   line-height: 1
 }
@@ -989,8 +983,7 @@ kbd {
 }
 .RichLink b {
   font-size: .875em;
-  padding: 0 0 1.143em;
-  display: block
+  padding: 0 0 1.143em
 }
 #lH .lSi {
   padding-right: 3.1em
@@ -1029,9 +1022,6 @@ kbd {
 }
 .SearchResult div span {
   color: grey
-}
-.SearchResult-multi {
-  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -1537,6 +1527,10 @@ ol.linenums {
   thead var {
     border-color: #666
   }
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   code .typ,
   th {
     font-weight: 700
@@ -1544,6 +1538,7 @@ ol.linenums {
   p {
     line-height: 1.5
   }
+  .ADesc,
   a {
     color: #666
   }
@@ -1592,8 +1587,14 @@ ol.linenums {
   caption {
     margin: 1.5em 3% .7em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
   table {
-    margin: 1em 0;
+    margin: 1em 0
+  }
+  table {
     width: 100%
   }
   thead td,
@@ -1650,10 +1651,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -1682,9 +1683,19 @@ ol.linenums {
   [href^="tel:"]:after {
     display: none
   }
-  .AAuthor {
-    margin: 1em 0;
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
   }
   .AAuthor img {
     float: left;
@@ -1709,16 +1720,7 @@ ol.linenums {
   .ABody {
     margin: 0 0 2em
   }
-  .ADesc {
-    margin: 1em 0;
-    color: #666
-  }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
   .AHead {
-    margin: 1em 0;
     color: #666!important
   }
   .AHead h1 {
@@ -1800,14 +1802,16 @@ ol.linenums {
     margin: 0 1.5%
   }
   blockquote {
-    padding: 1em 1px;
-    margin: 1em 0
+    padding: 1em 1px
   }
   .box dl,
   .box ol,
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,

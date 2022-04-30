@@ -95,7 +95,7 @@ ul {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -671,11 +671,13 @@ strong {
 }
 .AAuthor {
   display: inline-table;
-  margin: 1em 0;
-  padding: 0
+  margin: 1em 0
+}
+.AAuthor p,
+.ADesc p {
+  margin: 0
 }
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
 }
@@ -708,9 +710,6 @@ strong {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc p {
-  margin: 1em 0 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1526,10 +1525,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,

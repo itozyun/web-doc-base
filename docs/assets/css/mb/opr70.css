@@ -39,10 +39,6 @@ a,
 h6 {
   color: #8a7322
 }
-dd,
-li {
-  margin-bottom: .3em
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -75,31 +71,6 @@ thead th {
   width: 48.5%
 }
 .links,
-.note,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
-body,
-form,
-h2,
-html {
-  margin: 0
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
-}
-.links,
 pre {
   white-space: -o-pre-wrap
 }
@@ -113,7 +84,7 @@ sup {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -262,6 +233,11 @@ pre {
   margin: 1em 0;
   padding: 1em 3%
 }
+.Header h1,
+body,
+input.btn {
+  padding: 0
+}
 del {
   text-decoration: line-through
 }
@@ -271,6 +247,34 @@ a iframe,
 a img,
 br {
   display: block
+}
+.AAuthor p,
+.ADesc p,
+form {
+  margin: 0
+}
+dd,
+li {
+  margin-bottom: .3em
+}
+.links,
+.note,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
 }
 textarea {
   overflow: auto;
@@ -291,10 +295,10 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 body {
-  padding: 0;
   background: #062241;
   color: #06284e
 }
@@ -464,6 +468,7 @@ li ul {
   margin-bottom: 0
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
@@ -637,11 +642,6 @@ strong {
   text-align: center;
   padding: 0 1em
 }
-.AAuthor,
-.Header h1,
-input.btn {
-  padding: 0
-}
 .AHead-labels a:focus,
 .SocialBtns :focus,
 .Subscribe a:focus,
@@ -739,15 +739,14 @@ input.btn {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor img {
-  top: .4em;
-  float: left;
-  margin: 0 1em 1em 0
-}
 .AAuthor,
 .ADesc,
 .hscroll {
   margin: 1em 0
+}
+.AAuthor img {
+  float: left;
+  margin: 0 1em 1em 0
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -774,10 +773,6 @@ input.btn {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc p,
-.box {
-  margin: 1em 0 0
 }
 .AHead {
   color: #8a7322;
@@ -1140,6 +1135,9 @@ blockquote:after {
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.box {
+  margin: 1em 0 0
 }
 kbd {
   border-color: #06284e;
@@ -1658,10 +1656,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -1745,11 +1743,6 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
-  }
-  .AMeta-cita:after {
-    content: " (" attr(href) ") ";
-    font-size: .875em;
-    color: #006
   }
   code .atv,
   code .str {

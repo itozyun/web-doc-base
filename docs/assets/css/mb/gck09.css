@@ -46,10 +46,6 @@ a,
 h6 {
   color: #8a7322
 }
-dd,
-li {
-  margin-bottom: .3em
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -84,31 +80,6 @@ body {
   width: 48.5%
 }
 .links,
-.note,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
-body,
-form,
-h2,
-html {
-  margin: 0
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
-}
-.links,
 pre {
   white-space: -moz-pre-wrap
 }
@@ -141,7 +112,7 @@ sup {
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
 }
 code,
 kbd,
@@ -237,40 +208,33 @@ pre {
 del {
   text-decoration: line-through
 }
-.AHead-labels i,
-.RichLink br,
-[type=hidden] {
-  display: none
+.AAuthor p,
+.ADesc p,
+form {
+  margin: 0
 }
-.Cover img,
-.Cover-meta,
-.Pager span,
-.RichLink b,
-.caption,
-.commonForm,
-.commonForm-wrap,
-.commonForm-wrap *,
-.js-bqCite,
-.jsPicaLarge,
-.medal,
-.medal-bronze,
-.medal-gold,
-.medal-silver,
-a iframe,
-a img,
-blockquote:after {
-  display: block;
-  display: block
+dd,
+li {
+  margin-bottom: .3em
 }
-.Cover h2,
-.Cover-meta span,
-.Pager i,
-.RichLink-meta span,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
+.links,
+.note,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
 }
 .c,
 input[type=submit] {
@@ -299,6 +263,7 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 .medal,
@@ -392,6 +357,27 @@ img {
   max-width: 100%;
   max-width: 94%
 }
+.Cover img,
+.Cover-meta,
+.Pager span,
+.RichLink b,
+.caption,
+.commonForm,
+.jsPicaLarge,
+a iframe,
+a img {
+  display: block
+}
+.Cover h2,
+.Cover-meta span,
+.Pager i,
+.RichLink-meta span,
+.btn,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
+}
 ol,
 ul {
   padding-left: 2em
@@ -451,6 +437,7 @@ textarea {
   background: #fdeeb7
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
@@ -669,15 +656,18 @@ input.btn {
   padding: 1.4em 0 .6em
 }
 .commonForm-wrap {
+  display: block;
   margin: .5em 1em
 }
 .commonForm-wrap * {
-  width: 100%
+  width: 100%;
+  display: block
 }
 .medal,
 .medal-bronze,
 .medal-gold,
 .medal-silver {
+  display: block;
   float: left;
   margin: 0 .6em 1em 0;
   border-width: 1px;
@@ -719,12 +709,11 @@ input.btn {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor {
-  margin: 1em 0;
-  padding: 0
+.AAuthor,
+.hscroll {
+  margin: 1em 0
 }
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
 }
@@ -759,10 +748,6 @@ input.btn {
   color: #8a7322;
   margin: 1em 0
 }
-.ADesc p,
-.box {
-  margin: 1em 0 0
-}
 .AHead h1 {
   font-size: 2em;
   color: #06284e;
@@ -778,6 +763,10 @@ input.btn {
 .AHead-labels {
   margin-top: .5em;
   color: #fffd93
+}
+.AHead-labels i,
+.RichLink br {
+  display: none
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -951,7 +940,6 @@ pre var {
 }
 .RichLink b {
   font-weight: 400;
-  display: block;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1095,10 +1083,14 @@ blockquote:before {
 }
 .js-bqCite,
 blockquote:after {
+  display: block;
   font-size: .875em;
   text-align: right;
   color: #8a7322;
   margin: 0 1.5%
+}
+.box {
+  margin: 1em 0 0
 }
 .box dl,
 .box ol,
@@ -1115,9 +1107,6 @@ blockquote:after {
 .box img {
   float: left;
   margin: 0 1em 1em 3%
-}
-.hscroll {
-  margin: 1em 0
 }
 kbd {
   border-color: #06284e;
@@ -1584,10 +1573,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,

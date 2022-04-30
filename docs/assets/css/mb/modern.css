@@ -80,10 +80,6 @@ h5,
 h6 {
   border-color: #8a7322
 }
-dd,
-li {
-  margin-bottom: .3em
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -146,33 +142,6 @@ sup {
 .lX {
   overflow: hidden
 }
-#blog2slide-start button,
-.links,
-.note,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
-aside,
-body,
-figure,
-h2,
-html {
-  margin: 0
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
-}
 .Cover h2,
 a:active code,
 a:active var,
@@ -194,7 +163,16 @@ pre {
 body,
 input,
 textarea {
-  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+}
+@supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)) {
+  @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars) {
+    body,
+    input,
+    textarea {
+      font-family: sans-serif
+    }
+  }
 }
 .ABody h1,
 .ABody h2,
@@ -368,6 +346,37 @@ ul {
 del {
   text-decoration: line-through
 }
+.AAuthor p,
+.ADesc p,
+aside,
+figure,
+h2 {
+  margin: 0
+}
+dd,
+li {
+  margin-bottom: .3em
+}
+#blog2slide-start button,
+.links,
+.note,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
+}
 aside {
   padding: 0;
   border: 0
@@ -425,6 +434,7 @@ h6 {
 }
 body,
 html {
+  margin: 0;
   height: 100%
 }
 body {
@@ -1188,14 +1198,14 @@ a:focus .ico-pen:after {
 .mspacer {
   margin: 1em .5em!important
 }
+.AAuthor,
+.ADesc,
+.hscroll {
+  margin: 1em 0
+}
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
-}
-.AAuthor {
-  margin: 1em 0;
-  padding: 0
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -1242,14 +1252,6 @@ kbd {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc,
-.hscroll {
-  margin: 1em 0
-}
-.ADesc p,
-.box {
-  margin: 1em 0 0
 }
 .AHead {
   color: #8a7322;
@@ -1659,6 +1661,9 @@ tr .box > p:first-of-type {
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.box {
+  margin: 1em 0 0
 }
 .hscroll::-webkit-scrollbar {
   height: 5px
@@ -2123,12 +2128,18 @@ tv {
     color: #bdb76b
   }
 }
-@media screen and (min-width:0\-) {
+@media all and (min-width:0\-) {
   :link,
   :link *,
   :visited,
   :visited * {
-    -webkit-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
+    -webkit-transition: none
+  }
+  :link *,
+  :link,
+  :visited *,
+  :visited,_:increment,_:not(:root) {
+    -webkit-transition: .3s ease-in
   }
   .RichLink-meta {
     background: 0 0!important
@@ -2880,14 +2891,14 @@ only screen and (max-width:240px) {
     margin-right: 0
   }
 }
-@media only screen and (-webkit-min-device-pixel-ratio:0) {
+@media all and (-webkit-min-device-pixel-ratio:0) {
   body,
   input,
   textarea {
     font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
   }
 }
-@media screen\0 {
+@media all\0 {
   body,
   input,
   textarea {
@@ -2988,9 +2999,6 @@ only screen and (max-width:240px) {
   th {
     font-weight: 700
   }
-  body {
-    word-break: break-all
-  }
   p {
     line-height: 1.5
   }
@@ -3075,10 +3083,10 @@ only screen and (max-width:240px) {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -3178,6 +3186,9 @@ only screen and (max-width:240px) {
     display: block;
     text-align: center
   }
+  body {
+    word-break: break-all
+  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
@@ -3264,9 +3275,9 @@ only screen and (max-width:240px) {
     break-after: avoid-column
   }
   .AHead,
-  .Xi,
   .lMh,
-  .lMi {
+  .lMi,
+  .lXi {
     padding: 0 1.5%
   }
   .ABody,

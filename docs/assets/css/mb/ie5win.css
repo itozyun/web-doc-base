@@ -152,6 +152,11 @@ a:active img {
 :hover img {
   top: 2px
 }
+.Cover .img-loaded div,
+.Search input {
+  top: 0;
+  position: absolute
+}
 .LinkList a,
 .RichLink-sep a {
   display: block;
@@ -682,18 +687,15 @@ input.btn {
 }
 .AAuthor {
   height: 1%;
-  margin: 1em 0;
-  padding: 0
+  margin: 1em 0
+}
+.AAuthor p,
+.ADesc p {
+  margin: 0
 }
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
-}
-.Cover .img-loaded div,
-.Search input {
-  top: 0;
-  position: absolute
 }
 .ABody {
   margin: 3.5em 0 2em
@@ -723,9 +725,6 @@ input.btn {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc p {
-  margin: 1em 0 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1514,10 +1513,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,

@@ -69,10 +69,6 @@ a,
 h6 {
   color: #8a7322
 }
-dd,
-li {
-  margin-bottom: .3em
-}
 .note .box,
 .note .hscroll,
 .tl td > :first-child,
@@ -91,11 +87,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-figure,
-h2,
-textarea {
-  margin: 0
 }
 .RichLink b,
 .caption,
@@ -134,20 +125,6 @@ h2,
 kbd:hover {
   position: relative
 }
-.links,
-.note,
-blockquote,
-dl,
-iframe,
-img,
-ol,
-p,
-table,
-tr blockquote p,
-tr blockquote pre,
-ul {
-  margin: 1em 3%
-}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -159,11 +136,6 @@ ul {
 .lX,
 svg {
   overflow: hidden
-}
-code,
-kbd,
-var {
-  margin: 0 .1em
 }
 .Cover h2,
 a:active code,
@@ -271,6 +243,13 @@ a img,
 h2:after {
   display: block
 }
+.AAuthor p,
+.ADesc p,
+figure,
+h2,
+textarea {
+  margin: 0
+}
 .Cover-btn :active i,
 .Cover-btn :focus i,
 .Cover-btn :link i,
@@ -350,6 +329,29 @@ ins {
 }
 del {
   text-decoration: line-through
+}
+dd,
+li {
+  margin-bottom: .3em
+}
+.links,
+.note,
+blockquote,
+dl,
+iframe,
+img,
+ol,
+p,
+table,
+tr blockquote p,
+tr blockquote pre,
+ul {
+  margin: 1em 3%
+}
+code,
+kbd,
+var {
+  margin: 0 .1em
 }
 input {
   font-size: 1em;
@@ -1064,12 +1066,12 @@ a:focus .ico-pen:after {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor {
-  margin: 1em 0;
-  padding: 0
+.AAuthor,
+.ADesc,
+.hscroll {
+  margin: 1em 0
 }
 .AAuthor img {
-  top: .4em;
   float: left;
   margin: 0 1em 1em 0
 }
@@ -1117,14 +1119,6 @@ kbd {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.ADesc,
-.hscroll {
-  margin: 1em 0
-}
-.ADesc p,
-.box {
-  margin: 1em 0 0
 }
 .AHead {
   color: #8a7322;
@@ -1490,6 +1484,9 @@ blockquote:after {
   text-align: right;
   color: #8a7322;
   margin: 0 1.5%
+}
+.box {
+  margin: 1em 0 0
 }
 .box > p:first-of-type {
   margin-top: -.225em
@@ -2674,9 +2671,6 @@ div .box .jsCapLarge {
   th {
     font-weight: 700
   }
-  body {
-    word-break: break-all
-  }
   p {
     line-height: 1.5
   }
@@ -2761,10 +2755,10 @@ div .box .jsCapLarge {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -2863,6 +2857,9 @@ div .box .jsCapLarge {
   .Header h1 + span {
     display: block;
     text-align: center
+  }
+  body {
+    word-break: break-all
   }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {

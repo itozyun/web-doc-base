@@ -178,7 +178,16 @@ img {
 body,
 input,
 textarea {
-  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+}
+@supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)) {
+  @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars) {
+    body,
+    input,
+    textarea {
+      font-family: sans-serif
+    }
+  }
 }
 .ABody h1,
 .ABody h2,
@@ -350,6 +359,8 @@ ul {
 del {
   text-decoration: line-through
 }
+.AAuthor p,
+.ADesc p,
 .Magazine .box,
 aside,
 figure,
@@ -846,6 +857,7 @@ strong {
 .lM1 {
   float: left
 }
+.AAuthor img,
 .lM2 {
   float: right
 }
@@ -1210,21 +1222,12 @@ a:focus .ico-pen:after {
 .Magazine-jump .btn {
   margin: 0 0 1em 1em
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
-}
-.AAuthor img {
-  float: right;
-  top: .4em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -1263,13 +1266,9 @@ kbd {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
-}
-.AHead,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta {
-  color: #8a7322
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1503,6 +1502,10 @@ kbd {
 .baseColor .RichLink-meta {
   color: #e7d182
 }
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta {
+  color: #8a7322
+}
 .RichLink h3 {
   font-size: 1.5em;
   margin: 0 0 .4em
@@ -1583,6 +1586,9 @@ kbd:hover {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -2190,13 +2196,20 @@ tv {
     color: #bdb76b
   }
 }
-@media screen and (min-width:0\-) {
+@media all and (min-width:0\-) {
   :link,
   :link *,
   :visited,
   :visited *,
   h2 {
-    -webkit-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
+    -webkit-transition: none
+  }
+  :link *,
+  :link,
+  :visited *,
+  :visited,
+  h2,_:increment,_:not(:root) {
+    -webkit-transition: .3s ease-in
   }
   .RichLink-meta {
     background: 0 0!important
@@ -2458,6 +2471,10 @@ print and (orientation:landscape) {
 handheld,
 tv,
 only screen and (max-width:950px) {
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   #blog2slide-start button,
   .links,
   .note,
@@ -2481,11 +2498,6 @@ only screen and (max-width:950px) {
   pre {
     padding: 1em 3%
   }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
-  }
   iframe,
   img {
     max-width: 94%
@@ -2496,8 +2508,24 @@ only screen and (max-width:950px) {
   caption {
     margin: 1.5em 3% .7em
   }
-  .AAuthor {
-    padding: 0
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
+  }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
   }
   .AAuthor img {
     float: left;
@@ -2519,10 +2547,6 @@ only screen and (max-width:950px) {
     padding-left: 1.5%;
     padding-right: 1.5%
   }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
-  }
   .AHead h1 {
     text-align: center
   }
@@ -2543,6 +2567,9 @@ only screen and (max-width:950px) {
   .box p,
   .box ul {
     margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box .caption,
   .box iframe,
@@ -2591,28 +2618,12 @@ only screen and (max-width:950px) {
     width: auto;
     float: none
   }
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    width: 48.5%
-  }
   #lB .lSi {
     padding: 0
   }
-  .lS1 {
-    float: left
-  }
-  .lS2 {
-    float: right
-  }
-  #lB .lS1 {
-    width: 45.5%;
-    padding: 0 0 0 3%
-  }
-  #lB .lS2 {
-    width: 45.5%;
-    padding: 0 3% 0 0
+  .lM1,
+  .lM2 {
+    width: 48.5%
   }
   .mspacer {
     margin: 1em .5em!important
@@ -3440,14 +3451,14 @@ only screen and (max-width:240px) {
     margin-right: 0
   }
 }
-@media only screen and (-webkit-min-device-pixel-ratio:0) {
+@media all and (-webkit-min-device-pixel-ratio:0) {
   body,
   input,
   textarea {
     font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
   }
 }
-@media screen\0 {
+@media all\0 {
   body,
   input,
   textarea {
@@ -3549,9 +3560,6 @@ only screen and (max-width:240px) {
   th {
     font-weight: 700
   }
-  body {
-    word-break: break-all
-  }
   p {
     line-height: 1.5
   }
@@ -3636,10 +3644,10 @@ only screen and (max-width:240px) {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -3749,6 +3757,9 @@ only screen and (max-width:240px) {
   .Header h1 {
     margin: 0 0 .5em
   }
+  body {
+    word-break: break-all
+  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
@@ -3803,9 +3814,9 @@ only screen and (max-width:240px) {
 }
 @media only print and (orientation:landscape) {
   .AHead,
-  .Xi,
   .lMh,
-  .lMi {
+  .lMi,
+  .lXi {
     padding: 0 1.5%
   }
   .ABody,

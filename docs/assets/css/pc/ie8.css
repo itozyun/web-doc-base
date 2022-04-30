@@ -65,7 +65,6 @@ h6,
 table {
   border-color: #8a7322
 }
-.AHead,
 .Comment div,
 .Cover-meta,
 .baseColor :link .RichLink-meta,
@@ -1019,22 +1018,21 @@ a:focus .ico-pen:after {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor {
-  margin: 2em 0;
-  padding: 0 .5em 1em
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
 }
 .AAuthor img {
   float: right;
-  margin: 0 0 1em 1em;
-  top: .4em
+  margin: 0 0 1em 1em
+}
+.AAuthor p,
+.ADesc p,
+.Magazine .box {
+  margin: 0
 }
 .ABody {
   margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead,
-.SearchResult-multi {
-  margin: 2em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -1070,8 +1068,9 @@ kbd {
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
 }
-.ADesc p {
-  margin: 0 .5em 1em
+.AHead {
+  color: #8a7322;
+  margin: 2em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1259,9 +1258,6 @@ kbd {
   float: left;
   line-height: 1.6
 }
-.Magazine .box {
-  margin: 0
-}
 .Magazine blockquote,
 .Magazine dl,
 .Magazine p,
@@ -1372,6 +1368,9 @@ kbd:hover {
 }
 .SearchResult div span {
   color: grey
+}
+.SearchResult-multi {
+  margin: 2em 0
 }
 #lH .lMi,
 #lH .lSi {
@@ -1971,6 +1970,10 @@ ol.linenums {
   thead var {
     border-color: #666
   }
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
   .LinkList a,
   .Magazine-item,
   .RichLink-sep a,
@@ -2011,9 +2014,6 @@ ol.linenums {
   code .pln {
     color: #000
   }
-  body {
-    word-break: break-all
-  }
   p {
     line-height: 1.5
   }
@@ -2050,8 +2050,14 @@ ol.linenums {
   caption {
     margin: 1.5em 3% .7em
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
   table {
-    margin: 1em 0;
+    margin: 1em 0
+  }
+  table {
     width: 100%
   }
   thead td,
@@ -2114,10 +2120,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .Xi,
   .lMh,
   .lMi,
-  .lMz .AHead {
+  .lMz .AHead,
+  .lXi {
     padding: 0 3%
   }
   #lB .lS,
@@ -2143,6 +2149,20 @@ ol.linenums {
   [href*="/viewer.diagrams.net/?"]:after {
     display: none
   }
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding: 0 0 0 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding: 0 3% 0 0
+  }
   .ico-label:after,
   .ribbon .ico-label:after {
     border-color: transparent #666
@@ -2152,10 +2172,6 @@ ol.linenums {
   .ribbon .ico-comment:after,
   .ribbon .ico-pen:after {
     border-color: #666 transparent
-  }
-  .AAuthor {
-    margin: 1em 0;
-    padding: 0
   }
   .AAuthor img {
     float: left;
@@ -2179,15 +2195,6 @@ ol.linenums {
   }
   .ABody {
     margin: 0 0 2em
-  }
-  .ADesc,
-  .AHead,
-  blockquote {
-    margin: 1em 0
-  }
-  .ADesc p,
-  .box {
-    margin: 1em 0 0
   }
   .AHead h1 {
     text-align: center;
@@ -2253,6 +2260,9 @@ ol.linenums {
   .Header h1 {
     margin: 0 0 .5em
   }
+  body {
+    word-break: break-all
+  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
@@ -2267,6 +2277,9 @@ ol.linenums {
   }
   blockquote {
     padding: 1em 1px
+  }
+  .box {
+    margin: 1em 0 0
   }
   .box dl,
   .box ol,
