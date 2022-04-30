@@ -1,12 +1,13 @@
 $COMMENT_OUT_CSS_HACK : (
-    'onlyEdgeHTML'         : if($UA_Modern, 1, 0),
-    'ie10ToEdgeHTML'       : if($UA_Modern, 1, 0),
-    'onlyIE10To11'         : if($UA_Modern, 1, 0),
-    'onlyOpera'            : if($UA_Modern, 1, 0),
-    'onlySafari'           : if($UA_Modern, 1, 0),
-    'chromeLte5SafariLte4' : if($UA_Modern, 1, 0),
-    'chromeGte2To5'        : if($UA_Modern, 1, 0),
-    'gecko120To121'        : if($UA_Gecko12, 1, 0)
+    'onlyEdgeHTML'         : if($UA_Modern , 1, 0),
+    'ie10ToEdgeHTML'       : if($UA_Modern , 1, 0),
+    'onlyIE10To11'         : if($UA_Modern , 1, 0),
+    'onlyOpera'            : if($UA_Modern , 1, 0),
+    'onlySafari'           : if($UA_Modern , 1, 0),
+    'chromeLte5SafariLte4' : if($UA_Modern , 1, 0),
+    'chromeGte2To5'        : if($UA_Modern , 1, 0),
+    'gecko120To121'        : if($UA_Gecko12, 1, 0),
+    'onlyFirefoxOS22'      : if($UA_Modern , 1, 0)
 ) !default;
 
 @mixin css-hack($targetGroup) {
@@ -24,7 +25,7 @@ $COMMENT_OUT_CSS_HACK : (
         }
         // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
         @else if $targetGroup == 'onlyIE10To11' {
-            @media screen\0 {
+            @media all\0 {
                 @content;
             }
         }
@@ -34,12 +35,27 @@ $COMMENT_OUT_CSS_HACK : (
             }
         }
         @else if $targetGroup == 'onlySafari' {
-            @media only screen and (-webkit-min-device-pixel-ratio:0) {
+            @media all and (-webkit-min-device-pixel-ratio:0) {
                 @content;
             }
         }
+        /* for Firefox OS 2.2 (Gecko 37)
+         *   form browserstrangeness.github.io, https://browserstrangeness.github.io/css_hacks.html
+         *
+         * for Firefox 37
+         *   > @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) { .selector { property:value; } }
+         * for Mac OS X 10.8 Yosemite (Firefox 24+)
+         *   > @media screen and (-moz-overlay-scrollbars) { @supports (not (text-align-last:auto)) { .selector { property:value; } } }
+         */
+        @else if $targetGroup == 'onlyFirefoxOS22' {
+            @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)){
+                @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars){
+                    @content;
+                }
+            }
+        }
         @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
-            @media screen and (min-width:0\-) {
+            @media all and (min-width:0\-) {
                 @content;
             }
         }

@@ -124,7 +124,7 @@ module.exports = function( options ){
                         rule.remove();
                         updateCurrentFile = true;
                     } else {
-                        if( !firstMediaBlock ){
+                        if( !firstMediaBlock && rule.parent.name !== 'supports' ){
                             firstMediaBlock = rule;
                         };
                         var mediaList = mediaQuery.replace( /\s/g, '' ).split( ',' );

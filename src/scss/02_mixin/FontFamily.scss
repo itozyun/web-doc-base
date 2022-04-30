@@ -53,26 +53,28 @@
         font-family :
             -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
-            /* Roboto, */ // (2)
+            Roboto, // (2)
             "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
-            "游ゴシック体", YuGothic, "YuGothic M", // (1)
+            "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-            /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
 
+        @include css-hack(onlyFirefoxOS22) {
+            & {
+                font-family : sans-serif;
+            }
+        }
+        
         @include css-hack(onlySafari) {
             & {
                 font-family :
                     -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-                    "Helvetica Neue",
-                    /* Helvetica, Arial, */ // (3)
-                    Verdana,
-                    Roboto,
+                    "Helvetica Neue", /* Helvetica, Arial, (3) */ Verdana,
+                    Roboto, // (2)
                     "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
                     "游ゴシック体", YuGothic, "YuGothic M", // (1)
                     "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-                    /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
                     "メイリオ", Meiryo,
                     "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
             }
@@ -102,14 +104,11 @@
     %UDFontFamily {
         font-family :
             "-apple-system", BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-            "Helvetica Neue",
-            /* Helvetica, Arial, */ // (3)
-            Verdana,
-            Roboto,
-            "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
-            "游ゴシック体", YuGothic,
+            "Helvetica Neue", Helvetica, Arial, Verdana,
+            // Roboto,
+            // "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            // "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-            /* "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , YuGothic, */ // (1)
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
     }   
