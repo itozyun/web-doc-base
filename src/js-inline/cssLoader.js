@@ -18,18 +18,17 @@ if( DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS ){
         cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
         // Re: onLoad doesn't work with Safari?
         //   https://web.archive.org/web/20050418235512/http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
-        cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_WebKit       ) <= 532 || // Windows XP + Safari 4.0.5-, noscript 下のコンテンツが取れない
-        cssAndJsLoader_chromium                                                      < 2   || // Windows XP + Chrome 1     , noscript 下のコンテンツが取れない
-        4 <= cssAndJsLoader_chromium && cssAndJsLoader_chromium < 8                        || // Windows XP + Iron 5~7     , nnoscript 下のコンテンツが取れない
+        cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_WebKit       ) <= 532 || // Windows XP + Safari 4.0.5-  , noscript 下のコンテンツが取れない
+        cssAndJsLoader_chromium < 8                                                        || // Windows XP + Chrome(Iron) 7-, nnoscript 下のコンテンツが取れない
         !window.addEventListener && !window.attachEvent
     ){
         // document.write('<link href="' + cssAndJsLoader_assetUrl + cssAndJsLoader_cssName + '" rel="stylesheet" type="text/css">');
     } else {
-        if( window.addEventListener ){
+        if( cssAndJsLoader_tasman ){
+            window.attachEvent( 'onload', cssAndJsLoader_onload );
+        } else {
             window.addEventListener( 'DOMContentLoaded', cssAndJsLoader_onload, false );
             window.addEventListener( 'load', cssAndJsLoader_onload, false );
-        } else if( cssAndJsLoader_tasman ){
-            window.attachEvent( 'onload', cssAndJsLoader_onload );
         };
     };
 };
