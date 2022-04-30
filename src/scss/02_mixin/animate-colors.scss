@@ -10,10 +10,10 @@
     }
     @include css-hack(chromeLte5SafariLte4){
         & {
-            -webkit-transition : background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in; // for Chrome 1
+            -webkit-transition : none; // for Chrome 1
         }
         @include css-hack(chromeGte2To5){
-            // -webkit-transition-property : background-color, color, border-color; // override for Chrome 2~5
+            -webkit-transition : 0.3s ease-in; // override for Chrome 2~5
         }
     }
 }
