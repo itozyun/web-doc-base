@@ -11,8 +11,6 @@
  *     div.Cover-meta
  *       i
  *     p
- *     div.Cover-btn
- *       .btn
  *     
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
@@ -20,14 +18,13 @@
         @include clearfix;
         margin  : 3.52em 0;
         /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
-        @include line-height(1.4, 1);
     }
         .Cover-img {
-            position  : relative;
+            position : relative;
+            margin   : 0 0 0.6em;
             @if( $UA_IE5 == false ){
-                height    : 100%;
+                height : 100%;
             }
-            margin    : 0 0 0.6em;
         }
             .Cover img {
                 margin  : 0;
@@ -38,15 +35,17 @@
                 }
             }
             .Cover .img-loaded div {
-                position : absolute;
-                @if( $UA_IE5 ){
-                    @include clearfix;
-                    top      : 0;
-                } @else {
-                    bottom   : 0;
+                @include media(screen){
+                    position : absolute;
+                    left     : 0;
+                    width    : 100%;
+                    @if( $UA_IE5 ){
+                        @include clearfix;
+                        top : 0;
+                    } @else {
+                        bottom : 0;
+                    }
                 }
-                left     : 0;
-                width    : 100%;
             }
                 @if( $UA_IE5 ){
                     .Cover .img-loaded h2 {
@@ -56,20 +55,19 @@
 
                 .Cover h2 {
                     @include inline-block;
-                    @if( $UA_IE7 or $UA_IE6 ){
-                        display      : inline;
-                        zoom         : 1;
-                    }
-                    @if( $UA_IE5 or $UA_IE55 ){
-                        display      : inline;
-                        height       : 2.2em;
-                    }
                     background   : $COLOR_ACCENT;
-                    border-color : $COLOR_ACCENT;
+                    border       : 1px solid $COLOR_ACCENT; /* for high contrast mode */
                     color        : $COLOR_Light_fill;
                     font-size    : 0.825em;
                     padding      : 0.6em;
-                    border-width : 1px; /* for high contrast mode */
+                    @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+                        display : inline;
+                        zoom    : 1;
+                    }
+                    @if( $UA_IE5 ){
+                        display : inline;
+                        height  : 2.2em;
+                    }
                 }
                 @if( $CANUSE_CSS_GENERATED_BLOCK ){
                     .Cover h2:after {
@@ -81,61 +79,60 @@
                     }
                 }
                 .Cover h3 {
-                    font-size  : 1.33em;
-                    padding    : 0.37em;
-                    margin     : 0;
-                    color      : #fff;
+                    font-size : 1.33em;
+                    margin    : 0;
+                    /* clean-css ignore:start */
                     @if( $UA_IE9 == false ){
-                        /* clean-css ignore:start */
-                        background : #000;
-                        /* clean-css ignore:end */
+                        background : #fff;
                     }
-                    @if( $UA_Modern or $UA_IE9 ){
-                        background : rgba( 0, 0, 0, .65);
+                    @if( $UA_Modern or $UA_IE9 or $UA_Gecko19 ){
+                        background : rgba( 255, 255, 255, .75);
                     }
+                    /* clean-css ignore:end */
+                }
+                .Cover a {
+                    display : block;
+                    padding : 0.37em;
                 }
         .Cover-meta {
-            display    : block;
-            color      : $COLOR_Light_casual_text;
-            margin     : 0 0.5em;
+            @include line-height(1.4, 1);
+            display : block;
+            color   : $COLOR_Light_casual_text;
+            margin  : 0 0.5em;
         }
             .Cover-meta span {
                 @include inline-block;
             }
         .Cover p {
-            margin     : 0.6em 0.5em;
-        }
-        .Cover-btn {
-            text-align : right;
-
-            @if( $IS_LEGACY == false and $IS_LTE_WIN_IE6 == false ){
-                @extend %MoreIcon;
-            }
+            line-height : 1.4;
+            margin      : 0.6em 0.5em;
         }
 
     /*  WSXGA
     --------------------------------------------------------------------------------------*/
     @include media(WSXGA) {
         .Cover img {
-            width    : auto;
-            float    : left;
-            margin   : 0 1em 1em 0;
+            width  : auto;
+            float  : left;
+            margin : 0 1em 1em 0;
         }
             .Cover .img-loaded div {
-                position   : static;
-                padding    : 0 0 1em;
+                position : static;
+                padding  : 0 0 1em;
             }
             .Cover-img div {
-                padding    : 1em;
+                padding : 1em;
             }
                 .Cover h2 {
-                    font-size  : 1em;
-                    padding    : 0.5em;
+                    font-size : 1em;
+                    padding   : 0.5em;
                 }
                 .Cover h3 {
                     background : transparent;
                     color      : $COLOR_Light_text;
-                    padding    : 0.77em 0 0 0;
+                }
+                .Cover a {
+                    padding : 0.77em 0 0 0;
                 }
         .Cover-meta, .Cover p {
             margin-right : 1em;
@@ -146,14 +143,16 @@
     --------------------------------------------------------------------------------------*/
     @include media(WQXGA) {
         .Cover img {
-            margin   : 0 2em 1em 0;
+            margin : 0 2em 1em 0;
         }
             .Cover .img-loaded div {
-                padding    : 0 0 2em;
+                padding : 0 0 2em;
             }
                 .Cover h3 {
                     font-size : 1.5em;
-                    padding   : 0.67em 0 0 0;
+                }
+                .Cover a {
+                    padding : 0.67em 0 0 0;
                 }
         .Cover-meta, .Cover p {
             margin-right : 2em;
@@ -179,25 +178,27 @@
     --------------------------------------------------------------------------------------*/
     @include media(smallphone) {
         .Cover img {
-            width    : auto;
-            margin   : 0 1em 1em 0;
+            width  : auto;
+            margin : 0 1em 1em 0;
         }
             .Cover .img-loaded div {
-                position   : static;
-                padding    : 0;
+                position : static;
+                padding  : 0;
             }
                 .Cover h2 {
                     /* float      : left; */
                     @include inline-block;
-                    font-size  : 1em;
-                    padding    : 0.5em;
-                    margin     : 0 .5em .5em 0;
+                    font-size : 1em;
+                    padding   : 0.5em;
+                    margin    : 0 .5em .5em 0;
                 }
                 .Cover h3 {
                     background : transparent;
                     color      : $COLOR_Light_text;
                     font-size  : 1.5em;
-                    padding    : 0 0 0.33em;
+                }
+                .Cover a {
+                    padding : 0 0 0.33em;
                 }
         .Cover-meta, .Cover p {
             margin-left  : 0;
@@ -209,30 +210,25 @@
     --------------------------------------------------------------------------------------*/
     @include media(dark_theme) {
         .Cover h3 {
-            color   : $COLOR_Dark_text;
+            /* clean-css ignore:start */
+            @if( $UA_IE9 == false ){
+                background : #000;
+            }
+            @if( $UA_Modern or $UA_IE9 ){
+                background : rgba( 0, 0, 0, .75);
+            }
+            /* clean-css ignore:end */
         }    
         .Cover-meta {
-            color   : $COLOR_Dark_casual_text;
+            color : $COLOR_Dark_casual_text;
         }
     }
 
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        .Cover .img-loaded div {
-            position : static;
-        }
-            .Cover h2 {
-                border-width : 1px;
-                border-color : #000;
-                margin-top   : 1em;
-            }
-            .Cover h2, .Cover h3 {
-                background : #fff;
-                color      : #000;
-            }
-        .Cover-btn {
-            display : none;
+        .Cover h2 {
+            margin-top : 1em;
         }
     }
 }
