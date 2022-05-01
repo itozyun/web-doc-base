@@ -6,7 +6,7 @@
     @include unbreak-inside;
 
     li &, dl &, tr &, .note & {
-        margin-top : 0;
+        margin : 0;
     }
 
     margin : 1em 1em 0;
