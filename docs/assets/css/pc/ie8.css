@@ -5,12 +5,6 @@ iframe,
 img {
   max-width: 100%
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -73,24 +67,31 @@ a,
 h6 {
   color: #8a7322
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+.Magazine-mm,
+.Magazine-yy,
+.RichLink b,
+.Search,
+.Search-txt,
+.commonForm,
+a iframe,
+a img,
+h2:after {
+  display: block
 }
 .Magazine-label,
 .RichLink b,
@@ -116,6 +117,20 @@ input {
 th {
   text-align: left
 }
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Pager,
+.Search,
+.links a,
+.tl td,
+:link:hover img,
+:visited:hover img,
+h2,
+kbd:hover {
+  position: relative
+}
 blockquote,
 pre {
   padding: 1em
@@ -139,6 +154,7 @@ ul {
 .Cover,
 .Magazine-item,
 .Magazine-main,
+.Magazine-snippet,
 .RichLink a,
 .Search .btn,
 .box,
@@ -208,9 +224,9 @@ a:active img,
 a:focus img {
   border-color: #0d5bb5!important
 }
+.jsPicaLarge:hover,
 :link:hover img,
 :visited:hover img {
-  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -264,40 +280,6 @@ tbody :hover th {
 .ribbon .RichLink-sep :visited:hover {
   background: #08366b;
   color: #fed33b
-}
-.Cover-btn i,
-.Magazine-jump i {
-  border-width: .5em 0 .5em .7em;
-  position: relative;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
-}
-.Cover-btn :active i,
-.Cover-btn :focus i,
-.Cover-btn :link i,
-.Magazine-jump :active i,
-.Magazine-jump :focus i,
-.Magazine-jump :link i,
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #fdeeb7
-}
-.Cover-btn :visited i,
-.Magazine-jump :visited i {
-  border-color: transparent #06284e
 }
 :active,
 :focus {
@@ -364,6 +346,12 @@ input {
   font-size: 1em;
   box-sizing: content-box;
   height: 1em
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 textarea {
   font-size: 1em;
@@ -498,7 +486,6 @@ tfoot th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover td:before,
 .tl tbody :hover th,
@@ -534,6 +521,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -575,8 +563,7 @@ h2 {
   margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em;
-  position: relative
+  font-size: 1.1em
 }
 h2:after {
   width: 5em;
@@ -693,7 +680,6 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -857,6 +843,10 @@ strong {
   border-width: .3em 0 .3em .3em;
   border-color: transparent #8a7322
 }
+a:active .ico-label:after,
+a:focus .ico-label:after {
+  border-color: transparent #fdeeb7
+}
 .ribbon .ico-label:after {
   border-color: transparent #ffeba1
 }
@@ -1011,8 +1001,7 @@ a:focus .ico-pen:after {
 :visited .RichLink-meta {
   color: #ffeba1
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -1028,7 +1017,10 @@ a:focus .ico-pen:after {
 }
 .AAuthor p,
 .ADesc p,
-.Magazine .box {
+.note .box,
+dl .box,
+li .box,
+tr .box {
   margin: 0
 }
 .ABody {
@@ -1054,9 +1046,7 @@ a:focus .ico-pen:after {
 }
 .BlogArchive a,
 .BreadcrumbList a,
-.Cover h2,
 .Cover-meta span,
-.Label a,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -1153,13 +1143,11 @@ kbd {
   margin-top: 0
 }
 .Cover {
-  margin: 3.52em 0;
-  line-height: 1.4
+  margin: 3.52em 0
 }
 .Cover-img {
-  position: relative;
-  height: 100%;
-  margin: 0 0 .6em
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -1169,17 +1157,12 @@ kbd {
   margin: 0;
   display: block
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
+  display: inline-block;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
-  padding: .6em;
-  border-width: 1px
+  padding: .6em
 }
 .tl td,
 .tl th,
@@ -1189,14 +1172,24 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
 }
 .Magazine h3,
 .Magazine-yy {
   font-size: 2em
+}
+.Cover a {
+  display: block;
+  padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Label div {
   color: #fdeeb7;
@@ -1209,6 +1202,7 @@ pre var {
   color: #062241
 }
 .Label a {
+  display: inline-block;
   margin: 0 0 1.7em
 }
 #lF .Label a,
@@ -1233,7 +1227,8 @@ pre var {
 }
 .Magazine-dd,
 .Magazine-mm {
-  font-size: 4em
+  font-size: 4em;
+  line-height: .9
 }
 .Magazine-main {
   margin-left: 5.5em;
@@ -1252,28 +1247,23 @@ kbd {
 .Magazine-label {
   margin: .5em 0 .8em
 }
-.Magazine .aBodyRoot {
-  font-size: 87.5%;
-  width: 80%;
+.Magazine-snippet img,
+.box .caption,
+.box iframe,
+.box img {
   float: left;
-  line-height: 1.6
+  margin: 0 1em 1em 0
 }
-.Magazine blockquote,
-.Magazine dl,
-.Magazine p,
-.Magazine pre {
-  margin-left: 0;
-  margin-right: 1.5em
+.Magazine-snippet p {
+  line-height: 1.4em
 }
-.Magazine-jump {
-  width: 20%;
-  float: right
-}
-.Magazine-jump .btn {
-  margin: 0 0 1em 1em
-}
-.RichLink-sep {
-  line-height: 1.4
+.Magazine .btn {
+  position: absolute;
+  font-size: .83em;
+  left: -7.229em;
+  bottom: 0;
+  width: 4.217em;
+  padding: .301em
 }
 .RichLink a {
   padding: 1em .5em 0;
@@ -1285,7 +1275,8 @@ kbd {
 .RichLink-meta {
   color: #08366b;
   font-size: .875em;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 .baseColor .RichLink-meta {
   color: #e7d182
@@ -1303,7 +1294,7 @@ kbd {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink img {
   float: right;
@@ -1314,7 +1305,6 @@ kbd {
   padding: 0 0 1.143em
 }
 .Search {
-  position: relative;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
@@ -1322,14 +1312,6 @@ kbd {
 .Search input {
   position: absolute;
   top: 0
-}
-#jsMain,
-#jsSide,
-.Pager,
-.links a,
-.tl td,
-kbd:hover {
-  position: relative
 }
 .Search-txt {
   width: 100%;
@@ -1491,12 +1473,6 @@ tr .box > p:first-of-type {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
-.box iframe,
-.box img {
-  float: left;
-  margin: 0 1em 1em 0
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1554,11 +1530,9 @@ dl.note dd {
   text-align: center;
   font-size: .875em
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1745,24 +1719,22 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
+.jsPicaLarge {
+  margin: 0 0 1em;
+  display: block;
+  clear: both;
+  padding: 2px
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
   box-sizing: border-box;
   border-width: 0
 }
-.jsPicaLarge {
-  display: block;
-  clear: both;
-  padding: 2px
-}
-.jsPicaLarge:hover {
-  top: 2px
+.jsCapLarge {
+  margin: 0 auto 1em
 }
 .jsPicaLarge:hover img {
   top: 0
@@ -1843,6 +1815,12 @@ ol.linenums {
   .lMi,
   .lMz {
     margin-right: 3.857%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .aa {
     background: #0a0809
@@ -2101,8 +2079,6 @@ ol.linenums {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -2130,8 +2106,6 @@ ol.linenums {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
-  .Magazine-jump,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -2230,19 +2204,11 @@ ol.linenums {
   .Cover {
     margin: 2em auto
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   .Magazine-item {
     padding: 1em 0 1em 1em
-  }
-  .Magazine .aBodyRoot {
-    width: auto
   }
   .Magazine-item:first-child {
     padding: 1em 1em 1em 0

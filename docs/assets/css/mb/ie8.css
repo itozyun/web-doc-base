@@ -1,10 +1,4 @@
 @charset "UTF-8";
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -71,24 +65,26 @@ dd,
 li {
   margin-bottom: .3em
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+.commonForm,
+a iframe,
+a img,
+h2:after {
+  display: block
 }
 .RichLink b,
 .caption,
@@ -114,18 +110,6 @@ tbody th {
 .btn,
 input {
   line-height: 1
-}
-.Cover-btn i,
-.Cover-img,
-.Pager,
-.Search,
-.links a,
-.tl td,
-:link:hover img,
-:visited:hover img,
-h2,
-kbd:hover {
-  position: relative
 }
 .links,
 .note,
@@ -203,9 +187,9 @@ a:active img,
 a:focus img {
   border-color: #0d5bb5!important
 }
-.jsPicaLarge:hover,
 :link:hover img,
 :visited:hover img {
+  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -259,29 +243,6 @@ tbody :hover th {
 .ribbon .RichLink-sep :visited:hover {
   background: #08366b;
   color: #fed33b
-}
-.Cover-btn i {
-  border-width: .5em 0 .5em .7em;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-meta,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
-}
-.Cover-btn :active i,
-.Cover-btn :focus i,
-.Cover-btn :link i,
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #fdeeb7
-}
-.Cover-btn :visited i {
-  border-color: transparent #06284e
 }
 :active,
 :focus {
@@ -357,6 +318,12 @@ input {
   font-size: 1em;
   box-sizing: content-box;
   height: 1em
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 textarea {
   font-size: 1em;
@@ -491,7 +458,6 @@ tfoot th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover td:before,
 .tl tbody :hover th,
@@ -523,6 +489,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -564,7 +531,8 @@ h2 {
   margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em
+  font-size: 1.1em;
+  position: relative
 }
 h2:after {
   width: 5em;
@@ -683,7 +651,6 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -856,6 +823,10 @@ strong {
   border-width: .3em 0 .3em .3em;
   border-color: transparent #8a7322
 }
+a:active .ico-label:after,
+a:focus .ico-label:after {
+  border-color: transparent #fdeeb7
+}
 .ribbon .ico-label:after {
   border-color: transparent #ffeba1
 }
@@ -1010,8 +981,7 @@ a:focus .ico-pen:after {
 :visited .RichLink-meta {
   color: #ffeba1
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -1026,7 +996,11 @@ a:focus .ico-pen:after {
   margin: 1em 0
 }
 .AAuthor p,
-.ADesc p {
+.ADesc p,
+.note .box,
+dl .box,
+li .box,
+tr .box {
   margin: 0
 }
 .AAuthor img {
@@ -1054,9 +1028,7 @@ a:focus .ico-pen:after {
 }
 .BlogArchive a,
 .BreadcrumbList a,
-.Cover h2,
 .Cover-meta span,
-.Label a,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -1108,9 +1080,10 @@ kbd {
   padding: .45em 1em;
   margin: 0 0 .5em
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
 }
 .AHead-labels :visited {
   background: #062241;
@@ -1162,15 +1135,10 @@ kbd {
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .Cover-img {
-  height: 100%;
-  margin: 0 0 .6em
+  position: relative;
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -1181,13 +1149,9 @@ kbd {
   display: block;
   max-width: 100%
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
+  display: inline-block;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
@@ -1200,10 +1164,20 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
+}
+.Cover a {
+  display: block;
+  padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Cover {
   margin: 2em auto
@@ -1219,6 +1193,7 @@ pre var {
   color: #062241
 }
 .Label a {
+  display: inline-block;
   margin: 0 0 1.7em
 }
 #lF .Label a,
@@ -1242,7 +1217,8 @@ pre var {
 }
 .RichLink-meta {
   color: #08366b;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 .baseColor .RichLink-meta {
   color: #e7d182
@@ -1260,7 +1236,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1276,6 +1252,7 @@ pre var {
   font-size: 1em
 }
 .Search {
+  position: relative;
   display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
@@ -1284,6 +1261,12 @@ pre var {
 .Search input {
   position: absolute;
   top: 0
+}
+.Pager,
+.links a,
+.tl td,
+kbd:hover {
+  position: relative
 }
 .Search-txt {
   display: block;
@@ -1523,11 +1506,9 @@ dl.note dd {
   font-size: .875em;
   max-width: 100%
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1715,21 +1696,25 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
+.jsPicaLarge {
+  margin: 0 0 1em;
+  display: block;
+  clear: both;
+  padding: 2px
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
   box-sizing: border-box;
   border-width: 0
 }
-.jsPicaLarge {
-  display: block;
-  clear: both;
-  padding: 2px
+.jsCapLarge {
+  margin: 0 auto 1em
+}
+.jsPicaLarge:hover {
+  top: 2px
 }
 .jsPicaLarge:hover img {
   top: 0
@@ -1780,6 +1765,12 @@ ol.linenums {
   #lB .lS {
     padding-bottom: 1em;
     max-width: 100%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .Header {
     text-align: center
@@ -2006,8 +1997,6 @@ ol.linenums {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -2035,7 +2024,6 @@ ol.linenums {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -2091,12 +2079,7 @@ ol.linenums {
     font-size: .83em;
     padding: .5em 0
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {

@@ -1,10 +1,4 @@
 @charset "UTF-8";
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -40,18 +34,14 @@ a,
 h6 {
   color: #8a7322
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
@@ -68,6 +58,12 @@ tr ul {
 .baseColor,
 .medal {
   background: #fdeeb7
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 .links,
 blockquote,
@@ -86,7 +82,6 @@ ul {
 .tl th {
   vertical-align: top
 }
-.Cover-btn i,
 .Cover-img,
 .Pager,
 .Search {
@@ -182,21 +177,6 @@ a:focus var {
 .ribbon .RichLink-sep :visited {
   background: 0 0;
   color: #fed33b
-}
-.Cover-btn i {
-  border-width: .5em 0 .5em .7em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-btn :link i {
-  border-color: #24c #fdeeb7
-}
-.Cover-btn :visited i {
-  border-color: #fdeeb7 #06284e
-}
-.Cover-btn :active i,
-.Cover-btn :focus i {
-  border-color: #0d5bb5 #fdeeb7
 }
 dt {
   font-weight: 700;
@@ -346,7 +326,6 @@ th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 form :active,
 form :focus {
   border-color: #0d5bb5
@@ -364,7 +343,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover-meta,
 .commonForm,
 a iframe,
 a img {
@@ -390,6 +368,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -522,7 +501,6 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -545,7 +523,6 @@ em {
 strong {
   background: #6cf
 }
-.Comment p,
 .Cover,
 .lMi,
 .lSi {
@@ -659,8 +636,7 @@ strong {
   background: #c47222;
   color: #e6d6a9
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -674,7 +650,11 @@ strong {
   margin: 1em 0
 }
 .AAuthor p,
-.ADesc p {
+.ADesc p,
+.note .box,
+dl .box,
+li .box,
+tr .box {
   margin: 0
 }
 .AAuthor img {
@@ -733,9 +713,7 @@ strong {
 }
 .BlogArchive a,
 .BreadcrumbList a,
-.Cover h2,
 .Cover-meta span,
-.Label a,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -753,9 +731,10 @@ kbd {
   padding: .45em 1em;
   margin: 0 0 .5em
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
 }
 .AHead-labels :visited {
   background: #062241;
@@ -802,19 +781,14 @@ kbd {
   font-size: 93%
 }
 .Comment p {
+  display: inline-table;
   padding: 0 3% .5em;
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .Cover-img {
-  height: 100%;
-  margin: 0 0 .6em
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -825,13 +799,9 @@ kbd {
   display: block;
   width: 100%
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
+  display: inline-block;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
@@ -844,10 +814,20 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
+}
+.Cover a {
+  display: block;
+  padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Cover {
   margin: 2em auto
@@ -858,6 +838,7 @@ pre var {
   color: #062241
 }
 .Label a {
+  display: inline-block;
   margin: 0 0 1.7em
 }
 #lF .Label a,
@@ -882,7 +863,8 @@ pre var {
 }
 .RichLink-meta {
   color: #08366b;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 .baseColor .RichLink-meta {
   color: #e7d182
@@ -900,7 +882,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .Header,
 .Header h1,
@@ -1099,6 +1081,10 @@ pre var {
   padding-left: 25%;
   margin: 1em 3%
 }
+.jsCapLarge,
+.jsPicaLarge {
+  margin: 0 0 1em
+}
 .note .box,
 .note blockquote,
 .note dl,
@@ -1131,11 +1117,9 @@ dl.note dd {
   text-align: center;
   font-size: .875em
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1299,10 +1283,7 @@ ol.linenums {
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  margin: 0 0 1em
-}
-.jsCapLarge {
-  margin: 0 0 1em
+  margin: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1329,6 +1310,12 @@ ol.linenums {
   .lSi,
   .lXi {
     padding: 0 3%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .Header {
     text-align: center
@@ -1506,8 +1493,6 @@ ol.linenums {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -1535,7 +1520,6 @@ ol.linenums {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -1567,12 +1551,7 @@ ol.linenums {
     font-size: .83em;
     padding: .5em 0
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {

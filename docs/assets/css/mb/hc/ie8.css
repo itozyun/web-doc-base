@@ -24,18 +24,6 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
-.Cover-btn i,
-.Pager i {
-  display: none
-}
-.jsCanRotate .Cover-btn i {
-  border-width: 0 .15em .15em 0;
-  display: inline-block;
-  width: .35em;
-  height: .35em;
-  top: -.3em;
-  filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M22=1, M12=1, M21=-1, sizingMethod="auto expand")
-}
 table {
   border-spacing: 2px;
   border-collapse: separate
@@ -80,6 +68,9 @@ tfoot tr:first-child th {
 .Pager span {
   position: static;
   display: inline
+}
+.Pager i {
+  display: none
 }
 .jsPica:active,
 .jsPica:focus {

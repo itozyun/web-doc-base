@@ -4,12 +4,6 @@ sub,
 sup {
   font-size: 75%
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -80,18 +74,14 @@ h5,
 h6 {
   border-color: #8a7322
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
@@ -123,7 +113,6 @@ thead th {
 .lS2 {
   width: 48.5%
 }
-.Cover-btn i,
 .Cover-img,
 .Pager,
 .Search,
@@ -249,22 +238,6 @@ a:focus img {
   background: #08366b;
   color: #fed33b
 }
-.Cover-btn i {
-  border-width: .5em 0 .5em .7em;
-  top: .15em;
-  display: inline-block;
-  margin-left: .5em
-}
-.Cover-btn :active i,
-.Cover-btn :focus i,
-.Cover-btn :link i,
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #fdeeb7
-}
-.Cover-btn :visited i {
-  border-color: transparent #06284e
-}
 :active,
 :focus {
   outline: 0
@@ -348,9 +321,13 @@ del {
 }
 .AAuthor p,
 .ADesc p,
+.note .box,
 aside,
+dl .box,
 figure,
-h2 {
+h2,
+li .box,
+tr .box {
   margin: 0
 }
 dd,
@@ -391,6 +368,12 @@ input {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 1em
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 [type=submit]::-webkit-search-decoration {
   display: none
@@ -568,7 +551,6 @@ th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover td:before,
 .tl tbody :hover th,
@@ -596,6 +578,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -788,7 +771,6 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -882,6 +864,10 @@ strong {
   padding: .45em 0;
   display: block
 }
+.Cover img,
+.commonForm-wrap * {
+  width: 100%
+}
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
@@ -889,9 +875,6 @@ strong {
 .commonForm-wrap {
   display: block;
   margin: 0 20px 0 8em
-}
-.commonForm-wrap * {
-  width: 100%
 }
 .ico-author,
 .ico-chain,
@@ -998,6 +981,10 @@ strong {
   height: 0;
   border-width: .3em 0 .3em .3em;
   border-color: transparent #8a7322
+}
+a:active .ico-label:after,
+a:focus .ico-label:after {
+  border-color: transparent #fdeeb7
 }
 .ribbon .ico-label:after {
   border-color: transparent #ffeba1
@@ -1188,8 +1175,7 @@ a:focus .ico-pen:after {
 :visited .RichLink-meta {
   color: #ffeba1
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -1231,9 +1217,7 @@ a:focus .ico-pen:after {
 }
 .BlogArchive a,
 .BreadcrumbList a,
-.Cover h2,
 .Cover-meta span,
-.Label a,
 .RichLink-meta span,
 .TxtNavi a,
 .links a,
@@ -1290,9 +1274,10 @@ kbd {
   vertical-align: top;
   margin: 0 0 .5em
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
 }
 .AHead-labels :visited {
   background: #062241;
@@ -1345,20 +1330,14 @@ kbd {
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .CmtForm iframe {
   width: 100%;
   margin: 0;
   height: 400px
 }
 .Cover-img {
-  height: 100%;
-  margin: 0 0 .6em
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -1367,27 +1346,14 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
   max-width: 100%
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
+  display: inline-block;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
-}
-.Cover h3 {
-  font-size: 1.33em;
-  padding: .37em;
-  margin: 0;
-  color: #fff;
-  background: #000;
-  background: rgba(0,0,0,.65)
 }
 .tl td,
 .tl th,
@@ -1395,9 +1361,24 @@ pre code,
 pre var {
   background: 0 0!important
 }
+.Cover h3 {
+  font-size: 1.33em;
+  margin: 0;
+  background: #fff;
+  background: rgba(255,255,255,.75)
+}
+.Cover a {
+  display: block;
+  padding: .37em
+}
 .Cover-meta {
   display: block;
-  color: #8a7322
+  color: #8a7322;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Cover {
   margin: 2em auto
@@ -1412,6 +1393,7 @@ pre var {
   color: #062241
 }
 .Label a {
+  display: inline-block;
   margin: 0 0 1.7em
 }
 #lF .Label a,
@@ -1439,7 +1421,8 @@ pre var {
 }
 .RichLink-meta {
   color: #08366b;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 .baseColor .RichLink-meta {
   color: #e7d182
@@ -1461,7 +1444,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1747,11 +1730,9 @@ dl.note dd {
   font-size: .875em;
   max-width: 100%
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1960,10 +1941,6 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
 .jsCap,
 .jsPica img {
   -webkit-transition-property: width,margin;
@@ -1972,32 +1949,40 @@ ol.linenums {
   -o-transition: width .3s ease-in,margin .3s ease-in;
   transition: width .3s ease-in,margin .3s ease-in
 }
-.jsPica img {
+.jsPica {
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in
 }
-.jsPicaLarge img {
+.jsPicaLarge {
+  margin: 0 0 1em;
   cursor: -webkit-zoom-out;
   cursor: -moz-zoom-out;
   cursor: zoom-out;
+  display: block;
+  clear: both;
+  padding: 2px
+}
+.jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-width: 0
 }
-div .box .jsCapLarge,
-div .box .jsPicaLarge img {
+.box .jsPicaLarge img {
+  float: none;
+  margin: 0
+}
+.jsCapLarge {
+  margin: 0 auto 1em
+}
+div .box .jsCapLarge {
   float: none;
   margin: 0 0 1em
-}
-.jsPicaLarge {
-  display: block;
-  clear: both;
-  padding: 2px
 }
 .jsPicaLarge:hover img {
   top: 0
@@ -2062,6 +2047,12 @@ tv {
   #lB .lS {
     padding-bottom: 1em;
     max-width: 100%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .Header {
     text-align: center
@@ -2451,7 +2442,9 @@ only screen and (max-width:359px) {
   .Cover h3 {
     background: 0 0;
     color: #06284e;
-    font-size: 1.5em;
+    font-size: 1.5em
+  }
+  .Cover a {
     padding: 0 0 .33em
   }
   .Cover p,
@@ -2470,8 +2463,10 @@ only screen and (max-width:359px) {
     float: none;
     margin: 0 auto 1em
   }
-  div .box .jsCapLarge,
-  div .box .jsPicaLarge img {
+  .box .jsPicaLarge img {
+    margin: 0 auto
+  }
+  div .box .jsCapLarge {
     margin: 0 auto 1em
   }
 }
@@ -2547,12 +2542,6 @@ only screen and (max-width:240px) {
   textarea {
     background: #000
   }
-  .Cover-btn :link i {
-    border-color: transparent #000
-  }
-  .Cover-btn :visited i {
-    border-color: transparent #fed33b
-  }
   a {
     color: #ffeba1;
     border-color: #000
@@ -2568,7 +2557,6 @@ only screen and (max-width:240px) {
     color: #bbe
   }
   .AHead h1,
-  .Cover h3,
   .tl tbody th,
   .tl thead td,
   .tl thead th,
@@ -2726,6 +2714,10 @@ only screen and (max-width:240px) {
   .baseColor :link .RichLink-meta,
   .baseColor :visited .RichLink-meta {
     color: #ffeba1
+  }
+  .Cover h3 {
+    background: #000;
+    background: rgba(0,0,0,.75)
   }
   .baseColor .RichLink a {
     border-color: #062241!important
@@ -3068,8 +3060,6 @@ only screen and (max-width:240px) {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -3093,7 +3083,6 @@ only screen and (max-width:240px) {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -3160,12 +3149,7 @@ only screen and (max-width:240px) {
     padding: .5em 0;
     color: #666!important
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {
@@ -3371,10 +3355,6 @@ only screen and (-ms-high-contrast:active) {
   .RichLink-sep :visited:hover {
     text-decoration: underline!important
   }
-  .Cover-btn i,
-  .Pager i {
-    border-color: Window currentColor
-  }
   img {
     filter: brightness(100%)
   }
@@ -3410,6 +3390,9 @@ only screen and (-ms-high-contrast:active) {
   }
   .tl {
     border-collapse: collapse
+  }
+  .Pager i {
+    border-color: Window currentColor
   }
   .jsPica:active,
   .jsPica:focus {

@@ -5,16 +5,8 @@ sup {
   font-size: 75%
 }
 *,
-.tl td,
-h2:after,
 input {
   border-style: solid
-}
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
 }
 .SocialBtns .hb:focus,
 .SocialBtns .ln:focus,
@@ -45,18 +37,14 @@ a,
 h6 {
   color: #8a7322
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
@@ -89,6 +77,11 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.Pager span,
+.Search input,
+h2:after {
+  position: absolute
 }
 .links,
 pre {
@@ -135,11 +128,6 @@ a:focus img {
 :visited:hover img {
   position: relative;
   top: 2px
-}
-.Pager span,
-.Search input,
-h2:after {
-  position: absolute
 }
 .LinkList a,
 .RichLink-sep a {
@@ -246,7 +234,11 @@ del {
 }
 .AAuthor p,
 .ADesc p,
-form {
+.note .box,
+dl .box,
+form,
+li .box,
+tr .box {
   margin: 0
 }
 dd,
@@ -277,6 +269,12 @@ var {
 .aa,
 input {
   line-height: 1
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 textarea {
   overflow: auto
@@ -421,7 +419,6 @@ tfoot th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover th,
 h2:after {
@@ -432,7 +429,10 @@ img {
   max-width: 100%;
   max-width: 94%
 }
+.Cover a,
 .Cover-meta,
+.RichLink b,
+.Search,
 .commonForm,
 a iframe,
 a img {
@@ -458,6 +458,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -499,6 +500,7 @@ h2:after {
   line-height: 0;
   left: 0;
   bottom: -2px;
+  border-style: solid;
   content: " ";
   display: block
 }
@@ -603,7 +605,6 @@ tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -833,9 +834,11 @@ strong {
   height: 2.1em;
   margin: 0 0 .5em
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.aa,
+.prettyprint,
+blockquote,
+kbd {
+  border-width: 1px
 }
 .AHead-labels :visited {
   background: #062241;
@@ -862,6 +865,10 @@ strong {
 .Label a {
   border-width: 0 0 1px;
   line-height: 2.8
+}
+.Cover p,
+.Cover-meta {
+  line-height: 1.4
 }
 .BreadcrumbList {
   padding: 1em 0;
@@ -892,16 +899,9 @@ kbd {
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-.prettyprint,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .Cover-img {
-  height: 100%;
-  margin: 0 0 .6em
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -912,15 +912,10 @@ kbd {
   display: block;
   max-width: 100%
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
   display: inline-block;
   background: #0d5bb5;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
@@ -933,10 +928,11 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
+}
+.Cover a {
+  padding: .37em
 }
 .Cover {
   margin: 2em auto
@@ -967,7 +963,8 @@ pre var {
 }
 .RichLink-meta {
   color: #08366b;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 .baseColor .RichLink-meta {
   color: #e7d182
@@ -985,7 +982,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -995,13 +992,11 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  display: block;
   font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
-  display: block;
   height: 1.9em;
   padding: 0 3em 0 0;
   width: auto
@@ -1244,11 +1239,9 @@ dl.note dd {
   font-size: .875em;
   max-width: 100%
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1268,7 +1261,8 @@ dl.note dd {
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #e7d182
+  border-color: #e7d182;
+  border-style: solid
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1407,24 +1401,25 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
+.jsPicaLarge {
+  margin: 0 0 1em;
+  display: block;
+  clear: both;
+  padding: 2px
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
   box-sizing: border-box;
   border-width: 0
 }
+.jsCapLarge {
+  margin: 0 auto 1em
+}
 div .box .jsCapLarge {
   float: none
-}
-.jsPicaLarge {
-  display: block;
-  clear: both;
-  padding: 2px
 }
 .jsPicaLarge:hover {
   top: 2px
@@ -1492,6 +1487,12 @@ projection {
   #lB .lS {
     padding-bottom: 1em;
     max-width: 100%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .Header {
     text-align: center
@@ -1843,7 +1844,9 @@ screen and (max-width:359px) {
   .Cover h3 {
     background: 0 0;
     color: #06284e;
-    font-size: 1.5em;
+    font-size: 1.5em
+  }
+  .Cover a {
     padding: 0 0 .33em
   }
   .Cover p,
@@ -1925,6 +1928,7 @@ screen and (max-width:240px) {
     background: #062241
   }
   #lB .lS,
+  .Cover h3,
   .baseColor,
   input,
   textarea {
@@ -1976,7 +1980,6 @@ screen and (max-width:240px) {
     color: #bbe
   }
   .AHead h1,
-  .Cover h3,
   .medal,
   .tl tbody th,
   .tl thead td,
@@ -2345,8 +2348,6 @@ screen and (max-width:240px) {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -2370,7 +2371,6 @@ screen and (max-width:240px) {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -2424,12 +2424,7 @@ screen and (max-width:240px) {
     padding: .5em 0;
     color: #666!important
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {

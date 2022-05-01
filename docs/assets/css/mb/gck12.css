@@ -8,12 +8,6 @@ sup {
 [type=submit]:focus {
   border-style: solid
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 .SocialBtns .hb:focus,
 .SocialBtns .ln:focus,
 .SocialBtns .pk:focus,
@@ -46,18 +40,14 @@ a,
 h6 {
   color: #8a7322
 }
-.note .box,
 .note .hscroll,
 .tl td > :first-child,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
@@ -210,7 +200,11 @@ del {
 }
 .AAuthor p,
 .ADesc p,
-form {
+.note .box,
+dl .box,
+form,
+li .box,
+tr .box {
   margin: 0
 }
 dd,
@@ -235,6 +229,12 @@ code,
 kbd,
 var {
   margin: 0 .1em
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 :-moz-focus-inner {
   border: 0
@@ -342,7 +342,6 @@ th {
 }
 .ABody h2,
 .ABody h2 *,
-.Cover h2,
 .tl tbody :hover td,
 .tl tbody :hover th {
   border-color: #0d5bb5
@@ -352,6 +351,7 @@ img {
   max-width: 100%;
   max-width: 94%
 }
+.Cover a,
 .Cover img,
 .Cover-meta,
 .Pager span,
@@ -397,6 +397,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -561,7 +562,6 @@ tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -779,9 +779,11 @@ input.btn {
   height: 2.1em;
   margin: 0 0 .5em
 }
-.Cover,
-.RichLink-sep {
-  line-height: 1.4
+.aa,
+.prettyprint,
+blockquote,
+kbd {
+  border-width: 1px
 }
 .AHead-labels :link {
   background: #24c;
@@ -817,6 +819,10 @@ input.btn {
   border-width: 0 0 1px;
   line-height: 2.8
 }
+.Cover p,
+.Cover-meta {
+  line-height: 1.4
+}
 .Comment h3,
 .SearchResult h3 {
   margin-bottom: 0
@@ -834,16 +840,9 @@ input.btn {
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-.prettyprint,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .Cover-img {
-  height: 100%;
-  margin: 0 0 .6em
+  margin: 0 0 .6em;
+  height: 100%
 }
 .Cover-meta,
 .SearchResult div div {
@@ -854,14 +853,9 @@ kbd {
   width: 100%;
   max-width: 100%
 }
-.Cover .img-loaded div {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
   background: #0d5bb5;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
   padding: .6em
@@ -874,10 +868,11 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
+}
+.Cover a {
+  padding: .37em
 }
 .Cover {
   margin: 2em auto
@@ -904,7 +899,8 @@ pre var {
 }
 .RichLink-meta {
   color: #08366b;
-  margin: 1.143em 0
+  margin: 1.143em 0;
+  line-height: 1.4
 }
 :link .RichLink-meta,
 :visited .RichLink-meta {
@@ -926,7 +922,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -1171,11 +1167,9 @@ dl.note dd {
   width: 100%;
   max-width: 100%
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1330,20 +1324,21 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
+.jsPicaLarge {
+  margin: 0 0 1em;
+  clear: both;
+  padding: 2px
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
   -moz-box-sizing: border-box;
   border-width: 0
 }
-.jsPicaLarge {
-  clear: both;
-  padding: 2px
+.jsCapLarge {
+  margin: 0 auto 1em
 }
 .jsPicaLarge:hover {
   top: 2px
@@ -1408,6 +1403,12 @@ ol.linenums {
   #lB .lS {
     padding-bottom: 1em;
     max-width: 100%
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0
   }
   .Header {
     text-align: center
@@ -1560,8 +1561,6 @@ ol.linenums {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   body {
     background: #fff;
@@ -1583,7 +1582,6 @@ ol.linenums {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -1637,12 +1635,7 @@ ol.linenums {
     padding: .5em 0;
     color: #666!important
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {

@@ -34,18 +34,14 @@ dd,
 li {
   margin-bottom: .3em
 }
-.note .box,
 .note .hscroll,
 .tl td *,
-dl .box,
 dl .hscroll,
 dl iframe,
 dl img,
-li .box,
 li .hscroll,
 li iframe,
 li img,
-tr .box,
 tr .hscroll,
 tr iframe,
 tr img,
@@ -58,13 +54,6 @@ thead td,
 thead th {
   background: #8a7322;
   color: #fdeeb7
-}
-*,
-.SearchResult div p *,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
 }
 .Pager a,
 .commonForm-wrap *,
@@ -95,6 +84,13 @@ pre,
 td,
 th {
   word-break: break-all
+}
+*,
+.SearchResult div p *,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
 }
 .links,
 .note,
@@ -151,11 +147,6 @@ a:active img {
 }
 :hover img {
   top: 2px
-}
-.Cover .img-loaded div,
-.Search input {
-  top: 0;
-  position: absolute
 }
 .LinkList a,
 .RichLink-sep a {
@@ -393,12 +384,12 @@ th {
 .ABody h2,
 .ABody h2 *,
 .AHead-labels a:active,
-.Cover h2,
 .SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
   border-color: #0d5bb5
 }
+.Cover a,
 .Cover-meta,
 .Pager span,
 .RichLink b,
@@ -432,6 +423,7 @@ tr ul {
   margin-bottom: .5em
 }
 .hscroll pre,
+.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -555,7 +547,6 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
 }
-.Cover-btn,
 .commonForm-send,
 .r {
   text-align: right
@@ -690,7 +681,11 @@ input.btn {
   margin: 1em 0
 }
 .AAuthor p,
-.ADesc p {
+.ADesc p,
+.note .box,
+dl .box,
+li .box,
+tr .box {
   margin: 0
 }
 .AAuthor img {
@@ -758,6 +753,11 @@ input.btn {
   height: 2.1em;
   margin: 0 0 .5em
 }
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
+}
 .AHead-labels :visited {
   background: #062241;
   border-color: #ffeba1;
@@ -787,6 +787,11 @@ input.btn {
   border-width: 0 0 1px;
   line-height: 2.8
 }
+.Cover p,
+.Cover-meta *,
+.RichLink-meta * {
+  line-height: 1.4
+}
 .BreadcrumbList {
   padding: 1em 0;
   color: #8a7322
@@ -809,16 +814,6 @@ input.btn {
   border-width: 0 0 1px;
   margin-top: 0
 }
-.Cover h2,
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
-.Cover *,
-.RichLink-sep * {
-  line-height: 1.4
-}
 .Cover-img {
   margin: 0 0 .6em
 }
@@ -831,17 +826,13 @@ kbd {
   display: block;
   width: 100%
 }
-.Cover .img-loaded div {
-  height: 1%;
-  left: 0;
-  width: 100%
-}
 .Cover h2 {
-  display: inline;
-  height: 2.2em;
+  border: 1px solid #0d5bb5;
   color: #fdeeb7;
   font-size: .825em;
-  padding: .6em
+  padding: .6em;
+  display: inline;
+  height: 2.2em
 }
 .tl td,
 .tl th,
@@ -851,10 +842,11 @@ pre var {
 }
 .Cover h3 {
   font-size: 1.33em;
-  padding: .37em;
   margin: 0;
-  color: #fff;
-  background: #000
+  background: #fff
+}
+.Cover a {
+  padding: .37em
 }
 .Cover {
   height: 1%;
@@ -911,7 +903,7 @@ pre var {
 }
 .RichLink p {
   margin: 1em 0;
-  line-height: 1.2
+  line-height: 1.4
 }
 .lS .RichLink a {
   padding: .7em .5em 0
@@ -928,6 +920,10 @@ pre var {
   height: 1.9em;
   padding: 0 3em 0 0;
   width: 100%
+}
+.Search input {
+  position: absolute;
+  top: 0
 }
 .Search-txt {
   width: 100%;
@@ -1104,6 +1100,10 @@ pre var {
 .note {
   padding-left: 25%
 }
+.jsCapLarge,
+.jsPicaLarge {
+  margin: 0 0 1em
+}
 .note .box,
 .note blockquote,
 .note dl,
@@ -1135,11 +1135,9 @@ dl.note dd {
   text-align: center;
   font-size: .875em
 }
-.caption img {
-  margin: 0 0 .5em!important
-}
-.caption * {
-  float: none!important
+div .caption img {
+  margin: 0 0 .5em;
+  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1271,10 +1269,7 @@ ol.linenums {
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  margin: 0 0 1em
-}
-.jsCapLarge {
-  margin: 0 0 1em
+  margin: 0
 }
 .jsCapLarge,
 .jsPicaLarge img {
@@ -1329,6 +1324,13 @@ ol.linenums {
   .lW,
   .lX {
     text-align: left
+  }
+  .Cover .img-loaded div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1%;
+    top: 0
   }
   .aa {
     background: #0a0809
@@ -1494,8 +1496,6 @@ ol.linenums {
   blockquote tfoot th {
     border-color: #000 #fff
   }
-  .Cover h2,
-  .Cover h3,
   .baseColor,
   .ribbon,
   body {
@@ -1523,7 +1523,6 @@ ol.linenums {
   #lF .lW,
   #lH .lS,
   .CmtForm,
-  .Cover-btn,
   .Pager,
   .SocialBtns,
   .TxtNavi,
@@ -1554,12 +1553,7 @@ ol.linenums {
     font-size: .83em;
     padding: .5em 0
   }
-  .Cover .img-loaded div {
-    position: static
-  }
   .Cover h2 {
-    border-width: 1px;
-    border-color: #000;
     margin-top: 1em
   }
   #lH {

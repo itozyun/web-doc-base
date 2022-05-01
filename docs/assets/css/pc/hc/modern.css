@@ -24,21 +24,6 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
-.Cover-btn i,
-.Magazine-jump i,
-.Pager i {
-  display: none
-}
-.jsCanRotate .Cover-btn i,
-.jsCanRotate .Magazine-jump i {
-  border-width: 0 .15em .15em 0;
-  display: inline-block;
-  width: .45em;
-  height: .45em;
-  -moz-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 0
-}
 table {
   border-spacing: 2px;
   border-collapse: separate
@@ -75,6 +60,9 @@ tbody td {
 .Pager span {
   position: static;
   display: inline
+}
+.Pager i {
+  display: none
 }
 .jsPica:active,
 .jsPica:focus {

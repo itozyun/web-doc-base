@@ -24,13 +24,6 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
-.Cover-btn i {
-  border-width: 0 .15em .15em 0;
-  width: .45em;
-  height: .45em;
-  -ms-transform: rotate(-45deg);
-  top: 0
-}
 table {
   border-spacing: 2px;
   border-collapse: separate
