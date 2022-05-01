@@ -33,7 +33,6 @@ $RICHLINK_TEXT_SIZE : 0.875;
 }
     .RichLink-sep {
         @extend %LinkListItemBase;
-        @include line-height(1.4, 1);
     }
         .RichLink a {
             @include clearfix;
@@ -129,6 +128,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         }
 
     .RichLink-meta {
+        @include line-height(1.4, 1);
         font-size : 1em * $RICHLINK_TEXT_SIZE;
         margin    : math.div(1em, $RICHLINK_TEXT_SIZE) 0;
         span {
@@ -137,7 +137,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
     .RichLink p {
         margin      : 1em 0;
-        line-height : $BASE_LINE_HEIGHT;
+        line-height : 1.4;
     }
 
 /*  layout Sub
