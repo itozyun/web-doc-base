@@ -15,17 +15,14 @@ $CaptionedObjectFontSize : 0.875em;
     font-size  : 0.875em;
 
     @if( $IS_NOT_IE ){
-        width      : 100%; /* for animation */
+        width : 100%; /* for animation */
     }
     @if( $CANUSE_MAX_AND_MIN_SIZES ){
-        max-width  : 100%;
+        max-width : 100%;
     }
 
-    img /* , .box & img */ {
-        margin : 0 0 .5em !important;
-    }
-
-    /* .box & */ * {
-        float : none !important;
+    div & img /* , div & iframe */ { // div で詳細度を上げる .box img の上書き
+        margin : 0 0 .5em;
+        float  : none;
     }
 }

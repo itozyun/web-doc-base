@@ -23,7 +23,7 @@
     }
 }
 
-.jsPica img {
+.jsPica {
     /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-in;
@@ -36,7 +36,8 @@
     }
     /* clean-css ignore:end */
 }
-.jsPicaLarge img {
+.jsPicaLarge {
+    margin : 0 0 1em;
     /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-out;
@@ -57,17 +58,17 @@
             max-width : 100%;
         }
         @if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+            margin : 0 auto; /* auto は中央配置で transition させるため */
         } @else {
-            margin : 0 0 1em;
+            margin : 0;
         }
         @include box-sizing(border-box);
     }
-        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+        /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         .box .jsPicaLarge img {
             @if( $UA_Modern ){
                 float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+                margin : 0; /* 中央配置指定を上書き 左から transition */
             }
         }
 
@@ -77,9 +78,11 @@
         } @else {
             margin : 0 0 1em;
         }
+        a {
+            margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
+        }
     }
-        div /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-        .box .jsCapLarge {
+        div .box .jsCapLarge {
             @if( $CANUSE_CSS_MEDIA_QUERY ){
                 float : none;
                 @if( $UA_Modern ){
@@ -92,7 +95,9 @@
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
     @if( $UA_Modern ){ // アニメーション用の指定
-        div .box .jsPicaLarge img,
+        .box .jsPicaLarge img {
+            margin : 0 auto; /* 左配置指定を上書き 中央から transition */
+        }
         div .box .jsCapLarge {
             margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
         }
