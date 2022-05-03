@@ -234,16 +234,16 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly ){
-    @include media(screen) {
+    .lMi, .lMz .lMh, .lSi {
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
+    }
+} @else {
+    @include media(tablet_print) {
         .lMi, .lMz .lMh, .lSi {
             padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
     }
-} @else {
     @include media(tablet) {
-        .lMi, .lMz .lMh, .lSi {
-            padding : 0 $TABLET_HORIZONTAL_MARGIN;
-        }
         #lB .lSi {
             padding : 0;
         }
@@ -279,9 +279,6 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
 @include media(print) {
     #lH .lS, #lB .lS, #lF .lW {
         display : none;
-    }
-    .lMi, .lMh {
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
 }
 /*  landscape Print

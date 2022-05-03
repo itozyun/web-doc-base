@@ -8,14 +8,23 @@
 // https://twitter.com/itozyun/status/1496641802740600832
 $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 
-@if( $Option_mobileOnly == false ){
-    .lX { // clearfix を同時に指定するために screen の外へ
-        @if( $LAYOUT_FIX_FOR_Opera75 == false ){
-            @include clearfix;
-        }
-    }
 
-    @include media(screen) {
+.lX { // clearfix を同時に指定するために screen の外へ
+    @if( $LAYOUT_FIX_FOR_Opera75 == false ){
+        @include clearfix;
+    }
+    /* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
+    @if( $IS_IE8_OR_9 or $UA_Modern ){
+        overflow : hidden; /* この指定が無いと塗りがはみ出る */
+    }
+    @if( $UA_IE5 ){
+        width      : 100%; /* この指定が無いと横スクロールが出る  */
+        overflow-x : hidden;
+    }
+}
+
+@include media(screen) {
+    @if( $Option_mobileOnly == false ){
         .lX {
             width : $PC_WIDTH_PERCENT;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
@@ -47,13 +56,14 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
                     margin : 0 100% * $PC_COLUMN_GAP_RATIO;
                 }
             }
-            .lX1 {
-                float : left;
-            }
-            .lX2 {
-                float : right;
-            }
-    }
+        }
+
+        .lX1 {
+            float : left;
+        }
+        .lX2 {
+            float : right;
+        }
 }
 
 /*  WQXGA
@@ -92,28 +102,18 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
         }
             .lXi {
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
-                    padding : 0;
+                    // padding : 0;
                 } @else {
                     margin : 0;
                 }
             }
     }
-}
-
-/* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
-.lX {
-    @if( $IS_IE8_OR_9 or $UA_Modern ){
-        overflow : hidden; /* この指定が無いと塗りがはみ出る */
+    @include media(tablet_print) {
+        .lXi {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
     }
-    @if( $UA_IE5 ){
-        width      : 100%; /* この指定が無いと横スクロールが出る  */
-        overflow-x : hidden;
-    }
-}
-
-/*  mobileOnly は始めから Tablet
---------------------------------------------------------------------------------------*/
-@if( $Option_mobileOnly ){
+} @else {
     @include media(screen) {
         .lX {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
@@ -127,21 +127,8 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
             }
         }
     }
-}
-
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@if( $Option_mobileOnly ){
-    @include media(screen) {
-        .lXi {
-            padding : 0 $TABLET_HORIZONTAL_MARGIN;
-        }
-    }
-} @else {
-    @include media(tablet) {
-        .lXi {
-            padding : 0 $TABLET_HORIZONTAL_MARGIN;
-        }
+    .lXi {
+        padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
 }
 
@@ -169,13 +156,6 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
     }
 }
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .lXi {
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
-    }
-}
 /*  landscape Print
 --------------------------------------------------------------------------------------*/
 @include media(landscapePrint) {
