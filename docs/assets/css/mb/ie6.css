@@ -153,7 +153,8 @@ a:active img {
 .RichLink-sep *,
 .TxtNavi a,
 .lMi,
-.lSi {
+.lSi,
+.lX {
   zoom: 1
 }
 .LinkList a,
@@ -560,6 +561,12 @@ em {
 }
 strong {
   background: #6cf
+}
+.lMi,
+.lMz .lMh,
+.lSi,
+.lXi {
+  padding: 0 3%
 }
 .lM1,
 .lS1 {
@@ -1325,11 +1332,11 @@ ol.linenums {
   #lB .lS {
     padding-bottom: 1em
   }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
+  .lX1 {
+    float: left
+  }
+  .lX2 {
+    float: right
   }
   .e6L {
     float: left;
@@ -1539,12 +1546,6 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1557,6 +1558,9 @@ ol.linenums {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;

@@ -80,6 +80,7 @@ body {
 .commonForm-pair,
 .lMi,
 .lSi,
+.lX,
 kbd:hover,
 sub,
 sup {
@@ -588,9 +589,16 @@ strong {
 .box:after,
 .commonForm-pair:after,
 .lMi:after,
-.lSi:after {
+.lSi:after,
+.lX:after {
   content: "";
   clear: both
+}
+.lMi,
+.lMz .lMh,
+.lSi,
+.lXi {
+  padding: 0 3%
 }
 .lM1,
 .lS1 {
@@ -1387,18 +1395,18 @@ ol.linenums {
   #lB .lM {
     padding-bottom: 4em
   }
+  .lX1 {
+    float: left
+  }
+  .lX2 {
+    float: right
+  }
   #lB .lSi,
   .lM,
   .lS,
   .lX {
     max-width: 50em;
     margin: 0 auto
-  }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
   }
   #lB .lS {
     padding-bottom: 1em;
@@ -1572,12 +1580,6 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1604,6 +1606,9 @@ ol.linenums {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead {
     color: #666!important

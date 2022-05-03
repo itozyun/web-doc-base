@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.Pager a,
+.commonForm-wrap *,
+.lW,
+.lX,
+pre code,
+pre samp {
+  width: 100%
+}
 .medal,
 a,
 a img {
@@ -55,16 +63,13 @@ thead th {
   background: #8a7322;
   color: #fdeeb7
 }
-.Pager a,
-.commonForm-wrap *,
 .lW,
-.lX,
-pre code,
-pre samp {
-  width: 100%
+.lX {
+  overflow-x: hidden
 }
 .lMi,
 .lSi,
+.lX,
 :link,
 :visited,
 code,
@@ -572,9 +577,11 @@ em {
 strong {
   background: #6cf
 }
-.lW,
-.lX {
-  overflow-x: hidden
+.lMi,
+.lMz .lMh,
+.lSi,
+.lXi {
+  padding: 0 3%
 }
 .lM1,
 .lM2,
@@ -1306,11 +1313,11 @@ ol.linenums {
   #lB .lS {
     padding-bottom: 1em
   }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
+  .lX1 {
+    float: left
+  }
+  .lX2 {
+    float: right
   }
   .e6BR,
   .e6L,
@@ -1513,12 +1520,6 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -1531,6 +1532,9 @@ ol.linenums {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;

@@ -2277,12 +2277,6 @@ projection {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -2296,6 +2290,9 @@ projection {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;
@@ -2429,6 +2426,12 @@ handheld {
   }
   caption {
     margin: 1.5em 3% .7em
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
   }
   .lS1 {
     float: left

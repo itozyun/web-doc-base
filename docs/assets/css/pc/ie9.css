@@ -1968,6 +1968,12 @@ screen and (max-width:950px) {
   caption {
     margin: 1.5em 3% .7em
   }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
+  }
   .lS1 {
     float: left
   }
@@ -2053,18 +2059,6 @@ screen and (max-width:950px) {
     width: 100%;
     max-width: 100%
   }
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi {
-    margin: 0
-  }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
-  }
   .lM,
   .lS,
   .lW {
@@ -2075,6 +2069,12 @@ screen and (max-width:950px) {
   }
   #lB .lS {
     background: #fffd93
+  }
+  .lMi,
+  .lMz,
+  .lSi,
+  .lXi {
+    margin: 0
   }
   .lM,
   .lS {
@@ -3017,12 +3017,6 @@ screen and (max-width:950px) {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -3059,6 +3053,9 @@ screen and (max-width:950px) {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead {
     color: #666!important

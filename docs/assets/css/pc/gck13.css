@@ -1696,9 +1696,10 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
   .lMi,
   .lMz .AHead,
+  .lMz .lMh,
+  .lSi,
   .lXi {
     padding: 0 3%
   }

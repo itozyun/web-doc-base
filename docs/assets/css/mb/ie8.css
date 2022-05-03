@@ -673,6 +673,12 @@ em {
 strong {
   background: #6cf
 }
+.lMi,
+.lMz .lMh,
+.lSi,
+.lXi {
+  padding: 0 3%
+}
 .lM1,
 .lS1 {
   float: left
@@ -1749,18 +1755,18 @@ ol.linenums {
   #lB .lM {
     padding-bottom: 4em
   }
+  .lX1 {
+    float: left
+  }
+  .lX2 {
+    float: right
+  }
   #lB .lSi,
   .lM,
   .lS,
   .lX {
     max-width: 50em;
     margin: 0 auto
-  }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
   }
   #lB .lS {
     padding-bottom: 1em;
@@ -2014,12 +2020,6 @@ ol.linenums {
   #lF .lX {
     border-top: .15em solid #000
   }
-  .lMh,
-  .lMi,
-  .lMz .AHead,
-  .lXi {
-    padding: 0 3%
-  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -2053,6 +2053,9 @@ ol.linenums {
   }
   .ABody {
     margin: 0 0 2em
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;
