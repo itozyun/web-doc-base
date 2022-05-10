@@ -71,11 +71,9 @@
         h1, h2,
         blockquote, blockquote:before, blockquote:after,
         .js-bqLink, .js-bqCite {
-            @if( $UA_Modern ){
-                -webkit-column-span : all;
-                   -moz-column-span : all;
-                        column-span : all;
-            }
+            -webkit-column-span : all;
+               -moz-column-span : all;
+                    column-span : all;
         }
 }
 @include media(WSXGA) {
