@@ -695,7 +695,7 @@ return '' +
 
             return page.prev || page.next ? '' +
 `<div class="TxtNavi">
-    <nav role="navigation">
+    <nav>
     ${createElement( 'a', { href : getRelativePath( page.path, page.prev && page.prev.path || '' ), title : page.prev && page.prev.title }, '前', !!page.prev )}
     ${page.prev && page.next ? ', ' : ''}
     ${createElement( 'a', { href : getRelativePath( page.path, page.next && page.next.path || '' ), title : page.next && page.next.title }, '次', !!page.next )}
@@ -781,9 +781,15 @@ ${page.articleBody}
             };
             checkValidHierarchy( Module.ArticleFooter, [ Main, Layout.Wrapper, Layout.MainColumn, MainColumn_halfWidth ] );
 
-            return '' +
-`<div class='AFoot'>
-</div>`;
+            //
+            var settings = articleFooterItem || { articleFooterItemList : [] },
+                html = '';
+
+            for( var i = 0, l = settings.articleFooterItemList.length; i < l; ++i ){
+                html += settings.articleFooterItemList[ i ]();
+            };
+
+            return html ? `<div class='AFoot' style='border-top-width:1px'>${html}</div>` : '';
         },
         CommentForm : function(){
             checkValidHierarchy( Module.CommentForm, [ Main, Layout.Wrapper, Layout.MainColumn, MainColumn_halfWidth ] );
@@ -869,13 +875,44 @@ ${page.articleBody}
     };
 
     Module.ArticleFooter.ArticleMeta = function(){
+        if( isCorrectionPhase ){
+            return Module.ArticleFooter.ArticleMeta;
+        };
 
+        return '';
     };
     Module.ArticleFooter.SocialButtons = function(){
+        if( isCorrectionPhase ){
+            return Module.ArticleFooter.SocialButtons;
+        };
 
+        return '';
     };
     Module.ArticleFooter.Pager = function(){
+        if( isCorrectionPhase ){
+            return Module.ArticleFooter.Pager;
+        };
 
+        return page.prev || page.next ?
+        `<div class="Pager" role="navigation">
+            ${ page.prev ?
+                '<span class="Pager-next">' +
+                    '<i></i>' +
+                    createElement( 'a', { href : getRelativePath( page.path, page.prev.path || '' ) }, page.prev.title ) +
+                ',</span>' : '<span></span>'
+            }
+            ${
+                '<span class="Pager-top">' +
+                    '<i></i>' + createElement( 'a', { href : '#top' }, 'トップへ' ) +
+                '</span>'
+            }
+            ${ page.next ?
+                '<span class="Pager-prev">,' +
+                    createElement( 'a', { href : getRelativePath( page.path, page.next.path || '' ) }, page.next.title ) +
+                    '<i></i>' +
+                '</span>' : '<span></span>'
+            }
+        </div>` : '';
     };
 
 /* ============================================================================
