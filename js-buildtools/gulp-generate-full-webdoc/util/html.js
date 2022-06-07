@@ -1,7 +1,7 @@
 const googlePhotoURLResizer = require( './google-photo-url-resizer.js' );
 
 module.exports = {
-    createAttribute, createElement, createElementList, resizeImage, getRelativePath, isExternalURL
+    createAttribute, createElement, createElementList, resizeImage, getRelativePath, isExternalURL, snippetFromArticleText
 };
 
 function createAttribute( name, value, opt_toggle ){
@@ -82,4 +82,18 @@ function getRelativePath( currentPath, path ){
 function isExternalURL( path ){
     path = path || '';
     return path.indexOf( 'http' ) === 0 || path.indexOf( '//' ) === 0;
+};
+
+function snippetFromArticleText( articleText, length ){
+    return articleText
+                .split( '&lt;'   ).join( '<' )
+                .split( '&gt;'   ).join( '>' )
+                .split( '&quot;' ).join( '"' )
+                .split( '&amp;'  ).join( '&' )
+                .substr( 0, length )
+                .split( '&' ).join( '&amp;'  )
+                .split( '<' ).join( '&lt;'   )
+                .split( '>' ).join( '&gt;'   )
+                .split( '"' ).join( '&quot;' ) +
+               ( articleText.length < length ? '' : '…' );
 };

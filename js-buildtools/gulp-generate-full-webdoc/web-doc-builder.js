@@ -16,6 +16,7 @@
 const dateTime              = require( './util/datetime.js' );
 const { createAttribute, createElement, createElementList, resizeImage, getRelativePath, isExternalURL } = require( './util/html.js' );
 const RichLink              = require( './modules/RichLink.js' );
+const Magazine              = require( './modules/Magazine.js' );
 
 var MAX_WIDTH_FIX_START = '\n<!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->';
 var MAX_WIDTH_FIX_END   = '\n<!--[if lte IE 6]></div><br class="e6BR"></div><![endif]-->';
@@ -447,7 +448,7 @@ return '' +
                 return { layout : Layout.SideColumn, name : 'SideColumn', layoutsOrModules : toLayoutOrModuleList( arguments, 'SideColumn', false ) };
             };
             var htmlString = '', separateCount = 0;
-    
+
             for( var i = 0, l = layoutOrModules.length, layoutOrModule; i < l; ++i ){
                 layoutOrModule = layoutOrModules[ i ];
                 // lSi, lSi>lS1|lS2
@@ -476,14 +477,32 @@ return '' +
                 return '\n<div class="lS">\n<div class="lSi">' + htmlString + '\n</div>\n</div>';
             };
         },
-        SingleColumn : function( modules ){
+        SingleColumn : function( layoutOrModules ){
             if( isCorrectionPhase ){
-                return { layout : Layout.SingleColumn, name : 'SingleColumn', modules : toModuleList( arguments, 'SingleColumn' ) };
+                return { layout : Layout.SingleColumn, name : 'SingleColumn', layoutsOrModules : toLayoutOrModuleList( arguments, 'SingleColumn', true ) };
             };
-            var htmlString = '';
-    
-            for( var i = -1, module; module = modules[ ++i ]; ){
-                htmlString += module.module ? module.module( module ) : module();
+            var htmlString = '', separateCount = 0;
+
+            for( var i = 0, l = layoutOrModules.length, layoutOrModule; i < l; ++i ){
+                layoutOrModule = layoutOrModules[ i ];
+                // lSi, lSi>lS1|lS2
+                if( layoutOrModule.layout === Layout.SingleColumn.separete ){
+                    ++separateCount;
+                } else if( separateCount % 2 ){
+                    // separate は必ず偶数の連続で出現する
+                    throw new Error( 'separate error! 5' );
+                };
+                downLayoutTree( layoutOrModule );
+                htmlString += isModule( layoutOrModule )
+                                ?
+                                    layoutOrModule.module ? layoutOrModule.module( layoutOrModule ) : layoutOrModule()
+                                :
+                                    layoutOrModule.layout( layoutOrModule.modules, Layout.SingleColumn, separateCount % 2 );
+                upLayoutTree( layoutOrModule );
+            };
+            if( separateCount % 2 ){
+                // separate は必ず偶数で出現する
+                throw new Error( 'separate error! 4' );
             };
 
             if( containNoScriptMessageModule ){
@@ -495,12 +514,12 @@ return '' +
             return htmlString;
         }
     };
-    Layout.MainColumn.separete = Layout.SideColumn.separete = function( modules, parentLayout, order ){
+    Layout.MainColumn.separete = Layout.SideColumn.separete = Layout.SingleColumn.separete = function( modules, parentLayout, order ){
         if( isCorrectionPhase ){
             return { layout : Layout.MainColumn.separete, name : 'separete', modules : toModuleList( arguments, 'separate' ) };
         };
         order = 2 - order;
-        var className = ( parentLayout === Layout.MainColumn ? 'lM' : 'lS' ) + order, // getHierarcyOf( 2 )
+        var className = ( parentLayout === Layout.MainColumn ? 'lM' : parentLayout === Layout.SideColumn ? 'lS' : 'lX' ) + order, // getHierarcyOf( 2 )
             htmlString = '';
 
         for( var i = -1, module; module = modules[ ++i ]; ){
@@ -552,7 +571,7 @@ return '' +
                         throw new Error( '不正な親です! ' + isModule( moduleFunction ) );
                     };
                 };
-            }
+            };
         };
     };
 
@@ -576,7 +595,7 @@ return '' +
     var Module = {
         NoScriptMessage : function(){
             var layout = getParentLayout();
-            var onlyNoscriptModule = layout.modules.length === 1;
+            var onlyNoscriptModule = layout.layoutsOrModules.length === 1;
             var noscriptMassage = site.noscriptMessage || 'Please enabled javascript or use new version of browser. At least ';
             var htmlString = onlyNoscriptModule ?
 `<style>/*<![CDATA[*/` +
@@ -666,7 +685,7 @@ return '' +
 </form>`;
         },
         BreadcrumbList : function(){
-            checkValidHierarchy( Module.Breadcrumb, [ [ Ribbon, Main ], Layout.Wrapper, Layout.MainColumn ] );
+            checkValidHierarchy( Module.Breadcrumb, [ [ Ribbon, Main ], Layout.Wrapper, Layout.SingleColumn, Layout.SingleColumn.separete ] );
 
             var directories = page.directories,
                 html = '';
@@ -691,7 +710,7 @@ return '' +
 </div>`;
         },
         TextNavi : function(){
-            checkValidHierarchy( Module.TextNavi, [ [ Ribbon, Main ], Layout.Wrapper, Layout.SideColumn ] );
+            checkValidHierarchy( Module.TextNavi, [ [ Ribbon, Main ], Layout.Wrapper, Layout.SingleColumn, Layout.SingleColumn.separete ] );
 
             return page.prev || page.next ? '' +
 `<div class="TxtNavi">
@@ -813,12 +832,17 @@ ${page.articleBody}
 `<div class='Cover'>
 </div>`;
         },
-        Magazine : function(){
+        Magazine : function( title, id ){
+            if( isCorrectionPhase ){
+                return { module : Module.Magazine, name : 'Magazine', title : title, id : id };
+            };
+
             checkValidHierarchy( Module.Magazine, [ Main, Layout.Wrapper, Layout.MainColumn ] );
 
-            return '<h2>Magazine</h2>' +
-`<div class='Magazine'>
-</div>`;
+            var setting = title || { title : 'NO TITLE' },
+            links = page.links[ setting.id ];
+
+            return `<h2>${setting.title}</h2>` + Magazine( 10, site, page, links );
         },
         SearchResult : function(){
             checkValidHierarchy( Module.SearchResult, [ Main, Layout.Wrapper, Layout.MainColumn ] );

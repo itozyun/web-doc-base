@@ -1,4 +1,4 @@
-const { createAttribute, createElement, createElementList, resizeImage, getRelativePath, isExternalURL } = require( '../util/html.js' );
+const { createAttribute, createElement, createElementList, resizeImage, getRelativePath, isExternalURL, snippetFromArticleText } = require( '../util/html.js' );
 const dateTime = require( '../util/datetime.js' );
 
 module.exports = function( underMainColmun, maxLink, site, currentPage, links, opt_numberOfMedal ){
@@ -43,7 +43,7 @@ function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrent
         Firefox, Web開発, クロスブラウザ, テキストブラウザ
     </span>
 </div>
-<p aria-hidden="true">${ link.articleText.substr( 0, 80 ) }…</p>
+<p aria-hidden="true">${ snippetFromArticleText( link.articleText, 80 ) }</p>
 </a>`;
     };
     // console.dir( link )

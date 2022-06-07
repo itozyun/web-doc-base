@@ -1,5 +1,5 @@
 module.exports = {
-    toISO8601, toUnixTime, toYYMMDD, toYYYYMMDDHHMM, toLocalString, toLocalARIAString
+    toISO8601, toUnixTime, toYYMMDD, toYYYY, toMM, toDD, toYYYYMMDDHHMM, toLocalString, toLocalARIAString
 };
 
 function toISO8601( unixtime ){
@@ -18,6 +18,24 @@ function toYYMMDD( unixtime ){
         dd = '0' + d.getDate();
     
     return yy.substr( yy.length - 2 ) + '/' + mm.substr( mm.length - 2 ) + '/' + dd.substr( dd.length - 2 );
+};
+
+function toYYYY( unixtime ){
+    return new Date( unixtime ).getFullYear();
+};
+
+function toMM( unixtime ){
+    var d = new Date( unixtime ),
+        MM = '0' + ( d.getMonth() + 1 );
+
+    return MM.substr( MM.length - 2 );
+};
+
+function toDD( unixtime ){
+    var d = new Date( unixtime ),
+        DD = '0' + d.getDate();
+
+    return DD.substr( DD.length - 2 );
 };
 
 function toYYYYMMDDHHMM( unixtime ){

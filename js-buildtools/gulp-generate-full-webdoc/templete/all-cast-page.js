@@ -22,15 +22,13 @@ return WebDocument(
         Ribbon(
             Layout.Wrapper(
                 Layout.SingleColumn(
-                    Module.NoScriptMessage
-                )
-            ),
-            Layout.Wrapper(
-                Layout.MainColumn(
-                    Module.BreadcrumbList
-                ),
-                Layout.SideColumn(
-                    Module.TextNavi
+                    Module.NoScriptMessage,
+                    Layout.SingleColumn.separete(
+                        Module.BreadcrumbList
+                    ),
+                    Layout.SingleColumn.separete(
+                        Module.TextNavi
+                    )
                 )
             ),
             Layout.Wrapper(
@@ -71,7 +69,7 @@ return WebDocument(
                         Module.Cover
                     ),
                     Module.RichLink( '人気の投稿', 0, true ),
-                    Module.Magazine,
+                    Module.Magazine( '全てのラベル', 0 ),
                     Module.SearchResult,
                     Module.Form
                 ),
