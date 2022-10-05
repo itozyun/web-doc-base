@@ -127,6 +127,12 @@ a {
         color        : #fff  !important;
         border-color : #fff  !important;
     }
+    th:target, td:target {
+        border-color : inherit !important;
+    }
+    :target th, :target td {
+        border-color : $COLOR_ACCENT !important;
+    }
 }
 
 

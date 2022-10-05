@@ -57,11 +57,6 @@ table {
         padding        : 0.5em;
         border-width   : 0 0 1px;    
     }
-    @if( $CANUSE_ATTRIBUTE_SELECTOR ){
-        th[rowspan] {
-            vertical-align : top;
-        }
-    }
 
     td {
         padding : 0.5em 0;
@@ -74,6 +69,10 @@ table {
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
+    }
+
+    tbody th, /* tbody */ td {
+        vertical-align : top;
     }
 
     tbody th {
@@ -103,7 +102,7 @@ table {
         @if( $UA_IE5 or $UA_IE55 ){
             color : $text;
         }
-        border-color : $casual_text;
+        border-color : $casual_fill;
     }
 
     thead th, thead td {
@@ -138,7 +137,7 @@ table {
 
     blockquote {
         table {
-            border-color : $text;
+            border-color : $casual_text;
         }
         thead th, thead td {
             background   : $text;
@@ -263,7 +262,7 @@ table {
     table {
         margin       : 1em 0;
         width        : 100%;
-        border-color : $COLOR_Print_casual_text;
+        border-color : $COLOR_Print_casual_fill;
     }
     th {
         font-weight : bold;
@@ -300,7 +299,7 @@ table {
 
     blockquote {
         table {
-            border-color : $COLOR_Print_text;
+            border-color : $COLOR_Print_casual_text;
         }
         thead th, thead td {
             background   : $COLOR_Print_casual_fill;
