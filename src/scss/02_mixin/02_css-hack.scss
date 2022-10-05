@@ -5,6 +5,7 @@ $COMMENT_OUT_CSS_HACK : (
     'onlyOpera'            : if($UA_Modern , 1, 0),
     'onlySafari'           : if($UA_Modern , 1, 0),
     'chromeLte5SafariLte4' : if($UA_Modern , 1, 0),
+    'chromeLte9SafariLte5' : if($UA_Modern , 1, 0),
     'chromeGte2To5'        : if($UA_Modern , 1, 0),
     'gecko120To121'        : if($UA_Gecko12, 1, 0),
     'onlyFirefoxOS22'      : if($UA_Modern , 1, 0)
@@ -56,6 +57,11 @@ $COMMENT_OUT_CSS_HACK : (
         }
         @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
             @media all and (min-width:0\-) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeLte9SafariLte5' { // Chrome ~9, Safari ~5
+            & [_lazyhack_="body:nth-child(n0)"]{
                 @content;
             }
         }

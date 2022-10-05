@@ -105,10 +105,11 @@
     }
 }
 
-/*  patch for Safari 3.2.3
+/*  patch for Safari 3.2.3, Chrome 7
+Safari 3.1-5.0, Chrome 9- (& old versions of Chrome 10 before 10.0.64)
 --------------------------------------------------------------------------------------*/
-@include css-hack(chromeLte5SafariLte4){
-    .box > p:first-of-type {
+.box > p:first-of-type {
+    @include css-hack(chromeLte9SafariLte5){
         margin-top : auto;
     }
 }
