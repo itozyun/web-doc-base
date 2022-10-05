@@ -1,32 +1,31 @@
 @if( $Option_mobileOnly == false ){
     @if( $UA_Modern ){
-        #jsSidebarFixer {
-            /* http://blog.webcreativepark.net/2012/10/19-161432.html */
-            -webkit-backface-visibility : hidden;
-               -moz-backface-visibility : hidden;
-                    backface-visibility : hidden;
-            /* clean-css ignore:start */
-            -webkit-transition-property : transform;
-            -webkit-transition          :           0.3s ease-in;
-            /* clean-css ignore:end */
-               -moz-transition          : transform 0.3s ease-in;
-                 -o-transition          : transform 0.3s ease-in;
-                    transition          : transform 0.3s ease-in;
-        }
-
-        /* ホバーで色を変えてスクロール可能をあることを知らせる */
         @include media(pc) {
+            #jsSidebarFixer {
+                /* http://blog.webcreativepark.net/2012/10/19-161432.html */
+                -webkit-backface-visibility : hidden;
+                   -moz-backface-visibility : hidden;
+                        backface-visibility : hidden;
+                /* clean-css ignore:start */
+                -webkit-transition-property : transform;
+                -webkit-transition          :           0.3s ease-in;
+                /* clean-css ignore:end */
+                   -moz-transition          : transform 0.3s ease-in;
+                     -o-transition          : transform 0.3s ease-in;
+                        transition          : transform 0.3s ease-in;
+            }
+            /* :hover で色を変えてスクロール可能であることを知らせる */
             #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
                 border-color : $COLOR_Light_text;
+            }
+            h2 {
+                @include animate-colors;
             }
         }
         @media (min-width: #{1em * math.div($MEDIAQUERY_TABLET_MAX_PX + 1, 16)}) and (prefers-color-scheme:dark) {
             #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
                 border-color : $COLOR_Ribbon_text;
             }
-        }
-        h2 {
-            @include animate-colors;
         }
     }
     @if( $IS_NOT_IE ){
@@ -51,9 +50,9 @@
             position : relative; /* for Opera ~7.27, absolute が不正 */
         }
     }
-    @if( $IS_Opera7x or $UA_Opera8 ){
+    @if( $UA_Modern or $IS_Opera7x or $UA_Opera8 ){
         #jsMain {
-            position : relative; /* for Opera <9, relativeが無いと位置が取れない */
+            position : relative; /* for Opera <9, relativeが無いと位置が取れない, IE10~11, EdheHTML18 でも必要 */
         }
     }
 
