@@ -60,6 +60,7 @@
             text-indent  : -1em;
             position     : absolute;
             border-width : .3em;
+            border-style : solid;
         }
         @if( $CANUSE_EMPTY_PSEUDO_CLASS ){
             tbody :empty:before, tbody :empty:after {

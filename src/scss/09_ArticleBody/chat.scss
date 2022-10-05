@@ -73,10 +73,11 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:after, .chatL p:after {
                     @include create-CSS-generated-block;
-                    position : absolute;
-                    top      : .7em;
-                    width    : 0;
-                    height   : 0;
+                    border-style : solid;
+                    position     : absolute;
+                    top          : .7em;
+                    width        : 0;
+                    height       : 0;
                 }
                 .chatL p:after {
                     border-color : transparent #fff;
@@ -134,11 +135,15 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
             }
 
             .chatL p, .chatL .chatMember {
-                background   : #fff;
+                @include media(screen) {
+                    background : #fff;
+                }
                 border-color : #fff;
             }
             .chatR p, .chatR .chatMember {
-                background   : #85E445;
+                @include media(screen) {
+                    background : #85E445;
+                }
                 border-color : #85E445;
             }
 
@@ -266,11 +271,6 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
 
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 .chatR p:before, .chatL p:before {
-                    @include create-CSS-generated-block;
-                    position     : absolute;
-                    top          : .7em;
-                    width        : 0;
-                    height       : 0;
                     border-color : $COLOR_Print_fill $COLOR_Print_casual_text;
                 }
                 .chatL p:before {
