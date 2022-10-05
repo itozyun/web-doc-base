@@ -66,3 +66,12 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
     //    overflow-wrap : anywhere;
     }
 }
+
+@mixin unbreak-word {
+    @if( $UA_MacIE5 == false and $IS_OLD_GECKO == false and $IS_OLD_OPERA == false ){
+        word-break : normal;
+    }
+    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+        word-wrap  : normal;
+    }
+}
