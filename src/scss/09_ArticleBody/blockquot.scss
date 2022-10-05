@@ -58,6 +58,10 @@ blockquote {
     .js-bqLink {
         margin : 0 0 1em;
     }
+    blockquote:after,
+    .js-bqCite {
+        margin : 1em 0 0;
+    }
 }
 
 /* Tablet
