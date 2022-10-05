@@ -14,7 +14,7 @@
 }
 
 @mixin clearfix {
-    @if( $UA_IE9 or $UA_IE8 or $UA_IE7 ){
+    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 ){
         overflow : hidden;
     } @else if( $UA_IE6 or $UA_IE55 ){
         zoom : 1;
@@ -22,19 +22,18 @@
         height : 1%;
     } @else if( $UA_MacIE5 ){
         display : inline-table;
-    } @else if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
-        position : relative; /* for Gecko 0.9.4.1, 1.0.2 */
-    }
-
-    @if( $IS_NOT_IE ){
+    } @else {
+        @if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
+            position : relative; /* for Gecko 0.9.4.1, 1.0.2 */
+        }
         &:after {
             clear : both;
-            @if( $UA_Modern or $IS_OLD_OPERA ){
+            @if( $IS_OLD_OPERA ){
                 content    : "";
                 display    : block;
                 visibility : hidden;
                 clear      : both;
-                @if( $UA_Modern or $UA_Opera9 ){
+                @if( $UA_Opera9 ){
                     height : 0; /* for Gecko 0.9~1.7.5 & Opera 9~11(+contentEditable) */
                 }
             } @else if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
@@ -55,7 +54,7 @@
                         content : "";
                     }
                 }
-            };
+            }
         }
     }
 }
