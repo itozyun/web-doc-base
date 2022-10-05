@@ -7,13 +7,20 @@
 --------------------------------------------------------------------------------------*/
 /*  ◀ | ▶
 --------------------------------------------------------------------------------------*/
+$PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
+
 @if( $Option_blog ){
     .Pager {
         @include article-footer-item;
+        color : $COLOR_Light_fill; /* , を消す */
 
-        position : relative;
-        color    : $COLOR_Light_fill; /* , を消す */
-        height   : 4em;
+        @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+            display      : table;
+            width        : 100%;
+            table-layout : fixed;
+        } @else {
+            @include clearfix;
+        }
 
         @include media(forced_colors_fallback){
             & {
@@ -22,133 +29,132 @@
                 padding    : 1em 0;
             }
         }
-    }
-        .Pager-next { left  :   0; }
-        .Pager-top  { left  : 34%; text-align : center; }
-        .Pager-prev { right :   0; text-align : right; }
 
-            .Pager span {
-                position      : absolute;
-                top           : 1em;
-                display       : block;
-                width         : 32%;
-                /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
-                /* overflow      : hidden; */
-                /* white-space   : nowrap; */
-                /* text-overflow : ellipsis; */
+        span {
+            padding : 1.5em 0;
+            @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+                vertical-align : middle;
+                display        : table-cell;
+            } @else {
+                display : block;
+                float   : left;
+                width   : 33%;
+            }
+            /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
+            /* overflow      : hidden; */
+            /* white-space   : nowrap; */
+            /* text-overflow : ellipsis; */
 
-                @include media(forced_colors_fallback){
-                    & {
-                        position : static;
-                        display  : inline;
-                        @if( $UA_IE55 or $UA_IE5 ){
-                            width : auto;
+            @include media(forced_colors_fallback){
+                & {
+                    position : static;
+                    display  : inline;
+                    @if( $UA_IE55 or $UA_IE5 ){
+                        width : auto;
+                    }
+                }
+            }
+        }
+
+        a { /* この指定が無いとフォーカス時の塗りが汚い */
+            @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+                zoom : 1;
+            }
+            @if( $UA_IE5 ){
+                width : 100%; /* <- ?? height : $PARAGRAPH_LINE_HEIGHT_EM; */
+            }
+        }
+
+        @at-root #{&}-top  { text-align : center; }
+        @at-root #{&}-prev { text-align : right; }
+
+        @if( $IS_LTE_WIN_IE6 == false ){ /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
+            i { /* i を絶対配置にすると、Opera mini で表示されない */
+                @include inline-block;
+                @if( $IS_LEGACY ){
+                    vertical-align : text-top;
+                }
+
+                @if( $UA_IE7 ){
+                    height   : 0;
+                    width    : 0;
+                    position : relative;
+                    zoom     : 1;
+                    top      : -.1em;
+                }
+
+                @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                    border-color : transparent $COLOR_Light_casual_text;
+                } @else {
+                    border-color : $COLOR_Light_fill $COLOR_Light_casual_text;
+                }
+                /*  Forced colors
+                --------------------------------------------------------------------------------------*/
+                & {
+                    @include media(forced_colors_native_or_ms){
+                        border-color : Window currentColor;
+                    }
+                    @include media(forced_colors_fallback){
+                        display : none;
+                    }
+                }
+            }
+            * {
+                @include active-focus-pseudo-class {
+                    i {
+                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                            border-color : transparent #fff;
+                        } @else {
+                            border-color : $COLOR_ACCENT #fff;
                         }
                     }
                 }
             }
-                .Pager a { /* この指定が無いとフォーカス時の塗りが汚い */
-                    @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
-                        zoom : 1;
+
+            @at-root #{&}-next i {
+                border-width : 0.5em 0.7em 0.5em 0;
+                margin-right : 0.5em;
+            }
+            @at-root #{&}-prev i {
+                border-width : 0.5em 0 0.5em 0.7em;
+                margin-left  : 0.5em;
+                @if( $IS_LTE_WIN_IE7 ){
+                    left : 0.5em;
+                }
+            }
+    
+            @at-root #{&}-top {
+                i {
+                    border-width : 0 0.45em 0.9em;
+                    margin-right : 0.5em;
+                    @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                        border-color : $COLOR_Light_casual_text transparent;
+                    } @else {
+                        border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
                     }
-                    @if( $UA_IE5 ){
-                        width : 100%; /* <- ?? height : $PARAGRAPH_LINE_HEIGHT_EM; */
+                    /*  Forced colors
+                    --------------------------------------------------------------------------------------*/
+                    @include media(forced_colors_native){
+                        border-color : currentColor Window;
+                    }
+                    @include media(forced_colors_ms){
+                        border-color : currentColor transparent;
                     }
                 }
-                @if( $IS_LTE_WIN_IE6 == false ){ /* ie6 以下では font-size ベースのレイアウトが出来ないかも */
-                    .Pager i { /* i を絶対配置にすると、Opera mini で表示されない */
-                        @include inline-block;
-                        @if( $IS_LEGACY ){
-                            vertical-align : text-top;
-                        }
-                        @if( $IS_LTE_WIN_IE7 ){
-                            height : 0;
-                            width  : 0;
-                        }
-
-                        @if( $IS_LTE_WIN_IE7 ){
-                            position       : relative;
-                            @if( $UA_IE7 ){
-                                zoom : 1;
-                            }
-                            @if( $UA_IE7 or $UA_IE6 ){
-                                top : -.5em;
-                            }
-                            @if( $UA_IE55 or $UA_IE5 ){
-                                top : .5em;
-                            }
-                        }
-
-                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                            border-color : transparent $COLOR_Light_casual_text;
-                        } @else {
-                            border-color : $COLOR_Light_fill $COLOR_Light_casual_text;
-                        }
-                        /*  Forced colors
-                        --------------------------------------------------------------------------------------*/
-                        & {
-                            @include media(forced_colors_native_or_ms){
-                                border-color : Window currentColor;
-                            }
-                            @include media(forced_colors_fallback){
-                                display : none;
-                            }
-                        }
-                    }
-                    .Pager-next i {
-                        border-width : 0.5em 0.7em 0.5em 0;
-                        margin-right : 0.5em;
-                    }
-                    .Pager-prev i {
-                        border-width : 0.5em 0 0.5em 0.7em;
-                        margin-left  : 0.5em;
-                        @if( $IS_LTE_WIN_IE7 ){
-                            left : 0.5em;
-                        }
-                    }
-                    .Pager * {
-                        @include active-focus-pseudo-class {
-                            i {
-                                @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                    border-color : transparent #fff;
-                                } @else {
-                                    border-color : $COLOR_ACCENT #fff;
-                                }
-                            }
-                        }
-                    }
-
-                    .Pager-top i {
-                        border-width : 0 0.45em 0.9em;
-                        margin-right : 0.5em;
-
-                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                            border-color : $COLOR_Light_casual_text transparent;
-                        } @else {
-                            border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
-                        }
-                        /*  Forced colors
-                        --------------------------------------------------------------------------------------*/
-                        @include media(forced_colors_native){
-                            border-color : currentColor Window;
-                        }
-                        @include media(forced_colors_ms){
-                            border-color : currentColor transparent;
-                        }
-                    }
-
-                    .Pager-top * {
-                        @include active-focus-pseudo-class {
-                            i {
-                                @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                    border-color : #fff transparent;
-                                } @else {
-                                    border-color : #fff $COLOR_ACCENT;
-                                }
+                * {
+                    @include active-focus-pseudo-class {
+                        i {
+                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                                border-color : #fff transparent;
+                            } @else {
+                                border-color : #fff $COLOR_ACCENT;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
 
     /*  Phone
     --------------------------------------------------------------------------------------*/
@@ -166,9 +172,9 @@
     @include media(dark_theme) {
         .Pager {
             color : $COLOR_Dark_fill; /* , を消す */
-        }
-        .Pager i {
-            border-color : transparent $COLOR_Dark_casual_text;
+            i {
+                border-color : transparent $COLOR_Dark_casual_text;
+            }
         }
         .Pager-top i {
             border-color : $COLOR_Dark_casual_text transparent;
