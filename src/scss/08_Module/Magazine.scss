@@ -3,63 +3,46 @@
  *
  * .Magazine
  *   .Magazine-sep (.Magazine-only)
- *     .Magazine-item
- *       .Magazine-date
- *         time
- *           .Magazine-yy
- *           .Magazine-y
- *           .Magazine-mm
- *           .Magazine-m
- *           .Magazine-dd
- *       .Magazine-main
- *         h3
- *         .Magazine-labels
- *         .Magazine-snippet
+ *     .Magazine-sep-inner
+ *       .Magazine-item
+ *         .Magazine-date
+ *           time
+ *             .Magazine-yy
+ *             .Magazine-y
+ *             .Magazine-mm
+ *             .Magazine-m
+ *             .Magazine-dd
+ *         .Magazine-main
+ *           h3
+ *           .Magazine-label
+ *           .Magazine-snippet
  *         a.btn
- *           i
 --------------------------------------------------------------------------------------*/
-/*
-* https://developer.mozilla.org/ja/docs/conflicting/Web/CSS/CSS_Flexible_Box_Layout/Backwards_Compatibility_of_Flexbox
-*/
-@mixin flexbox {
-    /* clean-css ignore:start */
-    display : -webkit-box;
-    display : -moz-box;
-    display : -webkit-flex;
-    display : -ms-flexbox;
-    display : flex;
-    /* clean-css ignore:end */
-}
-@mixin flex( $fg: 1, $fs: 0, $fb: auto ){
-    // Set a variable to be used by box-flex properties
-    $fg-boxflex : $fg;
-
-    // Box-Flex only supports a flex-grow value so lets grab the
-    // first item in the list and just return that.
-    @if type-of($fg) == 'list' {
-        $fg-boxflex : nth($fg, 1);
-    }
-
-    -webkit-box  : $fg-boxflex;
-    -moz-box     : $fg-boxflex;
-    -webkit-flex : $fg $fs $fb;
-    -ms-flexbox  : $fg $fs $fb;
-    flex         : $fg $fs $fb;
-}
+$MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
 
 @if( $Option_Magazine ){ 
     .Magazine-item {
-        @include clearfix;
         @include unbreak-inside;
         padding : 1em 0;
+        @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            display : table;
+        } @else {
+            @include clearfix;
+        }
     }
         .Magazine-date {
+            @include unbreak-word;
             @include line-height(1, 1);
-
-            display     : block;
-            float       : left;
-            font-weight : bold;
-            font-family : monospace;
+            padding-right : 1.5em;
+            font-weight   : bold;
+            font-family   : monospace;
+            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                display        : table-cell;
+                vertical-align : top;
+            } @else {
+                display : block;
+                float   : left;
+            }
         }
             .Magazine-yy {
                 display   : block;
@@ -80,12 +63,17 @@
             }
 
         .Magazine-main {
-            @include clearfix;
+            @include unbreak-box-with-long-text;
             position     : relative;
-            margin-left  : 5.5em;
             border-width : 0 0 0 .5em;
             padding-left : 1.5em;
             border-color : $COLOR_Light_text;
+            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                display        : table-cell;
+                vertical-align : top;
+            } @else {
+                margin-left : 5.5em;
+            }
         }
             .Magazine h3 {
                 font-size   : 2em;
@@ -101,10 +89,11 @@
                 @include clearfix;
                 img {
                     float  : left;
-                    margin : 0 1em 1em 0;
+                    margin : .4em 1em 1em 0;
                 }
                 p {
                     line-height : 1.4em;
+                    margin      : 0;
                 }
             }
             .Magazine .btn {
@@ -120,22 +109,50 @@
     --------------------------------------------------------------------------------------*/
     @include media(WSXGA_landscapePrint) {
         .Magazine-sep {
-            display      : table;
-            table-layout : fixed;
             margin       : 1em 0;
+            /* clean-css ignore:start */
+            display      : table;  // table layout
+            table-layout : fixed;  // table layout
+            /* clean-css ignore:end */
+            @include display-flex; // flex layout
+            width        : 100%;   // flex layout
         }
-            .Magazine-item {
-                display        : table-cell;
-                vertical-align : top;
-                width          : 50%;
+            .Magazine-sep-inner {
+                display : table-cell;
+                width   : 50%;
             }
-    }
-    @include media(WSXGA) {
-        .Magazine-item {
-            padding : 1em 0 1em math.div($WSXGA_COLUMN_GAP_EM, 2);
+            .Magazine-only .Magazine-sep-inner {
+                width   : 100%;
+                padding : 0 !important;
+            }
+                .Magazine-item {
+                    @include display-flex;
+                    height  : 100%;
+                    padding : 0;
+                }
+    // }
+    // @include media(WSXGA) { // for Safari 3.2, Chrome 1
+        .Magazine-sep-inner:first-child .Magazine-main {
+            padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
         }
-        .Magazine-item:first-child {
-            padding : 1em math.div($WSXGA_COLUMN_GAP_EM, 2) 1em 0;
+        .Magazine-sep-inner:last-child .Magazine-date {
+            padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
+        }
+    }
+    @include css-hack(onlyIE10To11){
+        .Magazine-sep-inner {
+            display : block !important;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(landscapePrint) {
+        .Magazine-sep-inner:first-child .Magazine-main {
+            padding-right : math.div($PRINT_COLUMN_GAP_EM, 2);
+        }
+        .Magazine-sep-inner:last-child .Magazine-date {
+            padding-left : math.div($PRINT_COLUMN_GAP_EM, 2);
         }
     }
 
@@ -157,10 +174,18 @@
         }
             .Magazine-item {
                 padding : 1em 0 0;
+                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                    display : block;
+                }
             }
                 .Magazine-date {
-                    float       : none;
                     font-family : inherit;
+                    width       : auto;
+                    @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                        display : block;
+                    } @else {
+                        float : none;
+                    }
                 }
                 .Magazine-yy {
                     display   : inline;
@@ -178,10 +203,11 @@
                 }
 
             .Magazine-main {
-                margin       : 0;
-                float        : none;
                 border-width : 0 0 .5em;
                 padding      : 0 0 1em;
+                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                    display : block;
+                }
             }
                 .Magazine h3 {
                     font-size : 1.3em;
@@ -200,19 +226,6 @@
         .Magazine,
         .Magazine-main {
             border-color : $COLOR_Dark_text;
-        }
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .Magazine-item {
-            padding : 1em 0 1em math.div($PRINT_COLUMN_GAP_EM, 2);
-        }
-        @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
-            .Magazine-item:first-child {
-                padding : 1em math.div($PRINT_COLUMN_GAP_EM, 2) 1em 0;
-            }
         }
     }
 }

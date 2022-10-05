@@ -1,0 +1,30 @@
+/*
+ * https://developer.mozilla.org/ja/docs/conflicting/Web/CSS/CSS_Flexible_Box_Layout/Backwards_Compatibility_of_Flexbox
+ */
+ @mixin display-flex {
+     /* clean-css ignore:start */
+    display : -webkit-box;
+    display : -moz-box;
+    display : -webkit-flex;
+    display : -ms-flexbox;
+    display : flex;
+    /* clean-css ignore:end */
+}
+
+@mixin flex( $fg: 1, $fs: 0, $fb: auto ){
+    // Set a variable to be used by box-flex properties
+    $fg-boxflex : $fg;
+  
+    // Box-Flex only supports a flex-grow value so lets grab the
+    // first item in the list and just return that.
+    @if type-of($fg) == 'list' {
+        $fg-boxflex : nth($fg, 1);
+    }
+    /* clean-css ignore:start */
+    -webkit-box  : $fg-boxflex;
+    -moz-box     : $fg-boxflex;
+    -webkit-flex : $fg $fs $fb;
+    -ms-flexbox  : $fg $fs $fb;
+    flex         : $fg $fs $fb;
+    /* clean-css ignore:end */
+}
