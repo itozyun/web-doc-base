@@ -30,9 +30,9 @@ var StyleSheetFallback;
 
 /**
  * @typedef {{
- *   _rawSheet : (CSSStyleSheet|StyleSheet|StyleSheetFallback),
- *   _elmOwner : HTMLStyleElement,
- *   _cssRules : Array.<CSSRuleInternal>
+ *   _rawSheet : (!CSSStyleSheet|!StyleSheet|!StyleSheetFallback),
+ *   _elmOwner : (!HTMLStyleElement|undefined),
+ *   _cssRules : !Array.<!CSSRuleInternal>
  * }}
  */
 var StyleSheetInternal;
@@ -40,15 +40,15 @@ var StyleSheetInternal;
 /**
  * @typedef {{
  *   selectorTextOrAtRule : string,
- *   urlOrStyle           : (string|Object),
- *   _elmFallback         : (HTMLStyleElement|HTMLLinkElement|undefined),
+ *   urlOrStyle           : (!Object|string),
+ *   _elmFallback         : (!HTMLStyleElement|!HTMLLinkElement|undefined),
  *   _indexStart          : (number|undefined),
  *   _indexEnd            : (number|undefined)
  * }}
  */
 var CSSRuleInternal;
 
-/** @type {Array.<StyleSheetInternal>} */
+/** @type {!Array.<!StyleSheetInternal>} */
 var CSSOM_styleSheetDataList = [];
 
 function CSSOM_getDataByStyleSheet( styleSheet ){
@@ -78,7 +78,7 @@ function CSSOM_renumber( cssRules, indexStart ){
     };
 };
 
-var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作
+var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 TODO 0.9 <= p_Gecko ??
                                      8 <= p_Presto && p_Presto < 9;
 var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
 
@@ -130,7 +130,7 @@ p_CSSOM_canuse = CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  
 Debug.log( '[CSSOM] p_CSSOM_canuse : ' + p_CSSOM_canuse );
 
 /**
- * @return {Array.<HTMLStyleElement|HTMLLinkElement>}
+ * @return {!Array.<!HTMLStyleElement|!HTMLLinkElement>}
  */
 function CSSOM_getStyleSheetElementList(){
     var styleSheets = document.styleSheets,
@@ -162,34 +162,34 @@ function CSSOM_getStyleSheetElementList(){
 };
 
 /**
- * @param {HTMLStyleElement|HTMLLinkElement} elm
- * @return {CSSStyleSheet|StyleSheet}
+ * @param {!HTMLStyleElement|!HTMLLinkElement} elm
+ * @return {!CSSStyleSheet|!StyleSheet}
  */
 function CSSOM_getStyleSheet( elm ){
     return elm.styleSheet || elm.sheet;
 };
 
 /**
- * @param {CSSStyleSheet|StyleSheet} styleSheet
- * @return {CSSRuleList}
+ * @param {!CSSStyleSheet|!StyleSheet} styleSheet
+ * @return {!CSSRuleList}
  */
 function CSSOM_getCssRules( styleSheet ){
     return p_Trident < 9 ? styleSheet.rules : styleSheet.cssRules; // ie11 長さ0 の rules が存在する
 };
 
 /**
- * @param {CSSStyleSheet|StyleSheet} styleSheet
- * @return {HTMLStyleElement|HTMLLinkElement}
+ * @param {!CSSStyleSheet|!StyleSheet} styleSheet
+ * @return {!HTMLStyleElement|!HTMLLinkElement}
  */
 function CSSOM_getOwnerNode( styleSheet ){
-    return /** @type {HTMLStyleElement|HTMLLinkElement} */ (styleSheet.owningElement || styleSheet.ownerNode);
+    return /** @type {!HTMLStyleElement|!HTMLLinkElement} */ (styleSheet.owningElement || styleSheet.ownerNode);
 };
 
 /** CSSOM モジュールで動的に操作する StyleSheet インスタンスを生成します
  * 
  * @param {string=} opt_media 
  * @param {number=} opt_index
- * @return {CSSStyleSheet|StyleSheet|StyleSheetFallback|undefined}
+ * @return {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback|undefined}
  */
 function CSSOM_createStyleSheet( opt_media, opt_index ){
     var elements  = CSSOM_getStyleSheetElementList(),
@@ -234,7 +234,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
 
 /** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスを削除します。
  * 
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  */
 function CSSOM_deleteStyleSheet( styleSheet ){
     var data     = CSSOM_getDataByStyleSheet( styleSheet ),
@@ -255,7 +255,7 @@ function CSSOM_deleteStyleSheet( styleSheet ){
 /** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスにルールを追加します。
  *  (a)font-face, (a)import の可否はブラウザによって異なります。(a)page は未実装。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {Object|string} urlOrStyle
  * @param {number=} opt_ruleIndex
@@ -371,7 +371,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
     cssRules.splice( ruleIndex, 0, newCSSRule );
 
     if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-        CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
+        CSSOM_commitUpdatesToStyleSheetElement( /** @type {!StyleSheetFallback} */ (styleSheet) );
     };
     CSSOM_renumber( cssRules, ruleIndex );
 
@@ -380,7 +380,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
 
 /** p_CSSOM_insertRuleToStyleSheet() 経由で追加したルールを削除します。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @return {boolean}
  */
@@ -399,7 +399,7 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
         } else {
             CSSOM_renumber( cssRules, ruleIndex );
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {!StyleSheetFallback} */ (styleSheet) );
             } else if( p_Trident < 11 ){
                 // indexStart indexEnd が異なれば、その間を removeRule
                 for( ; indexStart <= indexEnd; --indexEnd ){
@@ -415,7 +415,7 @@ function CSSOM_deleteRuleFromStyleSheet( styleSheet, ruleIndex ){
 
 /** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスのルールにスタイルを追加します。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @param {string} propertyOrURL
  * @param {string|number|boolean=} opt_value
