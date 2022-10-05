@@ -31,18 +31,18 @@ blockquote {
 
     %BlockquoteLink {
         @include responsive-horizontal-margin(2, 0, 0);
-        font-size   : 0.875em;
-        color       : $COLOR_Light_link;
+        font-size : 0.875em;
+        color     : $COLOR_Light_link;
     }
     .js-bqLink { @extend %BlockquoteLink; }
 
     %BlockquoteCite {
         @include responsive-horizontal-margin(2, 0, 0);
         @include unbreak-box-with-long-text; /* 長い url 用 */
-        display     : block;
-        font-size   : 0.875em;
-        text-align  : right;
-        color       : $COLOR_Light_casual_text;
+        display    : block;
+        font-size  : 0.875em;
+        text-align : right;
+        color      : $COLOR_Light_casual_text;
     }
     .js-bqCite { @extend %BlockquoteCite; }
 

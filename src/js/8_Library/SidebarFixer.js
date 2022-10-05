@@ -557,7 +557,7 @@ function SidebarFixer_onfocus( e ){
     if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_showEvent( e.type || 'ie5focus' );
-            p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementblur );
+            p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementBlur );
         };
 
         focusedElementHeight = elmFocused.offsetHeight;
@@ -630,8 +630,8 @@ function SidebarFixer_watchActiveElementErrorHandler(){
 /** ===========================================================================
  * for debug
  */
-function SidebarFixer_onActiveElementblur(){
-    p_removeEventListener( this, 'blur', SidebarFixer_onActiveElementblur );
+function SidebarFixer_onActiveElementBlur(){
+    p_removeEventListener( this, 'blur', SidebarFixer_onActiveElementBlur );
     SidebarFixer_updateElementFocused( 0, 0 );
 };
 
