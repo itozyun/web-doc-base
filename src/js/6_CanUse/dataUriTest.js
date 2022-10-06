@@ -1,14 +1,16 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-p_dataURITest = dataURITest;
-
+p_dataURITest = p_dataURITestResult === false ?
+                    function( callback ){
+                        p_setTimer( callback, p_dataURITestResult );
+                    } :
 /**============================================================================
  * Original Code:
  *   https://github.com/Modernizr/Modernizr/blob/master/feature-detects/url/data-uri.js
  *   MIT License
  */
-function dataURITest( callback ){
+function( callback ){
     if( p_notUndefined( p_dataURITestResult ) ){
         Debug.log( '[dataURITest] already done : ' + p_dataURITestResult );
         p_setTimer( callback, p_dataURITestResult );

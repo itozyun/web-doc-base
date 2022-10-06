@@ -103,7 +103,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_iefilterEnabled,
     p_imageEnabled,
     p_cssGeneratedContentGrade,
-    p_dataURITestResult,
+    p_dataURITestResult = ( p_Trident < 8 || p_Presto < 7.2 ) ? false : undefined,
 
     p_cssTransformName =
         p_notUndefined( p_style[ 'transform'         ] ) ? 'transform' : 
