@@ -30,21 +30,54 @@
         }
     }
 
-    @if( $UA_Modern ){
-        // https://shanabrian.com/web/html-css-js-technics/other-ie10-11-bug-01.php
-        // IE10、IE11、Windows 8 Edgeでページ全体のスクロールバーがコンテンツと重なる
-        html {
-            -ms-overflow-style : -ms-autohiding-scrollbar; // https://qumeru.com/magazine/libraries/stylesheet/posts/60 スクロール中のみスクロールバーを表示
+    /*  html & body
+    --------------------------------------------------------------------------------------*/
+    html {
+        font-size : 100%;
+        @if( $UA_Modern ){
+            // https://shanabrian.com/web/html-css-js-technics/other-ie10-11-bug-01.php
+            //   IE10、IE11、Windows 8 Edgeでページ全体のスクロールバーがコンテンツと重なる
+            // https://qumeru.com/magazine/libraries/stylesheet/posts/60
+            //   スクロール中のみスクロールバーを表示
+            -ms-overflow-style       : -ms-autohiding-scrollbar;
+            -webkit-text-size-adjust : 100%;
+               -moz-text-size-adjust : 100%;
+                -ms-text-size-adjust : 100%;
+                /* text-size-adjust : 100%; */
+    // https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L29
+            text-rendering           : optimizeLegibility !important;
+             -webkit-font-smoothing  : antialiased !important;
+            -moz-osx-font-smoothing  : grayscale;
         }
     }
 
+    html,
+    body {
+        margin : 0;    /* body のみ? */
+        height : 100%; /* body のみ? */
+    }
+    body {
+        @if( $UA_Opera8 or $IS_Opera7x ){
+            padding : 0; /* Opera 7~8 */
+        }
+    }
+
+    /*  *
+    --------------------------------------------------------------------------------------*/
     /* b, */
     /* strong, em, */ dt {
         font-weight : bold;
     }
 
     blockquote, q {
-        quotes : none;
+        /**
+         * https://developer.mozilla.org/ja/docs/Web/CSS/quotes
+         * https://www.tohoho-web.com/css/prop/quotes.htm
+         *   IE8+, Gecko 1.7+, Opera 4+
+         */
+        @if( $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false and $UA_Gecko12 == false and $UA_Gecko13 == false ){
+            quotes : none;
+        }
     }
 
     /* @if( $CANUSE_CSS_GENERATED_CONTENT ){
@@ -56,7 +89,7 @@
     } */
 
     small {
-        font-size: 75%;
+        font-size : 75%;
     }
 
     @if( $IS_NOT_IE ){
@@ -68,10 +101,10 @@
             vertical-align : baseline;
         }
         sup {
-            top: -0.5em;
+            top : -0.5em;
         }
         sub {
-            bottom: -0.25em;
+            bottom : -0.25em;
         }
     }
 
@@ -79,7 +112,7 @@
         svg {
             overflow : hidden;
         }
-        img:not([src*=".svg"]){ // svg だと height が狂う, 併せて要 viewBox 属性, svg 圧縮ツールで削らないこと
+        img:not([src$=".svg"]):not([src*=".svg?"]){ // svg だと height が狂う, 併せて要 viewBox 属性, svg 圧縮ツールで削らないこと
             height : auto;
         }
     } @else {
@@ -93,12 +126,19 @@
 
     dfn, q, cite { font-style : normal; }
 
-    @if( $Option_IT ){
-        code, var, samp, kbd { font-style : normal; }
+    code, var, samp, kbd {
+        @if( $Option_IT ){
+            font-style : normal;
+        }
     }
 
     pre {
         @include pre-wrap;
+        code, samp {
+            @if( $UA_IE5 and $Option_IT ){
+                width : 100%;
+            }
+        }
     }
 
     ul, ol {
@@ -110,22 +150,18 @@
         }
     }
 
-    @if( $UA_IE5 and $Option_IT ){
-        pre code,
-        pre samp { width : 100%; }
-    }
-
     /* remember to highlight inserts somehow! */
     ins { text-decoration : none; }
     del { text-decoration : line-through; }
 
-    @if( $UA_IE9 or $UA_Modern ){
-        figure {
+    figure {
+        @if( $UA_IE9 or $UA_Modern ){
             margin : 0;
         }
     }
-    @if( $UA_Modern ){
-        aside { // Firefox 98.0 で必要になっていた
+
+    aside {
+        @if( $UA_Modern ){ // Firefox 98.0 で必要になっていた
             margin  : 0;
             padding : 0;
             border  : 0;
@@ -134,8 +170,8 @@
 
 /*  bugfix
 --------------------------------------------------------------------------------------*/
-    @if( $UA_Opera8 or $IS_Opera7x ){
-        br {
+    br {
+        @if( $UA_Opera8 or $IS_Opera7x ){
             display : block;
         }
     }
