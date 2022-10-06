@@ -6,13 +6,3 @@
 var p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE = p_Trident < 9 || ( 525 <= p_WebKit && p_WebKit < 530 ) || p_Chromium < 2;
 
 var p_CSSOM_canuse = 0;
-
-var p_CSSOM_getStyleSheetElementList,
-    p_CSSOM_createStyleSheet,
-    p_CSSOM_deleteStyleSheet,
-    p_CSSOM_insertRuleToStyleSheet,
-    p_CSSOM_deleteRuleFromStyleSheet,
-    p_CSSOM_setStyleOfRule,
-    p_CSSOM_getRawValueOfRule,
-    p_CSSOM_getIndexOfRule,
-    p_CSSOM_getLastIndexOfRule;
