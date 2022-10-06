@@ -136,9 +136,9 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
 
             .chatL p, .chatL .chatMember {
                 @include media(screen) {
-                    background : #fff;
+                    background   : #fff;
+                    border-color : #fff;
                 }
-                border-color : #fff;
             }
             .chatR p, .chatR .chatMember {
                 @include media(screen) {
