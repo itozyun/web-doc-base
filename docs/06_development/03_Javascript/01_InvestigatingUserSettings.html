@@ -3,7 +3,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ユーザー設定の調査</title>
-<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no"><style><!--
+<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no"><style>/*<!--*/
 @media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>
 <script><!--
 ua=[];ua.conpare=function(M,g){var r=0,t,X;var B=(M+"").split(".");var T=(g+"").split(".");var C=B.length;for(t=T.length;"0"===B[C-1];)--C;for(;"0"===T[t-1];)--t;for(X=C<t?C:t;r<X;++r){var R=B[r]-0;var b=T[r]-0;if(R!==b)return R>b?1:-1}return C>t?1:C===t?0:-1};(function(M,g,r,t,X,B,T,C){function R(f,n,p){p=B(f.split(n)[1]);return 0<=p?p:0}function b(f,n){return 0<=f.indexOf(n)}function Ba(f){return b(f,"Linux armv")||b(f,"Linux aarch")||b(f,"Linux i686")||b(f,"Linux x86_64")}function da(f,n){for(var p in n)if(p===f)return!0}function c(f,n){var p="",u=-1,I;if(f=f.split(n)[1]){for(;I=f.charCodeAt(++u);)if(48<=I&&57>=I||46===I)p+=f.charAt(u);else break;for(u=p.length;u;)if(46===p.charCodeAt(--u))p=p.substr(0,u);else break}return p}function Ca(f){for(var n=
@@ -85,7 +85,7 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 <div id="lE" class="ribbon">
 <!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->
 <div class="lX">
-<div class="lXi"><!--[if !IE]><!--><noscript><style>/*<![CDATA[*/#-o-{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o-:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o-:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o-:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*]]>*/</style><p id="-o-" nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></p></noscript><!--<![endif]-->
+<div class="lXi"><!--[if !IE]><!--><noscript><style>/*<!--*/#-o-{border:double 5px #f66;padding:1em;background:#300;color:#fff}@media all and(-o-:0),not all and(-o-:0){html:first-child #-o-{display:block}:_{top:0}}#-o-{display:none}#-o-:after{content:attr(nojs) attr(opr)}@media \0 all{#-o-{display:block}#-o-:after{content:attr(nojs) attr(gck)}}@-moz-document url-prefix(){_:not(),_:-moz-loading,#-o-{display:block}_:not(),_:-moz-loading,#-o-:after{content:attr(nojs) attr(gck)}_:not(),_:-moz-handler-blocked,#-o-{display:none}}/*-->*/</style><p id="-o-" nojs="Please enabled javascript or use new version of browser. At least " opr="Opera 9.5+." gck="Firefox 3.5+."></p></noscript><!--<![endif]-->
 <div class="lX1"><div class="BreadcrumbList" itemscope itemtype="http://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         <a itemprop="item" href="//github.com/itozyun/web-doc-base/" rel="nofollow"><span itemprop="name">github</span><meta itemprop="position" content="1"></a> / <a itemprop="item" href="../../"><span itemprop="name">目次</span><meta itemprop="position" content="2"></a> / <a itemprop="item" href="../"><span itemprop="name">6. web-doc-base を拡張する為の技術情報</span><meta itemprop="position" content="3"></a> / <a itemprop="item" href="./"><span itemprop="name">3. Javascript をカスタムする為の情報</span><meta itemprop="position" content="4"></a>
@@ -344,29 +344,30 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 <p>参考記事 <a href="https://outcloud.blogspot.com/2018/02/IsWebfontEffective.html">Webフォントがブラウザで有効か？きっちり調べる</a></p>
 <p>Web フォントの読み込み完了のテスト、フォールバックのダウンロードから読み込みのテスト、リガチャのテストを行います。</p>
 <ol>
+<li>コールバック関数</li>
 <li>フォントファミリー名</li>
-<li>メインの CSS に下記スタイルを入れておく。隠し要素のサイズを測って CSS の読み込み完了を検出する <code>&lt;div class="myIconFont-testCssReady"&gt;&lt;/div&gt;</code></li>
-<li>Web フォントを DATA URI スキームで埋め込んだ CSS を用意し、パスをここに書く</li>
-<li>第4引数と第5引数はリガチャのテスト用。合字になる文字列(第4引数)とキャラクター(第5引数)の文字幅が一致するか？調べる</li>
-<li>合字になるキャラクター</li>
-<li>インターバルタイム(デフォルトは5000ミリ秒)</li>
+<li>オプション : Web フォントを DATA URI スキームで埋め込んだ CSS を用意し、パスをここに書く</li>
+<li>オプション : メインの CSS に下記スタイルを入れておく。隠し要素のサイズを測って CSS の読み込み完了を検出する <code>&lt;div class="myIconFont-testCssReady"&gt;&lt;/div&gt;</code></li>
+<li>オプション : 第4引数と第5引数はリガチャのテスト用。合字になる文字列(第4引数)とキャラクター(第5引数)の文字幅が一致するか？調べる</li>
+<li>オプション : 合字になるキャラクター</li>
+<li>オプション : インターバルタイム(デフォルトは5000ミリ秒)</li>
 </ol>
 <pre class="prettyprint lang-js"><code>p_webFontTest(
-    function( webFontTestResult ){
+    function( webFontTestResult ){ // 1.
         // webFontTestResult === 0 : no webfont
         // webFontTestResult === 1 : webfont ready
         // webFontTestResult === 2 : webfont ready + ligature support
     },
-    'myIconFont', // 1.
+    'myIconFont', // 2.
     { // 3.
         'myIconFont_canTTF'  : '/asset/iconfont/ttf.css',
         'myIconFont_canWOFF' : '/asset/iconfont/woff.css',
         'myIconFont_canEOT'  : '/asset/iconfont/eot.css',
         'myIconFont_canSVG'  : '/asset/iconfont/svg.css'
     },
-    'myIconFont-testCssReady', // 2.
-    'twitter', 't', // 4.
-    5000 // option : test interval ms
+    'myIconFont-testCssReady', // 4.
+    'twitter', 't', // 5. 6.
+    5000 // 7. test interval ms
 );
 </code></pre>
 <h4 id="メインの-css">メインの CSS</h4>
@@ -382,7 +383,7 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
     font-style  : normal;
 }
 
-/* 2. */
+/* 3. */
 .myIconFont-testCssReady {
     position    : absolute;
     top         : 0;
@@ -394,7 +395,7 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 
 /* 次の DATA URI スキームはブラウザがサポートする Web フォントフォーマットの検証用 */
 @font-face {
-    font-family : 'myIconFont_canEOT'; /* 3. */
+    font-family : 'myIconFont_canEOT'; /* 2. */
     src:
         url('data:application/octet-stream;base64,uAQAABQEAAABAAIAAAAAAAAAAAAAAAAAAAABAJABAAAAAExQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA3XI4rAAAAAAAAAAAAAAAAAAAAAAAAA4AaQBjAG8AbQBvAG8AbgAAAA4AUgBlAGcAdQBsAGEAcgAAABYAVgBlAHIAcwBpAG8AbgAgADEALgAwAAAADgBpAGMAbwBtAG8AbwBuAAAAAAAAAQAAAAsAgAADADBPUy8yD1UMCAAAALwAAABgY21hcP/sAVkAAAEcAAAAVGdhc3AAAAAQAAABcAAAAAhnbHlmA8XAvAAAAXgAAABYaGVhZAu/+jcAAAHQAAAANmhoZWEGvAOBAAACCAAAACRobXR4CgAAwAAAAiwAAAAUbG9jYQAoAEAAAAJAAAAADG1heHAABwAFAAACTAAAACBuYW1lmUoJ+wAAAmwAAAGGcG9zdAADAAAAAAP0AAAAIAADAwABkAAFAAACmQLMAAAAjwKZAswAAAHrADMBCQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAABpA3r/ewCFA3oAhQAAAAEAAAAAAAAAAAAAACAAAAAAAAMAAAADAAAAHAABAAMAAAAcAAMAAQAAABwABAA4AAAACgAIAAIAAgABACAAaf/9//8AAAAAACAAaf/9//8AAf/j/5sAAwABAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAwAAAA0ADAAACAAATCQHAAoD9gAMA/oD+gAABAAAAAQAArDhy3V8PPPUACwQAAAAAANSw2x0AAAAA1LDbHQAAAAADQAMAAAAACAACAAAAAAAAAAEAAAN6/3sAAAQAAAAAAANAAAEAAAAAAAAAAAAAAAAAAAAFBAAAAAAAAAAAAAAAAgAAAAQAAMAAAAAAAAoAFAAeACwAAQAAAAUAAwABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAcAAAABAAAAAAACAAcAYAABAAAAAAADAAcANgABAAAAAAAEAAcAdQABAAAAAAAFAAsAFQABAAAAAAAGAAcASwABAAAAAAAKABoAigADAAEECQABAA4ABwADAAEECQACAA4AZwADAAEECQADAA4APQADAAEECQAEAA4AfAADAAEECQAFABYAIAADAAEECQAGAA4AUgADAAEECQAKADQApGljb21vb24AaQBjAG8AbQBvAG8AblZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMGljb21vb24AaQBjAG8AbQBvAG8Abmljb21vb24AaQBjAG8AbQBvAG8AblJlZ3VsYXIAUgBlAGcAdQBsAGEAcmljb21vb24AaQBjAG8AbQBvAG8AbkZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=');
     font-weight : normal;
@@ -402,21 +403,21 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 }
 
 @font-face {
-    font-family : 'myIconFont_canWOFF'; /* 3. */
+    font-family : 'myIconFont_canWOFF'; /* 2. */
     src:
         url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAARgAAsAAAAABBQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABCAAAAGAAAABgD1UMCGNtYXAAAAFoAAAAVAAAAFT/7AFZZ2FzcAAAAbwAAAAIAAAACAAAABBnbHlmAAABxAAAAFgAAABYA8/Aw2hlYWQAAAIcAAAANgAAADYOVdg/aGhlYQAAAlQAAAAkAAAAJAa9A4FobXR4AAACeAAAABQAAAAUCgAAwGxvY2EAAAKMAAAADAAAAAwAKABAbWF4cAAAApgAAAAgAAAAIAAHAAVuYW1lAAACuAAAAYYAAAGGmUoJ+3Bvc3QAAARAAAAAIAAAACAAAwAAAAMDAAGQAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAGkDev97AIUDegCFAAAAAQAAAAAAAAAAAAAAIAAAAAAAAwAAAAMAAAAcAAEAAwAAABwAAwABAAAAHAAEADgAAAAKAAgAAgACAAEAIABp//3//wAAAAAAIABp//3//wAB/+P/mwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQDAAAUDQQMGAAIAABMJAcACgf1/Awb+gP5/AAEAAAABAACm9ra/Xw889QALBAAAAAAA1ftKHgAAAADV+0oeAAAAAANBAwYAAAAIAAIAAAAAAAAAAQAAA3r/ewAABAAAAAAAA0EAAQAAAAAAAAAAAAAAAAAAAAUEAAAAAAAAAAAAAAACAAAABAAAwAAAAAAACgAUAB4ALAABAAAABQADAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEABwAAAAEAAAAAAAIABwBgAAEAAAAAAAMABwA2AAEAAAAAAAQABwB1AAEAAAAAAAUACwAVAAEAAAAAAAYABwBLAAEAAAAAAAoAGgCKAAMAAQQJAAEADgAHAAMAAQQJAAIADgBnAAMAAQQJAAMADgA9AAMAAQQJAAQADgB8AAMAAQQJAAUAFgAgAAMAAQQJAAYADgBSAAMAAQQJAAoANACkaWNvbW9vbgBpAGMAbwBtAG8AbwBuVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwaWNvbW9vbgBpAGMAbwBtAG8AbwBuaWNvbW9vbgBpAGMAbwBtAG8AbwBuUmVndWxhcgBSAGUAZwB1AGwAYQByaWNvbW9vbgBpAGMAbwBtAG8AbwBuRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==') format('woff');
     font-weight : normal;
     font-style  : normal;
 }
 @font-face {
-    font-family : 'myIconFont_canTTF'; /* 3. */
+    font-family : 'myIconFont_canTTF'; /* 2. */
     src:
         url('data:application/x-font-tty;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg9VDAgAAAC8AAAAYGNtYXD/7AFZAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5ZgPFwLwAAAF4AAAAWGhlYWQLv/o3AAAB0AAAADZoaGVhBrwDgQAAAggAAAAkaG10eAoAAMAAAAIsAAAAFGxvY2EAKABAAAACQAAAAAxtYXhwAAcABQAAAkwAAAAgbmFtZZlKCfsAAAJsAAABhnBvc3QAAwAAAAAD9AAAACAAAwMAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAABAAAAAaQN6/3sAhQN6AIUAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAgAGn//f//AAAAAAAgAGn//f//AAH/4/+bAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAMAAAANAAwAAAgAAEwkBwAKA/YADAP6A/oAAAQAAAAEAAKw4ct1fDzz1AAsEAAAAAADUsNsdAAAAANSw2x0AAAAAA0ADAAAAAAgAAgAAAAAAAAABAAADev97AAAEAAAAAAADQAABAAAAAAAAAAAAAAAAAAAABQQAAAAAAAAAAAAAAAIAAAAEAADAAAAAAAAKABQAHgAsAAEAAAAFAAMAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAOAK4AAQAAAAAAAQAHAAAAAQAAAAAAAgAHAGAAAQAAAAAAAwAHADYAAQAAAAAABAAHAHUAAQAAAAAABQALABUAAQAAAAAABgAHAEsAAQAAAAAACgAaAIoAAwABBAkAAQAOAAcAAwABBAkAAgAOAGcAAwABBAkAAwAOAD0AAwABBAkABAAOAHwAAwABBAkABQAWACAAAwABBAkABgAOAFIAAwABBAkACgA0AKRpY29tb29uAGkAYwBvAG0AbwBvAG5WZXJzaW9uIDEuMABWAGUAcgBzAGkAbwBuACAAMQAuADBpY29tb29uAGkAYwBvAG0AbwBvAG5pY29tb29uAGkAYwBvAG0AbwBvAG5SZWd1bGFyAFIAZQBnAHUAbABhAHJpY29tb29uAGkAYwBvAG0AbwBvAG5Gb250IGdlbmVyYXRlZCBieSBJY29Nb29uLgBGAG8AbgB0ACAAZwBlAG4AZQByAGEAdABlAGQAIABiAHkAIABJAGMAbwBNAG8AbwBuAC4AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') format('truetype');
     font-weight : normal;
     font-style  : normal;
 }
 @font-face {
-    font-family : 'myIconFont_canSVG'; /* 3. */
+    font-family : 'myIconFont_canSVG'; /* 2. */
     src:
         url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8bWV0YWRhdGE+R2VuZXJhdGVkIGJ5IEljb01vb248L21ldGFkYXRhPgo8ZGVmcz4KPGZvbnQgaWQ9Imljb21vb24iIGhvcml6LWFkdi14PSIxMDI0Ij4KPGZvbnQtZmFjZSB1bml0cy1wZXItZW09IjEwMjQiIGFzY2VudD0iODkwLjg4IiBkZXNjZW50PSItMTMzLjEyIiAvPgo8bWlzc2luZy1nbHlwaCBob3Jpei1hZHYteD0iMTAyNCIgLz4KPGdseXBoIHVuaWNvZGU9IiYjeDIwOyIgaG9yaXotYWR2LXg9IjUxMiIgZD0iIiAvPgo8Z2x5cGggdW5pY29kZT0iJiN4Njk7IiBnbHlwaC1uYW1lPSJ0ZXN0IiBkPSJNMTkyIDc2OGw2NDAtMzg0LTY0MC0zODR6IiAvPgo8L2ZvbnQ+PC9kZWZzPjwvc3ZnPg==') format('svg');
     font-weight : normal;
@@ -446,7 +447,10 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 <div class="lSi">
 <div class="lS1" id="jsSidebarFixer1"><h2>最近更新された記事</h2>
 <div class="RichLink">
-<div class="RichLink-sep"><a role="listitem" href="../../02_features/01_ResponsiveLayout.html">
+<div class="RichLink-sep"><a role="listitem">
+<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
+<b>ユーザー設定の調査</b>
+</a><a role="listitem" href="../../02_features/01_ResponsiveLayout.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>2カラムレイアウトを基本とし、8種類のビューポートサイズにレスポンシブ</b>
 </a><a role="listitem" href="../02_CSS/02_Interaction.html">
@@ -455,9 +459,6 @@ d&&(M[3]=Ea(d)));h&&(M[0]=h,k&&(M[1]=Ea(k)));var Fa=N(8)||N(9),Ga=N(11),la=N(7),
 </a><a role="listitem" href="../../08_test/05_LimitationOfPseudoClasses.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>スタイリングの制限</b>
-</a><a role="listitem">
-<img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
-<b>ユーザー設定の調査</b>
 </a><a role="listitem" href="../02_CSS/03_FormItems.html">
 <img alt="" role="presentation" src="//4.bp.blogspot.com/-_jS4oD7mDQ8/WJFq8Z7sZ-I/AAAAAAAARP0/SJJHoRWJ37cwdBuO2pvuHQ_rY3GI1nIHQCLcB/s50-c/NicePageBuilder_package.jpg" width="50" height="50">
 <b>フォーム部品のスタイリング</b>
