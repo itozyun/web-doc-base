@@ -24,7 +24,7 @@ WQXGA, WSXGA, XGA, Tablet, Phablet, Phone, Small phone, Watch
 
 ダークモードの背景色が黒なのは、Watch とスタイルを共用する為です。
 
-## `handheld` メディアタイプをサポートするデスクトップ版 Opera 8,0 ~ 10.10
+## `handheld` メディアタイプをサポートするデスクトップ版 Opera 8.0 ~ 10.10
 
 またメディアクエリをサポートしないが、handheld メディアタイプをサポートするデスクトップ版 Opera 8~8.5x について、2種類のビューポートサイズを用意します。
 
@@ -67,7 +67,7 @@ onload 後にもユーザーの任意で変化します。
 <p id="handheld">赤色になっていれば <code>@media handheld</code> スタイルが当たっています。</p>
 ~~~
 
-## `projection` メディアタイプをサポートするデスクトップ版 Opera 8,0 ~ 12.13
+## `projection` メディアタイプをサポートするデスクトップ版 Opera 8.0 ~ 12.13
 
 <samp>View > Full Screen</samp> にチェックを付けることで、フルスクリーン表示になります。`@media projection` のスタイルが適用されます。フルスクリーン状態は検出できますが、ビューポートのサイズを CSS 側から知ることは出来ないので、フルHD用のスタイルを提供する、といったことは出来ません。
 

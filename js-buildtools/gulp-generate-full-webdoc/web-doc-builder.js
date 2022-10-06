@@ -139,7 +139,7 @@ module.exports = function( page, pages ){
         /** viewport, see http://outcloud.blogspot.com/2016/02/viewport2016.html */
                         createElement( 'meta', { name : 'viewport', content : page.viewport || site.viewport || 'width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no' } ) +
         /** inlin style */
-                        '<style><!--\n@media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>' +
+                        '<style>/*<!--*/\n@media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>' +
         /** inlin javascript */
                         createElement( 'script', null, '<!--\n' + page.inlineScript + '//-->', !!page.inlineScript ) +
                         createElement( 'script', null, '<!--\n' + site.inlineScript + '//-->', !!site.inlineScript ) +
@@ -598,7 +598,7 @@ return '' +
             var onlyNoscriptModule = layout.layoutsOrModules.length === 1;
             var noscriptMassage = site.noscriptMessage || 'Please enabled javascript or use new version of browser. At least ';
             var htmlString = onlyNoscriptModule ?
-`<style>/*<![CDATA[*/` +
+`<style>/*<!--*/` +
     // common
     `#${noscriptMessageID} p{border:double 5px #f66;padding:1em;background:#300;color:#fff}` +
     // Opera 7.20~9.27
@@ -621,10 +621,10 @@ return '' +
         // Gecko 1.9.1~1.9.2
         `_:not(),_:-moz-handler-blocked,#${noscriptMessageID}{display:none}` +
     `}` +
-`/*]]>*/</style>` +
+`/*-->*/</style>` +
 `<p nojs="${noscriptMassage}" opr="Opera 9.5+." gck="Firefox 3.5+."></p>`
 :
-`<style>/*<![CDATA[*/` +
+`<style>/*<!--*/` +
     // common
     `#${noscriptMessageID}{border:double 5px #f66;padding:1em;background:#300;color:#fff}` +
     // Opera 7.20~9.27
@@ -647,7 +647,7 @@ return '' +
         // Gecko 1.9.1~1.9.2
         `_:not(),_:-moz-handler-blocked,#${noscriptMessageID}{display:none}` +
     `}` +
-`/*]]>*/</style>` +
+`/*-->*/</style>` +
 `<p id="${noscriptMessageID}" nojs="${noscriptMassage}" opr="Opera 9.5+." gck="Firefox 3.5+."></p>`;
             if( !onlyNoscriptModule ){
                 htmlString = '<!--[if !IE]><!--><noscript>' + htmlString + '</noscript><!--<![endif]-->';
