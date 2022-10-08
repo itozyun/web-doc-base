@@ -4,15 +4,15 @@ var PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORD
 
 /**
  * @typedef {{
- *   elmA                : Element,
+ *   elmA                : HTMLAnchorElement,
  *   thumbUrl            : string,
  *   thumbWidth          : string,
  *   originalUrl         : (string|undefined),
- *   elmImg              : Element,
+ *   elmImg              : HTMLImageElement,
  *   isGoogleUserContent : boolean,
  *   replaced            : (boolean|undefined),
  *   clazz               : (string|undefined),
- *   elmCap              : (Element|undefined),
+ *   elmCap              : (HTMLSpanElement|undefined),
  *   captionCSS          : (string|undefined),
  *   large               : (string|undefined)
  * }}
