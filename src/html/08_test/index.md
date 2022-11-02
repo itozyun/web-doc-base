@@ -7,6 +7,7 @@
 <a href="../test/clearfix.html">clearfix のテスト</a>,
 <a href="../test/cssGeneratedContent.html">疑似要素のテスト</a>,
 <a href="../test/cssom.html">CSSOM のテスト</a>,
+<a href="../test/dynamic-script.html">動的 Script のテスト</a>,
 <a href="../test/importHack.html">import のテスト</a>,
 <a href="../test/check-image-loading.html">Check Image loading</a>,
 <a href="../test/icon.html">アイコンのテスト</a>,
