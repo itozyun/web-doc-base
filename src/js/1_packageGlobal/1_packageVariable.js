@@ -135,6 +135,11 @@ var p_CSSOM_getStyleSheetElementList,
     p_CSSOM_getIndexOfRule,
     p_CSSOM_getLastIndexOfRule;
 
+var p_noRemoveScriptTag,
+    p_canUseDynamicExternalScript,
+    p_loadExternalScript,
+    p_setExternalScriptIsLoaded;
+
 function p_notUndefined( val ){
     return val !== undefined;
 };

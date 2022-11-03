@@ -20,37 +20,65 @@ window.onerror = function(a){
     alert( a );
 };
 
-var SRC_DYNAMIC_SCRIPT = './dynamic-script.js';
+var SRC_DYNAMIC_SCRIPT = './dynamic-script';
 
 function createScriptElement(){
     var script = document.createElement('script');
 
-    script.src = SRC_DYNAMIC_SCRIPT + '?ts=' + ( + new Date );
+    script.src = SRC_DYNAMIC_SCRIPT + '-1.js?ts=' + ( + new Date );
     document.body.appendChild(script);
 };
 
 function changeSourceAttributeOfScript(){
     var scripts = document.scripts || document.getElementsByTagName('script');
 
-    scripts[0].src = SRC_DYNAMIC_SCRIPT + '?ts=' + ( + new Date );
+    scripts[0].src = SRC_DYNAMIC_SCRIPT + '-2.js?ts=' + ( + new Date );
 };
 
 var SOURCE = '(function(){' +
     'var elm = document.getElementById("output");' +
-    'elm.innerHTML = "<p>Dynamic Script loaded. " + (new Date()).toLocaleString() + "</p>" + elm.innerHTML;' +
+    'elm.innerHTML = "<p>[##] Dynamic Inline Script. " + (new Date()).toLocaleString() + "</p>" + elm.innerHTML;' +
 '})()';
 
 function dynamicInlineScript(){
     var script = document.createElement('script');
 
-    script.appendChild(document.createTextNode(SOURCE));
+    script.appendChild(document.createTextNode(SOURCE.split('##').join('3-1')));
+    document.body.appendChild(script);
+};
+
+function dynamicInlineScript_innerHTML(){
+    var script = document.createElement('script');
+
+    script.innerHTML = SOURCE.split('##').join('3-2');
+    document.body.appendChild(script);
+};
+
+function dynamicInlineScript_innerText(){
+    var script = document.createElement('script');
+
+    script.innerText = SOURCE.split('##').join('3-3');
+    document.body.appendChild(script);
+};
+
+function dynamicInlineScript_textContent(){
+    var script = document.createElement('script');
+
+    script.textContent = SOURCE.split('##').join('3-4');
+    document.body.appendChild(script);
+};
+
+function dynamicInlineScript_text(){
+    var script = document.createElement('script');
+
+    script.text = SOURCE.split('##').join('3-5');
     document.body.appendChild(script);
 };
 
 function useInnerHTMLHack(){
     var div = document.createElement('div');
 
-    div.innerHTML = '&nbsp;<script defer="defer">' + SOURCE + '<' + '/script>';
+    div.innerHTML = '&nbsp;<script defer="defer">' + SOURCE.split('##').join('3-6') + '<' + '/script>';
     document.body.appendChild(div);
 };
 // iframe + jsonp
@@ -72,14 +100,18 @@ function useInnerHTMLHack(){
 <a href="attr-selectors.html">属性セレクタのテスト</a>
 <hr>
 <h1>動的 Script のテスト</h1>
-<p><button onclick="createScriptElement();">1. createScriptElement</button>,
-<button onclick="changeSourceAttributeOfScript();">2. changeSourceAttributeOfScript</button>,
-<button onclick="dynamicInlineScript();">3. dynamicInlineScript</button></p>
-<button onclick="useInnerHTMLHack();">4. useInnerHTMLHack</button>
+<p><input type="button" onclick="createScriptElement();" value="1. createScriptElement">,
+<input type="button" onclick="changeSourceAttributeOfScript();" value="2. changeSourceAttributeOfScript">,
+<input type="button" onclick="dynamicInlineScript();" value="3-1. dynamicInlineScript createTextNode()">,
+<input type="button" onclick="dynamicInlineScript_innerHTML();" value="3-2. dynamicInlineScript .innerHTML">,
+<input type="button" onclick="dynamicInlineScript_innerText();" value="3-3. dynamicInlineScript .innerText">,
+<input type="button" onclick="dynamicInlineScript_textContent();" value="3-4. dynamicInlineScript .textContent">,
+<input type="button" onclick="dynamicInlineScript_text();" value="3-5. dynamicInlineScript .text">,
+<input type="button" onclick="useInnerHTMLHack();" value="3-6. dynamicInlineScript hack">
 <div id="output"></div>
 <h2>Links</h2>
 <ul>
-<li><a href="https://web.archive.org/web/20040325075516/http://www.hikksworld.com/loadJSFiles/">loadJSFiles</a>
+<li><a href="https://web.archive.org/web/20040325075516/http://www.hikksworld.com/loadJSFiles/">Dynamically Loading JS Files</a>
 <li><a href="https://fdays.blogspot.com/2010/05/javascript-script.html">JavaScriptによって動的に script要素を追加する場合のブラウザごとの挙動の違い</a>
 <li><a href="https://shogo4405.hatenadiary.com/entry/20061207/1165479339">innerHTMLでscriptする</a>
 <li><a href="https://michigawi.blogspot.com/2013/02/internetexplorerjavascriptinnerhtml.html">Internet ExplorerでJavaScriptの動的実行</a>

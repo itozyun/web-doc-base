@@ -3,6 +3,7 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
         p_elmMain = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID );
 
         var removeCommentNodes  = !( p_Presto < 8 || p_Trident < 5 || p_Tasman || p_Gecko < 0.9 ),
+            noRemoveScriptTag   = p_noRemoveScriptTag,
             hasDynamicStyleBug  = p_Trident < 7,
             removalMetaTagNames = [ 'og:', 'twitter:', 'fb:' ],
             nodesToGoUnderHead  = [],
@@ -46,6 +47,11 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             break;
                         case 'SCRIPT' :
                             if( p_DOM_hasAttribute( kid, 'async' ) ) break;
+                            if( noRemoveScriptTag ){
+                                kid.textContent = kid.innerHTML = '';
+                                noRemoveScriptTag = false;
+                                break;
+                            };
                         case 'NOSCRIPT' : //'NOFRAMES' //'NOEMBED' //'NOLAYER'
                             if( p_DOM_hasAttribute( kid, 'skip-cleanup' ) ) break;
                         case '!' :
