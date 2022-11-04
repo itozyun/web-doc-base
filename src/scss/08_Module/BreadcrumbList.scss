@@ -7,8 +7,8 @@
     color   : $COLOR_Light_casual_text;
 
     a {
-        @if( $IS_LTE_GECKO09 == false ){
-            @include inline-block; /* Gecko 0.9.7 だけ崩れる */
+        @if( $IS_LTE_GECKO09 == false and $IS_Opera7x == false ){
+            @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
         }
         @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
             zoom : 1;

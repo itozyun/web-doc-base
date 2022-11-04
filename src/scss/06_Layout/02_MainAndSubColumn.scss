@@ -8,12 +8,12 @@
  *        .lS1, ls2
  *
  * 1. display:table-layout
- *    * ie8&9
+ *    * ie8+, Opera 9+, Gecko 1+, WebKit
  * 2. float-layout
  *    * 上記以外のブラウザ 
  *
 --------------------------------------------------------------------------------------*/
-$LAYOUT_BY_DISPLAY_TABLE : $IS_IE8_OR_9;
+$LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false and $IS_Opera7x == false and $UA_Opera8 == false;
 
 @if( $Option_mobileOnly == false ){
     .lW { // clearfix を同時に指定するために screen の外へ

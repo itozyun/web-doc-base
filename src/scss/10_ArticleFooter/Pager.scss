@@ -7,7 +7,7 @@
 --------------------------------------------------------------------------------------*/
 /*  ◀ | ▶
 --------------------------------------------------------------------------------------*/
-$PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
+$PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $UA_Opera70 == false;
 
 @if( $Option_blog ){
     .Pager {
