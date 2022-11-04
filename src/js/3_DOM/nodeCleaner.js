@@ -48,7 +48,7 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                         case 'SCRIPT' :
                             if( p_DOM_hasAttribute( kid, 'async' ) ) break;
                             if( noRemoveScriptTag ){
-                                kid.textContent = kid.innerHTML = '';
+                                kid.innerText = ''; // Only for Opera 7.2x
                                 noRemoveScriptTag = false;
                                 break;
                             };
