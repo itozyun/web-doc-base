@@ -13,12 +13,6 @@
     }
 
     @include media(screen) {
-        @if( $CANUSE_OVERFLOW_X_AND_Y ){
-            overflow-x : auto;
-            overflow-y : hidden;
-        } @else {
-            overflow : auto;
-        }
         @if( $UA_Modern ){
             // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
             //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
@@ -75,13 +69,21 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
-    .hscroll table {
-        @if( $Option_mobileOnly ){
-            @include media(screen) {
+    .hscroll {
+        @if( $CANUSE_OVERFLOW_X_AND_Y ){
+            overflow-x : auto;
+            overflow-y : hidden;
+        } @else {
+            overflow : auto;
+        }
+        table {
+            @if( $Option_mobileOnly ){
+                @include media(screen) {
+                    white-space : nowrap;
+                }
+            } @else {
                 white-space : nowrap;
             }
-        } @else {
-            white-space : nowrap;
         }
     }
 }

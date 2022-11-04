@@ -39,14 +39,27 @@ table {
     caption {
         @include responsive-horizontal-margin(1, 1.5em, #{$PARAGRAPH_LINE_HEIGHT_EM - $BASE_LINE_HEIGHT_EM}); // $PARAGRAPH_LINE_HEIGHT_WATCH
     }
+    thead, caption {
+        @include unbreak-after;
+    }
+    thead,               // for Firefox
+    thead td, thead th { // for Chrome
+        // https://qiita.com/orangain/items/6268b6528ab33b27f8f2
+        @if( $UA_Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    position : -webkit-sticky;
+                    position : sticky;
+                    top      : 0;
+                    z-index  : 1;
+                }
+            }
+        }
+    }
 
     tr {
         @include unbreak-inside;
     }
-    thead, caption {
-        @include unbreak-after;
-    }
-
     th, td {
         @include unbreak-box-with-long-text; /* table がカラムを割るのを防ぐ */
     }
