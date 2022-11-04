@@ -14,6 +14,17 @@
 <style>
     #output {margin : 1em; padding : 1em; border : 2px solid #ccc;}
     #output p {margin:0; line-height:1;}
+
+    iframe {
+        position   : absolute;
+        top        : -9px;
+        left       : -9px;
+        z-index    : -1;
+        width      : 10px;
+        height     : 10px;
+        visibility : hidden;
+        overflow   : hidden;
+    }
 </style>
 <script>
 window.onerror = function(a){
@@ -35,6 +46,31 @@ function changeSourceAttributeOfScript(){
     scripts[0].src = SRC_DYNAMIC_SCRIPT + '-2.js?ts=' + ( + new Date );
 };
 
+// iframe + jsonp
+document.write('<iframe name="__iframe" width="100" height="50"></iframe>');
+
+function useStaticIframeForJSONP(){
+    var contentWindow = window.frames[0];
+
+    contentWindow.document.write('<script src="' + SRC_DYNAMIC_SCRIPT + '-3-1.js?ts=' + ( + new Date ) + '"><' + '/script>');
+};
+
+/* function useStaticIframeForJSONP2(){
+    var contentWindow = window.__iframe;
+
+    contentWindow.document.write('<script src="' + SRC_DYNAMIC_SCRIPT + '-3-1.js?ts=' + ( + new Date ) + '"><' + '/script>');
+}; */
+
+function useDynamicIframeForJSONP(){
+    var iframe = document.createElement('iframe');
+
+    document.body.appendChild(iframe);
+
+    var contentWindow = iframe.contentWindow;
+
+    contentWindow.document.write('<script src="' + SRC_DYNAMIC_SCRIPT + '-3-2.js?ts=' + ( + new Date ) + '"><' + '/script>');
+};
+
 var SOURCE = '(function(){' +
     'var elm = document.getElementById("output");' +
     'elm.innerHTML = "<p>[##] Dynamic Inline Script. " + (new Date()).toLocaleString() + "</p>" + elm.innerHTML;' +
@@ -43,45 +79,44 @@ var SOURCE = '(function(){' +
 function dynamicInlineScript(){
     var script = document.createElement('script');
 
-    script.appendChild(document.createTextNode(SOURCE.split('##').join('3-1')));
+    script.appendChild(document.createTextNode(SOURCE.split('##').join('4-1')));
     document.body.appendChild(script);
 };
 
 function dynamicInlineScript_innerHTML(){
     var script = document.createElement('script');
 
-    script.innerHTML = SOURCE.split('##').join('3-2');
+    script.innerHTML = SOURCE.split('##').join('4-2');
     document.body.appendChild(script);
 };
 
 function dynamicInlineScript_innerText(){
     var script = document.createElement('script');
 
-    script.innerText = SOURCE.split('##').join('3-3');
+    script.innerText = SOURCE.split('##').join('4-3');
     document.body.appendChild(script);
 };
 
 function dynamicInlineScript_textContent(){
     var script = document.createElement('script');
 
-    script.textContent = SOURCE.split('##').join('3-4');
+    script.textContent = SOURCE.split('##').join('4-4');
     document.body.appendChild(script);
 };
 
 function dynamicInlineScript_text(){
     var script = document.createElement('script');
 
-    script.text = SOURCE.split('##').join('3-5');
+    script.text = SOURCE.split('##').join('4-5');
     document.body.appendChild(script);
 };
 
 function useInnerHTMLHack(){
     var div = document.createElement('div');
 
-    div.innerHTML = '&nbsp;<script defer="defer">' + SOURCE.split('##').join('3-6') + '<' + '/script>';
+    div.innerHTML = '&nbsp;<script defer="defer">' + SOURCE.split('##').join('4-6') + '<' + '/script>';
     document.body.appendChild(div);
 };
-// iframe + jsonp
 </script>
 </head>
 <body size="1">
@@ -101,13 +136,15 @@ function useInnerHTMLHack(){
 <hr>
 <h1>動的 Script のテスト</h1>
 <p><input type="button" onclick="createScriptElement();" value="1. createScriptElement">,
-<input type="button" onclick="changeSourceAttributeOfScript();" value="2. changeSourceAttributeOfScript">,
-<input type="button" onclick="dynamicInlineScript();" value="3-1. dynamicInlineScript createTextNode()">,
-<input type="button" onclick="dynamicInlineScript_innerHTML();" value="3-2. dynamicInlineScript .innerHTML">,
-<input type="button" onclick="dynamicInlineScript_innerText();" value="3-3. dynamicInlineScript .innerText">,
-<input type="button" onclick="dynamicInlineScript_textContent();" value="3-4. dynamicInlineScript .textContent">,
-<input type="button" onclick="dynamicInlineScript_text();" value="3-5. dynamicInlineScript .text">,
-<input type="button" onclick="useInnerHTMLHack();" value="3-6. dynamicInlineScript hack">
+<input type="button" onclick="changeSourceAttributeOfScript();" value="2. changeSourceAttributeOfScript">,<br>
+<input type="button" onclick="useStaticIframeForJSONP();" value="3-1. Static iframe + dynamic script">,
+<input type="button" onclick="useDynamicIframeForJSONP();" value="3-2. Dynamic iframe + dynamic script">,<br>
+<input type="button" onclick="dynamicInlineScript();" value="4-1. dynamicInlineScript createTextNode()">,
+<input type="button" onclick="dynamicInlineScript_innerHTML();" value="4-2. dynamicInlineScript .innerHTML">,
+<input type="button" onclick="dynamicInlineScript_innerText();" value="4-3. dynamicInlineScript .innerText">,
+<input type="button" onclick="dynamicInlineScript_textContent();" value="4-4. dynamicInlineScript .textContent">,
+<input type="button" onclick="dynamicInlineScript_text();" value="4-5. dynamicInlineScript .text">,
+<input type="button" onclick="useInnerHTMLHack();" value="4-6. dynamicInlineScript hack">
 <div id="output"></div>
 <h2>Links</h2>
 <ul>
