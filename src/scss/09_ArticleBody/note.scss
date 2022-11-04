@@ -18,48 +18,44 @@
     .box img, .box iframe {
         margin-right : 1em;
     }
-}
-dl.note dd {
-    margin-left : 1em;
-}
+
+    @at-root dl#{&} dd {
+        margin-left : 1em;
+    }
 
 /*  Tablet, Phablet, Phone, Watch
 --------------------------------------------------------------------------------------*/
-.note {
-    blockquote p,
-    blockquote ul,
-    blockquote ol,
-    blockquote dl {
-        @include media(tablet_print) {
-            & {
-                margin-right : $TABLET_HORIZONTAL_MARGIN;
+    blockquote {
+        p, ul, ol, dl {
+            @include media(tablet_print) {
+                & {
+                    margin-right : $TABLET_HORIZONTAL_MARGIN;
+                }
             }
-        }
-    
-        @include media(phablet) {
-            & {
-                margin-right : $PHABLET_HORIZONTAL_MARGIN;
+
+            @include media(phablet) {
+                & {
+                    margin-right : $PHABLET_HORIZONTAL_MARGIN;
+                }
             }
-        }
-    
-        @include media(phone) {
-            & {
-                margin-right : $PHONE_HORIZONTAL_MARGIN;
+
+            @include media(phone) {
+                & {
+                    margin-right : $PHONE_HORIZONTAL_MARGIN;
+                }
             }
-        }
-    
-        @include media(watch) {
-            & {
-                margin-right : 0;
+
+            @include media(watch) {
+                & {
+                    margin-right : 0;
+                }
             }
         }
     }
-}
 
 /*  WSXGA. print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_landscapePrint) {
-    .note {
+    @include media(WSXGA_landscapePrint) {
         @include column-span-all;
     }
 }

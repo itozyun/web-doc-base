@@ -1,73 +1,60 @@
 /*
  * http://webcommu.net/phone-table-scroll/
  */
-.hscroll {
-    margin : 1em 0;
-
-    @if( $UA_IE5 or $UA_IE55 ){
-        width : 100%;
-    }
-
-    li &, dl &, tr &, .note & {
-        margin-top : 0;
-    }
-
+ .hscroll {
     @include media(screen) {
+        margin : 1em 0;
+
+        @if( $UA_IE5 or $UA_IE55 ){
+            width : 100%;
+        }
+
         @if( $UA_Modern ){
             // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
             //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
             -webkit-overflow-scrolling : touch;
-        }
-    }
-}
 
-@if( $UA_Modern ){
-    .hscroll::-webkit-scrollbar {
-        height : 5px;
-    }
-    .hscroll::-webkit-scrollbar-track {
-        background : #F1F1F1;
-    }
-    .hscroll::-webkit-scrollbar-thumb {
-        background : #BCBCBC;
-    }
-}
-
-    .hscroll table {
-        margin-bottom : 0.5em;
-        @if( $UA_IE5 or $UA_IE55 ){
-            /* table-layout : auto; */
+            &::-webkit-scrollbar {
+                height : 5px;
+            }
+            &::-webkit-scrollbar-track {
+                background : #F1F1F1;
+            }
+            &::-webkit-scrollbar-thumb {
+                background : #BCBCBC;
+            }
         }
-    }
-    .hscroll pre {
-        margin      : 0 0 0.5em;
-        @include media(screen) {
+
+        li &, dl &, tr &, .note & {
+            margin-top : 0;
+        }
+        table {
+            margin-bottom : 0.5em;
+        }
+        pre {
+            margin      : 0 0 0.5em;
             overflow    : auto;
             white-space : pre;
+            @if( $UA_IE5 ){
+                code, samp { width : auto; }
+            }
         }
-    }
-    @if( $UA_IE5 ){
-        .hscroll pre code,
-        .hscroll pre samp { width : auto; }
     }
 
 /*  WSXGA. print
 --------------------------------------------------------------------------------------*/
-@include media(WSXGA_landscapePrint) {
-    .hscroll {
+    @include media(WSXGA_landscapePrint) {
         @include column-span-all;
     }
-}
-@include media(WSXGA) {
-    .hscroll > *, .hscroll table {
-        margin : 2em auto;
+    @include media(WSXGA) {
+        & > *, & table {
+            margin : 2em auto;
+        }
     }
-}
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
-@include media(tablet) {
-    .hscroll {
+    @include media(tablet) {
         @if( $CANUSE_OVERFLOW_X_AND_Y ){
             overflow-x : auto;
             overflow-y : hidden;
@@ -83,17 +70,5 @@
                 white-space : nowrap;
             }
         }
-    }
-}
-
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .hscroll table {
-        width  : 100%;
-        margin : 0;
-    }
-    .hscroll pre {
-        margin : 0;
     }
 }
