@@ -1,7 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-p_canUseDynamicExternalScript = !( p_Presto < 7.2 || ua.conpare( p_engineVersion, '0.9.2' ) < 0 );
+p_canUseDynamicExternalScript = !( p_Presto < 7.2 || ua.conpare( p_engineVersion, '0.9' ) <= 0 );
 
 /** @param {string} url */
 p_loadExternalScript = function( url ){
