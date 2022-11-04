@@ -1,6 +1,16 @@
 @if( $Option_mobileOnly == false ){
     @if( $UA_Modern ){
         @include media(pc) {
+            @supports (position:sticky) {
+                #lB .lW {
+                    overflow : visible; // for Chrome
+                }
+                #jsSide > :not(#jsSidebarFixer) {
+                    position : sticky;
+                    top      : 0;
+                }
+            }
+
             #jsSidebarFixer {
                 /* http://blog.webcreativepark.net/2012/10/19-161432.html */
                 -webkit-backface-visibility : hidden;
