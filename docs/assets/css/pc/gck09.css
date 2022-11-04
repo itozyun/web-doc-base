@@ -1,8 +1,14 @@
 @charset "UTF-8";
-small,
-sub,
-sup {
-  font-size: 75%
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 *,
 [type=submit]:focus {
@@ -26,9 +32,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .ADesc,
@@ -42,15 +48,11 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
@@ -61,6 +63,12 @@ tr ul {
 tbody th {
   background: #e7d182
 }
+blockquote tbody th,
+thead td,
+thead th {
+  background: #8a7322;
+  color: #fdeeb7
+}
 .Magazine-date,
 .aa {
   font-family: monospace
@@ -69,30 +77,14 @@ blockquote,
 pre {
   padding: 1em
 }
-.links,
-pre {
-  white-space: -moz-pre-wrap
-}
-.tl tbody th a:focus,
-.tl thead td a:focus,
-.tl thead th a:focus,
-a:focus {
-  background-color: #fffd93!important
-}
-.tl td,
-.tl th {
-  vertical-align: top
-}
 #jsSide,
 #lH .lSi,
 .AAuthor,
 .Comment p,
 .Cover,
 .Cover-img,
-.Magazine-item,
 .Magazine-main,
 .Magazine-snippet,
-.Pager,
 .RichLink a,
 .box,
 .commonForm-pair,
@@ -104,6 +96,16 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.links,
+pre {
+  white-space: -moz-pre-wrap
+}
+.tl tbody th a:focus,
+.tl thead td a:focus,
+.tl thead th a:focus,
+a:focus {
+  background-color: #fffd93!important
 }
 .Cover img,
 .caption,
@@ -124,7 +126,10 @@ var {
 }
 *,
 blockquote :link img,
-blockquote :visited img {
+blockquote :visited img,
+blockquote tbody th,
+hr,
+table {
   border-color: #e7d182
 }
 a:focus img {
@@ -154,13 +159,22 @@ ins {
   background: #06284e;
   color: #fdeeb7
 }
+html {
+  font-size: 100%
+}
+small,
+sub,
+sup {
+  font-size: 75%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   font-weight: 700;
   margin-top: .7em
-}
-blockquote,
-q {
-  quotes: none
 }
 sub,
 sup {
@@ -174,10 +188,19 @@ input,
 input.btn {
   line-height: 1
 }
+h4,
+h5,
+h6,
 input,
 textarea {
-  font-size: 1em;
-  margin: 0
+  font-size: 1em
+}
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
 }
 sup {
   top: -.5em
@@ -203,21 +226,11 @@ strong,
 var {
   font-style: normal
 }
-.hscroll,
 pre {
   margin: 1em 0
 }
 del {
   text-decoration: line-through
-}
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-li .box,
-tr .box {
-  margin: 0
 }
 .links,
 .mspacer,
@@ -239,6 +252,7 @@ li p,
 tr p {
   line-height: 1.2
 }
+.Pager-top,
 .c,
 input[type=submit] {
   text-align: center
@@ -258,20 +272,6 @@ textarea {
 .tl,
 .tl th {
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 0 .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #fffd93;
@@ -329,6 +329,11 @@ th {
 h2 {
   font-weight: 700
 }
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 .8em
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #06284e;
@@ -379,9 +384,6 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover a,
-.Cover img,
-.Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
 .RichLink b,
@@ -390,7 +392,6 @@ a iframe,
 a img {
   display: block
 }
-.Cover h2,
 .Cover-meta span,
 .RichLink-meta span,
 .btn,
@@ -413,12 +414,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -469,7 +468,6 @@ h2 {
 }
 hr {
   height: 0;
-  border-color: #e7d182;
   margin: 2em 1em
 }
 tr hr {
@@ -495,9 +493,7 @@ thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #8a7322;
-  border-color: #e7d182 #937c2c;
-  color: #fdeeb7
+  border-color: #e7d182 #937c2c
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -528,21 +524,10 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-.Magazine-main,
-blockquote h3,
-blockquote table,
-kbd {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
   border-color: #e7d182 #1d3953
-}
-blockquote tbody th {
-  background: #8a7322;
-  border-color: #e7d182;
-  color: #fdeeb7
 }
 blockquote td {
   border-color: #e7d182 #e7d182 #8a7322
@@ -575,6 +560,7 @@ tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -594,8 +580,6 @@ strong {
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
-.Magazine-item:after,
-.Magazine-main:after,
 .Magazine-snippet:after,
 .RichLink a:after,
 .box:after,
@@ -713,8 +697,12 @@ input.btn {
   background: #c47222;
   color: #e6d6a9
 }
-#lF .lM .mspacer,
-.Cover p {
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -812,12 +800,7 @@ input.btn {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.Cover p,
-.Cover-meta {
-  line-height: 1.4
-}
-.BreadcrumbList,
-.Magazine-item {
+.BreadcrumbList {
   padding: 1em 0
 }
 .Comment h3,
@@ -854,9 +837,11 @@ input.btn {
 }
 .Cover img {
   margin: 0;
+  display: block;
   width: 100%
 }
 .Cover h2 {
+  display: -moz-inline-box;
   background: #0d5bb5;
   border: 1px solid #0d5bb5;
   color: #fdeeb7;
@@ -879,7 +864,16 @@ pre var {
   font-size: 2em
 }
 .Cover a {
+  display: block;
   padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 #lF .Label a,
 .lS .Label a {
@@ -892,9 +886,13 @@ pre var {
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0;
+  display: table
+}
 .Magazine-date {
-  display: block;
-  float: left;
+  padding-right: 1.5em;
+  display: table-cell;
   line-height: 1
 }
 .Magazine-dd,
@@ -903,9 +901,9 @@ pre var {
   line-height: .9
 }
 .Magazine-main {
-  margin-left: 5.5em;
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em
+  padding-left: 1.5em;
+  display: table-cell
 }
 .aa,
 .prettyprint,
@@ -920,15 +918,13 @@ kbd {
 .Magazine-label {
   margin: .5em 0 .8em
 }
-.Magazine-snippet img,
-.box .caption,
-.box iframe,
-.box img {
+.Magazine-snippet img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: .4em 1em 1em 0
 }
 .Magazine-snippet p {
-  line-height: 1.4em
+  line-height: 1.4em;
+  margin: 0
 }
 .Magazine .btn {
   position: absolute;
@@ -1136,6 +1132,12 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 0
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1232,29 +1234,22 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: -moz-inline-box;
   vertical-align: text-top;
   border-color: transparent #8a7322
+}
+.Pager :focus i {
+  border-color: transparent #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1263,9 +1258,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1385,10 +1377,6 @@ ol.linenums {
   color: #06284e
 }
 @media screen {
-  .hscroll,
-  .hscroll pre {
-    overflow: auto
-  }
   a img {
     border-width: 2px
   }
@@ -1466,7 +1454,21 @@ ol.linenums {
   .aa var {
     color: #00ac06
   }
+  .hscroll {
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
+  }
   .hscroll pre {
+    margin: 0 0 .5em;
+    overflow: auto;
     white-space: pre
   }
   blockquote .tl tr code,
@@ -1513,8 +1515,8 @@ ol.linenums {
 }
 @media print {
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
   tbody th,
   tbody th code,
   tbody th var,
@@ -1523,6 +1525,10 @@ ol.linenums {
   thead th,
   thead var {
     border-color: #666
+  }
+  *,
+  table {
+    border-color: #ccc
   }
   .lS1,
   .lS2 {
@@ -1611,10 +1617,6 @@ ol.linenums {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -1639,9 +1641,6 @@ ol.linenums {
   body {
     background: #fff;
     color: #000
-  }
-  * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1756,12 +1755,6 @@ ol.linenums {
   .Cover h2 {
     margin-top: 1em
   }
-  .Magazine-item {
-    padding: 1em 0 1em 1em
-  }
-  .Magazine-item:first-child {
-    padding: 1em 1em 1em 0
-  }
   #lH {
     font-size: .875em
   }
@@ -1804,12 +1797,8 @@ ol.linenums {
   .box img {
     margin: 0 1em 1em 3%
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

@@ -48,9 +48,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .Comment div,
@@ -65,15 +65,11 @@ dd,
 li {
   margin-bottom: .3em
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
@@ -97,6 +93,12 @@ th {
 [type=submit],
 tbody th {
   background: #e7d182
+}
+blockquote tbody th,
+thead td,
+thead th {
+  background: #8a7322;
+  color: #fdeeb7
 }
 .lM1,
 .lM2,
@@ -146,8 +148,9 @@ var {
 pre {
   white-space: pre-wrap
 }
-.tl td,
-.tl th {
+.tl th,
+tbody th,
+td {
   vertical-align: top
 }
 body,
@@ -164,7 +167,10 @@ var {
 *,
 blockquote .tl tbody td:after,
 blockquote :link img,
-blockquote :visited img {
+blockquote :visited img,
+blockquote tbody th,
+hr,
+table {
   border-color: #e7d182
 }
 .AHead-labels :active,
@@ -260,6 +266,14 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
+html {
+  font-size: 100%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -278,6 +292,13 @@ q {
 }
 small {
   font-size: 75%
+}
+h4,
+h5,
+h6,
+input,
+textarea {
+  font-size: 1em
 }
 img {
   height: auto
@@ -315,7 +336,6 @@ del {
   text-decoration: line-through
 }
 input {
-  font-size: 1em;
   box-sizing: content-box;
   height: 1em
 }
@@ -326,27 +346,12 @@ tr p {
   line-height: 1.2
 }
 textarea {
-  font-size: 1em;
   overflow: auto;
   margin: 0
 }
 * {
   border-style: solid;
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 1.5% .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #062241;
@@ -414,6 +419,11 @@ a:focus * {
 .ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 1.5% .8em
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -483,12 +493,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -550,7 +558,6 @@ h2:after {
 }
 hr {
   height: 0;
-  border-color: #e7d182;
   margin: 2em 6%
 }
 #lB .lS,
@@ -585,9 +592,7 @@ thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #8a7322;
-  border-color: #e7d182 #937c2c;
-  color: #fdeeb7
+  border-color: #e7d182 #937c2c
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -611,19 +616,10 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-blockquote h3,
-blockquote table {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
   border-color: #e7d182 #1d3953
-}
-blockquote tbody th {
-  background: #8a7322;
-  border-color: #e7d182;
-  color: #fdeeb7
 }
 blockquote td {
   border-color: #e7d182 #e7d182 #8a7322
@@ -651,10 +647,12 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .c {
   text-align: center
 }
@@ -940,6 +938,10 @@ a:focus .ico-pen:after {
   border-width: .35em .2em 0;
   border-color: #8a7322 transparent
 }
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -997,8 +999,7 @@ a:focus .ico-pen:after {
   margin: 1em .5em!important
 }
 .AAuthor,
-.ADesc,
-.hscroll {
+.ADesc {
   margin: 1em 0
 }
 .AAuthor p,
@@ -1268,7 +1269,6 @@ pre var {
   position: absolute;
   top: 0
 }
-.Pager,
 .links a,
 .tl td,
 kbd:hover {
@@ -1447,8 +1447,11 @@ tr .box > p:first-of-type {
   float: left;
   margin: 0 1em 1em 3%
 }
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden
+}
 kbd {
-  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1541,6 +1544,7 @@ div .caption img {
 .tl tbody td:before {
   text-indent: -1em;
   position: absolute;
+  border-style: solid;
   content: " ";
   display: block
 }
@@ -1578,28 +1582,22 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: inline-block;
   border-color: transparent #8a7322
+}
+.Pager :active i,
+.Pager :focus i {
+  border-color: transparent #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1608,10 +1606,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :active i,
-.Pager :focus i {
-  border-color: transparent #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1795,10 +1789,19 @@ ol.linenums {
     background: #e7d182
   }
   .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
   }
   .hscroll pre {
+    margin: 0 0 .5em;
     overflow: auto;
     white-space: pre
   }
@@ -1880,6 +1883,77 @@ ol.linenums {
   thead {
     page-break-after: avoid
   }
+  tbody th,
+  thead td,
+  thead th {
+    background: #ccc;
+    border-color: #666
+  }
+  blockquote thead td,
+  blockquote thead th,
+  thead td,
+  thead th {
+    padding: .5em;
+    border-width: 0 0 1px
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
+  }
+  blockquote,
+  table {
+    margin: 1em 0
+  }
+  code .typ,
+  th {
+    font-weight: 700
+  }
+  .LinkList :link,
+  .RichLink-sep :link,
+  .ribbon :link,
+  :link,
+  blockquote tbody th :link,
+  blockquote thead th :link,
+  thead :link {
+    color: #006
+  }
+  .AHead-labels,
+  .LinkList :visited,
+  .RichLink-sep :visited,
+  code .pln,
+  thead td,
+  thead th {
+    color: #000
+  }
+  p {
+    line-height: 1.5
+  }
+  .ADesc,
+  .ribbon a,
+  a {
+    color: #666
+  }
+  .ribbon :visited,
+  :visited,
+  blockquote tbody th :visited,
+  blockquote thead th :visited,
+  thead :visited {
+    color: #606
+  }
+  blockquote pre {
+    margin: 1em
+  }
+  table {
+    width: 100%
+  }
+  td {
+    border-color: #fff #fff #ccc
+  }
+  tfoot td,
+  tfoot th {
+    border-color: #666 #fff
+  }
   .ico-author:after,
   .ico-author:before,
   .ico-chain:after,
@@ -1907,91 +1981,17 @@ ol.linenums {
   .ribbon .ico-sylinder:after,
   .ribbon .ico-sylinder:before,
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
-  tbody th,
   tbody th code,
   tbody th var,
   thead code,
-  thead td,
-  thead th,
   thead var {
     border-color: #666
   }
-  blockquote,
-  table {
-    margin: 1em 0
-  }
-  code .typ,
-  th {
-    font-weight: 700
-  }
-  .LinkList :link,
-  .RichLink-sep :link,
-  .ribbon :link,
-  :link,
-  blockquote tbody th :link,
-  blockquote thead th :link,
-  thead :link {
-    color: #006
-  }
-  .AHead-labels,
-  .LinkList :visited,
-  .RichLink-sep :visited,
-  code .pln {
-    color: #000
-  }
-  p {
-    line-height: 1.5
-  }
-  .ADesc,
-  .ribbon a,
-  a {
-    color: #666
-  }
-  .ribbon :visited,
-  :visited,
-  blockquote tbody th :visited,
-  blockquote thead th :visited,
-  thead :visited {
-    color: #606
-  }
-  blockquote pre {
-    margin: 1em
-  }
-  table {
-    width: 100%
-  }
-  thead td,
-  thead th {
-    background: #ccc;
-    color: #000;
-    padding: .5em;
-    border-width: 0 0 1px
-  }
-  tbody th {
-    background: #ccc
-  }
-  td {
-    border-color: #fff #fff #ccc
-  }
-  tfoot td,
-  tfoot th {
-    border-color: #666 #fff
-  }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
+  blockquote tbody th,
   blockquote thead td,
   blockquote thead th {
-    background: #ccc;
-    border-color: #000;
-    color: #000;
-    padding: .5em;
-    border-width: 0 0 1px
-  }
-  blockquote tbody th {
     background: #ccc;
     border-color: #000;
     color: #000
@@ -2012,10 +2012,6 @@ ol.linenums {
   .AHead,
   .BreadcrumbList {
     color: #666!important
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2112,12 +2108,8 @@ ol.linenums {
     font-size: .875em;
     color: #006
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

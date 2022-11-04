@@ -61,6 +61,7 @@ blockquote .tl tfoot th,
 blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
+blockquote table,
 h5,
 h6 {
   border-color: #8a7322
@@ -73,15 +74,11 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
@@ -90,9 +87,6 @@ tr ul {
 }
 .Magazine-mm,
 .Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
 .commonForm,
 a iframe,
 a img,
@@ -100,6 +94,7 @@ h2:after {
   display: block
 }
 .Magazine-label,
+.Magazine-main,
 .RichLink b,
 .caption,
 .links,
@@ -123,9 +118,13 @@ input {
 th {
   text-align: left
 }
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
+}
 .Cover-img,
 .Magazine-main,
-.Pager,
 .Search,
 .links a,
 .tl td,
@@ -146,8 +145,6 @@ pre {
 .AAuthor,
 .Comment p,
 .Cover,
-.Magazine-item,
-.Magazine-main,
 .Magazine-snippet,
 .RichLink a,
 .Search .btn,
@@ -171,9 +168,12 @@ tbody :hover th {
 pre {
   white-space: pre-wrap
 }
+.Magazine-date,
+.Magazine-main,
 .btn,
-.tl td,
-.tl th {
+.tl th,
+tbody th,
+td {
   vertical-align: top
 }
 .Cover img,
@@ -226,6 +226,8 @@ blockquote :visited img {
 .ribbon :visited img {
   border-color: #062241
 }
+:target td,
+:target th,
 a:active img,
 a:focus img {
   border-color: #0d5bb5!important
@@ -274,6 +276,14 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
+html {
+  font-size: 100%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -293,7 +303,14 @@ q {
 small {
   font-size: 75%
 }
-img:not([src*=".svg"]) {
+h4,
+h5,
+h6,
+input,
+textarea {
+  font-size: 1em
+}
+img:not([src$=".svg"]):not([src*=".svg?"]) {
   height: auto
 }
 cite,
@@ -307,7 +324,6 @@ strong,
 var {
   font-style: normal
 }
-.hscroll,
 pre {
   margin: 1em 0
 }
@@ -343,7 +359,6 @@ ul {
   margin: 1em
 }
 input {
-  font-size: 1em;
   box-sizing: content-box;
   height: 1em
 }
@@ -354,26 +369,11 @@ tr p {
   line-height: 1.2
 }
 textarea {
-  font-size: 1em;
   overflow: auto
 }
 * {
   border-style: solid;
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 0 .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #062241;
@@ -449,6 +449,15 @@ a:focus * {
 .wn:after {
   color: #c00!important
 }
+td:target,
+th:target {
+  border-color: inherit!important
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 .8em
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #06284e;
@@ -517,12 +526,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -596,7 +603,7 @@ table {
   border-collapse: collapse;
   empty-cells: show;
   border-spacing: 0;
-  border-color: #8a7322
+  border-color: #e7d182
 }
 caption {
   margin: 1.5em 1em .7em
@@ -644,12 +651,6 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-.Magazine-main,
-blockquote h3,
-blockquote table,
-kbd {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
@@ -686,10 +687,12 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .btn,
 .c {
   text-align: center
@@ -1037,6 +1040,11 @@ a:focus .ico-pen:after {
   background: #c47222;
   color: #e6d6a9
 }
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
 .ADesc,
 .ribbon .AHead,
 .ribbon .BreadcrumbList,
@@ -1148,10 +1156,6 @@ kbd {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive th {
-  word-break: normal;
-  word-wrap: normal
-}
 .BlogArchive a {
   border-width: 0 0 1px;
   margin: 0 0 1em
@@ -1259,12 +1263,13 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-item {
-  padding: 1em 0
+  padding: 1em 0;
+  display: table
 }
 .Magazine-date {
-  display: block;
-  float: left;
+  padding-right: 1.5em;
   font-weight: 700;
+  display: table-cell;
   line-height: 1
 }
 .Magazine-dd,
@@ -1273,9 +1278,9 @@ pre var {
   line-height: .9
 }
 .Magazine-main {
-  margin-left: 5.5em;
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em
+  padding-left: 1.5em;
+  display: table-cell
 }
 .aa,
 blockquote,
@@ -1290,15 +1295,13 @@ kbd {
 .Magazine-label {
   margin: .5em 0 .8em
 }
-.Magazine-snippet img,
-.box .caption,
-.box iframe,
-.box img {
+.Magazine-snippet img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: .4em 1em 1em 0
 }
 .Magazine-snippet p {
-  line-height: 1.4em
+  line-height: 1.4em;
+  margin: 0
 }
 .Magazine .btn {
   position: absolute;
@@ -1344,11 +1347,13 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
+  display: block;
   font-weight: 400;
   font-size: .875em;
   padding: 0 0 1.143em
 }
 .Search {
+  display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
   width: auto
@@ -1358,6 +1363,7 @@ kbd {
   top: 0
 }
 .Search-txt {
+  display: block;
   width: 100%;
   left: -22px
 }
@@ -1522,6 +1528,12 @@ tr .box > p:first-of-type {
 .box ul {
   list-style-position: inside
 }
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 0
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1613,6 +1625,7 @@ div .caption img {
 .tl tbody td:before {
   text-indent: -1em;
   position: absolute;
+  border-style: solid;
   content: " ";
   display: block
 }
@@ -1652,24 +1665,14 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: inline-block;
@@ -1881,10 +1884,19 @@ div .box .jsCapLarge {
     background: #e7d182
   }
   .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
   }
   .hscroll pre {
+    margin: 0 0 .5em;
     overflow: auto;
     white-space: pre
   }
@@ -2119,6 +2131,10 @@ screen and (max-width:950px) {
     display: block;
     margin: 0 0 .5em
   }
+  .hscroll {
+    overflow-x: auto;
+    overflow-y: hidden
+  }
   .hscroll table {
     white-space: nowrap
   }
@@ -2223,11 +2239,13 @@ screen and (max-width:950px) {
     border-color: #06284e
   }
   .Magazine-item {
-    padding: 1em 0 0
+    padding: 1em 0 0;
+    display: block
   }
   .Magazine-date {
-    float: none;
-    font-family: inherit
+    font-family: inherit;
+    width: auto;
+    display: block
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2242,10 +2260,9 @@ screen and (max-width:950px) {
     display: inline
   }
   .Magazine-main {
-    margin: 0;
-    float: none;
     border-width: 0 0 .5em;
-    padding: 0 0 1em
+    padding: 0 0 1em;
+    display: block
   }
   .Magazine h3,
   .RichLink h3 {
@@ -2612,7 +2629,6 @@ screen and (max-width:950px) {
   .Magazine,
   .Magazine-main,
   blockquote h3,
-  blockquote table,
   h4,
   kbd {
     border-color: #fed33b
@@ -2637,9 +2653,9 @@ screen and (max-width:950px) {
   blockquote .tl thead td,
   blockquote .tl thead th,
   blockquote blockquote,
+  blockquote table,
   h5,
-  h6,
-  table {
+  h6 {
     border-color: #ffeba1
   }
   .ABody h1,
@@ -2655,7 +2671,8 @@ screen and (max-width:950px) {
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGZiZjgiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
   }
   table {
-    width: 100%
+    width: 100%;
+    border-color: #062241
   }
   caption {
     margin: 1.5em 0 .7em
@@ -2856,56 +2873,6 @@ screen and (max-width:950px) {
   }
 }
 @media print {
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
-  }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .ribbon .ico-author:after,
-  .ribbon .ico-author:before,
-  .ribbon .ico-chain:after,
-  .ribbon .ico-chain:before,
-  .ribbon .ico-clock:after,
-  .ribbon .ico-clock:before,
-  .ribbon .ico-comment:before,
-  .ribbon .ico-flag:after,
-  .ribbon .ico-flag:before,
-  .ribbon .ico-label:before,
-  .ribbon .ico-pen:before,
-  .ribbon .ico-sylinder:after,
-  .ribbon .ico-sylinder:before,
-  blockquote code,
-  blockquote var,
-  table,
-  tbody th,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead td,
-  thead th,
-  thead var {
-    border-color: #666
-  }
   .LinkList a,
   .Magazine-item,
   .RichLink-sep a,
@@ -2926,6 +2893,36 @@ screen and (max-width:950px) {
   li,
   tr {
     page-break-inside: avoid
+  }
+  .h1,
+  caption,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  thead {
+    page-break-after: avoid
+  }
+  tbody th,
+  thead td,
+  thead th {
+    background: #ccc;
+    border-color: #666
+  }
+  blockquote thead td,
+  blockquote thead th,
+  thead td,
+  thead th {
+    padding: .5em;
+    border-width: 0 0 1px
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   blockquote,
   table {
@@ -2963,15 +2960,11 @@ screen and (max-width:950px) {
   table {
     width: 100%
   }
+  .AHead-labels,
+  code .pln,
   thead td,
   thead th {
-    background: #ccc;
-    color: #000;
-    padding: .5em;
-    border-width: 0 0 1px
-  }
-  tbody th {
-    background: #ccc
+    color: #000
   }
   td {
     border-color: #fff #fff #ccc
@@ -2980,19 +2973,44 @@ screen and (max-width:950px) {
   tfoot th {
     border-color: #666 #fff
   }
+  .ico-author:after,
+  .ico-author:before,
+  .ico-chain:after,
+  .ico-chain:before,
+  .ico-clock:after,
+  .ico-clock:before,
+  .ico-comment:before,
+  .ico-flag:after,
+  .ico-flag:before,
+  .ico-label:before,
+  .ico-pen:before,
+  .ico-sylinder:after,
+  .ico-sylinder:before,
+  .ribbon .ico-author:after,
+  .ribbon .ico-author:before,
+  .ribbon .ico-chain:after,
+  .ribbon .ico-chain:before,
+  .ribbon .ico-clock:after,
+  .ribbon .ico-clock:before,
+  .ribbon .ico-comment:before,
+  .ribbon .ico-flag:after,
+  .ribbon .ico-flag:before,
+  .ribbon .ico-label:before,
+  .ribbon .ico-pen:before,
+  .ribbon .ico-sylinder:after,
+  .ribbon .ico-sylinder:before,
+  blockquote code,
   blockquote table,
-  kbd {
-    border-color: #000
+  blockquote var,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead var {
+    border-color: #666
   }
+  blockquote tbody th,
   blockquote thead td,
   blockquote thead th {
-    background: #ccc;
-    border-color: #000;
-    color: #000;
-    padding: .5em;
-    border-width: 0 0 1px
-  }
-  blockquote tbody th {
     background: #ccc;
     border-color: #000;
     color: #000
@@ -3010,9 +3028,9 @@ screen and (max-width:950px) {
     background: #fff;
     color: #000
   }
-  *,
-  .ribbon * {
-    border-color: #ccc
+  .AHead,
+  .BreadcrumbList {
+    color: #666!important
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -3057,16 +3075,9 @@ screen and (max-width:950px) {
   .lMz .AHead {
     padding: 0 3%
   }
-  .AHead {
-    color: #666!important
-  }
   .AHead h1 {
     color: #000!important;
     padding: 1em 0
-  }
-  .AHead-labels,
-  code .pln {
-    color: #000
   }
   .AHead-labels i {
     display: inline-block
@@ -3092,17 +3103,10 @@ screen and (max-width:950px) {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0;
-    color: #666!important
+    padding: .5em 0
   }
   .Cover h2 {
     margin-top: 1em
-  }
-  .Magazine-item {
-    padding: 1em 0 1em 1em
-  }
-  .Magazine-item:first-child {
-    padding: 1em 1em 1em 0
   }
   #lH {
     font-size: .875em
@@ -3126,12 +3130,8 @@ screen and (max-width:950px) {
     font-size: .875em;
     color: #006
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

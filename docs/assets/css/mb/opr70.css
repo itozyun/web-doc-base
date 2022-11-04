@@ -1,9 +1,4 @@
 @charset "UTF-8";
-small,
-sub,
-sup {
-  font-size: 75%
-}
 .SocialBtns .hb:focus,
 .SocialBtns .ln:focus,
 .SocialBtns .pk:focus,
@@ -20,9 +15,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .Comment div,
@@ -33,20 +28,28 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 blockquote tbody th,
 thead td,
@@ -60,16 +63,30 @@ thead th {
 .lS2 {
   width: 48.5%
 }
-.links,
-pre {
-  white-space: -o-pre-wrap
+.Header h1,
+body,
+input.btn {
+  padding: 0
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
+.hscroll,
+textarea {
+  overflow: auto
 }
 .Cover-img,
-.Pager,
 kbd:hover,
 sub,
 sup {
   position: relative
+}
+.links,
+pre {
+  white-space: -o-pre-wrap
 }
 body,
 input,
@@ -88,6 +105,7 @@ blockquote :visited img,
 blockquote tbody th,
 hr,
 input,
+table,
 textarea {
   border-color: #e7d182
 }
@@ -168,6 +186,23 @@ tbody :hover th {
   background: #08366b;
   color: #fed33b
 }
+html {
+  font-size: 100%
+}
+small,
+sub,
+sup {
+  font-size: 75%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
+body {
+  background: #062241;
+  color: #06284e
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -181,25 +216,27 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
-.AHead-labels a,
 .Cover h2,
-.SocialBtns *,
-.Subscribe a,
+.Cover-meta span,
+.RichLink-meta span,
 .btn,
-.tl td,
-.tl th {
+.links a,
+.tl th,
+kbd,
+tbody th,
+td {
   vertical-align: top
 }
+h4,
+h5,
+h6,
 input,
 textarea {
-  font-size: 1em;
-  margin: 0
+  font-size: 1em
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
+.btn,
+p {
+  line-height: 1.9
 }
 sup {
   top: -.5em
@@ -229,34 +266,14 @@ pre {
   margin: 1em 0;
   padding: 1em 3%
 }
-.Header h1,
-body,
-input.btn {
-  padding: 0
-}
 del {
   text-decoration: line-through
 }
-.Cover a,
-.Cover-meta,
-.Pager span,
-.RichLink b,
-.caption,
 .commonForm,
-.jsPicaLarge,
 a iframe,
 a img,
 br {
   display: block
-}
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-li .box,
-tr .box {
-  margin: 0
 }
 dd,
 li {
@@ -282,34 +299,11 @@ var {
   margin: 0 .1em
 }
 textarea {
-  overflow: auto;
   background: Window
 }
 * {
   border-style: solid;
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 1.5% .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
-}
-body {
-  background: #062241;
-  color: #06284e
-}
-.btn,
-p {
-  line-height: 1.9
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -371,6 +365,11 @@ h3,
 h5,
 h6 {
   font-weight: 400
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 1.5% .8em
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -437,12 +436,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -473,7 +470,6 @@ li ul {
   margin-bottom: 0
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
@@ -537,6 +533,8 @@ tfoot td {
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Label div,
+.Pager,
+.SocialBtns,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -550,10 +548,6 @@ thead :link:hover {
 tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
-}
-blockquote h3,
-blockquote table {
-  border-color: #06284e
 }
 blockquote thead td,
 blockquote thead th {
@@ -585,10 +579,12 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #0d5bb5!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .Search,
 .c {
   text-align: center
@@ -614,6 +610,7 @@ strong {
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
+.Pager:after,
 .RichLink a:after,
 .box:after,
 .commonForm-pair:after,
@@ -671,6 +668,10 @@ strong {
   background: #062241;
   border-color: #fed33b;
   color: #fed33b
+}
+blockquote h3,
+kbd {
+  border-color: #06284e
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -745,8 +746,7 @@ strong {
 :visited .RichLink-meta {
   color: #ffeba1
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -756,8 +756,7 @@ strong {
   margin: 1em .5em!important
 }
 .AAuthor,
-.ADesc,
-.hscroll {
+.ADesc {
   margin: 1em 0
 }
 .AAuthor img {
@@ -818,6 +817,7 @@ strong {
 .SocialBtns *,
 .Subscribe a {
   display: inline-table;
+  vertical-align: top;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -857,22 +857,9 @@ kbd {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.Cover p,
-.Cover-meta {
-  line-height: 1.4
-}
 .BreadcrumbList {
   padding: 1em 0;
   color: #8a7322
-}
-.BreadcrumbList a,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-table;
-  vertical-align: top
 }
 .Comment h3,
 .SearchResult h3 {
@@ -922,7 +909,22 @@ pre var {
   background: #fff
 }
 .Cover a {
+  display: block;
   padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover-meta span,
+.RichLink-meta span,
+.links a,
+kbd {
+  display: inline-table
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Cover {
   margin: 2em auto
@@ -993,6 +995,7 @@ pre var {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
+  display: block;
   font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
@@ -1149,7 +1152,6 @@ blockquote:after {
   margin: 1em 0 0
 }
 kbd {
-  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1201,6 +1203,7 @@ dl.note dd {
   margin-right: 3%
 }
 .caption {
+  display: block;
   text-align: center;
   font-size: .875em
 }
@@ -1245,30 +1248,19 @@ div .caption img {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
-.Pager {
-  color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
-}
 .Pager span {
-  position: absolute;
-  top: 1em;
-  width: 32%
+  padding: 1.5em 0;
+  display: block;
+  float: left;
+  width: 33%
 }
 .Pager i {
   display: inline-table;
   vertical-align: text-top;
   border-color: transparent #8a7322
+}
+.Pager :focus i {
+  border-color: transparent #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1277,9 +1269,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1291,7 +1280,6 @@ div .caption img {
 }
 .SocialBtns {
   padding: 1em 0 .5em;
-  color: #fdeeb7;
   text-align: center
 }
 .SocialBtns .tw:link {
@@ -1369,6 +1357,7 @@ ol.linenums {
 }
 .jsPicaLarge {
   margin: 0 0 1em;
+  display: block;
   clear: both;
   padding: 2px
 }
@@ -1400,10 +1389,6 @@ ol.linenums {
   color: #06284e
 }
 @media screen {
-  .hscroll,
-  .hscroll pre {
-    overflow: auto
-  }
   a img {
     border-width: 2px
   }
@@ -1468,7 +1453,21 @@ ol.linenums {
   .aa var {
     color: #00ac06
   }
+  .hscroll {
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
+  }
   .hscroll pre {
+    margin: 0 0 .5em;
+    overflow: auto;
     white-space: pre
   }
   .hscroll table {
@@ -1550,8 +1549,8 @@ ol.linenums {
     page-break-after: avoid
   }
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
   tbody th,
   tbody th code,
   tbody th var,
@@ -1560,6 +1559,11 @@ ol.linenums {
   thead th,
   thead var {
     border-color: #666
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   blockquote,
   table {
@@ -1622,10 +1626,6 @@ ol.linenums {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -1655,10 +1655,6 @@ ol.linenums {
   .AHead,
   .BreadcrumbList {
     color: #666!important
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1723,12 +1719,8 @@ ol.linenums {
     display: block;
     text-align: center
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

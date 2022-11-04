@@ -1,8 +1,14 @@
 @charset "UTF-8";
-small,
-sub,
-sup {
-  font-size: 75%
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 *,
 input {
@@ -24,9 +30,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .Comment div,
@@ -37,15 +43,11 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
@@ -69,7 +71,6 @@ th {
 #jsSide,
 .Cover-img,
 .Magazine-main,
-.Pager,
 .Search,
 .links a,
 h2,
@@ -77,12 +78,6 @@ kbd:hover,
 sub,
 sup {
   position: relative
-}
-.Magazine .btn,
-.Pager span,
-.Search input,
-h2:after {
-  position: absolute
 }
 .Magazine-date,
 .aa {
@@ -112,10 +107,6 @@ h6,
 th {
   font-weight: 400
 }
-.tl td,
-.tl th {
-  vertical-align: top
-}
 .Cover img,
 .caption,
 iframe,
@@ -143,6 +134,7 @@ blockquote :visited img,
 blockquote tbody th,
 hr,
 input,
+table,
 textarea {
   border-color: #e7d182
 }
@@ -210,6 +202,19 @@ ins {
 :focus {
   outline: 0
 }
+html {
+  font-size: 100%
+}
+small,
+sub,
+sup {
+  font-size: 75%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   margin-top: .7em
 }
@@ -222,10 +227,19 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
+h4,
+h5,
+h6,
 input,
 textarea {
-  font-size: 1em;
-  margin: 0
+  font-size: 1em
+}
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
 }
 sup {
   top: -.5em
@@ -251,21 +265,11 @@ strong,
 var {
   font-style: normal
 }
-.hscroll,
 pre {
   margin: 1em 0
 }
 del {
   text-decoration: line-through
-}
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-li .box,
-tr .box {
-  margin: 0
 }
 .links,
 .mspacer,
@@ -300,20 +304,6 @@ textarea {
 .tl,
 .tl th {
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 0 .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #062241;
@@ -390,6 +380,11 @@ a:focus * {
 .ribbon a:focus {
   outline: HighlightText solid 2px
 }
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 .8em
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #06284e;
@@ -450,13 +445,8 @@ kbd,
 var {
   margin: 0 .1em
 }
-.Cover a,
-.Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
-.RichLink b,
-.Search,
-.Search-txt,
 .commonForm,
 a iframe,
 a img {
@@ -476,12 +466,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -522,6 +510,7 @@ h2:after {
   height: 0;
   font-size: .1em;
   line-height: 0;
+  position: absolute;
   left: 0;
   bottom: -2px;
   border-style: solid;
@@ -592,12 +581,6 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-.Magazine-main,
-blockquote h3,
-blockquote table,
-kbd {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
@@ -627,10 +610,12 @@ tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .btn,
 .c {
   text-align: center
@@ -650,15 +635,12 @@ strong {
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
-.Magazine-item:after,
-.Magazine-main:after,
 .Magazine-snippet:after,
 .RichLink a:after,
 .box:after,
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after,
-.lW:after,
 .lX:after {
   content: "";
   display: block;
@@ -762,6 +744,11 @@ strong {
   background: #c47222;
   color: #e6d6a9
 }
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
 .ADesc,
 .ribbon .AHead,
 .ribbon .BreadcrumbList,
@@ -769,8 +756,7 @@ strong {
 :visited .RichLink-meta {
   color: #ffeba1
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -866,10 +852,6 @@ strong {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.Cover p,
-.Cover-meta {
-  line-height: 1.4
-}
 .BreadcrumbList {
   padding: 1em 0;
   color: #8a7322
@@ -938,7 +920,16 @@ pre var {
   font-size: 2em
 }
 .Cover a {
+  display: block;
   padding: .37em
+}
+.Cover-meta {
+  display: block;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -957,11 +948,12 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-item {
-  padding: 1em 0
+  padding: 1em 0;
+  display: table
 }
 .Magazine-date {
-  display: block;
-  float: left;
+  padding-right: 1.5em;
+  display: table-cell;
   line-height: 1
 }
 .Magazine-dd,
@@ -970,9 +962,9 @@ pre var {
   line-height: .9
 }
 .Magazine-main {
-  margin-left: 5.5em;
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em
+  padding-left: 1.5em;
+  display: table-cell
 }
 .aa,
 .prettyprint,
@@ -987,17 +979,16 @@ kbd {
 .Magazine-label {
   margin: .5em 0 .8em
 }
-.Magazine-snippet img,
-.box .caption,
-.box iframe,
-.box img {
+.Magazine-snippet img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: .4em 1em 1em 0
 }
 .Magazine-snippet p {
-  line-height: 1.4em
+  line-height: 1.4em;
+  margin: 0
 }
 .Magazine .btn {
+  position: absolute;
   font-size: .83em;
   left: -7.229em;
   bottom: 0;
@@ -1041,19 +1032,22 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
+  display: block;
   font-size: .875em;
   padding: 0 0 1.143em
 }
 .Search {
+  display: block;
   height: 1.9em;
   padding: 0 3em 0 0;
   width: auto
 }
-.Search input,
-.jsPicaLarge:hover img {
+.Search input {
+  position: absolute;
   top: 0
 }
 .Search-txt {
+  display: block;
   width: 100%;
   box-sizing: content-box;
   height: 1.7em;
@@ -1202,6 +1196,12 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 0
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1307,28 +1307,22 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: inline-block;
   vertical-align: text-top;
   border-color: transparent #8a7322
+}
+.Pager :focus i {
+  border-color: transparent #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1337,9 +1331,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1448,6 +1439,9 @@ div .box .jsCapLarge {
 .jsPicaLarge:hover {
   top: 2px
 }
+.jsPicaLarge:hover img {
+  top: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1461,9 +1455,10 @@ div .box .jsCapLarge {
 @media screen,
 handheld,
 projection {
-  .hscroll,
-  .hscroll pre {
-    overflow: auto
+  .lW,
+  .lX {
+    width: 98%;
+    max-width: 70em
   }
   a img {
     border-width: 2px
@@ -1498,10 +1493,7 @@ projection {
   #lB .lS {
     padding-bottom: 1em
   }
-  .lW,
   .lX {
-    width: 98%;
-    max-width: 70em;
     margin: 0 auto
   }
   .lXi {
@@ -1510,9 +1502,13 @@ projection {
   .lX1 {
     float: left
   }
-  .lS,
   .lX2 {
     float: right
+  }
+  .lW {
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed
   }
   .lMi,
   .lMz {
@@ -1524,9 +1520,17 @@ projection {
   .lSi {
     margin: 0 9%
   }
+  .lM,
+  .lS {
+    display: table-cell;
+    vertical-align: top
+  }
   .lM {
-    width: 67.3%;
-    float: left
+    width: 70%
+  }
+  .lMi,
+  .lMz {
+    margin-right: 3.857%
   }
   .Cover .img-loaded div {
     position: absolute;
@@ -1542,7 +1546,21 @@ projection {
   .aa var {
     color: #00ac06
   }
+  .hscroll {
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
+  }
   .hscroll pre {
+    margin: 0 0 .5em;
+    overflow: auto;
     white-space: pre
   }
   blockquote .tl tr code,
@@ -1713,16 +1731,21 @@ screen and (max-width:950px) {
   #lF .lX {
     border-width: 1px 0 0
   }
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
+  .lM,
+  .lS,
+  .lW {
+    display: block
+  }
   table {
     width: 94%
   }
   #lB .lS {
     background: #fffd93
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
   }
   .lMi,
   .lMz,
@@ -1732,8 +1755,7 @@ screen and (max-width:950px) {
   }
   .lM,
   .lS {
-    width: auto;
-    float: none
+    width: auto
   }
   #lB .lSi {
     padding: 0
@@ -1773,6 +1795,9 @@ screen and (max-width:950px) {
   .h1 {
     display: block;
     margin: 0 0 .5em
+  }
+  .hscroll {
+    overflow: auto
   }
   .hscroll table {
     white-space: nowrap
@@ -1879,11 +1904,13 @@ screen and (max-width:740px) {
     border-color: #06284e
   }
   .Magazine-item {
-    padding: 1em 0 0
+    padding: 1em 0 0;
+    display: block
   }
   .Magazine-date {
-    float: none;
-    font-family: inherit
+    font-family: inherit;
+    width: auto;
+    display: block
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -1898,10 +1925,9 @@ screen and (max-width:740px) {
     display: inline
   }
   .Magazine-main {
-    margin: 0;
-    float: none;
     border-width: 0 0 .5em;
-    padding: 0 0 1em
+    padding: 0 0 1em;
+    display: block
   }
   .Magazine h3,
   .RichLink h3 {
@@ -2164,6 +2190,7 @@ screen and (max-width:240px) {
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
+  blockquote tbody th,
   blockquote var,
   tbody th code,
   tbody th var {
@@ -2277,7 +2304,6 @@ screen and (max-width:240px) {
   .Magazine,
   .Magazine-main,
   blockquote h3,
-  blockquote table,
   h4,
   kbd {
     border-color: #fed33b
@@ -2289,9 +2315,22 @@ screen and (max-width:240px) {
   blockquote .tl thead th,
   blockquote blockquote,
   blockquote hr,
+  blockquote table,
   h5,
   h6 {
     border-color: #ffeba1
+  }
+  *,
+  .medal,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote tbody th,
+  hr,
+  table {
+    border-color: #062241
   }
   .ABody h1,
   .ABody h2,
@@ -2302,12 +2341,10 @@ screen and (max-width:240px) {
     padding-right: 0
   }
   hr {
-    margin: 2em 0;
-    border-color: #062241
+    margin: 2em 0
   }
   table {
-    width: 100%;
-    border-color: #ffeba1
+    width: 100%
   }
   caption {
     margin: 1.5em 0 .7em
@@ -2346,11 +2383,6 @@ screen and (max-width:240px) {
     background: #fed33b;
     border-color: #062241 #e5c13c
   }
-  blockquote tbody th {
-    background: #ffeba1;
-    border-color: #062241;
-    color: #000
-  }
   blockquote td {
     border-color: #062241 #062241 #ffeba1
   }
@@ -2363,15 +2395,6 @@ screen and (max-width:240px) {
   }
   tbody :hover td {
     border-color: #000 #000 #0d5bb5
-  }
-  *,
-  .medal,
-  .tl td,
-  .tl tfoot td,
-  .tl tfoot th,
-  .tl thead td,
-  .tl thead th {
-    border-color: #062241
   }
   em {
     background: #4e4e1f
@@ -2491,30 +2514,6 @@ screen and (max-width:240px) {
   }
 }
 @media print {
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    page-break-after: avoid
-  }
-  blockquote code,
-  blockquote var,
-  table,
-  tbody th,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead td,
-  thead th,
-  thead var {
-    border-color: #666
-  }
   .LinkList a,
   .Magazine-item,
   .RichLink-sep a,
@@ -2535,6 +2534,35 @@ screen and (max-width:240px) {
   li,
   tr {
     page-break-inside: avoid
+  }
+  .h1,
+  caption,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  thead {
+    page-break-after: avoid
+  }
+  blockquote code,
+  blockquote table,
+  blockquote var,
+  tbody th,
+  tbody th code,
+  tbody th var,
+  thead code,
+  thead td,
+  thead th,
+  thead var {
+    border-color: #666
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   blockquote,
   table {
@@ -2589,10 +2617,6 @@ screen and (max-width:240px) {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -2618,10 +2642,6 @@ screen and (max-width:240px) {
   body {
     background: #fff;
     color: #000
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2694,12 +2714,6 @@ screen and (max-width:240px) {
   .Cover h2 {
     margin-top: 1em
   }
-  .Magazine-item {
-    padding: 1em 0 1em 1em
-  }
-  .Magazine-item:first-child {
-    padding: 1em 1em 1em 0
-  }
   #lH {
     font-size: .875em
   }
@@ -2719,12 +2733,8 @@ screen and (max-width:240px) {
     font-size: .875em;
     color: #006
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

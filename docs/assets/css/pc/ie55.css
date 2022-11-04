@@ -34,9 +34,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .Comment div,
@@ -51,15 +51,11 @@ dd,
 li {
   margin-bottom: .3em
 }
-.note .hscroll,
 .tl td *,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
@@ -77,6 +73,7 @@ thead th {
   background: #fdeeb7
 }
 .Magazine-label,
+.Magazine-main,
 .RichLink b,
 .caption,
 .js-bqCite,
@@ -96,15 +93,15 @@ kbd,
 var {
   margin: 0 .1em
 }
-.tl td,
-.tl th {
+.tl th,
+tbody th,
+td {
   vertical-align: top
 }
 #jsMain,
 #jsSide,
 .Cover-img,
 .Magazine-main,
-.Pager,
 .Search,
 :hover img {
   position: relative
@@ -126,6 +123,7 @@ blockquote :visited img,
 blockquote tbody th,
 hr,
 input,
+table,
 textarea {
   border-color: #e7d182
 }
@@ -204,17 +202,24 @@ a:active var {
   background: #08366b;
   color: #fed33b
 }
+html {
+  font-size: 100%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   font-weight: 700;
   margin-top: .7em
 }
-blockquote,
-q {
-  quotes: none
-}
 small {
   font-size: 75%
 }
+h4,
+h5,
+h6,
 input,
 textarea {
   font-size: 1em
@@ -257,20 +262,6 @@ textarea {
 * {
   border-style: solid;
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 0 .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #062241;
@@ -351,6 +342,11 @@ th {
 h2 {
   font-weight: 700
 }
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 .8em
+}
 h4 {
   border-width: 0 0 0 .7em;
   border-color: #06284e;
@@ -416,12 +412,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -526,12 +520,6 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-.Magazine-main,
-blockquote h3,
-blockquote table,
-kbd {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
@@ -544,10 +532,12 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .btn,
 .c,
 .caption {
@@ -650,6 +640,16 @@ input.btn {
   border-color: #c47222;
   background: #c47222;
   color: #e6d6a9
+}
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
 }
 #lF .lM .mspacer,
 .Cover p {
@@ -759,10 +759,6 @@ tr .box {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive th {
-  word-break: normal;
-  word-wrap: normal
-}
 .BlogArchive a,
 .Label a {
   border-width: 0 0 1px;
@@ -860,10 +856,11 @@ pre var {
   text-decoration: underline!important
 }
 .Magazine-item {
-  zoom: 1;
-  padding: 1em 0
+  padding: 1em 0;
+  zoom: 1
 }
 .Magazine-date {
+  padding-right: 1.5em;
   display: block;
   float: left;
   line-height: 1
@@ -874,10 +871,9 @@ pre var {
   line-height: .9
 }
 .Magazine-main {
-  zoom: 1;
-  margin-left: 5.5em;
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em
+  padding-left: 1.5em;
+  margin-left: 5.5em
 }
 .aa,
 blockquote,
@@ -891,15 +887,13 @@ kbd {
 .Magazine-label {
   margin: .5em 0 .8em
 }
-.Magazine-snippet img,
-.box .caption,
-.box iframe,
-.box img {
+.Magazine-snippet img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: .4em 1em 1em 0
 }
 .Magazine-snippet p {
-  line-height: 1.4em
+  line-height: 1.4em;
+  margin: 0
 }
 .Magazine .btn {
   position: absolute;
@@ -1106,9 +1100,11 @@ blockquote .tl tbody th :visited {
 .box ul {
   list-style-position: inside
 }
-.hscroll {
-  margin: 1em 0;
-  width: 100%
+.box .caption,
+.box iframe,
+.box img {
+  float: left;
+  margin: 0 1em 1em 0
 }
 kbd {
   cursor: pointer;
@@ -1192,23 +1188,12 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  zoom: 1
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  width: 32%
+  padding: 1.5em 0;
+  float: left;
+  width: 33%
 }
 .SocialBtns {
   padding: 1em 0;
@@ -1355,13 +1340,8 @@ ol.linenums {
   .lS {
     width: 30%
   }
-  #lB,
-  #lH,
-  .e6C .lW,
   .lSi {
-    width: 100%
-  }
-  .lSi {
+    width: 100%;
     margin: 0 9%
   }
   .lM {
@@ -1378,6 +1358,12 @@ ol.linenums {
   }
   .e6R {
     margin-left: -35em
+  }
+  #lB,
+  #lH,
+  .e6C .lW,
+  .hscroll {
+    width: 100%
   }
   .e6C {
     margin: 0!important;
@@ -1410,10 +1396,19 @@ ol.linenums {
     background: #e7d182
   }
   .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
   }
   .hscroll pre {
+    margin: 0 0 .5em;
     overflow: auto;
     white-space: pre
   }
@@ -1461,8 +1456,8 @@ ol.linenums {
 }
 @media print {
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
   tbody th,
   tbody th code,
   tbody th var,
@@ -1471,6 +1466,11 @@ ol.linenums {
   thead th,
   thead var {
     border-color: #666
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   .lS1,
   .lS2 {
@@ -1566,10 +1566,6 @@ ol.linenums {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -1599,10 +1595,6 @@ ol.linenums {
   .AHead,
   .BreadcrumbList {
     color: #666!important
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1689,9 +1681,6 @@ ol.linenums {
   .Cover h2 {
     margin-top: 1em
   }
-  .Magazine-item {
-    padding: 1em 0 1em 1em
-  }
   #lH {
     font-size: .875em
   }
@@ -1728,12 +1717,8 @@ ol.linenums {
   .box img {
     margin: 0 1em 1em 3%
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

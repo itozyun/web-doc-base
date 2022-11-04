@@ -20,9 +20,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .AHead,
@@ -34,20 +34,22 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+blockquote tbody th,
+thead td,
+thead th {
+  background: #8a7322;
+  color: #fdeeb7
 }
 .lM1,
 .lM2,
@@ -78,14 +80,10 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-.tl td,
-.tl th {
+.tl th,
+tbody th,
+td {
   vertical-align: top
-}
-.Cover-img,
-.Pager,
-.Search {
-  position: relative
 }
 body,
 input,
@@ -117,7 +115,10 @@ var {
 }
 *,
 blockquote :link img,
-blockquote :visited img {
+blockquote :visited img,
+blockquote tbody th,
+hr,
+table {
   border-color: #e7d182
 }
 a:active img,
@@ -178,6 +179,14 @@ a:focus var {
   background: 0 0;
   color: #fed33b
 }
+html {
+  font-size: 100%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -189,6 +198,9 @@ q {
 small {
   font-size: 75%
 }
+h4,
+h5,
+h6,
 input,
 textarea {
   font-size: 1em
@@ -224,20 +236,6 @@ textarea {
 * {
   border-style: solid;
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 1.5% .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 body {
   background: #062241;
@@ -294,6 +292,11 @@ th {
 .ABody h3,
 h2 {
   font-weight: 700
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 1.5% .8em
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -362,12 +365,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -417,7 +418,6 @@ h2 {
 }
 hr {
   height: 0;
-  border-color: #e7d182;
   margin: 2em 6%
 }
 #lB .lS,
@@ -452,9 +452,7 @@ thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  background: #8a7322;
-  border-color: #e7d182 #937c2c;
-  color: #fdeeb7
+  border-color: #e7d182 #937c2c
 }
 tbody th {
   background: #e7d182;
@@ -480,19 +478,10 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-blockquote h3,
-blockquote table {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
   border-color: #e7d182 #1d3953
-}
-blockquote tbody th {
-  background: #8a7322;
-  border-color: #e7d182;
-  color: #fdeeb7
 }
 blockquote td {
   border-color: #e7d182 #e7d182 #8a7322
@@ -501,10 +490,12 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #06284e #e7d182
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .c {
   text-align: center
 }
@@ -581,6 +572,10 @@ strong {
   background: #062241;
   border-color: #fed33b;
   color: #fed33b
+}
+blockquote h3,
+kbd {
+  border-color: #06284e
 }
 .commonForm-pair {
   display: inline-table;
@@ -672,8 +667,7 @@ tr .box {
   margin: 3.5em 0 2em
 }
 .ADesc,
-.AHead,
-.hscroll {
+.AHead {
   margin: 1em 0
 }
 .ABody h1 {
@@ -764,9 +758,6 @@ kbd {
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive th {
-  word-break: normal
-}
 .BlogArchive a {
   border-width: 0 0 1px;
   margin: 0 0 1em
@@ -794,6 +785,7 @@ kbd {
   margin-top: 0
 }
 .Cover-img {
+  position: relative;
   margin: 0 0 .6em;
   height: 100%
 }
@@ -909,6 +901,7 @@ pre var {
   font-size: 1em
 }
 .Search {
+  position: relative;
   display: block;
   height: 1.9em;
   padding: 0 3em 0 0
@@ -1069,8 +1062,11 @@ blockquote {
   float: left;
   margin: 0 1em 1em 3%
 }
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden
+}
 kbd {
-  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1163,28 +1159,22 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: inline-block;
   border-color: #fdeeb7 #8a7322
+}
+.Pager :active i,
+.Pager :focus i {
+  border-color: #0d5bb5 #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1193,10 +1183,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :active i,
-.Pager :focus i {
-  border-color: #0d5bb5 #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1341,10 +1327,19 @@ ol.linenums {
     background: #e7d182
   }
   .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
   }
   .hscroll pre {
+    margin: 0 0 .5em;
     overflow: auto;
     white-space: pre
   }
@@ -1404,8 +1399,8 @@ ol.linenums {
 }
 @media print {
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
   tbody th,
   tbody th code,
   tbody th var,
@@ -1414,6 +1409,11 @@ ol.linenums {
   thead th,
   thead var {
     border-color: #666
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   blockquote,
   table {
@@ -1476,10 +1476,6 @@ ol.linenums {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -1509,10 +1505,6 @@ ol.linenums {
   .AHead,
   .BreadcrumbList {
     color: #666!important
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -1572,12 +1564,8 @@ ol.linenums {
     text-align: center;
     margin: 0 0 .5em
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {

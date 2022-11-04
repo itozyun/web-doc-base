@@ -1,9 +1,4 @@
 @charset "UTF-8";
-small,
-sub,
-sup {
-  font-size: 75%
-}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -24,9 +19,9 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
+blockquote table,
 h5,
-h6,
-table {
+h6 {
   border-color: #8a7322
 }
 .Comment div,
@@ -37,23 +32,30 @@ a,
 h6 {
   color: #8a7322
 }
-.note .hscroll,
 .tl td > :first-child,
-dl .hscroll,
 dl iframe,
 dl img,
-li .hscroll,
 li iframe,
 li img,
-tr .hscroll,
 tr iframe,
 tr img,
 tr ol,
 tr ul {
   margin-top: 0
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
+}
 .Cover-img,
-.Pager,
 .links a,
 h2,
 kbd:hover,
@@ -77,9 +79,25 @@ thead th {
 .medal {
   background: #fdeeb7
 }
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
+.hscroll,
+textarea {
+  overflow: auto
+}
 .links,
 pre {
   white-space: pre-wrap
+}
+.Cover img,
+.caption,
+.jsPicaLarge img {
+  max-width: 100%;
+  width: 100%
 }
 body,
 input,
@@ -98,6 +116,7 @@ blockquote :visited img,
 blockquote tbody th,
 hr,
 input,
+table,
 textarea {
   border-color: #e7d182
 }
@@ -175,6 +194,24 @@ ins {
 :focus {
   outline: 0
 }
+html {
+  font-size: 100%
+}
+small,
+sub,
+sup {
+  font-size: 75%
+}
+body,
+html {
+  margin: 0;
+  height: 100%
+}
+body {
+  padding: 0;
+  background: #062241;
+  color: #06284e
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -201,14 +238,17 @@ sup {
 .SocialBtns *,
 .Subscribe a,
 .btn,
-.tl td,
-.tl th {
+.tl th,
+tbody th,
+td {
   vertical-align: top
 }
+h4,
+h5,
+h6,
 input,
 textarea {
-  font-size: 1em;
-  margin: 0
+  font-size: 1em
 }
 sup {
   top: -.5em
@@ -247,15 +287,6 @@ a img,
 br {
   display: block
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-li .box,
-tr .box {
-  margin: 0
-}
 dd,
 li {
   margin-bottom: .3em
@@ -285,42 +316,14 @@ var {
 input {
   line-height: 1
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
-textarea {
-  overflow: auto
+.btn,
+p {
+  line-height: 1.9
 }
 *,
 .tl,
 .tl th {
   border-width: 0
-}
-html {
-  font-size: 100%
-}
-h4,
-h5,
-h6 {
-  font-size: 1em;
-  margin: 1.5em 1.5% .8em
-}
-body,
-html {
-  margin: 0;
-  height: 100%
-}
-body {
-  padding: 0;
-  background: #062241;
-  color: #06284e
-}
-.btn,
-p {
-  line-height: 1.9
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -388,6 +391,11 @@ a:focus * {
 }
 .ribbon a:focus {
   outline: HighlightText solid 2px
+}
+h4,
+h5,
+h6 {
+  margin: 1.5em 1.5% .8em
 }
 h4 {
   border-width: 0 0 0 .7em;
@@ -460,12 +468,10 @@ li ol,
 li ul {
   padding-left: 1em
 }
-.hscroll table,
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.hscroll pre,
 .jsCapLarge a,
 dd blockquote,
 dd dl,
@@ -496,7 +502,6 @@ li ul {
   margin-bottom: 0
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -581,10 +586,6 @@ tfoot td,
 tfoot th {
   border-color: #8a7322 #fdeeb7
 }
-blockquote h3,
-blockquote table {
-  border-color: #06284e
-}
 blockquote thead td,
 blockquote thead th {
   background: #06284e;
@@ -614,10 +615,12 @@ tbody :hover td {
   border-color: #fdeeb7 #fdeeb7 #0d5bb5;
   color: #0d5bb5
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .Search,
 .c {
   text-align: center
@@ -699,6 +702,10 @@ strong {
   border-color: #fed33b;
   color: #fed33b
 }
+blockquote h3,
+kbd {
+  border-color: #06284e
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -733,11 +740,6 @@ strong {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
-}
-.Cover img,
-.caption {
-  width: 100%;
-  max-width: 100%
 }
 .medal {
   border-color: #fdeeb7;
@@ -781,8 +783,7 @@ strong {
   margin: 1em .5em!important
 }
 .AAuthor,
-.ADesc,
-.hscroll {
+.ADesc {
   margin: 1em 0
 }
 .AAuthor img {
@@ -1176,7 +1177,6 @@ blockquote:after {
   margin: 1em 0 0
 }
 kbd {
-  border-color: #06284e;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1283,29 +1283,22 @@ div .caption img {
 }
 .Pager {
   color: #fdeeb7;
-  height: 4em
-}
-.Pager-next {
-  left: 0
-}
-.Pager-top {
-  left: 34%;
-  text-align: center
-}
-.Pager-prev {
-  right: 0;
-  text-align: right
+  display: table;
+  width: 100%;
+  table-layout: fixed
 }
 .Pager span {
-  position: absolute;
-  top: 1em;
-  display: block;
-  width: 32%
+  padding: 1.5em 0;
+  vertical-align: middle;
+  display: table-cell
 }
 .Pager i {
   display: inline-block;
   vertical-align: text-top;
   border-color: transparent #8a7322
+}
+.Pager :focus i {
+  border-color: transparent #fff
 }
 .Pager-next i {
   border-width: .5em .7em .5em 0;
@@ -1314,9 +1307,6 @@ div .caption img {
 .Pager-prev i {
   border-width: .5em 0 .5em .7em;
   margin-left: .5em
-}
-.Pager :focus i {
-  border-color: transparent #fff
 }
 .Pager-top i {
   border-width: 0 .45em .9em;
@@ -1410,9 +1400,7 @@ ol.linenums {
   padding: 2px
 }
 .jsPicaLarge img {
-  width: 100%;
   height: auto;
-  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   border-width: 0
@@ -1439,10 +1427,6 @@ ol.linenums {
 @media screen,
 handheld,
 projection {
-  .hscroll,
-  .hscroll pre {
-    overflow: auto
-  }
   a img {
     border-width: 2px
   }
@@ -1507,7 +1491,21 @@ projection {
   .aa var {
     color: #00ac06
   }
+  .hscroll {
+    margin: 1em 0
+  }
+  .note .hscroll,
+  dl .hscroll,
+  li .hscroll,
+  tr .hscroll {
+    margin-top: 0
+  }
+  .hscroll table {
+    margin-bottom: .5em
+  }
   .hscroll pre {
+    margin: 0 0 .5em;
+    overflow: auto;
     white-space: pre
   }
   .hscroll table {
@@ -1556,17 +1554,6 @@ projection {
   }
 }
 @media handheld {
-  blockquote .tl td,
-  blockquote .tl tfoot td,
-  blockquote .tl tfoot th,
-  blockquote .tl thead td,
-  blockquote .tl thead th,
-  blockquote blockquote,
-  blockquote hr,
-  h5,
-  h6 {
-    border-color: #ffeba1
-  }
   .AHead,
   .BreadcrumbList,
   .Cover-meta,
@@ -1610,6 +1597,7 @@ projection {
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
+  blockquote tbody th,
   blockquote var,
   tbody th code,
   tbody th var {
@@ -1718,10 +1706,33 @@ projection {
     margin-top: .2em
   }
   blockquote h3,
-  blockquote table,
   h4,
   kbd {
     border-color: #fed33b
+  }
+  blockquote .tl td,
+  blockquote .tl tfoot td,
+  blockquote .tl tfoot th,
+  blockquote .tl thead td,
+  blockquote .tl thead th,
+  blockquote blockquote,
+  blockquote hr,
+  blockquote table,
+  h5,
+  h6 {
+    border-color: #ffeba1
+  }
+  *,
+  .medal,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote tbody th,
+  hr,
+  table {
+    border-color: #062241
   }
   h2:after {
     width: 33%;
@@ -1729,12 +1740,10 @@ projection {
     right: auto
   }
   hr {
-    margin: 2em 0;
-    border-color: #062241
+    margin: 2em 0
   }
   table {
-    width: 100%;
-    border-color: #ffeba1
+    width: 100%
   }
   caption {
     margin: 1.5em 0 .7em
@@ -1773,11 +1782,6 @@ projection {
     background: #fed33b;
     border-color: #062241 #e5c13c
   }
-  blockquote tbody th {
-    background: #ffeba1;
-    border-color: #062241;
-    color: #000
-  }
   blockquote td {
     border-color: #062241 #062241 #ffeba1
   }
@@ -1790,15 +1794,6 @@ projection {
   }
   tbody :hover td {
     border-color: #000 #000 #0d5bb5
-  }
-  *,
-  .medal,
-  .tl td,
-  .tl tfoot td,
-  .tl tfoot th,
-  .tl thead td,
-  .tl thead th {
-    border-color: #062241
   }
   em {
     background: #4e4e1f
@@ -2051,8 +2046,8 @@ projection {
     page-break-after: avoid
   }
   blockquote code,
+  blockquote table,
   blockquote var,
-  table,
   tbody th,
   tbody th code,
   tbody th var,
@@ -2061,6 +2056,11 @@ projection {
   thead th,
   thead var {
     border-color: #666
+  }
+  *,
+  .ribbon *,
+  table {
+    border-color: #ccc
   }
   blockquote,
   table {
@@ -2123,10 +2123,6 @@ projection {
   tfoot th {
     border-color: #666 #fff
   }
-  blockquote table,
-  kbd {
-    border-color: #000
-  }
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
@@ -2156,10 +2152,6 @@ projection {
   .AHead,
   .BreadcrumbList {
     color: #666!important
-  }
-  *,
-  .ribbon * {
-    border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
@@ -2224,12 +2216,8 @@ projection {
     display: block;
     text-align: center
   }
-  .hscroll table {
-    width: 100%;
-    margin: 0
-  }
-  .hscroll pre {
-    margin: 0
+  kbd {
+    border-color: #000
   }
   code,
   var {
