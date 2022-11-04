@@ -1,0 +1,12 @@
+@mixin supports($property){
+    @if($property == 'column-span'){
+        @supports (column-span : all) or (-moz-column-span : all) or (-webkit-column-span : all){
+            @content;
+        }
+    }
+    @if($property == '-webkit-column-span'){
+        & [_lazyhack_="_:in-range|_:not(*:root)"] { // Chrome 10+, Safari 5.1+
+            @content;
+        }
+    }
+}

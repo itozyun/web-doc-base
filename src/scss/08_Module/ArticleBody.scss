@@ -60,21 +60,22 @@
 /*  WSXGA, print
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA_landscapePrint) {
-    .ABody, .ABody blockquote {
+    .ABody {
         -webkit-column-count : 2;
            -moz-column-count : 2;
                 column-count : 2;
     }
-        .ABody .aBodyRoot > *:first-child {
-            margin-top : 0;
-        }
-        h1, h2,
-        blockquote, blockquote:before, blockquote:after,
-        .js-bqLink, .js-bqCite {
-            -webkit-column-span : all;
-               -moz-column-span : all;
-                    column-span : all;
-        }
+    .ABody .aBodyRoot > *:first-child {
+        margin-top : 0;
+    }
+    .ABody blockquote {
+        @include column-span-all(2);
+    }
+    h1, h2,
+    blockquote:before, blockquote:after,
+    .js-bqLink, .js-bqCite {
+        @include column-span-all;
+    }
 }
 @include media(WSXGA) {
     .ABody, .ABody blockquote {

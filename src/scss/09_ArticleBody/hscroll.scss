@@ -55,9 +55,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA_landscapePrint) {
     .hscroll {
-        -webkit-column-span : all;
-           -moz-column-span : all;
-                column-span : all;
+        @include column-span-all;
     }
 }
 @include media(WSXGA) {
