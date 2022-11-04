@@ -1,6 +1,9 @@
 [submodule "what-browser-am-i"]
 	path = .submodules/what-browser-am-i
 	url = https://github.com/itozyun/what-browser-am-i.git
-[submodule "regexp-free-js-base64"]
-	path = .submodules/regexp-free-js-base64
-	url = https://github.com/itozyun/regexp-free-js-base64
+[submodule "es2-base64"]
+	path = .submodules/es2-base64
+	url = https://github.com/ECMAScript2/es2-base64.git
+[submodule ".submodules/es2-code-prettify"]
+	path = .submodules/es2-code-prettify
+	url = https://github.com/ECMAScript2/es2-code-prettify.git

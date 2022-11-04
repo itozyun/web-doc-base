@@ -84,12 +84,12 @@ gulp.task('docs', gulp.series(
 gulp.task('btoa', gulp.series(
     function(){
         return gulp.src( [
-            './.submodules/regexp-free-js-base64/src/js/base64.js'
+            './.submodules/es2-base64/src/js/base64.js'
         ]
             ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : [ './.submodules/regexp-free-js-base64/src/js-externs/externs.js' ],
+                        externs           : [ './.submodules/es2-base64/src/js-externs/externs.js' ],
                         define            : [
                             'DEFINE_REGEXP_FREE_BASE64__DEBUG=false',
                             'DEFINE_REGEXP_FREE_BASE64__USE_UTOB=false',
@@ -138,39 +138,78 @@ const assetsDirToJSDir     = 'js',
 /* -------------------------------------------------------
  *  gulp js
  */
-const externs = [
-         './.submodules/what-browser-am-i/src/js-externs/externs.js',
-         './src/js-externs/externs.js'
-      ];
+var isDebug = false;
 
-var debug = false;
+const gulpCreateSimpleRexerRegistry = require('./.submodules/es2-code-prettify/js-buildtools/gulp-createSimpleLexerRegistry.js');
+const numericKeyName = '-num';
+const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
+const regExpCompatFileName = 'regexpcompat.js';
 
 gulp.task('__js', gulp.series(
     function(){
         return gulp.src(
+            [
+            // Google Code Prettify
+                './.submodules/es2-code-prettify/src/js/1_common/*.js',
+                './.submodules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
+                './.submodules/es2-code-prettify/src/js/3_langs/*.js'
+            ]
+        ).pipe(
+            ClosureCompiler(
+                {
+                    define            : [
+                        'DEFINE_CODE_PRETTIFY__LANGUAGES_USED="web"'
+                    ],
+                    // compilation_level : 'ADVANCED',
+                    // compilation_level : 'WHITESPACE_ONLY', // Snow Daifuku の変数が未定義エラーになるので ADVANCED は使えない...!
+                    // formatting        : 'PRETTY_PRINT',
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    js_output_file    : '__generate_simple_lexer_registry.js'
+                }
+            )
+        ).pipe(
+            gulpCreateSimpleRexerRegistry( simpleLexerRegistryFileName, numericKeyName )
+        ).pipe( gulp.dest( './.submodules/es2-code-prettify/src/js/4_prettify' ) );
+    },
+    function(){
+        return gulp.src(
                 [
                     './.submodules/what-browser-am-i/src/js/0_global/*.js',
-                    '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
+                   '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
                     './src/js/**/*.js',
-                    '!./src/js/4_EventModule/prefersColorScheme.js',
-                    '!./src/js/4_EventModule/print.js',
-                    '!./src/js/6_CanUse/cssGeneratedContent.js',
-                    '!./src/js/6_CanUse/dataUriTest.js',
-                    '!./src/js/6_CanUse/webfontTest.js',
-                    '!./src/js/graph/**/*.js',
-                    '!./src/js/8_Library/GoogleCodePrettify.js'
+                   '!./src/js/4_EventModule/prefersColorScheme.js',
+                   '!./src/js/4_EventModule/print.js',
+                   '!./src/js/6_CanUse/cssGeneratedContent.js',
+                   '!./src/js/6_CanUse/dataUriTest.js',
+                   '!./src/js/6_CanUse/webfontTest.js',
+                   '!./src/js/graph/**/*.js',
+                    // Google Code Prettify
+                    './.submodules/es2-code-prettify/src/js/1_common/*.js',
+                    './.submodules/es2-code-prettify/src/js/4_prettify/*.js'
                 ]
             ).pipe(
                 gulpDPZ(
                     {
-                        packageGlobalArgs : [ 'ua,window,emptyFunction,' + globalVariables + ',undefined', 'ua,this,function(){},' + globalVariables + ',void 0' ],
-                        basePath          : [ './src/js/', './.submodules/what-browser-am-i/src/js/' ]
+                        // labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
+                        packageGlobalArgs : [ 'ua,window,emptyFunction,RegExp,Date,' + globalVariables + ',undefined', 'ua,this,function(){},this.RegExp,Date,' + globalVariables + ',void 0' ],
+                        basePath          : [
+                            './src/js/',
+                            './.submodules/what-browser-am-i/src/js/',
+                            './.submodules/es2-code-prettify/src/js' // js
+                        ]
                     }
                 )
              ).pipe(
                 ClosureCompiler(
                     {
-                        externs           : externs,
+                        externs           : [
+                            './.submodules/what-browser-am-i/src/js-externs/externs.js',
+                            './src/js-externs/externs.js',
+                            // Google Code Prettify
+                            './.submodules/es2-code-prettify/src/js-externs/externs.js'
+                        ],
                         define            : [
                             'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
                             'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir     + '"',
@@ -179,44 +218,39 @@ gulp.task('__js', gulp.series(
                             'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
                             'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
-                            'DEFINE_WEB_DOC_BASE__DEBUG=' + debug,
-                            'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"'
+                            'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
+                            'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"',
+                            // Google Code Prettify
+                            'DEFINE_CODE_PRETTIFY__DEBUG=' + isDebug,
+                            'DEFINE_CODE_PRETTIFY__COMMENT_ATTR_SUPPORT=' + false,
+                            'DEFINE_CODE_PRETTIFY__NUMERIC_STYLE_PATTERN_OBJECT_KEY="' + numericKeyName + '"',
+                            'DEFINE_CODE_PRETTIFY__USE_REGEXPCOMPAT=-1',
+                            'DEFINE_CODE_PRETTIFY__REGEXPCOMPAT_FILENAME=' + regExpCompatFileName
                         ],
                         compilation_level : 'ADVANCED',
                         // compilation_level : 'WHITESPACE_ONLY',
-                        //formatting        : 'PRETTY_PRINT',
+                        formatting        : 'PRETTY_PRINT',
                         warning_level     : 'VERBOSE',
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
-                        js_output_file    : 'temp.js'
+                        js_output_file    : isDebug ? 'debug.js' : 'main.js'
                     }
                 )
-            ).pipe(gulp.dest( tempDir ));
-    },
-    function(){
-        return ClosureCompiler(
-            {
-                js                : [
-                    tempDir + '/temp.js'//,
-                    //'./src/js-skipAdvancedCompilation/GoogleCodePrettify.js' Gecko 0.8 で止まる
-                ],
-                externs           : externs,
-                // compilation_level : 'WHITESPACE_ONLY',
-                formatting        : 'PRETTY_PRINT',
-                language_in       : 'ECMASCRIPT3',
-                language_out      : 'ECMASCRIPT3',
-                js_output_file    : debug ? 'debug.js' : 'main.js'
-            }
-        )
-        .src()
-        .pipe(gulp.dest( './docs/assets/' + assetsDirToJSDir ));
+            ).pipe(gulp.dest( './docs/assets/' + assetsDirToJSDir ));
     }
 ));
 
 gulp.task( 'js', gulp.series(
     '__js',
-    function( cb ){ debug = true; cb(); },
-    '__js'
+    function( cb ){ isDebug = true; cb(); },
+    '__js',
+    function(){
+        return gulp.src(
+            [
+                './.submodules/es2-code-prettify/docs/js/' + regExpCompatFileName
+            ]
+        ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
+    }
 ));
 
 /* -------------------------------------------------------
@@ -283,7 +317,7 @@ gulp.task( 'html', gulp.series(
         pageBase.site.inlineScript = minjs;
 
         return gulp.src( [ './src/html/**/*.html',  './src/html/**/*.md' ] )
-            .pipe( plumber() )
+            // .pipe( plumber() )
             .pipe( pageFragumentToFullPage( pageBase, __dirname + '/src/html/' ) )
             // .pipe( formatHtml )
             .pipe( gulp.dest( './docs/' ) );
