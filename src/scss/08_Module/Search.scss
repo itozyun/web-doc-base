@@ -45,13 +45,30 @@ $SEARCH_BTN_WIDTH : 3em;
             padding-right : #{$SEARCH_BTN_WIDTH + $INPUT_BORDER_WIDTH};
         }
     }
-    .Search {
-        height : $PARAGRAPH_LINE_HEIGHT_EM;
+    @if( $UA_Gecko09 == false ){
+        .Search {
+            height : $PARAGRAPH_LINE_HEIGHT_EM;
+        }
+        .Search-txt {
+            width : 100%;
+        }
     }
-    .Search-txt {
-        width : 100%;
-    }
+
     @if( $IS_LTE_GECKO09 ){
+        @if( $UA_Gecko09 ){
+            .Search {
+                height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+            }
+            // Gecko 0.9.6 だけで起る問題を回避する為に 0.9.x 全てで問題が起きないように書き換えた
+            // https://twitter.com/itozyun/status/1588789146625404928
+            .Search-txt {
+                position : absolute;
+                top      : 1em;
+                left     : 0;
+                right    : $SEARCH_BTN_WIDTH - $FORM_ITEM_PADDING_LR * 2;
+            }
+        }
+
         // 基準は #lH .lS, .Search-txt は通常配置, .Search .btn は絶対配置
         @if( $Option_simpleHeader ){
             #lH .lSi {
