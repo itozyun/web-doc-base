@@ -35,7 +35,11 @@
         }
 
         pre & {
-            background : none !important;
+            @if( $UA_Opera70 ){
+                background : inherit !important; // TODO background:0 0 の書き替え
+            } @else {
+                background : none !important;
+            }
             padding    : 0;
             margin     : 0;
         }
