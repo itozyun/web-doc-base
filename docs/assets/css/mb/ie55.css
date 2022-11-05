@@ -1,13 +1,12 @@
 @charset "UTF-8";
-.medal,
 a,
 a img {
-  border-color: #fdeeb7
+  border-color: #f8fbf8
 }
 .ribbon :link img,
 .ribbon :visited img,
 .ribbon a {
-  border-color: #062241
+  border-color: #1a1a1a
 }
 blockquote .tl td,
 blockquote .tl tfoot td,
@@ -19,16 +18,14 @@ blockquote hr,
 blockquote table,
 h5,
 h6 {
-  border-color: #8a7322
+  border-color: #777
 }
 .AHead,
-.Comment div,
-.Cover-meta,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
 h6 {
-  color: #8a7322
+  color: #777
 }
 dd,
 li {
@@ -45,12 +42,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-blockquote tbody th,
-thead td,
-thead th {
-  background: #8a7322;
-  color: #fdeeb7
-}
 .lM1,
 .lM2,
 .lS1,
@@ -59,7 +50,7 @@ thead th {
 }
 .baseColor,
 .medal {
-  background: #fdeeb7
+  background: #f8fbf8
 }
 .RichLink b,
 .caption,
@@ -114,15 +105,14 @@ var {
 *,
 blockquote :link img,
 blockquote :visited img,
-blockquote tbody th,
 hr,
 input,
 table,
 textarea {
-  border-color: #e7d182
+  border-color: #ddd
 }
 a:active img {
-  border-color: #0d5bb5!important
+  border-color: #3079ed!important
 }
 :hover img {
   top: 2px
@@ -142,8 +132,8 @@ a:active img {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
-  background: #06284e;
-  color: #fdeeb7
+  background: #111;
+  color: #f8fbf8
 }
 .BlogArchive :hover,
 .Label :hover,
@@ -159,7 +149,7 @@ ins {
 .Cover h2,
 a:active code,
 a:active var {
-  background: #0d5bb5
+  background: #3079ed
 }
 .LinkList :link,
 .RichLink-sep :link {
@@ -169,12 +159,12 @@ a:active var {
 .LinkList a:visited,
 .RichLink-sep a:visited {
   background: 0 0;
-  color: #06284e
+  color: #111
 }
 .LinkList .ribbon a,
 .RichLink-sep .ribbon a {
-  background: #fed33b;
-  color: #062241
+  background: #fff;
+  color: #1a1a1a
 }
 .ribbon .LinkList :link,
 .ribbon .RichLink-sep :link {
@@ -184,12 +174,12 @@ a:active var {
 .ribbon .LinkList :visited,
 .ribbon .RichLink-sep :visited {
   background: 0 0;
-  color: #fed33b
+  color: #fff
 }
 .ribbon .LinkList :hover,
 .ribbon .RichLink-sep :hover {
-  background: #08366b;
-  color: #fed33b
+  background: #2a2a2a;
+  color: #fff
 }
 html {
   font-size: 100%
@@ -254,8 +244,8 @@ textarea {
   border-width: 0
 }
 body {
-  background: #062241;
-  color: #06284e
+  background: #1a1a1a;
+  color: #111
 }
 p {
   line-height: 1.9
@@ -274,18 +264,16 @@ a:active:hover {
 :link {
   color: #24c
 }
-.medal,
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited,
-table {
-  color: #06284e
+:visited {
+  color: #111
 }
 .ribbon :link:hover,
 :link:hover {
-  color: #0d5bb5;
-  border-color: #0d5bb5
+  color: #3079ed;
+  border-color: #3079ed
 }
 :visited:hover {
   color: #419;
@@ -297,7 +285,7 @@ table {
 .ribbon a,
 :link .RichLink-meta,
 :visited .RichLink-meta {
-  color: #ffeba1
+  color: #bbb
 }
 a:active,
 a:active * {
@@ -309,14 +297,14 @@ a:active * {
 .ribbon,
 .ribbon .AHead h1,
 .ribbon :visited {
-  color: #fed33b
+  color: #fff
 }
 .ribbon :visited:hover {
   color: #b3f;
   border-color: #b3f
 }
 a:active {
-  background-color: #0d5bb5!important
+  background-color: #3079ed!important
 }
 .RichLink b,
 h1,
@@ -338,7 +326,7 @@ h6 {
 }
 h4 {
   border-width: 0 0 0 .7em;
-  border-color: #06284e;
+  border-color: #111;
   padding: 0 0 0 .3em
 }
 h5 {
@@ -369,7 +357,7 @@ th {
 .SocialBtns :active,
 .Subscribe a:active,
 .btn:active {
-  border-color: #0d5bb5
+  border-color: #3079ed
 }
 .Cover a,
 .Cover-meta,
@@ -444,7 +432,7 @@ h2 {
   font-size: 1.1em
 }
 .wn {
-  color: #c00!important
+  color: red!important
 }
 hr {
   height: 0;
@@ -465,7 +453,8 @@ table {
   width: 94%;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0
+  border-spacing: 0;
+  color: #111
 }
 caption {
   margin: 1.5em 3% .7em
@@ -476,17 +465,19 @@ th {
 }
 td {
   padding: .5em 0;
-  border-color: #fdeeb7 #fdeeb7 #e7d182
+  border-color: #f8fbf8 #f8fbf8 #ddd
 }
 thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
-  border-color: #e7d182 #937c2c
+  background: #777;
+  border-color: #ddd #818181;
+  color: #f8fbf8
 }
 tbody th {
-  background: #e7d182;
-  border-color: #fdeeb7
+  background: #ddd;
+  border-color: #f8fbf8
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -505,23 +496,28 @@ blockquote tbody th :link,
 blockquote tbody th :link:hover,
 thead :link,
 thead :link:hover {
-  color: #fdeeb7
+  color: #f8fbf8
 }
 tfoot td,
 tfoot th {
-  border-color: #8a7322 #fdeeb7
+  border-color: #777 #f8fbf8
 }
 blockquote thead td,
 blockquote thead th {
-  background: #06284e;
-  border-color: #e7d182 #1d3953
+  background: #111;
+  border-color: #ddd #252525
+}
+blockquote tbody th {
+  background: #777;
+  border-color: #ddd;
+  color: #f8fbf8
 }
 blockquote td {
-  border-color: #e7d182 #e7d182 #8a7322
+  border-color: #ddd #ddd #777
 }
 blockquote tfoot td,
 blockquote tfoot th {
-  border-color: #06284e #e7d182
+  border-color: #111 #ddd
 }
 .Pager-prev,
 .commonForm-send,
@@ -536,10 +532,10 @@ blockquote tfoot th {
   text-transform: uppercase
 }
 .ribbon * {
-  border-color: #08366b
+  border-color: #2a2a2a
 }
 #lB .lS {
-  background: #fffd93
+  background: #f1f4f1
 }
 em {
   background: #ff6
@@ -579,16 +575,16 @@ strong {
 .btn:link {
   background: #bbe;
   border-color: #bbe;
-  color: #062241
+  color: #1a1a1a
 }
 .btn:visited {
-  background: #062241;
-  border-color: #fed33b;
-  color: #fed33b
+  background: #1a1a1a;
+  border-color: #fff;
+  color: #fff
 }
 blockquote h3,
 kbd {
-  border-color: #06284e
+  border-color: #111
 }
 input.btn {
   padding: .3em 1em .6em
@@ -629,11 +625,15 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
+.medal {
+  border-color: #f8fbf8;
+  color: #111
+}
 :link .medal,
 :visited .medal {
-  border-color: #06284e;
-  background: #06284e;
-  color: #fdeeb7
+  border-color: #111;
+  background: #111;
+  color: #f8fbf8
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -653,8 +653,7 @@ input.btn {
 .mspacer {
   margin: 1em .5em!important
 }
-#lF .lM .mspacer,
-.Cover p {
+#lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
@@ -690,7 +689,7 @@ tr .box {
 .ABody h2 {
   font-size: 1.5em;
   border-width: .2em 0 0;
-  color: #0d5bb5;
+  color: #3079ed;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
@@ -707,7 +706,7 @@ tr .box {
 }
 .AHead h1 {
   font-size: 2em;
-  color: #06284e;
+  color: #111;
   margin: 0;
   text-align: center;
   padding: 2em 0
@@ -720,7 +719,7 @@ tr .box {
 .AHead-labels {
   margin-top: .5em;
   font-family: "MS Gothic",sans-serif;
-  color: #062241
+  color: #1a1a1a
 }
 .AHead-labels i,
 .RichLink br {
@@ -743,13 +742,13 @@ kbd {
   border-width: 1px
 }
 .AHead-labels :visited {
-  background: #062241;
-  border-color: #ffeba1;
-  color: #ffeba1
+  background: #1a1a1a;
+  border-color: #bbb;
+  color: #bbb
 }
 .AHead-labels :link:hover {
   border-color: #bbe;
-  color: #062241
+  color: #1a1a1a
 }
 .Attribution {
   padding: 1em 0;
@@ -772,13 +771,9 @@ kbd {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.Cover p,
-.Cover-meta {
-  line-height: 1.4
-}
 .BreadcrumbList {
   padding: 1em 0;
-  color: #8a7322
+  color: #777
 }
 .Comment h3,
 .SearchResult h3 {
@@ -790,6 +785,7 @@ kbd {
   margin-left: 3%
 }
 .Comment div {
+  color: #777;
   font-size: 93%
 }
 .Comment p {
@@ -812,8 +808,8 @@ kbd {
   width: 100%
 }
 .Cover h2 {
-  border: 1px solid #0d5bb5;
-  color: #fdeeb7;
+  border: 1px solid #3079ed;
+  color: #f8fbf8;
   font-size: .825em;
   padding: .6em;
   display: inline;
@@ -833,12 +829,20 @@ pre var {
 .Cover a {
   padding: .37em
 }
+.Cover-meta {
+  color: #777;
+  line-height: 1.4
+}
+.Cover p {
+  line-height: 1.4;
+  margin: .6em .5em
+}
 .Cover {
   zoom: 1;
   margin: 2em auto
 }
 .Label div {
-  color: #fdeeb7;
+  color: #f8fbf8;
   text-justify: inter-ideograph;
   line-break: normal;
   text-align: justify
@@ -846,7 +850,7 @@ pre var {
 .Subscribe div,
 .ribbon .Label div,
 .ribbon .TxtNavi {
-  color: #062241
+  color: #1a1a1a
 }
 #lF .Label a,
 .lS .Label a {
@@ -863,18 +867,18 @@ pre var {
   zoom: 1;
   padding: 1em .5em 0;
   border-width: 0 0 1px;
-  border-color: #08366b!important
+  border-color: #2a2a2a!important
 }
 .baseColor .RichLink a {
-  border-color: #e7d182!important
+  border-color: #ddd!important
 }
 .RichLink-meta {
-  color: #08366b;
+  color: #2a2a2a;
   margin: 1.143em 0;
   line-height: 1.4
 }
 .baseColor .RichLink-meta {
-  color: #e7d182
+  color: #ddd
 }
 .RichLink h3 {
   font-size: 1.5em;
@@ -972,47 +976,47 @@ pre var {
 .Subscribe .atom:link {
   background: #dd6502;
   border-color: #dd6502;
-  color: #062241
+  color: #1a1a1a
 }
 .Subscribe .atom:visited {
-  background: #062241;
+  background: #1a1a1a;
   border-color: #dd6502;
   color: #dd6502
 }
 .Subscribe .rss:link {
   background: #dd8902;
   border-color: #dd8902;
-  color: #062241
+  color: #1a1a1a
 }
 .Subscribe .rss:visited {
-  background: #062241;
+  background: #1a1a1a;
   border-color: #dd8902;
   color: #dd8902
 }
 .Subscribe .fl:link {
   background: #53bb45;
   border-color: #53bb45;
-  color: #062241
+  color: #1a1a1a
 }
 .Subscribe .fl:visited {
-  background: #062241;
+  background: #1a1a1a;
   border-color: #53bb45;
   color: #53bb45
 }
 .Subscribe .stm:link {
   background: #8bc53f;
   border-color: #8bc53f;
-  color: #062241
+  color: #1a1a1a
 }
 .Subscribe .stm:visited {
-  background: #062241;
+  background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
 }
 .TxtNavi {
   padding: 1em 0;
   text-align: right;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .aa {
   margin: 1em 0;
@@ -1047,7 +1051,7 @@ blockquote {
 }
 .js-bqCite {
   text-align: right;
-  color: #8a7322
+  color: #777
 }
 .box {
   zoom: 1;
@@ -1136,7 +1140,7 @@ div .caption img {
 .tl tfoot th,
 .tl thead td,
 .tl thead th {
-  border-color: #e7d182;
+  border-color: #ddd;
   padding-top: .5em;
   padding-bottom: .5em
 }
@@ -1147,7 +1151,7 @@ div .caption img {
 .tl td {
   padding: .5em .8em;
   border-width: 0 0 0 .3em;
-  border-color: #e7d182;
+  border-color: #ddd;
   border-style: solid
 }
 .tl tfoot td {
@@ -1163,7 +1167,7 @@ div .caption img {
   text-indent: -1.2em
 }
 .Pager {
-  color: #fdeeb7;
+  color: #f8fbf8;
   zoom: 1
 }
 .Pager span {
@@ -1173,16 +1177,16 @@ div .caption img {
 }
 .SocialBtns {
   padding: 1em 0;
-  color: #fdeeb7;
+  color: #f8fbf8;
   text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
   border-color: #1b95e0;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .SocialBtns .tw:visited {
-  background: #fdeeb7;
+  background: #f8fbf8;
   border-color: #1b95e0;
   color: #1b95e0
 }
@@ -1199,10 +1203,10 @@ div .caption img {
 .SocialBtns .hb:link {
   background: #008fde;
   border-color: #008fde;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .SocialBtns .hb:visited {
-  background: #fdeeb7;
+  background: #f8fbf8;
   border-color: #008fde;
   color: #008fde
 }
@@ -1219,20 +1223,20 @@ div .caption img {
 .SocialBtns .pk:link {
   background: #ee4056;
   border-color: #ee4056;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .SocialBtns .pk:visited {
-  background: #fdeeb7;
+  background: #f8fbf8;
   border-color: #ee4056;
   color: #ee4056
 }
 .SocialBtns .ln:link {
   background: #00c300;
   border-color: #00c300;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .SocialBtns .ln:visited {
-  background: #fdeeb7;
+  background: #f8fbf8;
   border-color: #00c300;
   color: #00c300
 }
@@ -1263,12 +1267,12 @@ ol.linenums {
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
-  color: #fdeeb7
+  color: #f8fbf8
 }
 .baseColor .btn:visited {
-  background: #fdeeb7;
-  border-color: #06284e;
-  color: #06284e
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 @media screen {
   .e6L,
@@ -1295,8 +1299,8 @@ ol.linenums {
   blockquote tbody th var,
   thead code,
   thead var {
-    background: #e7d182;
-    color: #06284e
+    background: #ddd;
+    color: #111
   }
   #lB .lM {
     padding-bottom: 4em
@@ -1354,7 +1358,7 @@ ol.linenums {
   blockquote,
   code,
   var {
-    background: #e7d182
+    background: #ddd
   }
   .hscroll {
     margin: 1em 0
@@ -1382,8 +1386,8 @@ ol.linenums {
   blockquote var,
   tbody th code,
   tbody th var {
-    background: #8a7322;
-    color: #fdeeb7
+    background: #777;
+    color: #f8fbf8
   }
   .prettyprint {
     background: #333;
