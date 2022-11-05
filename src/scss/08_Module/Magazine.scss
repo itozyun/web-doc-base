@@ -135,7 +135,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
         .Magazine-sep-inner:first-child .Magazine-main {
             padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
         }
-        .Magazine-sep-inner:last-child .Magazine-date {
+        .Magazine-sep-inner:not(:first-child) .Magazine-date {
             padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
         }
     }
