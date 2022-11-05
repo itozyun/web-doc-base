@@ -134,6 +134,10 @@
 
     pre {
         @include pre-wrap;
+
+        @if( $IS_OLD_GECKO ){
+            overflow : auto;
+        }
         code, samp {
             @if( $UA_IE5 and $Option_IT ){
                 width : 100%;
