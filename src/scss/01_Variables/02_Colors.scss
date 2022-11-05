@@ -1,14 +1,14 @@
-$COLOR_ACCENT : #0D5BB5 !default;
-$COLOR_WARN   : #c00 !default;
+$COLOR_ACCENT : #3079ed !default;
+$COLOR_WARN   : red !default;
 
-$COLOR_Sidebar_fill : #fffd93 !default;
+$COLOR_Sidebar_fill : #f1f4f1 !default;
 
 /*  白系統のボディーメイン用カラー
 --------------------------------------------------------------------------------------*/
-$COLOR_Light_fill          : #fdeeb7!default;
-$COLOR_Light_text          : #06284e !default;
-$COLOR_Light_casual_fill   : #e7d182 !default;
-$COLOR_Light_casual_text   : #8a7322 !default;
+$COLOR_Light_fill          : #f8fbf8 !default;
+$COLOR_Light_text          : #111 !default;
+$COLOR_Light_casual_fill   : #ddd !default;
+$COLOR_Light_casual_text   : #777 !default;
 $COLOR_Light_accent        : $COLOR_ACCENT !default;
 
 $COLOR_Light_link          : #24c !default;
@@ -18,10 +18,10 @@ $COLOR_Light_visited_hover : #419 !default;
 
 /*  黒系統のリボン用カラー(フッターとページ上部のアクセント)
 --------------------------------------------------------------------------------------*/
-$COLOR_Ribbon_fill          : #062241 !default;
-$COLOR_Ribbon_text          : #FED33B !default;
-$COLOR_Ribbon_casual_fill   : #08366b!default;
-$COLOR_Ribbon_casual_text   : #ffeba1 !default;
+$COLOR_Ribbon_fill          : #1a1a1a !default;
+$COLOR_Ribbon_text          : #fff !default;
+$COLOR_Ribbon_casual_fill   : #2a2a2a !default;
+$COLOR_Ribbon_casual_text   : #bbb !default;
 $COLOR_Ribbon_accent        : $COLOR_ACCENT !default;
 
 $COLOR_Ribbon_link          : #bbe !default;
@@ -32,9 +32,9 @@ $COLOR_Ribbon_visited_hover : #b3f !default;
 /*  ダークモード用のボディーのメイン用カラー
 --------------------------------------------------------------------------------------*/
 $COLOR_Dark_fill          : #000 !default;
-$COLOR_Dark_text          : #FED33B !default;
-$COLOR_Dark_casual_fill   : $COLOR_Ribbon_fill !default;
-$COLOR_Dark_casual_text   : #ffeba1 !default;
+$COLOR_Dark_text          : #eee !default;
+$COLOR_Dark_casual_fill   : #222 !default;
+$COLOR_Dark_casual_text   : #999 !default;
 $COLOR_Dark_accent        : $COLOR_ACCENT !default;
 
 $COLOR_Dark_link          : $COLOR_Ribbon_link !default;
