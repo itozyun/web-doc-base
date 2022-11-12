@@ -36,7 +36,7 @@
 
         pre & {
             @if( $UA_Opera70 ){
-                background : inherit !important; // TODO background:0 0 の書き替え
+                background-color : transparent !important; // Opera 7.0 は background:0 0 が黒くなる
             } @else {
                 background : none !important;
             }
