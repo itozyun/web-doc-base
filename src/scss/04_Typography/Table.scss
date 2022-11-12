@@ -34,6 +34,13 @@ table {
         empty-cells     : show;
         border-spacing  : 0;
         @include responsive-horizontal-margin(1, 1em, 1em);
+        @if( $UA_Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    position : relative;
+                }
+            }
+        }
     }
 
     caption {
