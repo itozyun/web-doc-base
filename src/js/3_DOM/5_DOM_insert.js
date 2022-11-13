@@ -22,9 +22,9 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
 
     /**
      * @param {number} insertPosition
-     * @param {Node} targetNode
+     * @param {!Node} targetNode
      * @param {string} tag
-     * @param {Object=} attrs
+     * @param {!Object=} attrs
      * @param {string|number=} textContent
      * @param {boolean=} isSVG
      * @return {!Element}
@@ -40,7 +40,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
             childNodes = p_DOM_getChildNodes( insertPosition < 2 ? p_DOM_getParentNode( targetNode ) : targetNode );
             nodeIndex  = insertPosition < 2 ? childNodes.indexOf( targetNode ) + insertPosition : childNodes.length;
             targetNode.insertAdjacentHTML( position, m_toHTMLString( tag, attrs, textContent ) );
-            elm = p_DOM_getChildNodes( targetNode )[ nodeIndex ];
+            elm = p_DOM_getChildNodes( /** @type {!Element} */ (targetNode) )[ nodeIndex ];
             if( textContent != null ){
                 if( tag === m_FAKE_TEXTNODE_TAGNAME ){
                     elm.nodeType = 3;
@@ -84,9 +84,9 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
     };
 
 /** 1.
- * @param {Node} targetNode
+ * @param {!Element} targetNode
  * @param {string} tag
- * @param {Object=} attrs
+ * @param {!Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {!Element}
@@ -107,9 +107,9 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
 };
 
 /** 2.
- * @param {Node} targetNode
+ * @param {!Node} targetNode
  * @param {string} tag
- * @param {Object=} attrs
+ * @param {!Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {!Element}
@@ -128,9 +128,9 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
 };
 
 /** 3.
- * @param {Node} targetNode
+ * @param {!Node} targetNode
  * @param {string} tag
- * @param {Object=} attrs
+ * @param {!Object=} attrs
  * @param {string|number=} textContent
  * @param {boolean=} isSVG
  * @return {!Element}
@@ -154,15 +154,15 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
 };
 
 /** 5.
- * @param {Element} targetNode
+ * @param {!Element} targetNode
  * @param {string|number} textContent
- * @return {Text|HTMLFontElement}
+ * @return {!Text|!HTMLFontElement}
  */
 function DOM_insertTextNode( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 2, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
+        return /** @type {!HTMLFontElement} */ (DOM_createElement( 2, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
         targetNode.appendChild( textNode );
@@ -171,15 +171,15 @@ function DOM_insertTextNode( targetNode, textContent ){
 };
 
 /** 6.
- * @param {Node} targetNode
+ * @param {!Node} targetNode
  * @param {string|number} textContent
- * @return {Text|HTMLFontElement}
+ * @return {!Text|!HTMLFontElement}
  */
 function DOM_insertTextNodeBefore( targetNode, textContent ){
     var textNode;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 0, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
+        return /** @type {!HTMLFontElement} */ (DOM_createElement( 0, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode = document.createTextNode( '' + textContent );
 
@@ -189,15 +189,15 @@ function DOM_insertTextNodeBefore( targetNode, textContent ){
 };
 
 /** 7.
- * @param {Node} targetNode
+ * @param {!Node} targetNode
  * @param {string|number} textContent
- * @return {Text|HTMLFontElement}
+ * @return {!Text|!HTMLFontElement}
  */
 function DOM_insertTextNodeAfter( targetNode, textContent ){
     var textNode, nextSibling;
 
     if( m_isIE4DOM ){
-        return /** @type {HTMLFontElement} */ (DOM_createElement( 1, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
+        return /** @type {!HTMLFontElement} */ (DOM_createElement( 1, targetNode, m_FAKE_TEXTNODE_TAGNAME, undefined, textContent ));
     } else {
         textNode    = document.createTextNode( '' + textContent ),
         nextSibling = targetNode.nextSibling;
@@ -210,7 +210,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
 };
 
 /** 8.
- * @param {Node} elm
+ * @param {!Node} elm
  */
 function DOM_remove( elm ){
     if( DEFINE_WEB_DOC_BASE__DEBUG && !p_DOM_getParentNode( elm ) ){
@@ -226,15 +226,15 @@ function DOM_remove( elm ){
 };
 
 /** 9.
- * @param {Element} elm
+ * @param {!Element} elm
  */
 function DOM_empty( elm ){
     elm.innerHTML = '';
 };
 
 /** 10.
- * @param {Element} parentNode
- * @param {Node} childNode
+ * @param {!Element} parentNode
+ * @param {!Node} childNode
  * @return {boolean|undefined}
  */
 function DOM_contains( parentNode, childNode ){
@@ -242,7 +242,7 @@ function DOM_contains( parentNode, childNode ){
         return parentNode.contains( childNode );
     };
     while( childNode && childNode !== p_html ){
-        childNode = p_DOM_getParentNode( childNode );
+        childNode = /** @type {!Node} */ (p_DOM_getParentNode( childNode ));
         if( parentNode === childNode ){
             return true;
         };
@@ -250,14 +250,99 @@ function DOM_contains( parentNode, childNode ){
 };
 
 /** 11.
- * @param {Element} elm
+ * @param {!Element} elm
  * @return {string}
  */
 function DOM_getInnerHTML( elm ){
     if( m_isIE4DOM ){
         return elm.innerHTML.split( '<FONT>' ).join( '' ).split( '<\/FONT>' ).join( '' );
     };
-    return elm.innerHTML;
+    return elm.innerHTML.split( '\r\n' ).join( '\n' ).split( '\r' ).join( '\n' );
+
+    var html;
+    // https://github.com/googlearchive/code-prettify/blob/e006587b4a893f0281e9dc9a53001c7ed584d4e7/tests/test_base.js#L229
+    if( p_WebKit <= 419.3 ){ // Safari 2-
+        var out = [];
+        normalizedHtml( elm, out, -1, true );
+        html = out.join( '' );
+
+        // https://github.com/googlearchive/code-prettify/blob/e006587b4a893f0281e9dc9a53001c7ed584d4e7/tests/test_base.js#L189
+        // more normalization to work around problems with non-ascii chars in
+        // regexps in Safari
+        html = html.split( '\xa0' ).join( '&nbsp;' );
+    } else {
+        html = elm.innerHTML;
+    };
+    return html.split( '\r\n' ).join( '\n' ).split( '\r' ).join( '\n' );
+
+  /**
+    * Escapes HTML special characters to HTML.
+    *
+    * @param {string} str the HTML to escape
+    * @return {string} output escaped HTML
+    */
+    function textToHtml( str ){
+        return str
+            .replace( '&', '&amp;' )
+            .replace( '<', '&lt;' )
+            .replace( '>', '&gt;' );
+    };
+  /**
+    * but escapes double quotes to be attribute safe.
+    *
+    * @param {string} str the HTML to escape
+    * @return {string} output escaped HTML
+    */
+    function attribToHtml( str ){
+        return textToHtml( str ).replace( '"', '&quot;' );
+    };
+  /**
+    * Traverse node and manually build `innerHTML`.
+    *
+    * @param {!Node} node DOM node
+    * @param {!Array.<string>} out HTML content
+    * @param {number} i
+    * @param {boolean} skip
+    * @return {number}
+    */
+    function normalizedHtml( node, out, i, skip ){
+        switch( node.nodeType ){
+            case 1 :  // ELEMENT_NODE
+                if( !skip ){
+                    // start-tag
+                    var name = node.tagName;
+                    out[ ++i ] = '<' + name;
+                    // attributes : Opera 8+, IE5.5+
+                    var attrs = node.attributes;
+                    var n = attrs.length;
+                    if( n ){
+                        for( var j = 0; j < n; ++j ){
+                            var attr = attrs[ j ];
+                            // specified: <tag atn> vs. <tag atn="atv">
+                            if( !attr.specified ){ continue; };
+                            out[ ++i ] = ' ' + attr.name + '="' + attribToHtml( attr.value ) + '"';
+                        };
+                    };
+                    out[ ++i ] = '>';
+                };
+                // children
+                for( var child = node.firstChild; child; child = child.nextSibling ){
+                    i = normalizedHtml( child, out, i, false );
+                };
+                if( !skip ){
+                    // end-tag
+                    if( node.firstChild || 'BR,HR,LINK,IMG,META'.indexOf( name.toUpperCase() ) === -1 ){
+                        out[ ++i ] = '<\/' + name + '>';
+                    };
+                };
+                break;
+            case 3 :  // TEXT_NODE
+            case 4 :  // CDATA_SECTION_NODE
+                out[ ++i ] = textToHtml( node.nodeValue );
+                break;
+        };
+        return i;
+    };
 };
 
 // Text.setTextContent()

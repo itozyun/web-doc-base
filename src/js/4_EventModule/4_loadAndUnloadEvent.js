@@ -17,12 +17,12 @@ p_listenUnloadEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {!Function|undefined} */
+/** @type {!function(!Event=)|undefined} */
 var Event_onload = function( e ){
-    p_removeEventListener( window, 'load', /** @type {Function} */ (Event_onload) );
+    p_removeEventListener( window, 'load', /** @type {!function(!Event=)} */ (Event_onload) );
     Event_onload = undefined;
 
-    m_dispatchEvent(  /** @type {!Array.<!Function>} */ (p_loadEventCallbacks), e, true );
+    m_dispatchEvent(  /** @type {!Array.<!function(!Event=)>} */ (p_loadEventCallbacks), e, true );
     p_loadEventCallbacks = undefined;
     if( !DEFINE_WEB_DOC_BASE__DEBUG ){
         p_listenLoadEvent = undefined;
@@ -32,7 +32,7 @@ var Event_onload = function( e ){
 /** @type {!Function|undefined} */
 var Event_onloadFallbackForLegacySafari;
 
-/** @type {!Array.<!Function>|undefined} */
+/** @type {!Array.<!function(!Event=)>|undefined} */
 var Event_unloadEventCallbacks = [];
 
 // Re: onLoad doesn't work with Safari?
@@ -46,13 +46,13 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
                     Event_onloadFallbackForLegacySafari = undefined;
                     Event_onload();
                 } else {
-                    p_setTimer( /** @type {Function} */ (Event_onloadFallbackForLegacySafari) );
+                    p_setTimer( /** @type {!Function} */ (Event_onloadFallbackForLegacySafari) );
                 };
             };
         };
-    p_setTimer( /** @type {Function} */ (Event_onloadFallbackForLegacySafari) );
+    p_setTimer( /** @type {!Function} */ (Event_onloadFallbackForLegacySafari) );
 } else {
-    p_addEventListener( window, 'load', /** @type {Function} */ (Event_onload) );
+    p_addEventListener( window, 'load', /** @type {!Function} */ (Event_onload) );
 };
 
 // https://web.archive.org/web/20180328040501/http://oogatta.hatenadiary.jp/entry/20121228/1356696182

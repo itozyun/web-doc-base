@@ -150,7 +150,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
                     Event_forcedColors_test();
                     p_forcedColorsChangeCallbacks = undefined;
                 } else { // IE9- or Gecko60+
-                    p_setLoopTimer( /** @type {Function} */ (Event_forcedColors_test) /* , 1000 */ );
+                    p_setLoopTimer( /** @type {!Function} */ (Event_forcedColors_test) /* , 1000 */ );
                 };
                 Event_forcedColors_test = undefined;
                 return true;

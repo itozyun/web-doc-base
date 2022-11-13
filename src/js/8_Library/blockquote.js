@@ -38,7 +38,7 @@ p_listenLoadEvent(
                 elmCite;
 
             elmCite = add1st ?
-                p_DOM_insertElementBefore( p_DOM_getFirstChild( elm ), tag, { className : className } ) :
+                p_DOM_insertElementBefore( /** @type {!Element} */ (p_DOM_getFirstChild( elm )), tag, { className : className } ) :
                 p_DOM_insertElement( elm, tag, { className : className } );
             
             p_DOM_insertElement( elmCite, 'a',

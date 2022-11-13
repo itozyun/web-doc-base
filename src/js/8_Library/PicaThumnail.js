@@ -1,23 +1,23 @@
-/** @type {Array.<picaThumbnail>} */
+/** @type {!Array.<!PicaThumbnail>} */
 var PicaThumbnail_IMGS      = [];
 var PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
 
 /**
  * @typedef {{
- *   elmA                : HTMLAnchorElement,
+ *   elmA                : !HTMLAnchorElement,
  *   thumbUrl            : string,
  *   thumbWidth          : string,
  *   originalUrl         : (string|undefined),
- *   elmImg              : HTMLImageElement,
+ *   elmImg              : !HTMLImageElement,
  *   isGoogleUserContent : boolean,
  *   replaced            : (boolean|undefined),
  *   clazz               : (string|undefined),
- *   elmCap              : (HTMLSpanElement|undefined),
+ *   elmCap              : (!HTMLSpanElement|undefined),
  *   captionCSS          : (string|undefined),
  *   large               : (string|undefined)
  * }}
  */
-var picaThumbnail;
+var PicaThumbnail;
 
 if( !p_cloudRendering ){
     p_listenImageReady(
@@ -43,7 +43,7 @@ if( !p_cloudRendering ){
                         p_DOM_setStyle( elmImg, 'width', thumbWidth );
                     };
                     p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
-                    PicaThumbnail_IMGS.push( /** @type {picaThumbnail} */ ({
+                    PicaThumbnail_IMGS.push( /** @type {PicaThumbnail} */ ({
                         elmA                : elmA,
                         thumbUrl            : elmImg.src,
                         thumbWidth          : thumbWidth,
@@ -67,6 +67,9 @@ if( !p_cloudRendering ){
     );
 };
 
+/**
+ * @param {!Event=} e
+ */
 function PicaThumbnail_onClickThumbnail( e ){
     var key = e.keyCode || e.witch,
         i   = PicaThumbnail_IMGS.length,
@@ -76,7 +79,7 @@ function PicaThumbnail_onClickThumbnail( e ){
     if( e.type === 'keydown' && key !== 13 ) return;
 
     for( ; i; ){
-        obj = /** @type {picaThumbnail} */ (PicaThumbnail_IMGS[ --i ]);
+        obj = /** @type {PicaThumbnail} */ (PicaThumbnail_IMGS[ --i ]);
         if( obj.elmImg === this || obj.elmA === this ){
             elmImg = obj.elmImg;
             elmA = parent = obj.elmA;
@@ -158,6 +161,9 @@ function PicaThumbnail_onClickThumbnail( e ){
     PicaThumbnail_onClickAnchor( e );
 };
 
+/**
+ * @param {!Event=} e
+ */
 function PicaThumbnail_onClickAnchor( e ){
     e.preventDefault();
     e.stopPropagation();

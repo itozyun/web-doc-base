@@ -82,21 +82,21 @@ var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9
                                      8 <= p_Presto && p_Presto < 9;
 var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
 
-var CSSOM_HAS_STYLESHEET_OBJECT = !!p_Trident ||
-    ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
-    var elmStyle = p_DOM_insertElement( p_html, 'style' ),
-        result = !!CSSOM_getStyleSheet( elmStyle );
+var CSSOM_HAS_STYLESHEET_OBJECT    = !p_Trident &&
+        ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
+        var elmStyle = p_DOM_insertElement( p_html, 'style' ),
+            result = !!CSSOM_getStyleSheet( elmStyle );
 
-    if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
-        Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
-        Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
-        Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
-        Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
-        Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
-    };
-    p_DOM_remove( elmStyle );
-    return result;
-})();
+        if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
+            Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
+            Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
+            Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
+            Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
+            Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
+        };
+        p_DOM_remove( elmStyle );
+        return result;
+    })();
 
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
@@ -166,7 +166,7 @@ function CSSOM_getStyleSheetElementList(){
  * @return {!CSSStyleSheet|!StyleSheet}
  */
 function CSSOM_getStyleSheet( elm ){
-    return elm.styleSheet || elm.sheet;
+    return /** @type {!CSSStyleSheet|!StyleSheet} */ (elm.styleSheet || elm.sheet);
 };
 
 /**
@@ -257,7 +257,7 @@ function CSSOM_deleteStyleSheet( styleSheet ){
  *
  * @param {!CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
- * @param {Object|string} urlOrStyle
+ * @param {!Object|string} urlOrStyle
  * @param {number=} opt_ruleIndex
  * @return {number} ruleIndex
  */
@@ -433,7 +433,7 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value )
         if( targetRule.selectorTextOrAtRule === '@import' ){
             targetRule.urlOrStyle = propertyOrURL;
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {!StyleSheetFallback} */ (styleSheet) );
             } else if( targetRule._elmFallback ){
                 p_DOM_setAttribute( targetRule._elmFallback, 'href', propertyOrURL );
             } else if( p_Trident < 9 ){
@@ -446,9 +446,9 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value )
         } else {
             targetRule.urlOrStyle[ propertyOrURL ] = opt_value;
             if( CSSOM_USE_DATAURI_FALLBACK || CSSOM_USE_TEXTCONTENT_FALLBACK ){
-                CSSOM_commitUpdatesToStyleSheetElement( /** @type {StyleSheetFallback} */ (styleSheet) );
+                CSSOM_commitUpdatesToStyleSheetElement( /** @type {!StyleSheetFallback} */ (styleSheet) );
             } else if( p_Trident < 11 ){
-                rawRules = CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) );
+                rawRules = CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) );
                 // indexStart indexEnd が異なれば、その間を removeRule
                 for( ; indexStart <= indexEnd; --indexEnd ){
                     rawRules[ indexEnd ].style[ propertyOrURL ] = '' + opt_value;
@@ -463,7 +463,7 @@ function CSSOM_setStyleOfRule( styleSheet, ruleIndex, propertyOrURL, opt_value )
 
 /** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスのルールのスタイル値を取得します。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {number} ruleIndex
  * @param {string} property
  * @return {string}
@@ -478,9 +478,9 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
             ret = targetRule.urlOrStyle;
         } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) ).length + ' ' + targetRule._indexStart );
+                Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) ).length + ' ' + targetRule._indexStart );
             };
-            rawRule = CSSOM_getCssRules( /** @type {CSSStyleSheet|StyleSheet} */ (styleSheet) )[ targetRule._indexStart ];
+            rawRule = CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) )[ targetRule._indexStart ];
             ret = rawRule && rawRule.style[ toCamelcase( property ) ];
         } else {
             ret = targetRule.urlOrStyle[ property ];
@@ -520,9 +520,9 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
 
 /** CSSOM_insertRuleToStyleSheet(), CSSOM_setStyleOfRule() 経由で生成した StyleSheet インスタンスのルールの index を取得します。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
- * @param {Object|string=} opt_urlOrStyle
+ * @param {!Object|string=} opt_urlOrStyle
  * @return {number}
  */
 function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
@@ -544,9 +544,9 @@ function CSSOM_getIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle 
 
 /** CSSOM_insertRuleToStyleSheet(), CSSOM_setStyleOfRule() 経由で生成した StyleSheet インスタンスのルールの index を取得します。
  *
- * @param {CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
- * @param {Object|string=} opt_urlOrStyle
+ * @param {!Object|string=} opt_urlOrStyle
  * @return {number}
  */
 function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrStyle ){
@@ -567,7 +567,7 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
 };
 
     /**
-     * @param {StyleSheetFallback} styleSheet 
+     * @param {!StyleSheetFallback} styleSheet 
      */
     function CSSOM_commitUpdatesToStyleSheetElement( styleSheet ){
         var data      = CSSOM_getDataByStyleSheet( styleSheet ),
@@ -578,8 +578,9 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
             elmBefore = elements[ index - 1 ],
             elmAfter  = elements[ index ],
             cssText   = [],
-            i = - 1, j = -1, tag = 'style',
-            attr = { type : 'text\/css', media : data._media },
+            tag       = CSSOM_USE_DATAURI_FALLBACK ? 'link' : 'style',
+            attr      = { type : 'text\/css', media : data._media },
+            i = - 1, j = -1,
             rule, selectorTextOrAtRule, urlOrStyle, styles, property;
 
         for( ; rule = cssRules[ ++i ]; ){
@@ -610,7 +611,6 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
             // For Opera 8.x. Hack with data URIs.
             attr.rel  = 'stylesheet';
             attr.href = cssText;
-            tag       = 'link';
             cssText   = undefined;
         };
 

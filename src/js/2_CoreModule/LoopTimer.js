@@ -10,14 +10,14 @@ _p_LoopTimer_remove = LoopTimer_remove;
 /** ===========================================================================
  * private
  */
-/** @type {Array<Object>} */
+/** @type {!Array.<!Object>} */
 var LOOP_LISTENERS = [];
 
 var LOOP_INTERVAL = 500,
     loopTimerUID = 0,
     loopTimerClearID;
 
-/** @type {Function|string} */
+/** @type {!Function|string} */
 var LoopTimer_on = function(){
     var cb, i = 0;
 
@@ -33,7 +33,7 @@ if( p_Trident < 5 || p_Tasman ){
 };
 
 /**
- * @param {Function} callback
+ * @param {!Function} callback
  * @return {number}
  */
 function LoopTimer_set( callback ){

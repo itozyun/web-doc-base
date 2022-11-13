@@ -9,7 +9,7 @@ p_removeEventListener = EventTraget_removeEventListener;
 /** ===========================================================================
  * private
  */
-/** @type {Object<string, Object>} */
+/** @const {!Object<string, !Object>} */
 var EventTarget_LISTENERS        = {};
 var EventTarget_USE_ATTACH       = false; // 5 <= p_Trident && p_Trident < 9,
 var EventTarget_PATCH_OLD_WEBKIT = p_WebKit < 525.13; // Safari <3
@@ -17,10 +17,10 @@ var EventTarget_USE_STANDERD     = !EventTarget_PATCH_OLD_WEBKIT && !p_Tasman &&
 var EventTarget_safariPreventDefault;
 
 /** 1.
- * @param {EventTarget} eventTarget
+ * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {Function} callback
- * @param {Object|boolean=} option
+ * @param {!function(!Event=)} callback
+ * @param {!Object|boolean=} option
  */
 function EventTraget_addEventListener( eventTarget, type, callback, option ){
     if( EventTarget_USE_STANDERD ){
@@ -62,10 +62,10 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
 };
 
 /** 2.
- * @param {EventTarget} eventTarget
+ * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {Function} callback
- * @param {Object|boolean=} option
+ * @param {function(!Event=)} callback
+ * @param {!Object|boolean=} option
  */
 function EventTraget_removeEventListener( eventTarget, type, callback, option ){
     if( EventTarget_USE_STANDERD ){

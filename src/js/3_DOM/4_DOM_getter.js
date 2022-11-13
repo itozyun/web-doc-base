@@ -14,7 +14,7 @@
  */
 
 /** 1.
- * @param {Node} elm
+ * @param {!Node} elm
  * @return {Element|null}
  */
 function DOM_getParentNode( elm ){
@@ -22,8 +22,8 @@ function DOM_getParentNode( elm ){
 };
 
 /** 2.
- * @param {Node} elm
- * @return {Array.<Node>} // TODO NodeList or DOM_getChildNodeArray
+ * @param {!Element} elm
+ * @return {!Array.<!Node>} // TODO NodeList or DOM_getChildNodeArray
  */
 function DOM_getChildNodes( elm ){
     var childNodes = m_isIE4DOM ? elm.children : elm.childNodes,
@@ -37,8 +37,8 @@ function DOM_getChildNodes( elm ){
 };
 
 /** 3.
- * @param {Element} elm
- * @return {Array.<Element>} // TODO HTMLCollection or DOM_getChildElementArray
+ * @param {!Element} elm
+ * @return {!Array.<!Element>} // TODO HTMLCollection or DOM_getChildElementArray
  */
 function DOM_getChildren( elm ){
                       // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
@@ -63,7 +63,7 @@ function DOM_getChildren( elm ){
 };
 
 /** 4.
- * @param {Element} elm
+ * @param {!Element} elm
  * @return {Node|null}
  */
 function DOM_getFirstChild( elm ){
@@ -74,7 +74,7 @@ function DOM_getFirstChild( elm ){
 };
 
 /** 5.
- * @param {Element} elm
+ * @param {!Element} elm
  * @return {Node|null}
  */
 function DOM_getLastChild( elm ){
@@ -87,12 +87,12 @@ function DOM_getLastChild( elm ){
 };
 
 /** 6.
- * @param {Node} elm
+ * @param {!Node} elm
  * @return {Node|null}
  */
 function DOM_getPreviousSibling( elm ){
     if( m_isIE4DOM ){
-        var parentChildNodes = DOM_getChildNodes( DOM_getParentNode( elm ) );
+        var parentChildNodes = DOM_getChildNodes( /** @type {!Element} */ (DOM_getParentNode( elm )) );
 
         return parentChildNodes[ parentChildNodes.indexOf( elm ) - 1 ];
     };
@@ -100,12 +100,12 @@ function DOM_getPreviousSibling( elm ){
 };
 
 /** 7.
- * @param {Node} elm
+ * @param {!Node} elm
  * @return {Node|null}
  */
 function DOM_getNextSibling( elm ){
     if( m_isIE4DOM ){
-        var parentChildNodes = DOM_getChildNodes( DOM_getParentNode( elm ) );
+        var parentChildNodes = DOM_getChildNodes( /** @type {!Element} */ (DOM_getParentNode( elm )) );
 
         return parentChildNodes[ parentChildNodes.indexOf( elm ) + 1 ];
     };

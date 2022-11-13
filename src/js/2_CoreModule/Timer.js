@@ -10,15 +10,15 @@ _p_Timer_remove = Timer_remove;
 /** ===========================================================================
  * private
  */
-/** @type {Array<Object>} */
+/** @type {!Array.<!Object>} */
 var TIMER_LISTENERS = [];
 var TIMER_INTERVAL = 16,
     timerUID = 0,
     timerClearID;
 
-/** @type {Function|string} */
+/** @type {!Function|string} */
 var Timer_on = function(){
-    var cb, i = 0, t = ( new Date - 0 );
+    var cb, i = 0, t = ( + new Date );
 
     while( i < TIMER_LISTENERS.length ){
         if( t < TIMER_LISTENERS[ 0 ].t ){
@@ -42,7 +42,7 @@ if( p_Trident < 5 || p_Tasman ){
 };
 
 /**
- * @param {Function} callback
+ * @param {!function(*=)} callback
  * @param {*=} opt_param
  * @param {number=} opt_intervalMs
  * @return {number}
@@ -55,7 +55,7 @@ function Timer_set( callback, opt_param, opt_intervalMs ){
         f    : callback,
         p    : opt_param,
         _uid : ++timerUID,
-        t    : ( new Date - 0 ) + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
+        t    : ( + new Date ) + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
     } );
 
     return timerUID;

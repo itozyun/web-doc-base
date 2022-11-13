@@ -68,12 +68,12 @@ if( !p_isMobile && !p_cloudRendering ){
 
             if( !SidebarFixer_elmSide ) return true;
 
-            p_listenScrollEvent( SidebarFixer_onscroll );
-            p_listenResizeEvent( SidebarFixer_onscroll );
+            p_listenScrollEvent( /** @type {!function(!Event=)} */ (SidebarFixer_onscroll) );
+            p_listenResizeEvent( /** @type {!function(!Event=)} */ (SidebarFixer_onscroll) );
 
             // ラッパー要素を作成, sidebar の子要素をラッパー要素の下に
             SidebarFixer_elmWrap = p_DOM_insertElementBefore(
-                p_DOM_getFirstChild( SidebarFixer_elmSide ),
+                /** @type {!Node} */ (p_DOM_getFirstChild( /** @type {!Element} */ (SidebarFixer_elmSide) )),
                 'div',
                 { id : DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID }
             );
@@ -193,7 +193,7 @@ function SidebarFixer_onscroll( param ){
         return;
     };
     if( SidebarFixer_ignoreScrollAfterFocus && !focuedElementYAndHeight ){
-        if( ( new Date - 0 ) < SidebarFixer_ignoreScrollAfterFocus ){
+        if( ( + new Date ) < SidebarFixer_ignoreScrollAfterFocus ){
             return;
         };
         SidebarFixer_ignoreScrollAfterFocus = undefined;
@@ -219,7 +219,7 @@ function SidebarFixer_onscroll( param ){
         SidebarFixer_focuedElementYAndHeight = SidebarFixer_fix( undefined, focuedElementYAndHeight[ 0 ], focuedElementYAndHeight[ 1 ] ); // false, undefined, Array.<number>
         if( !SidebarFixer_focuedElementYAndHeight ){
             // focus 直後に発生する scroll をスキップする
-            SidebarFixer_ignoreScrollAfterFocus = ( new Date - 0 ) + 99;
+            SidebarFixer_ignoreScrollAfterFocus = ( + new Date ) + 99;
         };
     } else {
         SidebarFixer_fix();
@@ -506,6 +506,9 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
     return isMultiColumn && preventWheel;
 };
 
+/**
+ * @param {!Event=} e
+ */
 function SidebarFixer_onwheel( e ){
     if( !p_cssAvailability ){
         return;
@@ -534,16 +537,22 @@ function SidebarFixer_onwheel( e ){
     };
 };
 
+/**
+ * @param {!Event=} e
+ */
 function SidebarFixer_onwheelForOldGecko( e ){
     var focusedElement = e.target, i = -1, elm;
 
     while( elm = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
-        if( p_DOM_contains( elm, focusedElement ) ){
+        if( p_DOM_contains( elm, /** @type {!Node} */ (focusedElement) ) ){
             SidebarFixer_onwheel( e );
         };
     };
 };
 
+/**
+ * @param {!Event=} e
+ */
 function SidebarFixer_onfocus( e ){
     if( !p_cssAvailability ){
         return;
@@ -554,10 +563,10 @@ function SidebarFixer_onfocus( e ){
         focusedElementY = 0,
         focusedElementHeight, elm;
 
-    if( p_DOM_contains( SidebarFixer_elmWrap, elmFocused ) ){
+    if( p_DOM_contains( SidebarFixer_elmWrap, /** @type {!Node} */ (elmFocused) ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_showEvent( e.type || 'ie5focus' );
-            p_addEventListener( elmFocused, 'blur', SidebarFixer_onActiveElementBlur );
+            p_addEventListener( /** @type {!EventTarget} */ (elmFocused), 'blur', SidebarFixer_onActiveElementBlur );
         };
 
         focusedElementHeight = elmFocused.offsetHeight;
@@ -575,7 +584,7 @@ function SidebarFixer_onfocus( e ){
             if( SidebarFixer_dummyScrollTimerID ){
                 p_clearTimer( SidebarFixer_dummyScrollTimerID );
             };
-            SidebarFixer_dummyScrollTimerID = p_setTimer( SidebarFixer_onscroll, SidebarFixer_ONSCROL_FROM_TIMER, p_Gecko < 1 ? 500 : 0 ); // Gecko 0.9.5 はかなり遅れてスクロールが起こる
+            SidebarFixer_dummyScrollTimerID = p_setTimer( /** @type {!function(*=)} */ (SidebarFixer_onscroll), SidebarFixer_ONSCROL_FROM_TIMER, p_Gecko < 1 ? 500 : 0 ); // Gecko 0.9.5 はかなり遅れてスクロールが起こる
         };
 
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
@@ -613,16 +622,16 @@ function SidebarFixer_watchActiveElement(){
 
     if( SidebarFixer_currentActiveElement !== activeElement ){
         SidebarFixer_currentActiveElement = activeElement;
-        SidebarFixer_onfocus( { target : activeElement } );
+        SidebarFixer_onfocus( /** @type {!Event} */ ({ target : activeElement }) );
     };
 
-    window.onerror = /** @type {Function} */ (SidebarFixer_memoryErrorHandler);
+    window.onerror = /** @type {!Function} */ (SidebarFixer_memoryErrorHandler);
     SidebarFixer_memoryErrorHandler = undefined;
 };
 
 function SidebarFixer_watchActiveElementErrorHandler(){
     Debug.log( 'error!' );
-    window.onerror = /** @type {Function} */ (SidebarFixer_memoryErrorHandler);
+    window.onerror = /** @type {!Function} */ (SidebarFixer_memoryErrorHandler);
     SidebarFixer_memoryErrorHandler = SidebarFixer_currentActiveElement = undefined;
     return true;
 };
