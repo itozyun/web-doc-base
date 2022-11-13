@@ -104,7 +104,7 @@
     }
 }
 
-@if( $CANUSE_BOX_SIZING and $IS_LTE_IE55 == false ){
+@if( $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false ){
     /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
     .jsPicaLarge {
         display : block;

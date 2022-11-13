@@ -20,6 +20,12 @@ var PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORD
 var PicaThumbnail;
 
 if( !p_cloudRendering ){
+    var PicaThumbnail_canUseCSSTransition =
+        p_notUndefined( p_style[ 'transition'         ] ) ||
+        p_notUndefined( p_style[ '-o-transition'      ] ) ||
+        p_notUndefined( p_style[ '-moz-transition'    ] ) ||
+        p_notUndefined( p_style[ '-webkit-transition' ] );
+
     p_listenImageReady(
         function( result ){
             if( !result.imgReady || !p_elmMain ) return;
@@ -38,8 +44,9 @@ if( !p_cloudRendering ){
                     p_addEventListener( elmImg, 'click'  , PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmA  , 'click'  , PicaThumbnail_onClickAnchor );
                     // Opera 7.x, 8, 8.5 : elmImg.style.width への setter で float が解除される
-                    if( !( p_Presto < 9 ) ){
-                        thumbWidth = ( elmImg.offsetWidth - PicaThumbnail_MARGIN_LR ) + 'px';
+                    // というよりも、CSS transition 用なので対応ブラウザ以外は不要だ思う
+                    if( PicaThumbnail_canUseCSSTransition ){
+                        thumbWidth = ( elmImg.naturalWidth + PicaThumbnail_MARGIN_LR ) + 'px';
                         p_DOM_setStyle( elmImg, 'width', thumbWidth );
                     };
                     p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
@@ -111,7 +118,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                         };
                     };
 
-                    w = parent.offsetWidth - PicaThumbnail_MARGIN_LR - 1;
+                    w = ( parent.offsetWidth | 0 ) - PicaThumbnail_MARGIN_LR; // - 1;
                     if( 1600 < w ) w = 1600;
 
                     if( obj.isGoogleUserContent && 0 < src.split( '/' ).pop().indexOf( '=' ) ){
@@ -126,7 +133,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                             };
                         };
                         src = elms.join( '=' );
-                    } else if( 0 < src.indexOf( '.bp.blogspot.com/' ) ){
+                    } else if( obj.isGoogleUserContent || 0 < src.indexOf( '.bp.blogspot.com/' ) ){
                         elms = src.split( '/' );
                         l    = elms.length;
                         if( size = elms[ l - 2 ] ){

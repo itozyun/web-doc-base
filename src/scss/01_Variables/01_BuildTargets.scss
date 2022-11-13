@@ -227,7 +227,6 @@
     $IS_OLD_GECKO     : $IS_LTE_GECKO09 or $UA_Gecko12 or $IS_GECKO13_TO_19;
     $IS_LEGACY        : $IS_OLD_OPERA or $IS_OLD_GECKO;
     $IS_NOT_IE        : $IS_LEGACY or $UA_Modern;
-    $IS_LTE_IE55      : $UA_MacIE5 or $UA_IE5 or $UA_IE55;
     $IS_LTE_WIN_IE6   : $UA_IE5 or $UA_IE55 or $UA_IE6;
     $IS_LTE_WIN_IE7   : $IS_LTE_WIN_IE6 or $UA_IE7;
     $IS_LTE_WIN_IE8   : $IS_LTE_WIN_IE7 or $UA_IE8;
@@ -275,6 +274,7 @@
     $CANUSE_MARGIN_AUTO          : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
     $CANUSE_DISPLAY_INLINE_BLOCK : $UA_Modern or $UA_Gecko09 or $UA_Gecko12 or $IS_GECKO13_TO_19 or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.4.1~
     $CANUSE_BOX_SIZING           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
+    $BORDER_BOX_ALLWAYS          : $UA_IE5 or $UA_IE55;
 
 // Useful CSS Selectors
     $CANUSE_ATTRIBUTE_SELECTOR        : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
