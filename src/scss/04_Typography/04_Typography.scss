@@ -92,8 +92,10 @@
         }
 
         @if( $CANUSE_MAX_AND_MIN_SIZES ){
-            max-width : 100%;
-    
+            @if( $Option_mobileOnly == false ){
+                max-width : 100%;
+            }
+
             @include media(tablet_print) {
                 & {
                     max-width : #{100% - $TABLET_HORIZONTAL_MARGIN * 2};

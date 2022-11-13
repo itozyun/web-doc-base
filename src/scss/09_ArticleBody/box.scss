@@ -33,6 +33,15 @@
         float  : left;
         margin : 0 1em 1em 0;
     }
+    img, iframe {
+        @if( $CANUSE_MAX_AND_MIN_SIZES ){
+            @if( $Option_mobileOnly ){
+                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
+            } @else if( $CANUSE_CSS_MEDIA_QUERY ){
+                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
+            };
+        }
+    }
 }
 
 @if( $IS_OLD_GECKO ){
