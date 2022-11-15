@@ -2,6 +2,7 @@ const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       gulpJSDOM       = require('gulp-jsdom'),
+      gulpRename      = require('gulp-rename'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
@@ -181,6 +182,7 @@ gulp.task('__js', gulp.series(
                     './src/js/**/*.js',
                    '!./src/js/4_EventModule/prefersColorScheme.js',
                    '!./src/js/4_EventModule/print.js',
+                   '!./src/js/5_CSSOM/**/*.js',
                    '!./src/js/6_CanUse/cssGeneratedContent.js',
                    '!./src/js/6_CanUse/dataUriTest.js',
                    '!./src/js/6_CanUse/webfontTest.js',
@@ -192,7 +194,7 @@ gulp.task('__js', gulp.series(
             ).pipe(
                 gulpDPZ(
                     {
-                        // labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
+                        labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
                         packageGlobalArgs : [ 'ua,window,emptyFunction,RegExp,Date,' + globalVariables + ',undefined', 'ua,this,function(){},this.RegExp,Date,' + globalVariables + ',void 0' ],
                         basePath          : [
                             './src/js/',
@@ -249,6 +251,15 @@ gulp.task( 'js', gulp.series(
             [
                 './.submodules/es2-code-prettify/docs/js/' + regExpCompatFileName
             ]
+        ).pipe(
+            ClosureCompiler(
+                {
+                    compilation_level : 'WHITESPACE_ONLY',
+                    // formatting        : 'PRETTY_PRINT',
+                    js_output_file    : '_' + regExpCompatFileName
+                }
+            )
+        ).pipe( gulpRename( regExpCompatFileName )
         ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
     }
 ));
