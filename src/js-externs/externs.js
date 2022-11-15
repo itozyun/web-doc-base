@@ -1,13 +1,13 @@
-/** @type {function(string):HTMLCollection} IE4 DOM*/
-document.all.tags = function(){};
+/** @type {!function(string):HTMLCollection} IE4 DOM */
+document.all.tags = function(tag){};
 
 /**
- * @type {!function()}
+ * @const {!function()}
  */
 var emptyFunction = function(){};
 
 /**
- * @type {!Event|undefined} 
+ * @const {!Event|undefined} 
  */
 var event;
 
@@ -27,7 +27,7 @@ var _wdb_onlooptimer;
 function onload(){};
 
 /**
- * @type {function(!Event)|undefined}
+ * @type {function(!Event=)|undefined}
  */
 function onunload(){};
 
@@ -37,34 +37,28 @@ function onunload(){};
 function onscroll(){};
 
 /**
- * @type {function(!Event)|undefined}
+ * @type {function(!Event=)|undefined}
  */
 function onresize(){};
 
 /**
- * @type {function(!Event)|undefined}
+ * @type {function(!Event=)|undefined}
  */
 function onbeforeprint(){};
 
 /**
- * @type {function(!Event)|undefined}
+ * @type {function(!Event=)|undefined}
  */
 function onafterprint(){};
 
-/**
- * @type {function()}
- */
-function prettyPrint(){};
-
-
-/** @type {function()} */
-document.onfullscreenchange = function(){};
-/** @type {function()} Gecko 10+ */
-document.onmozfullscreenchange = function(){};
-/** @type {function()} Safari 5.1, Mobile safari 5.1+, */
-document.onwebkitfullscreenchange = function(){};
-/** @type {function()} Trident 11+ */
-document.onmsfullscreenchange = function(){};
+/** @type {function(!Event)} */
+document.onfullscreenchange = function(e){};
+/** @type {function(!Event)} Gecko 10+ */
+document.onmozfullscreenchange = function(e){};
+/** @type {function(!Event)} Safari 5.1, Mobile safari 5.1+, */
+document.onwebkitfullscreenchange = function(e){};
+/** @type {function(!Event)} Trident 11+ */
+document.onmsfullscreenchange = function(e){};
 
 /** @type {boolean}  */
 document.fullscreen;
@@ -75,19 +69,19 @@ document.msFullscreenElement;
 /** @type {boolean}  */
 document.webkitIsFullscreen;
 
-/** @type {function()} Chrome 15+, Safari 6+, */
+/** @type {!function()} Chrome 15+, Safari 6+, */
 HTMLElement.prototype.webkitRequestFullscreen = function(){};
-/** @type {function()} Gecko 9+ */
+/** @type {!function()} Gecko 9+ */
 HTMLElement.prototype.mozRequestFullscreen = function(){};
-/** @type {function()} Trident 11+ */
+/** @type {!function()} Trident 11+ */
 HTMLElement.prototype.msRequestFullscreen = function(){};
 
-/** @type {function()} Gecko 1.9.0 */
+/** @type {!function()} Gecko 1.9.0 */
 CanvasRenderingContext2D.prototype.mozDrawText = function(){};
 
 /** @type {number}  */
 var __vml = 0;
 
 // http://help.dottoro.com/ljnillej.php
-/** @type {function()} */
+/** @type {!function()} */
 opera.postError = function(){};

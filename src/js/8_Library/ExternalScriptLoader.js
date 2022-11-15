@@ -1,7 +1,9 @@
 /** ===========================================================================
  * export to packageGlobal
  */
-p_canUseDynamicExternalScript = !( p_Presto < 7.2 || ua.conpare( p_engineVersion, '0.9' ) <= 0 );
+p_canUseJSONPOnlyInIframe = p_Gecko && ua.conpare( p_engineVersion, '0.9' ) <= 0; // Gecko ~0.9
+
+p_canUseDynamicExternalScript = !( p_Presto < 7.2 || p_canUseJSONPOnlyInIframe ); // Gecko 0.9.1+, Opera 7.2+, Other Browsers
 
 /** @param {string} url */
 p_loadExternalScript = function( url ){
@@ -32,13 +34,19 @@ p_setExternalScriptIsLoaded = function( url ){
 /** ===========================================================================
  * private
  */
-var ExternalScriptLoader_useDocumentWrite     = !p_canUseDynamicExternalScript,
-    ExternalScriptLoader_useRewriteSourceHack = p_canUseDynamicExternalScript && p_Presto < 7.5,
-    ExternalScriptLoader_loaded,
-    ExternalScriptLoader_loadingScriptURL,
-    ExternalScriptLoader_URL_LIST;
+var ExternalScriptLoader_useDocumentWrite     = !p_canUseDynamicExternalScript;
+var ExternalScriptLoader_useRewriteSourceHack = p_canUseDynamicExternalScript && p_Presto < 7.5;
+var ExternalScriptLoader_loaded;
+var ExternalScriptLoader_loadingScriptURL;
+var ExternalScriptLoader_URL_LIST;
 
-if( !ExternalScriptLoader_useDocumentWrite ){
+if( ExternalScriptLoader_useDocumentWrite ){
+    p_listenLoadEvent(
+        function(){
+            ExternalScriptLoader_loaded = true;
+        }
+    );
+} else {
     p_canUseDynamicExternalScript = true;
     ExternalScriptLoader_URL_LIST = [];
 

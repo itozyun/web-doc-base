@@ -137,6 +137,7 @@ var p_CSSOM_getStyleSheetElementList,
 
 var p_noRemoveScriptTag,
     p_canUseDynamicExternalScript,
+    p_canUseJSONPOnlyInIframe,
     p_loadExternalScript,
     p_setExternalScriptIsLoaded;
 
