@@ -20,7 +20,7 @@ p_head = /** @type {!HTMLHeadElement} */ (DOM_getElementsByTagNameFromDocument( 
  */
 function DOM_getElementById( id ){
     return window[ id ] || document[ id ] ||
-           document.getElementById( id ); // for NN9
+           document.getElementById( id ); // for ~NN9
 };
 
 /** 2.
