@@ -41,6 +41,7 @@ h5,
 h6 {
   border-color: #777
 }
+.ADesc,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -671,6 +672,10 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -703,15 +708,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -727,10 +729,6 @@ kbd {
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
-}
-.ADesc {
-  margin: 2em .5em;
-  color: #777
 }
 .AHead {
   color: #777;
@@ -1131,7 +1129,8 @@ blockquote:after {
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsPicaLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1349,28 +1348,15 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
-}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .lW {
   overflow: visible
@@ -1600,6 +1586,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -1612,13 +1605,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1734,7 +1720,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead {
     color: #666!important

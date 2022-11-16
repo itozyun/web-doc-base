@@ -343,7 +343,8 @@ a:focus * {
 .ribbon :link {
   color: #bbe
 }
-.Pager-top i:focus:before,
+.Pager :focus i:after,
+.Pager :focus i:before,
 .ribbon,
 .ribbon .AHead h1,
 .ribbon :visited,
@@ -410,6 +411,7 @@ dfn {
 }
 .AMeta,
 .Pager,
+.SocialBtns,
 .tl thead th,
 hr,
 tbody th,
@@ -703,6 +705,10 @@ strong {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .Cover img,
 .caption {
   width: 100%;
@@ -752,16 +758,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1158,7 +1160,8 @@ blockquote:after {
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsPicaLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1185,7 +1188,7 @@ var {
 }
 pre code,
 pre var {
-  background: inherit!important;
+  background-color: transparent!important;
   padding: 0;
   margin: 0
 }
@@ -1267,46 +1270,38 @@ div .caption img {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
-.Pager-next i,
-.Pager-top i {
-  margin-right: .5em
-}
-.Pager-next i,
-.Pager-prev i {
-  border-top: .5em solid transparent;
-  border-bottom: .5em solid transparent;
-  display: block
-}
 .Pager span {
   padding: 1.5em 0;
   display: block;
   float: left;
   width: 33%
 }
-.Pager-next i {
-  border-right: .7em solid #777;
-  float: left
+.Pager i:after,
+.Pager i:before {
+  font-style: normal;
+  font-family: serif;
+  font-size: 2em;
+  line-height: 1;
+  color: #777
 }
-.Pager-next i:focus {
-  border-right: .7em solid #fff
+.Pager-next i,
+.Pager-top i {
+  margin-right: .5em
+}
+.Pager-next i:before {
+  content: "◀ "
 }
 .Pager-prev i {
-  margin-left: .5em;
-  border-left: .7em solid #777;
-  float: right
+  margin-left: .5em
 }
-.Pager-prev i:focus {
-  border-left: .7em solid #fff
+.Pager-prev i:after {
+  content: " ▶"
 }
 .Pager-top i:before {
   content: "▲ ";
-  font-style: normal;
-  font-size: 125%;
-  line-height: .8;
-  color: #777
+  font-size: 1em
 }
 .SocialBtns {
-  border-width: 0 0 1px;
   padding: 1em 0 .5em
 }
 .SocialBtns .tw:link {
@@ -1382,28 +1377,15 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
-}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  box-sizing: border-box;
-  border-width: 0
+  box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1661,6 +1643,13 @@ ol.linenums {
   pre {
     padding: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -1673,13 +1662,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1787,7 +1769,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead h1 {
     text-align: center;

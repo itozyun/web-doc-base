@@ -54,3 +54,6 @@ tbody td {
   position: static;
   display: inline
 }
+.Pager i {
+  display: none
+}

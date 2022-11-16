@@ -703,6 +703,10 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .medal {
   border-color: #f8fbf8;
   color: #111
@@ -746,16 +750,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1167,7 +1167,8 @@ blockquote:after {
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsPicaLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1390,28 +1391,15 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
-}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1642,6 +1630,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -1654,13 +1649,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1777,7 +1765,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead {
     color: #666!important

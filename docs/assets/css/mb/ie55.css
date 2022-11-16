@@ -117,6 +117,7 @@ a:active img {
 :hover img {
   top: 2px
 }
+.AAuthor,
 .BreadcrumbList a,
 .LinkList *,
 .Pager a,
@@ -653,15 +654,16 @@ input.btn {
 .mspacer {
   margin: 1em .5em!important
 }
+.AAuthor,
+.ADesc,
+.AHead {
+  margin: 1em 0
+}
 #lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
   margin: .6em 0
-}
-.AAuthor {
-  zoom: 1;
-  margin: 1em 0
 }
 .AAuthor p,
 .ADesc p,
@@ -676,11 +678,7 @@ tr .box {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead {
-  margin: 1em 0
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1175,6 +1173,35 @@ div .caption img {
   float: left;
   width: 33%
 }
+.Pager i {
+  height: 0;
+  width: 0;
+  position: relative;
+  top: -.1em;
+  font-size: 0;
+  zoom: 1;
+  border-color: #f8fbf8 #777
+}
+.Pager :active i {
+  border-color: #3079ed #fff
+}
+.Pager-next i {
+  margin-right: .5em;
+  border-width: 8px 11px 8px 0
+}
+.Pager-prev i {
+  margin-left: .5em;
+  border-width: 8px 0 8px 11px;
+  left: .5em
+}
+.Pager-top i {
+  margin-right: .5em;
+  border-width: 0 7px 14px;
+  border-color: #777 #f8fbf8
+}
+.Pager-top :active i {
+  border-color: #fff #3079ed
+}
 .SocialBtns {
   padding: 1em 0;
   color: #f8fbf8;
@@ -1545,7 +1572,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

@@ -429,6 +429,7 @@ textarea:hover {
 .caption,
 .commonForm,
 .js-bqCite,
+.jsPicaLarge,
 .links a,
 a iframe,
 a img {
@@ -709,6 +710,10 @@ blockquote h3,
 kbd {
   border-color: #111
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .BlogArchive th,
 .Magazine-date {
   word-break: normal;
@@ -719,10 +724,6 @@ kbd {
 }
 .lS .mspacer {
   margin: .6em 0
-}
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
 }
 .AAuthor img {
   float: right;
@@ -737,7 +738,7 @@ tr .box {
   margin: 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1153,8 +1154,7 @@ blockquote .tl tbody th :visited {
 .box dl,
 .box ol,
 .box p,
-.box ul,
-.jsPicaLarge {
+.box ul {
   margin: 0 0 1em
 }
 .box ol,
@@ -1262,8 +1262,8 @@ div .caption img {
 .Pager i {
   height: 0;
   width: 0;
-  zoom: 1;
   top: -.1em;
+  zoom: 1;
   border-color: transparent #777
 }
 .Pager :active i {
@@ -1363,14 +1363,27 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsPicaLarge {
+  margin: 0 0 1em;
+  clear: both;
+  padding: 2px;
+  zoom: 1
+}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin: 0 auto
+  margin: 0 auto;
+  border-width: 0
 }
 .jsCapLarge {
   margin: 0 auto 1em
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1594,6 +1607,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -1606,13 +1626,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1719,7 +1732,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead h1 {
     text-align: center;

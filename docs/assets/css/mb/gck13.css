@@ -25,6 +25,7 @@ h5,
 h6 {
   border-color: #777
 }
+.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -79,6 +80,12 @@ tbody :hover th {
 .links,
 pre {
   white-space: -moz-pre-wrap
+}
+.Cover img,
+.box iframe,
+.box img,
+.caption {
+  max-width: 100%
 }
 body,
 input,
@@ -396,7 +403,6 @@ th {
 }
 iframe,
 img {
-  max-width: 100%;
   max-width: 94%
 }
 .Cover a,
@@ -756,7 +762,8 @@ input.btn {
   margin: 1em .5em!important
 }
 .AAuthor,
-.ADesc {
+.ADesc,
+.AHead {
   margin: 1em 0
 }
 .AAuthor img {
@@ -764,7 +771,7 @@ input.btn {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -788,10 +795,6 @@ input.btn {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.AHead {
-  color: #777;
-  margin: 1em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -888,8 +891,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover h2 {
   border: 1px solid #3079ed;
@@ -1215,8 +1217,7 @@ dl.note dd {
 .caption {
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1373,27 +1374,17 @@ ol.linenums {
   color: #aeaeae
 }
 .jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
+  margin: 0 0 1em
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1657,7 +1648,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

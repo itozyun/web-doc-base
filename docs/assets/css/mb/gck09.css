@@ -45,7 +45,6 @@ tr ul {
 }
 .AAuthor p,
 .ADesc p,
-.Cover img,
 .note .box,
 dl .box,
 form,
@@ -75,7 +74,6 @@ body {
 .Comment p,
 .Cover,
 .Cover-img,
-.Pager-top i,
 .RichLink a,
 .box,
 .commonForm-pair,
@@ -103,10 +101,10 @@ a:focus {
   background-color: #f1f4f1!important
 }
 .Cover img,
-.caption,
-.jsPicaLarge img {
-  max-width: 100%;
-  width: 100%
+.box iframe,
+.box img,
+.caption {
+  max-width: 100%
 }
 body,
 input,
@@ -362,7 +360,6 @@ th {
 }
 iframe,
 img {
-  max-width: 100%;
   max-width: 94%
 }
 .Cover a,
@@ -550,6 +547,8 @@ tbody :hover th a,
 thead a:focus {
   background: #3079ed!important
 }
+.Pager :focus i:after,
+.Pager :focus i:before,
 .tl tbody :hover th,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
@@ -726,7 +725,7 @@ input.btn {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -853,6 +852,10 @@ kbd {
 .Cover-meta,
 .SearchResult div div {
   margin: 0 .5em
+}
+.Cover img {
+  margin: 0;
+  width: 100%
 }
 .Cover h2 {
   background: #3079ed;
@@ -1172,7 +1175,8 @@ dl.note dd {
 }
 .caption {
   text-align: center;
-  font-size: .875em
+  font-size: .875em;
+  width: 100%
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1222,32 +1226,30 @@ div .caption img {
   vertical-align: middle;
   display: table-cell
 }
-.Pager i {
-  border-color: transparent #777
+.Pager i:after,
+.Pager i:before {
+  font-style: normal;
+  font-family: serif;
+  font-size: 2em;
+  line-height: 1;
+  color: #777
 }
-.Pager :focus i {
-  border-color: transparent #fff
+.Pager-next i,
+.Pager-top i {
+  margin-right: .5em
 }
-.Pager-next i {
-  margin-right: .5em;
-  border-width: .5em .7em .5em 0;
-  display: block;
-  float: left
+.Pager-next i:before {
+  content: "◀ "
 }
 .Pager-prev i {
-  margin-left: .5em;
-  border-width: .5em 0 .5em .7em;
-  display: block;
-  float: right
+  margin-left: .5em
 }
-.Pager-top i {
-  margin-right: .5em;
-  border-width: 0 .45em .9em;
-  border-color: #777 transparent;
-  top: -1em
+.Pager-prev i:after {
+  content: " ▶"
 }
-.Pager-top :focus i {
-  border-color: #fff transparent
+.Pager-top i:before {
+  content: "▲ ";
+  font-size: 1em
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -1327,25 +1329,17 @@ ol.linenums {
   color: #aeaeae
 }
 .jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
+  margin: 0 0 1em
 }
 .jsPicaLarge img {
+  width: 100%;
   height: auto;
+  max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1604,7 +1598,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

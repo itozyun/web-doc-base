@@ -512,6 +512,7 @@ em {
 strong {
   background: #6cf
 }
+.AAuthor,
 .Cover,
 .lMi,
 .lSi,
@@ -645,8 +646,9 @@ kbd {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor {
-  display: inline-table;
+.AAuthor,
+.ADesc,
+.AHead {
   margin: 1em 0
 }
 .AAuthor p,
@@ -662,11 +664,7 @@ tr .box {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
-}
-.ADesc,
-.AHead {
-  margin: 1em 0
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1273,10 +1271,22 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsPicaLarge {
+  display: block;
+  clear: both;
+  padding: 2px
+}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  margin: 0
+  margin: 0;
+  border-width: 0
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1520,7 +1530,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

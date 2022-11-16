@@ -99,6 +99,12 @@ pre {
 a:focus {
   background-color: #f1f4f1!important
 }
+.Cover img,
+.box iframe,
+.box img,
+.caption {
+  max-width: 100%
+}
 body,
 input,
 textarea {
@@ -345,7 +351,6 @@ th {
 }
 iframe,
 img {
-  max-width: 100%;
   max-width: 94%
 }
 .Cover a,
@@ -714,7 +719,7 @@ input.btn {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -844,8 +849,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover h2 {
   background: #3079ed;
@@ -1170,8 +1174,7 @@ dl.note dd {
 .caption {
   text-align: center;
   font-size: .875em;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1323,27 +1326,17 @@ ol.linenums {
   color: #aeaeae
 }
 .jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
+  margin: 0 0 1em
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1602,7 +1595,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

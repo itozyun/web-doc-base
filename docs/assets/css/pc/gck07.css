@@ -41,6 +41,7 @@ h5,
 h6 {
   border-color: #777
 }
+.ADesc,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -70,16 +71,6 @@ blockquote,
 pre {
   padding: 1em
 }
-.links,
-pre {
-  white-space: -moz-pre-wrap
-}
-.tl tbody th a:focus,
-.tl thead td a:focus,
-.tl thead th a:focus,
-a:focus {
-  background-color: #f1f4f1!important
-}
 #jsSide,
 #lH .lSi,
 .AAuthor,
@@ -88,7 +79,6 @@ a:focus {
 .Cover-img,
 .Magazine-main,
 .Magazine-snippet,
-.Pager-top i,
 .RichLink a,
 .box,
 .commonForm-pair,
@@ -100,6 +90,16 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.links,
+pre {
+  white-space: -moz-pre-wrap
+}
+.tl tbody th a:focus,
+.tl thead td a:focus,
+.tl thead th a:focus,
+a:focus {
+  background-color: #f1f4f1!important
 }
 .Cover img,
 .caption,
@@ -538,6 +538,8 @@ tbody :hover th a,
 thead a:focus {
   background: #3079ed!important
 }
+.Pager :focus i:after,
+.Pager :focus i:before,
 .tl tbody :hover th,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
@@ -669,6 +671,10 @@ input.btn {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -701,15 +707,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -725,10 +728,6 @@ kbd {
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
-}
-.ADesc {
-  margin: 2em .5em;
-  color: #777
 }
 .AHead {
   color: #777;
@@ -1124,7 +1123,8 @@ blockquote:after {
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsPicaLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1236,32 +1236,30 @@ div .caption img {
   vertical-align: middle;
   display: table-cell
 }
-.Pager i {
-  border-color: transparent #777
+.Pager i:after,
+.Pager i:before {
+  font-style: normal;
+  font-family: serif;
+  font-size: 2em;
+  line-height: 1;
+  color: #777
 }
-.Pager :focus i {
-  border-color: transparent #fff
+.Pager-next i,
+.Pager-top i {
+  margin-right: .5em
 }
-.Pager-next i {
-  margin-right: .5em;
-  border-width: .5em .7em .5em 0;
-  display: block;
-  float: left
+.Pager-next i:before {
+  content: "◀ "
 }
 .Pager-prev i {
-  margin-left: .5em;
-  border-width: .5em 0 .5em .7em;
-  display: block;
-  float: right
+  margin-left: .5em
 }
-.Pager-top i {
-  margin-right: .5em;
-  border-width: 0 .45em .9em;
-  border-color: #777 transparent;
-  top: -1em
+.Pager-prev i:after {
+  content: " ▶"
 }
-.Pager-top :focus i {
-  border-color: #fff transparent
+.Pager-top i:before {
+  content: "▲ ";
+  font-size: 1em
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -1339,28 +1337,15 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
-}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  -moz-box-sizing: border-box;
-  border-width: 0
+  -moz-box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-.jsPicaLarge:hover {
-  top: 2px
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1578,6 +1563,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   iframe,
   img {
     max-width: 94%
@@ -1590,13 +1582,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1699,7 +1684,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead {
     color: #666!important

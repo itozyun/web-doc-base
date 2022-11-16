@@ -175,6 +175,8 @@ td {
   vertical-align: top
 }
 .Cover img,
+.box iframe,
+.box img,
 .caption,
 iframe,
 img {
@@ -230,7 +232,6 @@ a:active img,
 a:focus img {
   border-color: #3079ed!important
 }
-.jsPicaLarge:hover,
 :link:hover img,
 :visited:hover img {
   top: 2px
@@ -1011,6 +1012,10 @@ a:focus .ico-pen:after {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .medal {
   border-color: #f8fbf8;
   color: #111
@@ -1054,16 +1059,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -1519,7 +1520,8 @@ tr .box > p:first-of-type {
 .box dl,
 .box ol,
 .box p,
-.box ul {
+.box ul,
+.jsPicaLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1762,28 +1764,18 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em;
-  display: block;
-  clear: both;
-  padding: 2px
-}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  box-sizing: border-box;
-  border-width: 0
+  box-sizing: border-box
 }
 .jsCapLarge {
   margin: 0 auto 1em
 }
 div .box .jsCapLarge {
   float: none
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -3066,7 +3058,7 @@ screen and (max-width:950px) {
     border-color: #666 transparent
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

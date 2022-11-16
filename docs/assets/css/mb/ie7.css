@@ -20,6 +20,7 @@ h5,
 h6 {
   border-color: #777
 }
+.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -102,6 +103,12 @@ var {
 tbody th,
 td {
   vertical-align: top
+}
+.Cover img,
+.box iframe,
+.box img,
+.caption {
+  max-width: 100%
 }
 body,
 input,
@@ -396,7 +403,6 @@ textarea:hover {
 }
 iframe,
 img {
-  max-width: 100%;
   max-width: 94%
 }
 .Cover a,
@@ -408,6 +414,7 @@ img {
 .caption,
 .commonForm,
 .js-bqCite,
+.jsPicaLarge,
 .links a,
 a iframe,
 a img {
@@ -707,15 +714,16 @@ input.btn {
 .mspacer {
   margin: 1em .5em!important
 }
+.AAuthor,
+.ADesc,
+.AHead {
+  margin: 1em 0
+}
 #lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
   margin: .6em 0
-}
-.AAuthor,
-.ADesc {
-  margin: 1em 0
 }
 .AAuthor p,
 .ADesc p,
@@ -730,7 +738,7 @@ tr .box {
   margin: 0 1em 1em 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -753,10 +761,6 @@ tr .box {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
-}
-.AHead {
-  color: #777;
-  margin: 1em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -864,8 +868,7 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%;
-  max-width: 100%
+  width: 100%
 }
 .Cover h2 {
   border: 1px solid #3079ed;
@@ -1183,8 +1186,7 @@ dl.note dd {
 }
 .caption {
   text-align: center;
-  font-size: .875em;
-  max-width: 100%
+  font-size: .875em
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1240,8 +1242,8 @@ div .caption img {
   height: 0;
   width: 0;
   position: relative;
-  zoom: 1;
   top: -.1em;
+  zoom: 1;
   border-color: transparent #777
 }
 .Pager :active i {
@@ -1343,16 +1345,26 @@ ol.linenums {
   color: #aeaeae
 }
 .jsPicaLarge {
-  margin: 0 0 1em
+  margin: 0 0 1em;
+  clear: both;
+  padding: 2px;
+  zoom: 1
 }
 .jsPicaLarge img {
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin: 0 auto
+  margin: 0 auto;
+  border-width: 0
 }
 .jsCapLarge {
   margin: 0 auto 1em
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1608,7 +1620,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%

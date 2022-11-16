@@ -72,6 +72,7 @@ pre samp {
 #jsSidebarFixer,
 #jsSidebarFixer a,
 #jsSidebarFixer div,
+.AAuthor,
 .Magazine-snippet,
 .lMi,
 .lSi,
@@ -103,6 +104,15 @@ th {
 th {
   text-align: left
 }
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Pager i,
+.Search,
+:hover img {
+  position: relative
+}
 *,
 .SearchResult div p *,
 dd p,
@@ -115,14 +125,6 @@ kbd,
 var {
   margin: 0 .1em;
   padding: 0 .4em
-}
-#jsMain,
-#jsSide,
-.Cover-img,
-.Magazine-main,
-.Search,
-:hover img {
-  position: relative
 }
 body,
 input,
@@ -663,6 +665,10 @@ blockquote h3,
 kbd {
   border-color: #111
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .BlogArchive th,
 .Magazine-date {
   word-break: normal
@@ -673,10 +679,6 @@ kbd {
 }
 .lS .mspacer {
   margin: .6em 0
-}
-.AAuthor {
-  height: 1%;
-  margin: 2em .5em
 }
 .AAuthor img {
   float: right;
@@ -691,7 +693,7 @@ tr .box {
   margin: 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -707,9 +709,6 @@ tr .box {
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
-}
-.ADesc {
-  margin: 2em .5em
 }
 .AHead {
   color: #777;
@@ -1200,6 +1199,33 @@ div .caption img {
   float: left;
   width: 33%
 }
+.Pager i {
+  height: 0;
+  width: 0;
+  top: -.1em;
+  font-size: 0;
+  border-color: #f8fbf8 #777
+}
+.Pager :active i {
+  border-color: #3079ed #fff
+}
+.Pager-next i {
+  margin-right: .5em;
+  border-width: 8px 11px 8px 0
+}
+.Pager-prev i {
+  margin-left: .5em;
+  border-width: 8px 0 8px 11px;
+  left: .5em
+}
+.Pager-top i {
+  margin-right: .5em;
+  border-width: 0 7px 14px;
+  border-color: #777 #f8fbf8
+}
+.Pager-top :active i {
+  border-color: #fff #3079ed
+}
 .SocialBtns {
   padding: 1em 0;
   color: #f8fbf8
@@ -1514,6 +1540,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   blockquote pre {
     margin: 1em
   }
@@ -1522,13 +1555,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1635,7 +1661,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead h1 {
     text-align: center;

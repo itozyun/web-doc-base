@@ -521,6 +521,7 @@ em {
 strong {
   background: #6cf
 }
+.AAuthor,
 .Comment p,
 .Cover,
 .Magazine-snippet,
@@ -605,6 +606,10 @@ strong {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .medal {
   border-color: #f8fbf8;
   color: #111
@@ -641,10 +646,6 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor {
-  display: inline-table;
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
@@ -658,7 +659,7 @@ tr .box {
   margin: 0
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -674,9 +675,6 @@ tr .box {
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
-}
-.ADesc {
-  margin: 2em .5em
 }
 .AHead {
   color: #777;
@@ -1080,8 +1078,7 @@ blockquote .tl tbody th :visited {
 .box ol,
 .box p,
 .box ul,
-.jsCapLarge,
-.jsPicaLarge {
+.jsCapLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1289,10 +1286,23 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsPicaLarge {
+  margin: 0 0 1em;
+  display: block;
+  clear: both;
+  padding: 2px
+}
 .jsPicaLarge img {
   width: 100%;
   height: auto;
-  margin: 0
+  margin: 0;
+  border-width: 0
+}
+.jsPicaLarge:hover {
+  top: 2px
+}
+.jsPicaLarge:hover img {
+  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1516,6 +1526,13 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
+  }
   blockquote pre {
     margin: 1em
   }
@@ -1524,13 +1541,6 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
   }
   table {
     width: 100%
@@ -1637,7 +1647,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .AHead h1 {
     text-align: center;

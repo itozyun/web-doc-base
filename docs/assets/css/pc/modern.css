@@ -192,6 +192,8 @@ th {
   font-weight: 400
 }
 .Cover img,
+.box iframe,
+.box img,
 .caption,
 iframe,
 img {
@@ -259,7 +261,6 @@ a:active img,
 a:focus img {
   border-color: #3079ed!important
 }
-.jsPicaLarge:hover,
 :link:hover img,
 :visited:hover img {
   top: 2px
@@ -1168,6 +1169,10 @@ a:focus .ico-pen:after {
   height: 1.6em;
   line-height: 1.6
 }
+.AAuthor,
+.ADesc {
+  margin: 2em .5em
+}
 .medal {
   border-color: #f8fbf8;
   color: #111
@@ -1211,16 +1216,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
 }
 .ABody {
-  margin: 3.5em 0 2em
+  padding: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -2000,10 +2001,7 @@ ol.linenums {
   margin: 0 0 1em;
   cursor: -webkit-zoom-out;
   cursor: -moz-zoom-out;
-  cursor: zoom-out;
-  display: block;
-  clear: both;
-  padding: 2px
+  cursor: zoom-out
 }
 .jsPicaLarge img {
   width: 100%;
@@ -2012,8 +2010,7 @@ ol.linenums {
   margin: 0 auto;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 0
+  box-sizing: border-box
 }
 .box .jsPicaLarge img {
   float: none;
@@ -2025,9 +2022,6 @@ ol.linenums {
 div .box .jsCapLarge {
   float: none;
   margin: 0 0 1em
-}
-.jsPicaLarge:hover img {
-  top: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -2226,6 +2220,9 @@ tv {
 }
 @media only screen and (min-width:59.4375em) {
   @supports (position:sticky) {
+    table {
+      position: relative
+    }
     thead,
     thead td,
     thead th {
@@ -3782,7 +3779,7 @@ only screen and (max-width:240px) {
     border-color: #666 transparent
   }
   .ABody {
-    margin: 0 0 2em
+    padding: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%
