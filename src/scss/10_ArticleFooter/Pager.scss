@@ -7,7 +7,9 @@
 --------------------------------------------------------------------------------------*/
 /*  ◀ | ▶
 --------------------------------------------------------------------------------------*/
-$PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $UA_Opera70 == false;
+$PAGER_LAYOUT_BY_DISPLAY_TABLE   : $IS_LTE_WIN_IE7 == false and $UA_Opera70 == false;
+$CANT_TRIANGULATE_INLINE_ELEMENT : $IS_LTE_GECKO09 or $UA_Opera70; /** block 要素でないと描画されない */
+$CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */ 
 
 @if( $Option_blog ){
     .Pager {
@@ -68,21 +70,32 @@ $PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $UA_Opera70 == fal
         @at-root #{&}-top  { text-align : center; }
         @at-root #{&}-prev { text-align : right; }
 
-        @if( $IS_LTE_WIN_IE6 == false ){ /* ie6 以下では font-size ベースのレイアウトが出来ないかも */ 
-            i { /* i を絶対配置にすると、Opera mini で表示されない */
-                @if( $IS_LTE_GECKO09 == false and $UA_Opera70 == false ){
-                    @include inline-block;
-                    @if( $IS_LEGACY ){
-                        vertical-align : text-top;
-                    }
+        i { /* i を絶対配置にすると、Opera mini で表示されない */
+            @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                &:before, &:after {
+                    font-style  : normal;
+                    font-family : serif;
+                    font-size   : 2em;
+                    line-height : 1;
+                    color       : $COLOR_Light_casual_text;
                 }
-
-                @if( $UA_IE7 ){
+            } @else {
+                @include inline-block;
+                @if( $IS_LEGACY ){
+                    vertical-align : text-top; // TODO ?
+                }
+                @if( $IS_LTE_WIN_IE7 ){
                     height   : 0;
                     width    : 0;
                     position : relative;
-                    zoom     : 1;
                     top      : -.1em;
+                    @if( $IS_LTE_WIN_IE6 ){
+                        font-size : 0;
+                    }
+                    @if( $UA_IE5 ){
+                    } @else {
+                        zoom : 1;
+                    }
                 }
 
                 @if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 == false ){
@@ -92,117 +105,120 @@ $PAGER_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $UA_Opera70 == fal
                         border-color : $COLOR_Light_fill $COLOR_Light_casual_text;
                     }
                 }
+            }
+
+            /*  Forced colors
+            --------------------------------------------------------------------------------------*/
+            & {
+                @include media(forced_colors_native_or_ms){
+                    border-color : Window currentColor;
+                }
+                @include media(forced_colors_fallback){
+                    display : none;
+                }
+            }
+        }
+        * {
+            @include active-focus-pseudo-class {
+                i {
+                    @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                        &:before, &:after {
+                            color : #fff;
+                        }
+                    } @else if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 == false ){
+                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                            border-color : transparent #fff;
+                        } @else {
+                            border-color : $COLOR_ACCENT #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+        @at-root #{&}-next i {
+            margin-right : 0.5em;
+            @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                &:before {
+                    content : "◀ ";
+                }
+            } @else if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
+                border-top    : 0.5em solid transparent;
+                border-right  : 0.7em solid $COLOR_Light_casual_text;
+                border-bottom : 0.5em solid transparent;
+                @include active-focus-pseudo-class {
+                    border-right : 0.7em solid #fff;
+                }
+            } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+                border-width : 8px 11px 8px 0;
+            } @else {
+                border-width : 0.5em 0.7em 0.5em 0;
+            }
+        }
+        @at-root #{&}-prev i {
+            margin-left  : 0.5em;
+            @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                &:after {
+                    content : " ▶";
+                }
+            } @else if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
+                border-top    : 0.5em solid transparent;
+                border-left   : 0.7em solid $COLOR_Light_casual_text;
+                border-bottom : 0.5em solid transparent;
+                @include active-focus-pseudo-class {
+                    border-left : 0.7em solid #fff;
+                }
+            } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+                border-width : 8px 0 8px 11px;
+            } @else {
+                border-width : 0.5em 0 0.5em 0.7em;
+            }
+            @if( $IS_LTE_WIN_IE7 ){
+                left : 0.5em;
+            }
+        }
+
+        @at-root #{&}-top {
+            i {
+                margin-right : 0.5em;
+                @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                    &:before {
+                        content   : "▲ ";
+                        font-size : 1em;
+                    }
+                } @else if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
+                    border-left   : 0.45em solid transparent;
+                    border-right  : 0.45em solid transparent;
+                    border-bottom : 0.9em solid $COLOR_Light_casual_text;
+                    @include active-focus-pseudo-class {
+                        border-left   : 0.45em solid #fff;
+                        border-right  : 0.45em solid #fff;
+                    }
+                } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+                    border-width : 0 7px 14px;
+                    border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
+                } @else {
+                    border-width : 0 0.45em 0.9em;
+                    @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
+                        border-color : $COLOR_Light_casual_text transparent;
+                    } @else {
+                        border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
+                    }
+                }
+
                 /*  Forced colors
                 --------------------------------------------------------------------------------------*/
-                & {
-                    @include media(forced_colors_native_or_ms){
-                        border-color : Window currentColor;
-                    }
-                    @include media(forced_colors_fallback){
-                        display : none;
-                    }
+                @include media(forced_colors_native){
+                    border-color : currentColor Window;
+                }
+                @include media(forced_colors_ms){
+                    border-color : currentColor transparent;
                 }
             }
             * {
                 @include active-focus-pseudo-class {
                     i {
-                        @if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 == false ){
-                            @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                                border-color : transparent #fff;
-                            } @else {
-                                border-color : $COLOR_ACCENT #fff;
-                            }
-                        }
-                    }
-                }
-            }
-
-            @at-root #{&}-next i {
-                margin-right : 0.5em;
-                @if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
-                    border-top    : 0.5em solid transparent;
-                    border-right  : 0.7em solid $COLOR_Light_casual_text;
-                    border-bottom : 0.5em solid transparent;
-                    @include active-focus-pseudo-class {
-                        border-right : 0.7em solid #fff;
-                    }
-                } @else {
-                    border-width : 0.5em 0.7em 0.5em 0;
-                }
-                @if( $IS_LTE_GECKO09 or $UA_Opera70 ){ /* Gecko 0.9.4 以下は */
-                    display : block;
-                    float   : left;
-                }
-            }
-            @at-root #{&}-prev i {
-                margin-left  : 0.5em;
-                @if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
-                    border-top    : 0.5em solid transparent;
-                    border-left   : 0.7em solid $COLOR_Light_casual_text;
-                    border-bottom : 0.5em solid transparent;
-                    @include active-focus-pseudo-class {
-                        border-left : 0.7em solid #fff;
-                    }
-                } @else {
-                    border-width : 0.5em 0 0.5em 0.7em;
-                }
-                @if( $IS_LTE_WIN_IE7 ){
-                    left : 0.5em;
-                }
-                @if( $IS_LTE_GECKO09 or $UA_Opera70 ){ /* Gecko 0.9.4 以下は */
-                    display : block;
-                    float   : right;
-                }
-            }
-    
-            @at-root #{&}-top {
-                i {
-                    margin-right : 0.5em;
-                    @if( $UA_Opera70 ){
-                        &:before {
-                            content     : "▲ ";
-                            font-style  : normal;
-                            font-size   : 125%;
-                            line-height : .8;
-                            color       : $COLOR_Light_casual_text;
-                            @include active-focus-pseudo-class {
-                                color : #fff;
-                            }
-                        }
-                    } @else if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 ){
-                        border-left   : 0.45em solid transparent;
-                        border-right  : 0.45em solid transparent;
-                        border-bottom : 0.9em solid $COLOR_Light_casual_text;
-                        @include active-focus-pseudo-class {
-                            border-left   : 0.45em solid #fff;
-                            border-right  : 0.45em solid #fff;
-                        }
-                    } @else {
-                        border-width : 0 0.45em 0.9em;
-                        @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
-                            border-color : $COLOR_Light_casual_text transparent;
-                        } @else {
-                            border-color : $COLOR_Light_casual_text $COLOR_Light_fill;
-                        }
-                    }
-
-                    @if( $IS_LTE_GECKO09 ){ /* Gecko 0.9.4 以下は */
-                        position : relative;
-                        top      : -1em;
-                    }
-
-                    /*  Forced colors
-                    --------------------------------------------------------------------------------------*/
-                    @include media(forced_colors_native){
-                        border-color : currentColor Window;
-                    }
-                    @include media(forced_colors_ms){
-                        border-color : currentColor transparent;
-                    }
-                }
-                * {
-                    @include active-focus-pseudo-class {
-                        i {
+                        @if( $CANT_TRIANGULATE_INLINE_ELEMENT == false ){
                             @if( $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 == false ){
                                 @if( $CANUSE_TRANSPARENT_BORDER_COLOR ){
                                     border-color : #fff transparent;
