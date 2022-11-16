@@ -16,7 +16,7 @@ var  Event_lastScrollY          = 0;
 var Event_NO_SCROLL_EVENT       = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
 
 /**
- * @param {Event=} e
+ * @param {!Event=} e
  */
 function Event_scrollEventHandler( e ){
     if( !p_loadEventCallbacks ){

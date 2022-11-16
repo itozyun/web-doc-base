@@ -15,7 +15,7 @@ var Event_resizeTimerID;
 p_addEventListener( window, 'resize', Event_resizeEventHandler );
 
 /**
- * @param {Event=} e
+ * @param {!Event=} e
  */
 function Event_resizeEventHandler( e ){
     if( !p_loadEventCallbacks ){

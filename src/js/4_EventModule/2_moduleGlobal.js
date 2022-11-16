@@ -2,7 +2,7 @@
  * module global
  */
 
-/** @type {!Function|undefined} */
+/** @type {!function(string):MediaQueryList|undefined} */
 var m_matchMedia = window.matchMedia;
 /** @type {!Element|undefined} */
 var m_elmTest;
@@ -21,7 +21,7 @@ var m_initMediaQueryList = function( media, listener ){
 };
 
 /**
- * @param {!Array.<!Function>} callbackList
+ * @param {!Array.<!function(*=):(boolean|undefined)>} callbackList
  * @param {*=} param
  * @param {boolean=} deleteCallbackList
  */
@@ -39,12 +39,12 @@ function m_dispatchEvent( callbackList, param, deleteCallbackList ){
 
 /** onload 後にタイマーを挟んで dispatch する
  * 
- * @param {!Array.<!Function>} callbackList
+ * @param {!Array.<!function(*=):(boolean|undefined)>} callbackList
  * @param {*=} param
  * @param {boolean=} deleteCallbackList
  */
 function m_lazyDispatchEvent( callbackList, param, deleteCallbackList ){
-    if( Event_loaded && !Event_lazyCallbacks.length ){
+    if( !p_loadEventCallbacks && !Event_lazyCallbacks.length ){
         p_setTimer( _m_lazyDispatchEvent );
     };
     Event_lazyCallbacks.push( callbackList, param, deleteCallbackList );
@@ -54,7 +54,6 @@ function m_lazyDispatchEvent( callbackList, param, deleteCallbackList ){
  * private
  */
 var Event_lazyCallbacks = [];
-var Event_loaded;
 
 function _m_lazyDispatchEvent(){
     var lazyCallbacks = Event_lazyCallbacks,
@@ -90,7 +89,6 @@ p_loadEventCallbacks.push(
         );
 
         p_listenLoadEvent( function(){
-            Event_loaded = true;
             if( Event_lazyCallbacks.length ){
                 p_setTimer( _m_lazyDispatchEvent );
             };

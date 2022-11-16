@@ -7,13 +7,13 @@ p_canUseDynamicExternalScript = !( p_Presto < 7.2 || p_canUseJSONPOnlyInIframe )
 
 /** @param {string} url */
 p_loadExternalScript = function( url ){
-    if( ExternalScriptLoader_useDocumentWrite ){
-        if( !ExternalScriptLoader_loaded ){
-            document.write( '<script src="' + url + '"><' + '/script>' );
-        } else if( DEFINE_WEB_DOC_BASE__DEBUG ){
+    if( ExternalScriptLoader_useDocumentWrite ){ 
+        if( DEFINE_WEB_DOC_BASE__DEBUG && !p_loadEventCallbacks ){
             Debug.error( '[DynamicScvriptLoader] Document already loaded! ' + url );
+        } else {
+            document.write( '<script src="' + url + '"><' + '/script>' );
         };
-    } else if( ExternalScriptLoader_loaded && !ExternalScriptLoader_URL_LIST.length ){
+    } else if( !p_loadEventCallbacks && !ExternalScriptLoader_URL_LIST.length ){
         ExternalScriptLoader_load( url );
     } else {
         ExternalScriptLoader_URL_LIST.push( url );
@@ -36,17 +36,10 @@ p_setExternalScriptIsLoaded = function( url ){
  */
 var ExternalScriptLoader_useDocumentWrite     = !p_canUseDynamicExternalScript;
 var ExternalScriptLoader_useRewriteSourceHack = p_canUseDynamicExternalScript && p_Presto < 7.5;
-var ExternalScriptLoader_loaded;
 var ExternalScriptLoader_loadingScriptURL;
 var ExternalScriptLoader_URL_LIST;
 
-if( ExternalScriptLoader_useDocumentWrite ){
-    p_listenLoadEvent(
-        function(){
-            ExternalScriptLoader_loaded = true;
-        }
-    );
-} else {
+if( !ExternalScriptLoader_useDocumentWrite ){
     p_canUseDynamicExternalScript = true;
     ExternalScriptLoader_URL_LIST = [];
 
@@ -56,8 +49,6 @@ if( ExternalScriptLoader_useDocumentWrite ){
 
     p_listenLoadEvent(
         function(){
-            ExternalScriptLoader_loaded = true;
-    
             ExternalScriptLoader_load( ExternalScriptLoader_URL_LIST.shift() );
         }
     );
