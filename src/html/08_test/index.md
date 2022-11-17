@@ -9,6 +9,7 @@
 <a href="../test/cssom.html">CSSOM のテスト</a>,
 <a href="../test/dynamic-script.html">動的 Script のテスト</a>,
 <a href="../test/importHack.html">import のテスト</a>,
+<a href="../test/javascript-Implementation.html">Javascript 実装状況と深刻なバグ</a>,
 <a href="../test/check-image-loading.html">Check Image loading</a>,
 <a href="../test/icon.html">アイコンのテスト</a>,
 <a href="../test/richlink.html">RichLink のテスト</a>,

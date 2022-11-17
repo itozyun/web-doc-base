@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Javascript 実装状況と深刻なバグ | web-doc-base</title>
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="HandheldFriendly" content="true">
+<meta name="mobileoptimized" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+<style>
+    input {float:left}
+    pre, div div {float:left; width: 40%}
+    .output {margin : 1em; padding : 1em; border : 2px solid #ccc; background: #111; color: #3fdd3f}
+    .output p {margin:0; line-height:1}
+    .bad {color:#ff4949}
+</style>
+<script>
+var elmOutput, errorOccured;
+
+window.onerror = function(a, b, c){
+    print(window.event ? event.type + ':' + event.message : a + ',' + b + ',' + c, false);
+    return true;
+};
+
+function getNextElement(elm){
+    var parent = elm.parentElement || elm.parentNode;
+    var childs = parent.children;
+
+    if(!childs){
+        childs = [];
+        var _childs = parent.childNodes;
+        for(var i = 0, l = _childs.length; i < l; ++i ){
+            if(_childs[i].nodeType === 1){
+                childs[childs.length] = _childs[i];
+            };
+        };
+    };
+
+    for(var i = 0, l = childs.length; i < l; ++i ){
+        if(childs[i] === elm){
+            return childs[i + 1];
+        };
+    };
+};
+
+function exec(button){
+    var code = getNextElement(button);
+
+    elmOutput = getNextElement(code);
+
+    code = code.innerHTML || code.innerText || code.textContent;
+
+    clear();
+    print('--- ' + button.title);
+    errorOccured = true;
+    var timerID = setTimeout('print(errorOccured ? "ERROR OCCURED!" : "clearTimeout faild...", !errorOccured)', 100);
+    eval(code);
+    clearTimeout(timerID);
+    errorOccured = false;
+};
+
+function print(message, good){
+    if(good || good === void 0){
+        elmOutput.innerHTML += '<p>' + message;
+    } else {
+        elmOutput.innerHTML += '<p class="bad">' + message;
+    };
+};
+
+function clear(){
+    elmOutput.innerHTML = '';
+};
+</script>
+</head>
+<body size="1">
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
+<a href="clearfix.html">clearfix のテスト</a>,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
+<a href="dynamic-script.html">動的 Script のテスト</a>,
+Javascript 実装状況と深刻なバグ,
+<a href="importHack.html">import のテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="richlink.html">RichLink のテスト</a>,
+<a href="form.html">フォーム部品の実装状況</a>,
+<a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>,
+<a href="attr-selectors.html">属性セレクタのテスト</a>
+<hr>
+<h1>Javascript 実装状況と深刻なバグ</h1>
+
+<h2>IIFE</h2>
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 1">
+<pre>(function(){
+    var a = {};
+    (function(){
+        print('0:' + typeof document);
+        print('1:' + typeof a, typeof a === 'object');
+    })();
+    print('2:' + typeof a, typeof a === 'object');
+    (function(){
+        print('3:' + typeof a, typeof a === 'object');
+    })();
+})();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 2">
+<pre>(function(){
+    var a = {};
+    (function(){
+        print('1:' + typeof a, typeof a === 'object');
+    })();
+    (function(){
+        print('2:' + typeof a, typeof a === 'object');
+    })();
+    if(true){
+        function b(){
+            print('3:' + typeof a, typeof a === 'object');
+            (function(){
+                print('4:' + typeof a, typeof a === 'object');
+            })();
+            var c=0;
+        };
+    };
+    b();
+    (function(){
+        print('5:' + typeof a, typeof a === 'object');
+    })();
+
+    (function(){
+        a.d = function(){
+            print('6:' + typeof a, typeof a === 'object');
+        };
+        a.d();
+        a.e = function(f){
+            print('7:' + f(), f() === 'object');
+        };
+        a.e(
+            function(){
+                return typeof a;
+            }
+        );
+    })();
+})();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 3">
+<pre>(function(){
+    var a = {}, i = 0;
+    (function b(){
+        print(++i + ':' + typeof a, typeof a === 'object');
+        print(++i + ':' + typeof b, typeof b === 'function');
+    })();
+    b();
+})();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>eval + comment</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="evel() + comment">
+<pre>(function(){
+    // error at Opera 7.03
+    print('Good!');
+})();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>null</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="typeof null">
+<pre>print('1:' + typeof null, typeof null === 'object');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>instanceof operator</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="instanceof">
+<pre>print('1:' + ({} instanceof Object), {} instanceof Object);
+print('2:' + (null instanceof Object), !(null instanceof Object));
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>try statement</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="try ~ catch">
+<pre>try {
+    print('Try!');
+} catch(O_o){
+    throw new Error('...');
+}
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>in operator</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="in operator">
+<pre>print('1:' + ('toString' in {}), 'toString' in {});
+print('2:' + ('length' in []), 'length' in []);
+print('3:' + ('length' in {}), !('length' in {}));
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>check null by for~in </h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="for(key in null) error in Opera">
+<pre>var key;
+for(key in null){};
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>RegExp Litearl</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="RegExp Literal">
+<pre>var re = /reg/;
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="RegExp Literal has g i flag">
+<pre>var re = /reg/gi;
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="RegExp Literal has m flag">
+<pre>var re = /reg/m;
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="RegExp Literal has y flag">
+<pre>var re = /reg/y;
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Object Litearl</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Object Literal">
+<pre>var obj = {1: 'Good!'};
+print('1:' + obj[1]);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Object Literal">
+<pre>var obj = {'1': 'Good!'};
+print('1:' + obj[1]);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Object Literal">
+<pre>var obj = {'': 'Good!'};
+print('1:' + obj[''], obj[''] === 'Good!');
+obj[''] = 'Good!';
+print('2:' + obj[''], obj[''] === 'Good!');
+obj= {'': 'Good!'};
+print('3:' + obj[''], obj[''] === 'Good!');
+for(var k in obj){
+    print('4:{"' + k + '" : "' + obj[k] + '"}', k === '');
+};
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Function.prototype()</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Function.prototype()">
+<pre>Function.prototype();
+print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>document scroll position</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="scrollY">
+<pre>print('window.scrollY:' + window.scrollY);
+print('window.pageYOffset:' + window.pageYOffset);
+var html = document.documentElement || document.getElementsByTagName('html');
+print('html.scrollTop:' + html.scrollTop);
+print('body.scrollTop:' + document.body.scrollTop);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Viewport height</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="ViewPort height">
+<pre>print('window.innerHeight:' + window.innerHeight);
+var html = document.documentElement || document.getElementsByTagName('html');
+print('html.offsetHeight:' + html.offsetHeight);
+print('body.offsetHeight:' + document.body.offsetHeight);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Links</h2>
+<ul>
+<li><a href="https://web.archive.org/web/20040325075516/http://www.hikksworld.com/loadJSFiles/">Dynamically Loading JS Files</a>
+</ul>
+</body>
+</html>
