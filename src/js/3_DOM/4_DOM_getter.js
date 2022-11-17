@@ -41,11 +41,11 @@ function DOM_getChildNodes( elm ){
  * @return {!Array.<!Element>} // TODO HTMLCollection or DOM_getChildElementArray
  */
 function DOM_getChildren( elm ){
-                      // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
-                      //   https://t.co/nxPB0wJRJt
-    var htmlList = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
+    // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
+    //   https://t.co/nxPB0wJRJt
+    var elemList = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
                    elm.children,
-        nodeList = htmlList ? htmlList : elm.childNodes,
+        nodeList = elemList ? elemList : elm.childNodes,
         result   = [],
         i        = nodeList.length,
         j        = -1,
@@ -53,7 +53,7 @@ function DOM_getChildren( elm ){
 
     while( i ){
         node = nodeList[ --i ];
-        if( htmlList || node.nodeType === 1 ){
+        if( elemList || node.nodeType === 1 ){
             if( !m_isIE4DOM || node.tagName !== 'FONT' ){
                 result[ ++j ] = node;
             };
