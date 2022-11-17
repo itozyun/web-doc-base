@@ -6,7 +6,7 @@
 var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_ID_OF_WHEEL_ELEMENTS                = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
     SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
-    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( 6 <= p_Trident && p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
+    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
     /*
      * positionFixed
      *   original :
@@ -37,7 +37,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
                 // Gecko
                 ( p_Gecko < 1 )
             ),
-    SidebarFixer_USE_CLIP = SidebarFixer_CANUSE_POSITION_FIXED || p_Trident < 7 || p_Gecko < 1,
+    SidebarFixer_USE_CLIP = SidebarFixer_CANUSE_POSITION_FIXED || p_Trident === 6 /* mouse wheel のある6だけ */ || p_Gecko < 1,
     SidebarFixer_USE_POSITION_RELATIVE = p_Presto < 7.5,
     SidebarFixer_elmRoot,
     SidebarFixer_elmSide,
@@ -80,10 +80,8 @@ if( !p_isMobile && !p_cloudRendering ){
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
-            if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 ) ){
-                if( p_Trident < 6 ){
-                    // 
-                } else if( p_Trident || p_Tasman ){
+            if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 || p_Trident < 6 ) ){
+                if( p_Trident || p_Tasman ){
                     p_addEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus );
                 } else if( SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN ){
                     p_addEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
@@ -267,8 +265,8 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             if( SidebarFixer_CANUSE_POSITION_FIXED ){
                 cssText = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( _y - scrollY + containerY ) + 'px';
             } else if( SidebarFixer_USE_POSITION_RELATIVE ){
-                // pos:absolute でないと動作しない
-                cssText = 'top:' + _y + 'px;left:0';
+                // pos:relative でないと動作しない
+                cssText = 'top:' + _y + 'px';
             } else {
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
                 cssText = 'position:absolute;left:0;width:100%;top:' + _y + 'px';
