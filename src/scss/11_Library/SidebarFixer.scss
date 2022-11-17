@@ -1,4 +1,9 @@
 @if( $Option_mobileOnly == false ){
+    @if( $LAYOUT_BY_DISPLAY_TABLE ){
+        #lB .lS {
+            overflow : hidden;
+        }
+    }
     @if( $UA_Modern ){
         @include media(pc) {
             @supports (position:sticky) {
