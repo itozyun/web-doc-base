@@ -29,7 +29,7 @@
         @if( $UA_IE5 ){
             padding     : 0 .4em;
             line-height : 1;
-            height      : 1%; // hasLayout=true にしないと塗りがランダムかつ頻繁に欠落する
+            height      : 1px; // hasLayout=true にしないと塗りがランダムかつ頻繁に欠落する
         } @else {
             padding : .1em .4em;
         }

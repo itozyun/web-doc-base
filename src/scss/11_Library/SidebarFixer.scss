@@ -102,7 +102,7 @@
          */
         #jsSidebarFixer, #jsSidebarFixer div, #jsSidebarFixer a {
             @if( $UA_IE5 ){
-                height : 1%;
+                height : 1px;
             } @else {
                 zoom : 1;
             }

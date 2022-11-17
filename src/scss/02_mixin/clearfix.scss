@@ -19,7 +19,7 @@
     } @else if( $UA_IE6 or $UA_IE55 ){
         zoom : 1;
     } @else if( $UA_IE5 ){
-        height : 1%;
+        height : 1px;
     } @else if( $UA_MacIE5 ){
         display : inline-table;
     } @else {
