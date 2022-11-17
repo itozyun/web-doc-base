@@ -90,6 +90,10 @@ tbody th,
 td {
   vertical-align: top
 }
+#lB .lS,
+.Search .btn {
+  overflow: hidden
+}
 body,
 input,
 textarea {
@@ -956,8 +960,7 @@ kbd {
 .Search .btn {
   white-space: nowrap;
   padding-left: 0;
-  padding-right: 0;
-  overflow: hidden
+  padding-right: 0
 }
 .SearchResult {
   margin-bottom: 2em

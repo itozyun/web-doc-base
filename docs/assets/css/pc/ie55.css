@@ -44,6 +44,14 @@ a,
 h6 {
   color: #777
 }
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited,
+body,
+table {
+  color: #111
+}
 dd,
 li {
   margin-bottom: .3em
@@ -202,6 +210,12 @@ html {
   margin: 0;
   height: 100%
 }
+table {
+  font-size: 1em;
+  border-collapse: collapse;
+  empty-cells: show;
+  border-spacing: 0
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -256,8 +270,7 @@ textarea {
   border-width: 0
 }
 body {
-  background: #1a1a1a;
-  color: #111
+  background: #1a1a1a
 }
 p {
   line-height: 1.9
@@ -274,12 +287,6 @@ a:active:hover {
 .tl thead :link:hover,
 :link {
   color: #24c
-}
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited {
-  color: #111
 }
 .ribbon :link:hover,
 :link:hover {
@@ -461,12 +468,6 @@ table {
 }
 tr hr {
   margin: 1em 9%
-}
-table {
-  border-collapse: collapse;
-  empty-cells: show;
-  border-spacing: 0;
-  color: #111
 }
 caption {
   margin: 1.5em 1em .7em

@@ -338,7 +338,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(y, q) {
         if (!Mc && (Nc || bc)) {
           var Bb = sa.offsetWidth;
         }
-        m = bc ? "position:fixed;width:" + Bb + "px;top:" + (Y - e + l) + "px" : Mc ? "top:" + Y + "px;left:0" : "position:absolute;left:0;width:100%;top:" + Y + "px";
+        m = bc ? "position:fixed;width:" + Bb + "px;top:" + (Y - e + l) + "px" : Mc ? "top:" + Y + "px" : "position:absolute;left:0;width:100%;top:" + Y + "px";
         Nc && m && (m += ";" + (0 > Y ? "clip:rect(" + -Y + "px " + Bb + "px " + z + "px 0)" : Y + z < S ? "clip:rect(0 " + Bb + "px " + z + "px 0)" : "clip:rect(0 " + Bb + "px " + (S - Y) + "px 0)"), 8 > u || (m = m.split(" ").join(",")));
       }
     }
@@ -671,13 +671,17 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(y, q) {
   var Ya = function(a, b) {
     var c = -1, d, e;
     if (5.5 > u) {
-      if (b) {
+      if (a.setAttribute("style", ""), b) {
         for (d = b.split(";"); e = d[++c];) {
           var f = e.split(":");
           a.style[f[0]] = e.substr(f[0].length + 1);
         }
-      } else {
-        a.removeAttribute("style");
+      }
+    } else if (7.1 > w) {
+      if (a.setAttribute("style", ""), b) {
+        for (d = b.split(";"); e = d[++c];) {
+          f = e.split(":"), a.style[f[0]] = f[1];
+        }
       }
     } else {
       9 > w || 1 > x ? b ? a.setAttribute("style", b) : a.removeAttribute("style") : a.style.cssText = b;
@@ -1011,7 +1015,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(y, q) {
       }
     });
   }
-  var Eb = ["jsSidebarFixer1", "jsSidebarFixer2"], yd = x || kc || jc, Fd = !(6 <= u && 9 > u || w || 1 <= x && 1.3 > x), bc = !(5 > A(16) || 5 > A(17) || 2.2 > A(21) || 6 > A(12) || P(30) && 534 > fb || P(32) || 7 > u || 9 > w || 1 > x), Nc = bc || 7 > u || 1 > x, Mc = 7.5 > w, Ha, sa, Oc, T, $b = dd, Pc = 0, zb = 0, ac, Za, $a, ra, vc = x && 0 <= y.conpare(da, "0.9.7"), zd = x && 0 >= y.conpare(da, "0.9.4");
+  var Eb = ["jsSidebarFixer1", "jsSidebarFixer2"], yd = x || kc || jc, Fd = !(9 > u || w || 1 <= x && 1.3 > x), bc = !(5 > A(16) || 5 > A(17) || 2.2 > A(21) || 6 > A(12) || P(30) && 534 > fb || P(32) || 7 > u || 9 > w || 1 > x), Nc = bc || 6 === u || 1 > x, Mc = 7.5 > w, Ha, sa, Oc, T, $b = dd, Pc = 0, zb = 0, ac, Za, $a, ra, vc = x && 0 <= y.conpare(da, "0.9.7"), zd = x && 0 >= y.conpare(da, "0.9.4");
   Ad || $c || (Sa(function(a) {
     if (a) {
       if (!ya) {

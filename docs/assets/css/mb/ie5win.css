@@ -57,16 +57,6 @@ tr ul {
 .lX {
   overflow-x: hidden
 }
-.AAuthor,
-.lMi,
-.lSi,
-.lX,
-:link,
-:visited,
-code,
-var {
-  height: 1%
-}
 .baseColor,
 .medal {
   background: #f8fbf8
@@ -201,6 +191,13 @@ html {
   margin: 0;
   height: 100%
 }
+table {
+  font-size: 1em;
+  width: 94%;
+  border-collapse: collapse;
+  empty-cells: show;
+  border-spacing: 0
+}
 dt {
   font-weight: 700;
   margin-top: .7em
@@ -217,10 +214,6 @@ textarea {
 }
 img {
   height: auto
-}
-.btn,
-input {
-  height: 2.1em
 }
 cite,
 code,
@@ -240,16 +233,8 @@ pre {
 del {
   text-decoration: line-through
 }
-.Header *,
-.Header h1,
-.Header h1 *,
-.aa,
-.aa *,
-.btn,
-code,
-input,
-p *,
-var {
+input {
+  height: 2.1em;
   line-height: 1
 }
 textarea {
@@ -263,6 +248,17 @@ textarea {
 p {
   line-height: 1.9
 }
+.Header *,
+.Header h1,
+.Header h1 *,
+.aa,
+.aa *,
+.btn,
+code,
+p *,
+var {
+  line-height: 1
+}
 p * {
   vertical-align: text-top
 }
@@ -270,6 +266,20 @@ p * {
 tbody th,
 td {
   vertical-align: top
+}
+:link,
+:visited {
+  height: 1%
+}
+.AAuthor,
+.Pager,
+.box,
+.lMi,
+.lSi,
+.lX,
+code,
+var {
+  height: 1px
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -473,12 +483,6 @@ table {
 tr hr {
   margin: 1em 9%
 }
-table {
-  width: 94%;
-  border-collapse: collapse;
-  empty-cells: show;
-  border-spacing: 0
-}
 caption {
   margin: 1.5em 3% .7em
 }
@@ -511,6 +515,7 @@ tfoot th {
 tfoot td {
   border-width: 2px .5em 0
 }
+.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -602,7 +607,8 @@ strong {
   border-width: .1em;
   cursor: pointer;
   text-align: center;
-  padding: .45em 1em
+  padding: .45em 1em;
+  height: 2.1em
 }
 .AHead-labels :link,
 .btn:link {
@@ -809,7 +815,7 @@ kbd {
   font-size: 93%
 }
 .Comment p {
-  height: 1%;
+  height: 1px;
   padding: 0 3% .5em;
   border-width: 0 0 1px;
   margin-top: 0
@@ -849,7 +855,7 @@ pre var {
   padding: .37em
 }
 .Cover {
-  height: 1%;
+  height: 1px;
   margin: 2em auto
 }
 .Label div {
@@ -875,7 +881,7 @@ pre var {
   text-decoration: underline!important
 }
 .RichLink a {
-  height: 1%;
+  height: 1px;
   padding: 1em .5em 0;
   border-width: 0 0 1px;
   border-color: #2a2a2a!important
@@ -1056,7 +1062,6 @@ blockquote {
   color: #777
 }
 .box {
-  height: 1%;
   margin: 1em 0 0
 }
 .box dl,
@@ -1166,10 +1171,6 @@ div .caption img {
   margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
-}
-.Pager {
-  color: #f8fbf8;
-  height: 1%
 }
 .Pager span {
   padding: 1.5em 0;
@@ -1341,7 +1342,7 @@ ol.linenums {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 1%;
+    height: 1px;
     top: 0
   }
   .aa {

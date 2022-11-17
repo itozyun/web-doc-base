@@ -343,7 +343,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(z, q) {
         if (!cd && (dd || jb)) {
           var Rb = Ba.offsetWidth;
         }
-        p = jb ? "position:fixed;width:" + Rb + "px;top:" + (ea - f + l) + "px" : cd ? "top:" + ea + "px;left:0" : "position:absolute;left:0;width:100%;top:" + ea + "px";
+        p = jb ? "position:fixed;width:" + Rb + "px;top:" + (ea - f + l) + "px" : cd ? "top:" + ea + "px" : "position:absolute;left:0;width:100%;top:" + ea + "px";
         dd && p && (p += ";" + (0 > ea ? "clip:rect(" + -ea + "px " + Rb + "px " + A + "px 0)" : ea + A < O ? "clip:rect(0 " + Rb + "px " + A + "px 0)" : "clip:rect(0 " + Rb + "px " + (O - ea) + "px 0)"), 8 > u || (p = p.split(" ").join(",")));
       }
     }
@@ -726,13 +726,17 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(z, q) {
   var R = function(a, b) {
     var c = -1, d, f;
     if (5.5 > u) {
-      if (b) {
+      if (a.setAttribute("style", ""), b) {
         for (d = b.split(";"); f = d[++c];) {
           var e = f.split(":");
           a.style[e[0]] = f.substr(e[0].length + 1);
         }
-      } else {
-        a.removeAttribute("style");
+      }
+    } else if (7.1 > w) {
+      if (a.setAttribute("style", ""), b) {
+        for (d = b.split(";"); f = d[++c];) {
+          e = f.split(":"), a.style[e[0]] = e[1];
+        }
       }
     } else {
       9 > w || 1 > x ? b ? a.setAttribute("style", b) : a.removeAttribute("style") : a.style.cssText = b;
@@ -1075,7 +1079,7 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(z, q) {
       }
     });
   }
-  var Ub = ["jsSidebarFixer1", "jsSidebarFixer2"], Sd = x || yc || xc, Zd = !(6 <= u && 9 > u || w || 1 <= x && 1.3 > x), jb = !(5 > B(16) || 5 > B(17) || 2.2 > B(21) || 6 > B(12) || Y(30) && 534 > ub || Y(32) || 7 > u || 9 > w || 1 > x), dd = jb || 7 > u || 1 > x, cd = 7.5 > w, Ra, Ba, ed, ba, nc = Bc, fd = 0, Qa = 0, Qb, hb, ib, Aa, Kc = x && 0 <= z.conpare(ka, "0.9.7"), Td = x && 0 >= z.conpare(ka, "0.9.4");
+  var Ub = ["jsSidebarFixer1", "jsSidebarFixer2"], Sd = x || yc || xc, Zd = !(9 > u || w || 1 <= x && 1.3 > x), jb = !(5 > B(16) || 5 > B(17) || 2.2 > B(21) || 6 > B(12) || Y(30) && 534 > ub || Y(32) || 7 > u || 9 > w || 1 > x), dd = jb || 6 === u || 1 > x, cd = 7.5 > w, Ra, Ba, ed, ba, nc = Bc, fd = 0, Qa = 0, Qb, hb, ib, Aa, Kc = x && 0 <= z.conpare(ka, "0.9.7"), Td = x && 0 >= z.conpare(ka, "0.9.4");
   Ud || td || (Ja(function(a) {
     if (a) {
       if (!ta) {
