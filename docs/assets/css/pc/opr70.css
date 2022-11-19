@@ -75,10 +75,6 @@ pre {
 pre {
   white-space: -o-pre-wrap
 }
-.Search .btn,
-.lW {
-  overflow: hidden
-}
 #jsMain,
 #jsSide,
 #jsSidebarFixer,
@@ -88,6 +84,10 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.Search .btn,
+.lW {
+  overflow: hidden
 }
 body,
 input,
@@ -1386,9 +1386,6 @@ ol.linenums {
 }
 .jsCapLarge {
   margin: 0 auto 1em
-}
-#jsSidebarFixer {
-
 }
 .baseColor .btn:link {
   background: #24c;

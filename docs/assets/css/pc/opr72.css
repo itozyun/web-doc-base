@@ -1424,9 +1424,6 @@ ol.linenums {
 .lW {
   overflow: hidden
 }
-#jsSidebarFixer {
-  left: 0
-}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
