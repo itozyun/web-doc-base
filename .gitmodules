@@ -4,6 +4,3 @@
 [submodule "es2-base64"]
 	path = .submodules/es2-base64
 	url = https://github.com/ECMAScript2/es2-base64.git
-[submodule ".submodules/es2-code-prettify"]
-	path = .submodules/es2-code-prettify
-	url = https://github.com/ECMAScript2/es2-code-prettify.git

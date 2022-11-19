@@ -1,8 +1,8 @@
 const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
+      postProcessor   = require('es2-postprocessor'),
       gulpJSDOM       = require('gulp-jsdom'),
-      gulpRename      = require('gulp-rename'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
@@ -141,19 +141,20 @@ const assetsDirToJSDir     = 'js',
  */
 var isDebug = false;
 
-const gulpCreateSimpleRexerRegistry = require('./.submodules/es2-code-prettify/js-buildtools/gulp-createSimpleLexerRegistry.js');
+const gulpCreateSimpleRexerRegistry = require('./node_modules/es2-code-prettify/src/js-buildtools/gulp-createSimpleLexerRegistry.js');
 const numericKeyName = '-num';
 const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
 const regExpCompatFileName = 'regexpcompat.js';
+const resultObject = {};
 
 gulp.task('__js', gulp.series(
     function(){
         return gulp.src(
             [
-            // Google Code Prettify
-                './.submodules/es2-code-prettify/src/js/1_common/*.js',
-                './.submodules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
-                './.submodules/es2-code-prettify/src/js/3_langs/*.js'
+            // ES2 Code Prettify
+                './node_modules/es2-code-prettify/src/js/1_common/*.js',
+                './node_modules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
+                './node_modules/es2-code-prettify/src/js/3_langs/*.js'
             ]
         ).pipe(
             ClosureCompiler(
@@ -172,7 +173,7 @@ gulp.task('__js', gulp.series(
             )
         ).pipe(
             gulpCreateSimpleRexerRegistry( simpleLexerRegistryFileName, numericKeyName )
-        ).pipe( gulp.dest( './.submodules/es2-code-prettify/src/js/4_prettify' ) );
+        ).pipe( gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' ) );
     },
     function(){
         return gulp.src(
@@ -187,9 +188,9 @@ gulp.task('__js', gulp.series(
                    '!./src/js/6_CanUse/dataUriTest.js',
                    '!./src/js/6_CanUse/webfontTest.js',
                    '!./src/js/graph/**/*.js',
-                    // Google Code Prettify
-                    './.submodules/es2-code-prettify/src/js/1_common/*.js',
-                    './.submodules/es2-code-prettify/src/js/4_prettify/*.js'
+                    // ES2 Code Prettify
+                    './node_modules/es2-code-prettify/src/js/1_common/*.js',
+                    './node_modules/es2-code-prettify/src/js/4_prettify/*.js'
                 ]
             ).pipe(
                 gulpDPZ(
@@ -199,7 +200,7 @@ gulp.task('__js', gulp.series(
                         basePath          : [
                             './src/js/',
                             './.submodules/what-browser-am-i/src/js/',
-                            './.submodules/es2-code-prettify/src/js' // js
+                            './node_modules/es2-code-prettify/src/js' // js
                         ]
                     }
                 )
@@ -209,8 +210,8 @@ gulp.task('__js', gulp.series(
                         externs           : [
                             './.submodules/what-browser-am-i/src/js-externs/externs.js',
                             './src/js-externs/externs.js',
-                            // Google Code Prettify
-                            './.submodules/es2-code-prettify/src/js-externs/externs.js'
+                            // ES2 Code Prettify
+                            './node_modules/es2-code-prettify/src/js-externs/externs.js'
                         ],
                         define            : [
                             'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
@@ -222,7 +223,7 @@ gulp.task('__js', gulp.series(
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
                             'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
                             'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"',
-                            // Google Code Prettify
+                            // ES2 Code Prettify
                             'DEFINE_CODE_PRETTIFY__DEBUG=' + isDebug,
                             'DEFINE_CODE_PRETTIFY__COMMENT_ATTR_SUPPORT=' + false,
                             'DEFINE_CODE_PRETTIFY__NUMERIC_STYLE_PATTERN_OBJECT_KEY="' + numericKeyName + '"',
@@ -235,10 +236,34 @@ gulp.task('__js', gulp.series(
                         warning_level     : 'VERBOSE',
                         language_in       : 'ECMASCRIPT3',
                         language_out      : 'ECMASCRIPT3',
+                        js_output_file    : 'temp.js'
+                    }
+                )
+            ).pipe(
+                postProcessor.gulp(
+                    {
+                        minIEVersion    : 5,
+                        minOperaVersion : 7,
+                        minGeckoVersion : 0.6
+                    }
+                )
+            ).pipe(
+                ClosureCompiler(
+                    {
+                        compilation_level : 'WHITESPACE_ONLY',
+                        formatting        : 'PRETTY_PRINT',
                         js_output_file    : isDebug ? 'debug.js' : 'main.js'
                     }
                 )
-            ).pipe(gulp.dest( './docs/assets/' + assetsDirToJSDir ));
+            ).pipe(
+                postProcessor.gulp(
+                    {
+                        minIEVersion   : 5,
+                        resultObject   : resultObject,
+                        embedPolyfills : true
+                    }
+                )
+            ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
     }
 ));
 
@@ -249,17 +274,24 @@ gulp.task( 'js', gulp.series(
     function(){
         return gulp.src(
             [
-                './.submodules/es2-code-prettify/docs/js/' + regExpCompatFileName
+                './node_modules/es2-code-prettify/dist/' + regExpCompatFileName.replace( '.js', '.min.js' )
             ]
         ).pipe(
             ClosureCompiler(
                 {
                     compilation_level : 'WHITESPACE_ONLY',
                     // formatting        : 'PRETTY_PRINT',
-                    js_output_file    : '_' + regExpCompatFileName
+                    js_output_file    : regExpCompatFileName
                 }
             )
-        ).pipe( gulpRename( regExpCompatFileName )
+        ).pipe(
+            postProcessor.gulp(
+                {
+                    minIEVersion       : 5,
+                    skipEmbedPolyfills : resultObject.embeddedPolyfills,
+                    embedPolyfills     : true
+                }
+            )
         ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
     }
 ));
