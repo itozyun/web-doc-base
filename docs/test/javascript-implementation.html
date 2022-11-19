@@ -12,7 +12,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <style>
-    input {float:left}
+    input {float:left;margin-right:1em}
+    pre {overflow: scroll;overflow-y: visible;}
     pre, div div {float:left; width: 40%}
     .output {margin : 1em; padding : 1em; border : 2px solid #ccc; background: #111; color: #3fdd3f}
     .output p {margin:0; line-height:1}
@@ -64,10 +65,12 @@ function exec(button){
 };
 
 function print(message, good){
+    message = message.split('<').join('&lt;');
+
     if(good || good === void 0){
-        elmOutput.innerHTML += '<p>' + message;
+        elmOutput.innerHTML += '<p>' + message + '</p>';
     } else {
-        elmOutput.innerHTML += '<p class="bad">' + message;
+        elmOutput.innerHTML += '<p class="bad">' + message + '</p>';
     };
 };
 
@@ -303,12 +306,96 @@ for(var k in obj){
 <div class="output"></div><br clear="all">
 </div>
 
-<h2>Function.prototype()</h2>
+<h2>String</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="String[number]">
+<pre>var str = 'Good!';
+print('1:' + str[0] + str[1] + str[2] + str[3] + str[4], str[0] === 'G');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>delete window.XX</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="delete window.XX">
+<pre>window.__apply = Function.prototype;
+print('1:' + (typeof window.__apply), typeof window.__apply === 'function');
+print('2:' + (delete window.__apply));
+print('3:' + window.__apply, window.__apply === void 0);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>atob, btoa</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="atob, btoa">
+<pre>print('1:atob', !!window.atob);
+print('2:btoa', !!window.btoa);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>encodeURI, decodeURI, encodeURIComponent, decodeURIComponent</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="encodeURI, decodeURI">
+<pre>print('1:encodeURI', !!window.encodeURI);
+print('2:decodeURI', !!window.decodeURI);
+print('3:encodeURIComponent', !!window.encodeURIComponent);
+print('4:decodeURIComponent', !!window.decodeURIComponent);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>JSON</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="JSON">
+<pre>print('1:JSON', !!window.JSON);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Function</h2>
 
 <div>
 <input type="button" onclick="exec(this);" value="exec" title="Function.prototype()">
 <pre>Function.prototype();
 print('Good!');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Function.prototype.apply & call">
+<pre>print('1:Function.prototype.apply', typeof Function.prototype.apply === 'function');
+print('1:Function.prototype.call', typeof Function.prototype.call === 'function');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Array</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Array.prototype">
+<pre>print('1:Array.prototype.push', typeof Array.prototype.push === 'function');
+print('1:Array.prototype.pop', typeof Array.prototype.pop === 'function');
+print('1:Array.prototype.shift', typeof Array.prototype.shift === 'function');
+print('1:Array.prototype.unshift', typeof Array.prototype.unshift === 'function');
+print('1:Array.prototype.splice', typeof Array.prototype.splice === 'function');
+print('1:Array.prototype.indexOf', typeof Array.prototype.indexOf === 'function');
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="Array.length">
+<pre>var a = [];
+--a.length;
+print('1:(--a.length)=' + a.length, a.length=== 0);
 </pre>
 <div class="output"></div><br clear="all">
 </div>
