@@ -195,7 +195,7 @@ gulp.task('__js', gulp.series(
             ).pipe(
                 gulpDPZ(
                     {
-                        labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
+                        // labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
                         packageGlobalArgs : [ 'ua,window,emptyFunction,RegExp,Date,' + globalVariables + ',undefined', 'ua,this,function(){},this.RegExp,Date,' + globalVariables + ',void 0' ],
                         basePath          : [
                             './src/js/',
