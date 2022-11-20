@@ -40,7 +40,6 @@ var ExternalScriptLoader_loadingScriptURL;
 var ExternalScriptLoader_URL_LIST;
 
 if( !ExternalScriptLoader_useDocumentWrite ){
-    p_canUseDynamicExternalScript = true;
     ExternalScriptLoader_URL_LIST = [];
 
     if( ExternalScriptLoader_useRewriteSourceHack ){
