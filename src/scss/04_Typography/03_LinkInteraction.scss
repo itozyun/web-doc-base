@@ -104,7 +104,7 @@ a {
 } @else {
     @if( $UA_IE5 ){
         :link, :visited {
-            height : 1%; // hasLayout を有効にしないと背景色のない要素が不規則に発生する
+            height : 1px; // hasLayout を有効にしないと背景色のない要素が不規則に発生する
         }
     }
     a {

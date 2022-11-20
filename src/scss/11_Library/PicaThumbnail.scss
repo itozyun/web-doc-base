@@ -129,6 +129,11 @@
     .jsPica {
         display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
     }
+    @if( $UA_IE5  ){
+        .jsPicaLarge:active {
+            background : none !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
+        }
+    }
     .jsPicaLarge img,
     .jsCapLarge {
         clear : both; /* ギャラリーでの回り込みの解除 */
