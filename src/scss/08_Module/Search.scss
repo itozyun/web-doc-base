@@ -8,16 +8,17 @@
 $SEARCH_BTN_WIDTH : 3em;
 
 @if( $UA_Opera8 or $IS_Opera7x ){
-    #lH .lMi, // ここで上書きする...
-    #lH .lSi {
-        padding-bottom : 0.5em;
-    }
-
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet) {
-        .Search {
-            text-align : center;
+    @if( $Option_simpleHeader ){
+        #lH .lMi, // ここで上書きする...
+        #lH .lSi {
+            padding-bottom : 0.5em;
+        }
+        /*  Tablet
+        --------------------------------------------------------------------------------------*/
+        @include media(tablet) {
+            .Search {
+                text-align : center;
+            }
         }
     }
 
@@ -42,33 +43,22 @@ $SEARCH_BTN_WIDTH : 3em;
 } @else if( $IS_OLD_GECKO ){
     @if( $Option_simpleHeader ){
         #lH .lSi {
-            padding-right : #{$SEARCH_BTN_WIDTH + $INPUT_BORDER_WIDTH};
+            @if( $UA_Gecko09 == false ){
+                padding-right : #{$SEARCH_BTN_WIDTH + $INPUT_BORDER_WIDTH * 2};
+            }
         }
     }
-    @if( $UA_Gecko09 == false ){
-        .Search {
-            height : $PARAGRAPH_LINE_HEIGHT_EM;
-        }
-        .Search-txt {
+    .Search {
+        height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+    }
+
+    .Search-txt {
+        @if( $UA_Gecko09 == false ){
             width : 100%;
         }
     }
 
     @if( $IS_LTE_GECKO09 ){
-        @if( $UA_Gecko09 ){
-            .Search {
-                height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-            }
-            // Gecko 0.9.6 だけで起る問題を回避する為に 0.9.x 全てで問題が起きないように書き換えた
-            // https://twitter.com/itozyun/status/1588789146625404928
-            .Search-txt {
-                position : absolute;
-                top      : 1em;
-                left     : 0;
-                right    : $SEARCH_BTN_WIDTH - $FORM_ITEM_PADDING_LR * 2;
-            }
-        }
-
         // 基準は #lH .lS, .Search-txt は通常配置, .Search .btn は絶対配置
         @if( $Option_simpleHeader ){
             #lH .lSi {
@@ -79,18 +69,26 @@ $SEARCH_BTN_WIDTH : 3em;
             }
         }
         .Search-txt {
+            @if( $UA_Gecko09 ){
+                // Gecko 0.9.6 だけで起る問題を回避する為に 0.9.x 全てで問題が起きないように書き換えた
+                // https://twitter.com/itozyun/status/1588789146625404928
+                position : absolute;
+                top      : 1em;
+                left     : 0;
+                right    : $SEARCH_BTN_WIDTH - $FORM_ITEM_PADDING_LR * 2;
+            }
             height : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
         }
         .Search .btn {
-            position : absolute;
             @if( $UA_Gecko09 ){ // border-box -> content-box
                 @include box-sizing(content-box); // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
                 padding     : 0;                  // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
                 line-height : $PARAGRAPH_LINE_HEIGHT;
             }
-            width  : $SEARCH_BTN_WIDTH - $INPUT_BORDER_WIDTH * 2 - $FORM_ITEM_PADDING_LR * 2; // content-box なので
-            right  : $FORM_ITEM_PADDING_LR * 2;
-            height : $PARAGRAPH_LINE_HEIGHT_EM;
+            position : absolute;
+            right    : 0;
+            width    : $SEARCH_BTN_WIDTH;
+            height   : $PARAGRAPH_LINE_HEIGHT_EM;
         }
     } @else if( $UA_Gecko12 or $IS_GECKO13_TO_19 ){
         .Search {
