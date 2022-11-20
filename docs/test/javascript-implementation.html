@@ -18,9 +18,22 @@
     .output {margin : 1em; padding : 1em; border : 2px solid #ccc; background: #111; color: #3fdd3f}
     .output p {margin:0; line-height:1}
     .bad {color:#ff4949}
+
+    iframe {
+        position   : absolute;
+        top        : -9px;
+        left       : -9px;
+        z-index    : -1;
+        width      : 10px;
+        height     : 10px;
+        visibility : hidden;
+        overflow   : hidden;
+    }
 </style>
 <script>
 var elmOutput, errorOccured;
+
+document.write('<iframe name="__iframe" width="100" height="50"></iframe>');
 
 window.onerror = function(a, b, c){
     print(window.event ? event.type + ':' + event.message : a + ',' + b + ',' + c, false);
@@ -324,6 +337,16 @@ print('1:' + str[0] + str[1] + str[2] + str[3] + str[4], str[0] === 'G');
 print('1:' + (typeof window.__apply), typeof window.__apply === 'function');
 print('2:' + (delete window.__apply));
 print('3:' + window.__apply, window.__apply === void 0);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="delete window.frames[0].XX">
+<pre>window.frames[0].__apply = Function.prototype;
+print('1:' + (typeof window.frames[0].__apply), typeof window.frames[0].__apply === 'function');
+print('2:' + (delete window.frames[0].__apply));
+print('3:' + window.frames[0].__apply, window.frames[0].__apply === void 0);
 </pre>
 <div class="output"></div><br clear="all">
 </div>

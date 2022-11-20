@@ -17,5 +17,3 @@
 <a href="../test/dynamic-pseudo-classes.html">動的疑似クラス</a>,
 <a href="../test/attr-selectors.html">属性セレクタのテスト</a>
 
-<noscript><p class="wn">javascript が無効です</p></noscript>
-
