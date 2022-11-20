@@ -59,11 +59,8 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
         }
 
         a { /* この指定が無いとフォーカス時の塗りが汚い */
-            @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+            @if( $UA_IE7 or $UA_IE6 ){
                 zoom : 1;
-            }
-            @if( $UA_IE5 ){
-                width : 100%; /* <- ?? height : $PARAGRAPH_LINE_HEIGHT_EM; */
             }
         }
 
@@ -92,8 +89,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
                     @if( $IS_LTE_WIN_IE6 ){
                         font-size : 0;
                     }
-                    @if( $UA_IE5 ){
-                    } @else {
+                    @if( $UA_IE6 or $UA_IE7 ){
                         zoom : 1;
                     }
                 }
