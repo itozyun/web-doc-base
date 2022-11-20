@@ -62,12 +62,28 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Pager a,
 .commonForm-wrap *,
 .lX,
 pre code,
 pre samp {
   width: 100%
+}
+#jsSidebarFixer,
+#jsSidebarFixer a,
+#jsSidebarFixer div,
+.AAuthor,
+.Magazine-snippet,
+.Pager,
+.box,
+.lMi,
+.lSi,
+.lW,
+.lX,
+:link,
+:visited,
+code,
+var {
+  height: 1px
 }
 .baseColor,
 .medal {
@@ -222,6 +238,10 @@ textarea {
 img {
   height: auto
 }
+.btn,
+input {
+  height: 2.1em
+}
 cite,
 code,
 dfn,
@@ -239,8 +259,17 @@ pre {
 del {
   text-decoration: line-through
 }
-input {
-  height: 2.1em;
+.Header *,
+.Header h1,
+.Header h1 *,
+.Magazine-date *,
+.aa,
+.aa *,
+.btn,
+code,
+input,
+p *,
+var {
   line-height: 1
 }
 textarea {
@@ -254,18 +283,6 @@ textarea {
 p {
   line-height: 1.9
 }
-.Header *,
-.Header h1,
-.Header h1 *,
-.Magazine-date *,
-.aa,
-.aa *,
-.btn,
-code,
-p *,
-var {
-  line-height: 1
-}
 p * {
   vertical-align: text-top
 }
@@ -273,25 +290,6 @@ p * {
 tbody th,
 td {
   vertical-align: top
-}
-:link,
-:visited {
-  height: 1%
-}
-#jsSidebarFixer,
-#jsSidebarFixer a,
-#jsSidebarFixer div,
-.AAuthor,
-.Magazine-snippet,
-.Pager,
-.box,
-.lMi,
-.lSi,
-.lW,
-.lX,
-code,
-var {
-  height: 1px
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -602,8 +600,7 @@ strong {
 .btn {
   border-width: .1em;
   cursor: pointer;
-  padding: .45em 1em;
-  height: 2.1em
+  padding: .45em 1em
 }
 .AHead-labels :link,
 .btn:link {
@@ -836,6 +833,7 @@ tr .box {
   display: inline;
   height: 2.2em
 }
+.jsPicaLarge:active,
 .tl td,
 .tl th,
 pre code,

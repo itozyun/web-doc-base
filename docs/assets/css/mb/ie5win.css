@@ -1,5 +1,4 @@
 @charset "UTF-8";
-.Pager a,
 .commonForm-wrap *,
 .lW,
 .lX,
@@ -56,6 +55,18 @@ tr ul {
 .lW,
 .lX {
   overflow-x: hidden
+}
+.AAuthor,
+.Pager,
+.box,
+.lMi,
+.lSi,
+.lX,
+:link,
+:visited,
+code,
+var {
+  height: 1px
 }
 .baseColor,
 .medal {
@@ -215,6 +226,10 @@ textarea {
 img {
   height: auto
 }
+.btn,
+input {
+  height: 2.1em
+}
 cite,
 code,
 dfn,
@@ -233,8 +248,16 @@ pre {
 del {
   text-decoration: line-through
 }
-input {
-  height: 2.1em;
+.Header *,
+.Header h1,
+.Header h1 *,
+.aa,
+.aa *,
+.btn,
+code,
+input,
+p *,
+var {
   line-height: 1
 }
 textarea {
@@ -248,17 +271,6 @@ textarea {
 p {
   line-height: 1.9
 }
-.Header *,
-.Header h1,
-.Header h1 *,
-.aa,
-.aa *,
-.btn,
-code,
-p *,
-var {
-  line-height: 1
-}
 p * {
   vertical-align: text-top
 }
@@ -266,20 +278,6 @@ p * {
 tbody th,
 td {
   vertical-align: top
-}
-:link,
-:visited {
-  height: 1%
-}
-.AAuthor,
-.Pager,
-.box,
-.lMi,
-.lSi,
-.lX,
-code,
-var {
-  height: 1px
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -607,8 +605,7 @@ strong {
   border-width: .1em;
   cursor: pointer;
   text-align: center;
-  padding: .45em 1em;
-  height: 2.1em
+  padding: .45em 1em
 }
 .AHead-labels :link,
 .btn:link {
@@ -840,6 +837,7 @@ kbd {
   display: inline;
   height: 2.2em
 }
+.jsPicaLarge:active,
 .tl td,
 .tl th,
 pre code,

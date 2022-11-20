@@ -128,7 +128,6 @@ a:active img {
 .AAuthor,
 .BreadcrumbList a,
 .LinkList *,
-.Pager a,
 .RichLink-sep *,
 .TxtNavi a,
 .lMi,
@@ -1180,7 +1179,6 @@ div .caption img {
   position: relative;
   top: -.1em;
   font-size: 0;
-  zoom: 1;
   border-color: #f8fbf8 #777
 }
 .Pager :active i {

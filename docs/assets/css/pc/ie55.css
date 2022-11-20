@@ -139,7 +139,6 @@ a:active img {
 .BreadcrumbList a,
 .LinkList *,
 .Magazine-snippet,
-.Pager a,
 .RichLink-sep *,
 .TxtNavi a,
 .lMi,
@@ -1204,7 +1203,6 @@ div .caption img {
   width: 0;
   top: -.1em;
   font-size: 0;
-  zoom: 1;
   border-color: #f8fbf8 #777
 }
 .Pager :active i {
