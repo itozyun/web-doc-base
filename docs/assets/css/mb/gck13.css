@@ -211,6 +211,7 @@ sub {
 img {
   height: auto
 }
+.Search,
 .btn,
 input {
   height: 2.1em
@@ -984,10 +985,7 @@ pre var {
   font-size: 1em
 }
 #lH .lSi {
-  padding-right: 3.1em
-}
-.Search {
-  height: 1.9em
+  padding-right: 3.2em
 }
 .Search-txt {
   width: 100%;

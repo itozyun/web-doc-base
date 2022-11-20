@@ -204,6 +204,8 @@ sub {
 img {
   height: auto
 }
+.Search,
+.Search-txt,
 .btn,
 input {
   height: 2.1em
@@ -675,6 +677,12 @@ input.btn {
 .ADesc {
   margin: 2em .5em
 }
+.Cover img,
+.Pager,
+.Search-txt,
+.caption {
+  width: 100%
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -827,14 +835,9 @@ kbd {
 .SearchResult div div {
   margin: 0 .5em
 }
-.Search,
-.Search .btn {
-  height: 1.9em
-}
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover h2 {
   background: #3079ed;
@@ -976,17 +979,14 @@ kbd {
   padding: 0 0 1.143em
 }
 #lH .lSi {
-  padding-right: 3.1em
-}
-.Search-txt {
-  width: 100%;
-  height: 2.1em
+  padding-right: 3.2em
 }
 .Search .btn {
   top: 1em;
   position: absolute;
-  width: 2em;
-  right: .8em;
+  right: 0;
+  width: 3em;
+  height: 1.9em;
   white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
@@ -1191,8 +1191,7 @@ dl.note dd {
 .caption {
   display: block;
   text-align: center;
-  font-size: .875em;
-  width: 100%
+  font-size: .875em
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1234,7 +1233,6 @@ div .caption img {
 .Pager {
   color: #f8fbf8;
   display: table;
-  width: 100%;
   table-layout: fixed
 }
 .Pager span {

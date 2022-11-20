@@ -984,22 +984,19 @@ kbd {
   font-size: .875em;
   padding: 0 0 1.143em
 }
-#lH .lSi {
-  padding-right: 3.1em
-}
-.Search-txt {
-  left: 0;
-  right: 2.2em
-}
 .Search .btn {
   -moz-box-sizing: content-box;
   padding: 0;
   line-height: 1.9;
-  width: 2em;
-  right: .8em;
+  right: 0;
+  width: 3em;
   height: 1.9em;
   white-space: nowrap;
   overflow: hidden
+}
+.Search-txt {
+  left: 0;
+  right: 2.2em
 }
 .SearchResult {
   margin-bottom: 2em

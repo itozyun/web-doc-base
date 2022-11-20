@@ -553,6 +553,7 @@ em {
 strong {
   background: #6cf
 }
+.box .jsPica,
 .lM1 {
   float: left
 }
@@ -1305,6 +1306,9 @@ ol.linenums {
 }
 .jsCapLarge {
   margin: 0 auto 1em
+}
+.box .jsPica img {
+  margin: 0 .5em 1em 0
 }
 .jsCapLarge,
 .jsPicaLarge img {

@@ -587,6 +587,7 @@ strong {
   overflow-x: hidden
 }
 .Cover .img-loaded h2,
+.box .jsPica,
 .lM1 {
   float: left
 }
@@ -1302,6 +1303,9 @@ ol.linenums {
   width: 100%;
   height: auto;
   margin: 0
+}
+.box .jsPica img {
+  margin: 0 .5em 1em 0
 }
 .jsCapLarge,
 .jsPicaLarge img {
