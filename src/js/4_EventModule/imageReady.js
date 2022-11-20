@@ -1,6 +1,7 @@
 /** ===========================================================================
  * export to packageGlobal
  */
+/** @param {!function(*=):(boolean|undefined)} callback */
 p_listenImageReady = function( callback ){
     if( DEFINE_WEB_DOC_BASE__DEBUG && !p_loadEventCallbacks ){
         alert( 'p_listenImageReady is called back for images present at load time.' );
@@ -11,7 +12,7 @@ p_listenImageReady = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {Array.<!Function>|undefined} */
+/** @type {TypedefCallbackList|undefined} */
 var Event_imageReadyCallbacks = [];
 
 var killSmartRendering = 7.5 <= p_Presto && p_Presto < 8;
@@ -44,7 +45,7 @@ p_listenLoadEvent(
                 img    = imgs[ --i ];
                 result = p_Trident < 9 ? img.complete : 0 <= img.naturalWidth ? img.naturalWidth : img.width;
                 p_imageEnabled = p_imageEnabled || !!result;
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
+                m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
             };
             Event_imageReadyCallbacks = undefined;
             if( !DEFINE_WEB_DOC_BASE__DEBUG ){
@@ -68,7 +69,7 @@ p_listenLoadEvent(
         };
 
         function testCallback( result ){
-            m_dispatchEvent( /** @type {!Array.<!Function>} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
+            m_dispatchEvent( /** @type {TypedefCallbackList} */ (Event_imageReadyCallbacks), { img : img, imgReady : result }, !i );
             testForPresto();
         };
     }

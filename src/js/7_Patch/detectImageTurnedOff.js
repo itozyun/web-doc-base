@@ -1,5 +1,6 @@
 p_listenImageReady(
-    function( result ){
+    /** @type {TypedefCallback} */
+    (function( result ){
         var imgElement    = result.img,
             imgReady      = result.imgReady,
             parent        = p_DOM_getParentNode( imgElement ),
@@ -12,5 +13,5 @@ p_listenImageReady(
         // alt の無い画像を非表示に
             p_DOM_setStyle( imgElement, 'display', 'none' );
         };
-    }
+    })
 );

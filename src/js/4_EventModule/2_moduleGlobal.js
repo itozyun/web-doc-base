@@ -21,7 +21,7 @@ var m_initMediaQueryList = function( media, listener ){
 };
 
 /**
- * @param {!Array.<!function(*=):(boolean|undefined)>} callbackList
+ * @param {TypedefCallbackList} callbackList
  * @param {*=} param
  * @param {boolean=} deleteCallbackList
  */
@@ -39,7 +39,7 @@ function m_dispatchEvent( callbackList, param, deleteCallbackList ){
 
 /** onload 後にタイマーを挟んで dispatch する
  * 
- * @param {!Array.<!function(*=):(boolean|undefined)>} callbackList
+ * @param {TypedefCallbackList} callbackList
  * @param {*=} param
  * @param {boolean=} deleteCallbackList
  */

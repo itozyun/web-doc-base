@@ -43,7 +43,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
         function( mediaQueryList ){
             Event_forcedColors_isActive = mediaQueryList.matches;
             p_forcedColorsState = Event_forcedColors_getState();
-            m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
+            m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
             Debug.log( '(forced-colors:active):' + p_forcedColorsState );
         }
     );
@@ -55,7 +55,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isActive = Event_forcedColors_isDarkOnLight = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:black-on-white):' + p_forcedColorsState );
             };
         }
@@ -65,7 +65,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isActive = Event_forcedColors_isLightOnDark = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:white-on-black):' + p_forcedColorsState );
             };
         }
@@ -75,7 +75,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             Event_forcedColors_isActive = mediaQueryList.matches;
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
+                m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (p_forcedColorsChangeCallbacks), p_forcedColorsState );
                 Debug.log( '(-ms-high-contrast:active):' + p_forcedColorsState );
             };
         }
@@ -116,7 +116,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             if( p_forcedColorsState !== Event_forcedColors_getState() ){
                 p_forcedColorsState = Event_forcedColors_getState();
                 Debug.log( '(forced-colors-fallback):' + p_forcedColorsState );
-                m_lazyDispatchEvent( /** @type {!Array.<!Function>}  */ (p_forcedColorsChangeCallbacks), p_forcedColorsState, /** @type {boolean} */ (Event_forcedColors_WORK_ONCE) );
+                m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (p_forcedColorsChangeCallbacks), p_forcedColorsState, /** @type {boolean} */ (Event_forcedColors_WORK_ONCE) );
             };
         };
         /**

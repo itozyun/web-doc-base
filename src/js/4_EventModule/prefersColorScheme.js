@@ -10,14 +10,14 @@ p_listenPrefersColorSchemeChange = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {!Array.<!Function>|undefined} */
+/** @type {TypedefCallbackList|undefined} */
 var Event_prefersColorSchemeChangeEventCallbacks = []; 
 
 if( m_matchMedia && ( m_matchMedia( '(prefers-color-scheme:light)' ).matches || m_matchMedia( '(prefers-color-scheme:dark)' ).matches ) ){
     m_initMediaQueryList( '(prefers-color-scheme:dark)',
         function( mediaQueryList ){
             Debug.log( '(prefers-color-scheme:dark):' + mediaQueryList.matches );
-            m_lazyDispatchEvent( /** @type {!Array.<!Function>} */ (Event_prefersColorSchemeChangeEventCallbacks), mediaQueryList.matches );
+            m_lazyDispatchEvent( /** @type {TypedefCallbackList} */ (Event_prefersColorSchemeChangeEventCallbacks), mediaQueryList.matches );
         }
     );
 } else {

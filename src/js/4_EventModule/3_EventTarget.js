@@ -19,7 +19,7 @@ var EventTarget_safariPreventDefault;
 /** 1.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {!function(!Event=)} callback
+ * @param {!function(!Event)} callback
  * @param {!Object|boolean=} option
  */
 function EventTraget_addEventListener( eventTarget, type, callback, option ){
@@ -64,7 +64,7 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
 /** 2.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {function(!Event=)} callback
+ * @param {function(!Event)} callback
  * @param {!Object|boolean=} option
  */
 function EventTraget_removeEventListener( eventTarget, type, callback, option ){

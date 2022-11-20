@@ -19,20 +19,20 @@ p_listenUnloadEvent = function( callback ){
  */
 /** @type {!function(!Event=)|undefined} */
 var Event_onload = function( e ){
-    p_removeEventListener( window, 'load', /** @type {!function(!Event=)} */ (Event_onload) );
+    p_removeEventListener( window, 'load', /** @type {!function(!Event)} */ (Event_onload) );
     Event_onload = undefined;
 
-    m_dispatchEvent(  /** @type {!Array.<!function(!Event=)>} */ (p_loadEventCallbacks), e, true );
+    m_dispatchEvent( /** @type {TypedefCallbackList} */ (p_loadEventCallbacks), e, true );
     p_loadEventCallbacks = undefined;
     if( !DEFINE_WEB_DOC_BASE__DEBUG ){
         p_listenLoadEvent = undefined;
     };
 };
 
-/** @type {!Function|undefined} */
+/** @type {!function(*=)|undefined} */
 var Event_onloadFallbackForLegacySafari;
 
-/** @type {!Array.<!function(!Event=)>|undefined} */
+/** @type {TypedefCallbackList|undefined} */
 var Event_unloadEventCallbacks = [];
 
 // Re: onLoad doesn't work with Safari?
@@ -46,13 +46,13 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
                     Event_onloadFallbackForLegacySafari = undefined;
                     Event_onload();
                 } else {
-                    p_setTimer( /** @type {!Function} */ (Event_onloadFallbackForLegacySafari) );
+                    p_setTimer( /** @type {!function(*=)} */ (Event_onloadFallbackForLegacySafari) );
                 };
             };
         };
-    p_setTimer( /** @type {!Function} */ (Event_onloadFallbackForLegacySafari) );
+    p_setTimer( /** @type {!function(*=)} */ (Event_onloadFallbackForLegacySafari) );
 } else {
-    p_addEventListener( window, 'load', /** @type {!Function} */ (Event_onload) );
+    p_addEventListener( window, 'load', /** @type {!function(!Event)} */ (Event_onload) );
 };
 
 // https://web.archive.org/web/20180328040501/http://oogatta.hatenadiary.jp/entry/20121228/1356696182
@@ -61,7 +61,7 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
 // Gecko 0.8.1 以下は unload でブラウザがクラッシュする https://twitter.com/itozyun/status/1516964450083160064
 if( p_Trident || 0.9 <= p_Gecko && p_Gecko < 1.8 ){
     p_addEventListener( window, 'unload', function( e ){
-        m_dispatchEvent( /** @type {!Array.<!Function>} */ (Event_unloadEventCallbacks), e, true );
+        m_dispatchEvent( /** @type {TypedefCallbackList} */ (Event_unloadEventCallbacks), e, true );
     } );
 } else {
     Event_unloadEventCallbacks = undefined;

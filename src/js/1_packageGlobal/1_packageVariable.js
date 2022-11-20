@@ -112,13 +112,19 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
         p_notUndefined( p_style[ 'MozTransform'      ] ) ? '-moz-transform' : 
         p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '';
 
-/** @type {!Array.<!Function>|undefined} */
+/** @typedef {!function(*=):(boolean|undefined)} */
+var TypedefCallbac;
+
+/** @typedef {!Array.<!TypedefCallbac>} */
+var TypedefCallbackList;
+
+/** @type {TypedefCallbackList|undefined}  */
 var p_loadEventCallbacks = []; // nodeCleaner もアクセスするので packageGlobal に公開する
 
-/** @type {!Array.<!Function>} */
+/** @const {TypedefCallbackList}  */
 var p_cssAvailabilityCallbacks = [];
 
-/** @type {!Array.<!Function>|undefined} */
+/** @type {TypedefCallbackList|undefined}  */
 var p_forcedColorsChangeCallbacks = [];
 
 var p_dataURITest,

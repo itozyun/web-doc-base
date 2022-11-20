@@ -27,7 +27,8 @@ if( !p_cloudRendering ){
         p_notUndefined( p_style[ '-webkit-transition' ] );
 
     p_listenImageReady(
-        function( result ){
+        /** @type {TypedefCallback} */
+        (function( result ){
             if( !result.imgReady || !p_elmMain ) return;
 
             var elmImg = result.img, 
@@ -60,7 +61,7 @@ if( !p_cloudRendering ){
                     }) );
                 };
             };
-        }
+        })
     );
 
     p_listenUnloadEvent(
