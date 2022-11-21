@@ -1,25 +1,30 @@
+"use strict";
 const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       postProcessor   = require('es2-postprocessor'),
       gulpJSDOM       = require('gulp-jsdom'),
+      fs              = require('fs'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
       globalVariables = 'document,navigator,screen,parseFloat,Number';
 
-var minify = true;
+let minify = true;
+let output = './docs/';
 
 /* -------------------------------------------------------
  *  gulp whatbrowserami
  */
 gulp.task( 'whatbrowserami', gulp.series(
     function(){
-        return gulp.src( [
-            './.submodules/what-browser-am-i/src/js/**/*.js',
-            '!./.submodules/what-browser-am-i/src/4_brand.js',
-            minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
-            ] ).pipe(
+        return gulp.src(
+                [
+                    './.submodules/what-browser-am-i/src/js/**/*.js',
+                    '!./.submodules/what-browser-am-i/src/4_brand.js',
+                    minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
+                ]
+            ).pipe(
                 gulpDPZ(
                     {
                         labelPackageGlobal : '*',
@@ -55,17 +60,29 @@ gulp.task( 'whatbrowserami', gulp.series(
 /* -------------------------------------------------------
  *  gulp docs
  */
-gulp.task('docs', gulp.series(
-    function(cb){
+let minjs;
+
+gulp.task( 'docs', gulp.series(
+    function( cb ){
         minify = false;
         cb();
     },
     'whatbrowserami',
+    function( cb ){
+        fs.readFile( tempDir + '/' + tempJsName,
+            function( error, buffer ){
+                if( !error ){
+                    minjs = buffer.toString( 'utf-8' ).replace( '\n', '' );
+                    return cb();
+                } else {
+                    throw error;
+                };
+            }
+        );
+    },
     function(){
-        const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
-
-        return gulp.src( [ './docs/test/check-image-loading.html', './docs/test/attr-selectors.html' ] )
-            .pipe(
+        return gulp.src( [ output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
+            ).pipe(
                 gulpJSDOM(
                     function( document ){
                         var elm = document.getElementsByTagName( 'script' )[ 0 ];
@@ -75,14 +92,16 @@ gulp.task('docs', gulp.series(
                         };
                     }
                 )
-            ).pipe(gulp.dest('./docs/test'));
+            ).pipe(
+                gulp.dest( output + 'test' )
+            );
     }
 ));
 
 /* -------------------------------------------------------
  *  gulp btoa
  */
-gulp.task('btoa', gulp.series(
+gulp.task( 'btoa', gulp.series(
     function(){
         return gulp.src( [
             './.submodules/es2-base64/src/js/base64.js'
@@ -139,47 +158,22 @@ const assetsDirToJSDir     = 'js',
 /* -------------------------------------------------------
  *  gulp js
  */
-var isDebug = false;
+let isDebug = false;
+let resultObject = {};
 
 const gulpCreateSimpleRexerRegistry = require('./node_modules/es2-code-prettify/src/js-buildtools/gulp-createSimpleLexerRegistry.js');
-const numericKeyName = '-num';
-const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
-const regExpCompatFileName = 'regexpcompat.js';
-const resultObject = {};
+const numericKeyName                = '-num';
+const simpleLexerRegistryFileName   = '2__zippedSimpleLexerRegistry.generated.js';
+const regExpCompatFileName          = 'regexpcompat.js';
 
-gulp.task('__js', gulp.series(
-    function(){
-        return gulp.src(
-            [
-            // ES2 Code Prettify
-                './node_modules/es2-code-prettify/src/js/1_common/*.js',
-                './node_modules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
-                './node_modules/es2-code-prettify/src/js/3_langs/*.js'
-            ]
-        ).pipe(
-            ClosureCompiler(
-                {
-                    define            : [
-                        'DEFINE_CODE_PRETTIFY__LANGUAGES_USED="web"'
-                    ],
-                    // compilation_level : 'ADVANCED',
-                    // compilation_level : 'WHITESPACE_ONLY', // Snow Daifuku の変数が未定義エラーになるので ADVANCED は使えない...!
-                    // formatting        : 'PRETTY_PRINT',
-                    warning_level     : 'VERBOSE',
-                    language_in       : 'ECMASCRIPT3',
-                    language_out      : 'ECMASCRIPT3',
-                    js_output_file    : '__generate_simple_lexer_registry.js'
-                }
-            )
-        ).pipe(
-            gulpCreateSimpleRexerRegistry( simpleLexerRegistryFileName, numericKeyName )
-        ).pipe( gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' ) );
-    },
+gulp.task( '__js', gulp.series(
     function(){
         return gulp.src(
                 [
+                    // what-browser-am-i
                     './.submodules/what-browser-am-i/src/js/0_global/*.js',
                    '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
+                    // web-doc-base
                     './src/js/**/*.js',
                    '!./src/js/4_EventModule/prefersColorScheme.js',
                    '!./src/js/4_EventModule/print.js',
@@ -195,7 +189,6 @@ gulp.task('__js', gulp.series(
             ).pipe(
                 gulpDPZ(
                     {
-                        // labelPackageGlobal : '*', // for Gecko 0.7- ! https://twitter.com/itozyun/status/1488924003070742535
                         packageGlobalArgs : [ 'ua,window,emptyFunction,RegExp,Date,' + globalVariables + ',undefined', 'ua,this,function(){},this.RegExp,Date,' + globalVariables + ',void 0' ],
                         basePath          : [
                             './src/js/',
@@ -252,7 +245,7 @@ gulp.task('__js', gulp.series(
                     {
                         compilation_level : 'WHITESPACE_ONLY',
                         formatting        : 'PRETTY_PRINT',
-                        js_output_file    : isDebug ? 'debug.js' : 'main.js'
+                        js_output_file    :isDebug ? 'debug.js' : 'main.js'
                     }
                 )
             ).pipe(
@@ -263,14 +256,10 @@ gulp.task('__js', gulp.series(
                         embedPolyfills : true
                     }
                 )
-            ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
-    }
-));
-
-gulp.task( 'js', gulp.series(
-    '__js',
-    function( cb ){ isDebug = true; cb(); },
-    '__js',
+            ).pipe(
+                gulp.dest( output + 'assets/' + assetsDirToJSDir )
+            );
+    },
     function(){
         return gulp.src(
             [
@@ -292,8 +281,42 @@ gulp.task( 'js', gulp.series(
                     embedPolyfills     : true
                 }
             )
-        ).pipe( gulp.dest( './docs/assets/' + assetsDirToJSDir ) );
+        ).pipe(
+            gulp.dest( output + 'assets/' + assetsDirToJSDir )
+        );
     }
+));
+
+gulp.task( 'js', gulp.series(
+    function(){
+        return gulp.src(
+            [
+            // ES2 Code Prettify
+                './node_modules/es2-code-prettify/src/js/1_common/*.js',
+                './node_modules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
+                './node_modules/es2-code-prettify/src/js/3_langs/*.js'
+            ]
+        ).pipe(
+            ClosureCompiler(
+                {
+                    define            : [
+                        'DEFINE_CODE_PRETTIFY__LANGUAGES_USED="web"'
+                    ],
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    js_output_file    : '__generate_simple_lexer_registry.js'
+                }
+            )
+        ).pipe(
+            gulpCreateSimpleRexerRegistry( simpleLexerRegistryFileName, numericKeyName )
+        ).pipe(
+            gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' )
+        );
+    },
+    '__js',
+    function( cb ){ isDebug = true; resultObject = {}; cb(); },
+    '__js'
 ));
 
 /* -------------------------------------------------------
@@ -316,54 +339,92 @@ const plumber     = require("gulp-plumber"),
       },
       CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', 'white-space', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
 
-gulp.task('css', function(){
-    return gulp.src([
-            "./src/scss/01_Variables/01_BuildTargets.scss",
-            // "./src/scss.docs/docs_color.scss",
-            "./src/scss/**/*.scss",
-            // "./src/scss.docs/**.scss"
-        ])
-        .pipe(plumber())
-        .pipe(
-            izpp({
-                log      : true,
-                fileType : 'scss',
-                tasks : [
-                    { name : 'desktop', imports : [ 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToDesktopDir },
-                    { name : 'mobile',  imports : [ 'mobileOnly', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToMobileDir }
+gulp.task( 'css',
+    function(){
+        return gulp.src(
+                [
+                    "./src/scss/01_Variables/01_BuildTargets.scss",
+                    // "./src/scss.docs/docs_color.scss",
+                    "./src/scss/**/*.scss",
+                    // "./src/scss.docs/**.scss"
                 ]
-            })
-        )
-        .pipe(sass())
-        .pipe(gcm())
-        .pipe(cleanCSS( CLEAN_CSS_OPTION ))
-        // For more optimization!, https://twitter.com/itozyun/status/1502829749873233927 
-        .pipe(cleanCSS( ( CLEAN_CSS_OPTION.level[ 2 ].skipProperties = CLEAN_CSS_SKIP_PROPS, CLEAN_CSS_OPTION ) ))
-        .pipe(CSShack( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } ))
-        .pipe(cleanCSS( ( CLEAN_CSS_OPTION.format = 'beautify', CLEAN_CSS_OPTION ) ))
-        .pipe(finalizeCSS())
-        .pipe(gulp.dest( './docs/assets/' + assetsDirToCSSDir ));
-});
+            ).pipe(
+                plumber()
+            ).pipe(
+                izpp({
+                    log      : true,
+                    fileType : 'scss',
+                    tasks    : [
+                        { name : 'desktop', imports : [ 'baseFontSize18', 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToDesktopDir },
+                        { name : 'mobile',  imports : [ 'mobileOnly'    , 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToMobileDir }
+                    ]
+                })
+            ).pipe(
+                sass()
+            ).pipe(
+                gcm()
+            ).pipe(
+                cleanCSS( CLEAN_CSS_OPTION )
+            ).pipe(
+                ( // For more optimization!, https://twitter.com/itozyun/status/1502829749873233927
+                    CLEAN_CSS_OPTION.level[ 2 ].skipProperties = CLEAN_CSS_SKIP_PROPS,
+                    cleanCSS( CLEAN_CSS_OPTION ) 
+                )
+            ).pipe(
+                CSShack( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } )
+            ).pipe(
+                (
+                    CLEAN_CSS_OPTION.format = 'beautify',
+                    cleanCSS( CLEAN_CSS_OPTION )
+                )
+            ).pipe(
+                finalizeCSS()
+            ).pipe(
+                gulp.dest( output + 'assets/' + assetsDirToCSSDir )
+            );
+    }
+);
 
 /* -------------------------------------------------------
  *  gulp html
  */
 
-const pageFragumentToFullPage = require( './js-buildtools/gulp-generate-full-webdoc/index.js' ),
-      pageBase = require( './src/html/pageBase.js' );
+const pageBase = require( './src/html/pageBase.js' );
+
+gulp.task( '__html', gulp.series(
+    function( cb ){
+        fs.readFile( tempDir + '/' + tempJsName,
+            function( error, buffer ){
+                if( !error ){
+                    pageBase.site.inlineScript = buffer.toString( 'utf-8' ).replace( '\n', '' );
+                    cb();
+                } else {
+                    throw error;
+                };
+            }
+        );
+    },
+    function(){
+        return gulp.src( [ './src/html/**/*.html',  './src/html/**/*.md' ] )
+                    // .pipe( plumber() )
+                   .pipe( require( './js-buildtools/gulp-generate-full-webdoc/index.js' )( pageBase, __dirname + '/src/html/' ) )
+                   .pipe( require( isDebug ? 'gulp-diffable-html' : 'gulp-cleanhtml' )() )
+                   .pipe( gulp.dest( output ) );
+    }
+    ) );
 
 gulp.task( 'html', gulp.series(
     'whatbrowserami',
-    function(){
-        const minjs = require('fs').readFileSync( tempDir + '/' + tempJsName ).toString().replace( '\n', '' );
+    '__html',
+    'docs',
+) );
 
-        pageBase.site.inlineScript = minjs;
-
-        return gulp.src( [ './src/html/**/*.html',  './src/html/**/*.md' ] )
-            // .pipe( plumber() )
-            .pipe( pageFragumentToFullPage( pageBase, __dirname + '/src/html/' ) )
-            // .pipe( formatHtml )
-            .pipe( gulp.dest( './docs/' ) );
-    } ),
-    'docs'
-);
+gulp.task( 'debug', gulp.series(
+    'whatbrowserami',
+    function( cb ){
+        output = './docs.debug/';
+        isDebug = true;
+        cb();
+    },
+    '__html'
+) );

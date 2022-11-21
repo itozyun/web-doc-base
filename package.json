@@ -10,7 +10,8 @@
     "javascript"
   ],
   "scripts": {
-    "start": "node local-web-server.js"
+    "start": "node local-web-server.js",
+    "debug": "node local-web-server.js --DEBUG"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
     "google-closure-compiler": "^20220301.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
+    "gulp-cleanhtml": "^1.0.3",
     "gulp-diamond-princess-zoning": "^0.9.11",
+    "gulp-diffable-html": "^1.1.7",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-iz-preprocessor": "^1.0.2",
     "gulp-jsdom": "^1.1.0",
