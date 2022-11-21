@@ -2219,7 +2219,7 @@ tv {
     display: none!important
   }
 }
-@media only screen and (min-width:59.4375em) {
+@media only screen and (min-width:52.8333333333em) {
   @supports (position:sticky) {
     table {
       position: relative
@@ -2262,7 +2262,7 @@ tv {
     transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
   }
 }
-@media only screen and (min-width:59.4375em) and (min-width:0\-) {
+@media only screen and (min-width:52.8333333333em) and (min-width:0\-) {
   h2 {
     -webkit-transition: none
   }
@@ -2274,6 +2274,11 @@ tv {
   #jsSidebarFixer1:hover *,
   #jsSidebarFixer2:hover * {
     border-color: #fff
+  }
+}
+@media only screen and (min-width:741px) {
+  body {
+    font-size: 1.125em
   }
 }
 @media only screen and (min-width:96em),

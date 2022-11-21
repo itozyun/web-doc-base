@@ -75,12 +75,16 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.Magazine-mm,
+.Magazine-yy,
 .commonForm,
 a iframe,
 a img,
 h2:after {
   display: block
 }
+.Magazine-label,
+.Magazine-main,
 .RichLink b,
 .caption,
 .links,
@@ -106,6 +110,22 @@ tbody th {
 input {
   line-height: 1
 }
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links a,
+.tl td,
+:link:hover img,
+:visited:hover img,
+h2,
+kbd:hover {
+  position: relative
+}
 .links,
 .note,
 blockquote,
@@ -123,6 +143,7 @@ ul {
 .AAuthor,
 .Comment p,
 .Cover,
+.Magazine-snippet,
 .RichLink a,
 .Search .btn,
 .box,
@@ -141,6 +162,24 @@ var {
 pre {
   white-space: pre-wrap
 }
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+.links [href]:before,
+dt {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
+}
+.Magazine-date,
+.Magazine-main,
 .tl th,
 tbody th,
 td {
@@ -193,7 +232,6 @@ a:focus img {
 }
 :link:hover img,
 :visited:hover img {
-  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -273,16 +311,7 @@ html {
   height: 100%
 }
 dt {
-  font-weight: 700;
   margin-top: .7em
-}
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -541,8 +570,7 @@ h2 {
   margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em;
-  position: relative
+  font-size: 1.1em
 }
 h2:after {
   width: 5em;
@@ -940,10 +968,6 @@ a:focus .ico-pen:after {
   border-width: .35em .2em 0;
   border-color: #777 transparent
 }
-blockquote h3,
-kbd {
-  border-color: #111
-}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -983,6 +1007,11 @@ kbd {
   border-color: #c47222;
   background: #c47222;
   color: #e6d6a9
+}
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #111
 }
 .ADesc,
 .ribbon .AHead,
@@ -1033,6 +1062,8 @@ tr .box {
 .ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
+.Magazine-m,
+.Magazine-y,
 .RichLink br {
   display: none
 }
@@ -1046,7 +1077,6 @@ kbd {
   display: inline-block
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -1065,15 +1095,14 @@ kbd {
   text-align: center;
   padding: 2em 0
 }
-.Attribution small,
-.RichLink-meta,
-.prettyprint code {
-  font-size: .875em
-}
 .AHead-labels {
   margin-top: .5em;
   font-family: Meiryo,"MS PGothic",sans-serif;
   color: #1a1a1a
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
 }
 .AHead-labels a,
 .SocialBtns *,
@@ -1085,11 +1114,6 @@ kbd {
   line-height: 1;
   padding: .45em 1em;
   margin: 0 0 .5em
-}
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
 }
 .AHead-labels :visited {
   background: #1a1a1a;
@@ -1104,6 +1128,10 @@ kbd {
   padding: 1em 0;
   text-align: center
 }
+.Attribution small,
+.prettyprint code {
+  font-size: .875em
+}
 .BlogArchive,
 .Comment,
 .Label,
@@ -1111,10 +1139,6 @@ kbd {
 .RichLink,
 .Subscribe {
   padding: 0 0 1em
-}
-.BlogArchive th {
-  word-break: normal;
-  word-wrap: normal
 }
 .BlogArchive a {
   border-width: 0 0 1px;
@@ -1143,7 +1167,6 @@ kbd {
   margin-top: 0
 }
 .Cover-img {
-  position: relative;
   margin: 0 0 .6em;
   height: 100%
 }
@@ -1172,6 +1195,10 @@ pre var {
   font-size: 1.33em;
   margin: 0;
   background: #fff
+}
+.Magazine h3,
+.Magazine-yy {
+  font-size: 2em
 }
 .Cover a {
   display: block;
@@ -1215,6 +1242,56 @@ pre var {
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0;
+  display: table
+}
+.Magazine-date {
+  padding-right: 1.5em;
+  display: table-cell;
+  line-height: 1
+}
+.Magazine-dd,
+.Magazine-mm {
+  font-size: 4em;
+  line-height: .9
+}
+.Magazine-main {
+  border-width: 0 0 0 .5em;
+  padding-left: 1.5em;
+  display: table-cell
+}
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
+}
+.Magazine h3 {
+  margin: .2em 0 0;
+  padding: 0
+}
+.Magazine-label {
+  margin: .5em 0 .8em
+}
+.Magazine-snippet img {
+  float: left;
+  margin: .4em 1em 1em 0
+}
+.Magazine-snippet p {
+  line-height: 1.4em;
+  margin: 0
+}
+.Magazine .btn {
+  position: absolute;
+  font-size: .83em;
+  left: -7.229em;
+  bottom: 0;
+  width: 4.217em;
+  padding: .301em
+}
+.Magazine img {
+  margin-left: 0
+}
 .RichLink a {
   padding: 1em .5em 0;
   border-color: #2a2a2a!important
@@ -1224,6 +1301,7 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
+  font-size: .875em;
   margin: 1.143em 0;
   line-height: 1.4
 }
@@ -1254,12 +1332,10 @@ pre var {
 }
 .RichLink b {
   display: block;
-  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
-  position: relative;
   display: block;
   height: 1.9em;
   margin: 0 3em 0 22px;
@@ -1268,11 +1344,6 @@ pre var {
 .Search input {
   position: absolute;
   top: 0
-}
-.links a,
-.tl td,
-kbd:hover {
-  position: relative
 }
 .Search-txt {
   display: block;
@@ -1379,7 +1450,6 @@ kbd:hover {
 }
 .aa {
   margin: 1em 0;
-  font-family: monospace;
   border-color: #0a0809
 }
 .tl,
@@ -1473,8 +1543,7 @@ pre var {
   position: relative;
   left: -.5em;
   width: 1em;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href*="/web.archive."]:before {
   content: "*"
@@ -1841,6 +1910,7 @@ ol.linenums {
 }
 @media print {
   .LinkList a,
+  .Magazine-item,
   .RichLink-sep a,
   .SearchResult div div,
   .box,

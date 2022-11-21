@@ -57,6 +57,7 @@ tr ul {
   overflow-x: hidden
 }
 .AAuthor,
+.Magazine-snippet,
 .Pager,
 .box,
 .lMi,
@@ -72,6 +73,8 @@ var {
 .medal {
   background: #f8fbf8
 }
+.Magazine-label,
+.Magazine-main,
 .RichLink b,
 .caption,
 .js-bqCite,
@@ -83,6 +86,7 @@ th {
   word-break: break-all
 }
 .Cover-img,
+.Magazine-main,
 .Search,
 :hover img {
   position: relative
@@ -251,6 +255,7 @@ del {
 .Header *,
 .Header h1,
 .Header h1 *,
+.Magazine-date *,
 .aa,
 .aa *,
 .btn,
@@ -348,6 +353,8 @@ th {
   font-weight: 400
 }
 .ABody h3,
+.Magazine h3,
+.Magazine-date,
 h2 {
   font-weight: 700
 }
@@ -393,6 +400,8 @@ th {
 }
 .Cover a,
 .Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
 .Pager span,
 .RichLink b,
 .Search,
@@ -619,10 +628,6 @@ strong {
   border-color: #fff;
   color: #fff
 }
-blockquote h3,
-kbd {
-  border-color: #111
-}
 input.btn {
   padding: .3em 1em .6em
 }
@@ -673,8 +678,17 @@ input.btn {
   background: #c47222;
   color: #e6d6a9
 }
+.Magazine-main,
+blockquote h3,
+kbd {
+  border-color: #111
+}
 .mspacer {
   margin: 1em .5em!important
+}
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal
 }
 .AAuthor,
 .ADesc,
@@ -732,17 +746,18 @@ tr .box {
   text-align: center;
   padding: 2em 0
 }
-.Attribution small,
-.RichLink-meta,
-.prettyprint code {
-  font-size: .875em
-}
 .AHead-labels {
   margin-top: .5em;
   font-family: "MS Gothic",sans-serif;
   color: #1a1a1a
 }
+.Magazine-date,
+.aa {
+  font-family: monospace
+}
 .AHead-labels i,
+.Magazine-m,
+.Magazine-y,
 .RichLink br {
   display: none
 }
@@ -757,11 +772,6 @@ tr .box {
   height: 2.1em;
   margin: 0 0 .5em
 }
-.aa,
-blockquote,
-kbd {
-  border-width: 1px
-}
 .AHead-labels :visited {
   background: #1a1a1a;
   border-color: #bbb;
@@ -775,6 +785,10 @@ kbd {
   padding: 1em 0;
   text-align: center
 }
+.Attribution small,
+.prettyprint code {
+  font-size: .875em
+}
 .BlogArchive,
 .Comment,
 .Label,
@@ -782,9 +796,6 @@ kbd {
 .RichLink,
 .Subscribe {
   padding: 0 0 1em
-}
-.BlogArchive th {
-  word-break: normal
 }
 .BlogArchive a,
 .Label a {
@@ -850,6 +861,10 @@ pre var {
   margin: 0;
   background: #fff
 }
+.Magazine h3,
+.Magazine-yy {
+  font-size: 2em
+}
 .Cover a {
   padding: .37em
 }
@@ -879,6 +894,56 @@ pre var {
 .LinkList :active:hover {
   text-decoration: underline!important
 }
+.Magazine-item {
+  padding: 1em 0;
+  height: 1px
+}
+.Magazine-date {
+  padding-right: 1.5em;
+  display: block;
+  float: left
+}
+.Magazine-dd,
+.Magazine-mm {
+  font-size: 4em;
+  line-height: .9
+}
+.Magazine-main {
+  border-width: 0 0 0 .5em;
+  padding-left: 1.5em;
+  margin-left: 5.5em
+}
+.aa,
+blockquote,
+kbd {
+  border-width: 1px
+}
+.Magazine h3 {
+  margin: .2em 0 0;
+  padding: 0
+}
+.Magazine-label {
+  margin: .5em 0 .8em
+}
+.Magazine-snippet img {
+  float: left;
+  margin: .4em 1em 1em 0
+}
+.Magazine-snippet p {
+  line-height: 1.4em;
+  margin: 0
+}
+.Magazine .btn {
+  position: absolute;
+  font-size: .83em;
+  left: -7.229em;
+  bottom: 0;
+  width: 4.217em;
+  padding: .301em
+}
+.Magazine img {
+  margin-left: 0
+}
 .RichLink a {
   height: 1px;
   padding: 1em .5em 0;
@@ -890,6 +955,7 @@ pre var {
 }
 .RichLink-meta {
   color: #2a2a2a;
+  font-size: .875em;
   margin: 1.143em 0
 }
 .baseColor .RichLink-meta {
@@ -1027,7 +1093,6 @@ pre var {
 }
 .aa {
   margin: 1em 0;
-  font-family: monospace;
   border-color: #0a0809
 }
 .js-bqCite,
