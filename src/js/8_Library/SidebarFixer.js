@@ -269,7 +269,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 cssText = 'top:' + _y + 'px';
             } else {
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
-                cssText = 'position:absolute;left:0;width:100%;top:' + _y + 'px';
+                cssText = 'position:absolute;left:0;top:' + _y + 'px';
             };
 
             if( SidebarFixer_USE_CLIP && cssText ){

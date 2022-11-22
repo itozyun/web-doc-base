@@ -60,9 +60,11 @@
             }
         }
     }
-    @if( $IS_Opera7x ){
-        #jsSidebarFixer {
+    #jsSidebarFixer {
+        @if( $IS_Opera7x ){
             position : relative; /* for Opera ~7.27, absolute が不正 */
+        } @else if( $IS_LTE_GECKO09 or $IS_Opera7x or $UA_Opera8 or $IS_LTE_WIN_IE6 ){
+            width : 100%; // for position:absolute
         }
     }
     @if( $UA_Modern or $IS_Opera7x or $UA_Opera8 ){
