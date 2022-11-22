@@ -12,9 +12,8 @@ $CaptionedObjectFontSize : 0.875em;
     @include unbreak-inside;
     display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
     text-align : center;
-    font-size  : 0.875em;
 
-    @if( $IS_NOT_IE ){
+    @if( $UA_Modern ){
         width : 100%; /* for animation */
     }
     @if( $CANUSE_MAX_AND_MIN_SIZES ){
@@ -24,5 +23,8 @@ $CaptionedObjectFontSize : 0.875em;
     div & img /* , div & iframe */ { // div で詳細度を上げる .box img の上書き
         margin : 0 0 .5em;
         float  : none;
+    }
+    * {
+        font-size : 0.875em;
     }
 }

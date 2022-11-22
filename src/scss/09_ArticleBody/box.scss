@@ -30,8 +30,12 @@
     img, .caption, iframe
     //, embed, object, video
     {
-        float  : left;
-        margin : 0 1em 1em 0;
+        float : left;
+        @if( $UA_IE5 ){
+            margin : 0 0.5em 1em 0;
+        } @else {
+            margin : 0 1em 1em 0;
+        }
     }
     img, iframe {
         @if( $CANUSE_MAX_AND_MIN_SIZES ){

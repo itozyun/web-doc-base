@@ -36,8 +36,13 @@
     }
     /* clean-css ignore:end */
 }
+
+$FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false;
+
 .jsPicaLarge {
-    margin : 0 0 1em;
+    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
+        margin : 0 0 1em;
+    }
     /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-out;
@@ -52,27 +57,34 @@
 }
 
     .jsPicaLarge img {
-        width  : 100%;
-        height : auto;
+        width : 100%;
         @if( $CANUSE_MAX_AND_MIN_SIZES ){
             max-width : 100%;
         }
-        @if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto; /* auto は中央配置で transition させるため */
+        @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
+            @if( $CANUSE_MARGIN_AUTO ){
+                margin : 0 auto;
+            } @else {
+                margin : 0;
+            }
+        } @else if( $CANUSE_MARGIN_AUTO ){
+            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
         } @else {
-            margin : 0;
+            margin : 0 0 1em;
         }
-        @include box-sizing(border-box);
     }
         /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         .box .jsPicaLarge img {
             @if( $UA_Modern ){
                 float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-                margin : 0; /* 中央配置指定を上書き 左から transition */
+                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
             }
         }
 
     .jsCapLarge {
+        @if( $UA_IE8 ){
+            width : 100%;
+        }
         @if( $CANUSE_MARGIN_AUTO ){
             margin : 0 auto 1em; /* auto は中央配置で transition させるため */
         } @else {
@@ -103,10 +115,9 @@
         }
     }
 }
-
-@if( $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false ){
-    /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
-    .jsPicaLarge {
+.jsPicaLarge {
+    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){
+        /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
         display : block;
         clear   : both; /* ギャラリーでの回り込みの解除 */
         padding : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
@@ -122,25 +133,32 @@
                 top : 0;
             }
         }
+    } @else {
+        img {
+            @include box-sizing(border-box);
+        }
     }
 }
 
-@if( $UA_IE55 or $UA_IE5  ){
-    .jsPica {
-        display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
-    }
-    .box .jsPica {
-        float : left;
-    }
-    .box .jsPica img {
-        margin : 0 0.5em 1em 0;
-    }
+@if( $UA_IE55 or $UA_IE5 ){
     @if( $UA_IE5  ){
+        .jsPicaLarge {
+            height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
+            display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
+        }
+        .jsPica:active,
         .jsPicaLarge:active {
-            background : none !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
+            background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
+        }
+    } @else {
+        .jsPica {
+            display : block;
+        }
+        .jsPicaLarge {
+            zoom : 1; /* この指定が無いとギャラリーで margin が無くなる */
         }
     }
-    .jsPicaLarge img,
+    .jsPicaLarge,
     .jsCapLarge {
         clear : both; /* ギャラリーでの回り込みの解除 */
     }

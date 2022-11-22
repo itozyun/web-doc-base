@@ -85,7 +85,9 @@
             margin : 1em 0;
         }
         a & {
-            display : block; /* focus 時の塗りを適切にする */
+            @if( $UA_IE5 == false ){
+                display : block; /* focus 時の塗りを適切にする */
+            }
         }
         li &, tr &, dl & {
             margin-top : 0;

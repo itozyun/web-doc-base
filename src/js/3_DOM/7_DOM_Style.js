@@ -12,16 +12,23 @@ function DOM_setStyle( elm, name, value ){
 };
 
 function DOM_setCssText( elm, cssText ){
-    var i = -1, styles, style, nameAndValue;
+    var _cssText, i, styles, style, propertyName, nameAndValue;
 
     if( p_Trident < 5.5 ){ // IE5 : cssText では SidebarFixer が scroll イベントで動かない
-        elm.setAttribute( 'style', '' ); // elm.removeAttribute( 'style' ) はブラクラ
+        if( _cssText = elm.style.cssText ){
+            // elm.setAttribute( 'style', '' ); これは不完全! // elm.removeAttribute( 'style' ) はブラクラ
+            i = -1;
+            styles = _cssText.toLowerCase().split( ';' );
+            while( style = styles[ ++i ] ){
+                DOM_setStyle( elm, style.split( ':' )[ 0 ], '' ); // TODO : toCamelCase
+            };
+        };
         if( cssText ){
+            i = -1;
             styles = cssText.split( ';' );
-
             while( style = styles[ ++i ] ){ // styles.shift() は IE5 で未実装の為、処理が遅い
-                nameAndValue = style.split( ':' );
-                DOM_setStyle( elm, nameAndValue[ 0 ], style.substr( nameAndValue[ 0 ].length + 1 ) ); // IE の filter には : を含むので nameAndValue[ 1 ] とはしない。例 filter:progid:DXImageTransform.Microsoft.Shadow()
+                propertyName = style.split( ':' )[ 0 ];
+                DOM_setStyle( elm, propertyName, style.substr( propertyName.length + 1 ) ); // IE の filter には : を含むので propertyName[ 1 ] とはしない。例 filter:progid:DXImageTransform.Microsoft.Shadow()
             };
         };
     } else if( p_Presto < 7.1 ){ // ↓ では SidebarFixer が不安定
@@ -41,6 +48,6 @@ function DOM_setCssText( elm, cssText ){
             elm.removeAttribute( 'style' );
         };
     } else {
-        DOM_setStyle( elm, 'cssText', cssText );
+        elm.style.cssText = cssText;
     };
 };
