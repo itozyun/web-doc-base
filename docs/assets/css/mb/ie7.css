@@ -596,7 +596,8 @@ tbody :hover th a:active {
   text-align: right
 }
 .Pager-top,
-.c {
+.c,
+.caption {
   text-align: center
 }
 .uc {
@@ -828,6 +829,7 @@ tr .box {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1151,8 +1153,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  margin: 0 1.5%;
-  font-size: .875em
+  font-size: .875em;
+  margin: 0 1.5%
 }
 .tl,
 .tl th {
@@ -1250,10 +1252,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-.caption {
-  text-align: center;
-  font-size: .875em
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1419,7 +1417,6 @@ ol.linenums {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   max-width: 100%;
   margin: 0 auto;
   border-width: 0

@@ -686,6 +686,11 @@ input.btn {
 .ADesc {
   margin: 2em .5em
 }
+#jsSidebarFixer,
+.Cover img,
+.Pager {
+  width: 100%
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -790,6 +795,7 @@ kbd {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -841,8 +847,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover h2 {
   display: -moz-inline-box;
@@ -1129,8 +1134,7 @@ blockquote:after {
 .box dl,
 .box ol,
 .box p,
-.box ul,
-.jsPicaLarge {
+.box ul {
   margin: 0 0 1em
 }
 .box ol,
@@ -1196,9 +1200,7 @@ dl.note dd {
 }
 .caption {
   display: block;
-  text-align: center;
-  font-size: .875em;
-  width: 100%
+  text-align: center
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1240,7 +1242,6 @@ div .caption img {
 .Pager {
   color: #f8fbf8;
   display: table;
-  width: 100%;
   table-layout: fixed
 }
 .Pager span {
@@ -1349,15 +1350,14 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em
+}
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   max-width: 100%;
-  margin: 0 auto;
   -moz-box-sizing: border-box
-}
-.jsCapLarge {
-  margin: 0 auto 1em
 }
 .baseColor .btn:link {
   background: #24c;

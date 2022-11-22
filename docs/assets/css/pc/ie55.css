@@ -280,6 +280,7 @@ p {
 a:active:hover {
   text-decoration: underline
 }
+.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -553,7 +554,6 @@ em {
 strong {
   background: #6cf
 }
-.box .jsPica,
 .lM1 {
   float: left
 }
@@ -601,6 +601,7 @@ input.btn {
   display: block;
   margin: 0 1em 0 8em
 }
+#jsSidebarFixer,
 .commonForm-wrap * {
   width: 100%
 }
@@ -744,9 +745,7 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption,
-.js-bqCite,
-.js-bqLink,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1010,6 +1009,11 @@ kbd {
   font-size: 1.5em;
   margin: 0 .5em 0 0
 }
+.js-bqCite,
+.js-bqLink {
+  font-size: .875em;
+  margin: 0
+}
 .Header h1 {
   padding: 0
 }
@@ -1080,14 +1084,9 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
-.js-bqLink {
-  color: #24c;
-  margin: 0
-}
 .js-bqCite {
   text-align: right;
-  color: #777;
-  margin: 0
+  color: #777
 }
 .box {
   zoom: 1;
@@ -1096,8 +1095,7 @@ blockquote .tl tbody th :visited {
 .box dl,
 .box ol,
 .box p,
-.box ul,
-.jsPicaLarge {
+.box ul {
   margin: 0 0 1em
 }
 .box ol,
@@ -1299,19 +1297,19 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsPicaLarge {
+  margin: 0 0 1em;
+  zoom: 1
+}
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   margin: 0 auto
 }
 .jsCapLarge {
   margin: 0 auto 1em
 }
-.box .jsPica img {
-  margin: 0 .5em 1em 0
-}
 .jsCapLarge,
-.jsPicaLarge img {
+.jsPicaLarge {
   clear: both
 }
 .baseColor .btn:link {

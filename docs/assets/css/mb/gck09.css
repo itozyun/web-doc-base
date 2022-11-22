@@ -269,6 +269,7 @@ tr p {
 }
 .Pager-top,
 .c,
+.caption,
 input[type=submit] {
   text-align: center
 }
@@ -819,6 +820,7 @@ kbd {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1240,11 +1242,6 @@ dl.note dd {
 .note blockquote ul {
   margin-right: 3%
 }
-.caption {
-  text-align: center;
-  font-size: .875em;
-  width: 100%
-}
 div .caption img {
   margin: 0 0 .5em;
   float: none
@@ -1395,18 +1392,14 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
-  margin: 0 0 1em
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   max-width: 100%;
-  margin: 0 auto;
   -moz-box-sizing: border-box
-}
-.jsCapLarge {
-  margin: 0 auto 1em
 }
 .baseColor .btn:link {
   background: #24c;

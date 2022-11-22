@@ -62,6 +62,7 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+#jsSidebarFixer,
 .commonForm-wrap *,
 .lX,
 pre code,
@@ -297,6 +298,7 @@ td {
 a:active:hover {
   text-decoration: underline
 }
+.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -403,23 +405,6 @@ th {
 .Subscribe a:active,
 .btn:active {
   border-color: #3079ed
-}
-.Cover a,
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.Pager span,
-.RichLink b,
-.Search,
-.Search-txt,
-.caption,
-.commonForm,
-.js-bqCite,
-.jsPica,
-.links a,
-a iframe,
-a img {
-  display: block
 }
 ol,
 ul {
@@ -587,7 +572,6 @@ strong {
   overflow-x: hidden
 }
 .Cover .img-loaded h2,
-.box .jsPica,
 .lM1 {
   float: left
 }
@@ -620,6 +604,21 @@ input.btn {
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
+}
+.Cover a,
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.Pager span,
+.RichLink b,
+.Search,
+.Search-txt,
+.caption,
+.commonForm,
+.js-bqCite,
+.jsPicaLarge,
+.links a {
+  display: block
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -764,9 +763,7 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption,
-.js-bqCite,
-.js-bqLink,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -834,7 +831,6 @@ tr .box {
   display: inline;
   height: 2.2em
 }
-.jsPicaLarge:active,
 .tl td,
 .tl th,
 pre code,
@@ -1019,6 +1015,11 @@ kbd {
   font-size: 1.5em;
   margin: 0 .5em 0 0
 }
+.js-bqCite,
+.js-bqLink {
+  font-size: .875em;
+  margin: 0
+}
 .Header h1 {
   padding: 0
 }
@@ -1089,14 +1090,9 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
-.js-bqLink {
-  color: #24c;
-  margin: 0
-}
 .js-bqCite {
   text-align: right;
-  color: #777;
-  margin: 0
+  color: #777
 }
 .box {
   margin: 1em 1em 0
@@ -1105,8 +1101,7 @@ blockquote .tl tbody th :visited {
 .box ol,
 .box p,
 .box ul,
-.jsCapLarge,
-.jsPicaLarge {
+.jsCapLarge {
   margin: 0 0 1em
 }
 .box ol,
@@ -1117,7 +1112,7 @@ blockquote .tl tbody th :visited {
 .box iframe,
 .box img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: 0 .5em 1em 0
 }
 kbd {
   cursor: pointer;
@@ -1299,16 +1294,20 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsPicaLarge {
+  margin: 0 0 1em;
+  height: auto
+}
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   margin: 0
 }
-.box .jsPica img {
-  margin: 0 .5em 1em 0
+.jsPica:active,
+.jsPicaLarge:active {
+  background-color: transparent!important
 }
 .jsCapLarge,
-.jsPicaLarge img {
+.jsPicaLarge {
   clear: both
 }
 .baseColor .btn:link {

@@ -301,6 +301,7 @@ a:active:hover,
 input.btn:hover {
   text-decoration: underline
 }
+.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -805,9 +806,7 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption,
-.js-bqCite,
-.js-bqLink,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1072,6 +1071,11 @@ kbd {
   font-size: 1.5em;
   margin: 0 .5em 0 0
 }
+.js-bqCite,
+.js-bqLink {
+  font-size: .875em;
+  margin: 0
+}
 .Header h1 {
   padding: 0
 }
@@ -1139,14 +1143,9 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
-.js-bqLink {
-  color: #24c;
-  margin: 0
-}
 .js-bqCite {
   text-align: right;
-  color: #777;
-  margin: 0
+  color: #777
 }
 .box {
   margin: 1em 1em 0
@@ -1371,7 +1370,6 @@ ol.linenums {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   max-width: 100%;
   margin: 0 auto;
   border-width: 0

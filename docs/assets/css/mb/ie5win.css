@@ -227,6 +227,7 @@ input,
 textarea {
   font-size: 1em
 }
+.jsPicaLarge,
 img {
   height: auto
 }
@@ -398,23 +399,6 @@ th {
 .btn:active {
   border-color: #3079ed
 }
-.Cover a,
-.Cover-meta,
-.Magazine-mm,
-.Magazine-yy,
-.Pager span,
-.RichLink b,
-.Search,
-.Search-txt,
-.caption,
-.commonForm,
-.js-bqCite,
-.jsPica,
-.links a,
-a iframe,
-a img {
-  display: block
-}
 ol,
 ul {
   padding-left: 2em
@@ -560,7 +544,8 @@ blockquote tfoot th {
   text-align: right
 }
 .Pager-top,
-.c {
+.c,
+.caption {
   text-align: center
 }
 .uc {
@@ -594,7 +579,6 @@ strong {
   width: 48.5%
 }
 .Cover .img-loaded h2,
-.box .jsPica,
 .lM1,
 .lS1 {
   float: left
@@ -634,6 +618,21 @@ input.btn {
 .ABody h2,
 .ABody h3 {
   padding: 1.4em 0 .6em
+}
+.Cover a,
+.Cover-meta,
+.Magazine-mm,
+.Magazine-yy,
+.Pager span,
+.RichLink b,
+.Search,
+.Search-txt,
+.caption,
+.commonForm,
+.js-bqCite,
+.jsPicaLarge,
+.links a {
+  display: block
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -786,6 +785,7 @@ tr .box {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -849,7 +849,6 @@ tr .box {
   display: inline;
   height: 2.2em
 }
-.jsPicaLarge:active,
 .tl td,
 .tl th,
 pre code,
@@ -1097,8 +1096,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  margin: 0 1.5%;
-  font-size: .875em
+  font-size: .875em;
+  margin: 0 1.5%
 }
 .tl,
 .tl th {
@@ -1166,7 +1165,8 @@ pre var {
 }
 .jsCapLarge,
 .jsPicaLarge {
-  margin: 0 0 1em
+  margin: 0 0 1em;
+  clear: both
 }
 .note .box,
 .note blockquote,
@@ -1194,10 +1194,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-.caption {
-  text-align: center;
-  font-size: .875em
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1345,15 +1341,11 @@ ol.linenums {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   margin: 0
 }
-.box .jsPica img {
-  margin: 0 .5em 1em 0
-}
-.jsCapLarge,
-.jsPicaLarge img {
-  clear: both
+.jsPica:active,
+.jsPicaLarge:active {
+  background-color: transparent!important
 }
 .baseColor .btn:link {
   background: #24c;

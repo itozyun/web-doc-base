@@ -756,6 +756,7 @@ kbd {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1079,8 +1080,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  margin: 0 1.5%;
-  font-size: .875em
+  font-size: .875em;
+  margin: 0 1.5%
 }
 .tl,
 .tl th {
@@ -1180,8 +1181,7 @@ dl.note dd {
 }
 .caption {
   display: block;
-  text-align: center;
-  font-size: .875em
+  text-align: center
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1343,7 +1343,6 @@ ol.linenums {
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   margin: 0;
   border-width: 0
 }

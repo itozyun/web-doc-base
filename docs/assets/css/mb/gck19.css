@@ -882,6 +882,7 @@ kbd {
   text-align: center
 }
 .Attribution small,
+.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1346,9 +1347,7 @@ dl.note dd {
 }
 .caption {
   display: block;
-  text-align: center;
-  font-size: .875em;
-  width: 100%
+  text-align: center
 }
 div .caption img {
   margin: 0 0 .5em;
@@ -1509,22 +1508,20 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.jsCapLarge,
+.jsPicaLarge img {
+  margin: 0 auto 1em
+}
 .jsPica {
   cursor: -moz-zoom-in
 }
 .jsPicaLarge {
-  margin: 0 0 1em;
   cursor: -moz-zoom-out
 }
 .jsPicaLarge img {
   width: 100%;
-  height: auto;
   max-width: 100%;
-  margin: 0 auto;
   -moz-box-sizing: border-box
-}
-.jsCapLarge {
-  margin: 0 auto 1em
 }
 .baseColor .btn:link {
   background: #24c;
