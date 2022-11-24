@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/itozyun/web-doc-base#readme",
   "devDependencies": {
-    "es2-code-prettify": "^0.2.0",
-    "es2-postprocessor": "^0.10.0",
+    "es2-code-prettify": "^0.2.1",
+    "es2-postprocessor": "^0.11.0",
     "es2-to-es3": "^0.9.1",
     "express": "^4.17.3",
     "google-closure-compiler": "^20220301.0.0",
