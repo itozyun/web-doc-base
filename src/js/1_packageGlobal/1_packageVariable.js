@@ -113,9 +113,9 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
         p_notUndefined( p_style[ '-webkit-transform' ] ) ? '-webkit-transform' : '';
 
 /** @typedef {!function(*=):(boolean|undefined)} */
-var TypedefCallbac;
+var TypedefCallback;
 
-/** @typedef {!Array.<!TypedefCallbac>} */
+/** @typedef {!Array.<!TypedefCallback>} */
 var TypedefCallbackList;
 
 /** @type {TypedefCallbackList|undefined}  */
