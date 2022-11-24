@@ -73,15 +73,12 @@ pre samp {
 #jsSidebarFixer a,
 #jsSidebarFixer div,
 .AAuthor,
+.ABody h2,
 .Magazine-snippet,
-.Pager,
-.box,
 .lMi,
 .lSi,
 .lW,
 .lX,
-:link,
-:visited,
 code,
 var {
   height: 1px
@@ -127,6 +124,10 @@ kbd,
 var {
   margin: 0 .1em;
   padding: 0 .4em
+}
+.Search .btn,
+.box .jsPica {
+  overflow: hidden
 }
 body,
 input,
@@ -510,7 +511,6 @@ tfoot th {
 tfoot td {
   border-width: 2px .5em 0
 }
-.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -613,10 +613,10 @@ input.btn {
 .RichLink b,
 .Search,
 .Search-txt,
+.box .jsPica,
 .caption,
 .commonForm,
 .js-bqCite,
-.jsPicaLarge,
 .links a {
   display: block
 }
@@ -888,7 +888,8 @@ pre var {
 .Magazine-main {
   border-width: 0 0 0 .5em;
   padding-left: 1.5em;
-  margin-left: 5.5em
+  margin-left: 5.5em;
+  height: 1px
 }
 .aa,
 blockquote,
@@ -979,8 +980,7 @@ kbd {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  right: .05em;
-  overflow: hidden
+  right: .05em
 }
 .SearchResult {
   margin-bottom: 2em
@@ -1013,7 +1013,8 @@ kbd {
 .h1 {
   display: inline;
   font-size: 1.5em;
-  margin: 0 .5em 0 0
+  margin: 0 .5em 0 0;
+  height: 1px
 }
 .js-bqCite,
 .js-bqLink {
@@ -1022,6 +1023,10 @@ kbd {
 }
 .Header h1 {
   padding: 0
+}
+.Header span {
+  padding: 0 0 .5em;
+  height: 1px
 }
 .Subscribe .atom:link {
   background: #dd6502;
@@ -1095,6 +1100,7 @@ blockquote .tl tbody th :visited {
   color: #777
 }
 .box {
+  height: 1px;
   margin: 1em 1em 0
 }
 .box dl,
@@ -1188,6 +1194,10 @@ div .caption img {
   margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
+}
+.Pager {
+  color: #f8fbf8;
+  height: 1px
 }
 .Pager span {
   padding: 1.5em 0;
@@ -1302,8 +1312,7 @@ ol.linenums {
   width: 100%;
   margin: 0
 }
-.jsPica:active,
-.jsPicaLarge:active {
+.jsPica:active {
   background-color: transparent!important
 }
 .jsCapLarge,
@@ -1324,8 +1333,8 @@ ol.linenums {
   a img {
     border-width: 2px
   }
-  .LinkList :hover,
-  .RichLink-sep :hover,
+  .LinkList a:hover,
+  .RichLink-sep a:hover,
   .tl tr code,
   .tl tr var,
   blockquote tbody th code,
@@ -1704,8 +1713,8 @@ ol.linenums {
     font-size: 1em
   }
   .Header h1 {
-    display: block;
     text-align: center;
+    display: block;
     margin: 0 0 .5em
   }
   .js-bqCite,

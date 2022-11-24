@@ -143,22 +143,6 @@ a:active img {
 :hover img {
   top: 2px
 }
-#jsSidebarFixer,
-#jsSidebarFixer a,
-#jsSidebarFixer div,
-.AAuthor,
-.BreadcrumbList a,
-.LinkList *,
-.Magazine-snippet,
-.Pager a,
-.RichLink-sep *,
-.TxtNavi a,
-.lMi,
-.lSi,
-.lW,
-.lX {
-  zoom: 1
-}
 .LinkList a,
 .RichLink-sep a {
   display: block;
@@ -567,6 +551,20 @@ em {
 strong {
   background: #6cf
 }
+#jsSidebarFixer,
+#jsSidebarFixer a,
+#jsSidebarFixer div,
+.AAuthor,
+.BreadcrumbList a,
+.Magazine-snippet,
+.Pager a,
+.TxtNavi a,
+.lMi,
+.lSi,
+.lW,
+.lX {
+  zoom: 1
+}
 .lM1 {
   float: left
 }
@@ -703,6 +701,7 @@ tr .box {
   font-size: 1.5em;
   border-width: .2em 0 0;
   color: #3079ed;
+  zoom: 1;
   margin: 2em 0 1em
 }
 .ABody h3 {
@@ -891,7 +890,8 @@ pre var {
 .Magazine-main {
   border-width: 0 0 0 .5em;
   padding-left: 1.5em;
-  margin-left: 5.5em
+  margin-left: 5.5em;
+  zoom: 1
 }
 .aa,
 blockquote,
@@ -1356,8 +1356,8 @@ ol.linenums {
   a img {
     border-width: 2px
   }
-  .LinkList :hover,
-  .RichLink-sep :hover,
+  .LinkList a:hover,
+  .RichLink-sep a:hover,
   .tl tr code,
   .tl tr var,
   blockquote tbody th code,
@@ -1745,8 +1745,8 @@ ol.linenums {
     font-size: 1em
   }
   .Header h1 {
-    display: block;
     text-align: center;
+    display: block;
     margin: 0 0 .5em
   }
   .js-bqCite,

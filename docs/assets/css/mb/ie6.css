@@ -139,18 +139,6 @@ a:active img {
 :hover img {
   top: 2px
 }
-.AAuthor,
-.BreadcrumbList a,
-.LinkList *,
-.Magazine-snippet,
-.Pager a,
-.RichLink-sep *,
-.TxtNavi a,
-.lMi,
-.lSi,
-.lX {
-  zoom: 1
-}
 .LinkList a,
 .RichLink-sep a {
   display: block;
@@ -565,6 +553,16 @@ em {
 strong {
   background: #6cf
 }
+.AAuthor,
+.BreadcrumbList a,
+.Magazine-snippet,
+.Pager a,
+.TxtNavi a,
+.lMi,
+.lSi,
+.lX {
+  zoom: 1
+}
 .lMi,
 .lMz .lMh,
 .lSi,
@@ -718,6 +716,7 @@ tr .box {
   font-size: 1.5em;
   border-width: .2em 0 0;
   color: #3079ed;
+  zoom: 1;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
@@ -910,7 +909,8 @@ pre var {
 .Magazine-main {
   border-width: 0 0 0 .5em;
   padding-left: 1.5em;
-  margin-left: 5.5em
+  margin-left: 5.5em;
+  zoom: 1
 }
 .aa,
 blockquote,
@@ -1403,8 +1403,8 @@ ol.linenums {
   a img {
     border-width: 2px
   }
-  .LinkList :hover,
-  .RichLink-sep :hover,
+  .LinkList a:hover,
+  .RichLink-sep a:hover,
   .tl tr code,
   .tl tr var,
   blockquote tbody th code,

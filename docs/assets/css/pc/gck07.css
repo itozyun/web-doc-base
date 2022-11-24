@@ -1336,10 +1336,10 @@ ol.linenums {
 }
 .jsCapLarge,
 .jsPicaLarge img {
-  margin: 0 auto 1em
+  margin: 0 auto 1em;
+  width: 100%
 }
 .jsPicaLarge img {
-  width: 100%;
   max-width: 100%;
   -moz-box-sizing: border-box
 }

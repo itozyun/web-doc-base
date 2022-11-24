@@ -181,6 +181,10 @@ a:focus var {
   background: 0 0;
   color: #fff
 }
+:active,
+:focus {
+  outline: 0
+}
 html {
   font-size: 100%
 }
@@ -575,6 +579,7 @@ strong {
 .btn:focus {
   border-color: #3079ed;
   color: #3079ed;
+  outline: 0;
   border-style: dotted
 }
 .AHead-labels :link,
