@@ -82,7 +82,7 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         }
 
     .jsCapLarge {
-        @if( $UA_IE8 ){
+        @if( $UA_IE8 or $UA_Gecko07 ){
             width : 100%;
         }
         @if( $CANUSE_MARGIN_AUTO ){

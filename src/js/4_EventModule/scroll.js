@@ -27,7 +27,7 @@ function Event_scrollEventHandler( e ){
 if( Event_NO_SCROLL_EVENT ){
     p_setLoopTimer(
         function(){
-            var scrollY = window.scrollY || p_body.scrollTop;
+            var scrollY = p_Gecko ? window.scrollY : window.pageYOffset;
 
             if( Event_lastScrollY !== scrollY ){
                 // Gecko 0.9.4.1 scroll event 無し!
