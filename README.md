@@ -183,13 +183,21 @@ Javascript のビルドの方法
 | Website | http://d.hatena.ne.jp/uupaa/20080413/1208067631 |
 | License | MIT License? ([uupaa.js](https://code.google.com/archive/p/uupaa-js/) が MIT License の為多分) |
 
-### Google Code-Prettify
+### ES2 Code Prettify
 
 |         |     |
 |:--------| --- |
-| Author  | google |
-| Website | https://github.com/googlearchive/code-prettify |
+| Author  | itozyun |
+| Website | https://github.com/ECMAScript2/es2-code-prettify |
 | License | [Apache Software License 2.0](http://www.apache.org/licenses/LICENSE-2.0) |
+
+### es2 to es3
+
+|         |     |
+|:--------| --- |
+| Author  | itozyun |
+| Website | https://github.com/ECMAScript2/es2-to-es3 |
+| License | [MIT License](https://opensource.org/licenses/MIT) |
 
 ### jQuery.prettyQuote.js
 
@@ -207,17 +215,3 @@ Javascript のビルドの方法
 |:--------| --- |
 | Author  | Steve Faulkner |
 | Website | https://developer.paciellogroup.com/blog/2011/10/detecting-if-images-are-disabled-in-browsers/ |
-
-### Function.prototype.applyとかArray.prototype.spliceのIE5用のコード
-
-|         |     |
-|:--------| --- |
-| Author  | ofk |
-| Website | https://ofk.hatenadiary.org/entry/20080904/1220485969 |
-
-### Array.prototype.indexOf() polyfill
-
-|         |     |
-|:--------| --- |
-| Author  | MDN |
-| Website | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf |
