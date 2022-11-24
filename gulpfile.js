@@ -3,6 +3,7 @@ const gulp            = require('gulp'),
       gulpDPZ         = require('gulp-diamond-princess-zoning'),
       ClosureCompiler = require('google-closure-compiler').gulp(),
       postProcessor   = require('es2-postprocessor'),
+      es2ToES3        = require('es2-to-es3'),
       gulpJSDOM       = require('gulp-jsdom'),
       fs              = require('fs'),
       moduleName      = 'web-doc-base',
@@ -249,11 +250,10 @@ gulp.task( '__js', gulp.series(
                     }
                 )
             ).pipe(
-                postProcessor.gulp(
+                es2ToES3.gulp(
                     {
                         minIEVersion   : 5,
-                        resultObject   : resultObject,
-                        embedPolyfills : true
+                        resultObject   : resultObject
                     }
                 )
             ).pipe(
@@ -274,11 +274,10 @@ gulp.task( '__js', gulp.series(
                 }
             )
         ).pipe(
-            postProcessor.gulp(
+            es2ToES3.gulp(
                 {
                     minIEVersion       : 5,
-                    skipEmbedPolyfills : resultObject.embeddedPolyfills,
-                    embedPolyfills     : true
+                    skipEmbedPolyfills : resultObject.embeddedPolyfills
                 }
             )
         ).pipe(
