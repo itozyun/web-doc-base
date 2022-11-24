@@ -12,12 +12,11 @@ function DOM_setStyle( elm, name, value ){
 };
 
 function DOM_setCssText( elm, cssText ){
-    var _cssText, i, styles, style, propertyName, nameAndValue;
+    var _cssText, i = -1, styles, style, propertyName, nameAndValue;
 
     if( p_Trident < 5.5 ){ // IE5 : cssText では SidebarFixer が scroll イベントで動かない
         if( _cssText = elm.style.cssText ){
             // elm.setAttribute( 'style', '' ); これは不完全! // elm.removeAttribute( 'style' ) はブラクラ
-            i = -1;
             styles = _cssText.toLowerCase().split( ';' );
             while( style = styles[ ++i ] ){
                 DOM_setStyle( elm, style.split( ':' )[ 0 ], '' ); // TODO : toCamelCase
