@@ -252,7 +252,7 @@
 // styling
     $LIMITED_STYLING_OF_ITEMS_IN_FORM     : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
     $CANUSE_TRANSPARENT_BORDER_COLOR      : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_OUTLINE                       : $UA_Modern or $UA_Gecko19 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9; // IE8+, Gecko 1.8+, Opera 8+
+    $CANUSE_OUTLINE                       : $UA_Modern or $UA_Gecko19 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5; // IE8+, Gecko 1.8+, Opera 8+
     $CANUSE_LIMITED_OUTLINE               : $IS_Opera7x; // 動的疑似クラスで(色の)変更が出来ない
     $WORKAROUND_BORDER_BUG_IN_OPERA_LTE_8 : $IS_Opera7x or $UA_Opera8;
 
@@ -286,3 +286,5 @@
     $CANUSE_LAST_CHILD_PSEUDO_CLASS   : $UA_Modern or $IS_OLD_GECKO or $UA_IE9;
     $CANUSE_NEGATIVE_PSEUDO_CLASS     : $UA_Modern or $IS_OLD_GECKO or $UA_Opera9 or $UA_IE9; // Opera 9, @media 内に :not() を含むと、そのメディアブロックのスタイルがあたる
     $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS  : $UA_Modern or $IS_IE8_OR_9;
+
+    $CANUSE_ADJACENT_SIBLING_COMBINATOR :  $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false;

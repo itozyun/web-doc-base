@@ -1,8 +1,4 @@
 %LinkListItemBase {
-    @if( $UA_IE6 or $UA_IE55 ){
-        /* ie6 hover 時のテキストのガタツキを修正, ie5.5 で 背景に色がつかない */
-        * { zoom : 1; }
-    }
     a {
         @include unbreak-page-inside;
         display         : block;
@@ -51,7 +47,7 @@
 
     @include media(screen){
         @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
-            :hover {
+            a:hover {
                 background : $COLOR_Light_casual_fill;
                 color      : $COLOR_Light_text;
             }

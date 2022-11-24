@@ -103,9 +103,9 @@ a {
     }
 } @else {
     @if( $UA_IE5 ){
-        :link, :visited {
-            height : 1px; // hasLayout を有効にしないと背景色のない要素が不規則に発生する
-        }
+        /* :link, :visited {
+            height : 1px; // hasLayout を有効にしないと背景色の塗りが微妙, しかし PicaThumbnail で問題が起きるので諦める
+        } */
     }
     a {
         @include active-focus-pseudo-class {

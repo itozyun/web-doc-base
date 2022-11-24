@@ -35,6 +35,11 @@
     padding        : 1.4em 0 .6em;
     border-color   : $COLOR_ACCENT;
     color          : $COLOR_ACCENT;
+    @if( $UA_IE5 ){
+        height : 1px; // <= 線が消えるのを防ぐ
+    } @else if( $UA_IE55 or $UA_IE6 ){
+        zoom : 1; // <= 線が消えるのを防ぐ
+    }
     @if( $CANUSE_CSS_GENERATED_BLOCK ){
         &:after {
             @if( $IS_Opera7x or $UA_Opera8 ){

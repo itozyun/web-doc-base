@@ -141,13 +141,16 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
 }
 
 @if( $UA_IE55 or $UA_IE5 ){
-    @if( $UA_IE5  ){
+    @if( $UA_IE5 ){
+        .box .jsPica {
+            overflow : hidden; /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
+            display  : block;  /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
+        }
         .jsPicaLarge {
             height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
-            display : block; /* この指定が無いとギャラリーで他の画像に隠れる */
+            /* display : block; この指定が無いとギャラリーで他の画像に隠れる */
         }
-        .jsPica:active,
-        .jsPicaLarge:active {
+        .jsPica:active {
             background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
         }
     } @else {

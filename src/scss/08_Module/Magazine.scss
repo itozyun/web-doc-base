@@ -74,6 +74,11 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
             } @else {
                 margin-left : 5.5em;
             }
+            @if( $UA_IE5 ){
+                height : 1px; // <= 区切り線の太さが変わるのを防ぐ
+            } @else if( $UA_IE55 or $UA_IE6 ){
+                zoom : 1; // <= 区切り線が消えるのを防ぐ
+            }
         }
             .Magazine h3 {
                 font-size   : 2em;
