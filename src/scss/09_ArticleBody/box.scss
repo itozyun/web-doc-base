@@ -1,3 +1,24 @@
+/* object with caption
+ * ------------------------------------------------------------------------------------*
+ *  div.box
+ *    span.caption[style=width:XXpx]
+ *       figure
+ *         img|emned|
+ *         figcaption
+ */
+$CaptionedObjectFontSize : 0.875;
+
+.caption {
+    @include unbreak-box-with-long-text;
+    @include unbreak-inside;
+    display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
+    text-align : center;
+    font-size  : 1em * $CaptionedObjectFontSize;
+ 
+    @if( $CANUSE_MAX_AND_MIN_SIZES ){
+        max-width : 100%;
+    }
+}
 
 /*  box
 --------------------------------------------------------------------------------------*/
@@ -5,11 +26,11 @@
     @include clearfix;
     @include unbreak-inside;
 
+    margin : 1em 1em 0;
+
     li &, dl &, tr &, .note & {
         margin : 0;
     }
-
-    margin : 1em 1em 0;
 
     @if( $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS ){
         & > p:first-of-type {
@@ -27,7 +48,7 @@
         list-style-position : inside;
     }
 
-    img, .caption, iframe
+    img, iframe
     //, embed, object, video
     {
         float : left;
@@ -46,6 +67,18 @@
             };
         }
     }
+    .caption {
+        float : left;
+        @if( $UA_IE5 ){
+            margin : 0 math.div(.5em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) 0;
+        } @else {
+            margin : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) 0;
+        }
+    }
+    @at-root div .caption img, div .caption iframe { // div で詳細度を上げる .box img の上書き
+        margin : 0 0 math.div(.5em, $CaptionedObjectFontSize);
+        float  : none;
+    }
 }
 
 @if( $IS_OLD_GECKO ){
@@ -58,10 +91,13 @@
     .box {
         margin : 1em 0 0;
 
-        img, .caption, iframe
+        img, iframe
         //, embed, object, video
         {
             margin  : 0 1em 1em $TABLET_HORIZONTAL_MARGIN;
+        }
+        .caption {
+            margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $TABLET_HORIZONTAL_MARGIN;
         }
     }
 }
@@ -70,10 +106,13 @@
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
     .box {
-        img, .caption, iframe
+        img, iframe
         //, embed, object, video
         {
             margin  : 0 1em 1em $PHABLET_HORIZONTAL_MARGIN;
+        }
+        .caption {
+            margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $PHABLET_HORIZONTAL_MARGIN;
         }
     }
 }
@@ -87,10 +126,13 @@
         }
     }
     .box {
-        img, .caption, iframe
+        img, iframe
         //, embed, object, video
         {
             margin  : 0 1em 1em $PHONE_HORIZONTAL_MARGIN;
+        }
+        .caption {
+            margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $PHONE_HORIZONTAL_MARGIN;
         }
     }
 }
@@ -99,11 +141,15 @@
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
     .box {
-        img, .caption, iframe
+        img, iframe
         //, embed, object, video
         {
             float  : none;
             margin : 0 auto 1em;
+        }
+        .caption {
+            float  : none;
+            margin : 0 auto math.div(1em, $CaptionedObjectFontSize);
         }
     }
 }

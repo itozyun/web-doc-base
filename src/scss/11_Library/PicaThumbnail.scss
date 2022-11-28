@@ -36,6 +36,11 @@
     }
     /* clean-css ignore:end */
 }
+.jsCap {
+    @if( $UA_Modern ){
+        width : 100%; /* for animation */
+    }
+}
 
 $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false;
 
@@ -54,68 +59,7 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         cursor : zoom-out;
     }
     /* clean-css ignore:end */
-}
 
-    .jsPicaLarge img {
-        width : 100%;
-        @if( $CANUSE_MAX_AND_MIN_SIZES ){
-            max-width : 100%;
-        }
-        @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
-            @if( $CANUSE_MARGIN_AUTO ){
-                margin : 0 auto;
-            } @else {
-                margin : 0;
-            }
-        } @else if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
-        } @else {
-            margin : 0 0 1em;
-        }
-    }
-        /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-        .box .jsPicaLarge img {
-            @if( $UA_Modern ){
-                float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
-            }
-        }
-
-    .jsCapLarge {
-        @if( $UA_IE8 or $UA_Gecko07 ){
-            width : 100%;
-        }
-        @if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
-        } @else {
-            margin : 0 0 1em;
-        }
-        a {
-            margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
-        }
-    }
-        div .box .jsCapLarge {
-            @if( $CANUSE_CSS_MEDIA_QUERY ){
-                float : none;
-                @if( $UA_Modern ){
-                    margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
-                }
-            }
-        }
-
-/*  Phone-
---------------------------------------------------------------------------------------*/
-@include media(smallphone) {
-    @if( $UA_Modern ){ // アニメーション用の指定
-        .box .jsPicaLarge img {
-            margin : 0 auto; /* 左配置指定を上書き 中央から transition */
-        }
-        div .box .jsCapLarge {
-            margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
-        }
-    }
-}
-.jsPicaLarge {
     @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){
         /* box-sizing が使えないための処置 a.jsPicaLarge 側でアウトラインを表示 */
         display : block;
@@ -138,8 +82,71 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
             @include box-sizing(border-box);
         }
     }
+
+    img {
+        width : 100%;
+        @if( $CANUSE_MAX_AND_MIN_SIZES ){
+            max-width : 100%;
+        }
+        @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
+            @if( $CANUSE_MARGIN_AUTO ){
+                margin : 0 auto;
+            } @else {
+                margin : 0;
+            }
+        } @else if( $CANUSE_MARGIN_AUTO ){
+            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+        } @else {
+            margin : 0 0 1em;
+        }
+        /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+        .box & {
+            @if( $UA_Modern ){
+                float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
+                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+            }
+        }
+    }
 }
 
+    .jsCapLarge {
+        @if( $UA_IE8 or $UA_Gecko07 ){
+            width : 100%;
+        }
+        @if( $CANUSE_MARGIN_AUTO ){
+            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+        } @else {
+            margin : 0 0 1em;
+        }
+        a {
+            margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
+        }
+        div .box & {
+            @if( $CANUSE_CSS_MEDIA_QUERY ){
+                float : none;
+                @if( $UA_Modern ){
+                    margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+                }
+            }
+        }
+    }
+
+/*  Phone-
+--------------------------------------------------------------------------------------*/
+@include media(smallphone) {
+    @if( $UA_Modern ){ // アニメーション用の指定
+        .box .jsPicaLarge img {
+            margin : 0 auto; /* 左配置指定を上書き 中央から transition */
+        }
+        div .box .jsCapLarge {
+            margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
+        }
+    }
+}
+
+
+/* IE5, 5.5
+--------------------------------------------------------------------------------------*/
 @if( $UA_IE55 or $UA_IE5 ){
     @if( $UA_IE5 ){
         .box .jsPica {
@@ -148,7 +155,6 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         }
         .jsPicaLarge {
             height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
-            /* display : block; この指定が無いとギャラリーで他の画像に隠れる */
         }
         .jsPica:active {
             background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
