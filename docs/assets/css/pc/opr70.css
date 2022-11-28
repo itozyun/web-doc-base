@@ -825,7 +825,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1153,6 +1152,11 @@ blockquote:after {
   color: #777;
   margin: 0
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em
+}
 .box {
   margin: 1em 1em 0
 }
@@ -1166,11 +1170,19 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 0
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 0
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1217,14 +1229,6 @@ pre var {
 }
 dl.note dd {
   margin-left: 1em
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl td,
 .tl th {
@@ -1379,9 +1383,9 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1531,6 +1535,27 @@ ol.linenums {
   }
 }
 @media print {
+  .LinkList a,
+  .Magazine-item,
+  .RichLink-sep a,
+  .SearchResult div div,
+  .box,
+  .caption,
+  .commonForm-pair,
+  .h1,
+  dd,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  li,
+  tr {
+    page-break-inside: avoid
+  }
   .links,
   .note,
   dl,
@@ -1575,27 +1600,6 @@ ol.linenums {
   .lS1,
   .lS2 {
     width: 48.5%
-  }
-  .LinkList a,
-  .Magazine-item,
-  .RichLink-sep a,
-  .SearchResult div div,
-  .box,
-  .caption,
-  .commonForm-pair,
-  .h1,
-  dd,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  img,
-  li,
-  tr {
-    page-break-inside: avoid
   }
   code .typ,
   th {
@@ -1823,19 +1827,21 @@ ol.linenums {
   blockquote {
     padding: 1em 1px
   }
-  .box {
-    margin: 1em 0 0
-  }
   .box dl,
   .box ol,
   .box p,
   .box ul {
     margin: 0 3% 1em
   }
-  .box .caption,
+  .box {
+    margin: 1em 0 0
+  }
   .box iframe,
   .box img {
     margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
   }
   kbd {
     border-color: #000

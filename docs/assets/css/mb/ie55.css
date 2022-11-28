@@ -523,8 +523,7 @@ blockquote tfoot th {
   text-align: right
 }
 .Pager-top,
-.c,
-.caption {
+.c {
   text-align: center
 }
 .uc {
@@ -763,7 +762,6 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1090,8 +1088,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  font-size: .875em;
-  margin: 0 1.5%
+  margin: 0 1.5%;
+  font-size: .875em
 }
 .tl,
 .tl th {
@@ -1118,6 +1116,10 @@ blockquote {
   text-align: right;
   color: #777
 }
+.caption {
+  text-align: center;
+  font-size: .875em
+}
 .box {
   zoom: 1;
   margin: 1em 0 0
@@ -1132,11 +1134,19 @@ blockquote {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 .hscroll {
   overflow-x: auto;
@@ -1189,10 +1199,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em

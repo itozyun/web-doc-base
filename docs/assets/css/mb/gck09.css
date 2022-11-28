@@ -111,12 +111,6 @@ pre {
 a:focus {
   background-color: #f1f4f1!important
 }
-.Cover img,
-.box iframe,
-.box img,
-.caption {
-  max-width: 100%
-}
 body,
 input,
 textarea {
@@ -269,7 +263,6 @@ tr p {
 }
 .Pager-top,
 .c,
-.caption,
 input[type=submit] {
   text-align: center
 }
@@ -820,7 +813,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -870,7 +862,8 @@ kbd {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .Cover h2 {
   display: -moz-inline-box;
@@ -1167,6 +1160,11 @@ blockquote:after {
   color: #777;
   margin: 0 1.5%
 }
+.caption {
+  text-align: center;
+  font-size: .875em;
+  max-width: 100%
+}
 .box {
   margin: 1em 0 0
 }
@@ -1180,11 +1178,20 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
+  max-width: 100%;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1241,10 +1248,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1397,9 +1400,9 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
+  -moz-box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  -moz-box-sizing: border-box
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;

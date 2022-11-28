@@ -853,7 +853,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1182,6 +1181,11 @@ blockquote:after {
   color: #777;
   margin: 0
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em
+}
 .box {
   margin: 1em 1em 0
 }
@@ -1195,11 +1199,19 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 0
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 0
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1252,14 +1264,6 @@ a:focus var {
 }
 dl.note dd {
   margin-left: 1em
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1425,9 +1429,9 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;
@@ -2027,7 +2031,9 @@ projection {
     padding: 0 0 .571em;
     font-size: 1em
   }
-  .RichLink img {
+  .RichLink img,
+  .box iframe,
+  .box img {
     float: none;
     margin: 0 auto 1em
   }
@@ -2071,11 +2077,9 @@ projection {
   .box ul {
     margin: 0 0 1em
   }
-  .box .caption,
-  .box iframe,
-  .box img {
-    margin: 0 auto 1em;
-    float: none
+  .box .caption {
+    float: none;
+    margin: 0 auto 1.143em
   }
   .hscroll {
     overflow: auto
@@ -2481,10 +2485,12 @@ handheld {
   .box {
     margin: 1em 0 0
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
   }
   .note blockquote dl,
   .note blockquote ol,

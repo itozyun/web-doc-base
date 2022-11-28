@@ -113,12 +113,6 @@ tbody th,
 td {
   vertical-align: top
 }
-.Cover img,
-.box iframe,
-.box img,
-.caption {
-  max-width: 100%
-}
 body,
 input,
 textarea {
@@ -596,8 +590,7 @@ tbody :hover th a:active {
   text-align: right
 }
 .Pager-top,
-.c,
-.caption {
+.c {
   text-align: center
 }
 .uc {
@@ -829,7 +822,6 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -884,7 +876,8 @@ tr .box {
 .Cover img {
   margin: 0;
   display: block;
-  width: 100%
+  width: 100%;
+  max-width: 100%
 }
 .Cover h2 {
   border: 1px solid #3079ed;
@@ -1153,8 +1146,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  font-size: .875em;
-  margin: 0 1.5%
+  margin: 0 1.5%;
+  font-size: .875em
 }
 .tl,
 .tl th {
@@ -1178,6 +1171,11 @@ blockquote {
   text-align: right;
   color: #777
 }
+.caption {
+  text-align: center;
+  font-size: .875em;
+  max-width: 100%
+}
 .box {
   margin: 1em 0 0
 }
@@ -1191,11 +1189,20 @@ blockquote {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
+  max-width: 100%;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 .hscroll {
   overflow-x: auto;
@@ -1252,10 +1259,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1416,19 +1419,19 @@ ol.linenums {
   zoom: 1
 }
 .jsPicaLarge img {
+  border-width: 0;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  border-width: 0
-}
-.jsCapLarge {
-  margin: 0 auto 1em
+  margin: 0 auto
 }
 .jsPicaLarge:hover {
   top: 2px
 }
 .jsPicaLarge:hover img {
   top: 0
+}
+.jsCapLarge {
+  margin: 0 auto 1em
 }
 .baseColor .btn:link {
   background: #24c;

@@ -100,9 +100,8 @@ th {
   font-weight: 400
 }
 .Cover img,
-.box iframe,
-.box img,
 .caption,
+.jsPicaLarge img,
 iframe,
 img {
   max-width: 100%
@@ -835,7 +834,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1185,6 +1183,11 @@ blockquote:after {
   color: #777;
   margin: 0
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em
+}
 .box {
   margin: 1em 1em 0
 }
@@ -1198,11 +1201,20 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
-  margin: 0 1em 1em 0
+  margin: 0 1em 1em 0;
+  max-width: 100%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 0
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1259,14 +1271,6 @@ a:focus var {
 }
 dl.note dd {
   margin-left: 1em
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1421,9 +1425,8 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box
+  box-sizing: border-box;
+  width: 100%
 }
 div .box .jsCapLarge {
   float: none
@@ -1699,10 +1702,12 @@ screen and (max-width:950px) {
   .box {
     margin: 1em 0 0
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -1940,10 +1945,12 @@ screen and (max-width:740px) {
   .box ul {
     margin: 0 2% 1em
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 2%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 2%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -2069,10 +2076,12 @@ screen and (max-width:479px) {
   .box ul {
     margin: 0 1% 1em
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 1%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 1%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -2133,11 +2142,14 @@ screen and (max-width:359px) {
     font-size: 1em
   }
   .RichLink img,
-  .box .caption,
   .box iframe,
   .box img {
     float: none;
     margin: 0 auto 1em
+  }
+  .box .caption {
+    float: none;
+    margin: 0 auto 1.143em
   }
 }
 @media handheld,

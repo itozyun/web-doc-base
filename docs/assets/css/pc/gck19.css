@@ -853,7 +853,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1212,6 +1211,11 @@ kbd {
   display: inline-block;
   display: -moz-inline-box
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em
+}
 .box {
   margin: 1em 1em 0
 }
@@ -1239,11 +1243,19 @@ kbd {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 0
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 0
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1298,14 +1310,6 @@ pre var {
 }
 dl.note dd {
   margin-left: 1em
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1472,9 +1476,9 @@ ol.linenums {
   cursor: -moz-zoom-out
 }
 .jsPicaLarge img {
+  -moz-box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  -moz-box-sizing: border-box
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1921,10 +1925,12 @@ ol.linenums {
   .box {
     margin: 1em 0 0
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
   }
   kbd {
     border-color: #000

@@ -108,12 +108,6 @@ h6,
 th {
   font-weight: 400
 }
-.Cover img,
-.box iframe,
-.box img,
-.caption {
-  max-width: 100%
-}
 body,
 input,
 textarea {
@@ -865,7 +859,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -914,7 +907,8 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block
+  display: block;
+  max-width: 100%
 }
 .Cover h2 {
   display: inline-block;
@@ -1214,6 +1208,12 @@ blockquote:after {
   color: #777;
   margin: 0 1.5%
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em;
+  max-width: 100%
+}
 .box dl,
 .box ol,
 .box p,
@@ -1224,11 +1224,20 @@ blockquote:after {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
+  max-width: 100%;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 .box {
   margin: 1em 0 0
@@ -1286,14 +1295,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1461,9 +1462,9 @@ ol.linenums {
   margin: 0 auto 1em
 }
 .jsPicaLarge img {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box
+  max-width: 100%
 }
 .baseColor .btn:link {
   background: #24c;

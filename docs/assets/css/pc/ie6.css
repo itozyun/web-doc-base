@@ -270,7 +270,6 @@ p {
 a:active:hover {
   text-decoration: underline
 }
-.js-bqLink,
 .tl tbody th :link,
 .tl tbody th :link:hover,
 .tl thead :link,
@@ -759,7 +758,9 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption *,
+.caption,
+.js-bqCite,
+.js-bqLink,
 .prettyprint code {
   font-size: .875em
 }
@@ -1021,11 +1022,6 @@ kbd {
   font-size: 1.5em;
   margin: 0 .5em 0 0
 }
-.js-bqCite,
-.js-bqLink {
-  font-size: .875em;
-  margin: 0
-}
 .Header h1 {
   padding: 0
 }
@@ -1096,9 +1092,14 @@ blockquote .tl tbody th :visited {
 .aBodyRoot :visited:hover {
   color: #419
 }
+.js-bqLink {
+  color: #24c;
+  margin: 0
+}
 .js-bqCite {
   text-align: right;
-  color: #777
+  color: #777;
+  margin: 0
 }
 .box {
   zoom: 1;
@@ -1114,11 +1115,19 @@ blockquote .tl tbody th :visited {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 0
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 0
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 kbd {
   cursor: pointer;
@@ -1162,10 +1171,6 @@ pre var {
 }
 dl.note dd {
   margin-left: 1em
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1321,15 +1326,15 @@ ol.linenums {
   zoom: 1
 }
 .jsPicaLarge img {
+  border-width: 0;
   width: 100%;
-  margin: 0 auto;
-  border-width: 0
-}
-.jsCapLarge {
-  margin: 0 auto 1em
+  margin: 0 auto
 }
 .jsPicaLarge:hover img {
   top: 0
+}
+.jsCapLarge {
+  margin: 0 auto 1em
 }
 #jsSidebarFixer {
   width: 100%
@@ -1765,10 +1770,12 @@ ol.linenums {
   .box {
     margin: 1em 0 0
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
   }
   kbd {
     border-color: #000

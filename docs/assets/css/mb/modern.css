@@ -188,12 +188,6 @@ h6,
 th {
   font-weight: 400
 }
-.Cover img,
-.box iframe,
-.box img,
-.caption {
-  max-width: 100%
-}
 @font-face {
   font-family: "YuGothic M";
   src: local("Yu Gothic Medium"),local("Yu Gothic");
@@ -896,7 +890,8 @@ blockquote hr {
   display: block
 }
 .Cover img,
-.commonForm-wrap * {
+.commonForm-wrap *,
+.jsCap {
   width: 100%
 }
 .ABody h2,
@@ -1318,7 +1313,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -1370,7 +1364,8 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block
+  display: block;
+  max-width: 100%
 }
 .Cover h2 {
   display: inline-block;
@@ -1697,6 +1692,12 @@ blockquote:after {
   color: #777;
   margin: 0 1.5%
 }
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em;
+  max-width: 100%
+}
 .box {
   margin: 1em 0 0
 }
@@ -1720,11 +1721,20 @@ tr .box > p:first-of-type {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
+  max-width: 100%;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 .hscroll {
   overflow-x: auto;
@@ -1750,6 +1760,20 @@ pre code,
 pre var {
   padding: 0;
   margin: 0
+}
+@-moz-document url-prefix() {
+  .Magazine-label,
+  .Magazine-main,
+  .RichLink b,
+  .caption,
+  .js-bqCite,
+  .links,
+  blockquote:after,
+  pre,
+  td,
+  th {
+    word-wrap: break-word
+  }
 }
 .links [href]:before {
   content: ">";
@@ -1795,29 +1819,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-.caption {
-  display: block;
-  text-align: center;
-  width: 100%
-}
-@-moz-document url-prefix() {
-  .Magazine-label,
-  .Magazine-main,
-  .RichLink b,
-  .caption,
-  .js-bqCite,
-  .links,
-  blockquote:after,
-  pre,
-  td,
-  th {
-    word-wrap: break-word
-  }
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -2037,11 +2038,11 @@ ol.linenums {
   cursor: zoom-out
 }
 .jsPicaLarge img {
-  width: 100%;
-  max-width: 100%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%
 }
 .box .jsPicaLarge img,
 div .box .jsCapLarge {
@@ -2372,10 +2373,12 @@ only screen and (max-width:740px) {
   .box ul {
     margin: 0 2% 1em
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 2%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 2%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -2506,10 +2509,12 @@ only screen and (max-width:479px) {
   .box > p:first-of-type {
     margin-top: -.15em
   }
-  .box .caption,
   .box iframe,
   .box img {
     margin: 0 1em 1em 1%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 1%
   }
   .note blockquote dl,
   .note blockquote ol,
@@ -2571,11 +2576,14 @@ only screen and (max-width:359px) {
     font-size: 1em
   }
   .RichLink img,
-  .box .caption,
   .box iframe,
   .box img {
     float: none;
     margin: 0 auto 1em
+  }
+  .box .caption {
+    float: none;
+    margin: 0 auto 1.143em
   }
   .box .jsPicaLarge img {
     margin: 0 auto

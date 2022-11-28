@@ -356,7 +356,12 @@ var {
 }
 .Magazine-mm,
 .Magazine-yy,
+.RichLink b,
+.Search,
+.Search-txt,
+.caption,
 .commonForm,
+.js-bqCite,
 a iframe,
 a img {
   display: block
@@ -534,6 +539,8 @@ strong {
 .AAuthor,
 .Cover,
 .Magazine-snippet,
+.RichLink a,
+.box,
 .lMi,
 .lSi,
 .lX {
@@ -761,7 +768,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption *,
 .prettyprint code {
   font-size: .875em
 }
@@ -923,7 +929,6 @@ kbd {
   margin-left: 0
 }
 .RichLink a {
-  display: inline-table;
   padding: 1em .5em 0;
   border-color: #2a2a2a!important
 }
@@ -967,12 +972,10 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  display: block;
   padding: 0 0 .571em;
   font-size: 1em
 }
 .Search {
-  display: block;
   height: 1.9em;
   padding: 0 3em 0 0
 }
@@ -981,7 +984,6 @@ kbd {
   top: 0
 }
 .Search-txt {
-  display: block;
   width: 100%;
   left: .05em
 }
@@ -1085,8 +1087,8 @@ kbd {
 }
 .js-bqCite,
 .js-bqLink {
-  font-size: .875em;
-  margin: 0 1.5%
+  margin: 0 1.5%;
+  font-size: .875em
 }
 .tl,
 .tl th {
@@ -1107,12 +1109,14 @@ blockquote {
   padding: 1em 1px
 }
 .js-bqCite {
-  display: block;
   text-align: right;
   color: #777
 }
+.caption {
+  text-align: center;
+  font-size: .875em
+}
 .box {
-  display: inline-table;
   margin: 1em 0 0
 }
 .box dl,
@@ -1125,11 +1129,19 @@ blockquote {
 .box ul {
   list-style-position: inside
 }
-.box .caption,
 .box iframe,
 .box img {
   float: left;
   margin: 0 1em 1em 3%
+}
+.box .caption {
+  float: left;
+  margin: 0 1.143em 1.143em 3%
+}
+div .caption iframe,
+div .caption img {
+  margin: 0 0 .571em;
+  float: none
 }
 .hscroll {
   overflow-x: auto;
@@ -1183,14 +1195,6 @@ dl.note dd {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 3%
-}
-.caption {
-  display: block;
-  text-align: center
-}
-div .caption img {
-  margin: 0 0 .5em;
-  float: none
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1347,9 +1351,9 @@ ol.linenums {
   padding: 2px
 }
 .jsPicaLarge img {
+  border-width: 0;
   width: 100%;
-  margin: 0;
-  border-width: 0
+  margin: 0
 }
 .jsPicaLarge:hover {
   top: 2px
