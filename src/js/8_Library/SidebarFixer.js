@@ -5,7 +5,6 @@
  */
 var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_ID_OF_WHEEL_ELEMENTS                = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
-    SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN = p_Gecko || p_Goanna || p_EdgeHTML,
     SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
     /*
      * positionFixed
@@ -50,8 +49,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_focuedElementYAndHeight,
     SidebarFixer_ignoreScrollAfterFocus,
     SidebarFixer_dummyScrollTimerID,
-    SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' ),
-    SidebarFixer_isGeckoLte094 = p_Gecko && ua.conpare( p_engineVersion, '0.9.4' ) <= 0;
+    SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' );
 
 if( !p_isMobile && !p_cloudRendering ){
 
@@ -80,15 +78,7 @@ if( !p_isMobile && !p_cloudRendering ){
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
-            if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 || p_Trident < 6 ) ){
-                if( p_Trident || p_Tasman ){
-                    p_addEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus );
-                } else if( SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN ){
-                    p_addEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
-                } else {
-                    p_addEventListener( SidebarFixer_elmWrap, 'DOMFocusIn', SidebarFixer_onfocus, false );
-                };
-            };
+            p_listenDOMFocusInEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
 
             // Array と NodeList の場合があるので、常に再取得
             while( 1 < p_DOM_getChildNodes( SidebarFixer_elmSide ).length ){
@@ -148,21 +138,7 @@ if( !p_isMobile && !p_cloudRendering ){
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
-            if( !( p_Presto < 8 || SidebarFixer_isGeckoLte094 ) ){
-                if( p_Trident < 6 ){
-                    // 
-                } else if( p_Trident || p_Tasman ){
-                    p_removeEventListener( SidebarFixer_elmWrap, 'focusin', SidebarFixer_onfocus, false );
-                } else if( SidebarFixer_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN ){
-                    p_removeEventListener( document, 'focus', SidebarFixer_onfocus, { capture : true, passive : false } );
-                } else {
-                    p_removeEventListener( SidebarFixer_elmWrap, 'DOMFocusIn', SidebarFixer_onfocus, false );
-                };
-            };
-
-            if( SidebarFixer_watchActiveElementTimerID ){
-                clearInterval( SidebarFixer_watchActiveElementTimerID );
-            };
+            p_unlistenDOMFocusInEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
         }
     );
 };
@@ -557,7 +533,7 @@ function SidebarFixer_onfocus( e ){
     };
 
     var useContains     = !!SidebarFixer_transformProp || p_Gecko,
-        elmFocused      = e.target || e.srcElement,
+        elmFocused      = e.target,
         focusedElementY = 0,
         focusedElementHeight, elm;
 
@@ -589,49 +565,6 @@ function SidebarFixer_onfocus( e ){
             SidebarFixer_updateElementFocused( focusedElementY, focusedElementHeight );
         };
     };
-};
-
-/** ===========================================================================
- * for activeElement
- */
-var SidebarFixer_watchActiveElementTimerID;
-var SidebarFixer_currentActiveElement;
-var SidebarFixer_memoryErrorHandler;
-
-p_Trident < 6 && p_listenCssAvailabilityChange(
-    function( cssAvailability ){
-        if( !p_elmMain ) return true;
-            
-        if( cssAvailability ){
-            SidebarFixer_watchActiveElementTimerID = setInterval( SidebarFixer_watchActiveElement, 333 );
-        } else if( SidebarFixer_watchActiveElementTimerID ){
-            clearInterval( SidebarFixer_watchActiveElementTimerID );
-            SidebarFixer_watchActiveElementTimerID = 0;
-        };
-    }
-);
-
-function SidebarFixer_watchActiveElement(){
-    SidebarFixer_memoryErrorHandler = window.onerror;
-
-    window.onerror = SidebarFixer_watchActiveElementErrorHandler;
-
-    var activeElement = document.activeElement; // activeElement を触るとエラーが起る事がある. try~catch が使えない為、onerror を使う
-
-    if( SidebarFixer_currentActiveElement !== activeElement ){
-        SidebarFixer_currentActiveElement = activeElement;
-        SidebarFixer_onfocus( /** @type {!Event} */ ({ target : activeElement }) );
-    };
-
-    window.onerror = /** @type {!Function} */ (SidebarFixer_memoryErrorHandler);
-    SidebarFixer_memoryErrorHandler = undefined;
-};
-
-function SidebarFixer_watchActiveElementErrorHandler(){
-    Debug.log( 'error!' );
-    window.onerror = /** @type {!Function} */ (SidebarFixer_memoryErrorHandler);
-    SidebarFixer_memoryErrorHandler = SidebarFixer_currentActiveElement = undefined;
-    return true;
 };
 
 /** ===========================================================================

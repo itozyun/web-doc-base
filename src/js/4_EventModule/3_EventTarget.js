@@ -108,6 +108,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
             listener, stopPropagation;
         
         if( p_Trident ){
+            e.target = e.srcElement;
             e.preventDefault = function(){
                 e.returnValue = false;
             };
@@ -124,6 +125,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         while( listener = eventListners[ ++i ] ){
             if( listener.eventTarget === eventTarget ){
                 eventTarget.__handleEvent__ = listener.callback;
+                e.currentTarget = eventTarget;
                 eventTarget.__handleEvent__( e );
                 eventTarget.__handleEvent__ = p_emptyFunction;
                 eventTarget.__handleEvent__ = undefined;
