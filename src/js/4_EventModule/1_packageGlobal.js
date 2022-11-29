@@ -11,8 +11,8 @@ var p_addEventListener,
     p_listenPrefersColorSchemeChange,
     p_listenForcedColorsChange,
 
-    p_listenDOMFocusInEvent,
-    p_unlistenDOMFocusInEvent,
+    p_listenFocusinEvent,
+    p_unlistenFocusinEvent,
     p_listenWheelEvent,
     p_unlistenWheelEvent,
 

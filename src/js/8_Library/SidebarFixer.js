@@ -77,7 +77,7 @@ if( !p_isMobile && !p_cloudRendering ){
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
-            p_listenDOMFocusInEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
+            p_listenFocusinEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
 
             // Array と NodeList の場合があるので、常に再取得
             while( 1 < p_DOM_getChildNodes( SidebarFixer_elmSide ).length ){
@@ -112,7 +112,7 @@ if( !p_isMobile && !p_cloudRendering ){
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
 
-            p_unlistenDOMFocusInEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
+            p_unlistenFocusinEvent( SidebarFixer_elmWrap, SidebarFixer_onfocus );
         }
     );
 };
