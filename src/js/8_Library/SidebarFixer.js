@@ -48,8 +48,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_use3D,
     SidebarFixer_focuedElementYAndHeight,
     SidebarFixer_ignoreScrollAfterFocus,
-    SidebarFixer_dummyScrollTimerID,
-    SidebarFixer_isGeckoGte097 = p_Gecko && 0 <= ua.conpare( p_engineVersion, '0.9.7' );
+    SidebarFixer_dummyScrollTimerID;
 
 if( !p_isMobile && !p_cloudRendering ){
 
@@ -58,7 +57,7 @@ if( !p_isMobile && !p_cloudRendering ){
             if( !cssAvailability ) return;
             if( !p_elmMain ) return true;
 
-            var i = -1, id, elm;
+            var i = -1, id;
 
             SidebarFixer_elmRoot = document.compatMode !== 'CSS1Compat' ? p_body : p_html || p_body;
             SidebarFixer_elmSide = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID );
@@ -85,22 +84,8 @@ if( !p_isMobile && !p_cloudRendering ){
                 SidebarFixer_elmWrap.appendChild( p_DOM_getChildNodes( SidebarFixer_elmSide )[ 1 ] );
             };
 
-            if( SidebarFixer_isGeckoGte097 && !p_FirefoxGte35 ){
-                p_addEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheelForOldGecko, false );
-            };
-
             while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
-                elm = p_DOM_getElementById( id );
-                if( p_notUndefined( elm.onwheel ) ){
-                    p_addEventListener( elm, 'wheel', SidebarFixer_onwheel, { passive : false } );
-                } else if( p_FirefoxGte35 ){
-                    p_addEventListener( elm, 'MozMousePixelScroll', SidebarFixer_onwheel, false );
-                } else if( SidebarFixer_isGeckoGte097 ){
-                    // Array.<string> => Array.<Element>
-                    SidebarFixer_ID_OF_WHEEL_ELEMENTS[ i ] = p_DOM_getElementById( id );
-                } else if( p_notUndefined( elm.onmousewheel ) || 9 <= p_Presto ){
-                    p_addEventListener( elm, 'mousewheel', SidebarFixer_onwheel, false );
-                };
+                p_listenWheelEvent( /** @type {!Element} */ (p_DOM_getElementById( id )), SidebarFixer_onwheel );
             };
 
             if( 
@@ -119,21 +104,10 @@ if( !p_isMobile && !p_cloudRendering ){
 
     p_listenUnloadEvent(
         function(){
-            var i = -1, id, elm;
+            var i = -1, id;
 
-            if( SidebarFixer_isGeckoGte097 && !p_FirefoxGte35 ){
-                p_removeEventListener( document, 'DOMMouseScroll', SidebarFixer_onwheelForOldGecko, false );
-            } else {
-                while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
-                    elm = p_DOM_getElementById( id );
-                    if( p_notUndefined( elm.onwheel ) ){
-                        p_removeEventListener( elm, 'wheel', SidebarFixer_onwheel, { passive : false } );
-                    } else if( p_FirefoxGte35 ){
-                        p_removeEventListener( elm, 'MozMousePixelScroll', SidebarFixer_onwheel, false );
-                    } else if( p_notUndefined( elm.onmousewheel ) || 9 <= p_Presto ){
-                        p_removeEventListener( elm, 'mousewheel', SidebarFixer_onwheel, false );
-                    };
-                };
+            while( id = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
+                p_unlistenWheelEvent( /** @type {!Element} */ (p_DOM_getElementById( id )), SidebarFixer_onwheel );
             };
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_removeEventListener( window, 'blur', SidebarFixer_onWindowBlur );
@@ -508,19 +482,6 @@ function SidebarFixer_onwheel( e ){
     if( cancel ){
         e.preventDefault();
         e.stopPropagation();
-    };
-};
-
-/**
- * @param {!Event=} e
- */
-function SidebarFixer_onwheelForOldGecko( e ){
-    var focusedElement = e.target, i = -1, elm;
-
-    while( elm = SidebarFixer_ID_OF_WHEEL_ELEMENTS[ ++i ] ){
-        if( p_DOM_contains( elm, /** @type {!Node} */ (focusedElement) ) ){
-            SidebarFixer_onwheel( e );
-        };
     };
 };
 

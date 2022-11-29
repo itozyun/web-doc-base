@@ -7,11 +7,14 @@ var p_addEventListener,
     p_listenScrollEvent,
     p_listenPrintEvent,
     p_listenCssAvailabilityChange,
-    p_listenDOMFocusInEvent,
-    p_unlistenDOMFocusInEvent,
     p_listenImageReady,
     p_listenPrefersColorSchemeChange,
     p_listenForcedColorsChange,
+
+    p_listenDOMFocusInEvent,
+    p_unlistenDOMFocusInEvent,
+    p_listenWheelEvent,
+    p_unlistenWheelEvent,
 
     p_cssAvailability, // TODO AuthorCSS ?
     p_forcedColorsState,
