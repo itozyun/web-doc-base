@@ -246,7 +246,7 @@ gulp.task( '__js', gulp.series(
                     {
                         compilation_level : 'WHITESPACE_ONLY',
                         formatting        : 'PRETTY_PRINT',
-                        js_output_file    :isDebug ? 'debug.js' : 'main.js'
+                        js_output_file    : isDebug ? 'debug.js' : 'main.js'
                     }
                 )
             ).pipe(

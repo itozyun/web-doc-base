@@ -667,7 +667,7 @@ return '' +
 `<div class='Header'>
     <header role='banner'>
         ${useArticleHeaderModule ? '<div class="h1">' : '<h1>'}
-        ${isHome ? site.title : createElement( 'a', { href : site.url, tabindex : -1 }, site.title )}
+        ${isHome ? site.title : createElement( 'a', { href : site.url, "tab-index" : -1 }, site.title )}
         ${useArticleHeaderModule ? '</div>' : '</h1>'}
         ${createElement( 'span', null, site.subTitle, !!site.subTitle )}
     </header>
@@ -679,7 +679,7 @@ return '' +
             var searchButtonLabel = site.searchButtonLabel || '検索';
             return '' +
 `<form class='Search' action='${site.searchUrl}' method='get' role='search'>
-    <input name='max-results' type='hidden' value='20' tabindex='-1'>
+    <input name='max-results' type='hidden' value='20' tab-index='-1'>
     <input class='Search-txt' type='text' size='16' name='q' autocomplete='off' autocapitalize='off' placeholder='${searchBoxPlaceholderText}' title='${searchBoxPlaceholderText}' required>
     <input class='btn' value='${searchButtonLabel}' type='submit'>
 </form>`;
