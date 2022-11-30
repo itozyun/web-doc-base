@@ -41,7 +41,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
     SidebarFixer_elmWrap,
-    SidebarFixer_transformProp = p_cssTransformName,
+    SidebarFixer_transformProp = p_cssTransformName && !!p_body.getBoundingClientRect, // Safari 3.2, transform + offsetTop だと focuedElementYの値が不正, getBoundingClientRect が使える 4以降なら大丈夫
     SidebarFixer_sidebarOffsetY = 0,
     SidebarFixer_lastScrollY = 0,
     SidebarFixer_use3D,
@@ -189,7 +189,7 @@ function SidebarFixer_onWindowBlur(){
  * @param {number|undefined=} wheelDeltaY
  * @param {number=} focusedElementY
  * @param {number=} focusedElementHeight
- * @return {boolean|Array.<number>|undefined} ホイールイベントをキャンセルするか? または SidebarFixer_focuedElementYAndHeight の保持する用
+ * @return {boolean|!Array.<number>|undefined} ホイールイベントをキャンセルするか? または SidebarFixer_focuedElementYAndHeight の保持する用
  */
 function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
     var scrollY        = SidebarFixer_lastScrollY,
@@ -494,20 +494,28 @@ function SidebarFixer_onfocus( e ){
 
     var useContains     = !!SidebarFixer_transformProp || p_Gecko,
         elmFocused      = e.target,
+        elmWrapper      = SidebarFixer_elmSide.firstChild,
         focusedElementY = 0,
-        focusedElementHeight, elm;
+        focusedElementHeight, elm, rect;
 
-    if( p_DOM_contains( SidebarFixer_elmWrap, /** @type {!Node} */ (elmFocused) ) ){
+    if( p_DOM_contains( elmWrapper, /** @type {!Node} */ (elmFocused) ) ){
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_showEvent( e.type || 'ie5focus' );
             p_addEventListener( /** @type {!EventTarget} */ (elmFocused), 'blur', SidebarFixer_onActiveElementBlur );
         };
 
-        focusedElementHeight = elmFocused.offsetHeight;
-        elm = elmFocused;
-        while( elm && ( useContains ? p_DOM_contains( SidebarFixer_elmWrap, elm ) : ( SidebarFixer_elmWrap !== elm ) ) ){
-            focusedElementY += elm.offsetTop;
-            elm = elm.offsetParent;
+        // transform を使う Safari 4~5 は getBoundingClientRect で無いと focusedElementY が不正
+        if( SidebarFixer_transformProp ){
+            rect = elmFocused.getBoundingClientRect();
+            focusedElementHeight = rect.bottom - rect.top;
+            focusedElementY = rect.top - elmWrapper.getBoundingClientRect().top;
+        } else {
+            focusedElementHeight = elmFocused.offsetHeight;
+            elm = elmFocused;
+            while( elm && ( useContains ? p_DOM_contains( elmWrapper, elm ) : ( elmWrapper !== elm ) ) ){
+                focusedElementY += elm.offsetTop;
+                elm = elm.offsetParent;
+            };
         };
 
         if( !SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT ){
@@ -518,7 +526,7 @@ function SidebarFixer_onfocus( e ){
             if( SidebarFixer_dummyScrollTimerID ){
                 p_clearTimer( SidebarFixer_dummyScrollTimerID );
             };
-            SidebarFixer_dummyScrollTimerID = p_setTimer( /** @type {!function(*=)} */ (SidebarFixer_onscroll), SidebarFixer_ONSCROL_FROM_TIMER, p_Gecko < 1 ? 500 : 0 ); // Gecko 0.9.5 はかなり遅れてスクロールが起こる
+            SidebarFixer_dummyScrollTimerID = p_setTimer( /** @type {!function(*=)} */ (SidebarFixer_onscroll), SidebarFixer_ONSCROL_FROM_TIMER, p_Gecko < 1 || p_WebKit < 536 || p_Chromium < 14 ? 500 : 0 ); // Gecko 0.9.5 はかなり遅れてスクロールが起こる
         };
 
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
@@ -569,7 +577,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
             };
 
             p_DOM_insertElement( elmTestRoot, 'div', undefined,
-                ( p_cssTransformName ? 'transform' + ( SidebarFixer_use3D ? '3D' : '' ) : ( SidebarFixer_CANUSE_POSITION_FIXED ? 'pos:fixed' : 'pos:absolute' ) )
+                ( SidebarFixer_transformProp ? 'transform' + ( SidebarFixer_use3D ? '3D' : '' ) : ( SidebarFixer_CANUSE_POSITION_FIXED ? 'pos:fixed' : 'pos:absolute' ) )
             );
 
             var elmContainer = p_DOM_insertElement( elmTestRoot, 'div' );
