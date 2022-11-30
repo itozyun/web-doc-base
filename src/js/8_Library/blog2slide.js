@@ -33,7 +33,7 @@ p_listenLoadEvent(
                 blog2slide_elmRoot   = p_DOM_getParentNode( elmContainer );
                 blog2slide_elmSlides = p_DOM_getElementsByTagName( elmContainer, 'section' );
                 blog2slide_elmH1     = document.createElement( 'h1' );
-                blog2slide_elmH1.innerHTML = p_DOM_getElementsByTagNameFromDocument( 'h1' )[ 0 ].innerHTML;
+                blog2slide_elmH1.innerHTML = p_DOM_getElementsByTagName( p_body, 'h1' )[ 0 ].innerHTML;
                 blog2slide_maxSlideIndex = blog2slide_elmSlides.length;
                 blog2slide_elmSlides.splice( 0, 0, blog2slide_elmH1 );
 

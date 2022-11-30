@@ -60,3 +60,18 @@ function m_toHTMLString( tagName, attrs, textContent ){
         return result.join( '' );
     };
 };
+
+function m_toCamelCase( str ){
+    var parts = str.split( '-' ),
+        i     = parts.length,
+        part;
+
+    if( i < 2 ){
+        return str;
+    };
+    while( 1 < i ){
+        part = parts[ --i ];
+        parts[ i ] = part.charAt( 0 ).toUpperCase() + part.substr( 1 );
+    };
+    return parts.join( '' );
+};

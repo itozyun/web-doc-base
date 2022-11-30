@@ -14,15 +14,14 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
     SidebarFixer_CANUSE_POSITION_FIXED = // Opera 9.x-10.x では fixed でないと表示が乱れる
             !(
                 // iOS 4.3 and older : Platform is iPhone/Pad/Touch and WebKit version is less than 534 (ios5)
-                p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_SafariMobile ) < 5 ||
-                p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_iOSWebView   ) < 5 ||
+                p_SafariMobile < 5 ||
                 // Opera Mini
                 // https://www.tobymackenzie.com/blog/2017/05/11/opera-mini-supporting-fixed-position/
                 //( ua[ 'OperaMini' ] ) ||
                 // UC Browser speed mode on
                 //( ua[ 'UCWEB' ] ) ||
                 //Android lte 2.1: Platform is Android and WebKit version is less than 533 (Android 2.2)
-                ( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP ) < 2.2 ) ||
+                ( p_AOSP < 2.2 ) ||
                 // Firefox Mobile before 6.0 -
                 ( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Fennec ) < 6 ) ||
                 // WebOS less than 3

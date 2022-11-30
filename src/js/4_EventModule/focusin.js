@@ -17,8 +17,10 @@ p_listenFocusinEvent = function( elm, callback ){
         };
     } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
         p_addEventListener( document, 'focus', FocusinEvent_onfocus, true );
-    } else { // Gecko <=0.9.4 は回想の離れた要素にフォーカスしない!
+    } else if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
         p_addEventListener( document, 'focus', FocusinEvent_onfocus, { capture : true, passive : false } );
+    } else {
+        return;
     };
 
     for( var pairs = FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS, i = 0, l = pairs.length; i < l; ++i ){
@@ -48,9 +50,8 @@ p_unlistenFocusinEvent = function( elm, callback ){
                     if( FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55 ){
                         FocusinEvent_watchActiveElementTimerID = p_clearLoopTimer( FocusinEvent_watchActiveElementTimerID );
                     } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
-                            // Opera 7.x は階層の離れた要素にフォーカスしない!
                         p_removeEventListener( document, 'focus', FocusinEvent_onfocus, true );
-                    } else { // Gecko <=0.9.4 は階層の離れた要素にフォーカスしない!
+                    } else if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
                         p_removeEventListener( document, 'focus', FocusinEvent_onfocus, { capture : true, passive : false } );
                     };
                 };
@@ -63,20 +64,24 @@ p_unlistenFocusinEvent = function( elm, callback ){
 /** ===========================================================================
  * private
  */
-var FocusinEvent_USE_FOCUSIN                         = 6 <= p_Trident || p_EdgeHTML || 11.6 <= p_Presto || 52 <= p_Gecko || 15 <= p_Chromium || 534 <= p_WebKit || 5 <= p_SafariMobile;
+// https://caniuse.com/?search=focusin
+// https://github.com/mdn/browser-compat-data/blob/d22e1912155eb29056d254213b1fddbd7fc05391/api/Element.json#L3622
+var FocusinEvent_USE_FOCUSIN                = 6 <= p_Trident || p_EdgeHTML || 52 <= p_Gecko || 15 <= p_Chromium || 534 <= p_WebKit /** Safari 5.1+ */ || 5 <= p_SafariMobile ||
+                                              p_ChromeWebView || 4 <= p_AOSP || 4 <= p_Samsung ||
+                                              11.6 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Presto   ) || 12 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_PrestoMobile );
 
-var FocusinEvent_USE_DOMFOCUSIN                      = 8 <= p_Presto || p_Chromium || p_WebKit;
+var FocusinEvent_USE_DOMFOCUSIN             = 8 <= p_Presto || p_Chromium || p_AOSP || p_Samsung || p_WebKit || p_SafariMobile;
 
-var FocusinEvent_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN = p_Gecko < 52 || p_Goanna;
+var FocusinEvent_USE_POLYFILL_FOR_OPERA_7   = p_Presto < 8;
 
-var FocusinEvent_USE_POLYFILL_FOR_OPERA_7            = p_Presto < 8;
+var FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55 = p_Trident < 6;
 
-var FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55          = p_Trident < 6;
+var FocusinEvent_USE_FOCUS_CAPTURE_PHASE    = p_Gecko < 52 || p_Goanna;
 
 /** @type {!Array.<!Element|!function(!Event):void>|undefined} */
 var FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS;
 
-if( FocusinEvent_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN || FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
+if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE || FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
     FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS = [];
     /**
      * @param {!Event} e
@@ -84,21 +89,22 @@ if( FocusinEvent_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN || FocusinEvent_USE_POLYFIL
     var FocusinEvent_onfocus = function( e ){
         var pairs = FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS,
             elmFocused = FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ? document.activeElement : e.target,
-            elmTarget;
+            elmCurrentTarget;
 
         if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
             e = /** @type {!Event} */ ({
-                type   : 'focusin',
-                target : elmFocused
-                // TODO: e.preventDefault(), e.stopPropagation();
+                type            : 'focusin',
+                target          : elmFocused,
+                preventDefault  : function(){ e.preventDefault();  },
+                stopPropagation : function(){ e.stopPropagation(); }
             });
             // e.target = elmFocused; // error!
         };
 
         for( var i = 0, l = pairs.length; i < l; ++i ){
-            elmTarget = pairs[ i ];
-            if( elmTarget === elmFocused || p_DOM_contains( /** @type {!Element} */ (elmTarget), /** @type {!Element} */ (elmFocused) ) ){
-                pairs[ i + 1 ].call( elmTarget, /** @type {!Event} */ (e) );
+            elmCurrentTarget = pairs[ i ];
+            if( elmCurrentTarget === elmFocused || p_DOM_contains( /** @type {!Element} */ (elmCurrentTarget), /** @type {!Element} */ (elmFocused) ) ){
+                pairs[ i + 1 ].call( elmCurrentTarget, /** @type {!Event} */ (e) );
             };
         };
     };
@@ -122,12 +128,12 @@ if( FocusinEvent_USE_FOCUS_CAPTURE_INSTED_OF_FOCUSIN || FocusinEvent_USE_POLYFIL
         if( FocusinEvent_currentActiveElement !== activeElement ){
             FocusinEvent_currentActiveElement = activeElement;
             var pairs = FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS,
-                elmTarget;
+                elmCurrentTarget;
 
             for( var i = 0, l = pairs.length; i < l; ++i ){
-                elmTarget = pairs[ i ];
-                if( elmTarget === activeElement || p_DOM_contains( /** @type {!Element} */ (elmTarget), /** @type {!Element} */ (activeElement) ) ){
-                    pairs[ i + 1 ].apply( elmTarget, [ /** @type {!Event} */ ({ target : activeElement }) ] ); // TODO dummy event
+                elmCurrentTarget = pairs[ i ];
+                if( elmCurrentTarget === activeElement || p_DOM_contains( /** @type {!Element} */ (elmCurrentTarget), /** @type {!Element} */ (activeElement) ) ){
+                    pairs[ i + 1 ].apply( elmCurrentTarget, [ /** @type {!Event} */ ({ target : activeElement }) ] ); // TODO dummy event
                 };
             };
         };

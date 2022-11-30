@@ -30,6 +30,9 @@ function DOM_getTagName( elm ){
  * @return {string}
  */
 function DOM_getAttribute( elm, name ){
+    if( p_Presto < 8 ){
+        name = m_toCamelCase( name );
+    };
     return elm.getAttribute( name ) || '';
 };
 
@@ -39,7 +42,14 @@ function DOM_getAttribute( elm, name ){
  * @param {string|number} value
  */
 function DOM_setAttribute( elm, name, value ){
-    elm.setAttribute( name, value );
+    if( p_Presto && name === 'tab-index' ){
+        value === '-1' ? elm.removeAttribute( 'tabIndex' ) : elm.setAttribute( 'tabIndex', value );
+    } else {
+        if( p_Presto < 8 ){
+            name = m_toCamelCase( name );
+        };
+        elm.setAttribute( name, value );
+    };
 };
 
 /** 4.
@@ -47,6 +57,9 @@ function DOM_setAttribute( elm, name, value ){
  * @param {string} name
  */
 function DOM_removeAttribute( elm, name ){
+    if( p_Presto < 8 ){
+        name = m_toCamelCase( name );
+    };
     elm.removeAttribute( name );
 };
 
@@ -55,6 +68,9 @@ function DOM_removeAttribute( elm, name ){
  * @param {string} name
  */
 function DOM_hasAttribute( elm, name ){
+    if( p_Presto < 8 ){
+        name = m_toCamelCase( name );
+    };
     return elm.hasAttribute ? elm.hasAttribute( name ) : elm.getAttribute( name ) != null;
 };
 

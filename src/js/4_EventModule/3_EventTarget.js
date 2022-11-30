@@ -125,7 +125,9 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         while( listener = eventListners[ ++i ] ){
             if( listener.eventTarget === eventTarget ){
                 eventTarget.__handleEvent__ = listener.callback;
-                e.currentTarget = eventTarget;
+                if( p_Trident ){
+                    e.currentTarget = eventTarget;
+                };
                 eventTarget.__handleEvent__( e );
                 eventTarget.__handleEvent__ = p_emptyFunction;
                 eventTarget.__handleEvent__ = undefined;
@@ -137,6 +139,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         };
 
         if( p_Trident ){
+            e.preventDefault = e.stopPropagation = p_emptyFunction;
             e.preventDefault = e.stopPropagation = undefined;
             return e.returnValue;
         } else if( EventTarget_PATCH_OLD_WEBKIT ){
