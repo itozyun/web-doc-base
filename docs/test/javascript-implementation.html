@@ -29,6 +29,9 @@
         visibility : hidden;
         overflow   : hidden;
     }
+    :focus {
+        outline: 2px solid #2773ff;
+    }
 </style>
 <script>
 var elmOutput, timerID, errorOccured, shouldThrowError = false;
@@ -191,6 +194,36 @@ Javascript 実装状況と深刻なバグ,
     shouldThrowError = true;
     b();
 })();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 4">
+<pre>var Y, db, F = window;
+(function(qa){
+    (Y = function(I) {
+        qa(I);
+    });
+    function _(){};
+})(print);
+Y('1 : Good!');
+
+(function(qa){
+    Y = function(I) {
+        qa(I);
+    };
+    // function _(){};
+})(print);
+Y('2 : Good!');
+
+(function(qa){
+    (Y = function(I) {
+        qa(I);
+    });
+    // function _(){};
+})(print);
+Y('3 : Good!');
 </pre>
 <div class="output"></div><br clear="all">
 </div>
@@ -592,6 +625,18 @@ print('- ' + a);
 print('1: delete a.__bad__', delete a.__bad__ === true);
 print('2: delete a.__apply', delete a.__apply === true);
 })();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>addEventListener</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="delete">
+<pre>
+print('1:' + window.addEventListener);
+print('2:' + document.addEventListener);
+print('3:' + document.body.addEventListener);
 </pre>
 <div class="output"></div><br clear="all">
 </div>
