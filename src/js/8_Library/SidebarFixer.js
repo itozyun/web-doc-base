@@ -469,7 +469,7 @@ function SidebarFixer_onwheel( e ){
     // https://w3g.jp/blog/tools/wheelevent_crossbrowser
     // ホイール系イベント2014年版クロスブラウザ
     if( p_Gecko ){
-        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_updateViewport();
         };
@@ -492,7 +492,8 @@ function SidebarFixer_onfocus( e ){
         return;
     };
 
-    var useContains     = !!SidebarFixer_transformProp || p_Gecko,
+    var useContains     = p_Gecko,
+        buggyOffsetTop  = p_Gecko && ua.conpare( p_engineVersion, '0.9.4' ) < 0, // for Gecko <=0.9.3
         elmFocused      = e.target,
         elmWrapper      = SidebarFixer_elmSide.firstChild,
         focusedElementY = 0,
@@ -508,13 +509,21 @@ function SidebarFixer_onfocus( e ){
         if( SidebarFixer_transformProp ){
             rect = elmFocused.getBoundingClientRect();
             focusedElementHeight = rect.bottom - rect.top;
-            focusedElementY = rect.top - elmWrapper.getBoundingClientRect().top;
+            focusedElementY = ( rect.top - elmWrapper.getBoundingClientRect().top ) | 0;
         } else {
             focusedElementHeight = elmFocused.offsetHeight;
             elm = elmFocused;
             while( elm && ( useContains ? p_DOM_contains( elmWrapper, elm ) : ( elmWrapper !== elm ) ) ){
-                focusedElementY += elm.offsetTop;
-                elm = elm.offsetParent;
+                if( buggyOffsetTop ){
+                    while( elm.previousSibling ){
+                        elm = elm.previousSibling;
+                        focusedElementY += elm.offsetHeight || 0;
+                    };
+                    elm = elm.parentNode;
+                } else {
+                    focusedElementY += elm.offsetTop;
+                    elm = elm.offsetParent;
+                };
             };
         };
 
