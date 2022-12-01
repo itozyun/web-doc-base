@@ -14,10 +14,10 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
 
             if( DebugLogger_elm ){
                 Debug.log = function( text ){
-                    p_DOM_insertElement( DebugLogger_elm, 'P', undefined, text );
+                    p_DOM_insertElement( DebugLogger_elm, 'DIV', undefined, text );
                 };
                 Debug.error = function( text ){
-                    p_DOM_insertElement( DebugLogger_elm, 'P', { style : { color : 'red' } }, text );
+                    p_DOM_insertElement( DebugLogger_elm, 'DIV', { style : { color : 'red' } }, text );
                 };
                 window.onerror = function( a, b, c ){
                     Debug.error( a+ ', ' + b + ', ' + c );
