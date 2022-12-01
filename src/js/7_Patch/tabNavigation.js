@@ -84,7 +84,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
                             e.stopPropagation();
                             TabNavigation_setFocus( true );
                         } else {
-                            Debug.log( e.type + '[b]' + elmTarget );
+                            // Debug.log( e.type + '[b]' + elmTarget );
                             elmTarget.blur && TabNavigation_setBlur( elmTarget );
                             e.preventDefault();
                             TabNavigation_setFocus();
@@ -103,7 +103,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
                         // TabNavigation_nextFocusableElement = undefined;
                     // };
                 } else {
-                    Debug.log( e.type + '[d]' + elmTarget );
+                    // Debug.log( e.type + '[d]' + elmTarget );
                     var elm = TabNavigation_currentFocusedElement;
                     if( elm ){
                         TabNavigation_currentFocusedElement = undefined
@@ -115,18 +115,21 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
             };
 
     /**
-     * @param {!Element} blurElement 
+     * @param {!Element} currentElement 
      * @param {boolean=} skipCheckTime 
      * @return {boolean|undefined}
      */
-    var TabNavigation_findNextFocusableElement = function( blurElement, skipCheckTime ){
-        var allElements = p_DOM_getElementsByTagName( p_body, '*' ),
-            now = !skipCheckTime && ( + new Date ),
-            l = allElements.length, i = 0, found = false, elm;
+    var TabNavigation_findNextFocusableElement = function( currentElement, skipCheckTime ){
+        var now = !skipCheckTime && ( + new Date ),
+            body = p_body,
+            previousOrNextSibling = 'nextSibling',
+            firstOrLastChild = 'firstChild',
+            elm, child;
 
-        if( TabNavigation_shiftKeyPressed && ( skipCheckTime || ( now - 99 ) <= TabNavigation_keydownTime && TabNavigation_keydownTime <= now ) ){
+        if( TabNavigation_shiftKeyPressed && ( skipCheckTime || ( now - 99 ) < TabNavigation_keydownTime && TabNavigation_keydownTime <= now ) ){
             //Debug.log( e.type + ' reverse() ' + TabNavigation_keydownTime + '<' + (( + new Date )  + 99) );
-            allElements = allElements.reverse();
+            previousOrNextSibling = 'previousSibling';
+            firstOrLastChild      = 'lastChild';
         // } else {
             //Debug.log( e.type + ' no rev' + TabNavigation_keydownTime + '<' + (( + new Date )  + 99) );
         };
@@ -135,16 +138,36 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
 
         // Debug.log( ' allElements:' + l );
 
-        for( ; i < l ; ++i ){
-            elm = allElements[ i ];
-            if( !found ){
-                if( blurElement === elm ){
-                    // Debug.log( ' found:' + i + p_DOM_getTagName( elm ) );
-                    found = true;
+        while( currentElement !== body ){
+            if( !child ){
+                elm = currentElement[ previousOrNextSibling ];
+            } else {
+                elm = currentElement;
+                child = false;
+            };
+            if( elm ){
+                if( elm.nodeType === 1 ){
+                    if( TabNavigation_isFocusableElement( elm ) ){
+                        // Debug.log( 'Hit! ' + elm );
+                        TabNavigation_nextFocusableElement = elm;
+                        return true;
+                    } else {
+                        // Debug.log( '@' + elm.tagName + ' childNodes:' + elm.childNodes.length );
+                        child = elm[ firstOrLastChild ];
+                        currentElement = child || elm;
+                    };
+                    //if( currentElement !== elm ){
+                        // Debug.log( '=> ' + currentElement.tagName + ' #' + currentElement.id + '.' + currentElement.clasName );
+                    //} else {
+                        // Debug.log( '... ' + currentElement.tagName + ' #' + currentElement.id + '.' + currentElement.clasName );
+                    //};
+                } else {
+                    currentElement = elm;
+                    // Debug.log( '... ' + elm.nodeType );
                 };
-            } else if( TabNavigation_isFocusableElement( elm ) ){
-                TabNavigation_nextFocusableElement = elm;
-                return true;
+            } else {
+                // Debug.log( ' <=' + currentElement.tagName );
+                currentElement = currentElement.parentNode;
             };
         };
     };
@@ -155,41 +178,43 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
      * @returns {boolean|undefined}
      */
     var TabNavigation_isFocusableElement = function( elm, skipLink ){
-        var TARGET = {
-            'A'        : 0,
-            'INPUT'    : 1,
-            'OBJECT'   : 2,
-            'EMBED'    : 2,
-            'IFRAME'   : 2,
-            'TEXTAREA' : 2,
-            'BUTTON'   : 2,
-            'SELECT'   : 2
-        }, tabIndex;
+        if( elm.focus ){
+            var TARGET = {
+                'A'        : skipLink ? 0 : 1,
+                'INPUT'    : 2,
+                'OBJECT'   : 3,
+                'EMBED'    : 3,
+                'IFRAME'   : 3,
+                'TEXTAREA' : 3,
+                'BUTTON'   : 3,
+                'SELECT'   : 3
+            }, tabIndex;
 
-        switch( TARGET[ p_DOM_getTagName( elm ) ] ){
-            case 0 :
-                if( !skipLink && p_DOM_hasAttribute( elm, 'href' ) && checkTabIndex() && checkVisibility() ){
-                    // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
-                    return true;
-                };
-                break;
-            case 1 :
-                if( p_DOM_getAttribute( elm, 'type' ) !== 'hidden' && checkTabIndex() && checkEnabled() && checkVisibility() ){
-                    // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
-                    return true;
-                };
-                break;
-            case 2 :
-                if( checkTabIndex() && checkEnabled() && checkVisibility() ){
-                    // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
-                    return true;
-                };
-                break;
-            default :
-                tabIndex = p_DOM_getAttribute( elm, 'tab-index' );
-                if( tabIndex && tabIndex !== '-1' && checkVisibility() ){
-                    return true;
-                };
+            switch( TARGET[ p_DOM_getTagName( elm ) ] ){
+                case 1 :
+                    if( p_DOM_hasAttribute( elm, 'href' ) && checkTabIndex() && checkVisibility() ){
+                        // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
+                        return true;
+                    };
+                    break;
+                case 2 :
+                    if( p_DOM_getAttribute( elm, 'type' ) !== 'hidden' && checkTabIndex() && checkEnabled() && checkVisibility() ){
+                        // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
+                        return true;
+                    };
+                    break;
+                case 3 :
+                    if( checkTabIndex() && checkEnabled() && checkVisibility() ){
+                        // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
+                        return true;
+                    };
+                    break;
+                default :
+                    tabIndex = p_DOM_getAttribute( elm, 'tab-index' );
+                    if( tabIndex && tabIndex !== '-1' && checkVisibility() ){
+                        return true;
+                    };
+            };
         };
 
         function checkTabIndex(){
@@ -253,12 +278,12 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
 
         var TabNavigation_onWindowBlur = function( e ){
             if( /* TabNavigation_windowBlurFlag && */ e.target !== document ){ // Gecko 0.9 window がフォーカスを喪う場合、document
-                Debug.log( 'window.' + e.type + ' tgt=' + e.target );
+                // Debug.log( 'window.' + e.type + ' tgt=' + e.target );
                 // e.stopPropagation();
                 // e.preventDefault();
                 // TabNavigation_windowBlurFlag = false;
             } else {
-                Debug.log( 'window.' + e.type + ' skipped!' + e.target );
+                // Debug.log( 'window.' + e.type + ' skipped!' + e.target );
                 /* if( TabNavigation_focusTimerID ){
                     TabNavigation_focusTimerID = p_clearTimer( TabNavigation_focusTimerID );
                 }; */
@@ -274,7 +299,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
         };
         
         var TabNavigation_onBlur = function( e ){
-            Debug.log( 'elm.' + e.type + ' ' + e.target );
+            // Debug.log( 'elm.' + e.type + ' ' + e.target );
             var blurElement = e.target;
 
             p_removeEventListener( blurElement, 'blur', TabNavigation_onBlur );
