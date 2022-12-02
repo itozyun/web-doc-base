@@ -31,20 +31,20 @@ if( Event_NO_SCROLL_EVENT ){
 
             if( Event_lastScrollY !== scrollY ){
                 // Gecko 0.9.4.1 scroll event 無し!
-                // document.title = window.pageYOffset || p_body.scrollTop || 'scroll';
+                // document.title = scrollY;
                 Event_lastScrollY = scrollY;
                 Event_scrollEventHandler();
             };
         }
     );
 } else {
-    p_addEventListener( window, 'scroll', Event_scrollEventHandler );
+    p_addEventListener( window, 'scroll', Event_scrollEventHandler, { passive : true } );
 };
 
 p_listenUnloadEvent(
     function(){
         if( !Event_NO_SCROLL_EVENT ){
-            p_removeEventListener( window, 'scroll', Event_scrollEventHandler );
+            p_removeEventListener( window, 'scroll', Event_scrollEventHandler, { passive : true } );
         };
     }
 );

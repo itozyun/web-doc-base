@@ -9,16 +9,14 @@ p_listenFocusinEvent = function( elm, callback ){
         p_addEventListener( elm, 'focusin', callback );
         return;
     } else if( FocusinEvent_USE_DOMFOCUSIN ){
-        p_addEventListener( elm, 'DOMFocusIn', callback, false );
+        p_addEventListener( elm, 'DOMFocusIn', callback );
         return;
     } else if( FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55 ){
         if( !FocusinEvent_watchActiveElementTimerID ){
             FocusinEvent_watchActiveElementTimerID = p_setLoopTimer( FocusinEvent_watchActiveElement );
         };
-    } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
+    } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 || FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
         p_addEventListener( document, 'focus', FocusinEvent_onfocus, true );
-    } else if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
-        p_addEventListener( document, 'focus', FocusinEvent_onfocus, { capture : true, passive : false } );
     } else {
         return;
     };
@@ -49,10 +47,8 @@ p_unlistenFocusinEvent = function( elm, callback ){
                 if( !pairs.length ){
                     if( FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55 ){
                         FocusinEvent_watchActiveElementTimerID = p_clearLoopTimer( FocusinEvent_watchActiveElementTimerID );
-                    } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
+                    } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 || FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
                         p_removeEventListener( document, 'focus', FocusinEvent_onfocus, true );
-                    } else if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
-                        p_removeEventListener( document, 'focus', FocusinEvent_onfocus, { capture : true, passive : false } );
                     };
                 };
                 break;

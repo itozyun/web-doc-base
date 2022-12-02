@@ -59,18 +59,6 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_Windows        = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win16 ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win32 ) ||
                        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win64 ),
 
-// https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
-    p_passiveSupported = !p_Trident && !p_Tasman && (new Function(
-        'try{' +
-            'var r,o=Object.defineProperty({},"passive",{' +
-                'get:function(){r=!0}' +
-            '});' +
-            'addEventListener("t",o,o);' +
-            'removeEventListener("t",o,o);' +
-            'return r' +
-        '}catch(e){}'
-    ))(),
-
     p_jsGte15 = p_Trident < 5.5,
 
     p_cssName = ( p_Tasman        ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_MACIE5 :

@@ -9,6 +9,19 @@ p_removeEventListener = EventTraget_removeEventListener;
 /** ===========================================================================
  * private
  */
+
+// https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener
+var EventTarget_passiveSupported = !p_Trident && !p_Tasman && (new Function(
+        'try{' +
+            'var r,o=Object.defineProperty({},"passive",{' +
+                'get:function(){r=!0}' +
+            '});' +
+            'addEventListener("t",o,o);' +
+            'removeEventListener("t",o,o);' +
+            'return r' +
+        '}catch(e){}'
+    ))();
+
 /** @const {!Object<string, !Object>} */
 var EventTarget_LISTENERS        = {};
 var EventTarget_USE_ATTACH       = false; // 5 <= p_Trident && p_Trident < 9,
@@ -20,12 +33,12 @@ var EventTarget_safariPreventDefault;
  * @param {!EventTarget} eventTarget
  * @param {string} type
  * @param {!function(!Event)} callback
- * @param {!Object|boolean=} option
+ * @param {!AddEventListenerOptions|boolean=} option
  */
 function EventTraget_addEventListener( eventTarget, type, callback, option ){
     if( EventTarget_USE_STANDERD ){
         eventTarget.addEventListener( type, callback,
-            option ? ( p_passiveSupported ? option : option.capture ) : false );
+            option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
     } else {
         var listener      = { eventTarget : eventTarget, callback : callback },
             eventListners = EventTarget_LISTENERS[ type ],
@@ -65,12 +78,12 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
  * @param {!EventTarget} eventTarget
  * @param {string} type
  * @param {function(!Event)} callback
- * @param {!Object|boolean=} option
+ * @param {!AddEventListenerOptions|boolean=} option
  */
 function EventTraget_removeEventListener( eventTarget, type, callback, option ){
     if( EventTarget_USE_STANDERD ){
         eventTarget.removeEventListener( type, callback,
-            option ? ( p_passiveSupported ? option : option.capture ) : false );
+            option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
     } else {
         var eventListners = EventTarget_LISTENERS[ type ],
             onType        = 'on' + type,
@@ -91,8 +104,12 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                 if( EventTarget_USE_ATTACH ){
                     eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
                 } else {
-                    eventTarget[ onType ] = p_emptyFunction;
-                    eventTarget[ onType ] = null; // undefined だと error https://twitter.com/itozyun/status/1501010455007207424
+                    if( p_Trident ){
+                        eventTarget[ onType ] = p_emptyFunction;
+                        eventTarget[ onType ] = null; // undefined だと error https://twitter.com/itozyun/status/1501010455007207424
+                    } else {
+                        delete eventTarget[ onType ];
+                    };
                 };
             };
         };
@@ -129,8 +146,12 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                     e.currentTarget = eventTarget;
                 };
                 eventTarget.__handleEvent__( e );
-                eventTarget.__handleEvent__ = p_emptyFunction;
-                eventTarget.__handleEvent__ = undefined;
+                if( p_Trident ){
+                    eventTarget.__handleEvent__ = p_emptyFunction;
+                    eventTarget.__handleEvent__ = undefined;
+                } else {
+                    delete eventTarget.__handleEvent__;
+                };
             } else if( p_Presto < 7.2 && eventTarget === document && listener.eventTarget === window ){
                 window.__handleEvent__ = listener.callback;
                 window.__handleEvent__( e );
