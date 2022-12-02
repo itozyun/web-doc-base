@@ -53,7 +53,7 @@ function DOM_getElementsByTagName( rootElementOrDocument, tag ){
         ret = [],
         i = 0, l = elms.length;
 
-    for( l = elms.length; i < l; ++i ){
+    for( ; i < l; ++i ){
         ret[ i ] = elms[ i ];
     };
     return ret;

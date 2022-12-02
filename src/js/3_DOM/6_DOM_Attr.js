@@ -115,7 +115,7 @@ function DOM_addClassName( elm, className ){
 
     if( !DOM_hasClassName( elm, className ) ){
         if( _className = DOM_getClassName( elm ) ){
-            className = ' ' + className; 
+            _className += ' '; 
         };
         DOM_setClassName( elm, _className + className );
     };
