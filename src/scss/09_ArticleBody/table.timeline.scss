@@ -1,6 +1,15 @@
 .tl {
     border-width : 0;
 
+    thead,               // for Firefox
+    thead td, thead th { // for Chrome
+        @if( $UA_Modern ){
+            @include media(pc) {
+                position : static; // stop sticky
+            }
+        }
+    }
+
     th, td {
         background : none !important;
     }

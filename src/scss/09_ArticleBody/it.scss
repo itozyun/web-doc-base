@@ -35,13 +35,13 @@
         }
 
         pre & {
+            padding : 0;
+            margin  : 0;
             @if( $UA_Opera70 ){
                 background-color : transparent !important; // Opera 7.0 は background:0 0 が黒くなる
             } @else {
                 background : none !important;
             }
-            padding    : 0;
-            margin     : 0;
         }
 
         @include media(screen) {

@@ -124,14 +124,17 @@ a {
 @if( $CANUSE_TARGET_PSEUDO_CLASS ){
     :target, :target * {
         background   : $COLOR_ACCENT !important;
-        color        : #fff  !important;
-        border-color : #fff  !important;
+        color        : #fff !important;
+        border-color : #fff !important;
     }
     th:target, td:target {
         border-color : inherit !important;
     }
     :target th, :target td {
         border-color : $COLOR_ACCENT !important;
+    }
+    li:target {
+        color : inherit !important; // Light mode でだけ :target 時に <li> のリスト項目の箇条書き記号が見えにくくなる <li id=""><p>.... とすること
     }
 }
 
