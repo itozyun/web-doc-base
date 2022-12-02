@@ -1,8 +1,7 @@
-if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /// Gecko <= 0.9.4
-    // keydown を監視
+if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
     // Gecko <=0.9.4 は階層の離れた要素にフォーカスしない!
-    //   focus, blur をキャンセルできる
-    // Safari ~5 は階層の離れた要素にフォーカスしない!
+    //   focus, blur をキャンセルできる, keydown を監視
+    // Windows + Safari 3~5.1 はフォーム部品以外にフォーカスしない, 間違い! ユーザー設定による!
     //   keydown をキャンセルする
     var TabNavigation_shiftKeyPressed;
     var TabNavigation_keydownTime;
@@ -288,6 +287,8 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
                     TabNavigation_focusTimerID = p_clearTimer( TabNavigation_focusTimerID );
                 }; */
                 TabNavigation_nextFocusableElement = undefined;
+                // window から離れて戻ってきた場合、最後に focus していた要素に focusin+blur が起り focus になる
+                // なので、window から離れた際に TabNavigation_currentFocusedElement を消さない
                 /*
                 var elm = TabNavigation_currentFocusedElement;
                 if( elm ){
@@ -307,11 +308,10 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 || p_WebKit < 536 ){ /
             if( TabNavigation_currentFocusedElement === blurElement ){
                 TabNavigation_currentFocusedElement = undefined;
                 if( TabNavigation_findNextFocusableElement( blurElement ) ){
-                    if( TabNavigation_focusTimerID ){
-                        p_clearTimer( TabNavigation_focusTimerID );
+                    if( !TabNavigation_focusTimerID ){ // timer がセットされている場合はそれを再利用
+                        TabNavigation_focusTimerID = p_setTimer( TabNavigation_setFocus );
                     };
-                    TabNavigation_focusTimerID = p_setTimer( TabNavigation_setFocus );
-                    // TabNavigation_setFocus();
+                    // TabNavigation_setFocus(); ここで呼んでも focus しない
                 };
             };
         };
