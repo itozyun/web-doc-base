@@ -2,6 +2,7 @@
 .AAuthor p,
 .ADesc p,
 .note .box,
+aside,
 dl .box,
 figure,
 li .box,
@@ -357,6 +358,10 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
+aside {
+  padding: 0;
+  border: 0
+}
 input {
   box-sizing: content-box;
   height: 1em
@@ -456,6 +461,9 @@ a:focus * {
 td:target,
 th:target {
   border-color: inherit!important
+}
+li:target {
+  color: inherit!important
 }
 h4,
 h5,

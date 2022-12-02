@@ -349,6 +349,9 @@ td:target,
 th:target {
   border-color: inherit!important
 }
+li:target {
+  color: inherit!important
+}
 .RichLink b,
 h1,
 h2,

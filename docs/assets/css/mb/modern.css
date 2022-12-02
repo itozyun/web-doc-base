@@ -548,6 +548,9 @@ td:target,
 th:target {
   border-color: inherit!important
 }
+li:target {
+  color: inherit!important
+}
 h4,
 h5,
 h6 {
