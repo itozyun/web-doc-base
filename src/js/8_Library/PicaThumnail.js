@@ -1,6 +1,6 @@
 /** @type {!Array.<!PicaThumbnail>} */
-var PicaThumbnail_IMGS      = [];
-var PicaThumbnail_MARGIN_LR = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
+var PicaThumbnail_IMGS         = [];
+var PicaThumbnail_MARGIN_LR    = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
 var PicaThumbnail_keyEventType = 5.5 <= p_Trident && p_Trident < 8 ? 'keypress' : 'keydown';
 /**
  * @typedef {{
@@ -9,7 +9,7 @@ var PicaThumbnail_keyEventType = 5.5 <= p_Trident && p_Trident < 8 ? 'keypress' 
  *   thumbWidth          : string,
  *   originalUrl         : (string|undefined),
  *   elmImg              : !HTMLImageElement,
- *   isGoogleUserContent : boolean,
+ *   isGoogleUserContent : number,
  *   replaced            : (boolean|undefined),
  *   clazz               : (string|undefined),
  *   elmCap              : (!HTMLSpanElement|undefined),
@@ -56,14 +56,15 @@ if( !p_cloudRendering ){
                     // objCap ここで
                     while( parent = p_DOM_getParentNode( parent ) ){
                         if( p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
+                            p_DOM_addClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
                             elmCap     = parent;
-                            captionCSS = elmCap.style.cssText.toLowerCase(); // IE5 では大文字で返し setCssText に使えない! => WIDTH
+                            captionCSS = p_DOM_getCssText( elmCap );
                             break;
                         };
                     };
 
                     PicaThumbnail_IMGS.push(
-                        /** @type {PicaThumbnail} */ ({
+                        /** @type {!PicaThumbnail} */ ({
                             elmA                : elmA,
                             elmCap              : elmCap,
                             captionCSS          : captionCSS,
@@ -72,6 +73,8 @@ if( !p_cloudRendering ){
                             originalUrl         : href,
                             elmImg              : elmImg,
                             isGoogleUserContent : guc
+                                                      ? ( 0 < href.indexOf( '/img/a/' ) ? 2 : 3 )
+                                                      : ( 0 < href.indexOf( '.bp.blogspot.com/' ) ? 1 : 0 )
                         })
                     );
                 };
@@ -102,7 +105,7 @@ function PicaThumbnail_onClickThumbnail( e ){
     if( key !== 13 && e.type === PicaThumbnail_keyEventType ) return;
 
     for( ; i; ){
-        picaThumbnail = /** @type {PicaThumbnail} */ (PicaThumbnail_IMGS[ --i ]);
+        picaThumbnail = PicaThumbnail_IMGS[ --i ];
         if( picaThumbnail.elmImg === this || picaThumbnail.elmA === this ){
             elmImg = picaThumbnail.elmImg;
             elmA = parent = picaThumbnail.elmA;
@@ -114,51 +117,51 @@ function PicaThumbnail_onClickThumbnail( e ){
                 p_DOM_setClassName( elmA, /** @type {string} */ (picaThumbnail.clazz) );
                 if( elmCap = picaThumbnail.elmCap ){
                     p_DOM_setCssText( elmCap, picaThumbnail.captionCSS );
-                    p_DOM_setClassName( elmCap, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ + ' ' + DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
+                    p_DOM_removeClassName( elmCap, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE );
                 };
             } else {
                 // small -> Large
                 if( src = picaThumbnail.originalUrl ){
                     delete picaThumbnail.originalUrl;
 
-                    while( parent = p_DOM_getParentNode( parent ) ){
-                        if( p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
-                            p_DOM_addClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
+                    if( picaThumbnail.isGoogleUserContent ){
+                        while( parent = p_DOM_getParentNode( parent ) ){
+                            if( !p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
+                                tag = p_DOM_getTagName( parent );
+                                if( tag === 'DIV' || tag === 'P'  || tag === 'BLOCKQUOT' ||
+                                    tag === 'LI'  || tag === 'DD' || tag === 'TD' || tag === 'TH' ||
+                                    tag === 'FORM' || tag === 'PRE' ) break;
+                            };
+                        };
+
+                        w = ( parent.offsetWidth | 0 ) - PicaThumbnail_MARGIN_LR; // - 1;
+                        if( 1600 < w ) w = 1600;
+
+                        if( picaThumbnail.isGoogleUserContent === 2 ){
+                            elms = src.split( '=' );
+                            l    = elms.length;
+                            if( size = elms[ l - 1 ] ){
+                                n = parseFloat( size.substr( 1 ) );
+                                if( n && size === 's' + n ){
+                                    elms[ l - 1 ] = 'w' + w;
+                                } else {
+                                    elms[ l ] = 'w' + w;
+                                };
+                            };
+                            src = elms.join( '=' );
                         } else {
-                            tag = p_DOM_getTagName( parent );
-                            if( tag === 'DIV' || tag === 'P'  || tag === 'BLOCKQUOT' ||
-                                tag === 'LI'  || tag === 'DD' || tag === 'TD' || tag === 'TH' ||
-                                tag === 'FORM' || tag === 'PRE' ) break;
-                        };
-                    };
-
-                    w = ( parent.offsetWidth | 0 ) - PicaThumbnail_MARGIN_LR; // - 1;
-                    if( 1600 < w ) w = 1600;
-
-                    if( picaThumbnail.isGoogleUserContent && 0 < src.split( '/' ).pop().indexOf( '=' ) ){
-                        elms = src.split( '=' );
-                        l    = elms.length;
-                        if( size = elms[ l - 1 ] ){
-                            n = parseFloat( size.substr( 1 ) );
-                            if( n && size === 's' + n ){
-                                elms[ l - 1 ] = 'w' + w;
-                            } else {
-                                elms[ l ] = 'w' + w;
+                            elms = src.split( '/' );
+                            l    = elms.length;
+                            if( size = elms[ l - 2 ] ){
+                                n = parseFloat( size.substr( 1 ) );
+                                if( n && size === 's' + n ){
+                                    elms[ l - 2 ] = 'w' + w;
+                                } else {
+                                    elms.splice( l - 1, 0, 'w' + w );
+                                };
                             };
+                            src = elms.join( '/' );
                         };
-                        src = elms.join( '=' );
-                    } else if( picaThumbnail.isGoogleUserContent || 0 < src.indexOf( '.bp.blogspot.com/' ) ){
-                        elms = src.split( '/' );
-                        l    = elms.length;
-                        if( size = elms[ l - 2 ] ){
-                            n = parseFloat( size.substr( 1 ) );
-                            if( n && size === 's' + n ){
-                                elms[ l - 2 ] = 'w' + w;
-                            } else {
-                                elms.splice( l - 1, 0, 'w' + w );
-                            };
-                        };
-                        src = elms.join( '/' );
                     };
                     picaThumbnail.large = src;
                 };
