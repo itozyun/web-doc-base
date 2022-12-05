@@ -58,6 +58,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_IEVersion      = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4, // brand が無いので
     p_Windows        = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win16 ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win32 ) ||
                        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win64 ),
+    p_GoogleBot      = 0 <= navigator.userAgent.indexOf( 'Googlebot/' ),
 
     p_jsGte15 = p_Trident < 5.5,
 
@@ -81,7 +82,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_isSecure = location.href.indexOf( 'https' ) === 0,
 
     p_scripts, p_assetUrl,
-    p_cssDir = DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR ?  DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR + '/': '',
+    p_cssDir = DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR ? DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR + '/' : '',
     p_isMobile, p_screenModeDir = '',
     p_useMobile = // p_Gecko < 0.9 ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||

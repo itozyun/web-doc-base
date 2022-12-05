@@ -46,7 +46,8 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             };
                             break;
                         case 'SCRIPT' :
-                            if( p_DOM_hasAttribute( kid, 'async' ) ) break;
+                            // json-ld を削除しない!
+                            if( p_GoogleBot || p_DOM_hasAttribute( kid, 'async' ) ) break;
                             if( noRemoveScriptTag ){
                                 kid.innerText = ''; // Only for Opera 7.2x
                                 noRemoveScriptTag = false;
