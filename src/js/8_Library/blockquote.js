@@ -42,10 +42,11 @@ p_listenLoadEvent(
                 p_DOM_insertElement( elm, tag, { className : className } );
             
             p_DOM_insertElement( elmCite, 'a',
-                isExternalUrl( link ) ? { target : '_blank', rel : 'nofollow noopener noreferrer', href : link, tabIndex : p_Presto ? '0' : undefined } :
-                                        { href : link, tabIndex : p_Presto ? '0' : undefined },
-                                    title
-                               );
+                isExternalUrl( link )
+                    ? { target : '_blank', rel : 'nofollow noopener noreferrer', href : link }
+                    : { href : link },
+                title
+            );
         };
 
         function createUrl( cite ){

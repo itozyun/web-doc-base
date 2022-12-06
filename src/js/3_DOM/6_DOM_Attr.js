@@ -30,10 +30,14 @@ function DOM_getTagName( elm ){
  * @return {string}
  */
 function DOM_getAttribute( elm, name ){
-    if( p_Presto < 8 ){
+    if( p_Presto < 8 || p_Trident < 5.5 ){
         name = m_toCamelCase( name );
     };
-    return elm.getAttribute( name ) || '';
+    var value = elm.getAttribute( name );
+    if( p_Presto && name === 'tabIndex' ){
+        return value === '-0' ? '' : value === '' ? '-1' : value;
+    };
+    return value || '';
 };
 
 /** 3.
@@ -42,10 +46,10 @@ function DOM_getAttribute( elm, name ){
  * @param {string|number} value
  */
 function DOM_setAttribute( elm, name, value ){
-    if( p_Presto && name === 'tab-index' ){
+    if( p_Presto && name === 'tab-index' ){ // tabIndex と tab-index で動作を変えている…
         value === '-1' ? elm.removeAttribute( 'tabIndex' ) : elm.setAttribute( 'tabIndex', value );
     } else {
-        if( p_Presto < 8 ){
+        if( p_Presto < 8 || p_Trident < 5.5 ){
             name = m_toCamelCase( name );
         };
         elm.setAttribute( name, value );
@@ -57,10 +61,14 @@ function DOM_setAttribute( elm, name, value ){
  * @param {string} name
  */
 function DOM_removeAttribute( elm, name ){
-    if( p_Presto < 8 ){
-        name = m_toCamelCase( name );
+    if( p_Presto && name === 'tab-index' ){ // tabIndex と tab-index で動作を変えている…
+        elm.getAttribute( 'tabIndex' ) !== '-0' && elm.setAttribute( 'tabIndex', '-0' ); // -1|1 => ''
+    } else {
+        if( p_Presto < 8 || p_Trident < 5.5 ){
+            name = m_toCamelCase( name );
+        };
+        elm.removeAttribute( name );
     };
-    elm.removeAttribute( name );
 };
 
 /** 5.
@@ -68,10 +76,13 @@ function DOM_removeAttribute( elm, name ){
  * @param {string} name
  */
 function DOM_hasAttribute( elm, name ){
-    if( p_Presto < 8 ){
+    if( p_Presto && name === 'tab-index' ){
+        return elm.getAttribute( 'tabIndex' ) !== '-0';
+    };
+    if( p_Presto < 8 || p_Trident < 5.5 ){
         name = m_toCamelCase( name );
     };
-    return elm.hasAttribute ? elm.hasAttribute( name ) : elm.getAttribute( name ) != null;
+    return elm.hasAttribute ? elm.hasAttribute( name ) : elm.getAttribute( name ) != null; // TODO outerHTML
 };
 
 /*

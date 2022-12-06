@@ -9,6 +9,9 @@ p_DOM_getCssText  = DOM_getCssText;
  * private
  */
 function DOM_setStyle( elm, name, value ){
+    if( p_Presto < 8 || p_Trident < 5.5 ){
+        name = m_toCamelCase( name );
+    };
     elm.style[ name ] = value;
 };
 

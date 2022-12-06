@@ -85,3 +85,5 @@ var __vml = 0;
 // http://help.dottoro.com/ljnillej.php
 /** @type {!function()} */
 opera.postError = function(){};
+
+var CamelCaseAttributeNames = { tagIndex : '-1' };

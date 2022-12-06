@@ -74,6 +74,9 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
                         };
                     };
                 };
+                if( p_Presto && ( tag === 'a' || tag === 'A' ) && attrs.href && !attrs[ 'tag-index' ] && !attrs.tagIndex ){
+                    p_DOM_setAttribute( elm, 'tagIndex', '-0' ); // tagIndex が明示されていない場合、focus 可能にする
+                };
             };
 
             if( !DOM_hasMemoryLeakInOrderOfAppend ){
