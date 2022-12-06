@@ -270,7 +270,7 @@
 
 // Useful CSS Properties
     $CANUSE_MAX_AND_MIN_SIZES    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7;
-    $CANUSE_OVERFLOW_X_AND_Y     : $UA_Modern or $IS_WIN_IE or $UA_MacIE5 or $UA_Gecko12 or $IS_GECKO13_TO_19;
+    $CANUSE_OVERFLOW_X_AND_Y     : $UA_Modern or $IS_WIN_IE or $UA_MacIE5;
     $CANUSE_MARGIN_AUTO          : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9 or $UA_IE7 or $UA_IE6 or $UA_IE55;
     $CANUSE_DISPLAY_INLINE_BLOCK : $UA_Modern or $UA_Gecko09 or $UA_Gecko12 or $IS_GECKO13_TO_19 or $IS_OLD_OPERA or $IS_IE8_OR_9 or $UA_MacIE5; // Gecko 0.9.4.1~
     $CANUSE_BOX_SIZING           : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
