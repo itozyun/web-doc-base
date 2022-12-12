@@ -12,7 +12,6 @@ p_CSSOM_getRawValueOfRule        = CSSOM_getRawValueOfRule;
 p_CSSOM_getIndexOfRule           = CSSOM_getIndexOfRule;
 p_CSSOM_getLastIndexOfRule       = CSSOM_getLastIndexOfRule;
 
-
 /** ===========================================================================
  * private
  */
@@ -78,57 +77,6 @@ function CSSOM_renumber( cssRules, indexStart ){
     };
 };
 
-var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 TODO 0.9 <= p_Gecko ??
-                                     8 <= p_Presto && p_Presto < 9;
-var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
-
-var CSSOM_HAS_STYLESHEET_OBJECT    = !p_Trident &&
-        ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
-        var elmStyle = p_DOM_insertElement( p_html, 'style' ),
-            result = !!CSSOM_getStyleSheet( elmStyle );
-
-        if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
-            Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
-            Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
-            Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
-            Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
-            Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
-        };
-        p_DOM_remove( elmStyle );
-        return result;
-    })();
-
-Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
-
-var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit &&
-    ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
-    // https://amachang.hatenablog.com/entry/20070703/1183445387
-    // Safari で CSSStyleSheet オブジェクトを生成する方法
-    var elmStyle = p_DOM_insertElement( p_html, 'style' ),
-        result;
-
-    p_DOM_insertTextNode( elmStyle, '' );
-    result = !!CSSOM_getStyleSheet( elmStyle );
-    if( DEFINE_WEB_DOC_BASE__DEBUG && result ){
-        Debug.log( '[CSSOM] CSSStyleSheet @insertRule : ' + !!CSSOM_getStyleSheet( elmStyle ).insertRule );
-        Debug.log( '[CSSOM] CSSStyleSheet @addRule : ' + !!CSSOM_getStyleSheet( elmStyle ).addRule );
-        Debug.log( '[CSSOM] CSSStyleSheet @cssRules : ' + !!CSSOM_getStyleSheet( elmStyle ).cssRules );
-        Debug.log( '[CSSOM] CSSStyleSheet @rules : ' + !!CSSOM_getStyleSheet( elmStyle ).rules );
-        Debug.log( '[CSSOM] CSSStyleSheet @cssText : ' + ( CSSOM_getStyleSheet( elmStyle ).cssText === '' ) );
-    };
-    p_DOM_remove( elmStyle );
-    return result;
-})();
-
-if( !CSSOM_HAS_STYLESHEET_OBJECT ){
-    Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_WITH_PATCH : ' + CSSOM_HAS_STYLESHEET_WITH_PATCH );
-};
-
-p_CSSOM_canuse = CSSOM_USE_DATAURI_FALLBACK  || CSSOM_USE_TEXTCONTENT_FALLBACK  ? 1 :
-                 CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ? 2 : 0;
-
-Debug.log( '[CSSOM] p_CSSOM_canuse : ' + p_CSSOM_canuse );
-
 /**
  * @return {!Array.<!HTMLStyleElement|!HTMLLinkElement>}
  */
@@ -159,14 +107,6 @@ function CSSOM_getStyleSheetElementList(){
         };
     };
     return elementList;
-};
-
-/**
- * @param {!HTMLStyleElement|!HTMLLinkElement} elm
- * @return {!CSSStyleSheet|!StyleSheet}
- */
-function CSSOM_getStyleSheet( elm ){
-    return /** @type {!CSSStyleSheet|!StyleSheet} */ (elm.styleSheet || elm.sheet);
 };
 
 /**
@@ -212,7 +152,7 @@ function CSSOM_createStyleSheet( opt_media, opt_index ){
             //   WebKit hack :(
             p_DOM_insertTextNode( elmStyle, '' );
         };
-        styleSheet = CSSOM_getStyleSheet( elmStyle );
+        styleSheet = m_CSSOM_getStyleSheet( elmStyle );
 
         if( opt_media ){
             p_DOM_setAttribute( elmStyle, 'media', opt_media );
@@ -360,6 +300,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 { type : 'text/css', media : styleSheet.media }
             );
             elmStyle.innerText = cssText; // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
+            // .textContent HTML 要素の innerText プロパティで要素が生成されうる https://nanto.asablo.jp/blog/2021/12/10/9446902
         /* } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でエラー
             styleSheet.insertRule( 'z{a:0}', ruleIndex );
             CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText; */
