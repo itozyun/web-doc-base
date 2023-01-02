@@ -2,7 +2,6 @@
 .AAuthor p,
 .ADesc p,
 .note .box,
-aside,
 dl .box,
 figure,
 input,
@@ -349,13 +348,6 @@ input,
 textarea {
   font-size: 1em
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .Magazine-date,
 .Magazine-main,
 .btn,
@@ -410,10 +402,6 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-aside {
-  padding: 0;
-  border: 0
-}
 input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -423,6 +411,7 @@ input {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 body,
@@ -858,12 +847,13 @@ blockquote hr {
   display: inline-block;
   border-width: 2px;
   cursor: pointer;
+  line-height: 1;
   padding: .45em 1em
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -1278,7 +1268,7 @@ kbd {
   vertical-align: middle
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: 2px;
@@ -1510,6 +1500,11 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -2025,6 +2020,10 @@ div .box .jsCapLarge {
   float: none;
   margin: 0 0 1em
 }
+#jsSidebarFixer {
+  width: 100%;
+  left: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -2132,6 +2131,9 @@ tv {
   }
   .hscroll {
     margin: 1em 0;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch
   }
   .hscroll::-webkit-scrollbar {
@@ -2247,7 +2249,6 @@ tv {
     }
   }
   #jsSidebarFixer {
-    width: 100%;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -2764,10 +2765,6 @@ only screen and (max-width:950px) {
   .h1 {
     display: block;
     margin: 0 0 .5em
-  }
-  .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
   }
   .hscroll table {
     white-space: nowrap

@@ -610,7 +610,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -676,12 +676,6 @@ input.btn {
 .AAuthor,
 .ADesc {
   margin: 2em .5em
-}
-#jsSidebarFixer,
-.Cover img,
-.Pager,
-.Search-txt {
-  width: 100%
 }
 :link .medal,
 :visited .medal {
@@ -758,7 +752,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -837,7 +831,8 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block
+  display: block;
+  width: 100%
 }
 .Cover h2 {
   background: #3079ed;
@@ -980,6 +975,9 @@ kbd {
 }
 #lH .lSi {
   padding-right: 3.2em
+}
+.Search-txt {
+  width: 100%
 }
 .Search .btn {
   top: 1em;
@@ -1236,6 +1234,7 @@ dl.note dd {
 .Pager {
   color: #f8fbf8;
   display: table;
+  width: 100%;
   table-layout: fixed
 }
 .Pager span {
@@ -1353,6 +1352,10 @@ ol.linenums {
   width: 100%;
   max-width: 100%
 }
+#jsSidebarFixer {
+  width: 100%;
+  left: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1442,7 +1445,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

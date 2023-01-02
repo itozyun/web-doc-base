@@ -1,4 +1,8 @@
 @charset "UTF-8";
+pre,
+textarea {
+  overflow: auto
+}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -95,11 +99,6 @@ sup {
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-.hscroll,
-pre,
-textarea {
-  overflow: auto
 }
 .links,
 pre {
@@ -261,6 +260,11 @@ li p,
 tr p {
   line-height: 1.2
 }
+.Search .btn,
+.btn,
+p {
+  line-height: 1.9
+}
 .Pager-top,
 .c,
 input[type=submit] {
@@ -282,10 +286,6 @@ input[type=submit] {
 :visited,
 body {
   color: #111
-}
-.btn,
-p {
-  line-height: 1.9
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -631,7 +631,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -784,7 +784,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: -moz-inline-box;
   border-width: .1em;
@@ -1025,7 +1025,6 @@ blockquote:after {
 .Search .btn {
   -moz-box-sizing: content-box;
   padding: 0;
-  line-height: 1.9;
   right: 0;
   width: 3em;
   height: 1.9em;
@@ -1480,7 +1479,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

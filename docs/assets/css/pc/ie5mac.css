@@ -557,8 +557,8 @@ strong {
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -715,7 +715,7 @@ kbd {
   display: inline-block
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: .1em;
@@ -1394,7 +1394,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

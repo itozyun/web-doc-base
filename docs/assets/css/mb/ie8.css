@@ -103,13 +103,6 @@ tbody th {
 .lS2 {
   width: 48.5%
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .BlogArchive th,
 .Magazine-date {
   word-break: normal;
@@ -358,6 +351,7 @@ del {
 }
 input {
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 body,
@@ -722,12 +716,13 @@ strong {
   border-width: 2px;
   cursor: pointer;
   text-align: center;
+  line-height: 1;
   padding: .45em 1em
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -1099,7 +1094,7 @@ kbd {
   font-family: monospace
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: 2px;
@@ -1318,6 +1313,11 @@ kbd {
   margin: 1em 0;
   line-height: 1.4
 }
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
+}
 .lS .RichLink a {
   padding: .7em .5em 0
 }
@@ -1526,10 +1526,6 @@ div .caption iframe,
 div .caption img {
   margin: 0 0 .571em;
   float: none
-}
-.hscroll {
-  overflow-x: auto;
-  overflow-y: hidden
 }
 kbd {
   cursor: pointer;
@@ -1844,7 +1840,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

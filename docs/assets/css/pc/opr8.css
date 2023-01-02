@@ -240,18 +240,6 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
-.AHead-labels a,
-.Cover h2,
-.Magazine-date,
-.Magazine-main,
-.SocialBtns *,
-.Subscribe a,
-.btn,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
 h4,
 h5,
 h6,
@@ -267,10 +255,6 @@ sub {
 }
 img {
   height: auto
-}
-.btn,
-input {
-  height: 2.1em
 }
 cite,
 code,
@@ -312,15 +296,9 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-.Header,
-.Header h1,
-.aa,
 input {
+  height: 2.1em;
   line-height: 1
-}
-.btn,
-p {
-  line-height: 1.9
 }
 textarea {
   overflow: auto
@@ -329,6 +307,9 @@ textarea {
 .tl,
 .tl th {
   border-width: 0
+}
+p {
+  line-height: 1.9
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -531,6 +512,15 @@ h2:after {
   content: " ";
   display: block
 }
+.AHead-labels a,
+.SocialBtns a,
+.Subscribe a,
+.btn {
+  line-height: 1.9;
+  height: 2.1em;
+  vertical-align: top;
+  cursor: pointer
+}
 .wn:after {
   background: red!important
 }
@@ -569,6 +559,10 @@ thead th {
   background: #777;
   border-color: #ddd #818181;
   color: #f8fbf8
+}
+tbody th,
+td {
+  vertical-align: top
 }
 tbody th {
   background: #ddd;
@@ -675,11 +669,10 @@ strong {
 }
 .btn {
   display: inline-block;
-  cursor: pointer;
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -715,7 +708,6 @@ strong {
   display: block;
   margin: 0 0 1em 8em
 }
-#jsSidebarFixer,
 .commonForm-wrap * {
   width: 100%
 }
@@ -828,15 +820,12 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: .1em;
-  cursor: pointer;
   text-align: center;
-  line-height: 1.9;
   padding: 0 1em;
-  height: 2.1em;
   margin: 0 0 .5em
 }
 .AHead-labels :visited {
@@ -918,6 +907,7 @@ kbd {
 }
 .Cover h2 {
   display: inline-block;
+  vertical-align: top;
   background: #3079ed;
   border: 1px solid #3079ed;
   color: #f8fbf8;
@@ -972,9 +962,13 @@ pre var {
   padding: 1em 0;
   display: table
 }
+.Magazine-date,
+.Magazine-main {
+  display: table-cell;
+  vertical-align: top
+}
 .Magazine-date {
   padding-right: 1.5em;
-  display: table-cell;
   line-height: 1
 }
 .Magazine-dd,
@@ -984,8 +978,7 @@ pre var {
 }
 .Magazine-main {
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em;
-  display: table-cell
+  padding-left: 1.5em
 }
 .aa,
 blockquote,
@@ -1046,6 +1039,11 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1278,7 +1276,8 @@ dl.note dd {
 }
 .tl th {
   padding: .5em .8em .5em .5em;
-  text-align: left
+  text-align: left;
+  vertical-align: top
 }
 .tl td {
   padding: .5em .8em;
@@ -1433,6 +1432,10 @@ ol.linenums {
   width: 100%;
   max-width: 100%
 }
+#jsSidebarFixer {
+  width: 100%;
+  left: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1524,7 +1527,8 @@ projection {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,
@@ -2080,9 +2084,6 @@ projection {
   .box .caption {
     float: none;
     margin: 0 auto 1.143em
-  }
-  .hscroll {
-    overflow: auto
   }
   .hscroll table {
     white-space: nowrap

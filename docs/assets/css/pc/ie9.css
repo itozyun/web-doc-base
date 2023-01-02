@@ -1,8 +1,14 @@
 @charset "UTF-8";
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
+}
 .AAuthor p,
 .ADesc p,
 .note .box,
-aside,
 dl .box,
 figure,
 li .box,
@@ -106,13 +112,6 @@ th {
 tbody th {
   background: #ddd
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .AHead h1,
 th {
   text-align: left
@@ -167,14 +166,6 @@ tbody :hover th {
 .links,
 pre {
   white-space: pre-wrap
-}
-.Magazine-date,
-.Magazine-main,
-.btn,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
 }
 .Cover img,
 .caption,
@@ -358,12 +349,9 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-aside {
-  padding: 0;
-  border: 0
-}
 input {
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 body,
@@ -598,6 +586,14 @@ h2:after {
   border-width: 2px 0 0;
   content: " "
 }
+.AHead-labels a,
+.SocialBtns a,
+.Subscribe a,
+.btn {
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: top
+}
 .wn:after {
   background: red!important
 }
@@ -727,13 +723,12 @@ strong {
 .btn {
   display: inline-block;
   border-width: 2px;
-  cursor: pointer;
   padding: .45em 1em
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -1124,15 +1119,12 @@ kbd {
   color: #1a1a1a
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: 2px;
-  cursor: pointer;
   text-align: center;
-  line-height: 1;
   padding: .45em 1em;
-  vertical-align: top;
   margin: 0 0 .5em
 }
 .AHead-labels :visited {
@@ -1273,10 +1265,13 @@ pre var {
   padding: 1em 0;
   display: table
 }
+.Magazine-date,
+.Magazine-main {
+  display: table-cell
+}
 .Magazine-date {
   padding-right: 1.5em;
   font-weight: 700;
-  display: table-cell;
   line-height: 1
 }
 .Magazine-dd,
@@ -1286,8 +1281,7 @@ pre var {
 }
 .Magazine-main {
   border-width: 0 0 0 .5em;
-  padding-left: 1.5em;
-  display: table-cell
+  padding-left: 1.5em
 }
 .aa,
 blockquote,
@@ -1348,6 +1342,11 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1884,7 +1883,9 @@ div .box .jsCapLarge {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,
@@ -2132,10 +2133,6 @@ screen and (max-width:950px) {
   .h1 {
     display: block;
     margin: 0 0 .5em
-  }
-  .hscroll {
-    overflow-x: auto;
-    overflow-y: hidden
   }
   .hscroll table {
     white-space: nowrap

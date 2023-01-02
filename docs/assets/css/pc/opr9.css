@@ -243,10 +243,6 @@ sub {
 img {
   height: auto
 }
-.btn,
-input {
-  height: 2.1em
-}
 cite,
 code,
 dfn,
@@ -278,10 +274,8 @@ tr blockquote pre,
 ul {
   margin: 1em
 }
-.Header,
-.Header h1,
-.aa,
 input {
+  height: 2.1em;
   line-height: 1
 }
 body,
@@ -302,7 +296,6 @@ body {
   background: #1a1a1a;
   color: #111
 }
-.btn,
 p {
   line-height: 1.9
 }
@@ -659,10 +652,12 @@ strong {
 .btn {
   display: inline-block;
   cursor: pointer;
-  padding: 0 1em
+  line-height: 1.9;
+  padding: 0 1em;
+  height: 2.1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -809,7 +804,7 @@ kbd {
   color: #1a1a1a
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: .1em;
@@ -1053,6 +1048,11 @@ kbd {
   height: 1.7em;
   line-height: 1.7em;
   left: .05em
+}
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
 }
 .Search input:focus,
 .Search input:hover {
@@ -1536,7 +1536,8 @@ projection {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,
@@ -1786,9 +1787,6 @@ screen and (max-width:950px) {
   .h1 {
     display: block;
     margin: 0 0 .5em
-  }
-  .hscroll {
-    overflow: auto
   }
   .hscroll table {
     white-space: nowrap

@@ -358,7 +358,7 @@ th {
 .ABody h2,
 .ABody h2 *,
 .AHead-labels a:active,
-.SocialBtns :active,
+.SocialBtns a:active,
 .Subscribe a:active,
 .btn:active {
   border-color: #3079ed
@@ -598,7 +598,6 @@ input.btn {
   display: block;
   margin: 0 1em 0 8em
 }
-#jsSidebarFixer,
 .commonForm-wrap * {
   width: 100%
 }
@@ -719,7 +718,7 @@ tr .box {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1317,6 +1316,10 @@ ol.linenums {
 .jsPicaLarge {
   clear: both
 }
+#jsSidebarFixer {
+  width: 100%;
+  left: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1433,7 +1436,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

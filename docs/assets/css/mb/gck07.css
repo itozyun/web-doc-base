@@ -1,4 +1,8 @@
 @charset "UTF-8";
+pre,
+textarea {
+  overflow: auto
+}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -72,11 +76,6 @@ body {
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-.hscroll,
-pre,
-textarea {
-  overflow: auto
 }
 #lH .lSi,
 .AAuthor,
@@ -622,7 +621,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -780,7 +779,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1466,7 +1465,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

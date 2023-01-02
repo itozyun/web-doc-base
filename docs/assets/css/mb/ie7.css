@@ -48,13 +48,6 @@ tr ul {
 .lS2 {
   width: 48.5%
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .baseColor,
 .medal {
   background: #f8fbf8
@@ -70,6 +63,13 @@ pre,
 td,
 th {
   word-break: break-all
+}
+.Header,
+.Header h1,
+.aa,
+.btn,
+input {
+  line-height: 1
 }
 .Cover-img,
 .Magazine-main,
@@ -90,19 +90,6 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
-.AAuthor,
-.Comment p,
-.Cover,
-.Magazine-item,
-.Magazine-snippet,
-.RichLink a,
-.Search .btn,
-.box,
-.lMi,
-.lSi,
-.lX {
-  overflow: hidden
-}
 code,
 kbd,
 var {
@@ -112,6 +99,20 @@ var {
 tbody th,
 td {
   vertical-align: top
+}
+.AAuthor,
+.Comment p,
+.Cover,
+.Magazine-item,
+.Magazine-snippet,
+.Pager,
+.RichLink a,
+.Search .btn,
+.box,
+.lMi,
+.lSi,
+.lX {
+  overflow: hidden
 }
 body,
 input,
@@ -542,6 +543,7 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
+.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -798,7 +800,7 @@ tr .box {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1204,10 +1206,6 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
-.hscroll {
-  overflow-x: auto;
-  overflow-y: hidden
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1296,10 +1294,6 @@ dl.note dd {
   margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
-}
-.Pager {
-  color: #f8fbf8;
-  overflow: hidden
 }
 .Pager span {
   padding: 1.5em 0;
@@ -1503,7 +1497,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

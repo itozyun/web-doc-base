@@ -59,13 +59,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .baseColor,
 .medal {
   background: #f8fbf8
@@ -85,6 +78,13 @@ th {
 .AHead h1,
 th {
   text-align: left
+}
+.Header,
+.Header h1,
+.aa,
+.btn,
+input {
+  line-height: 1
 }
 #jsMain,
 #jsSide,
@@ -734,7 +734,7 @@ tr .box {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1337,7 +1337,8 @@ ol.linenums {
   margin: 0 auto 1em
 }
 #jsSidebarFixer {
-  width: 100%
+  width: 100%;
+  left: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -1453,7 +1454,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

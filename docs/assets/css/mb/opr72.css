@@ -84,10 +84,6 @@ tr p {
 .aa {
   font-family: monospace
 }
-.hscroll,
-textarea {
-  overflow: auto
-}
 .links,
 pre {
   white-space: -o-pre-wrap
@@ -249,10 +245,6 @@ sub {
 img {
   height: auto
 }
-.btn,
-input {
-  height: 2.1em
-}
 cite,
 code,
 dfn,
@@ -302,12 +294,18 @@ kbd,
 var {
   margin: 0 .1em
 }
+input {
+  height: 2.1em
+}
 .AHead-labels i,
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
 [type=hidden] {
   display: none
+}
+textarea {
+  overflow: auto
 }
 a,
 b,
@@ -443,6 +441,13 @@ h2:after,
 tfoot th {
   border-width: 2px 0 0
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover th,
+h2:after {
+  border-color: #3079ed
+}
 iframe,
 img {
   max-width: 94%
@@ -511,7 +516,6 @@ h2:after {
   left: 0;
   bottom: -2px;
   border-style: solid;
-  border-color: #3079ed;
   content: " ";
   display: block
 }
@@ -682,7 +686,8 @@ strong {
   border-width: .1em;
   cursor: pointer;
   text-align: center;
-  padding: 0 1em
+  padding: 0 1em;
+  height: 2.1em
 }
 .AHead-labels :link,
 .btn:link {
@@ -740,12 +745,6 @@ strong {
   border-color: #111;
   background: #111;
   color: #f8fbf8
-}
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover th {
-  border-color: #3079ed
 }
 .medal-gold {
   border-color: #e7bd2c;
@@ -826,7 +825,7 @@ kbd {
   color: #1a1a1a
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   vertical-align: top;
@@ -839,7 +838,7 @@ kbd {
   margin: 0 0 .5em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus {
   border-color: #3079ed;
   color: #3079ed;
@@ -1548,7 +1547,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

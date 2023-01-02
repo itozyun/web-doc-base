@@ -619,7 +619,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -771,7 +771,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: -moz-inline-box;
   border-width: .1em;
@@ -1186,10 +1186,6 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
-.hscroll {
-  overflow-x: auto;
-  overflow-y: hidden
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1476,7 +1472,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

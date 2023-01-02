@@ -610,7 +610,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -677,7 +677,6 @@ input.btn {
 .ADesc {
   margin: 2em .5em
 }
-#jsSidebarFixer,
 .Cover img,
 .Pager,
 .Search-txt {
@@ -758,7 +757,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1347,6 +1346,10 @@ ol.linenums {
   -moz-box-sizing: border-box;
   max-width: 100%
 }
+#jsSidebarFixer {
+  width: 100%;
+  left: 0
+}
 .baseColor .btn:link {
   background: #24c;
   border-color: #24c;
@@ -1436,7 +1439,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

@@ -71,10 +71,6 @@ tr p {
 .aa {
   font-family: monospace
 }
-.hscroll,
-textarea {
-  overflow: auto
-}
 .Cover-img,
 .Magazine-main,
 kbd:hover,
@@ -300,6 +296,7 @@ var {
   margin: 0 .1em
 }
 textarea {
+  overflow: auto;
   background: Window
 }
 * {
@@ -666,7 +663,7 @@ strong {
   padding: 0 1em
 }
 .AHead-labels a:focus,
-.SocialBtns :focus,
+.SocialBtns a:focus,
 .Subscribe a:focus,
 .btn:focus {
   border-color: #3079ed;
@@ -819,7 +816,7 @@ kbd {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-table;
   vertical-align: top;
@@ -1505,7 +1502,8 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow: auto
   }
   .note .hscroll,
   dl .hscroll,

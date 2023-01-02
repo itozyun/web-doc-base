@@ -98,13 +98,6 @@ th {
 tbody th {
   background: #ddd
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .AHead h1,
 th {
   text-align: left
@@ -357,6 +350,7 @@ del {
 }
 input {
   box-sizing: content-box;
+  line-height: 1;
   height: 1em
 }
 body,
@@ -707,12 +701,13 @@ strong {
   display: inline-block;
   border-width: 2px;
   cursor: pointer;
+  line-height: 1;
   padding: .45em 1em
 }
 .AHead-labels a:active,
 .AHead-labels a:focus,
-.SocialBtns :active,
-.SocialBtns :focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
 .Subscribe a:active,
 .Subscribe a:focus,
 .btn:active,
@@ -1076,7 +1071,7 @@ kbd {
   font-family: monospace
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   display: inline-block;
   border-width: 2px;
@@ -1290,6 +1285,11 @@ kbd {
 .RichLink p {
   margin: 1em 0;
   line-height: 1.4
+}
+.Header,
+.Header h1,
+.aa {
+  line-height: 1
 }
 .lS .RichLink img {
   float: right;
@@ -1824,7 +1824,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

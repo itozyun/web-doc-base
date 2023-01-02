@@ -395,7 +395,7 @@ th {
 .ABody h2,
 .ABody h2 *,
 .AHead-labels a:active,
-.SocialBtns :active,
+.SocialBtns a:active,
 .Subscribe a:active,
 .btn:active {
   border-color: #3079ed
@@ -760,7 +760,7 @@ tr .box {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1159,10 +1159,6 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
-.hscroll {
-  overflow-x: auto;
-  overflow-y: hidden
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px
@@ -1434,7 +1430,9 @@ ol.linenums {
   }
   .hscroll {
     margin: 1em 0;
-    width: 100%
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,

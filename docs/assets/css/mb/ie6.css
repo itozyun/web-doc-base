@@ -48,13 +48,6 @@ tr ul {
 .lS2 {
   width: 48.5%
 }
-.Header,
-.Header h1,
-.aa,
-.btn,
-input {
-  line-height: 1
-}
 .baseColor,
 .medal {
   background: #f8fbf8
@@ -70,6 +63,13 @@ pre,
 td,
 th {
   word-break: break-all
+}
+.Header,
+.Header h1,
+.aa,
+.btn,
+input {
+  line-height: 1
 }
 .Cover-img,
 .Magazine-main,
@@ -753,7 +753,7 @@ tr .box {
   display: none
 }
 .AHead-labels a,
-.SocialBtns *,
+.SocialBtns a,
 .Subscribe a {
   border-width: .1em;
   cursor: pointer;
@@ -1160,10 +1160,6 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
-.hscroll {
-  overflow-x: auto;
-  overflow-y: hidden
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1473,7 +1469,9 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden
   }
   .note .hscroll,
   dl .hscroll,
