@@ -687,6 +687,11 @@ input.btn {
 .ADesc {
   margin: 2em .5em
 }
+#jsSidebarFixer,
+.Cover img,
+.Pager {
+  width: 100%
+}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -842,8 +847,7 @@ kbd {
 }
 .Cover img {
   margin: 0;
-  display: block;
-  width: 100%
+  display: block
 }
 .Cover h2 {
   display: -moz-inline-box;
@@ -1242,7 +1246,6 @@ dl.note dd {
 .Pager {
   color: #f8fbf8;
   display: table;
-  width: 100%;
   table-layout: fixed
 }
 .Pager span {
@@ -1359,10 +1362,6 @@ ol.linenums {
   -moz-box-sizing: border-box;
   width: 100%;
   max-width: 100%
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;

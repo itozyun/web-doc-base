@@ -1337,8 +1337,7 @@ ol.linenums {
   margin: 0 auto 1em
 }
 #jsSidebarFixer {
-  width: 100%;
-  left: 0
+  width: 100%
 }
 .baseColor .btn:link {
   background: #24c;

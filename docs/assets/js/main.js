@@ -1074,7 +1074,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           if (m || x) {
             var Sb = K.offsetWidth;
           }
-          N = m ? "position:fixed;width:" + Sb + "px;top:" + (Na - w + aa) + "px" : O ? "top:" + Na + "px" : "position:absolute;top:" + Na + "px";
+          N = m ? "position:fixed;width:" + Sb + "px;top:" + (Na - w + aa) + "px" : O ? "top:" + Na + "px" : "position:absolute;top:" + Na + "px;left:0";
           if (x && N) {
             var tb = 8 > z ? " " : ",";
             N += ";clip:rect(" + (0 > Na ? -Na + "px" + tb + Sb + "px" + tb + t : "0" + tb + Sb + "px" + tb + (Na + t < r ? t : r - Na)) + "px" + tb + "0)";

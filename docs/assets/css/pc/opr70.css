@@ -885,6 +885,12 @@ kbd {
   font-size: .825em;
   padding: .6em
 }
+.tl td,
+.tl th,
+pre code,
+pre var {
+  background: transparent!important
+}
 .Cover h3 {
   font-size: 1.33em;
   margin: 0;
@@ -1199,8 +1205,7 @@ var {
 pre code,
 pre var {
   padding: 0;
-  margin: 0;
-  background-color: transparent!important
+  margin: 0
 }
 .links [href]:before {
   content: ">"
@@ -1229,10 +1234,6 @@ pre var {
 }
 dl.note dd {
   margin-left: 1em
-}
-.tl td,
-.tl th {
-  background: 0 0!important
 }
 .tl thead td {
   border-width: 0 0 1px .3em
@@ -1790,11 +1791,11 @@ ol.linenums {
   }
   .AHead-labels a:link {
     color: #006;
-    background: 0 0
+    background: transparent
   }
   .AHead-labels a:visited {
     color: #606;
-    background: 0 0
+    background: transparent
   }
   .BreadcrumbList {
     font-size: .83em;

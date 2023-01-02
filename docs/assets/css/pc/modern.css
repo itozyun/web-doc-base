@@ -883,6 +883,7 @@ blockquote hr {
   padding: .45em 0;
   display: block
 }
+#jsSidebarFixer,
 .Cover img,
 .commonForm-wrap *,
 .jsCap {
@@ -2019,10 +2020,6 @@ ol.linenums {
 div .box .jsCapLarge {
   float: none;
   margin: 0 0 1em
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;
@@ -3852,11 +3849,6 @@ only screen and (max-width:240px) {
   body {
     word-break: break-all
   }
-  @-moz-document url-prefix() {
-    body {
-      word-wrap: break-word
-    }
-  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
@@ -3903,6 +3895,11 @@ only screen and (max-width:240px) {
   }
   code .dec {
     color: #003
+  }
+  @-moz-document url-prefix() {
+    body {
+      word-wrap: break-word
+    }
   }
 }
 @media only print and (orientation:landscape) {

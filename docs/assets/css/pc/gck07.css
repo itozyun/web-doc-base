@@ -677,6 +677,7 @@ input.btn {
 .ADesc {
   margin: 2em .5em
 }
+#jsSidebarFixer,
 .Cover img,
 .Pager,
 .Search-txt {
@@ -1345,10 +1346,6 @@ ol.linenums {
 .jsPicaLarge img {
   -moz-box-sizing: border-box;
   max-width: 100%
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;

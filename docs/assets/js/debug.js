@@ -1105,7 +1105,7 @@ var Y, eb;
           if (qa || vb) {
             var jc = ya.offsetWidth;
           }
-          da = qa ? "position:fixed;width:" + jc + "px;top:" + ($a - W + ka) + "px" : mb ? "top:" + $a + "px" : "position:absolute;top:" + $a + "px";
+          da = qa ? "position:fixed;width:" + jc + "px;top:" + ($a - W + ka) + "px" : mb ? "top:" + $a + "px" : "position:absolute;top:" + $a + "px;left:0";
           if (vb && da) {
             var Hb = 8 > B ? " " : ",";
             da += ";clip:rect(" + (0 > $a ? -$a + "px" + Hb + jc + "px" + Hb + Ea : "0" + Hb + jc + "px" + Hb + ($a + Ea < Ib ? Ea : Ib - $a)) + "px" + Hb + "0)";

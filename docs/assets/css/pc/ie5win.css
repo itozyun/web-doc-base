@@ -62,6 +62,7 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+#jsSidebarFixer,
 .commonForm-wrap *,
 .lX,
 pre code,
@@ -1322,10 +1323,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge {
   clear: both
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;

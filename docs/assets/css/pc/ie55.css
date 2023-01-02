@@ -598,6 +598,7 @@ input.btn {
   display: block;
   margin: 0 1em 0 8em
 }
+#jsSidebarFixer,
 .commonForm-wrap * {
   width: 100%
 }
@@ -1315,10 +1316,6 @@ ol.linenums {
 .jsCapLarge,
 .jsPicaLarge {
   clear: both
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;

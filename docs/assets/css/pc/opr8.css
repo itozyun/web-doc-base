@@ -708,6 +708,7 @@ strong {
   display: block;
   margin: 0 0 1em 8em
 }
+#jsSidebarFixer,
 .commonForm-wrap * {
   width: 100%
 }
@@ -1431,10 +1432,6 @@ ol.linenums {
   box-sizing: border-box;
   width: 100%;
   max-width: 100%
-}
-#jsSidebarFixer {
-  width: 100%;
-  left: 0
 }
 .baseColor .btn:link {
   background: #24c;
