@@ -3,9 +3,9 @@
  *
  * 途中でサイドバーの要素が変化する -> 公開メソッドを未実装
  */
-var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
-    SidebarFixer_ID_OF_WHEEL_ELEMENTS                = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
-    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT      = !( p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) ),
+var SidebarFixer_ONSCROL_FROM_TIMER             = 7,
+    SidebarFixer_ID_OF_WHEEL_ELEMENTS           = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
+    SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT = !( p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) || p_usePatchOfTabFocusForGeckoLte094 ),
     /*
      * positionFixed
      *   original :
@@ -37,7 +37,6 @@ var SidebarFixer_ONSCROL_FROM_TIMER                  = 7,
             ),
     SidebarFixer_USE_CLIP = SidebarFixer_CANUSE_POSITION_FIXED || p_Trident === 6 /* mouse wheel のある6だけ */ || p_Gecko < 1,
     SidebarFixer_USE_POSITION_RELATIVE = p_Presto < 7.5,
-    SidebarFixer_elmRoot,
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
     SidebarFixer_elmWrap,
@@ -58,7 +57,6 @@ if( !p_isMobile && !p_cloudRendering ){
 
             var i = -1, id;
 
-            SidebarFixer_elmRoot = document.compatMode !== 'CSS1Compat' ? p_body : p_html || p_body;
             SidebarFixer_elmSide = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID );
             SidebarFixer_elmMain = p_elmMain;
 
@@ -117,20 +115,7 @@ if( !p_isMobile && !p_cloudRendering ){
 };
 
 /**
- * @param {...number} arg
- * @return {number}
- */
-function SidebarFixer_getFinite( arg ){
-    var args = arguments, i = 0, l = args.length;
-        
-    for( ; i < l; ++i ){
-        if( isFinite( args[ i ] ) ) return args[ i ];
-    };
-    return 0;
-};
-
-/**
- * @param {Event|undefined|number=} param Eventオブジェクトの場合もあれば、タイマーで呼ばれた場合は 0 が入っている
+ * @param {!Event|number=} param Eventオブジェクトの場合もあれば、タイマーで呼ばれた場合は 0 が入っている
  */
 function SidebarFixer_onscroll( param ){
     var focuedElementYAndHeight = SidebarFixer_focuedElementYAndHeight;
@@ -159,7 +144,7 @@ function SidebarFixer_onscroll( param ){
             SidebarFixer_dummyScrollTimerID = p_clearTimer( SidebarFixer_dummyScrollTimerID );
         };
         // scrollY 再取得
-        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        SidebarFixer_lastScrollY = p_getDocumentScrollY();
     };
 
     if( focuedElementYAndHeight ){
@@ -189,7 +174,7 @@ function SidebarFixer_onWindowBlur(){
  * @param {number|undefined=} wheelDeltaY
  * @param {number=} focusedElementY
  * @param {number=} focusedElementHeight
- * @return {boolean|!Array.<number>|undefined} ホイールイベントをキャンセルするか? または SidebarFixer_focuedElementYAndHeight の保持する用
+ * @return {!Array.<number>|boolean|undefined} ホイールイベントをキャンセルするか? または SidebarFixer_focuedElementYAndHeight を保持する用
  */
 function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
     var scrollY        = SidebarFixer_lastScrollY,
@@ -200,7 +185,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
         preventWheel   = true;
 
     function createCSSTextBySidebarOffsetY( _y ){
-        var sidebarWidth;
+        var sidebarWidth, _;
 
         sidebarOffsetY = _y;
         if( SidebarFixer_transformProp ){
@@ -208,31 +193,33 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                       _y + ( SidebarFixer_use3D ? 'px,0)' : 'px)' ) +
                       ';-webkit-overflow-scrolling:touch';
         } else if( _y !== 0 ){
-            if( !SidebarFixer_USE_POSITION_RELATIVE && ( SidebarFixer_USE_CLIP || SidebarFixer_CANUSE_POSITION_FIXED ) ){
+            if( SidebarFixer_CANUSE_POSITION_FIXED || SidebarFixer_USE_CLIP ){
                 sidebarWidth = SidebarFixer_elmSide.offsetWidth;
             };
+
             if( SidebarFixer_CANUSE_POSITION_FIXED ){
                 cssText = 'position:fixed;width:' + sidebarWidth + 'px;top:' + ( _y - scrollY + containerY ) + 'px';
             } else if( SidebarFixer_USE_POSITION_RELATIVE ){
-                // pos:relative でないと動作しない
+                // Opera 7.x, pos:relative でないと動作しない
                 cssText = 'top:' + _y + 'px';
             } else {
+                // IE <=6, Opera 8, Gecko <1, Fennec<6 iOS <5, AOSP <2.2
                 // pos:relative でも良いが、よりレイアウトコストの低い pos:absolute を使用
-                cssText = 'position:absolute;left:0;top:' + _y + 'px';
+                cssText = 'position:absolute;top:' + _y + 'px';
             };
 
             if( SidebarFixer_USE_CLIP && cssText ){
-                cssText += ';' +
+                _ = p_Trident < 8 ? ' ' : ',';
+                cssText += ';clip:rect(' +
                     (
-                    _y < 0 ? 
-                        'clip:rect(' + ( -_y ) + 'px ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
-                    _y + sidebarHeight < containerHeight ?
-                        'clip:rect(0 ' + sidebarWidth + 'px ' + sidebarHeight + 'px 0)' :
-                        'clip:rect(0 ' + sidebarWidth + 'px ' + ( containerHeight - _y ) + 'px 0)'
-                    );
-                if( !( p_Trident < 8 ) ){
-                    cssText = cssText.split( ' ' ).join( ',' );
-                };
+                    _y < 0
+                        ? ( -_y ) + 'px' + _ + sidebarWidth + 'px' + _ + sidebarHeight
+                        : '0' + _ + sidebarWidth + 'px' + _ +
+                            ( _y + sidebarHeight < containerHeight
+                                ? sidebarHeight
+                                : containerHeight - _y
+                            )
+                    ) + 'px' + _ + '0)';
             };
         };
     };
@@ -251,14 +238,14 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             containerY = 0,
             elm        = elmMain;
 
-        while( elm && elm !== p_body ){
+        while( elm && elm !== p_body ){ // p_getElementOffsetY
             containerY += elm.offsetTop;
             elm = elm.offsetParent;
         };
 
         sidebarOffsetY = SidebarFixer_sidebarOffsetY;
 
-        var viewportHeight         = SidebarFixer_getFinite( window.innerHeight, SidebarFixer_elmRoot.offsetHeight ),
+        var viewportHeight         = p_getViewPortHeight(),
             mainColHeight          = elmMain.offsetHeight,
             sidebarHeight          = SidebarFixer_elmWrap.offsetHeight,
             containerHeight        = sidebarHeight < mainColHeight ? mainColHeight : sidebarHeight,
@@ -297,7 +284,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                     DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.1.3' );
                 };
                 SidebarFixer_ignoreScrollAfterFocus = undefined;
-                window.scroll( SidebarFixer_getFinite( window.pageXOffset, window.scrollX, SidebarFixer_elmRoot.scrollLeft, p_body.scrollLeft ), scrollYTo );
+                window.scroll( 0, scrollYTo );
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.1.*' );
                 // window.scroll 内で SidebarFixer_onscroll が起る場合、SidebarFixer_focuedElementYAndHeight は undefined になっている
                 // このコールバックを終えてから SidebarFixer_onscroll が起きる場合、SidebarFixer_focuedElementYAndHeight を復帰する。
@@ -464,23 +451,29 @@ function SidebarFixer_onwheel( e ){
     if( DEFINE_WEB_DOC_BASE__DEBUG ){
         SidebarFixer_showEvent( 'm' );
     };
-    // https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mousewheel
-    // TODO axis
-    // https://w3g.jp/blog/tools/wheelevent_crossbrowser
-    // ホイール系イベント2014年版クロスブラウザ
+
     if( p_Gecko ){
-        SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+        SidebarFixer_lastScrollY = p_getDocumentScrollY(); // 必要?
         if( DEFINE_WEB_DOC_BASE__DEBUG ){
             SidebarFixer_updateViewport();
         };
     };
-    var hitChild = this !== e.target,
-        deltaY   = hitChild && SidebarFixer_getFinite( e.deltaY, e.wheelDeltaY / 120, e.wheelDelta / -120,  e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 1 ) ),
-        cancel   = hitChild && deltaY && SidebarFixer_fix( /** @type {number} */ ( deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 ) );
 
-    if( cancel ){
-        e.preventDefault();
-        e.stopPropagation();
+    if( this !== e.target ){
+        var finite = isFinite,
+            deltaY = finite( e.deltaY )
+                        ? e.deltaY
+                   : finite( e.wheelDeltaY )
+                        ? e.wheelDeltaY / 120
+                   : finite( e.wheelDelta )
+                        ? e.wheelDelta / -120
+                        : e.detail / ( e.type === 'MozMousePixelScroll' ? 45 : 1 ),
+            cancel = deltaY && SidebarFixer_fix( /** @type {number} */ ( deltaY <= 9 ? ( deltaY <= -9 ? -3 : deltaY ) : 3 ) );
+
+        if( cancel ){
+            e.preventDefault();
+            e.stopPropagation();
+        };
     };
 };
 
@@ -495,7 +488,7 @@ function SidebarFixer_onfocus( e ){
     var useContains     = p_Gecko,
         buggyOffsetTop  = p_Gecko && ua.conpare( p_engineVersion, '0.9.4' ) < 0, // for Gecko <=0.9.3
         elmFocused      = e.target,
-        elmWrapper      = SidebarFixer_elmSide.firstChild,
+        elmWrapper      = SidebarFixer_elmWrap,
         focusedElementY = 0,
         focusedElementHeight, elm, rect;
 
@@ -513,6 +506,18 @@ function SidebarFixer_onfocus( e ){
         } else {
             focusedElementHeight = elmFocused.offsetHeight;
             elm = elmFocused;
+            if( buggyOffsetTop ){ // keydown で offsetTop を表示してどこで狂ううのか？調べる => #SidebarFixer * {pos:relative} ??
+                var tops = [];
+                while( elm && ( useContains ? p_DOM_contains( elmWrapper, elm ) : ( elmWrapper !== elm ) ) ){
+                    while( elm.previousSibling ){
+                        elm = elm.previousSibling;
+                        elm.tagName && tops.unshift( elm.tagName + ':' + elm.offsetTop );
+                    };
+                    elm = elm.offsetParent;
+                };
+                Debug.log( tops.join() );
+                elm = elmFocused;
+            };
             while( elm && ( useContains ? p_DOM_contains( elmWrapper, elm ) : ( elmWrapper !== elm ) ) ){
                 if( buggyOffsetTop ){
                     while( elm.previousSibling ){
@@ -528,7 +533,7 @@ function SidebarFixer_onfocus( e ){
         };
 
         if( !SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT ){
-            SidebarFixer_lastScrollY = SidebarFixer_getFinite( window.pageYOffset, window.scrollY, SidebarFixer_elmRoot.scrollTop, p_body.scrollTop );
+            SidebarFixer_lastScrollY = p_getDocumentScrollY();
             SidebarFixer_fix( undefined, focusedElementY, focusedElementHeight );
         } else {
             SidebarFixer_focuedElementYAndHeight = [ focusedElementY, focusedElementHeight ];
@@ -575,11 +580,13 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 for( ; childNodes.length; ){
                     elmTestRoot.appendChild( childNodes.shift() );
                 };
-                p_DOM_setCssText( elmTestRoot, 'width:100%; height:100%; overflow:auto; position:relative;' );
+                if( !( p_Gecko < 0.9 ) ){
+                    p_DOM_setCssText( elmTestRoot, 'width:100%;height:100%;overflow:auto;position:relative' );
+                    p_DOM_setCssText( p_html, 'overflow:hidden' );
+                    p_DOM_setCssText( p_body, 'overflow:hidden' );
+                };
 
                 elmTestRoot = p_DOM_insertElementAfter( elmTestRoot, 'div' );
-                p_DOM_setCssText( p_html, 'overflow:hidden' );
-                p_DOM_setCssText( p_body, 'overflow:hidden' );
                 p_DOM_setCssText( elmTestRoot, 'position:absolute;z-index:9999;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );
             } else {
                 p_DOM_setCssText( elmTestRoot, 'position:fixed;z-index:9999;top:0;left:0;background:#000;color:#6f6;padding:0 .5em 0 70px' );

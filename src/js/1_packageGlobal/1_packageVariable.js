@@ -135,7 +135,8 @@ var p_noRemoveScriptTag,
     p_canUseDynamicExternalScript,
     p_canUseJSONPOnlyInIframe,
     p_loadExternalScript,
-    p_setExternalScriptIsLoaded;
+    p_setExternalScriptIsLoaded,
+    p_usePatchOfTabFocusForGeckoLte094 = false;
 
 function p_notUndefined( val ){
     return val !== undefined;

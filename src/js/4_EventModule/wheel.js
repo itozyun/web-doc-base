@@ -1,3 +1,8 @@
+// https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mousewheel
+// TODO axis
+// https://w3g.jp/blog/tools/wheelevent_crossbrowser
+// ホイール系イベント2014年版クロスブラウザ
+
 /** ===========================================================================
  * export to packageGlobal
  * 

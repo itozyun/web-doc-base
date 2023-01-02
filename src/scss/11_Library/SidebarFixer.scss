@@ -17,7 +17,6 @@
             }
 
             #jsSidebarFixer {
-                width : 100%;
                 /* http://blog.webcreativepark.net/2012/10/19-161432.html */
                 -webkit-backface-visibility : hidden;
                    -moz-backface-visibility : hidden;
@@ -64,8 +63,9 @@
     #jsSidebarFixer {
         @if( $IS_Opera7x ){
             position : relative; /* for Opera ~7.27, absolute が不正 */
-        } @else if( $IS_LTE_GECKO09 or $IS_Opera7x or $UA_Opera8 or $IS_LTE_WIN_IE6 ){
-            width : 100%; // for position:absolute, Chrome 1, Safari 3.2 でアニメ―ションを防ぐ
+        } @else if( $UA_Modern or $IS_LTE_GECKO09 or $UA_Opera8 or $IS_LTE_WIN_IE6 ){
+            width : 100%; // for position:absolute または :fixed の Chrome 1, Safari 3.2 でアニメ―ションを防ぐ
+            left  : 0;
         }
     }
     @if( $UA_Modern or $IS_Opera7x or $UA_Opera8 ){
