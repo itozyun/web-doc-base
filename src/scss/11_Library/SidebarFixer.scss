@@ -65,7 +65,6 @@
             position : relative; /* for Opera ~7.27, absolute が不正 */
         } @else if( $UA_Modern or $IS_LTE_GECKO09 or $UA_Opera8 or $IS_LTE_WIN_IE6 ){
             width : 100%; // for position:absolute または :fixed の Chrome 1, Safari 3.2 でアニメ―ションを防ぐ
-            left  : 0;
         }
     }
     @if( $UA_Modern or $IS_Opera7x or $UA_Opera8 ){
