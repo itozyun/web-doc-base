@@ -140,3 +140,28 @@ var p_noRemoveScriptTag,
 function p_notUndefined( val ){
     return val !== undefined;
 };
+
+/**================================================================
+ *  https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/fontface.js
+ *  http://www.webapps-online.com/online-tools/user-agent-strings/dv/browser135552/nokia-browser
+ * 
+ *  http://blog.kaelig.fr/post/33373448491/testing-font-face-support-on-mobile-and-tablet
+ *   Some browsers declare they support @font-face but don’t display the glyphs correctly… 
+ *    Symbian 10 - Nokia Browser 8.3.1.4
+ *    Android 2.1 - stock browser
+ *    Android 2.1 - Dolphin
+ *    WebOS 2 - stock browser
+ *    WebOS 3 - stock browser
+ *    Android 4 - UCBrowser
+ *    Windows Phone 7 - IE9
+ */
+var p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST = // Unavailable due to block list
+        p_WebKit < 525 || // Safari <3.1
+        p_Presto < 10  || // block NDS, NDSi
+        p_Gecko && !p_FirefoxGte35 || // Gecko <1.9.1 p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', {} ) でエラー
+        p_AOSP < 2.2 ||
+        p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB         ) ||
+        p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
+        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MeeGo ) ||
+        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_WebOS ) ||
+        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_N3DS  );

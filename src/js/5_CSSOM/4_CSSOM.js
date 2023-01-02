@@ -195,19 +195,19 @@ function CSSOM_deleteStyleSheet( styleSheet ){
 /** p_CSSOM_createStyleSheet() 経由で生成した StyleSheet インスタンスにルールを追加します。
  *  (a)font-face, (a)import の可否はブラウザによって異なります。(a)page は未実装。
  *
- * @param {!CSSStyleSheet|StyleSheet|StyleSheetFallback} styleSheet
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet
  * @param {string} selectorTextOrAtRule
  * @param {!Object|string} urlOrStyle
  * @param {number=} opt_ruleIndex
- * @return {number} ruleIndex
+ * @return {number} ruleIndex を返す, 追加に失敗すると-1を返す
  */
 function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrStyle, opt_ruleIndex ){
     var data       = CSSOM_getDataByStyleSheet( styleSheet ),
         elmOwner   = data._elmOwner,
         cssRules   = data._cssRules,
         isImport   = selectorTextOrAtRule === '@import',
-        isPage     = selectorTextOrAtRule === '@page',
         isFontFace = selectorTextOrAtRule === '@font-face',
+     // isPage     = selectorTextOrAtRule === '@page',
         length     = cssRules.length,
         importLength, i, ruleIndex, styles = '', cssText,
         property, newCSSRule, rawCSSRules, totalRules, nextSibling, elmStyle;
@@ -259,7 +259,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
         } else {
             if( isImport ){
                 styleSheet.addImport( /** @type {string} */ (urlOrStyle), ruleIndex );
-            } else if( 5.5 <= p_Trident && isPage ){
+            // } else if( isPage && 5.5 <= p_Trident ){
                 // styleSheet.addPageRule( selectorTextOrAtRule, styles, ruleIndex );
             } else {
                 styleSheet.addRule( selectorTextOrAtRule, styles, ruleIndex /* - importLength */ );
@@ -274,7 +274,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             Debug.log( '[CSSOM] rules.length の増分' + ( rawCSSRules.length - totalRules ) );
         };
     } else if( CSSOM_HAS_STYLESHEET_OBJECT || CSSOM_HAS_STYLESHEET_WITH_PATCH ){
-        if( ( p_Windows && p_WebKit || p_Chromium < 28 ) && isImport ){
+        if( isImport && ( p_Windows && p_WebKit || p_Chromium < 28 ) ){
             // .insertRule を使うと SyntaxError: DOM Exception 12: An invalid or illegal string was specified.
             //   Windows + WebKit で起きる問題の模様
             //
@@ -292,18 +292,16 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 'link',
                 { href : urlOrStyle, rel : 'stylesheet', type : 'text/css' } 
             );
-        } else if( p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE && isFontFace ){
-            // WebFont 非対応ブラウザではエラーが起るので、ここには入らない!
+        } else if( isFontFace && p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
+            return -1;
+        } else if( isFontFace && p_CSSOM_FAIL_TO_INSERT_FONTFACE_RULE ){
             elmStyle = newCSSRule._elmFallback = p_DOM_insertElementAfter(
                 elmOwner,
                 'style',
                 { type : 'text/css', media : styleSheet.media }
             );
             elmStyle.innerText = cssText; // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
-            // .textContent HTML 要素の innerText プロパティで要素が生成されうる https://nanto.asablo.jp/blog/2021/12/10/9446902
-        /* } else if( isFontFace && ( p_Gecko && !p_FirefoxGte35 ) ){ // Firefox 3.0.9 でエラー
-            styleSheet.insertRule( 'z{a:0}', ruleIndex );
-            CSSOM_getCssRules( styleSheet )[ ruleIndex ].cssText = cssText; */
+            // TODO .textContent HTML 要素の innerText プロパティで要素が生成されうる https://nanto.asablo.jp/blog/2021/12/10/9446902
         } else {
             styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクタの扱いは?
         };
