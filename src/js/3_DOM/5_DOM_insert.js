@@ -80,7 +80,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
             };
 
             if( !DOM_hasMemoryLeakInOrderOfAppend ){
-                textContent != null && DOM_insertTextNode( elm, textContent );
+                textContent != null && DOM_insertTextNode( elm, textContent ); // TODO USE elm.textContent = m_escapeHTML(textContent)
             };
         };
         return elm;

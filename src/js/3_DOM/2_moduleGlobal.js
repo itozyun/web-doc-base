@@ -35,9 +35,9 @@ function m_toHTMLString( tagName, attrs, textContent ){
 
     if( textContent != null ){
         if( m_isIE4DOM && tagName !== m_FAKE_TEXTNODE_TAGNAME ){
-            html[ ++j ] = '<' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>' + textContent + '</' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>';
+            html[ ++j ] = '<' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>' + m_escapeHTML( textContent ) + '</' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>';
         } else {
-            html[ ++j ] = textContent;
+            html[ ++j ] = m_escapeHTML( textContent );
         };
     };
 
@@ -49,7 +49,7 @@ function m_toHTMLString( tagName, attrs, textContent ){
             chars  = str.split( '' ),
             i      = chars.length,
             chr;
-    
+
         while( i ){
             chr = chars[ --i ];
             if( 'A' <= chr && chr <= 'Z' ){
@@ -59,6 +59,10 @@ function m_toHTMLString( tagName, attrs, textContent ){
         };
         return result.join( '' );
     };
+};
+
+function m_escapeHTML( text ){
+    return text.split( '&' ).join( '&amp;' ).split( '<' ).join( '&lt;' ).split( '>' ).join( '&gt;' )
 };
 
 function m_toCamelCase( str ){
