@@ -13,7 +13,8 @@ p_listenFocusinEvent = function( elm, callback ){
         return;
     } else if( FocusinEvent_USE_POLYFILL_FOR_IE_LTE_55 ){
         if( !FocusinEvent_watchActiveElementTimerID ){
-            FocusinEvent_watchActiveElementTimerID = p_setLoopTimer( FocusinEvent_watchActiveElement );
+            // エラーを想定するので、p_setLoopTimer を使わない! TODO setError
+            FocusinEvent_watchActiveElementTimerID = setInterval( FocusinEvent_watchActiveElement, 333 ); // TODO IE4
         };
     } else if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 || FocusinEvent_USE_FOCUS_CAPTURE_PHASE ){
         p_addEventListener( document, 'focus', FocusinEvent_onfocus, true );
@@ -85,14 +86,15 @@ if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE || FocusinEvent_USE_POLYFILL_FOR_OPERA_
     var FocusinEvent_onfocus = function( e ){
         var pairs = FocusinEvent_TARGET_ELEMENT_AND_CALLBACK_PIARS,
             elmFocused = FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ? document.activeElement : e.target,
-            elmCurrentTarget;
+            elmCurrentTarget, originalEvent;
 
         if( FocusinEvent_USE_POLYFILL_FOR_OPERA_7 ){
+            originalEvent = e;
             e = /** @type {!Event} */ ({
                 type            : 'focusin',
                 target          : elmFocused,
-                preventDefault  : function(){ e.preventDefault();  },
-                stopPropagation : function(){ e.stopPropagation(); }
+                preventDefault  : function(){ originalEvent.preventDefault();  },
+                stopPropagation : function(){ originalEvent.stopPropagation(); }
             });
             // e.target = elmFocused; // error!
         };
@@ -117,9 +119,10 @@ if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE || FocusinEvent_USE_POLYFILL_FOR_OPERA_
     var FocusinEvent_watchActiveElement = function(){
         FocusinEvent_memoryErrorHandler = window.onerror;
 
+        // 他の frame にフォーカスが移っている時に activeElement を触るとエラーが起る. ie4 では try~catch が使えない為、onerror を使う
         window.onerror = FocusinEvent_watchActiveElementErrorHandler;
 
-        var activeElement = document.activeElement; // activeElement を触るとエラーが起る事がある. ie4 では try~catch が使えない為、onerror を使う
+        var activeElement = document.activeElement;
 
         if( FocusinEvent_currentActiveElement !== activeElement ){
             FocusinEvent_currentActiveElement = activeElement;
