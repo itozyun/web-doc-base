@@ -81,7 +81,7 @@ input {
 --------------------------------------------------------------------------------------*/
 [type=hidden] {
     @if( $UA_Opera72 ){
-        display: none; // for Gecko 0.9.6, Opera 7.2~7.5
+        display: none; // for Opera 7.2~7.5
     }
     @if( $UA_Gecko19 ){
         display: none !important; // 強制カラーモードで必要. Gecko 1.8.1.12 で確認
