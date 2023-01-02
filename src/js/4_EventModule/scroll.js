@@ -8,12 +8,13 @@ p_listenScrollEvent = function( callback ){
 /** ===========================================================================
  * private
  */
-/** @type {!Array.<!Function>} */
+/** @const {!TypedefCallbackList} */
 var  Event_scrollEventCallbacks = [];
-/** @type {number} */
-var  Event_lastScrollY          = 0;
+
 /** @type {boolean} */
-var Event_NO_SCROLL_EVENT       = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
+var Event_NO_SCROLL_EVENT = p_Gecko < 1 || ( 1.2 <= p_Gecko && p_Gecko < 1.8 ) || p_Presto <= 7.2;
+/** @type {number} */
+var  Event_lastScrollY;
 
 /**
  * @param {!Event=} e
@@ -27,13 +28,19 @@ function Event_scrollEventHandler( e ){
 if( Event_NO_SCROLL_EVENT ){
     p_setLoopTimer(
         function(){
-            var scrollY = p_Gecko ? window.scrollY : window.pageYOffset;
+            var scrollY = window.pageYOffset;
 
             if( Event_lastScrollY !== scrollY ){
-                // Gecko 0.9.4.1 scroll event 無し!
                 // document.title = scrollY;
                 Event_lastScrollY = scrollY;
-                Event_scrollEventHandler();
+                Event_scrollEventHandler(
+                    {
+                        type            : 'scroll',
+                        cancelable      : false,
+                        stopPropagation : p_emptyFunction,
+                        preventDefault  : p_emptyFunction
+                    }
+                );
             };
         }
     );
