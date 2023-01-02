@@ -326,8 +326,7 @@ const plumber     = require("gulp-plumber"),
       sass        = require("gulp-sass")(require('sass')),
       gcm         = require("gulp-group-css-media-queries"),
       cleanCSS    = require("gulp-clean-css"),
-      CSShack     = require('./js-buildtools/gulp-csshack.js'),
-      finalizeCSS = require("./js-buildtools/gulp-finalize-css.js"),
+      cssHack     = require('./js-buildtools/index.js'),
       CLEAN_CSS_OPTION = {
             compatibility : { properties : { ieFilters : true } },
             //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
@@ -370,14 +369,14 @@ gulp.task( 'css',
                     cleanCSS( CLEAN_CSS_OPTION ) 
                 )
             ).pipe(
-                CSShack( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } )
+                cssHack.preprocess( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } )
             ).pipe(
                 (
                     CLEAN_CSS_OPTION.format = 'beautify',
                     cleanCSS( CLEAN_CSS_OPTION )
                 )
             ).pipe(
-                finalizeCSS()
+                cssHack.postprocess( { fileNameOpera70 : 'opr70.css' } )
             ).pipe(
                 gulp.dest( output + 'assets/' + assetsDirToCSSDir )
             );

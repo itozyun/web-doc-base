@@ -41,7 +41,7 @@
     "plugin-error": "^1.0.1",
     "postcss": "^8.4.6",
     "sass": "^1.49.9",
-    "stream": "0.0.2",
+    "through2": "^4.0.2",
     "vinyl": "^2.2.1"
   }
 }
