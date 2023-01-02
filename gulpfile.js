@@ -1,16 +1,11 @@
-"use strict";
+'use strict';
 const gulp            = require('gulp'),
-      gulpDPZ         = require('gulp-diamond-princess-zoning'),
-      ClosureCompiler = require('google-closure-compiler').gulp(),
-      postProcessor   = require('es2-postprocessor'),
-      es2ToES3        = require('es2-to-es3'),
-      gulpJSDOM       = require('gulp-jsdom'),
-      fs              = require('fs'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
       globalVariables = 'document,navigator,screen,parseFloat,Number';
 
+let gulpDPZ, ClosureCompiler, postProcessor, es2ToES3;
 let minify = true;
 let output = './docs/';
 
@@ -19,6 +14,9 @@ let output = './docs/';
  */
 gulp.task( 'whatbrowserami', gulp.series(
     function(){
+        gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
+        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+
         return gulp.src(
                 [
                     './.submodules/what-browser-am-i/src/js/**/*.js',
@@ -70,7 +68,7 @@ gulp.task( 'docs', gulp.series(
     },
     'whatbrowserami',
     function( cb ){
-        fs.readFile( tempDir + '/' + tempJsName,
+        require( 'fs' ).readFile( tempDir + '/' + tempJsName,
             function( error, buffer ){
                 if( !error ){
                     minjs = buffer.toString( 'utf-8' ).replace( '\n', '' );
@@ -82,9 +80,11 @@ gulp.task( 'docs', gulp.series(
         );
     },
     function(){
-        return gulp.src( [ output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
+        return gulp
+            .src(
+                [ output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
             ).pipe(
-                gulpJSDOM(
+                require( 'gulp-jsdom' )(
                     function( document ){
                         var elm = document.getElementsByTagName( 'script' )[ 0 ];
 
@@ -104,6 +104,8 @@ gulp.task( 'docs', gulp.series(
  */
 gulp.task( 'btoa', gulp.series(
     function(){
+        ClosureCompiler = ClosureCompiler || require('google-closure-compiler').gulp();
+
         return gulp.src( [
             './.submodules/es2-base64/src/js/base64.js'
         ]
@@ -162,13 +164,17 @@ const assetsDirToJSDir     = 'js',
 let isDebug = false;
 let resultObject = {};
 
-const gulpCreateSimpleRexerRegistry = require('./node_modules/es2-code-prettify/src/js-buildtools/gulp-createSimpleLexerRegistry.js');
-const numericKeyName                = '-num';
-const simpleLexerRegistryFileName   = '2__zippedSimpleLexerRegistry.generated.js';
-const regExpCompatFileName          = 'regexpcompat.js';
+const numericKeyName              = '-num';
+const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
+const regExpCompatFileName        = 'regexpcompat.js';
 
 gulp.task( '__js', gulp.series(
     function(){
+        gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
+        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+        postProcessor   = postProcessor   || require( 'es2-postprocessor' );
+        es2ToES3        = es2ToES3        || require( 'es2-to-es3' );
+
         return gulp.src(
                 [
                     // what-browser-am-i
@@ -288,6 +294,8 @@ gulp.task( '__js', gulp.series(
 
 gulp.task( 'js', gulp.series(
     function(){
+        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+
         return gulp.src(
             [
             // ES2 Code Prettify
@@ -308,7 +316,7 @@ gulp.task( 'js', gulp.series(
                 }
             )
         ).pipe(
-            gulpCreateSimpleRexerRegistry( simpleLexerRegistryFileName, numericKeyName )
+            require( './node_modules/es2-code-prettify/src/js-buildtools/gulp-createSimpleLexerRegistry.js' )( simpleLexerRegistryFileName, numericKeyName )
         ).pipe(
             gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' )
         );
@@ -321,30 +329,30 @@ gulp.task( 'js', gulp.series(
 /* -------------------------------------------------------
  *  gulp css
  */
-const plumber     = require("gulp-plumber"),
-      izpp        = require('gulp-iz-preprocessor'),
-      sass        = require("gulp-sass")(require('sass')),
-      gcm         = require("gulp-group-css-media-queries"),
-      cleanCSS    = require("gulp-clean-css"),
-      cssHack     = require('./js-buildtools/index.js'),
-      CLEAN_CSS_OPTION = {
-            compatibility : { properties : { ieFilters : true } },
-            //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
-            level : {
-                        1 : { roundingPrecision : 3 },
-                        2 : { all : true, removeUnusedAtRules : false }
-                    }
-      },
-      CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', 'white-space', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
-
 gulp.task( 'css',
     function(){
+        const plumber     = require( 'gulp-plumber' ),
+              izpp        = require( 'gulp-iz-preprocessor' ),
+              sass        = require( 'gulp-sass' )( require( 'sass' ) ),
+              gcm         = require( 'gulp-group-css-media-queries' ),
+              cleanCSS    = require( 'gulp-clean-css' ),
+              cssHack     = require( './js-buildtools/index.js' ),
+              CLEAN_CSS_OPTION = {
+                  compatibility : { properties : { ieFilters : true } },
+                  //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
+                  level : {
+                              1 : { roundingPrecision : 3 },
+                              2 : { all : true, removeUnusedAtRules : false }
+                          }
+              },
+              CLEAN_CSS_SKIP_PROPS = [ 'display', 'background', 'white-space', '-webkit-transition-property', '-webkit-transition', 'cursor', 'border-top-color', 'border-bottom-color', 'border-left-color', 'border-right-color', 'border-color' ];
+
         return gulp.src(
                 [
-                    "./src/scss/01_Variables/01_BuildTargets.scss",
-                    // "./src/scss.docs/docs_color.scss",
-                    "./src/scss/**/*.scss",
-                    // "./src/scss.docs/**.scss"
+                    './src/scss/01_Variables/01_BuildTargets.scss',
+                    // './src/scss.docs/docs_color.scss',
+                    './src/scss/**/*.scss',
+                    // './src/scss.docs/**.scss'
                 ]
             ).pipe(
                 plumber()
@@ -386,14 +394,14 @@ gulp.task( 'css',
 /* -------------------------------------------------------
  *  gulp html
  */
-
-const pageBase = require( './src/html/pageBase.js' );
+let pageBase;
 
 gulp.task( '__html', gulp.series(
     function( cb ){
-        fs.readFile( tempDir + '/' + tempJsName,
+        require( 'fs' ).readFile( tempDir + '/' + tempJsName,
             function( error, buffer ){
                 if( !error ){
+                    pageBase = require( './src/html/pageBase.js' );
                     pageBase.site.inlineScript = buffer.toString( 'utf-8' ).replace( '\n', '' );
                     cb();
                 } else {
@@ -417,6 +425,9 @@ gulp.task( 'html', gulp.series(
     'docs',
 ) );
 
+/* -------------------------------------------------------
+ *  gulp debug
+ */
 gulp.task( 'debug', gulp.series(
     'whatbrowserami',
     function( cb ){
