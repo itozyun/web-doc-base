@@ -53,6 +53,9 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
     p_setTimer( /** @type {!function(*=)} */ (Event_onloadFallbackForLegacySafari) );
 } else {
     p_addEventListener( window, 'load', /** @type {!function(!Event)} */ (Event_onload) );
+    if( p_Gecko < 0.9 && DEFINE_WEB_DOC_BASE__DEBUG ){
+        p_setTimer( /** @type {!function(*=)} */ (function(){ Event_onload && Event_onload() }), 999 );
+    };
 };
 
 // https://web.archive.org/web/20180328040501/http://oogatta.hatenadiary.jp/entry/20121228/1356696182
