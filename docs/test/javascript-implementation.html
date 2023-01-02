@@ -12,6 +12,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <style>
+    html, body {
+        margin : 0;
+        padding : 0;
+        border : 0;
+    }
+    body {
+        padding : 3em 0;
+    }
     input {float:left;margin-right:1em}
     pre {overflow: scroll;overflow-y: visible;}
     pre, div div {float:left; width: 40%}
@@ -103,18 +111,18 @@ function clear(){
 <body size="1">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
+<a href="attr-selectors.html">属性セレクタのテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
 <a href="cssom.html">CSSOM のテスト</a>,
-<a href="dynamic-script.html">動的 Script のテスト</a>,
-Javascript 実装状況と深刻なバグ,
-<a href="importHack.html">import のテスト</a>,
-<a href="check-image-loading.html">Check Image loading</a>,
-<a href="icon.html">アイコンのテスト</a>,
-<a href="richlink.html">RichLink のテスト</a>,
-<a href="form.html">フォーム部品の実装状況</a>,
 <a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>,
-<a href="attr-selectors.html">属性セレクタのテスト</a>
+<a href="dynamic-script.html">動的 Script のテスト</a>,
+<a href="form.html">フォーム部品の実装状況</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="importHack.html">import のテスト</a>,
+Javascript 実装状況と深刻なバグ,
+<a href="richlink.html">RichLink のテスト</a>
 <hr>
 <h1>Javascript 実装状況と深刻なバグ</h1>
 
@@ -551,7 +559,8 @@ print('1:(--a.length)=' + a.length, a.length=== 0);
 
 <div>
 <input type="button" onclick="exec(this);" value="exec" title="scrollY">
-<pre>print('window.scrollY:' + window.scrollY);
+<pre>print('document.compatMode:' + document.compatMode);
+print('window.scrollY:' + window.scrollY);
 print('window.pageYOffset:' + window.pageYOffset);
 var html = document.documentElement || document.getElementsByTagName('html');
 print('html.scrollTop:' + html.scrollTop);
@@ -564,10 +573,32 @@ print('body.scrollTop:' + document.body.scrollTop);
 
 <div>
 <input type="button" onclick="exec(this);" value="exec" title="ViewPort height">
-<pre>print('window.innerHeight:' + window.innerHeight);
+<pre>print('document.compatMode:' + document.compatMode);
+print('window.innerHeight:' + window.innerHeight);
 var html = document.documentElement || document.getElementsByTagName('html');
 print('html.offsetHeight:' + html.offsetHeight);
 print('body.offsetHeight:' + document.body.offsetHeight);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>Document height</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="ViewPort height">
+<pre>print('document.compatMode:' + document.compatMode);
+var html = document.documentElement || document.getElementsByTagName('html');
+var body = document.body;
+print('html.offsetHeight:' + html.offsetHeight);
+print('html.scrollHeight:' + html.scrollHeight);
+print('body.offsetHeight:' + document.body.offsetHeight);
+print('body.scrollHeight:' + document.body.scrollHeight);
+if( body.getBoundingClientRect ){
+    var rect = html.getBoundingClientRect();
+    print('html:' + (rect.bottom - rect.top));
+    var rect = body.getBoundingClientRect();
+    print('body:' + (rect.bottom - rect.top));
+};
 </pre>
 <div class="output"></div><br clear="all">
 </div>
@@ -637,6 +668,24 @@ print('2: delete a.__apply', delete a.__apply === true);
 print('1:' + window.addEventListener);
 print('2:' + document.addEventListener);
 print('3:' + document.body.addEventListener);
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
+<h2>child, sibling</h2>
+
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="delete">
+<pre>
+print('1:' + document.body.firstChild);
+print('2:' + document.body.lastChild);
+print('3:' + document.body.previousSibling);
+print('4:' + document.body.nextSibling);
+print('5:' + document.body.parentNode);
+print('6:' + document.body.parentElement);
+print('7:' + document.body.lastChild.previousSibling);
+print('8:' + document.body.childNodes);
+print('9:' + document.body.children);
 </pre>
 <div class="output"></div><br clear="all">
 </div>
