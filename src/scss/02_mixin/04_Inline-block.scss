@@ -2,7 +2,7 @@
     @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
         @if( $UA_Opera70 ){
             display : inline-table;
-        }@else if( $IS_LTE_GECKO09 or $UA_Gecko12 or $IS_GECKO13_TO_19 ){
+        } @else if( $UA_Gecko09 or $UA_Gecko12 or $IS_GECKO13_TO_19 ){
             /* clean-css ignore:start */
             @if( $UA_Gecko19 ){
                 display : inline-block; // for Gecko 1.9.0
