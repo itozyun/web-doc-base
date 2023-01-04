@@ -8,7 +8,7 @@ y[1],y[2],y[3],y[4],y[5],y[6]);break;case 8:r=x.__apply(y[0],y[1],y[2],y[3],y[4]
 Function.prototype.call||(Function.prototype.call=function(){for(var b=arguments,c=[],a=1,d=b.length;a<d;++a)c[a-1]=b[a];return this.apply(b[0],c)});
 window.decodeURI||(decodeURI=function(d){var e=[],f=parseInt,h=String.fromCharCode;d+="";for(var g=-1,b=0,k=d.length,c,a;b<k;++b)a?(a=f(d.substr(b,2),16),++b,127<a&&(223<a?(c=(a&15)<<12,a=f(d.substr(b+2,2),16)&63,b+=3,c+=a<<6):c=(a&63)<<6,a=f(d.substr(b+2,2),16)&63,b+=3,a+=c),e[++g]=h(a),a=!1):(c=d.charAt(b),(a="%"===c)||(e[++g]=c));return e.join("")});window.decodeURIComponent||(decodeURIComponent=decodeURI); @*/
 Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.length>>>0;if(0===b||a&&(a=a||0,a=a===-1/0?0:(0>a?-a:a)|0,b<=a))return-1;for(a=0<=a?a:0<b+a?b+a:0;a<b;++a)if(this[a]===c)return a;return-1});
-(function(Ga, R, fb, Vb, Va, L, Db, yc, Oa, zc, v) {
+(function(Ga, R, eb, Zb, L, Eb, yc, ub, Oa, Fb, Gb, $b, Hb, v) {
   function ca(D) {
     if (Ga[0] === D) {
       return Ha === Ha + "" ? Oa(Ha) : Ha;
@@ -20,20 +20,22 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       return P === P + "" ? Oa(P) : P;
     }
   }
-  function Eb() {
-    return 6 > z ? ra.scrollTop : z ? gb.scrollTop : R.pageYOffset;
+  function Ib() {
+    return 6 > z ? ra.scrollTop : z ? fb.scrollTop : R.pageYOffset;
   }
-  var ra = L.body, Ba = ra.style, gb, ab, bb, Ha = Ga[1], z = ca(2) || ca(3), cb = ca(7), pb = ca(5) || ca(6), M = ca(8) || ca(9), I = ca(11) || ca(12), ub = I && 0 <= Ga.conpare(Ha, "1.9.1"), Fb = ca(13), Ia = ca(15), hb = ca(16) || ca(17), Wb = ca(10) || ca(25), Pa = ca(20) || ca(22), tc = ca(23), vb = ca(21), Xb = ca(24), Yb = Pa && Oa(Db.userAgent.split("Edg/")[1]), uc = Oa(Db.appVersion.split("Trident/")[1]) + 4, Gb = va(35) || va(36) || va(37), vc = 0 <= Db.userAgent.indexOf("Googlebot/"), 
-  Hb = (cb ? "ie5mac" : 5.5 > z ? "ie5win" : 6 > z ? "ie55" : 10 > z ? "ie" + (z | 0) : 7.2 > M ? "opr70" : 8 > M ? "opr72" : 9.5 > M ? "opr" + (M | 0) : I && !ub ? 1.4 <= I ? "gck19" : 1.3 <= I ? "gck13" : 1 <= I ? "gck12" : 0.9 <= I ? "gck09" : 0.8 <= I ? "gck08" : "gck07" : "modern") + ".css", wb = "", wc = va(1) || va(2) || va(3) || va(4) || va(8) || va(9) || va(10), Zb, $b = Ba.transform !== v ? "transform" : Ba["-o-transform"] !== v ? "-o-transform" : Ba["-ms-transform"] !== v ? "-ms-transform" : 
-  Ba.MozTransform !== v ? "-moz-transform" : Ba["-webkit-transform"] !== v ? "-webkit-transform" : "", La = [], ac = [], Ja = [], bc, cc, xb, dc, Ib, Jb, ec = !1;
-  525 > Ia || 10 > M || I && !ub || 2.2 > vb || ca(25) || 10 > ca(3) || va(32) || va(30) || va(3);
-  var qa, yb, zb, fc, Kb, gc, Lb, hc;
+  var ra = L.body, Ba = ra.style, fb, $a, ab, Ha = Ga[1], z = ca(2) || ca(3), bb = ca(7), pb = ca(5) || ca(6), M = ca(8) || ca(9), I = ca(11) || ca(12), vb = I && 0 <= Ga.conpare(Ha, "1.9.1"), Jb = ca(13), Ia = ca(15), gb = ca(16) || ca(17), ac = ca(10) || ca(25), Pa = ca(20) || ca(22), zc = ca(23), wb = ca(21), bc = ca(24), cc = Pa && Oa(Eb.userAgent.split("Edg/")[1]), Ac = Oa(Eb.appVersion.split("Trident/")[1]) + 4, Kb = va(35) || va(36) || va(37), Bc = 0 <= Eb.userAgent.indexOf("Googlebot/"), 
+  Lb = (bb ? "ie5mac" : 5.5 > z ? "ie5win" : 6 > z ? "ie55" : 10 > z ? "ie" + (z | 0) : 7.2 > M ? "opr70" : 8 > M ? "opr72" : 9.5 > M ? "opr" + (M | 0) : I && !vb ? 1.4 <= I ? "gck19" : 1.3 <= I ? "gck13" : 1 <= I ? "gck12" : 0.9 <= I ? "gck09" : 0.8 <= I ? "gck08" : "gck07" : "modern") + ".css", xb = "", Cc = va(1) || va(2) || va(3) || va(4) || va(8) || va(9) || va(10), dc, ec = Ba.transform !== v ? "transform" : Ba["-o-transform"] !== v ? "-o-transform" : Ba["-ms-transform"] !== v ? "-ms-transform" : 
+  Ba.MozTransform !== v ? "-moz-transform" : Ba["-webkit-transform"] !== v ? "-webkit-transform" : "", La = [], fc = [], Ja = [], gc, hc, yb, ic, Mb, Nb, jc = !1;
+  525 > Ia || 10 > M || I && !vb || 2.2 > wb || ca(25) || 10 > ca(3) || va(32) || va(30) || va(3);
+  var qa, zb, Ab, kc, Dc = !!ra.getBoundingClientRect, Ob, lc, Pb, mc, hb = ub.now || function() {
+    return +new ub();
+  };
   (function() {
     function D() {
-      for (var E, T = 0, Y = +new Va(); T < da.length;) {
+      for (var E, T = 0, Y = hb(); T < da.length;) {
         Y < da[0].t ? ++T : (E = da.splice(T, 1)[0], E.f(E.p));
       }
-      ha = da.length ? setTimeout(D, pa) : 0;
+      ha = da.length ? Gb(D, pa) : 0;
     }
     function P() {
       for (var E, T = 0; T < J.length; ++T) {
@@ -44,14 +46,14 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       ja && (ja = clearInterval(ja));
     }
     function U() {
-      ha && (ha = clearTimeout(ha));
+      ha && (ha = $b(ha));
     }
-    zb = function(E) {
-      J.length || (ja = setInterval(P, S));
+    Ab = function(E) {
+      J.length || (ja = Hb(P, S));
       J.push({f:E, C:++ka});
       return ka;
     };
-    fc = function(E) {
+    kc = function(E) {
       for (var T = J.length, Y; Y = J[--T];) {
         if (Y.C === E) {
           J.splice(T, 1);
@@ -61,20 +63,20 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       }
       return 0;
     };
-    Kb = function() {
-      ja && (G(), ja = setInterval(P, S));
+    Ob = function() {
+      ja && (G(), ja = Hb(P, S));
     };
-    gc = G;
+    lc = G;
     var J = [], S = 500, ka = 0, ja;
-    if (5 > z || cb) {
+    if (5 > z || bb) {
       R._wdb_onlooptimer = P, P = "_wdb_onlooptimer()";
     }
     qa = function(E, T, Y) {
-      da.length || (ha = setTimeout(D, pa));
-      da.push({f:E, p:T, C:++ia, t:+new Va() + (pa < Y ? Y : pa)});
+      da.length || (ha = Gb(D, pa));
+      da.push({f:E, p:T, C:++ia, t:hb() + (pa < Y ? Y : pa)});
       return ia;
     };
-    yb = function(E) {
+    zb = function(E) {
       for (var T = da.length, Y; Y = da[--T];) {
         if (Y.C === E) {
           da.splice(T, 1);
@@ -83,16 +85,16 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       }
       return 0;
     };
-    Lb = function() {
-      ha && (U(), ha = setTimeout(D, pa));
+    Pb = function() {
+      ha && (U(), ha = Gb(D, pa));
     };
-    hc = U;
+    mc = U;
     var da = [], pa = 16, ia = 0, ha;
-    if (5 > z || cb) {
+    if (5 > z || bb) {
       R._wdb_ontimer = D, D = "_wdb_ontimer()";
     }
   })();
-  var ib, db, Wa, ic, Ca, Qa, jc, Mb, Ra, Ab, kc, Nb, Ka, Xa, Aa, wa, Ya, Sa, jb, lc, Bb, Ma, Za, mc, Ta, kb, nc;
+  var ib, cb, Va, nc, Ca, Qa, oc, Qb, Ra, Bb, pc, Rb, Ka, Wa, Aa, wa, Xa, Sa, jb, qc, Cb, Ma, Ya, rc, Ta, kb, sc;
   (function() {
     function D(a, d, b) {
       var l = ["<", a], m = 1, x, O;
@@ -163,7 +165,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               switch(O) {
                 case "class":
                 case "className":
-                  Bb(d, a);
+                  Cb(d, a);
                   break;
                 case "style":
                   x = d.style;
@@ -172,11 +174,11 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
                   }
                   break;
                 default:
-                  Ya(d, O, a);
+                  Xa(d, O, a);
               }
             }
           }
-          !M || "a" !== b && "A" !== b || !l.href || l["tag-index"] || l.tagIndex || Ya(d, "tagIndex", "-0");
+          !M || "a" !== b && "A" !== b || !l.href || l["tag-index"] || l.tagIndex || Xa(d, "tagIndex", "-0");
         }
         Y || null != m && ja(d, m);
       }
@@ -206,14 +208,14 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       return 5.5 > z ? a.style.cssText.toLowerCase() : a.style.cssText;
     }
     var E = 5 > z;
-    gb = U("html")[0];
-    ab = U("head")[0];
+    fb = U("html")[0];
+    $a = U("head")[0];
     ib = function(a) {
       return R[a] || L[a] || L.getElementById(a);
     };
-    db = U;
-    Wa = J;
-    ic = function(a, d) {
+    cb = U;
+    Va = J;
+    nc = function(a, d) {
       var b = [], l = 0, m, x = -1;
       if (9 > z || !a.getElementsByClassName) {
         var O = 6 > z ? a.all : a.getElementsByTagName("*");
@@ -237,7 +239,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       }
       return d;
     };
-    jc = function(a) {
+    oc = function(a) {
       var d = !(7.03 < M && 7.2 > M) && a.children;
       a = d ? d : a.childNodes;
       for (var b = [], l = a.length, m = -1, x; l;) {
@@ -247,7 +249,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       }
       return b;
     };
-    Mb = function(a) {
+    Qb = function(a) {
       return E ? a.children.length ? a.children[0] : null : a.firstChild;
     };
     Ra = function(a, d, b, l, m) {
@@ -255,13 +257,13 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       E || (a.appendChild(d), Y && null != l && ja(d, l));
       return d;
     };
-    Ab = function(a, d, b, l, m) {
+    Bb = function(a, d, b, l, m) {
       d = ka(0, a, d, b, l, m);
       E || (S(a).insertBefore(d, a), Y && null != l && ja(d, l));
       return d;
     };
-    kc = ja;
-    Nb = function(a, d) {
+    pc = ja;
+    Rb = function(a, d) {
       var b;
       if (E) {
         return ka(1, a, "font", v, d);
@@ -273,11 +275,11 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     Ka = function(a) {
       E ? a.outerHTML = "" : Ca(a).removeChild(a);
     };
-    Xa = function(a, d) {
+    Wa = function(a, d) {
       if (a.contains) {
         return a.contains(d);
       }
-      for (; d && d !== gb;) {
+      for (; d && d !== fb;) {
         if (d = Ca(d), a === d) {
           return !0;
         }
@@ -294,7 +296,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       var b = a.getAttribute(d);
       return M && "tabIndex" === d ? "-0" === b ? "" : "" === b ? "-1" : b : b || "";
     };
-    Ya = function(a, d, b) {
+    Xa = function(a, d, b) {
       if (M && "tab-index" === d) {
         "-1" === b ? a.removeAttribute("tabIndex") : a.setAttribute("tabIndex", b);
       } else {
@@ -323,12 +325,12 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       }
       return a.hasAttribute ? a.hasAttribute(d) : null != a.getAttribute(d);
     };
-    lc = function(a) {
+    qc = function(a) {
       return a.className;
     };
-    Bb = da;
+    Cb = da;
     Ma = pa;
-    Za = function(a, d) {
+    Ya = function(a, d) {
       var b;
       if (!pa(a, d)) {
         if (b = a.className) {
@@ -337,7 +339,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         da(a, b + d);
       }
     };
-    mc = function(a, d) {
+    rc = function(a, d) {
       if (pa(a, d)) {
         var b = a.className.split(" ");
         b.splice(b.indexOf(d), 1);
@@ -369,7 +371,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         9 > M || 1 > I ? d ? a.setAttribute("style", d) : a.removeAttribute("style") : a.style.cssText = d;
       }
     };
-    nc = ha;
+    sc = ha;
     La.splice(0, 0, function() {
       function a(X) {
         X = Qa(X);
@@ -383,7 +385,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
                   break;
                 }
               case "LINK":
-                E || l || Xa(ab, V) || x.push(V);
+                E || l || Wa($a, V) || x.push(V);
                 break;
               case "META":
                 ea = wa(V, "name") || wa(V, "property");
@@ -395,7 +397,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
                 }
                 break;
               case "SCRIPT":
-                if (vc || jb(V, "async")) {
+                if (Bc || jb(V, "async")) {
                   break;
                 }
                 if (b) {
@@ -419,18 +421,18 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           }
         }
         for (; x[0];) {
-          ab.appendChild(x.pop());
+          $a.appendChild(x.pop());
         }
         for (; O[0];) {
           Ka(O.pop());
         }
       }
-      bb = ib("jsMain");
-      var d = !(8 > M || 5 > z || cb || .9 > I), b = cc, l = 7 > z, m = ["og:", "twitter:", "fb:"], x = [], O = [], K = {};
-      a(gb);
+      ab = ib("jsMain");
+      var d = !(8 > M || 5 > z || bb || .9 > I), b = hc, l = 7 > z, m = ["og:", "twitter:", "fb:"], x = [], O = [], K = {};
+      a(fb);
     });
   })();
-  var Z, xa, Da, eb, Ob, lb, qb, rb, Pb, Qb, oc, pc, qc, sb, ya, Rb;
+  var Z, xa, Da, db, Sb, lb, qb, rb, Tb, Ub, tc, uc, vc, sb, ya, Vb;
   (function() {
     function D() {
       return y ? u ? 2 : A ? 3 : 1 : 0;
@@ -475,10 +477,10 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         C = !0;
       });
       for (; r = e[++t];) {
-        r.j === this ? (this.g = r.i, z && (g.currentTarget = this), this.g(g), z ? (this.g = fb, this.g = v) : delete this.g) : 7.2 > M && this === L && r.j === R && (R.g = r.i, R.g(g), delete R.g);
+        r.j === this ? (this.g = r.i, z && (g.currentTarget = this), this.g(g), z ? (this.g = eb, this.g = v) : delete this.g) : 7.2 > M && this === L && r.j === R && (R.g = r.i, R.g(g), delete R.g);
       }
       if (z) {
-        return g.preventDefault = g.stopPropagation = fb, g.preventDefault = g.stopPropagation = v, g.returnValue;
+        return g.preventDefault = g.stopPropagation = eb, g.preventDefault = g.stopPropagation = v, g.returnValue;
       }
       b && (g.defaultPrevented && "click" === g.type && "A" === g.target.tagName && (m = !0), C && !m && g.K(), g.K = g.stopPropagation = v);
       function bz() {
@@ -488,10 +490,10 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     }
     function ja() {
       var e = 9 === E.offsetWidth;
-      sb !== e && J(ac, sb = e);
+      sb !== e && J(fc, sb = e);
     }
     function da() {
-      !La && k && (yb(k), k = qa(pa));
+      !La && k && (zb(k), k = qa(pa));
     }
     function pa() {
       k = 0;
@@ -514,10 +516,10 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       } else {
         var C = {j:e, i:t};
         r = a[g];
-        var fa = "on" + g, sa, $a;
+        var fa = "on" + g, sa, Za;
         if (r) {
-          for (sa = r.length; $a = r[--sa];) {
-            if ($a.j === e && $a.i === t) {
+          for (sa = r.length; Za = r[--sa];) {
+            if (Za.j === e && Za.i === t) {
               return;
             }
           }
@@ -539,12 +541,12 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           for (C = r.length; fa = r[--C];) {
             fa.j === e && (fa.i === t ? r.splice(C, 1) : sa = !0);
           }
-          sa || (d ? e.detachEvent(g, ka) : z ? (e[g] = fb, e[g] = null) : delete e[g]);
+          sa || (d ? e.detachEvent(g, ka) : z ? (e[g] = eb, e[g] = null) : delete e[g]);
         }
       }
     };
-    var Y = !z && !cb && (new Function('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), a = {}, d = !1, b = 525.13 > Ia, l = !b && !cb && R.addEventListener, m;
-    b && gb.addEventListener("click", function(e) {
+    var Y = !z && !bb && (new yc('try{var r,o=Object.defineProperty({},"passive",{get:function(){r=!0}});addEventListener("t",o,o);removeEventListener("t",o,o);return r}catch(e){}'))(), a = {}, d = !1, b = 525.13 > Ia, l = !b && !bb && R.addEventListener, m;
+    b && fb.addEventListener("click", function(e) {
       if (m) {
         return m = !1, e.preventDefault(), !1;
       }
@@ -552,7 +554,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     Da = function(e) {
       La.push(e);
     };
-    eb = function(e) {
+    db = function(e) {
       x && x.push(e);
     };
     var x = [];
@@ -571,20 +573,20 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       U(x, e, !0);
     }) : x = v;
     qb = function(e) {
-      ac.push(e);
+      fc.push(e);
     };
     Da(function() {
       ja();
-      zb(ja);
+      Ab(ja);
     });
-    Qb = function(e, g) {
+    Ub = function(e, g) {
       if (K) {
         Z(e, "focusin", g);
       } else if (X) {
         Z(e, "DOMFocusIn", g);
       } else {
         if (V) {
-          ta || (ta = setInterval(n, 333));
+          ta || (ta = Hb(n, 333));
         } else if (ba || ea) {
           Z(L, "focus", Ea, !0);
         } else {
@@ -598,7 +600,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         t.push(e, g);
       }
     };
-    oc = function(e, g) {
+    tc = function(e, g) {
       if (K) {
         Z(e, "focusin", g);
       } else if (X) {
@@ -607,13 +609,13 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         for (var t = na, r = 0, C = t.length; r < C; ++r) {
           if (t[r] === e && t[r + 1] === g) {
             t.splice(r, 2);
-            t.length || (V ? ta = fc(ta) : (ba || ea) && xa(L, "focus", Ea, !0));
+            t.length || (V ? ta = kc(ta) : (ba || ea) && xa(L, "focus", Ea, !0));
             break;
           }
         }
       }
     };
-    var K = 6 <= z || pb || 52 <= I || 15 <= Pa || 534 <= Ia || 5 <= hb || tc || 4 <= vb || 4 <= Xb || 11.6 <= ca(8) || 12 <= ca(9), X = 8 <= M || Pa || vb || Xb || Ia || hb, ba = 8 > M, V = 6 > z, ea = 52 > I || Fb;
+    var K = 6 <= z || pb || 52 <= I || 15 <= Pa || 534 <= Ia || 5 <= gb || zc || 4 <= wb || 4 <= bc || 11.6 <= ca(8) || 12 <= ca(9), X = 8 <= M || Pa || wb || bc || Ia || gb, ba = 8 > M, V = 6 > z, ea = 52 > I || Jb;
     if (ea || ba) {
       var na = [];
       var Ea = function(e) {
@@ -628,7 +630,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         }
         for (var C = 0, fa = g.length; C < fa; ++C) {
           var sa = g[C];
-          (sa === t || Xa(sa, t)) && g[C + 1].call(sa, e);
+          (sa === t || Wa(sa, t)) && g[C + 1].call(sa, e);
         }
       };
     } else if (V) {
@@ -640,7 +642,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         if (Fa !== e) {
           Fa = e;
           for (var g = na, t, r = 0, C = g.length; r < C; ++r) {
-            t = g[r], (t === e || Xa(t, e)) && g[r + 1].apply(t, [{target:e}]);
+            t = g[r], (t === e || Wa(t, e)) && g[r + 1].apply(t, [{target:e}]);
           }
         }
         R.onerror = oa;
@@ -651,18 +653,18 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         return !0;
       };
     }
-    Pb = function(e) {
+    Tb = function(e) {
       Ja && Ja.push(e);
     };
-    var B = 60 > I || Fb, y, A, u;
-    if (89 <= I || 89 <= Pa || Gb && 79 <= Yb || ha && (ha("(forced-colors:none)").matches || ha("(forced-colors:active)").matches)) {
-      Rb = !0, G("(forced-colors:active)", function(e) {
+    var B = 60 > I || Jb, y, A, u;
+    if (89 <= I || 89 <= Pa || Kb && 79 <= cc || ha && (ha("(forced-colors:none)").matches || ha("(forced-colors:active)").matches)) {
+      Vb = !0, G("(forced-colors:active)", function(e) {
         y = e.matches;
         ya = D();
         J(Ja, ya);
       });
-    } else if (10 <= z || pb || Gb && Yb) {
-      Rb = !0, G("(-ms-high-contrast:black-on-white)", function(e) {
+    } else if (10 <= z || pb || Kb && cc) {
+      Vb = !0, G("(-ms-high-contrast:black-on-white)", function(e) {
         y = A = e.matches;
         ya !== D() && (ya = D(), J(Ja, ya));
       }), G("(-ms-high-contrast:white-on-black)", function(e) {
@@ -672,7 +674,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         y = e.matches;
         ya !== D() && (ya = D(), J(Ja, ya));
       });
-    } else if (Gb && (z || I && 0 <= Ga.conpare(Ha, "1.8.1") || Fb)) {
+    } else if (Kb && (z || I && 0 <= Ga.conpare(Ha, "1.8.1") || Jb)) {
       var Q = function() {
         function e(r, C) {
           if (C && "transparent" === r) {
@@ -692,7 +694,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       };
       qb(function(e) {
         if (e) {
-          return Ta(E, "color", "#123456"), Ta(E, "backgroundColor", "#123456"), B ? (Q(), Ja = v) : zb(Q), Q = v, !0;
+          return Ta(E, "color", "#123456"), Ta(E, "backgroundColor", "#123456"), B ? (Q(), Ja = v) : Ab(Q), Q = v, !0;
         }
       });
     } else {
@@ -709,13 +711,13 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     }();
     Da(function() {
       function e() {
-        r ? (C = t[--r], h && Ya(C, "src", C.J), bc(g, h ? C.J : C.src)) : rb = c = v;
+        r ? (C = t[--r], h && Xa(C, "src", C.J), gc(g, h ? C.J : C.src)) : rb = c = v;
       }
       function g(sa) {
         U(c, {G:C, H:sa}, !r);
         e();
       }
-      var t = L.images || db("img"), r = t.length;
+      var t = L.images || cb("img"), r = t.length;
       if (12 > M || 532 > Ia) {
         e();
       } else {
@@ -727,27 +729,27 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         rb = c = v;
       }
     });
-    Ob = function(e) {
+    Sb = function(e) {
       f.push(e);
     };
     var f = [], k;
     Z(R, "resize", da);
-    eb(function() {
-      k && clearTimeout(k);
+    db(function() {
+      k && $b(k);
       xa(R, "resize", da);
     });
     lb = function(e) {
       w.push(e);
     };
     var w = [], p = 1 > I || 1.2 <= I && 1.8 > I || 7.2 >= M, F;
-    p ? zb(function() {
+    p ? Ab(function() {
       var e = R.pageYOffset;
-      F !== e && (F = e, ia({type:"scroll", cancelable:!1, stopPropagation:fb, preventDefault:fb}));
+      F !== e && (F = e, ia({type:"scroll", cancelable:!1, stopPropagation:eb, preventDefault:eb}));
     }) : Z(R, "scroll", ia, {passive:!0});
-    eb(function() {
+    db(function() {
       p || xa(R, "scroll", ia, {passive:!0});
     });
-    pc = function(e, g) {
+    uc = function(e, g) {
       if (H) {
         Z(e, "wheel", g, {passive:!1});
       } else if (N) {
@@ -764,7 +766,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         t.push(e, g);
       }
     };
-    qc = function(e, g) {
+    vc = function(e, g) {
       if (H) {
         xa(e, "wheel", g, {passive:!1});
       } else if (N) {
@@ -781,11 +783,11 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         }
       }
     };
-    var H = 9 <= z || pb || 17 <= I || 31 <= Pa || 537.7 <= Ia, N = 6 <= z || pb || 9 <= M || Pa || 522 <= Ia || hb, ma = ub, W = I && 0 <= Ga.conpare(Ha, "0.9.7") && !ub;
+    var H = 9 <= z || pb || 17 <= I || 31 <= Pa || 537.7 <= Ia, N = 6 <= z || pb || 9 <= M || Pa || 522 <= Ia || gb, ma = vb, W = I && 0 <= Ga.conpare(Ha, "0.9.7") && !vb;
     if (W) {
       var aa = [], la = function(e) {
         for (var g = aa, t = e.target, r, C = 0, fa = g.length; C < fa; ++C) {
-          r = g[C], Xa(r, t) && g[C + 1].call(r, e);
+          r = g[C], Wa(r, t) && g[C + 1].call(r, e);
         }
       };
     }
@@ -794,14 +796,14 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     9 > z && Da(function() {
       var D = Ra(ra, "div");
       kb(D, "position:absolute;top:0;left:0;width:1px;height:1px;line-height:1px;filter:dropshadow() progid:DXImageTransform.Microsoft.Shadow()");
-      Zb = 1 < D.offsetHeight;
+      dc = 1 < D.offsetHeight;
       kb(D, "");
       Ka(D);
     });
-    bc = bz;
+    gc = bz;
     function bz(D, P) {
       function G() {
-        J || !S || U.complete ? (qa(D, !!U.width), U.onerror = U.onload = fb, U = D = v) : (--S, qa(G));
+        J || !S || U.complete ? (qa(D, !!U.width), U.onerror = U.onload = eb, U = D = v) : (--S, qa(G));
       }
       var U = new Image(), J, S = 99;
       U.onerror = function() {
@@ -820,10 +822,10 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       var l = b.G;
       b = b.H;
       var m = Ca(l);
-      !Ma(m, "aBodyRoot") && b ? Za(m, "img-loaded") : b || wa(l, "alt") || Ta(l, "display", "none");
+      !Ma(m, "aBodyRoot") && b ? Ya(m, "img-loaded") : b || wa(l, "alt") || Ta(l, "display", "none");
     });
     I && 0 > Ga.conpare(Ha, "0.9.0") && La.splice(1, 0, function() {
-      for (var b = ic(bb, "RichLink-sep"), l, m, x, O, K, X; l = b.shift();) {
+      for (var b = nc(ab, "RichLink-sep"), l, m, x, O, K, X; l = b.shift();) {
         for (l = Qa(l); m = l.shift();) {
           if ("A" === Aa(m) && !m.innerHTML) {
             for (; x = l.shift();) {
@@ -831,7 +833,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
                 if ("A" === Aa(x)) {
                   break;
                 }
-                for (O = Wa(x, "A"); K = O.shift();) {
+                for (O = Va(x, "A"); K = O.shift();) {
                   for (X = Qa(K); X.length;) {
                     K.parentNode.insertBefore(X.shift(), K);
                   }
@@ -844,48 +846,48 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         }
       }
     }, function() {
-      for (var b = db("A"), l, m; l = b.shift();) {
+      for (var b = cb("A"), l, m; l = b.shift();) {
         "A" !== Aa(l) || l.innerHTML || (m = l.nextSibling && l.nextSibling.firstChild) && m.href === l.href && Ka(l);
       }
     });
-    5.5 <= z && 8 > z && Ja && Pb(function(b) {
-      for (var l = Wa(ra, "a"), m = l.length, x = 0; x < m; ++x) {
+    5.5 <= z && 8 > z && Ja && Tb(function(b) {
+      for (var l = Va(ra, "a"), m = l.length, x = 0; x < m; ++x) {
         l[x].hideFocus = !b;
       }
     });
-    if (!Rb && Ja) {
+    if (!Vb && Ja) {
       var D, P = function() {
-        D = Ra(ab, "link", {type:"text/css", rel:"stylesheet", media:"screen", href:za + "css/" + wb + "hc/" + Hb});
-        ($b || 5.5 <= z && 9 > z && Zb) && Za(ra, "jsCanRotate");
+        D = Ra($a, "link", {type:"text/css", rel:"stylesheet", media:"screen", href:za + "css/" + xb + "hc/" + Lb});
+        (ec || 5.5 <= z && 9 > z && dc) && Ya(ra, "jsCanRotate");
         P = v;
       };
-      Pb(function(b) {
-        b && !D ? P() : D && (b ? ab.appendChild(D) : Ka(D));
+      Tb(function(b) {
+        b && !D ? P() : D && (b ? $a.appendChild(D) : Ka(D));
       });
     }
     M && Da(function() {
-      for (var b = Wa(ra, "a"), l = b.length, m = 0, x; m < l; ++m) {
-        x = b[m], "-1" === wa(x, "tabIndex") ? Sa(x, "tabIndex") : wa(x, "href") && Ya(x, "tabIndex", "0");
+      for (var b = Va(ra, "a"), l = b.length, m = 0, x; m < l; ++m) {
+        x = b[m], "-1" === wa(x, "tabIndex") ? Sa(x, "tabIndex") : wa(x, "href") && Xa(x, "tabIndex", "0");
       }
-      b = Wa(ra, "input");
+      b = Va(ra, "input");
       m = 0;
       for (l = b.length; m < l; ++m) {
         x = b[m], "hidden" === wa(x, "type") && Sa(x, "tabIndex");
       }
     });
     if (I && 0 > Ga.conpare(Ha, "0.9.5")) {
-      ec = !0;
+      jc = !0;
       var G, U, J, S, ka;
       Da(function() {
         Z(L, "keydown", ja);
         Z(L, "keyup", da);
-        Qb(ra, pa);
+        Ub(ra, pa);
         .9 <= I && (Z(R, "blur", Y), Z(ra, "click", T));
       });
       var ja = .9 > I ? function(b) {
         16 === b.keyCode ? G = !0 : 9 === b.keyCode && S && ia(S, !0) && (S.blur && S.blur(), b.stopPropagation(), b.preventDefault(), qa(E));
       } : function(b) {
-        16 === b.keyCode ? G = !0 : 9 === b.keyCode && (U = +new Va());
+        16 === b.keyCode ? G = !0 : 9 === b.keyCode && (U = hb());
       }, da = function(b) {
         16 === b.keyCode && (G = !1);
       }, pa = .9 > I ? function(b) {
@@ -904,7 +906,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           E(!0);
         }
       }, ia = function(b, l) {
-        var m = +new Va(), x = ra, O = "nextSibling", K = "firstChild";
+        var m = hb(), x = ra, O = "nextSibling", K = "firstChild";
         G && (l || m - 99 < U && U <= m) && (O = "previousSibling", K = "lastChild");
         for (J = v; b !== x;) {
           if (X) {
@@ -996,8 +998,8 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
             h = F.F;
             var H = f = F.u;
             if (F.P) {
-              if (Ta(h, "width", F.Z), h.src = F.Y, Bb(H, F.T), h = F.L) {
-                kb(h, F.S), mc(h, "jsCapLarge");
+              if (Ta(h, "width", F.Z), h.src = F.Y, Cb(H, F.T), h = F.L) {
+                kb(h, F.S), rc(h, "jsCapLarge");
               }
             } else {
               if (k = F.N) {
@@ -1031,12 +1033,12 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
                 }
                 F.W = k;
               }
-              F.T = lc(H);
-              Za(H, "jsPicaLarge");
+              F.T = qc(H);
+              Ya(H, "jsPicaLarge");
               Ta(h, "width", "");
               h.src = F.W;
               if (h = F.L) {
-                kb(h, ""), Za(h, "jsCapLarge");
+                kb(h, ""), Ya(h, "jsCapLarge");
               }
             }
             F.P = !F.P;
@@ -1054,13 +1056,13 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       var h = ta;
       if (sb) {
         if (Fa && !h) {
-          if (+new Va() < Fa) {
+          if (hb() < Fa) {
             return;
           }
           Fa = v;
         }
-        7 === c ? oa = 0 : (oa && (oa = yb(oa)), na = Eb());
-        h ? (ta = U(v, h[0], h[1])) || (Fa = +new Va() + 99) : U();
+        7 === c ? oa = 0 : (oa && (oa = zb(oa)), na = Ib());
+        h ? (ta = U(v, h[0], h[1])) || (Fa = hb() + 99) : U();
       } else {
         ta = v;
       }
@@ -1072,12 +1074,12 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           N = V + ":translate" + (Ea ? "3D(0," : "(0,") + Na + (Ea ? "px,0)" : "px)") + ";-webkit-overflow-scrolling:touch";
         } else if (0 !== Na) {
           if (m || x) {
-            var Sb = K.offsetWidth;
+            var Wb = K.offsetWidth;
           }
-          N = m ? "position:fixed;width:" + Sb + "px;top:" + (Na - w + aa) + "px" : O ? "top:" + Na + "px" : "position:absolute;top:" + Na + "px;left:0";
+          N = m ? "position:fixed;width:" + Wb + "px;top:" + (Na - w + aa) + "px" : O ? "top:" + Na + "px" : "position:absolute;top:" + Na + "px;left:0";
           if (x && N) {
             var tb = 8 > z ? " " : ",";
-            N += ";clip:rect(" + (0 > Na ? -Na + "px" + tb + Sb + "px" + tb + t : "0" + tb + Sb + "px" + tb + (Na + t < r ? t : r - Na)) + "px" + tb + "0)";
+            N += ";clip:rect(" + (0 > Na ? -Na + "px" + tb + Wb + "px" + tb + t : "0" + tb + Wb + "px" + tb + (Na + t < r ? t : r - Na)) + "px" + tb + "0)";
           }
         }
       }
@@ -1087,23 +1089,23 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           aa += la.offsetTop, la = la.offsetParent;
         }
         H = ea;
-        var e = 11 > z ? gb.offsetHeight : R.innerHeight, g = p.offsetHeight, t = ba.offsetHeight, r = t < g ? g : t, C = w, fa = C + e, sa = aa, $a = sa + r, rc = aa + H, xc = rc + t;
+        var e = 11 > z ? fb.offsetHeight : R.innerHeight, g = p.offsetHeight, t = ba.offsetHeight, r = t < g ? g : t, C = w, fa = C + e, sa = aa, Za = sa + r, wc = aa + H, Ec = wc + t;
         p = C < sa ? sa : C;
-        la = $a < fa ? $a : fa;
+        la = Za < fa ? Za : fa;
         var mb = la - p;
-        C = $a <= C;
+        C = Za <= C;
         fa = fa <= sa;
         if (h !== v) {
           ma = aa + h;
           c = ma + f;
           var nb;
           if (C || fa) {
-            return e <= f ? nb = aa : nb = C ? $a - f : aa + f - e, Fa = v, R.scroll(0, nb), ta;
+            return e <= f ? nb = aa : nb = C ? Za - f : aa + f - e, Fa = v, R.scroll(0, nb), ta;
           }
           t <= mb ? W = 3 : f <= mb ? t - h <= mb ? W = 2 : p <= ma && c <= la ? p < aa + H && (W = 4) : W = p <= ma && ma <= la ? 5 : p <= c && c <= la ? 4 : c < p ? 4 : 5 : W = 4;
           ma = v;
         } else {
-          c !== v ? t <= mb ? (W = 7, ma = !1) : (H -= 60 * c, W = la - aa - t, nb = p - aa, H < W ? H = W : nb < H && (H = nb), W = 6) : g <= t || (C ? W = 1 : fa || (t <= mb ? W = 3 : p < rc ? W = 3 : xc < la ? W = 2 : w < aa + t - mb || (W = 2)));
+          c !== v ? t <= mb ? (W = 7, ma = !1) : (H -= 60 * c, W = la - aa - t, nb = p - aa, H < W ? H = W : nb < H && (H = nb), W = 6) : g <= t || (C ? W = 1 : fa || (t <= mb ? W = 3 : p < wc ? W = 3 : Ec < la ? W = 2 : w < aa + t - mb || (W = 2)));
         }
         switch(W) {
           case 0:
@@ -1132,9 +1134,9 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       return F && ma;
     }
     function J(c) {
-      if (sb && (I && (na = Eb()), this !== c.target)) {
-        var h = isFinite;
-        (h = h(c.deltaY) ? c.deltaY : h(c.wheelDeltaY) ? c.wheelDeltaY / 120 : h(c.wheelDelta) ? c.wheelDelta / -120 : c.detail / ("MozMousePixelScroll" === c.type ? 45 : 1)) && U(9 >= h ? -9 >= h ? -3 : h : 3) && (c.preventDefault(), c.stopPropagation());
+      if (sb && (I && (na = Ib()), this !== c.target)) {
+        var h = Fb(c.deltaY) ? c.deltaY : Fb(c.wheelDeltaY) ? c.wheelDeltaY / 120 : Fb(c.wheelDelta) ? c.wheelDelta / -120 : c.detail / ("MozMousePixelScroll" === c.type ? 45 : 1);
+        h && U(9 >= h ? -9 >= h ? -3 : h : 3) && (c.preventDefault(), c.stopPropagation());
       }
     }
     function S(c) {
@@ -1142,7 +1144,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         var h = I && 0 > Ga.conpare(Ha, "0.9.4"), f = c.target;
         c = ba;
         var k = 0;
-        if (Xa(c, f)) {
+        if (Wa(c, f)) {
           if (V) {
             h = f.getBoundingClientRect();
             var w = h.bottom - h.top;
@@ -1151,7 +1153,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
             w = f.offsetHeight;
             var p = f;
             if (h) {
-              for (var F = []; p && (I ? Xa(c, p) : c !== p);) {
+              for (var F = []; p && (I ? Wa(c, p) : c !== p);) {
                 for (; p.previousSibling;) {
                   p = p.previousSibling, p.tagName && F.unshift(p.tagName + ":" + p.offsetTop);
                 }
@@ -1159,7 +1161,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               }
               p = f;
             }
-            for (; p && (I ? Xa(c, p) : c !== p);) {
+            for (; p && (I ? Wa(c, p) : c !== p);) {
               if (h) {
                 for (; p.previousSibling;) {
                   p = p.previousSibling, k += p.offsetHeight || 0;
@@ -1170,7 +1172,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               }
             }
           }
-          l ? (ta = [k, w], oa && yb(oa), oa = qa(G, 7, 1 > I || 536 > Ia || 14 > Pa ? 500 : 0)) : (na = Eb(), U(v, k, w));
+          l ? (ta = [k, w], oa && zb(oa), oa = qa(G, 7, 1 > I || 536 > Ia || 14 > Pa ? 500 : 0)) : (na = Ib(), U(v, k, w));
         }
       }
     }
@@ -1178,13 +1180,13 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       n.call(q);
     }
     function ja() {
-      L.fullscreenElement || L.fullscreen || L.webkitIsFullscreen || L.msFullscreenElement || R.fullScreen ? (Ya(q, "id", "blog2slide-root"), A[1].parentNode.insertBefore(B, A[1]), da(), L.onkeydown = pa) : y && (Ka(B), Sa(q, "id"), Sa(y, "id"), y = L.onkeydown = v);
+      L.fullscreenElement || L.fullscreen || L.webkitIsFullscreen || L.msFullscreenElement || R.fullScreen ? (Xa(q, "id", "blog2slide-root"), A[1].parentNode.insertBefore(B, A[1]), da(), L.onkeydown = pa) : y && (Ka(B), Sa(q, "id"), Sa(y, "id"), y = L.onkeydown = v);
     }
     function da() {
       y && Sa(y, "id");
       u = 0 < u ? Q < u ? Q : u : 0;
       y = A[u];
-      Ya(y, "id", "blog2slide-current");
+      Xa(y, "id", "blog2slide-current");
     }
     function pa(c) {
       if ("ArrowRight" === c.key || 39 === c.keyCode) {
@@ -1193,33 +1195,33 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         --u, da();
       }
     }
-    dc = I && 0 >= Ga.conpare(Ha, "0.9");
-    xb = !(7.2 > M || dc);
-    Ib = function(c) {
+    ic = I && 0 >= Ga.conpare(Ha, "0.9");
+    yb = !(7.2 > M || ic);
+    Mb = function(c) {
       ia ? L.write('<script src="' + c + '">\x3c/script>') : La || E.length ? E.push(c) : T(c);
     };
-    Jb = function() {
+    Nb = function() {
       ia || T(E.shift());
     };
-    var ia = !xb, ha = xb && 7.5 > M;
+    var ia = !yb, ha = yb && 7.5 > M;
     if (!ia) {
       var E = [];
-      ha && (cc = !0);
+      ha && (hc = !0);
       Da(function() {
         T(E.shift());
       });
       var T = function(c) {
-        c && (ha ? Tb[0].src = c : Ra(ab, "script", {src:c}));
+        c && (ha ? Xb[0].src = c : Ra($a, "script", {src:c}));
       };
     }
     var Y = [], a = 5.5 <= z && 8 > z ? "keypress" : "keydown";
-    if (!Wb) {
+    if (!ac) {
       var d = Ba.transition !== v || Ba["-o-transition"] !== v || Ba["-moz-transition"] !== v || Ba["-webkit-transition"] !== v;
       rb(function(c) {
-        if (c.H && bb) {
+        if (c.H && ab) {
           c = c.G;
           var h = Ca(c), f = "", k;
-          if ("A" === Aa(h) && 1 === jc(h).length) {
+          if ("A" === Aa(h) && 1 === oc(h).length) {
             var w = wa(h, "href");
             var p = w.split("?")[0].split("#")[0].split(".");
             p = (p[p.length - 1] || "").toLowerCase();
@@ -1228,12 +1230,12 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               Z(c, "click", D);
               Z(h, "click", P);
               d && (f = c.naturalWidth + 4 + "px", Ta(c, "width", f));
-              Za(h, "jsPica");
+              Ya(h, "jsPica");
               for (p = h; p = Ca(p);) {
                 if (Ma(p, "caption")) {
-                  Za(p, "jsCap");
+                  Ya(p, "jsCap");
                   var F = p;
-                  var H = nc(F);
+                  var H = sc(F);
                   break;
                 }
               }
@@ -1242,43 +1244,43 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           }
         }
       });
-      eb(function(c, h) {
+      db(function(c, h) {
         for (c = -1; h = Y[++c];) {
           xa(h.u, a, D), xa(h.F, "click", D), xa(h.u, "click", P);
         }
       });
     }
-    var b = ["jsSidebarFixer1", "jsSidebarFixer2"], l = !(9 > z || M || 1 <= I && 1.3 > I || ec), m = !(5 > hb || 2.2 > vb || 6 > ca(12) || va(30) && 534 > Ia || va(32) || 7 > z || 9 > M || 1 > I), x = m || 6 === z || 1 > I, O = 7.5 > M, K, X, ba, V = ra.getBoundingClientRect && $b, ea = 0, na = 0, Ea, ta, Fa, oa;
-    sc || Wb || (qb(function(c) {
+    var b = ["jsSidebarFixer1", "jsSidebarFixer2"], l = !(9 > z || M || 1 <= I && 1.3 > I || jc), m = !(5 > gb || 2.2 > wb || 6 > ca(12) || va(30) && 534 > Ia || va(32) || 7 > z || 9 > M || 1 > I), x = m || 6 === z || 1 > I, O = 7.5 > M, K, X, ba, V = Dc && ec, ea = 0, na = 0, Ea, ta, Fa, oa;
+    xc || ac || (qb(function(c) {
       if (c) {
-        if (!bb) {
+        if (!ab) {
           return !0;
         }
         c = -1;
         var h;
         K = ib("jsSide");
-        X = bb;
+        X = ab;
         if (!K) {
           return !0;
         }
         lb(G);
-        Ob(G);
-        ba = Ab(Mb(K), "div", {id:"jsSidebarFixer"});
-        for (Qb(ba, S); 1 < Qa(K).length;) {
+        Sb(G);
+        ba = Bb(Qb(K), "div", {id:"jsSidebarFixer"});
+        for (Ub(ba, S); 1 < Qa(K).length;) {
           ba.appendChild(Qa(K)[1]);
         }
         for (; h = b[++c];) {
-          pc(ib(h), J);
+          uc(ib(h), J);
         }
         z || pb || 2 > Pa || (Ea = Ba.perspective !== v || Ba.MozPerspective !== v || Ba["-webkit-perspective"] !== v);
         G();
         return !0;
       }
-    }), eb(function() {
+    }), db(function() {
       for (var c = -1, h; h = b[++c];) {
-        qc(ib(h), J);
+        vc(ib(h), J);
       }
-      oc(ba, S);
+      tc(ba, S);
     }));
     Da(function() {
       function c(F, H, N, ma) {
@@ -1296,11 +1298,11 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           }
           10 === H.length && (H = "//www.amazon.co.jp/exec/obidos/ASIN/" + H + "/itozyun-22/ref=nosim/");
         }
-        N = ma ? Ab(Mb(f), W, {className:N}) : Ra(f, W, {className:N});
+        N = ma ? Bb(Qb(f), W, {className:N}) : Ra(f, W, {className:N});
         Ra(N, "a", 0 === H.indexOf("http") ? {target:"_blank", rel:"nofollow noopener noreferrer", href:H} : {href:H}, F);
       }
-      if (bb) {
-        for (var h = Wa(bb, "blockquote"), f, k = -1, w, p; f = h[++k];) {
+      if (ab) {
+        for (var h = Va(ab, "blockquote"), f, k = -1, w, p; f = h[++k];) {
           w = wa(f, "title"), p = wa(f, "cite"), w && p ? (Sa(f, "title"), c(w, p, "js-bqLink", !0)) : p && (Sa(f, "cite"), c(R.decodeURI ? decodeURI(p) : p, p, "js-bqCite"));
         }
       }
@@ -1311,17 +1313,17 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       if (c) {
         var h = L.onfullscreenchange !== v ? "f" : L.onmozfullscreenchange !== v ? "mozF" : L.onwebkitfullscreenchange !== v ? "webkitF" : 0;
         n = c.requestFullscreen || c.webkitRequestFullscreen || c.mozRequestFullscreen || c.msRequestFullscreen;
-        0 !== h || n ? (c.innerHTML = '<button class="btn">\u30b9\u30e9\u30a4\u30c9\u3092\u958b\u59cb\u3059\u308b</button>', Z(c.firstChild, "click", ka), c = Ca(c), q = Ca(c), A = Wa(c, "section"), B = L.createElement("h1"), B.innerHTML = Wa(ra, "h1")[0].innerHTML, Q = A.length, A.splice(0, 0, B), 0 !== h ? Z(L, h + "ullscreenchange", ja) : z ? Z(L, "MSFullscreenChange", ja, !1) : Ob(ja)) : Ka(c);
+        0 !== h || n ? (c.innerHTML = '<button class="btn">\u30b9\u30e9\u30a4\u30c9\u3092\u958b\u59cb\u3059\u308b</button>', Z(c.firstChild, "click", ka), c = Ca(c), q = Ca(c), A = Va(c, "section"), B = L.createElement("h1"), B.innerHTML = Va(ra, "h1")[0].innerHTML, Q = A.length, A.splice(0, 0, B), 0 !== h ? Z(L, h + "ullscreenchange", ja) : z ? Z(L, "MSFullscreenChange", ja, !1) : Sb(ja)) : Ka(c);
       }
     });
   })();
-  var ob, Cb = !Vb || .9 > I || 8 > M || 5.5 > z, Ua;
+  var ob, Db = !Zb || .9 > I || 8 > M || 5.5 > z, Ua;
   (function() {
     function D(n) {
       return n === "" + n;
     }
     function P(n, q) {
-      return Cb ? new T(n, q) : new Vb(n, q);
+      return Db ? new T(n, q) : new Zb(n, q);
     }
     function G(n, q, B, y) {
       if (E() - Y < l && !y) {
@@ -1419,16 +1421,16 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     "gi"], ["^^<\\/?[a-z](?:[\\w.:-]*\\w)?|\\/?>$", "i"], ["^(?!style[\\s=]|on)[a-z](?:[\\w:-]*\\w)?", "i"], "^=\\s*([^>\\'\\\"\\s]*(?:[^>\\'\\\"\\s\\/]|\\/(?=\\s)))", "^[=<>\\/]+", ['^on\\w+\\s*=\\s*\\"([^\\"]+)\\"', "i"], ["^on\\w+\\s*=\\s*\\'([^\\']+)\\'", "i"], ["^on\\w+\\s*=\\s*([^\\\"\\'>\\s]+)", "i"], ['^style\\s*=\\s*\\"([^\\"]+)\\"', "i"], ["^style\\s*=\\s*\\'([^\\']+)\\'", "i"], ["^style\\s*=\\s*([^\\\"\\'>\\s]+)", "i"], "^(?:\\'(?:[^\\\\\\']|\\\\[\\s\\S])*(?:\\'|$)|\\\"(?:[^\\\\\\\"]|\\\\[\\s\\S])*(?:\\\"|$)|\\`(?:[^\\\\\\`]|\\\\[\\s\\S])*(?:\\`|$))", 
     "^#(?:(?:define|e(?:l|nd)if|else|error|ifn?def|include|line|pragma|undef|warning)\\b|[^\\r\\n]*)", ["(?:(?:\\'(?:[^\\\\\\']|\\\\[\\s\\S])*(?:\\'|$)|\\\"(?:[^\\\\\\\"]|\\\\[\\s\\S])*(?:\\\"|$)|\\`(?:[^\\\\\\`]|\\\\[\\s\\S])*(?:\\`|$)))|(?:#(?:(?:define|e(?:l|nd)if|else|error|ifn?def|include|line|pragma|undef|warning)\\b|[^\\r\\n]*))|(?:\\s+)|(?:<(?:(?:(?:\\.\\.\\/)*|\\/?)(?:[\\w-]+(?:\\/[\\w-]+)+)?[\\w-]+\\.h(?:h|pp|\\+\\+)?|[a-z]\\w*)>)|(?:\\/\\/[^\\r\\n]*)|(?:\\/\\*[\\s\\S]*?(?:\\*\\/|$))|(?:(?:^\\.?|[+-]|[!=]=?=?|\\#|%=?|&&?=?|\\(|\\*=?|[+\\-]=|->|\\/=?|::?|<<?=?|>>?>?=?|,|;|\\?|@|\\[|~|{|\\^\\^?=?|\\|\\|?=?|break|case|continue|delete|do|else|finally|instanceof|return|throw|try|typeof)\\s*(?:\\/(?=[^/*\\n\\r])(?:[^/\\x5B\\x5C\\n\\r]|\\x5C[\\S\\s]|\\x5B(?:[^\\x5C\\x5D\\n\\r]|\\x5C[\\S\\s])*(?:\\x5D|$))+\\/))|(?:(?:break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|alignas|alignof|align_union|asm|axiom|bool|concept|concept_map|const_cast|constexpr|decltype|delegate|dynamic_cast|explicit|export|friend|generic|late_check|mutable|namespace|noexcept|noreturn|nullptr|property|reinterpret_cast|static_assert|static_cast|template|typeid|typename|using|virtual|where|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|add|alias|as|ascending|async|await|base|bool|by|byte|checked|decimal|delegate|descending|dynamic|event|finally|fixed|foreach|from|get|global|group|implicit|in|interface|internal|into|is|join|let|lock|null|object|out|override|orderby|params|partial|readonly|ref|remove|sbyte|sealed|select|set|stackalloc|string|select|uint|ulong|unchecked|unsafe|ushort|value|var|virtual|where|yield|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|assert|boolean|byte|extends|finally|final|implements|import|instanceof|interface|null|native|package|strictfp|super|synchronized|throws|transient|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|async|await|constructor|debugger|enum|eval|export|from|function|get|import|implements|instanceof|interface|let|null|of|set|undefined|var|with|yield|Infinity|NaN|caller|delete|die|do|dump|elsif|eval|exit|foreach|for|goto|if|import|last|local|my|next|no|our|print|package|redo|require|sub|undef|unless|until|use|wantarray|while|BEGIN|END|break|continue|do|else|for|if|return|while|and|as|assert|class|def|del|elif|except|exec|finally|from|global|import|in|is|lambda|nonlocal|not|or|pass|print|raise|try|with|yield|False|True|None|break|continue|do|else|for|if|return|while|alias|and|begin|case|class|def|defined|elsif|end|ensure|false|in|module|next|nil|not|or|redo|rescue|retry|self|super|then|true|undef|unless|until|when|yield|BEGIN|END|break|continue|do|else|for|if|return|while|case|done|elif|esac|eval|fi|function|in|local|set|then|until)\\b)|(?:@[$A-Z_a-z][$0-9@-Z_a-z]*)|(?:(?:[@_]?[A-Z]+[a-z][A-Za-z_$@0-9]*|\\w+_t\\b))|(?:[$A-Z_a-z][$0-9@-Z_a-z]*)|(?:(?:0[Xx][0-9A-Fa-f]+|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)(?:[Ee][+\\-]?\\d+)?)[A-Za-z]*)|(?:\\\\[\\s\\S]?)|(?:.[^\\s\\w.$@'\"`/\\\\]*(?!s*\\/))|(?:[\x00-\uffff])", 
     "g"], "^<(?:(?:(?:\\.\\.\\/)*|\\/?)(?:[\\w-]+(?:\\/[\\w-]+)+)?[\\w-]+\\.h(?:h|pp|\\+\\+)?|[a-z]\\w*)>", "^(?:break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|alignas|alignof|align_union|asm|axiom|bool|concept|concept_map|const_cast|constexpr|decltype|delegate|dynamic_cast|explicit|export|friend|generic|late_check|mutable|namespace|noexcept|noreturn|nullptr|property|reinterpret_cast|static_assert|static_cast|template|typeid|typename|using|virtual|where|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|add|alias|as|ascending|async|await|base|bool|by|byte|checked|decimal|delegate|descending|dynamic|event|finally|fixed|foreach|from|get|global|group|implicit|in|interface|internal|into|is|join|let|lock|null|object|out|override|orderby|params|partial|readonly|ref|remove|sbyte|sealed|select|set|stackalloc|string|select|uint|ulong|unchecked|unsafe|ushort|value|var|virtual|where|yield|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|assert|boolean|byte|extends|finally|final|implements|import|instanceof|interface|null|native|package|strictfp|super|synchronized|throws|transient|break|continue|do|else|for|if|return|while|auto|case|char|const|default|double|enum|extern|float|goto|inline|int|long|register|restrict|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|catch|class|delete|false|import|new|operator|private|protected|public|this|throw|true|try|typeof|abstract|async|await|constructor|debugger|enum|eval|export|from|function|get|import|implements|instanceof|interface|let|null|of|set|undefined|var|with|yield|Infinity|NaN|caller|delete|die|do|dump|elsif|eval|exit|foreach|for|goto|if|import|last|local|my|next|no|our|print|package|redo|require|sub|undef|unless|until|use|wantarray|while|BEGIN|END|break|continue|do|else|for|if|return|while|and|as|assert|class|def|del|elif|except|exec|finally|from|global|import|in|is|lambda|nonlocal|not|or|pass|print|raise|try|with|yield|False|True|None|break|continue|do|else|for|if|return|while|alias|and|begin|case|class|def|defined|elsif|end|ensure|false|in|module|next|nil|not|or|redo|rescue|retry|self|super|then|true|undef|unless|until|when|yield|BEGIN|END|break|continue|do|else|for|if|return|while|case|done|elif|esac|eval|fi|function|in|local|set|then|until)\\b"], 
-    ha = "pln str com pun lit kwd atv typ dec tag atn src".split(" "), E = Va.now || function() {
-      return +new Va();
-    }, T, Y, a, d, b, l = 5 > z ? 60 : 5.5 > z ? 0 : Cb ? 20 : 10, m, x;
+    ha = "pln str com pun lit kwd atv typ dec tag atn src".split(" "), E = ub.now || function() {
+      return +new ub();
+    }, T, Y, a, d, b, l = 5 > z ? 60 : 5.5 > z ? 0 : Db ? 20 : 10, m, x;
     Ua = [function(n) {
       R.RegExpCompat = T = n;
     }, function() {
       m = P("^\\s*<");
       x = P("\\S");
     }];
-    Cb || (Ua[1](), Ua = v);
+    Db || (Ua[1](), Ua = v);
     var O = function() {
       var n = a, q = n.V, B = V(n.B, n.O), y = n.o = B.o;
       n.I = B.I;
@@ -1517,7 +1519,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           var w = f.nodeValue, p = w.indexOf("\r\n"), F = 2;
           -1 === p && (p = w.indexOf("\n"), F = 1);
           -1 === p && (p = w.indexOf("\r"));
-          -1 !== p && (k = w.substr(0, p), f.nodeValue = k, (w = w.substr(p + F)) && Nb(f, w), A(f), k || Ka(f));
+          -1 !== p && (k = w.substr(0, p), f.nodeValue = k, (w = w.substr(p + F)) && Rb(f, w), A(f), k || Ka(f));
         }
       }
       function A(f) {
@@ -1556,14 +1558,14 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           h.innerHTML = '<li value="' + q + '">' + u.innerHTML + "</li>";
           Q[0] = h.firstChild;
         } else {
-          Ya(u, "value", q);
+          Xa(u, "value", q);
         }
       }
       h = Ra(n, "ol", {className:"linenums"});
       n = Math.max(0, q - 1 | 0) || 0;
       c = 0;
       for (q = Q.length; c < q; ++c) {
-        u = Q[c], Bb(u, "L" + (c + n) % 10), u.firstChild || kc(u, "\u00a0"), h.appendChild(u);
+        u = Q[c], Cb(u, "L" + (c + n) % 10), u.firstChild || pc(u, "\u00a0"), h.appendChild(u);
       }
     };
     var na = function() {
@@ -1594,9 +1596,9 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
         var H;
         if (1 !== F.nodeType && (H = q.substring(y, w))) {
           9 > z && (H = H.split("\n").join("\r"));
-          var N = Ab(F, "span", {className:ha[c[f + 1]]}, H);
+          var N = Bb(F, "span", {className:ha[c[f + 1]]}, H);
           Ka(F);
-          y < k && (A[Q + 1] = Nb(N, q.substring(w, k)));
+          y < k && (A[Q + 1] = Rb(N, q.substring(w, k)));
         }
         y = w;
         y >= k && (Q += 2);
@@ -1609,7 +1611,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     var Ea = [], ta;
     qb(function(n) {
       if (n) {
-        n = [db("pre"), db("code"), db("xmp")];
+        n = [cb("pre"), cb("code"), cb("xmp")];
         for (var q = 0; q < n.length; ++q) {
           for (var B = 0, y = n[q].length; B < y; ++B) {
             Fa(n[q][B]);
@@ -1621,7 +1623,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
     var Fa = function(n) {
       Ea.push(n);
       ta = Ea.length;
-      1 === ta && (Ub ? qa(Ub, oa) : Ua ? Ua.push(function() {
+      1 === ta && (Yb ? qa(Yb, oa) : Ua ? Ua.push(function() {
         qa(oa);
       }) : qa(oa));
     };
@@ -1643,7 +1645,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
             }
             if (!B) {
               B = q.className;
-              Za(q, "prettyprinted");
+              Ya(q, "prettyprinted");
               y = !1;
               if (!y) {
                 y = n(B, "lang-") || n(B, "language-");
@@ -1671,33 +1673,33 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
       b = q;
     }};
   })();
-  var Tb = L.scripts || db("script");
-  var za = Tb[Tb.length - 1].src.split("/");
+  var Xb = L.scripts || cb("script");
+  var za = Xb[Xb.length - 1].src.split("/");
   --za.length;
   "js" === za[za.length - 1] && --za.length;
   (za = za.join("/")) && (za += "/");
-  var sc = wc || "1" === wa(ra, "mob");
-  wb = (sc ? "mb" : "pc") + "/";
-  6.1 > hb && (lb ? lb(Kb) : Z(R, "scroll", Kb));
-  eb(gc);
-  6.1 > hb && (lb ? lb(Lb) : Z(R, "scroll", Lb));
-  eb(hc);
-  10 > z && (11 !== uc || 5 !== z) || (9 > M || 1 > I || !cb && !R.addEventListener ? L.write('<link href="' + za + "css/" + wb + Hb + '" rel="stylesheet"' + (8 > M ? "" : ' media="screen,handheld,projection,print"') + ">") : (9.5 > M || 1.5 > I || 532 >= Ia || 8 > Pa) && Da(function() {
-    Ra(ab, "link", {href:za + "css/" + wb + Hb, rel:"stylesheet", media:"screen,handheld,projection,tv,print"});
+  var xc = Cc || "1" === wa(ra, "mob");
+  xb = (xc ? "mb" : "pc") + "/";
+  6.1 > gb && (lb ? lb(Ob) : Z(R, "scroll", Ob));
+  db(lc);
+  6.1 > gb && (lb ? lb(Pb) : Z(R, "scroll", Pb));
+  db(mc);
+  10 > z && (11 !== Ac || 5 !== z) || (9 > M || 1 > I || !bb && !R.addEventListener ? L.write('<link href="' + za + "css/" + xb + Lb + '" rel="stylesheet"' + (8 > M ? "" : ' media="screen,handheld,projection,print"') + ">") : (9.5 > M || 1.5 > I || 532 >= Ia || 8 > Pa) && Da(function() {
+    Ra($a, "link", {href:za + "css/" + xb + Lb, rel:"stylesheet", media:"screen,handheld,projection,tv,print"});
   }));
-  if (Cb) {
-    if (xb) {
-      var Ub = function(D) {
+  if (Db) {
+    if (yb) {
+      var Yb = function(D) {
         R.RegExpCompat = bz;
-        Ub = v;
-        Ib(za + "js/regexpcompat.js");
+        Yb = v;
+        Mb(za + "js/regexpcompat.js");
         function bz(P) {
           for (var G; G = Ua.shift();) {
             G(P);
           }
           Ua = v;
           qa(D);
-          Jb(za + "js/regexpcompat.js");
+          Nb(za + "js/regexpcompat.js");
         }
         bz = !1;
       };
@@ -1707,10 +1709,10 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
           P(D);
         }
         Ua = v;
-        Jb(za + "js/regexpcompat.js");
-      }, Ib(za + "js/regexpcompat.js");
+        Nb(za + "js/regexpcompat.js");
+      }, Mb(za + "js/regexpcompat.js");
     }
   }
 })(ua, this, function() {
-}, this.RegExp, Date, document, navigator, screen, parseFloat, Number, void 0);
+}, this.RegExp, document, navigator, Function, Date, parseFloat, isFinite, setTimeout, clearTimeout, setInterval, void 0);
 

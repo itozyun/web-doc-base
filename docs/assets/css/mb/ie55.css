@@ -566,11 +566,11 @@ strong {
 }
 #lB .lS1 {
   width: 45.5%;
-  padding: 0 0 0 3%
+  padding-left: 3%
 }
 #lB .lS2 {
   width: 45.5%;
-  padding: 0 3% 0 0
+  padding-right: 3%
 }
 .btn {
   border-width: .1em;
