@@ -18,7 +18,7 @@ var TIMER_INTERVAL = 16,
 
 /** @type {!Function|string} */
 var Timer_on = function(){
-    var cb, i = 0, t = ( + new Date );
+    var cb, i = 0, t = p_getTimestamp();
 
     while( i < TIMER_LISTENERS.length ){
         if( t < TIMER_LISTENERS[ 0 ].t ){
@@ -55,7 +55,7 @@ function Timer_set( callback, opt_param, opt_intervalMs ){
         f    : callback,
         p    : opt_param,
         _uid : ++timerUID,
-        t    : ( + new Date ) + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
+        t    : p_getTimestamp() + ( TIMER_INTERVAL < opt_intervalMs ? opt_intervalMs : TIMER_INTERVAL )
     } );
 
     return timerUID;

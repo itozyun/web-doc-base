@@ -125,7 +125,7 @@ function SidebarFixer_onscroll( param ){
         return;
     };
     if( SidebarFixer_ignoreScrollAfterFocus && !focuedElementYAndHeight ){
-        if( ( + new Date ) < SidebarFixer_ignoreScrollAfterFocus ){
+        if( p_getTimestamp() < SidebarFixer_ignoreScrollAfterFocus ){
             return;
         };
         SidebarFixer_ignoreScrollAfterFocus = undefined;
@@ -151,7 +151,7 @@ function SidebarFixer_onscroll( param ){
         SidebarFixer_focuedElementYAndHeight = SidebarFixer_fix( undefined, focuedElementYAndHeight[ 0 ], focuedElementYAndHeight[ 1 ] ); // false, undefined, Array.<number>
         if( !SidebarFixer_focuedElementYAndHeight ){
             // focus 直後に発生する scroll をスキップする
-            SidebarFixer_ignoreScrollAfterFocus = ( + new Date ) + 99;
+            SidebarFixer_ignoreScrollAfterFocus = p_getTimestamp() + 99;
         };
     } else {
         SidebarFixer_fix();

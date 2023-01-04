@@ -54,7 +54,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             if( e.keyCode === 16 ){
                 TabNavigation_shiftKeyPressed = true;
             } else if( e.keyCode === 9 ){
-                TabNavigation_keydownTime = + new Date;
+                TabNavigation_keydownTime = p_getTimestamp();
                 // Debug.log( e.type + ':TAB' + e.shiftKey + '/' + TabNavigation_shiftKeyPressed + ' time:' + TabNavigation_keydownTime );
             };
         };
@@ -109,18 +109,18 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
      * @return {boolean|undefined}
      */
     var TabNavigation_findNextFocusableElement = function( currentElement, skipCheckTime ){
-        var now = + new Date,
+        var now = p_getTimestamp(),
             body = p_body,
             previousOrNextSibling = 'nextSibling',
             firstOrLastChild = 'firstChild',
             elm, child;
 
         if( TabNavigation_shiftKeyPressed && ( skipCheckTime || ( now - 99 < TabNavigation_keydownTime && TabNavigation_keydownTime <= now ) ) ){
-            //Debug.log( e.type + ' reverse() ' + TabNavigation_keydownTime + '<' + (( + new Date )  + 99) );
+            //Debug.log( e.type + ' reverse() ' + TabNavigation_keydownTime + '<' + (p_getTimestamp()  + 99) );
             previousOrNextSibling = 'previousSibling';
             firstOrLastChild      = 'lastChild';
         // } else {
-            //Debug.log( e.type + ' no rev' + TabNavigation_keydownTime + '<' + (( + new Date )  + 99) );
+            //Debug.log( e.type + ' no rev' + TabNavigation_keydownTime + '<' + (p_getTimestamp()  + 99) );
         };
 
         TabNavigation_nextFocusableElement = undefined;
