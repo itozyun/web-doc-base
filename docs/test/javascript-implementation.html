@@ -690,6 +690,25 @@ print('9:' + document.body.children);
 <div class="output"></div><br clear="all">
 </div>
 
+<h2>noscript</h2>
+<noscript>JavaScript is disabled.</noscript>
+<div>
+<input type="button" onclick="exec(this);" value="exec" title="delete">
+<pre>(function(){
+var noscripts = document.getElementsByTagName('noscript');
+var noscript = noscripts[noscripts.length-1];
+print('1:' + noscript.innerHTML);
+print('2:' + noscript.innerText);
+print('3:' + noscript.textContent);
+print('4:' + (noscript.firstChild ? noscript.firstChild.data : ''));
+print('5:' + (noscript.firstChild ? noscript.firstChild.textContent : ''));
+print('6:' + (noscript.firstChild ? noscript.firstChild.nodeValue : ''));
+print('7:' + (noscript.firstChild ? noscript.firstChild.wholeText : ''));
+})();
+</pre>
+<div class="output"></div><br clear="all">
+</div>
+
 <h2>Links</h2>
 <ul>
 <li><a href="//outcloud.blogspot.com/2022/11/es2-postprocessor.html">es2-postprocessorでOpera8未満、IE5.5未満でも動くJavaScriptを書く</a>
