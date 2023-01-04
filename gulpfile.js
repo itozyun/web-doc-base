@@ -3,7 +3,7 @@ const gulp            = require('gulp'),
       moduleName      = 'web-doc-base',
       tempJsName      = 'temp.js',
       tempDir         = require('os').tmpdir() + '/' + moduleName,
-      globalVariables = 'document,navigator,screen,parseFloat,Number';
+      globalVariables = 'document,navigator,Function,Date,parseFloat,isFinite,setTimeout,clearTimeout,setInterval';
 
 let gulpDPZ, ClosureCompiler, postProcessor, es2ToES3;
 let minify = true;
@@ -196,7 +196,10 @@ gulp.task( '__js', gulp.series(
             ).pipe(
                 gulpDPZ(
                     {
-                        packageGlobalArgs : [ 'ua,window,emptyFunction,RegExp,Date,' + globalVariables + ',undefined', 'ua,this,function(){},this.RegExp,Date,' + globalVariables + ',void 0' ],
+                        packageGlobalArgs : [
+                            'ua,window,emptyFunction,RegExp,' + globalVariables + ',undefined',
+                            'ua,this,function(){},this.RegExp,' + globalVariables + ',void 0'
+                        ],
                         basePath          : [
                             './src/js/',
                             './.submodules/what-browser-am-i/src/js/',
