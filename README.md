@@ -44,7 +44,7 @@ Javascript によって提供される機能
 
 ### Links
 
-* [Document](https://itozyun.github.io/web-doc-base/)
+* [Document](https://itozyun.github.io/web-doc-base/), [http version](http://my-http-proxy-856.appspot.com/itozyun.github.io/web-doc-base/)([bit.ly/3ieJWwA](http://bit.ly/3ieJWwA))
 * [clearfixのテスト](https://itozyun.github.io/web-doc-base/test/clearfix.html)
 * [疑似要素のテスト](https://itozyun.github.io/web-doc-base/test/cssGeneratedContent.html)
 * [CSSOM のテスト](https://itozyun.github.io/web-doc-base/test/test/cssom.html)
