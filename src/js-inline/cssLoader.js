@@ -63,7 +63,7 @@ function cssAndJsLoader_onload(){
     for( ; i < l; ++i ){
         noscript = noscripts[ i ];
         content  = noscript.textContent;
-        end      = content.indexOf( 'modern.css"' );
+        end      = content.indexOf( DEFINE_WEB_DOC_BASE__CSS_FILENAME_MODERN + '.css"' );
         start    = content.lastIndexOf( '@import "', end ); // @import が2つある為、先に end を調べる
         if( 0 <= start && 0 < end ){
             dir = content.substring( start + 9, end );
