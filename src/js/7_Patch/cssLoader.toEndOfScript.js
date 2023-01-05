@@ -23,10 +23,12 @@ if(
             '>'
         );
     } else if(
-        p_Presto   <  9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
-        p_Gecko    <  1.5 || // Windows XP + Gecko  1.4.1  , noscript 下のコンテンツが取れない
-        p_WebKit   <= 532 || // Windows XP + Safari 4.0.5- , noscript 下のコンテンツが取れない
-        p_Chromium <  8   || // Windows XP + Chrome(Iron)7-, noscript 下のコンテンツが取れない
+        p_Presto       < 9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
+        p_Gecko        < 1.5 || // Windows XP + Gecko  1.4.1  , noscript 下のコンテンツが取れない
+        p_WebKit       < 534 || // Windows XP + Safari 4.0.5- , noscript 下のコンテンツが取れない.
+        p_SafariMobile < 5   || // 多分
+        p_Chromium     < 7   || // Windows XP + Chrome(Iron)6-, noscript 下のコンテンツが取れない
+        p_AOSP         < 3   || // AOSP 2.2 WebKit 433.1      , noscript 下のコンテンツが取れない.
         !DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS
     ){
         p_listenLoadEvent(
