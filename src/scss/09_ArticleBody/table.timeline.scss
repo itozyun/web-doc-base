@@ -160,12 +160,17 @@
         }
     }
 
-    thead, tbody th {
-        :link, :link:hover {
+    thead tr { /* tr で詳細度を上げる */
+        :link {
             color : $COLOR_Light_link;
         }
-        :visited, :visited:hover {
+        :visited {
             color : $COLOR_Light_visited;
+        }
+        @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+            :visited:hover {
+                color : $COLOR_Light_visited_hover;
+            }
         }
     }
 }
@@ -185,8 +190,13 @@ blockquote .tl {
             border-color : $COLOR_Light_casual_fill;
         }
     }
-    tbody th :visited {
-        color : $COLOR_Light_visited;
+    tbody tr th { /* tr で詳細度を上げる */
+        :link {
+            color : $COLOR_Light_link;
+        }
+        :visited {
+            color : $COLOR_Light_visited;
+        }
     }
 }
 
@@ -212,14 +222,19 @@ blockquote .tl {
             }
         }
 
-        thead, tbody th {
-            :link, :link:hover {
+        thead tr, tbody tr th { /* tr で詳細度を上げる */
+            :link {
                 color : $COLOR_Dark_link;
             }
-            :visited, :visited:hover {
+            :visited {
                 color : $COLOR_Dark_visited;
             }
-        }      
+            @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
+                :visited:hover {
+                    color : $COLOR_Dark_visited_hover;
+                }
+            }
+        }
     }
     blockquote .tl {
         thead th, thead td,
@@ -235,8 +250,13 @@ blockquote .tl {
                 border-color : $COLOR_Dark_casual_fill;
             }
         }
-        tbody th :visited {
-            color : $COLOR_Dark_visited;
+        tbody tr th { /* tr で詳細度を上げる */
+            :link {
+                color : $COLOR_Dark_link;
+            }
+            :visited {
+                color : $COLOR_Dark_visited;
+            }
         }
     }  
 }
