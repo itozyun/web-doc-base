@@ -282,11 +282,9 @@ a:focus:hover,
 input.btn:hover {
   text-decoration: underline
 }
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
+.tl thead tr :link,
+:link,
+blockquote .tl tbody tr th :link {
   color: #24c
 }
 :link:hover,
@@ -295,8 +293,8 @@ form :focus {
   border-color: #3079ed
 }
 :visited:hover {
-  color: #419;
-  border-color: #419
+  color: #515;
+  border-color: #515
 }
 .RichLink b,
 h1,
@@ -1119,15 +1117,13 @@ kbd {
   border-color: #0a0809
 }
 .aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-blockquote .tl tbody th :visited {
+.tl thead tr :visited,
+blockquote .tl tbody tr th :visited {
   color: #717
 }
-.aBodyRoot :visited:hover {
-  color: #419
+.aBodyRoot :visited:hover,
+.tl thead tr :visited:hover {
+  color: #515
 }
 blockquote {
   padding: 1em 1px

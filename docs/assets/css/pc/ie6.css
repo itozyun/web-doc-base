@@ -270,11 +270,9 @@ p {
 a:active:hover {
   text-decoration: underline
 }
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
+.tl thead tr :link,
+:link,
+blockquote .tl tbody tr th :link {
   color: #24c
 }
 .tl tbody th,
@@ -289,8 +287,8 @@ a:active:hover {
   border-color: #3079ed
 }
 :visited:hover {
-  color: #419;
-  border-color: #419
+  color: #515;
+  border-color: #515
 }
 .ADesc,
 .ribbon .AHead,
@@ -313,8 +311,8 @@ a:active * {
   color: #fff
 }
 .ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
+  color: #c8e;
+  border-color: #c8e
 }
 a:active {
   background-color: #3079ed!important
@@ -1082,15 +1080,13 @@ kbd {
   text-decoration: none!important
 }
 .aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-blockquote .tl tbody th :visited {
+.tl thead tr :visited,
+blockquote .tl tbody tr th :visited {
   color: #717
 }
-.aBodyRoot :visited:hover {
-  color: #419
+.aBodyRoot :visited:hover,
+.tl thead tr :visited:hover {
+  color: #515
 }
 .js-bqLink {
   color: #24c;

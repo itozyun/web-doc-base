@@ -384,11 +384,9 @@ a:focus:hover,
 input.btn:hover {
   text-decoration: underline
 }
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
+.tl thead tr :link,
+:link,
+blockquote .tl tbody tr th :link {
   color: #24c
 }
 .tl tbody th,
@@ -405,8 +403,8 @@ form :focus {
   border-color: #3079ed
 }
 :visited:hover {
-  color: #419;
-  border-color: #419
+  color: #515;
+  border-color: #515
 }
 .ribbon a {
   color: #bbb;
@@ -434,8 +432,8 @@ a:focus * {
   color: #fff!important
 }
 .ribbon :visited:hover {
-  color: #b3f;
-  border-color: #b3f
+  color: #c8e;
+  border-color: #c8e
 }
 :target,
 :target * {
@@ -1483,15 +1481,13 @@ kbd {
   border-width: 0
 }
 .aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-blockquote .tl tbody th :visited {
+.tl thead tr :visited,
+blockquote .tl tbody tr th :visited {
   color: #717
 }
-.aBodyRoot :visited:hover {
-  color: #419
+.aBodyRoot :visited:hover,
+.tl thead tr :visited:hover {
+  color: #515
 }
 blockquote[title]:before {
   content: attr(title);
@@ -2580,11 +2576,10 @@ screen and (max-width:950px) {
   }
   .SearchResult :visited,
   .js-bqLink,
-  .tl tbody th :link,
-  .tl tbody th :link:hover,
-  .tl thead :link,
-  .tl thead :link:hover,
+  .tl tbody tr th :link,
+  .tl thead tr :link,
   :link,
+  blockquote .tl tbody tr th :link,
   blockquote:before {
     color: #bbe
   }
@@ -2602,8 +2597,8 @@ screen and (max-width:950px) {
     border-color: #3079ed
   }
   :visited:hover {
-    color: #b3f;
-    border-color: #b3f
+    color: #c8e;
+    border-color: #c8e
   }
   h4,
   h5,
@@ -2820,15 +2815,15 @@ screen and (max-width:950px) {
     color: #545454
   }
   .aBodyRoot :visited,
-  .tl tbody th :visited,
-  .tl tbody th :visited:hover,
-  .tl thead :visited,
-  .tl thead :visited:hover,
-  blockquote .tl tbody th :visited {
+  .tl tbody tr th :visited,
+  .tl thead tr :visited,
+  blockquote .tl tbody tr th :visited {
     color: #eae
   }
-  .aBodyRoot :visited:hover {
-    color: #b3f
+  .aBodyRoot :visited:hover,
+  .tl tbody tr th :visited:hover,
+  .tl thead tr :visited:hover {
+    color: #c8e
   }
   .box dl,
   .box ol,

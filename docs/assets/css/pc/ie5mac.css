@@ -256,11 +256,9 @@ body {
 p {
   line-height: 1.9
 }
-.tl tbody th :link,
-.tl tbody th :link:hover,
-.tl thead :link,
-.tl thead :link:hover,
-:link {
+.tl thead tr :link,
+:link,
+blockquote .tl tbody tr th :link {
   color: #24c
 }
 .tl tbody th,
@@ -1058,15 +1056,12 @@ kbd {
   border-width: 0
 }
 .aBodyRoot :visited,
-.tl tbody th :visited,
-.tl tbody th :visited:hover,
-.tl thead :visited,
-.tl thead :visited:hover,
-blockquote .tl tbody th :visited {
+.tl thead tr :visited,
+blockquote .tl tbody tr th :visited {
   color: #717
 }
 .aBodyRoot :visited:hover {
-  color: #419
+  color: #515
 }
 .js-bqLink {
   color: #24c;
