@@ -38,7 +38,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( _p_Debug_logsBeforeLoad.shift() );
             };
             while( _p_Debug_errorsBeforeLoad.length ){
-                Debug.log( _p_Debug_errorsBeforeLoad.shift() );
+                Debug.error( _p_Debug_errorsBeforeLoad.shift() );
             };
             _p_Debug_logsBeforeLoad = _p_Debug_errorsBeforeLoad = undefined;
         }
