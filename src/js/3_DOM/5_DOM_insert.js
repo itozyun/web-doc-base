@@ -224,6 +224,10 @@ function DOM_remove( elm ){
     if( m_isIE4DOM ){
         elm.outerHTML = '';
     } else {
+        if( p_Trident < 5.5 ){
+            // https://outcloud.blogspot.com/2016/03/ms-filter.html
+            elm.style.filter = ''; // filter の利いたまま要素の削除を行うと IE5 では不具合に見舞われます。
+        };
         p_DOM_getParentNode( elm ).removeChild( elm );
     };
 };
