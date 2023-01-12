@@ -38,14 +38,14 @@ a {
     color        : $COLOR_Light_casual_text;
     border-color : $COLOR_Light_fill;
 }
-:link          {
-    color        : $COLOR_Light_link;
+:link {
+    color : $COLOR_Light_link;
 }
-:visited       {
-    color        : $COLOR_Light_text;
+:visited {
+    color : $COLOR_Light_text;
 }
 @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
-    :link:hover    {
+    :link:hover {
         color        : $COLOR_Light_hover;
         border-color : $COLOR_Light_hover;
     }
@@ -57,15 +57,15 @@ a {
 
 @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
     .ribbon {
-        a              {
+        a {
             color        : $COLOR_Ribbon_casual_text;
             border-color : $COLOR_Ribbon_fill;
         }
-        :link          {
-            color        : $COLOR_Ribbon_link;
+        :link {
+            color : $COLOR_Ribbon_link;
         }
-        :visited       {
-            color        : $COLOR_Ribbon_text;
+        :visited {
+            color : $COLOR_Ribbon_text;
         }
         @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
             :link:hover    {
@@ -146,14 +146,13 @@ a {
         color        : $COLOR_Dark_casual_text;
         border-color : $COLOR_Dark_fill;
     }
-    :link          {
-        color        : $COLOR_Dark_link;
-        
+    :link {
+        color : $COLOR_Dark_link;
     }
-    :visited       {
-        color        : $COLOR_Dark_text;
+    :visited {
+        color : $COLOR_Dark_text;
     }
-    :link:hover    {
+    :link:hover {
         color        : $COLOR_Dark_hover;
         border-color : $COLOR_Dark_hover;
     }
