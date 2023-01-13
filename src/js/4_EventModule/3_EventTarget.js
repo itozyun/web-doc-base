@@ -123,8 +123,19 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
             eventTarget   = this,
             i             = -1,
             listener, stopPropagation;
-        
-        if( p_Trident ){
+
+        if( p_Trident < 5 ){
+            e = {
+                type   : event.type,
+                target : event.srcElement,
+                preventDefault : function(){
+                    event.returnValue = false;
+                },
+                stopPropagation : function(){
+                    event.cancelBubble = true;
+                }
+            };
+        } else if( p_Trident ){
             e.target = e.srcElement;
             e.preventDefault = function(){
                 e.returnValue = false;

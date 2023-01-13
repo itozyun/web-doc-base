@@ -42,11 +42,15 @@ P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 </script>
 <script>
 var trident = ( ua.ENGINE === 'Trident' || ua.ENGINE === 'TridentMobile' ) && parseFloat( ua.ENGINE_VERSION );
+var oldAPI  = trident < 5 || ua.ENGINE === 'Tasman';
+var __ontimer;
 
 function test( url, timeout, delay ){
     var textarea = document.output || window.output || document.getElementById( 'output' ),
         result = '',
-        img = new Image(), tick = 0;
+        img = new Image(), tick = 0, lastTime;
+    
+    delay = trident < 5 ? 64 : delay;
 
     function log( str ){
         result += str;
@@ -77,30 +81,21 @@ function test( url, timeout, delay ){
     log( "[" + url + "]" );
 
     if( timeout ){
-        setTimeout(
-            function(){
-                log( "." );
-                img.complete && log( "[+comp2]" );
-                if( img.complete || timeout < ( tick += delay ) ){
-                    log( img.complete ? "c" : "t" );
-                    log( "[w:" + img.width + "]" );
-                    log( "[natural:" + img.naturalWidth + "]" );
-                } else {
-                    setTimeout( arguments.callee, delay );
-                };
-            }, 0
-        );
+        lastTime = + new Date;
+        setTimeout( oldAPI ? '__ontimer()' : __ontimer, 0);
     };
-};
-
-if( trident < 5 || ua.ENGINE === 'Tasman' ){
-    var __setTimeout = setTimeout,
-        __callback = function(){ __actual(); },
-        __actual;
-
-    setTimeout = function( callback, delay ){
-        __setTimeout( '__callback', delay );
-        __actual = callback;
+    __ontimer = function(){
+        log( "." );
+        var now = + new Date;
+        img.complete && log( "[+comp2]" );
+        if( img.complete || timeout < ( tick += ( now - lastTime ) ) ){
+            log( img.complete ? "c" : "t" );
+            log( "[w:" + img.width + "]" );
+            log( "[natural:" + img.naturalWidth + "]" );
+        } else {
+            lastTime = now;
+            setTimeout( oldAPI ? '__ontimer()' : __ontimer, delay );
+        };
     };
 };
 </script>
@@ -122,8 +117,8 @@ Check Image loading,
 <a href="richlink.html">RichLink のテスト</a>
 <hr>
 <h1>Check Image loading</h1>
-<button onclick="test( 'imageSprite/taichi.png', 1000, 8 )">load test</button>
-<button onclick="test( 'imageSprite/bad.png', 5000, 8 )">error test</button>
+<button onclick="test( 'imageSprite/taichi.png', 1000, 16 )">load test</button>
+<button onclick="test( 'imageSprite/bad.png', 5000, 16 )">error test</button>
 <textarea id="output" cols="80" rows="20"></textarea>
 <h2>Links</h2>
 <ul>

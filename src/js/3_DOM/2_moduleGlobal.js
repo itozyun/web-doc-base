@@ -24,7 +24,9 @@ function m_toHTMLString( tagName, attrs, textContent ){
                     };
                     html[ ++j ] = '"';
                 } else {
-                    name === 'className' && ( name = 'class' );
+                    if( name === 'className' ){
+                        name = 'class';
+                    };
                     html[ ++j ] = ' ' + name + '="' + value + '"';
                 };
             };
@@ -35,7 +37,7 @@ function m_toHTMLString( tagName, attrs, textContent ){
 
     if( textContent != null ){
         if( m_isIE4DOM && tagName !== m_FAKE_TEXTNODE_TAGNAME ){
-            html[ ++j ] = '<' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>' + m_escapeHTML( textContent ) + '</' + m_FAKE_TEXTNODE_TAGNAME.toUpperCase() + '>';
+            html[ ++j ] = '<' + m_FAKE_TEXTNODE_TAGNAME + '>' + m_escapeHTML( textContent ) + '</' + m_FAKE_TEXTNODE_TAGNAME + '>';
         } else {
             html[ ++j ] = m_escapeHTML( textContent );
         };
