@@ -9,6 +9,9 @@
 // 「欧文フォント」
 //    http://www.akibatec.net/wabunfont/library/ohbun/ohbun.html
 
+//  「font-familyを調べまわった結果のまとめ」
+//    https://www.bugbugnow.net/2020/02/font-family.html
+
 /* (1) Chrome 58 では "Yu Gothic Medium" を認識しないバグの回避
  *      「読みやすいフォントの CSS 設定例」より
  *         https://murashun.jp/article/design/css-font-readability.html
@@ -39,6 +42,16 @@
  * (6) "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう問題あり
  *
  * (7) "YuKyokasho" 游教科書体 macOS Catalina (10.15) https://mimi.moe.in/nmp/fonts/fonts
+ *
+ * (8) 一部記号が正しく表示されないのを直す font-family: ".SFNSDisplay-Regular"; 指定は2016年3月頃に不要になった様子。
+ *       「Mac・iOS のシステムフォントを CSS で使う : 「-apple-system」」2017-11-15
+ *          https://neos21.net/blog/2017/11/15-01.html
+ *       「Apple System Font」
+ *          https://neos21.github.io/poc-ios-safari-web/apple-system-fonts-1.html
+ *
+ * (9) Emoji fonts
+ *       「bootstrap > 」
+ *          https://getbootstrap.com/docs/4.0/content/reboot/#native-font-stack
  */
 
 @if( $UA_Modern ){
@@ -51,14 +64,18 @@
     }
     %UDFontFamily {
         font-family :
-            -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+            -apple-system, BlinkMacSystemFont,
+            ".SFNSDisplay-Regular", // (8)
+            "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
             Roboto, // (2)
             "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
             "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
             "メイリオ", Meiryo,
-            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
+            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p",
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" // (9)
+            sans-serif;
 
         @include css-hack(onlyFirefoxOS22) {
             & {
