@@ -20,6 +20,9 @@
                     -moz-transition : width 0.3s ease-in, margin 0.3s ease-in;
                       -o-transition : width 0.3s ease-in, margin 0.3s ease-in;
                          transition : width 0.3s ease-in, margin 0.3s ease-in;
+        @media (prefers-reduced-motion: reduce) {
+            transition : none;
+        }
     }
 }
 

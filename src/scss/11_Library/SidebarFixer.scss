@@ -28,6 +28,9 @@
                    -moz-transition          : transform 0.3s ease-in;
                      -o-transition          : transform 0.3s ease-in;
                         transition          : transform 0.3s ease-in;
+                @media (prefers-reduced-motion: reduce) {
+                    transition : none;
+                }
             }
             /* :hover で色を変えてスクロール可能であることを知らせる */
             #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
