@@ -157,10 +157,11 @@ function p_notUndefined( val ){
  *    Windows Phone 7 - IE9
  */
 var p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST = // Unavailable due to block list
-        p_WebKit < 525 || // Safari <3.1
-        p_Presto < 10  || // block NDS, NDSi
+        p_WebKit       < 525 || // Safari <3.1
+        p_SafariMobile < 3.2 ||
+        p_AOSP         < 2.2 ||
+        p_Presto       < 10  || // block NDS, NDSi
         p_Gecko && !p_FirefoxGte35 || // Gecko <1.9.1 p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', {} ) でエラー
-        p_AOSP < 2.2 ||
         p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_UCWEB         ) ||
         p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
         p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MeeGo ) ||
