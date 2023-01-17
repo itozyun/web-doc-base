@@ -17,8 +17,20 @@
         }
     }
 
+/*  ダイナミックタイプ対応
+ *  https://ics.media/entry/210604/
+--------------------------------------------------------------------------------------*/
+    /* iOS と iPadOS だけに適用する
+        (font: -apple-system-body) の条件だと macOS Safari も適用されてしまうため、
+        (-webkit-touch-callout: none) で絞っている */
+    @supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
+        :root {
+            font : -apple-system-body;
+        }
+    }
+
 /*  html & body
---------------------------------------------------------------------------------------*/    
+--------------------------------------------------------------------------------------*/
     html {
         @if( $Option_mobileOnly == false and $UA_IE6 ){
             overflow-x : hidden;

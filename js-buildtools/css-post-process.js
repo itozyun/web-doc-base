@@ -2,7 +2,8 @@
  * 1. 疑似要素の適正化
  * 2. CSS hack
  * 3. @-moz-document を @ media の最期へ
- * 4. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
+ * 4. ダイナミックタイプ対応 :root { font : -apple-system-body; を含む @ support を CSS の先頭へ
+ * 5. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
  */
 module.exports = function( _options ){
 
@@ -120,8 +121,28 @@ return require( 'through2' )
                 toEndOfMediaBlock.shift().append( toEndOfMediaBlock.shift() );
                 isUpdateCurrentFile = true;
             };
+        // 4. ダイナミックタイプ対応
+            const toStartOfCSS = [];
 
-        // 4. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
+            css.walkAtRules(
+                function( rule ){
+                    if( rule.name === 'supports' ){
+                        if( rule.params === '(-webkit-touch-callout:none) and (font:-apple-system-body)' ){
+                            toStartOfCSS.push( rule );
+                        };
+                    };
+                }
+            );
+            while( toStartOfCSS.length ){
+                if( css.first.name === 'charset' ){
+                    css.first.after( toStartOfCSS.pop() );
+                } else {
+                    css.first.before( toStartOfCSS.pop() );
+                };
+                isUpdateCurrentFile = true;
+            };
+
+        // 5. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
             if( options.fileNameOpera70 === file.basename ){
                 css.walkDecls(
                     function( decl ){
