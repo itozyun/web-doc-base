@@ -23,9 +23,11 @@
     /* iOS と iPadOS だけに適用する
         (font: -apple-system-body) の条件だと macOS Safari も適用されてしまうため、
         (-webkit-touch-callout: none) で絞っている */
-    @supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
-        :root {
-            font : -apple-system-body;
+    @if( $UA_Modern ){
+        @supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
+            :root {
+                font : -apple-system-body;
+            }
         }
     }
 
