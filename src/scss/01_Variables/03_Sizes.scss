@@ -32,6 +32,7 @@ $WSXGA_SUB_COLUMN_RATIO  : 0.2 !default;
 $WSXGA_MAIN_COLUMN_RATIO : 1 - $WSXGA_SUB_COLUMN_RATIO;
 $WSXGA_COLUMN_GAP_PCT    : 1.5% !default;
 $WSXGA_COLUMN_GAP_EM     : 2.6em !default;
+$WSXGA_MIN_WIDTH_EM      : 96em !default;
 $WSXGA_MAX_WIDTH_EM      : 108em !default;
 $WQXGA_WIDTH_PERCENT     : 96% !default;
 
@@ -39,18 +40,23 @@ $WQXGA_SUB_COLUMN_RATIO  : 0.3 !default;
 $WQXGA_MAIN_COLUMN_RATIO : 1 - $WQXGA_SUB_COLUMN_RATIO;
 $WQXGA_COLUMN_GAP_PCT    : 2% !default;
 $WQXGA_COLUMN_GAP_EM     : 2.6em !default;
+$WQXGA_MIN_WIDTH_EM      : 126em !default;
 $WQXGA_MAX_WIDTH_EM      : 150em !default;
 $WSXGA_WIDTH_PERCENT     : 94% !default;
 
 $TABLET_MAX_WIDTH_EM     : 50em !default;
+
+$TABLET_MAX_WIDTH         : if($Option_baseFontSize18, 953, 943);
+$PHABLET_MAX_WIDTH        : 740 !default;
+$PHONE_MAX_WIDTH          : 479 !default;
+$SMALL_PHONE_MAX_PX_WIDTH : 359px !default;
+$WATCH_MAX_PX_WIDTH       : 240px !default;
 
 $TABLET_HORIZONTAL_MARGIN  : 3% !default;
 $PHABLET_HORIZONTAL_MARGIN : 2% !default;
 $PHONE_HORIZONTAL_MARGIN   : 1% !default;
 
 $PRINT_COLUMN_GAP_EM : 2em !default;
-
-$SMALL_PHONE_MAX_WIDTH : 359px !default;
 
 /*  border, outline
 --------------------------------------------------------------------------------------*/

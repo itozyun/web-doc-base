@@ -212,12 +212,12 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 
     @if $UA_Modern {
-        @media only screen and (-ms-high-contrast:active) and (max-width: $SMALL_PHONE_MAX_WIDTH) {
+        @media only screen and (-ms-high-contrast:active) and (max-width: $SMALL_PHONE_MAX_PX_WIDTH) {
             .chatL p:after, .chatR p:after {
                 border-color : inherit transparent !important;
             }
         }
-        @media only screen and (forced-colors:active) and (max-width: $SMALL_PHONE_MAX_WIDTH){
+        @media only screen and (forced-colors:active) and (max-width: $SMALL_PHONE_MAX_PX_WIDTH){
             .chatL p:after, .chatR p:after {
                 border-color : inherit Window !important;
             }
@@ -225,7 +225,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 
     @if( $UA_IE9 or $UA_Modern ){
-        @media only use-pollyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_WIDTH) {
+        @media only use-pollyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_PX_WIDTH) {
             /* //_{^@ie9 */
             .jsCanRotate {
             /* //_}^@ie9 */
