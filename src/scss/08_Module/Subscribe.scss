@@ -5,7 +5,7 @@
  *   div.mspacer
  *     a
 --------------------------------------------------------------------------------------*/
-.Subscribe {
+.#{$Prefix}Subscribe {
     @include stackableModule;
 
     div {
@@ -27,12 +27,12 @@
         .stm {
             @include button-colors( #8BC53F, #8BC53F, $COLOR_Ribbon_fill );
         }
-}
 
-/*  Phablet
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .Subscribe div {
-        text-align : center;
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+        div {
+            text-align : center;
+        }
     }
 }

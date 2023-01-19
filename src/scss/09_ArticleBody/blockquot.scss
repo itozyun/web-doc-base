@@ -1,4 +1,3 @@
-
 /*  blockquote
 --------------------------------------------------------------------------------------*/
 blockquote {
@@ -11,104 +10,54 @@ blockquote {
     blockquote {
         border-color : $COLOR_Light_casual_text;
     }
-}
 
-    blockquote h3 {
+    h3 {
         border-color : $COLOR_Light_text;
     }
 
     @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        blockquote[title]:before {
+        &[title]:before {
             content : attr(title);
             @if( $CANUSE_CSS_GENERATED_BLOCK ){
                 display : block;
             }
         }
-        blockquote[cite]:after {
+        &[cite]:after {
             content : attr(cite);
         }
+        &:before { @extend %BlockquoteLink; }
+        &:after { @extend %BlockquoteCite; }
+
     }
 
-    %BlockquoteLink {
-        @include responsive-horizontal-margin(2, 0, 0);
-        font-size : 0.875em;
-        color     : $COLOR_Light_link;
-    }
-    .js-bqLink { @extend %BlockquoteLink; }
-
-    %BlockquoteCite {
-        @include responsive-horizontal-margin(2, 0, 0);
-        @include unbreak-box-with-long-text; /* 長い url 用 */
-        display    : block;
-        font-size  : 0.875em;
-        text-align : right;
-        color      : $COLOR_Light_casual_text;
-    }
-    .js-bqCite { @extend %BlockquoteCite; }
-
-    @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        blockquote:before { @extend %BlockquoteLink; }
-        blockquote:after { @extend %BlockquoteCite; }
-    }
-
-/*  WSXGA, print
---------------------------------------------------------------------------------------*/
-@include media(WSXGA_landscapePrint) {
-    blockquote:before,
-    .js-bqLink {
-        margin : 0 0 1em;
-    }
-    blockquote:after,
-    .js-bqCite {
-        margin : 1em 0 0;
-    }
-}
-
-/* Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    blockquote {
+    /* Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
         padding : 1em 1px;
     }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    blockquote {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         background : $COLOR_Dark_casual_fill;
         color      : $COLOR_Dark_text;
         blockquote {
             border-color : $COLOR_Dark_casual_text;
         }
-    }
-        blockquote h3 {
+        h3 {
             border-color : $COLOR_Dark_text;
         }
+    }
 
-        blockquote:before,
-        .js-bqLink {
-            color : $COLOR_Dark_link;
-        }
-}
-
-/*  Forced colors
---------------------------------------------------------------------------------------*/
-@include media(forced_colors_native_or_fallback){
-    blockquote {
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
         border-style : dotted;
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    blockquote {
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
         margin : 1em 0;
-    }
-    @if( $CANUSE_CSS_GENERATED_CONTENT ){
-        .js-bqLink a:after {
-            display : none; /* for iOS4 content : none だけでは消えない */
-        }
     }
 }

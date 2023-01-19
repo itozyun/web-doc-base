@@ -3,7 +3,7 @@
  *
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    .TxtNavi {
+    .#{$Prefix}TxtNavi {
         padding     : 1em 0;
         text-align  : right;
         color       : $COLOR_Light_fill; /* , を消す */
@@ -16,26 +16,22 @@
                 zoom : 1;
             }
         }
-    }
 
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .ribbon .TxtNavi {
-            color : $COLOR_Ribbon_fill; /* , を消す */
+        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+            .#{$Prefix}ribbon & {
+                color : $COLOR_Ribbon_fill; /* , を消す */
+            }
         }
-    }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .TxtNavi {
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
             color : $COLOR_Dark_fill; /* , を消す */
         }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .TxtNavi {
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
             display : none;
         }
     }

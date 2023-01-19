@@ -13,11 +13,11 @@
         @include media(screen) {
             background : #0A0809;
         }
-    }
 
-    .aa, .aa code, .aa var {
-        @include media(screen) {
-            color : #00ac06;
+        &, & code, & var {
+            @include media(screen) {
+                color : #00ac06;
+            }
         }
     }
 }

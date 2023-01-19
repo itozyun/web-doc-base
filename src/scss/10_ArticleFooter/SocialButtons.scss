@@ -4,7 +4,7 @@
  *   a
 --------------------------------------------------------------------------------------*/
 @if( $Option_SocialBtns ){
-    .SocialBtns {
+    .#{$Prefix}SocialBtns {
         @include article-footer-item;
 
         padding : 1em 0 0.5em;
@@ -36,20 +36,16 @@
         .ln {
             @include button-colors( #00C300, #00C300, $COLOR_Light_fill );
         }
-    }
 
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet) {
-        .SocialBtns {
+        /*  Tablet
+        --------------------------------------------------------------------------------------*/
+        @include media(tablet) {
             text-align : center;
         }
-    }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .SocialBtns {
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
             color : $COLOR_Dark_fill; /* , を消す */
 
             .tw, .fb, .hb, .pt, .ok, .ln {
@@ -64,12 +60,10 @@
                 }
             }
         }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .SocialBtns {
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
             display : none;
         }
     }

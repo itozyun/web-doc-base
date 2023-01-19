@@ -3,7 +3,7 @@
  *
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    .BlogArchive {
+    .#{$Prefix}BlogArchive {
         @include stackableModule;
 
         th {

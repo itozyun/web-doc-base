@@ -13,8 +13,8 @@ $COMMENT_OUT_AT_MEDIA : (
     'dark_theme'           : if($CANUSE_CSS_MEDIA_QUERY or $UA_Opera8, 1, 0),
 /* //_}+mobileOnly */
 /* //_{^+mobileOnly */
-    'WQXGA'                : if($UA_Modern, 1, 0),
-    'WSXGA'                : if($UA_Modern, 1, 0),
+    'WQXGA'                : if($UA_Modern and $Option_overWSXGA, 1, 0),
+    'WSXGA'                : if($UA_Modern and $Option_overWSXGA, 1, 0),
     'WSXGA_landscapePrint' : if($UA_Modern, 1, 0),
     'pc'                   : if($CANUSE_CSS_MEDIA_QUERY, 1, 0),
     'tablet_print'         : 1,
@@ -60,7 +60,7 @@ $COMMENT_OUT_AT_MEDIA : (
             }
         }
         @else if $media == 'WSXGA_landscapePrint' {
-            @if( $Option_mobileOnly ){
+            @if( $Option_mobileOnly or $Option_overWSXGA == false ){
                 @media only print and (orientation: landscape){
                     @content;
                 }

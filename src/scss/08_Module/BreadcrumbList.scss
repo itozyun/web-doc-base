@@ -2,7 +2,7 @@
  *  出現位置は #lE .lMi 下で固定
  *
 --------------------------------------------------------------------------------------*/
-.BreadcrumbList {
+.#{$Prefix}BreadcrumbList {
     padding : 1em 0;
     color   : $COLOR_Light_casual_text;
 
@@ -14,26 +14,22 @@
             zoom : 1;
         }
     }
-}
 
-@if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-    .ribbon .BreadcrumbList {
-        color : $COLOR_Ribbon_casual_text;
+    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+        .#{$Prefix}ribbon & {
+            color : $COLOR_Ribbon_casual_text;
+        }
     }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .BreadcrumbList  {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         color : $COLOR_Dark_casual_text;
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .BreadcrumbList {
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
         font-size : .83em;
         padding   : 0.5em 0;
         color     : $COLOR_Print_casual_text !important;

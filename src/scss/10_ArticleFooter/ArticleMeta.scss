@@ -5,25 +5,24 @@
  *     icon
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    .AMeta {
+    .#{$Prefix}AMeta {
         @include article-footer-item;
         padding : 0.5em 0;
-    }
+        div {
+            margin       : 0.5em 0;
+            padding-left : 1.2em;
+            text-indent  : -1.2em;
+        }
 
-    .AMeta div {
-        margin       : 0.5em 0;
-        padding-left : 1.2em;
-        text-indent  : -1.2em;
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        @if( $CANUSE_CSS_GENERATED_CONTENT and $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
-            .AMeta-cita:after {
-                content   : " ("attr(href)") ";
-                font-size : 0.875em;
-                color     : $COLOR_Print_link;
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
+            @if( $CANUSE_CSS_GENERATED_CONTENT and $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
+                @at-root #{&}-cita:after {
+                    content   : " ("attr(href)") ";
+                    font-size : 0.875em;
+                    color     : $COLOR_Print_link;
+                }
             }
         }
     }

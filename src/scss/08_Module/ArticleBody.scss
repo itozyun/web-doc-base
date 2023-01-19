@@ -3,158 +3,152 @@
  *
  *  div.ABody
 --------------------------------------------------------------------------------------*/
-.ABody {
+.#{$Prefix}ABody {
     // https://twitter.com/itozyun/status/1588802003261870080
-    // margin にすると Gecko 106 でも塗りだ乱れる。
+    // margin にすると Gecko 106 でも塗りが乱れる。
     padding : 3.5em 0 2em;
-}
 
-/*  明朝
---------------------------------------------------------------------------------------*/
-@if( $UA_Modern or $UA_IE9 ){
-    .ABody {
+    /*  明朝
+    --------------------------------------------------------------------------------------*/
+    @if( $UA_Modern or $UA_IE9 ){
         h1, h2, h3, h4, h5, h6 {
             @extend %MinchoFontFamily;
         }
     }
-}
 
-/*  h1
---------------------------------------------------------------------------------------*/
-.ABody h1 {
-    @include responsive-horizontal-margin(2, 3em, 3em);
-    font-size : 2em;
-}
-
-/*  h2
---------------------------------------------------------------------------------------*/
-.ABody h2 {
-    @include responsive-horizontal-margin(2, 2em, 1em);
-    font-size      : 1.5em;
-    border-width   : 0.2em 0 0;
-    padding        : 1.4em 0 .6em;
-    border-color   : $COLOR_ACCENT;
-    color          : $COLOR_ACCENT;
-    @if( $UA_IE5 ){
-        height : 1px; // <= 線が消えるのを防ぐ
-    } @else if( $UA_IE55 or $UA_IE6 ){
-        zoom : 1; // <= 線が消えるのを防ぐ
+    /*  h1
+    --------------------------------------------------------------------------------------*/
+    h1 {
+        @include responsive-horizontal-margin(2, 3em, 3em);
+        font-size : 2em;
     }
-    @if( $CANUSE_CSS_GENERATED_BLOCK ){
-        &:after {
-            @if( $IS_Opera7x or $UA_Opera8 ){
-                width : 0;      /* for Opera 7-8 */
-            } @else {
-                display : none; /* for iOS4 content:none では消えない */
+
+    /*  h2
+    --------------------------------------------------------------------------------------*/
+    h2 {
+        @include responsive-horizontal-margin(2, 2em, 1em);
+        font-size      : 1.5em;
+        border-width   : 0.2em 0 0;
+        padding        : 1.4em 0 .6em;
+        border-color   : $COLOR_ACCENT;
+        color          : $COLOR_ACCENT;
+        @if( $UA_IE5 ){
+            height : 1px; // <= 線が消えるのを防ぐ
+        } @else if( $UA_IE55 or $UA_IE6 ){
+            zoom : 1; // <= 線が消えるのを防ぐ
+        }
+        @if( $CANUSE_CSS_GENERATED_BLOCK ){
+            &:after {
+                @if( $IS_Opera7x or $UA_Opera8 ){
+                    width : 0;      /* for Opera 7-8 */
+                } @else {
+                    display : none; /* for iOS4 content:none では消えない */
+                }
             }
         }
+        * {
+            border-color : $COLOR_ACCENT;
+        }
     }
-    * {
-        border-color : $COLOR_ACCENT;
+
+    /*  h3
+    --------------------------------------------------------------------------------------*/
+    h3 {
+        @include responsive-horizontal-margin(2, 2.4em, 1.2em);
+        font-weight    : bold;
+        font-size      : 1.25em;
+        border-width   : 0.1em 0 0;
+        padding        : 1.4em 0 .6em;
     }
-}
 
-/*  h3
---------------------------------------------------------------------------------------*/
-.ABody h3 {
-    @include responsive-horizontal-margin(2, 2.4em, 1.2em);
-    font-weight    : bold;
-    font-size      : 1.25em;
-    border-width   : 0.1em 0 0;
-    padding        : 1.4em 0 .6em;
-}
-
-/*  WSXGA, print
---------------------------------------------------------------------------------------*/
-@include media(WSXGA_landscapePrint) {
-    .ABody {
+    /*  WSXGA, print
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA_landscapePrint) {
         -webkit-column-count : 2;
            -moz-column-count : 2;
                 column-count : 2;
-    }
-    .ABody .aBodyRoot > *:first-child {
-        margin-top : 0;
-    }
-    .ABody blockquote {
-        @include column-span-all(2);
-    }
-    h1, h2,
-    blockquote:before, blockquote:after,
-    .js-bqLink, .js-bqCite {
-        @include column-span-all;
-    }
-}
-@include media(WSXGA) {
-    .ABody, .ABody blockquote {
-        -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
-           -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
-                column-gap : $WSXGA_COLUMN_GAP_EM;
-    }
-    .ABody h1, .ABody h2 {
-        text-align : center;
-    }
-}
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    .ABody h1, .ABody h2, .ABody h3 {
-        text-align : center;
+        .#{$Prefix}aBodyRoot > *:first-child {
+            margin-top : 0;
+        }
+        blockquote {
+            @include column-span-all(2);
+        }
+        @at-root {
+            h1, h2,
+            blockquote:before, blockquote:after {
+                @include column-span-all;
+            }
+        }
     }
-    .ABody h1, .ABody h2, .ABody h3 {
-        padding-left  : math.div($TABLET_HORIZONTAL_MARGIN, 2);
-        padding-right : math.div($TABLET_HORIZONTAL_MARGIN, 2);
+    @include media(WSXGA) {
+        &, & blockquote {
+            -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
+               -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
+                    column-gap : $WSXGA_COLUMN_GAP_EM;
+        }
+        h1, h2 {
+            text-align : center;
+        }
     }
-}
 
-/*  PHABLET
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .ABody h1, .ABody h2, .ABody h3 {
-        padding-left   : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
-        padding-right  : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
+        h1, h2, h3 {
+            text-align    : center;
+            padding-left  : math.div($TABLET_HORIZONTAL_MARGIN, 2);
+            padding-right : math.div($TABLET_HORIZONTAL_MARGIN, 2);
+        }
     }
-}
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .ABody h1 {
-        font-size : 1.5em;
+    /*  PHABLET
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+        h1, h2, h3 {
+            padding-left   : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
+            padding-right  : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
+        }
     }
-    .ABody h2 {
-        font-size : 1.25em;
-    }
-    .ABody h1, .ABody h2, .ABody h3 {
-        padding-left  : math.div($PHONE_HORIZONTAL_MARGIN, 2);
-        padding-right : math.div($PHONE_HORIZONTAL_MARGIN, 2);
-    }
-}
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .ABody h1, .ABody h2, .ABody h3 {
-        padding-left  : 0;
-        padding-right : 0;
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
+        h1 {
+            font-size : 1.5em;
+        }
+        h2 {
+            font-size : 1.25em;
+        }
+        h1, h2, h3 {
+            padding-left  : math.div($PHONE_HORIZONTAL_MARGIN, 2);
+            padding-right : math.div($PHONE_HORIZONTAL_MARGIN, 2);
+        }
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .ABody {
+    /*  Watch
+    --------------------------------------------------------------------------------------*/
+    @include media(watch) {
+        h1, h2, h3 {
+            padding-left  : 0;
+            padding-right : 0;
+        }
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
         padding : 0 0 2em;
     }
-}
 
-@include media(landscapePrint){
-    .ABody, .ABody blockquote {
-        -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
-           -moz-column-gap : $PRINT_COLUMN_GAP_EM;
-                column-gap : $PRINT_COLUMN_GAP_EM;
-    }
-    .ABody h1, .ABody h2, .ABody h3 {
-        text-align : left;
+    @include media(landscapePrint){
+        &, & blockquote {
+            -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
+               -moz-column-gap : $PRINT_COLUMN_GAP_EM;
+                    column-gap : $PRINT_COLUMN_GAP_EM;
+        }
+        h1, h2, h3 {
+            text-align : left;
+        }
     }
 }

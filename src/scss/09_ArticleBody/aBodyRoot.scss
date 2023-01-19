@@ -1,7 +1,7 @@
 /* a タグの下線
 --------------------------------------------------------------------------------------*/
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active では下線が付く*/
-.aBodyRoot {
+.#{$Prefix}aBodyRoot {
     :link, :visited { text-decoration : underline; }
 
     @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
@@ -26,57 +26,54 @@
     @if( $CANUSE_FOCUS_PSEUDO_CLASS or ( $FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false ) ){
         a:focus:hover { text-decoration : underline; }
     }
-}
 
-/* .aBodyRoot 内では訪問済のリンクは紫になる */
-.aBodyRoot {
+    /* .aBodyRoot 内では訪問済のリンクは紫になる */
     :visited       { color : $COLOR_Light_visited; }
     :visited:hover { color : $COLOR_Light_visited_hover; }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    /* .aBodyRoot 内では訪問済のリンクは紫になる */
-    .aBodyRoot {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        /* .aBodyRoot 内では訪問済のリンクは紫になる */
         :visited       { color : $COLOR_Dark_visited; }
         :visited:hover { color : $COLOR_Dark_visited_hover; }
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    @if( $CANUSE_CSS_GENERATED_CONTENT and $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
-        // content : attr(href) をボックス幅で改行する, Firefox では不要だった
-        body {
-            @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
-        }
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        @if( $CANUSE_CSS_GENERATED_CONTENT and $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
+            & a[href]:after {
+                content   : " ("attr(href)") ";
+                font-size : 0.875em;
+                color     : $COLOR_Print_link;
+            }
 
-        .aBodyRoot a[href]:after {
-            content   : " ("attr(href)") ";
-            font-size : 0.875em;
-            color     : $COLOR_Print_link;
-        }
-
-        [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
-        [href*="/blogger.googleusercontent.com/img/"]:after, /* 新しい Blogger 画像の url 置き場 */
-        [href$=".jpeg"]:after,
-        [href$=".JPEG"]:after,
-        [href$=".JPG"]:after,
-        [href$=".jpg"]:after,
-        [href$=".gif"]:after,
-        [href$=".GIF"]:after,
-        [href$=".png"]:after,
-        [href$=".PNG"]:after {
-            display : none; /* for iOS4 content : none だけでは消えない */
-        }
-
-        @if( $UA_IE8 == false ){
-            [href^="#"]:after, /* 文書内リンクは非表示 */
-            [href^="mailto:"]:after,
-            [href^="tel:"]:after {
-                display : none; /* for iOS4 content : none だけでは消えない */
+            // content : attr(href) をボックス幅で改行する, Firefox では不要だった
+            @at-root {
+                body {
+                    @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
+                }
+                [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
+                [href*="/blogger.googleusercontent.com/img/"]:after, /* 新しい Blogger 画像の url 置き場 */
+                [href$=".jpeg"]:after,
+                [href$=".JPEG"]:after,
+                [href$=".JPG"]:after,
+                [href$=".jpg"]:after,
+                [href$=".gif"]:after,
+                [href$=".GIF"]:after,
+                [href$=".png"]:after,
+                [href$=".PNG"]:after {
+                    display : none; /* for iOS4 content : none だけでは消えない */
+                }
+    
+                @if( $UA_IE8 == false ){
+                    [href^="#"]:after, /* 文書内リンクは非表示 */
+                    [href^="mailto:"]:after,
+                    [href^="tel:"]:after {
+                        display : none; /* for iOS4 content : none だけでは消えない */
+                    }
+                }
             }
         }
     }

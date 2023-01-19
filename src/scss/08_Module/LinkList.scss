@@ -5,7 +5,7 @@
  *   div
  *    a
 --------------------------------------------------------------------------------------*/
-.LinkList {
+.#{$Prefix}LinkList {
     @extend %LinkListItemBase;
     @include stackableModule;
     a {
@@ -20,25 +20,23 @@
     @if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
         :focus:hover { text-decoration : underline !important; }
     }
-}
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .lM .LinkList {
-        @include stackableModule(.2em);
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
+        .lM & {
+            @include stackableModule(.2em);
 
-        div {
-            display : inline-block;
-            margin  : $FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
+            div {
+                display : inline-block;
+                margin  : $FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
+            }
         }
     }
-}
 
-/*  Phablet
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .LinkList {
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
         text-align : center;
         @include stackableModule(.2em);
 
@@ -47,12 +45,12 @@
             margin  : $FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
         }
     }
-}
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .LinkList a {
-        padding : 0.5em 0;
+    /*  Watch
+    --------------------------------------------------------------------------------------*/
+    @include media(watch) {
+        a {
+            padding : 0.5em 0;
+        }
     }
 }

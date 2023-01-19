@@ -1,34 +1,30 @@
 /* [parts] moduleSpacer
  *  module 配下の要素をラップし適切な余白を与える
 --------------------------------------------------------------------------------------*/
-.mspacer {
+.#{$Prefix}mspacer {
     margin : 1em;
 
     @if( $IS_LTE_WIN_IE7 ){
         word-break : break-all;
     }
-}
 
-#lF .lM .mspacer {
-    margin : 0.6em 0.5em;
-}
+    #lF .lM & {
+        margin : 0.6em 0.5em;
+    }
 
-.lS .mspacer {
-    margin : 0.6em 0;
-}
+    .lS & {
+        margin : 0.6em 0;
+    }
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet) {
-    .mspacer {
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
         margin : 1em 0.5em !important;
     }
-}
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .mspacer {
+    /*  Watch
+    --------------------------------------------------------------------------------------*/
+    @include media(watch) {
         margin : 0.6em 0 !important;
     }
 }

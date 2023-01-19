@@ -7,7 +7,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(screen) {
     @if( $UA_IE6 or $UA_IE55 ){
-        .e6L {
+        .#{$Prefix}e6L {
             float        : left;
             height       : 1px;
             width        : 50%;
@@ -16,7 +16,7 @@
                 margin-right : math.div(-$TABLET_MAX_WIDTH_EM, 2);
             }
         }
-        .e6R {
+        .#{$Prefix}e6R {
             float       : right;
             height      : 1px;
             width       : 50%;
@@ -25,16 +25,16 @@
                 margin-left : math.div(-$TABLET_MAX_WIDTH_EM, 2);
             }
         }
-        .e6C {
+        .#{$Prefix}e6C {
             overflow : hidden;
             margin   : 0 !important;
             float    : left;
-        }
-            .e6C .lW {
+            .#{$Prefix}lW {
                 overflow : hidden;
                 width    : 100%;
             }
-            .e6BR {
+        }
+            .#{$Prefix}e6BR {
                 clear         : both;
                 height        : 1px;
                 line-height   : 1px;
@@ -56,13 +56,13 @@
     * http://blog.xicolotic.info/css/advent-calendar-2015-css1/
     */
     @if( $UA_IE5 ){
-        .e6L, .e6R, .e6BR {
+        .#{$Prefix}e6L, .#{$Prefix}e6R, .#{$Prefix}e6BR {
             display : none;
         }
-        .e6C {
+        .#{$Prefix}e6C {
             text-align : center;
         }
-        .lW, .lX {
+        .#{$Prefix}lW, .#{$Prefix}lX {
             text-align : left;
         }
     }

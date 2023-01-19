@@ -1,50 +1,52 @@
-.lSi {
-    @include clearfix;
-}
+.#{$Prefix}lS {
+    @at-root #{&}i {
+        @include clearfix;
+    }
 
-/*  WQXGA
---------------------------------------------------------------------------------------*/
-@include media(WQXGA) {
-    .lS1 {
-        float : left;
-        width : 50% - math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+    /*  WQXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WQXGA) {
+        @at-root #{&}1 {
+            float : left;
+            width : 50% - math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
+        @at-root #{&}2 {
+            float : right;
+            width : 50% - math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
     }
-    .lS2 {
-        float : right;
-        width : 50% - math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO) * 0.5;
-    }
-}
 
-/*  Tablet Print
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    .lS1 {
-        float : left;
-        width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
+    /*  Tablet Print
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
+        @at-root #{&}1 {
+            float : left;
+            width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
+        @at-root #{&}2 {
+            float : right;
+            width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
+        @at-root #lB #{&}1 {
+            width        : 50% - $TABLET_HORIZONTAL_MARGIN * 1.5;
+            padding-left : $TABLET_HORIZONTAL_MARGIN;
+        }
+        @at-root #lB #{&}2 {
+            width         : 50% - $TABLET_HORIZONTAL_MARGIN * 1.5;
+            padding-right : $TABLET_HORIZONTAL_MARGIN;
+        }
     }
-    .lS2 {
-        float : right;
-        width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
-    }
-    #lB .lS1 {
-        width        : 50% - $TABLET_HORIZONTAL_MARGIN * 1.5;
-        padding-left : $TABLET_HORIZONTAL_MARGIN;
-    }
-    #lB .lS2 {
-        width         : 50% - $TABLET_HORIZONTAL_MARGIN * 1.5;
-        padding-right : $TABLET_HORIZONTAL_MARGIN;
-    }
-}
 
-/*  Phablet
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .lS1, .lS2 {
-        float : none;
-        width : auto;
-    }
-    #lB .lS1, #lB .lS2 {
-        width   : auto;
-        padding : 0;
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+        @at-root #{&}1, #{&}2 {
+            float : none;
+            width : auto;
+        }
+        @at-root #lB #{&}1, #lB #{&}2 {
+            width   : auto;
+            padding : 0;
+        }
     }
 }

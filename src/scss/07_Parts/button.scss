@@ -2,7 +2,7 @@
  *
  * .btn:link | input[type=submit].btn
 --------------------------------------------------------------------------------------*/
-.btn {
+.#{$Prefix}btn {
     @if( $UA_Opera72 ){
         border-width : $INPUT_BORDER_WIDTH;
         cursor       : pointer;
@@ -18,51 +18,47 @@
         @include button-base;
     }
     @include button-colors( $COLOR_Ribbon_link, $COLOR_Ribbon_text, $COLOR_Ribbon_fill );
-}
 
-input.btn {
-    @if( $UA_IE5 or $UA_IE55 ){
-        padding : .3em 1em #{$PARAGRAPH_LINE_HEIGHT_EM - 1.3em};
-    }
-    @if( $UA_IE7 or $UA_IE6 ){
-        height  : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
-        padding : .25em 1em #{$PARAGRAPH_LINE_HEIGHT_EM - 1.25em};
-    }
-    @if( $IS_Opera7x ){
-        padding : 0; // for Opera 7.x
-    }
-    @if( $IS_OLD_GECKO ){
-        @if( $IS_LTE_GECKO09 ){
-            line-height : 1;
-            height      : $PARAGRAPH_LINE_HEIGHT_EM;
-            @if( $UA_Gecko09 ){
-                padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
+    @at-root input#{&} {
+        @if( $UA_IE5 or $UA_IE55 ){
+            padding : .3em 1em #{$PARAGRAPH_LINE_HEIGHT_EM - 1.3em};
+        }
+        @if( $UA_IE7 or $UA_IE6 ){
+            height  : #{$PARAGRAPH_LINE_HEIGHT_EM + $INPUT_BORDER_WIDTH * 2};
+            padding : .25em 1em #{$PARAGRAPH_LINE_HEIGHT_EM - 1.25em};
+        }
+        @if( $IS_Opera7x ){
+            padding : 0; // for Opera 7.x
+        }
+        @if( $IS_OLD_GECKO ){
+            @if( $IS_LTE_GECKO09 ){
+                line-height : 1;
+                height      : $PARAGRAPH_LINE_HEIGHT_EM;
+                @if( $UA_Gecko09 ){
+                    padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
+                } @else {
+                    padding : 0;
+                }
             } @else {
-                padding : 0;
+                line-height : 1;
+                padding     : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
             }
-        } @else {
-            line-height : 1;
-            padding     : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
+        }
+
+        @if( $CANUSE_HOVER_PSEUDO_CLASS and $IS_OLD_OPERA == false ){
+            &:hover {
+                text-decoration : underline;
+            }
         }
     }
 
-    @if( $CANUSE_HOVER_PSEUDO_CLASS and $IS_OLD_OPERA == false ){
-        &:hover {
-            text-decoration : underline;
+    .#{$Prefix}baseColor & {
+        @include button-colors( $COLOR_Light_link, $COLOR_Light_text, $COLOR_Light_fill );
+
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
+            @include button-colors( $COLOR_Dark_link, $COLOR_Dark_text, $COLOR_Dark_fill );
         }
-    }
-}
-
-/* //_<bottom50 */
-.baseColor .btn {
-    @include button-colors( $COLOR_Light_link, $COLOR_Light_text, $COLOR_Light_fill );
-}
-/* //_>bottom50 */
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .baseColor .btn {
-        @include button-colors( $COLOR_Dark_link, $COLOR_Dark_text, $COLOR_Dark_fill );
     }
 }

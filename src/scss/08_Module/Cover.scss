@@ -14,19 +14,19 @@
  *     
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    .Cover {
+    .#{$Prefix}Cover {
         @include clearfix;
         margin  : 3.52em 0;
         /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
-    }
-        .Cover-img {
+
+        @at-root #{&}-img {
             position : relative;
             margin   : 0 0 0.6em;
             @if( $UA_IE5 == false ){
                 height : 100%;
             }
         }
-            .Cover img {
+            img {
                 margin  : 0;
                 display : block;
                 width   : 100%;
@@ -34,26 +34,28 @@
                     max-width : 100%;
                 }
             }
-            .Cover .img-loaded div {
-                @include media(screen){
-                    position : absolute;
-                    left     : 0;
-                    width    : 100%;
-                    @if( $UA_IE5 ){
-                        @include clearfix;
-                        top : 0;
-                    } @else {
-                        bottom : 0;
+            .#{$Prefix}js-image-has-been-loaded {
+                div {
+                    @include media(screen){
+                        position : absolute;
+                        left     : 0;
+                        width    : 100%;
+                        @if( $UA_IE5 ){
+                            @include clearfix;
+                            top : 0;
+                        } @else {
+                            bottom : 0;
+                        }
                     }
                 }
-            }
-                @if( $UA_IE5 ){
-                    .Cover .img-loaded h2 {
+                h2 {
+                    @if( $UA_IE5 ){
                         float : left;
                     }
                 }
+            }
 
-                .Cover h2 {
+                h2 {
                     @include inline-block;
                     background   : $COLOR_ACCENT;
                     border       : 1px solid $COLOR_ACCENT; /* for high contrast mode */
@@ -68,17 +70,17 @@
                         display : inline;
                         height  : 2.2em;
                     }
-                }
-                @if( $CANUSE_CSS_GENERATED_BLOCK ){
-                    .Cover h2:after {
-                        @if( $IS_Opera7x or $UA_Opera8 ){
-                            width : 0;      /* for Opera 7-8 */
-                        } @else {
-                            display : none; /* for iOS4 content:none では消えない */
+                    @if( $CANUSE_CSS_GENERATED_BLOCK ){
+                        &:after {
+                            @if( $IS_Opera7x or $UA_Opera8 ){
+                                width : 0;      /* for Opera 7-8 */
+                            } @else {
+                                display : none; /* for iOS4 content:none では消えない */
+                            }
                         }
                     }
                 }
-                .Cover h3 {
+                h3 {
                     font-size : 1.33em;
                     margin    : 0;
                     /* clean-css ignore:start */
@@ -90,145 +92,142 @@
                     }
                     /* clean-css ignore:end */
                 }
-                .Cover a {
+                a {
                     display : block;
                     padding : 0.37em;
                 }
-        .Cover-meta {
+        @at-root #{&}-meta {
             @include line-height(1.4, 1);
             display : block;
             color   : $COLOR_Light_casual_text;
             margin  : 0 0.5em;
-        }
-            .Cover-meta span {
+            span {
                 @include inline-block;
             }
-        .Cover p {
+        }
+        p {
             line-height : 1.4;
             margin      : 0.6em 0.5em;
         }
 
-    /*  WSXGA
-    --------------------------------------------------------------------------------------*/
-    @include media(WSXGA) {
-        .Cover img {
-            width  : auto;
-            float  : left;
-            margin : 0 1em 1em 0;
-        }
-            .Cover .img-loaded div {
-                position : static;
-                padding  : 0 0 1em;
+        /*  WSXGA
+        --------------------------------------------------------------------------------------*/
+        @include media(WSXGA) {
+            img {
+                width  : auto;
+                float  : left;
+                margin : 0 1em 1em 0;
             }
-            .Cover-img div {
-                padding : 1em;
+                .#{$Prefix}js-image-has-been-loaded div {
+                    position : static;
+                    padding  : 0 0 1em;
+                }
+                @at-root #{&}-img div {
+                    padding : 1em;
+                }
+                    h2 {
+                        font-size : 1em;
+                        padding   : 0.5em;
+                    }
+                    h3 {
+                        background : transparent;
+                        color      : $COLOR_Light_text;
+                    }
+                    a {
+                        padding : 0.77em 0 0 0;
+                    }
+            @at-root #{&}-meta, & p {
+                margin-right : 1em;
             }
-                .Cover h2 {
-                    font-size : 1em;
-                    padding   : 0.5em;
-                }
-                .Cover h3 {
-                    background : transparent;
-                    color      : $COLOR_Light_text;
-                }
-                .Cover a {
-                    padding : 0.77em 0 0 0;
-                }
-        .Cover-meta, .Cover p {
-            margin-right : 1em;
         }
-    }
 
-    /*  WQXGA
-    --------------------------------------------------------------------------------------*/
-    @include media(WQXGA) {
-        .Cover img {
-            margin : 0 2em 1em 0;
-        }
-            .Cover .img-loaded div {
-                padding : 0 0 2em;
+        /*  WQXGA
+        --------------------------------------------------------------------------------------*/
+        @include media(WQXGA) {
+            img {
+                margin : 0 2em 1em 0;
             }
-                .Cover h3 {
-                    font-size : 1.5em;
+                .#{$Prefix}js-image-has-been-loaded div {
+                    padding : 0 0 2em;
                 }
-                .Cover a {
-                    padding : 0.67em 0 0 0;
-                }
-        .Cover-meta, .Cover p {
-            margin-right : 2em;
+                    h3 {
+                        font-size : 1.5em;
+                    }
+                    a {
+                        padding : 0.67em 0 0 0;
+                    }
+            @at-root #{&}-meta, & p {
+                margin-right : 2em;
+            }
         }
-    }
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet_print) {
-        .Cover {
+        /*  Tablet
+        --------------------------------------------------------------------------------------*/
+        @include media(tablet_print) {
             margin : 2em auto;
         }
-    }
 
-    /*  Phablet
-    --------------------------------------------------------------------------------------*/
-    @include media(phablet) {
-        .Cover {
+        /*  Phablet
+        --------------------------------------------------------------------------------------*/
+        @include media(phablet) {
             max-width : 400px;
         }
-    }
 
-    /*  Phone-
-    --------------------------------------------------------------------------------------*/
-    @include media(smallphone) {
-        .Cover img {
-            width  : auto;
-            margin : 0 1em 1em 0;
-        }
-            .Cover .img-loaded div {
-                position : static;
-                padding  : 0;
+        /*  Phone-
+        --------------------------------------------------------------------------------------*/
+        @include media(smallphone) {
+            img {
+                width  : auto;
+                margin : 0 1em 1em 0;
             }
-                .Cover h2 {
-                    /* float      : left; */
-                    @include inline-block;
-                    font-size : 1em;
-                    padding   : 0.5em;
-                    margin    : 0 .5em .5em 0;
+                .#{$Prefix}js-image-has-been-loaded div {
+                    position : static;
+                    padding  : 0;
                 }
-                .Cover h3 {
-                    background : transparent;
-                    color      : $COLOR_Light_text;
-                    font-size  : 1.5em;
-                }
-                .Cover a {
-                    padding : 0 0 0.33em;
-                }
-        .Cover-meta, .Cover p {
-            margin-left  : 0;
-            margin-right : 0;
+                    h2 {
+                        /* float      : left; */
+                        @include inline-block;
+                        font-size : 1em;
+                        padding   : 0.5em;
+                        margin    : 0 .5em .5em 0;
+                    }
+                    h3 {
+                        background : transparent;
+                        color      : $COLOR_Light_text;
+                        font-size  : 1.5em;
+                    }
+                    a {
+                        padding : 0 0 0.33em;
+                    }
+            @at-root #{&}-meta, & p {
+                margin-left  : 0;
+                margin-right : 0;
+            }
         }
-    }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .Cover h3 {
-            /* clean-css ignore:start */
-            @if( $UA_IE9 == false ){
-                background : #000;
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
+            h3 {
+                /* clean-css ignore:start */
+                @if( $UA_IE9 == false ){
+                    background : #000;
+                }
+                @if( $UA_Modern or $UA_IE9 ){
+                    background : rgba( 0, 0, 0, .75);
+                }
+                /* clean-css ignore:end */
+            }    
+            @at-root #{&}-meta {
+                color : $COLOR_Dark_casual_text;
             }
-            @if( $UA_Modern or $UA_IE9 ){
-                background : rgba( 0, 0, 0, .75);
-            }
-            /* clean-css ignore:end */
-        }    
-        .Cover-meta {
-            color : $COLOR_Dark_casual_text;
         }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .Cover h2 {
-            margin-top : 1em;
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
+            h2 {
+                margin-top : 1em;
+            }
         }
     }
 }

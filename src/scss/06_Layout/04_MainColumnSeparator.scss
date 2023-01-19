@@ -1,65 +1,67 @@
-    .lMi {
+.#{$Prefix}lM {
+    @at-root #{&}i {
         @include clearfix;
     }
-        .lM1 {
+        @at-root #{&}1 {
             float : left;
         }
-        .lM2 {
+        @at-root #{&}2 {
             float : right;
         }
     @if( $Option_mobileOnly == false ){
-        .lM1, .lM2 {
+        @at-root #{&}1, #{&}2 {
             width : 50% - 100% * math.div(math.div($PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO * 2) , 2);
         }
     }
 
     @include media(WSXGA_landscapePrint) {
-        .lM1, .lM2 {
+        @at-root #{&}1, #{&}2 {
             width      : 50%;
             box-sizing : border-box;
         }
     }
     @include media(WSXGA) {
-        .lM1 {
+        @at-root #{&}1 {
             padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
         }
-        .lM2 {
+        @at-root #{&}2 {
             padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
         }
     }
     @include media(WQXGA) {
-        .lM1 {
+        @at-root #{&}1 {
             padding-right : math.div($WQXGA_COLUMN_GAP_EM, 2);
         }
-        .lM2 {
+        @at-root #{&}2 {
             padding-left : math.div($WQXGA_COLUMN_GAP_EM, 2);
         }
     }
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(landscapePrint) {
-        .lM1 {
+        @at-root #{&}1 {
             padding-right : math.div($PRINT_COLUMN_GAP_EM, 2);
         }
-        .lM2 {
+        @at-root #{&}2 {
             padding-left : math.div($PRINT_COLUMN_GAP_EM, 2);
         }
     }
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet) {
-    .lM1, .lM2 {
-        width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet) {
+        @at-root #{&}1, #{&}2 {
+            width : 50% - $TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
     }
-}
 
-/*  Phablet
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-/* clear 2column */
-    .lM1, .lM2 {
-        float : none;
-        width : auto;
+    /*  Phablet
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
+    /* clear 2column */
+        @at-root #{&}1, #{&}2 {
+            float : none;
+            width : auto;
+        }
     }
 }

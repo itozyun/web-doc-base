@@ -63,11 +63,11 @@
     --------------------------------------------------------------------------------------*/
     @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
         @if( $CANUSE_NEGATIVE_PSEUDO_CLASS == false ){
-            .ribbon a {
+            .#{$Prefix}ribbon a {
                 background : $COLOR_Ribbon_text;
                 color      : $COLOR_Ribbon_fill;
             }
-            .ribbon & :link {
+            .#{$Prefix}ribbon & :link {
                 @if( $UA_Opera70 ){
                     background : $COLOR_Ribbon_fill;
                 } @else {
@@ -75,7 +75,7 @@
                 }
                 color : $COLOR_Ribbon_link;
             }
-            .ribbon & :visited {
+            .#{$Prefix}ribbon & :visited {
                 @if( $UA_Opera70 ){
                     background : $COLOR_Ribbon_fill;
                 } @else {
@@ -84,23 +84,24 @@
                 color : $COLOR_Ribbon_text;
             }
         } @else {
-            .ribbon & a:not([href]) {
+            .#{$Prefix}ribbon & a:not([href]) {
                 /* href がない場合 current を示す塗りになる */
                 background : $COLOR_Ribbon_text;
                 color      : $COLOR_Ribbon_fill;
             }
-            .ribbon & :visited {
+            .#{$Prefix}ribbon & :visited {
                 // color : $COLOR_Ribbon_text;
             }
         }
 
         @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
-            .ribbon & :hover {
+            .#{$Prefix}ribbon & :hover {
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
             }
         } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
-            .ribbon & :link:hover, .ribbon & :visited:hover {
+            .#{$Prefix}ribbon & :link:hover,
+            .#{$Prefix}ribbon & :visited:hover {
                 background : $COLOR_Ribbon_casual_fill;
                 color      : $COLOR_Ribbon_text;
             }

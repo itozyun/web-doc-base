@@ -7,88 +7,83 @@
  *      div role=listitem
  *        h3, cite, p
 --------------------------------------------------------------------------------------*/
-.SearchResult {
+.#{$Prefix}SearchResult {
     margin-bottom : 2em;
-}
-    .SearchResult p {
+
+    p {
         margin : 0.5em;
     }
-        .SearchResult div div {
+        div div {
             @include unbreak-inside;
             margin : 0 0.5em;
         }
-            .SearchResult h3 {
+            h3 {
                 margin-bottom : 0;
             }
-                .SearchResult :visited {
+                :visited {
                     color : #1a0dab;
                 }
-            .SearchResult cite {
+            cite {
                 color      : #006621;
                 @include unbreak-box-by-long-text;
             }
-            .SearchResult div p {
+            div p {
                 margin : 0.2em 0 0;
                 color  : #545454;
                 @include line-height(1.2, 0);
             }
-                .SearchResult div span {
+                div span {
                     color : #808080;
                 }
 
-
-    .SearchResult-multi {
+    @at-root #{&}-multi {
         margin : 2em 0;
+        /*  WSXGA, print
+        --------------------------------------------------------------------------------------*/
+        @include media(WSXGA_landscapePrint) {
+            -webkit-column-count : 2;
+               -moz-column-count : 2;
+                    column-count : 2;
+            div:first-child h3 {
+                margin-top : 0;
+            }
+        }
+        @include media(WSXGA) {
+            -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
+               -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
+                    column-gap : $WSXGA_COLUMN_GAP_EM;
+        }
     }
 
-/*  WSXGA, print
---------------------------------------------------------------------------------------*/
-@include media(WSXGA_landscapePrint) {
-    .SearchResult-multi {
-        -webkit-column-count : 2;
-           -moz-column-count : 2;
-                column-count : 2;
+    /*  Watch
+    --------------------------------------------------------------------------------------*/
+    @include media(watch) {
+        div div {
+            margin : 0;
+        }
     }
-    .SearchResult-multi div:first-child h3 {
-        margin-top : 0;
-    }
-}
-@include media(WSXGA) {
-    .SearchResult-multi {
-        -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
-           -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
-                column-gap : $WSXGA_COLUMN_GAP_EM;
-    }
-}
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .SearchResult div div {
-        margin : 0;
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        :visited {
+            color : $COLOR_Dark_link;
+        }
+        div p {
+            color : #808080;
+        }
+        div span {
+            color : #545454;
+        }
     }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .SearchResult :visited {
-        color : $COLOR_Dark_link;
-    }
-    .SearchResult div p {
-        color : #808080;
-    }
-    .SearchResult div span {
-        color : #545454;
-    }
-}
-
-/*  landscape Print
---------------------------------------------------------------------------------------*/
-@include media(landscapePrint) {
-    .SearchResult-multi {
-        -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
-           -moz-column-gap : $PRINT_COLUMN_GAP_EM;
-                column-gap : $PRINT_COLUMN_GAP_EM;
+    /*  landscape Print
+    --------------------------------------------------------------------------------------*/
+    @include media(landscapePrint) {
+        @at-root #{&}-multi {
+            -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
+               -moz-column-gap : $PRINT_COLUMN_GAP_EM;
+                    column-gap : $PRINT_COLUMN_GAP_EM;
+        }
     }
 }

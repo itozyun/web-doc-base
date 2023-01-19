@@ -173,37 +173,35 @@
             }
         }
     }
-}
 
-blockquote .tl {
-    thead th, thead td,
-    td,
-    tfoot th, tfoot td {
-        border-color : $COLOR_Light_casual_text;
-    }
-    
-    @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
-        tbody td:before {
+    blockquote & {
+        thead th, thead td,
+        td,
+        tfoot th, tfoot td {
             border-color : $COLOR_Light_casual_text;
         }
-        tbody td:after {
-            border-color : $COLOR_Light_casual_fill;
+        
+        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
+            tbody td:before {
+                border-color : $COLOR_Light_casual_text;
+            }
+            tbody td:after {
+                border-color : $COLOR_Light_casual_fill;
+            }
+        }
+        tbody tr th { /* tr で詳細度を上げる */
+            :link {
+                color : $COLOR_Light_link;
+            }
+            :visited {
+                color : $COLOR_Light_visited;
+            }
         }
     }
-    tbody tr th { /* tr で詳細度を上げる */
-        :link {
-            color : $COLOR_Light_link;
-        }
-        :visited {
-            color : $COLOR_Light_visited;
-        }
-    }
-}
 
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .tl {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         thead th, thead td, tbody th {
             color : $COLOR_Dark_text;
         }
@@ -235,51 +233,49 @@ blockquote .tl {
                 }
             }
         }
-    }
-    blockquote .tl {
-        thead th, thead td,
-        td,
-        tfoot th, tfoot td {
-            border-color : $COLOR_Dark_casual_text;
-        }
-        @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
-            tbody td:before {
+        blockquote & {
+            thead th, thead td,
+            td,
+            tfoot th, tfoot td {
                 border-color : $COLOR_Dark_casual_text;
             }
-            tbody td:after {
-                border-color : $COLOR_Dark_casual_fill;
+            @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
+                tbody td:before {
+                    border-color : $COLOR_Dark_casual_text;
+                }
+                tbody td:after {
+                    border-color : $COLOR_Dark_casual_fill;
+                }
             }
-        }
-        tbody tr th { /* tr で詳細度を上げる */
-            :link {
-                color : $COLOR_Dark_link;
+            tbody tr th { /* tr で詳細度を上げる */
+                :link {
+                    color : $COLOR_Dark_link;
+                }
+                :visited {
+                    color : $COLOR_Dark_visited;
+                }
             }
-            :visited {
-                color : $COLOR_Dark_visited;
-            }
-        }
-    }  
-}
+        }  
+    }
 
-/*  Forced colors
---------------------------------------------------------------------------------------*/
-@include media(forced_colors_native_or_fallback){
-    .tl {
+    /*  Forced colors
+    --------------------------------------------------------------------------------------*/
+    @include media(forced_colors_native_or_fallback){
         border-collapse : collapse;
     }
-}
-@include media(forced_colors_native_or_ms){
-    td, tfoot td {
-        border-color : currentColor;
+    @include media(forced_colors_native_or_ms){
+        td, tfoot td {
+            border-color : currentColor;
+        }
     }
-}
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .tl, blockquote .tl {
-        tbody td:after {
-            border-color :#fff;
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        &, blockquote & {
+            tbody td:after {
+                border-color :#fff;
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
 $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
 
 
-.lX { // clearfix を同時に指定するために screen の外へ
+.#{$Prefix}lX { // clearfix を同時に指定するために screen の外へ
     @if( $LAYOUT_FIX_FOR_Opera75 == false ){
         @include clearfix;
     }
@@ -21,11 +21,9 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
         width      : 100%; /* この指定が無いと横スクロールが出る  */
         overflow-x : hidden;
     }
-}
 
-@include media(screen) {
-    @if( $Option_mobileOnly == false ){
-        .lX {
+    @include media(screen) {
+        @if( $Option_mobileOnly == false ){
             width : $PC_WIDTH_PERCENT;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $PC_MAX_WIDTH_EM;
@@ -35,21 +33,18 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
                     margin : 0 auto;
                 }
             }
-        }
 
-        @if( $LAYOUT_FIX_FOR_Opera75 ){
-            body {
-                text-align : center;
-            }
-            .lX {
+            @if( $LAYOUT_FIX_FOR_Opera75 ){
                 @include inline-block;
                 text-align : left;
+                @at-root body {
+                    text-align : center;
+                }
             }
-        }
 
         /*  inner
         --------------------------------------------------------------------------------------*/
-            .lXi {
+            @at-root #{&}i {
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
                     padding : 0 100% * $PC_COLUMN_GAP_RATIO;
                 } @else {
@@ -58,64 +53,62 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
             }
         }
 
-        .lX1 {
+        /*  1, 2
+        --------------------------------------------------------------------------------------*/
+        @at-root #{&}1 {
             float : left;
         }
-        .lX2 {
+        @at-root #{&}2 {
             float : right;
         }
-}
+    }
 
-/*  WQXGA
---------------------------------------------------------------------------------------*/
-@include media(WQXGA) {
-    .lX {
+    /*  WQXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WQXGA) {
         width     : $WQXGA_WIDTH_PERCENT;
         max-width : $WQXGA_MAX_WIDTH_EM;
-    }
-        .lXi {
+
+        @at-root #{&}i {
             margin : 0 $WQXGA_COLUMN_GAP_PCT;
         }
-}
+    }
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .lX {
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
         width     : $WSXGA_WIDTH_PERCENT;
         max-width : $WSXGA_MAX_WIDTH_EM;
-    }
-        .lXi {
+
+        @at-root #{&}i {
             margin : 0 $WSXGA_COLUMN_GAP_PCT;
         }
-}
+    }
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@if( $Option_mobileOnly == false ){
-    @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
-        .lX {
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @if( $Option_mobileOnly == false ){
+        @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
             width : 100%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
             }
-        }
-            .lXi {
+
+            @at-root #{&}i {
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
                     // padding : 0;
                 } @else {
                     margin : 0;
                 }
             }
-    }
-    @include media(tablet_print) {
-        .lXi {
-            padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
-    }
-} @else {
-    @include media(screen) {
-        .lX {
+        @include media(tablet_print) {
+            @at-root #{&}i {
+                padding : 0 $TABLET_HORIZONTAL_MARGIN;
+            }
+        }
+    } @else {
+        @include media(screen) {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $TABLET_MAX_WIDTH_EM;
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
@@ -126,40 +119,34 @@ $LAYOUT_FIX_FOR_Opera75 : $UA_Opera72;
                 }
             }
         }
+        @at-root #{&}i {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
     }
-    .lXi {
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
-    }
-}
 
-/*  PHABLET
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .lXi {
-        padding : 0 $PHABLET_HORIZONTAL_MARGIN;
-    }
-}
+    @at-root #{&}i {
+        /*  PHABLET
+        --------------------------------------------------------------------------------------*/
+        @include media(phablet) {
+            padding : 0 $PHABLET_HORIZONTAL_MARGIN;
+        }
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .lXi {
-        padding : 0 $PHONE_HORIZONTAL_MARGIN;
-    }
-}
+        /*  Phone
+        --------------------------------------------------------------------------------------*/
+        @include media(phone) {
+            padding : 0 $PHONE_HORIZONTAL_MARGIN;
+        }
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .lXi {
-        padding : 0;
-    }
-}
+        /*  Watch
+        --------------------------------------------------------------------------------------*/
+        @include media(watch) {
+            padding : 0;
+        }
 
-/*  landscape Print
---------------------------------------------------------------------------------------*/
-@include media(landscapePrint) {
-    .lXi {
-        padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
+        /*  landscape Print
+        --------------------------------------------------------------------------------------*/
+        @include media(landscapePrint) {
+            padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
+        }
     }
 }

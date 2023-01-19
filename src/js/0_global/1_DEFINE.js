@@ -5,8 +5,6 @@ var
     DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID  = '',
 /** @define {number} */
     DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE = 0, // 1 なら Web font のテストに失敗, 2 なら webfont embeded css のテストに失敗
-/** @define {string} */
-    DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID = 'jsCanUseContent',
 
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID     = 'jsMain',
@@ -65,6 +63,12 @@ var
     DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO19 = 'gck19',
 
 /** ===========================================================================
+ * 6_CanUse/cssGeneratedContent.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID = 'jsCanUseContent',
+
+/** ===========================================================================
  * 7_Patch/cssLoader.toEndOfScript.js
  */
 /** @define {boolean} */
@@ -74,17 +78,23 @@ var
  * 7_Patch/detectImageTurnedOff.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'img-loaded',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_IMG_LOADED = 'js-image-has-been-loaded',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
+
+/** ===========================================================================
+ * 7_Patch/polyfillForcedColors.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE = 'js-canuse-css-rotate-when-forced-colors-mode',
 
 /** ===========================================================================
  * 8_Library/blockquot.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_LINK = 'js-bqLink',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_LINK = 'js-generated-link-in-blockquote',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE = 'js-bqCite',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE = 'js-generated-cite-in-blockquote',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__AMAZON_ID                = '',
 
@@ -102,15 +112,16 @@ var
  * 8_Library/PicaThumbnail.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET = 'jsPica',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET = 'js-pica-thumbnail',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_LARGE  = 'jsPicaLarge',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_LARGE  = 'js-pica-thumbnail__large',
+
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ        = 'caption',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET = 'jsCap',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET = 'js-captioned-thumbnail',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE  = 'jsCapLarge',
+    DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_LARGE  = 'js-captioned-thumbnail__large',
 
 /** ===========================================================================
  * 8_Library/SidebarFixer.js

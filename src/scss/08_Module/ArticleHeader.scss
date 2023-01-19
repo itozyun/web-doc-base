@@ -6,122 +6,114 @@
  *    div
  *    +ArticleLabels
 --------------------------------------------------------------------------------------*/
-    .AHead {
-        color  : $COLOR_Light_casual_text;
-        margin : 2em 0;
-    }
-        .AHead h1 {
-            @if( $UA_Modern or $UA_IE9 ){
-                @extend %MinchoFontFamily;
-            }
-            font-size : 2em;
-            color     : $COLOR_Light_text;
-            padding   : 0 0 2em;
-            margin    : 0;
+.#{$Prefix}AHead {
+    color  : $COLOR_Light_casual_text;
+    margin : 2em 0;
 
-            @if( $Option_mobileOnly == false ){
-                text-align : left;
-            }
+    h1 {
+        @if( $UA_Modern or $UA_IE9 ){
+            @extend %MinchoFontFamily;
         }
+        font-size : 2em;
+        color     : $COLOR_Light_text;
+        padding   : 0 0 2em;
+        margin    : 0;
+
+        @if( $Option_mobileOnly == false ){
+            text-align : left;
+        }
+    }
     @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .ribbon .AHead {
+        .#{$Prefix}ribbon & {
             color : $COLOR_Ribbon_casual_text;
-        }
-            .ribbon .AHead h1 {
+            h1 {
                 color : $COLOR_Ribbon_text;
             }
+        }
     }
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .AHead h1 { text-align : center; }
-}
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
+        h1 { text-align : center; }
+    }
 
-/*  Tablet
---------------------------------------------------------------------------------------*/
-@include media(tablet_print) {
-    .AHead { margin : 1em 0; }
-    .AHead h1 { text-align : center; }
-}
-@include media(tablet) {
-    .AHead h1 { padding : 2em 0; }
-}
+    /*  Tablet
+    --------------------------------------------------------------------------------------*/
+    @include media(tablet_print) {
+        margin : 1em 0;
+        h1 { text-align : center; }
+    }
+    @include media(tablet) {
+        h1 { padding : 2em 0; }
+    }
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .AHead {
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
         text-align : center;
+
+        h1 {
+            text-align : center;
+            font-size  : 1.5em;
+        }
     }
 
-    .AHead h1 {
-        text-align : center;
-        font-size  : 1.5em;
-    }
-}
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    .AHead {
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
         color : $COLOR_Dark_casual_text;
-    }
-        .AHead h1 {
+        h1 {
             color : $COLOR_Dark_text;
         }
-}
+    }
 
-/*  Print
---------------------------------------------------------------------------------------*/
-@include media(print) {
-    .lMz .AHead {
-        padding : 0 $TABLET_HORIZONTAL_MARGIN;
-    }
-    .AHead {
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        .lMz & {
+            padding : 0 $TABLET_HORIZONTAL_MARGIN;
+        }
         color   : $COLOR_Print_casual_text !important;
+
+        h1 {
+            color   : $COLOR_Print_text !important;
+            padding : 1em 0;
+        }
     }
-    .AHead h1 {
-        color   : $COLOR_Print_text !important;
-        padding : 1em 0;
-    }
-}
-/*  landscape Print
---------------------------------------------------------------------------------------*/
-@include media(landscapePrint) {
-    .AHead {
+    /*  landscape Print
+    --------------------------------------------------------------------------------------*/
+    @include media(landscapePrint) {
         padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
     }
-}
 
 /* =====================================================================================
  * .AHead-labels
  *   i.ico-label
  *   a
 --------------------------------------------------------------------------------------*/
-@if( $Option_ArticleLabels ){
-    .AHead-labels {
-        margin-top : 0.5em;
-    /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
-        @if( $UA_IE7 or $UA_IE8 ){
-            font-family : Meiryo, "MS PGothic", sans-serif;
-        }
-        @if( $IS_LTE_WIN_IE6 ){
-            font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
-        }
-        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
-            color : $COLOR_Sidebar_fill;
-        } @else {
-            color : $COLOR_Ribbon_fill; /* , を消す */
-        }
-        @if( $UA_Modern ){
-            vertical-align : middle; /* ie11 のガタツキを修正 */
-        }
-    }
-        .AHead-labels i {
-            display : none;
-        }
-        .AHead-labels {
+    @if( $Option_ArticleLabels ){
+        @at-root #{&}-labels {
+            margin-top : 0.5em;
+        /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
+            @if( $UA_IE7 or $UA_IE8 ){
+                font-family : Meiryo, "MS PGothic", sans-serif;
+            }
+            @if( $IS_LTE_WIN_IE6 ){
+                font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
+            }
+            @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
+                color : $COLOR_Sidebar_fill;
+            } @else {
+                color : $COLOR_Ribbon_fill; /* , を消す */
+            }
+            @if( $UA_Modern ){
+                vertical-align : middle; /* ie11 のガタツキを修正 */
+            }
+            i {
+                display : none;
+            }
+
             a {
                 @include button-base;
                 margin : 0 0 0.5em;
@@ -139,50 +131,47 @@
                     color        : $COLOR_Ribbon_fill;
                 }
             }
-        }
 
-    /*  Phone-
-    --------------------------------------------------------------------------------------*/
-    @include media(smallphone) {
-        .AHead-labels {
-            line-height : 0;
-        }
-            .AHead-labels a {
-                display    : block;
-                text-align : center;
-                margin     : 0.5em;
+            /*  Phone-
+            --------------------------------------------------------------------------------------*/
+            @include media(smallphone) {
+                line-height : 0;
+                a {
+                    display    : block;
+                    text-align : center;
+                    margin     : 0.5em;
+                }
             }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .AHead-labels {
-            color : $COLOR_Print_text;
-        }
-            @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
-                .AHead-labels i {
-                    @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-                        @include inline-block;
+            /*  Print
+            --------------------------------------------------------------------------------------*/
+            @include media(print) {
+                color : $COLOR_Print_text;
+                @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
+                    i {
+                        @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
+                            @include inline-block;
+                        }
                     }
                 }
-            }
 
-            .AHead-labels a {
-                @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
-                    display : inline;
+                a {
+                    @if( $CANUSE_DISPLAY_INLINE_BLOCK ){
+                        display : inline;
+                    }
+                    border-width : 0;
+                    padding      : 0;
+                    margin       : 0;
                 }
-                border-width : 0;
-                padding      : 0;
-                margin       : 0;
+                a:link {
+                    color      : $COLOR_Print_link;
+                    background : none;
+                }
+                a:visited {
+                    color      : $COLOR_Print_visited;
+                    background : none;
+                }
             }
-            .AHead-labels a:link {
-                color      : $COLOR_Print_link;
-                background : none;
-            }
-            .AHead-labels a:visited {
-                color      : $COLOR_Print_visited;
-                background : none;
-            }
+        }
     }
 }

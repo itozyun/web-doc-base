@@ -1,0 +1,43 @@
+%BlockquoteLink {
+    @include responsive-horizontal-margin(2, 0, 0);
+    font-size : 0.875em;
+    color     : $COLOR_Light_link;
+
+    /*  WSXGA, print
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA_landscapePrint) {
+        @include column-span-all;
+        margin : 0 0 1em;
+    }
+
+    /*  Dark theme
+    --------------------------------------------------------------------------------------*/
+    @include media(dark_theme) {
+        color : $COLOR_Dark_link;
+    }
+
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        @if( $CANUSE_CSS_GENERATED_CONTENT ){
+            a:after {
+                display : none; /* for iOS4 content : none だけでは消えない */
+            }
+        }
+    }
+}
+
+%BlockquoteCite {
+    @include responsive-horizontal-margin(2, 0, 0);
+    @include unbreak-box-with-long-text; /* 長い url 用 */
+    display    : block;
+    font-size  : 0.875em;
+    text-align : right;
+    color      : $COLOR_Light_casual_text;
+    /*  WSXGA, print
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA_landscapePrint) {
+        @include column-span-all;
+        margin : 1em 0 0;
+    }
+}

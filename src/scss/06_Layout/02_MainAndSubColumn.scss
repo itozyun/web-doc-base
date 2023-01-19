@@ -16,14 +16,14 @@
 $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false and $IS_Opera7x == false and $UA_Opera8 == false;
 
 @if( $Option_mobileOnly == false ){
-    .lW { // clearfix を同時に指定するために screen の外へ
+    .#{$Prefix}lW { // clearfix を同時に指定するために screen の外へ
         @if( $LAYOUT_BY_DISPLAY_TABLE == false and $LAYOUT_FIX_FOR_Opera75 == false ){
             @include clearfix;
         }
     }
 
     @include media(screen) {
-        .lW {
+        .#{$Prefix}lW {
             width : $PC_WIDTH_PERCENT;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $PC_MAX_WIDTH_EM;
@@ -41,25 +41,24 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 
         /*  main
         --------------------------------------------------------------------------------------*/
-            .lM {
+            .#{$Prefix}lM {
                 @if( $IS_LTE_WIN_IE6 ){
                     overflow-x : hidden; /* カラム落ち対策 */
                 }
-            }
-                .lMi, .lMz {
+                @at-root #{&}i, #{&}z {
                     @if( $LAYOUT_FIX_FOR_Opera75 ){
                         padding-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
                     } @else {
                         margin-left : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
                     }
                 }
+            }
 
         /*  sub
         --------------------------------------------------------------------------------------*/
-            .lS {
+            .#{$Prefix}lS {
                 width : 100% * $PC_SUB_COLUMN_RATIO;
-            }
-                .lSi {
+                @at-root #{&}i {
                     @if( $UA_IE6 ){
                         width  : 82%;
                     }
@@ -72,32 +71,34 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
                         margin : 0 math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_SUB_COLUMN_RATIO);
                     }
                 }
+            }
 
         @if( $LAYOUT_BY_DISPLAY_TABLE ){
-            .lW {
+            .#{$Prefix}lW {
                 display      : table;
                 table-layout : fixed;
             }
-                .lM, .lS {
+                .#{$Prefix}lM, .#{$Prefix}lS {
                     display        : table-cell;
                     vertical-align : top; /* Safari 3.2, ie8 で大切 */
                 }
-                .lM {
+                .#{$Prefix}lM {
                     width : 100% * $PC_MAIN_COLUMN_RATIO;
-                }
-                    .lMi, .lMz {
+                    @at-root #{&}i, #{&}z {
                         margin-right : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
                     }
+                }
+
         } @else {
        /* memo : サイドバーを塗りたい場合
         * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
         * 高さを求めて32767px 
         */
-            .lM {
+            .#{$Prefix}lM {
                 width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
                 float : left;
             }
-            .lS {
+            .#{$Prefix}lS {
                 float : right;
             }
         }
@@ -105,7 +106,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        .lSi {
+        .#{$Prefix}lSi {
             @if( $UA_IE6 ){
                 width : 100%;
             }
@@ -114,60 +115,61 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 }
 
 /*  WQXGA
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------WSXGA--*/
 @include media(WQXGA) {
-    .lW {
+    .#{$Prefix}lW {
         width     : $WQXGA_WIDTH_PERCENT;
         max-width : $WQXGA_MAX_WIDTH_EM;
     }
-        .lM {
+        .#{$Prefix}lM {
             width : 100% * $WQXGA_MAIN_COLUMN_RATIO;
-        }
-            .lMi, .lMz {
+            @at-root #{&}i, #{&}z {
                 margin : 0 $WQXGA_COLUMN_GAP_EM 0 math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_MAIN_COLUMN_RATIO);
             }
-                .lMh {
-                    margin-left  : 50%;
-                    padding-left : math.div($WQXGA_COLUMN_GAP_EM, 2);
-                }
-        .lS {
-            width : 100% * $WQXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}h {
+                margin-left  : 50%;
+                padding-left : math.div($WQXGA_COLUMN_GAP_EM, 2);
+            }
         }
-            .lSi {
+
+        .#{$Prefix}lS {
+            width : 100% * $WQXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}i {
                 margin : 0 math.div($WQXGA_COLUMN_GAP_PCT, $WQXGA_SUB_COLUMN_RATIO);
             }
+        }
 }
 
 /*  WSXGA
 --------------------------------------------------------------------------------------*/
 @include media(WSXGA) {
-    .lW {
+    .#{$Prefix}lW {
         width     : $WSXGA_WIDTH_PERCENT;
         max-width : $WSXGA_MAX_WIDTH_EM;
     }
-        .lM {
+        .#{$Prefix}lM {
             width : 100% * $WSXGA_MAIN_COLUMN_RATIO;
-        }
-            .lMi, .lMz {
+            @at-root #{&}i, #{&}z {
                 margin : 0 $WSXGA_COLUMN_GAP_EM 0 math.div($WSXGA_COLUMN_GAP_PCT, $WSXGA_MAIN_COLUMN_RATIO);
             }
-                .lMh {
-                    margin-left  : 50%;
-                    padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
-                }
-        .lS {
-            width : 100% * $WSXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}h {
+                margin-left  : 50%;
+                padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
+            }
         }
-            .lSi {
+        .#{$Prefix}lS {
+            width : 100% * $WSXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}i {
                 margin : 0 math.div($WSXGA_COLUMN_GAP_PCT, $WSXGA_SUB_COLUMN_RATIO);
             }
+        }
 }
 
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly == false ){
     @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
-        .lW {
+        .#{$Prefix}lW {
             width : 100%;
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
@@ -176,7 +178,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
                 display : block;
             }
         }
-            .lM, .lS {
+            .#{$Prefix}lM, .#{$Prefix}lS {
                 width : auto;
                 @if( $LAYOUT_BY_DISPLAY_TABLE ){
                     display : block;
@@ -184,7 +186,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
                     float : none;
                 }
             }
-                .lMi, .lMz, .lSi {
+                .#{$Prefix}lMi, .#{$Prefix}lMz, .#{$Prefix}lSi {
                     @if( $LAYOUT_FIX_FOR_Opera75 ){
                         padding : 0;
                     } @else {
@@ -197,7 +199,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 /*  mobileOnly は始めから Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly ){
-    .lW {
+    .#{$Prefix}lW {
         @if( $UA_IE8 or $UA_Modern ){
             overflow : hidden; /* この指定が無いと塗りがはみ出る */
         }
@@ -207,12 +209,12 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
         }
     }
     @include media(screen) {
-        .lW {
+        .#{$Prefix}lW {
             @if( $LAYOUT_FIX_FOR_Opera75 ){
                 text-align : center;
             }
         }
-        .lM, .lS, #lB .lSi {
+        .#{$Prefix}lM, .#{$Prefix}lS, #lB .#{$Prefix}lSi {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : $TABLET_MAX_WIDTH_EM;
                 @if( $LAYOUT_FIX_FOR_Opera75 ){
@@ -223,7 +225,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
                 }
             }
         }
-        #lB .lS {
+        #lB .#{$Prefix}lS {
             @if( $CANUSE_MAX_AND_MIN_SIZES ){
                 max-width : 100%;
             }
@@ -234,42 +236,38 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 /*  Tablet
 --------------------------------------------------------------------------------------*/
 @if( $Option_mobileOnly ){
-    .lMi, .lMz .lMh, .lSi {
+    .#{$Prefix}lMi, .#{$Prefix}lMz .#{$Prefix}lMh, .#{$Prefix}lSi {
         padding : 0 $TABLET_HORIZONTAL_MARGIN;
     }
 } @else {
     @include media(tablet_print) {
-        .lMi, .lMz .lMh, .lSi {
+        .#{$Prefix}lMi, .#{$Prefix}lMz .#{$Prefix}lMh, .#{$Prefix}lSi {
             padding : 0 $TABLET_HORIZONTAL_MARGIN;
         }
     }
     @include media(tablet) {
-        #lB .lSi {
+        #lB .#{$Prefix}lSi {
             padding : 0;
         }
     }
 }
 
-/*  PHABLET
---------------------------------------------------------------------------------------*/
-@include media(phablet) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi {
+.#{$Prefix}lMi, .#{$Prefix}lMz .#{$Prefix}lMh, .#{$Prefix}lSi, #lB .#{$Prefix}lSi {
+    /*  PHABLET
+    --------------------------------------------------------------------------------------*/
+    @include media(phablet) {
         padding : 0 $PHABLET_HORIZONTAL_MARGIN;
     }
-}
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi {
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
         padding : 0 $PHONE_HORIZONTAL_MARGIN;
     }
-}
 
-/*  Watch
---------------------------------------------------------------------------------------*/
-@include media(watch) {
-    .lMi, .lMz .lMh, .lSi, #lB .lSi {
+    /*  Watch
+    --------------------------------------------------------------------------------------*/
+    @include media(watch) {
         padding : 0;
     }
 }
@@ -277,14 +275,14 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 /*  Print
 --------------------------------------------------------------------------------------*/
 @include media(print) {
-    #lH .lS, #lB .lS, #lF .lW {
+    #lH .#{$Prefix}lS, #lB .#{$Prefix}lS, #lF .#{$Prefix}lW {
         display : none;
     }
 }
 /*  landscape Print
 --------------------------------------------------------------------------------------*/
 @include media(landscapePrint) {
-    .lMi, .lMh {
+    .#{$Prefix}lMi, .#{$Prefix}lMh {
         padding : 0 math.div($TABLET_HORIZONTAL_MARGIN, 2);
     }
 }

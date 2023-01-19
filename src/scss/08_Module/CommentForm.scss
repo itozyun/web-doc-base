@@ -4,22 +4,20 @@
  *  div.CmtForm
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    @if( $UA_Modern or $UA_IE9 ){
-        .CmtForm { 
+    .#{$Prefix}CmtForm { 
+        @if( $UA_Modern or $UA_IE9 ){
+        
             padding    : 1em 0;
             text-align : center;
-        }
-            .CmtForm iframe {
+            iframe {
                 width  : 100%;
                 margin : 0;
                 height : 400px;
             }
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .CmtForm {
+        }
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
             display : none;
         }
     }

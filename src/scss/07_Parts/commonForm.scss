@@ -8,18 +8,17 @@
  *    .commonForm-send
  *       input[type=submit].btn
 --------------------------------------------------------------------------------------*/
-.commonForm {
+.#{$Prefix}commonForm {
     display : block;
-}
 
-    .commonForm-pair {
+    @at-root #{&}-pair {
         @if( $UA_IE5 == false ){
             @include clearfix;
         }
         @include unbreak-inside;
         margin-bottom : 1em;
     }
-        .commonForm label {
+        & label {
             @if( $UA_IE5 == false ){
                 float   : left;
                 width   : 7em;
@@ -35,7 +34,7 @@
             }
         }
 
-        .commonForm-wrap {
+        @at-root #{&}-wrap {
             display : block;
             @if( $IS_LEGACY ){
                 @if( $UA_Gecko09 ){
@@ -48,9 +47,8 @@
             } @else {
                 margin : 0.5em 1em;
             }
-        }
 
-            .commonForm-wrap * {
+            * {
                 width : 100%;
                 @if( $UA_IE7 or $UA_IE6 ){
                     float : left; /* 上に出来る余白を消す、ie5 はカラムが壊れる */
@@ -59,28 +57,27 @@
                     display : block; /* 上に出来る余白を消す */
                 }
             }
+        }
 
-        .commonForm-send {
+        @at-root #{&}-send {
             text-align : right;
         }
 
-/*  WSXGA
---------------------------------------------------------------------------------------*/
-@include media(WSXGA) {
-    .commonForm {
+    /*  WSXGA
+    --------------------------------------------------------------------------------------*/
+    @include media(WSXGA) {
         max-width : 40em;
     }
-}
+    /*  Phone
+    --------------------------------------------------------------------------------------*/
+    @include media(phone) {
+        & label {
+            float   : none;
+            width   : auto;
+        }
 
-/*  Phone
---------------------------------------------------------------------------------------*/
-@include media(phone) {
-    .commonForm label {
-        float   : none;
-        width   : auto;
-    }
-
-    .commonForm-wrap {
-        margin-left : 0;
+        @at-root #{&}-wrap {
+            margin-left : 0;
+        }
     }
 }

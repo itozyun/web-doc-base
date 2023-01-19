@@ -12,7 +12,7 @@ $CANT_TRIANGULATE_INLINE_ELEMENT : $IS_LTE_GECKO09 or $UA_Opera70; /** block 要
 $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-size ベースのレイアウトが出来ないかも */ 
 
 @if( $Option_blog ){
-    .Pager {
+    .#{$Prefix}Pager {
         @include article-footer-item;
         color : $COLOR_Light_fill; /* , を消す */
 
@@ -227,37 +227,33 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
                 }
             }
         }
-    }
 
-    /*  Phone
-    --------------------------------------------------------------------------------------*/
-    @include media(phone) {
-        .Pager-next i, .Pager-top i {
-            margin-right : .2em;
+        /*  Phone
+        --------------------------------------------------------------------------------------*/
+        @include media(phone) {
+            @at-root #{&}-next i, #{&}-top i {
+                margin-right : .2em;
+            }
+            @at-root #{&}-prev i {
+                margin-left : .2em;
+            }
         }
-        .Pager-prev i {
-            margin-left : .2em;
-        }
-    }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .Pager {
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
             color : $COLOR_Dark_fill; /* , を消す */
             i {
                 border-color : transparent $COLOR_Dark_casual_text;
             }
+            @at-root #{&}-top i {
+                border-color : $COLOR_Dark_casual_text transparent;
+            }
         }
-        .Pager-top i {
-            border-color : $COLOR_Dark_casual_text transparent;
-        }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        .Pager {
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
             display : none;
         }
     }

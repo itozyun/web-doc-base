@@ -2,25 +2,23 @@
  *  出現位置は #lH .lMi 下で固定
  *
 --------------------------------------------------------------------------------------*/
-
 @if( $Option_simpleHeader ){
-    #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
-    #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
-        padding-top : 1em;
-        @if( $UA_IE5 == false and $UA_IE55 == false ){
-            padding-bottom : 1em;
+    .#{$Prefix}Header {
+        @at-root #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
+                 #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
+            padding-top : 1em;
+            @if( $UA_IE5 == false and $UA_IE55 == false ){
+                padding-bottom : 1em;
+            }
         }
-    }
 
-    #lE, #lF {
-        border-width : 1px 0 0;
-    }
+        @at-root #lE, #lF {
+            border-width : 1px 0 0;
+        }
 
-    .Header {
         @include line-height(1, 1);
-    }
 
-        .Header h1, .h1 {
+        @at-root .h1, & h1 {
             @if( $Option_mobileOnly == false ){
                 display : inline;
             }
@@ -30,35 +28,32 @@
                 height : 1px; // <= hasLayout = true
             }
         }
-        .Header h1 {
+        h1 {
             @include line-height(1, 0);
             padding : 0;
         }
-        .Header span {
+        span {
             @if( $UA_IE5 ){
                 padding : 0 0 .5em;
                 height  : 1px; // <= hasLayout = true
             } 
         }
 
-    /*  WSXGA
-    --------------------------------------------------------------------------------------*/
-    @include media(WSXGA) {
-        .Header {
+        /*  WSXGA
+        --------------------------------------------------------------------------------------*/
+        @include media(WSXGA) {
             text-align : center;
         }
-    }
 
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet) {
-        #lH .lMi {
-            @if( $UA_IE5 == false ){
-                padding-bottom : 0;
+        /*  Tablet
+        --------------------------------------------------------------------------------------*/
+        @include media(tablet) {
+            @at-root #lH .lMi {
+                @if( $UA_IE5 == false ){
+                    padding-bottom : 0;
+                }
             }
-        }
 
-        .Header {
             @if( $Option_mobileOnly ){
                 @include media(screen) {
                     text-align : center;
@@ -66,49 +61,49 @@
             } @else {
                 text-align : center;
             }
-        }
-            .Header h1, .h1 {
+            @at-root .h1, & h1 {
                 @if( $Option_mobileOnly == false ){
                     display : block;
                 }
                 margin : 0 0 0.5em;
             }
-    }
+        }
 
-    /*  Phone
-    --------------------------------------------------------------------------------------*/
-    @include media(phone) {
-        .Header h1, .h1 {
-            font-size : 1.2em;
+        /*  Phone
+        --------------------------------------------------------------------------------------*/
+        @include media(phone) {
+            @at-root .h1, & h1 {
+                font-size : 1.2em;
+            }
         }
-    }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        #lH {
-            font-size : 0.875em;
-        }
-        #lH .lMi {
-            padding-top    : .5em;
-            padding-bottom : .5em;
-        }
-            .h1 {
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(print) {
+            @at-root #lH {
+                font-size : 0.875em;
+                .lMi {
+                    padding-top    : .5em;
+                    padding-bottom : .5em;
+                }
+            }
+            @at-root .h1 {
                 font-size : 1em;
             }
             // 記事でない場合、サイトタイトルをセンタリング
-            .Header h1 {
+            h1 {
                 text-align : center;
                 @if( $Option_mobileOnly == false ){
                     display : block;
                 }
                 margin : 0 0 0.5em;
-            }
-            @if( $CANUSE_ADJACENT_SIBLING_COMBINATOR ){
-                .Header h1+span {
-                    display    : block;
-                    text-align : center;
+                @if( $CANUSE_ADJACENT_SIBLING_COMBINATOR ){
+                    &+span {
+                        display    : block;
+                        text-align : center;
+                    }
                 }
             }
+        }
     }
 }

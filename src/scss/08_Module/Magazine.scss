@@ -20,170 +20,170 @@
 --------------------------------------------------------------------------------------*/
 $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
 
-@if( $Option_Magazine ){ 
-    .Magazine-item {
-        @include unbreak-inside;
-        padding : 1em 0;
-        @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-            display : table;
-        } @else {
-            @include clearfix;
-        }
-    }
-        .Magazine-date {
-            @include unbreak-word;
-            @include line-height(1, 1);
-            padding-right : 1.5em;
-            font-weight   : bold;
-            font-family   : monospace;
+@if( $Option_Magazine ){
+    .#{$Prefix}Magazine {
+        @at-root #{&}-item {
+            @include unbreak-inside;
+            padding : 1em 0;
             @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                display        : table-cell;
-                vertical-align : top;
+                display : table;
             } @else {
-                display : block;
-                float   : left;
-            }
-        }
-            .Magazine-yy {
-                display   : block;
-                font-size : 2em;
-            }
-            .Magazine-mm {
-                display   : block;
-                font-size : 4em;
-            }
-            .Magazine-dd {
-                font-size : 4em;
-            }
-            .Magazine-mm, .Magazine-dd {
-                line-height : .9;
-            }
-            .Magazine-y, .Magazine-m {
-                display : none;
-            }
-
-        .Magazine-main {
-            @include unbreak-box-with-long-text;
-            position     : relative;
-            border-width : 0 0 0 .5em;
-            padding-left : 1.5em;
-            border-color : $COLOR_Light_text;
-            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                display        : table-cell;
-                vertical-align : top;
-            } @else {
-                margin-left : 5.5em;
-            }
-            @if( $UA_IE5 ){
-                height : 1px; // <= 区切り線の太さが変わるのを防ぐ
-            } @else if( $UA_IE55 or $UA_IE6 ){
-                zoom : 1; // <= 区切り線が消えるのを防ぐ
-            }
-        }
-            .Magazine h3 {
-                font-size   : 2em;
-                font-weight : bold;
-                margin      : 0.2em 0 0;
-                padding     : 0;
-            }
-            .Magazine-label {
-                @include unbreak-box-with-long-text;
-                margin : .5em 0 .8em;
-            }
-            .Magazine-snippet {
                 @include clearfix;
-                img {
-                    float  : left;
-                    margin : .4em 1em 1em 0;
+            }
+        }
+            @at-root #{&}-date {
+                @include unbreak-word;
+                @include line-height(1, 1);
+                padding-right : 1.5em;
+                font-weight   : bold;
+                font-family   : monospace;
+                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                    display        : table-cell;
+                    vertical-align : top;
+                } @else {
+                    display : block;
+                    float   : left;
                 }
-                p {
-                    line-height : 1.4em;
-                    margin      : 0;
+            }
+                @at-root #{&}-yy {
+                    display   : block;
+                    font-size : 2em;
+                }
+                @at-root #{&}-mm {
+                    display   : block;
+                    font-size : 4em;
+                }
+                @at-root #{&}-dd {
+                    font-size : 4em;
+                }
+                @at-root #{&}-mm, #{&}-dd {
+                    line-height : .9;
+                }
+                @at-root #{&}-y, #{&}-m {
+                    display : none;
+                }
+
+            @at-root #{&}-main {
+                @include unbreak-box-with-long-text;
+                position     : relative;
+                border-width : 0 0 0 .5em;
+                padding-left : 1.5em;
+                border-color : $COLOR_Light_text;
+                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                    display        : table-cell;
+                    vertical-align : top;
+                } @else {
+                    margin-left : 5.5em;
+                }
+                @if( $UA_IE5 ){
+                    height : 1px; // <= 区切り線の太さが変わるのを防ぐ
+                } @else if( $UA_IE55 or $UA_IE6 ){
+                    zoom : 1; // <= 区切り線が消えるのを防ぐ
                 }
             }
-            .Magazine .btn {
-                position  : absolute;
-                font-size : .83em;
-                left      : math.div(-6em, .83);
-                bottom    : 0;
-                width     : math.div(3.5em, .83);
-                padding   : math.div(0.25em, .83);
-            }
-
-    /*  WSXGA
-    --------------------------------------------------------------------------------------*/
-    @include media(WSXGA_landscapePrint) {
-        .Magazine-sep {
-            margin       : 1em 0;
-            /* clean-css ignore:start */
-            display      : table;  // table layout
-            table-layout : fixed;  // table layout
-            /* clean-css ignore:end */
-            @include display-flex; // flex layout
-            width        : 100%;   // flex layout
-        }
-            .Magazine-sep-inner {
-                display : table-cell;
-                width   : 50%;
-            }
-            .Magazine-only .Magazine-sep-inner {
-                width   : 100%;
-                padding : 0 !important;
-            }
-                .Magazine-item {
-                    @include display-flex;
-                    height  : 100%;
-                    padding : 0;
+                h3 {
+                    font-size   : 2em;
+                    font-weight : bold;
+                    margin      : 0.2em 0 0;
+                    padding     : 0;
                 }
-    // }
-    // @include media(WSXGA) { // for Safari 3.2, Chrome 1
-        .Magazine-sep-inner:first-child .Magazine-main {
-            padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
-        }
-        .Magazine-sep-inner:not(:first-child) .Magazine-date {
-            padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
-        }
-    }
-    @include css-hack(onlyIE10To11){
-        .Magazine-sep-inner {
-            display : block !important;
-        }
-    }
+                @at-root #{&}-label {
+                    @include unbreak-box-with-long-text;
+                    margin : .5em 0 .8em;
+                }
+                @at-root #{&}-snippet {
+                    @include clearfix;
+                    img {
+                        float  : left;
+                        margin : .4em 1em 1em 0;
+                    }
+                    p {
+                        line-height : 1.4em;
+                        margin      : 0;
+                    }
+                }
+                .btn {
+                    position  : absolute;
+                    font-size : .83em;
+                    left      : math.div(-6em, .83);
+                    bottom    : 0;
+                    width     : math.div(3.5em, .83);
+                    padding   : math.div(0.25em, .83);
+                }
 
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(landscapePrint) {
-        .Magazine-sep-inner:first-child .Magazine-main {
-            padding-right : math.div($PRINT_COLUMN_GAP_EM, 2);
+        /*  WSXGA
+        --------------------------------------------------------------------------------------*/
+        @include media(WSXGA_landscapePrint) {
+            @at-root #{&}-sep {
+                margin       : 1em 0;
+                /* clean-css ignore:start */
+                display      : table;  // table layout
+                table-layout : fixed;  // table layout
+                /* clean-css ignore:end */
+                @include display-flex; // flex layout
+                width        : 100%;   // flex layout
+            }
+                @at-root #{&}-sep-inner {
+                    display : table-cell;
+                    width   : 50%;
+                }
+                @at-root #{&}-only #{&}-sep-inner {
+                    width   : 100%;
+                    padding : 0 !important;
+                }
+                    @at-root #{&}-item {
+                        @include display-flex;
+                        height  : 100%;
+                        padding : 0;
+                    }
+        // }
+        // @include media(WSXGA) { // for Safari 3.2, Chrome 1
+            @at-root #{&}-sep-inner:first-child #{&}-main {
+                padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
+            }
+            @at-root #{&}-sep-inner:not(:first-child) #{&}-date {
+                padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
+            }
         }
-        .Magazine-sep-inner:last-child .Magazine-date {
-            padding-left : math.div($PRINT_COLUMN_GAP_EM, 2);
+        @include css-hack(onlyIE10To11){
+            @at-root #{&}-sep-inner {
+                display : block !important;
+            }
         }
-    }
 
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet) {
-        .Magazine img {
-            margin-left : 0;
+        /*  Print
+        --------------------------------------------------------------------------------------*/
+        @include media(landscapePrint) {
+            @at-root #{&}-sep-inner:first-child #{&}-main {
+                padding-right : math.div($PRINT_COLUMN_GAP_EM, 2);
+            }
+            @at-root #{&}-sep-inner:last-child #{&}-date {
+                padding-left : math.div($PRINT_COLUMN_GAP_EM, 2);
+            }
         }
-    }
 
-    /*  Phablet
-    --------------------------------------------------------------------------------------*/
-    @include media(phablet) {
-        .Magazine {
+        /*  Tablet
+        --------------------------------------------------------------------------------------*/
+        @include media(tablet) {
+            img {
+                margin-left : 0;
+            }
+        }
+
+        /*  Phablet
+        --------------------------------------------------------------------------------------*/
+        @include media(phablet) {
             margin       : 1em 0 0;
             border-width : .5em 0 0;
             border-color : $COLOR_Light_text;
-        }
-            .Magazine-item {
+
+            @at-root #{&}-item {
                 padding : 1em 0 0;
                 @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
                     display : block;
                 }
             }
-                .Magazine-date {
+                @at-root #{&}-date {
                     font-family : inherit;
                     width       : auto;
                     @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
@@ -192,45 +192,45 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
                         float : none;
                     }
                 }
-                .Magazine-yy {
+                @at-root #{&}-yy {
                     display   : inline;
                     font-size : 1em;
                 }
-                .Magazine-mm {
+                @at-root #{&}-mm {
                     display   : inline;
                     font-size : 1em;
                 }
-                .Magazine-dd {
+                @at-root #{&}-dd {
                     font-size : 1em;
                 }
-                .Magazine-y, .Magazine-m {
+                @at-root #{&}-y, #{&}-m {
                     display : inline;
                 }
 
-            .Magazine-main {
+            @at-root #{&}-main {
                 border-width : 0 0 .5em;
                 padding      : 0 0 1em;
                 @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
                     display : block;
                 }
             }
-                .Magazine h3 {
+                h3 {
                     font-size : 1.3em;
                 }
-                .Magazine .btn {
+                .btn {
                     position  : static;
                     width     : auto;
                     font-size : 1em;
                     padding   : .5em 1em;
                 }
-    }
+        }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .Magazine,
-        .Magazine-main {
-            border-color : $COLOR_Dark_text;
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
+            @at-root #{&}-main, & {
+                border-color : $COLOR_Dark_text;
+            }
         }
     }
 }

@@ -26,7 +26,7 @@
         border-color    : $COLOR_Light_fill;
     }
     @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .ribbon & {
+        .#{$Prefix}ribbon & {
             border-color : $COLOR_Ribbon_casual_text;
         }
     }
@@ -50,7 +50,7 @@
             border-color : $COLOR_Print_casual_text;
         }
         @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-            .ribbon & {
+            .#{$Prefix}ribbon & {
                 border-color : $COLOR_Print_casual_text;
             }
         }
@@ -64,7 +64,7 @@
         border-color : $COLOR_Light_fill transparent;
     }
     @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .ribbon & {
+        .#{$Prefix}ribbon & {
             border-color : $COLOR_Ribbon_casual_text transparent;
         }
     }
@@ -100,7 +100,7 @@
             border-color : $COLOR_Print_casual_text transparent;
         }
         @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-            .ribbon & {
+            .#{$Prefix}ribbon & {
                 border-color : $COLOR_Print_casual_text transparent;
             }
         }
@@ -114,7 +114,7 @@
         border-color : transparent $COLOR_Light_fill;
     }
     @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .ribbon & {
+        .#{$Prefix}ribbon & {
             border-color : transparent $COLOR_Ribbon_casual_text;
         }
     }
@@ -150,7 +150,7 @@
             border-color : transparent $COLOR_Print_casual_text;
         }
         @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-            .ribbon & {
+            .#{$Prefix}ribbon & {
                 border-color : transparent $COLOR_Print_casual_text;
             }
         }
@@ -158,6 +158,13 @@
 }
 
 @if( $CANUSE_GOOD_CSS_GENERATED_BLOCK ){
+    /* @if( $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
+        [class^=ico] {
+            @include icon-base;
+        }
+    } @else {
+
+    } */
     .ico-clock {
         @include icon-base;
 

@@ -1,16 +1,14 @@
+// TODO Layout へ
 @include media(screen) {
-    #lB .lM {
+    #lB .#{$Prefix}lM {
         padding-bottom : 4em;
+        @if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
+            padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
+        }
     }
-    #lB .lS {
+    #lB .#{$Prefix}lS {
         padding-bottom : 1em;
     }    
-}
-
-@if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
-    #lB .lM {
-        padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
-    }
 }
 
 
@@ -21,7 +19,7 @@
 /*  WQXGA
 --------------------------------------------------------------------------------------*/
 @include media(WQXGA) {
-    #lB .lS {
+    #lB .#{$Prefix}lS {
         padding-bottom : 2em;
     }
 }
@@ -30,7 +28,7 @@
 /*  Phablet
 --------------------------------------------------------------------------------------*/
 @include media(phablet) {
-    #lB .lS {
+    #lB .#{$Prefix}lS {
         padding-bottom : 2em;
     }
 }

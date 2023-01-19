@@ -35,6 +35,10 @@
  *  //+simpleHeader
  *  //+Magazine
  *  //+blog2slide
+ *  //+nouse_ribbon
+ *  //+nouse_sidebar
+ *  //+noover_WSXGA
+ *  //+minify
  */
 
 /* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
@@ -214,6 +218,24 @@
     $Option_useRibbon          : false;
     /* //_}+nouse_ribbon */
     $Option_useRibbon          : true !default;
+
+// SideBar
+    /* //_{+nouse_sidebar */
+    $Option_useSideBar         : false;
+    /* //_}+nouse_sidebar */
+    $Option_useSideBar         : true !default;
+
+// OverWSXGA
+    /* //_{+noover_WSXGA */
+    $Option_overWSXGA          : false;
+    /* //_}+noover_WSXGA */
+    $Option_overWSXGA          : true !default;
+
+// minify
+    /* //_{+minify */
+    $Prefix                    : "minify-";
+    /* //_}+minify */
+    $Prefix                    : "" !default;
 
 /* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 ||

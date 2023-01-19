@@ -3,10 +3,10 @@
  *
 --------------------------------------------------------------------------------------*/
 @if( $Option_blog ){
-    .Label {
+    .#{$Prefix}Label {
         @include stackableModule;
-    }
-        .Label div {
+
+        div {
             color : $COLOR_Light_fill; /* , を消す */
         
             @if( $IS_WIN_IE ){
@@ -19,11 +19,11 @@
             }
         }
         @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-            .ribbon .Label div {
+            .#{$Prefix}ribbon & div {
                 color : $COLOR_Ribbon_fill; /* , を消す */
             }
         }
-            .Label a {
+            a {
                 border-width : 0 0 1px;
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                     @include inline-block;
@@ -34,19 +34,17 @@
             }
 
             @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){
-                .Label :hover {
+                :hover {
                     text-decoration : none;
                 }
             } @else if( $CANUSE_HOVER_PSEUDO_CLASS ){
-                .Label {
-                    :link:hover, :visited:hover { /* 詳細度の為に a: が必要 */
-                        text-decoration : none;
-                    }
+                :link:hover, :visited:hover { /* 詳細度の為に a: が必要 */
+                    text-decoration : none;
                 }
             }
 
-            .lS .Label a,
-            #lF .Label a {
+            .lS & a,
+            #lF & a {
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                     margin : 0 0 1.3em;
                 } @else {
@@ -54,19 +52,20 @@
                 }
             }
 
-    /*  Phablet
-    --------------------------------------------------------------------------------------*/
-    @include media(phablet) {
-        .Label div {
-            text-align : center;
+        /*  Phablet
+        --------------------------------------------------------------------------------------*/
+        @include media(phablet) {
+            div {
+                text-align : center;
+            }
         }
-    }
 
-    /*  Dark theme
-    --------------------------------------------------------------------------------------*/
-    @include media(dark_theme) {
-        .Label div {
-            color : $COLOR_Dark_fill; /* , を消す */
+        /*  Dark theme
+        --------------------------------------------------------------------------------------*/
+        @include media(dark_theme) {
+            div {
+                color : $COLOR_Dark_fill; /* , を消す */
+            }
         }
     }
 }
