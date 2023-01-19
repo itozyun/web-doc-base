@@ -46,7 +46,7 @@ $WSXGA_WIDTH_PERCENT     : 94% !default;
 
 $TABLET_MAX_WIDTH_EM     : 50em !default;
 
-$TABLET_MAX_WIDTH         : if($Option_baseFontSize18, 953, 943);
+$TABLET_MAX_WIDTH         : if($Option_baseFontSize18, 953, 943) !default;
 $PHABLET_MAX_WIDTH        : 740 !default;
 $PHONE_MAX_WIDTH          : 479 !default;
 $SMALL_PHONE_MAX_PX_WIDTH : 359px !default;
