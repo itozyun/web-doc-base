@@ -1,15 +1,4 @@
 @charset "UTF-8";
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
-}
 *,
 input {
   border-style: solid
@@ -35,12 +24,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -51,14 +34,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
-.AHead h1,
-th {
-  text-align: left
 }
 #jsSide,
 .Cover-img,
@@ -100,8 +75,9 @@ th {
   font-weight: 400
 }
 .Cover img,
+.box iframe,
+.box img,
 .caption,
-.jsPicaLarge img,
 iframe,
 img {
   max-width: 100%
@@ -110,6 +86,30 @@ img {
 .Search .btn,
 .lW {
   overflow: hidden
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
+.AHead h1,
+th {
+  text-align: left
 }
 body,
 input,
@@ -259,6 +259,18 @@ pre {
 }
 del {
   text-decoration: line-through
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 .links,
 .mspacer,
@@ -458,7 +470,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -488,7 +499,6 @@ li ul {
   margin-bottom: 0
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -612,6 +622,9 @@ tbody :hover td {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -674,6 +687,16 @@ strong {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -716,6 +739,7 @@ strong {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1165,20 +1189,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0
-}
 .caption {
   display: block;
   text-align: center;
@@ -1200,8 +1210,7 @@ blockquote:after {
 .box iframe,
 .box img {
   float: left;
-  margin: 0 1em 1em 0;
-  max-width: 100%
+  margin: 0 1em 1em 0
 }
 .box .caption {
   float: left;
@@ -1416,26 +1425,20 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto 1em
 }
-.jsPicaLarge img {
-  box-sizing: border-box;
-  width: 100%
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
 }
-div .box .jsCapLarge {
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
+}
+div .box .js-captioned-thumbnail__large {
   float: none
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
 }
 @media screen,
 handheld,
@@ -1517,7 +1520,7 @@ projection {
   .lMz {
     margin-right: 3.857%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1593,10 +1596,16 @@ projection {
 }
 @media print,
 handheld,
-screen and (max-width:950px) {
+screen and (max-width:953px) {
   .lS1,
   .lS2 {
     width: 48.5%
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1.5%
   }
   .links,
   .note,
@@ -1684,12 +1693,6 @@ screen and (max-width:950px) {
   blockquote {
     padding: 1em 1px
   }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1.5%
-  }
   .box dl,
   .box ol,
   .box p,
@@ -1714,7 +1717,7 @@ screen and (max-width:950px) {
   }
 }
 @media handheld,
-screen and (max-width:950px) {
+screen and (max-width:953px) {
   #lB .lS,
   #lF .lX {
     border-width: 1px 0 0
@@ -1772,12 +1775,12 @@ screen and (max-width:950px) {
     padding: 0 0 .571em;
     font-size: 1em
   }
-  #lH .lMi {
-    padding-bottom: 0
-  }
   .Header,
   .SocialBtns {
     text-align: center
+  }
+  #lH .lMi {
+    padding-bottom: 0
   }
   .Header h1,
   .h1 {
@@ -1790,6 +1793,18 @@ screen and (max-width:950px) {
 }
 @media handheld,
 screen and (max-width:740px) {
+  .Label div,
+  .LinkList,
+  .Subscribe div,
+  h2 {
+    text-align: center
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1%
+  }
   .links,
   .note,
   blockquote,
@@ -1803,12 +1818,6 @@ screen and (max-width:740px) {
   tr blockquote pre,
   ul {
     margin: 1em 2%
-  }
-  .Label div,
-  .LinkList,
-  .Subscribe div,
-  h2 {
-    text-align: center
   }
   h4,
   h5,
@@ -1927,12 +1936,6 @@ screen and (max-width:740px) {
   .RichLink h3 * {
     font-size: .769em
   }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1%
-  }
   .box dl,
   .box ol,
   .box p,
@@ -1955,6 +1958,16 @@ screen and (max-width:740px) {
 }
 @media handheld,
 screen and (max-width:479px) {
+  .AHead,
+  .AHead h1 {
+    text-align: center
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 .5%
+  }
   .links,
   .note,
   blockquote,
@@ -1968,10 +1981,6 @@ screen and (max-width:479px) {
   tr blockquote pre,
   ul {
     margin: 1em 1%
-  }
-  .AHead,
-  .AHead h1 {
-    text-align: center
   }
   p {
     line-height: 1.6
@@ -2058,12 +2067,6 @@ screen and (max-width:479px) {
   .h1 {
     font-size: 1.2em
   }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 .5%
-  }
   .box dl,
   .box ol,
   .box p,
@@ -2108,7 +2111,7 @@ screen and (max-width:359px) {
     width: auto;
     margin: 0 1em 1em 0
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: static;
     padding: 0
   }
@@ -2156,6 +2159,16 @@ screen and (max-width:240px) {
   a,
   h6 {
     color: #999
+  }
+  .js-generated-link-in-blockquote,
+  blockquote:before {
+    margin: 0;
+    color: #bbe
+  }
+  .SearchResult div div,
+  .js-generated-cite-in-blockquote,
+  blockquote:after {
+    margin: 0
   }
   .links,
   .note,
@@ -2239,12 +2252,10 @@ screen and (max-width:240px) {
     border-color: #000
   }
   .SearchResult :visited,
-  .js-bqLink,
   .tl tbody tr th :link,
   .tl thead tr :link,
   :link,
-  blockquote .tl tbody tr th :link,
-  blockquote:before {
+  blockquote .tl tbody tr th :link {
     color: #bbe
   }
   .AHead h1,
@@ -2438,13 +2449,6 @@ screen and (max-width:240px) {
   .baseColor .RichLink-meta {
     color: #222
   }
-  .SearchResult div div,
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0
-  }
   .SearchResult div p {
     color: grey
   }
@@ -2564,6 +2568,10 @@ screen and (max-width:240px) {
   th {
     font-weight: 700
   }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
+  }
   p {
     line-height: 1.5
   }
@@ -2645,7 +2653,6 @@ screen and (max-width:240px) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -2665,11 +2672,11 @@ screen and (max-width:240px) {
   .ABody {
     padding: 0 0 2em
   }
-  .lMz .AHead {
-    padding: 0 3%
-  }
   .AHead {
     color: #666!important
+  }
+  .lMz .AHead {
+    padding: 0 3%
   }
   .AHead h1 {
     color: #000!important;

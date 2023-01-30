@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
+  :root {
+    font: -apple-system-body
+  }
+}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -81,26 +86,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-figure,
-h2,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
-}
-.Magazine-mm,
-.Magazine-yy,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
-}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
@@ -122,11 +107,6 @@ tbody th {
 .lS2 {
   width: 48.5%
 }
-.BlogArchive th,
-.Magazine-date {
-  word-break: normal;
-  word-wrap: normal
-}
 .Cover-img,
 .Magazine-main,
 .Search,
@@ -139,10 +119,6 @@ kbd:hover,
 sub,
 sup {
   position: relative
-}
-.Magazine-date,
-.aa {
-  font-family: monospace
 }
 .AAuthor,
 .Comment p,
@@ -171,21 +147,37 @@ pre {
   white-space: -webkit-pre-wrap;
   white-space: pre-wrap
 }
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-dt {
-  font-weight: 700
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0 1.5%
 }
-.RichLink b,
-h1,
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  word-break: break-all;
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0 1.5%
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+figure,
 h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
+}
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
 }
 @font-face {
   font-family: "YuGothic M";
@@ -195,7 +187,7 @@ th {
 body,
 input,
 textarea {
-  font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: -apple-system,BlinkMacSystemFont,".SFNSDisplay-Regular","Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" sans-serif
 }
 @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)) {
   @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars) {
@@ -319,7 +311,16 @@ html {
   height: 100%
 }
 dt {
+  font-weight: 700;
   margin-top: .7em
+}
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 blockquote,
 q {
@@ -413,12 +414,6 @@ input {
   line-height: 1;
   height: 1em
 }
-body,
-dd p,
-li p,
-tr p {
-  line-height: 1.2
-}
 [type=submit]::-webkit-search-decoration {
   display: none
 }
@@ -436,6 +431,16 @@ textarea {
 * {
   border-style: solid;
   border-width: 0
+}
+body,
+dd p,
+li p,
+tr p {
+  line-height: 1.2
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
 }
 body {
   background: #1a1a1a;
@@ -593,6 +598,13 @@ iframe,
 img {
   max-width: 94%
 }
+.Magazine-mm,
+.Magazine-yy,
+.commonForm,
+a iframe,
+a img {
+  display: block
+}
 li {
   margin-top: .3em
 }
@@ -607,7 +619,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -667,10 +678,6 @@ input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #777
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
@@ -686,7 +693,8 @@ h2:after {
   bottom: -2px;
   border-style: solid;
   border-width: 2px 0 0;
-  content: " "
+  content: " ";
+  display: block
 }
 .wn:after {
   background: red!important
@@ -802,6 +810,9 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -871,6 +882,16 @@ blockquote hr {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -882,7 +903,7 @@ blockquote hr {
 }
 .Cover img,
 .commonForm-wrap *,
-.jsCap {
+.js-captioned-thumbnail {
   width: 100%
 }
 .ABody h2,
@@ -1162,6 +1183,7 @@ a:focus .ico-pen:after {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1197,12 +1219,6 @@ kbd {
 :visited .RichLink-meta {
   color: #bbb
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
-.lS .mspacer {
-  margin: .6em 0
-}
 .mspacer {
   margin: 1em .5em!important
 }
@@ -1210,6 +1226,12 @@ kbd {
 .ADesc,
 .AHead {
   margin: 1em 0
+}
+#lF .lM .mspacer {
+  margin: .6em .5em
+}
+.lS .mspacer {
+  margin: .6em 0
 }
 .AAuthor img {
   float: left;
@@ -1249,6 +1271,7 @@ kbd {
   display: inline-block
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -1345,6 +1368,9 @@ kbd {
   margin: 0;
   height: 400px
 }
+.Cover {
+  margin: 2em auto
+}
 .Cover-img {
   margin: 0 0 .6em;
   height: 100%
@@ -1394,9 +1420,6 @@ pre var {
   line-height: 1.4;
   margin: .6em .5em
 }
-.Cover {
-  margin: 2em auto
-}
 .Label div {
   color: #f8fbf8;
   text-align: justify
@@ -1428,6 +1451,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1451,6 +1475,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1525,6 +1550,7 @@ kbd {
 }
 .RichLink b {
   display: block;
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1671,21 +1697,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0 1.5%
-}
-.js-bqCite,
-blockquote:after {
-  word-break: break-all;
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0 1.5%
-}
 .caption {
   display: block;
   text-align: center;
@@ -1756,7 +1767,7 @@ pre var {
   .Magazine-main,
   .RichLink b,
   .caption,
-  .js-bqCite,
+  .js-generated-cite-in-blockquote,
   .links,
   blockquote:after,
   pre,
@@ -1772,7 +1783,8 @@ pre var {
   width: 1em;
   text-align: center;
   height: 1.4em;
-  line-height: 1.4
+  line-height: 1.4;
+  font-weight: 700
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
@@ -1800,6 +1812,11 @@ pre var {
 .note blockquote p,
 .note blockquote ul {
   margin-right: 1em
+}
+.box .js-pica-thumbnail__large img,
+div .box .js-captioned-thumbnail__large {
+  float: none;
+  margin: 0 0 1em
 }
 dl.note dd {
   margin-left: 1em
@@ -2005,49 +2022,37 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
-.jsCap,
-.jsPica img {
+.js-captioned-thumbnail,
+.js-pica-thumbnail img {
   -webkit-transition-property: width,margin;
   -webkit-transition: .3s ease-in;
   -moz-transition: width .3s ease-in,margin .3s ease-in;
   -o-transition: width .3s ease-in,margin .3s ease-in;
   transition: width .3s ease-in,margin .3s ease-in
 }
-.jsPica {
+.js-pica-thumbnail {
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in
 }
-.jsPicaLarge {
+.js-pica-thumbnail__large {
   cursor: -webkit-zoom-out;
   cursor: -moz-zoom-out;
   cursor: zoom-out
 }
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%
+  max-width: 100%;
+  margin: 0 auto 1em
 }
-.box .jsPicaLarge img,
-div .box .jsCapLarge {
-  float: none;
-  margin: 0 0 1em
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen,
 handheld,
@@ -2100,7 +2105,7 @@ tv {
     padding-bottom: 1em;
     max-width: 100%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -2216,6 +2221,18 @@ tv {
 @media handheld,
 tv,
 only screen and (max-width:740px) {
+  .Label div,
+  .LinkList,
+  .Subscribe div,
+  h2 {
+    text-align: center
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1%
+  }
   #blog2slide-start button,
   .links,
   .note,
@@ -2230,12 +2247,6 @@ only screen and (max-width:740px) {
   tr blockquote pre,
   ul {
     margin: 1em 2%
-  }
-  .Label div,
-  .LinkList,
-  .Subscribe div,
-  h2 {
-    text-align: center
   }
   h4,
   h5,
@@ -2354,12 +2365,6 @@ only screen and (max-width:740px) {
   .RichLink h3 * {
     font-size: .769em
   }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1%
-  }
   .box dl,
   .box ol,
   .box p,
@@ -2383,6 +2388,16 @@ only screen and (max-width:740px) {
 @media handheld,
 tv,
 only screen and (max-width:479px) {
+  .AHead,
+  .AHead h1 {
+    text-align: center
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 .5%
+  }
   #blog2slide-start button,
   .links,
   .note,
@@ -2397,10 +2412,6 @@ only screen and (max-width:479px) {
   tr blockquote pre,
   ul {
     margin: 1em 1%
-  }
-  .AHead,
-  .AHead h1 {
-    text-align: center
   }
   p {
     line-height: 1.6
@@ -2487,12 +2498,6 @@ only screen and (max-width:479px) {
   .h1 {
     font-size: 1.2em
   }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 .5%
-  }
   .box dl,
   .box ol,
   .box p,
@@ -2541,7 +2546,7 @@ only screen and (max-width:359px) {
     width: auto;
     margin: 0 1em 1em 0
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: static;
     padding: 0
   }
@@ -2578,16 +2583,135 @@ only screen and (max-width:359px) {
     float: none;
     margin: 0 auto 1.143em
   }
-  .box .jsPicaLarge img {
+  .box .js-pica-thumbnail__large img {
     margin: 0 auto
   }
-  div .box .jsCapLarge {
+  div .box .js-captioned-thumbnail__large {
     margin: 0 auto 1em
+  }
+}
+@media handheld,
+only screen and (max-width:240px) {
+  .SearchResult div div,
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0
+  }
+  #blog2slide-start button,
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 0
+  }
+  body {
+    font-size: .75em
+  }
+  p {
+    line-height: 1.4
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 0 .8em
+  }
+  pre {
+    padding: 1em 2px
+  }
+  dd,
+  li {
+    margin-bottom: .1em
+  }
+  iframe,
+  img {
+    max-width: 100%
+  }
+  dd {
+    margin-left: .5em
+  }
+  li {
+    margin-top: .1em
+  }
+  dt {
+    margin-top: .2em
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3,
+  .RichLink a,
+  h2 {
+    padding-left: 0;
+    padding-right: 0
+  }
+  hr {
+    margin: 2em 0
+  }
+  table {
+    width: 100%
+  }
+  caption {
+    margin: 1.5em 0 .7em
+  }
+  #lB .lSi,
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0
+  }
+  .mspacer {
+    margin: .6em 0!important
+  }
+  .ABody h1 {
+    margin: 3em 0
+  }
+  .ABody h2 {
+    margin: 2em 0 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 0 1.2em
+  }
+  .LinkList a {
+    padding: .5em 0
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 0 1em
+  }
+  .box > p:first-of-type {
+    margin-top: -.1em
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 0
   }
 }
 @media handheld,
 only screen and (prefers-color-scheme:dark),
 only screen and (max-width:240px) {
+  .SearchResult :visited,
+  .js-generated-link-in-blockquote,
+  .tl tbody tr th :link,
+  .tl thead tr :link,
+  :link,
+  blockquote .tl tbody tr th :link,
+  blockquote:before {
+    color: #bbe
+  }
   :link img,
   :visited img,
   blockquote :link img,
@@ -2604,6 +2728,16 @@ only screen and (max-width:240px) {
   tbody th var {
     background: #999;
     color: #000
+  }
+  .AHead h1,
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  :visited,
+  body,
+  input,
+  textarea {
+    color: #eee
   }
   [type=submit],
   code,
@@ -2625,6 +2759,10 @@ only screen and (max-width:240px) {
     background: #222;
     color: #eee
   }
+  a,
+  h6 {
+    color: #999
+  }
   #lB .lS,
   .baseColor,
   input,
@@ -2632,27 +2770,7 @@ only screen and (max-width:240px) {
     background: #000
   }
   a {
-    color: #999;
     border-color: #000
-  }
-  .SearchResult :visited,
-  .js-bqLink,
-  .tl tbody tr th :link,
-  .tl thead tr :link,
-  :link,
-  blockquote .tl tbody tr th :link,
-  blockquote:before {
-    color: #bbe
-  }
-  .AHead h1,
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  :visited,
-  body,
-  input,
-  textarea {
-    color: #eee
   }
   :link:hover {
     color: #3079ed;
@@ -2693,9 +2811,6 @@ only screen and (max-width:240px) {
   h5,
   h6 {
     border-color: #999
-  }
-  h6 {
-    color: #999
   }
   img {
     filter: brightness(85%)
@@ -2892,144 +3007,165 @@ only screen and (max-width:240px) {
     border-color: #000!important
   }
 }
-@media handheld,
-only screen and (max-width:240px) {
-  #blog2slide-start button,
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 0
-  }
-  body {
-    font-size: .75em
-  }
-  p {
-    line-height: 1.4
-  }
+@media only print and (orientation:landscape) {
+  .h1,
+  caption,
+  dt,
+  h1,
+  h2,
+  h3,
   h4,
   h5,
-  h6 {
-    margin: 1.5em 0 .8em
+  h6,
+  thead {
+    -webkit-column-break-after: avoid;
+    break-after: avoid-column
   }
-  pre {
-    padding: 1em 2px
-  }
-  dd,
-  li {
-    margin-bottom: .1em
-  }
-  iframe,
-  img {
-    max-width: 100%
-  }
-  dd {
-    margin-left: .5em
-  }
-  li {
-    margin-top: .1em
-  }
-  dt {
-    margin-top: .2em
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3,
-  .RichLink a,
-  h2 {
-    padding-left: 0;
-    padding-right: 0
-  }
-  hr {
-    margin: 2em 0
-  }
-  table {
-    width: 100%
-  }
-  caption {
-    margin: 1.5em 0 .7em
-  }
-  #lB .lSi,
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0
-  }
-  .mspacer {
-    margin: .6em 0!important
-  }
-  .ABody h1 {
-    margin: 3em 0
-  }
-  .ABody h2 {
-    margin: 2em 0 1em
-  }
-  .ABody h3 {
-    margin: 2.4em 0 1.2em
-  }
-  .LinkList a {
-    padding: .5em 0
-  }
+  .Magazine-item,
   .SearchResult div div,
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0
+  .box,
+  .caption,
+  .commonForm-pair,
+  .h1,
+  dd,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  li,
+  tr {
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid-column
   }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
+  .js-generated-link-in-blockquote,
+  blockquote:before {
     margin: 0 0 1em
   }
-  .box > p:first-of-type {
-    margin-top: -.1em
+  .ABody blockquote,
+  .hscroll,
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  .note,
+  blockquote:after,
+  blockquote:before,
+  h1,
+  h2,_:in-range,_:not(:root) {
+    -webkit-column-span: all
   }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 0
+  .js-generated-cite-in-blockquote,
+  blockquote:after {
+    margin: 1em 0 0
   }
-}
-@media all and (-webkit-min-device-pixel-ratio:0) {
-  body,
-  input,
-  textarea {
-    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  .AHead,
+  .lMh,
+  .lMi,
+  .lXi {
+    padding: 0 1.5%
   }
-}
-@media all\0 {
-  body,
-  input,
-  textarea {
-    font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
+  .lM1,
+  .lM2 {
+    width: 50%;
+    box-sizing: border-box
+  }
+  .Magazine-sep-inner:first-child .Magazine-main,
+  .lM1 {
+    padding-right: 1em
+  }
+  .Magazine-sep-inner:last-child .Magazine-date,
+  .lM2 {
+    padding-left: 1em
+  }
+  .ABody {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2
+  }
+  .ABody .aBodyRoot > :first-child,
+  .SearchResult-multi div:first-child h3 {
+    margin-top: 0
+  }
+  .ABody,
+  .ABody blockquote {
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
   }
   .ABody h1,
   .ABody h2,
-  .ABody h3,
-  .ABody h4,
-  .ABody h5,
-  .ABody h6,
-  .AHead h1 {
-    transform: rotate(.03deg);
-    font-weight: 700
+  .ABody h3 {
+    text-align: left
+  }
+  .Magazine-item {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    padding: 0
+  }
+  .Magazine-sep,
+  .lM .RichLink-sep {
+    display: table;
+    table-layout: fixed;
+    margin: 1em 0
+  }
+  .Magazine-sep {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%
   }
   .Magazine-sep-inner {
-    display: block!important
+    display: table-cell;
+    width: 50%
   }
-  #blog2slide-root:-ms-fullscreen {
-    background: #f8fbf8
+  .Magazine-only .Magazine-sep-inner {
+    width: 100%;
+    padding: 0!important
+  }
+  .Magazine-sep-inner:not(:first-child) .Magazine-date {
+    padding-left: 1.3em
+  }
+  .lM .RichLink-sep a {
+    display: table-cell;
+    vertical-align: top;
+    width: 33.3%
+  }
+  .lM .RichLink a {
+    border-width: 0;
+    padding: 1em
+  }
+  .RichLink-meta {
+    font-size: 1em
+  }
+  .SearchResult-multi {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
+  }
+  @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
+    .ABody blockquote,
+    .hscroll,
+    .js-generated-cite-in-blockquote,
+    .js-generated-link-in-blockquote,
+    .note,
+    blockquote:after,
+    blockquote:before,
+    h1,
+    h2 {
+      -moz-column-span: all;
+      column-span: all
+    }
   }
 }
 @media print {
@@ -3093,6 +3229,10 @@ only screen and (max-width:240px) {
   code .typ,
   th {
     font-weight: 700
+  }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
   }
   p {
     line-height: 1.5
@@ -3204,7 +3344,6 @@ only screen and (max-width:240px) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -3283,14 +3422,14 @@ only screen and (max-width:240px) {
     display: block;
     text-align: center
   }
-  body {
-    word-break: break-all
-  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
+  }
+  body {
+    word-break: break-all
   }
   kbd {
     border-color: #000
@@ -3339,165 +3478,44 @@ only screen and (max-width:240px) {
     }
   }
 }
-@media only print and (orientation:landscape) {
-  .h1,
-  caption,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  thead {
-    -webkit-column-break-after: avoid;
-    break-after: avoid-column
+@media all and (-webkit-min-device-pixel-ratio:0) {
+  body,
+  input,
+  textarea {
+    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
   }
-  .Magazine-item,
-  .SearchResult div div,
-  .box,
-  .caption,
-  .commonForm-pair,
-  .h1,
-  dd,
-  dt,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  img,
-  li,
-  tr {
-    -webkit-column-break-inside: avoid;
-    break-inside: avoid-column
-  }
-  .AHead,
-  .lMh,
-  .lMi,
-  .lXi {
-    padding: 0 1.5%
-  }
-  .lM1,
-  .lM2 {
-    width: 50%;
-    box-sizing: border-box
-  }
-  .Magazine-sep-inner:first-child .Magazine-main,
-  .lM1 {
-    padding-right: 1em
-  }
-  .Magazine-sep-inner:last-child .Magazine-date,
-  .lM2 {
-    padding-left: 1em
-  }
-  .ABody {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2
-  }
-  .ABody .aBodyRoot > :first-child,
-  .SearchResult-multi div:first-child h3 {
-    margin-top: 0
-  }
-  .ABody blockquote,
-  .hscroll,
-  .js-bqCite,
-  .js-bqLink,
-  .note,
-  blockquote:after,
-  blockquote:before,
-  h1,
-  h2,_:in-range,_:not(:root) {
-    -webkit-column-span: all
-  }
-  .ABody,
-  .ABody blockquote {
-    -webkit-column-gap: 2em;
-    -moz-column-gap: 2em;
-    column-gap: 2em
+}
+@media all\0 {
+  body,
+  input,
+  textarea {
+    font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
   }
   .ABody h1,
   .ABody h2,
-  .ABody h3 {
-    text-align: left
-  }
-  .Magazine-item {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    height: 100%;
-    padding: 0
-  }
-  .Magazine-sep,
-  .lM .RichLink-sep {
-    display: table;
-    table-layout: fixed;
-    margin: 1em 0
-  }
-  .Magazine-sep {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%
+  .ABody h3,
+  .ABody h4,
+  .ABody h5,
+  .ABody h6,
+  .AHead h1 {
+    transform: rotate(.03deg);
+    font-weight: 700
   }
   .Magazine-sep-inner {
-    display: table-cell;
-    width: 50%
+    display: block!important
   }
-  .Magazine-only .Magazine-sep-inner {
-    width: 100%;
-    padding: 0!important
+  #blog2slide-root:-ms-fullscreen {
+    background: #f8fbf8
   }
-  .Magazine-sep-inner:not(:first-child) .Magazine-date {
-    padding-left: 1.3em
-  }
-  .lM .RichLink-sep a {
-    display: table-cell;
-    vertical-align: top;
-    width: 33.3%
-  }
-  .lM .RichLink a {
-    border-width: 0;
-    padding: 1em
-  }
-  .RichLink-meta {
-    font-size: 1em
-  }
-  .SearchResult-multi {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-    -webkit-column-gap: 2em;
-    -moz-column-gap: 2em;
-    column-gap: 2em
-  }
-  .js-bqLink,
-  blockquote:before {
-    margin: 0 0 1em
-  }
-  .js-bqCite,
-  blockquote:after {
-    margin: 1em 0 0
-  }
-  @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
-    .ABody blockquote,
-    .hscroll,
-    .js-bqCite,
-    .js-bqLink,
-    .note,
-    blockquote:after,
-    blockquote:before,
-    h1,
-    h2 {
-      -moz-column-span: all;
-      column-span: all
-    }
+}
+@media (prefers-reduced-motion:reduce) {
+  .js-captioned-thumbnail,
+  .js-pica-thumbnail img,
+  :link,
+  :link *,
+  :visited,
+  :visited * {
+    transition: none
   }
 }
 @media only screen and (-ms-high-contrast:active) {
@@ -3542,8 +3560,7 @@ only screen and (-ms-high-contrast:active) {
   }
   td,
   tfoot td {
-    border-color: currentColor Window;
-    border-color: currentColor
+    border-color: currentColor Window
   }
   table {
     border-spacing: 2px;
@@ -3573,11 +3590,15 @@ only screen and (-ms-high-contrast:active) {
   .tl {
     border-collapse: collapse
   }
+  .tl td,
+  .tl tfoot td {
+    border-color: currentColor
+  }
   .Pager i {
     border-color: Window currentColor
   }
-  .jsPica:active,
-  .jsPica:focus {
+  .js-pica-thumbnail:active,
+  .js-pica-thumbnail:focus {
     outline: 0
   }
 }

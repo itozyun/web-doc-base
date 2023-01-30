@@ -53,13 +53,6 @@ h5,
 h6 {
   border-color: #777
 }
-.AHead,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 dd,
 li {
   margin-bottom: .3em
@@ -74,14 +67,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.Magazine-mm,
-.Magazine-yy,
-.commonForm,
-a iframe,
-a img,
-h2:after {
-  display: block
 }
 .Magazine-label,
 .Magazine-main,
@@ -102,11 +87,6 @@ tbody th {
 .lS1,
 .lS2 {
   width: 48.5%
-}
-.BlogArchive th,
-.Magazine-date {
-  word-break: normal;
-  word-wrap: normal
 }
 .Cover-img,
 .Magazine-main,
@@ -177,6 +157,33 @@ th {
 tbody th,
 td {
   vertical-align: top
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0 1.5%
+}
+.AHead,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  word-break: break-all;
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0 1.5%
+}
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
 }
 body,
 input,
@@ -496,6 +503,13 @@ iframe,
 img {
   max-width: 94%
 }
+.Magazine-mm,
+.Magazine-yy,
+.commonForm,
+a iframe,
+a img {
+  display: block
+}
 ol,
 ul {
   padding-left: 2em
@@ -514,7 +528,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -548,10 +561,6 @@ textarea {
   border-width: 2px;
   padding: .45em 8px
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 h2 {
   margin: 0;
   border-width: 0 0 2px;
@@ -567,7 +576,8 @@ h2:after {
   left: 0;
   bottom: -2px;
   border-style: solid;
-  content: " "
+  content: " ";
+  display: block
 }
 .wn:after {
   background: red!important
@@ -675,6 +685,9 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -740,6 +753,16 @@ strong {
   background: #1a1a1a;
   border-color: #fff;
   color: #fff
+}
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
 }
 .commonForm-pair {
   overflow: hidden;
@@ -972,6 +995,7 @@ a:focus .ico-pen:after {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1007,12 +1031,6 @@ kbd {
 :visited .RichLink-meta {
   color: #bbb
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
-.lS .mspacer {
-  margin: .6em 0
-}
 .mspacer {
   margin: 1em .5em!important
 }
@@ -1020,6 +1038,12 @@ kbd {
 .ADesc,
 .AHead {
   margin: 1em 0
+}
+#lF .lM .mspacer {
+  margin: .6em .5em
+}
+.lS .mspacer {
+  margin: .6em 0
 }
 .AAuthor p,
 .ADesc p,
@@ -1153,6 +1177,9 @@ kbd {
   border-width: 0 0 1px;
   margin-top: 0
 }
+.Cover {
+  margin: 2em auto
+}
 .Cover-img {
   margin: 0 0 .6em;
   height: 100%
@@ -1200,9 +1227,6 @@ pre var {
 .Cover p {
   line-height: 1.4;
   margin: .6em .5em
-}
-.Cover {
-  margin: 2em auto
 }
 .Label div {
   color: #f8fbf8;
@@ -1467,21 +1491,6 @@ blockquote[title]:before {
 }
 blockquote[cite]:after {
   content: attr(cite)
-}
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0 1.5%
-}
-.js-bqCite,
-blockquote:after {
-  word-break: break-all;
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0 1.5%
 }
 .caption {
   display: block;
@@ -1757,24 +1766,18 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 1em
+}
+.js-captioned-thumbnail__large {
   width: 100%;
   margin: 0 auto 1em
 }
-.jsPicaLarge img {
-  box-sizing: border-box;
-  max-width: 100%
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen {
   a img {
@@ -1813,7 +1816,7 @@ ol.linenums {
     padding-bottom: 1em;
     max-width: 100%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1959,6 +1962,10 @@ ol.linenums {
   th {
     font-weight: 700
   }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
+  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -2073,7 +2080,6 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -2149,14 +2155,14 @@ ol.linenums {
     display: block;
     text-align: center
   }
-  body {
-    word-break: break-all
-  }
   .AMeta-cita:after,
   .aBodyRoot a[href]:after {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
+  }
+  body {
+    word-break: break-all
   }
   kbd {
     border-color: #000

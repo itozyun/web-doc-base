@@ -20,13 +20,6 @@ h5,
 h6 {
   border-color: #777
 }
-.AHead,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -37,18 +30,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-h2,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
 }
 .lM1,
 .lM2,
@@ -81,6 +62,39 @@ sup {
 .links,
 pre {
   white-space: -o-pre-wrap
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0 1.5%
+}
+.AHead,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0 1.5%
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 body,
 input,
@@ -266,6 +280,7 @@ del {
 }
 .Magazine-mm,
 .Magazine-yy,
+.RichLink b,
 .commonForm,
 a iframe,
 a img,
@@ -451,7 +466,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -679,6 +693,16 @@ strong {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -753,12 +777,6 @@ kbd {
 :visited .RichLink-meta {
   color: #bbb
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
-.lS .mspacer {
-  margin: .6em 0
-}
 .mspacer {
   margin: 1em .5em!important
 }
@@ -766,6 +784,12 @@ kbd {
 .ADesc,
 .AHead {
   margin: 1em 0
+}
+#lF .lM .mspacer {
+  margin: .6em .5em
+}
+.lS .mspacer {
+  margin: .6em 0
 }
 .AAuthor img {
   float: left;
@@ -878,6 +902,9 @@ kbd {
   border-width: 0 0 1px;
   margin-top: 0
 }
+.Cover {
+  margin: 2em auto
+}
 .Cover-img {
   margin: 0 0 .6em;
   height: 100%
@@ -931,9 +958,6 @@ kbd {
 .Cover p {
   line-height: 1.4;
   margin: .6em .5em
-}
-.Cover {
-  margin: 2em auto
 }
 .Subscribe div,
 .ribbon .Label div,
@@ -1052,7 +1076,6 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  display: block;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1170,20 +1193,6 @@ blockquote[title]:before {
 }
 blockquote[cite]:after {
   content: attr(cite)
-}
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0 1.5%
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0 1.5%
 }
 .caption {
   display: block;
@@ -1414,24 +1423,17 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%
+  max-width: 100%;
+  margin: 0 auto 1em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
 }
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen {
   a img {
@@ -1481,7 +1483,7 @@ ol.linenums {
     padding-bottom: 1em;
     max-width: 100%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1620,6 +1622,10 @@ ol.linenums {
   th {
     font-weight: 700
   }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
+  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -1713,7 +1719,6 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint {
     display: none
   }

@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.js-pica-thumbnail__large:hover,
+:hover img {
+  top: 2px
+}
 .SocialBtns .hb:active,
 .SocialBtns .ln:active,
 .SocialBtns .pk:active,
@@ -19,13 +23,6 @@ blockquote table,
 h5,
 h6 {
   border-color: #777
-}
-.AHead,
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
 }
 dd,
 li {
@@ -48,15 +45,10 @@ tr ul {
 .lS2 {
   width: 48.5%
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
 .caption,
-.js-bqCite,
 .links,
 .mspacer,
 pre,
@@ -101,6 +93,26 @@ tbody th,
 td {
   vertical-align: top
 }
+.js-generated-link-in-blockquote {
+  font-size: .875em;
+  color: #24c;
+  margin: 0 1.5%
+}
+.AHead,
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote {
+  word-break: break-all;
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0 1.5%
+}
 body,
 input,
 textarea {
@@ -134,10 +146,6 @@ textarea {
 }
 a:active img {
   border-color: #3079ed!important
-}
-.jsPicaLarge:hover,
-:hover img {
-  top: 2px
 }
 .LinkList a,
 .RichLink-sep a {
@@ -266,7 +274,6 @@ p {
 a:active:hover {
   text-decoration: underline
 }
-.js-bqLink,
 .tl thead tr :link,
 :link,
 blockquote .tl tbody tr th :link {
@@ -367,6 +374,7 @@ th {
 }
 .Cover a,
 .Cover-meta,
+.Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
 .Pager span,
@@ -375,8 +383,6 @@ th {
 .Search-txt,
 .caption,
 .commonForm,
-.js-bqCite,
-.jsPicaLarge,
 .links a,
 a iframe,
 a img {
@@ -399,7 +405,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -538,6 +543,9 @@ blockquote tfoot th {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -604,6 +612,16 @@ input.btn {
   height: 2.1em;
   padding: .25em 1em .65em
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   zoom: 1;
   margin-bottom: 1em
@@ -643,6 +661,7 @@ input.btn {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -814,6 +833,10 @@ tr .box {
   border-width: 0 0 1px;
   margin-top: 0
 }
+.Cover {
+  zoom: 1;
+  margin: 2em auto
+}
 .Cover-img {
   margin: 0 0 .6em;
   height: 100%
@@ -861,10 +884,6 @@ pre var {
   line-height: 1.4;
   margin: .6em .5em
 }
-.Cover {
-  zoom: 1;
-  margin: 2em auto
-}
 .Label div {
   color: #f8fbf8;
   text-justify: inter-ideograph;
@@ -893,7 +912,6 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
-  display: block;
   float: left;
   line-height: 1
 }
@@ -1096,11 +1114,6 @@ kbd {
   margin: 1em 0;
   border-color: #0a0809
 }
-.js-bqCite,
-.js-bqLink {
-  margin: 0 1.5%;
-  font-size: .875em
-}
 .tl,
 .tl th {
   border-width: 0
@@ -1119,10 +1132,6 @@ blockquote .tl tbody tr th :visited {
 }
 blockquote {
   padding: 1em 1px
-}
-.js-bqCite {
-  text-align: right;
-  color: #777
 }
 .caption {
   text-align: center;
@@ -1353,32 +1362,26 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
+.js-pica-thumbnail__large {
   margin: 0 0 1em;
+  display: block;
   clear: both;
   padding: 2px;
   zoom: 1
 }
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   border-width: 0;
   width: 100%;
   margin: 0 auto
 }
-.jsPicaLarge:hover img {
+.js-pica-thumbnail__large:hover img {
   top: 0
 }
-.jsCapLarge {
+.js-captioned-thumbnail__large {
   margin: 0 auto 1em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen {
   .e6L,
@@ -1442,7 +1445,7 @@ ol.linenums {
     display: block;
     margin-bottom: -1px
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;

@@ -64,7 +64,7 @@ tbody td {
 .Pager i {
   display: none
 }
-.jsPica:active,
-.jsPica:focus {
+.js-pica-thumbnail:active,
+.js-pica-thumbnail:focus {
   outline: 0
 }

@@ -3,17 +3,6 @@ pre,
 textarea {
   overflow: auto
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
-}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -45,12 +34,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -65,10 +48,6 @@ tr ul {
 [type=submit],
 tbody th {
   background: #ddd
-}
-.AHead h1,
-th {
-  text-align: left
 }
 #jsSide,
 .Cover-img,
@@ -110,6 +89,30 @@ img {
 .Search .btn,
 .lW {
   overflow: hidden
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
+.AHead h1,
+th {
+  text-align: left
 }
 body,
 input,
@@ -273,6 +276,18 @@ ins {
 }
 del {
   text-decoration: line-through
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 .links,
 .mspacer,
@@ -483,7 +498,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -518,12 +532,7 @@ textarea {
   border-width: .1em;
   padding: .45em .4em
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -634,6 +643,9 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -703,6 +715,16 @@ strong {
 input.btn {
   padding: .45em 1em
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -744,6 +766,7 @@ input.btn {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1057,12 +1080,12 @@ kbd {
   font-size: .875em;
   padding: 0 0 1.143em
 }
-#lH .lSi {
-  padding-right: 3.2em
-}
 .Search {
   height: 2.1em;
   display: block
+}
+#lH .lSi {
+  padding-right: 3.2em
 }
 .Search-txt {
   width: 100%;
@@ -1119,6 +1142,11 @@ kbd {
   display: inline;
   font-size: 1.5em;
   margin: 0 .5em 0 0
+}
+.links a,
+kbd {
+  display: inline-block;
+  display: -moz-inline-box
 }
 .Header h1 {
   padding: 0
@@ -1190,25 +1218,6 @@ blockquote[title]:before {
 }
 blockquote[cite]:after {
   content: attr(cite)
-}
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0
-}
-.links a,
-kbd {
-  display: inline-block;
-  display: -moz-inline-box
 }
 .caption {
   display: block;
@@ -1464,30 +1473,23 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
-.jsPica {
+.js-pica-thumbnail {
   cursor: -moz-zoom-in
 }
-.jsPicaLarge {
+.js-pica-thumbnail__large {
   cursor: -moz-zoom-out
 }
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   -moz-box-sizing: border-box;
   width: 100%;
-  max-width: 100%
+  max-width: 100%;
+  margin: 0 auto 1em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
 }
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen {
   .lW,
@@ -1567,7 +1569,7 @@ ol.linenums {
   .lMz {
     margin-right: 3.857%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1666,6 +1668,16 @@ ol.linenums {
   code .typ,
   th {
     font-weight: 700
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1.5%
+  }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
   }
   p {
     line-height: 1.5
@@ -1792,7 +1804,6 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -1906,12 +1917,6 @@ ol.linenums {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1.5%
   }
   blockquote {
     padding: 1em 1px

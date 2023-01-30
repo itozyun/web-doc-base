@@ -1,15 +1,4 @@
 @charset "UTF-8";
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
-}
 .SocialBtns .hb:focus,
 .SocialBtns .ln:focus,
 .SocialBtns .pk:focus,
@@ -31,12 +20,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -52,14 +35,6 @@ tr ul {
 body,
 input.btn {
   padding: 0
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
-.AHead h1,
-th {
-  text-align: left
 }
 body,
 dd p,
@@ -113,6 +88,30 @@ kbd:hover,
 sub,
 sup {
   position: relative
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
+.AHead h1,
+th {
+  text-align: left
 }
 body,
 input,
@@ -280,6 +279,18 @@ a iframe,
 a img,
 br {
   display: block
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 .links,
 .mspacer,
@@ -474,7 +485,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -507,7 +517,6 @@ form :focus {
   color: #3079ed
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -635,6 +644,9 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -685,6 +697,16 @@ strong {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -727,6 +749,7 @@ strong {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1155,20 +1178,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0
-}
 .caption {
   display: block;
   text-align: center;
@@ -1409,27 +1418,20 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%
+  max-width: 100%;
+  margin: 0 auto 1em
+}
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
+}
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 .lW {
   overflow: hidden
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
 }
 @media screen {
   a img {
@@ -1503,7 +1505,7 @@ ol.linenums {
     width: 67.3%;
     float: left
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1599,18 +1601,6 @@ ol.linenums {
   tr {
     page-break-inside: avoid
   }
-  .links,
-  .note,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 3%
-  }
   .h1,
   caption,
   dt,
@@ -1647,6 +1637,28 @@ ol.linenums {
   code .typ,
   th {
     font-weight: 700
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1.5%
+  }
+  .links,
+  .note,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 3%
+  }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1773,7 +1785,6 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint {
     display: none
   }
@@ -1860,12 +1871,6 @@ ol.linenums {
   }
   .Header h1 {
     margin: 0 0 .5em
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1.5%
   }
   blockquote {
     padding: 1em 1px

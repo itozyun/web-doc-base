@@ -25,12 +25,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -41,10 +35,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
 }
 .AHead h1,
 th {
@@ -69,6 +59,35 @@ blockquote,
 pre {
   padding: 1em
 }
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
+}
+#lB .lS,
+.Search .btn {
+  overflow: hidden
+}
+.js-generated-link-in-blockquote {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
 .links,
 .mspacer,
 blockquote,
@@ -82,17 +101,6 @@ tr blockquote p,
 tr blockquote pre,
 ul {
   margin: 1em
-}
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
-#lB .lS,
-.Search .btn {
-  overflow: hidden
 }
 body,
 input,
@@ -381,7 +389,7 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
+.js-captioned-thumbnail__large a,
 dd blockquote,
 dd dl,
 dd p,
@@ -518,6 +526,9 @@ blockquote tfoot th {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -577,6 +588,16 @@ strong {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   display: inline-table;
   margin-bottom: 1em
@@ -619,6 +640,7 @@ strong {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -737,9 +759,6 @@ kbd {
   text-align: center
 }
 .Attribution small,
-.caption,
-.js-bqCite,
-.js-bqLink,
 .prettyprint code {
   font-size: .875em
 }
@@ -1063,19 +1082,10 @@ blockquote .tl tbody tr th :visited {
 .aBodyRoot :visited:hover {
   color: #515
 }
-.js-bqLink {
-  color: #24c;
-  margin: 0
-}
-.js-bqCite {
-  display: block;
-  text-align: right;
-  color: #777;
-  margin: 0
-}
 .caption {
   display: block;
-  text-align: center
+  text-align: center;
+  font-size: .875em
 }
 .box {
   display: inline-table;
@@ -1085,7 +1095,7 @@ blockquote .tl tbody tr th :visited {
 .box ol,
 .box p,
 .box ul,
-.jsCapLarge {
+.js-captioned-thumbnail__large {
   margin: 0 0 1em
 }
 .box ol,
@@ -1293,32 +1303,22 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
+.js-pica-thumbnail__large {
   margin: 0 0 1em;
   display: block;
   clear: both;
   padding: 2px
 }
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   border-width: 0;
   width: 100%;
   margin: 0
 }
-.jsPicaLarge:hover {
+.js-pica-thumbnail__large:hover {
   top: 2px
 }
-.jsPicaLarge:hover img {
+.js-pica-thumbnail__large:hover img {
   top: 0
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
 }
 @media screen {
   .lW,
@@ -1369,7 +1369,7 @@ ol.linenums {
   .lMz {
     margin-right: 3.857%
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1483,6 +1483,10 @@ ol.linenums {
   code .typ,
   th {
     font-weight: 700
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote {
+    margin: 0 1.5%
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1700,10 +1704,6 @@ ol.linenums {
     text-align: center;
     display: block;
     margin: 0 0 .5em
-  }
-  .js-bqCite,
-  .js-bqLink {
-    margin: 0 1.5%
   }
   blockquote {
     padding: 1em 1px

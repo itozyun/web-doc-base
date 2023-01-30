@@ -38,20 +38,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited,
-body,
-table {
-  color: #111
-}
 dd,
 li {
   margin-bottom: .3em
@@ -67,15 +53,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
 .caption,
-.js-bqCite,
 .links,
 .mspacer,
 pre,
@@ -105,6 +86,25 @@ var {
 tbody th,
 td {
   vertical-align: top
+}
+.js-generated-link-in-blockquote {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote {
+  word-break: break-all;
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
 }
 body,
 input,
@@ -254,7 +254,8 @@ textarea {
   border-width: 0
 }
 body {
-  background: #1a1a1a
+  background: #1a1a1a;
+  color: #111
 }
 p {
   line-height: 1.9
@@ -269,6 +270,13 @@ a:active:hover {
 :link,
 blockquote .tl tbody tr th :link {
   color: #24c
+}
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited,
+table {
+  color: #111
 }
 .ribbon :link:hover,
 :link:hover {
@@ -365,15 +373,11 @@ th {
 .Cover-meta,
 .Magazine-mm,
 .Magazine-yy,
-.Pager span,
 .RichLink b,
 .Search,
 .Search-txt,
-.caption,
 .commonForm,
-.js-bqCite,
-.jsPica,
-.links a,
+.js-pica-thumbnail,
 a iframe,
 a img {
   display: block
@@ -395,7 +399,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -520,12 +523,14 @@ blockquote tfoot th {
 }
 .Pager-top,
 .btn,
-.c,
-.caption {
+.c {
   text-align: center
 }
 .uc {
   text-transform: uppercase
+}
+.baseColor {
+  background: #f8fbf8
 }
 .ribbon * {
   border-color: #2a2a2a
@@ -578,6 +583,16 @@ strong {
 input.btn {
   padding: .3em 1em .6em
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   zoom: 1;
   margin-bottom: 1em
@@ -617,6 +632,7 @@ input.btn {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -741,9 +757,6 @@ tr .box {
   text-align: center
 }
 .Attribution small,
-.caption,
-.js-bqCite,
-.js-bqLink,
 .prettyprint code {
   font-size: .875em
 }
@@ -1076,14 +1089,10 @@ blockquote .tl tbody tr th :visited {
 .tl thead tr :visited:hover {
   color: #515
 }
-.js-bqLink {
-  color: #24c;
-  margin: 0
-}
-.js-bqCite {
-  text-align: right;
-  color: #777;
-  margin: 0
+.caption {
+  display: block;
+  text-align: center;
+  font-size: .875em
 }
 .box {
   zoom: 1;
@@ -1129,6 +1138,7 @@ pre var {
 }
 .links a {
   padding-left: 1em;
+  display: block;
   zoom: 1
 }
 .note {
@@ -1195,6 +1205,7 @@ dl.note dd {
 }
 .Pager span {
   padding: 1.5em 0;
+  display: block;
   float: left;
   width: 33%
 }
@@ -1298,30 +1309,23 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsPicaLarge {
+.js-pica-thumbnail__large {
   margin: 0 0 1em;
   zoom: 1
 }
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   width: 100%;
   margin: 0 auto
 }
-.jsCapLarge {
+.js-captioned-thumbnail__large {
   margin: 0 auto 1em
 }
-.jsCapLarge,
-.jsPicaLarge {
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
+}
+.js-captioned-thumbnail__large,
+.js-pica-thumbnail__large {
   clear: both
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
 }
 @media screen {
   .e6C,
@@ -1409,7 +1413,7 @@ ol.linenums {
     display: block;
     margin-bottom: -1px
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1514,6 +1518,10 @@ ol.linenums {
   code .typ,
   th {
     font-weight: 700
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote {
+    margin: 0 1.5%
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1730,10 +1738,6 @@ ol.linenums {
     text-align: center;
     display: block;
     margin: 0 0 .5em
-  }
-  .js-bqCite,
-  .js-bqLink {
-    margin: 0 1.5%
   }
   blockquote {
     padding: 1em 1px

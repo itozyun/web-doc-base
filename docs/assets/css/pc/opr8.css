@@ -1,15 +1,4 @@
 @charset "UTF-8";
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
-}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -35,12 +24,6 @@ h5,
 h6 {
   border-color: #777
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-a,
-h6 {
-  color: #777
-}
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -51,14 +34,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.baseColor,
-.medal {
-  background: #f8fbf8
-}
-.AHead h1,
-th {
-  text-align: left
 }
 body,
 dd p,
@@ -115,6 +90,30 @@ sup {
 .Search .btn,
 .lW {
   overflow: hidden
+}
+.js-generated-link-in-blockquote,
+blockquote:before {
+  font-size: .875em;
+  color: #24c;
+  margin: 0
+}
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
+}
+.js-generated-cite-in-blockquote,
+blockquote:after {
+  display: block;
+  font-size: .875em;
+  text-align: right;
+  color: #777;
+  margin: 0
+}
+.AHead h1,
+th {
+  text-align: left
 }
 body,
 input,
@@ -281,6 +280,18 @@ a iframe,
 a img,
 br {
   display: block
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+h2,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
 }
 .links,
 .mspacer,
@@ -463,7 +474,6 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
-.jsCapLarge a,
 dd blockquote,
 dd dl,
 dd p,
@@ -493,7 +503,6 @@ li ul {
   margin-bottom: 0
 }
 h2 {
-  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -630,6 +639,9 @@ tbody :hover td {
 .uc {
   text-transform: uppercase
 }
+.baseColor {
+  background: #f8fbf8
+}
 .ribbon * {
   border-color: #2a2a2a
 }
@@ -689,6 +701,16 @@ strong {
   border-color: #fff;
   color: #fff
 }
+.baseColor .btn:link {
+  background: #24c;
+  border-color: #24c;
+  color: #f8fbf8
+}
+.baseColor .btn:visited {
+  background: #f8fbf8;
+  border-color: #111;
+  color: #111
+}
 .commonForm-pair {
   margin-bottom: 1em
 }
@@ -731,6 +753,7 @@ strong {
 }
 .medal {
   border-color: #f8fbf8;
+  background: #f8fbf8;
   color: #111
 }
 :link .medal,
@@ -1162,20 +1185,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.js-bqLink,
-blockquote:before {
-  font-size: .875em;
-  color: #24c;
-  margin: 0
-}
-.js-bqCite,
-blockquote:after {
-  display: block;
-  font-size: .875em;
-  text-align: right;
-  color: #777;
-  margin: 0
-}
 .caption {
   display: block;
   text-align: center;
@@ -1420,24 +1429,17 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
-.jsCapLarge,
-.jsPicaLarge img {
-  margin: 0 auto 1em
-}
-.jsPicaLarge img {
+.js-pica-thumbnail__large img {
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%
+  max-width: 100%;
+  margin: 0 auto 1em
 }
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
+.js-captioned-thumbnail__large {
+  margin: 0 auto 1em
 }
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
+.js-captioned-thumbnail__large a {
+  margin: 0 0 .5em
 }
 @media screen,
 handheld,
@@ -1505,7 +1507,7 @@ projection {
     width: 67.3%;
     float: left
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1579,6 +1581,127 @@ projection {
     color: #bdb76b
   }
 }
+@media print,
+handheld {
+  .lS1,
+  .lS2 {
+    width: 48.5%
+  }
+  .js-generated-cite-in-blockquote,
+  .js-generated-link-in-blockquote,
+  blockquote:after,
+  blockquote:before {
+    margin: 0 1.5%
+  }
+  .links,
+  .note,
+  blockquote,
+  dl,
+  iframe,
+  img,
+  ol,
+  p,
+  table,
+  tr blockquote p,
+  tr blockquote pre,
+  ul {
+    margin: 1em 3%
+  }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 1.5% .8em
+  }
+  pre {
+    padding: 1em 3%
+  }
+  iframe,
+  img {
+    max-width: 94%
+  }
+  hr {
+    margin: 2em 6%
+  }
+  caption {
+    margin: 1.5em 3% .7em
+  }
+  .lMi,
+  .lMz .lMh,
+  .lSi,
+  .lXi {
+    padding: 0 3%
+  }
+  .lS1 {
+    float: left
+  }
+  .lS2 {
+    float: right
+  }
+  #lB .lS1 {
+    width: 45.5%;
+    padding-left: 3%
+  }
+  #lB .lS2 {
+    width: 45.5%;
+    padding-right: 3%
+  }
+  .AAuthor,
+  .ADesc,
+  .AHead {
+    margin: 1em 0
+  }
+  .AAuthor img {
+    float: left;
+    margin: 0 1em 1em 0
+  }
+  .ABody h1 {
+    margin: 3em 1.5%
+  }
+  .ABody h2 {
+    margin: 2em 1.5% 1em
+  }
+  .ABody h3 {
+    margin: 2.4em 1.5% 1.2em
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3 {
+    text-align: center;
+    padding-left: 1.5%;
+    padding-right: 1.5%
+  }
+  .AHead h1 {
+    text-align: center
+  }
+  .Cover {
+    margin: 2em auto
+  }
+  blockquote {
+    padding: 1em 1px
+  }
+  .box dl,
+  .box ol,
+  .box p,
+  .box ul {
+    margin: 0 3% 1em
+  }
+  .box {
+    margin: 1em 0 0
+  }
+  .box iframe,
+  .box img {
+    margin: 0 1em 1em 3%
+  }
+  .box .caption {
+    margin: 0 1.143em 1.143em 3%
+  }
+  .note blockquote dl,
+  .note blockquote ol,
+  .note blockquote p,
+  .note blockquote ul {
+    margin-right: 3%
+  }
+}
 @media handheld {
   .AHead,
   .BreadcrumbList,
@@ -1607,6 +1730,19 @@ projection {
   .Subscribe div,
   h2 {
     text-align: center
+  }
+  .js-generated-link-in-blockquote,
+  blockquote:before {
+    margin: 0;
+    color: #bbe
+  }
+  .SearchResult div div,
+  .js-generated-cite-in-blockquote,
+  .lMi,
+  .lMz,
+  .lSi,
+  blockquote:after {
+    margin: 0
   }
   .links,
   .note,
@@ -1712,15 +1848,6 @@ projection {
   dd,
   li {
     margin-bottom: .1em
-  }
-  .SearchResult div div,
-  .js-bqCite,
-  .lMi,
-  .lMz,
-  .lSi,
-  .lXi,
-  blockquote:after {
-    margin: 0
   }
   iframe,
   img {
@@ -1851,17 +1978,20 @@ projection {
   .lX {
     max-width: 100%
   }
-  #lB .lSi,
-  .lMi,
-  .lMz .lMh,
-  .lSi,
   .lXi {
+    margin: 0;
     padding: 0
   }
   .lM,
   .lS {
     width: auto;
     float: none
+  }
+  #lB .lSi,
+  .lMi,
+  .lMz .lMh,
+  .lSi {
+    padding: 0
   }
   .commonForm label,
   .lM1,
@@ -1934,7 +2064,7 @@ projection {
     width: auto;
     margin: 0 1em 1em 0
   }
-  .Cover .img-loaded div {
+  .Cover .js-image-has-been-loaded div {
     position: static;
     padding: 0
   }
@@ -2062,11 +2192,6 @@ projection {
   .tl thead tr :visited:hover {
     color: #c8e
   }
-  .js-bqLink,
-  blockquote:before {
-    margin: 0;
-    color: #bbe
-  }
   .box dl,
   .box ol,
   .box p,
@@ -2183,6 +2308,10 @@ projection {
   th {
     font-weight: 700
   }
+  .js-generated-link-in-blockquote a:after,
+  blockquote:before a:after {
+    display: none
+  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -2276,7 +2405,6 @@ projection {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-bqLink a:after,
   .noprint {
     display: none
   }
@@ -2369,126 +2497,5 @@ projection {
   }
   code .dec {
     color: #003
-  }
-}
-@media print,
-handheld {
-  .lS1,
-  .lS2 {
-    width: 48.5%
-  }
-  .links,
-  .note,
-  blockquote,
-  dl,
-  iframe,
-  img,
-  ol,
-  p,
-  table,
-  tr blockquote p,
-  tr blockquote pre,
-  ul {
-    margin: 1em 3%
-  }
-  h4,
-  h5,
-  h6 {
-    margin: 1.5em 1.5% .8em
-  }
-  pre {
-    padding: 1em 3%
-  }
-  iframe,
-  img {
-    max-width: 94%
-  }
-  hr {
-    margin: 2em 6%
-  }
-  caption {
-    margin: 1.5em 3% .7em
-  }
-  .lMi,
-  .lMz .lMh,
-  .lSi,
-  .lXi {
-    padding: 0 3%
-  }
-  .lS1 {
-    float: left
-  }
-  .lS2 {
-    float: right
-  }
-  #lB .lS1 {
-    width: 45.5%;
-    padding-left: 3%
-  }
-  #lB .lS2 {
-    width: 45.5%;
-    padding-right: 3%
-  }
-  .AAuthor,
-  .ADesc,
-  .AHead {
-    margin: 1em 0
-  }
-  .AAuthor img {
-    float: left;
-    margin: 0 1em 1em 0
-  }
-  .ABody h1 {
-    margin: 3em 1.5%
-  }
-  .ABody h2 {
-    margin: 2em 1.5% 1em
-  }
-  .ABody h3 {
-    margin: 2.4em 1.5% 1.2em
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3 {
-    text-align: center;
-    padding-left: 1.5%;
-    padding-right: 1.5%
-  }
-  .AHead h1 {
-    text-align: center
-  }
-  .Cover {
-    margin: 2em auto
-  }
-  blockquote {
-    padding: 1em 1px
-  }
-  .js-bqCite,
-  .js-bqLink,
-  blockquote:after,
-  blockquote:before {
-    margin: 0 1.5%
-  }
-  .box dl,
-  .box ol,
-  .box p,
-  .box ul {
-    margin: 0 3% 1em
-  }
-  .box {
-    margin: 1em 0 0
-  }
-  .box iframe,
-  .box img {
-    margin: 0 1em 1em 3%
-  }
-  .box .caption {
-    margin: 0 1.143em 1.143em 3%
-  }
-  .note blockquote dl,
-  .note blockquote ol,
-  .note blockquote p,
-  .note blockquote ul {
-    margin-right: 3%
   }
 }
