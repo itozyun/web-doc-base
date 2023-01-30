@@ -4,8 +4,8 @@
  *    この時に forced-colors は -ms-high-contrast より後ろになるようにする
  * 3. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
  */
-const TARGET_FORCED_COLORS_MEDIA_QUERY            = 'only use-pollyfill and (forced-colors:active)',
-      TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY = 'only use-pollyfill and (forced-colors:active) and (max-width:###px)';
+const TARGET_FORCED_COLORS_MEDIA_QUERY            = 'only use-polyfill and (forced-colors:active)',
+      TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY = 'only use-polyfill and (forced-colors:active) and (max-width:###px)';
 
 module.exports = function( _options ){
 

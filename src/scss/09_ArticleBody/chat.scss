@@ -225,7 +225,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 
     @if( $UA_IE9 or $UA_Modern ){
-        @media only use-pollyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_PX_WIDTH) {
+        @media only use-polyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_PX_WIDTH) {
             /* //_{^@ie9 */
             .#{$Prefix}js-canuse-css-rotate-when-forced-colors-mode {
             /* //_}^@ie9 */

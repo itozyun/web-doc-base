@@ -186,7 +186,7 @@ $COMMENT_OUT_AT_MEDIA : (
         }
         @else if $media == 'forced_colors_fallback' { // IE5~9, Gecko 1.8.1~, Goanna
             @if( $UA_Modern or $IS_WIN_IE or $UA_Gecko19 ){
-                @media only use-pollyfill and (forced-colors:active){
+                @media only use-polyfill and (forced-colors:active){
                     @content;
                 }
             }
@@ -199,7 +199,7 @@ $COMMENT_OUT_AT_MEDIA : (
                 }
             }
             @if( $UA_Modern or $IS_WIN_IE or $UA_Gecko19 ){
-                @media only use-pollyfill and (forced-colors:active){
+                @media only use-polyfill and (forced-colors:active){
                     @content;
                 }
             }
