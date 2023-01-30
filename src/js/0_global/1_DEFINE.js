@@ -83,6 +83,12 @@ var
     DEFINE_WEB_DOC_BASE__CLASSNAME_ABODY_ROOT = 'aBodyRoot',
 
 /** ===========================================================================
+ * 7_Patch/fixBrokenAnchorsForOldGecko.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_RICHLINK_SEP =  'RichLink-sep',
+
+/** ===========================================================================
  * 7_Patch/polyfillForcedColors.js
  */
 /** @define {string} */

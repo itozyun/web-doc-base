@@ -16,9 +16,11 @@ if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors &&
                 }
             );
 
-            if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
-                p_DOM_addClassName( p_body, 'jsCanRotate' );
-                Debug.log( 'jsCanRotate!' );
+            if( DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE ){
+                if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
+                    p_DOM_addClassName( p_body, DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE );
+                    Debug.log( DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE + '!' );
+                };
             };
             ForcedColorsStyleSwitcher_init = undefined;
         };
