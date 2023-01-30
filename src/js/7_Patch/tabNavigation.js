@@ -212,7 +212,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             return !p_DOM_hasAttribute( elm, 'disabled' );
         };
         function checkVisibility(){
-            return 0 <= elm.offsetHeight * elm.offsetWidth;
+            return 0 < elm.offsetHeight * elm.offsetWidth;
         };
     };
 

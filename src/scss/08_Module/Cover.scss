@@ -41,11 +41,13 @@
                         left     : 0;
                         width    : 100%;
                         @if( $UA_IE5 ){
-                            @include clearfix;
                             top : 0;
                         } @else {
                             bottom : 0;
                         }
+                    }
+                    @if( $UA_IE5 ){
+                        @include clearfix; // clearfix を同時に指定するために screen の外へ
                     }
                 }
                 h2 {
@@ -72,8 +74,8 @@
                     }
                     @if( $CANUSE_CSS_GENERATED_BLOCK ){
                         &:after {
-                            @if( $IS_Opera7x or $UA_Opera8 ){
-                                width : 0;      /* for Opera 7-8 */
+                            @if( $UA_Opera72 or $UA_Opera8 ){
+                                width : 0;      /* for Opera 7.2-8 */
                             } @else {
                                 display : none; /* for iOS4 content:none では消えない */
                             }

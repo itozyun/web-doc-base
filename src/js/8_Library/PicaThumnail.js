@@ -47,13 +47,12 @@ if( !p_cloudRendering ){
                     // Opera 7.x, 8, 8.5 : elmImg.style.width への setter で float が解除される
                     // というよりも、CSS transition 用なので対応ブラウザ以外は不要だ思う
                     if( PicaThumbnail_canUseCSSTransition ){
-                        thumbWidth = ( elmImg.naturalWidth + PicaThumbnail_MARGIN_LR ) + 'px';
+                        thumbWidth = ( elmImg.naturalWidth /* + PicaThumbnail_MARGIN_LR */ ) + 'px';
                         p_DOM_setStyle( elmImg, 'width', thumbWidth );
                     };
                     p_DOM_addClassName( elmA, DEFINE_WEB_DOC_BASE__CLASSNAME_PICA_THMBNAIL_TARGET );
 
                     parent = elmA;
-                    // objCap ここで
                     while( parent = p_DOM_getParentNode( parent ) ){
                         if( p_DOM_hasClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ ) ){
                             p_DOM_addClassName( parent, DEFINE_WEB_DOC_BASE__CLASSNAME_CAPTIONED_OBJ_TARGET );
