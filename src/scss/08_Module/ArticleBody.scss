@@ -6,7 +6,15 @@
 .#{$Prefix}ABody {
     // https://twitter.com/itozyun/status/1588802003261870080
     // margin にすると Gecko 106 でも塗りが乱れる。
-    padding : 3.5em 0 2em;
+    @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
+        padding : 3.5em 0 2em;
+
+        @at-root .#{$Prefix}aBodyRoot > *:first-child {
+            margin-top : 0;
+        }
+    } @else {
+        margin : 3.5em 0 2em;
+    }
 
     /*  明朝
     --------------------------------------------------------------------------------------*/
@@ -16,7 +24,7 @@
         }
     }
 
-    /*  h1
+    /*  h1 は、blockquote の下に出現する
     --------------------------------------------------------------------------------------*/
     h1 {
         @include responsive-horizontal-margin(2, 3em, 3em);
@@ -68,9 +76,6 @@
            -moz-column-count : 2;
                 column-count : 2;
 
-        .#{$Prefix}aBodyRoot > *:first-child {
-            margin-top : 0;
-        }
         blockquote {
             @include column-span-all(2);
         }
@@ -138,7 +143,11 @@
     /*  Print
     --------------------------------------------------------------------------------------*/
     @include media(print) {
-        padding : 0 0 2em;
+        @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
+            padding : 0 0 2em;
+        } @else {
+            margin : 0 0 2em;
+        }
     }
 
     @include media(landscapePrint){
