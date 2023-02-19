@@ -24,10 +24,12 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
     p_listenUnloadEvent(
         function(){
             p_removeEventListener( document, 'keydown', TabNavigation_onkeydown );
-            p_unlistenFocusinEvent( p_body, TabNavigation_onFocusin );
-            p_removeEventListener( window, 'blur', TabNavigation_onWindowBlur );
-            p_removeEventListener( p_body, 'click', TabNavigation_onBodyClick );
             p_removeEventListener( document, 'keyup', TabNavigation_onkeyup );
+            p_unlistenFocusinEvent( p_body, TabNavigation_onFocusin );
+            if( !p_GeckoLt09 ){
+                p_removeEventListener( window, 'blur', TabNavigation_onWindowBlur );
+                p_removeEventListener( p_body, 'click', TabNavigation_onBodyClick );
+            };
         }
     ); */
 
@@ -68,7 +70,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
     var TabNavigation_onFocusin =
         p_GeckoLt09
             ? function( e ){
-                Debug.log( e.type + ' ' + e.target.tagName + '.' + (e.target.type || e.target.href || e.target.name || '') + ' ' + ( e.target.textContent || '' ) );
+                // Debug.log( e.type + ' ' + e.target.tagName + '.' + (e.target.type || e.target.href || e.target.name || '') + ' ' + ( e.target.textContent || '' ) );
                 if( !e.target.innerHTML ){
                     Debug.log( e.target.parentNode.innerHTML );
                 };
@@ -76,7 +78,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             }
             : function( e ){
                 var elmTarget = e.target;
-                Debug.log( e.type + ' ' + elmTarget.tagName + '.' + (elmTarget.type || '') + ' ' + ( e.target.innerHTML || '' ) );
+                // Debug.log( e.type + ' ' + elmTarget.tagName + '.' + (elmTarget.type || '') + ' ' + ( e.target.innerHTML || '' ) );
 
                 if( TabNavigation_currentFocusedElement === elmTarget ){
                     TabNavigation_nextFocusableElement = undefined;
@@ -220,7 +222,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
      * @param {*=} alreadyFocused 
      */
     var TabNavigation_setFocus = function( alreadyFocused ){
-        Debug.log( 'setFocus()' + TabNavigation_focusTimerID + ' ' + TabNavigation_nextFocusableElement + ' ' + alreadyFocused );
+        // Debug.log( 'setFocus()' + TabNavigation_focusTimerID + ' ' + TabNavigation_nextFocusableElement + ' ' + alreadyFocused );
         TabNavigation_focusTimerID = 0;
         if( TabNavigation_nextFocusableElement ){
             // alreadyFocused === 0 && // Debug.log( 'setFocus <= setTimeout' );
@@ -229,7 +231,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             };
             TabNavigation_currentFocusedElement = TabNavigation_nextFocusableElement;
             TabNavigation_nextFocusableElement = undefined;
-            Debug.log( 'setFocus()' + alreadyFocused );
+            // Debug.log( 'setFocus()' + alreadyFocused );
             if( !alreadyFocused ){
                 TabNavigation_currentFocusedElement.focus();
             };
@@ -256,7 +258,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
 
         var TabNavigation_onWindowBlur = function( e ){
             if( e.target !== document ){ // Gecko 0.9 window がフォーカスを喪う場合、document
-                Debug.log( 'window.' + e.type + ' tgt=' + e.target + ' cancelable:' + e.cancelable );
+                // Debug.log( 'window.' + e.type + ' tgt=' + e.target + ' cancelable:' + e.cancelable );
             } else {
                 TabNavigation_nextFocusableElement = undefined;
                 // window から離れて戻ってきた場合、最後に focus していた要素に focusin+blur が起り focus になる
@@ -273,7 +275,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             if( TabNavigation_currentFocusedElement === blurElement ){
                 if( TabNavigation_findNextFocusableElement( blurElement ) ){
                     // TabNavigation_nextFocusableElement = blurElement;
-                    Debug.log( 'Hit! ' + blurElement + ' ' + TabNavigation_nextFocusableElement + TabNavigation_focusTimerID );
+                    // Debug.log( 'Hit! ' + blurElement + ' ' + TabNavigation_nextFocusableElement + TabNavigation_focusTimerID );
 
                     if( !TabNavigation_focusTimerID ){ // timer がセットされている場合はそれを再利用
                         TabNavigation_focusTimerID = p_setTimer( TabNavigation_setFocus );
