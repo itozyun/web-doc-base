@@ -3,7 +3,7 @@
  *   1. RichLink で空の <a href> と ブロック要素の下に <a href> ができる
  *   2. スキーマ(schema.org)を含む <a href> の直前に、空の <a href> ができる、これは不可視の為、フォーカスが消える問題を起こす
  */
-if( p_Gecko < 0.9 ){
+if( p_GeckoLt09 ){
     if( DEFINE_WEB_DOC_BASE__CLASSNAME_RICHLINK_SEP ){
         p_loadEventCallbacks.splice( 1, 0, // noadCleaner の次に追加
             // 1.

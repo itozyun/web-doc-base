@@ -580,7 +580,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 for( ; childNodes.length; ){
                     elmTestRoot.appendChild( childNodes.shift() );
                 };
-                if( !( p_Gecko < 0.9 ) ){
+                if( !p_GeckoLt09 ){
                     p_DOM_setCssText( elmTestRoot, 'width:100%;height:100%;overflow:auto;position:relative' );
                     p_DOM_setCssText( p_html, 'overflow:hidden' );
                     p_DOM_setCssText( p_body, 'overflow:hidden' );

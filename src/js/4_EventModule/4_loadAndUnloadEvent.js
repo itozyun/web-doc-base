@@ -53,7 +53,7 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
     p_setTimer( /** @type {!function(*=)} */ (Event_onloadFallbackForLegacySafari) );
 } else {
     p_addEventListener( window, 'load', /** @type {!function(!Event)} */ (Event_onload) );
-    if( p_Gecko < 0.9 && DEFINE_WEB_DOC_BASE__DEBUG ){
+    if( p_GeckoLt09 && DEFINE_WEB_DOC_BASE__DEBUG ){
         p_setTimer( /** @type {!function(*=)} */ (function(){ Event_onload && Event_onload() }), 999 );
     };
 };
@@ -62,7 +62,7 @@ if( p_WebKit <= 419.3 ){ // Safari 2-
 //   bfcache について覚えて帰ってもらいます。（転載）
 // IE と Firefox <1.5(Gecko <1.8) だけ unload でイベントリスナを削除する
 // Gecko 0.8.1 以下は unload でブラウザがクラッシュする https://twitter.com/itozyun/status/1516964450083160064
-if( p_Trident || 0.9 <= p_Gecko && p_Gecko < 1.8 ){
+if( p_Trident || !p_GeckoLt09 && p_Gecko < 1.8 ){
     p_addEventListener( window, 'unload', function( e ){
         m_dispatchEvent( /** @type {TypedefCallbackList} */ (Event_unloadEventCallbacks), e, true );
     } );

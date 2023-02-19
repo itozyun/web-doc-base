@@ -14,7 +14,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
             p_addEventListener( document, 'keydown', TabNavigation_onkeydown );
             p_addEventListener( document, 'keyup', TabNavigation_onkeyup );
             p_listenFocusinEvent( p_body, TabNavigation_onFocusin );
-            if( 0.9 <= p_Gecko ){
+            if( !p_GeckoLt09 ){
                 p_addEventListener( window, 'blur', TabNavigation_onWindowBlur );
                 p_addEventListener( p_body, 'click', TabNavigation_onBodyClick );
             };
@@ -31,7 +31,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
         }
     ); */
 
-    var TabNavigation_onkeydown = p_Gecko < 0.9
+    var TabNavigation_onkeydown = p_GeckoLt09
         ? function( e ){
             if( e.keyCode === 16 ){
                 TabNavigation_shiftKeyPressed = true;
@@ -66,7 +66,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
     };
 
     var TabNavigation_onFocusin =
-        p_Gecko < 0.9
+        p_GeckoLt09
             ? function( e ){
                 Debug.log( e.type + ' ' + e.target.tagName + '.' + (e.target.type || e.target.href || e.target.name || '') + ' ' + ( e.target.textContent || '' ) );
                 if( !e.target.innerHTML ){
@@ -224,7 +224,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
         TabNavigation_focusTimerID = 0;
         if( TabNavigation_nextFocusableElement ){
             // alreadyFocused === 0 && // Debug.log( 'setFocus <= setTimeout' );
-            if( 0.9 <= p_Gecko ){
+            if( !p_GeckoLt09 ){
                 p_addEventListener( TabNavigation_nextFocusableElement, 'blur', TabNavigation_onBlur );
             };
             TabNavigation_currentFocusedElement = TabNavigation_nextFocusableElement;
@@ -236,7 +236,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
         };
     };
 
-    if( 0.9 <= p_Gecko ){
+    if( !p_GeckoLt09 ){
         var TabNavigation_onBodyClick = function( e ){
             var elmTarget = e.target;
 

@@ -60,7 +60,8 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
                        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win64 ),
     p_GoogleBot      = 0 <= navigator.userAgent.indexOf( 'Googlebot/' ),
 
-    p_jsGte15 = p_Trident < 5.5,
+    p_GeckoLt09 = p_Gecko < 0.9,
+    p_jsGte15   = p_Trident < 5.5,
 
     p_cssName = ( p_Tasman        ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_MACIE5 :
                   p_Trident < 5.5 ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE5 :
@@ -73,7 +74,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
                       ( 1.4 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO19 :
                         1.3 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO13 :
                         1   <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO12 :
-                        0.9 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO09 :
+                        !p_GeckoLt09   ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO09 :
                         0.8 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO08 :
                                          DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO07
                     ) :
