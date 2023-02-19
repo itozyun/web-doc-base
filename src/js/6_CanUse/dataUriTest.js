@@ -3,7 +3,7 @@
  */
 p_dataURITest = p_dataURITestResult === false ?
                     function( callback ){
-                        p_setTimer( callback, p_dataURITestResult );
+                        p_setTimer( callback, false );
                     } :
 /**============================================================================
  * Original Code:
@@ -14,9 +14,6 @@ function( callback ){
     if( p_notUndefined( p_dataURITestResult ) ){
         Debug.log( '[dataURITest] already done : ' + p_dataURITestResult );
         p_setTimer( callback, p_dataURITestResult );
-    } else if( p_Trident < 8 ){
-        Debug.log( '[dataURITest] trident < 8 : false' );
-        p_setTimer( callback, false );
     } else {
         Debug.log( '[dataURITest] start!' );
 

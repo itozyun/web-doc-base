@@ -40,7 +40,7 @@ var SidebarFixer_ONSCROL_FROM_TIMER             = 7,
     SidebarFixer_elmSide,
     SidebarFixer_elmMain,
     SidebarFixer_elmWrap,
-    SidebarFixer_transformProp = p_body.getBoundingClientRect && p_cssTransformName, // Safari 3.2, transform + offsetTop だと focuedElementYの値が不正, getBoundingClientRect が使える 4以降なら大丈夫
+    SidebarFixer_transformProp = p_canUseGetBoundingClientRect && p_cssTransformName, // Safari 3.2, transform + offsetTop だと focuedElementYの値が不正, getBoundingClientRect が使える 4以降なら大丈夫
     SidebarFixer_sidebarOffsetY = 0,
     SidebarFixer_lastScrollY = 0,
     SidebarFixer_use3D,
@@ -238,7 +238,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
             containerY = 0,
             elm        = elmMain;
 
-        while( elm && elm !== p_body ){ // p_getElementOffsetY
+        while( elm && elm !== p_body ){ // p_DOM_getElementOffsetY
             containerY += elm.offsetTop;
             elm = elm.offsetParent;
         };

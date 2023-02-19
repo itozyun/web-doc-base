@@ -1,6 +1,8 @@
 var p_setTimer    , p_clearTimer,
     p_setLoopTimer, p_clearLoopTimer,
 
+    p_canUseGetBoundingClientRect = !!p_body.getBoundingClientRect,
+
     _p_Debug_logsBeforeLoad = [],
     _p_Debug_errorsBeforeLoad = [],
 
