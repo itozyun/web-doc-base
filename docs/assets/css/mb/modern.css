@@ -75,6 +75,7 @@ h5,
 h6 {
   border-color: #777
 }
+.aBodyRoot > :first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -3084,10 +3085,6 @@ only screen and (max-width:240px) {
     -moz-column-count: 2;
     column-count: 2
   }
-  .ABody .aBodyRoot > :first-child,
-  .SearchResult-multi div:first-child h3 {
-    margin-top: 0
-  }
   .ABody,
   .ABody blockquote {
     -webkit-column-gap: 2em;
@@ -3152,6 +3149,9 @@ only screen and (max-width:240px) {
     -webkit-column-gap: 2em;
     -moz-column-gap: 2em;
     column-gap: 2em
+  }
+  .SearchResult-multi div:first-child h3 {
+    margin-top: 0
   }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
     .ABody blockquote,
@@ -3445,6 +3445,9 @@ only screen and (max-width:240px) {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {

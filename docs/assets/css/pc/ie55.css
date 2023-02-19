@@ -544,7 +544,6 @@ strong {
 #jsSidebarFixer,
 #jsSidebarFixer a,
 #jsSidebarFixer div,
-.AAuthor,
 .BreadcrumbList a,
 .Magazine-snippet,
 .TxtNavi a,
@@ -661,10 +660,6 @@ blockquote h3,
 kbd {
   border-color: #111
 }
-.AAuthor,
-.ADesc {
-  margin: 2em .5em
-}
 .BlogArchive th,
 .Magazine-date {
   word-break: normal;
@@ -675,6 +670,10 @@ kbd {
 }
 .lS .mspacer {
   margin: .6em 0
+}
+.AAuthor {
+  zoom: 1;
+  margin: 2em .5em
 }
 .AAuthor img {
   float: right;
@@ -689,7 +688,7 @@ tr .box {
   margin: 0
 }
 .ABody {
-  padding: 3.5em 0 2em
+  margin: 3.5em 0 2em
 }
 .ABody h1 {
   font-size: 2em;
@@ -706,6 +705,9 @@ tr .box {
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
+}
+.ADesc {
+  margin: 2em .5em
 }
 .AHead {
   color: #777;
@@ -1573,13 +1575,6 @@ ol.linenums {
   ul {
     margin: 1em 3%
   }
-  .AAuthor,
-  .ADesc,
-  .AHead,
-  blockquote,
-  table {
-    margin: 1em 0
-  }
   blockquote pre {
     margin: 1em
   }
@@ -1588,6 +1583,13 @@ ol.linenums {
   }
   caption {
     margin: 1.5em 3% .7em
+  }
+  .AAuthor,
+  .ADesc,
+  .AHead,
+  blockquote,
+  table {
+    margin: 1em 0
   }
   table {
     width: 100%
@@ -1694,7 +1696,7 @@ ol.linenums {
     padding-right: 1.5%
   }
   .ABody {
-    padding: 0 0 2em
+    margin: 0 0 2em
   }
   .AHead h1 {
     text-align: center;
@@ -1778,6 +1780,9 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {

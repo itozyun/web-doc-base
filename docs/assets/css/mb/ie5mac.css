@@ -25,6 +25,7 @@ h5,
 h6 {
   border-color: #777
 }
+.aBodyRoot > :first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -1657,6 +1658,9 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {

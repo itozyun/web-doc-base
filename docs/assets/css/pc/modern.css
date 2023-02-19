@@ -75,6 +75,7 @@ h5,
 h6 {
   border-color: #777
 }
+.aBodyRoot > :first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -2359,10 +2360,6 @@ print and (orientation:landscape) {
     -moz-column-count: 2;
     column-count: 2
   }
-  .ABody .aBodyRoot > :first-child,
-  .SearchResult-multi div:first-child h3 {
-    margin-top: 0
-  }
   .Magazine-item {
     display: -webkit-box;
     display: -moz-box;
@@ -2411,6 +2408,9 @@ print and (orientation:landscape) {
   }
   .RichLink-meta {
     font-size: 1em
+  }
+  .SearchResult-multi div:first-child h3 {
+    margin-top: 0
   }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
     .ABody blockquote,
@@ -3855,6 +3855,9 @@ only screen and (max-width:240px) {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {

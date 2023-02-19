@@ -46,8 +46,7 @@ tr ul {
 .lX {
   overflow-x: hidden
 }
-.AAuthor,
-.ABody h2,
+.Cover .js-image-has-been-loaded div,
 .Magazine-snippet,
 .lMi,
 .lSi,
@@ -702,17 +701,16 @@ kbd {
 .Magazine-date {
   word-break: normal
 }
-.AAuthor,
-.ADesc,
-.AHead {
-  margin: 1em 0
-}
 #lF .lM .mspacer,
 .Cover p {
   margin: .6em .5em
 }
 .lS .mspacer {
   margin: .6em 0
+}
+.AAuthor {
+  height: 1px;
+  margin: 1em 0
 }
 .AAuthor p,
 .ADesc p,
@@ -727,7 +725,11 @@ tr .box {
   margin: 0 1em 1em 0
 }
 .ABody {
-  padding: 3.5em 0 2em
+  margin: 3.5em 0 2em
+}
+.ADesc,
+.AHead {
+  margin: 1em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -737,6 +739,7 @@ tr .box {
   font-size: 1.5em;
   border-width: .2em 0 0;
   color: #3079ed;
+  height: 1px;
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
@@ -1418,7 +1421,6 @@ ol.linenums {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 1px;
     top: 0
   }
   .aa {
@@ -1626,7 +1628,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    padding: 0 0 2em
+    margin: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%
@@ -1683,6 +1685,9 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {

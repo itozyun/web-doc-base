@@ -548,7 +548,6 @@ em {
 strong {
   background: #6cf
 }
-.AAuthor,
 .BreadcrumbList a,
 .Magazine-snippet,
 .TxtNavi a,
@@ -684,16 +683,15 @@ kbd {
   word-break: normal;
   word-wrap: normal
 }
-.AAuthor,
-.ADesc,
-.AHead {
-  margin: 1em 0
-}
 #lF .lM .mspacer {
   margin: .6em .5em
 }
 .lS .mspacer {
   margin: .6em 0
+}
+.AAuthor {
+  zoom: 1;
+  margin: 1em 0
 }
 .AAuthor p,
 .ADesc p,
@@ -708,7 +706,11 @@ tr .box {
   margin: 0 1em 1em 0
 }
 .ABody {
-  padding: 3.5em 0 2em
+  margin: 3.5em 0 2em
+}
+.ADesc,
+.AHead {
+  margin: 1em 0
 }
 .ABody h1 {
   font-size: 2em;
@@ -1637,7 +1639,7 @@ ol.linenums {
     display: none
   }
   .ABody {
-    padding: 0 0 2em
+    margin: 0 0 2em
   }
   .lMz .AHead {
     padding: 0 3%
@@ -1694,6 +1696,9 @@ ol.linenums {
   .tl tbody td:after,
   blockquote .tl tbody td:after {
     border-color: #fff
+  }
+  .prettyprint {
+    line-height: 1
   }
   code .atv,
   code .str {
