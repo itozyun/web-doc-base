@@ -18,9 +18,9 @@ if( DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID ){
                     522 <= p_WebKit || 3 <= p_SafariMobile ||
                     // Opera Mini, UCWEB 当然サポートしている想定...
                     p_cloudRendering ||
-                    p_isChromiumBase                          ? 3 : // 親が Inline Block 要素の場合も CSS-P が可能
+                    p_isChromiumBase                          ? 3 : // Inline Block 要素の場合も CSS-P が可能
                     // Opera : CSS-P をサポートするのは 7.20 以降
-                    7.2 <= p_Presto                           ? 2 : // 親が Block 要素の場合 CSS-P が可能
+                    7.2 <= p_Presto                           ? 2 : // Block 要素の場合 CSS-P が可能
                     6   <= p_Presto || p_Gecko                ? 1 : // CSS-P 等は不可能
                                                                 0;  // 非サポート(以下のテストを通過したら 2 とする)
                 if( !p_cssGeneratedContentGrade && !p_Trident && !p_Tasman ){
