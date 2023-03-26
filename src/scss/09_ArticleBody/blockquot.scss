@@ -26,8 +26,14 @@ blockquote {
             content : attr(cite);
         }
         &:before { @extend %BlockquoteLink; }
-        &:after { @extend %BlockquoteCite; }
-
+        &:after {
+            @extend %BlockquoteCite;
+            @if( $CANUSE_TARGET_PSEUDO_CLASS ){
+                &:target {
+                    color : #fff;
+                }
+            }
+        }
     }
 
     /* Tablet

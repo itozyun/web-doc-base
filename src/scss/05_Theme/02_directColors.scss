@@ -62,10 +62,16 @@ hr {
 @include media(dark_theme) {
     em {
         background : #4e4e1f;
+        thead &, blockquote th & {
+            color : $COLOR_Dark_text;
+        }
     }
 
     strong {
         background : #1c3a49;
+        thead &, blockquote th & {
+            color : $COLOR_Dark_text;
+        }
     }
 
     hr {
