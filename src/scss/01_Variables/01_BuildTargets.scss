@@ -310,3 +310,4 @@
     $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS  : $UA_Modern or $IS_IE8_OR_9;
 
     $CANUSE_ADJACENT_SIBLING_COMBINATOR :  $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false;
+    $CANUSE_CHILD_COMBINATOR            :  $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false;
