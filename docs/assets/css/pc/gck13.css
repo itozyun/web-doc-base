@@ -339,6 +339,7 @@ form :focus {
 .ribbon :visited,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
+blockquote:target:after,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {

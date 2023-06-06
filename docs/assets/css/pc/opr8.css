@@ -1819,7 +1819,11 @@ handheld {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  blockquote th em,
+  blockquote th strong,
+  thead em,
+  thead strong {
     color: #eee
   }
   :link:hover {

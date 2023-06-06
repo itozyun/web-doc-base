@@ -514,6 +514,7 @@ form :focus {
 .ribbon :visited,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
+blockquote:target:after,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -2334,7 +2335,6 @@ print and (orientation:landscape) {
   blockquote:before {
     margin: 0 0 1em
   }
-  .ABody blockquote,
   .hscroll,
   .js-generated-cite-in-blockquote,
   .js-generated-link-in-blockquote,
@@ -2359,6 +2359,10 @@ print and (orientation:landscape) {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2
+  }
+  .ABody blockquote,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
+    -webkit-column-count: 2
   }
   .Magazine-item {
     display: -webkit-box;
@@ -2413,7 +2417,6 @@ print and (orientation:landscape) {
     margin-top: 0
   }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
-    .ABody blockquote,
     .hscroll,
     .js-generated-cite-in-blockquote,
     .js-generated-link-in-blockquote,
@@ -2424,6 +2427,12 @@ print and (orientation:landscape) {
     h2 {
       -moz-column-span: all;
       column-span: all
+    }
+    .ABody blockquote {
+      -moz-column-span: all;
+      column-span: all;
+      -moz-column-count: 2;
+      column-count: 2
     }
   }
 }
@@ -3297,9 +3306,13 @@ only screen and (max-width:240px) {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote th em,
+  blockquote th strong,
   body,
   input,
-  textarea {
+  textarea,
+  thead em,
+  thead strong {
     color: #eee
   }
   [type=submit],

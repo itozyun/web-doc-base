@@ -427,6 +427,7 @@ form :focus {
 .ribbon :visited,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
+blockquote:target:after,
 tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
@@ -2422,8 +2423,12 @@ div .box .js-captioned-thumbnail__large {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote th em,
+  blockquote th strong,
   input,
-  textarea {
+  textarea,
+  thead em,
+  thead strong {
     color: #eee
   }
   :link:hover {

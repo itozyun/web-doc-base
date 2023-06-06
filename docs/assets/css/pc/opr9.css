@@ -2264,8 +2264,12 @@ screen and (max-width:240px) {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote th em,
+  blockquote th strong,
   input,
-  textarea {
+  textarea,
+  thead em,
+  thead strong {
     color: #eee
   }
   :link:hover {
