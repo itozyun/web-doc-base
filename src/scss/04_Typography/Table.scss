@@ -1,6 +1,58 @@
 /*  Table
  *    ie5 は <p> に続く <table> の前に </p> が必要
 --------------------------------------------------------------------------------------*/
+@mixin table-cell-border-width($border-width){
+    border-width : $border-width;
+
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
+        @if( $border-width != "0 0 1px" ){
+            &[colspan]:after {
+                border-width : $border-width;
+            }
+        }
+    }
+}
+
+@mixin table-cell-border-color($border-color){
+    border-color : $border-color;
+
+    @if( $CANUSE_CSS_GENERATED_BLOCK ){
+        &[colspan]:after {
+            @if(length($border-color) < 3){
+                border-color : nth($border-color, 1);
+            } @else {
+                border-color : nth($border-color, 3);
+            }
+        }
+    }
+}
+
+/*  colspan
+--------------------------------------------------------------------------------------*/
+@if( $CANUSE_CSS_GENERATED_BLOCK ){
+    [colspan] {
+        position : relative;
+    }
+        [colspan]:after {
+            @include create-CSS-generated-block;
+            width        : 100%;
+            height       : 0;
+            font-size    : 0.1em;
+            line-height  : 0;
+            position     : absolute;
+            bottom       : -1px;
+            left         : 0;
+            border-width : 0 0 1px;
+            border-style : solid;
+        }
+        tfoot [colspan]:after {
+            display : none;
+        }
+}
+
+/*  main
+--------------------------------------------------------------------------------------*/
+/* Need 'cellspacing="0"' in the markup for MacIE5 */
 table {
     @include media(tablet) {
         & {
@@ -25,23 +77,20 @@ table {
             width : 100%;
         }
     }
-}
 
-    /* Need 'cellspacing="0"' in the markup for MacIE5 */
-    table {
-        border-width    : 1px 0 0;
-        border-collapse : collapse;
-        empty-cells     : show;
-        border-spacing  : 0;
-        @include responsive-horizontal-margin(1, 1em, 1em);
-        @if( $UA_Modern ){
-            @include media(pc) {
-                @supports (position:sticky) {
-                    position : relative;
-                }
+    border-width    : 1px 0 0;
+    border-collapse : collapse;
+    empty-cells     : show;
+    border-spacing  : 0;
+    @include responsive-horizontal-margin(1, 1em, 1em);
+    @if( $UA_Modern ){
+        @include media(pc) {
+            @supports (position:sticky) {
+                position : relative;
             }
         }
     }
+}
 
     caption {
         @include responsive-horizontal-margin(1, 1.5em, #{$PARAGRAPH_LINE_HEIGHT_EM - $BASE_LINE_HEIGHT_EM}); // $PARAGRAPH_LINE_HEIGHT_WATCH
@@ -72,10 +121,10 @@ table {
     }
 
     th {
-        font-weight  : normal;
-        text-align   : left;
-        padding      : 0.5em;
-        border-width : 0 0 1px;
+        font-weight : normal;
+        text-align  : left;
+        padding     : 0.5em;
+        @include table-cell-border-width(0 0 1px);
     }
 
     td {
@@ -89,6 +138,13 @@ table {
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
+
+        @if( $CANUSE_CSS_GENERATED_BLOCK ){
+            &[colspan]:after {
+                left  : .5em;
+                width : calc(100% - 1em);
+            }
+        }
     }
 
     tbody th, /* tbody */ td {
@@ -96,15 +152,25 @@ table {
     }
 
     tbody th {
-        border-width : 0 0 1px;
+        @include table-cell-border-width(0 0 1px);
     }
     tbody td {
         border-width : 0 0.5em 1px;
+
+        @if( $CANUSE_CSS_GENERATED_BLOCK ){
+            &[colspan]:after {
+                left  : .5em;
+                width : calc(100% - 1em);
+            }
+        }
     }
 
     @if( $CANUSE_LAST_CHILD_PSEUDO_CLASS and $CANUSE_NEGATIVE_PSEUDO_CLASS ){
-        tbody:not(:last-child) tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
+        tbody:not(:last-child) > tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
             border-bottom-width : 0;
+            &[colspan]:after {
+                display : none;
+            }
         }
     }
 
@@ -114,6 +180,7 @@ table {
     tfoot td {
         border-width : 2px 0.5em 0;
     }
+
 
 /*  color
 --------------------------------------------------------------------------------------*/
@@ -126,9 +193,9 @@ table {
     }
 
     thead th, thead td {
-        background   : $casual_text;
-        border-color : $casual_fill mix( $casual_text, $casual_fill, 90% );
-        color        : $fill;
+        background : $casual_text;
+        color      : $fill;
+        @include table-cell-border-color($casual_fill mix( $casual_text, $casual_fill, 90% ));
     }
     thead {
         :link,
@@ -143,11 +210,11 @@ table {
     }
 
     tbody th {
-        background   : $casual_fill;
-        border-color : $fill;
+        background : $casual_fill;
+        @include table-cell-border-color($fill);
     }
     td {
-        border-color : $fill $fill $casual_fill;
+        @include table-cell-border-color($fill $fill $casual_fill);
     }
 
     tfoot th,
@@ -160,13 +227,13 @@ table {
             border-color : $casual_text;
         }
         thead th, thead td {
-            background   : $text;
-            border-color : $casual_fill mix( $text, $casual_fill, 90% );
+            background : $text;
+            @include table-cell-border-color($casual_fill mix( $text, $casual_fill, 90% ));
         }
         tbody th {
-            background   : $casual_text;
-            border-color : $casual_fill;
-            color        : $fill;
+            background : $casual_text;
+            color      : $fill;
+            @include table-cell-border-color($casual_fill);
             :link,
             .#{$Prefix}aBodyRoot & :visited {
                 color : $fill;
@@ -178,7 +245,7 @@ table {
             }
         }
         td {
-            border-color : $casual_fill $casual_fill $casual_text;
+            @include table-cell-border-color($casual_fill $casual_fill $casual_text);
         }
         tfoot th,
         tfoot td {
@@ -187,7 +254,7 @@ table {
 
         @if( $CANUSE_HOVER_PSEUDO_CLASS ){
             tbody :hover td {
-                border-color : $casual_fill $casual_fill $COLOR_ACCENT;
+                @include table-cell-border-color($casual_fill $casual_fill $COLOR_ACCENT);
             }
         }
     }
@@ -204,8 +271,8 @@ table {
         }
     }
     tbody :hover td {
-        border-color : $COLOR_Light_fill $COLOR_Light_fill $COLOR_ACCENT;
-        color        : $COLOR_ACCENT;
+        @include table-cell-border-color($COLOR_Light_fill $COLOR_Light_fill $COLOR_ACCENT);
+        color : $COLOR_ACCENT;
     }
 
     tbody :hover th a {
@@ -233,14 +300,14 @@ table {
     @include table-colors( $COLOR_Dark_text, $COLOR_Dark_fill, $COLOR_Dark_casual_text, $COLOR_Dark_casual_fill );
 
     tbody :hover td {
-        border-color : $COLOR_Dark_fill $COLOR_Dark_fill $COLOR_ACCENT;
+        @include table-cell-border-color($COLOR_Dark_fill $COLOR_Dark_fill $COLOR_ACCENT);
     }
 }
 /*  Forced colors
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_ms){
     td, tfoot td {
-        border-color : currentColor Window;
+        @include table-cell-border-color(currentColor Window);
     }
 }
 @include media(forced_colors_native_or_fallback){
@@ -257,11 +324,11 @@ table {
         border-style : dotted;
     }
     thead th, thead td {
-        border-width : 0 0 2px;
-        padding      : 0.5em;
+        @include table-cell-border-width(0 0 2px);
+        padding : 0.5em;
     }
     tbody td {
-        border-width : 0 0 1px;
+        @include table-cell-border-width(0 0 1px);
     }
     @if( $CANUSE_LAST_CHILD_PSEUDO_CLASS == false and $CANUSE_1ST_CHILD_PSEUDO_CLASS ){ // 該当は ie8 だけ
          /* tfoot を持つ場合に最後の行の線を消す */
@@ -289,18 +356,18 @@ table {
     }
 
     thead th, thead td {
-        background   : $COLOR_Print_casual_fill;
-        border-color : $COLOR_Print_casual_text;
-        color        : $COLOR_Print_text;
-        padding      : 0.5em;
-        border-width : 0 0 1px;
+        background : $COLOR_Print_casual_fill;
+        color      : $COLOR_Print_text;
+        padding    : 0.5em;
+        @include table-cell-border-color($COLOR_Print_casual_text);
+        @include table-cell-border-width(0 0 1px);
     }    
     tbody th {
-        background   : $COLOR_Print_casual_fill;
-        border-color : $COLOR_Print_casual_text;
+        background : $COLOR_Print_casual_fill;
+        @include table-cell-border-color($COLOR_Print_casual_text);
     }
     td {
-        border-color : #fff #fff $COLOR_Print_casual_fill;
+        @include table-cell-border-color(#fff #fff $COLOR_Print_casual_fill);
     }
 
     tfoot th,
@@ -322,19 +389,19 @@ table {
             border-color : $COLOR_Print_casual_text;
         }
         thead th, thead td {
-            background   : $COLOR_Print_casual_fill;
-            border-color : $COLOR_Print_text;
-            color        : $COLOR_Print_text;
-            padding      : 0.5em;
-            border-width : 0 0 1px;
+            background : $COLOR_Print_casual_fill;
+            color      : $COLOR_Print_text;
+            padding    : 0.5em;
+            @include table-cell-border-color($COLOR_Print_text);
+            @include table-cell-border-width(0 0 1px);
         }
         tbody th {
-            background   : $COLOR_Print_casual_fill;
-            border-color : $COLOR_Print_text;
-            color        : $COLOR_Print_text;
+            background : $COLOR_Print_casual_fill;
+            color      : $COLOR_Print_text;
+            @include table-cell-border-color($COLOR_Print_text);
         }
         td {
-            border-color : #fff #fff $COLOR_Print_casual_text;
+            @include table-cell-border-color(#fff #fff $COLOR_Print_casual_text);
         }
 
         tfoot th, tfoot td {
