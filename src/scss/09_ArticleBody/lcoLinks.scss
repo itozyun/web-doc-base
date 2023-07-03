@@ -1,0 +1,68 @@
+/*  links
+--------------------------------------------------------------------------------------*/
+.icoLinks {
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        list-style : none;
+    }
+
+    a {
+        @include inline-block;
+    }
+
+    @if( $CANUSE_CSS_GENERATED_CONTENT ){
+        [href]:before {
+            @if( $CANUSE_CSS_GENERATED_BLOCK ){
+                position        : relative;
+                left            : -0.5em;
+                width           : 1em;
+                text-align      : center;
+                text-decoration : none;
+                @if( $UA_Modern ){
+                    height      : 1.4em; /* for iOS8 */
+                    line-height : 1.4; /* for iOS8 */
+                }
+            }
+
+            @if( $MAYBE_CAN_USE_WEBFONT ){
+                @extend %vectorIconBase;
+                content : "🔗";
+            } @else {
+                content     : ">";
+                font-weight : bold;
+            }
+        }
+        @if( $CANUSE_ALL_ATTRIBUTE_SELECTORS ){
+            @if( $CANUSE_NEGATIVE_PSEUDO_CLASS and $UA_Opera9 == false ){ // Opera 9 は複雑な :not() で問題が起きる!
+                [href^="/"]:not([href^="//"]):before {
+                    @if( $MAYBE_CAN_USE_WEBFONT ){
+                        content : "🏠";
+                    } @else {
+                        content : "+";
+                    }
+                }
+            }
+            [href*="://web.archive."]:before {
+                @if( $MAYBE_CAN_USE_WEBFONT ){
+                    content : "🏛";
+                } @else {
+                    content : "*";
+                }
+            }
+            [href*="://youtube."]:before, [href*="://youtu.be"]:before {
+                @if( $MAYBE_CAN_USE_WEBFONT ){
+                    content : "📺";
+                }
+            }
+            [href*="://twitter."]:before, [href*="://m.twitter."]:before, [href*="://t.co"]:before {
+                @if( $MAYBE_CAN_USE_WEBFONT ){
+                    content : "🕊";
+                }
+            }
+            [href*="://github.com"]:before, [href*=".github."]:before {
+                @if( $MAYBE_CAN_USE_WEBFONT ){
+                    content : "";
+                }
+            }
+        }
+    }
+}
