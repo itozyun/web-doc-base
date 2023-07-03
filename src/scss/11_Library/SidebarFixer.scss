@@ -7,10 +7,10 @@
     @if( $UA_Modern ){
         @include media(pc) {
             @supports (position:sticky) {
-                #lB .lW {
-                    overflow : visible; // for Chrome
+                .nojs #lB .lW, .nojs #lB .lS {
+                    overflow : visible; // for Chrome 114
                 }
-                #jsSide > :not(#jsSidebarFixer) {
+                .nojs #jsSide > * { // :not(#jsSidebarFixer)
                     position : sticky;
                     top      : 0;
                 }

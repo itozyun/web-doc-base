@@ -122,7 +122,7 @@ module.exports = function( page, pages ){
         return '\n<html' +
         /** lang  */ createAttribute( 'lang', page.lang || site.lang, !!( page.lang || site.lang ) ) +
         /** dir   */ createAttribute( 'dir' , page.dir  || site.lang, !!( page.dir  || site.dir  ) ) +
-        /** class */
+        /** class */ createAttribute( 'class', 'nojs' ) +
         /** amp   */ 
         /** VML   */ createAttribute( 'xmlns:v', 'urn:schemas-microsoft-com:vml', !!page.vml || ( site.vml && page.vml === undefined ) ) +
         '>' + [].slice.call( arguments ).join( '\n' ) +
@@ -728,7 +728,7 @@ return '' +
 
 `    <b:if cond='data:post.labels.size != 0'>
 <b:loop values='data:post.labels' var='label' index='i'>
-    <b:if cond='data:i != 0'>,<b:else/>&lt;div class='AHead-labels'&gt;<i class='ico-label' expr:title='data:messages.labels'></i>
+    <b:if cond='data:i != 0'>,<b:else/>&lt;div class='AHead-labels'&gt;<i class='ico' expr:title='data:messages.labels'>&#x1f3f7;</i>
     </b:if>
     <a expr:href='data:label.url' rel='tag'><data:label.name/></a>
 </b:loop>
@@ -742,7 +742,7 @@ return '' +
 <header>
     <h1>${page.title}</h1>
     <div>
-        <i class='ico-clock' title='投稿日時'></i>
+        <i class='ico' title='投稿日時'>📅</i>
         <time datetime='${dateTime.toISO8601(page.createdAt)}' aria-label='${dateTime.toLocalARIAString(page.createdAt)}'>
         ${dateTime.toLocalString(page.createdAt)}
         </time>
@@ -765,7 +765,7 @@ return '' +
             return '' +
 `<div class='AAuthor'>
     <img src='${resizeImage( page.author.photo, 50 )}' alt=''/>
-    <!-- i class='ico-author' expr:title='data:messages.postedBy'></i-->
+    <!-- i class='ico' expr:title='data:messages.postedBy'>&#x1f464;</i-->
     <p><a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank'>
         ${page.author.name}
     </a>
