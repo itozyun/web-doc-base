@@ -333,7 +333,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 action = FOCUSED_ELEMENT_TOP_TO_VISIBLE_CONTAINER_TOP;
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.4' );
             };
-            preventWheel = undefined;
+            preventWheel = false;
         } else if( wheelDeltaY !== undefined ){
             // 3. サイドバー上でのマウスホイールでの動作
             // 3.1 サイドバーの高さ ≦ コンテナの可視部分の高さ
