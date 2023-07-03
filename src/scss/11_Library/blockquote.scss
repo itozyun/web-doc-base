@@ -1,3 +1,14 @@
-.#{$Prefix}js-generated-link-in-blockquote { @extend %BlockquoteLink; }
+.#{$Prefix}js-generated-link-in-blockquote {
+    @extend %BlockquoteLink;
+    /*  Print
+    --------------------------------------------------------------------------------------*/
+    @include media(print) {
+        @if( $CANUSE_CSS_GENERATED_CONTENT ){
+            a:after {
+                display : none; /* for iOS4 content : none だけでは消えない */
+            }
+        }
+    }
+}
 
 .#{$Prefix}js-generated-cite-in-blockquote { @extend %BlockquoteCite; }

@@ -15,16 +15,6 @@
     @include media(dark_theme) {
         color : $COLOR_Dark_link;
     }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        @if( $CANUSE_CSS_GENERATED_CONTENT ){
-            a:after {
-                display : none; /* for iOS4 content : none だけでは消えない */
-            }
-        }
-    }
 }
 
 %BlockquoteCite {
