@@ -1,0 +1,53 @@
+/*  CSS の読み込みチェックから、DATA URI スキームの Web font が使えるか？のチェック。
+    TODO : インライン style 化した上で、チェックが終わったら要素を削除できる
+--------------------------------------------------------------------------------------*/
+@if( $UA_Modern or $UA_IE9 ){
+    .js-MyIconFont-testCssReady {
+        position    : absolute;
+        top         : 0;
+        left        : 0;
+        width       : 1px;
+        height      : 1px;
+        visibility  : hidden;
+    }
+
+    @font-face {
+        font-family : 'myIconFont_canEOT';
+        src         : url('#{$MINIMUM_FONT_DATAURI_EOT}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+}
+
+@if( $UA_Modern ){
+    @font-face {
+        font-family : 'myIconFont_canWOFF2';
+        src         : url('#{$MINIMUM_FONT_DATAURI_WOFF2}') format('#{$WEBFONT_FORMAT_WOFF2}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+    @font-face {
+        font-family : 'myIconFont_canWOFF';
+        src         : url('#{$MINIMUM_FONT_DATAURI_WOFF}') format('#{$WEBFONT_FORMAT_WOFF}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+    @font-face {
+        font-family : 'myIconFont_canTTF';
+        src         : url('#{$MINIMUM_FONT_DATAURI_TTF}') format('#{$WEBFONT_FORMAT_TTF}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+    @font-face {
+        font-family : 'myIconFont_canOTF';
+        src         : url('#{$MINIMUM_FONT_DATAURI_OTF}') format('#{$WEBFONT_FORMAT_OTF}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+    @font-face {
+        font-family : 'myIconFont_canSVG';
+        src         : url('#{$MINIMUM_FONT_DATAURI_SVG}') format('#{$WEBFONT_FORMAT_SVG}');
+        font-weight : normal;
+        font-style  : normal;
+    }
+}

@@ -86,7 +86,7 @@ gulp.task( 'docs', gulp.series(
             ).pipe(
                 require( 'gulp-jsdom' )(
                     function( document ){
-                        var elm = document.getElementsByTagName( 'script' )[ 0 ];
+                        const elm = document.getElementsByTagName( 'script' )[ 0 ];
 
                         if( elm ){
                             elm.textContent = minjs;
@@ -152,16 +152,18 @@ gulp.task( 'btoa', gulp.series(
  *  /assets/css/
  *  /assets/css/hc/
  */
-const assetsDirToJSDir     = 'js',
-      assetsDirToCSSDir    = 'css',
-      cssDirToDesktopDir   = 'pc',
-      cssDirToMobileDir    = 'mb',
-      toForcedColorsCSSDir = 'hc';
+const assetsDirToJSDir       = 'js',
+      assetsDirToCSSDir      = 'css',
+      assetsDirToIconFontDir = 'iconfont',
+      cssDirToDesktopDir     = 'pc',
+      cssDirToMobileDir      = 'mb',
+      toForcedColorsCSSDir   = 'hc';
 
 /* -------------------------------------------------------
  *  gulp js
  */
 let isDebug = false;
+let webFontDebugMode = 0;
 let resultObject = {};
 
 const numericKeyName              = '-num';
@@ -186,8 +188,8 @@ gulp.task( '__js', gulp.series(
                    '!./src/js/4_EventModule/print.js',
                    '!./src/js/5_CSSOM/**/*.js',
                    '!./src/js/6_CanUse/cssGeneratedContent.js',
-                   '!./src/js/6_CanUse/dataUriTest.js',
-                   '!./src/js/6_CanUse/webfontTest.js',
+                   // '!./src/js/6_CanUse/dataUriTest.js',
+                   // '!./src/js/6_CanUse/webfontTest.js',
                    '!./src/js/graph/**/*.js',
                     // ES2 Code Prettify
                     './node_modules/es2-code-prettify/src/js/1_common/*.js',
@@ -225,6 +227,7 @@ gulp.task( '__js', gulp.series(
                             'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
                             'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
                             'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
+                            'DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE=' + webFontDebugMode,
                             'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"',
                             // ES2 Code Prettify
                             'DEFINE_CODE_PRETTIFY__DEBUG=' + isDebug,
@@ -255,7 +258,12 @@ gulp.task( '__js', gulp.series(
                     {
                         compilation_level : 'WHITESPACE_ONLY',
                         formatting        : 'PRETTY_PRINT',
-                        js_output_file    : isDebug ? 'debug.js' : 'main.js'
+                        js_output_file    : webFontDebugMode === 1
+                                                ? 'test-vector-icon-blocked.js' :
+                                            webFontDebugMode === 2
+                                                ? 'test-vector-icon-disabled.js' :
+                                            isDebug
+                                                ? 'debug.js' : 'main.js'
                     }
                 )
             ).pipe(
@@ -269,7 +277,9 @@ gulp.task( '__js', gulp.series(
                 gulp.dest( output + 'assets/' + assetsDirToJSDir )
             );
     },
-    function(){
+    function( cb ){
+        if( isDebug ) return cb();
+
         return gulp.src(
             [
                 './node_modules/es2-code-prettify/dist/' + regExpCompatFileName.replace( '.js', '.min.js' )
@@ -294,6 +304,43 @@ gulp.task( '__js', gulp.series(
         );
     }
 ));
+
+function createVectorIconFallback(){
+    gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
+    ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+
+    return gulp.src(
+            [
+                './src/js-vector-icon-svg-fallback/**/*.js'
+            ]
+        ).pipe(
+            gulpDPZ(
+                {
+                    basePath          : [
+                        './src/js-vector-icon-svg-fallback'
+                    ],
+                    labelPackageGlobal : '*'
+                }
+            )
+         ).pipe(
+            ClosureCompiler(
+                {
+                    define            : [
+                        // 'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
+                    ],
+                    compilation_level : 'ADVANCED',
+                    // compilation_level : 'WHITESPACE_ONLY',
+                    // formatting        : 'PRETTY_PRINT',
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    js_output_file    : 'vector-icon-svg-fallback.js'
+                }
+            )
+        ).pipe(
+            gulp.dest( output + 'assets/' + assetsDirToJSDir )
+        );
+};
 
 gulp.task( 'js', gulp.series(
     function(){
@@ -326,7 +373,12 @@ gulp.task( 'js', gulp.series(
     },
     '__js',
     function( cb ){ isDebug = true; resultObject = {}; cb(); },
-    '__js'
+    '__js',
+    function( cb ){ webFontDebugMode = 1; resultObject = {}; cb(); },
+    '__js',
+    function( cb ){ webFontDebugMode = 2; resultObject = {}; cb(); },
+    '__js',
+    createVectorIconFallback
 ));
 
 /* -------------------------------------------------------
@@ -341,10 +393,11 @@ gulp.task( 'css',
               cleanCSS    = require( 'gulp-clean-css' ),
               cssHack     = require( './js-buildtools/index.js' ),
               CLEAN_CSS_OPTION = {
+                  // rebaseTo      : './docs',
                   compatibility : { properties : { ieFilters : true } },
                   //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
                   level : {
-                              1 : { roundingPrecision : 3 },
+                              1 : { normalizeUrls: true, roundingPrecision : 3 },
                               2 : { all : true, removeUnusedAtRules : false }
                           }
               },
@@ -355,6 +408,7 @@ gulp.task( 'css',
                     './src/scss/01_Variables/01_BuildTargets.scss',
                     // './src/scss.docs/docs_color.scss',
                     './src/scss/**/*.scss',
+                   '!./src/scss/07_Parts/icons.scss',
                     // './src/scss.docs/**.scss'
                 ]
             ).pipe(
@@ -392,6 +446,93 @@ gulp.task( 'css',
                 gulp.dest( output + 'assets/' + assetsDirToCSSDir )
             );
     }
+);
+
+/* -------------------------------------------------------
+ *  gulp ico
+ */
+gulp.task( 'ico',
+    gulp.series(
+        // format selection.json
+        function( cb ){
+            const ICOMOON_SELECTION_JSON = './.icomoon/vector-icon/selection.json';
+            const fs = require( 'fs' );
+
+            fs.readFile(
+                ICOMOON_SELECTION_JSON,
+                function( error, buffer ){
+                    if( error ) throw error;
+
+                    const original = buffer.toString();
+                    const icomoon = JSON.parse( original );
+                    const strJson = JSON.stringify( icomoon, null, '    ' );
+
+                    if( original !== strJson ){
+                        fs.writeFile( ICOMOON_SELECTION_JSON, strJson, cb );
+                    } else {
+                        cb();
+                    };
+                }
+            );
+        },
+        function(){
+            return gulp.src(
+                [
+                    './.icomoon/vector-icon/fonts/*.svg',
+                    './.icomoon/vector-icon/fonts/*.woff',
+                    './.icomoon/vector-icon/fonts/*.ttf',
+                    './.icomoon/vector-icon/fonts/*.eot',
+                    output + 'assets/' + assetsDirToIconFontDir + '/*.css'
+                ]
+            ).pipe(
+                require( './js-buildtools/web-font.js' ).main( './src/js-vector-icon-svg-fallback/vectorIconPathList.generated.js' )
+            ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
+        },
+        createVectorIconFallback
+    )
+);
+
+/* -------------------------------------------------------
+ *  gulp scss
+ */
+gulp.task( 'scss',
+    gulp.series(
+        // format selection.json
+        function( cb ){
+            const ICOMOON_SELECTION_JSON = './.icomoon/minimum-font/selection.json';
+            const fs = require( 'fs' );
+
+            fs.readFile(
+                ICOMOON_SELECTION_JSON,
+                function( error, buffer ){
+                    if( error ) throw error;
+
+                    const original = buffer.toString();
+                    const icomoon = JSON.parse( original );
+                    const strJson = JSON.stringify( icomoon, null, '    ' );
+
+                    if( original !== strJson ){
+                        fs.writeFile( ICOMOON_SELECTION_JSON, strJson, cb );
+                    } else {
+                        cb();
+                    };
+                }
+            );
+        },
+        function(){
+            return gulp.src(
+                [
+                    './.icomoon/minimum-font/fonts/*.svg',
+                    './.icomoon/minimum-font/fonts/*.woff',
+                    './.icomoon/minimum-font/fonts/*.ttf',
+                    './.icomoon/minimum-font/fonts/*.eot'
+                ]
+            ).pipe(
+                require( './js-buildtools/web-font.js' ).scssVariable( '04_MinimumDataURIWebFont.generated.scss' )
+            ).pipe( gulp.dest( 'src/scss/01_Variables' ) );
+        },
+        'css'
+    )
 );
 
 /* -------------------------------------------------------

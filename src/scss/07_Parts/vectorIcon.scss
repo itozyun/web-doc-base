@@ -1,0 +1,100 @@
+@if( $MAYBE_CAN_USE_WEBFONT ){
+    @font-face {
+        font-family : 'myIconFont';
+        font-weight : normal;
+        font-style  : normal;
+        src         : url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.eot?rw1juc'});
+        @if( $UA_Modern ){
+            src:url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.eot?rw1juc#iefix'}) format('#{$WEBFONT_FORMAT_EOT}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.woff2?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF2}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.woff?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.ttf?rw1juc'}) format('#{$WEBFONT_FORMAT_TTF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.otf?rw1juc'}) format('#{$WEBFONT_FORMAT_OTF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.svg?rw1juc#web-doc-base'}) format('#{$WEBFONT_FORMAT_SVG}');
+        }
+    }
+}
+
+%vectorIconBase {
+    font-family : 'myIconFont';//, monospace, sans-serif !important;
+    // if( $Option_hard-reset ){
+        font-style     : normal;
+        font-weight    : normal;
+        font-variant   : normal;
+        text-transform : none;
+    //}
+    
+    @if( $UA_Modern ){
+        /* Enable Ligatures ================ */
+        -webkit-font-feature-settings : "liga";
+           -moz-font-feature-settings : "liga=1";
+           -moz-font-feature-settings : "liga";
+            -ms-font-feature-settings : "liga" 1;
+             -o-font-feature-settings : "liga";
+                font-feature-settings : "liga";
+        /*
+        -webkit-font-variant-ligatures : discretionary-ligatures;
+                font-variant-ligatures : discretionary-ligatures; */
+
+        /* Better Font Rendering =========== */
+         -webkit-font-smoothing       : antialiased;
+        -moz-osx-font-smoothing       : grayscale;
+    }
+}
+
+.ico {
+    @if( $MAYBE_CAN_USE_WEBFONT ){
+        @extend %vectorIconBase;
+    }
+    
+    @if( $CANUSE_SVG ){
+        svg {
+            vertical-align : baseline;
+        }
+        @if( $CANUSE_SVG_TINY == false ){
+            path {
+                fill : $COLOR_Light_text;
+
+                a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
+                    fill : $COLOR_Light_fill;
+                }
+                @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+                    .#{$Prefix}ribbon & {
+                        fill : $COLOR_Ribbon_text;
+                    }
+                }
+                @if( $CANUSE_TARGET_PSEUDO_CLASS ){
+                    :target & {
+                        fill : #fff;
+                    }
+                }
+            
+                /*  Dark theme
+                --------------------------------------------------------------------------------------*/
+                @include media(dark_theme) {
+                    & {
+                        fill : $COLOR_Dark_text;
+                    }
+                }
+                /*  Forced colors
+                --------------------------------------------------------------------------------------*/
+                @include media(forced_colors_native_or_fallback){
+                    & {
+                        fill : currentColor;
+                    }
+                }
+                /*  Print
+                --------------------------------------------------------------------------------------*/
+                @include media(print) {
+                    fill : $COLOR_Print_text;
+
+                    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
+                        .#{$Prefix}ribbon & {
+                            fill : $COLOR_Print_text;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

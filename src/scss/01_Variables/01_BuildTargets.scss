@@ -270,6 +270,7 @@
     $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS   : $IS_LTE_GECKO09 or $UA_Gecko12; // :focus 要素のテキストカラーの変更が出来ない
     $FOCUS_PSEUDO_CLASS_ONLY_LINK        : $UA_IE7 or $UA_Opera72; // :focus は a[href] にしか働かない
     $CANUSE_FOCUS_PSEUDO_CLASS           : $UA_Modern or $IS_OLD_GECKO or $UA_Opera70 or $UA_Opera8 or $UA_Opera9 or $IS_IE8_OR_9 or $UA_MacIE5;
+    $MAYBE_CAN_USE_WEBFONT               : $UA_Modern or $IS_WIN_IE;
 
 // styling
     $LIMITED_STYLING_OF_ITEMS_IN_FORM     : $IS_OLD_OPERA or $IS_LTE_WIN_IE7;
@@ -283,7 +284,9 @@
     $FORCED_COLORS_SUPPORT  : $UA_Modern or $IS_WIN_IE or $UA_Gecko19;
 
 // SVG
-    $CANUSE_SVG : $UA_Modern or $UA_Opera8 or $UA_Opera9 or $UA_Gecko19 or $UA_IE9;
+    $CANUSE_SVG_TINY    : $UA_Opera8;
+    $CANUSE_DYNAMIC_SVG : $UA_Gecko13 or $UA_Gecko19; // Gecko 1.8+
+    $CANUSE_SVG         : $UA_Modern or $CANUSE_SVG_TINY or $UA_Opera9 or $CANUSE_DYNAMIC_SVG or $UA_IE9;
 
 // CSS Generated Content
     $CANUSE_CSS_GENERATED_CONTENT    : $UA_Modern or $IS_LEGACY or $IS_IE8_OR_9;
@@ -311,3 +314,10 @@
 
     $CANUSE_ADJACENT_SIBLING_COMBINATOR :  $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false;
     $CANUSE_CHILD_COMBINATOR            :  $IS_LTE_WIN_IE6 == false and $UA_MacIE5 == false;
+
+/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| 4. Path
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/*/
+    $ASSET_PATH_VECTOR_ICON : "../../iconfont/" !default;

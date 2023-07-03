@@ -19,6 +19,8 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR  = 'css',
 /** @define {string} */
+    DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR  = 'iconfont',
+/** @define {string} */
     DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR  = 'pc',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR   = 'mb',
@@ -137,4 +139,15 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID = 'jsSidebarFixer1',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID = 'jsSidebarFixer2';
+    DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID = 'jsSidebarFixer2',
+
+    
+/** ===========================================================================
+ * 8_Library/VectorIcon.js
+ */
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME             = 'myIconFont',
+/** @define {string} */
+    DEFINE_CODE_PRETTIFY__VECTOR_ICON_COMPAT_FILENAME = 'vector-icon-svg-fallback.js',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__VECTOR_ICON_CLASSNAME        = 'ico';

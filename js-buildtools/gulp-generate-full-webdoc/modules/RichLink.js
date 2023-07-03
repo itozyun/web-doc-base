@@ -27,19 +27,19 @@ function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrent
 </h3>
 <div class="RichLink-meta">
     <span>
-        <i class="ico-clock" title="投稿日時"></i>
+        <i class="ico" title="投稿日時">📅</i>
         <time datetime='${dateTime.toISO8601(link.createdAt)}' aria-label='${dateTime.toLocalARIAString(link.createdAt)}'>
         ${dateTime.toYYYYMMDDHHMM(link.createdAt)}
         </time>
     </span><br>
     <span>
-        <i class="ico-pen" title="更新日時"></i>
+        <i class="ico" title="更新日時">🖊</i>
         <time datetime='${dateTime.toISO8601(link.updatedAt)}' aria-label='${dateTime.toLocalARIAString(link.updatedAt)}'>
         ${dateTime.toYYYYMMDDHHMM(link.updatedAt)}
         </time>
     </span>
     <span aria-label="ラベル">
-        <i class="ico-label"></i>
+        <i class="ico">🏷</i>
         Firefox, Web開発, クロスブラウザ, テキストブラウザ
     </span>
 </div>

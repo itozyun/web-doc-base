@@ -25,33 +25,33 @@
 <th>:hover<th>:active<th>:focus<th>:hover<th>:active<th>:focus
 <tbody>
 <tr>
-<th>IE ~6(*2)<td>✔<td>✔<td><code>:active</code> で代替<td>×<td>×<td>×<td>×
+<th><span class="ico">IE</span> ~6(*2)<td>✔<td>✔<td><code>:active</code> で代替<td>×<td>×<td>×<td>×
 <tr>
-<th>IE 7(*2)<td>✔<td>✔<td>✔<td>✔<td>(*10)<td>×<td>×
+<th><span class="ico">IE</span> 7(*2)<td>✔<td>✔<td>✔<td>✔<td>(*10)<td>×<td>×
 <tr>
-<th>IE 8<td>✔<td>✔<td>✔<td>✔<td>✔<td>✔<td>×
+<th><span class="ico">IE</span> 8<td>✔<td>✔<td>✔<td>✔<td>✔<td>✔<td>×
 <tr>
-<th>IE 9+<td colspan=7>✔
+<th><span class="ico">IE</span> 9+<td colspan=7>✔
 <tr>
-<th>Opera 7~7.20(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
+<th><span class="ico">Opera</span> 7~7.20(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>
-<th>Opera 7.23~7.5(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
+<th><span class="ico">Opera</span> 7.23~7.5(*1)<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>
-<th>Opera 8~9.27<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
+<th><span class="ico">Opera</span> 8~9.27<td>✔<td>✔<td>✔(*11)<td>✔<td>✔<td>✔<td>×
 <tr>
-<th>Opera 9.5<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔<td>✔
+<th><span class="ico">Opera</span> 9.5<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔<td>✔
 <tr>
-<th>Opera 9.6+<td colspan=7>✔
+<th><span class="ico">Opera</span> 9.6+<td colspan=7>✔
 <tr>
-<th>Gecko ~0.9.9(*2, *6)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔(*3,*5)<td><code>:focus</code> で代替(*4)<td>✔<td>×
+<th><span class="ico">Firefox</span> ~0.9.9(*2, *6)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔(*3,*5)<td><code>:focus</code> で代替(*4)<td>✔<td>×
 <tr>
-<th>Gecko 1.0~1.2(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*9)<td>×
+<th><span class="ico">Firefox</span> 1.0~1.2(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*9)<td>×
 <tr>
-<th>Gecko 1.3(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*7, *8)<td>✔
+<th><span class="ico">Firefox</span> 1.3(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*7, *8)<td>✔
 <tr>
-<th>Gecko 1.4~1.7(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*7)<td>✔
+<th><span class="ico">Firefox</span> 1.4~1.7(*2)<td>✔<td><code>:focus</code> で代替<td>✔<td>✔<td><code>:focus</code> で代替(*4)<td>✔(*7)<td>✔
 <tr>
-<th>Gecko 1.8+<td colspan=7>✔
+<th><span class="ico">Firefox</span> 1.8+<td colspan=7>✔
 </table>
 </div>
 
