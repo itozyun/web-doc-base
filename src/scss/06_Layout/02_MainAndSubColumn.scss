@@ -15,9 +15,25 @@
 --------------------------------------------------------------------------------------*/
 $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false and $IS_Opera7x == false and $UA_Opera8 == false;
 
+@mixin override-float-layout(){
+    /*  patch for Safari 3.2~4, Chrome 1~8
+     *    table-layout のままだと
+     *      1. main が sidebar より低い時に、横スクロールが発生するのを抑止する
+     *      2. viewPort の下端に白い線が入る
+    --------------------------------------------------------------------------------------*/
+    @if( $UA_Modern ){
+        @include css-hack(chromeLte9SafariLte5){
+            @content;
+        }
+    }
+}
+
 @if( $Option_mobileOnly == false ){
     .#{$Prefix}lW { // clearfix を同時に指定するために screen の外へ
         @if( $LAYOUT_BY_DISPLAY_TABLE == false and $LAYOUT_FIX_FOR_Opera75 == false ){
+            @include clearfix;
+        }
+        @include override-float-layout {
             @include clearfix;
         }
     }
@@ -77,15 +93,33 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
             .#{$Prefix}lW {
                 display      : table;
                 table-layout : fixed;
+                @include override-float-layout {
+                    display : block;
+                }
             }
                 .#{$Prefix}lM, .#{$Prefix}lS {
                     display        : table-cell;
                     vertical-align : top; /* Safari 3.2, ie8 で大切 */
+                    @include override-float-layout {
+                        display : block;
+                    }
                 }
                 .#{$Prefix}lM {
                     width : 100% * $PC_MAIN_COLUMN_RATIO;
+                    @include override-float-layout {
+                        width : 100% * ( $PC_MAIN_COLUMN_RATIO - $PC_COLUMN_GAP_RATIO );
+                        float : left;
+                    }
                     @at-root #{&}i, #{&}z {
                         margin-right : math.div(100% * $PC_COLUMN_GAP_RATIO, $PC_MAIN_COLUMN_RATIO);
+                        @include override-float-layout {
+                            margin-right : 0;
+                        }
+                    }
+                }
+                .#{$Prefix}lS {
+                    @include override-float-layout {
+                        float : right;
                     }
                 }
 

@@ -61,7 +61,7 @@ $COMMENT_OUT_CSS_HACK : (
             }
         }
         @else if $targetGroup == 'chromeLte9SafariLte5' { // Chrome ~9, Safari ~5
-            & [_lazyhack_="body:nth-child(n0)"]{
+            & [_lazyhack_="body[n0]:nth-child(n0)"]{
                 @content;
             }
         }
