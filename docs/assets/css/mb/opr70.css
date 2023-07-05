@@ -224,15 +224,14 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
+.AHead-labels a,
 .Cover h2,
-.Cover-meta span,
 .Magazine-date,
 .Magazine-main,
-.RichLink-meta span,
+.SocialBtns a,
+.Subscribe a,
 .btn,
-.links a,
 .tl th,
-kbd,
 tbody th,
 td {
   vertical-align: top
@@ -281,7 +280,6 @@ del {
 }
 .Magazine-mm,
 .Magazine-yy,
-.RichLink b,
 .commonForm,
 a iframe,
 a img,
@@ -378,21 +376,12 @@ tbody :hover th :visited {
 a:focus {
   background-color: #3079ed!important
 }
-.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6,
-th {
+h6 {
   font-weight: 400
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-h2 {
-  font-weight: 700
 }
 h4,
 h5,
@@ -498,7 +487,8 @@ li ul {
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em
+  font-size: 1.1em;
+  font-weight: 700
 }
 .wn {
   color: red!important
@@ -519,15 +509,16 @@ tr hr {
   margin: 1em 9%
 }
 table {
-  width: 94%;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0
+  border-spacing: 0;
+  width: 94%
 }
 caption {
   margin: 1.5em 3% .7em
 }
 th {
+  font-weight: 400;
   text-align: left;
   padding: .5em
 }
@@ -540,8 +531,8 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd #818181
 }
 tbody th {
   background: #ddd;
@@ -582,8 +573,8 @@ blockquote thead th {
 }
 blockquote tbody th {
   background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd
 }
 blockquote td {
   border-color: #ddd #ddd #777
@@ -810,6 +801,7 @@ kbd {
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -842,7 +834,6 @@ kbd {
 .SocialBtns a,
 .Subscribe a {
   display: inline-table;
-  vertical-align: top;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -952,9 +943,11 @@ pre var {
 }
 .Cover-meta span,
 .RichLink-meta span,
+.icoLinks a,
 .links a,
 kbd {
-  display: inline-table
+  display: inline-table;
+  vertical-align: top
 }
 .Cover p {
   line-height: 1.4;
@@ -982,6 +975,7 @@ kbd {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1001,6 +995,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1077,6 +1072,8 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
+  display: block;
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1246,8 +1243,13 @@ pre var {
   padding: 0;
   margin: 0
 }
+.icoLinks {
+  list-style: none
+}
+.icoLinks [href]:before,
 .links [href]:before {
-  content: ">"
+  content: ">";
+  font-weight: 700
 }
 .note {
   padding-left: 25%
@@ -1623,10 +1625,6 @@ ol.linenums {
   th {
     font-weight: 700
   }
-  .js-generated-link-in-blockquote a:after,
-  blockquote:before a:after {
-    display: none
-  }
   .LinkList :link,
   .RichLink-sep :link,
   .ribbon :link,
@@ -1683,15 +1681,15 @@ ol.linenums {
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
-    border-color: #000;
     color: #000;
     padding: .5em;
+    border-color: #000;
     border-width: 0 0 1px
   }
   blockquote tbody th {
     background: #ccc;
-    border-color: #000;
-    color: #000
+    color: #000;
+    border-color: #000
   }
   blockquote td {
     border-color: #fff #fff #666
@@ -1720,6 +1718,7 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
+  .js-generated-link-in-blockquote a:after,
   .noprint {
     display: none
   }

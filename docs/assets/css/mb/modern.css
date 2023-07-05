@@ -30,33 +30,8 @@ ins {
 .baseColor .btn:focus,
 a,
 a img,
-a:active .ico-author:after,
-a:active .ico-author:before,
-a:active .ico-chain:after,
-a:active .ico-chain:before,
-a:active .ico-clock:after,
-a:active .ico-clock:before,
-a:active .ico-comment:before,
-a:active .ico-flag:after,
-a:active .ico-flag:before,
-a:active .ico-label:before,
-a:active .ico-pen:before,
-a:active .ico-sylinder:after,
-a:active .ico-sylinder:before,
-a:focus .ico-author:after,
-a:focus .ico-author:before,
-a:focus .ico-chain:after,
-a:focus .ico-chain:before,
-a:focus .ico-clock:after,
-a:focus .ico-clock:before,
-a:focus .ico-comment:before,
-a:focus .ico-flag:after,
-a:focus .ico-flag:before,
-a:focus .ico-label:before,
-a:focus .ico-pen:before,
-a:focus .ico-sylinder:after,
-a:focus .ico-sylinder:before,
-tbody th {
+tbody th,
+tbody th[colspan]:after {
   border-color: #f8fbf8
 }
 a:active,
@@ -71,6 +46,7 @@ blockquote .tl thead td,
 blockquote .tl thead th,
 blockquote blockquote,
 blockquote table,
+blockquote td[colspan]:after,
 h5,
 h6 {
   border-color: #777
@@ -102,24 +78,15 @@ hr,
 tbody th {
   background: #ddd
 }
-.lM1,
-.lM2,
-.lS1,
-.lS2 {
-  width: 48.5%
+.ico,
+.icoLinks [href]:before,
+html {
+  -moz-osx-font-smoothing: grayscale
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-.links a,
-.tl td,
-:link:hover img,
-:visited:hover img,
-h2,
-kbd:hover,
+.ico svg,
 sub,
 sup {
-  position: relative
+  vertical-align: baseline
 }
 .AAuthor,
 .Comment p,
@@ -217,7 +184,11 @@ var {
 *,
 blockquote .tl tbody td:after,
 blockquote :link img,
-blockquote :visited img {
+blockquote :visited img,
+blockquote tbody th[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after,
+td[colspan]:after {
   border-color: #ddd
 }
 .AHead-labels :active,
@@ -244,6 +215,7 @@ a:focus img {
 }
 :link:hover img,
 :visited:hover img {
+  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -275,6 +247,69 @@ a:focus img {
   background: #2a2a2a;
   color: #fff
 }
+.js-MyIconFont-testCssReady {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
+.lM1,
+.lM2,
+.lS1,
+.lS2 {
+  width: 48.5%
+}
+@font-face {
+  font-family: myIconFont_canEOT;
+  src: url(data:font/eot;base64,CAUAAFAEAAABAAIAAAAAAAAAAAAAAAAAAAABAJABAAAAAExQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAddqBQAAAAAAAAAAAAAAAAAAAAAAABgAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGUAAAAOAFIAZQBnAHUAbABhAHIAAAAWAFYAZQByAHMAaQBvAG4AIAAxAC4AMQAAABgAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGUAAAAAAAABAAAACwCAAAMAME9TLzIPUQwTAAAAvAAAAGBjbWFw/+wBWQAAARwAAABUZ2FzcAAAABAAAAFwAAAACGdseWYD0cDCAAABeAAAAFhoZWFkI+xUBwAAAdAAAAA2aGhlYQbCA4YAAAIIAAAAJGhtdHgKAADAAAACLAAAABRsb2NhACgAQAAAAkAAAAAMbWF4cAAHAAUAAAJMAAAAIG5hbWXUdn3HAAACbAAAAcJwb3N0AAMAAAAABDAAAAAgAAMDAAGQAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAGkDgP+AAIADgACAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAwAAAAMAAAAcAAEAAwAAABwAAwABAAAAHAAEADgAAAAKAAgAAgACAAEAIABp//3//wAAAAAAIABp//3//wAB/+P/mwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQDAAAYDQAMGAAIAABMJAcACgP2AAwb+gP6AAAEAAAABGZoFatcBXw889QALBAAAAAAA4Mb7NQAAAADgxvs1AAAAAANAAwYAAAAIAAIAAAAAAAAAAQAAA4D/gAAABAAAAAAAA0AAAQAAAAAAAAAAAAAAAAAAAAUEAAAAAAAAAAAAAAACAAAABAAAwAAAAAAACgAUAB4ALAABAAAABQADAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIABwCNAAEAAAAAAAMADABFAAEAAAAAAAQADACiAAEAAAAAAAUACwAkAAEAAAAAAAYADABpAAEAAAAAAAoAGgDGAAMAAQQJAAEAGAAMAAMAAQQJAAIADgCUAAMAAQQJAAMAGABRAAMAAQQJAAQAGACuAAMAAQQJAAUAFgAvAAMAAQQJAAYAGAB1AAMAAQQJAAoANADgd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlVmVyc2lvbiAxLjEAVgBlAHIAcwBpAG8AbgAgADEALgAxd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBld2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlUmVndWxhcgBSAGUAZwB1AGwAYQByd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==);
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: myIconFont_canWOFF2;
+  src: url(data:font/woff2;base64,d09GMgABAAAAAAHkAAsAAAAABEQAAAGZAAEZmgAAAAAAAAAAAAAAAAAAAAAAAAAABmAAVBEICkxWATYCJAMUCwwABCAFg0IHIBuBA8iuMG7hkRZkygVwkqkwRdQzdybyIR7o7/ed++7byOAKjMYej8IMoErd8Q+8tMLrK/DNbZniQtHULB/a1EME2T1TefwGLOAxWMz7sAGnlHHqm2ww8PnfvzlxLl6CjHaepAMacTUn4Gg3qsbdwD6AHqzs7y1S9QH/eVZuW66OPNZSjJkrxCg8iuQrgQfZJfwbDAWYNdg7LtiLsojUZCfbQcSwWRAsCremxlAoXyIRtNvLTkzUKGQnt8xuEIZflIEcUIgUxaiGk9TJNy0SGriX+2/Ai2PubeXB06Ehf7Xszy9KWfn7jcTieBx3SwHhB9LO5Tj+qXlO2qUSpPxUJ+c1cU0Dh6UyaIQiu8I8d0pExWaAFPkmchTpJnIV27tcqNGvKKQFgnrFQCRKvRJRvUUgRTJEjlq9RK56x68XGvJ3ihI3WeO6LoQPFNEmqiL8yWrBGnwNmvT39FsDbhnIiH49+hN62795Cf1M9fCA7piUT300S9uyA4PrRpP1KwuVmbRk9sj0JnaAnc5UG7Rz6y6xoKKMvu2TiAEAAA==) format("woff2");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: myIconFont_canWOFF;
+  src: url(data:font/woff;base64,d09GRgABAAAAAAScAAsAAAAABFAAAQABAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABCAAAAGAAAABgD1EME2NtYXAAAAFoAAAAVAAAAFT/7AFZZ2FzcAAAAbwAAAAIAAAACAAAABBnbHlmAAABxAAAAFgAAABYA9HAwmhlYWQAAAIcAAAANgAAADYj7FQHaGhlYQAAAlQAAAAkAAAAJAbCA4ZobXR4AAACeAAAABQAAAAUCgAAwGxvY2EAAAKMAAAADAAAAAwAKABAbWF4cAAAApgAAAAgAAAAIAAHAAVuYW1lAAACuAAAAcIAAAHC1HZ9x3Bvc3QAAAR8AAAAIAAAACAAAwAAAAMDAAGQAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAGkDgP+AAIADgACAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAwAAAAMAAAAcAAEAAwAAABwAAwABAAAAHAAEADgAAAAKAAgAAgACAAEAIABp//3//wAAAAAAIABp//3//wAB/+P/mwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQDAAAYDQAMGAAIAABMJAcACgP2AAwb+gP6AAAEAAAABGZoFatcBXw889QALBAAAAAAA4Mb7NQAAAADgxvs1AAAAAANAAwYAAAAIAAIAAAAAAAAAAQAAA4D/gAAABAAAAAAAA0AAAQAAAAAAAAAAAAAAAAAAAAUEAAAAAAAAAAAAAAACAAAABAAAwAAAAAAACgAUAB4ALAABAAAABQADAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIABwCNAAEAAAAAAAMADABFAAEAAAAAAAQADACiAAEAAAAAAAUACwAkAAEAAAAAAAYADABpAAEAAAAAAAoAGgDGAAMAAQQJAAEAGAAMAAMAAQQJAAIADgCUAAMAAQQJAAMAGABRAAMAAQQJAAQAGACuAAMAAQQJAAUAFgAvAAMAAQQJAAYAGAB1AAMAAQQJAAoANADgd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlVmVyc2lvbiAxLjEAVgBlAHIAcwBpAG8AbgAgADEALgAxd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBld2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlUmVndWxhcgBSAGUAZwB1AGwAYQByd2ViLWRvYy1iYXNlAHcAZQBiAC0AZABvAGMALQBiAGEAcwBlRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==) format("woff");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: myIconFont_canTTF;
+  src: url(data:font/ttf;base64,AAEAAAALAIAAAwAwT1MvMg9RDBMAAAC8AAAAYGNtYXD/7AFZAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5ZgPRwMIAAAF4AAAAWGhlYWQj7FQHAAAB0AAAADZoaGVhBsIDhgAAAggAAAAkaG10eAoAAMAAAAIsAAAAFGxvY2EAKABAAAACQAAAAAxtYXhwAAcABQAAAkwAAAAgbmFtZdR2fccAAAJsAAABwnBvc3QAAwAAAAAEMAAAACAAAwMAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAABAAAAAaQOA/4AAgAOAAIAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAgAGn//f//AAAAAAAgAGn//f//AAH/4/+bAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAMAABgNAAwYAAgAAEwkBwAKA/YADBv6A/oAAAQAAAAEZmgVq1wFfDzz1AAsEAAAAAADgxvs1AAAAAODG+zUAAAAAA0ADBgAAAAgAAgAAAAAAAAABAAADgP+AAAAEAAAAAAADQAABAAAAAAAAAAAAAAAAAAAABQQAAAAAAAAAAAAAAAIAAAAEAADAAAAAAAAKABQAHgAsAAEAAAAFAAMAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAOAK4AAQAAAAAAAQAMAAAAAQAAAAAAAgAHAI0AAQAAAAAAAwAMAEUAAQAAAAAABAAMAKIAAQAAAAAABQALACQAAQAAAAAABgAMAGkAAQAAAAAACgAaAMYAAwABBAkAAQAYAAwAAwABBAkAAgAOAJQAAwABBAkAAwAYAFEAAwABBAkABAAYAK4AAwABBAkABQAWAC8AAwABBAkABgAYAHUAAwABBAkACgA0AOB3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVWZXJzaW9uIDEuMQBWAGUAcgBzAGkAbwBuACAAMQAuADF3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGV3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVSZWd1bGFyAFIAZQBnAHUAbABhAHJ3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVGb250IGdlbmVyYXRlZCBieSBJY29Nb29uLgBGAG8AbgB0ACAAZwBlAG4AZQByAGEAdABlAGQAIABiAHkAIABJAGMAbwBNAG8AbwBuAC4AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: myIconFont_canOTF;
+  src: url(data:font/otf;base64,AAEAAAALAIAAAwAwT1MvMg9RDBMAAAC8AAAAYGNtYXD/7AFZAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5ZgPRwMIAAAF4AAAAWGhlYWQj7FQHAAAB0AAAADZoaGVhBsIDhgAAAggAAAAkaG10eAoAAMAAAAIsAAAAFGxvY2EAKABAAAACQAAAAAxtYXhwAAcABQAAAkwAAAAgbmFtZdR2fccAAAJsAAABwnBvc3QAAwAAAAAEMAAAACAAAwMAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAABAAAAAaQOA/4AAgAOAAIAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAgAGn//f//AAAAAAAgAGn//f//AAH/4/+bAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAMAABgNAAwYAAgAAEwkBwAKA/YADBv6A/oAAAQAAAAEZmgVq1wFfDzz1AAsEAAAAAADgxvs1AAAAAODG+zUAAAAAA0ADBgAAAAgAAgAAAAAAAAABAAADgP+AAAAEAAAAAAADQAABAAAAAAAAAAAAAAAAAAAABQQAAAAAAAAAAAAAAAIAAAAEAADAAAAAAAAKABQAHgAsAAEAAAAFAAMAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAOAK4AAQAAAAAAAQAMAAAAAQAAAAAAAgAHAI0AAQAAAAAAAwAMAEUAAQAAAAAABAAMAKIAAQAAAAAABQALACQAAQAAAAAABgAMAGkAAQAAAAAACgAaAMYAAwABBAkAAQAYAAwAAwABBAkAAgAOAJQAAwABBAkAAwAYAFEAAwABBAkABAAYAK4AAwABBAkABQAWAC8AAwABBAkABgAYAHUAAwABBAkACgA0AOB3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVWZXJzaW9uIDEuMQBWAGUAcgBzAGkAbwBuACAAMQAuADF3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGV3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVSZWd1bGFyAFIAZQBnAHUAbABhAHJ3ZWItZG9jLWJhc2UAdwBlAGIALQBkAG8AYwAtAGIAYQBzAGVGb250IGdlbmVyYXRlZCBieSBJY29Nb29uLgBGAG8AbgB0ACAAZwBlAG4AZQByAGEAdABlAGQAIABiAHkAIABJAGMAbwBNAG8AbwBuAC4AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format("opentype");
+  font-weight: 400;
+  font-style: normal
+}
+@font-face {
+  font-family: myIconFont_canSVG;
+  src: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxmb250IGlkPSJ3ZWItZG9jLWJhc2UiIGhvcml6LWFkdi14PSIxMDI0Ij48Zm9udC1mYWNlIGFzY2VudD0iODk2IiBkZXNjZW50PSItMTI4IiB1bml0cy1wZXItZW09IjEwMjQiLz48Z2x5cGggZD0iIiBob3Jpei1hZHYteD0iNTEyIiB1bmljb2RlPSImI3gyMDsiLz48Z2x5cGggZD0ibTE5MiA3NzQgNjQwLTM4NEwxOTIgNnoiIHVuaWNvZGU9IiYjeDY5OyIvPjwvZm9udD48L2RlZnM+PC9zdmc+) format("svg");
+  font-weight: 400;
+  font-style: normal
+}
 :active,
 :focus {
   outline: 0
@@ -298,8 +333,7 @@ html {
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-rendering: optimizeLegibility!important;
-  -webkit-font-smoothing: antialiased!important;
-  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased!important
 }
 small,
 sub,
@@ -329,8 +363,7 @@ q {
 }
 sub,
 sup {
-  line-height: 0;
-  vertical-align: baseline
+  line-height: 0
 }
 h4,
 h5,
@@ -438,10 +471,6 @@ dd p,
 li p,
 tr p {
   line-height: 1.2
-}
-.Magazine-date,
-.aa {
-  font-family: monospace
 }
 body {
   background: #1a1a1a;
@@ -583,18 +612,24 @@ dfn {
 .RichLink a,
 .SocialBtns,
 .tl thead th,
+[colspan]:after,
 hr,
 tbody th,
-th {
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
   border-width: 0 0 1px
 }
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
+[colspan]:after,
 h2:after {
-  border-color: #3079ed
+  font-size: .1em;
+  line-height: 0;
+  left: 0;
+  border-style: solid;
+  display: block;
+  position: absolute;
+  content: " ";
+  height: 0
 }
 iframe,
 img {
@@ -687,16 +722,9 @@ h2 {
 }
 h2:after {
   width: 5em;
-  height: 0;
-  font-size: .1em;
-  line-height: 0;
-  position: absolute;
-  left: 0;
   bottom: -2px;
-  border-style: solid;
   border-width: 2px 0 0;
-  content: " ";
-  display: block
+  border-color: #3079ed
 }
 .wn:after {
   background: red!important
@@ -709,12 +737,29 @@ hr {
 tr hr {
   margin: 1em 9%
 }
+[colspan]:after {
+  width: 100%;
+  bottom: -1px
+}
+#blog2slide-root > div > *,
+.ABody h2:after,
+.AHead-labels i,
+.Cover h2:after,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+.tl tbody :empty:after,
+.tl tbody :empty:before,
+tbody:not(:last-child) > tr:last-child >[colspan]:after,
+tfoot [colspan]:after {
+  display: none
+}
 table {
-  width: 94%;
   border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
   border-spacing: 0;
+  width: 94%;
   border-color: #ddd
 }
 caption {
@@ -733,13 +778,23 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd #818181
+}
+thead td[colspan]:after,
+thead th[colspan]:after {
+  left: .5em;
+  width: calc(100% - 1em);
+  border-color: #ddd
 }
 tbody td {
   border-width: 0 .5em 1px
 }
-tbody:not(:last-child) tr:last-child > * {
+tbody td[colspan]:after {
+  left: .5em;
+  width: calc(100% - 1em)
+}
+tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
 }
 #lB .lS,
@@ -771,6 +826,15 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
 blockquote thead td,
 blockquote thead th {
   background: #111;
@@ -778,8 +842,8 @@ blockquote thead th {
 }
 blockquote tbody th {
   background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd
 }
 blockquote td {
   border-color: #ddd #ddd #777
@@ -912,261 +976,19 @@ blockquote hr {
 .ABody h3 {
   padding: 1.4em 0 .6em
 }
+.BlogArchive a,
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.icoLinks a,
+.links a,
+kbd {
+  display: inline-block
+}
 .commonForm-wrap {
   display: block;
   margin: 0 20px 0 8em
-}
-.ico-author,
-.ico-chain,
-.ico-clock,
-.ico-comment,
-.ico-flag,
-.ico-label,
-.ico-pen,
-.ico-sylinder {
-  position: relative;
-  padding-left: 1.2em;
-  display: inline-block;
-  vertical-align: text-top
-}
-.ico-author:after,
-.ico-author:before,
-.ico-chain:after,
-.ico-chain:before,
-.ico-clock:after,
-.ico-clock:before,
-.ico-comment:after,
-.ico-comment:before,
-.ico-flag:after,
-.ico-flag:before,
-.ico-label:after,
-.ico-label:before,
-.ico-pen:after,
-.ico-pen:before,
-.ico-sylinder:after,
-.ico-sylinder:before {
-  text-indent: -1em;
-  position: absolute;
-  border-style: solid;
-  margin-top: .1em;
-  content: " ";
-  display: block
-}
-.ico-clock:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .7em;
-  -khtml-border-radius: .5em;
-  -webkit-border-radius: .5em;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  border-width: .15em;
-  border-color: #777
-}
-.ribbon .ico-author:after,
-.ribbon .ico-author:before,
-.ribbon .ico-chain:after,
-.ribbon .ico-chain:before,
-.ribbon .ico-clock:after,
-.ribbon .ico-clock:before,
-.ribbon .ico-comment:before,
-.ribbon .ico-flag:after,
-.ribbon .ico-flag:before,
-.ribbon .ico-label:before,
-.ribbon .ico-pen:before,
-.ribbon .ico-sylinder:after,
-.ribbon .ico-sylinder:before {
-  border-color: #bbb
-}
-.SocialBtns .fb:active,
-.SocialBtns .fb:focus,
-.SocialBtns .pt:active,
-.SocialBtns .pt:focus,
-:target .ico-author:after,
-:target .ico-author:before,
-:target .ico-chain:after,
-:target .ico-chain:before,
-:target .ico-clock:after,
-:target .ico-clock:before,
-:target .ico-comment:before,
-:target .ico-flag:after,
-:target .ico-flag:before,
-:target .ico-label:before,
-:target .ico-pen:before,
-:target .ico-sylinder:after,
-:target .ico-sylinder:before {
-  border-color: #fff
-}
-.ico-clock:after {
-  top: .2em;
-  left: .43em;
-  width: .23em;
-  height: .23em;
-  border-width: 0 0 .14em .14em;
-  border-color: #777
-}
-.ico-label:before {
-  top: .2em;
-  left: 0;
-  width: .7em;
-  height: 0;
-  border-width: .6em 0 0;
-  border-color: #777
-}
-.ico-label:after {
-  top: .2em;
-  left: .7em;
-  width: 0;
-  height: 0;
-  border-width: .3em 0 .3em .3em;
-  border-color: transparent #777
-}
-a:active .ico-label:after,
-a:focus .ico-label:after {
-  border-color: transparent #f8fbf8
-}
-.ribbon .ico-label:after {
-  border-color: transparent #bbb
-}
-.Pager :active i,
-.Pager :focus i,
-:target .ico-label:after {
-  border-color: transparent #fff
-}
-.ico-author:before {
-  top: 0;
-  left: .3em;
-  width: .45em;
-  height: 0;
-  -khtml-border-radius: .225em;
-  -webkit-border-radius: .225em;
-  -moz-border-radius: .225em;
-  border-radius: .225em;
-  border-width: .225em 0;
-  border-color: #777
-}
-.ico-author:after {
-  top: .5em;
-  left: .1em;
-  width: 0;
-  height: 0;
-  -khtml-border-radius: .3em .3em 0 0;
-  -webkit-border-radius: .3em .3em 0 0;
-  -moz-border-radius: .3em .3em 0 0;
-  border-radius: .3em .3em 0 0;
-  border-width: .5em .4em 0;
-  border-color: #777
-}
-.ico-flag:after,
-.ico-flag:before,
-.ico-pen:before {
-  top: 0;
-  border-color: #777;
-  height: 0
-}
-.ico-flag:before {
-  left: 0;
-  width: .1em;
-  border-width: 1em 0 0
-}
-.ico-flag:after {
-  left: .2em;
-  width: .8em;
-  border-width: .7em 0 0
-}
-.ico-pen:before {
-  left: .25em;
-  width: .5em;
-  border-width: 0 0 .7em
-}
-.ico-pen:after {
-  top: .75em;
-  left: .25em;
-  width: 0;
-  height: 0;
-  border-width: .25em .25em 0;
-  border-color: #777 transparent
-}
-.ico-chain:after,
-.ico-chain:before {
-  width: .3em;
-  height: .3em;
-  -khtml-border-radius: .2em
-}
-a:active .ico-comment:after,
-a:active .ico-pen:after,
-a:focus .ico-comment:after,
-a:focus .ico-pen:after {
-  border-color: #f8fbf8 transparent
-}
-.ribbon .ico-comment:after,
-.ribbon .ico-pen:after {
-  border-color: #bbb transparent
-}
-.Pager-top :active i,
-.Pager-top :focus i,
-:target .ico-comment:after,
-:target .ico-pen:after {
-  border-color: #fff transparent
-}
-.ico-chain:before {
-  top: .05em;
-  left: .05em;
-  -webkit-border-radius: .2em;
-  -moz-border-radius: .2em;
-  border-radius: .2em;
-  border-width: .2em 0 .2em .2em;
-  border-color: #777
-}
-.ico-chain:after {
-  top: .3em;
-  left: .3em;
-  -webkit-border-radius: .2em;
-  -moz-border-radius: .2em;
-  border-radius: .2em;
-  border-width: .2em .2em .2em 0;
-  border-color: #777
-}
-.ico-sylinder:after,
-.ico-sylinder:before {
-  width: .4em;
-  height: .4em;
-  border-color: #777
-}
-.ico-sylinder:before {
-  top: 0;
-  left: .1em;
-  border-width: .25em .2em .35em
-}
-.ico-sylinder:after {
-  top: .15em;
-  left: .2em;
-  border-width: .1em;
-  -khtml-border-radius: .25em;
-  -webkit-border-radius: .25em;
-  -moz-border-radius: .25em;
-  border-radius: .25em
-}
-.ico-comment:before {
-  top: 0;
-  left: 0;
-  width: .7em;
-  height: .45em;
-  -khtml-border-radius: .2em;
-  -webkit-border-radius: .2em;
-  -moz-border-radius: .2em;
-  border-radius: .2em;
-  border-width: .15em;
-  border-color: #777
-}
-.ico-comment:after {
-  top: .65em;
-  left: .3em;
-  width: 0;
-  height: 0;
-  border-width: .35em .2em 0;
-  border-color: #777 transparent
 }
 .medal,
 .medal-bronze,
@@ -1235,6 +1057,43 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
+@font-face {
+  font-family: myIconFont;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc);
+  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
+}
+.ico,
+.icoLinks [href]:before {
+  font-family: myIconFont;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
+}
+.ico path {
+  fill: #111
+}
+a:active .ico path,
+a:focus .ico path {
+  fill: #f8fbf8
+}
+.ribbon .ico path,
+:target .ico path {
+  fill: #fff
+}
 .AAuthor img {
   float: left;
   margin: 0 1em 1em 0
@@ -1251,26 +1110,6 @@ kbd {
   border-width: .2em 0 0;
   color: #3079ed;
   margin: 2em 1.5% 1em
-}
-#blog2slide-root > div > *,
-.ABody h2:after,
-.AHead-labels i,
-.Cover h2:after,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-.tl tbody :empty:after,
-.tl tbody :empty:before {
-  display: none
-}
-.BlogArchive a,
-.BreadcrumbList a,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.links a,
-kbd {
-  display: inline-block
 }
 .ABody h3 {
   font-weight: 700;
@@ -1715,7 +1554,7 @@ blockquote[cite]:after {
 tr .box > p:first-of-type {
   margin-top: auto
 }
-.box > p:first-of-type,body:nth-child(n0) {
+.box > p:first-of-type,body[n0]:nth-child(n0) {
   margin-top: auto
 }
 .box dl,
@@ -1764,6 +1603,38 @@ pre var {
   padding: 0;
   margin: 0
 }
+.icoLinks {
+  list-style: none
+}
+.icoLinks [href]:before {
+  position: relative;
+  left: -.5em;
+  width: 1em;
+  text-align: center;
+  text-decoration: none;
+  height: 1.4em;
+  line-height: 1.4;
+  content: "🔗"
+}
+.icoLinks [href^="/"]:not([href^="//"]):before {
+  content: "🏠"
+}
+.icoLinks [href*="://web.archive."]:before {
+  content: "🏛"
+}
+.icoLinks [href*="://youtu.be"]:before,
+.icoLinks [href*="://youtube."]:before {
+  content: "📺"
+}
+.icoLinks [href*="://m.twitter."]:before,
+.icoLinks [href*="://t.co"]:before,
+.icoLinks [href*="://twitter."]:before {
+  content: "🕊"
+}
+.icoLinks [href*=".github."]:before,
+.icoLinks [href*="://github.com"]:before {
+  content: "\eab0"
+}
 @-moz-document url-prefix() {
   .Magazine-label,
   .Magazine-main,
@@ -1780,7 +1651,6 @@ pre var {
 }
 .links [href]:before {
   content: ">";
-  position: relative;
   left: -.5em;
   width: 1em;
   text-align: center;
@@ -1913,6 +1783,10 @@ dl.note dd {
   display: inline-block;
   border-color: transparent #777
 }
+.Pager :active i,
+.Pager :focus i {
+  border-color: transparent #fff
+}
 .Pager-next i {
   margin-right: .5em;
   border-width: .5em .7em .5em 0
@@ -1925,6 +1799,10 @@ dl.note dd {
   margin-right: .5em;
   border-width: 0 .45em .9em;
   border-color: #777 transparent
+}
+.Pager-top :active i,
+.Pager-top :focus i {
+  border-color: #fff transparent
 }
 .SocialBtns {
   padding: 1em 0 .5em;
@@ -1950,6 +1828,12 @@ dl.note dd {
   background: #fff;
   border-color: #3b5999;
   color: #3b5999
+}
+.SocialBtns .fb:active,
+.SocialBtns .fb:focus,
+.SocialBtns .pt:active,
+.SocialBtns .pt:focus {
+  border-color: #fff
 }
 .SocialBtns .hb:link {
   background: #008fde;
@@ -2705,6 +2589,11 @@ only screen and (max-width:240px) {
 @media handheld,
 only screen and (prefers-color-scheme:dark),
 only screen and (max-width:240px) {
+  :link:hover,
+  blockquote tbody :hover td[colspan]:after,
+  tbody :hover td[colspan]:after {
+    border-color: #3079ed
+  }
   .SearchResult :visited,
   .js-generated-link-in-blockquote,
   .tl tbody tr th :link,
@@ -2779,8 +2668,7 @@ only screen and (max-width:240px) {
     border-color: #000
   }
   :link:hover {
-    color: #3079ed;
-    border-color: #3079ed
+    color: #3079ed
   }
   :visited:hover {
     color: #c8e;
@@ -2793,19 +2681,6 @@ only screen and (max-width:240px) {
   kbd {
     border-color: #eee
   }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
   blockquote .tl tbody td:before,
   blockquote .tl td,
   blockquote .tl tfoot td,
@@ -2814,6 +2689,7 @@ only screen and (max-width:240px) {
   blockquote .tl thead th,
   blockquote blockquote,
   blockquote table,
+  blockquote td[colspan]:after,
   h5,
   h6 {
     border-color: #999
@@ -2851,14 +2727,27 @@ only screen and (max-width:240px) {
   .tl thead td,
   .tl thead th,
   blockquote .tl tbody td:after,
-  table {
+  blockquote tbody th[colspan]:after,
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after,
+  table,
+  td[colspan]:after,
+  thead td[colspan]:after,
+  thead th[colspan]:after {
     border-color: #222
   }
   thead td,
   thead th {
     background: #999;
-    border-color: #222 #8d8d8d;
-    color: #000
+    color: #000;
+    border-color: #222 #8d8d8d
+  }
+  .baseColor .btn:active,
+  .baseColor .btn:focus,
+  .tl tbody td:after,
+  tbody th,
+  tbody th[colspan]:after {
+    border-color: #000
   }
   .BlogArchive,
   .BlogArchive tbody :hover td,
@@ -2876,12 +2765,6 @@ only screen and (max-width:240px) {
   thead :link:hover {
     color: #000
   }
-  .baseColor .btn:active,
-  .baseColor .btn:focus,
-  .tl tbody td:after,
-  tbody th {
-    border-color: #000
-  }
   td {
     border-color: #000 #000 #222
   }
@@ -2896,8 +2779,8 @@ only screen and (max-width:240px) {
   }
   blockquote tbody th {
     background: #999;
-    border-color: #222;
-    color: #000
+    color: #000;
+    border-color: #222
   }
   blockquote td {
     border-color: #222 #222 #999
@@ -2928,15 +2811,6 @@ only screen and (max-width:240px) {
     border-color: #eee;
     color: #eee
   }
-  .Pager i,
-  .ico-label:after {
-    border-color: transparent #999
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after {
-    border-color: #999 transparent
-  }
   .medal {
     border-color: #222;
     background: #222;
@@ -2947,6 +2821,9 @@ only screen and (max-width:240px) {
     border-color: #999;
     background: #999;
     color: #000
+  }
+  .ico path {
+    fill: #eee
   }
   .AHead,
   .BreadcrumbList,
@@ -2981,6 +2858,12 @@ only screen and (max-width:240px) {
   .tl tbody tr th :visited:hover,
   .tl thead tr :visited:hover {
     color: #c8e
+  }
+  .Pager i {
+    border-color: transparent #999
+  }
+  .Pager-top i {
+    border-color: #999 transparent
   }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
@@ -3181,6 +3064,36 @@ only screen and (max-width:240px) {
     }
   }
 }
+@media all and (-webkit-min-device-pixel-ratio:0) {
+  body,
+  input,
+  textarea {
+    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  }
+}
+@media all\0 {
+  body,
+  input,
+  textarea {
+    font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3,
+  .ABody h4,
+  .ABody h5,
+  .ABody h6,
+  .AHead h1 {
+    transform: rotate(.03deg);
+    font-weight: 700
+  }
+  .Magazine-sep-inner {
+    display: block!important
+  }
+  #blog2slide-root:-ms-fullscreen {
+    background: #f8fbf8
+  }
+}
 @media print {
   .LinkList a,
   .Magazine-item,
@@ -3217,22 +3130,24 @@ only screen and (max-width:240px) {
     break-after: avoid-page;
     page-break-after: avoid
   }
+  blockquote code,
+  blockquote table,
+  blockquote td[colspan]:after,
+  blockquote var,
   tbody th,
+  tbody th code,
+  tbody th var,
+  tbody th[colspan]:after,
+  thead code,
   thead td,
-  thead th {
-    background: #ccc;
+  thead th,
+  thead var {
     border-color: #666
-  }
-  blockquote thead td,
-  blockquote thead th,
-  thead td,
-  thead th {
-    padding: .5em;
-    border-width: 0 0 1px
   }
   *,
   .ribbon *,
-  table {
+  table,
+  td[colspan]:after {
     border-color: #ccc
   }
   blockquote,
@@ -3242,10 +3157,6 @@ only screen and (max-width:240px) {
   code .typ,
   th {
     font-weight: 700
-  }
-  .js-generated-link-in-blockquote a:after,
-  blockquote:before a:after {
-    display: none
   }
   p {
     line-height: 1.5
@@ -3275,11 +3186,20 @@ only screen and (max-width:240px) {
   table {
     width: 100%
   }
-  .AHead-labels,
-  code .pln,
   thead td,
   thead th {
-    color: #000
+    background: #ccc;
+    color: #000;
+    padding: .5em;
+    border-width: 0 0 1px
+  }
+  thead td[colspan]:after,
+  thead th[colspan]:after {
+    border-color: #666;
+    border-width: 0 0 1px
+  }
+  tbody th {
+    background: #ccc
   }
   td {
     border-color: #fff #fff #ccc
@@ -3288,47 +3208,27 @@ only screen and (max-width:240px) {
   tfoot th {
     border-color: #666 #fff
   }
-  .ico-author:after,
-  .ico-author:before,
-  .ico-chain:after,
-  .ico-chain:before,
-  .ico-clock:after,
-  .ico-clock:before,
-  .ico-comment:before,
-  .ico-flag:after,
-  .ico-flag:before,
-  .ico-label:before,
-  .ico-pen:before,
-  .ico-sylinder:after,
-  .ico-sylinder:before,
-  .ribbon .ico-author:after,
-  .ribbon .ico-author:before,
-  .ribbon .ico-chain:after,
-  .ribbon .ico-chain:before,
-  .ribbon .ico-clock:after,
-  .ribbon .ico-clock:before,
-  .ribbon .ico-comment:before,
-  .ribbon .ico-flag:after,
-  .ribbon .ico-flag:before,
-  .ribbon .ico-label:before,
-  .ribbon .ico-pen:before,
-  .ribbon .ico-sylinder:after,
-  .ribbon .ico-sylinder:before,
-  blockquote code,
-  blockquote table,
-  blockquote var,
-  tbody th code,
-  tbody th var,
-  thead code,
-  thead var {
-    border-color: #666
-  }
-  blockquote tbody th,
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
+    color: #000;
+    padding: .5em;
     border-color: #000;
-    color: #000
+    border-width: 0 0 1px
+  }
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after {
+    border-color: #000;
+    border-width: 0 0 1px
+  }
+  blockquote tbody th {
+    background: #ccc;
+    color: #000;
+    border-color: #000
+  }
+  blockquote tbody th[colspan]:after,
+  kbd {
+    border-color: #000
   }
   blockquote td {
     border-color: #fff #fff #666
@@ -3343,10 +3243,6 @@ only screen and (max-width:240px) {
     background: #fff;
     color: #000
   }
-  .AHead,
-  .BreadcrumbList {
-    color: #666!important
-  }
   #lF .lX {
     border-top: .15em solid #000
   }
@@ -3357,6 +3253,7 @@ only screen and (max-width:240px) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
+  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -3373,18 +3270,15 @@ only screen and (max-width:240px) {
   [href^="tel:"]:after {
     display: none
   }
-  .ico-label:after,
-  .ribbon .ico-label:after {
-    border-color: transparent #666
-  }
-  .ico-comment:after,
-  .ico-pen:after,
-  .ribbon .ico-comment:after,
-  .ribbon .ico-pen:after {
-    border-color: #666 transparent
+  .ico path,
+  .ribbon .ico path {
+    fill: #000
   }
   .ABody {
     padding: 0 0 2em
+  }
+  .AHead {
+    color: #666!important
   }
   .lMz .AHead {
     padding: 0 3%
@@ -3392,6 +3286,10 @@ only screen and (max-width:240px) {
   .AHead h1 {
     color: #000!important;
     padding: 1em 0
+  }
+  .AHead-labels,
+  code .pln {
+    color: #000
   }
   .AHead-labels i {
     display: inline-block
@@ -3412,7 +3310,8 @@ only screen and (max-width:240px) {
   }
   .BreadcrumbList {
     font-size: .83em;
-    padding: .5em 0
+    padding: .5em 0;
+    color: #666!important
   }
   .Cover h2 {
     margin-top: 1em
@@ -3443,9 +3342,6 @@ only screen and (max-width:240px) {
   }
   body {
     word-break: break-all
-  }
-  kbd {
-    border-color: #000
   }
   code,
   var {
@@ -3494,36 +3390,6 @@ only screen and (max-width:240px) {
     }
   }
 }
-@media all and (-webkit-min-device-pixel-ratio:0) {
-  body,
-  input,
-  textarea {
-    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
-  }
-}
-@media all\0 {
-  body,
-  input,
-  textarea {
-    font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
-  }
-  .ABody h1,
-  .ABody h2,
-  .ABody h3,
-  .ABody h4,
-  .ABody h5,
-  .ABody h6,
-  .AHead h1 {
-    transform: rotate(.03deg);
-    font-weight: 700
-  }
-  .Magazine-sep-inner {
-    display: block!important
-  }
-  #blog2slide-root:-ms-fullscreen {
-    background: #f8fbf8
-  }
-}
 @media (prefers-reduced-motion:reduce) {
   .js-captioned-thumbnail,
   .js-pica-thumbnail img,
@@ -3535,12 +3401,7 @@ only screen and (max-width:240px) {
   }
 }
 @media only screen and (-ms-high-contrast:active) {
-  .ico-label:after {
-    border-color: transparent currentColor
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after {
+  .Pager-top i {
     border-color: currentColor transparent
   }
 }
@@ -3556,6 +3417,12 @@ only screen and (-ms-high-contrast:active) {
   form :focus,
   td {
     border-style: dotted
+  }
+  thead td,
+  thead td[colspan]:after,
+  thead th,
+  thead th[colspan]:after {
+    border-width: 0 0 2px
   }
   table,
   tfoot td {
@@ -3578,6 +3445,12 @@ only screen and (-ms-high-contrast:active) {
   tfoot td {
     border-color: currentColor Window
   }
+  .tl td,
+  .tl tfoot td,
+  td[colspan]:after,
+  tfoot td[colspan]:after {
+    border-color: currentColor
+  }
   table {
     border-spacing: 2px;
     border-collapse: separate
@@ -3591,11 +3464,14 @@ only screen and (-ms-high-contrast:active) {
   }
   thead td,
   thead th {
-    border-width: 0 0 2px;
     padding: .5em
   }
-  tbody td {
+  tbody td,
+  tbody td[colspan]:after {
     border-width: 0 0 1px
+  }
+  .ico path {
+    fill: currentColor
   }
   .RichLink a {
     border-width: 0
@@ -3606,10 +3482,6 @@ only screen and (-ms-high-contrast:active) {
   .tl {
     border-collapse: collapse
   }
-  .tl td,
-  .tl tfoot td {
-    border-color: currentColor
-  }
   .Pager i {
     border-color: Window currentColor
   }
@@ -3619,12 +3491,7 @@ only screen and (-ms-high-contrast:active) {
   }
 }
 @media only screen and (forced-colors:active) {
-  .ico-label:after {
-    border-color: Window currentColor
-  }
-  .Pager-top i,
-  .ico-comment:after,
-  .ico-pen:after {
+  .Pager-top i {
     border-color: currentColor Window
   }
 }

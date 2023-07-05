@@ -9,7 +9,8 @@ input {
 .SocialBtns .tw:focus,
 .baseColor .btn:focus,
 a,
-a img {
+a img,
+tbody th[colspan]:after {
   border-color: #f8fbf8
 }
 blockquote .tl td,
@@ -20,6 +21,7 @@ blockquote .tl thead th,
 blockquote blockquote,
 blockquote hr,
 blockquote table,
+blockquote td[colspan]:after,
 h5,
 h6 {
   border-color: #777
@@ -42,9 +44,15 @@ tr ul {
 .lS2 {
   width: 48.5%
 }
+.ico svg,
+sub,
+sup {
+  vertical-align: baseline
+}
 .Cover-img,
 .Magazine-main,
 .Search,
+[colspan],
 h2,
 sub,
 sup {
@@ -57,22 +65,6 @@ sup {
 .links,
 pre {
   white-space: pre-wrap
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-dt {
-  font-weight: 700
-}
-.RichLink b,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 .js-generated-link-in-blockquote,
 blockquote:before {
@@ -121,9 +113,12 @@ var {
 *,
 blockquote :link img,
 blockquote :visited img,
+blockquote tbody th[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after,
 hr,
 input,
-table,
+td[colspan]:after,
 textarea {
   border-color: #ddd
 }
@@ -205,7 +200,16 @@ html {
   height: 100%
 }
 dt {
+  font-weight: 700;
   margin-top: .7em
+}
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 blockquote,
 q {
@@ -213,8 +217,7 @@ q {
 }
 sub,
 sup {
-  line-height: 0;
-  vertical-align: baseline
+  line-height: 0
 }
 h4,
 h5,
@@ -222,13 +225,6 @@ h6,
 input,
 textarea {
   font-size: 1em
-}
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
 }
 sup {
   top: -.5em
@@ -409,26 +405,33 @@ dfn {
 .Pager,
 .SocialBtns,
 .tl thead th,
+[colspan]:after,
 hr,
 tbody th,
-th {
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
   border-width: 0 0 1px
+}
+h2:after,
+tfoot th {
+  border-width: 2px 0 0
 }
 .btn,
 input,
 textarea {
   border-width: .1em
 }
-h2:after,
-tfoot th {
-  border-width: 2px 0 0
-}
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover th,
+[colspan]:after,
 h2:after {
-  border-color: #3079ed
+  font-size: .1em;
+  line-height: 0;
+  left: 0;
+  border-style: solid;
+  content: " ";
+  display: block;
+  height: 0;
+  position: absolute
 }
 iframe,
 img {
@@ -495,25 +498,6 @@ h2 {
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
-h2:after {
-  width: 5em;
-  height: 0;
-  font-size: .1em;
-  line-height: 0;
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  border-style: solid;
-  content: " ";
-  display: block
-}
-.wn:after {
-  background: red!important
-}
-hr {
-  height: 0;
-  margin: 2em 6%
-}
 #lB .lS,
 #lE,
 #lF,
@@ -522,14 +506,40 @@ hr {
 table {
   border-width: 1px 0 0
 }
+h2:after {
+  width: 5em;
+  bottom: -2px;
+  border-color: #3079ed
+}
+.wn:after {
+  background: red!important
+}
+hr {
+  height: 0;
+  margin: 2em 6%
+}
 tr hr {
   margin: 1em 9%
 }
+[colspan]:after {
+  width: 100%;
+  bottom: -1px
+}
+.ABody h2:after,
+.AHead-labels i,
+.Cover h2:after,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+tfoot [colspan]:after {
+  display: none
+}
 table {
-  width: 94%;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0
+  border-spacing: 0;
+  width: 94%;
+  border-color: #ddd
 }
 caption {
   margin: 1.5em 3% .7em
@@ -547,15 +557,36 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd #818181
 }
-tbody th {
-  background: #ddd;
-  border-color: #f8fbf8
+thead td[colspan]:after,
+thead th[colspan]:after {
+  left: .5em;
+  width: calc(100% - 1em);
+  border-color: #ddd
+}
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
 }
 tbody td {
   border-width: 0 .5em 1px
+}
+tbody td[colspan]:after {
+  left: .5em;
+  width: calc(100% - 1em)
 }
 tfoot td {
   border-width: 2px .5em 0
@@ -573,6 +604,10 @@ thead :link,
 thead :link:hover {
   color: #f8fbf8
 }
+tbody th {
+  background: #ddd;
+  border-color: #f8fbf8
+}
 tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
@@ -584,8 +619,8 @@ blockquote thead th {
 }
 blockquote tbody th {
   background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd
 }
 blockquote td {
   border-color: #ddd #ddd #777
@@ -796,6 +831,16 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
+.ico path {
+  fill: #111
+}
+a:active .ico path,
+a:focus .ico path {
+  fill: #f8fbf8
+}
+.ribbon .ico path {
+  fill: #fff
+}
 .AAuthor img {
   float: left;
   margin: 0 1em 1em 0
@@ -813,15 +858,8 @@ kbd {
   color: #3079ed;
   margin: 2em 1.5% 1em
 }
-.ABody h2:after,
-.AHead-labels i,
-.Cover h2:after,
-.Magazine-m,
-.Magazine-y,
-.RichLink br {
-  display: none
-}
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -894,6 +932,7 @@ kbd {
 .Cover-meta span,
 .RichLink-meta span,
 .TxtNavi a,
+.icoLinks a,
 .links a,
 kbd {
   display: inline-block
@@ -990,6 +1029,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1010,6 +1050,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1075,6 +1116,7 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1273,6 +1315,22 @@ a:focus code,
 a:focus var {
   background: Highlight
 }
+.icoLinks {
+  list-style: none
+}
+.icoLinks [href]:before {
+  position: relative;
+  left: -.5em;
+  width: 1em;
+  text-align: center;
+  text-decoration: none;
+  content: ">";
+  font-weight: 700
+}
+.icoLinks [href*="://web.archive."]:before,
+.links [href*="/web.archive."]:before {
+  content: "*"
+}
 .links a {
   padding-left: 1em;
   position: relative
@@ -1282,10 +1340,8 @@ a:focus var {
   position: relative;
   left: -.5em;
   width: 1em;
-  text-align: center
-}
-.links [href*="/web.archive."]:before {
-  content: "*"
+  text-align: center;
+  font-weight: 700
 }
 .note {
   padding-left: 25%
@@ -1980,6 +2036,11 @@ screen and (max-width:240px) {
   h6 {
     color: #999
   }
+  :link:hover,
+  blockquote tbody :hover td[colspan]:after,
+  tbody :hover td[colspan]:after {
+    border-color: #3079ed
+  }
   .js-generated-link-in-blockquote,
   blockquote:before {
     margin: 0;
@@ -2068,7 +2129,8 @@ screen and (max-width:240px) {
   }
   .baseColor .btn:focus,
   a,
-  tbody th {
+  tbody th,
+  tbody th[colspan]:after {
     border-color: #000
   }
   .SearchResult :visited,
@@ -2092,8 +2154,7 @@ screen and (max-width:240px) {
     color: #eee
   }
   :link:hover {
-    color: #3079ed;
-    border-color: #3079ed
+    color: #3079ed
   }
   :visited:hover {
     color: #c8e;
@@ -2139,6 +2200,7 @@ screen and (max-width:240px) {
   blockquote blockquote,
   blockquote hr,
   blockquote table,
+  blockquote td[colspan]:after,
   h5,
   h6 {
     border-color: #999
@@ -2150,8 +2212,14 @@ screen and (max-width:240px) {
   .tl tfoot th,
   .tl thead td,
   .tl thead th,
+  blockquote tbody th[colspan]:after,
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after,
   hr,
-  table {
+  table,
+  td[colspan]:after,
+  thead td[colspan]:after,
+  thead th[colspan]:after {
     border-color: #222
   }
   .ABody h1,
@@ -2174,8 +2242,8 @@ screen and (max-width:240px) {
   thead td,
   thead th {
     background: #999;
-    border-color: #222 #8d8d8d;
-    color: #000
+    color: #000;
+    border-color: #222 #8d8d8d
   }
   .BlogArchive,
   .BlogArchive tbody :hover td,
@@ -2207,8 +2275,8 @@ screen and (max-width:240px) {
   }
   blockquote tbody th {
     background: #999;
-    border-color: #222;
-    color: #000
+    color: #000;
+    border-color: #222
   }
   blockquote td {
     border-color: #222 #222 #999
@@ -2254,6 +2322,9 @@ screen and (max-width:240px) {
   }
   .mspacer {
     margin: .6em 0!important
+  }
+  .ico path {
+    fill: #eee
   }
   .ABody h1 {
     margin: 3em 0
@@ -2369,10 +2440,12 @@ screen and (max-width:240px) {
   }
   blockquote code,
   blockquote table,
+  blockquote td[colspan]:after,
   blockquote var,
   tbody th,
   tbody th code,
   tbody th var,
+  tbody th[colspan]:after,
   thead code,
   thead td,
   thead th,
@@ -2381,7 +2454,8 @@ screen and (max-width:240px) {
   }
   *,
   .ribbon *,
-  table {
+  table,
+  td[colspan]:after {
     border-color: #ccc
   }
   blockquote,
@@ -2391,10 +2465,6 @@ screen and (max-width:240px) {
   code .typ,
   th {
     font-weight: 700
-  }
-  .js-generated-link-in-blockquote a:after,
-  blockquote:before a:after {
-    display: none
   }
   p {
     line-height: 1.5
@@ -2431,6 +2501,11 @@ screen and (max-width:240px) {
     padding: .5em;
     border-width: 0 0 1px
   }
+  thead td[colspan]:after,
+  thead th[colspan]:after {
+    border-color: #666;
+    border-width: 0 0 1px
+  }
   tbody th {
     background: #ccc
   }
@@ -2444,15 +2519,24 @@ screen and (max-width:240px) {
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
-    border-color: #000;
     color: #000;
     padding: .5em;
+    border-color: #000;
+    border-width: 0 0 1px
+  }
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after {
+    border-color: #000;
     border-width: 0 0 1px
   }
   blockquote tbody th {
     background: #ccc;
-    border-color: #000;
-    color: #000
+    color: #000;
+    border-color: #000
+  }
+  blockquote tbody th[colspan]:after,
+  kbd {
+    border-color: #000
   }
   blockquote td {
     border-color: #fff #fff #666
@@ -2477,6 +2561,7 @@ screen and (max-width:240px) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
+  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -2492,6 +2577,10 @@ screen and (max-width:240px) {
   [href^="mailto:"]:after,
   [href^="tel:"]:after {
     display: none
+  }
+  .ico path,
+  .ribbon .ico path {
+    fill: #000
   }
   .ABody {
     padding: 0 0 2em
@@ -2555,9 +2644,6 @@ screen and (max-width:240px) {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
-  }
-  kbd {
-    border-color: #000
   }
   code,
   var {

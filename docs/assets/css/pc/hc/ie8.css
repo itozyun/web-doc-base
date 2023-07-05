@@ -10,6 +10,12 @@ form :focus,
 td {
   border-style: dotted
 }
+thead td,
+thead td[colspan]:after,
+thead th,
+thead th[colspan]:after {
+  border-width: 0 0 2px
+}
 table,
 tfoot td {
   border-width: 2px 0 0
@@ -37,10 +43,10 @@ td {
 }
 thead td,
 thead th {
-  border-width: 0 0 2px;
   padding: .5em
 }
-tbody td {
+tbody td,
+tbody td[colspan]:after {
   border-width: 0 0 1px
 }
 tfoot tr:first-child td,

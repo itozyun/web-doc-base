@@ -47,6 +47,11 @@ tbody th {
 .lS2 {
   width: 48.5%
 }
+.ico svg,
+sub,
+sup {
+  vertical-align: baseline
+}
 .Cover-img,
 .Magazine-main,
 .Search,
@@ -194,8 +199,7 @@ dt {
 }
 sub,
 sup {
-  line-height: 0;
-  vertical-align: baseline
+  line-height: 0
 }
 .Header,
 .Header h1,
@@ -210,13 +214,6 @@ h6,
 input,
 textarea {
   font-size: 1em
-}
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
 }
 sup {
   top: -.5em
@@ -366,21 +363,12 @@ th:target {
 li:target {
   color: inherit!important
 }
-.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6,
-th {
+h6 {
   font-weight: 400
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-h2 {
-  font-weight: 700
 }
 h4,
 h5,
@@ -439,16 +427,6 @@ a iframe,
 a img {
   display: block
 }
-.BreadcrumbList a,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.btn,
-.links a,
-hr,
-kbd {
-  display: -moz-inline-box
-}
 ol,
 ul {
   padding-left: 2em
@@ -504,29 +482,32 @@ textarea {
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em
+  font-size: 1.1em;
+  font-weight: 700
 }
 .wn {
   color: red!important
 }
 hr {
   height: 0;
-  margin: 2em 6%
+  margin: 2em 6%;
+  display: -moz-inline-box
 }
 tr hr {
   margin: 1em 9%
 }
 table {
-  width: 94%;
   border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
-  border-spacing: 0
+  border-spacing: 0;
+  width: 94%
 }
 caption {
   margin: 1.5em 3% .7em
 }
 th {
+  font-weight: 400;
   text-align: left;
   padding: .5em
 }
@@ -539,13 +520,20 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd #818181
+}
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
 }
 tbody td {
   border-width: 0 .5em 1px
 }
-tbody:not(:last-child) tr:last-child > * {
+tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
 }
 #lB .lS,
@@ -554,6 +542,13 @@ tbody:not(:last-child) tr:last-child > * {
 #lF .lX,
 .tl tfoot th {
   border-width: 1px 0 0
+}
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+tbody:not(:last-child) > tr:last-child >[colspan]:after {
+  display: none
 }
 tfoot th {
   border-width: 2px 0 0
@@ -585,8 +580,8 @@ blockquote thead th {
 }
 blockquote tbody th {
   background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd
 }
 blockquote td {
   border-color: #ddd #ddd #777
@@ -672,6 +667,7 @@ strong {
   padding-right: 3%
 }
 .btn {
+  display: -moz-inline-box;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -796,6 +792,17 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
+.ico path {
+  fill: #111
+}
+a:active .ico path,
+a:focus .ico path {
+  fill: #f8fbf8
+}
+.ribbon .ico path,
+:target .ico path {
+  fill: #fff
+}
 .AAuthor img {
   float: left;
   margin: 0 1em 1em 0
@@ -814,6 +821,7 @@ kbd {
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -835,12 +843,6 @@ kbd {
 .AHead-labels {
   margin-top: .5em;
   color: #1a1a1a
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br {
-  display: none
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -887,6 +889,15 @@ kbd {
 .BreadcrumbList {
   padding: 1em 0;
   color: #777
+}
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.icoLinks a,
+.links a,
+kbd {
+  display: -moz-inline-box
 }
 .Comment h3,
 .SearchResult h3 {
@@ -980,6 +991,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -999,6 +1011,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1065,6 +1078,7 @@ kbd {
 }
 .RichLink b {
   display: block;
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1255,12 +1269,19 @@ pre var {
   padding: 0;
   margin: 0
 }
-.links [href]:before {
-  content: ">"
+.icoLinks {
+  list-style: none
 }
+.icoLinks [href]:before,
+.links [href]:before {
+  content: ">";
+  font-weight: 700
+}
+.icoLinks [href^="/"]:not([href^="//"]):before,
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
 }
+.icoLinks [href*="://web.archive."]:before,
 .links [href*="/web.archive."]:before {
   content: "*"
 }
@@ -1610,10 +1631,6 @@ ol.linenums {
   th {
     font-weight: 700
   }
-  .js-generated-link-in-blockquote a:after,
-  blockquote:before a:after {
-    display: none
-  }
   p {
     line-height: 1.5
   }
@@ -1662,15 +1679,15 @@ ol.linenums {
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
-    border-color: #000;
     color: #000;
     padding: .5em;
+    border-color: #000;
     border-width: 0 0 1px
   }
   blockquote tbody th {
     background: #ccc;
-    border-color: #000;
-    color: #000
+    color: #000;
+    border-color: #000
   }
   blockquote td {
     border-color: #fff #fff #666
@@ -1695,6 +1712,7 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
+  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -1710,6 +1728,10 @@ ol.linenums {
   [href^="mailto:"]:after,
   [href^="tel:"]:after {
     display: none
+  }
+  .ico path,
+  .ribbon .ico path {
+    fill: #000
   }
   .ABody {
     padding: 0 0 2em

@@ -317,21 +317,12 @@ form :focus {
   color: #515;
   border-color: #515
 }
-.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6,
-th {
+h6 {
   font-weight: 400
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-h2 {
-  font-weight: 700
 }
 h4,
 h5,
@@ -451,7 +442,8 @@ textarea {
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em
+  font-size: 1.1em;
+  font-weight: 700
 }
 .wn {
   color: red!important
@@ -474,6 +466,7 @@ caption {
   margin: 1.5em 1em .7em
 }
 th {
+  font-weight: 400;
   padding: .5em
 }
 td {
@@ -485,14 +478,21 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  border-color: #ddd #818181;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd #818181
 }
 tbody td {
   border-width: 0 .5em 1px
 }
-tbody:not(:last-child) tr:last-child > * {
+tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
+}
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br,
+tbody:not(:last-child) > tr:last-child >[colspan]:after {
+  display: none
 }
 tfoot th {
   border-width: 2px 0 0
@@ -524,8 +524,8 @@ blockquote thead th {
 }
 blockquote tbody th {
   background: #777;
-  border-color: #ddd;
-  color: #f8fbf8
+  color: #f8fbf8;
+  border-color: #ddd
 }
 blockquote td {
   border-color: #ddd #ddd #777
@@ -751,6 +751,7 @@ kbd {
   margin: 2em 0 1em
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
@@ -768,12 +769,6 @@ kbd {
 .AHead-labels {
   margin-top: .5em;
   color: #f1f4f1
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br {
-  display: none
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -909,6 +904,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -929,6 +925,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -993,6 +990,7 @@ kbd {
   padding: 0 0 1em .6em
 }
 .RichLink b {
+  font-weight: 400;
   font-size: .875em;
   padding: 0 0 1.143em
 }
@@ -1168,12 +1166,19 @@ pre var {
   padding: 0;
   margin: 0
 }
-.links [href]:before {
-  content: ">"
+.icoLinks {
+  list-style: none
 }
+.icoLinks [href]:before,
+.links [href]:before {
+  content: ">";
+  font-weight: 700
+}
+.icoLinks [href^="/"]:not([href^="//"]):before,
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
 }
+.icoLinks [href*="://web.archive."]:before,
 .links [href*="/web.archive."]:before {
   content: "*"
 }
@@ -1533,10 +1538,6 @@ ol.linenums {
   blockquote:before {
     margin: 0 1.5%
   }
-  .js-generated-link-in-blockquote a:after,
-  blockquote:before a:after {
-    display: none
-  }
   p {
     line-height: 1.5
   }
@@ -1619,15 +1620,15 @@ ol.linenums {
   blockquote thead td,
   blockquote thead th {
     background: #ccc;
-    border-color: #000;
     color: #000;
     padding: .5em;
+    border-color: #000;
     border-width: 0 0 1px
   }
   blockquote tbody th {
     background: #ccc;
-    border-color: #000;
-    color: #000
+    color: #000;
+    border-color: #000
   }
   blockquote td {
     border-color: #fff #fff #666
@@ -1658,6 +1659,7 @@ ol.linenums {
   .Pager,
   .SocialBtns,
   .TxtNavi,
+  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,

@@ -47,6 +47,9 @@ thead th {
 tbody td {
   border-width: 0 0 1px
 }
+.ico path {
+  fill: currentColor
+}
 .RichLink a {
   border-width: 0
 }
