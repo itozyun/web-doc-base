@@ -13,14 +13,14 @@ module.exports = {
     main : function( opt_jsFilePath ){
         jsFilePath   = opt_jsFilePath;
         scssFileName = '';
-        svgOriginal    = '';
+        svgOriginal  = '';
         isMainTask   = true;
         return gulpPlugin;
     },
     scssVariable : function( _scssFileName ){
         scssFileName = _scssFileName;
         jsFilePath   = '';
-        svgOriginal    = '';
+        svgOriginal  = '';
         isMainTask   = false;
         return gulpPlugin;
     }
@@ -34,13 +34,13 @@ const PluginError  = require( 'plugin-error' ),
       FONT_BUFFERS = {},
       CSS_FILES    = {};
 
-const BASE64_PRE = {
-    'eot'   : 'data:application/octet-stream;base64,',
-    'woff'  : 'data:application/x-font-woff;charset=utf-8;base64,',
-    'woff2' : 'data:application/x-font-woff2;charset=utf-8;base64,',
-    'ttf'   : 'data:application/x-font-ttf;charset=utf-8;base64,',
-    'otf'   : 'data:application/x-font-otf;charset=utf-8;base64,',
-    'svg'   : 'data:image/svg+xml;charset=utf-8;base64,'
+const DATA_MINETYPE_CHARSET_BASE64 = {
+    'eot'   : 'data:font/eot;base64,',
+    'woff'  : 'data:font/woff;base64,',
+    'woff2' : 'data:font/woff2;base64,',
+    'ttf'   : 'data:font/ttf;base64,',
+    'otf'   : 'data:font/otf;base64,',
+    'svg'   : 'data:image/svg+xml;base64,'
 };
 
 const WEBFONT_FORMAT = {
@@ -48,7 +48,7 @@ const WEBFONT_FORMAT = {
     'woff'  : 'woff',
     'woff2' : 'woff2',
     'ttf'   : 'truetype',
-    'otf'   : 'otf',
+    'otf'   : 'opentype',
     'svg'   : 'svg'
 };
 
@@ -59,8 +59,8 @@ const SVGO_OPTIONS = {
             params : {
                 overrides : {
                     convertPathData   : { floatPrecision : 0 },
-                    removeXMLProcInst : false,
-                    removeDoctype     : false,
+                    // removeXMLProcInst : false,
+                    // removeDoctype     : false,
                     cleanupAttrs      : false, // unicode=" " の削除を抑止
                     removeEmptyAttrs  : false  // unicode=" ", d="" の削除を抑止
                 }
@@ -142,15 +142,8 @@ const gulpPlugin = require( 'through2' )
                     svg[ i ] = unicode + str.substring( end );
                 };
 
-                // id 属性の削除
-                svg = svg.join( ' unicode="' ).split( ' id="' );
-                for( let i = 1, l = svg.length; i < l; ++i ){
-                    const str = svg[ i ];
-                    svg[ i ] = str.substring( str.indexOf( '"' ) + 1 );
-                };
-
                 // glyph-name 属性の削除
-                svg = svg.join( '' ).split( ' glyph-name="' );
+                svg = svg.join( ' unicode="' ).split( ' glyph-name="' );
                 for( let i = 1, l = svg.length; i < l; ++i ){
                     const str = svg[ i ];
                     svg[ i ] = str.substring( str.indexOf( '"' ) + 1 );
@@ -170,11 +163,12 @@ const gulpPlugin = require( 'through2' )
                         const cssText = file.contents.toString();
                         const start   = 'data:';
                         const end     = "') format('";
+                        const last    = cssText.split( end )[ 1 ];
 
                         file.contents = Buffer.from(
-                            cssText.split( start )[ 0 ] + BASE64_PRE[ extname ] +
+                            cssText.split( start )[ 0 ] + DATA_MINETYPE_CHARSET_BASE64[ extname ] +
                             buffer.toString( 'base64' ) +
-                            end + cssText.split( end )[ 1 ]
+                            end + WEBFONT_FORMAT[ extname ] + "');" + last.split( "');" )[ 1 ]
                         );
                         this.push( file );
                     } else {
@@ -223,7 +217,7 @@ const gulpPlugin = require( 'through2' )
                     extname = extname.substr( 1 );
                     const EXTNAME = extname.toUpperCase();
                     scss += '$WEBFONT_FORMAT_'       + EXTNAME + ' : "' + WEBFONT_FORMAT[ extname ] + '" !default;\n\n';
-                    scss += '$MINIMUM_FONT_DATAURI_' + EXTNAME + ' : "' + BASE64_PRE[ extname ] + base64 + '" !default;\n\n';
+                    scss += '$MINIMUM_FONT_DATAURI_' + EXTNAME + ' : "' + DATA_MINETYPE_CHARSET_BASE64[ extname ] + base64 + '" !default;\n\n';
                 };
 
                 this.push(

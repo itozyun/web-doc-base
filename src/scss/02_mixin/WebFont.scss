@@ -17,14 +17,13 @@
         font-weight : normal;
         font-style  : normal;
     }
-}
-
-@if( $UA_Modern ){
-    @font-face {
-        font-family : 'myIconFont_canWOFF2';
-        src         : url('#{$MINIMUM_FONT_DATAURI_WOFF2}') format('#{$WEBFONT_FORMAT_WOFF2}');
-        font-weight : normal;
-        font-style  : normal;
+    @if( $UA_Modern ){
+        @font-face {
+            font-family : 'myIconFont_canWOFF2';
+            src         : url('#{$MINIMUM_FONT_DATAURI_WOFF2}') format('#{$WEBFONT_FORMAT_WOFF2}');
+            font-weight : normal;
+            font-style  : normal;
+        }
     }
     @font-face {
         font-family : 'myIconFont_canWOFF';
@@ -44,10 +43,12 @@
         font-weight : normal;
         font-style  : normal;
     }
-    @font-face {
-        font-family : 'myIconFont_canSVG';
-        src         : url('#{$MINIMUM_FONT_DATAURI_SVG}') format('#{$WEBFONT_FORMAT_SVG}');
-        font-weight : normal;
-        font-style  : normal;
+    @if( $UA_Modern ){
+        @font-face {
+            font-family : 'myIconFont_canSVG';
+            src         : url('#{$MINIMUM_FONT_DATAURI_SVG}') format('#{$WEBFONT_FORMAT_SVG}');
+            font-weight : normal;
+            font-style  : normal;
+        }
     }
 }
