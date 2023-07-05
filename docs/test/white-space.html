@@ -1,0 +1,654 @@
+<!DOCTYPE html><html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>white space のテスト | web-doc-base</title>
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="HandheldFriendly" content="true">
+<meta name="mobileoptimized" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+</head>
+<body size="1">
+<a href="https://github.com/itozyun/web-doc-base/">github</a>,
+<a href="../">top</a>,
+<a href="attr-selectors.html">属性セレクタのテスト</a>,
+<a href="check-image-loading.html">Check Image loading</a>,
+<a href="clearfix.html">clearfix のテスト</a>,
+<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
+<a href="cssom.html">CSSOM のテスト</a>,
+<a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>,
+<a href="dynamic-script.html">動的 Script のテスト</a>,
+<a href="form.html">フォーム部品の実装状況</a>,
+<a href="icon.html">アイコンのテスト</a>,
+<a href="importHack.html">import のテスト</a>,
+<a href="javascript-implementation.html">Javascript 実装状況と深刻なバグ</a>,
+<a href="richlink.html">RichLink のテスト</a>,
+white space のテスト
+<hr>
+
+<style>
+    .ms-gothic {font-family : "MS PGothic"} /* この指定の有無で Windows 2000+IE5 で豆腐になる文字が変る, sans-serif:20, "MS PGothic":22,  */
+    .serif {font-family: serif;}
+    .monospace {font-family: monospace;}
+</style>
+
+<h1>white space のテスト</h1>
+
+<a href="https://tech-blog.s-yoshiki.com/entry/303" target="_blank" rel="nofollow">[Unicode]スペース以外の見えない空白文字の一覧</a>
+
+<blockquote cite="https://tech-blog.s-yoshiki.com/entry/303" title="[Unicode]スペース以外の見えない空白文字の一覧">
+<table border="1" cellspacing="0">
+<thead>
+<tr>
+<th>Unicode
+<th>実体
+<th>文字実体参照
+<th>数値実体参照
+<th>MS PGothic
+<th>serif
+<th>monospace
+<th>説明
+<th>description
+
+<tbody>
+<tr>
+<td>U+0009
+<td><code>	</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">	</code>
+<td><code class="serif">	</code>
+<td><code class="monospace">	</code>
+<td>水平タブ(長い空白)
+<td>CHARACTER TABULATION
+
+<tr>
+<td>U+0020
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>スペース
+<td>SPACE
+
+<tr>
+<td>U+00A0
+<td><code>&nbsp;</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">&nbsp;</code>
+<td><code class="serif">&nbsp;</code>
+<td><code class="monospace">&nbsp;</code>
+<td>自動改行を防ぐ固定スペース
+<td>NO-BREAK SPACE
+
+<tr>
+<td>U+00AD
+<td><code>­</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">­</code>
+<td><code class="serif">­</code>
+<td><code class="monospace">­</code>
+<td>ソフトハイフン
+<td>SOFT HYPHEN
+
+<tr>
+<td>U+034F
+<td><code>͏</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">͏</code>
+<td><code class="serif">͏</code>
+<td><code class="monospace">͏</code>
+<td>結合文字の作成
+<td>COMBINING GRAPHEME JOINER
+
+<tr>
+<td>U+061C
+<td><code>؜</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">؜</code>
+<td><code class="serif">؜</code>
+<td><code class="monospace">؜</code>
+<td>アラビア文字のテキスト方向
+<td>ARABIC LETTER MARK
+
+<tr>
+<td>U+115F
+<td><code>ᅟ</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">ᅟ</code>
+<td><code class="serif">ᅟ</code>
+<td><code class="monospace">ᅟ</code>
+<td>ハングル朝鮮語フィラー
+<td>HANGUL CHOSEONG FILLER
+
+<tr>
+<td>U+1160
+<td><code>ᅠ</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">ᅠ</code>
+<td><code class="serif">ᅠ</code>
+<td><code class="monospace">ᅠ</code>
+<td>ハングル中文フィラー
+<td>HANGUL JUNGSEONG FILLER
+
+<tr>
+<td>U+17B4
+<td><code>឴</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">឴</code>
+<td><code class="serif">឴</code>
+<td><code class="monospace">឴</code>
+<td>クメール語の母音固有の aq
+<td>KHMER VOWEL INHERENT AQ
+
+<tr>
+<td>U+17B5
+<td><code>឵</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">឵</code>
+<td><code class="serif">឵</code>
+<td><code class="monospace">឵</code>
+<td>クメール語の母音固有の aa
+<td>KHMER VOWEL INHERENT AA
+
+<tr>
+<td>U+180E
+<td><code>᠎</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">᠎</code>
+<td><code class="serif">᠎</code>
+<td><code class="monospace">᠎</code>
+<td>モンゴル語の母音セパレータ
+<td>MONGOLIAN VOWEL SEPARATOR
+
+<tr>
+<td>U+2000
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>en クワッド(2 分の 1em)
+<td>EN QUAD
+
+<tr>
+<td>U+2001
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>em クワッド(em は現在のフォントの高さ)
+<td>EM QUAD
+
+<tr>
+<td>U+2002
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>en スペース
+<td>EN SPACE
+
+<tr>
+<td>U+2003
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>em スペース
+<td>EM SPACE
+
+<tr>
+<td>U+2004
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>3 分の 1em 幅のスペース
+<td>THREE-PER-EM SPACE
+
+<tr>
+<td>U+2005
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>4 分の 1em 幅のスペース
+<td>FOUR-PER-EM SPACE
+
+<tr>
+<td>U+2006
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>6 分の 1em 幅のスペース
+<td>SIX-PER-EM SPACE
+
+<tr>
+<td>U+2007
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>固定幅の数字と同じ幅のスペース
+<td>FIGURE SPACE
+
+<tr>
+<td>U+2008
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>ピリオドと同じ幅のスペース
+<td>PUNCTUATION SPACE
+
+<tr>
+<td>U+2009
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>6 分の 1em ～ 4 分の 1em のシンスペース
+<td>THIN SPACE
+
+<tr>
+<td>U+200A
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>シンスペースよりさらに狭いヘアスペース
+<td>HAIR SPACE
+
+<tr>
+<td>U+200B
+<td><code>​</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">​</code>
+<td><code class="serif">​</code>
+<td><code class="monospace">​</code>
+<td>ゼロ幅スペース
+<td>ZERO WIDTH SPACE
+
+<tr>
+<td>U+200C
+<td><code>‌</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">‌</code>
+<td><code class="serif">‌</code>
+<td><code class="monospace">‌</code>
+<td>ゼロ幅ノンジョイナー
+<td>ZERO WIDTH NON-JOINER
+
+<tr>
+<td>U+200D
+<td><code>‍</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">‍</code>
+<td><code class="serif">‍</code>
+<td><code class="monospace">‍</code>
+<td>ゼロ幅ジョイナー
+<td>ZERO WIDTH JOINER
+
+<tr>
+<td>U+200E
+<td><code>‎</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">‎</code>
+<td><code class="serif">‎</code>
+<td><code class="monospace">‎</code>
+<td>左から右へのマーク
+<td>LEFT-TO-RIGHT MARK
+
+<tr>
+<td>U+200F
+<td><code>‏</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">‏</code>
+<td><code class="serif">‏</code>
+<td><code class="monospace">‏</code>
+<td>右から左へのマーク
+<td>RIGHT-TO-LEFT MARK
+
+<tr>
+<td>U+202F
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>狭い改行無しスペース
+<td>NARROW NO-BREAK SPACE
+
+<tr>
+<td>U+205F
+<td><code> </code>
+<td>-
+<td>-
+<td><code class="ms-gothic"> </code>
+<td><code class="serif"> </code>
+<td><code class="monospace"> </code>
+<td>中程度の数学的(18 分の 4em)スペース
+<td>MEDIUM MATHEMATICAL SPACE
+
+<tr>
+<td>U+2060
+<td><code>⁠</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁠</code>
+<td><code class="serif">⁠</code>
+<td><code class="monospace">⁠</code>
+<td>ワードジョイナー(ゼロ幅の改行無しスペース)
+<td>WORD JOINER
+
+<tr>
+<td>U+2061
+<td><code>⁡</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁡</code>
+<td><code class="serif">⁡</code>
+<td><code class="monospace">⁡</code>
+<td>関数の適用
+<td>FUNCTION APPLICATION
+
+<tr>
+<td>U+2062
+<td><code>⁢</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁢</code>
+<td><code class="serif">⁢</code>
+<td><code class="monospace">⁢</code>
+<td>2 項の乗算を示す
+<td>INVISIBLE TIMES
+
+<tr>
+<td>U+2063
+<td><code>⁣</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁣</code>
+<td><code class="serif">⁣</code>
+<td><code class="monospace">⁣</code>
+<td>2 項のセパレータ
+<td>INVISIBLE SEPARATOR
+
+<tr>
+<td>U+2064
+<td><code>⁤</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁤</code>
+<td><code class="serif">⁤</code>
+<td><code class="monospace">⁤</code>
+<td>2 項の加算を示す
+<td>INVISIBLE PLUS
+
+<tr>
+<td>U+206A
+<td><code>⁪</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁪</code>
+<td><code class="serif">⁪</code>
+<td><code class="monospace">⁪</code>
+<td>対称的なスワッピングを禁止する
+<td>INHIBIT SYMMETRIC SWAPPING
+
+<tr>
+<td>U+206B
+<td><code>⁫</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁫</code>
+<td><code class="serif">⁫</code>
+<td><code class="monospace">⁫</code>
+<td>対称的なスワッピングを有効にする
+<td>ACTIVATE SYMMETRIC SWAPPING
+
+<tr>
+<td>U+206C
+<td><code>⁬</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁬</code>
+<td><code class="serif">⁬</code>
+<td><code class="monospace">⁬</code>
+<td>アラビア語のフォームシェーピング(オフ)
+<td>INHIBIT ARABIC FORM SHAPING
+
+<tr>
+<td>U+206D
+<td><code>⁭</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁭</code>
+<td><code class="serif">⁭</code>
+<td><code class="monospace">⁭</code>
+<td>アラビア語のフォームシェーピング(オン)
+<td>ACTIVATE ARABIC FORM SHAPING
+
+<tr>
+<td>U+206E
+<td><code>⁮</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁮</code>
+<td><code class="serif">⁮</code>
+<td><code class="monospace">⁮</code>
+<td>ナショナル数字シェーピング
+<td>NATIONAL DIGIT SHAPES
+
+<tr>
+<td>U+206F
+<td><code>⁯</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⁯</code>
+<td><code class="serif">⁯</code>
+<td><code class="monospace">⁯</code>
+<td>名目上の数字のシェーピング
+<td>NOMINAL DIGIT SHAPES
+
+<tr>
+<td>U+3000
+<td><code>　</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">　</code>
+<td><code class="serif">　</code>
+<td><code class="monospace">　</code>
+<td>表意文字スペース
+<td>IDEOGRAPHIC SPACE
+
+<tr>
+<td>U+2800
+<td><code>⠀</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">⠀</code>
+<td><code class="serif">⠀</code>
+<td><code class="monospace">⠀</code>
+<td>点字パターンの空白
+<td>BRAILLE PATTERN BLANK
+
+<tr>
+<td>U+3164
+<td><code>ㅤ</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">ㅤ</code>
+<td><code class="serif">ㅤ</code>
+<td><code class="monospace">ㅤ</code>
+<td>ハングルフィラー
+<td>HANGUL FILLER
+
+<tr>
+<td>U+FEFF
+<td>　<code>*1</code>
+<td>-
+<td>-
+<td class="ms-gothic">　<code>*1</code>
+<td class="serif">　<code>*1</code>
+<td class="monospace">　<code>*1</code>
+<td>ゼロ幅改行なしスペース
+<td>ZERO WIDTH NO-BREAK SPACE
+
+<tr>
+<td>U+FFA0
+<td><code>ﾠ</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">ﾠ</code>
+<td><code class="serif">ﾠ</code>
+<td><code class="monospace">ﾠ</code>
+<td>半角ハングルフィラー
+<td>HALFWIDTH HANGUL FILLER
+
+<tr>
+<td>U+1D159
+<td><code>𝅙</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅙</code>
+<td><code class="serif">𝅙</code>
+<td><code class="monospace">𝅙</code>
+<td>音楽記号の「符頭(なし)」
+<td>MUSICAL SYMBOL NULL NOTEHEAD
+
+<tr>
+<td>U+1D173
+<td><code>𝅳</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅳</code>
+<td><code class="serif">𝅳</code>
+<td><code class="monospace">𝅳</code>
+<td>音楽記号「ビーム(開始)」
+<td>MUSICAL SYMBOL BEGIN BEAM
+
+<tr>
+<td>U+1D174
+<td><code>𝅴</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅴</code>
+<td><code class="serif">𝅴</code>
+<td><code class="monospace">𝅴</code>
+<td>音楽記号「ビーム(終わり)」
+<td>MUSICAL SYMBOL END BEAM
+
+<tr>
+<td>U+1D175
+<td><code>𝅵</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅵</code>
+<td><code class="serif">𝅵</code>
+<td><code class="monospace">𝅵</code>
+<td>音楽記号「タイ(開始)」
+<td>MUSICAL SYMBOL BEGIN TIE
+
+<tr>
+<td>U+1D176
+<td><code>𝅶</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅶</code>
+<td><code class="serif">𝅶</code>
+<td><code class="monospace">𝅶</code>
+<td>音楽記号「タイ(終わり)」
+<td>MUSICAL SYMBOL END TIE
+
+<tr>
+<td>U+1D177
+<td><code>𝅷</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅷</code>
+<td><code class="serif">𝅷</code>
+<td><code class="monospace">𝅷</code>
+<td>音楽記号「スラー(開始)」
+<td>MUSICAL SYMBOL BEGIN SLUR
+
+<tr>
+<td>U+1D178
+<td><code>𝅸</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅸</code>
+<td><code class="serif">𝅸</code>
+<td><code class="monospace">𝅸</code>
+<td>音楽記号「スラー(終わり)」
+<td>MUSICAL SYMBOL END SLUR
+
+<tr>
+<td>U+1D179
+<td><code>𝅹</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅹</code>
+<td><code class="serif">𝅹</code>
+<td><code class="monospace">𝅹</code>
+<td>音楽記号「開始フレーズ」
+<td>MUSICAL SYMBOL BEGIN PHRASE
+
+<tr>
+<td>U+1D17A
+<td><code>𝅺</code>
+<td>-
+<td>-
+<td><code class="ms-gothic">𝅺</code>
+<td><code class="serif">𝅺</code>
+<td><code class="monospace">𝅺</code>
+<td>音楽記号「終了フレーズ」
+<td>MUSICAL SYMBOL END PHRASE
+
+</table>
+    <p>*1: U+FEFF は表示不可能な文字列
+</blockquote>
+
+</body></html>
