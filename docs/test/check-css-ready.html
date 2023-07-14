@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>属性セレクタのテスト</title>
+<title>Check External CSS ready | web-doc-base</title>
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="HandheldFriendly" content="true">
 <meta name="mobileoptimized" content="0">
@@ -37,38 +37,196 @@ f=3):(b=c(a,"Netscape6/")||c(a,"Netscape/")||c(a,"Navigator/"))?(d="NetscapeNavi
 J?"GAME":ca?"TV":Ga?"MEDIA_PLAYER":na?"EBOOK_READER":E?"PHONE":w?"TABLET":oa?"PC":"UNKNOWN";var P="",ea,kb="SafariMobile"===m||"iOSWebView"===m?B(n):G,lb="AOSP"===m?B(n):G;if("N3DS"===h)var qa=320;else if("New3DS"===h){qa=320;var Ja=ea=1}else if(5>kb)ea=1,P="maximum-scale=1";else if(6>kb)Ja=ea=1;else if(lb){var Cb=!0;P="target-densitydpi=medium-dpi";3>lb?P+=",user-scalable=no":Ja=ea=1}qa=Cb?"device-width":qa;ra("width=",qa);ra("initial-scale=",Ja);ra("minimum-scale=",ea);P&&A.getElementsByName("viewport")[0].setAttribute("content",
 P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 </script>
-<style type="text/css">
-    table {
-        border-width    : 1px;
-        border-collapse : collapse;
-        empty-cells     : show;
-        border-spacing  : 0;
-    }
-    td, th {
-        padding : .5em .25em;
-        border  : 1px solid #999
-    }
-    p {
-        margin : 0;
-    }
+<script>
+var trident = ( ua.ENGINE === 'Trident'  || ua.ENGINE === 'TridentMobile'  ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var presto  = ( ua.ENGINE === 'Presto'   || ua.ENGINE === 'PrestoMobile'   ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var gecko   = ( ua.ENGINE === 'Gecko'    || ua.ENGINE === 'Fennec'         ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var chrome  = ( ua.ENGINE === 'Chromium' || ua.ENGINE === 'ChromiumMobile' ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var webkit  = ( ua.ENGINE === 'WebKit'                                     ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var safarim = ( ua.ENGINE === 'SafariMobile' || ua.ENGINE === 'iOSWebView' ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var aosp    = ( ua.ENGINE === 'AOSP'                                       ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
 
-    .has [attr], .has [lang]{ color : red; text-decoration: underline; }
-    .equal [attr=value], .equal [lang=en]{ color : red; text-decoration: underline;}
-    .member [attr~="value"], .member [lang~="en"]{ color : red; text-decoration: underline;}
-    .start [attr^=value], .start [lang^=en]{ color : red; text-decoration: underline;}
-    .end [attr$=value], .end [lang$=en]{ color : red; text-decoration: underline;}
-    .contain [attr*=value], .contain [lang*=en]{ color : red; text-decoration: underline;}
-</style>
-<script>/* [attr|=value] は Opera ~7.2x でブラウザがクラッシュする  */
-(ua.ENGINE !== 'Presto' || 7.5<=parseFloat(ua.ENGINE_VERSION) ) && document.write('<style type="text/css">.hyphen [attr|=value], .hyphen [lang|=en]{ color : red; text-decoration: underline;}</style>');
+var khtmlPach = chrome < 19 || webkit < 536 || safarim < 6 || aosp < 4.3;
+
+var oldAPI  = trident < 5 || ua.ENGINE === 'Tasman';
+var __ontimer, textarea;
+
+function $( id ){
+    return document[ id ] || window[ id ] || document.getElementById( id );
+};
+
+function init(){
+    textarea = $( 'output' );
+    updateLog( '' );
+    $( 'btn1' ).disabled = $( 'btn2' ).disabled = false; // for Firefox 3.6
+};
+
+function updateLog( str ){
+    if( trident < 5 || 5.5 <= trident || !trident ){
+        textarea.value = str;
+    } else {
+        textarea.innerHTML = str.split( '\n' ).join( '\n\r' );
+    };
+};
+
+function test( url, timeout, delay ){
+    var detect = $( 'detect-css-ready' ),
+        result = '',
+        link, img, tick = 0, lastTime, complete;
+    
+    if( trident < 5 ){
+        link = document.createStyleSheet( '' ).owningElement;
+    } else {
+        link = document.createElement( 'link' );
+        if( gecko < 1 ){ // ~0.9.3
+            link.setAttribute( 'type', 'text/css' );
+            // link.setAttribute( 'media', 'all' );
+            link.setAttribute( 'rel' , 'stylesheet' );
+        } else {
+            link.type = 'text\/css';
+            link.rel  = 'stylesheet';
+            document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+        };
+    };
+    
+    delay = trident < 5 ? 64 : delay;
+
+    function log( str, insertReadyState ){
+        if( insertReadyState && link.readyState ){
+            str += '(' + link.readyState + ')';
+        };
+        result += str;
+        window.status = result;
+        updateLog( result );
+    };
+
+    // https://github.com/googlearchive/code-prettify/blob/e006587b4a893f0281e9dc9a53001c7ed584d4e7/src/run_prettify.js#L182
+    //   link.error = link.onerror = function () { load(i + 1); };
+    link.error = function(){
+        log( ' ERROR!', true );
+        complete = true;
+    };
+
+    link.onerror = function(){
+        log( ' ONERROR!', true );
+        complete = true;
+    };
+
+    link.onload  = function(){
+        log( ' LOAD!', true );
+        complete = true;
+    };
+
+    link.onreadystatechange = function(){
+        log( ' READYSTATECHANGE!', true );
+    };
+
+    if( window.addEventListener ){
+        link.addEventListener( 'error', function( e ){
+            log( ' ' + e.type + '!(addEvenListener)' );
+            complete = true;
+        }, false );
+        link.addEventListener( 'readystatechange', function( e ){
+            log( ' ' + e.type + '!(addEvenListener)' );
+            complete = true;
+        }, false );
+        link.addEventListener( 'load', function( e ){
+            log( ' ' + e.type + '!(addEvenListener)' );
+            complete = true;
+        }, false );
+    };
+
+    log( '[' + url + ']' );
+
+    if( presto < 9 || 9.5 <= presto || gecko < 7 || khtmlPach ){
+        presto && log( '[Opera:' + presto + ']' );
+        gecko  && log( '[Gecko:' + gecko + ']' );
+        img = new Image;
+        if( 7.2 <= presto && presto < 7.5 ){
+            img.addEventListener(
+                'load',
+                function(){
+                    log( ' IMG_ONLOAD!', true );
+                    setTimeout(
+                        function(){
+                            complete = true; // CSS の処理が終わる時間を待つ
+                        },
+                        500
+                    );
+                    link.href = url;
+                },
+                false
+            );
+        } else {
+            img.onerror = function(){
+                log( ' IMG_ONERROR!', true );
+                setTimeout(
+                    function(){
+                        complete = true; // CSS の処理が終わる時間を待つ
+                    },
+                    500
+                );
+                if( gecko < 1 ){ // ~0.9.3
+                    link.setAttribute( 'href' , url );
+                    document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+                } else {
+                    link.href = url;
+                };
+            };       
+        };
+        img.src = url;
+    } else {
+        link.href = url;
+    };
+
+    __ontimer = function(){
+        if( !complete ){
+            log( '.' );
+            var now = + new Date;
+
+            // log( detect.offsetWidth );
+            if( detect.offsetWidth !== 20 ){
+                log( ' MESURE!', true );
+                complete = true;
+            }else if( timeout < ( tick += ( now - lastTime ) ) ){
+                log( ' TIMEOUT', true );
+                complete = true;
+            };
+            lastTime = now;
+            setTimeout( oldAPI ? '__ontimer()' : __ontimer, delay );
+        } else {
+            log( detect.offsetWidth !== 20 ? '\n** LOADED! **' : '\n** MAY BE ERROR **' );
+            log( '\nPlease, Reload for more test.' );
+            $( 'btn1' ).disabled = $( 'btn2' ).disabled = true;
+        };
+    };
+
+    if( timeout ){
+        lastTime = + new Date;
+        setTimeout( oldAPI ? '__ontimer()' : __ontimer, 0);
+    };
+};
 </script>
+<style>
+textarea { display : block; width : 100% }
+
+.detect-css-ready {
+    position    : absolute;
+    top         : 0;
+    left        : 0;
+    width       : 20px;
+    height      : 20px;
+    background  : #ccc;
+    /* visibility  : hidden; */
+}
+</style>
 </head>
-<body size="1">
+<body size="1" onload="init();">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
-属性セレクタのテスト,
+<a href="attr-selectors.html">属性セレクタのテスト</a>,
 <a href="check-css-ready-width-ruler.html">With Ruler | Check CSS Ready</a>,
-<a href="check-css-ready.html">Check CSS Ready</a>,
+Check CSS Ready,
 <a href="check-image-loading.html">Check Image loading</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
@@ -83,61 +241,14 @@ P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 <a href="richlink.html">RichLink のテスト</a>,
 <a href="white-space.html">white space のテスト</a>
 <hr>
+<h1>Check CSS ready</h1>
+<button id="btn1" onclick="test( 'cssom.css', 1000, 16 )">load test</button>
+<button id="btn2" onclick="test( 'bad.css', 5000, 16 )">error test</button>
+<textarea id="output" cols="80" rows="10"></textarea>
+<div id="detect-css-ready" class="detect-css-ready"></div>
 
-<h1>属性セレクタのテスト結果</h1>
-<table border="1">
-<thead>
-<tr><th></th><th>1. [attr]</th><th>2. [attr="value"]</th><th>3. [attr~="value"]</th><th>4. [attr|="value"]</th><th>5. [attr^=value]</th><th>6. [attr$=value]</th><th>7. [attr*=value]
-</th></tr></thead><tbody>
-<tr><th>IE ~6</th><td colspan="7">×
-</td></tr><tr><th>IE 7~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Opera 7.0~7.11</th><td>✔(*1)</td><td>✔(*1)</td><td>✔(*1)</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.2x</th><td>✔</td><td>✔</td><td>✔</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.5x~8.5x</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Opera 9.0~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Gecko 0.6~0.7</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Gecko 0.8.1~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr></tbody></table>
-
-<ol>
-<li>文書作成者が独自に定義した属性は不可
-</li><li>ブラウザがクラッシュするので一部の CSS を削除してテスト
-</li></ol>
-
-<h2>属性セレクタのテスト</h2>
-<ol>
-    <li>[lang] 属性を持つ
-    <p class="has"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang="en"] 完全一致
-    <p class="equal"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang~="en"] 空白区切りの語のリストの中で完全に一致するものがある
-    <p class="member"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>, <span lang="en en-US">lang="en en-US"</span>
-    </p></li><li>[lang|="en"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
-    <p class="hyphen"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang^=en] valude で始まる
-    <p class="start"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang$=en] valude で終わる
-    <p class="end"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang*=en] en を含む
-    <p class="contain"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-</p></li></ol>
-
-<h2>独自に定義した属性でテスト</h2>
-<ol>
-    <li>[attr] 属性を持つ
-    <p class="has"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr="value"] 完全一致
-    <p class="equal"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr~="value"] 空白区切りの語のリストの中で完全に一致するものがある
-    <p class="member"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>, <span attr="value value-1">attr="value value-1"</span>
-    </p></li><li>[attr|="value"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
-    <p class="hyphen"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr^=value] valude で始まる
-    <p class="start"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr$=value] valude で終わる
-    <p class="end"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr*=value] value を含む
-    <p class="contain"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-</p></li></ol>
-
+<h2>Links</h2>
+<ul>
+<li><a href="https://web.archive.org/web/20220506123333/https://pie.gd/test/script-link-events/">Browser CSS/JS loading capabilities</a></li>
+</ul>
 </body></html>

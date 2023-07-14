@@ -1,1 +1,11 @@
 * { color : orange }
+
+#detect-css-ready {
+    width      : 30px;
+    background : green;
+}
+
+#ruler {
+    font-size   : 2em;
+    font-family : serif;
+}

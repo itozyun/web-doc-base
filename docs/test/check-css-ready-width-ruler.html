@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>属性セレクタのテスト</title>
+<title>With Ruler | Check External CSS ready | web-doc-base</title>
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="HandheldFriendly" content="true">
 <meta name="mobileoptimized" content="0">
@@ -9,6 +9,9 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+<style>
+    textarea { display : block; width : 100% }
+</style>
 <script>ua={};ua.conpare=function(F,l){var A=0,v,aa;var B=(F+"").split(".");var Y=(l+"").split(".");var G=B.length;for(v=Y.length;"0"===B[G-1];)--G;for(;"0"===Y[v-1];)--v;for(aa=G<v?G:v;A<aa;++A){var S=B[A]-0;var e=Y[A]-0;if(S!==e)return S>e?1:-1}return G>v?1:G===v?0:-1};(function(F,l,A,v,aa,B,Y,G){function S(k,t,r){r=B(k.split(t)[1]);return 0<=r?r:0}function e(k,t){return 0<=k.indexOf(t)}function Ka(k){return e(k,"Linux armv")||e(k,"Linux aarch")||e(k,"Linux i686")||e(k,"Linux x86_64")}function fa(k,t){for(var r in t)if(r===k)return!0}function c(k,t){var r="",K=-1,T;if(k=k.split(t)[1]){for(;T=k.charCodeAt(++K);)if(48<=T&&57>=T||46===T)r+=k.charAt(K);else break;for(K=r.length;K;)if(46===r.charCodeAt(--K))r=r.substr(0,K);else break}return r}function La(k){for(var t=
 arguments,r=1,K=t[0],T;r<t.length;++r)0>Ma(K,T=t[r])&&(K=T);return K}function ha(k){return k===k+""?k:k===k-0?""+k:k.min&&k.max?k.min+"~"+k.max:k.min?k.min+"~":"~"+k.max}function ra(k,t){t&&(P&&(P+=","),P+=k+t)}var Ma=F.conpare,a=v.userAgent,q=v.appVersion,sa=B(q)||0,p=v.platform,ta=A.documentElement,Na=ta&&ta.style,va=A.documentMode,wa=aa.width,xa=aa.height,Oa=l.HTMLAudioElement,Pa=l.performance,Qa=l.Int8Array,mb=l.ontouchstart!==G,N=c(q,"Version/")||c(a,"Version/"),Ra=l.operamini,O=!Ra&&l.opera,
 Sa=O&&(O.version&&"function"===typeof O.version?O.version():La(c(a,"Opera "),N,sa)),Ta=l.opr,Z=!O&&(A.all||va),H=Z&&(va?va:l.XMLHttpRequest?A.getElementsByTagName?7:4:A.compatMode?6:(0).toFixed?5.5:l.attachEvent?5:4),ia=!Z&&ta.msContentZoomFactor,U=!ia&&(l.chrome||l.chromium),V=!Z&&function(){for(var k in Na)if(0===k.indexOf("Moz"))return!0}(),ja=e(a,"UCWEB"),nb=ja&&c(a," U2/"),ob=ja&&c(a,"; wds "),ya=c(a.split("_").join("."),"; iPh OS "),pb=c(a,"; Adr "),Ua=e(q,"YJApp-ANDROID"),I=e(p,"Android")||
@@ -37,37 +40,142 @@ f=3):(b=c(a,"Netscape6/")||c(a,"Netscape/")||c(a,"Navigator/"))?(d="NetscapeNavi
 J?"GAME":ca?"TV":Ga?"MEDIA_PLAYER":na?"EBOOK_READER":E?"PHONE":w?"TABLET":oa?"PC":"UNKNOWN";var P="",ea,kb="SafariMobile"===m||"iOSWebView"===m?B(n):G,lb="AOSP"===m?B(n):G;if("N3DS"===h)var qa=320;else if("New3DS"===h){qa=320;var Ja=ea=1}else if(5>kb)ea=1,P="maximum-scale=1";else if(6>kb)Ja=ea=1;else if(lb){var Cb=!0;P="target-densitydpi=medium-dpi";3>lb?P+=",user-scalable=no":Ja=ea=1}qa=Cb?"device-width":qa;ra("width=",qa);ra("initial-scale=",Ja);ra("minimum-scale=",ea);P&&A.getElementsByName("viewport")[0].setAttribute("content",
 P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 </script>
-<style type="text/css">
-    table {
-        border-width    : 1px;
-        border-collapse : collapse;
-        empty-cells     : show;
-        border-spacing  : 0;
-    }
-    td, th {
-        padding : .5em .25em;
-        border  : 1px solid #999
-    }
-    p {
-        margin : 0;
-    }
+<script>
+var trident = ( ua.ENGINE === 'Trident' || ua.ENGINE === 'TridentMobile' ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
+var oldAPI  = trident < 5 || ua.ENGINE === 'Tasman';
+var __ontimer, textarea;
 
-    .has [attr], .has [lang]{ color : red; text-decoration: underline; }
-    .equal [attr=value], .equal [lang=en]{ color : red; text-decoration: underline;}
-    .member [attr~="value"], .member [lang~="en"]{ color : red; text-decoration: underline;}
-    .start [attr^=value], .start [lang^=en]{ color : red; text-decoration: underline;}
-    .end [attr$=value], .end [lang$=en]{ color : red; text-decoration: underline;}
-    .contain [attr*=value], .contain [lang*=en]{ color : red; text-decoration: underline;}
-</style>
-<script>/* [attr|=value] は Opera ~7.2x でブラウザがクラッシュする  */
-(ua.ENGINE !== 'Presto' || 7.5<=parseFloat(ua.ENGINE_VERSION) ) && document.write('<style type="text/css">.hyphen [attr|=value], .hyphen [lang|=en]{ color : red; text-decoration: underline;}</style>');
+function $( id ){
+    return document[ id ] || window[ id ] || document.getElementById( id );
+};
+
+function init(){
+    textarea = $( 'output' );
+    updateLog( '' );
+};
+
+function updateLog( str ){
+    if( trident < 5 || 5.5 <= trident || !trident ){
+        textarea.value = str;
+    } else {
+        textarea.innerHTML = str;
+    };
+};
+
+function test( url, timeout, delay ){
+    var ruler  = $( 'ruler' ),
+        result = '',
+        link, tick = 0, lastTime, complete, isFirst = true;
+    
+    if( trident < 5 ){
+        link = document.createStyleSheet( '' ).owningElement;
+    } else {
+        link = document.createElement( 'link' );
+        link.type = 'text\/css';
+        link.rel  = 'stylesheet';
+        document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+    };
+    
+    delay = trident < 5 ? 64 : delay;
+
+    function log( str, insertReadyState ){
+        if( insertReadyState && link.readyState ){
+            str += '(' + link.readyState + ')';
+        };
+        result += str;
+        window.status = result;
+        updateLog( result );
+    };
+    
+    var w = ruler.offsetWidth + 100;
+
+    if( !( trident < 5 ) ){
+        ruler.lastChild.lastChild.style.width = w + 'px';
+        ruler.lastChild.scrollLeft = w;
+        // log( ruler.childNodes[1].scrollWidth )
+        ruler.childNodes[1].scrollLeft = ruler.childNodes[1].scrollWidth + 100;
+    };
+
+    __ontimer = function(){
+        if( isFirst ){
+            ruler.childNodes[1].onscroll = function(){
+                log( "SCROLL(collapsible)!", true );
+                //complete = true;
+            };
+            ruler.lastChild.onscroll = function(){
+                log( "SCROLL(expandable)!", true );
+                //complete = true;
+            };
+            log( "[" + url + "]" );
+            link.href = url;
+
+            isFirst = false;
+        };
+
+        if( !complete ){
+            log( "." );
+            var now = + new Date;
+
+            if( timeout < ( tick += ( now - lastTime ) ) ){
+                log( '[TIMEOUT]' );
+                link.readystate && log( '(' + link.readystate + ')' );
+                complete = true;
+            };
+            lastTime = now;
+            setTimeout( oldAPI ? '__ontimer()' : __ontimer, delay );
+        } else {
+            log( '\nPlease, Reload for more test.' );
+            $( 'btn1' ).disabled = $( 'btn2' ).disabled = true;
+        };
+    };
+
+    if( timeout ){
+        lastTime = + new Date;
+        setTimeout( oldAPI ? '__ontimer()' : __ontimer, 0);
+    };
+};
 </script>
+<style>
+.element {
+    max-width      : none;
+    min-width      : 20px;
+    min-height     : 20px;
+    display        : inline-block;
+    overflow       : hidden;
+    position       : absolute;
+    width          : auto;
+    margin         : 0;
+    padding        : 0;
+    /* top            : -999px; */
+    white-space    : nowrap;
+    font-synthesis : none;
+    font-family    : monospace;
+}
+
+.collapsible, .expandable, .expandableInner {
+    max-width : none;
+    display   : inline-block;
+    position  : absolute;
+    height    : 100%;
+    width     : 100%;
+    overflow  : scroll;
+    font-size : 16px;
+}
+
+.collapsibleInner {
+    display   : inline-block;
+    width     : 200%;
+    height    : 200%;
+    font-size : 16px;
+    max-width : none;
+}
+</style>
 </head>
-<body size="1">
+<body size="1" onload="init();">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
-属性セレクタのテスト,
-<a href="check-css-ready-width-ruler.html">With Ruler | Check CSS Ready</a>,
+<a href="attr-selectors.html">属性セレクタのテスト</a>,
+With Ruler | Check CSS Ready,
 <a href="check-css-ready.html">Check CSS Ready</a>,
 <a href="check-image-loading.html">Check Image loading</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
@@ -83,61 +191,16 @@ P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 <a href="richlink.html">RichLink のテスト</a>,
 <a href="white-space.html">white space のテスト</a>
 <hr>
+<h1>With Ruler | Check CSS ready</h1>
+<button id="btn1" onclick="test( 'cssom.css', 1000, 16 )">load test</button>
+<button id="btn2" onclick="test( 'bad.css', 2000, 16 )">error test</button>
+<textarea id="output" cols="80" rows="10"></textarea>
 
-<h1>属性セレクタのテスト結果</h1>
-<table border="1">
-<thead>
-<tr><th></th><th>1. [attr]</th><th>2. [attr="value"]</th><th>3. [attr~="value"]</th><th>4. [attr|="value"]</th><th>5. [attr^=value]</th><th>6. [attr$=value]</th><th>7. [attr*=value]
-</th></tr></thead><tbody>
-<tr><th>IE ~6</th><td colspan="7">×
-</td></tr><tr><th>IE 7~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Opera 7.0~7.11</th><td>✔(*1)</td><td>✔(*1)</td><td>✔(*1)</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.2x</th><td>✔</td><td>✔</td><td>✔</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.5x~8.5x</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Opera 9.0~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Gecko 0.6~0.7</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Gecko 0.8.1~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr></tbody></table>
+<div class="element" id="ruler">mmmmmllli<span class="collapsible"><span class="collapsibleInner"></span></span><span class="expandable"><span class="expandableInner"></span></span></div>
 
-<ol>
-<li>文書作成者が独自に定義した属性は不可
-</li><li>ブラウザがクラッシュするので一部の CSS を削除してテスト
-</li></ol>
 
-<h2>属性セレクタのテスト</h2>
-<ol>
-    <li>[lang] 属性を持つ
-    <p class="has"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang="en"] 完全一致
-    <p class="equal"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang~="en"] 空白区切りの語のリストの中で完全に一致するものがある
-    <p class="member"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>, <span lang="en en-US">lang="en en-US"</span>
-    </p></li><li>[lang|="en"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
-    <p class="hyphen"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang^=en] valude で始まる
-    <p class="start"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang$=en] valude で終わる
-    <p class="end"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang*=en] en を含む
-    <p class="contain"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-</p></li></ol>
-
-<h2>独自に定義した属性でテスト</h2>
-<ol>
-    <li>[attr] 属性を持つ
-    <p class="has"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr="value"] 完全一致
-    <p class="equal"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr~="value"] 空白区切りの語のリストの中で完全に一致するものがある
-    <p class="member"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>, <span attr="value value-1">attr="value value-1"</span>
-    </p></li><li>[attr|="value"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
-    <p class="hyphen"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr^=value] valude で始まる
-    <p class="start"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr$=value] valude で終わる
-    <p class="end"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr*=value] value を含む
-    <p class="contain"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-</p></li></ol>
-
+<h2>Links</h2>
+<ul>
+<li><a href="https://web.archive.org/web/20220506123333/https://pie.gd/test/script-link-events/">Browser CSS/JS loading capabilities</a></li>
+</ul>
 </body></html>

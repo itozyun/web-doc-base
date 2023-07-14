@@ -77,12 +77,28 @@ function cssomTrident2(){
         styleSheet.insertRule( '*{color:#6ff}', styleSheet.cssRules.length );
     };
 };
+function cssomGecko08(){
+    var link = document.createElement( 'link' );
+    link.setAttribute( 'type', 'text\/css' );
+    link.setAttribute( 'rel', 'stylesheet' );
+    link.setAttribute( 'media', 'screen' );
+    link.setAttribute( 'href', 'cssom.css' );
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+    // alert(sheet.cssRules.length)
+    // document.getElementById( 'dynamic' ).href = 'cssom.css';
+    // alert( document.getElementById( 'dynamic' ).innerHTML )
+    // sheet.insertRule( '@import url("cssom.css")', 0 );
+};
 </script>
+<link rel="stylesheet" type="text/css" id="dynamic" href="default.css"></style>
 </head>
 <body size="1">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
 <a href="attr-selectors.html">属性セレクタのテスト</a>,
+<a href="check-css-ready-width-ruler.html">With Ruler | Check CSS Ready</a>,
+<a href="check-css-ready.html">Check CSS Ready</a>,
 <a href="check-image-loading.html">Check Image loading</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
@@ -108,10 +124,12 @@ if( !sheets ){
         sheets = [ elms[ 0 ].sheet || elms[ 0 ].styleSheets ];
     };
 };
-
-if( sheet = sheets[ 0 ] ){
+sheet = sheets[ 0 ];
+if( sheet ){
     if( sheet.rules || sheet.cssRules ){
-        document.write( '<p>styleSheet オブジェクトが存在します。' );
+        if( sheet.addRule || sheet.insertRule ){
+            document.write( '<p>styleSheet オブジェクトが存在します。' );
+        };
     };
 };
 </script>
@@ -122,5 +140,6 @@ if( sheet = sheets[ 0 ] ){
 <button onclick="cssomHack2();">dynamic CSSOM hack2</button>
 <button onclick="cssomTrident();">dynamic CSSOM Trident&lt;11</button>
 <button onclick="cssomTrident2();">dynamic CSSOM Trident&lt;11 - 2</button>
+<button onclick="cssomGecko08();">dynamic CSS Gecko&lt;0.8.1</button>
 </body>
 </html>

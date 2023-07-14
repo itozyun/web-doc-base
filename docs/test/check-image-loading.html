@@ -41,7 +41,7 @@ J?"GAME":ca?"TV":Ga?"MEDIA_PLAYER":na?"EBOOK_READER":E?"PHONE":w?"TABLET":oa?"PC
 P)})(ua,window,document,navigator,screen,parseFloat,Number,void 0);
 </script>
 <script>
-var trident = ( ua.ENGINE === 'Trident' || ua.ENGINE === 'TridentMobile' ) && parseFloat( ua.ENGINE_VERSION );
+var trident = ( ua.ENGINE === 'Trident' || ua.ENGINE === 'TridentMobile' ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
 var oldAPI  = trident < 5 || ua.ENGINE === 'Tasman';
 var __ontimer;
 
@@ -80,10 +80,6 @@ function test( url, timeout, delay ){
     img.src = url;
     log( "[" + url + "]" );
 
-    if( timeout ){
-        lastTime = + new Date;
-        setTimeout( oldAPI ? '__ontimer()' : __ontimer, 0);
-    };
     __ontimer = function(){
         log( "." );
         var now = + new Date;
@@ -97,6 +93,11 @@ function test( url, timeout, delay ){
             setTimeout( oldAPI ? '__ontimer()' : __ontimer, delay );
         };
     };
+
+    if( timeout ){
+        lastTime = + new Date;
+        setTimeout( oldAPI ? '__ontimer()' : __ontimer, 0);
+    };
 };
 </script>
 </head>
@@ -104,6 +105,8 @@ function test( url, timeout, delay ){
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
 <a href="attr-selectors.html">属性セレクタのテスト</a>,
+<a href="check-css-ready-width-ruler.html">With Ruler | Check CSS Ready</a>,
+<a href="check-css-ready.html">Check CSS Ready</a>,
 Check Image loading,
 <a href="clearfix.html">clearfix のテスト</a>,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
