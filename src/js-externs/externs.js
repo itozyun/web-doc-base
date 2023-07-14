@@ -76,6 +76,9 @@ HTMLElement.prototype.mozRequestFullscreen = function(){};
 /** @type {!function()} Trident 11+ */
 HTMLElement.prototype.msRequestFullscreen = function(){};
 
+/** @type {string} Trident 5+ */
+HTMLLinkElement.prototype.readyState;
+
 /** @type {!function()} Gecko 1.9.0 */
 CanvasRenderingContext2D.prototype.mozDrawText = function(){};
 

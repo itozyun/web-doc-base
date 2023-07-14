@@ -7,25 +7,20 @@ p_listenCssAvailabilityChange(
     function( cssAvailability ){
         if( !cssAvailability ) return;
 
-        var cssIconFontSet = {};
-
-        if( p_Trident ){
-            cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canEOT'   ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/eot.css';
-        };
-        cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canWOFF2' ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css';
-        cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canWOFF'  ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff.css';
-        cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canTTF'   ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css';
-        cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canOTF'   ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/otf.css';
-        cssIconFontSet[ DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '_canSVG'   ] = p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/svg.css';
-
         p_webFontTest(
-            VectorIcon_onTestComplete, // 1.
+            /** @type {!function(number):void} */ (VectorIcon_onTestComplete), // 1.
             DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME, // 2.
-            cssIconFontSet, // 3.
+            [
+                webFontTest_IS_WOFF2, p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css',
+                webFontTest_IS_WOFF , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
+                webFontTest_IS_TTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
+                webFontTest_IS_OTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
+                webFontTest_IS_EOT  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
+                webFontTest_IS_SVG  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
+            ],
             DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '-testCssReady', // 4.
             'twitter', '🐤', // 5. 6.
-            5000// , // 7. test interval ms
-            // ' m mmmmmmmmml l i'
+            5000 // 7. test interval ms
         );
 
         VectorIcon_onTestComplete = undefined;
@@ -53,7 +48,8 @@ var VectorIcon_CANUSE_SVG =
     419.3 <= p_WebKit ||                          // Safari 2.0.4(January 10, 2006)
     p_SafariMobile;
 
-function VectorIcon_onTestComplete( webFontTestResult ){
+/** @type {!function(number):void|undefined} */
+var VectorIcon_onTestComplete = function( webFontTestResult ){
     var VectorIcon_LIG_TO_EMOJI = { /*
         'cog'      : '⚙',
         'share'    : '',
@@ -92,12 +88,13 @@ function VectorIcon_onTestComplete( webFontTestResult ){
     // webFontTestResult === 0 : no webfont
     // webFontTestResult === 1 : webfont ready
     // webFontTestResult === 2 : webfont ready + ligature support
-    if( webFontTestResult !== 2 ){
+    if( webFontTestResult !== webFontTest_RESULT_LIGATURE ){
+        Debug.log( '[VectorIcon] ' + webFontTestResult );
         var elmIcons = p_DOM_getElementsByClassNameFromDocument( DEFINE_WEB_DOC_BASE__VECTOR_ICON_CLASSNAME ),
             i = 0, l = elmIcons.length, elmIcon, content, emoji; 
 
         if( l ){
-            if( webFontTestResult === 1 ){
+            if( webFontTestResult === webFontTest_RESULT_AVAILABLE ){
                 for( ; i < l; ++i ){
                     elmIcon = elmIcons[ i ];
                     content = p_DOM_getInnerHTML( elmIcon );
@@ -105,7 +102,7 @@ function VectorIcon_onTestComplete( webFontTestResult ){
                         elmIcon.innerHTML = emoji;
                     };
                 };
-            } else {
+            } else { // webFontTest_RESULT_NONE
                 if( VectorIcon_CANUSE_SVG && !VectorIcon_CANUSE_SVGTINY ){
                     window[ 'VectorIconCompat' ] = function(){
                         p_setExternalScriptIsLoaded( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_CODE_PRETTIFY__VECTOR_ICON_COMPAT_FILENAME );

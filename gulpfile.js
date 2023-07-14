@@ -190,7 +190,6 @@ gulp.task( '__js', gulp.series(
                    '!./src/js/6_CanUse/cssGeneratedContent.js',
                    // '!./src/js/6_CanUse/dataUriTest.js',
                    // '!./src/js/6_CanUse/webfontTest.js',
-                   '!./src/js/graph/**/*.js',
                     // ES2 Code Prettify
                     './node_modules/es2-code-prettify/src/js/1_common/*.js',
                     './node_modules/es2-code-prettify/src/js/4_prettify/*.js'

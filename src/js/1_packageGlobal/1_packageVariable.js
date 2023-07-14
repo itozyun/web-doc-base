@@ -135,6 +135,7 @@ var p_CSSOM_getStyleSheetElementList,
 var p_noRemoveScriptTag,
     p_canUseDynamicExternalScript,
     p_canUseJSONPOnlyInIframe,
+    p_loadExternalCSS,
     p_loadExternalScript,
     p_setExternalScriptIsLoaded,
     p_usePatchOfTabFocusForGeckoLte094 = false;

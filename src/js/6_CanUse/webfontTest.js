@@ -10,30 +10,30 @@
 /**
  * @param {!function(number):void} onCompleteHandler
  * @param {string} targetWebFontName
- * @param {!Object.<string,string>=} opt_embededWebFonts
+ * @param {!Array.<number|string>=} opt_fontTypeAndFontCSSURIPairs
  * @param {string=} opt_testIdAndClassName
  * @param {string=} opt_ligatureTestString
  * @param {string=} opt_ligatureTestChar
  * @param {number=} opt_intervalTime
- * @param {string=} opt_testString
  */
-p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_embededWebFonts, opt_testIdAndClassName, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime, opt_testString ){
+p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndFontCSSURIPairs, opt_testIdAndClassName, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
     webFontTest_onCompleteHandler  = onCompleteHandler;
     webFontTest_targetWebFontName  = targetWebFontName;
-    webFontTest_embededWebFonts    = opt_embededWebFonts;
+    webFontTest_fontTypeAndFontCSSURIPairs = opt_fontTypeAndFontCSSURIPairs;
     webFontTest_testIdAndClassName = opt_testIdAndClassName;
     webFontTest_ligatureTestString = opt_ligatureTestString;
     webFontTest_ligatureTestChar   = opt_ligatureTestChar;
     webFontTest_intervalTime       = opt_intervalTime || webFontTest_INTERVAL_LOADING_WEBFONT;
-    webFontTest_testString         = opt_testString || webFontTest_TEST_STRING;
 
     if( DEFINE_WEB_DOC_BASE__DEBUG && 1 <= DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE ){
         webFontTest_targetWebFontName = webFontTest_PREFIX + webFontTest_targetWebFontName;
         Debug.log( '[webFontTest] WEBFONT_DEBUG_MODE : ' + DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE );
     };
     Debug.log( '[webFontTest] UNAVAILABLE_DUE_TO_BLOCKLIST : ' + !!p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST );
-    if( p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
-        p_setTimer( webFontTest_testWebFontComplete, 0 );
+    if( p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_OperaMini ) ){
+        p_setTimer( /** @type {function(*=)} */ (webFontTest_testWebFontComplete), webFontTest_RESULT_AVAILABLE );
+    } else if( p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
+        p_setTimer( /** @type {function(*=)} */ (webFontTest_testWebFontComplete), webFontTest_RESULT_NONE );
     } else {
         /**
          * @see https://github.com/bramstein/fontfaceobserver/blob/39f19c41830eac7726e08b09f60d2aa2b74dc38b/src/observer.js#L122
@@ -41,7 +41,7 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_embededWebFo
          */
         if( document.fonts && !( p_WebKit < 603 || p_SafariMobile < 11 ) ){
             Debug.log( '[webFontTest] Use Native font loader.' );
-            webFontTest_testByNativeFontLoaderAPI( webFontTest_targetWebFontName );
+            webFontTest_testByNativeFontLoaderAPI( /** @type {string} */ (webFontTest_targetWebFontName) );
         } else {
             Debug.log( '[webFontTest] No native font loader.' );
             webFontTest_repeatToMesureWebFont( true );
@@ -56,6 +56,8 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_embededWebFo
 // Data URI スキームをサポートするが Web フォントには使えない環境
 var webFontTest_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_Chromium < 2 ||
                                            p_Presto  < 12; // Windows Opera 12.18 で確認
+// SVG に制限があり、src:url() に #id が必要の為
+var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6 || p_Presto || p_WebKit < 530; // Chrome ~5
 var webFontTest_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + p_getTimestamp() + '_' );
 var webFontTest_INTERVAL_LOADING_WEBFONT = 5000;
 var webFontTest_INTERVAL_EMBEDED_WEBFONT = 500;
@@ -74,42 +76,108 @@ if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_WebKit       && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_WebKit='       + p_WebKit );
 };
 
+var webFontTest_CANUSE_WOFF2             = 14 <= p_EdgeHTML || 36 <= p_Chromium || 39 <= p_Gecko ||
+                                           602 <= p_WebKit || // Safari 10+(Mac OS Sierra +)
+                                           10 <= p_SafariMobile;
+var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
+                                           p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.9.2' ) || // Gecko 1.9.2+
+                                           525 <= p_WebKit || // Safari 3.1+
+                                           3.2 <= p_SafariMobile ||
+                                           4.4 <= p_AOSP ||
+                                           11.1 <= p_Presto ||
+                                           p_EdgeHTML ||
+                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+                                           10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
+                                           // TODO Blackberry Browser 7+
+var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
+                                           p_FirefoxGte35 ||
+                                           525 <= p_WebKit || // Safari 3.1+
+                                           3.2 <= p_SafariMobile ||
+                                           2.2 <= p_AOSP ||
+                                           10 <= p_Presto ||
+                                           p_EdgeHTML ||
+                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+                                           10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
+                                           // TODO Blackberry Browser 7+
+var webFontTest_CANUSE_OTF               = webFontTest_CANUSE_TTF;
+var webFontTest_CANUSE_SVG               = 525 <= p_WebKit || // Safari 3.1+
+                                           3.2 <= p_SafariMobile ||
+                                           p_Chromium < 38 || // Chrome 1~37
+                                           3 <= p_AOSP ||
+                                           12 <= p_Presto;
+                                           // TODO Blackberry Browser 7+
+var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+                                           10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
+
 var webFontTest_BASE_FONT_LIST           = p_Chromium ? [ 'sans-serif', 'serif' ] : [ 'monospace', 'sans-serif', 'serif' ];
 var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST && [];
 
 var webFontTest_onCompleteHandler,
     webFontTest_targetWebFontName,
-    webFontTest_embededWebFonts,
+    webFontTest_fontTypeAndFontCSSURIPairs,
     webFontTest_testIdAndClassName,
     webFontTest_ligatureTestString,
     webFontTest_ligatureTestChar,
     webFontTest_intervalTime,
-    webFontTest_testString,
     webFontTest_startTime,
-    webFontTest_isTestDataURIWebFontPhase,
-    webFontTest_elmSpan, webFontTest_elmDiv,
-    webFontTest_styleSheetDataURIWebFont,
+    webFontTest_isMeasuringCSSFonts,
+    webFontTest_elmSpan,
+    webFontTest_linkCSSFont,
     webFontTest_defaultWidthList;
 
+    /**
+     * ブラウザが font type をサポートするか?
+     * 関数は Font CSS 専用で Raw Font より制限が多い! 
+     * @param {number} fontType 
+     * @return {boolean} 
+     */
+    function webFontTest_isSupportedFontTypeAtFontCSS( fontType ){
+        // Chrome 6~31(?) SVG のみ
+        if( fontType !== webFontTest_IS_SVG && 6 <= p_Chromium && p_Chromium < 32 ){
+            return false;
+        };
+
+        switch( fontType ){
+            case webFontTest_IS_WOFF2 :
+                return webFontTest_CANUSE_WOFF2;
+            case webFontTest_IS_WOFF :
+                return !!webFontTest_CANUSE_WOFF;
+            case webFontTest_IS_TTF :
+                return !!webFontTest_CANUSE_TTF;
+            case webFontTest_IS_OTF :
+                return !!webFontTest_CANUSE_OTF;
+            case webFontTest_IS_EOT :
+                return webFontTest_CANUSE_EOT;
+            case webFontTest_IS_SVG :
+                return webFontTest_CANUSE_SVG && !webFontTest_SVG_FONT_HAS_LIMITATION;
+            case webFontTest_IS_SVGZ :                      
+        };
+        return false;
+    };
+
+    /**
+     * @param {number} result 
+     */
     function webFontTest_testWebFontComplete( result ){
         webFontTest_onCompleteHandler( result );
-        if( webFontTest_styleSheetDataURIWebFont && !result ){
-            if( p_CSSOM_createStyleSheet ){
-                p_CSSOM_deleteStyleSheet( webFontTest_styleSheetDataURIWebFont );
-            } else {
-                p_DOM_remove( webFontTest_styleSheetDataURIWebFont );
-            };
+        if( webFontTest_linkCSSFont && !result ){
+            p_DOM_remove( webFontTest_linkCSSFont );
         };
         webFontTest_onCompleteHandler = webFontTest_targetWebFontName =
-        webFontTest_embededWebFonts = webFontTest_testIdAndClassName =
+        webFontTest_fontTypeAndFontCSSURIPairs = webFontTest_testIdAndClassName =
         webFontTest_ligatureTestString = webFontTest_ligatureTestChar =
-        webFontTest_isTestDataURIWebFontPhase = webFontTest_elmSpan = webFontTest_elmDiv =
-        webFontTest_defaultWidthList = webFontTest_styleSheetDataURIWebFont = undefined;
+        webFontTest_isMeasuringCSSFonts = webFontTest_elmSpan =
+        webFontTest_defaultWidthList = webFontTest_linkCSSFont = undefined;
         // TODO webFontTest_QUEUE
     };
 
 /**
- * https://github.com/bramstein/fontfaceobserver/blob/master/src/observer.js
+ * 参考
+ *   https://github.com/bramstein/fontfaceobserver/blob/master/src/observer.js
+ * 
+ * document.fonts を使った Web font の適用の確認
+ * 
+ * @param {string} targetWebFontName 
  */
     function webFontTest_testByNativeFontLoaderAPI( targetWebFontName ){
         var font = '1.6em "' + targetWebFontName + '"';
@@ -123,8 +191,8 @@ var webFontTest_onCompleteHandler,
                 if( DEFINE_WEB_DOC_BASE__DEBUG ){
                     Debug.log( '[webFontTest] fonts.check() : ' + document.fonts.check( font, 'i' ) + ', fonts.length : ' + fonts.length );
                 };
-                if( result = webFontTest_mesureWebFont( webFontTest_targetWebFontName ) ){
-                    p_setTimer( webFontTest_testWebFontComplete, result );
+                if( result = webFontTest_mesureWebFont( /** @type {string} */ (webFontTest_targetWebFontName) ) ){
+                    p_setTimer( /** @type {function(*=)} */ (webFontTest_testWebFontComplete), result );
                 } else {
                     Debug.log( '[webFontTest] mesureWebFont() : false' );
                     // Firefox 72 では、このタイミングで判定に失敗する模様
@@ -142,7 +210,12 @@ var webFontTest_onCompleteHandler,
     function webFontTest_resetTime(){
         return webFontTest_startTime = p_getTimestamp();
     };
-    
+
+    /**
+     * 
+     * @param {number} ms 
+     * @return {boolean}
+     */
     function webFontTest_checkTime( ms ){
         // https://github.com/bramstein/fontfaceobserver/blob/master/src/observer.js
         // hidden の場合は時間切れをスキップする。未検証…
@@ -152,7 +225,11 @@ var webFontTest_onCompleteHandler,
         };
         return ms < p_getTimestamp() - webFontTest_startTime;
     };
-    
+
+    /**
+     * 
+     * @param {boolean=} isStart 
+     */
     function webFontTest_repeatToMesureWebFont( isStart ){
         var result;
 
@@ -161,18 +238,20 @@ var webFontTest_onCompleteHandler,
             webFontTest_resetTime();
         };
 
-        if( result = webFontTest_mesureWebFont( webFontTest_targetWebFontName, webFontTest_intervalTime ) ){
+        if( result = webFontTest_mesureWebFont( /** @type {string} */ (webFontTest_targetWebFontName), webFontTest_intervalTime ) ){
             Debug.log( '[webFontTest] testWebFont mesurement success : ' + result );
             webFontTest_testWebFontComplete( result );
         } else if( webFontTest_checkTime( webFontTest_intervalTime ) ){
             Debug.log( '[webFontTest] testWebFont timeout!' );
-            if( webFontTest_isTestDataURIWebFontPhase || webFontTest_NO_SUPPORT_DATA_URI_FONT ){
-                webFontTest_testWebFontComplete( 0 );
+            if( webFontTest_isMeasuringCSSFonts ){
+                webFontTest_repeatToTestDataURIedCSSWebFont();
+            } else if( webFontTest_NO_SUPPORT_DATA_URI_FONT ){
+                webFontTest_testWebFontComplete( webFontTest_RESULT_NONE );
             } else {
                 webFontTest_testDataURIOrSkipTest();
             };
         } else {
-            p_setTimer( webFontTest_repeatToMesureWebFont );
+            p_setTimer( /** @type {function(*=)} */ (webFontTest_repeatToMesureWebFont) );
         };
     };
 
@@ -215,7 +294,7 @@ var webFontTest_onCompleteHandler,
             },
         //we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
-            webFontTest_testString
+            webFontTest_TEST_STRING
         );
         webFontTest_defaultWidthList = [];
     
@@ -228,8 +307,15 @@ var webFontTest_onCompleteHandler,
         };
     };
 
+    /**
+     * 
+     * @param {string} testFontName 
+     * @param {number=} opt_intervalTime 
+     * @return {number}
+     */
     function webFontTest_mesureWebFont( testFontName, opt_intervalTime ){
-        var available = 0, i = -1, font, width, canLigature = 0,
+        var result = webFontTest_RESULT_NONE,
+            i = -1, font, width,
             widthListForWebKitFallbackBug = webFontTest_HAS_WEBKIT_FALLBACK_BUG && [];
 
         !webFontTest_defaultWidthList && webFontTest_preMesure();
@@ -249,7 +335,7 @@ var webFontTest_onCompleteHandler,
                             fontSize   : '72px'
                         }
                     },
-                    webFontTest_testString
+                    webFontTest_TEST_STRING
                 );
             };
         } else {
@@ -265,7 +351,7 @@ var webFontTest_onCompleteHandler,
             } else {
                 // Debug.log( '[webFontTest] ' + testFontName + ',' + font + '=' + width );
                 if( width !== webFontTest_defaultWidthList[ i ] ){
-                    available = 1;
+                    result = webFontTest_RESULT_AVAILABLE;
                     break;
                 };
             };
@@ -291,130 +377,82 @@ var webFontTest_onCompleteHandler,
 
                 // すべての値が同じなので、ブラウザはウェブフォントを読み込んでいる可能性が高いです。
                 // ただし、ブラウザに WebKit フォールバックバグがある場合は、すべての値が last resort fonts のいずれかに設定されているかどうかを確認する必要があります。
-                available = 1;
+                result = webFontTest_RESULT_AVAILABLE;
                 i = -1;
                 while( width = webFontTest_defaultWidthList[ ++i ] ){
                     if( width === widthListForWebKitFallbackBug[ 0 ] && width === widthListForWebKitFallbackBug[ 1 ] && width === widthListForWebKitFallbackBug[ 2 ] ){
                         // 取得した幅は last resort fonts のひとつと一致しているので、last resort fonts を扱っていると仮定しましょう。
                         Debug.log( '[webFontTest] Failed! : font[' + i + ']=' + webFontTest_BASE_FONT_LIST[ i ] );
-                        available = 0;
+                        result = webFontTest_RESULT_NONE;
                         break;
                     };
                 };
             };
         };
 
-        if( !p_Trident && available && webFontTest_ligatureTestString ){ // IE5 でエラーが発生 TODO カタログで枝掃いをする
+        if( !p_Trident && result && webFontTest_ligatureTestString ){ // IE5 でエラーが発生 TODO カタログで枝掃いをする
             webFontTest_elmSpan.textContent = webFontTest_ligatureTestString;
             width = webFontTest_elmSpan.offsetWidth;
             webFontTest_elmSpan.textContent = webFontTest_ligatureTestChar;
-            canLigature = width === webFontTest_elmSpan.offsetWidth ? 1 : 0;
-            webFontTest_elmSpan.textContent = webFontTest_testString;
+            result = width === webFontTest_elmSpan.offsetWidth ? webFontTest_RESULT_LIGATURE : webFontTest_RESULT_AVAILABLE;
+            webFontTest_elmSpan.textContent = webFontTest_TEST_STRING;
         };
         p_DOM_remove( webFontTest_elmSpan );
         if( p_Trident < 5 ){
             webFontTest_elmSpan = undefined;
         };
         if( opt_intervalTime && DEFINE_WEB_DOC_BASE__DEBUG ){
-            if( available || webFontTest_checkTime( opt_intervalTime ) ){
+            if( result || webFontTest_checkTime( opt_intervalTime ) ){
                 if( !widthListForWebKitFallbackBug ){
                     Debug.log( '[webFontTest] ' + testFontName + ', ' + font + '=' + width );
                 };
             };
         };
-        return available + canLigature;
+        return result;
     };
 
+    /**
+     * @param {boolean} result 
+     */
     function webFontTest_onTestDataURIComplete( result ){
         Debug.log( '[webFontTest] onTestDataURIComplete : ' + result );
         if( result ){
-            webFontTest_isTestDataURIWebFontPhase = true;
-            webFontTest_repeatToMesureDataURIWebFont( true );
-        } else {
-            webFontTest_testWebFontComplete( 0 );
-        };
-    };
-    
-    function webFontTest_repeatToMesureDataURIWebFont( isStart ){
-        var embededWebFontName;
-        
-        if( webFontTest_embededWebFonts ){
-            if( isStart ) webFontTest_resetTime();
-
-            for( embededWebFontName in webFontTest_embededWebFonts ){
-                if( webFontTest_mesureWebFont( embededWebFontName, webFontTest_INTERVAL_EMBEDED_WEBFONT ) ){
-                    Debug.log( '[webFontTest] success! ' + embededWebFontName );
-                    webFontTest_elmDiv = p_DOM_insertElement(
-                        p_body, 'div',
-                        {
-                            'aria-hidden' : 'true',
-                            className     : webFontTest_testIdAndClassName,
-                            id            : webFontTest_testIdAndClassName
-                        }
-                    );
-
-                    if( p_CSSOM_createStyleSheet ){
-                        webFontTest_styleSheetDataURIWebFont = p_CSSOM_createStyleSheet();
-                        p_CSSOM_insertRuleToStyleSheet( webFontTest_styleSheetDataURIWebFont, '@import', webFontTest_embededWebFonts[ embededWebFontName ] );
-                    } else {
-                        webFontTest_styleSheetDataURIWebFont = p_DOM_insertElement(
-                            p_head, 'link',
-                            {
-                                type : 'text/css',
-                                rel  : 'stylesheet',
-                                href : webFontTest_embededWebFonts[ embededWebFontName ]
-                            }
-                        );
-                    };
-                    p_setTimer( webFontTest_testImportedCssReady, true );
-                } else if( webFontTest_checkTime( webFontTest_INTERVAL_EMBEDED_WEBFONT ) ){
-                    Debug.log( '[webFontTest] timeout! ' + embededWebFontName );
-                    delete webFontTest_embededWebFonts[ embededWebFontName ];
-                    p_setTimer( webFontTest_repeatToMesureDataURIWebFont, true );
-                } else {
-                    p_setTimer( webFontTest_repeatToMesureDataURIWebFont );
-                };
-                return;
-            };
-        };
-        webFontTest_testWebFontComplete( 0 );
-    };
-
-    function webFontTest_testImportedCssReady( isStart ){
-        if( isStart ){
+            webFontTest_isMeasuringCSSFonts = true;
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                Debug.log( '[webFontTest] testImportedCssReady start!' );
+                Debug.log( '[webFontTest] webFontTest_repeatToTestDataURIedCSSWebFont start!' );
                 if( DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE < 2 ){
                     webFontTest_targetWebFontName = webFontTest_targetWebFontName.replace( webFontTest_PREFIX, '' );
                 };
-                Debug.log( '[webFontTest] targetWebFontName : ' + webFontTest_targetWebFontName );
             };
-            webFontTest_resetTime();
-        };
-
-        if( 1 < webFontTest_elmDiv.offsetWidth ){
-            Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + webFontTest_elmDiv.offsetWidth );
-            p_DOM_remove( webFontTest_elmDiv );
-            webFontTest_intervalTime = webFontTest_INTERVAL_EMBEDED_WEBFONT;
-            p_setTimer( webFontTest_repeatToMesureWebFont, true );
-        } else if( webFontTest_checkTime( webFontTest_intervalTime ) ){
-            /**
-             * offsetWidth = 9 にならない問題
-             *  1. Windows Safari 3.2.3   WebKit 525.29 で必要. Windows Safari 4.0.5 WebKit 531 でこの処理は不要.
-             *  2. Windows Chrome 1.0.154 WebKit 525.19 でも発生したが webFontTest_NO_SUPPORT_DATA_URI_FONT の為
-             *     ここには至らない. Windows Iron 2.0.168 Webkit 530.4 でこの処理は不要.
-             */
-            if( p_WebKit < 528 || p_SafariMobile < 4 ){
-                Debug.log( '[webFontTest] testImportedCssReady ended. elmDiv.offsetWidth=' + webFontTest_elmDiv.offsetWidth );
-                p_DOM_remove( webFontTest_elmDiv );
-                webFontTest_intervalTime = webFontTest_INTERVAL_EMBEDED_WEBFONT;
-                p_setTimer( webFontTest_repeatToMesureWebFont, true );
-            } else {
-                Debug.log( '[webFontTest] testImportedCssReady timeout!' );
-                p_DOM_remove( webFontTest_elmDiv );
-                webFontTest_testWebFontComplete( 0 );
-            };
+            webFontTest_repeatToTestDataURIedCSSWebFont();
         } else {
-            p_setTimer( webFontTest_testImportedCssReady );
+            webFontTest_testWebFontComplete( webFontTest_RESULT_NONE );
+        };
+    };
+
+    function webFontTest_repeatToTestDataURIedCSSWebFont(){
+        if( webFontTest_fontTypeAndFontCSSURIPairs ){
+            while( webFontTest_fontTypeAndFontCSSURIPairs.length ){
+                var fontType   = /** @type {number} */ (webFontTest_fontTypeAndFontCSSURIPairs.shift());
+                var fontCSSURL = /** @type {string} */ (webFontTest_fontTypeAndFontCSSURIPairs.shift());
+
+                if( webFontTest_isSupportedFontTypeAtFontCSS( fontType ) ){
+                    Debug.log( '[webFontTest] maybe can use! ' + fontCSSURL );
+                    webFontTest_linkCSSFont = p_loadExternalCSS( fontCSSURL, webFontTest_onLoadFontCSSComplete, /** @type {string} */ (webFontTest_testIdAndClassName), webFontTest_linkCSSFont );
+                    return;
+                };
+            };
+        };
+        webFontTest_testWebFontComplete( webFontTest_RESULT_NONE );
+    };
+
+    /**
+     * @param {boolean} result 
+     */
+    function webFontTest_onLoadFontCSSComplete( result ){
+        if( result ){
+            webFontTest_repeatToMesureWebFont( true );
+        } else {
+            webFontTest_repeatToTestDataURIedCSSWebFont();
         };
     };
