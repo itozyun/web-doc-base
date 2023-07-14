@@ -34,12 +34,12 @@ if( Event_NO_SCROLL_EVENT ){
                 // document.title = scrollY;
                 Event_lastScrollY = scrollY;
                 Event_scrollEventHandler(
-                    {
+                    /** @type {!Event} */ ({
                         type            : 'scroll',
                         cancelable      : false,
                         stopPropagation : p_emptyFunction,
                         preventDefault  : p_emptyFunction
-                    }
+                    })
                 );
             };
         }
