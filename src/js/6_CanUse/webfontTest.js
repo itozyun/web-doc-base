@@ -54,10 +54,10 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndF
  */
 
 // Data URI スキームをサポートするが Web フォントには使えない環境
-var webFontTest_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9 || p_Chromium < 2 ||
-                                           p_Presto  < 12; // Windows Opera 12.18 で確認
-// SVG に制限があり、src:url() に #id が必要の為
-var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6 || p_Presto || p_WebKit < 530; // Chrome ~5
+var webFontTest_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9;
+// SVG の Data URI 化に制限あり。src:url() に #id が必要の為
+var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6 || p_Presto ||
+                                           p_WebKit < 530 || p_SafariMobile < 4; // Safari ~3
 var webFontTest_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + p_getTimestamp() + '_' );
 var webFontTest_INTERVAL_LOADING_WEBFONT = 5000;
 var webFontTest_INTERVAL_EMBEDED_WEBFONT = 500;
@@ -104,7 +104,7 @@ var webFontTest_CANUSE_SVG               = 525 <= p_WebKit || // Safari 3.1+
                                            3.2 <= p_SafariMobile ||
                                            p_Chromium < 38 || // Chrome 1~37
                                            3 <= p_AOSP ||
-                                           12 <= p_Presto;
+                                           11.5 <= p_Presto;
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
@@ -132,11 +132,6 @@ var webFontTest_onCompleteHandler,
      * @return {boolean} 
      */
     function webFontTest_isSupportedFontTypeAtFontCSS( fontType ){
-        // Chrome 6~31(?) SVG のみ
-        if( fontType !== webFontTest_IS_SVG && 6 <= p_Chromium && p_Chromium < 32 ){
-            return false;
-        };
-
         switch( fontType ){
             case webFontTest_IS_WOFF2 :
                 return webFontTest_CANUSE_WOFF2;
