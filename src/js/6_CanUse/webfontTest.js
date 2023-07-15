@@ -66,9 +66,11 @@ var webFontTest_TEST_STRING              = 'mmmmmmmmmmlliiiiiiiii';
  * https://github.com/bramstein/fontfaceobserver/blob/39f19c41830eac7726e08b09f60d2aa2b74dc38b/src/observer.js#L93
  *   Observer.hasWebKitFallbackBug
  */
-var webFontTest_HAS_WEBKIT_FALLBACK_BUG  = /* p_Chromium < 21 || */
+var webFontTest_HAS_WEBKIT_FALLBACK_BUG  = p_Chromium < 21 ||
+                                           // p_AOSP < 4.3 ||
                                            p_SafariMobile < 7 ||
                                            p_WebKit && ua.conpare( p_engineVersion, '536.11' ) <= 0;
+var webFontTest_BASE_FONT_LIST           = [ 'monospace', 'sans-serif', 'serif' ];
 
 if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_Chromium     && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_Chromium='     + p_Chromium );
@@ -109,7 +111,6 @@ var webFontTest_CANUSE_SVG               = 525 <= p_WebKit || // Safari 3.1+
 var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
 
-var webFontTest_BASE_FONT_LIST           = p_Chromium ? [ 'sans-serif', 'serif' ] : [ 'monospace', 'sans-serif', 'serif' ];
 var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST && [];
 
 var webFontTest_onCompleteHandler,
@@ -298,8 +299,12 @@ var webFontTest_onCompleteHandler,
             //get the default width for the three base fonts
             p_DOM_setStyle( webFontTest_elmSpan, 'fontFamily', font );
             webFontTest_defaultWidthList[ i ] = webFontTest_elmSpan.offsetWidth; //width for the default font
-            Debug.log( '[webFontTest] ' + font + '=' + webFontTest_defaultWidthList[ i ] );
+            // Debug.log( '[webFontTest] ' + font + '=' + webFontTest_defaultWidthList[ i ] );
             //defaultHeight[ font ] = webFontTest_elmSpan.offsetHeight; //height for the defualt font
+        };
+
+        if( DEFINE_WEB_DOC_BASE__DEBUG ){
+            Debug.log( '[webFontTest] default width ' + webFontTest_defaultWidthList.join( ', ' ) );
         };
     };
 
@@ -312,7 +317,7 @@ var webFontTest_onCompleteHandler,
     function webFontTest_mesureWebFont( testFontName, opt_intervalTime ){
         var result = webFontTest_RESULT_NONE,
             i = -1, font, width,
-            widthListForWebKitFallbackBug = webFontTest_HAS_WEBKIT_FALLBACK_BUG && [];
+            widthList = ( webFontTest_HAS_WEBKIT_FALLBACK_BUG || DEFINE_WEB_DOC_BASE__DEBUG ) && [];
 
         !webFontTest_defaultWidthList && webFontTest_preMesure();
 
@@ -342,13 +347,18 @@ var webFontTest_onCompleteHandler,
             // name of the font along with the base font for fallback.
             p_DOM_setStyle( webFontTest_elmSpan, 'fontFamily', '"' + testFontName + '",' + font );
             width = webFontTest_elmSpan.offsetWidth;
-            if( widthListForWebKitFallbackBug ){
-                widthListForWebKitFallbackBug[ i ] = width;
+            if( webFontTest_HAS_WEBKIT_FALLBACK_BUG ){
+                widthList[ i ] = width;
             } else {
                 // Debug.log( '[webFontTest] ' + testFontName + ',' + font + '=' + width );
                 if( width !== webFontTest_defaultWidthList[ i ] ){
                     result = webFontTest_RESULT_AVAILABLE;
-                    break;
+                    if( DEFINE_WEB_DOC_BASE__DEBUG ){
+                        break;
+                    };
+                };
+                if( DEFINE_WEB_DOC_BASE__DEBUG ){
+                    widthList[ i ] = width;
                 };
             };
         };
@@ -367,16 +377,16 @@ var webFontTest_onCompleteHandler,
          * 3) WebKit のバグ：a、b、c の両方が呼び出され、同じ値を持ちますが、その値はラストリゾートフォントの1つと等しいので、
          *    これを無視して、新しい値が得られるまで待ち続けます。新しい値（またはタイムアウト）を取得するまで待ち続ける。
          */
-        if( widthListForWebKitFallbackBug ){
-            if( width === widthListForWebKitFallbackBug[ 0 ] && width === widthListForWebKitFallbackBug[ 1 ] ){
+        if( webFontTest_HAS_WEBKIT_FALLBACK_BUG ){
+            if( width === widthList[ 0 ] && width === widthList[ 1 ] ){
                 Debug.log( '[webFontTest] Hit... : width=' + width );
 
                 // すべての値が同じなので、ブラウザはウェブフォントを読み込んでいる可能性が高いです。
                 // ただし、ブラウザに WebKit フォールバックバグがある場合は、すべての値が last resort fonts のいずれかに設定されているかどうかを確認する必要があります。
                 result = webFontTest_RESULT_AVAILABLE;
                 i = -1;
-                while( width = webFontTest_defaultWidthList[ ++i ] ){
-                    if( width === widthListForWebKitFallbackBug[ 0 ] && width === widthListForWebKitFallbackBug[ 1 ] && width === widthListForWebKitFallbackBug[ 2 ] ){
+                while( 0 <= ( width = webFontTest_defaultWidthList[ ++i ] ) ){
+                    if( width === widthList[ 0 ] && width === widthList[ 1 ] && width === widthList[ 2 ] ){
                         // 取得した幅は last resort fonts のひとつと一致しているので、last resort fonts を扱っていると仮定しましょう。
                         Debug.log( '[webFontTest] Failed! : font[' + i + ']=' + webFontTest_BASE_FONT_LIST[ i ] );
                         result = webFontTest_RESULT_NONE;
@@ -398,12 +408,8 @@ var webFontTest_onCompleteHandler,
             webFontTest_elmSpan = undefined;
         };
         if( opt_intervalTime && DEFINE_WEB_DOC_BASE__DEBUG ){
-            if( !widthListForWebKitFallbackBug ){
-                if( result ){
-                    Debug.log( '[webFontTest] ' + testFontName + ', ' + font + '=' + width );
-                } else if( webFontTest_checkTime( opt_intervalTime ) ){
-
-                };
+            if( result || webFontTest_checkTime( opt_intervalTime ) ){
+                Debug.log( '[webFontTest] ' + testFontName + ' ' + widthList.join( ', ' ) );
             };
         };
         return result;
