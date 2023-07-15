@@ -81,12 +81,12 @@ var ExternalCSSLoader_main =
             elmLink.href    = url;
 
             function onSuccess(){
-                onCompleteCallback( true );
                 elmLink.onload = elmLink.onerror = null;
+                onCompleteCallback( true );
             };
             function onError(){
-                onCompleteCallback( false );
                 elmLink.onload = elmLink.onerror = null;
+                onCompleteCallback( false );
             };
         } :
     ExternalCSSLoader_USE_ONLOAD_THEN_MESURE ?
@@ -97,9 +97,10 @@ var ExternalCSSLoader_main =
             elmLink.href    = url;
 
             function onComplete(){
+                var result = /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) );
                 !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                 elmLink.onload = ExternalCSSLoader_elmTest = null;
-                onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
+                onCompleteCallback( result );
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
@@ -108,10 +109,11 @@ var ExternalCSSLoader_main =
 
             elmLink.onreadystatechange = function onReadyStateChange(){
                 if( elmLink.readyState === 'complete' ){
-                    elmLink.onReadyStateChange = p_emptyFunction;
+                    var result = /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) );
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
-                    onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
+                    elmLink.onReadyStateChange = p_emptyFunction;
+                    onCompleteCallback( result );
                 };
             };
             elmLink.href = url;
