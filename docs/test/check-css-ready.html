@@ -46,7 +46,7 @@ var webkit  = ( ua.ENGINE === 'WebKit'                                     ) && 
 var safarim = ( ua.ENGINE === 'SafariMobile' || ua.ENGINE === 'iOSWebView' ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
 var aosp    = ( ua.ENGINE === 'AOSP'                                       ) && parseFloat( ua.ENGINE_VERSION ) || NaN;
 
-var khtmlPach = chrome < 19 || webkit < 536 || safarim < 6 || aosp < 4.3;
+var khtmlPatch = chrome < 19 || webkit < 536 || safarim < 6 || aosp < 4.3;
 
 var oldAPI  = trident < 5 || ua.ENGINE === 'Tasman';
 var __ontimer, textarea;
@@ -138,7 +138,7 @@ function test( url, timeout, delay ){
 
     log( '[' + url + ']' );
 
-    if( presto < 9 || 9.5 <= presto || gecko < 7 || khtmlPach ){
+    if( presto < 9 || 9.5 <= presto || gecko < 7 || khtmlPatch ){
         presto && log( '[Opera:' + presto + ']' );
         gecko  && log( '[Gecko:' + gecko + ']' );
         img = new Image;
