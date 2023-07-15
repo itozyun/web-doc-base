@@ -138,7 +138,7 @@ function test( url, timeout, delay ){
 
     log( '[' + url + ']' );
 
-    if( presto < 9 || 9.5 <= presto || gecko < 7 || khtmlPatch ){
+    if( presto < 9 || 9.5 <= presto || gecko < 9 || khtmlPatch ){
         presto && log( '[Opera:' + presto + ']' );
         gecko  && log( '[Gecko:' + gecko + ']' );
         img = new Image;

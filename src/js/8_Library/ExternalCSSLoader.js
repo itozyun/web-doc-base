@@ -53,7 +53,7 @@ var ExternalCSSLoader_USE_ONLOAD_THEN_MESURE                = 11 <= p_Trident ||
                                                               ( 9 <= p_Presto && p_Presto < 9.5 );
 var ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE    = p_Trident < 11;
 var ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE = 7.2 <= p_Presto && p_Presto < 7.5;
-var ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE          = ( p_Gecko < 26 && !ExternalCSSLoader_UNSUPPORTED ) || // 26 は暫定
+var ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE          = ( p_Gecko < 9 && !ExternalCSSLoader_UNSUPPORTED ) ||
                                                               p_Chromium < 19 ||
                                                               p_AOSP < 4.3 || // 多分
                                                               p_Samsung < 2 || // 暫定
