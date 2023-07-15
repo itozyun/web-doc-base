@@ -1,11 +1,14 @@
-var CSSOM_USE_DATAURI_FALLBACK     = p_Gecko < 1 || // Gecko 0.9.4.1, 0.9.6, 0.9.7 で動作 TODO 0.9 <= p_Gecko ??
+var CSSOM_UNSUPPORTED              = p_Gecko && ua.conpare( p_engineVersion, '0.9.1' ) < 0 ||
+                                     p_Presto < 7.2;
+
+var CSSOM_USE_DATAURI_FALLBACK     = !CSSOM_UNSUPPORTED && p_Gecko < 1 || // Gecko 0.9.1~0.9.9
                                      8 <= p_Presto && p_Presto < 9;
-var CSSOM_USE_TEXTCONTENT_FALLBACK = 7.2 <= p_Presto && p_Presto < 8;
+var CSSOM_USE_TEXTCONTENT_FALLBACK = !CSSOM_UNSUPPORTED && p_Presto < 8;
 
 var Base64_btoa;
 
 var CSSOM_HAS_STYLESHEET_OBJECT    = !p_Trident &&
-        ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
+        ( !CSSOM_UNSUPPORTED && !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
         var elmStyle = p_DOM_insertElement( p_html, 'style' ),
             result = !!m_CSSOM_getStyleSheet( elmStyle );
 
@@ -23,7 +26,7 @@ var CSSOM_HAS_STYLESHEET_OBJECT    = !p_Trident &&
 Debug.log( '[CSSOM] CSSOM_HAS_STYLESHEET_OBJECT : ' + CSSOM_HAS_STYLESHEET_OBJECT );
 
 var CSSOM_HAS_STYLESHEET_WITH_PATCH = !CSSOM_HAS_STYLESHEET_OBJECT && p_WebKit &&
-    ( !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
+    ( !CSSOM_UNSUPPORTED && !CSSOM_USE_DATAURI_FALLBACK && !CSSOM_USE_TEXTCONTENT_FALLBACK ) && (function(){ // p_Gecko < 1 でここに入らない!
     // https://amachang.hatenablog.com/entry/20070703/1183445387
     // Safari で CSSStyleSheet オブジェクトを生成する方法
     var elmStyle = p_DOM_insertElement( p_html, 'style' ),
