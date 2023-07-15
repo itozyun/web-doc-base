@@ -118,36 +118,36 @@ var ExternalCSSLoader_main =
         } :
     ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE || ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE ?
         function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
-            var img = new Image, limit;
+            var img = new Image,
+                timerID = p_setTimer( onComplete, 0, 5000 ), // (A) Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
+                limit;
 
             if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
                 Debug.log( '[CSS Loader] img.onerror + mesure' );
                 img.onerror = onComplete;
-                if( p_Chromium < 3 ){
-                    p_setTimer( onComplete, 0, 5000 ); // Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
-                };
             } else {
                 Debug.log( '[CSS Loader] img.addEventListener("load") + mesure' );
                 img.addEventListener( 'load', onComplete, false );
             };
 
-            img.src = url;
+            img.src = elmLink.href = url;
 
             function onComplete(){
-                if( p_Chromium < 3 && !img ){
-                    return;
-                };
-                Debug.log( '[CSS Loader] onComplete' );
+                if( img ){ // (A)
+                    timerID = p_clearTimer( timerID );
 
-                limit = p_getTimestamp() + ExternalCSSLoader_INTERVAL_TIME;
-                p_setTimer( onTimer, 0, 99 );
-                if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
-                    img.onerror = null;
-                } else {
-                    img.removeEventListener( 'load', onComplete, false );
+                    Debug.log( '[CSS Loader] onComplete' );
+    
+                    limit = p_getTimestamp() + ExternalCSSLoader_INTERVAL_TIME;
+                    p_setTimer( onTimer, 0, 99 );
+    
+                    if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
+                        img.onerror = null;
+                    } else {
+                        img.removeEventListener( 'load', onComplete, false );
+                    };
+                    img = null;
                 };
-                img = null;
-                elmLink.href = url;
             };
 
             function onTimer(){
