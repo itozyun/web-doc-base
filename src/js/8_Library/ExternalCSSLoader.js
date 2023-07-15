@@ -97,9 +97,9 @@ var ExternalCSSLoader_main =
             elmLink.href    = url;
 
             function onComplete(){
-                onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
-                DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
+                !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                 elmLink.onload = ExternalCSSLoader_elmTest = null;
+                onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
@@ -108,10 +108,10 @@ var ExternalCSSLoader_main =
 
             elmLink.onreadystatechange = function onReadyStateChange(){
                 if( elmLink.readyState === 'complete' ){
-                    onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
                     elmLink.onReadyStateChange = p_emptyFunction;
-                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
+                    onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
                 };
             };
             elmLink.href = url;
@@ -144,15 +144,15 @@ var ExternalCSSLoader_main =
 
             function onTimer(){
                 if( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) ){
-                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
-                    onCompleteCallback( true );
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
+                    onCompleteCallback( true );
                 } else if( p_getTimestamp() < limit ){
                     p_setTimer( onTimer, 0, 99 );
                 } else {
-                    onCompleteCallback( false );
-                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
+                    onCompleteCallback( false );
                 };
             };
         } :

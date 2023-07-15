@@ -13,13 +13,13 @@ p_listenCssAvailabilityChange(
             [
                 webFontTest_IS_WOFF2, p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css',
                 webFontTest_IS_WOFF , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
-                webFontTest_IS_TTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
                 webFontTest_IS_OTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
+                webFontTest_IS_TTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
                 webFontTest_IS_EOT  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
                 webFontTest_IS_SVG  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
             ],
             'js-' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '-testCssReady', // 4.
-            'twitter', '🐤', // 5. 6.
+            'Twitter', '🐤', // 5. 6.
             5000 // 7. test interval ms
         );
 
