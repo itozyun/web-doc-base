@@ -122,7 +122,7 @@ var webFontTest_onCompleteHandler,
     webFontTest_startTime,
     webFontTest_isMeasuringCSSFonts,
     webFontTest_elmSpan,
-    webFontTest_linkCSSFont,
+    webFontTest_elmLink,
     webFontTest_defaultWidthList;
 
     /**
@@ -160,14 +160,15 @@ var webFontTest_onCompleteHandler,
      */
     function webFontTest_testWebFontComplete( result ){
         webFontTest_onCompleteHandler( result );
-        if( webFontTest_linkCSSFont && !result ){
-            p_DOM_remove( webFontTest_linkCSSFont );
+        if( webFontTest_elmLink && !result ){
+            p_DOM_remove( webFontTest_elmLink );
         };
         webFontTest_onCompleteHandler = webFontTest_targetWebFontName =
         webFontTest_fontTypeAndFontCSSURIPairs = webFontTest_testIdAndClassName =
         webFontTest_ligatureTestString = webFontTest_ligatureTestChar =
-        webFontTest_isMeasuringCSSFonts = webFontTest_elmSpan =
-        webFontTest_defaultWidthList = webFontTest_linkCSSFont = undefined;
+        webFontTest_isMeasuringCSSFonts =
+        webFontTest_elmSpan = webFontTest_elmLink =
+        webFontTest_defaultWidthList = undefined;
         // TODO webFontTest_QUEUE
     };
 
@@ -368,7 +369,7 @@ var webFontTest_onCompleteHandler,
          * ケース
          * 1) フォントのロード：a、b、c の両方が呼び出され、同じ値を持っている。
          * 2) フォントの読み込みに失敗した場合：リサイズコールバックが呼ばれず、タイムアウトが発生する。
-         * 3) WebKit のバグ：a、b、c の両方が呼び出され、同じ値を持ちますが、その値は最後の手段のフォントの1つと等しいので、
+         * 3) WebKit のバグ：a、b、c の両方が呼び出され、同じ値を持ちますが、その値はラストリゾートフォントの1つと等しいので、
          *    これを無視して、新しい値が得られるまで待ち続けます。新しい値（またはタイムアウト）を取得するまで待ち続ける。
          */
         if( widthListForWebKitFallbackBug ){
@@ -402,9 +403,11 @@ var webFontTest_onCompleteHandler,
             webFontTest_elmSpan = undefined;
         };
         if( opt_intervalTime && DEFINE_WEB_DOC_BASE__DEBUG ){
-            if( result || webFontTest_checkTime( opt_intervalTime ) ){
-                if( !widthListForWebKitFallbackBug ){
+            if( !widthListForWebKitFallbackBug ){
+                if( result ){
                     Debug.log( '[webFontTest] ' + testFontName + ', ' + font + '=' + width );
+                } else if( webFontTest_checkTime( opt_intervalTime ) ){
+
                 };
             };
         };
@@ -418,6 +421,7 @@ var webFontTest_onCompleteHandler,
         Debug.log( '[webFontTest] onTestDataURIComplete : ' + result );
         if( result ){
             webFontTest_isMeasuringCSSFonts = true;
+            webFontTest_intervalTime = webFontTest_INTERVAL_EMBEDED_WEBFONT;
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
                 Debug.log( '[webFontTest] webFontTest_repeatToTestDataURIedCSSWebFont start!' );
                 if( DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE < 2 ){
@@ -438,7 +442,7 @@ var webFontTest_onCompleteHandler,
 
                 if( webFontTest_isSupportedFontTypeAtFontCSS( fontType ) ){
                     Debug.log( '[webFontTest] maybe can use! ' + fontCSSURL );
-                    webFontTest_linkCSSFont = p_loadExternalCSS( fontCSSURL, webFontTest_onLoadFontCSSComplete, /** @type {string} */ (webFontTest_testIdAndClassName), webFontTest_linkCSSFont );
+                    webFontTest_elmLink = p_loadExternalCSS( fontCSSURL, webFontTest_onLoadFontCSSComplete, /** @type {string} */ (webFontTest_testIdAndClassName), webFontTest_elmLink );
                     return;
                 };
             };

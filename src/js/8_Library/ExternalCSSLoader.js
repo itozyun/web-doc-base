@@ -6,30 +6,39 @@
  * 
  * @param {string} url 
  * @param {!function(boolean)} onCompleteCallback
- * @param {string} id
+ * @param {string} testIdAndClassName
  * @param {!HTMLLinkElement=} opt_elmLink 
  */
-p_loadExternalCSS = function( url, onCompleteCallback, id, opt_elmLink ){
+p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_elmLink ){
     var elmLink = opt_elmLink || p_DOM_insertElement(
             p_head, 'link',
             {
                 type  : 'text/css',
                 rel   : 'stylesheet'
             }
-        );
+        ),
+        widthBeforeCSSLoaded;
 
     if( ExternalCSSLoader_mesure ){
-        ExternalCSSLoader_elmTest = p_DOM_getElementById( id ) || p_DOM_insertElement(
-            p_body, 'div',
-            {
-                'aria-hidden' : 'true',
-                className     : id,
-                id            : id
-            }
-        );
+        ExternalCSSLoader_elmTest = p_DOM_getElementById( testIdAndClassName );
+        
+        if( !ExternalCSSLoader_elmTest ){
+            ExternalCSSLoader_elmTest = p_DOM_insertElement(
+                    p_body, 'div',
+                    {
+                        'aria-hidden' : 'true',
+                        className     : testIdAndClassName
+                    }
+                );
+        } else {
+            p_DOM_removeAttribute( ExternalCSSLoader_elmTest, 'id' );
+        };
+        widthBeforeCSSLoaded = ExternalCSSLoader_elmTest.offsetWidth;
+        Debug.log( '[CSS Loader] widthBeforeCSSLoaded = ' + widthBeforeCSSLoaded );
+        p_DOM_setAttribute( ExternalCSSLoader_elmTest, 'id', testIdAndClassName );
     };
 
-    ExternalCSSLoader_main( elmLink, url, onCompleteCallback );
+    ExternalCSSLoader_main( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded );
     return elmLink;
 };
 
@@ -60,11 +69,11 @@ var ExternalCSSLoader_GODD                                  = !ExternalCSSLoader
 var ExternalCSSLoader_elmTest;
 
 /**
- * @type {function(!HTMLLinkElement, string, !function(boolean))}
+ * @type {function(!HTMLLinkElement, string, !function(boolean), number=)}
  */
 var ExternalCSSLoader_main =
     ExternalCSSLoader_GODD ?
-        function( elmLink, url, onCompleteCallback ){
+        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onload + onerror' );
 
             elmLink.onload  = onSuccess;
@@ -81,34 +90,34 @@ var ExternalCSSLoader_main =
             };
         } :
     ExternalCSSLoader_USE_ONLOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback ){
+        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onload + mesure' );
 
             elmLink.onload  = onComplete;
             elmLink.href    = url;
 
             function onComplete(){
-                onCompleteCallback( /** @type {!function():boolean} */ (ExternalCSSLoader_mesure)() );
-                p_DOM_remove( ExternalCSSLoader_elmTest );
+                onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
+                DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
                 elmLink.onload = ExternalCSSLoader_elmTest = null;
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback ){
+        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onreadystatechange + onerror' );
 
             elmLink.onreadystatechange = function onReadyStateChange(){
                 if( elmLink.readyState === 'complete' ){
-                    onCompleteCallback( /** @type {!function():boolean} */ (ExternalCSSLoader_mesure)() );
+                    onCompleteCallback( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) );
                     elmLink.onReadyStateChange = p_emptyFunction;
-                    p_DOM_remove( ExternalCSSLoader_elmTest );
+                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
                 };
             };
             elmLink.href = url;
         } :
     ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE || ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback ){
+        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
             var img = new Image, limit;
 
             if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
@@ -134,27 +143,31 @@ var ExternalCSSLoader_main =
             };
 
             function onTimer(){
-                if( /** @type {!function():boolean} */ (ExternalCSSLoader_mesure)() ){
-                    p_DOM_remove( ExternalCSSLoader_elmTest );
+                if( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) ){
+                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
                     onCompleteCallback( true );
                     ExternalCSSLoader_elmTest = null;
                 } else if( p_getTimestamp() < limit ){
                     p_setTimer( onTimer, 0, 99 );
                 } else {
                     onCompleteCallback( false );
-                    p_DOM_remove( ExternalCSSLoader_elmTest );
+                    DEFINE_WEB_DOC_BASE__DEBUG || p_DOM_remove( ExternalCSSLoader_elmTest );
                     ExternalCSSLoader_elmTest = null;
                 };
             };
         } :
-        function( elmLink, url, onCompleteCallback ){
+        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] UNSUPPORTED' );
 
             p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
         };
 
-/** @type {function():boolean|boolean} */
+/** @type {function(number):boolean|boolean} */
 var ExternalCSSLoader_mesure = !ExternalCSSLoader_GODD && !ExternalCSSLoader_UNSUPPORTED &&
-        function(){
-            return ExternalCSSLoader_elmTest.offsetWidth !== 20;
+        function( widthBeforeCSSLoaded ){
+
+            if( DEFINE_WEB_DOC_BASE__DEBUG ){
+                Debug.log( '[CSS Loader] ExternalCSSLoader_elmTest.offsetWidth = ' + ExternalCSSLoader_elmTest.offsetWidth );
+            };
+            return ExternalCSSLoader_elmTest.offsetWidth !== widthBeforeCSSLoaded;
         };

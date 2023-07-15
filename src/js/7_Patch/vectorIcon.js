@@ -18,7 +18,7 @@ p_listenCssAvailabilityChange(
                 webFontTest_IS_EOT  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
                 webFontTest_IS_SVG  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
             ],
-            DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '-testCssReady', // 4.
+            'js-' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '-testCssReady', // 4.
             'twitter', '🐤', // 5. 6.
             5000 // 7. test interval ms
         );

@@ -2,7 +2,7 @@
     TODO : インライン style 化した上で、チェックが終わったら要素を削除できる
 --------------------------------------------------------------------------------------*/
 @if( $UA_Modern or $UA_IE9 ){
-    .js-MyIconFont-testCssReady {
+    .js-myIconFont-testCssReady {
         position    : absolute;
         top         : 0;
         left        : 0;
