@@ -19,24 +19,27 @@ function( callback ){
 
         var datauri = new Image(),
             // https://twitter.com/itozyun/status/1306835988577099776/
-            // IE:インターネットオプションで画像を無効にした場合、イベントが起きない!
-            timerID = p_setTimer( function(){ timerID && _callback( false ); } );
+            // IE : インターネットオプションで画像を無効にした場合、イベントが起きない!
+            // Safari4.0 : interval が少ないと失敗するので 999ms
+            timerID = p_setTimer( onComplete, false, 999 );
 
         datauri.onerror = function(){
             Debug.log( '[dataURITest] no DATA URI!' );
-            _callback( false );
+            onComplete( false );
         };
 
         datauri.onload = function(){
             Debug.log( '[dataURITest] DATA URI:' + ( datauri.width * datauri.height === 1 ) );
-            _callback( datauri.width * datauri.height === 1 );
+            onComplete( datauri.width * datauri.height === 1 );
         };
         datauri.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     };
-    function _callback( result ){
-        timerID = p_clearTimer( timerID );
-        p_dataURITestResult = result;
-        datauri.onload = datauri.onerror = p_emptyFunction;
-        p_setTimer( callback, result );
+    function onComplete( result ){
+        if( timerID ){
+            timerID = p_clearTimer( timerID );
+            p_dataURITestResult = result;
+            datauri.onload = datauri.onerror = p_emptyFunction;
+            callback( result );
+        };
     };
 };
