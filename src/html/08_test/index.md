@@ -5,7 +5,7 @@
 ## この他のテストへのリンク
 
 <a href="../test/attr-selectors.html">属性セレクタのテスト</a>,
-<a href="../test/check-css-ready-width-ruler.html">With Ruler | Check CSS Ready</a>,
+<a href="../test/check-css-ready-with-ruler.html">With Ruler | Check CSS Ready</a>,
 <a href="../test/check-css-ready.html">Check CSS Ready</a>,
 <a href="../test/check-image-loading.html">Check Image loading</a>,
 <a href="../test/clearfix.html">clearfix のテスト</a>,
