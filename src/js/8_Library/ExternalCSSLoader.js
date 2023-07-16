@@ -17,28 +17,28 @@ p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_e
                 rel   : 'stylesheet'
             }
         ),
-        widthBeforeCSSLoaded;
+        elmTest, widthBeforeCSSLoaded;
 
     if( ExternalCSSLoader_mesure ){
-        ExternalCSSLoader_elmTest = p_DOM_getElementById( testIdAndClassName );
+        elmTest = /** @type {!HTMLDivElement|undefined} */ (p_DOM_getElementById( testIdAndClassName ));
         
-        if( !ExternalCSSLoader_elmTest ){
-            ExternalCSSLoader_elmTest = p_DOM_insertElement(
+        if( !elmTest ){
+            elmTest = /** @type {!HTMLDivElement|undefined} */ (p_DOM_insertElement(
                     p_body, 'div',
                     {
                         'aria-hidden' : 'true',
                         className     : testIdAndClassName
                     }
-                );
+                ));
         } else {
-            p_DOM_removeAttribute( ExternalCSSLoader_elmTest, 'id' );
+            p_DOM_removeAttribute( elmTest, 'id' );
         };
-        widthBeforeCSSLoaded = ExternalCSSLoader_elmTest.offsetWidth;
+        widthBeforeCSSLoaded = elmTest.offsetWidth;
         Debug.log( '[CSS Loader] widthBeforeCSSLoaded = ' + widthBeforeCSSLoaded );
-        p_DOM_setAttribute( ExternalCSSLoader_elmTest, 'id', testIdAndClassName );
+        p_DOM_setAttribute( elmTest, 'id', testIdAndClassName );
     };
 
-    ExternalCSSLoader_main( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded );
+    ExternalCSSLoader_main( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded );
     return elmLink;
 };
 
@@ -66,14 +66,12 @@ var ExternalCSSLoader_GODD                                  = !ExternalCSSLoader
                                                               !ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE &&
                                                               !ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE;
 
-var ExternalCSSLoader_elmTest;
-
 /**
- * @type {function(!HTMLLinkElement, string, !function(boolean), number=)}
+ * @type {function(!HTMLLinkElement, string, !function(boolean), !HTMLDivElement=, number=)}
  */
 var ExternalCSSLoader_main =
     ExternalCSSLoader_GODD ?
-        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onload + onerror' );
 
             elmLink.onload  = onSuccess;
@@ -82,46 +80,54 @@ var ExternalCSSLoader_main =
 
             function onSuccess(){
                 elmLink.onload = elmLink.onerror = null;
-                onCompleteCallback( true );
+                p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), true );
             };
             function onError(){
                 elmLink.onload = elmLink.onerror = null;
-                onCompleteCallback( false );
+                p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
             };
         } :
     ExternalCSSLoader_USE_ONLOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onload + mesure' );
 
-            elmLink.onload  = onComplete;
-            elmLink.href    = url;
+            elmLink.onload = onComplete;
+            elmLink.href   = url;
 
             function onComplete(){
-                var result = /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) );
-                !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
-                elmLink.onload = ExternalCSSLoader_elmTest = null;
-                onCompleteCallback( result );
+                p_setTimer( /** @type {function(*=)} */ (onCompleteCallback),
+                    /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)(
+                        /** @type {!HTMLDivElement} */ (elmTest),
+                        /** @type {number}          */ (widthBeforeCSSLoaded)
+                    )
+                );
+                !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
+                elmLink.onload = elmTest = null;
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] onreadystatechange + onerror' );
 
             elmLink.onreadystatechange = function onReadyStateChange(){
                 if( elmLink.readyState === 'complete' ){
-                    var result = /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) );
-                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
-                    ExternalCSSLoader_elmTest = null;
+                    p_setTimer( /** @type {function(*=)} */ (onCompleteCallback),
+                        /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)(
+                            /** @type {!HTMLDivElement} */ (elmTest),
+                            /** @type {number}          */ (widthBeforeCSSLoaded)
+                        )
+                    );
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
+                    elmTest = null;
                     elmLink.onReadyStateChange = p_emptyFunction;
-                    onCompleteCallback( result );
                 };
             };
             elmLink.href = url;
         } :
     ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE || ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
             var img = new Image,
-                timerID = p_setTimer( onComplete, 0, 5000 ), // (A) Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
+                timerID = p_setTimer( /** @type {function(*=)} */ (onComplete), 0, 5000 ), // (A) Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
                 limit;
 
             if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
@@ -153,31 +159,31 @@ var ExternalCSSLoader_main =
             };
 
             function onTimer(){
-                if( /** @type {!function(number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {number} */ (widthBeforeCSSLoaded) ) ){
-                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
-                    ExternalCSSLoader_elmTest = null;
-                    onCompleteCallback( true );
+                if( /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {!HTMLDivElement} */ (elmTest), /** @type {number} */ (widthBeforeCSSLoaded) ) ){
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
+                    elmTest = null;
+                    p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), true );
                 } else if( p_getTimestamp() < limit ){
                     p_setTimer( onTimer, 0, 99 );
                 } else {
-                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( ExternalCSSLoader_elmTest );
-                    ExternalCSSLoader_elmTest = null;
-                    onCompleteCallback( false );
+                    !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
+                    elmTest = null;
+                    p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
                 };
             };
         } :
-        function( elmLink, url, onCompleteCallback, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
             Debug.log( '[CSS Loader] UNSUPPORTED' );
 
             p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
         };
 
-/** @type {function(number):boolean|boolean} */
+/** @type {function(!HTMLDivElement, number):boolean|boolean} */
 var ExternalCSSLoader_mesure = !ExternalCSSLoader_GODD && !ExternalCSSLoader_UNSUPPORTED &&
-        function( widthBeforeCSSLoaded ){
+        function( elmTest, widthBeforeCSSLoaded ){
 
             if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                Debug.log( '[CSS Loader] ExternalCSSLoader_elmTest.offsetWidth = ' + ExternalCSSLoader_elmTest.offsetWidth );
+                Debug.log( '[CSS Loader] elmTest.offsetWidth = ' + elmTest.offsetWidth );
             };
-            return ExternalCSSLoader_elmTest.offsetWidth !== widthBeforeCSSLoaded;
+            return elmTest.offsetWidth !== widthBeforeCSSLoaded;
         };

@@ -21,7 +21,7 @@ function( callback ){
             // https://twitter.com/itozyun/status/1306835988577099776/
             // IE : インターネットオプションで画像を無効にした場合、イベントが起きない!
             // Safari4.0 : interval が少ないと失敗するので 999ms
-            timerID = p_setTimer( onComplete, false, 999 );
+            timerID = p_setTimer( /** @type {function(*=)} */ (onComplete), false, 999 );
 
         datauri.onerror = function(){
             Debug.log( '[dataURITest] no DATA URI!' );
@@ -39,7 +39,7 @@ function( callback ){
             timerID = p_clearTimer( timerID );
             p_dataURITestResult = result;
             datauri.onload = datauri.onerror = p_emptyFunction;
-            callback( result );
+            p_setTimer( /** @type {function(*=)} */ (callback), result );
         };
     };
 };
