@@ -13,10 +13,15 @@
                 url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.svg?rw1juc#web-doc-base'}) format('#{$WEBFONT_FORMAT_SVG}');
         }
     }
+    @if( $UA_Modern or $UA_IE9 ){
+        .js-myIconFont-testCssReady {
+            @include check-css-ready;
+        }
+    }
 }
 
 %vectorIconBase {
-    font-family : 'myIconFont';//, monospace, sans-serif !important;
+    font-family : 'myIconFont', serif !important;
     // if( $Option_hard-reset ){
         font-style     : normal;
         font-weight    : normal;

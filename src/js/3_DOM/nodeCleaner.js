@@ -1,6 +1,6 @@
 p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
-        p_DOM_removeClassName( p_html, 'nojs' );
+        p_DOM_removeClassName( p_html, DEFINE_WEB_DOC_BASE__CLASSNAME_NOJS );
 
         p_elmMain = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID );
 

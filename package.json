@@ -30,6 +30,7 @@
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-cleanhtml": "^1.0.3",
+    "gulp-connecting-room": "^0.1.0",
     "gulp-diamond-princess-zoning": "^0.9.13",
     "gulp-diffable-html": "^1.1.7",
     "gulp-group-css-media-queries": "^1.2.2",

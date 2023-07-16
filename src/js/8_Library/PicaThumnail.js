@@ -1,6 +1,6 @@
 /** @type {!Array.<!PicaThumbnail>} */
 var PicaThumbnail_IMGS         = [];
-var PicaThumbnail_MARGIN_LR    = 4; // @see scss/00_Config/02_var_Size.scss #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE} * 2
+var PicaThumbnail_MARGIN_LR    = BORDER_WIDTH_OF_LINK_WITH_IMAGE * 2; // @see scss/00_Config/02_var_Size.scss
 var PicaThumbnail_keyEventType = 5.5 <= p_Trident && p_Trident < 8 ? 'keypress' : 'keydown';
 /**
  * @typedef {{

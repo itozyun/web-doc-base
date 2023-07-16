@@ -2,15 +2,6 @@
     TODO : インライン style 化した上で、チェックが終わったら要素を削除できる
 --------------------------------------------------------------------------------------*/
 @if( $UA_Modern or $UA_IE9 ){
-    .js-myIconFont-testCssReady {
-        position    : absolute;
-        top         : 0;
-        left        : 0;
-        width       : 1px;
-        height      : 1px;
-        visibility  : hidden;
-    }
-
     @font-face {
         font-family : 'myIconFont_canEOT';
         src         : url('#{$MINIMUM_FONT_DATAURI_EOT}');

@@ -10,6 +10,8 @@ var
     DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID     = 'jsMain',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID     = 'jsSide',
+/** @define {string} */
+    DEFINE_WEB_DOC_BASE__CLASSNAME_NOJS     = 'nojs',
 
 /** ===========================================================================
  * Path of the assets directories
@@ -19,7 +21,7 @@ var
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR  = 'css',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR  = 'iconfont',
+    DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR = 'iconfont',
 /** @define {string} */
     DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR  = 'pc',
 /** @define {string} */
@@ -146,8 +148,8 @@ var
  * 8_Library/VectorIcon.js
  */
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME             = 'myIconFont',
+    DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME            = 'myIconFont',
 /** @define {string} */
-    DEFINE_CODE_PRETTIFY__VECTOR_ICON_COMPAT_FILENAME = 'vector-icon-svg-fallback.js',
+    DEFINE_WEB_DOC_BASE__VECTOR_ICON_COMPAT_FILENAME = 'vector-icon-svg-fallback.js',
 /** @define {string} */
-    DEFINE_WEB_DOC_BASE__VECTOR_ICON_CLASSNAME        = 'ico';
+    DEFINE_WEB_DOC_BASE__VECTOR_ICON_CLASSNAME       = 'ico';

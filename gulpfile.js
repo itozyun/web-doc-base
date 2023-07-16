@@ -10,51 +10,50 @@ let minify = true;
 let output = './docs/';
 
 /* -------------------------------------------------------
- *  gulp whatbrowserami
+ *  whatbrowserami
  */
-gulp.task( 'whatbrowserami', gulp.series(
-    function(){
-        gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
-        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+function createInlineScript(){
+    gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
+    ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
 
-        return gulp.src(
-                [
-                    './.submodules/what-browser-am-i/src/js/**/*.js',
-                    '!./.submodules/what-browser-am-i/src/4_brand.js',
-                    minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
-                ]
-            ).pipe(
-                gulpDPZ(
-                    {
-                        labelPackageGlobal : '*',
-                        packageGlobalArgs  : [ 'ua,window,document,navigator,screen,parseFloat,Number,undefined', 'ua,window,document,navigator,screen,parseFloat,Number,void 0' ],
-                        basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
-                    }
-                )
-            ).pipe(
-                ClosureCompiler(
-                    {
-                        externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
-                        define            : [
-                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=' + minify,
-                            'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=' + !minify,
-                            'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=' + !minify,
-                            'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=' + !minify,
-                            'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=' + !minify
-                        ],
-                        compilation_level : 'ADVANCED',
-                        //compilation_level : 'WHITESPACE_ONLY',
-                        //formatting        : 'PRETTY_PRINT',
-                        warning_level     : 'VERBOSE',
-                        language_in       : 'ECMASCRIPT3',
-                        language_out      : 'ECMASCRIPT3',
-                        output_wrapper    : 'ua=' + ( minify ? '[]' : '{}' ) + ';%output%',
-                        js_output_file    : tempJsName
-                    }
-                )
-            ).pipe(gulp.dest( tempDir ));
-    } )
-);
+    return gulp.src(
+            [
+                './.submodules/what-browser-am-i/src/js/**/*.js',
+                '!./.submodules/what-browser-am-i/src/4_brand.js',
+                minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
+            ]
+        ).pipe(
+            gulpDPZ(
+                {
+                    labelPackageGlobal : '*',
+                    packageGlobalArgs  : [ 'ua,window,document,navigator,screen,parseFloat,Number,undefined', 'ua,window,document,navigator,screen,parseFloat,Number,void 0' ],
+                    basePath           : [ './.submodules/what-browser-am-i/src/js/', './src/js-inline/' ]
+                }
+            )
+        ).pipe(
+            ClosureCompiler(
+                {
+                    externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
+                    define            : [
+                        'DEFINE_WHAT_BROWSER_AM_I__MINIFY=' + minify,
+                        'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=' + !minify,
+                        'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=' + !minify,
+                        'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=' + !minify,
+                        'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=' + !minify
+                    ],
+                    compilation_level : 'ADVANCED',
+                    //compilation_level : 'WHITESPACE_ONLY',
+                    //formatting        : 'PRETTY_PRINT',
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    output_wrapper    : 'ua=' + ( minify ? '[]' : '{}' ) + ';%output%',
+                    js_output_file    : tempJsName
+                }
+            )
+        ).pipe(gulp.dest( tempDir ));
+};
+
 
 /* -------------------------------------------------------
  *  gulp docs
@@ -66,7 +65,7 @@ gulp.task( 'docs', gulp.series(
         minify = false;
         cb();
     },
-    'whatbrowserami',
+    createInlineScript,
     function( cb ){
         require( 'fs' ).readFile( tempDir + '/' + tempJsName,
             function( error, buffer ){
@@ -82,7 +81,7 @@ gulp.task( 'docs', gulp.series(
     function(){
         return gulp
             .src(
-                [ output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
+                [ output + 'test/check-css-ready.html', output + 'test/check-css-ready-with-ruler.html', output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
             ).pipe(
                 require( 'gulp-jsdom' )(
                     function( document ){
@@ -170,139 +169,117 @@ const numericKeyName              = '-num';
 const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
 const regExpCompatFileName        = 'regexpcompat.js';
 
-gulp.task( '__js', gulp.series(
-    function(){
-        gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
-        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
-        postProcessor   = postProcessor   || require( 'es2-postprocessor' );
-        es2ToES3        = es2ToES3        || require( 'es2-to-es3' );
+const connect = require( 'gulp-connecting-room' );
+const COMMON_VARS = {
+        BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2,
+        SMALL_PHONE_MAX_WIDTH           : 359
+    };
 
-        return gulp.src(
-                [
-                    // what-browser-am-i
-                    './.submodules/what-browser-am-i/src/js/0_global/*.js',
-                   '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
-                    // web-doc-base
-                    './src/js/**/*.js',
-                   '!./src/js/4_EventModule/prefersColorScheme.js',
-                   '!./src/js/4_EventModule/print.js',
-                   '!./src/js/5_CSSOM/**/*.js',
-                   '!./src/js/6_CanUse/cssGeneratedContent.js',
-                   // '!./src/js/6_CanUse/dataUriTest.js',
-                   // '!./src/js/6_CanUse/webfontTest.js',
-                    // ES2 Code Prettify
-                    './node_modules/es2-code-prettify/src/js/1_common/*.js',
-                    './node_modules/es2-code-prettify/src/js/4_prettify/*.js'
-                ]
-            ).pipe(
-                gulpDPZ(
-                    {
-                        packageGlobalArgs : [
-                            'ua,window,emptyFunction,RegExp,' + globalVariables + ',undefined',
-                            'ua,this,function(){},this.RegExp,' + globalVariables + ',void 0'
-                        ],
-                        basePath          : [
-                            './src/js/',
-                            './.submodules/what-browser-am-i/src/js/',
-                            './node_modules/es2-code-prettify/src/js' // js
-                        ]
-                    }
-                )
-             ).pipe(
-                ClosureCompiler(
-                    {
-                        externs           : [
-                            './.submodules/what-browser-am-i/src/js-externs/externs.js',
-                            './src/js-externs/externs.js',
-                            // ES2 Code Prettify
-                            './node_modules/es2-code-prettify/src/js-externs/externs.js'
-                        ],
-                        define            : [
-                            'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir     + '"',
-                            'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir    + '"',
-                            'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir   + '"',
-                            'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
-                            'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
-                            'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
-                            'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
-                            'DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE=' + webFontDebugMode,
-                            'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"',
-                            // ES2 Code Prettify
-                            'DEFINE_CODE_PRETTIFY__DEBUG=' + isDebug,
-                            'DEFINE_CODE_PRETTIFY__COMMENT_ATTR_SUPPORT=' + false,
-                            'DEFINE_CODE_PRETTIFY__NUMERIC_STYLE_PATTERN_OBJECT_KEY="' + numericKeyName + '"',
-                            'DEFINE_CODE_PRETTIFY__USE_REGEXPCOMPAT=-1',
-                            'DEFINE_CODE_PRETTIFY__REGEXPCOMPAT_FILENAME=' + regExpCompatFileName
-                        ],
-                        compilation_level : 'ADVANCED',
-                        // compilation_level : 'WHITESPACE_ONLY',
-                        formatting        : 'PRETTY_PRINT',
-                        warning_level     : 'VERBOSE',
-                        language_in       : 'ECMASCRIPT3',
-                        language_out      : 'ECMASCRIPT3',
-                        js_output_file    : 'temp.js'
-                    }
-                )
-            ).pipe(
-                postProcessor.gulp(
-                    {
-                        minIEVersion    : 5,
-                        minOperaVersion : 7,
-                        minGeckoVersion : 0.6
-                    }
-                )
-            ).pipe(
-                ClosureCompiler(
-                    {
-                        compilation_level : 'WHITESPACE_ONLY',
-                        formatting        : 'PRETTY_PRINT',
-                        js_output_file    : webFontDebugMode === 1
-                                                ? 'test-vector-icon-blocked.js' :
-                                            webFontDebugMode === 2
-                                                ? 'test-vector-icon-disabled.js' :
-                                            isDebug
-                                                ? 'debug.js' : 'main.js'
-                    }
-                )
-            ).pipe(
-                es2ToES3.gulp(
-                    {
-                        minIEVersion   : 5,
-                        resultObject   : resultObject
-                    }
-                )
-            ).pipe(
-                gulp.dest( output + 'assets/' + assetsDirToJSDir )
-            );
-    },
-    function( cb ){
-        if( isDebug ) return cb();
+function createMainJavaScript(){
+    gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
+    ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
+    postProcessor   = postProcessor   || require( 'es2-postprocessor' );
+    es2ToES3        = es2ToES3        || require( 'es2-to-es3' );
 
-        return gulp.src(
+    return gulp.src(
             [
-                './node_modules/es2-code-prettify/dist/' + regExpCompatFileName.replace( '.js', '.min.js' )
+                // what-browser-am-i
+                './.submodules/what-browser-am-i/src/js/0_global/*.js',
+                '!./.submodules/what-browser-am-i/src/js/0_global/7_conpare.js',
+                // web-doc-base
+                './src/js/**/*.js',
+                '!./src/js/4_EventModule/prefersColorScheme.js',
+                '!./src/js/4_EventModule/print.js',
+                '!./src/js/5_CSSOM/**/*.js',
+                '!./src/js/6_CanUse/cssGeneratedContent.js',
+                // ES2 Code Prettify
+                './node_modules/es2-code-prettify/src/js/1_common/*.js',
+                './node_modules/es2-code-prettify/src/js/4_prettify/*.js'
             ]
+        ).pipe(
+            connect( COMMON_VARS )
+        ).pipe(
+            gulpDPZ(
+                {
+                    packageGlobalArgs : [
+                        'ua,window,emptyFunction,RegExp,' + globalVariables + ',undefined',
+                        'ua,this,function(){},this.RegExp,' + globalVariables + ',void 0'
+                    ],
+                    basePath          : [
+                        './src/js/',
+                        './.submodules/what-browser-am-i/src/js/',
+                        './node_modules/es2-code-prettify/src/js' // js
+                    ]
+                }
+            )
+        ).pipe(
+            ClosureCompiler(
+                {
+                    externs           : [
+                        './.submodules/what-browser-am-i/src/js-externs/externs.js',
+                        './src/js-externs/externs.js',
+                        // ES2 Code Prettify
+                        './node_modules/es2-code-prettify/src/js-externs/externs.js'
+                    ],
+                    define            : [
+                        'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
+                        'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir     + '"',
+                        'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir    + '"',
+                        'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir   + '"',
+                        'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
+                        'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
+                        'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
+                        'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
+                        'DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE=' + webFontDebugMode,
+                        'DEFINE_WEB_DOC_BASE__LOGGER_ELEMENT_ID="logger"',
+                        // ES2 Code Prettify
+                        'DEFINE_CODE_PRETTIFY__DEBUG=' + isDebug,
+                        'DEFINE_CODE_PRETTIFY__COMMENT_ATTR_SUPPORT=' + false,
+                        'DEFINE_CODE_PRETTIFY__NUMERIC_STYLE_PATTERN_OBJECT_KEY="' + numericKeyName + '"',
+                        'DEFINE_CODE_PRETTIFY__USE_REGEXPCOMPAT=-1',
+                        'DEFINE_CODE_PRETTIFY__REGEXPCOMPAT_FILENAME=' + regExpCompatFileName
+                    ],
+                    compilation_level : 'ADVANCED',
+                    // compilation_level : 'WHITESPACE_ONLY',
+                    formatting        : 'PRETTY_PRINT',
+                    warning_level     : 'VERBOSE',
+                    language_in       : 'ECMASCRIPT3',
+                    language_out      : 'ECMASCRIPT3',
+                    js_output_file    : 'temp.js'
+                }
+            )
+        ).pipe(
+            postProcessor.gulp(
+                {
+                    minIEVersion    : 5,
+                    minOperaVersion : 7,
+                    minGeckoVersion : 0.6
+                }
+            )
         ).pipe(
             ClosureCompiler(
                 {
                     compilation_level : 'WHITESPACE_ONLY',
-                    // formatting        : 'PRETTY_PRINT',
-                    js_output_file    : regExpCompatFileName
+                    formatting        : 'PRETTY_PRINT',
+                    js_output_file    : webFontDebugMode === 1
+                                            ? 'test-vector-icon-blocked.js' :
+                                        webFontDebugMode === 2
+                                            ? 'test-vector-icon-disabled.js' :
+                                        isDebug
+                                            ? 'debug.js' : 'main.js'
                 }
             )
         ).pipe(
             es2ToES3.gulp(
                 {
-                    minIEVersion       : 5,
-                    skipEmbedPolyfills : resultObject.embeddedPolyfills
+                    minIEVersion   : 5,
+                    resultObject   : resultObject
                 }
             )
         ).pipe(
             gulp.dest( output + 'assets/' + assetsDirToJSDir )
         );
-    }
-));
+};
 
 function createVectorIconFallback(){
     gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
@@ -370,13 +347,39 @@ gulp.task( 'js', gulp.series(
             gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' )
         );
     },
-    '__js',
+    createMainJavaScript,
+    function( cb ){
+        if( isDebug ) return cb();
+
+        return gulp.src(
+            [
+                './node_modules/es2-code-prettify/dist/' + regExpCompatFileName.replace( '.js', '.min.js' )
+            ]
+        ).pipe(
+            ClosureCompiler(
+                {
+                    compilation_level : 'WHITESPACE_ONLY',
+                    // formatting        : 'PRETTY_PRINT',
+                    js_output_file    : regExpCompatFileName
+                }
+            )
+        ).pipe(
+            es2ToES3.gulp(
+                {
+                    minIEVersion       : 5,
+                    skipEmbedPolyfills : resultObject.embeddedPolyfills
+                }
+            )
+        ).pipe(
+            gulp.dest( output + 'assets/' + assetsDirToJSDir )
+        );
+    },
     function( cb ){ isDebug = true; resultObject = {}; cb(); },
-    '__js',
+    createMainJavaScript,
     function( cb ){ webFontDebugMode = 1; resultObject = {}; cb(); },
-    '__js',
+    createMainJavaScript,
     function( cb ){ webFontDebugMode = 2; resultObject = {}; cb(); },
-    '__js',
+    createMainJavaScript,
     createVectorIconFallback
 ));
 
@@ -408,10 +411,13 @@ gulp.task( 'css',
                     // './src/scss.docs/docs_color.scss',
                     './src/scss/**/*.scss',
                    '!./src/scss/07_Parts/icons.scss',
-                    // './src/scss.docs/**.scss'
+                   // '!./src/scss/09_ArticleBody/links.scss',
+                    './src/scss.docs/MinimumDataURIWebFont.scss'
                 ]
             ).pipe(
                 plumber()
+            ).pipe(
+                connect( COMMON_VARS )
             ).pipe(
                 izpp({
                     log      : true,
@@ -433,7 +439,7 @@ gulp.task( 'css',
                     cleanCSS( CLEAN_CSS_OPTION ) 
                 )
             ).pipe(
-                cssHack.preprocess( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : 359 } )
+                cssHack.preprocess( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : COMMON_VARS.SMALL_PHONE_MAX_WIDTH } )
             ).pipe(
                 (
                     CLEAN_CSS_OPTION.format = 'beautify',
@@ -560,10 +566,10 @@ gulp.task( '__html', gulp.series(
                    .pipe( require( isDebug ? 'gulp-diffable-html' : 'gulp-cleanhtml' )() )
                    .pipe( gulp.dest( output ) );
     }
-    ) );
+) );
 
 gulp.task( 'html', gulp.series(
-    'whatbrowserami',
+    createInlineScript,
     '__html',
     'docs',
 ) );
@@ -572,7 +578,7 @@ gulp.task( 'html', gulp.series(
  *  gulp debug
  */
 gulp.task( 'debug', gulp.series(
-    'whatbrowserami',
+    createInlineScript,
     function( cb ){
         output = './docs.debug/';
         isDebug = true;

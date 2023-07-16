@@ -105,11 +105,11 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
             } else { // webFontTest_RESULT_NONE
                 if( VectorIcon_CANUSE_SVG && !VectorIcon_CANUSE_SVGTINY ){
                     window[ 'VectorIconCompat' ] = function(){
-                        p_setExternalScriptIsLoaded( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_CODE_PRETTIFY__VECTOR_ICON_COMPAT_FILENAME );
+                        p_setExternalScriptIsLoaded( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_COMPAT_FILENAME );
 
                         return [ VectorIcon_LIG_TO_EMOJI, elmIcons, p_DOM_insertElement, VectorIcon_CANUSE_SVGTINY ];
                     };
-                    p_loadExternalScript( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_CODE_PRETTIFY__VECTOR_ICON_COMPAT_FILENAME );
+                    p_loadExternalScript( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_COMPAT_FILENAME );
                 };
             };
         };

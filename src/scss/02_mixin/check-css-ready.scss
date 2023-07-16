@@ -1,0 +1,11 @@
+/*  CSS の読み込みチェックから、DATA URI スキームの Web font が使えるか？のチェック。
+    TODO : インライン style 化した上で、チェックが終わったら要素を削除できる
+--------------------------------------------------------------------------------------*/
+@mixin check-css-ready {
+    position    : absolute;
+    top         : 0;
+    left        : 0;
+    width       : 1px;
+    height      : 1px;
+    visibility  : hidden;
+}

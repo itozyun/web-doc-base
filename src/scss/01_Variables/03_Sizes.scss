@@ -49,7 +49,8 @@ $TABLET_MAX_WIDTH_EM     : 50em !default;
 $TABLET_MAX_WIDTH         : if($Option_baseFontSize18, 953, 943) !default;
 $PHABLET_MAX_WIDTH        : 740 !default;
 $PHONE_MAX_WIDTH          : 479 !default;
-$SMALL_PHONE_MAX_PX_WIDTH : 359px !default;
+$SMALL_PHONE_MAX_WIDTH    : 359 !default;
+$SMALL_PHONE_MAX_PX_WIDTH : #{$SMALL_PHONE_MAX_WIDTH}px !default;
 $WATCH_MAX_PX_WIDTH       : 240px !default;
 
 $TABLET_HORIZONTAL_MARGIN  : 3% !default;
