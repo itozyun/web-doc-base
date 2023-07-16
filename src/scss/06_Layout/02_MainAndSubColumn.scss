@@ -18,7 +18,7 @@ $LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false and $IS_LTE_GECKO09 == false
 @mixin override-float-layout(){
     /*  patch for Safari 3.2~4, Chrome 1~8
      *    table-layout のままだと
-     *      1. main が sidebar より低い時に、横スクロールが発生するのを抑止する
+     *      1. main が sidebar より低い時に、横スクロールが発生する
      *      2. viewPort の下端に白い線が入る
     --------------------------------------------------------------------------------------*/
     @if( $UA_Modern ){
