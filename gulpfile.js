@@ -482,15 +482,7 @@ gulp.task( 'ico',
                 require( './js-buildtools/web-font.js' ).main( './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
             ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
         },
-        createVectorIconFallback
-    )
-);
-
-/* -------------------------------------------------------
- *  gulp scss
- */
-gulp.task( 'scss',
-    gulp.series(
+        createVectorIconFallback,
         // format selection.json
         function( cb ){
             const ICOMOON_SELECTION_JSON = './.icomoon/minimum-font/selection.json';
