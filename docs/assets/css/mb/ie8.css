@@ -877,7 +877,7 @@ kbd {
 }
 .ico,
 .icoLinks [href]:before {
-  font-family: myIconFont;
+  font-family: myIconFont,serif!important;
   font-style: normal;
   font-weight: 400;
   font-variant: normal;

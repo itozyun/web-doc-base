@@ -952,7 +952,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               }
             }
           } else {
-            C && !m && (V.VectorIconCompat = bz, Hb(ta + "js/vector-icon-svg-fallback.js"));
+            C && !m && (V.VectorIconFallback = bz, Hb(ta + "js/vector-icon-svg-fallback.js"));
           }
         }
       }

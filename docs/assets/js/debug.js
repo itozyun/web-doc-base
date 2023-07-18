@@ -994,7 +994,7 @@ var C, pb;
               }
             }
           } else {
-            A && !m && (Y.VectorIconCompat = bz, $b(ya + "js/vector-icon-svg-fallback.js"));
+            A && !m && (Y.VectorIconFallback = bz, $b(ya + "js/vector-icon-svg-fallback.js"));
           }
         }
       }

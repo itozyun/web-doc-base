@@ -705,7 +705,7 @@ kbd {
   src: url(../../iconfont/web-doc-base.eot?rw1juc)
 }
 .ico {
-  font-family: myIconFont;
+  font-family: myIconFont,serif!important;
   font-weight: 400;
   font-variant: normal;
   text-transform: none
