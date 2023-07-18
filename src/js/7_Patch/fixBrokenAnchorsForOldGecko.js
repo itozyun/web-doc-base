@@ -4,11 +4,11 @@
  *   2. スキーマ(schema.org)を含む <a href> の直前に、空の <a href> ができる、これは不可視の為、フォーカスが消える問題を起こす
  */
 if( p_GeckoLt09 ){
-    if( DEFINE_WEB_DOC_BASE__CLASSNAME_RICHLINK_SEP ){
+    if( COMMON_RICHLINK__CLASSNAME_SEPARATOR ){
         p_loadEventCallbacks.splice( 1, 0, // noadCleaner の次に追加
             // 1.
             function(){
-                var richLinkList = p_DOM_getElementsByClassName( p_elmMain, DEFINE_WEB_DOC_BASE__CLASSNAME_RICHLINK_SEP ),
+                var richLinkList = p_DOM_getElementsByClassName( p_elmMain, COMMON_RICHLINK__CLASSNAME_SEPARATOR ),
                     richLink, kids, root, kid, anchorList, anchor, anchorKids;
 
                 while( richLink = richLinkList.shift() ){
@@ -40,7 +40,7 @@ if( p_GeckoLt09 ){
             }
         );
     };
-    p_loadEventCallbacks.splice( DEFINE_WEB_DOC_BASE__CLASSNAME_RICHLINK_SEP ? 2 : 1, 0,
+    p_loadEventCallbacks.splice( COMMON_RICHLINK__CLASSNAME_SEPARATOR ? 2 : 1, 0,
         // 2.
         function(){
             var anchorList = p_DOM_getElementsByTagNameFromDocument( 'A' ),

@@ -7,16 +7,16 @@
     @if( $UA_Modern ){
         @include media(pc) {
             @supports (position:sticky) {
-                .nojs #lB .lW, .nojs #lB .lS {
+                .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} #lB .lW, .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} #lB .lS {
                     overflow : visible; // for Chrome 114
                 }
-                .nojs #jsSide > * { // :not(#jsSidebarFixer)
+                .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} ##{$COMMON_ELEMENT_ID_SUB_COLUMN} > * { // :not(##{$COMMON_ELEMENT_ID_SUB_COLUMN}barFixer)
                     position : sticky;
                     top      : 0;
                 }
             }
 
-            #jsSidebarFixer {
+            ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
                 /* http://blog.webcreativepark.net/2012/10/19-161432.html */
                 -webkit-backface-visibility : hidden;
                    -moz-backface-visibility : hidden;
@@ -33,7 +33,7 @@
                 }
             }
             /* :hover で色を変えてスクロール可能であることを知らせる */
-            #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+            ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
                 border-color : $COLOR_Light_text;
             }
             h2 {
@@ -41,13 +41,13 @@
             }
         }
         @media (min-width: #{1em * math.div($TABLET_MAX_WIDTH + 1, $FONTSIZE_UPPER_TABLET)}) and (prefers-color-scheme:dark) {
-            #jsSidebarFixer1:hover *, #jsSidebarFixer2:hover * {
+            ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
                 border-color : $COLOR_Ribbon_text;
             }
         }
     }
     @if( $IS_NOT_IE ){
-        #jsSide {
+        ##{$COMMON_ELEMENT_ID_SUB_COLUMN} {
             position : relative;
         }
         .lW {
@@ -63,7 +63,7 @@
             }
         }
     }
-    #jsSidebarFixer {
+    ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
         @if( $IS_Opera7x ){
             position : relative; /* for Opera ~7.27, absolute が不正 */
         } @else if( $UA_Modern or $IS_LTE_GECKO09 or $UA_Opera8 or $IS_LTE_WIN_IE6 ){
@@ -71,7 +71,7 @@
         }
     }
     @if( $UA_Modern or $IS_Opera7x or $UA_Opera8 ){
-        #jsMain {
+        ##{$COMMON_ELEMENT_ID_MAIN_COLUMN} {
             position : relative; /* for Opera <9, relativeが無いと位置が取れない, IE10~11, EdheHTML18 でも必要 */
         }
     }
@@ -91,7 +91,7 @@
         }
     }
     @if( $IS_LTE_WIN_IE8 ){
-        #jsMain, #jsSide {
+        ##{$COMMON_ELEMENT_ID_MAIN_COLUMN}, ##{$COMMON_ELEMENT_ID_SUB_COLUMN} {
             position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
         }
     }
@@ -110,7 +110,7 @@
          *    > 尚、body, img, object, hr, input, button, textarea, table, tr, th, td, frameset, frame, iframe, marqueeなどは
          *    > 「true」で固定になっているため変更できません。
          */
-        #jsSidebarFixer, #jsSidebarFixer div, #jsSidebarFixer a {
+        ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER}, ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} div, ##{$COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} a {
             @if( $UA_IE5 ){
                 height : 1px;
             } @else {

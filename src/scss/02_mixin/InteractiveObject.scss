@@ -4,7 +4,7 @@
     a & {
         border-color : $COLOR_Light_fill;
         @include media(screen){ // 印刷には border は無しで縦横4px大きく
-            border-width : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+            border-width : #{$COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
         }
     }
     :link &, :visited & {

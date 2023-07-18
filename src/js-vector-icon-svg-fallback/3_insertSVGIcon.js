@@ -1,4 +1,4 @@
-var VectorIconCompat_params = window[ DEFINE_WEB_DOC_BASE__ONLOAD_CALLBACK_NAME ]();
+var VectorIconCompat_params = window[ COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME ]();
 
 setTimeout(
     function(){
@@ -20,9 +20,9 @@ setTimeout(
                     elmIcon,
                     'svg',
                     {
-                        width : 18,
-                        height : 18,
-                        viewBox : '0,0,255,255',
+                        width   : COMMON_BASE_FONT_SIZE_IS_18PX ? 18 : 16,
+                        height  : COMMON_BASE_FONT_SIZE_IS_18PX ? 18 : 16,
+                        viewBox : '0,0,' + VectorIconCompat_VIEW_PORT_SIZE + ',' + VectorIconCompat_VIEW_PORT_SIZE,
                         xmlns   : 'http://www.w3.org/2000/svg'
                     },
                     '',
@@ -31,10 +31,7 @@ setTimeout(
                 insertElement(
                     svg,
                     'path',
-                    isSVGTiny ? {
-                        'd' : path,
-                        'fill' : '#111111'
-                    } : { 'd' : path },
+                    isSVGTiny ? { 'd' : path, 'fill' : COMMON_LIGHT_COLOR_SCHEME_TEXT_COLOR } : { 'd' : path },
                     '',
                     true
                 );

@@ -1,8 +1,8 @@
 p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
     function(){
-        p_DOM_removeClassName( p_html, DEFINE_WEB_DOC_BASE__CLASSNAME_NOJS );
+        p_DOM_removeClassName( p_html, COMMON_CLASSNAME_NO_JAVASCRIPT );
 
-        p_elmMain = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__MAIN_COLUMN_ID );
+        p_elmMain = p_DOM_getElementById( COMMON_ELEMENT_ID_MAIN_COLUMN );
 
         var removeCommentNodes  = !( p_Presto < 8 || p_Trident < 5 || p_Tasman || p_GeckoLt09 ),
             noRemoveScriptTag   = p_noRemoveScriptTag,

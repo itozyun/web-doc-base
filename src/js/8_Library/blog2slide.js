@@ -9,7 +9,7 @@ var blog2slide_requestFullscreen,
 
 p_listenLoadEvent(
     function(){
-        var elmButtonContainer = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_START_ID );
+        var elmButtonContainer = p_DOM_getElementById( COMMON_BLOG_2_SLIDE__ID_START );
 
         if( elmButtonContainer ){
             var prefix = p_notUndefined( document.onfullscreenchange       ) ? 'f' :
@@ -69,7 +69,7 @@ function blog2slide_onFullscreenChange(){
         document.msFullscreenElement || /* Trident 11+ */
         window.fullScreen               /* Gecko 1.8.1+ (Firefox 2+, Netscape Navigator 9+) */
     ){
-        p_DOM_setAttribute( blog2slide_elmRoot, 'id', DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_ROOT_ID );
+        p_DOM_setAttribute( blog2slide_elmRoot, 'id', COMMON_BLOG_2_SLIDE__ID_ROOT );
         blog2slide_elmSlides[ 1 ].parentNode.insertBefore( blog2slide_elmH1, blog2slide_elmSlides[ 1 ] );
 
         blog2slide_showSlide();
@@ -100,7 +100,7 @@ function blog2slide_showSlide(){
         0;
 
     blog2slide_elmCurrent = blog2slide_elmSlides[ blog2slide_currentSlideIndex ];
-    p_DOM_setAttribute( blog2slide_elmCurrent, 'id', DEFINE_WEB_DOC_BASE__BLOG_2_SLIDE_CURRENT_ID );
+    p_DOM_setAttribute( blog2slide_elmCurrent, 'id', COMMON_BLOG_2_SLIDE__ID_CURRENT );
 };
 
 function blog2slide_onKeydown( e ){

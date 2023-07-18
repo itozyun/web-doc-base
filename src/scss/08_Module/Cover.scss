@@ -34,7 +34,7 @@
                     max-width : 100%;
                 }
             }
-            .#{$Prefix}js-image-has-been-loaded {
+            .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} {
                 div {
                     @include media(screen){
                         position : absolute;
@@ -120,7 +120,7 @@
                 float  : left;
                 margin : 0 1em 1em 0;
             }
-                .#{$Prefix}js-image-has-been-loaded div {
+                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
                     position : static;
                     padding  : 0 0 1em;
                 }
@@ -149,7 +149,7 @@
             img {
                 margin : 0 2em 1em 0;
             }
-                .#{$Prefix}js-image-has-been-loaded div {
+                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
                     padding : 0 0 2em;
                 }
                     h3 {
@@ -181,7 +181,7 @@
                 width  : auto;
                 margin : 0 1em 1em 0;
             }
-                .#{$Prefix}js-image-has-been-loaded div {
+                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
                     position : static;
                     padding  : 0;
                 }

@@ -199,7 +199,7 @@ table {
     }
     thead {
         :link,
-        .#{$Prefix}aBodyRoot & :visited {
+        .#{$Prefix + $COMMON_CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
             color : $fill;
             @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
                 &:hover {
@@ -235,7 +235,7 @@ table {
             color      : $fill;
             @include table-cell-border-color($casual_fill);
             :link,
-            .#{$Prefix}aBodyRoot & :visited {
+            .#{$Prefix + $COMMON_CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
                 color : $fill;
                 @if( $HOVER_PSEUDO_CLASS_ONLY_LINK or $CANUSE_HOVER_PSEUDO_CLASS ){
                     &:hover {

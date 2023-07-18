@@ -102,7 +102,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
                         .chatL p:after, .chatR p:after {
                             display : none;
                         }
-                        .#{$Prefix}js-canuse-css-rotate-when-forced-colors-mode {
+                        .#{$Prefix + $COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
                         /* //_}^@ie9 */
                             .chatL p:after, .chatR p:after {
                                 width  : .4em;
@@ -227,7 +227,7 @@ $CAHT_HORIZONTAL_MARGIN : 2% !default;
     @if( $UA_IE9 or $UA_Modern ){
         @media only use-polyfill and (forced-colors:active) and (max-width:$SMALL_PHONE_MAX_PX_WIDTH) {
             /* //_{^@ie9 */
-            .#{$Prefix}js-canuse-css-rotate-when-forced-colors-mode {
+            .#{$Prefix + $COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
             /* //_}^@ie9 */
                 .chatL p:after, .chatR p:after {
                     width  : .3em;

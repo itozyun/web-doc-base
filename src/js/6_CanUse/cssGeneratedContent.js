@@ -3,7 +3,7 @@
  *   https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
  *   MIT License
  */
-if( DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID ){
+if( COMMON_ELEMENT_ID_TEST_CSS_GENERATED_CONTENT ){
     // forcedColors より先に値を設定する為、コールバック配列の先頭に入れる
     p_cssAvailabilityCallbacks.splice( 0, 0,
         function(){
@@ -29,7 +29,7 @@ if( DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID ){
                         'a',
                         {
                             'aria-hidden' : 'true',
-                            id            : DEFINE_WEB_DOC_BASE__CSS_GENERATED_CONTENT_TEST_ID
+                            id            : COMMON_ELEMENT_ID_TEST_CSS_GENERATED_CONTENT
                         }
                     );
                     p_cssGeneratedContentGrade = 6 <= elm.offsetWidth ? 2 : 0; // TODO 雑!

@@ -51,19 +51,19 @@ function cssAndJsLoader_onload(){
     var link      = document.createElement( 'link' ),
         noscripts = document.getElementsByTagName( 'noscript' ),
         cssName   = (
-                cssAndJsLoader_tasman                      ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_MACIE5 :
-                cssAndJsLoader_presto  < 9.5               ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA9 :
+                cssAndJsLoader_tasman                      ? COMMON_CSS_FILE_STEM__MACIE5 :
+                cssAndJsLoader_presto  < 9.5               ? COMMON_CSS_FILE_STEM__OPERA9 :
                 ( cssAndJsLoader_gecko &&
                   ua.conpare( engineVersion, '1.9.1' ) < 0
-                )                                          ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO19
-                                                           : DEFINE_WEB_DOC_BASE__CSS_FILENAME_MODERN
+                )                                          ? COMMON_CSS_FILE_STEM__GECKO19
+                                                           : COMMON_CSS_FILE_STEM__MODERN
             ) + '.css',
         dir, i = 0, l = noscripts.length, noscript, content, end, start;
 
     for( ; i < l; ++i ){
         noscript = noscripts[ i ];
         content  = noscript.textContent;
-        end      = content.indexOf( DEFINE_WEB_DOC_BASE__CSS_FILENAME_MODERN + '.css"' );
+        end      = content.indexOf( COMMON_CSS_FILE_STEM__MODERN + '.css"' );
         start    = content.lastIndexOf( '@import "', end ); // @import が2つある為、先に end を調べる
         if( 0 <= start && 0 < end ){
             dir = content.substring( start + 9, end );

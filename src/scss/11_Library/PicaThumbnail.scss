@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(forced_colors_native_or_fallback){
     @if( $CANUSE_OUTLINE ){
-        .#{$Prefix}js-pica-thumbnail {
+        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
             @include active-focus-pseudo-class{
                 outline : 0;
             }
@@ -10,8 +10,8 @@
     }
 }
 
-.#{$Prefix}js-pica-thumbnail img,
-.#{$Prefix}js-captioned-thumbnail { /* onload 時にアニメーションしないように .caption に .#{$Prefix}js-captioned-thumbnail を付ける。アニメを抑止しないと offsetWidth の取得で誤る。 */
+.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} img,
+.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} { /* onload 時にアニメーションしないように .caption に .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} を付ける。アニメを抑止しないと offsetWidth の取得で誤る。 */
     @if( $UA_Modern ){
         /* clean-css ignore:start */
         -webkit-transition-property : width, margin;
@@ -26,7 +26,7 @@
     }
 }
 
-.#{$Prefix}js-pica-thumbnail {
+.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
     /* clean-css ignore:start */
     @if( $UA_Modern ){
         cursor : -webkit-zoom-in;
@@ -39,7 +39,7 @@
     }
     /* clean-css ignore:end */
 }
-.#{$Prefix}js-captioned-thumbnail {
+.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} {
     @if( $UA_Modern ){
         width : 100%; /* for animation */
     }
@@ -47,7 +47,7 @@
 
 $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false;
 
-.#{$Prefix}js-pica-thumbnail__large {
+.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
     @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
         margin : 0 0 1em;
     }
@@ -67,7 +67,7 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         /* box-sizing が使えないための処置 a.#{$Prefix}js-pica-thumbnail__large 側でアウトラインを表示 */
         display : block;
         clear   : both; /* ギャラリーでの回り込みの解除 */
-        padding : #{$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        padding : #{$COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
         @if( $UA_IE7 or $UA_IE6 ){
             zoom : 1;
         }
@@ -112,7 +112,7 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
     }
 }
 
-    .#{$Prefix}js-captioned-thumbnail__large {
+    .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
         @if( $UA_IE8 or $UA_Gecko07 ){
             width : 100%;
         }
@@ -138,10 +138,10 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
     @if( $UA_Modern ){ // アニメーション用の指定
-        .box .#{$Prefix}js-pica-thumbnail__large img {
+        .box .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} img {
             margin : 0 auto; /* 左配置指定を上書き 中央から transition */
         }
-        div .box .#{$Prefix}js-captioned-thumbnail__large {
+        div .box .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
             margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
         }
     }
@@ -152,26 +152,26 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
 --------------------------------------------------------------------------------------*/
 @if( $UA_IE55 or $UA_IE5 ){
     @if( $UA_IE5 ){
-        .box .#{$Prefix}js-pica-thumbnail {
+        .box .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
             overflow : hidden; /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
             display  : block;  /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
         }
-        .#{$Prefix}js-pica-thumbnail__large {
+        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
             height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
         }
         .jsPica:active {
             background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
         }
     } @else {
-        .#{$Prefix}js-pica-thumbnail {
+        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
             display : block;
         }
-        .#{$Prefix}js-pica-thumbnail__large {
+        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
             zoom : 1; /* この指定が無いとギャラリーで margin が無くなる */
         }
     }
-    .#{$Prefix}js-pica-thumbnail__large,
-    .#{$Prefix}js-captioned-thumbnail__large {
+    .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE},
+    .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
         clear : both; /* ギャラリーでの回り込みの解除 */
     }
 }

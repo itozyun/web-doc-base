@@ -1,9 +1,9 @@
 // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
 @if( $UA_Modern ){
-    #jsCanUseContent {
+    ##{$COMMON_ELEMENT_ID_TEST_CSS_GENERATED_CONTENT} {
         font       : 0/0 a;
     }
-    #jsCanUseContent:after {
+    ##{$COMMON_ELEMENT_ID_TEST_CSS_GENERATED_CONTENT}:after {
         content    : ':)';
         visibility : hidden;
         font       : 7px/1 a

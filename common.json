@@ -1,0 +1,69 @@
+{
+    "COMMON_BASE_FONT_SIZE_IS_18PX" : true,
+    "COMMON_LIGHT_COLOR_SCHEME_TEXT_COLOR" : "#111",
+
+    "COMMON_ELEMENT_ID_MAIN_COLUMN": "jsMain",
+    "COMMON_ELEMENT_ID_SUB_COLUMN": "jsSide",
+    "COMMON_ELEMENT_ID_TEST_CSS_GENERATED_CONTENT": "jsCanUseContent",
+
+    "COMMON_CLASSNAME_NO_JAVASCRIPT": "nojs",
+    "COMMON_CLASSNAME_IMAGE_LOADED": "js-image-has-been-loaded",
+    "COMMON_CLASSNAME_ARTICLE_BODY_ROOT": "aBodyRoot",
+    "COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE": "js-canuse-css-rotate-when-forced-colors-mode",
+
+    "COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE" : 2,
+    "COMMON_SMALL_PHONE_MAX_WIDTH"           : 359,
+
+    "COMMON_ASSET_DIR_TO_JS_DIR" : "js",
+    "COMMON_ASSET_DIR_TO_CSS_DIR" : "css",
+    "COMMON_ASSET_DIR_TO_ICONFONT_DIR" : "iconfont",
+    "COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR" : "pc",
+    "COMMON_CSS_DIR_TO_MOBILE_CSS_DIR" : "mb",
+    "COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR" : "hc",
+
+    "COMMON_CSS_FILE_STEM__MODERN" : "modern",
+    "COMMON_CSS_FILE_STEM__MACIE5" : "ie5mac",
+    "COMMON_CSS_FILE_STEM__IE5" : "ie5win",
+    "COMMON_CSS_FILE_STEM__IE55" : "ie55",
+    "COMMON_CSS_FILE_STEM__IE6" : "ie6",
+    "COMMON_CSS_FILE_STEM__IE7" : "ie7",
+    "COMMON_CSS_FILE_STEM__IE8" : "ie8",
+    "COMMON_CSS_FILE_STEM__IE9" : "ie9",
+    "COMMON_CSS_FILE_STEM__OPERA70" : "opr70",
+    "COMMON_CSS_FILE_STEM__OPERA72" : "opr72",
+    "COMMON_CSS_FILE_STEM__OPERA8" : "opr8",
+    "COMMON_CSS_FILE_STEM__OPERA9" : "opr9",
+    "COMMON_CSS_FILE_STEM__GECKO07" : "gck07",
+    "COMMON_CSS_FILE_STEM__GECKO08" : "gck08",
+    "COMMON_CSS_FILE_STEM__GECKO09" : "gck09",
+    "COMMON_CSS_FILE_STEM__GECKO12" : "gck12",
+    "COMMON_CSS_FILE_STEM__GECKO13" : "gck13",
+    "COMMON_CSS_FILE_STEM__GECKO19" : "gck19",
+
+    "COMMON_RICHLINK__CLASSNAME_SEPARATOR": "RichLink-sep",
+
+    "COMMON_BLOCKQUOT__CLASSNAME_LINK": "js-generated-link-in-blockquote",
+    "COMMON_BLOCKQUOT__CLASSNAME_CITE": "js-generated-cite-in-blockquote",
+
+    "COMMON_BLOG_2_SLIDE__ID_START": "blog2slide-start",
+    "COMMON_BLOG_2_SLIDE__ID_ROOT": "blog2slide-root",
+    "COMMON_BLOG_2_SLIDE__ID_CURRENT": "blog2slide-current",
+
+    "COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET": "js-pica-thumbnail",
+    "COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE": "js-pica-thumbnail__large",
+    "COMMON_CAPTIONED_OBJECT__CLASSNAME": "caption",
+    "COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET": "js-captioned-thumbnail",
+    "COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE": "js-captioned-thumbnail__large",
+
+    "COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER": "jsSidebarFixer",
+    "COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL": "jsSidebarFixer1",
+    "COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL": "jsSidebarFixer2",
+
+    "COMMON_VECTOR_ICON__FONT_NAME": "myIconFont",
+    "COMMON_VECTOR_ICON__FILE_STEM": "web-doc-base",
+    "COMMON_VECTOR_ICON__SVG_FONT_ID": "web-doc-base",
+    "COMMON_VECTOR_ICON__CLASSNAME": "ico",
+    "COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME": "js-myIconFont-testCssReady",
+    "COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME": "VectorIconFallback",
+    "COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM": "vector-icon-svg-fallback"
+}

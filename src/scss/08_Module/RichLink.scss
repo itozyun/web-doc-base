@@ -30,7 +30,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
            https://twitter.com/itozyun/status/1496758538772824064 */
         overflow-x : hidden;
     }
-    @at-root #{&}-sep {
+    @at-root .#{$COMMON_RICHLINK__CLASSNAME_SEPARATOR} {
         @extend %LinkListItemBase;
     }
         a {
@@ -161,7 +161,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     /*  WSXGA
     --------------------------------------------------------------------------------------*/
     @include media(WSXGA_landscapePrint) {
-        @at-root .lM #{&}-sep {
+        @at-root .lM .#{$COMMON_RICHLINK__CLASSNAME_SEPARATOR} {
             display      : table;
             table-layout : fixed;
             margin       : 1em 0;

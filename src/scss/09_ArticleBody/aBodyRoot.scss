@@ -1,7 +1,7 @@
 /* a タグの下線
 --------------------------------------------------------------------------------------*/
 /* 下線あり -> hover -> 下線なし 但し, focus:hover active では下線が付く*/
-.#{$Prefix}aBodyRoot {
+.#{$Prefix + $COMMON_CLASSNAME_ARTICLE_BODY_ROOT} {
     :link, :visited { text-decoration : underline; }
 
     @if( $HOVER_PSEUDO_CLASS_ONLY_LINK ){

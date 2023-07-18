@@ -6,7 +6,7 @@ $COLOR_Sidebar_fill : #f1f4f1 !default;
 /*  白系統のボディーメイン用カラー
 --------------------------------------------------------------------------------------*/
 $COLOR_Light_fill          : #f8fbf8 !default;
-$COLOR_Light_text          : #111 !default;
+$COLOR_Light_text          : $COMMON_LIGHT_COLOR_SCHEME_TEXT_COLOR;
 $COLOR_Light_casual_fill   : #ddd !default;
 $COLOR_Light_casual_text   : #777 !default;
 $COLOR_Light_accent        : $COLOR_ACCENT !default;

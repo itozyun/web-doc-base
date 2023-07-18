@@ -3,18 +3,18 @@
         font-family : 'myIconFont';
         font-weight : normal;
         font-style  : normal;
-        src         : url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.eot?rw1juc'});
+        src         : url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.eot?rw1juc'});
         @if( $UA_Modern ){
-            src:url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.eot?rw1juc#iefix'}) format('#{$WEBFONT_FORMAT_EOT}'),
-                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.woff2?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF2}'),
-                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.woff?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF}'),
-                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.ttf?rw1juc'}) format('#{$WEBFONT_FORMAT_TTF}'),
-                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.otf?rw1juc'}) format('#{$WEBFONT_FORMAT_OTF}'),
-                url(#{$ASSET_PATH_VECTOR_ICON + 'web-doc-base.svg?rw1juc#web-doc-base'}) format('#{$WEBFONT_FORMAT_SVG}');
+            src:url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.eot?rw1juc#iefix'}) format('#{$WEBFONT_FORMAT_EOT}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.woff2?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF2}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.woff?rw1juc'}) format('#{$WEBFONT_FORMAT_WOFF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.ttf?rw1juc'}) format('#{$WEBFONT_FORMAT_TTF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.otf?rw1juc'}) format('#{$WEBFONT_FORMAT_OTF}'),
+                url(#{$ASSET_PATH_VECTOR_ICON + '#{$COMMON_VECTOR_ICON__FILE_STEM}.svg?rw1juc##{$COMMON_VECTOR_ICON__SVG_FONT_ID}'}) format('#{$WEBFONT_FORMAT_SVG}');
         }
     }
     @if( $UA_Modern or $UA_IE9 ){
-        .js-myIconFont-testCssReady {
+        .#{$COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME} {
             @include check-css-ready;
         }
     }
@@ -47,7 +47,7 @@
     }
 }
 
-.ico {
+.#{$COMMON_VECTOR_ICON__CLASSNAME} {
     @if( $MAYBE_CAN_USE_WEBFONT ){
         @extend %vectorIconBase;
     }

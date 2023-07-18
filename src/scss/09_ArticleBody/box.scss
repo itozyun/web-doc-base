@@ -8,7 +8,7 @@
  */
 $CaptionedObjectFontSize : 0.875;
 
-.caption {
+.#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
     @include unbreak-box-with-long-text;
     @include unbreak-inside;
     display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
@@ -67,7 +67,7 @@ $CaptionedObjectFontSize : 0.875;
             };
         }
     }
-    .caption {
+    .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
         float : left;
         @if( $UA_IE5 ){
             margin : 0 math.div(.5em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) 0;
@@ -75,7 +75,7 @@ $CaptionedObjectFontSize : 0.875;
             margin : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) 0;
         }
     }
-    @at-root div .caption img, div .caption iframe { // div で詳細度を上げる .box img の上書き
+    @at-root div .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} img, div .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} iframe { // div で詳細度を上げる .box img の上書き
         margin : 0 0 math.div(.5em, $CaptionedObjectFontSize);
         float  : none;
     }
@@ -96,7 +96,7 @@ $CaptionedObjectFontSize : 0.875;
         {
             margin  : 0 1em 1em $TABLET_HORIZONTAL_MARGIN;
         }
-        .caption {
+        .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
             margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $TABLET_HORIZONTAL_MARGIN;
         }
     }
@@ -111,7 +111,7 @@ $CaptionedObjectFontSize : 0.875;
         {
             margin  : 0 1em 1em $PHABLET_HORIZONTAL_MARGIN;
         }
-        .caption {
+        .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
             margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $PHABLET_HORIZONTAL_MARGIN;
         }
     }
@@ -131,7 +131,7 @@ $CaptionedObjectFontSize : 0.875;
         {
             margin  : 0 1em 1em $PHONE_HORIZONTAL_MARGIN;
         }
-        .caption {
+        .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
             margin  : 0 math.div(1em, $CaptionedObjectFontSize) math.div(1em, $CaptionedObjectFontSize) $PHONE_HORIZONTAL_MARGIN;
         }
     }
@@ -147,7 +147,7 @@ $CaptionedObjectFontSize : 0.875;
             float  : none;
             margin : 0 auto 1em;
         }
-        .caption {
+        .#{$COMMON_CAPTIONED_OBJECT__CLASSNAME} {
             float  : none;
             margin : 0 auto math.div(1em, $CaptionedObjectFontSize);
         }

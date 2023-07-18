@@ -1,4 +1,4 @@
-.#{$Prefix}js-generated-link-in-blockquote {
+.#{$Prefix + $COMMON_BLOCKQUOT__CLASSNAME_LINK} {
     @extend %BlockquoteLink;
     /*  Print
     --------------------------------------------------------------------------------------*/
@@ -11,4 +11,4 @@
     }
 }
 
-.#{$Prefix}js-generated-cite-in-blockquote { @extend %BlockquoteCite; }
+.#{$Prefix + $COMMON_BLOCKQUOT__CLASSNAME_CITE} { @extend %BlockquoteCite; }

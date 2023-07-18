@@ -23,6 +23,8 @@ function createInlineScript(){
                 minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
             ]
         ).pipe(
+            connect( COMMON_VARS )
+        ).pipe(
             gulpDPZ(
                 {
                     labelPackageGlobal : '*',
@@ -151,12 +153,11 @@ gulp.task( 'btoa', gulp.series(
  *  /assets/css/
  *  /assets/css/hc/
  */
-const assetsDirToJSDir       = 'js',
-      assetsDirToCSSDir      = 'css',
-      assetsDirToIconFontDir = 'iconfont',
-      cssDirToDesktopDir     = 'pc',
-      cssDirToMobileDir      = 'mb',
-      toForcedColorsCSSDir   = 'hc';
+const connect = require( 'gulp-connecting-room' );
+const COMMON_VARS = require( './common.json' );
+
+const assetsDirToJSDir       = COMMON_VARS.COMMON_ASSET_DIR_TO_JS_DIR,
+      assetsDirToIconFontDir = COMMON_VARS.COMMON_ASSET_DIR_TO_ICONFONT_DIR;
 
 /* -------------------------------------------------------
  *  gulp js
@@ -168,12 +169,6 @@ let resultObject = {};
 const numericKeyName              = '-num';
 const simpleLexerRegistryFileName = '2__zippedSimpleLexerRegistry.generated.js';
 const regExpCompatFileName        = 'regexpcompat.js';
-
-const connect = require( 'gulp-connecting-room' );
-const COMMON_VARS = {
-        BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2,
-        SMALL_PHONE_MAX_WIDTH           : 359
-    };
 
 function createMainJavaScript(){
     gulpDPZ         = gulpDPZ         || require( 'gulp-diamond-princess-zoning' );
@@ -223,11 +218,6 @@ function createMainJavaScript(){
                     ],
                     define            : [
                         'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                        'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR="'   + assetsDirToJSDir     + '"',
-                        'DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR="'  + assetsDirToCSSDir    + '"',
-                        'DEFINE_WEB_DOC_BASE__DESKTOP_PAGE_CSS_DIR="'  + cssDirToDesktopDir   + '"',
-                        'DEFINE_WEB_DOC_BASE__MOBILE_PAGE_CSS_DIR="'   + cssDirToMobileDir    + '"',
-                        'DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR="' + toForcedColorsCSSDir + '"',
                         'DEFINE_WEB_DOC_BASE__AMAZON_ID="itozyun-22"',
                         'DEFINE_WEB_DOC_BASE__DEBUG=' + isDebug,
                         'DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE=' + webFontDebugMode,
@@ -290,6 +280,8 @@ function createVectorIconFallback(){
                 './src/js-vector-icon-svg-fallback/**/*.js'
             ]
         ).pipe(
+            connect( COMMON_VARS, '0_global.common' )
+        ).pipe(
             gulpDPZ(
                 {
                     basePath          : [
@@ -301,16 +293,13 @@ function createVectorIconFallback(){
          ).pipe(
             ClosureCompiler(
                 {
-                    define            : [
-                        // 'DEFINE_WHAT_BROWSER_AM_I__MINIFY=true',
-                    ],
                     compilation_level : 'ADVANCED',
                     // compilation_level : 'WHITESPACE_ONLY',
                     // formatting        : 'PRETTY_PRINT',
                     warning_level     : 'VERBOSE',
                     language_in       : 'ECMASCRIPT3',
                     language_out      : 'ECMASCRIPT3',
-                    js_output_file    : 'vector-icon-svg-fallback.js'
+                    js_output_file    : COMMON_VARS.COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js'
                 }
             )
         ).pipe(
@@ -423,8 +412,8 @@ gulp.task( 'css',
                     log      : true,
                     fileType : 'scss',
                     tasks    : [
-                        { name : 'desktop', imports : [ 'baseFontSize18', 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToDesktopDir },
-                        { name : 'mobile',  imports : [ 'mobileOnly'    , 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : cssDirToMobileDir }
+                        { name : 'desktop', imports : [ 'baseFontSize18', 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : COMMON_VARS.COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR },
+                        { name : 'mobile',  imports : [ 'mobileOnly'    , 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : COMMON_VARS.COMMON_CSS_DIR_TO_MOBILE_CSS_DIR }
                     ]
                 })
             ).pipe(
@@ -439,16 +428,16 @@ gulp.task( 'css',
                     cleanCSS( CLEAN_CSS_OPTION ) 
                 )
             ).pipe(
-                cssHack.preprocess( { forcedColorsCSSDir : toForcedColorsCSSDir, smallPhoneMaxWidth : COMMON_VARS.SMALL_PHONE_MAX_WIDTH } )
+                cssHack.preprocess( { forcedColorsCSSDir : COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR, smallPhoneMaxWidth : COMMON_VARS.COMMON_SMALL_PHONE_MAX_WIDTH } )
             ).pipe(
                 (
                     CLEAN_CSS_OPTION.format = 'beautify',
                     cleanCSS( CLEAN_CSS_OPTION )
                 )
             ).pipe(
-                cssHack.postprocess( { fileNameOpera70 : 'opr70.css' } )
+                cssHack.postprocess( { fileNameOpera70 : COMMON_VARS.COMMON_CSS_FILE_STEM__OPERA70 + '.css' } )
             ).pipe(
-                gulp.dest( output + 'assets/' + assetsDirToCSSDir )
+                gulp.dest( output + 'assets/' + COMMON_VARS.COMMON_ASSET_DIR_TO_CSS_DIR )
             );
     }
 );
@@ -490,7 +479,7 @@ gulp.task( 'ico',
                     output + 'assets/' + assetsDirToIconFontDir + '/*.css'
                 ]
             ).pipe(
-                require( './js-buildtools/web-font.js' ).main( './src/js-vector-icon-svg-fallback/vectorIconPathList.generated.js' )
+                require( './js-buildtools/web-font.js' ).main( './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
             ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
         },
         createVectorIconFallback

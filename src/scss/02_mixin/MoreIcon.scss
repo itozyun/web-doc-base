@@ -84,7 +84,7 @@
             & i {
                 display : none;
             }
-            .#{$Prefix}js-canuse-css-rotate-when-forced-colors-mode
+            .#{$Prefix + $COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE}
             /* //_}^@ie9 */
             & i {
                 border-width : 0 .15em .15em 0;

@@ -9,16 +9,16 @@ p_listenCssAvailabilityChange(
 
         p_webFontTest(
             /** @type {!function(number):void} */ (VectorIcon_onTestComplete), // 1.
-            DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME, // 2.
+            COMMON_VECTOR_ICON__FONT_NAME, // 2.
             [
-                webFontTest_IS_WOFF2, p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css',
-                webFontTest_IS_WOFF , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
-                webFontTest_IS_OTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
-                webFontTest_IS_TTF  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
-                webFontTest_IS_EOT  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
-                webFontTest_IS_SVG  , p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
+                webFontTest_IS_WOFF2, p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css',
+                webFontTest_IS_WOFF , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
+                webFontTest_IS_OTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
+                webFontTest_IS_TTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
+                webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
+                webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
             ],
-            'js-' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_NAME + '-testCssReady', // 4.
+            COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME, // 4.
             'Twitter', '🐤', // 5. 6.
             5000 // 7. test interval ms
         );
@@ -90,7 +90,7 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
     // webFontTestResult === 2 : webfont ready + ligature support
     if( webFontTestResult !== webFontTest_RESULT_LIGATURE ){
         Debug.log( '[VectorIcon] ' + webFontTestResult );
-        var elmIcons = p_DOM_getElementsByClassNameFromDocument( DEFINE_WEB_DOC_BASE__VECTOR_ICON_CLASSNAME ),
+        var elmIcons = p_DOM_getElementsByClassNameFromDocument( COMMON_VECTOR_ICON__CLASSNAME ),
             i = 0, l = elmIcons.length, elmIcon, content, emoji; 
 
         if( l ){
@@ -104,12 +104,12 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
                 };
             } else { // webFontTest_RESULT_NONE
                 if( VectorIcon_CANUSE_SVG && !VectorIcon_CANUSE_SVGTINY ){
-                    window[ 'VectorIconCompat' ] = function(){
-                        p_setExternalScriptIsLoaded( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_COMPAT_FILENAME );
+                    window[ COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME ] = function(){
+                        p_setExternalScriptIsLoaded( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
 
                         return [ VectorIcon_LIG_TO_EMOJI, elmIcons, p_DOM_insertElement, VectorIcon_CANUSE_SVGTINY ];
                     };
-                    p_loadExternalScript( p_assetUrl + DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_JS_DIR + '/' + DEFINE_WEB_DOC_BASE__VECTOR_ICON_COMPAT_FILENAME );
+                    p_loadExternalScript( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
                 };
             };
         };

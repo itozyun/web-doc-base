@@ -1,4 +1,4 @@
-if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors && p_forcedColorsChangeCallbacks ){
+if( COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors && p_forcedColorsChangeCallbacks ){
     var ForcedColorsStyleSwitcher_elmLink;
 
     /** @type {!Function|undefined} */
@@ -12,14 +12,14 @@ if( DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR && !p_canuseNativeForcedColors &&
                     href  : p_assetUrl +
                                 p_cssDir +
                                 p_screenModeDir +
-                                DEFINE_WEB_DOC_BASE__FORCED_COLORS_CSS_DIR + '/' + p_cssName
+                                COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + p_cssName
                 }
             );
 
-            if( DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE ){
+            if( COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE ){
                 if( p_cssTransformName || ( 5.5 <= p_Trident && p_Trident < 9 && p_iefilterEnabled ) ){
-                    p_DOM_addClassName( p_body, DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE );
-                    Debug.log( DEFINE_WEB_DOC_BASE__CLASSNAME_CANROTATE + '!' );
+                    p_DOM_addClassName( p_body, COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE );
+                    Debug.log( COMMON_CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE + '!' );
                 };
             };
             ForcedColorsStyleSwitcher_init = undefined;

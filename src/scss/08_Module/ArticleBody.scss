@@ -9,7 +9,7 @@
     @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
         padding : 3.5em 0 2em;
 
-        @at-root .#{$Prefix}aBodyRoot > *:first-child {
+        @at-root .#{$Prefix + $COMMON_CLASSNAME_ARTICLE_BODY_ROOT} > *:first-child {
             margin-top : 0;
         }
     } @else {

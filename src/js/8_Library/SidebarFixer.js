@@ -4,7 +4,7 @@
  * 途中でサイドバーの要素が変化する -> 公開メソッドを未実装
  */
 var SidebarFixer_ONSCROL_FROM_TIMER             = 7,
-    SidebarFixer_ID_OF_WHEEL_ELEMENTS           = [ DEFINE_WEB_DOC_BASE__SIDEBARFIXER_1ST_WHEEL_ELM_ID, DEFINE_WEB_DOC_BASE__SIDEBARFIXER_2ND_WHEEL_ELM_ID ],
+    SidebarFixer_ID_OF_WHEEL_ELEMENTS           = [ COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL, COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL ],
     SidebarFixer_SCROLL_FOLLOWING_FOCUSIN_EVENT = !( p_Trident < 9 || p_Presto || ( 1 <= p_Gecko && p_Gecko < 1.3 ) || p_usePatchOfTabFocusForGeckoLte094 ),
     /*
      * positionFixed
@@ -57,7 +57,7 @@ if( !p_isMobile && !p_cloudRendering ){
 
             var i = -1, id;
 
-            SidebarFixer_elmSide = p_DOM_getElementById( DEFINE_WEB_DOC_BASE__SIDE_COLUMN_ID );
+            SidebarFixer_elmSide = p_DOM_getElementById( COMMON_ELEMENT_ID_SUB_COLUMN );
             SidebarFixer_elmMain = p_elmMain;
 
             if( !SidebarFixer_elmSide ) return true;
@@ -69,7 +69,7 @@ if( !p_isMobile && !p_cloudRendering ){
             SidebarFixer_elmWrap = p_DOM_insertElementBefore(
                 /** @type {!Node} */ (p_DOM_getFirstChild( /** @type {!Element} */ (SidebarFixer_elmSide) )),
                 'div',
-                { id : DEFINE_WEB_DOC_BASE__SIDEBARFIXER_WRAPPER_ID }
+                { id : COMMON_SIDEBAR_FIXER_ELEMENT_ID_WRAPPER }
             );
 
             DEFINE_WEB_DOC_BASE__DEBUG && p_addEventListener( window, 'blur', SidebarFixer_onWindowBlur );

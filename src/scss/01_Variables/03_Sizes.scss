@@ -50,7 +50,7 @@ $TABLET_MAX_WIDTH         : if($Option_baseFontSize18, 953, 943) !default;
 $PHABLET_MAX_WIDTH        : 740 !default;
 $PHONE_MAX_WIDTH          : 479 !default;
 $SMALL_PHONE_MAX_WIDTH    : 359 !default;
-$SMALL_PHONE_MAX_PX_WIDTH : #{$SMALL_PHONE_MAX_WIDTH}px !default;
+$SMALL_PHONE_MAX_PX_WIDTH : #{$COMMON_SMALL_PHONE_MAX_WIDTH}px !default;
 $WATCH_MAX_PX_WIDTH       : 240px !default;
 
 $TABLET_HORIZONTAL_MARGIN  : 3% !default;
@@ -61,7 +61,7 @@ $PRINT_COLUMN_GAP_EM : 2em !default;
 
 /*  border, outline
 --------------------------------------------------------------------------------------*/
-$BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
+$COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
 
 $INPUT_BORDER_WIDTH   : if($IS_LTE_WIN_IE7 or $IS_LEGACY or $UA_MacIE5, 0.1em, 2px) !default;
 $FORM_ITEM_PADDING_LR : if($IS_LTE_WIN_IE7 or $IS_LEGACY or $UA_MacIE5, 0.4em, 8px) !default;

@@ -63,27 +63,27 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_GeckoLt09 = p_Gecko < 0.9,
     p_jsGte15   = p_Trident < 5.5,
 
-    p_cssName = ( p_Tasman        ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_MACIE5 :
-                  p_Trident < 5.5 ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE5 :
-                  p_Trident < 6   ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_IE55 :
+    p_cssName = ( p_Tasman        ? COMMON_CSS_FILE_STEM__MACIE5 :
+                  p_Trident < 5.5 ? COMMON_CSS_FILE_STEM__IE5 :
+                  p_Trident < 6   ? COMMON_CSS_FILE_STEM__IE55 :
                   p_Trident < 10  ? 'ie'  + ( p_Trident | 0 ) :
-                  p_Presto  < 7.2 ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA70 :
-                  p_Presto  < 8   ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_OPERA72 :
+                  p_Presto  < 7.2 ? COMMON_CSS_FILE_STEM__OPERA70 :
+                  p_Presto  < 8   ? COMMON_CSS_FILE_STEM__OPERA72 :
                   p_Presto  < 9.5 ? 'opr' + ( p_Presto  | 0 ) :
                     ( p_Gecko && !p_FirefoxGte35 ) ?
-                      ( 1.4 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO19 :
-                        1.3 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO13 :
-                        1   <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO12 :
-                        !p_GeckoLt09   ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO09 :
-                        0.8 <= p_Gecko ? DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO08 :
-                                         DEFINE_WEB_DOC_BASE__CSS_FILENAME_GECKO07
+                      ( 1.4 <= p_Gecko ? COMMON_CSS_FILE_STEM__GECKO19 :
+                        1.3 <= p_Gecko ? COMMON_CSS_FILE_STEM__GECKO13 :
+                        1   <= p_Gecko ? COMMON_CSS_FILE_STEM__GECKO12 :
+                        !p_GeckoLt09   ? COMMON_CSS_FILE_STEM__GECKO09 :
+                        0.8 <= p_Gecko ? COMMON_CSS_FILE_STEM__GECKO08 :
+                                         COMMON_CSS_FILE_STEM__GECKO07
                     ) :
-                                         DEFINE_WEB_DOC_BASE__CSS_FILENAME_MODERN
+                                         COMMON_CSS_FILE_STEM__MODERN
                 ) + '.css',
     p_isSecure = location.href.indexOf( 'https' ) === 0,
 
     p_scripts, p_assetUrl,
-    p_cssDir = DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR ? DEFINE_WEB_DOC_BASE__ASSET_DIR_TO_CSS_DIR + '/' : '',
+    p_cssDir = COMMON_ASSET_DIR_TO_CSS_DIR ? COMMON_ASSET_DIR_TO_CSS_DIR + '/' : '',
     p_isMobile, p_screenModeDir = '',
     p_useMobile = // p_Gecko < 0.9 ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||

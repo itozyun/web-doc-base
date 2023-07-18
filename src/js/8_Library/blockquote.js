@@ -19,10 +19,10 @@ p_listenLoadEvent(
 
             if( title && cite ){
                 p_DOM_removeAttribute( elm, 'title' );
-                create( title, cite, DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_LINK, true );
+                create( title, cite, COMMON_BLOCKQUOT__CLASSNAME_LINK, true );
             } else if( cite ){
                 p_DOM_removeAttribute( elm, 'cite' );
-                create( window.decodeURI ? decodeURI( cite ) : cite, cite, DEFINE_WEB_DOC_BASE__CLASSNAME_BLOCKQUOT_CITE );
+                create( window.decodeURI ? decodeURI( cite ) : cite, cite, COMMON_BLOCKQUOT__CLASSNAME_CITE );
             };
         };
 
