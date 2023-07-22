@@ -23,7 +23,7 @@ setTimeout(
                         width   : COMMON_BASE_FONT_SIZE_IS_18PX ? 18 : 16,
                         height  : COMMON_BASE_FONT_SIZE_IS_18PX ? 18 : 16,
                         viewBox : '0,0,' + VectorIconCompat_VIEW_PORT_SIZE + ',' + VectorIconCompat_VIEW_PORT_SIZE,
-                        xmlns   : 'http://www.w3.org/2000/svg'
+                        'xmlns' : 'http://www.w3.org/2000/svg'
                     },
                     '',
                     true
