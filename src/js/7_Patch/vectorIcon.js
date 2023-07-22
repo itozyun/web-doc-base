@@ -15,7 +15,7 @@ p_listenCssAvailabilityChange(
                 webFontTest_IS_WOFF , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
                 webFontTest_IS_OTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
                 webFontTest_IS_TTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
-                webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
+            // webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
                 webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
             ],
             COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME, // 4.
@@ -50,56 +50,21 @@ var VectorIcon_CANUSE_SVG =
 
 /** @type {!function(number):void|undefined} */
 var VectorIcon_onTestComplete = function( webFontTestResult ){
-    var VectorIcon_LIG_TO_EMOJI = { /*
-        'cog'      : '⚙',
-        'share'    : '',
-        'pen'      : '🖊',
-        'library'  : '🏛',
-        'home'     : '🏠',
-        'flag'     : '🏳',
-        'label'    : '🏷',
-        'user'     : '👤',
-        'bubble'   : '💬',
-        'database' : '💽',
-        'calender' : '📅',
-        'RSS'      : '📻',
-        'link'     : '🔗', */
-
-        'Twitter'  : '🕊',
-        'YouTube'  : '📺',
-        'Github'   : '',
-
-        'Chrome'   : '',
-        'IE'       : '',
-        'Edge'     : '',
-        'Opera'    : '',
-        'Browser'  : '🌐',
-        'Firefox'  : '🦊',
-        'Safari'   : '🧭',
-        'Samsung'  : '🪐',
-        'Netscape' : '',
-
-        'Linux'    : '🐧',
-        'Appleinc' : '🍎',
-        'Android'  : '🤖',
-        'Windows'  : '🪟'
-    };
-
     // webFontTestResult === 0 : no webfont
     // webFontTestResult === 1 : webfont ready
     // webFontTestResult === 2 : webfont ready + ligature support
     if( webFontTestResult !== webFontTest_RESULT_LIGATURE ){
         Debug.log( '[VectorIcon] ' + webFontTestResult );
         var elmIcons = p_DOM_getElementsByClassNameFromDocument( COMMON_VECTOR_ICON__CLASSNAME ),
-            i = 0, l = elmIcons.length, elmIcon, content, emoji; 
+            i = 0, l = elmIcons.length, elmIcon, content, chr; 
 
         if( l ){
             if( webFontTestResult === webFontTest_RESULT_AVAILABLE ){
                 for( ; i < l; ++i ){
                     elmIcon = elmIcons[ i ];
                     content = p_DOM_getInnerHTML( elmIcon );
-                    if( emoji = VectorIcon_LIG_TO_EMOJI[ content ] ){
-                        elmIcon.innerHTML = emoji;
+                    if( chr = m_LIGATURE_TO_CHAR[ content ] ){
+                        elmIcon.innerHTML = chr;
                     };
                 };
             } else { // webFontTest_RESULT_NONE
@@ -107,7 +72,7 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
                     window[ COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME ] = function(){
                         p_setExternalScriptIsLoaded( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
 
-                        return [ VectorIcon_LIG_TO_EMOJI, elmIcons, p_DOM_insertElement, VectorIcon_CANUSE_SVGTINY ];
+                        return [ m_LIGATURE_TO_CHAR, elmIcons, p_DOM_insertElement, VectorIcon_CANUSE_SVGTINY ];
                     };
                     p_loadExternalScript( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
                 };

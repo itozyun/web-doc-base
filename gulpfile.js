@@ -308,41 +308,14 @@ function createVectorIconFallback(){
 };
 
 gulp.task( 'js', gulp.series(
-    function(){
-        ClosureCompiler = ClosureCompiler || require( 'google-closure-compiler' ).gulp();
-
-        return gulp.src(
-            [
-            // ES2 Code Prettify
-                './node_modules/es2-code-prettify/src/js/1_common/*.js',
-                './node_modules/es2-code-prettify/src/js/2_SimpleLexerRegistry/*.js',
-                './node_modules/es2-code-prettify/src/js/3_langs/*.js'
-            ]
-        ).pipe(
-            ClosureCompiler(
-                {
-                    define            : [
-                        'DEFINE_CODE_PRETTIFY__LANGUAGES_USED="web"'
-                    ],
-                    warning_level     : 'VERBOSE',
-                    language_in       : 'ECMASCRIPT3',
-                    language_out      : 'ECMASCRIPT3',
-                    js_output_file    : '__generate_simple_lexer_registry.js'
-                }
-            )
-        ).pipe(
-            require( './node_modules/es2-code-prettify/src/js-buildtools/gulp-createSimpleLexerRegistry.js' )( simpleLexerRegistryFileName, numericKeyName )
-        ).pipe(
-            gulp.dest( './node_modules/es2-code-prettify/src/js/4_prettify' )
-        );
-    },
+    require( './js-buildtools/create-simple-lexer-registry.js' )( gulp, ClosureCompiler, simpleLexerRegistryFileName, numericKeyName ),
     createMainJavaScript,
     function( cb ){
         if( isDebug ) return cb();
 
         return gulp.src(
             [
-                './node_modules/es2-code-prettify/dist/' + regExpCompatFileName.replace( '.js', '.min.js' )
+                './node_modules/es2-code-prettify/dist/regexpcompat.min.js'
             ]
         ).pipe(
             ClosureCompiler(
@@ -479,7 +452,7 @@ gulp.task( 'ico',
                     output + 'assets/' + assetsDirToIconFontDir + '/*.css'
                 ]
             ).pipe(
-                require( './js-buildtools/web-font.js' ).main( './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
+                require( './js-buildtools/web-font.js' ).main( './src/js/7_Patch/vectorIconLigatureToChar.generated.js', './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
             ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
         },
         createVectorIconFallback,
