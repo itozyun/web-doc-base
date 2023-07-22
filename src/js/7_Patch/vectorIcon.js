@@ -19,7 +19,7 @@ p_listenCssAvailabilityChange(
                 webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
             ],
             COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME, // 4.
-            'Twitter', '🐤', // 5. 6.
+            m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST, // 5. 6.
             5000 // 7. test interval ms
         );
 
