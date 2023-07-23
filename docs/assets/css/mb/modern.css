@@ -1015,7 +1015,7 @@ kbd {
   margin: .6em 0
 }
 @font-face {
-  font-family: myIconFont;
+  font-family: web-doc-base;
   font-weight: 400;
   font-style: normal;
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
@@ -1031,7 +1031,7 @@ kbd {
 }
 .ico,
 .icoLinks [href]:before {
-  font-family: myIconFont,serif!important;
+  font-family: web-doc-base,serif!important;
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
