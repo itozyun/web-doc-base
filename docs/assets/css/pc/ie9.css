@@ -44,17 +44,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover {
-  position: relative
-}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
@@ -228,6 +217,59 @@ a:focus img {
   background: #2a2a2a;
   color: #fff
 }
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc)
+}
+.js-myIconFont-testCssReady {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover {
+  position: relative
+}
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
+}
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+.links [href]:before,
+dt {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
+}
 :active,
 :focus {
   outline: 0
@@ -253,16 +295,7 @@ html {
   height: 100%
 }
 dt {
-  font-weight: 700;
   margin-top: .7em
-}
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -488,9 +521,10 @@ th[colspan]:after {
 h2:after {
   font-size: .1em;
   line-height: 0;
+  left: 0;
   border-style: solid;
   display: block;
-  left: 0;
+  position: absolute;
   content: " ";
   height: 0
 }
@@ -569,7 +603,6 @@ h2 {
 }
 h2:after {
   width: 5em;
-  position: absolute;
   bottom: -2px;
   border-width: 2px 0 0;
   border-color: #3079ed
@@ -588,7 +621,6 @@ tr hr {
 }
 [colspan]:after {
   width: 100%;
-  position: absolute;
   bottom: -1px
 }
 .ABody h2:after,
@@ -875,32 +907,6 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc)
-}
-.js-myIconFont-testCssReady {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  visibility: hidden
-}
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none
-}
-.Magazine-date,
-.aa {
-  font-family: monospace
-}
 .ico svg {
   vertical-align: baseline
 }
@@ -933,7 +939,6 @@ a:focus .ico path {
   margin: 2em 0 1em
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
@@ -1104,7 +1109,6 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
-  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1124,7 +1128,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1189,7 +1192,6 @@ kbd {
 }
 .RichLink b {
   display: block;
-  font-weight: 400;
   font-size: .875em;
   padding: 0 0 1.143em
 }
@@ -1423,8 +1425,7 @@ pre var {
   content: ">";
   left: -.5em;
   width: 1em;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"

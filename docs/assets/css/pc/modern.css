@@ -4,6 +4,11 @@
     font: -apple-system-body
   }
 }
+.ico,
+.icoLinks [href]:before,
+html {
+  -moz-osx-font-smoothing: grayscale
+}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -63,21 +68,6 @@ tr ol,
 tr ul {
   margin-top: 0
 }
-#jsMain,
-#jsSide,
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
@@ -92,11 +82,6 @@ th {
 hr,
 tbody th {
   background: #ddd
-}
-.ico,
-.icoLinks [href]:before,
-html {
-  -moz-osx-font-smoothing: grayscale
 }
 .ico svg,
 sub,
@@ -278,6 +263,51 @@ a:focus img {
   background: #2a2a2a;
   color: #fff
 }
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc);
+  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
+}
+.js-myIconFont-testCssReady {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
+}
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased
+}
 :active,
 :focus {
   outline: 0
@@ -442,6 +472,10 @@ li p,
 tr p {
   line-height: 1.2
 }
+.Magazine-date,
+.aa {
+  font-family: monospace
+}
 body {
   background: #1a1a1a;
   color: #111
@@ -594,9 +628,10 @@ th[colspan]:after {
 h2:after {
   font-size: .1em;
   line-height: 0;
+  left: 0;
   border-style: solid;
   display: block;
-  left: 0;
+  position: absolute;
   content: " ";
   height: 0
 }
@@ -696,7 +731,6 @@ h2 {
 }
 h2:after {
   width: 5em;
-  position: absolute;
   bottom: -2px;
   border-width: 2px 0 0;
   border-color: #3079ed
@@ -720,7 +754,6 @@ tr hr {
 }
 [colspan]:after {
   width: 100%;
-  position: absolute;
   bottom: -1px
 }
 #blog2slide-root > div > *,
@@ -1023,40 +1056,6 @@ kbd {
 }
 .lS .mspacer {
   margin: .6em 0
-}
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc);
-  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
-}
-.js-myIconFont-testCssReady {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  visibility: hidden
-}
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased
-}
-.Magazine-date,
-.aa {
-  font-family: monospace
 }
 .ico path {
   fill: #111
