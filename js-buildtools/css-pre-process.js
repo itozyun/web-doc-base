@@ -4,15 +4,15 @@
  *    この時に forced-colors は -ms-high-contrast より後ろになるようにする
  * 3. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
  */
-const TARGET_FORCED_COLORS_MEDIA_QUERY            = 'only use-polyfill and (forced-colors:active)',
-      TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY = 'only use-polyfill and (forced-colors:active) and (max-width:###px)';
-
-module.exports = function( _options ){
+module.exports = function( _COMMON_VARS ){
 
 const PluginError = require( 'plugin-error' ),
       PostCSS     = require( 'postcss'      ),
       Vinyl       = require( 'vinyl'        ),
-      options     = _options || {};
+      COMMON_VARS = _COMMON_VARS || {};
+
+const TARGET_FORCED_COLORS_MEDIA_QUERY            = 'only use-polyfill and (forced-colors:active)',
+      TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY = 'only use-polyfill and (forced-colors:active) and (max-width:###px)'.replace( '###', COMMON_VARS.COMMON_SMALL_PHONE_MAX_WIDTH );
 
 return require( 'through2' )
     .obj(
@@ -32,7 +32,7 @@ return require( 'through2' )
                 if( rule.name === 'media' ){
                     const mediaQuery = rule.params;
                 // 1. 強制カラーモード用の別 CSS を作る
-                    if( options.forcedColorsCSSDir ){
+                    if( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR ){
                         if( mediaQuery === TARGET_FORCED_COLORS_MEDIA_QUERY ){
                             rule.clone().walkRules( function( r ){
                                 cssForForcedColors.append( r );
@@ -41,7 +41,7 @@ return require( 'through2' )
                             isCreateCSSForForcedColors = isUpdateCurrentFile = true;
                             return;
                         };
-                        if( mediaQuery === TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY.replace( '###', options.smallPhoneMaxWidth ) ){
+                        if( mediaQuery === TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY ){
                             rule.params = 'screen and (max-width' + mediaQuery.split( 'max-width' )[ 1 ];
                             rulesAddToEndOfForcedColorsCSS.push( rule.clone() );
                             rule.remove();
@@ -75,7 +75,7 @@ return require( 'through2' )
                 this.push(
                     new Vinyl(
                         {
-                            path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '.' ) + '/' + options.forcedColorsCSSDir + '/' + file.basename,
+                            path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '.' ) + '/' + COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + file.basename,
                             contents : Buffer.from( cssForForcedColors.toString() )
                         }
                     )

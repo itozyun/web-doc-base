@@ -361,7 +361,7 @@ gulp.task( 'css',
                   compatibility : { properties : { ieFilters : true } },
                   //  https://github.com/jakubpawlowicz/clean-css#optimization-levels
                   level : {
-                              1 : { normalizeUrls: true, roundingPrecision : 3 },
+                              1 : { normalizeUrls : true, roundingPrecision : 3 },
                               2 : { all : true, removeUnusedAtRules : false }
                           }
               },
@@ -401,14 +401,14 @@ gulp.task( 'css',
                     cleanCSS( CLEAN_CSS_OPTION ) 
                 )
             ).pipe(
-                cssHack.preprocess( { forcedColorsCSSDir : COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR, smallPhoneMaxWidth : COMMON_VARS.COMMON_SMALL_PHONE_MAX_WIDTH } )
+                cssHack.preprocess( COMMON_VARS )
             ).pipe(
                 (
                     CLEAN_CSS_OPTION.format = 'beautify',
                     cleanCSS( CLEAN_CSS_OPTION )
                 )
             ).pipe(
-                cssHack.postprocess( { fileNameOpera70 : COMMON_VARS.COMMON_CSS_FILE_STEM__OPERA70 + '.css' } )
+                cssHack.postprocess( COMMON_VARS )
             ).pipe(
                 gulp.dest( output + 'assets/' + COMMON_VARS.COMMON_ASSET_DIR_TO_CSS_DIR )
             );

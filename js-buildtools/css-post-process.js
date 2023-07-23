@@ -5,11 +5,11 @@
  * 4. ダイナミックタイプ対応 :root { font : -apple-system-body; を含む @ support を CSS の先頭へ
  * 5. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
  */
-module.exports = function( _options ){
+module.exports = function( _COMMON_VARS ){
 
 const PluginError = require( 'plugin-error' ),
       PostCSS     = require( 'postcss'      ),
-      options     = _options || {};
+      COMMON_VARS = _COMMON_VARS || {};
 
 return require( 'through2' )
     .obj(
@@ -143,7 +143,7 @@ return require( 'through2' )
             };
 
         // 5. oper7.0 用の CSS では background:0 0 を backgeound:transparent に
-            if( options.fileNameOpera70 === file.basename ){
+            if( COMMON_VARS.COMMON_CSS_FILE_STEM__OPERA70 === file.stem ){
                 css.walkDecls(
                     function( decl ){
                         if( decl.prop === 'background' && decl.value === '0 0' ){
