@@ -156,8 +156,8 @@ gulp.task( 'btoa', gulp.series(
 const connect = require( 'gulp-connecting-room' );
 const COMMON_VARS = require( './common.json' );
 
-const assetsDirToJSDir       = COMMON_VARS.COMMON_ASSET_DIR_TO_JS_DIR,
-      assetsDirToIconFontDir = COMMON_VARS.COMMON_ASSET_DIR_TO_ICONFONT_DIR;
+const assetsDirToJSDir      = COMMON_VARS.COMMON_ASSET_DIR_TO_JS_DIR,
+      assetsDirToWebFontDir = COMMON_VARS.COMMON_ASSET_DIR_TO_WEBFONT_DIR;
 
 /* -------------------------------------------------------
  *  gulp js
@@ -449,11 +449,11 @@ gulp.task( 'ico',
                     './.icomoon/vector-icon/fonts/*.woff',
                     './.icomoon/vector-icon/fonts/*.ttf',
                     './.icomoon/vector-icon/fonts/*.eot',
-                    output + 'assets/' + assetsDirToIconFontDir + '/*.css'
+                    output + 'assets/' + assetsDirToWebFontDir + '/*.css'
                 ]
             ).pipe(
                 require( './js-buildtools/web-font.js' ).main( COMMON_VARS, './src/js/7_Patch/vectorIconLigatureToChar.generated.js', './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
-            ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
+            ).pipe( gulp.dest( output + 'assets/' + assetsDirToWebFontDir ) );
         },
         createVectorIconFallback,
         // format selection.json

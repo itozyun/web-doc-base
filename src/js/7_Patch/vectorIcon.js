@@ -9,16 +9,16 @@ p_listenCssAvailabilityChange(
 
         p_webFontTest(
             /** @type {!function(number):void} */ (VectorIcon_onTestComplete), // 1.
-            COMMON_VECTOR_ICON__FONT_NAME, // 2.
+            COMMON_WEBFONT__FONT_NAME, // 2.
             [
-                webFontTest_IS_WOFF2, p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/woff2.css',
-                webFontTest_IS_WOFF , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/woff.css',
-                webFontTest_IS_OTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/otf.css',
-                webFontTest_IS_TTF  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/ttf.css',
-            // webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/eot.css',
-                webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_ICONFONT_DIR + '/svg.css'
+                webFontTest_IS_WOFF2, p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/woff2.css',
+                webFontTest_IS_WOFF , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/woff.css',
+                webFontTest_IS_OTF  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/otf.css',
+                webFontTest_IS_TTF  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/ttf.css',
+            // webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/eot.css',
+                webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/svg.css'
             ],
-            COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME, // 4.
+            COMMON_WEBFONT__TEST_ID_AND_CLASSNAME, // 4.
             m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST, // 5. 6.
             5000 // 7. test interval ms
         );

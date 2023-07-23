@@ -154,7 +154,7 @@ function transform( file, encoding, cb ){
             svg[ i ] = str.substring( str.indexOf( '"' ) + 1 );
         };
 
-        svg = replaceText( svg.join( '' ), ' id="', '"', COMMON_VARS.COMMON_VECTOR_ICON__SVG_FONT_ID );
+        svg = replaceText( svg.join( '' ), ' id="', '"', COMMON_VARS.COMMON_WEBFONT__SVG_FONT_ID );
 
         return Buffer.from( svg );
     };
@@ -168,8 +168,8 @@ function flush( cb ){
 
             if( buffer ){
                 let cssText = file.contents.toString();
-                cssText = replaceText( cssText, ' "UTF-8";#'   , "{"          , COMMON_VARS.COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME );
-                cssText = replaceText( cssText, "font-family:'", "';"         , COMMON_VARS.COMMON_VECTOR_ICON__FONT_NAME );
+                cssText = replaceText( cssText, ' "UTF-8";#'   , "{"          , COMMON_VARS.COMMON_WEBFONT__TEST_ID_AND_CLASSNAME );
+                cssText = replaceText( cssText, "font-family:'", "';"         , COMMON_VARS.COMMON_WEBFONT__FONT_NAME );
                 cssText = replaceText( cssText, "src:url('"    , "') format('", DATA_MINETYPE_CHARSET_BASE64[ extname ] + buffer.toString( 'base64' ) );
                 cssText = replaceText( cssText, ") format('"   , "');"        , WEBFONT_FORMAT[ extname ] );
 

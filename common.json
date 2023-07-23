@@ -16,7 +16,7 @@
 
     "COMMON_ASSET_DIR_TO_JS_DIR" : "js",
     "COMMON_ASSET_DIR_TO_CSS_DIR" : "css",
-    "COMMON_ASSET_DIR_TO_ICONFONT_DIR" : "iconfont",
+    "COMMON_ASSET_DIR_TO_WEBFONT_DIR" : "iconfont",
     "COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR" : "pc",
     "COMMON_CSS_DIR_TO_MOBILE_CSS_DIR" : "mb",
     "COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR" : "hc",
@@ -59,11 +59,12 @@
     "COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL": "jsSidebarFixer1",
     "COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL": "jsSidebarFixer2",
 
-    "COMMON_VECTOR_ICON__FONT_NAME": "web-doc-base",
-    "COMMON_VECTOR_ICON__FILE_STEM": "web-doc-base",
-    "COMMON_VECTOR_ICON__SVG_FONT_ID": "web-doc-base",
+    "COMMON_WEBFONT__FONT_NAME": "web-doc-base",
+    "COMMON_WEBFONT__FILE_STEM": "web-doc-base",
+    "COMMON_WEBFONT__SVG_FONT_ID": "web-doc-base",
+    "COMMON_WEBFONT__TEST_ID_AND_CLASSNAME": "js-myIconFont-testCssReady",
+
     "COMMON_VECTOR_ICON__CLASSNAME": "ico",
-    "COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME": "js-myIconFont-testCssReady",
     "COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME": "VectorIconFallback",
     "COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM": "vector-icon-svg-fallback"
 }

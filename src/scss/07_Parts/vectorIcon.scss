@@ -1,56 +1,5 @@
-@if( $MAYBE_CAN_USE_WEBFONT ){
-    @font-face {
-        font-family : '#{$COMMON_VECTOR_ICON__FONT_NAME}';
-        font-weight : normal;
-        font-style  : normal;
-        src         : url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.eot?rw1juc');
-        @if( $UA_Modern ){
-            src:url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.eot?rw1juc#iefix') format('#{$WEBFONT_FORMAT_EOT}'),
-                url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.woff2?rw1juc') format('#{$WEBFONT_FORMAT_WOFF2}'),
-                url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.woff?rw1juc') format('#{$WEBFONT_FORMAT_WOFF}'),
-                url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.ttf?rw1juc') format('#{$WEBFONT_FORMAT_TTF}'),
-                url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
-                url('#{$ASSET_PATH_VECTOR_ICON + $COMMON_VECTOR_ICON__FILE_STEM}.svg?rw1juc##{$COMMON_VECTOR_ICON__SVG_FONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
-        }
-    }
-    @if( $UA_Modern or $UA_IE9 ){
-        .#{$COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME} {
-            @include check-css-ready;
-        }
-    }
-}
-
-%vectorIconBase {
-    font-family : '#{$COMMON_VECTOR_ICON__FONT_NAME}', serif !important;
-    // if( $Option_hard-reset ){
-        font-style     : normal;
-        font-weight    : normal;
-        font-variant   : normal;
-        text-transform : none;
-    //}
-    
-    @if( $UA_Modern ){
-        /* Enable Ligatures ================ */
-        -webkit-font-feature-settings : "liga";
-           -moz-font-feature-settings : "liga=1";
-           -moz-font-feature-settings : "liga";
-            -ms-font-feature-settings : "liga" 1;
-             -o-font-feature-settings : "liga";
-                font-feature-settings : "liga";
-        /*
-        -webkit-font-variant-ligatures : discretionary-ligatures;
-                font-variant-ligatures : discretionary-ligatures; */
-
-        /* Better Font Rendering =========== */
-         -webkit-font-smoothing       : antialiased;
-        -moz-osx-font-smoothing       : grayscale;
-    }
-}
-
 .#{$COMMON_VECTOR_ICON__CLASSNAME} {
-    @if( $MAYBE_CAN_USE_WEBFONT ){
-        @extend %vectorIconBase;
-    }
+    @extend %webfontBase;
     
     @if( $CANUSE_SVG ){
         svg {

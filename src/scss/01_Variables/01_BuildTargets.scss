@@ -320,4 +320,4 @@
 || 4. Path
 ||
 |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/*/
-    $ASSET_PATH_VECTOR_ICON : "../../#{$COMMON_ASSET_DIR_TO_ICONFONT_DIR}/" !default;
+    $ASSET_PATH_WEBFONT : "#{if($COMMON_ASSET_DIR_TO_CSS_DIR, '../', '') + if($COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR, '../', '') + $COMMON_ASSET_DIR_TO_WEBFONT_DIR}/" !default;

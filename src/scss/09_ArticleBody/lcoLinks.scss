@@ -24,7 +24,7 @@
             }
 
             @if( $MAYBE_CAN_USE_WEBFONT ){
-                @extend %vectorIconBase;
+                @extend %webfontBase;
                 content : "🔗";
             } @else {
                 content     : ">";
