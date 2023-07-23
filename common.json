@@ -59,7 +59,7 @@
     "COMMON_SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL": "jsSidebarFixer1",
     "COMMON_SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL": "jsSidebarFixer2",
 
-    "COMMON_VECTOR_ICON__FONT_NAME": "myIconFont",
+    "COMMON_VECTOR_ICON__FONT_NAME": "web-doc-base",
     "COMMON_VECTOR_ICON__FILE_STEM": "web-doc-base",
     "COMMON_VECTOR_ICON__SVG_FONT_ID": "web-doc-base",
     "COMMON_VECTOR_ICON__CLASSNAME": "ico",
