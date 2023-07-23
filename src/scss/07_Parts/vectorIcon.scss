@@ -1,5 +1,5 @@
 .#{$COMMON_VECTOR_ICON__CLASSNAME} {
-    @extend %webfontBase;
+    @include web-font;
     
     @if( $CANUSE_SVG ){
         svg {

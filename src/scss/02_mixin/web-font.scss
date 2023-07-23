@@ -22,9 +22,9 @@
     }
 }
 
-%webfontBase {
+@mixin web-font($ALT_FONTFAMILY : "serif !important") {
     @if( $MAYBE_CAN_USE_WEBFONT ){
-        font-family : '#{$COMMON_WEBFONT__FONT_NAME}', serif !important;
+        font-family : #{$COMMON_WEBFONT__FONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
         // if( $Option_hard-reset ){
             font-style     : normal;
             font-weight    : normal;

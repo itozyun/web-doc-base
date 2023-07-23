@@ -24,7 +24,7 @@
             }
 
             @if( $MAYBE_CAN_USE_WEBFONT ){
-                @extend %webfontBase;
+                @include web-font;
                 content : "🔗";
             } @else {
                 content     : ">";
