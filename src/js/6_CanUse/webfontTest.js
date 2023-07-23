@@ -88,7 +88,7 @@ var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
                                            4.4 <= p_AOSP ||
                                            11.1 <= p_Presto ||
                                            p_EdgeHTML ||
-                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
@@ -98,7 +98,7 @@ var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
                                            2.2 <= p_AOSP ||
                                            10 <= p_Presto ||
                                            p_EdgeHTML ||
-                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+                                           9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_OTF               = webFontTest_CANUSE_TTF;
@@ -108,7 +108,7 @@ var webFontTest_CANUSE_SVG               = 525 <= p_WebKit || // Safari 3.1+
                                            3 <= p_AOSP ||
                                            11.5 <= p_Presto;
                                            // TODO Blackberry Browser 7+
-var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident  ) ||
+var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
 
 var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST && [];

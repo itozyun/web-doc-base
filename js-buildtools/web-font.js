@@ -11,7 +11,8 @@
  *    7. DataURI の scss 変数ファイルを作る
  */
 module.exports = {
-    main : function( opt_jsFilePathOfLigatureToChar, opt_jsFilePathOfPathList ){
+    main : function( _COMMON_VARS, opt_jsFilePathOfLigatureToChar, opt_jsFilePathOfPathList ){
+        COMMON_VARS = _COMMON_VARS;
         jsFilePathOfLigatureToChar = opt_jsFilePathOfLigatureToChar;
         jsFilePathOfPathList = opt_jsFilePathOfPathList;
         scssFileName = '';
@@ -21,7 +22,8 @@ module.exports = {
         CSS_FILES    = {};
         return Through2.obj( transform, flush );
     },
-    scssVariable : function( _scssFileName ){
+    scssVariable : function( _COMMON_VARS, _scssFileName ){
+        COMMON_VARS = _COMMON_VARS;
         scssFileName = _scssFileName;
         jsFilePathOfLigatureToChar = jsFilePathOfPathList = '';
         svgOriginal  = '';
@@ -33,7 +35,7 @@ module.exports = {
 };
 
 let svgo, woff2otf, ttf2woff2,
-    jsFilePathOfLigatureToChar, jsFilePathOfPathList, scssFileName,
+    jsFilePathOfLigatureToChar, jsFilePathOfPathList, scssFileName, COMMON_VARS,
     isMainTask, svgOriginal, FONT_BUFFERS, CSS_FILES;
 
 const PluginError = require( 'plugin-error' ),
@@ -152,7 +154,9 @@ function transform( file, encoding, cb ){
             svg[ i ] = str.substring( str.indexOf( '"' ) + 1 );
         };
 
-        return Buffer.from( svg.join( '' ) );
+        svg = replaceText( svg.join( '' ), ' id="', '"', COMMON_VARS.COMMON_VECTOR_ICON__SVG_FONT_ID );
+
+        return Buffer.from( svg );
     };
 };
 function flush( cb ){
@@ -163,16 +167,13 @@ function flush( cb ){
             const buffer  = FONT_BUFFERS[ '.' + extname ];
 
             if( buffer ){
-                const cssText = file.contents.toString();
-                const start   = 'data:';
-                const end     = "') format('";
-                const last    = cssText.split( end )[ 1 ];
+                let cssText = file.contents.toString();
+                cssText = replaceText( cssText, ' "UTF-8";#'   , "{"          , COMMON_VARS.COMMON_VECTOR_ICON__TEST_ID_AND_CLASSNAME );
+                cssText = replaceText( cssText, "font-family:'", "';"         , COMMON_VARS.COMMON_VECTOR_ICON__FONT_NAME );
+                cssText = replaceText( cssText, "src:url('"    , "') format('", DATA_MINETYPE_CHARSET_BASE64[ extname ] + buffer.toString( 'base64' ) );
+                cssText = replaceText( cssText, ") format('"   , "');"        , WEBFONT_FORMAT[ extname ] );
 
-                file.contents = Buffer.from(
-                    cssText.split( start )[ 0 ] + DATA_MINETYPE_CHARSET_BASE64[ extname ] +
-                    buffer.toString( 'base64' ) +
-                    end + WEBFONT_FORMAT[ extname ] + "');" + last.split( "');" )[ 1 ]
-                );
+                file.contents = Buffer.from( cssText );
                 this.push( file );
             } else {
                 return cb( new PluginError( 'web-font', extname + ' not found!' ) );
@@ -318,4 +319,15 @@ function createLigatureToChar( cb ){
             };
         }
     );
+};
+
+function replaceText( originalText, strFrom, strTo, newText ){
+    const startIndex = originalText.indexOf( strFrom );
+    const endIndex   = originalText.indexOf( strTo, startIndex + strFrom.length );
+
+    if( startIndex === -1 || endIndex === -1 ){
+        throw 'Index error!';
+    };
+
+    return originalText.substr( 0, startIndex + strFrom.length ) + newText + originalText.substr( endIndex );
 };

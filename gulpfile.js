@@ -452,7 +452,7 @@ gulp.task( 'ico',
                     output + 'assets/' + assetsDirToIconFontDir + '/*.css'
                 ]
             ).pipe(
-                require( './js-buildtools/web-font.js' ).main( './src/js/7_Patch/vectorIconLigatureToChar.generated.js', './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
+                require( './js-buildtools/web-font.js' ).main( COMMON_VARS, './src/js/7_Patch/vectorIconLigatureToChar.generated.js', './src/js-vector-icon-svg-fallback/2_vectorIconPathList.generated.js' )
             ).pipe( gulp.dest( output + 'assets/' + assetsDirToIconFontDir ) );
         },
         createVectorIconFallback,
@@ -487,7 +487,7 @@ gulp.task( 'ico',
                     './.icomoon/minimum-font/fonts/*.eot'
                 ]
             ).pipe(
-                require( './js-buildtools/web-font.js' ).scssVariable( '04_MinimumDataURIWebFont.generated.scss' )
+                require( './js-buildtools/web-font.js' ).scssVariable( COMMON_VARS, '04_MinimumDataURIWebFont.generated.scss' )
             ).pipe( gulp.dest( 'src/scss/01_Variables' ) );
         },
         'css'
