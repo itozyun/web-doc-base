@@ -11,13 +11,6 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
-
-<link rel="stylesheet" href="../assets/iconfont/woff2.css">
-<link rel="stylesheet" href="../assets/iconfont/woff.css">
-<link rel="stylesheet" href="../assets/iconfont/ttf.css">
-<link rel="stylesheet" href="../assets/iconfont/otf.css">
-<link rel="stylesheet" href="../assets/iconfont/eot.css">
-<link rel="stylesheet" href="../assets/iconfont/svg.css">
 </head>
 <body size="1">
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
@@ -42,10 +35,26 @@ Data URI フォントのテスト,
 
 <a href="../08_test/06_VectorIcon.html">ベクターアイコン</a>
 
-<h1>Data URI フォントのテスト</h1>
-
-<p style="font-family: web-doc-base;">, 🧭, 🪐, 
-
+<h1>Data URI フォントのテスト(Ligature)</h1>
+<style>
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../assets/iconfont/web-doc-base.eot?rw1juc);
+  src: url(../assets/iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../assets/iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../assets/iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../assets/iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../assets/iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../assets/iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
+}
+.webfont {
+    font-family: web-doc-base, monospace, san-serif;
+    -webkit-font-feature-settings: "liga";
+       -moz-font-feature-settings: "liga=1";
+       -moz-font-feature-settings: "liga";
+        -ms-font-feature-settings: "liga" 1;
+         -o-font-feature-settings: "liga";
+            font-feature-settings: "liga";
+}
+</style>
+<p>生のフォントファイル : <span class="webfont">(IE), 🧭(Safari), 🪐(Samsung), (Netscape)</span>
 
 <h2>WOFF2</h2>
 
@@ -66,6 +75,10 @@ Data URI フォントのテスト,
 <h2>SVG</h2>
 
 <iframe src="dataURIFont/svg.html" width="320" height="50"></iframe>
+
+<h2>Raw SVG</h2>
+
+<iframe src="dataURIFont/raw-svg.html" width="320" height="50"></iframe>
 
 <h2>EOT</h2>
 

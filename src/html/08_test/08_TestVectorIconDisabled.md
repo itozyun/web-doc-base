@@ -4,7 +4,11 @@
       "mainJavascriptFilename" : "test-vector-icon-disabled.js"
   }
 </script>
-
+<style>
+.ico {
+    font-family : serif !important;
+}
+</style>
 <p id="logger"></p>
 
 # ベクターアイコン(Web フォント)の非サポートをテストする。
