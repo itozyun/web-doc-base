@@ -19,8 +19,8 @@ p_listenCssAvailabilityChange(
                 webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/svg.css'
             ],
             COMMON_WEBFONT__TEST_ID_AND_CLASSNAME, // 4.
-            m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST, // 5. 6.
-            5000 // 7. test interval ms
+            m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST//, 5. 6.
+            // 5000 7. test interval ms
         );
 
         VectorIcon_onTestComplete = undefined;

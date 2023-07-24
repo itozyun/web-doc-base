@@ -102,7 +102,7 @@ var ExternalCSSLoader_main =
                     )
                 );
                 !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                elmLink.onload = elmTest = null;
+                elmLink.onload = elmTest = undefined;
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
@@ -118,7 +118,7 @@ var ExternalCSSLoader_main =
                         )
                     );
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                    elmTest = null;
+                    elmTest = undefined;
                     elmLink.onReadyStateChange = p_emptyFunction;
                 };
             };
@@ -154,20 +154,20 @@ var ExternalCSSLoader_main =
                     } else {
                         img.removeEventListener( 'load', onComplete, false );
                     };
-                    img = null;
+                    img = undefined;
                 };
             };
 
             function onTimer(){
                 if( /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {!HTMLDivElement} */ (elmTest), /** @type {number} */ (widthBeforeCSSLoaded) ) ){
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                    elmTest = null;
+                    elmTest = undefined;
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), true );
                 } else if( p_getTimestamp() < limit ){
                     p_setTimer( onTimer, 0, 99 );
                 } else {
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                    elmTest = null;
+                    elmTest = undefined;
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
                 };
             };

@@ -13,6 +13,8 @@
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.svg?rw1juc##{$COMMON_WEBFONT__SVG_FONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
             }
+            // TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
+            // TODO Chrome 2~14 は SVG フォントだけが、アスキー英字のみ(?)の合字をサポートする
         }
         @if( $UA_Modern or $UA_IE9 ){
             .#{$COMMON_WEBFONT__TEST_ID_AND_CLASSNAME} {
