@@ -102,7 +102,8 @@ var ExternalCSSLoader_main =
                     )
                 );
                 !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                elmLink.onload = elmTest = undefined;
+                elmLink.onload = null;
+                elmTest = undefined;
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
