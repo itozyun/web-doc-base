@@ -281,21 +281,6 @@ sup {
 .lS2 {
   width: 48.5%
 }
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased
-}
 :active,
 :focus {
   outline: 0
@@ -457,10 +442,6 @@ dd p,
 li p,
 tr p {
   line-height: 1.2
-}
-.Magazine-date,
-.aa {
-  font-family: monospace
 }
 body {
   background: #1a1a1a;
@@ -866,6 +847,14 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased
+}
 .baseColor {
   background: #f8fbf8
 }
@@ -1046,6 +1035,19 @@ kbd {
 }
 .lS .mspacer {
   margin: .6em 0
+}
+.ico {
+  font-weight: 400;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga"
+}
+.Magazine-date,
+.aa {
+  font-family: monospace
 }
 .ico path {
   fill: #111
@@ -1578,6 +1580,13 @@ pre var {
   text-decoration: none;
   height: 1.4em;
   line-height: 1.4;
+  font-weight: 400;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
   content: "🔗"
 }
 .icoLinks [href^="/"]:not([href^="//"]):before {

@@ -259,30 +259,6 @@ tbody :hover th {
   font-style: normal;
   src: url(../../iconfont/web-doc-base.eot?rw1juc)
 }
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-.links [href]:before,
-dt {
-  font-weight: 700
-}
-.RichLink b,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
-}
 :active,
 :focus {
   outline: 0
@@ -308,7 +284,17 @@ html {
   height: 100%
 }
 dt {
+  font-weight: 700;
   margin-top: .7em
+}
+.ico,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 blockquote,
 q {
@@ -712,6 +698,13 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none
+}
 .baseColor {
   background: #f8fbf8
 }
@@ -916,6 +909,7 @@ tr .box {
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -1088,6 +1082,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1107,6 +1102,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1177,6 +1173,7 @@ kbd {
 }
 .RichLink b {
   display: block;
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -1386,6 +1383,7 @@ pre var {
   width: 1em;
   text-align: center;
   text-decoration: none;
+  font-weight: 400;
   content: "🔗"
 }
 .icoLinks [href*="://web.archive."]:before {
@@ -1408,7 +1406,8 @@ pre var {
   content: ">";
   left: -.5em;
   width: 1em;
-  text-align: center
+  text-align: center;
+  font-weight: 700
 }
 .links [href*="/web.archive."]:before {
   content: "*"

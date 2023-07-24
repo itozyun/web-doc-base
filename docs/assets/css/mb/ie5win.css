@@ -55,6 +55,17 @@ code,
 var {
   height: 1px
 }
+.Magazine-label,
+.Magazine-main,
+.RichLink b,
+.caption,
+.links,
+.mspacer,
+pre,
+td,
+th {
+  word-break: break-all
+}
 .ico,
 cite,
 code,
@@ -66,17 +77,6 @@ samp,
 strong,
 var {
   font-style: normal
-}
-.Magazine-label,
-.Magazine-main,
-.RichLink b,
-.caption,
-.links,
-.mspacer,
-pre,
-td,
-th {
-  word-break: break-all
 }
 .Cover-img,
 .Magazine-main,
@@ -219,12 +219,6 @@ a:active var {
   font-style: normal;
   src: url(../../iconfont/web-doc-base.eot?rw1juc)
 }
-.ico {
-  font-family: web-doc-base,serif!important;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none
-}
 html {
   font-size: 100%
 }
@@ -355,20 +349,12 @@ a:active * {
 a:active {
   background-color: #3079ed!important
 }
-.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6,
-th {
+h6 {
   font-weight: 400
-}
-.ABody h3,
-.Magazine h3,
-.Magazine-date,
-h2 {
-  font-weight: 700
 }
 h4,
 h5,
@@ -464,7 +450,8 @@ h2 {
   margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em
+  font-size: 1.1em;
+  font-weight: 700
 }
 .wn {
   color: red!important
@@ -488,6 +475,7 @@ caption {
   margin: 1.5em 3% .7em
 }
 th {
+  font-weight: 400;
   text-align: left;
   padding: .5em
 }
@@ -721,6 +709,12 @@ kbd {
 .lS .mspacer {
   margin: .6em 0
 }
+.ico {
+  font-family: web-doc-base,serif!important;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none
+}
 .AAuthor {
   height: 1px;
   margin: 1em 0
@@ -756,6 +750,7 @@ tr .box {
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
+  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -927,6 +922,7 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
+  font-weight: 700;
   float: left
 }
 .Magazine-dd,
@@ -946,6 +942,7 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
+  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1011,6 +1008,7 @@ kbd {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
+  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
