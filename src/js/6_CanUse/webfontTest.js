@@ -102,9 +102,9 @@ var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_OTF               = webFontTest_CANUSE_TTF;
-var webFontTest_CANUSE_SVG               = 525 <= p_WebKit || // Safari 3.1+
+var webFontTest_CANUSE_SVG               = p_Chromium < 40 || // Chrome 1~39
+                                           525 <= p_WebKit || // Safari 3.1+
                                            3.2 <= p_SafariMobile ||
-                                           p_Chromium < 38 || // Chrome 1~37
                                            3 <= p_AOSP ||
                                            11.5 <= p_Presto;
                                            // TODO Blackberry Browser 7+
