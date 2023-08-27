@@ -229,6 +229,7 @@ textarea { display : block; width : 100% }
 Check CSS Ready,
 <a href="check-image-loading.html">Check Image loading</a>,
 <a href="clearfix.html">clearfix のテスト</a>,
+<a href="css-hack-for-svg-font.html">SVG フォント用の CSS ハック</a>,
 <a href="cssGeneratedContent.html">疑似要素のテスト</a>,
 <a href="cssom.html">CSSOM のテスト</a>,
 <a href="datauri-webfont.html">Data URI フォントのテスト</a>,
@@ -242,7 +243,7 @@ Check CSS Ready,
 <a href="white-space.html">white space のテスト</a>
 <hr>
 <h1>Check CSS ready</h1>
-<button id="btn1" onclick="test( 'cssom.css', 1000, 16 )">load test</button>
+<button id="btn1" onclick="test( './css/cssom.css', 1000, 16 )">load test</button>
 <button id="btn2" onclick="test( 'bad.css', 5000, 16 )">error test</button>
 <textarea id="output" cols="80" rows="10"></textarea>
 <div id="detect-css-ready" class="detect-css-ready"></div>

@@ -6,7 +6,7 @@ const gulp            = require('gulp'),
       globalVariables = 'document,navigator,Function,Date,parseFloat,isFinite,setTimeout,clearTimeout,setInterval';
 
 let gulpDPZ, ClosureCompiler, postProcessor, es2ToES3;
-let minify = true;
+let minifyInlineJavascript = true;
 let output = './docs/';
 
 /* -------------------------------------------------------
@@ -20,7 +20,7 @@ function createInlineScript(){
             [
                 './.submodules/what-browser-am-i/src/js/**/*.js',
                 '!./.submodules/what-browser-am-i/src/4_brand.js',
-                minify ? './src/js-inline/*.js' : './src/js-inline/dynamicViewPort.js'
+                minifyInlineJavascript ? './src/js-inline/*.js' : './src/js-inline/2_dynamicViewPort.js'
             ]
         ).pipe(
             connect( COMMON_VARS )
@@ -37,11 +37,11 @@ function createInlineScript(){
                 {
                     externs           : [ './.submodules/what-browser-am-i/src/js-externs/externs.js' ],
                     define            : [
-                        'DEFINE_WHAT_BROWSER_AM_I__MINIFY=' + minify,
-                        'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=' + !minify,
-                        'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=' + !minify,
-                        'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=' + !minify,
-                        'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=' + !minify
+                        'DEFINE_WHAT_BROWSER_AM_I__MINIFY=' + minifyInlineJavascript,
+                        'DEFINE_WHAT_BROWSER_AM_I__BRAND_ENABLED=' + !minifyInlineJavascript,
+                        'DEFINE_WHAT_BROWSER_AM_I__PCSITE_REQUESTED_ENABLED=' + !minifyInlineJavascript,
+                        'DEFINE_WHAT_BROWSER_AM_I__IOS_DEVICE_ENABLED=' + !minifyInlineJavascript,
+                        'DEFINE_WHAT_BROWSER_AM_I__DEVICE_TYPE_ENABLED=' + !minifyInlineJavascript
                     ],
                     compilation_level : 'ADVANCED',
                     //compilation_level : 'WHITESPACE_ONLY',
@@ -49,56 +49,12 @@ function createInlineScript(){
                     warning_level     : 'VERBOSE',
                     language_in       : 'ECMASCRIPT3',
                     language_out      : 'ECMASCRIPT3',
-                    output_wrapper    : 'ua=' + ( minify ? '[]' : '{}' ) + ';%output%',
+                    output_wrapper    : 'ua=' + ( minifyInlineJavascript ? '[]' : '{}' ) + ';%output%',
                     js_output_file    : tempJsName
                 }
             )
         ).pipe(gulp.dest( tempDir ));
 };
-
-
-/* -------------------------------------------------------
- *  gulp docs
- */
-let minjs;
-
-gulp.task( 'docs', gulp.series(
-    function( cb ){
-        minify = false;
-        cb();
-    },
-    createInlineScript,
-    function( cb ){
-        require( 'fs' ).readFile( tempDir + '/' + tempJsName,
-            function( error, buffer ){
-                if( !error ){
-                    minjs = buffer.toString( 'utf-8' ).replace( '\n', '' );
-                    return cb();
-                } else {
-                    throw error;
-                };
-            }
-        );
-    },
-    function(){
-        return gulp
-            .src(
-                [ output + 'test/check-css-ready.html', output + 'test/check-css-ready-with-ruler.html', output + 'test/check-image-loading.html', output + 'test/attr-selectors.html' ]
-            ).pipe(
-                require( 'gulp-jsdom' )(
-                    function( document ){
-                        const elm = document.getElementsByTagName( 'script' )[ 0 ];
-
-                        if( elm ){
-                            elm.textContent = minjs;
-                        };
-                    }
-                )
-            ).pipe(
-                gulp.dest( output + 'test' )
-            );
-    }
-));
 
 /* -------------------------------------------------------
  *  gulp btoa
@@ -514,18 +470,145 @@ gulp.task( '__html', gulp.series(
         );
     },
     function(){
-        return gulp.src( [ './src/html/**/*.html',  './src/html/**/*.md' ] )
-                    // .pipe( plumber() )
-                   .pipe( require( './js-buildtools/gulp-generate-full-webdoc/index.js' )( pageBase, __dirname + '/src/html/' ) )
-                   .pipe( require( isDebug ? 'gulp-diffable-html' : 'gulp-cleanhtml' )() )
-                   .pipe( gulp.dest( output ) );
+        return gulp.src(
+                        [
+                            './src/html/**/*.html',
+                           '!./src/html/test/*.html',
+                            './src/html/**/*.md'
+                        ]
+                    ).pipe(
+                        require( './js-buildtools/gulp-generate-full-webdoc/index.js' )( pageBase, __dirname + '/src/html/' )
+                    ).pipe(
+                        require( isDebug ? 'gulp-diffable-html' : 'gulp-cleanhtml' )()
+                    ).pipe(
+                        gulp.dest( output )
+                    );
     }
 ) );
 
+let inlineJavascript = '';
+const testPageFiles = [];
+
+function replaceString( str, from, to, content ){
+    return str.substr( 0, str.indexOf( from ) + from.length ) + content + str.substr( str.indexOf( to ) );
+};
+
 gulp.task( 'html', gulp.series(
+    function( cb ){
+        minifyInlineJavascript = false;
+        cb();
+    },
     createInlineScript,
-    '__html',
-    'docs',
+    function( cb ){
+        require( 'fs' ).readFile( tempDir + '/' + tempJsName,
+            function( error, buffer ){
+                if( !error ){
+                    inlineJavascript = buffer.toString( 'utf-8' ).replace( '\n', '' );
+                    return cb();
+                } else {
+                    throw error;
+                };
+            }
+        );
+    },
+    // insert inlineScript
+    function(){
+        return gulp
+            .src(
+                [ 'src/html/test/*.html' ]
+            ).pipe(
+                require( 'through2' ).obj(
+                    function( file, encoding, cb ){
+                        const html = file.contents.toString( encoding );
+
+                        if( 0 < html.indexOf( '<script what-browser-am-i="1">' ) ){
+                            file.contents = Buffer.from( replaceString( html, '<script what-browser-am-i="1">', '</script>', inlineJavascript ) );
+                        };
+                        cb( null, file );
+                    }
+                )
+            ).pipe(
+                gulp.dest( 'src/html/test' )
+            );
+    },
+    // insert links
+    function(){
+        return gulp
+            .src(
+                [ 'src/html/test/*.html' ]
+            ).pipe(
+                require( 'through2' ).obj(
+                    function( file, encoding, cb ){
+                        testPageFiles.push( file );
+                        cb();
+                    },
+                    function( cb ){
+                        const listOfHTML = [];
+                        const listOfTitle = [];
+
+                        for( let i = 0, l = testPageFiles.length; i < l; ++i ){
+                            const html = testPageFiles[ i ].contents.toString( 'UTF-8' );
+
+                            listOfHTML.push( html );
+                            listOfTitle.push( html.split( '<title>' )[ 1 ].split( '</title>' )[ 0 ].split( ' | ' )[ 0 ] );
+                        };
+                        for( let i = 0, l = testPageFiles.length; i < l; ++i ){
+                            const file = testPageFiles[ i ];
+
+                            file.contents = Buffer.from( replaceString( listOfHTML[ i ], '<menu>', '</menu>', createMenu( file.basename ) ) );
+                            this.push( file );
+                        };
+
+                        function createMenu( current ){
+                            const html = [];
+
+                            if( current ){
+                                html.push( '<a href="https://github.com/itozyun/web-doc-base/">github</a>', '<a href="../">top</a>' );
+                            };
+                            for( let i = 0, l = testPageFiles.length; i < l; ++i ){
+                                const file = testPageFiles[ i ];
+
+                                if( !current ){
+                                    html.push( '<a href="../test/' + file.basename + '">' + listOfTitle[ i ] + '</a>' );
+                                } else if( current === file.basename ){
+                                    html.push( listOfTitle[ i ] );
+                                } else {
+                                    html.push( '<a href="' + file.basename + '">' + listOfTitle[ i ] + '</a>' );
+                                };
+                            };
+                            return '\n' + html.join( ',\n' ) + '\n';
+                        };
+
+                        const fs = require( 'fs' );
+
+                        fs.readFile(
+                            './src/html/08_test/index.md',
+                            function( error, buffer ){
+                                if( !error ){
+                                    const md = buffer.toString( 'utf-8' );
+
+                                    fs.writeFile(
+                                        './src/html/08_test/index.md',
+                                        replaceString( md, '<!-- start to insert menu -->', '<!-- end of insert menu -->', createMenu() ),
+                                        cb
+                                    );
+                                } else {
+                                    throw error;
+                                };
+                            }
+                        )
+                    }
+                )
+            ).pipe(
+                gulp.dest( output + 'test' )
+            );
+    },
+    function( cb ){
+        minifyInlineJavascript = true;
+        cb();
+    },
+    createInlineScript,
+    '__html'
 ) );
 
 /* -------------------------------------------------------
