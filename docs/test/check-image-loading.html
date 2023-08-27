@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ja" xmlns:v="urn:schemas-microsoft-com:vml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Check Image loading | web-doc-base</title>
+<title>Detect completion of image loading | web-doc-base</title>
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="HandheldFriendly" content="true">
 <meta name="mobileoptimized" content="0">
@@ -12,7 +12,7 @@
 <style>
     textarea { display : block; width : 100% }
 </style>
-<script>ua={};ua.conpare=function(F,l){var A=0,v,aa;var B=(F+"").split(".");var Y=(l+"").split(".");var G=B.length;for(v=Y.length;"0"===B[G-1];)--G;for(;"0"===Y[v-1];)--v;for(aa=G<v?G:v;A<aa;++A){var S=B[A]-0;var e=Y[A]-0;if(S!==e)return S>e?1:-1}return G>v?1:G===v?0:-1};(function(F,l,A,v,aa,B,Y,G){function S(k,t,r){r=B(k.split(t)[1]);return 0<=r?r:0}function e(k,t){return 0<=k.indexOf(t)}function Ka(k){return e(k,"Linux armv")||e(k,"Linux aarch")||e(k,"Linux i686")||e(k,"Linux x86_64")}function fa(k,t){for(var r in t)if(r===k)return!0}function c(k,t){var r="",K=-1,T;if(k=k.split(t)[1]){for(;T=k.charCodeAt(++K);)if(48<=T&&57>=T||46===T)r+=k.charAt(K);else break;for(K=r.length;K;)if(46===r.charCodeAt(--K))r=r.substr(0,K);else break}return r}function La(k){for(var t=
+<script what-browser-am-i="1">ua={};ua.conpare=function(F,l){var A=0,v,aa;var B=(F+"").split(".");var Y=(l+"").split(".");var G=B.length;for(v=Y.length;"0"===B[G-1];)--G;for(;"0"===Y[v-1];)--v;for(aa=G<v?G:v;A<aa;++A){var S=B[A]-0;var e=Y[A]-0;if(S!==e)return S>e?1:-1}return G>v?1:G===v?0:-1};(function(F,l,A,v,aa,B,Y,G){function S(k,t,r){r=B(k.split(t)[1]);return 0<=r?r:0}function e(k,t){return 0<=k.indexOf(t)}function Ka(k){return e(k,"Linux armv")||e(k,"Linux aarch")||e(k,"Linux i686")||e(k,"Linux x86_64")}function fa(k,t){for(var r in t)if(r===k)return!0}function c(k,t){var r="",K=-1,T;if(k=k.split(t)[1]){for(;T=k.charCodeAt(++K);)if(48<=T&&57>=T||46===T)r+=k.charAt(K);else break;for(K=r.length;K;)if(46===r.charCodeAt(--K))r=r.substr(0,K);else break}return r}function La(k){for(var t=
 arguments,r=1,K=t[0],T;r<t.length;++r)0>Ma(K,T=t[r])&&(K=T);return K}function ha(k){return k===k+""?k:k===k-0?""+k:k.min&&k.max?k.min+"~"+k.max:k.min?k.min+"~":"~"+k.max}function ra(k,t){t&&(P&&(P+=","),P+=k+t)}var Ma=F.conpare,a=v.userAgent,q=v.appVersion,sa=B(q)||0,p=v.platform,ta=A.documentElement,Na=ta&&ta.style,va=A.documentMode,wa=aa.width,xa=aa.height,Oa=l.HTMLAudioElement,Pa=l.performance,Qa=l.Int8Array,mb=l.ontouchstart!==G,N=c(q,"Version/")||c(a,"Version/"),Ra=l.operamini,O=!Ra&&l.opera,
 Sa=O&&(O.version&&"function"===typeof O.version?O.version():La(c(a,"Opera "),N,sa)),Ta=l.opr,Z=!O&&(A.all||va),H=Z&&(va?va:l.XMLHttpRequest?A.getElementsByTagName?7:4:A.compatMode?6:(0).toFixed?5.5:l.attachEvent?5:4),ia=!Z&&ta.msContentZoomFactor,U=!ia&&(l.chrome||l.chromium),V=!Z&&function(){for(var k in Na)if(0===k.indexOf("Moz"))return!0}(),ja=e(a,"UCWEB"),nb=ja&&c(a," U2/"),ob=ja&&c(a,"; wds "),ya=c(a.split("_").join("."),"; iPh OS "),pb=c(a,"; Adr "),Ua=e(q,"YJApp-ANDROID"),I=e(p,"Android")||
 V&&e(q,"Android")||Ua,y=c(p,"Android ")||c(q,"Android ")||c(a,"Android ")||pb,za=e(p,"Linux"),Aa="MacIntel"===p&&v.standalone!==G,Ba=V&&c(a,"Goanna/"),L=!Ba&&V&&(c(a,"rv:")||c(a.substr(a.indexOf(") Gecko/")-11),"; ")),Va=c(a,"Firefox/"),Wa=c(a,"Opera/"),Xa=l.FNRBrowser,u=S(a,"AppleWebKit/"),Q=c(a,"Chrome/"),qb=c(q,"Iron/"),ka=c(a,"OPR/"),rb=c(q,"KHTML/"),Ya=c(a.toLowerCase(),"iris"),Ca=c(a,"FxiOS/"),sb=c(a,"CriOS/"),tb=c(a,"EdgiOS/"),Da=c(a,"Silk/"),W=S(a,"SamsungBrowser/"),Za=!W&&function(){for(var k=
@@ -102,27 +102,29 @@ function test( url, timeout, delay ){
 </script>
 </head>
 <body size="1">
+<menu>
 <a href="https://github.com/itozyun/web-doc-base/">github</a>,
 <a href="../">top</a>,
-<a href="attr-selectors.html">属性セレクタのテスト</a>,
-<a href="check-css-ready-with-ruler.html">With Ruler | Check CSS Ready</a>,
-<a href="check-css-ready.html">Check CSS Ready</a>,
-Check Image loading,
-<a href="clearfix.html">clearfix のテスト</a>,
-<a href="css-hack-for-svg-font.html">SVG フォント用の CSS ハック</a>,
-<a href="cssGeneratedContent.html">疑似要素のテスト</a>,
-<a href="cssom.html">CSSOM のテスト</a>,
-<a href="datauri-webfont.html">Data URI フォントのテスト</a>,
-<a href="dynamic-pseudo-classes.html">フォーム部品のスタイリングのテスト</a>,
-<a href="dynamic-script.html">動的 Script のテスト</a>,
+<a href="attr-selectors.html">Attribute Selector Tests</a>,
+<a href="check-css-ready-with-ruler.html">Detect completion of CSS loading(With Ruler)</a>,
+<a href="check-css-ready.html">Detect completion of CSS loading</a>,
+Detect completion of image loading,
+<a href="clearfix.html">Clearfix</a>,
+<a href="css-hack-for-svg-font.html">Finding the best CSS hacks for SVG fonts</a>,
+<a href="cssGeneratedContent.html">Test CSS Generated Content</a>,
+<a href="cssom.html">CSSOM</a>,
+<a href="datauri-webfont.html">Data URI'ed Web fonts</a>,
+<a href="dynamic-pseudo-classes.html">Interaction of form components</a>,
+<a href="dynamic-script.html">Test Dynamic Script</a>,
 <a href="form.html">フォーム部品の実装状況</a>,
-<a href="icon.html">アイコンのテスト</a>,
-<a href="importHack.html">import のテスト</a>,
+<a href="icon.html">アイコンとスプラッシュ画面のテスト</a>,
+<a href="importHack.html">import hack</a>,
 <a href="javascript-implementation.html">Javascript 実装状況と深刻なバグ</a>,
-<a href="richlink.html">RichLink のテスト</a>,
+<a href="richlink.html">RichLinkのテスト</a>,
 <a href="white-space.html">white space のテスト</a>
+</menu>
 <hr>
-<h1>Check Image loading</h1>
+<h1>Detect completion of image loading</h1>
 <button onclick="test( 'imageSprite/taichi.png', 1000, 16 )">load test</button>
 <button onclick="test( 'imageSprite/bad.png', 5000, 16 )">error test</button>
 <textarea id="output" cols="80" rows="20"></textarea>

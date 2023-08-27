@@ -254,6 +254,15 @@ a:focus img {
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
   src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
+@font-face {
+  font-family: web-doc-base-svgpatch;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.svg#web-doc-base)
+}
+body,_:increment,_:not(:root) {
+  color: #00f
+}
 .js-myIconFont-testCssReady {
   position: absolute;
   top: 0;
@@ -1048,6 +1057,10 @@ kbd {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+.ico,
+.icoLinks [href]:before,_:increment,_:not(:root) {
+  font-family: web-doc-base-svgpatch,serif!important
 }
 .ico path {
   fill: #111
@@ -2090,6 +2103,15 @@ tv {
   }
   code .atn {
     color: #bdb76b
+  }
+}
+@media screen and (min-width:0\-) {
+  body,_:window-inactive:not(:root:root) {
+    color: red
+  }
+  .ico,
+  .icoLinks [href]:before,_:window-inactive:not(:root:root) {
+    font-family: web-doc-base-svgpatch,serif!important
   }
 }
 @media all and (min-width:0\-) {
