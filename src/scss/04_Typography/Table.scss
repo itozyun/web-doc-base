@@ -28,24 +28,25 @@
 }
 
 /*  colspan
+ *    .tl では colspan を使わない為、上書きは必要なし
 --------------------------------------------------------------------------------------*/
 @if( $CANUSE_CSS_GENERATED_BLOCK ){
     [colspan] {
         position : relative;
     }
-        [colspan]:after {
+        [colspan]:before, [colspan]:after {
             @include create-CSS-generated-block;
-            width        : 100%;
+            position     : absolute;
+            bottom       : -1px;
+            left         : .5em;
+            right        : .5em;
             height       : 0;
             font-size    : 0.1em;
             line-height  : 0;
-            position     : absolute;
-            bottom       : -1px;
-            left         : 0;
             border-width : 0 0 1px;
             border-style : solid;
         }
-        tfoot [colspan]:after {
+        tfoot [colspan]:before, tfoot [colspan]:after {
             display : none;
         }
 }
@@ -138,13 +139,6 @@ table {
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
-
-        @if( $CANUSE_CSS_GENERATED_BLOCK ){
-            &[colspan]:after {
-                left  : .5em;
-                width : calc(100% - 1em);
-            }
-        }
     }
 
     tbody th, /* tbody */ td {
@@ -156,13 +150,6 @@ table {
     }
     tbody td {
         border-width : 0 0.5em 1px;
-
-        @if( $CANUSE_CSS_GENERATED_BLOCK ){
-            &[colspan]:after {
-                left  : .5em;
-                width : calc(100% - 1em);
-            }
-        }
     }
 
     @if( $CANUSE_LAST_CHILD_PSEUDO_CLASS and $CANUSE_NEGATIVE_PSEUDO_CLASS ){
