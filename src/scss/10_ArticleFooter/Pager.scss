@@ -33,7 +33,6 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
         }
 
         span {
-            padding : 1.5em 0;
             @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
                 vertical-align : middle;
                 display        : table-cell;
@@ -63,9 +62,9 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
                 zoom : 1;
             }
         }
-
-        @at-root #{&}-top  { text-align : center; }
-        @at-root #{&}-prev { text-align : right; }
+        @at-root #{&}-next { padding : 1.5em 0 1.5em 0.5em; }
+        @at-root #{&}-top  { padding : 1.5em 0.5em;        text-align : center; }
+        @at-root #{&}-prev { padding : 1.5em 0.5em 1.5em 0;text-align : right; }
 
         i { /* i を絶対配置にすると、Opera mini で表示されない */
             @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
