@@ -45,7 +45,7 @@
     }
 }
 
-$FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false;
+$FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false; // IE6~7
 
 .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
     @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
@@ -63,7 +63,12 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
     }
     /* clean-css ignore:end */
 
-    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){
+    @include media(WSXGA_landscapePrint) {
+        display : block;
+        @include column-span-all;
+    }
+
+    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){ // IE6~7
         /* box-sizing が使えないための処置 a.#{$Prefix}js-pica-thumbnail__large 側でアウトラインを表示 */
         display : block;
         clear   : both; /* ギャラリーでの回り込みの解除 */
@@ -81,6 +86,19 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
             }
         }
     } @else {
+        @if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
+            &:active, &:focus {
+                background : transparent !important;
+            }
+        } @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
+            &:focus {
+                background : transparent !important;
+            }
+        } @else {
+            @include active-focus-pseudo-class {
+                background : transparent !important;
+            }
+        }
         img {
             @include box-sizing(border-box);
         }
