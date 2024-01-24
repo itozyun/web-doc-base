@@ -1,10 +1,4 @@
 @charset "UTF-8";
-blockquote tbody th,
-thead td,
-thead th {
-  background: #777;
-  color: #f8fbf8
-}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -167,13 +161,14 @@ var {
 blockquote .tl tbody td:after,
 blockquote :link img,
 blockquote :visited img,
-blockquote tbody th,
 blockquote tbody th[colspan]:after,
 blockquote thead td[colspan]:after,
 blockquote thead th[colspan]:after,
 hr,
 table,
-td[colspan]:after {
+td[colspan]:after,
+thead td[colspan]:after,
+thead th[colspan]:after {
   border-color: #ddd
 }
 .AHead-labels :active,
@@ -459,35 +454,27 @@ q[cite],
 q[title] {
   border-bottom: 1px dotted
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+h2:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
 abbr[title],
 acronym,
 dfn {
   text-decoration: none;
   cursor: help
 }
-.AMeta,
-.Label a,
-.Pager,
-.RichLink a,
-.SocialBtns,
-.tl thead th,
 [colspan]:after,
-hr,
-tbody th,
-tbody th[colspan]:after,
-th,
-th[colspan]:after {
-  border-width: 0 0 1px
-}
-h2:after,
-tfoot th {
-  border-width: 2px 0 0
-}
-[colspan]:after,
+[colspan]:before,
 h2:after {
   font-size: .1em;
   line-height: 0;
-  left: 0;
   border-style: solid;
   display: block;
   position: absolute;
@@ -562,32 +549,29 @@ h2 {
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
-#lB .lS,
-#lE,
-#lF,
-#lF .lX,
-.tl tfoot th,
-table {
-  border-width: 1px 0 0
-}
 h2:after {
   width: 5em;
+  left: 0;
   bottom: -2px;
-  border-color: #3079ed
+  border-width: 2px 0 0
 }
 .wn:after {
   background: red!important
 }
 hr {
+  border-width: 0 0 1px;
   height: 0;
   margin: 2em 6%
 }
 tr hr {
   margin: 1em 9%
 }
-[colspan]:after {
-  width: 100%;
-  bottom: -1px
+[colspan]:after,
+[colspan]:before {
+  bottom: -1px;
+  left: .5em;
+  right: .5em;
+  border-width: 0 0 1px
 }
 .ABody h2:after,
 .AHead-labels i,
@@ -595,14 +579,28 @@ tr hr {
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
-tfoot [colspan]:after {
+tfoot [colspan]:after,
+tfoot [colspan]:before {
   display: none
 }
 table {
+  border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
   border-spacing: 0;
   width: 94%
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+tbody th,
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
+  border-width: 0 0 1px
 }
 caption {
   margin: 1.5em 3% .7em
@@ -610,6 +608,13 @@ caption {
 th {
   text-align: left;
   padding: .5em
+}
+#lB .lS,
+#lE,
+#lF,
+#lF .lX,
+.tl tfoot th {
+  border-width: 1px 0 0
 }
 td {
   padding: .5em 0;
@@ -619,29 +624,15 @@ thead td,
 thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
+  background: #777;
+  color: #f8fbf8;
   border-color: #ddd #818181
-}
-thead td[colspan]:after,
-thead th[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em);
-  border-color: #ddd
-}
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
-blockquote tbody :hover td[colspan]:after,
-tbody :hover td[colspan]:after {
-  border-color: #3079ed
 }
 tbody td {
   border-width: 0 .5em 1px
 }
-tbody td[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em)
+tfoot th {
+  border-width: 2px 0 0
 }
 tfoot td {
   border-width: 2px .5em 0
@@ -667,6 +658,11 @@ blockquote thead th {
   background: #111;
   border-color: #ddd #252525
 }
+blockquote tbody th {
+  background: #777;
+  color: #f8fbf8;
+  border-color: #ddd
+}
 blockquote td {
   border-color: #ddd #ddd #777
 }
@@ -686,12 +682,10 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .c {
   text-align: center
 }
@@ -877,11 +871,9 @@ kbd {
 .AHead {
   margin: 1em 0
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .AAuthor p,
 .ADesc p,
@@ -1022,6 +1014,8 @@ tr .box {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:active,
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1510,9 +1504,19 @@ dl.note dd {
   table-layout: fixed
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;

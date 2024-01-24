@@ -132,7 +132,7 @@ tr .box {
 body,
 input,
 textarea {
-  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
+  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN",Meiryo,sans-serif
 }
 .ABody h1,
 .ABody h2,
@@ -158,7 +158,9 @@ blockquote :visited img,
 blockquote tbody th[colspan]:after,
 blockquote thead td[colspan]:after,
 blockquote thead th[colspan]:after,
-td[colspan]:after {
+td[colspan]:after,
+thead td[colspan]:after,
+thead th[colspan]:after {
   border-color: #ddd
 }
 .AHead-labels :active,
@@ -479,31 +481,27 @@ q[cite],
 q[title] {
   border-bottom: 1px dotted
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+h2:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
 abbr[title],
 acronym,
 dfn {
   text-decoration: none;
   cursor: help
 }
-.AMeta,
-.Label a,
-.Pager,
-.RichLink a,
-.SocialBtns,
-.tl thead th,
 [colspan]:after,
-hr,
-tbody th,
-tbody th[colspan]:after,
-th,
-th[colspan]:after {
-  border-width: 0 0 1px
-}
-[colspan]:after,
+[colspan]:before,
 h2:after {
   font-size: .1em;
   line-height: 0;
-  left: 0;
   border-style: solid;
   display: block;
   position: absolute;
@@ -579,14 +577,15 @@ h2 {
 }
 h2:after {
   width: 5em;
+  left: 0;
   bottom: -2px;
-  border-width: 2px 0 0;
-  border-color: #3079ed
+  border-width: 2px 0 0
 }
 .wn:after {
   background: red!important
 }
 hr {
+  border-width: 0 0 1px;
   height: 1px;
   border-color: transparent;
   margin: 2em 6%;
@@ -595,9 +594,12 @@ hr {
 tr hr {
   margin: 1em 9%
 }
-[colspan]:after {
-  width: 100%;
-  bottom: -1px
+[colspan]:after,
+[colspan]:before {
+  bottom: -1px;
+  left: .5em;
+  right: .5em;
+  border-width: 0 0 1px
 }
 .ABody h2:after,
 .AHead-labels i,
@@ -608,7 +610,8 @@ tr hr {
 .tl tbody :empty:after,
 .tl tbody :empty:before,
 tbody:not(:last-child) > tr:last-child >[colspan]:after,
-tfoot [colspan]:after {
+tfoot [colspan]:after,
+tfoot [colspan]:before {
   display: none
 }
 table {
@@ -618,6 +621,18 @@ table {
   border-spacing: 0;
   width: 94%;
   border-color: #ddd
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+tbody th,
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
+  border-width: 0 0 1px
 }
 caption {
   margin: 1.5em 3% .7em
@@ -638,18 +653,8 @@ thead th {
   color: #f8fbf8;
   border-color: #ddd #818181
 }
-thead td[colspan]:after,
-thead th[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em);
-  border-color: #ddd
-}
 tbody td {
   border-width: 0 .5em 1px
-}
-tbody td[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em)
 }
 tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
@@ -683,15 +688,6 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
-blockquote tbody :hover td[colspan]:after,
-tbody :hover td[colspan]:after {
-  border-color: #3079ed
-}
 blockquote thead td,
 blockquote thead th {
   background: #111;
@@ -721,12 +717,10 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .c {
   text-align: center
 }
@@ -912,11 +906,9 @@ kbd {
 .AHead {
   margin: 1em 0
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .Magazine-date,
 .aa {
@@ -1069,6 +1061,8 @@ a:focus .ico path {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:active,
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1567,9 +1561,19 @@ dl.note dd {
   table-layout: fixed
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -1947,10 +1951,13 @@ div .box .js-captioned-thumbnail__large {
     padding: 1em 0 0;
     display: block
   }
+  .Magazine-date,
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
+  }
   .Magazine-date {
-    font-family: inherit;
-    width: auto;
-    display: block
+    font-family: inherit
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -1959,10 +1966,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .Magazine-dd {
     font-size: 1em
-  }
-  .Magazine-m,
-  .Magazine-y {
-    display: inline
   }
   .Magazine-main {
     border-width: 0 0 .5em;

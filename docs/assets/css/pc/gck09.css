@@ -273,7 +273,6 @@ tr p {
 p {
   line-height: 1.9
 }
-.Pager-top,
 .c,
 input[type=submit] {
   text-align: center
@@ -567,7 +566,6 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -730,11 +728,9 @@ kbd {
   background: #c47222;
   color: #e6d6a9
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .AAuthor img {
   float: right;
@@ -864,6 +860,7 @@ kbd {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1257,9 +1254,19 @@ dl.note dd {
   table-layout: fixed
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i:after,
 .Pager i:before {

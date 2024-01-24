@@ -594,12 +594,10 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .Search,
 .c {
   text-align: center
@@ -777,11 +775,9 @@ kbd {
 .AHead {
   margin: 1em 0
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .AAuthor img {
   float: left;
@@ -917,6 +913,7 @@ kbd {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1319,10 +1316,20 @@ dl.note dd {
   text-indent: -1.2em
 }
 .Pager span {
-  padding: 1.5em 0;
   display: block;
   float: left;
   width: 33%
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i:after,
 .Pager i:before {

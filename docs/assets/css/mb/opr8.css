@@ -133,8 +133,11 @@ blockquote thead td[colspan]:after,
 blockquote thead th[colspan]:after,
 hr,
 input,
+table,
 td[colspan]:after,
-textarea {
+textarea,
+thead td[colspan]:after,
+thead th[colspan]:after {
   border-color: #ddd
 }
 .AHead-labels :focus,
@@ -428,35 +431,27 @@ q[cite],
 q[title] {
   border-bottom: 1px dotted
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+h2:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
 abbr[title],
 acronym,
 dfn {
   text-decoration: none;
   cursor: help
 }
-.AMeta,
-.Pager,
-.tl thead th,
 [colspan]:after,
-hr,
-tbody th,
-tbody th[colspan]:after,
-th,
-th[colspan]:after {
-  border-width: 0 0 1px
-}
-.Search input,
-.btn,
-input,
-textarea {
-  border-width: .1em
-}
-[colspan]:after,
+[colspan]:before,
 h2:after {
   height: 0;
   font-size: .1em;
   line-height: 0;
-  left: 0;
   border-style: solid;
   content: " ";
   display: block;
@@ -512,55 +507,63 @@ li ul {
   margin-top: 0;
   margin-bottom: 0
 }
-h2:after,
-tfoot th {
-  border-width: 2px 0 0
+.Search input,
+input,
+textarea {
+  border-width: .1em
 }
 h2 {
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
 }
-#lB .lS,
-#lE,
-#lF,
-#lF .lX,
-.tl tfoot th,
-table {
-  border-width: 1px 0 0
-}
 h2:after {
   width: 5em;
+  left: 0;
   bottom: -2px;
-  border-color: #3079ed
+  border-width: 2px 0 0
 }
 .wn:after {
   background: red!important
 }
 hr {
+  border-width: 0 0 1px;
   height: 0;
   margin: 2em 6%
 }
 tr hr {
   margin: 1em 9%
 }
-[colspan]:after {
-  width: 100%;
-  bottom: -1px
+[colspan]:after,
+[colspan]:before {
+  bottom: -1px;
+  left: .5em;
+  right: .5em;
+  border-width: 0 0 1px
 }
 .AHead-labels i,
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
-tfoot [colspan]:after {
+tfoot [colspan]:after,
+tfoot [colspan]:before {
   display: none
 }
 table {
+  border-width: 1px 0 0;
   border-collapse: collapse;
   empty-cells: show;
   border-spacing: 0;
-  width: 94%;
-  border-color: #ddd
+  width: 94%
+}
+.AMeta,
+.Pager,
+.tl thead th,
+tbody th,
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
+  border-width: 0 0 1px
 }
 caption {
   margin: 1.5em 3% .7em
@@ -568,6 +571,13 @@ caption {
 th {
   text-align: left;
   padding: .5em
+}
+#lB .lS,
+#lE,
+#lF,
+#lF .lX,
+.tl tfoot th {
+  border-width: 1px 0 0
 }
 td {
   padding: .5em 0;
@@ -581,26 +591,11 @@ thead th {
   color: #f8fbf8;
   border-color: #ddd #818181
 }
-thead td[colspan]:after,
-thead th[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em);
-  border-color: #ddd
-}
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover th,
-blockquote tbody :hover td[colspan]:after,
-tbody :hover td[colspan]:after {
-  border-color: #3079ed
-}
 tbody td {
   border-width: 0 .5em 1px
 }
-tbody td[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em)
+tfoot th {
+  border-width: 2px 0 0
 }
 tfoot td {
   border-width: 2px .5em 0
@@ -654,12 +649,10 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .Search,
 .c,
 .links [href]:before {
@@ -722,6 +715,7 @@ strong {
 }
 .btn {
   display: inline-block;
+  border-width: .1em;
   cursor: pointer;
   text-align: center;
   line-height: 1.9;
@@ -839,11 +833,9 @@ kbd {
 .AHead {
   margin: 1em 0
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .AAuthor img {
   float: left;
@@ -991,6 +983,8 @@ kbd {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:active,
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1399,9 +1393,19 @@ dl.note dd {
   border-bottom: .5em solid transparent
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -2050,10 +2054,13 @@ projection {
     padding: 1em 0 0;
     display: block
   }
+  .Magazine-date,
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
+  }
   .Magazine-date {
-    font-family: inherit;
-    width: auto;
-    display: block
+    font-family: inherit
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2064,10 +2071,6 @@ projection {
   .RichLink h3,
   .RichLink h3 * {
     font-size: 1em
-  }
-  .Magazine-m,
-  .Magazine-y {
-    display: inline
   }
   .Magazine-main {
     border-width: 0 0 .5em;

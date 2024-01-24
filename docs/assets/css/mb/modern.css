@@ -152,10 +152,15 @@ tr .box {
   src: local("Yu Gothic Medium"),local("Yu Gothic");
   font-weight: 500
 }
+@font-face {
+  font-family: Emoji;
+  src: local("Segoe UI Emoji"),local("Segoe UI Symbol"),local("Apple Color Emoji"),local("Noto Color Emoji"),local("Noto Emoji");
+  unicode-range: U+A9,U+AE,U+200D,U+203C,U+2049,U+20E3,U+2122,U+2139,U+2194-2199,U+21A9-21AA,U+231A-231B,U+2328,U+23CF,U+23E9-23F3,U+23F8-23FA,U+24C2,U+25AA-25AB,U+25B6,U+25C0,U+25FB-25FE,U+2600-2604,U+260E,U+2611,U+2614-2615,U+2618,U+261D,U+2620,U+2622-2623,U+2626,U+262A,U+262E-262F,U+2638-263A,U+2640,U+2642,U+2648-2653,U+2660,U+2663,U+2665-2666,U+2668,U+267B,U+267F,U+2692-2697,U+2699,U+269B-269C,U+26A0-26A1,U+26AA-26AB,U+26B0-26B1,U+26BD-26BE,U+26C4-26C5,U+26C8,U+26CE-26CF,U+26D1,U+26D3-26D4,U+26E9-26EA,U+26F0-26F5,U+26F7-26FA,U+26FD,U+2702,U+2705,U+2708-270D,U+270F,U+2712,U+2714,U+2716,U+271D,U+2721,U+2728,U+2733-2734,U+2744,U+2747,U+274C,U+274E,U+2753-2755,U+2757,U+2763-2764,U+2795-2797,U+27A1,U+27B0,U+27BF,U+2934-2935,U+2B05-2B07,U+2B1B-2B1C,U+2B50,U+2B55,U+3030,U+303D,U+3297,U+3299,U+FE0F,U+1F004,U+1F0CF,U+1F170-1F171,U+1F17E-1F17F,U+1F18E,U+1F191-1F19A,U+1F1E6-1F1FF,U+1F201-1F202,U+1F21A,U+1F22F,U+1F232-1F23A,U+1F250-1F251,U+1F300-1F321,U+1F324-1F393,U+1F396-1F397,U+1F399-1F39B,U+1F39E-1F3F0,U+1F3F3-1F3F5,U+1F3F7-1F4FD,U+1F4FF-1F53D,U+1F549-1F54E,U+1F550-1F567,U+1F56F-1F570,U+1F573-1F57A,U+1F587,U+1F58A-1F58D,U+1F590,U+1F595-1F596,U+1F5A4-1F5A5,U+1F5A8,U+1F5B1-1F5B2,U+1F5BC,U+1F5C2-1F5C4,U+1F5D1-1F5D3,U+1F5DC-1F5DE,U+1F5E1,U+1F5E3,U+1F5E8,U+1F5EF,U+1F5F3,U+1F5FA-1F64F,U+1F680-1F6C5,U+1F6CB-1F6D2,U+1F6E0-1F6E5,U+1F6E9,U+1F6EB-1F6EC,U+1F6F0,U+1F6F3-1F6F8,U+1F910-1F93A,U+1F93C-1F93E,U+1F940-1F945,U+1F947-1F94C,U+1F950-1F96B,U+1F980-1F997,U+1F9C0,U+1F9D0-1F9E6,U+E0062-E0063,U+E0065,U+E0067,U+E006C,U+E006E,U+E0073-E0074,U+E0077,U+E007F
+}
 body,
 input,
 textarea {
-  font-family: -apple-system,BlinkMacSystemFont,".SFNSDisplay-Regular","Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" sans-serif
+  font-family: -apple-system,BlinkMacSystemFont,".SFNSDisplay-Regular","Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",Emoji,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","Noto Emoji",sans-serif
 }
 @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)) {
   @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars) {
@@ -188,7 +193,9 @@ blockquote :visited img,
 blockquote tbody th[colspan]:after,
 blockquote thead td[colspan]:after,
 blockquote thead th[colspan]:after,
-td[colspan]:after {
+td[colspan]:after,
+thead td[colspan]:after,
+thead th[colspan]:after {
   border-color: #ddd
 }
 .AHead-labels :active,
@@ -252,16 +259,7 @@ a:focus img {
   font-weight: 400;
   font-style: normal;
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
-  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.otf?rw1juc) format("opentype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
-}
-@font-face {
-  font-family: web-doc-base-svgpatch;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.svg#web-doc-base)
-}
-body,_:increment,_:not(:root) {
-  color: #00f
+  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
 .js-myIconFont-testCssReady {
   position: absolute;
@@ -580,31 +578,27 @@ q[cite],
 q[title] {
   border-bottom: 1px dotted
 }
+.ABody h2,
+.ABody h2 *,
+.tl tbody :hover td,
+.tl tbody :hover td:before,
+.tl tbody :hover th,
+blockquote tbody :hover td[colspan]:after,
+h2:after,
+tbody :hover td[colspan]:after {
+  border-color: #3079ed
+}
 abbr[title],
 acronym,
 dfn {
   text-decoration: none;
   cursor: help
 }
-.AMeta,
-.Label a,
-.Pager,
-.RichLink a,
-.SocialBtns,
-.tl thead th,
 [colspan]:after,
-hr,
-tbody th,
-tbody th[colspan]:after,
-th,
-th[colspan]:after {
-  border-width: 0 0 1px
-}
-[colspan]:after,
+[colspan]:before,
 h2:after {
   font-size: .1em;
   line-height: 0;
-  left: 0;
   border-style: solid;
   display: block;
   position: absolute;
@@ -702,14 +696,15 @@ h2 {
 }
 h2:after {
   width: 5em;
+  left: 0;
   bottom: -2px;
-  border-width: 2px 0 0;
-  border-color: #3079ed
+  border-width: 2px 0 0
 }
 .wn:after {
   background: red!important
 }
 hr {
+  border-width: 0 0 1px;
   height: 1px;
   border-color: transparent;
   margin: 2em 6%
@@ -717,9 +712,12 @@ hr {
 tr hr {
   margin: 1em 9%
 }
-[colspan]:after {
-  width: 100%;
-  bottom: -1px
+[colspan]:after,
+[colspan]:before {
+  bottom: -1px;
+  left: .5em;
+  right: .5em;
+  border-width: 0 0 1px
 }
 #blog2slide-root > div > *,
 .ABody h2:after,
@@ -731,7 +729,8 @@ tr hr {
 .tl tbody :empty:after,
 .tl tbody :empty:before,
 tbody:not(:last-child) > tr:last-child >[colspan]:after,
-tfoot [colspan]:after {
+tfoot [colspan]:after,
+tfoot [colspan]:before {
   display: none
 }
 table {
@@ -741,6 +740,18 @@ table {
   border-spacing: 0;
   width: 94%;
   border-color: #ddd
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+tbody th,
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
+  border-width: 0 0 1px
 }
 caption {
   margin: 1.5em 3% .7em
@@ -761,18 +772,8 @@ thead th {
   color: #f8fbf8;
   border-color: #ddd #818181
 }
-thead td[colspan]:after,
-thead th[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em);
-  border-color: #ddd
-}
 tbody td {
   border-width: 0 .5em 1px
-}
-tbody td[colspan]:after {
-  left: .5em;
-  width: calc(100% - 1em)
 }
 tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
@@ -806,15 +807,6 @@ tfoot td,
 tfoot th {
   border-color: #777 #f8fbf8
 }
-.ABody h2,
-.ABody h2 *,
-.tl tbody :hover td,
-.tl tbody :hover td:before,
-.tl tbody :hover th,
-blockquote tbody :hover td[colspan]:after,
-tbody :hover td[colspan]:after {
-  border-color: #3079ed
-}
 blockquote thead td,
 blockquote thead th {
   background: #111;
@@ -844,12 +836,10 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .c {
   text-align: center
 }
@@ -1039,11 +1029,9 @@ kbd {
 .AHead {
   margin: 1em 0
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .ico {
   font-weight: 400;
@@ -1057,10 +1045,6 @@ kbd {
 .Magazine-date,
 .aa {
   font-family: monospace
-}
-.ico,
-.icoLinks [href]:before,_:increment,_:not(:root) {
-  font-family: web-doc-base-svgpatch,serif!important
 }
 .ico path {
   fill: #111
@@ -1211,6 +1195,8 @@ a:focus .ico path {
   font-size: .825em;
   padding: .6em
 }
+.js-pica-thumbnail__large:active,
+.js-pica-thumbnail__large:focus,
 .tl td,
 .tl th,
 pre code,
@@ -1761,9 +1747,19 @@ dl.note dd {
   table-layout: fixed
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -2105,15 +2101,6 @@ tv {
     color: #bdb76b
   }
 }
-@media screen and (min-width:0\-) {
-  body,_:window-inactive:not(:root:root) {
-    color: red
-  }
-  .ico,
-  .icoLinks [href]:before,_:window-inactive:not(:root:root) {
-    font-family: web-doc-base-svgpatch,serif!important
-  }
-}
 @media all and (min-width:0\-) {
   :link,
   :link *,
@@ -2247,10 +2234,13 @@ only screen and (max-width:740px) {
     padding: 1em 0 0;
     display: block
   }
+  .Magazine-date,
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
+  }
   .Magazine-date {
-    font-family: inherit;
-    width: auto;
-    display: block
+    font-family: inherit
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2259,10 +2249,6 @@ only screen and (max-width:740px) {
   }
   .Magazine-dd {
     font-size: 1em
-  }
-  .Magazine-m,
-  .Magazine-y {
-    display: inline
   }
   .Magazine-main {
     border-width: 0 0 .5em;
@@ -3075,10 +3061,14 @@ only screen and (max-width:240px) {
   .SearchResult-multi div:first-child h3 {
     margin-top: 0
   }
+  .js-pica-thumbnail__large {
+    display: block
+  }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
     .hscroll,
     .js-generated-cite-in-blockquote,
     .js-generated-link-in-blockquote,
+    .js-pica-thumbnail__large,
     .note,
     blockquote:after,
     blockquote:before,
@@ -3094,12 +3084,15 @@ only screen and (max-width:240px) {
       column-count: 2
     }
   }
+  .js-pica-thumbnail__large,_:in-range,_:not(:root) {
+    -webkit-column-span: all
+  }
 }
 @media all and (-webkit-min-device-pixel-ratio:0) {
   body,
   input,
   textarea {
-    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+    font-family: -apple-system,BlinkMacSystemFont,".SFNSDisplay-Regular","Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",Emoji,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","Noto Emoji",sans-serif
   }
 }
 @media all\0 {

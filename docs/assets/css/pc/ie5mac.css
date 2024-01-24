@@ -514,12 +514,10 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #111 #ddd
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .btn,
 .c {
   text-align: center
@@ -670,11 +668,9 @@ blockquote h3,
 kbd {
   border-color: #111
 }
-#lF .lM .mspacer {
-  margin: .6em .5em
-}
+#lF .lM .mspacer,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .AAuthor img {
   float: right;
@@ -1197,9 +1193,19 @@ dl.note dd {
   table-layout: fixed
 }
 .Pager span {
-  padding: 1.5em 0;
   vertical-align: middle;
   display: table-cell
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;

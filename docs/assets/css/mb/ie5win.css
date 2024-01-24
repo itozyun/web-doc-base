@@ -535,12 +535,10 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #111 #ddd
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .c {
   text-align: center
 }
@@ -703,11 +701,9 @@ kbd {
   word-break: normal
 }
 #lF .lM .mspacer,
-.Cover p {
-  margin: .6em .5em
-}
+.Cover p,
 .lS .mspacer {
-  margin: .6em 0
+  margin: .6em .5em
 }
 .ico {
   font-family: web-doc-base,serif!important;
@@ -876,6 +872,7 @@ tr .box {
   display: inline;
   height: 2.2em
 }
+.js-pica-thumbnail__large:active,
 .tl td,
 .tl th,
 pre code,
@@ -1257,9 +1254,19 @@ dl.note dd {
   height: 1px
 }
 .Pager span {
-  padding: 1.5em 0;
   float: left;
   width: 33%
+}
+.Pager-next {
+  padding: 1.5em 0 1.5em .5em
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em .5em 1.5em 0;
+  text-align: right
 }
 .Pager i {
   height: 0;
