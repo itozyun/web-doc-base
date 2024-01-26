@@ -1,7 +1,7 @@
 @if( $COMMON_ASSET_DIR_TO_WEBFONT_DIR ){
     @if( $MAYBE_CAN_USE_WEBFONT ){
         @font-face {
-            font-family : '#{$COMMON_WEBFONT__FONT_NAME}';
+            font-family : #{$COMMON_WEBFONT__FONT_NAME};
             font-weight : normal;
             font-style  : normal;
             src         : url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.eot?rw1juc');
@@ -10,12 +10,19 @@
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.woff2?rw1juc') format('#{$WEBFONT_FORMAT_WOFF2}'),
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.woff?rw1juc') format('#{$WEBFONT_FORMAT_WOFF}'),
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.ttf?rw1juc') format('#{$WEBFONT_FORMAT_TTF}'),
-                    url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
+                    // url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
                     url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.svg?rw1juc##{$COMMON_WEBFONT__SVG_FONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
             }
-            // TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
-            // TODO Chrome 2~14 は SVG フォントだけが、アスキー英字のみ(?)の合字をサポートする
         }
+        /* @if( $UA_Modern ){
+            @font-face {
+                font-family : #{$COMMON_WEBFONT__FONT_NAME}-svgpatch;
+                font-weight : normal;
+                font-style  : normal;
+                src         : url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.svg##{$COMMON_WEBFONT__SVG_FONT_ID}');
+            }
+        } */
+
         @if( $UA_Modern or $UA_IE9 ){
             .#{$COMMON_WEBFONT__TEST_ID_AND_CLASSNAME} {
                 @include check-css-ready;
@@ -27,6 +34,16 @@
 @mixin web-font($ALT_FONTFAMILY : "serif !important") {
     @if( $MAYBE_CAN_USE_WEBFONT ){
         font-family : #{$COMMON_WEBFONT__FONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+
+        // TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
+        // TODO Chrome 2~14 は SVG フォントだけが、英字のみ(?)の合字をサポートする
+        /* @include css-hack(chrome1Safari3){
+            font-family : #{$COMMON_WEBFONT__FONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+        }
+        @include css-hack(chromeGte2To5){
+            font-family : #{$COMMON_WEBFONT__FONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+        } */
+
         // if( $Option_hard-reset ){
             font-style     : normal;
             font-weight    : normal;
@@ -37,17 +54,17 @@
         @if( $UA_Modern ){
             /* Enable Ligatures ================ */
             -webkit-font-feature-settings : "liga";
-            -moz-font-feature-settings : "liga=1";
-            -moz-font-feature-settings : "liga";
+               -moz-font-feature-settings : "liga=1";
+               -moz-font-feature-settings : "liga";
                 -ms-font-feature-settings : "liga" 1;
-                -o-font-feature-settings : "liga";
+                 -o-font-feature-settings : "liga";
                     font-feature-settings : "liga";
             /*
             -webkit-font-variant-ligatures : discretionary-ligatures;
                     font-variant-ligatures : discretionary-ligatures; */
 
             /* Better Font Rendering =========== */
-            -webkit-font-smoothing       : antialiased;
+             -webkit-font-smoothing       : antialiased;
             -moz-osx-font-smoothing       : grayscale;
         }
     }

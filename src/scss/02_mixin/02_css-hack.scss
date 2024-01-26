@@ -7,6 +7,8 @@ $COMMENT_OUT_CSS_HACK : (
     'chromeLte5SafariLte4' : if($UA_Modern , 1, 0),
     'chromeLte9SafariLte5' : if($UA_Modern , 1, 0),
     'chromeGte2To5'        : if($UA_Modern , 1, 0),
+    'chromeGte53'          : if($UA_Modern , 1, 0),
+    'chrome1Safari3'       : if($UA_Modern , 1, 0),
     'gecko120To121'        : if($UA_Gecko12, 1, 0),
     'onlyFirefoxOS22'      : if($UA_Modern , 1, 0)
 ) !default;
@@ -55,7 +57,14 @@ $COMMENT_OUT_CSS_HACK : (
                 }
             }
         }
-        @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome 1, Safari ~4.1
+        @else if $targetGroup == 'chrome1Safari3' { // Chrome 1, Safari 3.x
+            @media screen and (min-width:0\-){
+                & [_lazyhack_="_:not(:root:root)"] {
+                    @content;
+                }
+            }
+        }
+        @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome ~5, Safari ~4.1
             @media all and (min-width:0\-) {
                 @content;
             }
@@ -67,6 +76,11 @@ $COMMENT_OUT_CSS_HACK : (
         }
         @else if $targetGroup == 'chromeGte2To5' { // Chrome 2~5
             & [_lazyhack_="_:increment|_:not(*:root)"] {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeGte53' { // Chrome 53+
+            @supports (-webkit-appearance:none) and (font-variant-caps:normal) and (not (-ms-accelerator:true)) and (not (overflow:-webkit-marquee)) and (not (-moz-appearance:none)){
                 @content;
             }
         }

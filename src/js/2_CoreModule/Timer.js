@@ -12,9 +12,11 @@ _p_Timer_remove = Timer_remove;
  */
 /** @type {!Array.<!Object>} */
 var TIMER_LISTENERS = [];
-var TIMER_INTERVAL = 16,
+var TIMER_INTERVAL = p_SafariMobile | 0 === 4 ? 64 : 16, // iOS Safari 4.2 : 16ms 間隔だと webFontTest に失敗する
     timerUID = 0,
     timerClearID;
+
+Debug.log( '[core] TIMER_INTERVAL:' + TIMER_INTERVAL );
 
 /** @type {!Function|string} */
 var Timer_on = function(){

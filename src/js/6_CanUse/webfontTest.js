@@ -57,7 +57,8 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndF
 var webFontTest_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9;
 // SVG の Data URI 化に制限あり。src:url() に #id が必要の為
 var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6 || p_Presto ||
-                                           p_WebKit < 530 || p_SafariMobile < 4; // Safari ~3
+                                           p_WebKit < 530 || // Safari ~3
+                                           p_SafariMobile < 5; // iOS Safari 3~4?
 var webFontTest_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + p_getTimestamp() + '_' );
 var webFontTest_INTERVAL_LOADING_WEBFONT = 5000;
 var webFontTest_INTERVAL_EMBEDED_WEBFONT = 500;
@@ -69,7 +70,7 @@ var webFontTest_TEST_STRING              = 'mmmmmmmmmmlliiiiiiiii';
 var webFontTest_HAS_WEBKIT_FALLBACK_BUG  = p_Chromium < 21 ||
                                            // p_AOSP < 4.3 ||
                                            p_SafariMobile < 7 ||
-                                           p_WebKit && ua.conpare( p_engineVersion, '536.11' ) <= 0;
+                                           p_WebKit && ua.conpare( p_engineVersion, '536.11' ) <= 0; // Safari <7
 var webFontTest_BASE_FONT_LIST           = [ 'monospace', 'sans-serif', 'serif' ];
 
 if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
@@ -78,34 +79,36 @@ if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_WebKit       && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_WebKit='       + p_WebKit );
 };
 
-var webFontTest_CANUSE_WOFF2             = 14 <= p_EdgeHTML || 36 <= p_Chromium || 39 <= p_Gecko ||
-                                           602 <= p_WebKit || // Safari 10+(Mac OS Sierra +)
-                                           10 <= p_SafariMobile;
+var webFontTest_CANUSE_WOFF2             = 14  <= p_EdgeHTML || 36 <= p_Chromium || 39 <= p_Gecko ||
+                                           602 <= p_WebKit && p_MacOS && 0 <= ua.conpare( '10.12', p_MacOS ) || // Safari 10+ & Mac OS Sierra(10.12)+
+                                           10  <= p_SafariMobile;
 var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
                                            p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.9.2' ) || // Gecko 1.9.2+
-                                           525 <= p_WebKit || // Safari 3.1+
-                                           3.2 <= p_SafariMobile ||
-                                           4.4 <= p_AOSP ||
-                                           11.1 <= p_Presto ||
+                                           533  <= p_WebKit || // Safari 5.0+
+                                           5    <= p_SafariMobile ||
+                                           4.4  <= p_AOSP ||
+                                           11.5 <= p_Presto ||
                                            p_EdgeHTML ||
                                            9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
                                            p_FirefoxGte35 ||
-                                           525 <= p_WebKit || // Safari 3.1+
-                                           3.2 <= p_SafariMobile ||
-                                           2.2 <= p_AOSP ||
-                                           10 <= p_Presto ||
+                                           525  <= p_WebKit || // Safari 3.1+
+                                           4    <= p_SafariMobile ||
+                                           2.2  <= p_AOSP ||
+                                           10.1 <= p_Presto ||
                                            p_EdgeHTML ||
                                            9  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_OTF               = webFontTest_CANUSE_TTF;
-var webFontTest_CANUSE_SVG               = p_Chromium < 40 || // Chrome 1~39
-                                           525 <= p_WebKit || // Safari 3.1+
-                                           3.2 <= p_SafariMobile ||
-                                           3 <= p_AOSP ||
+var webFontTest_CANUSE_SVG               = 5.1 <= p_Windows && p_Windows <= 5.2 && p_Chromium < 40 || // XP   : Chrome ~39, https://caniuse.com/?search=SVG%20font
+                                           6   <= p_Windows && p_Windows <  6.1 && p_Chromium < 51 || // Vista: Chrome ~50    Chrome 38 and newer support SVG fonts
+                                           p_Chromium < 37 ||                                         // Other: Chrome ~36    only on Windows Vista and XP.
+                                           525  <= p_WebKit || // Safari 3.1+
+                                           3.1  <= p_SafariMobile ||
+                                           3    <= p_AOSP ||
                                            11.5 <= p_Presto;
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_EOT               = 4  <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident ) ||
@@ -351,14 +354,14 @@ var webFontTest_onCompleteHandler,
                 widthList[ i ] = width;
             } else {
                 // Debug.log( '[webFontTest] ' + testFontName + ',' + font + '=' + width );
-                if( width !== webFontTest_defaultWidthList[ i ] ){
-                    result = webFontTest_RESULT_AVAILABLE;
-                    if( DEFINE_WEB_DOC_BASE__DEBUG ){
-                        break;
-                    };
-                };
                 if( DEFINE_WEB_DOC_BASE__DEBUG ){
                     widthList[ i ] = width;
+                };
+                if( width !== webFontTest_defaultWidthList[ i ] ){
+                    result = webFontTest_RESULT_AVAILABLE;
+                    if( !DEFINE_WEB_DOC_BASE__DEBUG ){
+                        break;
+                    };
                 };
             };
         };
@@ -378,7 +381,7 @@ var webFontTest_onCompleteHandler,
          *    これを無視して、新しい値が得られるまで待ち続けます。新しい値（またはタイムアウト）を取得するまで待ち続ける。
          */
         if( webFontTest_HAS_WEBKIT_FALLBACK_BUG ){
-            if( width === widthList[ 0 ] && width === widthList[ 1 ] ){
+            if( width /** widthList[2] */ === widthList[ 0 ] && width === widthList[ 1 ] ){
                 Debug.log( '[webFontTest] Hit... : width=' + width );
 
                 // すべての値が同じなので、ブラウザはウェブフォントを読み込んでいる可能性が高いです。

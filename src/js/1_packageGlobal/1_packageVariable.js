@@ -56,8 +56,13 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_isChromiumBase = p_Chromium || p_ChromeWebView || p_AOSP || p_Samsung, // KaiOS, Silk ?
     p_ChromiumEdge   = p_Chromium && parseFloat( navigator.userAgent.split( 'Edg/' )[ 1 ] ), // brand が無いので
     p_IEVersion      = parseFloat( navigator.appVersion.split( 'Trident/' )[ 1 ] ) + 4, // brand が無いので
-    p_Windows        = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win16 ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win32 ) ||
+    p_Windows        = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win16 ) ||
+                       p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win32 ) ||
                        p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Win64 ),
+    p_MacOS          = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MacPPC   ) ||
+                       p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_Mac68K   ) ||
+                       p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MacIntel ) ||
+                       p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_MacM1    ),
     p_GoogleBot      = 0 <= navigator.userAgent.indexOf( 'Googlebot/' ),
 
     p_GeckoLt09 = p_Gecko < 0.9,
@@ -160,7 +165,7 @@ function p_notUndefined( val ){
  */
 var p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST = // Unavailable due to block list
         p_WebKit       < 525 || // Safari <3.1
-        p_SafariMobile < 3.2 ||
+        p_SafariMobile < 3.1 ||
         p_AOSP         < 2.2 ||
         p_Presto       < 10  || // block NDS, NDSi
         p_Gecko && !p_FirefoxGte35 || // Gecko <1.9.1 p_CSSOM_insertRuleToStyleSheet( styleSheet, '@font-face', {} ) でエラー
