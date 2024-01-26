@@ -557,7 +557,7 @@ function SidebarFixer_onActiveElementBlur(){
     SidebarFixer_updateElementFocused( 0, 0 );
 };
 
-if( DEFINE_WEB_DOC_BASE__DEBUG ){
+if( DEFINE_WEB_DOC_BASE__DEBUG && !( p_SafariMobile < 5 ) ){
     var SidebarFixer_elmDisplayValues,
         SidebarFixer_elmDisplayScroll,
         SidebarFixer_elmDisplayEvents,
