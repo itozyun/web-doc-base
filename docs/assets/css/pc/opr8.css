@@ -2175,13 +2175,10 @@ handheld {
     padding: 1em 0 0;
     display: block
   }
-  .Magazine-date,
-  .Magazine-m,
-  .Magazine-y {
-    display: inline
-  }
   .Magazine-date {
-    font-family: inherit
+    font-family: inherit;
+    width: auto;
+    display: block
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2192,6 +2189,10 @@ handheld {
   .RichLink h3,
   .RichLink h3 * {
     font-size: 1em
+  }
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
   }
   .Magazine-main {
     border-width: 0 0 .5em;

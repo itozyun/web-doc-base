@@ -1951,13 +1951,10 @@ div .box .js-captioned-thumbnail__large {
     padding: 1em 0 0;
     display: block
   }
-  .Magazine-date,
-  .Magazine-m,
-  .Magazine-y {
-    display: inline
-  }
   .Magazine-date {
-    font-family: inherit
+    font-family: inherit;
+    width: auto;
+    display: block
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -1966,6 +1963,10 @@ div .box .js-captioned-thumbnail__large {
   }
   .Magazine-dd {
     font-size: 1em
+  }
+  .Magazine-m,
+  .Magazine-y {
+    display: inline
   }
   .Magazine-main {
     border-width: 0 0 .5em;
