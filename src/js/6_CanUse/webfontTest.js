@@ -67,8 +67,8 @@ var webFontTest_TEST_STRING              = 'mmmmmmmmmmlliiiiiiiii';
  * https://github.com/bramstein/fontfaceobserver/blob/39f19c41830eac7726e08b09f60d2aa2b74dc38b/src/observer.js#L93
  *   Observer.hasWebKitFallbackBug
  */
-var webFontTest_HAS_WEBKIT_FALLBACK_BUG  = p_Chromium < 21 ||
-                                           // p_AOSP < 4.3 ||
+var webFontTest_HAS_WEBKIT_FALLBACK_BUG  = ( 9 <= p_Chromium && p_Chromium < 18 ) || // Chrome 9~17
+                                           p_AOSP < 3 ||
                                            p_SafariMobile < 7 ||
                                            p_WebKit && ua.conpare( p_engineVersion, '536.11' ) <= 0; // Safari <7
 var webFontTest_BASE_FONT_LIST           = [ 'monospace', 'sans-serif', 'serif' ];
