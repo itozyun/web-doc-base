@@ -1,6 +1,6 @@
 /**
- * 『Webフォントがブラウザで有効か？きっちり調べる』に掲載のフォローチャートを参照すること
- *   https://outcloud.blogspot.com/2018/02/IsWebfontEffective.html
+ * 『アイコンの為に Web フォント、合字を深堀してフォールバックを検討する』に掲載のフォローチャートを参照すること
+ *   https://outcloud.blogspot.com/2023/10/webfont.html
  */
 
 /** ===========================================================================
@@ -77,6 +77,7 @@ if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_Chromium     && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_Chromium='     + p_Chromium );
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_SafariMobile && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_SafariMobile=' + p_SafariMobile );
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_WebKit       && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_WebKit='       + p_WebKit );
+    webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_AOSP         && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_AOSP='         + p_AOSP );
 };
 
 var webFontTest_CANUSE_WOFF2             = 14  <= p_EdgeHTML || 36 <= p_Chromium || 39 <= p_Gecko ||
