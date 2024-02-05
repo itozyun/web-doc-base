@@ -135,7 +135,7 @@ Javascript のビルドの方法
 
 ### How to build ./src/js-inline/*.js
 
-* See gulp-task `docs` in [./gulpfile.js](./gulpfile.js).
+* See gulp-task `html` in [./gulpfile.js](./gulpfile.js).
 
 ### How to build ./src/js/*.js
 
