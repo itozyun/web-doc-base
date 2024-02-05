@@ -35,8 +35,8 @@ var VectorIcon_CANUSE_SVG =
     9 <= p_Trident   ||
     p_EdgeHTML       ||
     1.8 <= p_Gecko   || // Gecko 1.8+
-    8 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Presto       ) ||
-    9 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_PrestoMobile ) || // Opera 8+, Mobile Opera 9+
+    8 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Presto       ) || // Opera 8+
+    9 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_PrestoMobile ) || // Mobile Opera 9+
     3 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_AOSP         ) || // AOSP 3+
     p_Goanna         ||
     p_isChromiumBase ||
