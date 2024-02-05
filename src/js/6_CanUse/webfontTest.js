@@ -56,9 +56,11 @@ p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndF
 // Data URI スキームをサポートするが Web フォントには使えない環境
 var webFontTest_NO_SUPPORT_DATA_URI_FONT = p_Trident < 9;
 // SVG の Data URI 化に制限あり。src:url() に #id が必要の為
-var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6 || p_Presto ||
-                                           p_WebKit < 530 || // Safari ~3
-                                           p_SafariMobile < 5; // iOS Safari 3~4?
+var webFontTest_SVG_FONT_HAS_LIMITATION  = p_Chromium < 6     ||
+                                           p_Presto           ||
+                                           p_WebKit < 530     || // Safari ~3
+                                           p_SafariMobile < 5 || // iOS Safari 3~4?
+                                           p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_PS3 ); // PS3 4.10~, WebKit 531
 var webFontTest_PREFIX                   = DEFINE_WEB_DOC_BASE__DEBUG && ( 'bad_' + p_getTimestamp() + '_' );
 var webFontTest_INTERVAL_LOADING_WEBFONT = 5000;
 var webFontTest_INTERVAL_EMBEDED_WEBFONT = 500;
