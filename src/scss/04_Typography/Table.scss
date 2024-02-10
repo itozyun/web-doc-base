@@ -29,6 +29,8 @@
 
 /*  colspan
  *    .tl では colspan を使わない為、上書きは必要なし
+ *  screenshot
+ *    https://x.com/itozyun/status/1756414646381408399
 --------------------------------------------------------------------------------------*/
 @if( $CANUSE_CSS_GENERATED_BLOCK ){
     [colspan] {
@@ -154,8 +156,7 @@ table {
 
     @if( $CANUSE_LAST_CHILD_PSEUDO_CLASS and $CANUSE_NEGATIVE_PSEUDO_CLASS ){
         tbody:not(:last-child) > tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
-            border-bottom-width : 0;
-            &[colspan]:after {
+            border-bottom-width : 0 {
                 display : none;
             }
         }
