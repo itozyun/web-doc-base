@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<defs>
+<font id="l" horiz-adv-x="0" >
+  <font-face 
+    font-family="r"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="0 0 0 0 0 0 0 0 0 0"
+    ascent="480"
+    descent="-32"
+    bbox="0 -32 5120 480"
+    underline-thickness="0"
+    underline-position="0"
+    unicode-range="U+0020-002D"
+  />
+<missing-glyph />
+    <glyph glyph-name=".notdef"/>
+    <glyph glyph-name="space" unicode=" " horiz-adv-x="256" d="M0 0v0v0v0z" />
+    <glyph glyph-name="hyphen" unicode="-" horiz-adv-x="5120" d="M0 480h5120v-512h-5120v512v0z" />
+  </font>
+</defs></svg>
