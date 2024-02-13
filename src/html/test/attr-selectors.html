@@ -70,57 +70,58 @@ n=y;var pa=!0;R&&(D=!0)}else U||Ta||ka?(m=z?"ChromiumMobile":"Chromium",n=Q||qb,
 <h1>属性セレクタのテスト結果</h1>
 <table border="1">
 <thead>
-<tr><th></th><th>1. [attr]</th><th>2. [attr="value"]</th><th>3. [attr~="value"]</th><th>4. [attr|="value"]</th><th>5. [attr^=value]</th><th>6. [attr$=value]</th><th>7. [attr*=value]
-</th></tr></thead><tbody>
-<tr><th>IE ~6</th><td colspan="7">×
-</td></tr><tr><th>IE 7~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Opera 7.0~7.11</th><td>✔(*1)</td><td>✔(*1)</td><td>✔(*1)</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.2x</th><td>✔</td><td>✔</td><td>✔</td><td>×(*2)</td><td colspan="3">×
-</td></tr><tr><th>Opera 7.5x~8.5x</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Opera 9.0~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr><tr><th>Gecko 0.6~0.7</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td colspan="3">×
-</td></tr><tr><th>Gecko 0.8.1~</th><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔
-</td></tr></tbody></table>
+<tr><th><th>1. [attr]<th>2. [attr="value"]<th>3. [attr~="value"]<th>4. [attr|="value"]<th>5. [attr^=value]<th>6. [attr$=value]<th>7. [attr*=value]
+</thead><tbody>
+<tr><th>IE ~6<td colspan="7">×
+<tr><th>IE 7~<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇
+<tr><th>Opera 7.0~7.11<td>〇(*1)<td>〇(*1)<td>〇(*1)<td>×(*2)<td colspan="3">×
+<tr><th>Opera 7.2x<td>〇<td>〇<td>〇<td>×(*2)<td colspan="3">×
+<tr><th>Opera 7.5x~8.5x<td>〇<td>〇<td>〇<td>〇<td colspan="3">×
+<tr><th>Opera 9.0~<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇
+<tr><th>Gecko 0.6~0.7<td>〇<td>〇<td>〇<td>〇<td colspan="3">×
+<tr><th>Gecko 0.8.1~<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇<td>〇
+<tr><th>PSP NetFront<td>〇<td>〇<td>〇<td>〇<td>×<td>×<td>×
+</tbody></table>
 
 <ol>
 <li>文書作成者が独自に定義した属性は不可
-</li><li>ブラウザがクラッシュするので一部の CSS を削除してテスト
-</li></ol>
+<li>ブラウザがクラッシュするので一部の CSS を削除してテスト
+</ol>
 
 <h2>属性セレクタのテスト</h2>
 <ol>
     <li>[lang] 属性を持つ
     <p class="has"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang="en"] 完全一致
+    </p><li>[lang="en"] 完全一致
     <p class="equal"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang~="en"] 空白区切りの語のリストの中で完全に一致するものがある
+    </p><li>[lang~="en"] 空白区切りの語のリストの中で完全に一致するものがある
     <p class="member"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>, <span lang="en en-US">lang="en en-US"</span>
-    </p></li><li>[lang|="en"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
+    </p><li>[lang|="en"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">lang という名前の属性の値が正確に en と一致するか、 en で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
     <p class="hyphen"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang^=en] valude で始まる
+    </p><li>[lang^=en] valude で始まる
     <p class="start"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang$=en] valude で終わる
+    </p><li>[lang$=en] valude で終わる
     <p class="end"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-    </p></li><li>[lang*=en] en を含む
+    </p><li>[lang*=en] en を含む
     <p class="contain"><span lang="">lang</span>, <span lang="">lang=""</span>, <span lang="en">lang="en"</span>, <span lang="en-US">lang="en-US"</span>, <span lang="multi en en-US">lang="multi en en-US"</span>
-</p></li></ol>
+</p></ol>
 
 <h2>独自に定義した属性でテスト</h2>
 <ol>
     <li>[attr] 属性を持つ
     <p class="has"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr="value"] 完全一致
+    </p><li>[attr="value"] 完全一致
     <p class="equal"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr~="value"] 空白区切りの語のリストの中で完全に一致するものがある
+    </p><li>[attr~="value"] 空白区切りの語のリストの中で完全に一致するものがある
     <p class="member"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>, <span attr="value value-1">attr="value value-1"</span>
-    </p></li><li>[attr|="value"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
+    </p><li>[attr|="value"] <q title="MDN > 属性セレクタ" cite="https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors">attr という名前の属性の値が正確に value と一致するか、 value で始まり直後にハイフン (- (U+002D)) が続く要素を表します。</q>
     <p class="hyphen"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr^=value] valude で始まる
+    </p><li>[attr^=value] valude で始まる
     <p class="start"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr$=value] valude で終わる
+    </p><li>[attr$=value] valude で終わる
     <p class="end"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-    </p></li><li>[attr*=value] value を含む
+    </p><li>[attr*=value] value を含む
     <p class="contain"><span attr="">attr</span>, <span attr="">attr=""</span>, <span attr="value">attr="value"</span>, <span attr="value-1">attr="value-1"</span>, <span attr="multi value value-1">attr="multi value value-1"</span>
-</p></li></ol>
+</p></ol>
 
 </body></html>
