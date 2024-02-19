@@ -90,10 +90,9 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
     p_scripts, p_assetUrl,
     p_cssDir = COMMON_ASSET_DIR_TO_CSS_DIR ? COMMON_ASSET_DIR_TO_CSS_DIR + '/' : '',
     p_isMobile, p_screenModeDir = '',
-    p_useMobile = // p_Gecko < 0.9 ||
-                  p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||
+    p_useMobile = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_N3DS   ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_New3DS ) ||
-                  p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_PSP    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_PSPGo  ) ||
+                  p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_PSP    ) ||
                   p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_PSVita ),
     
     p_iefilterEnabled,
