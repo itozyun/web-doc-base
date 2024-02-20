@@ -57,7 +57,7 @@ p_unlistenWheelEvent = function( elm, callback ){
  * private
  */
 // https://github.com/mdn/browser-compat-data/blob/d22e1912155eb29056d254213b1fddbd7fc05391/api/Element.json#L9209
-var WheelEvent_USE_WHEEL               = 9 <= p_Trident || p_EdgeHTML || 17 <= p_Gecko || 31 <= p_Chromium || 537.7 <= p_WebKit /* Safari 7+ */;
+var WheelEvent_USE_WHEEL               = 9 <= p_Trident || p_EdgeHTML || 17 <= p_Gecko || p_Goanna || 31 <= p_Chromium || 537.7 <= p_WebKit /* Safari 7+ */;
 
 // https://github.com/mdn/browser-compat-data/blob/d22e1912155eb29056d254213b1fddbd7fc05391/api/Element.json#L5746
 var WheelEvent_USE_MOUSEWHEEL          = 6 <= p_Trident || p_EdgeHTML || 9 <= p_Presto || p_Chromium || 522 <= p_WebKit /* Safari 3+ */ || p_SafariMobile;

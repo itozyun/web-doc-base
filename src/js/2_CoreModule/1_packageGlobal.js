@@ -26,13 +26,13 @@ function p_getViewPortHeight(){
 };
 
 function p_getDocumentWidth(){
-    return p_Gecko || p_Presto
+    return p_Gecko || p_Goanna || p_Presto
                ? p_html.offsetWidth
                : p_body.scrollWidth;
 };
 
 function p_getDocumentHeight(){
-    return p_Gecko || p_Presto
+    return p_Gecko || p_Goanna || p_Presto
                ? p_html.offsetHeight // Gecko 0.6(scrollHeight が居ない!), Opera 7.03
                : p_body.scrollHeight; // IE<=5.5 は html 不可, Safari 3.1
 };

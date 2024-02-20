@@ -82,11 +82,25 @@ if( !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKLIST ){
     webFontTest_HAS_WEBKIT_FALLBACK_BUG && p_AOSP         && Debug.log( '[webFontTest] hasWebKitFallbackBug : p_AOSP='         + p_AOSP );
 };
 
-var webFontTest_CANUSE_WOFF2             = 14  <= p_EdgeHTML || 36 <= p_Chromium || 39 <= p_Gecko ||
+var webFontTest_CANUSE_WOFF2             = 14  <= p_EdgeHTML || 36 <= p_Chromium ||
+                                           39  <= p_Gecko ||
+                                           // PaleMoon 27.0(Goanna 3.0)
+                                           // https://www.palemoon.org/releasenotes-archived.shtml
+                                           //   > 27.0.0 (2016-11-22)
+                                           //   > Support for the WOFF2 font format for downloadable fonts.
+                                           //
+                                           //   PaleMoon 27.0.2 で加えられた大きな変更
+                                           //     https://win2k.org/blog/2016/12/01/1940300/
+                                           //     > 27.0.1 はこんな感じ
+                                           //     > Mozilla/5.0 (Windows NT 6.0; rv:3.0) Gecko/20100101 Goanna/20161125 PaleMoon/27.0.1
+                                           //     > 27.0.2 はこう                ^^^^^^                        ^^^^^^^^
+                                           //     > Mozilla/5.0 (Windows NT 6.1; rv:45.9) Gecko/20100101 Goanna/3.0 Firefox/45.9 PaleMoon/27.0.2
+                                           //                                                                   ^^^
+                                           3   <= p_Goanna ||
                                            602 <= p_WebKit && p_MacOS && 0 <= ua.conpare( '10.12', p_MacOS ) || // Safari 10+ & Mac OS Sierra(10.12)+
                                            10  <= p_SafariMobile;
 var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
-                                           p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.9.2' ) || // Gecko 1.9.2+
+                                           p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.9.2' ) || p_Goanna || // Gecko 1.9.2+
                                            533  <= p_WebKit || // Safari 5.0+
                                            5    <= p_SafariMobile ||
                                            4.4  <= p_AOSP ||
@@ -96,7 +110,7 @@ var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
                                            10 <= p_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile );
                                            // TODO Blackberry Browser 7+
 var webFontTest_CANUSE_TTF               = 2 <= p_Chromium ||
-                                           p_FirefoxGte35 ||
+                                           p_FirefoxGte35 || p_Goanna ||
                                            525  <= p_WebKit || // Safari 3.1+
                                            4    <= p_SafariMobile ||
                                            2.2  <= p_AOSP ||
