@@ -1598,8 +1598,7 @@ projection {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,
@@ -1849,6 +1848,9 @@ screen and (max-width:953px) {
   .h1 {
     display: block;
     margin: 0 0 .5em
+  }
+  .hscroll {
+    overflow: auto
   }
   .hscroll table {
     white-space: nowrap

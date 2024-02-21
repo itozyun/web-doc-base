@@ -132,7 +132,7 @@ tr .box {
 body,
 input,
 textarea {
-  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN",Meiryo,sans-serif
+  font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
 }
 .ABody h1,
 .ABody h2,
@@ -609,7 +609,6 @@ tr hr {
 .RichLink br,
 .tl tbody :empty:after,
 .tl tbody :empty:before,
-tbody:not(:last-child) > tr:last-child >[colspan]:after,
 tfoot [colspan]:after,
 tfoot [colspan]:before {
   display: none
@@ -1399,6 +1398,10 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1779,9 +1782,7 @@ div .box .js-captioned-thumbnail__large {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0;
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

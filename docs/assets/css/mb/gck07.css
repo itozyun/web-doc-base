@@ -1,8 +1,4 @@
 @charset "UTF-8";
-pre,
-textarea {
-  overflow: auto
-}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -59,6 +55,11 @@ body {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+.hscroll,
+pre,
+textarea {
+  overflow: auto
 }
 #lH .lSi,
 .AAuthor,
@@ -492,13 +493,6 @@ tbody:not(:last-child) > tr:last-child > * {
 .tl tfoot th {
   border-width: 1px 0 0
 }
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-tbody:not(:last-child) > tr:last-child >[colspan]:after {
-  display: none
-}
 tfoot th {
   border-width: 2px 0 0
 }
@@ -780,6 +774,12 @@ kbd {
 .AHead-labels {
   margin-top: .5em;
   color: #f1f4f1
+}
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
 }
 .AHead-labels a,
 .SocialBtns a,
@@ -1470,8 +1470,7 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

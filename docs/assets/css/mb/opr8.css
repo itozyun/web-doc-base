@@ -70,6 +70,10 @@ tr p {
 .aa {
   font-family: monospace
 }
+.hscroll,
+textarea {
+  overflow: auto
+}
 .links,
 pre {
   white-space: pre-wrap
@@ -325,9 +329,6 @@ var {
 input {
   height: 2.1em;
   line-height: 1
-}
-textarea {
-  overflow: auto
 }
 *,
 .tl,
@@ -1594,8 +1595,7 @@ projection {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

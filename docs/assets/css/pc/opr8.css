@@ -1568,8 +1568,7 @@ projection {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,
@@ -2266,6 +2265,9 @@ handheld {
   .box .caption {
     float: none;
     margin: 0 auto 1.143em
+  }
+  .hscroll {
+    overflow: auto
   }
   .hscroll table {
     white-space: nowrap

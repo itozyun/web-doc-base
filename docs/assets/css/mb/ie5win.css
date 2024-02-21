@@ -1173,6 +1173,10 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px
@@ -1456,9 +1460,7 @@ ol.linenums {
   }
   .hscroll {
     margin: 1em 0;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden
+    width: 100%
   }
   .note .hscroll,
   dl .hscroll,

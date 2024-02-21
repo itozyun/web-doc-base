@@ -393,6 +393,15 @@ a iframe,
 a img {
   display: block
 }
+.Cover-meta span,
+.RichLink-meta span,
+.btn,
+.icoLinks a,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
+}
 ol,
 ul {
   padding-left: 2em
@@ -456,8 +465,7 @@ h2 {
 }
 hr {
   height: 0;
-  margin: 2em 1em;
-  display: -moz-inline-box
+  margin: 2em 1em
 }
 tr hr {
   margin: 1em 9%
@@ -492,13 +500,6 @@ tbody td {
 }
 tbody:not(:last-child) > tr:last-child > * {
   border-bottom-width: 0
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-tbody:not(:last-child) > tr:last-child >[colspan]:after {
-  display: none
 }
 tfoot th {
   border-width: 2px 0 0
@@ -612,7 +613,6 @@ strong {
   width: 47.91%
 }
 .btn {
-  display: -moz-inline-box;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -769,6 +769,12 @@ kbd {
   margin-top: .5em;
   color: #f1f4f1
 }
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
+}
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a {
@@ -884,13 +890,6 @@ pre var {
   display: block;
   color: #777;
   line-height: 1.4
-}
-.Cover-meta span,
-.RichLink-meta span,
-.icoLinks a,
-.links a,
-kbd {
-  display: -moz-inline-box
 }
 .Cover p {
   line-height: 1.4;
@@ -1461,8 +1460,7 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

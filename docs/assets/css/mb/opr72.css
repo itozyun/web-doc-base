@@ -66,6 +66,10 @@ tr p {
 .aa {
   font-family: monospace
 }
+.hscroll,
+textarea {
+  overflow: auto
+}
 .links,
 pre {
   white-space: -o-pre-wrap
@@ -326,9 +330,6 @@ input {
 tfoot [colspan]:after,
 tfoot [colspan]:before {
   display: none
-}
-textarea {
-  overflow: auto
 }
 a,
 b,
@@ -1587,8 +1588,7 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

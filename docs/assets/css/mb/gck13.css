@@ -1,8 +1,4 @@
 @charset "UTF-8";
-pre,
-textarea {
-  overflow: auto
-}
 .SocialBtns .hb:focus,
 .SocialBtns .ln:focus,
 .SocialBtns .pk:focus,
@@ -62,6 +58,11 @@ sup {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+.hscroll,
+pre,
+textarea {
+  overflow: auto
 }
 .Cover h2,
 a:focus code,
@@ -427,6 +428,17 @@ a iframe,
 a img {
   display: block
 }
+.BreadcrumbList a,
+.Cover-meta span,
+.RichLink-meta span,
+.TxtNavi a,
+.btn,
+.icoLinks a,
+.links a,
+hr,
+kbd {
+  display: -moz-inline-box
+}
 ol,
 ul {
   padding-left: 2em
@@ -490,8 +502,7 @@ h2 {
 }
 hr {
   height: 0;
-  margin: 2em 6%;
-  display: -moz-inline-box
+  margin: 2em 6%
 }
 tr hr {
   margin: 1em 9%
@@ -542,13 +553,6 @@ tbody:not(:last-child) > tr:last-child > * {
 #lF .lX,
 .tl tfoot th {
   border-width: 1px 0 0
-}
-.AHead-labels i,
-.Magazine-m,
-.Magazine-y,
-.RichLink br,
-tbody:not(:last-child) > tr:last-child >[colspan]:after {
-  display: none
 }
 tfoot th {
   border-width: 2px 0 0
@@ -665,7 +669,6 @@ strong {
   padding-right: 3%
 }
 .btn {
-  display: -moz-inline-box;
   border-width: .1em;
   cursor: pointer;
   text-align: center;
@@ -840,6 +843,12 @@ a:focus .ico path {
   margin-top: .5em;
   color: #1a1a1a
 }
+.AHead-labels i,
+.Magazine-m,
+.Magazine-y,
+.RichLink br {
+  display: none
+}
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a {
@@ -885,15 +894,6 @@ a:focus .ico path {
 .BreadcrumbList {
   padding: 1em 0;
   color: #777
-}
-.BreadcrumbList a,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.icoLinks a,
-.links a,
-kbd {
-  display: -moz-inline-box
 }
 .Comment h3,
 .SearchResult h3 {
@@ -1550,8 +1550,7 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

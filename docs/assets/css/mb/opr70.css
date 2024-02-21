@@ -53,6 +53,10 @@ tr p {
 .aa {
   font-family: monospace
 }
+.hscroll,
+textarea {
+  overflow: auto
+}
 .Cover-img,
 .Magazine-main,
 kbd:hover,
@@ -310,7 +314,6 @@ var {
   margin: 0 .1em
 }
 textarea {
-  overflow: auto;
   background: Window
 }
 * {
@@ -1511,8 +1514,7 @@ ol.linenums {
     color: #00ac06
   }
   .hscroll {
-    margin: 1em 0;
-    overflow: auto
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

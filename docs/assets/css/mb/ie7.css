@@ -91,6 +91,19 @@ tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+.AAuthor,
+.Comment p,
+.Cover,
+.Magazine-item,
+.Magazine-snippet,
+.RichLink a,
+.Search .btn,
+.box,
+.lMi,
+.lSi,
+.lX {
+  overflow: hidden
+}
 code,
 kbd,
 var {
@@ -100,20 +113,6 @@ var {
 tbody th,
 td {
   vertical-align: top
-}
-.AAuthor,
-.Comment p,
-.Cover,
-.Magazine-item,
-.Magazine-snippet,
-.Pager,
-.RichLink a,
-.Search .btn,
-.box,
-.lMi,
-.lSi,
-.lX {
-  overflow: hidden
 }
 .js-generated-link-in-blockquote {
   font-size: .875em;
@@ -548,7 +547,6 @@ tfoot td {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
-.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -1219,6 +1217,10 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
+.hscroll {
+  overflow-x: auto;
+  overflow-y: hidden
+}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1307,6 +1309,10 @@ dl.note dd {
   margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
+}
+.Pager {
+  color: #f8fbf8;
+  overflow: hidden
 }
 .Pager span {
   float: left;
@@ -1514,9 +1520,7 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0;
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,

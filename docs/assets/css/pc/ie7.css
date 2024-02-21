@@ -1489,9 +1489,7 @@ ol.linenums {
     background: #ddd
   }
   .hscroll {
-    margin: 1em 0;
-    overflow-x: auto;
-    overflow-y: hidden
+    margin: 1em 0
   }
   .note .hscroll,
   dl .hscroll,
