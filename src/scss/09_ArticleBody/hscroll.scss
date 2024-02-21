@@ -9,31 +9,6 @@
             width : 100%;
         }
 
-        @if( $CANUSE_OVERFLOW_X_AND_Y ){
-            @if( $UA_Modern ){
-                overflow : auto;
-            }
-            overflow-x : auto;
-            overflow-y : hidden;
-        } @else {
-            overflow : auto;
-        }
-        @if( $UA_Modern ){
-            // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
-            //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
-            -webkit-overflow-scrolling : touch;
-
-            &::-webkit-scrollbar {
-                height : 5px;
-            }
-            &::-webkit-scrollbar-track {
-                background : #F1F1F1;
-            }
-            &::-webkit-scrollbar-thumb {
-                background : #BCBCBC;
-            }
-        }
-
         li &, dl &, tr &, .note & {
             margin-top : 0;
         }
@@ -64,6 +39,32 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
     @include media(tablet) {
+        @if( $CANUSE_OVERFLOW_X_AND_Y ){
+            @if( $UA_Modern ){
+                overflow : auto;
+            }
+            overflow-x : auto;
+            overflow-y : hidden;
+        } @else {
+            overflow : auto;
+        }
+
+        @if( $UA_Modern ){
+            // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
+            //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
+            -webkit-overflow-scrolling : touch;
+
+            &::-webkit-scrollbar {
+                height : 5px;
+            }
+            &::-webkit-scrollbar-track {
+                background : #F1F1F1;
+            }
+            &::-webkit-scrollbar-thumb {
+                background : #BCBCBC;
+            }
+        }
+
         table {
             @if( $Option_mobileOnly ){
                 @include media(screen) {
