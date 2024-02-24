@@ -214,6 +214,7 @@ function DOM_insertTextNodeAfter( targetNode, textContent ){
 
 /** 8.
  * @param {!Node} elm
+ * @return {!Node|void} IE4 では undefined, DHTML ブラウザでは Node が返る
  */
 function DOM_remove( elm ){
     if( DEFINE_WEB_DOC_BASE__DEBUG && !p_DOM_getParentNode( elm ) ){
@@ -223,12 +224,14 @@ function DOM_remove( elm ){
 
     if( m_isIE4DOM ){
         elm.outerHTML = '';
+        return;
     } else {
         if( p_Trident < 5.5 ){
             // https://outcloud.blogspot.com/2016/03/ms-filter.html
             elm.style.filter = ''; // filter の利いたまま要素の削除を行うと IE5 では不具合に見舞われます。
         };
         p_DOM_getParentNode( elm ).removeChild( elm );
+        return elm;
     };
 };
 

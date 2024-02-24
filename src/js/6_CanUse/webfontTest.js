@@ -288,16 +288,11 @@ var webFontTest_onCompleteHandler,
  *          http://www.apache.org/licenses/LICENSE-2.0
  * Version: 0.3 (24 Mar 2012)
  */
-    function webFontTest_preMesure(){
-        var i = -1, font;
 
-        // a font will be compared against all the three default fonts.
-        // and if it doesn't match all 3 then that font is not available.
-
-        // create a SPAN in the document to get the width of the text we use to test
-        webFontTest_elmSpan = p_DOM_insertElement(
+    function webFontTest_createTestElement(){
+        return p_DOM_insertElement(
             p_body,
-            'span',
+            p_Trident < 5 ? 'div' : 'span',
             {
                 'aria-hidden' : 'true',
                 style         : {
@@ -306,13 +301,29 @@ var webFontTest_onCompleteHandler,
                     left       : 0,
                     visibility : 'hidden',
                     //we test using 72px font size, we may use any size. I guess larger the better.
-                    fontSize   : '72px'
+                    fontSize   : '72px',
+                    '-webkit-font-feature-settings' : '"liga"',
+                       '-moz-font-feature-settings' : '"liga=1"',
+                       '-moz-font-feature-settings' : '"liga"',
+                        '-ms-font-feature-settings' : '"liga" 1',
+                         '-o-font-feature-settings' : '"liga"',
+                            'font-feature-settings' : '"liga"'
                 }
             },
         //we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
             webFontTest_TEST_STRING
-        );
+        )
+    };
+
+    function webFontTest_preMesure(){
+        var i = -1, font;
+
+        // a font will be compared against all the three default fonts.
+        // and if it doesn't match all 3 then that font is not available.
+
+        // create a SPAN in the document to get the width of the text we use to test
+        webFontTest_elmSpan = webFontTest_createTestElement();
         webFontTest_defaultWidthList = [];
     
         while( font = webFontTest_BASE_FONT_LIST[ ++i ] ) {
@@ -343,23 +354,9 @@ var webFontTest_onCompleteHandler,
 
         if( p_Trident < 5 ){
             if( !webFontTest_elmSpan ){
-                webFontTest_elmSpan = p_DOM_insertElement(
-                    p_body,
-                    'div',
-                    {
-                        // 'aria-hidden' : 'true', ie4 用なので不要
-                        style         : {
-                            position   : 'absolute',
-                            top        : 0,
-                            left       : 0,
-                            visibility : 'hidden',
-                            fontSize   : '72px'
-                        }
-                    },
-                    webFontTest_TEST_STRING
-                );
+                webFontTest_elmSpan = webFontTest_createTestElement();
             };
-        } else {
+        } else if( !p_DOM_getParentNode( webFontTest_elmSpan ) ){
             p_body.appendChild( webFontTest_elmSpan );
         };
 
@@ -416,17 +413,14 @@ var webFontTest_onCompleteHandler,
             };
         };
 
-        if( !p_Trident && result && webFontTest_ligatureTestString ){ // IE5 でエラーが発生 TODO カタログで枝掃いをする
+        if( !p_Trident && result && webFontTest_ligatureTestString ){ // IE5 でエラーが発生 TODO カタログで実行しない
             webFontTest_elmSpan.textContent = webFontTest_ligatureTestString;
             width = webFontTest_elmSpan.offsetWidth;
             webFontTest_elmSpan.textContent = webFontTest_ligatureTestChar;
             result = width === webFontTest_elmSpan.offsetWidth ? webFontTest_RESULT_LIGATURE : webFontTest_RESULT_AVAILABLE;
             webFontTest_elmSpan.textContent = webFontTest_TEST_STRING;
         };
-        p_DOM_remove( webFontTest_elmSpan );
-        if( p_Trident < 5 ){
-            webFontTest_elmSpan = undefined;
-        };
+        webFontTest_elmSpan = p_DOM_remove( webFontTest_elmSpan );
         if( opt_intervalTime && DEFINE_WEB_DOC_BASE__DEBUG ){
             if( result || webFontTest_checkTime( opt_intervalTime ) ){
                 Debug.log( '[webFontTest] ' + testFontName + ' ' + widthList.join( ', ' ) );
