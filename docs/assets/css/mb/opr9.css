@@ -1322,7 +1322,8 @@ a:focus var {
   content: ">";
   font-weight: 700
 }
-.icoLinks [href*="://web.archive."]:before,
+.icoLinks [href*="//archive."]:before,
+.icoLinks [href*="//web.archive."]:before,
 .links [href*="/web.archive."]:before {
   content: "*"
 }

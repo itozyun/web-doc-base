@@ -213,12 +213,6 @@ a:active var {
   background: #2a2a2a;
   color: #fff
 }
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc)
-}
 html {
   font-size: 100%
 }
@@ -710,6 +704,12 @@ kbd {
   font-weight: 400;
   font-variant: normal;
   text-transform: none
+}
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc)
 }
 .AAuthor {
   height: 1px;

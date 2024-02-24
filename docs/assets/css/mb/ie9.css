@@ -58,6 +58,12 @@ th {
 tbody th {
   background: #ddd
 }
+.lM1,
+.lM2,
+.lS1,
+.lS2 {
+  width: 48.5%
+}
 .Magazine-date,
 .Magazine-main,
 .btn,
@@ -65,6 +71,17 @@ tbody th {
 tbody th,
 td {
   vertical-align: top
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover {
+  position: relative
 }
 .AAuthor,
 .Comment p,
@@ -212,37 +229,6 @@ a:focus img {
 .ribbon .RichLink-sep :visited:hover {
   background: #2a2a2a;
   color: #fff
-}
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc)
-}
-.js-myIconFont-testCssReady {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  visibility: hidden
-}
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover {
-  position: relative
-}
-.lM1,
-.lM2,
-.lS1,
-.lS2 {
-  width: 48.5%
 }
 :active,
 :focus {
@@ -913,6 +899,20 @@ kbd {
 .aa {
   font-family: monospace
 }
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc)
+}
+.ico .js-myIconFont-testCssReady {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden
+}
 .ico svg {
   vertical-align: baseline
 }
@@ -1435,20 +1435,22 @@ pre var {
 .icoLinks [href^="/"]:not([href^="//"]):before {
   content: "🏠"
 }
-.icoLinks [href*="://web.archive."]:before {
+.icoLinks [href*="//archive."]:before,
+.icoLinks [href*="//web.archive."]:before {
   content: "🏛"
 }
-.icoLinks [href*="://youtu.be"]:before,
-.icoLinks [href*="://youtube."]:before {
+.icoLinks [href*="//youtu.be"]:before,
+.icoLinks [href*="//youtube."]:before {
   content: "📺"
 }
-.icoLinks [href*="://m.twitter."]:before,
-.icoLinks [href*="://t.co"]:before,
-.icoLinks [href*="://twitter."]:before {
+.icoLinks [href*="//m.twitter."]:before,
+.icoLinks [href*="//t.co"]:before,
+.icoLinks [href*="//twitter."]:before,
+.icoLinks [href*="//x.com"]:before {
   content: "🕊"
 }
-.icoLinks [href*=".github."]:before,
-.icoLinks [href*="://github.com"]:before {
+.icoLinks [href*=".github.io"]:before,
+.icoLinks [href*="//github.com"]:before {
   content: "\eab0"
 }
 .links [href]:before {

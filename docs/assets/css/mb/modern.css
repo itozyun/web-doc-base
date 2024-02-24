@@ -4,11 +4,6 @@
     font: -apple-system-body
   }
 }
-.ico,
-.icoLinks [href]:before,
-html {
-  -moz-osx-font-smoothing: grayscale
-}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -83,10 +78,29 @@ hr,
 tbody th {
   background: #ddd
 }
+.lM1,
+.lM2,
+.lS1,
+.lS2 {
+  width: 48.5%
+}
 .ico svg,
 sub,
 sup {
   vertical-align: baseline
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
 }
 .AAuthor,
 .Comment p,
@@ -249,40 +263,6 @@ a:focus img {
   background: #2a2a2a;
   color: #fff
 }
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc);
-  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
-}
-.js-myIconFont-testCssReady {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  visibility: hidden
-}
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
-.lM1,
-.lM2,
-.lS1,
-.lS2 {
-  width: 48.5%
-}
 :active,
 :focus {
   outline: 0
@@ -306,7 +286,8 @@ html {
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-rendering: optimizeLegibility!important;
-  -webkit-font-smoothing: antialiased!important
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale
 }
 small,
 sub,
@@ -439,6 +420,7 @@ textarea {
   border-style: solid;
   border-width: 0
 }
+.SearchResult div p,
 body,
 dd p,
 li p,
@@ -845,8 +827,7 @@ tbody :hover th a:focus {
   font-family: web-doc-base,serif!important;
   font-style: normal;
   font-variant: normal;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased
+  text-transform: none
 }
 .baseColor {
   background: #f8fbf8
@@ -1039,6 +1020,21 @@ kbd {
 .Magazine-date,
 .aa {
   font-family: monospace
+}
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc);
+  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
+}
+.ico .js-myIconFont-testCssReady {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden
 }
 .ico path {
   fill: #111
@@ -1392,8 +1388,7 @@ kbd {
 }
 .SearchResult div p {
   margin: .2em 0 0;
-  color: #545454;
-  line-height: 1.2
+  color: #545454
 }
 .SearchResult div span {
   color: grey
@@ -1586,8 +1581,8 @@ pre var {
   width: 1em;
   text-align: center;
   text-decoration: none;
-  height: 1.4em;
-  line-height: 1.4;
+  height: 1.2em;
+  line-height: 1.2;
   font-weight: 400;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
@@ -1600,20 +1595,22 @@ pre var {
 .icoLinks [href^="/"]:not([href^="//"]):before {
   content: "🏠"
 }
-.icoLinks [href*="://web.archive."]:before {
+.icoLinks [href*="//archive."]:before,
+.icoLinks [href*="//web.archive."]:before {
   content: "🏛"
 }
-.icoLinks [href*="://youtu.be"]:before,
-.icoLinks [href*="://youtube."]:before {
+.icoLinks [href*="//youtu.be"]:before,
+.icoLinks [href*="//youtube."]:before {
   content: "📺"
 }
-.icoLinks [href*="://m.twitter."]:before,
-.icoLinks [href*="://t.co"]:before,
-.icoLinks [href*="://twitter."]:before {
+.icoLinks [href*="//m.twitter."]:before,
+.icoLinks [href*="//t.co"]:before,
+.icoLinks [href*="//twitter."]:before,
+.icoLinks [href*="//x.com"]:before {
   content: "🕊"
 }
-.icoLinks [href*=".github."]:before,
-.icoLinks [href*="://github.com"]:before {
+.icoLinks [href*=".github.io"]:before,
+.icoLinks [href*="//github.com"]:before {
   content: "\eab0"
 }
 @-moz-document url-prefix() {

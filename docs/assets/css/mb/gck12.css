@@ -1212,7 +1212,8 @@ pre var {
 .links [href^="/"]:not([href^="//"]):before {
   content: "+"
 }
-.icoLinks [href*="://web.archive."]:before,
+.icoLinks [href*="//archive."]:before,
+.icoLinks [href*="//web.archive."]:before,
 .links [href*="/web.archive."]:before {
   content: "*"
 }

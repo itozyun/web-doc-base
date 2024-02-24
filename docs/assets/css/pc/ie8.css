@@ -248,12 +248,6 @@ tbody :hover th {
   background: #2a2a2a;
   color: #fff
 }
-@font-face {
-  font-family: web-doc-base;
-  font-weight: 400;
-  font-style: normal;
-  src: url(../../iconfont/web-doc-base.eot?rw1juc)
-}
 :active,
 :focus {
   outline: 0
@@ -851,6 +845,12 @@ kbd {
 .lS .mspacer {
   margin: .6em .5em
 }
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc)
+}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
@@ -1343,20 +1343,22 @@ pre var {
   font-weight: 400;
   content: "🔗"
 }
-.icoLinks [href*="://web.archive."]:before {
+.icoLinks [href*="//archive."]:before,
+.icoLinks [href*="//web.archive."]:before {
   content: "🏛"
 }
-.icoLinks [href*="://youtu.be"]:before,
-.icoLinks [href*="://youtube."]:before {
+.icoLinks [href*="//youtu.be"]:before,
+.icoLinks [href*="//youtube."]:before {
   content: "📺"
 }
-.icoLinks [href*="://m.twitter."]:before,
-.icoLinks [href*="://t.co"]:before,
-.icoLinks [href*="://twitter."]:before {
+.icoLinks [href*="//m.twitter."]:before,
+.icoLinks [href*="//t.co"]:before,
+.icoLinks [href*="//twitter."]:before,
+.icoLinks [href*="//x.com"]:before {
   content: "🕊"
 }
-.icoLinks [href*=".github."]:before,
-.icoLinks [href*="://github.com"]:before {
+.icoLinks [href*=".github.io"]:before,
+.icoLinks [href*="//github.com"]:before {
   content: "\eab0"
 }
 .links [href]:before {
