@@ -320,4 +320,5 @@
 || 4. Path
 ||
 |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/*/
-    $ASSET_PATH_WEBFONT : "#{if($COMMON_ASSET_DIR_TO_CSS_DIR != '', '../', '') + if($COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR != '', '../', '') + if($COMMON_ASSET_DIR_TO_WEBFONT_DIR != '', $COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/', '')}" !default;
+    $CSS_DIR_TO_CURRENT_DEVICE_CSS_DIR : if($Option_mobileOnly, $COMMON_CSS_DIR_TO_MOBILE_CSS_DIR, $COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR);
+    $ASSET_PATH_WEBFONT : "#{if($COMMON_ASSET_DIR_TO_CSS_DIR != '', '../', '') + if($CSS_DIR_TO_CURRENT_DEVICE_CSS_DIR != '', '../', '') + if($COMMON_ASSET_DIR_TO_WEBFONT_DIR != '', $COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/', '')}" !default;

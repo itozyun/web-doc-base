@@ -1,5 +1,9 @@
 .#{$COMMON_VECTOR_ICON__CLASSNAME} {
-    @include web-font;
+    @if( $COMMON_WEBFONT__FONT_NAME ){
+        @include web-font-face($COMMON_WEBFONT__FONT_NAME, $ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM, $COMMON_WEBFONT__SVG_FONT_ID, $COMMON_WEBFONT__TEST_ID_AND_CLASSNAME);
+    }
+
+    @include web-font($COMMON_WEBFONT__FONT_NAME);
     
     @if( $CANUSE_SVG ){
         svg {

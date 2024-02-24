@@ -1,47 +1,47 @@
-@if( $COMMON_ASSET_DIR_TO_WEBFONT_DIR ){
+@mixin web-font-face($WEBFONT_NAME, $WEBFONT_PATH, $WEBFONT_ID, $WEBFONT_TEST_ID_AND_CLASSNAME){
     @if( $MAYBE_CAN_USE_WEBFONT ){
         @font-face {
-            font-family : #{$COMMON_WEBFONT__FONT_NAME};
+            font-family : #{$WEBFONT_NAME};
             font-weight : normal;
             font-style  : normal;
-            src         : url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.eot?rw1juc');
+            src         : url('#{$WEBFONT_PATH}.eot?rw1juc');
             @if( $UA_Modern ){
-                src:url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.eot?rw1juc#iefix') format('#{$WEBFONT_FORMAT_EOT}'),
-                    url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.woff2?rw1juc') format('#{$WEBFONT_FORMAT_WOFF2}'),
-                    url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.woff?rw1juc') format('#{$WEBFONT_FORMAT_WOFF}'),
-                    url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.ttf?rw1juc') format('#{$WEBFONT_FORMAT_TTF}'),
-                    // url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
-                    url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.svg?rw1juc##{$COMMON_WEBFONT__SVG_FONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
+                src:url('#{$WEBFONT_PATH}.eot?rw1juc#iefix') format('#{$WEBFONT_FORMAT_EOT}'),
+                    url('#{$WEBFONT_PATH}.woff2?rw1juc') format('#{$WEBFONT_FORMAT_WOFF2}'),
+                    url('#{$WEBFONT_PATH}.woff?rw1juc') format('#{$WEBFONT_FORMAT_WOFF}'),
+                    url('#{$WEBFONT_PATH}.ttf?rw1juc') format('#{$WEBFONT_FORMAT_TTF}'),
+                    // url('#{$WEBFONT_PATH}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
+                    url('#{$WEBFONT_PATH}.svg?rw1juc##{$WEBFONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
             }
         }
         /* @if( $UA_Modern ){
             @font-face {
-                font-family : #{$COMMON_WEBFONT__FONT_NAME}-svgpatch;
+                font-family : #{$WEBFONT_NAME}-svgpatch;
                 font-weight : normal;
                 font-style  : normal;
-                src         : url('#{$ASSET_PATH_WEBFONT + $COMMON_WEBFONT__FILE_STEM}.svg##{$COMMON_WEBFONT__SVG_FONT_ID}');
+                src         : url('#{$WEBFONT_PATH}.svg##{$COMMON_WEBFONT__SVG_FONT_ID}');
             }
         } */
 
         @if( $UA_Modern or $UA_IE9 ){
-            .#{$COMMON_WEBFONT__TEST_ID_AND_CLASSNAME} {
+            .#{$WEBFONT_TEST_ID_AND_CLASSNAME} {
                 @include check-css-ready;
             }
         }
     }
 }
 
-@mixin web-font($ALT_FONTFAMILY : "serif !important") {
+@mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important") {
     @if( $MAYBE_CAN_USE_WEBFONT ){
-        font-family : #{$COMMON_WEBFONT__FONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+        font-family : #{$WEBFONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
 
         // TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
         // TODO Chrome 2~14 は SVG フォントだけが、英字のみ(?)の合字をサポートする
         /* @include css-hack(chrome1Safari3){
-            font-family : #{$COMMON_WEBFONT__FONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+            font-family : #{$WEBFONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
         }
         @include css-hack(chromeGte2To5){
-            font-family : #{$COMMON_WEBFONT__FONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+            font-family : #{$WEBFONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
         } */
 
         // if( $Option_hard-reset ){
@@ -63,9 +63,9 @@
             -webkit-font-variant-ligatures : discretionary-ligatures;
                     font-variant-ligatures : discretionary-ligatures; */
 
-            /* Better Font Rendering =========== */
+            /* Better Font Rendering =========== * <html> で設定しているのでここでは不要
              -webkit-font-smoothing       : antialiased;
-            -moz-osx-font-smoothing       : grayscale;
+            -moz-osx-font-smoothing       : grayscale; */
         }
     }
 }

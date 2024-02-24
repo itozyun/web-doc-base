@@ -18,13 +18,13 @@
                 text-align      : center;
                 text-decoration : none;
                 @if( $UA_Modern ){
-                    height      : 1.4em; /* for iOS8 */
-                    line-height : 1.4; /* for iOS8 */
+                    height      : $BASE_LINE_HEIGHT_EM; /* for iOS8 */
+                    line-height : $BASE_LINE_HEIGHT; /* for iOS8 */
                 }
             }
 
             @if( $MAYBE_CAN_USE_WEBFONT ){
-                @include web-font;
+                @include web-font($COMMON_WEBFONT__FONT_NAME);
                 content : "🔗";
             } @else {
                 content     : ">";
@@ -41,24 +41,24 @@
                     }
                 }
             }
-            [href*="://web.archive."]:before {
+            [href*="//web.archive."]:before, [href*="//archive."]:before {
                 @if( $MAYBE_CAN_USE_WEBFONT ){
                     content : "🏛";
                 } @else {
                     content : "*";
                 }
             }
-            [href*="://youtube."]:before, [href*="://youtu.be"]:before {
+            [href*="//youtube."]:before, [href*="//youtu.be"]:before {
                 @if( $MAYBE_CAN_USE_WEBFONT ){
                     content : "📺";
                 }
             }
-            [href*="://twitter."]:before, [href*="://m.twitter."]:before, [href*="://t.co"]:before {
+            [href*="//x.com"]:before, [href*="//twitter."]:before, [href*="//m.twitter."]:before, [href*="//t.co"]:before {
                 @if( $MAYBE_CAN_USE_WEBFONT ){
                     content : "🕊";
                 }
             }
-            [href*="://github.com"]:before, [href*=".github."]:before {
+            [href*="//github.com"]:before, [href*=".github.io"]:before {
                 @if( $MAYBE_CAN_USE_WEBFONT ){
                     content : "";
                 }
