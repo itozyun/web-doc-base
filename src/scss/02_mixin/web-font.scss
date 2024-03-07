@@ -52,6 +52,10 @@
         //}
         
         @if( $UA_Modern ){
+            // https://x.com/itozyun/status/1765822560166441185
+            // for Android WebView 4.2, 4.3, 4.4
+            text-rendering : auto !important;
+
             /* Enable Ligatures ================ */
             -webkit-font-feature-settings : "liga";
                -moz-font-feature-settings : "liga=1";
