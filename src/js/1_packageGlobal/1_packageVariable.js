@@ -148,6 +148,21 @@ function p_notUndefined( val ){
     return val !== undefined;
 };
 
+function p_toCamelCase( str ){
+    var parts = str.split( '-' ),
+        i     = parts.length,
+        part;
+
+    if( i < 2 ){
+        return str;
+    };
+    while( 1 < i ){
+        part = parts[ --i ];
+        parts[ i ] = part.charAt( 0 ).toUpperCase() + part.substr( 1 );
+    };
+    return parts.join( '' );
+};
+
 /**================================================================
  *  https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/fontface.js
  *  http://www.webapps-online.com/online-tools/user-agent-strings/dv/browser135552/nokia-browser

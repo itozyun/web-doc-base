@@ -10,7 +10,7 @@ p_DOM_getCssText  = DOM_getCssText;
  */
 function DOM_setStyle( elm, name, value ){
     if( p_Presto < 8 || p_Trident < 5.5 ){
-        name = m_toCamelCase( name );
+        name = p_toCamelCase( name );
     };
     elm.style[ name ] = value;
 };
@@ -23,7 +23,7 @@ function DOM_setCssText( elm, cssText ){
             // elm.removeAttribute( 'style' ) はブラクラ, elm.setAttribute( 'style', '' ) は不完全
             styles = _cssText.split( ';' );
             while( style = styles[ ++i ] ){
-                DOM_setStyle( elm, style.split( ':' )[ 0 ], '' ); // TODO : toCamelCase
+                DOM_setStyle( elm, style.split( ':' )[ 0 ], '' );
             };
         };
         if( cssText ){

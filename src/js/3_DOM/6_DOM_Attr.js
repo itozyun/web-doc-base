@@ -31,7 +31,7 @@ function DOM_getTagName( elm ){
  */
 function DOM_getAttribute( elm, name ){
     if( p_Presto < 8 || p_Trident < 5.5 ){
-        name = m_toCamelCase( name );
+        name = p_toCamelCase( name );
     };
     var value = elm.getAttribute( name );
     if( p_Presto && name === 'tabIndex' ){
@@ -50,7 +50,7 @@ function DOM_setAttribute( elm, name, value ){
         value === '-1' ? elm.removeAttribute( 'tabIndex' ) : elm.setAttribute( 'tabIndex', value );
     } else {
         if( p_Presto < 8 || p_Trident < 5.5 ){
-            name = m_toCamelCase( name );
+            name = p_toCamelCase( name );
         };
         elm.setAttribute( name, value );
     };
@@ -65,7 +65,7 @@ function DOM_removeAttribute( elm, name ){
         elm.getAttribute( 'tabIndex' ) !== '-0' && elm.setAttribute( 'tabIndex', '-0' ); // -1|1 => ''
     } else {
         if( p_Presto < 8 || p_Trident < 5.5 ){
-            name = m_toCamelCase( name );
+            name = p_toCamelCase( name );
         };
         elm.removeAttribute( name );
     };
@@ -80,7 +80,7 @@ function DOM_hasAttribute( elm, name ){
         return elm.getAttribute( 'tabIndex' ) !== '-0';
     };
     if( p_Presto < 8 || p_Trident < 5.5 ){
-        name = m_toCamelCase( name );
+        name = p_toCamelCase( name );
     };
     return elm.hasAttribute ? elm.hasAttribute( name ) : elm.getAttribute( name ) != null; // TODO outerHTML
 };

@@ -420,32 +420,10 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
                 Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) ).length + ' ' + targetRule._indexStart );
             };
             rawRule = CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) )[ targetRule._indexStart ];
-            ret = rawRule && rawRule.style[ toCamelcase( property ) ];
+            ret = rawRule && rawRule.style[ p_toCamelCase( property ) ];
         } else {
             ret = targetRule.urlOrStyle[ property ];
         };
-    };
-    function toCamelcase( str ){
-        var result = [],
-            chars  = str.split( '' ),
-            i      = 0,
-            l      = chars.length,
-            chr, toUpper = false;
-
-        for( ; i < l; ++i ){
-            chr = chars[ i ];
-            if( chr === '-' ){
-                toUpper = true;
-            } else {
-                if( toUpper ){
-                    result[ i ] = chr.toUpperCase();
-                    toUpper = false;
-                } else {
-                    result[ i ] = chr;
-                };
-            };
-        };
-        return result.join( '' );
     };
     return ret;
 };
