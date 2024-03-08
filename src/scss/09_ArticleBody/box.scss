@@ -35,9 +35,15 @@ $CaptionedObjectFontSize : 0.875;
     @if( $CANUSE_1ST_OF_TYPE_PSEUDO_CLASS ){
         & > p:first-of-type {
             margin-top : math.div(-$PARAGRAPH_LINE_HEIGHT_EM + 1em, 4);
+            rt {
+                padding-top : 1em; // ruby が見えなくなるのを防ぐ
+            }
         }
         tr & > p:first-of-type {
             margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
+            rt {
+                padding-top : 0;
+            }
         }
     }
 
