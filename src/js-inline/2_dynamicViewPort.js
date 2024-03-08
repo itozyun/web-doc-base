@@ -36,8 +36,6 @@ if( platform === WHAT_BROWSER_AM_I__PLATFORM_N3DS ){
     DynamicViewPort_initScale   = DynamicViewPort_miniScale = 1; */
     // htmlStyle.fontSize          = '1.33em';
 };
-// https://www.nintendo.co.jp/hardware/wiiu/internetbrowser/index.html
-// 
 
 DynamicViewPort_width = DynamicViewPort_deviceWidth ? 'device-width' : DynamicViewPort_width;
 

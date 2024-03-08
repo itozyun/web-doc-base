@@ -44,8 +44,13 @@
                -moz-text-size-adjust : 100%;
                 -ms-text-size-adjust : 100%;
                 /* text-size-adjust : 100%; */
-    // https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L29
-            text-rendering           : optimizeLegibility !important;
+            // 次のコードは以下から
+            //   https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L29
+            // 
+            // text-rendering: optimizeLegibility breaks glyph spacing when font substitution occurs 
+            //   https://issues.chromium.org/issues/40286561
+            //   > Note two problems with Chrome 21 on Windows XP and the following reduction:
+         /* text-rendering           : optimizeLegibility !important; */
              -webkit-font-smoothing  : antialiased !important;
             -moz-osx-font-smoothing  : grayscale;
         }

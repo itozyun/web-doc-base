@@ -52,6 +52,8 @@
         @if( $UA_Modern ){
             // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
             //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
+            // https://caniuse.com/?search=-webkit-overflow-scrolling
+            //   iOS 5~12.5
             -webkit-overflow-scrolling : touch;
 
             &::-webkit-scrollbar {

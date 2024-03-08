@@ -14,14 +14,6 @@
                     url('#{$WEBFONT_PATH}.svg?rw1juc##{$WEBFONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
             }
         }
-        /* @if( $UA_Modern ){
-            @font-face {
-                font-family : #{$WEBFONT_NAME}-svgpatch;
-                font-weight : normal;
-                font-style  : normal;
-                src         : url('#{$WEBFONT_PATH}.svg##{$COMMON_WEBFONT__SVG_FONT_ID}');
-            }
-        } */
 
         @if( $UA_Modern or $UA_IE9 ){
             .#{$WEBFONT_TEST_ID_AND_CLASSNAME} {
@@ -31,29 +23,21 @@
     }
 }
 
+/**
+ * TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
+ * TODO Chrome 2~14 は SVG フォントだけが、英字のみ(?)の合字をサポートする
+ *   参考: https://outcloud.blogspot.com/2023/10/webfont.html#ligature
+ */
 @mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important") {
     @if( $MAYBE_CAN_USE_WEBFONT ){
         font-family : #{$WEBFONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
-
-        // TODO Chrome 1, Safari 3.x は合字が高性能な SVG フォントのみを利用する
-        // TODO Chrome 2~14 は SVG フォントだけが、英字のみ(?)の合字をサポートする
-        /* @include css-hack(chrome1Safari3){
-            font-family : #{$WEBFONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
-        }
-        @include css-hack(chromeGte2To5){
-            font-family : #{$WEBFONT_NAME + '-svgpatch' + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
-        } */
-
-        // if( $Option_hard-reset ){
-            font-style     : normal;
-            font-weight    : normal;
-            font-variant   : normal;
-            text-transform : none;
-        //}
         
         @if( $UA_Modern ){
-            // https://x.com/itozyun/status/1765822560166441185
-            // for Android WebView 4.2, 4.3, 4.4
+            // https://caniuse.com/?search=text-rendering
+            //   > From version 3 to 4.3, there is a serious bug where text-rendering: optimizeLegibility
+            //   > causes custom web fonts to not render. This was fixed in version 4.4.
+            //
+            // [webFontTest] .offsetWidth による計測は正しく働いて、描画がされない模様(itozyun)
             text-rendering : auto !important;
 
             /* Enable Ligatures ================ */
@@ -66,10 +50,6 @@
             /*
             -webkit-font-variant-ligatures : discretionary-ligatures;
                     font-variant-ligatures : discretionary-ligatures; */
-
-            /* Better Font Rendering =========== * <html> で設定しているのでここでは不要
-             -webkit-font-smoothing       : antialiased;
-            -moz-osx-font-smoothing       : grayscale; */
         }
     }
 }

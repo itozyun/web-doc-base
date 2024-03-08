@@ -106,6 +106,9 @@ return require( 'through2' )
                 }
             );
         // 3. @-moz-document を @ media の最期へ
+        //   https://x.com/itozyun/status/1597618176480940032
+        //     > Chrome 1, Safari
+        //     > @media print 内のスタイルが、@moz-document url-prefix(){} 出現後に効いてしまう問題に遭遇。
             const toEndOfMediaBlock = [];
 
             css.walkAtRules( function( rule ){
@@ -154,7 +157,7 @@ return require( 'through2' )
                 );
             };
 
-        // 5 finish
+        // finish
             if( isUpdateCurrentFile ){
                 file.contents = Buffer.from( css.toString() );
             };
