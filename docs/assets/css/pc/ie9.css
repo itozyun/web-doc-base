@@ -104,6 +104,10 @@ a:focus var,
 tbody :hover th {
   background: #3079ed
 }
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important
+}
 .links,
 pre {
   white-space: pre-wrap
@@ -258,7 +262,6 @@ dt {
   font-weight: 700;
   margin-top: .7em
 }
-.ico,
 h1,
 h2,
 h3,
@@ -709,13 +712,6 @@ tbody :hover th a:focus {
 }
 .uc {
   text-transform: uppercase
-}
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none
 }
 .baseColor {
   background: #f8fbf8
@@ -1336,8 +1332,14 @@ blockquote[cite]:after {
 .box > p:first-of-type {
   margin-top: -.225em
 }
+.box > p:first-of-type rt {
+  padding-top: 1em
+}
 tr .box > p:first-of-type {
   margin-top: auto
+}
+tr .box > p:first-of-type rt {
+  padding-top: 0
 }
 .box dl,
 .box ol,
@@ -1390,7 +1392,6 @@ pre var {
   width: 1em;
   text-align: center;
   text-decoration: none;
-  font-weight: 400;
   content: "🔗"
 }
 .icoLinks [href^="/"]:not([href^="//"]):before {

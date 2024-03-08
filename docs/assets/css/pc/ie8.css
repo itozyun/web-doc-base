@@ -85,9 +85,29 @@ pre {
 .lX {
   overflow: hidden
 }
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important
+}
 .links,
 pre {
   white-space: pre-wrap
+}
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+.links [href]:before,
+dt {
+  font-weight: 700
+}
+.RichLink b,
+h1,
+h2,
+h3,
+h5,
+h6,
+th {
+  font-weight: 400
 }
 .Magazine-date,
 .Magazine-main,
@@ -273,17 +293,7 @@ html {
   height: 100%
 }
 dt {
-  font-weight: 700;
   margin-top: .7em
-}
-.ico,
-h1,
-h2,
-h3,
-h5,
-h6,
-th {
-  font-weight: 400
 }
 blockquote,
 q {
@@ -682,13 +692,6 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none
-}
 .baseColor {
   background: #f8fbf8
 }
@@ -877,7 +880,6 @@ tr .box {
   margin: 2em 0 1em
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
@@ -1047,7 +1049,6 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
-  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -1067,7 +1068,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1132,7 +1132,6 @@ kbd {
 }
 .RichLink b {
   display: block;
-  font-weight: 400;
   font-size: .875em;
   padding: 0 0 1.143em
 }
@@ -1287,8 +1286,14 @@ blockquote[cite]:after {
 .box > p:first-of-type {
   margin-top: -.225em
 }
+.box > p:first-of-type rt {
+  padding-top: 1em
+}
 tr .box > p:first-of-type {
   margin-top: auto
+}
+tr .box > p:first-of-type rt {
+  padding-top: 0
 }
 .box dl,
 .box ol,
@@ -1340,7 +1345,6 @@ pre var {
   width: 1em;
   text-align: center;
   text-decoration: none;
-  font-weight: 400;
   content: "🔗"
 }
 .icoLinks [href*="//archive."]:before,
@@ -1365,8 +1369,7 @@ pre var {
   content: ">";
   left: -.5em;
   width: 1em;
-  text-align: center;
-  font-weight: 700
+  text-align: center
 }
 .links [href*="/web.archive."]:before {
   content: "*"

@@ -285,7 +285,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility!important;
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale
 }
@@ -426,6 +425,11 @@ dd p,
 li p,
 tr p {
   line-height: 1.2
+}
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  text-rendering: auto!important
 }
 body {
   background: #1a1a1a;
@@ -822,13 +826,6 @@ tbody :hover th a:focus {
 .uc {
   text-transform: uppercase
 }
-.ico,
-.icoLinks [href]:before {
-  font-family: web-doc-base,serif!important;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none
-}
 .baseColor {
   background: #f8fbf8
 }
@@ -1009,7 +1006,6 @@ kbd {
   margin: .6em .5em
 }
 .ico {
-  font-weight: 400;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
   -moz-font-feature-settings: "liga";
@@ -1496,12 +1492,18 @@ blockquote[cite]:after {
 .box > p:first-of-type {
   margin-top: -.225em
 }
+.box > p:first-of-type rt {
+  padding-top: 1em
+}
 
 tr .box > p:first-of-type {
   margin-top: auto
 }
 .box > p:first-of-type,body[n0]:nth-child(n0) {
   margin-top: auto
+}
+tr .box > p:first-of-type rt {
+  padding-top: 0
 }
 .box dl,
 .box ol,
@@ -1583,7 +1585,6 @@ pre var {
   text-decoration: none;
   height: 1.2em;
   line-height: 1.2;
-  font-weight: 400;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
   -moz-font-feature-settings: "liga";

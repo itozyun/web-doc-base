@@ -71,18 +71,6 @@ td,
 th {
   word-break: break-all
 }
-.ico,
-cite,
-code,
-dfn,
-em,
-kbd,
-q,
-samp,
-strong,
-var {
-  font-style: normal
-}
 .AHead h1,
 th {
   text-align: left
@@ -272,6 +260,17 @@ img {
   -ms-interpolation-mode: bicubic;
   height: auto
 }
+cite,
+code,
+dfn,
+em,
+kbd,
+q,
+samp,
+strong,
+var {
+  font-style: normal
+}
 pre {
   margin: 1em 0
 }
@@ -363,12 +362,20 @@ tbody :hover th :visited {
 a:active {
   background-color: #3079ed!important
 }
+.RichLink b,
 h1,
 h2,
 h3,
 h5,
-h6 {
+h6,
+th {
   font-weight: 400
+}
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+h2 {
+  font-weight: 700
 }
 h4,
 h5,
@@ -484,8 +491,7 @@ h2 {
   margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
-  font-size: 1.1em;
-  font-weight: 700
+  font-size: 1.1em
 }
 .wn {
   color: red!important
@@ -512,7 +518,6 @@ caption {
   margin: 1.5em 1em .7em
 }
 th {
-  font-weight: 400;
   padding: .5em
 }
 td {
@@ -731,10 +736,7 @@ kbd {
   margin: .6em .5em
 }
 .ico {
-  font-family: web-doc-base,serif!important;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none
+  font-family: web-doc-base,serif!important
 }
 @font-face {
   font-family: web-doc-base;
@@ -768,7 +770,6 @@ tr .box {
   margin: 2em 0 1em
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 0 1.2em
@@ -946,7 +947,6 @@ pre var {
 }
 .Magazine-date {
   padding-right: 1.5em;
-  font-weight: 700;
   display: block;
   float: left;
   line-height: 1
@@ -967,7 +967,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -1027,7 +1026,6 @@ kbd {
   margin: 0 0 1em .6em
 }
 .RichLink b {
-  font-weight: 400;
   font-size: .875em;
   padding: 0
 }
