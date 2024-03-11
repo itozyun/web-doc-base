@@ -34,9 +34,9 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
             @at-root #{&}-date {
                 @include unbreak-word;
                 @include line-height(1, 1);
+                @include font-family-monospace;
                 padding-right : 1.5em;
                 font-weight   : bold;
-                font-family   : monospace;
                 @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
                     display        : table-cell;
                     vertical-align : top;

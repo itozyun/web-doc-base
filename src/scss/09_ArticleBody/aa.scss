@@ -7,7 +7,7 @@
         margin       : 1em 0;
         border-width : 1px;
 
-        font-family  : monospace;
+        @include font-family-monospace;
         border-color : #0A0809;
 
         @include media(screen) {

@@ -1,0 +1,16 @@
+/*  font-family monospace
+--------------------------------------------------------------------------------------*/
+@mixin font-family-monospace {
+    @if( $IS_WIN_IE or $UA_MacIE5 or $IS_OLD_OPERA ){
+        font-family : monospace;
+    } @else {
+        /**
+         * https://github.com/necolas/normalize.css/issues/519
+         *   Please explain monospace, monospace one more time :)
+         *
+         * https://x.com/itozyun/status/1766726978915463369
+         *   Chrome 39 + Windows XP で確認、font-size を px 指定しても monospace -> monospace,m で描画が変化する!
+         */
+        font-family : monospace,monospace;
+    }
+}
