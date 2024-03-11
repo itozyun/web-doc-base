@@ -1018,7 +1018,7 @@ kbd {
 }
 .Magazine-date,
 .aa {
-  font-family: monospace
+  font-family: monospace,monospace
 }
 @font-face {
   font-family: web-doc-base;
