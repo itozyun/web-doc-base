@@ -39,3 +39,5 @@ var p_DOM_getElementById,
     p_DOM_setStyle,
     p_DOM_setCssText,
     p_DOM_getCssText;
+
+var p_IMPLICITLY_FOCUSABLE = '-0';

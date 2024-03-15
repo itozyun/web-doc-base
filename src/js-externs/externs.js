@@ -89,4 +89,5 @@ var __vml = 0;
 /** @type {!function()} */
 opera.postError = function(){};
 
-var CamelCaseAttributeNames = { tagIndex : '-1' };
+/** @type {string} */
+HTMLElement.prototype.tabindex;

@@ -1,5 +1,5 @@
 /**
- * Opera 7~12 はタブフォーカスの挙動が異なる為、tab-index を動的に書き換えて対応する。
+ * Opera 7~12 はタブフォーカスの挙動が異なる為、tabindex を動的に書き換えて対応する。
  *
  * 2011年7月現在で、Internet Explorer と Opera は、デフォルトではフォーカス可能でない要素に関して、負の整数を指定した tab-index コンテンツ属性に対応 
  * https://books.google.co.jp/books?id=ZSsfUNa2nMgC&pg=PA562&lpg=PA562&dq=Opera+tabindex&source=bl&ots=TbzzkHtakR&sig=ACfU3U1fIWCpEwgJrRBLfY6DPdvLFwK12w&hl=ja&sa=X&ved=2ahUKEwjWxO6EsNrzAhXIMN4KHazmBzkQ6AF6BAgXEAM#v=onepage&q=Opera%20tabindex&f=false
@@ -14,10 +14,10 @@ p_Presto && p_listenLoadEvent(
 
         for( ; i < l ; ++i ){
             elm = anchorList[ i ];
-            if( p_DOM_getAttribute( elm, 'tabIndex' ) === '-1' ){
-                p_DOM_removeAttribute( elm, 'tabIndex' );
-            } else if( p_DOM_getAttribute( elm, 'href' ) ){
-                p_DOM_setAttribute( elm, 'tabIndex', '0' );
+            if( p_DOM_getAttribute( elm, 'tabindex', true ) === '-1' ){
+                p_DOM_removeAttribute( elm, 'tabindex', true );
+            } else if( p_DOM_hasAttribute( elm, 'href', true ) && !p_DOM_hasAttribute( elm, 'tabindex', true ) ){
+                p_DOM_setAttribute( elm, 'tabindex', p_IMPLICITLY_FOCUSABLE, true );
             };
         };
 
@@ -26,7 +26,7 @@ p_Presto && p_listenLoadEvent(
         for( i = 0, l = inputList.length; i < l ; ++i ){
             elm = inputList[ i ];
             if( p_DOM_getAttribute( elm, 'type' ) === 'hidden' ){
-                p_DOM_removeAttribute( elm, 'tabIndex' );
+                p_DOM_removeAttribute( elm, 'tabindex', true ); // Remove "-1"
             };
         };
     }

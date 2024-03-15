@@ -16,6 +16,14 @@ p_DOM_removeClassName = DOM_removeClassName;
  * private
  */
 
+function _isAnchor( elm ){
+    return DOM_getTagName( elm ) === 'A';
+};
+
+function _isAnchorWithHref( elm ){
+    return _isAnchor( elm ) && DOM_hasAttribute( elm, 'href', true );
+};
+
 /** 1.
  * @param {Element} elm
  * @return {string}
@@ -27,57 +35,79 @@ function DOM_getTagName( elm ){
 /** 2.
  * @param {Element} elm
  * @param {string} name
+ * @param {boolean=} opt_skipPolyfill
  * @return {string}
  */
-function DOM_getAttribute( elm, name ){
+function DOM_getAttribute( elm, name, opt_skipPolyfill ){
     if( p_Presto < 8 || p_Trident < 5.5 ){
         name = p_toCamelCase( name );
     };
     var value = elm.getAttribute( name );
-    if( p_Presto && name === 'tabIndex' ){
-        return value === '-0' ? '' : value === '' ? '-1' : value;
+    if( !opt_skipPolyfill && p_Presto && name === 'tabindex' ){
+        return value === p_IMPLICITLY_FOCUSABLE ? '' : value === '' ? '-1' : value;
     };
     return value || '';
 };
 
-/** 3.
+/** 3. href + tabindex を set する場合、href => tabindex の順番に set する!
  * @param {Element} elm
  * @param {string} name
  * @param {string|number} value
+ * @param {boolean=} opt_skipPolyfill
  */
-function DOM_setAttribute( elm, name, value ){
-    if( p_Presto && name === 'tab-index' ){ // tabIndex と tab-index で動作を変えている…
-        value === '-1' ? elm.removeAttribute( 'tabIndex' ) : elm.setAttribute( 'tabIndex', value );
-    } else {
-        if( p_Presto < 8 || p_Trident < 5.5 ){
-            name = p_toCamelCase( name );
+function DOM_setAttribute( elm, name, value, opt_skipPolyfill ){
+    if( !opt_skipPolyfill && p_Presto ){
+        if( name === 'tabindex' ){
+            if( value === '-1' ){
+                DOM_removeAttribute( elm, name, true );
+                return;
+            } else if( !value && _isAnchorWithHref( elm ) ){
+                value = p_IMPLICITLY_FOCUSABLE;
+            };
+        } else if( name === 'href' ){
+            DOM_getAttribute( elm, 'tabindex', true ) !== p_IMPLICITLY_FOCUSABLE
+                && _isAnchor( elm )
+                && DOM_setAttribute( elm, 'tabindex', p_IMPLICITLY_FOCUSABLE, true );
         };
-        elm.setAttribute( name, value );
     };
+    if( p_Presto < 8 || p_Trident < 5.5 ){
+        name = p_toCamelCase( name );
+    };
+    elm.setAttribute( name, value );
 };
 
 /** 4.
  * @param {Element} elm
  * @param {string} name
+ * @param {boolean=} opt_skipPolyfill
  */
-function DOM_removeAttribute( elm, name ){
-    if( p_Presto && name === 'tab-index' ){ // tabIndex と tab-index で動作を変えている…
-        elm.getAttribute( 'tabIndex' ) !== '-0' && elm.setAttribute( 'tabIndex', '-0' ); // -1|1 => ''
-    } else {
-        if( p_Presto < 8 || p_Trident < 5.5 ){
-            name = p_toCamelCase( name );
+function DOM_removeAttribute( elm, name, opt_skipPolyfill ){
+    if( !opt_skipPolyfill && p_Presto ){
+        if( name === 'tabindex' ){
+            DOM_getAttribute( elm, name, true ) !== p_IMPLICITLY_FOCUSABLE
+                && _isAnchorWithHref( elm )
+                && DOM_setAttribute( elm, name, p_IMPLICITLY_FOCUSABLE, true ); // -1|1 => ''
+            return;
+        } else if( name === 'href' ){
+            DOM_getAttribute( elm, 'tabindex', true ) === p_IMPLICITLY_FOCUSABLE
+             // && _isAnchor( elm ) // <link href> ではなく <a href tabindex=-0> であることは確定とする
+                && DOM_removeAttribute( elm, 'tabindex', true );
         };
-        elm.removeAttribute( name );
     };
+    if( p_Presto < 8 || p_Trident < 5.5 ){
+        name = p_toCamelCase( name );
+    };
+    elm.removeAttribute( name );
 };
 
 /** 5.
  * @param {Element} elm
  * @param {string} name
+ * @param {boolean=} opt_skipPolyfill
  */
-function DOM_hasAttribute( elm, name ){
-    if( p_Presto && name === 'tab-index' ){
-        return elm.getAttribute( 'tabIndex' ) !== '-0';
+function DOM_hasAttribute( elm, name, opt_skipPolyfill ){
+    if( !opt_skipPolyfill && p_Presto && name === 'tabindex' && _isAnchorWithHref( elm ) ){
+        return DOM_getAttribute( elm, name, true ) !== p_IMPLICITLY_FOCUSABLE;
     };
     if( p_Presto < 8 || p_Trident < 5.5 ){
         name = p_toCamelCase( name );
