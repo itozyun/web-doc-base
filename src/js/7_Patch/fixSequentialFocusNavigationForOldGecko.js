@@ -200,7 +200,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
                     };
                     break;
                 default :
-                    tabIndex = p_DOM_getAttribute( elm, 'tab-index' );
+                    tabIndex = p_DOM_getAttribute( elm, 'tabindex' );
                     if( tabIndex && tabIndex !== '-1' && checkVisibility() ){
                         return true;
                     };
@@ -208,7 +208,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
         };
 
         function checkTabIndex(){
-            return p_DOM_getAttribute( elm, 'tab-index' ) !== '-1';
+            return p_DOM_getAttribute( elm, 'tabindex' ) !== '-1';
         };
         function checkEnabled(){
             return !p_DOM_hasAttribute( elm, 'disabled' );
