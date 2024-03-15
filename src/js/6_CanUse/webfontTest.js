@@ -97,7 +97,7 @@ var webFontTest_CANUSE_WOFF2             = 14  <= p_EdgeHTML || 36 <= p_Chromium
                                            //     > Mozilla/5.0 (Windows NT 6.1; rv:45.9) Gecko/20100101 Goanna/3.0 Firefox/45.9 PaleMoon/27.0.2
                                            //                                                                   ^^^
                                            3   <= p_Goanna ||
-                                           602 <= p_WebKit && p_MacOS && 0 <= ua.conpare( '10.12', p_MacOS ) || // Safari 10+ & Mac OS Sierra(10.12)+
+                                           602 <= p_WebKit && 0 <= ua.conpare( '10.12', p_MacOS ) || // Safari 10+ & Mac OS Sierra(10.12)+
                                            10  <= p_SafariMobile;
 var webFontTest_CANUSE_WOFF              = 6 <= p_Chromium ||
                                            p_Gecko && 0 <= ua.conpare( p_engineVersion, '1.9.2' ) || p_Goanna || // Gecko 1.9.2+
