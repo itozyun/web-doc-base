@@ -77,7 +77,7 @@ p_listenLoadEvent(
         };
 
         function isExternalUrl( url ){
-            return url.indexOf( 'http' ) === 0;
+            return url.indexOf( 'http' ) === 0 || url.indexOf( '//' ) === 0;
         };
     }
 );
