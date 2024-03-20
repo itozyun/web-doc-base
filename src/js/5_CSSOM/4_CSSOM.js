@@ -50,6 +50,11 @@ var CSSRuleInternal;
 /** @type {!Array.<!StyleSheetInternal>} */
 var CSSOM_styleSheetDataList = [];
 
+/**
+ * @private
+ * @param {!CSSStyleSheet|!StyleSheet|!StyleSheetFallback} styleSheet 
+ * @return {!StyleSheetInternal|void}
+ */
 function CSSOM_getDataByStyleSheet( styleSheet ){
     var i = CSSOM_styleSheetDataList.length,
         data;
@@ -62,6 +67,11 @@ function CSSOM_getDataByStyleSheet( styleSheet ){
     };
 };
 
+/**
+ * @private
+ * @param {!Array.<!CSSRuleInternal>} cssRules
+ * @param {number} indexStart
+ */
 function CSSOM_renumber( cssRules, indexStart ){
     var l = cssRules.length,
         i = indexStart, cssRule, offset;
@@ -78,6 +88,8 @@ function CSSOM_renumber( cssRules, indexStart ){
 };
 
 /**
+ * 
+ * @private
  * @return {!Array.<!HTMLStyleElement|!HTMLLinkElement>}
  */
 function CSSOM_getStyleSheetElementList(){
@@ -110,6 +122,7 @@ function CSSOM_getStyleSheetElementList(){
 };
 
 /**
+ * @private
  * @param {!CSSStyleSheet|!StyleSheet} styleSheet
  * @return {!CSSRuleList}
  */
@@ -118,6 +131,7 @@ function CSSOM_getCssRules( styleSheet ){
 };
 
 /**
+ * @private
  * @param {!CSSStyleSheet|!StyleSheet} styleSheet
  * @return {!HTMLStyleElement|!HTMLLinkElement}
  */
@@ -278,7 +292,7 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
             // .insertRule を使うと SyntaxError: DOM Exception 12: An invalid or illegal string was specified.
             //   Windows + WebKit で起きる問題の模様
             //
-            //   1. Webkit 528(Safari 4.0 beta, February 24, 2009) では .insertRule + @import が使える模様。Window 版 WebKit の問題にかもしれない。
+            //   1. Webkit 528(Safari 4.0 beta, February 24, 2009) では .insertRule + @import が使える模様。Window 版 WebKit の問題かもしれない。
             //       -> https://bugs.webkit.org/show_bug.cgi?id=38771 IE9 test failure: "HIERARCHY_REQUEST_ERR raised if @import rule inserted after a regular rule"
             //       -> https://bugs.webkit.org/show_bug.cgi?id=56981 CSSStyleSheet#insertRule doesn't work well with imported stylesheets
             //   2. Iron 27 で問題発生. 28 では正常。ちなみに 28 以降は Blink に分岐する。27 の Webkit は 537 で Safari 6.1 相当。
@@ -300,8 +314,8 @@ function CSSOM_insertRuleToStyleSheet( styleSheet, selectorTextOrAtRule, urlOrSt
                 'style',
                 { type : 'text/css', media : styleSheet.media }
             );
-            elmStyle.innerText = cssText; // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
-            // TODO .textContent HTML 要素の innerText プロパティで要素が生成されうる https://nanto.asablo.jp/blog/2021/12/10/9446902
+            // https://stackoverflow.com/questions/2710284/controlling-css-with-javascript-works-with-mozilla-chrome-however-not-with-ie
+            p_DOM_setText( elmStyle, cssText );
         } else {
             styleSheet.insertRule( cssText, ruleIndex ); // TODO Trident 9 以降のマルチセレクタの扱いは?
         };
@@ -420,7 +434,7 @@ function CSSOM_getRawValueOfRule( styleSheet, ruleIndex, property ){
                 Debug.log( '[CSSOM] CSSOM_getRawValueOfRule : ' + rawRule + ' ' + CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) ).length + ' ' + targetRule._indexStart );
             };
             rawRule = CSSOM_getCssRules( /** @type {!CSSStyleSheet|!StyleSheet} */ (styleSheet) )[ targetRule._indexStart ];
-            ret = rawRule && rawRule.style[ p_toCamelCase( property ) ];
+            ret = rawRule && rawRule.style[ p_toCamelCase( property ) ]; // TODO cssFloat, styleFloat
         } else {
             ret = targetRule.urlOrStyle[ property ];
         };
@@ -518,7 +532,6 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
         cssText = cssText.join( '' );
 
         if( CSSOM_USE_DATAURI_FALLBACK ){
-            cssText = 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText );
             //  Data URIs explained
             //   https://humanwhocodes.com/blog/2009/10/27/data-uris-explained/
             //   Opera 7.2+ – data URIs must not be longer than 4100 characters
@@ -527,7 +540,7 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
 
             // For Opera 8.x. Hack with data URIs.
             attr.rel  = 'stylesheet';
-            attr.href = cssText;
+            attr.href = 'data:text/css;charset=utf-8;base64,' + Base64_btoa( cssText );
             cssText   = undefined;
         };
 
@@ -543,6 +556,7 @@ function CSSOM_getLastIndexOfRule( styleSheet, selectorTextOrAtRule, opt_urlOrSt
         } else {
             // Opera 7.2~7.5 に↓は反映されない．Opera 8 の Data URI 同じ。<- TODO Gecko 0.9.x は?
             //   elmOwner.innerHTML = elmOwner.textContent = elmOwner.text = cssText;
+            // TODO .innerText で再調査
             data._elmOwner = p_DOM_insertElementAfter( elmOwner, tag, attr, cssText ); // TODO replaceElement ?
             p_DOM_remove( elmOwner );
         };
