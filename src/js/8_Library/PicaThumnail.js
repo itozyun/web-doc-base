@@ -115,7 +115,7 @@ function PicaThumbnail_onClickThumbnail( e ){
                 elmImg.src = picaThumbnail.thumbUrl;
                 p_DOM_setClassName( elmA, /** @type {string} */ (picaThumbnail.clazz) );
                 if( elmCap = picaThumbnail.elmCap ){
-                    p_DOM_setCssText( elmCap, picaThumbnail.captionCSS );
+                    p_DOM_setCssText( elmCap, /** @type {string} */ (picaThumbnail.captionCSS) );
                     p_DOM_removeClassName( elmCap, COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE );
                 };
             } else {

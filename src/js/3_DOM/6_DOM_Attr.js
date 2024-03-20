@@ -86,7 +86,7 @@ function DOM_removeAttribute( elm, name, opt_skipPolyfill ){
         if( name === 'tabindex' ){
             DOM_getAttribute( elm, name, true ) !== p_IMPLICITLY_FOCUSABLE
                 && _isAnchorWithHref( elm )
-                && DOM_setAttribute( elm, name, p_IMPLICITLY_FOCUSABLE, true ); // -1|1 => ''
+                && DOM_setAttribute( elm, name, p_IMPLICITLY_FOCUSABLE, true ); // "-1" or "1~" => ''
             return;
         } else if( name === 'href' ){
             DOM_getAttribute( elm, 'tabindex', true ) === p_IMPLICITLY_FOCUSABLE

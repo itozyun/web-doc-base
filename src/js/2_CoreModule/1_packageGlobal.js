@@ -25,13 +25,13 @@ function p_getViewPortHeight(){
                : window.innerHeight; // Trident 11, Gecko 0.6, Opera 7.03, Safari 3.1, Chrome 1
 };
 
-function p_getDocumentWidth(){
+function p_getDocumentWidth(){ // TODO Trident : document.width
     return p_Gecko || p_Goanna || p_Presto
                ? p_html.offsetWidth
                : p_body.scrollWidth;
 };
 
-function p_getDocumentHeight(){
+function p_getDocumentHeight(){ // TODO Trident : document.height
     return p_Gecko || p_Goanna || p_Presto
                ? p_html.offsetHeight // Gecko 0.6(scrollHeight が居ない!), Opera 7.03
                : p_body.scrollHeight; // IE<=5.5 は html 不可, Safari 3.1

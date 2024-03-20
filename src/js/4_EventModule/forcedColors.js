@@ -103,7 +103,7 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
             computedStyle, color, bgColor;
 
         computedStyle = defaultView ?
-            defaultView.getComputedStyle( /** @type {Element} */ (m_elmTest), null ) :
+            defaultView.getComputedStyle( /** @type {!Element} */ (m_elmTest), null ) :
             m_elmTest.currentStyle;
 
         color   = ( computedStyle && computedStyle.color || '' ).split( ' ' ).join( '' );
@@ -143,8 +143,8 @@ if( 89 <= p_Gecko || 89 <= p_Chromium || ( p_Windows && 79 <= p_ChromiumEdge ) |
     p_listenCssAvailabilityChange(
         function( cssAvailability ){
             if( cssAvailability ){
-                p_DOM_setStyle( m_elmTest, 'color', '#123456' );
-                p_DOM_setStyle( m_elmTest, 'backgroundColor', '#123456' );
+                p_DOM_setStyle( /** @type {!Element} */ (m_elmTest), 'color', '#123456' );
+                p_DOM_setStyle( /** @type {!Element} */ (m_elmTest), 'backgroundColor', '#123456' );
     
                 if( Event_forcedColors_WORK_ONCE ){
                     Event_forcedColors_test();

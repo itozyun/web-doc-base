@@ -286,7 +286,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 SidebarFixer_ignoreScrollAfterFocus = undefined;
                 window.scroll( 0, scrollYTo );
                 DEFINE_WEB_DOC_BASE__DEBUG && SidebarFixer_showEvent( '4.1.*' );
-                // window.scroll 内で SidebarFixer_onscroll が起る場合、SidebarFixer_focuedElementYAndHeight は undefined になっている
+                // window.scroll 実行中に SidebarFixer_onscroll が起る場合、SidebarFixer_focuedElementYAndHeight は undefined になっている
                 // このコールバックを終えてから SidebarFixer_onscroll が起きる場合、SidebarFixer_focuedElementYAndHeight を復帰する。
                 return SidebarFixer_focuedElementYAndHeight;
             } else
@@ -433,7 +433,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
         SidebarFixer_updateSidebar( sidebarOffsetY, '-', '-', '-', '-', '-', '-' );
     };
 
-    p_DOM_setCssText( SidebarFixer_elmWrap, cssText );
+    p_DOM_setCssText( SidebarFixer_elmWrap, cssText ); // TODO IE5, Opera 7.0 は setStyle を使用する!
 
     SidebarFixer_sidebarOffsetY = sidebarOffsetY;
 

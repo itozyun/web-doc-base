@@ -8,13 +8,25 @@ p_DOM_getCssText  = DOM_getCssText;
 /** ===========================================================================
  * private
  */
+
+/**
+ * 
+ * @param {!Element} elm 
+ * @param {string} name 
+ * @param {string} value 
+ */
 function DOM_setStyle( elm, name, value ){
     if( p_Presto < 8 || p_Trident < 5.5 ){
         name = p_toCamelCase( name );
     };
-    elm.style[ name ] = value;
+    elm.style[ name ] = value; // TODO cssFloat, styleFloat
 };
 
+/**
+ * IE5, Opera 7.0xで重いです、速度を重視する部分での使用は止めましょう
+ * @param {!Element} elm 
+ * @param {string} cssText
+ */
 function DOM_setCssText( elm, cssText ){
     var _cssText, i = -1, styles, style, propertyName, nameAndValue;
 
@@ -31,7 +43,7 @@ function DOM_setCssText( elm, cssText ){
             styles = cssText.split( ';' );
             while( style = styles[ ++i ] ){
                 propertyName = style.split( ':' )[ 0 ];
-                DOM_setStyle( elm, propertyName, style.substr( propertyName.length + 1 ) ); // IE の filter には : を含むので propertyName[ 1 ] とはしない。例 filter:progid:DXImageTransform.Microsoft.Shadow()
+                DOM_setStyle( elm, propertyName, style.substr( propertyName.length + 1 ) ); // IE の filter には : を含むので style.split( ':' )[ 1 ] とはしない。例 filter:progid:DXImageTransform.Microsoft.Shadow()
             };
         };
     } else if( p_Presto < 7.1 ){
@@ -56,9 +68,14 @@ function DOM_setCssText( elm, cssText ){
     };
 };
 
+/**
+ * 
+ * @param {!Element} elm 
+ * @return {string}
+ */
 function DOM_getCssText( elm ){
     if( p_Trident < 5.5 ){
-        return elm.style.cssText.toLowerCase();
+        return elm.style.cssText.toLowerCase(); // TODO font-family:MSGothic 等も小文字になる! elm.getAttribute( 'style' ) は使える?
     } else {
         return elm.style.cssText;
     };
