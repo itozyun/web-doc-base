@@ -26,7 +26,7 @@ function cssom(){
     // https://davidwalsh.name/add-rules-stylesheets
     // WebKit hack :(
     style.appendChild( document.createTextNode('') );
-    style.innerHTML = style.textContent = style.text = '*{color:green}'
+    style.textContent = style.innerHTML = style.text = '*{color:green}'
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( style );
 };
@@ -58,7 +58,13 @@ function cssomHack2(){
     var div = document.createElement( 'div' );
     div.innerHTML = '<style media="screen" type="text\/css">*{color:pink}<\/style>'
 
-    document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.lastChild );
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( div.firstChild );
+};
+function cssomHack3(){
+    var style = document.createElement( 'style' );
+    style.innerText = '*{color:#09f}';
+
+    document.getElementsByTagName( 'head' )[ 0 ].appendChild( style );
 };
 function cssomTrident(){
     var styleSheet = document.createStyleSheet();
@@ -113,7 +119,7 @@ sheet = sheets[ 0 ];
 if( sheet ){
     if( sheet.rules || sheet.cssRules ){
         if( sheet.addRule || sheet.insertRule ){
-            document.write( '<p>styleSheet オブジェクトが存在します。' );
+            document.write( '<p>@type {CSSStyleSheet|StyleSheet} object exists.' );
         };
     };
 };
@@ -121,10 +127,11 @@ if( sheet ){
 <p><button onclick="cssom();">dynamic CSSOM general</button>,
 <button onclick="cssomLink();">dynamic CSSOM Link</button>,
 <button onclick="cssomDataURI();">dynamic CSSOM DataURI</button>,
-<button onclick="cssomHack();">dynamic CSSOM hack</button>,
-<button onclick="cssomHack2();">dynamic CSSOM hack2</button>
-<button onclick="cssomTrident();">dynamic CSSOM Trident&lt;11</button>
-<button onclick="cssomTrident2();">dynamic CSSOM Trident&lt;11 - 2</button>
+<button onclick="cssomHack();">dynamic CSSOM hack div.lastChild</button>,
+<button onclick="cssomHack2();">dynamic CSSOM hack2 div.firstChild</button>
+<button onclick="cssomHack3();">dynamic CSSOM hack3 style + innerText</button>
+<button onclick="cssomTrident();">dynamic CSSOM Trident&lt;11 createStyleSheet</button>
+<button onclick="cssomTrident2();">dynamic CSSOM Trident&lt;11 - 2 style</button>
 <button onclick="cssomGecko08();">dynamic CSS Gecko&lt;0.8.1</button>
 </body>
 </html>
