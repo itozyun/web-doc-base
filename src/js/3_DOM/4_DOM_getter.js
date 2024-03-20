@@ -54,8 +54,12 @@ function DOM_getChildren( elm ){
 
     while( i ){
         node = nodeList[ --i ];
-        if( elemList || node.nodeType === 1 ){
-            if( !m_isIE4DOM || node.tagName !== 'FONT' ){
+        if( m_isIE4DOM ){
+            if( node.nodeType !== 3 ){
+                result[ ++j ] = node;
+            };
+        } else {
+            if( elemList || node.nodeType === 1 ){
                 result[ ++j ] = node;
             };
         };

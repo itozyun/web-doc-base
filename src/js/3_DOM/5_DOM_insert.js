@@ -11,6 +11,9 @@ p_DOM_remove               = DOM_remove;
 p_DOM_empty                = DOM_empty;
 p_DOM_contains             = DOM_contains;
 p_DOM_getInnerHTML         = DOM_getInnerHTML;
+p_DOM_setInnerHTML         = DOM_setInnerHTML;
+p_DOM_getText              = DOM_getText;
+p_DOM_setText              = DOM_setText;
 
 /** ===========================================================================
  * private
@@ -21,7 +24,7 @@ var DOM_nonStandardElementCreation   = p_Trident < 9;
 var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
 
     /**
-     * @param {number} insertPosition
+     * @param {number} insertPosition 0, 1, 2
      * @param {!Node} targetNode
      * @param {string} tag
      * @param {!Object=} attrs
@@ -45,6 +48,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
                 if( tag === m_FAKE_TEXTNODE_TAGNAME ){
                     elm.nodeType = 3;
                 } else {
+                    elm.nodeType = 1;
                     elm.children[ 0 ].nodeType = 3;
                 };
             };
@@ -80,7 +84,7 @@ var DOM_hasMemoryLeakInOrderOfAppend = DOM_nonStandardElementCreation;
             };
 
             if( !DOM_hasMemoryLeakInOrderOfAppend ){
-                textContent != null && DOM_insertTextNode( elm, textContent ); // TODO USE elm.textContent = m_escapeHTML(textContent)
+                textContent != null && DOM_setTextContentForModern( elm, textContent );
             };
         };
         return elm;
@@ -103,7 +107,7 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
         targetNode.appendChild( elm );
 
         if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_insertTextNode( elm, textContent );
+            textContent != null && DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -124,7 +128,7 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
         DOM_getParentNode( targetNode ).insertBefore( elm, targetNode );
 
         if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_insertTextNode( elm, textContent );
+            textContent != null && DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -150,7 +154,7 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
         };
     
         if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_insertTextNode( elm, textContent );
+            textContent != null && DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -264,13 +268,9 @@ function DOM_contains( parentNode, childNode ){
  * @return {string}
  */
 function DOM_getInnerHTML( elm ){
-    if( m_isIE4DOM ){
-        return elm.innerHTML.split( '<FONT>' ).join( '' ).split( '<\/FONT>' ).join( '' );
-    };
-    return elm.innerHTML.split( '\r\n' ).join( '\n' ).split( '\r' ).join( '\n' );
-
-    var html;
     // https://github.com/googlearchive/code-prettify/blob/e006587b4a893f0281e9dc9a53001c7ed584d4e7/tests/test_base.js#L229
+    var html;
+
     if( p_WebKit <= 419.3 ){ // Safari 2-
         var out = [];
         normalizedHtml( elm, out, -1, true );
@@ -282,21 +282,12 @@ function DOM_getInnerHTML( elm ){
         html = html.split( '\xa0' ).join( '&nbsp;' );
     } else {
         html = elm.innerHTML;
+        if( m_isIE4DOM ){
+            html = html.split( '<' + m_FAKE_TEXTNODE_TAGNAME + '>' ).join( '' ).split( '<\/' + m_FAKE_TEXTNODE_TAGNAME + '>' ).join( '' );
+        };
     };
     return html.split( '\r\n' ).join( '\n' ).split( '\r' ).join( '\n' );
 
-  /**
-    * Escapes HTML special characters to HTML.
-    *
-    * @param {string} str the HTML to escape
-    * @return {string} output escaped HTML
-    */
-    function textToHtml( str ){
-        return str
-            .replace( '&', '&amp;' )
-            .replace( '<', '&lt;' )
-            .replace( '>', '&gt;' );
-    };
   /**
     * but escapes double quotes to be attribute safe.
     *
@@ -304,7 +295,7 @@ function DOM_getInnerHTML( elm ){
     * @return {string} output escaped HTML
     */
     function attribToHtml( str ){
-        return textToHtml( str ).replace( '"', '&quot;' );
+        return m_escapeHTML( str ).replace( '"', '&quot;' );
     };
   /**
     * Traverse node and manually build `innerHTML`.
@@ -348,13 +339,72 @@ function DOM_getInnerHTML( elm ){
                 break;
             case 3 :  // TEXT_NODE
             case 4 :  // CDATA_SECTION_NODE
-                out[ ++i ] = textToHtml( node.nodeValue );
+                out[ ++i ] = m_escapeHTML( node.nodeValue );
                 break;
         };
         return i;
     };
 };
 
-// Text.setTextContent()
-// https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/
-// .innerHTML += '...' -> insertAdjacentHTML
+/** 11.
+ * @param {!Element} elm
+ * @param {string} htmlString
+ */
+function DOM_setInnerHTML( elm, htmlString ){
+    elm.innerHTML = m_escapeHTML( htmlString );
+};
+
+/** 12.
+ * @param {!Element|!Text} node
+ * @return {string}
+ */
+function DOM_getText( node ){
+    if( m_isIE4DOM ){
+        return node.innerHTML;
+    } else {
+        if( node.nodeType === 1 ){
+            node = /** @type {!Element} */ (node);
+            if( p_Presto ){
+                return node.innerText;
+            } else {
+                return node.textContent;
+            };
+        };
+        return /** @type {!Text} */ (node).nodeValue;
+    };
+};
+
+/** 13.
+ * @param {!Element|!Text} node
+ * @param {string|number} text
+ */
+function DOM_setText( node, text ){
+    if( m_isIE4DOM ){
+        node.innerHTML = text;
+    } else {
+        if( node.nodeType === 1 ){
+            DOM_setTextContentForModern( /** @type {!Element} */ (node), text );
+        } else {
+            /** @type {!Text} */ (node).nodeValue = '' + text;
+        };
+    };
+};
+
+/** 
+ * @private
+ * @param {!Element} node
+ * @param {string|number} textContent
+ */
+function DOM_setTextContentForModern( elm, textContent ){
+    if( p_Presto ){
+        // textContent を使うと Opera10.60 がどんどん重くなる
+        // https://uupaa.hatenadiary.org/entry/20100702/1278016659
+        // elm.innerText = textContent;
+        elm.firstChild && DOM_empty( elm );
+        DOM_insertTextNode( elm, textContent );
+    } else {
+        // HTML 要素の innerText プロパティで要素が生成されうる
+        // https://nanto.asablo.jp/blog/2021/12/10/9446902
+        elm.textContent = textContent;
+    };
+};

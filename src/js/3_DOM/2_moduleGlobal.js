@@ -1,6 +1,6 @@
 var m_isIE4DOM = p_Trident < 5;
 
-var m_FAKE_TEXTNODE_TAGNAME = 'font';
+var m_FAKE_TEXTNODE_TAGNAME = 'FONT';
 
 /**
  * @param {string} tagName
