@@ -28,7 +28,7 @@
  * TODO Chrome 2~14 は SVG フォントだけが、英字のみ(?)の合字をサポートする
  *   参考: https://outcloud.blogspot.com/2023/10/webfont.html#ligature
  */
-@mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important") {
+@mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important", $enableLigatures : true) {
     @if( $MAYBE_CAN_USE_WEBFONT ){
         font-family : #{$WEBFONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
         
@@ -39,7 +39,31 @@
             //
             // [webFontTest] .offsetWidth による計測は正しく働いて、描画がされない模様(itozyun)
             text-rendering : auto !important;
+            @if( $enableLigatures ){
+                /* Enable Ligatures ================ */
+                -webkit-font-feature-settings : "liga";
+                   -moz-font-feature-settings : "liga=1";
+                   -moz-font-feature-settings : "liga";
+                    -ms-font-feature-settings : "liga" 1;
+                     -o-font-feature-settings : "liga";
+                        font-feature-settings : "liga";
+                /*
+                -webkit-font-variant-ligatures : discretionary-ligatures;
+                        font-variant-ligatures : discretionary-ligatures; */
+            }
+        }
+    }
+}
 
+@mixin web-font-detector($enableLigatures : true) {
+    @if( $MAYBE_CAN_USE_WEBFONT ){
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+        font-size  : 72px;
+        visibility : hidden;
+
+        @if( $UA_Modern and $enableLigatures ){
             /* Enable Ligatures ================ */
             -webkit-font-feature-settings : "liga";
                -moz-font-feature-settings : "liga=1";
@@ -47,9 +71,6 @@
                 -ms-font-feature-settings : "liga" 1;
                  -o-font-feature-settings : "liga";
                     font-feature-settings : "liga";
-            /*
-            -webkit-font-variant-ligatures : discretionary-ligatures;
-                    font-variant-ligatures : discretionary-ligatures; */
         }
     }
 }

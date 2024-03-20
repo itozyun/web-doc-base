@@ -5,13 +5,14 @@ setTimeout(
         var ligToEmoji    = VectorIconCompat_params[ 0 ],
             elmIcons      = VectorIconCompat_params[ 1 ],
             insertElement = VectorIconCompat_params[ 2 ],
-            isSVGTiny     = VectorIconCompat_params[ 3 ];
+            getText       = VectorIconCompat_params[ 3 ],
+            isSVGTiny     = VectorIconCompat_params[ 4 ];
 
         var i = 0, l = elmIcons.length, elmIcon, content, emoji, path;
 
         for( ; i < l; ++i ){
             elmIcon = elmIcons[ i ];
-            content = elmIcon.textContent || elmIcon.innerText; // innerText は Opera
+            content = getText( elmIcon );
             emoji   = ligToEmoji[ content ] || content;
             path    = VectorIconCompat_PATH_LIST[ emoji ];
             if( path ){

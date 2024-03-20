@@ -51,6 +51,13 @@ function onbeforeprint(){};
  */
 function onafterprint(){};
 
+/** @type {boolean}  */
+document.msHidden;
+/** @type {boolean}  */
+document.mozHidden;
+/** @type {boolean}  */
+document.webkitHidden;
+
 /** @type {function(!Event)} */
 document.onfullscreenchange = function(e){};
 /** @type {function(!Event)} Gecko 10+ */

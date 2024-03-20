@@ -5,25 +5,32 @@
 
 /** ===========================================================================
  * export to packageGlobal
+ * 
+ * TODO detectWebFontOnce
+ * TODO detectWebFontOrLoadDataURI
+ * TODO detectLigatures
  */
 
 /**
  * @param {!function(number):void} onCompleteHandler
  * @param {string} targetWebFontName
+ * @param {string} classNameTestRendering
  * @param {!Array.<number|string>=} opt_fontTypeAndFontCSSURIPairs
- * @param {string=} opt_testIdAndClassName
+ * @param {string=} opt_idAndClassNameTestCSSReady
  * @param {string=} opt_ligatureTestString
  * @param {string=} opt_ligatureTestChar
  * @param {number=} opt_intervalTime
  */
-p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndFontCSSURIPairs, opt_testIdAndClassName, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
+p_webFontTest = function( onCompleteHandler, targetWebFontName, classNameTestRendering, opt_fontTypeAndFontCSSURIPairs, opt_idAndClassNameTestCSSReady, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
     webFontTest_onCompleteHandler  = onCompleteHandler;
     webFontTest_targetWebFontName  = targetWebFontName;
+    webFontTest_classNameTestRendering = classNameTestRendering;
     webFontTest_fontTypeAndFontCSSURIPairs = opt_fontTypeAndFontCSSURIPairs;
-    webFontTest_testIdAndClassName = opt_testIdAndClassName;
+    webFontTest_idAndClassNameTestCSSReady = opt_idAndClassNameTestCSSReady;
     webFontTest_ligatureTestString = opt_ligatureTestString;
     webFontTest_ligatureTestChar   = opt_ligatureTestChar;
-    webFontTest_intervalTime       = opt_intervalTime || webFontTest_INTERVAL_LOADING_WEBFONT;
+    webFontTest_intervalTimeWithLoad = opt_intervalTime || webFontTest_INTERVAL_LOADING_WEBFONT;
+    webFontTest_intervalTime       = webFontTest_intervalTimeWithLoad;
 
     if( DEFINE_WEB_DOC_BASE__DEBUG && 1 <= DEFINE_WEB_DOC_BASE__WEBFONT_DEBUG_MODE ){
         webFontTest_targetWebFontName = webFontTest_PREFIX + webFontTest_targetWebFontName;
@@ -135,11 +142,13 @@ var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKL
 
 var webFontTest_onCompleteHandler,
     webFontTest_targetWebFontName,
+    webFontTest_classNameTestRendering,
     webFontTest_fontTypeAndFontCSSURIPairs,
-    webFontTest_testIdAndClassName,
+    webFontTest_idAndClassNameTestCSSReady,
     webFontTest_ligatureTestString,
     webFontTest_ligatureTestChar,
     webFontTest_intervalTime,
+    webFontTest_intervalTimeWithLoad,
     webFontTest_startTime,
     webFontTest_isMeasuringCSSFonts,
     webFontTest_elmSpan,
@@ -179,8 +188,8 @@ var webFontTest_onCompleteHandler,
         if( webFontTest_elmLink && !result ){
             p_DOM_remove( webFontTest_elmLink );
         };
-        webFontTest_onCompleteHandler = webFontTest_targetWebFontName =
-        webFontTest_fontTypeAndFontCSSURIPairs = webFontTest_testIdAndClassName =
+        webFontTest_onCompleteHandler = webFontTest_targetWebFontName = webFontTest_classNameTestRendering =
+        webFontTest_fontTypeAndFontCSSURIPairs = webFontTest_idAndClassNameTestCSSReady =
         webFontTest_ligatureTestString = webFontTest_ligatureTestChar =
         webFontTest_isMeasuringCSSFonts =
         webFontTest_elmSpan = webFontTest_elmLink =
@@ -236,7 +245,7 @@ var webFontTest_onCompleteHandler,
     function webFontTest_checkTime( ms ){
         // https://github.com/bramstein/fontfaceobserver/blob/master/src/observer.js
         // hidden の場合は時間切れをスキップする。未検証…
-        if( document.hidden || document[ 'msHidden' ] || document[ 'mozHidden' ] || document[ 'webkitHidden' ] ){
+        if( document.hidden || document.msHidden || document.mozHidden || document.webkitHidden ){
             webFontTest_resetTime();
             return false;
         };
@@ -295,20 +304,7 @@ var webFontTest_onCompleteHandler,
             p_Trident < 5 ? 'div' : 'span',
             {
                 'aria-hidden' : 'true',
-                style         : {
-                    position   : 'absolute',
-                    top        : 0,
-                    left       : 0,
-                    visibility : 'hidden',
-                    //we test using 72px font size, we may use any size. I guess larger the better.
-                    fontSize   : '72px',
-                    '-webkit-font-feature-settings' : '"liga"',
-                       '-moz-font-feature-settings' : '"liga=1"',
-                       '-moz-font-feature-settings' : '"liga"',
-                        '-ms-font-feature-settings' : '"liga" 1',
-                         '-o-font-feature-settings' : '"liga"',
-                            'font-feature-settings' : '"liga"'
-                }
+                className     : webFontTest_classNameTestRendering
             },
         //we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
@@ -457,7 +453,7 @@ var webFontTest_onCompleteHandler,
 
                 if( webFontTest_isSupportedFontTypeAtFontCSS( fontType ) ){
                     Debug.log( '[webFontTest] maybe can use! ' + fontCSSURL );
-                    webFontTest_elmLink = p_loadExternalCSS( fontCSSURL, webFontTest_onLoadFontCSSComplete, /** @type {string} */ (webFontTest_testIdAndClassName), webFontTest_elmLink );
+                    webFontTest_elmLink = p_loadExternalCSS( fontCSSURL, webFontTest_onLoadFontCSSComplete, /** @type {string} */ (webFontTest_idAndClassNameTestCSSReady), webFontTest_elmLink, webFontTest_intervalTimeWithLoad );
                     return;
                 };
             };

@@ -3,13 +3,24 @@
  */
 
 /**
+ * 完全に状況を掌握した CSS の遅延読み込みの実現
+ * @see https://outcloud.blogspot.com/2023/07/check-css-ready.html
  * 
  * @param {string} url 
  * @param {!function(boolean)} onCompleteCallback
  * @param {string} testIdAndClassName
  * @param {!HTMLLinkElement=} opt_elmLink 
+ * @param {number=} opt_intervalTime
+ * @return {!HTMLLinkElement|void}
  */
-p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_elmLink ){
+p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_elmLink, opt_intervalTime ){
+    if( ExternalCSSLoader_UNSUPPORTED ){
+        Debug.log( '[CSS Loader] UNSUPPORTED' );
+
+        p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
+        return;
+    };
+
     var elmLink = opt_elmLink || p_DOM_insertElement(
             p_head, 'link',
             {
@@ -19,11 +30,11 @@ p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_e
         ),
         elmTest, widthBeforeCSSLoaded;
 
-    if( ExternalCSSLoader_mesure ){
+    if( !ExternalCSSLoader_GODD ){
         elmTest = /** @type {!HTMLDivElement|undefined} */ (p_DOM_getElementById( testIdAndClassName ));
-        
+
         if( !elmTest ){
-            elmTest = /** @type {!HTMLDivElement|undefined} */ (p_DOM_insertElement(
+            elmTest = /** @type {!HTMLDivElement} */ (p_DOM_insertElement(
                     p_body, 'div',
                     {
                         'aria-hidden' : 'true',
@@ -38,7 +49,8 @@ p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_e
         p_DOM_setAttribute( elmTest, 'id', testIdAndClassName );
     };
 
-    ExternalCSSLoader_main( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded );
+    /** @type {function(!HTMLLinkElement, string, !function(boolean), !HTMLDivElement=, number=, number=)} */
+    (ExternalCSSLoader_main)( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, opt_intervalTime || ExternalCSSLoader_LOAD_ERROR_LIMIT );
     return elmLink;
 };
 
@@ -46,6 +58,8 @@ p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_e
  * private
  */
 var ExternalCSSLoader_INTERVAL_TIME = 999;
+
+var ExternalCSSLoader_LOAD_ERROR_LIMIT = 5000;
 
 var ExternalCSSLoader_UNSUPPORTED                           = p_Gecko && ua.conpare( p_engineVersion, '0.9.1' ) < 0;
 var ExternalCSSLoader_USE_ONLOAD_THEN_MESURE                = 11 <= p_Trident ||
@@ -67,11 +81,11 @@ var ExternalCSSLoader_GODD                                  = !ExternalCSSLoader
                                                               !ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE;
 
 /**
- * @type {function(!HTMLLinkElement, string, !function(boolean), !HTMLDivElement=, number=)}
+ * @type {function(!HTMLLinkElement, string, !function(boolean), !HTMLDivElement=, number=, number=)|undefined}
  */
 var ExternalCSSLoader_main =
     ExternalCSSLoader_GODD ?
-        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, intervalTime ){
             Debug.log( '[CSS Loader] onload + onerror' );
 
             elmLink.onload  = onSuccess;
@@ -88,7 +102,7 @@ var ExternalCSSLoader_main =
             };
         } :
     ExternalCSSLoader_USE_ONLOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, intervalTime ){
             Debug.log( '[CSS Loader] onload + mesure' );
 
             elmLink.onload = onComplete;
@@ -107,7 +121,7 @@ var ExternalCSSLoader_main =
             };
         } :
     ExternalCSSLoader_USE_ONREADYSTATECHANGE_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, intervalTime ){
             Debug.log( '[CSS Loader] onreadystatechange + onerror' );
 
             elmLink.onreadystatechange = function onReadyStateChange(){
@@ -126,9 +140,9 @@ var ExternalCSSLoader_main =
             elmLink.href = url;
         } :
     ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE || ExternalCSSLoader_USE_ADDEVENTLISTENER_LOAD_THEN_MESURE ?
-        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
+        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, intervalTime ){
             var img = new Image,
-                timerID = p_setTimer( /** @type {function(*=)} */ (onComplete), 0, 5000 ), // (A) Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
+                timerID = p_setTimer( /** @type {function(*=)} */ (onComplete), 0, intervalTime ), // (A) Chrome 2 で onComplete に入らなかった為に設置。常に止まる訳ではない
                 limit;
 
             if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
@@ -172,12 +186,7 @@ var ExternalCSSLoader_main =
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
                 };
             };
-        } :
-        function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded ){
-            Debug.log( '[CSS Loader] UNSUPPORTED' );
-
-            p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
-        };
+        } : undefined;
 
 /** @type {function(!HTMLDivElement, number):boolean|boolean} */
 var ExternalCSSLoader_mesure = !ExternalCSSLoader_GODD && !ExternalCSSLoader_UNSUPPORTED &&

@@ -110,7 +110,7 @@ gulp.task( 'btoa', gulp.series(
  *  /assets/css/hc/
  */
 const connect = require( 'gulp-connecting-room' );
-const COMMON_VARS = require( './common.json' );
+const COMMON_VARS = require( './src/common.json' );
 
 const assetsDirToJSDir      = COMMON_VARS.COMMON_ASSET_DIR_TO_JS_DIR,
       assetsDirToWebFontDir = COMMON_VARS.COMMON_ASSET_DIR_TO_WEBFONT_DIR;

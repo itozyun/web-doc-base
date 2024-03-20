@@ -168,7 +168,7 @@ function flush( cb ){
 
             if( buffer ){
                 let cssText = file.contents.toString();
-                cssText = replaceText( cssText, ' "UTF-8";#'   , "{"          , COMMON_VARS.COMMON_WEBFONT__TEST_ID_AND_CLASSNAME );
+                cssText = replaceText( cssText, ' "UTF-8";#'   , "{"          , COMMON_VARS.COMMON_WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY );
                 cssText = replaceText( cssText, "font-family:'", "';"         , COMMON_VARS.COMMON_WEBFONT__FONT_NAME );
                 cssText = replaceText( cssText, "src:url('"    , "') format('", DATA_MINETYPE_CHARSET_BASE64[ extname ] + buffer.toString( 'base64' ) );
                 cssText = replaceText( cssText, ") format('"   , "');"        , WEBFONT_FORMAT[ extname ] );
