@@ -422,6 +422,7 @@ function SidebarFixer_fix( wheelDeltaY, focusedElementY, focusedElementHeight ){
                 break;
             case FOCUSED_ELEMENT_BOTTOM_TO_VISIBLE_CONTAINER_BOTTOM : // 可視部分の地と要素の地を合わせる
                 createCSSTextBySidebarOffsetY( visibleContainerBottom - containerY - ( focusedElementY + focusedElementHeight ) );
+                break;
             case SIDEBAR_OFFSET_Y_IS_CALCURATED :
                 createCSSTextBySidebarOffsetY( sidebarOffsetY );
                 break;
