@@ -14,3 +14,16 @@
         }
     }
 }
+
+@mixin column-span-none() {
+    @include supports(column-span){
+         -moz-column-span : none;
+              column-span : none;
+        -moz-column-count : 1;
+             column-count : 1;
+    }
+    @include supports(-webkit-column-span){
+         -webkit-column-span : none;
+        -webkit-column-count : 1;
+    }
+}

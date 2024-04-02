@@ -7,6 +7,19 @@ blockquote {
     @include media(screen) {
         background : $COLOR_Light_casual_fill;
     }
+    @include media(WSXGA_landscapePrint) {
+        @include supports(column-span){
+            & > * {
+                margin-top : 0;
+            }
+        }
+        @include supports(-webkit-column-span){
+            & > * {
+                margin-top : 0;
+            }
+        }
+    }
+
     blockquote {
         border-color : $COLOR_Light_casual_text;
     }

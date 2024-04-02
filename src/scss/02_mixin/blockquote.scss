@@ -7,7 +7,12 @@
     --------------------------------------------------------------------------------------*/
     @include media(WSXGA_landscapePrint) {
         @include column-span-all;
-        margin : 0 0 1em;
+        @include supports(column-span){
+            margin : 0 0 2em;
+        }
+        @include supports(-webkit-column-span){
+            margin : 0 0 2em;
+        }
     }
 
     /*  Dark theme
@@ -28,6 +33,11 @@
     --------------------------------------------------------------------------------------*/
     @include media(WSXGA_landscapePrint) {
         @include column-span-all;
-        margin : 1em 0 0;
+        @include supports(column-span){
+            margin : 1em 0 0;
+        }
+        @include supports(-webkit-column-span){
+            margin : 1em 0 0;
+        }
     }
 }

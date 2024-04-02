@@ -84,6 +84,15 @@
 
         blockquote {
             @include column-span-all(2);
+            blockquote {
+                @include column-span-none;
+                @include supports(column-span){
+                    margin : 0 0 1em;
+                }
+                @include supports(-webkit-column-span){
+                    margin : 0 0 1em;
+                }
+            }
         }
         @at-root {
             h1, h2,
