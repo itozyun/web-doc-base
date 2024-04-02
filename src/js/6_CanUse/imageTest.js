@@ -20,7 +20,11 @@ p_imageTest = imageTest;
  * Website: http://d.hatena.ne.jp/uupaa/20080413/1208067631
  * License: MIT?
  */
+
 /**
+ * お手軽に画像の読み込みをハンドリングする、今どきな方法
+ *   https://uupaa.hatenablog.com/entry/2013/12/17/171809
+ *
  * uupaa/image.onload.error.md
  *   https://gist.github.com/uupaa/8001551
  */

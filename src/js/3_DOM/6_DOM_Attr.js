@@ -29,7 +29,7 @@ function _isAnchorWithHref( elm ){
  * @return {string}
  */
 function DOM_getTagName( elm ){
-    return elm.tagName.toUpperCase();
+    return elm.tagName.toUpperCase(); // TODO : toUpperCase() は IE4 で不要?
 };
 
 /** 2.

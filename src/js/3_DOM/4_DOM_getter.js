@@ -43,7 +43,7 @@ function DOM_getChildNodes( elm ){
 function DOM_getChildren( elm ){
     // Opera 7.11 で children の列挙に失敗する! 7.03 では発生せず. 2021/10/21
     //   https://t.co/nxPB0wJRJt
-    // Gecko 0.9.2, children 居ない
+    // Gecko <1.9.1, children 居ない
     var elemList = !( 7.03 < p_Presto && p_Presto < 7.2 ) &&
                    elm.children,
         nodeList = elemList ? elemList : elm.childNodes,

@@ -20,7 +20,7 @@ function( callback ){
         var datauri = new Image(),
             // https://twitter.com/itozyun/status/1306835988577099776/
             // IE : インターネットオプションで画像を無効にした場合、イベントが起きない!
-            // Safari4.0 : interval が少ないと失敗するので 999ms
+            // Safari4.0 : interval が少ないと失敗するので 999ms, TODO Web Font + iOS 4 でも似た問題が起きて interval を増やしている. load 直後と interval が関係?
             timerID = p_setTimer( /** @type {function(*=)} */ (onComplete), false, 999 );
 
         datauri.onerror = function(){
