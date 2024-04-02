@@ -6,6 +6,11 @@
         @include media(screen){ // 印刷には border は無しで縦横4px大きく
             border-width : #{$COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
         }
+        /*  Phone-
+        --------------------------------------------------------------------------------------*/
+        @include media(smallphone) {
+            @include box-sizing(border-box);
+        }
     }
     :link &, :visited & {
         blockquote & {

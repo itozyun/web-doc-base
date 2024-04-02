@@ -11,7 +11,8 @@
 }
 
 .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} img,
-.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} { /* onload 時にアニメーションしないように .caption に .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} を付ける。アニメを抑止しないと offsetWidth の取得で誤る。 */
+.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} { /* onload 時に transition してしまうと transition 中の offsetWidth を取得してしまう．
+                                                              これを避けるために、動的に追加する .js-captioned-thumbnail に transition を設定する */
     @if( $UA_Modern ){
         /* clean-css ignore:start */
         -webkit-transition-property : width, margin;
@@ -110,21 +111,15 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
             max-width : 100%;
         }
         @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
-            @if( $CANUSE_MARGIN_AUTO ){
-                margin : 0 auto;
-            } @else {
-                margin : 0;
-            }
-        } @else if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
+            margin : 0;
         } @else {
             margin : 0 0 1em;
         }
         /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         .box & {
+            margin : 0 0 1em;
             @if( $UA_Modern ){
-                float  : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-                margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
+                float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
             }
         }
     }
@@ -134,20 +129,21 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         @if( $UA_IE8 or $UA_Gecko07 ){
             width : 100%;
         }
-        @if( $CANUSE_MARGIN_AUTO ){
-            margin : 0 auto 1em; /* auto は中央配置で transition させるため */
-        } @else {
-            margin : 0 0 1em;
-        }
+        margin : 0 0 1em;
         a {
             margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
         }
+        @if( $UA_Modern or $UA_IE9 ){
+            figcaption {
+                width  : 80%;
+                margin : 0 auto;
+            }
+        }
+        /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         div .box & {
-            @if( $CANUSE_CSS_MEDIA_QUERY ){
-                float : none;
-                @if( $UA_Modern ){
-                    margin : 0 0 1em; /* 中央配置指定を上書き 左から transition */
-                }
+            margin : 0 0 1em;
+            @if( $UA_Modern ){
+                float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
             }
         }
     }
@@ -156,11 +152,9 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
 --------------------------------------------------------------------------------------*/
 @include media(smallphone) {
     @if( $UA_Modern ){ // アニメーション用の指定
-        .box .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} img {
-            margin : 0 auto; /* 左配置指定を上書き 中央から transition */
-        }
-        div .box .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
-            margin : 0 auto 1em; /* 左配置指定を上書き 中央から transition */
+        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} img,
+        .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
+            margin : 0 auto 1em !important; /* 左配置指定を上書き 中央から transition */
         }
     }
 }

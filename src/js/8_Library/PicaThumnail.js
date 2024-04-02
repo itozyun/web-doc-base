@@ -45,7 +45,7 @@ if( !p_cloudRendering ){
                     p_addEventListener( elmImg, 'click'  , PicaThumbnail_onClickThumbnail );
                     p_addEventListener( elmA  , 'click'  , PicaThumbnail_onClickAnchor );
                     // Opera 7.x, 8, 8.5 : elmImg.style.width への setter で float が解除される
-                    // というよりも、CSS transition 用なので対応ブラウザ以外は不要だ思う
+                    // というよりも、CSS transition 用なので対応ブラウザ以外は不要
                     if( PicaThumbnail_canUseCSSTransition ){
                         thumbWidth = ( elmImg.naturalWidth /* + PicaThumbnail_MARGIN_LR */ ) + 'px';
                         p_DOM_setStyle( elmImg, 'width', thumbWidth );
