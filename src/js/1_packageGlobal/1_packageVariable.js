@@ -149,6 +149,13 @@ function p_notUndefined( val ){
 };
 
 function p_toCamelCase( str ){
+    var cache = p_toCamelCase._CACHE || ( p_toCamelCase._CACHE = {} ),
+        cameled = cache[ str ];
+
+    if( cameled ){
+        return cameled;
+    };
+
     var parts = str.split( '-' ),
         i     = parts.length,
         part;
@@ -160,7 +167,7 @@ function p_toCamelCase( str ){
         part = parts[ --i ];
         parts[ i ] = part.charAt( 0 ).toUpperCase() + part.substr( 1 );
     };
-    return parts.join( '' );
+    return cache[ str ] = parts.join( '' );
 };
 
 /**================================================================
