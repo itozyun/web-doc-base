@@ -76,6 +76,10 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
                         return [ m_LIGATURE_TO_CHAR, elmIcons, p_DOM_insertElement, p_DOM_getText, VectorIcon_CANUSE_SVGTINY ];
                     };
                     p_loadExternalScript( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
+                } else {
+                    for( ; i < l; ++i ){
+                        p_DOM_remove( elmIcons[ i ] );
+                    };
                 };
             };
         };
