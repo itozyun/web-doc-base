@@ -22,17 +22,19 @@ var EventTarget_passiveSupported = !p_Trident && !p_Tasman && (new Function(
         '}catch(e){}'
     ))();
 
-/** @const {!Object<string, !Object>} */
-var EventTarget_LISTENERS        = {};
+/** @const {!Object<string, !Array.<!EventTarget|!function(this:EventTarget, !Event):void>>} */
+var EventTarget_ALL_PAIRS        = {};
 var EventTarget_USE_ATTACH       = false; // 5 <= p_Trident && p_Trident < 9,
 var EventTarget_PATCH_OLD_WEBKIT = p_WebKit < 525.13; // Safari <3
 var EventTarget_USE_STANDERD     = !EventTarget_PATCH_OLD_WEBKIT && !p_Tasman && window.addEventListener;
+var EventTarget_busy             = 0;
+var EventTarget_LAZY_REMOVALS    = [];
 var EventTarget_safariPreventDefault;
 
 /** 1.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {!function(!Event)} callback
+ * @param {!function(this:EventTarget, !Event):void} callback
  * @param {!AddEventListenerOptions|boolean=} option
  */
 function EventTraget_addEventListener( eventTarget, type, callback, option ){
@@ -40,35 +42,30 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
         eventTarget.addEventListener( type, callback,
             option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
     } else {
-        var listener      = { eventTarget : eventTarget, callback : callback },
-            eventListners = EventTarget_LISTENERS[ type ],
-            onType        = 'on' + type,
-            i, _listener, tempCallback;
+        var pairs  = EventTarget_ALL_PAIRS[ type ],
+            onType = 'on' + type,
+            i, l, tempCallback;
 
-        if( eventListners ){
-            i = eventListners.length;
-            while( _listener = eventListners[ --i ] ){
-                if( _listener.eventTarget === eventTarget && _listener.callback === callback ){
+        if( pairs ){
+            for( i = 0, l = pairs.length; i < l; i += 2 ){
+                if( pairs[ i ] === eventTarget && pairs[ i + 1 ] === callback ){
                     return;
                 };
             };
-            EventTarget_LISTENERS[ type ].push( listener );
+            pairs.push( eventTarget, callback );
         } else {
-            EventTarget_LISTENERS[ type ] = eventListners = [ listener ];
-
-            if( !EventTarget_USE_ATTACH ){
-                // DOM0 で追加されていた callback を listener に加える
-                // 実際には js-inline の onload コールバックを EventTarget_LISTENERS 配下に移す
-                tempCallback = eventTarget[ onType ];
-                if( typeof tempCallback === 'function' && tempCallback !== EventTraget_dispatchProxy ){
-                    eventListners.unshift( { eventTarget : eventTarget, callback : tempCallback } );
-                };
-            };
+            pairs = EventTarget_ALL_PAIRS[ type ] = [ eventTarget, callback ];
         };
 
         if( EventTarget_USE_ATTACH ){
             eventTarget.attachEvent( onType, EventTraget_dispatchProxy ); // TODO 2度呼ばれた場合?
         } else {
+            // DOM0 で追加されていた callback を listener に加える
+            // 実際には js-inline の onload コールバックを EventTarget_ALL_PAIRS 配下に移す
+            tempCallback = eventTarget[ onType ];
+            if( tempCallback !== EventTraget_dispatchProxy && typeof tempCallback === 'function' ){
+                pairs.unshift( eventTarget, tempCallback );
+            };
             eventTarget[ onType ] = EventTraget_dispatchProxy;
         };
     };
@@ -77,7 +74,7 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
 /** 2.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {function(!Event)} callback
+ * @param {!function(this:EventTarget, !Event):void} callback
  * @param {!AddEventListenerOptions|boolean=} option
  */
 function EventTraget_removeEventListener( eventTarget, type, callback, option ){
@@ -85,30 +82,33 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         eventTarget.removeEventListener( type, callback,
             option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
     } else {
-        var eventListners = EventTarget_LISTENERS[ type ],
-            onType        = 'on' + type,
-            i, listener, skipRemoveListener;
+        var pairs  = EventTarget_ALL_PAIRS[ type ],
+            onType = 'on' + type,
+            i, l, skipRemoveListener;
 
-        if( eventListners ){
-            i = eventListners.length;
-            while( listener = eventListners[ --i ] ){
-                if( listener.eventTarget === eventTarget ){
-                    if( listener.callback === callback ){
-                        eventListners.splice( i, 1 );
-                    } else {
-                        skipRemoveListener = true;
+        if( pairs ){
+            if( EventTarget_busy ){
+                EventTarget_LAZY_REMOVALS.push( eventTarget, type, callback );
+            } else {
+                for( i = 0, l = pairs.length; i < l; i += 2 ){
+                    if( pairs[ i ] === eventTarget ){
+                        if( pairs[ i + 1 ] === callback ){
+                            pairs.splice( i, 1 );
+                        } else {
+                            skipRemoveListener = true;
+                        };
                     };
                 };
-            };
-            if( !skipRemoveListener ){
-                if( EventTarget_USE_ATTACH ){
-                    eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
-                } else {
-                    if( p_Trident ){
-                        eventTarget[ onType ] = p_emptyFunction;
-                        eventTarget[ onType ] = null; // undefined だと error https://twitter.com/itozyun/status/1501010455007207424
+                if( !skipRemoveListener ){
+                    if( EventTarget_USE_ATTACH ){
+                        eventTarget.detachEvent( onType, EventTraget_dispatchProxy );
                     } else {
-                        delete eventTarget[ onType ];
+                        if( p_Trident ){
+                            eventTarget[ onType ] = p_emptyFunction;
+                            eventTarget[ onType ] = null; // undefined だと error https://twitter.com/itozyun/status/1501010455007207424
+                        } else {
+                            delete eventTarget[ onType ];
+                        };
                     };
                 };
             };
@@ -116,27 +116,37 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
     };
 };
 
+/**
+ * @this {!EventTarget} = event.currentTarget
+ * @param {!Event|void} _e
+ */
     function EventTraget_dispatchProxy( _e ){
         var e             = _e || event,
             type          = e.type,
-            eventListners = EventTarget_LISTENERS[ type ],
-            eventTarget   = this,
-            i             = -1,
-            listener, stopPropagation;
+            pairs         = EventTarget_ALL_PAIRS[ type ],
+            onType        = 'on' + type,
+            currentTarget = this,
+            i = 0,
+            l = pairs.length,
+            eventTarget, stopPropagation, callback, lazyRemovals;
+
+        ++EventTarget_busy;
 
         if( p_Trident < 5 ){
-            e = {
-                type   : event.type,
-                target : event.srcElement,
+            e = /** @type {!Event} */ ({
+                type           : event.type,
+                target         : event.srcElement,
+             // currentTarget  : currentTarget,
                 preventDefault : function(){
                     event.returnValue = false;
                 },
                 stopPropagation : function(){
                     event.cancelBubble = true;
                 }
-            };
+            });
         } else if( p_Trident ){
             e.target = e.srcElement;
+            // e.currentTarget = currentTarget;
             e.preventDefault = function(){
                 e.returnValue = false;
             };
@@ -150,23 +160,19 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
             };
         };
 
-        while( listener = eventListners[ ++i ] ){
-            if( listener.eventTarget === eventTarget ){
-                eventTarget.__handleEvent__ = listener.callback;
-                if( p_Trident ){
-                    e.currentTarget = eventTarget;
-                };
-                eventTarget.__handleEvent__( e );
-                if( p_Trident ){
-                    eventTarget.__handleEvent__ = p_emptyFunction;
-                    eventTarget.__handleEvent__ = undefined;
+        for( ; i < l; i += 2 ){
+            eventTarget = pairs[ i ];
+            if( eventTarget === currentTarget ){
+                callback = /** @type {!function(this:EventTarget, !Event):void} */ (pairs[ i + 1 ]);
+                if( p_Trident < 5.5 ){ // .apply の polyfill が低速かつ、プロパティを追加するため、こちらを使用する
+                    eventTarget[ onType ] = callback;
+                    eventTarget[ onType ]( e );
+                    eventTarget[ onType ] = EventTraget_dispatchProxy;
                 } else {
-                    delete eventTarget.__handleEvent__;
+                    callback.call( eventTarget, e );
                 };
-            } else if( p_Presto < 7.2 && eventTarget === document && listener.eventTarget === window ){
-                window.__handleEvent__ = listener.callback;
-                window.__handleEvent__( e );
-                delete window.__handleEvent__;
+            } else if( p_Presto < 7.2 && currentTarget === document && eventTarget === window ){
+                /** @type {!function(this:EventTarget, !Event):void} */ (pairs[ i + 1 ]).call( eventTarget, e );
             };
         };
 
@@ -176,7 +182,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
             return e.returnValue;
         } else if( EventTarget_PATCH_OLD_WEBKIT ){
             if( e.defaultPrevented ){
-                if( e.type === 'click' && e.target.tagName === 'A' ){
+                if( e.type === 'click' && e.target.tagName === 'A' && e.target.getAttribute( 'href' ) ){
                     EventTarget_safariPreventDefault = true;
                 };
             };
@@ -184,6 +190,14 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
                 e._stopPropagation();
             };
             e._stopPropagation = e.stopPropagation = undefined;
+        };
+
+        --EventTarget_busy;
+        if( EventTarget_busy === 0 ){
+            lazyRemovals = EventTarget_LAZY_REMOVALS;
+            while( lazyRemovals.length ){
+                EventTraget_removeEventListener( lazyRemovals.shift(), lazyRemovals.shift(), lazyRemovals.shift() );
+            };
         };
     };
 

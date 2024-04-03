@@ -33,7 +33,7 @@ var Event_onload = function( e ){
 var Event_onloadFallbackForLegacySafari;
 
 /** @type {TypedefCallbackList|undefined} */
-var Event_unloadEventCallbacks = [];
+var Event_unloadEventCallbacks;
 
 // Re: onLoad doesn't work with Safari?
 //   https://web.archive.org/web/20050418235512/http://lists.apple.com/archives/web-dev/2003/Oct/msg00036.html
@@ -66,6 +66,5 @@ if( p_Trident || !p_GeckoLt09 && p_Gecko < 1.8 ){
     p_addEventListener( window, 'unload', function( e ){
         m_dispatchEvent( /** @type {TypedefCallbackList} */ (Event_unloadEventCallbacks), e, true );
     } );
-} else {
-    Event_unloadEventCallbacks = undefined;
+    Event_unloadEventCallbacks = [];
 };

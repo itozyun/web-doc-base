@@ -22,6 +22,11 @@ var _wdb_ontimer;
 var _wdb_onlooptimer;
 
 /**
+ * @type {function()}
+ */
+var _wdb_watchactiveelm;
+
+/**
  * @type {function(!Event=)|undefined}
  */
 function onload(){};
