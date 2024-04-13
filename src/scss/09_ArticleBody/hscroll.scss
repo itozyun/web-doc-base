@@ -39,6 +39,8 @@
 /*  Tablet
 --------------------------------------------------------------------------------------*/
     @include media(tablet) {
+        // https://t.co/dDQoerU1IO
+        //   > Android2.xでoverflow:scrollやautoが効かない（overflow:hiddenとして処理される）
         @if( $CANUSE_OVERFLOW_X_AND_Y ){
             @if( $UA_Modern ){
                 overflow : auto;
@@ -54,6 +56,8 @@
             //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
             // https://caniuse.com/?search=-webkit-overflow-scrolling
             //   iOS 5~12.5
+            // https://t.co/dDQoerU1IO
+            //   iOS5では子要素がタッチ不能になる症状があるようなので...
             -webkit-overflow-scrolling : touch;
 
             &::-webkit-scrollbar {
@@ -74,6 +78,9 @@
                 }
             } @else {
                 white-space : nowrap;
+            }
+            .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} & {
+                white-space : pre-wrap; // nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解決するが、未だ TODO
             }
         }
     }
