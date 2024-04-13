@@ -42,9 +42,6 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
                 if( TabNavigation_currentFocusedElement ){
                     if( TabNavigation_findNextFocusableElement( TabNavigation_currentFocusedElement, true ) ){
                         TabNavigation_currentFocusedElement.blur && TabNavigation_currentFocusedElement.blur();
-                        // TabNavigation_currentFocusedElement = undefined;
-                        // TabNavigation_windowBlurFlag = true;
-                        // Debug.log( e.type + ' cancelable=' + e.cancelable );
                         e.stopPropagation();
                         e.preventDefault();
                         p_setTimer( TabNavigation_setFocus );
@@ -188,7 +185,7 @@ if( p_Gecko && ua.conpare( p_engineVersion, '0.9.5' ) < 0 ){ /// Gecko <= 0.9.4
                     };
                     break;
                 case 2 :
-                    if( p_DOM_getAttribute( elm, 'type' ) !== 'hidden' && checkTabIndex() && checkEnabled() && checkVisibility() ){
+                    if( /* p_DOM_getAttribute( elm, 'type' ) !== 'hidden' && */ checkTabIndex() && checkEnabled() && checkVisibility() ){
                         // Debug.log( 'Next : ' + p_DOM_getTagName( elm ) );
                         return true;
                     };

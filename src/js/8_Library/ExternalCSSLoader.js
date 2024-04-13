@@ -124,8 +124,8 @@ var ExternalCSSLoader_main =
         function( elmLink, url, onCompleteCallback, elmTest, widthBeforeCSSLoaded, intervalTime ){
             Debug.log( '[CSS Loader] onreadystatechange + onerror' );
 
-            elmLink.onreadystatechange = function onReadyStateChange(){
-                if( elmLink.readyState === 'complete' ){
+            elmLink.onreadystatechange = function(){
+                if( elmLink.readyState === 'loaded' || elmLink.readyState === 'complete' ){
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback),
                         /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)(
                             /** @type {!HTMLDivElement} */ (elmTest),
@@ -134,7 +134,7 @@ var ExternalCSSLoader_main =
                     );
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
                     elmTest = undefined;
-                    elmLink.onReadyStateChange = p_emptyFunction;
+                    elmLink.onreadystatechange = p_emptyFunction;
                 };
             };
             elmLink.href = url;
@@ -162,7 +162,7 @@ var ExternalCSSLoader_main =
                     Debug.log( '[CSS Loader] onComplete' );
     
                     limit = p_getTimestamp() + ExternalCSSLoader_INTERVAL_TIME;
-                    p_setTimer( onTimer, 0, 99 );
+                    p_setTimer( loopForMeasurement, 0, 99 );
     
                     if( ExternalCSSLoader_USE_IMAGEONERROR_THEN_MESURE ){
                         img.onerror = null;
@@ -173,17 +173,17 @@ var ExternalCSSLoader_main =
                 };
             };
 
-            function onTimer(){
+            function loopForMeasurement(){
                 if( /** @type {!function(!HTMLDivElement, number):boolean} */ (ExternalCSSLoader_mesure)( /** @type {!HTMLDivElement} */ (elmTest), /** @type {number} */ (widthBeforeCSSLoaded) ) ){
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                    elmTest = undefined;
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), true );
+                    elmTest = onCompleteCallback = undefined;
                 } else if( p_getTimestamp() < limit ){
-                    p_setTimer( onTimer, 0, 99 );
+                    p_setTimer( loopForMeasurement, 0, 99 );
                 } else {
                     !DEFINE_WEB_DOC_BASE__DEBUG && p_DOM_remove( /** @type {!HTMLElement} */ (elmTest) );
-                    elmTest = undefined;
                     p_setTimer( /** @type {function(*=)} */ (onCompleteCallback), false );
+                    elmTest = onCompleteCallback = undefined;
                 };
             };
         } : undefined;

@@ -578,7 +578,7 @@ if( DEFINE_WEB_DOC_BASE__DEBUG && !( p_SafariMobile < 5 ) && !( p_Presto < 8 ) )
 
             if( !SidebarFixer_CANUSE_POSITION_FIXED ){
                 // https://web.archive.org/web/20190125194249/http://css-eblog.com/csstechnique/position-fixed-forie6.html
-                for( ; childNodes.length; ){
+                while( childNodes.length ){
                     elmTestRoot.appendChild( childNodes.shift() );
                 };
                 if( !p_GeckoLt09 ){
