@@ -123,6 +123,11 @@ if( FocusinEvent_USE_FOCUS_CAPTURE_PHASE || FocusinEvent_USE_POLYFILL_FOR_OPERA_
     var FocusinEvent_watchActiveElement = function(){
         FocusinEvent_memoryErrorHandler = window.onerror;
 
+        // https://github.com/jquery/jquery/blob/df1df9503afad78bec3ba5217f9a9efce49fe634/test/data/jquery-3.7.1.js#L776
+        // .focus() results in 'Unspecified error.' IE9, v1.9
+        //    https://bugs.jquery.com/ticket/13393/
+        //  ie8 & ie9 iframe - .filter(":focus") - document.activeElement returns unspecified error.
+        //    https://bugs.jquery.com/ticket/13378/
         // 他の frame にフォーカスが移っている時に activeElement を触るとエラーが起る. ie4 では try~catch が使えない為、onerror を使う
         window.onerror = FocusinEvent_watchActiveElementErrorHandler;
 

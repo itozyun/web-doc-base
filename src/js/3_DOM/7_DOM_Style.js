@@ -71,7 +71,7 @@ function DOM_setCssText( elm, cssText ){
  */
 function DOM_getCssText( elm ){
     if( p_Trident < 5.5 ){
-        // property が大文字のため、分解して変換する. TODO elm.getAttribute( 'style' ) は使える?
+        // property が大文字のため、分解して変換する. 
         var cssText = '';
         var styles = elm.style.cssText.split( ';' );
         var i = -1, style, propertyName;

@@ -18,7 +18,7 @@
  * @return {Element|null}
  */
 function DOM_getParentNode( elm ){
-    return /** @type {Element|null} */ (m_isIE4DOM ? elm.parentElement : elm.parentNode); // TODO IE~7 は null でなく documentFragment を返す?
+    return /** @type {Element|null} */ (m_isIE4DOM ? elm.parentElement : elm.parentNode); // TODO IE~7 は null でなく documentFragment を返す? parentElement は?
 };
 
 /** 2.
@@ -26,7 +26,7 @@ function DOM_getParentNode( elm ){
  * @return {!Array.<!Node>} // TODO NodeList or DOM_getChildNodeArray
  */
 function DOM_getChildNodes( elm ){
-    var childNodes = m_isIE4DOM ? elm.children : elm.childNodes,
+    var childNodes = m_isIE4DOM ? elm.children : elm.childNodes, // TODO https://uupaa.hatenadiary.org/entry/20081005/1223196093
         result     = [],
         i          = childNodes.length;
 
