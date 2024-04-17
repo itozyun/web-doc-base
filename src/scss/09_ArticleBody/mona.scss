@@ -37,6 +37,8 @@
         @include media(screen) {
             background : #bcd;
             color      : #00193d;
+
+            @include link-colors-on-dark-background;
         }
     }
 }

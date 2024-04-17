@@ -146,20 +146,7 @@ a {
         color        : $COLOR_Dark_casual_text;
         border-color : $COLOR_Dark_fill;
     }
-    :link {
-        color : $COLOR_Dark_link;
-    }
-    :visited {
-        color : $COLOR_Dark_text;
-    }
-    :link:hover {
-        color        : $COLOR_Dark_hover;
-        border-color : $COLOR_Dark_hover;
-    }
-    :visited:hover {
-        color        : $COLOR_Dark_visited_hover;
-        border-color : $COLOR_Dark_visited_hover;
-    }
+    @include link-colors-on-dark-background($COLOR_Dark_text);
 }
 
 /*  Print

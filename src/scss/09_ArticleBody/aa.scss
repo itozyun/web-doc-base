@@ -12,10 +12,9 @@
 
         @include media(screen) {
             background : #0A0809;
-        }
+            @include link-colors-on-dark-background;
 
-        &, & code, & var {
-            @include media(screen) {
+            &, & code, & var {
                 color : #00ac06;
             }
         }
