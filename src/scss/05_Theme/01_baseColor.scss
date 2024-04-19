@@ -39,7 +39,7 @@
 --------------------------------------------------------------------------------------*/
 @include media(tablet) {
     @if( $Option_useSideBar ){
-        #lB .lS {
+        #lB .#{$Prefix}lS {
             border-width : 1px 0 0;
             background   : $COLOR_Sidebar_fill;
         }

@@ -43,7 +43,7 @@
                 }
             }
 
-            .lS & a,
+            .#{$Prefix}lS & a,
             #lF & a {
                 @if( $IS_LEGACY == false and $CANUSE_DISPLAY_INLINE_BLOCK ){
                     margin : 0 0 1.3em;

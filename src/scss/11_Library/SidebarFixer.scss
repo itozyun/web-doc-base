@@ -1,13 +1,13 @@
 @if( $Option_mobileOnly == false ){
     @if( $LAYOUT_BY_DISPLAY_TABLE ){
-        #lB .lS {
+        .#{$Prefix}lS {
             overflow : hidden;
         }
     }
     @if( $UA_Modern ){
         @include media(pc) {
             @supports (position:sticky) {
-                .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} #lB .lW, .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} #lB .lS {
+                .#{$Prefix}lW, .#{$Prefix}lS {
                     overflow : visible; // for Chrome 114
                 }
                 .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} ##{$COMMON_ELEMENT_ID_SUB_COLUMN} > * { // :not(##{$COMMON_ELEMENT_ID_SUB_COLUMN}barFixer)
@@ -50,7 +50,7 @@
         ##{$COMMON_ELEMENT_ID_SUB_COLUMN} {
             position : relative;
         }
-        .lW {
+        .#{$Prefix}lW {
             @if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
                 overflow : visible;
                 @if( $UA_Gecko12 ){
@@ -78,12 +78,12 @@
 
     @if( $UA_IE9 ){
         // sidebar が header, footer に重なる問題の解決
-        .lS {
+        .#{$Prefix}lS {
             overflow : hidden;
         }
     }
     @if( $UA_IE7 ){
-        .lW {
+        .#{$Prefix}lW {
             // sidebar が header, footer に重なる問題の解決
             // https://klutche.org/archives/1061/
             // 【CSS】IE7の野郎でoverflow:auto内のposition:relative要素がはみ出るバグの対処法
