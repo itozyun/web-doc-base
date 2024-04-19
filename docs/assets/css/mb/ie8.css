@@ -34,6 +34,8 @@ li {
   margin-bottom: .3em
 }
 .aBodyRoot > :first-child,
+.aBodyRoot > :first-child > :first-child,
+.aBodyRoot > :first-child > a:first-child > img:first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -44,6 +46,17 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover {
+  position: relative
 }
 .Magazine-label,
 .Magazine-main,
@@ -64,17 +77,6 @@ tbody th {
 .lS1,
 .lS2 {
   width: 48.5%
-}
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover {
-  position: relative
 }
 .links,
 .note,
@@ -113,6 +115,7 @@ var {
   font-family: web-doc-base,serif!important
 }
 .links,
+.nojs .hscroll table,
 pre {
   white-space: pre-wrap
 }
@@ -481,7 +484,6 @@ h2:after {
   line-height: 0;
   border-style: solid;
   display: block;
-  position: absolute;
   content: " ";
   height: 0
 }
@@ -555,6 +557,7 @@ h2 {
 }
 h2:after {
   width: 5em;
+  position: absolute;
   left: 0;
   bottom: -2px;
   border-width: 2px 0 0
@@ -572,6 +575,7 @@ tr hr {
 }
 [colspan]:after,
 [colspan]:before {
+  position: absolute;
   bottom: -1px;
   left: .5em;
   right: .5em;
@@ -871,6 +875,13 @@ kbd {
 #lF .lM .mspacer,
 .lS .mspacer {
   margin: .6em .5em
+}
+.js-myIconFont-testRendering {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 72px;
+  visibility: hidden
 }
 @font-face {
   font-family: web-doc-base;
@@ -1632,15 +1643,19 @@ ol.linenums {
   margin-bottom: 0;
   color: #aeaeae
 }
+.box .js-pica-thumbnail__large img,
+.js-pica-thumbnail__large img,
+div .box .js-captioned-thumbnail__large {
+  margin: 0 0 1em
+}
 .js-pica-thumbnail__large img {
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto 1em
+  max-width: 100%
 }
 .js-captioned-thumbnail__large {
   width: 100%;
-  margin: 0 auto 1em
+  margin: 0 0 1em
 }
 .js-captioned-thumbnail__large a {
   margin: 0 0 .5em
@@ -1694,6 +1709,24 @@ ol.linenums {
   .aa {
     background: #0a0809
   }
+  .aa :link,
+  .prettyprint :link,
+  .prettyprint :link * {
+    color: #bbe
+  }
+  .aa :visited,
+  .prettyprint :visited,
+  .prettyprint :visited * {
+    color: #eae
+  }
+  .aa :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  .aa :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
   .aa,
   .aa code,
   .aa var {
@@ -1737,32 +1770,32 @@ ol.linenums {
     background: #333;
     color: #fff
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #65b042
   }
-  code .kwd {
+  .kwd {
     color: #e28964
   }
-  code .com {
+  .com {
     color: #aeaeae;
     font-style: italic
   }
-  code .tag,
-  code .typ {
+  .tag,
+  .typ {
     color: #89bdff
   }
-  code .dec,
-  code .lit {
+  .dec,
+  .lit {
     color: #3387cc
   }
-  code .pun {
+  .pun {
     color: #dbdbdb
   }
-  code .pln {
+  .pln {
     color: #d4d4d4
   }
-  code .atn {
+  .atn {
     color: #bdb76b
   }
 }
@@ -1824,13 +1857,16 @@ ol.linenums {
   table {
     margin: 1em 0
   }
-  code .typ,
+  .kwd,
+  .typ,
   th {
     font-weight: 700
   }
   .LinkList :link,
   .RichLink-sep :link,
+  .kwd,
   .ribbon :link,
+  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -1840,7 +1876,7 @@ ol.linenums {
   .AHead-labels,
   .LinkList :visited,
   .RichLink-sep :visited,
-  code .pln {
+  .pln {
     color: #000
   }
   p {
@@ -2025,30 +2061,25 @@ ol.linenums {
   .prettyprint {
     line-height: 1
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #060
   }
-  code .kwd,
-  code .tag {
-    color: #006;
-    font-weight: 700
-  }
-  code .com {
+  .com {
     color: #600;
     font-style: italic
   }
-  code .atn,
-  code .typ {
+  .atn,
+  .typ {
     color: #404
   }
-  code .lit {
+  .lit {
     color: #044
   }
-  code .pun {
+  .pun {
     color: #440
   }
-  code .dec {
+  .dec {
     color: #003
   }
 }

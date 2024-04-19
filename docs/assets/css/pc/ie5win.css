@@ -88,15 +88,6 @@ th {
 th {
   text-align: left
 }
-#jsMain,
-#jsSide,
-.Cover-img,
-.Magazine-main,
-.Pager i,
-.Search,
-:hover img {
-  position: relative
-}
 *,
 .SearchResult div p *,
 dd p,
@@ -155,6 +146,7 @@ a:active img {
   border-color: #3079ed!important
 }
 :hover img {
+  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -685,6 +677,21 @@ kbd {
 .lS .mspacer {
   margin: .6em .5em
 }
+.js-myIconFont-testRendering {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 72px;
+  visibility: hidden
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Pager i,
+.Search {
+  position: relative
+}
 .ico {
   font-family: web-doc-base,serif!important
 }
@@ -1120,8 +1127,7 @@ blockquote .tl tbody tr th :visited {
 .box dl,
 .box ol,
 .box p,
-.box ul,
-.js-captioned-thumbnail__large {
+.box ul {
   margin: 0 0 1em
 }
 .box ol,
@@ -1342,6 +1348,11 @@ ol.linenums {
   width: 100%;
   margin: 0
 }
+.box .js-pica-thumbnail__large img,
+.js-captioned-thumbnail__large,
+div .box .js-captioned-thumbnail__large {
+  margin: 0 0 1em
+}
 .box .js-pica-thumbnail {
   overflow: hidden;
   display: block
@@ -1424,6 +1435,24 @@ ol.linenums {
   .aa {
     background: #0a0809
   }
+  .aa :link,
+  .prettyprint :link,
+  .prettyprint :link * {
+    color: #bbe
+  }
+  .aa :visited,
+  .prettyprint :visited,
+  .prettyprint :visited * {
+    color: #eae
+  }
+  .aa :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  .aa :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
   .aa,
   .aa code,
   .aa var {
@@ -1469,32 +1498,32 @@ ol.linenums {
     background: #333;
     color: #fff
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #65b042
   }
-  code .kwd {
+  .kwd {
     color: #e28964
   }
-  code .com {
+  .com {
     color: #aeaeae;
     font-style: italic
   }
-  code .tag,
-  code .typ {
+  .tag,
+  .typ {
     color: #89bdff
   }
-  code .dec,
-  code .lit {
+  .dec,
+  .lit {
     color: #3387cc
   }
-  code .pun {
+  .pun {
     color: #dbdbdb
   }
-  code .pln {
+  .pln {
     color: #d4d4d4
   }
-  code .atn {
+  .atn {
     color: #bdb76b
   }
 }
@@ -1520,7 +1549,8 @@ ol.linenums {
   .lS2 {
     width: 48.5%
   }
-  code .typ,
+  .kwd,
+  .typ,
   th {
     font-weight: 700
   }
@@ -1530,7 +1560,9 @@ ol.linenums {
   }
   .LinkList :link,
   .RichLink-sep :link,
+  .kwd,
   .ribbon :link,
+  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -1540,7 +1572,7 @@ ol.linenums {
   .AHead-labels,
   .LinkList :visited,
   .RichLink-sep :visited,
-  code .pln {
+  .pln {
     color: #000
   }
   p {
@@ -1787,30 +1819,25 @@ ol.linenums {
   .prettyprint {
     line-height: 1
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #060
   }
-  code .kwd,
-  code .tag {
-    color: #006;
-    font-weight: 700
-  }
-  code .com {
+  .com {
     color: #600;
     font-style: italic
   }
-  code .atn,
-  code .typ {
+  .atn,
+  .typ {
     color: #404
   }
-  code .lit {
+  .lit {
     color: #044
   }
-  code .pun {
+  .pun {
     color: #440
   }
-  code .dec {
+  .dec {
     color: #003
   }
 }

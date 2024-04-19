@@ -27,6 +27,8 @@ h6 {
   border-color: #777
 }
 .aBodyRoot > :first-child,
+.aBodyRoot > :first-child > :first-child,
+.aBodyRoot > :first-child > a:first-child > img:first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -73,8 +75,8 @@ iframe,
 img {
   max-width: 100%
 }
-#lB .lS,
 .Search .btn,
+.lS,
 .lW {
   overflow: hidden
 }
@@ -462,6 +464,7 @@ tr ol,
 tr ul {
   margin-bottom: .5em
 }
+.js-captioned-thumbnail__large a,
 dd blockquote,
 dd dl,
 dd p,
@@ -1493,16 +1496,12 @@ ol.linenums {
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto 1em
+  margin: 0 0 1em
 }
-.js-captioned-thumbnail__large {
-  margin: 0 auto 1em
-}
-.js-captioned-thumbnail__large a {
-  margin: 0 0 .5em
-}
+.box .js-pica-thumbnail__large img,
+.js-captioned-thumbnail__large,
 div .box .js-captioned-thumbnail__large {
-  float: none
+  margin: 0 0 1em
 }
 @media screen,
 handheld,
@@ -1593,6 +1592,24 @@ projection {
   .aa {
     background: #0a0809
   }
+  .aa :link,
+  .prettyprint :link,
+  .prettyprint :link * {
+    color: #bbe
+  }
+  .aa :visited,
+  .prettyprint :visited,
+  .prettyprint :visited * {
+    color: #eae
+  }
+  .aa :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  .aa :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
   .aa,
   .aa code,
   .aa var {
@@ -1628,32 +1645,32 @@ projection {
     background: #333;
     color: #fff
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #65b042
   }
-  code .kwd {
+  .kwd {
     color: #e28964
   }
-  code .com {
+  .com {
     color: #aeaeae;
     font-style: italic
   }
-  code .tag,
-  code .typ {
+  .tag,
+  .typ {
     color: #89bdff
   }
-  code .dec,
-  code .lit {
+  .dec,
+  .lit {
     color: #3387cc
   }
-  code .pun {
+  .pun {
     color: #dbdbdb
   }
-  code .pln {
+  .pln {
     color: #d4d4d4
   }
-  code .atn {
+  .atn {
     color: #bdb76b
   }
 }
@@ -1855,6 +1872,9 @@ screen and (max-width:953px) {
   }
   .hscroll table {
     white-space: nowrap
+  }
+  .nojs .hscroll table {
+    white-space: pre-wrap
   }
 }
 @media handheld,
@@ -2162,8 +2182,14 @@ screen and (max-width:479px) {
 }
 @media handheld,
 screen and (max-width:359px) {
+  a img {
+    box-sizing: border-box
+  }
   body {
     font-size: .813em
+  }
+  img {
+    margin: 1em auto
   }
   .AHead-labels {
     line-height: 0
@@ -2652,7 +2678,8 @@ screen and (max-width:240px) {
   table {
     margin: 1em 0
   }
-  code .typ,
+  .kwd,
+  .typ,
   th {
     font-weight: 700
   }
@@ -2664,7 +2691,9 @@ screen and (max-width:240px) {
   a {
     color: #666
   }
+  .kwd,
   .ribbon :link,
+  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -2786,7 +2815,7 @@ screen and (max-width:240px) {
     padding: 1em 0
   }
   .AHead-labels,
-  code .pln {
+  .pln {
     color: #000
   }
   .AHead-labels a {
@@ -2850,30 +2879,25 @@ screen and (max-width:240px) {
   .prettyprint {
     line-height: 1
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #060
   }
-  code .kwd,
-  code .tag {
-    color: #006;
-    font-weight: 700
-  }
-  code .com {
+  .com {
     color: #600;
     font-style: italic
   }
-  code .atn,
-  code .typ {
+  .atn,
+  .typ {
     color: #404
   }
-  code .lit {
+  .lit {
     color: #044
   }
-  code .pun {
+  .pun {
     color: #440
   }
-  code .dec {
+  .dec {
     color: #003
   }
 }

@@ -52,6 +52,8 @@ h6 {
   border-color: #777
 }
 .aBodyRoot > :first-child,
+.aBodyRoot > :first-child > :first-child,
+.aBodyRoot > :first-child > a:first-child > img:first-child,
 .tl td > :first-child,
 dl iframe,
 dl img,
@@ -62,6 +64,19 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover,
+sub,
+sup {
+  position: relative
 }
 .Magazine-label,
 .Magazine-main,
@@ -89,19 +104,6 @@ sub,
 sup {
   vertical-align: baseline
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -126,7 +128,11 @@ tbody :hover th {
 }
 .links,
 pre {
-  white-space: -webkit-pre-wrap;
+  white-space: -webkit-pre-wrap
+}
+.links,
+.nojs .hscroll table,
+pre {
   white-space: pre-wrap
 }
 .js-generated-link-in-blockquote,
@@ -419,6 +425,13 @@ textarea {
   border-style: solid;
   border-width: 0
 }
+.ico,
+.js-myIconFont-testRendering {
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga"
+}
 .SearchResult div p,
 body,
 dd p,
@@ -582,7 +595,6 @@ h2:after {
   line-height: 0;
   border-style: solid;
   display: block;
-  position: absolute;
   content: " ";
   height: 0
 }
@@ -677,6 +689,7 @@ h2 {
 }
 h2:after {
   width: 5em;
+  position: absolute;
   left: 0;
   bottom: -2px;
   border-width: 2px 0 0
@@ -695,6 +708,7 @@ tr hr {
 }
 [colspan]:after,
 [colspan]:before {
+  position: absolute;
   bottom: -1px;
   left: .5em;
   right: .5em;
@@ -1005,12 +1019,17 @@ kbd {
 .lS .mspacer {
   margin: .6em .5em
 }
-.ico {
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
+.js-myIconFont-testRendering {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 72px;
+  visibility: hidden;
   -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga"
+}
+.ico {
+  -moz-font-feature-settings: "liga";
   font-feature-settings: "liga"
 }
 .Magazine-date,
@@ -1664,11 +1683,6 @@ pre var {
 .note blockquote ul {
   margin-right: 1em
 }
-.box .js-pica-thumbnail__large img,
-div .box .js-captioned-thumbnail__large {
-  float: none;
-  margin: 0 0 1em
-}
 dl.note dd {
   margin-left: 1em
 }
@@ -1921,13 +1935,25 @@ ol.linenums {
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto 1em
+  margin: 0 0 1em
+}
+.box .js-pica-thumbnail__large img {
+  margin: 0 0 1em;
+  float: none
 }
 .js-captioned-thumbnail__large {
-  margin: 0 auto 1em
+  margin: 0 0 1em
 }
 .js-captioned-thumbnail__large a {
   margin: 0 0 .5em
+}
+.js-captioned-thumbnail__large figcaption {
+  width: 80%;
+  margin: 0 auto
+}
+div .box .js-captioned-thumbnail__large {
+  margin: 0 0 1em;
+  float: none
 }
 @font-face {
   font-family: myIconFont_canEOT;
@@ -2028,6 +2054,24 @@ tv {
   .aa {
     background: #0a0809
   }
+  .aa :link,
+  .prettyprint :link,
+  .prettyprint :link * {
+    color: #bbe
+  }
+  .aa :visited,
+  .prettyprint :visited,
+  .prettyprint :visited * {
+    color: #eae
+  }
+  .aa :link:hover {
+    color: #3079ed;
+    border-color: #3079ed
+  }
+  .aa :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
   .aa,
   .aa code,
   .aa var {
@@ -2066,32 +2110,32 @@ tv {
     background: #333;
     color: #fff
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #65b042
   }
-  code .kwd {
+  .kwd {
     color: #e28964
   }
-  code .com {
+  .com {
     color: #aeaeae;
     font-style: italic
   }
-  code .tag,
-  code .typ {
+  .tag,
+  .typ {
     color: #89bdff
   }
-  code .dec,
-  code .lit {
+  .dec,
+  .lit {
     color: #3387cc
   }
-  code .pun {
+  .pun {
     color: #dbdbdb
   }
-  code .pln {
+  .pln {
     color: #d4d4d4
   }
-  code .atn {
+  .atn {
     color: #bdb76b
   }
 }
@@ -2429,8 +2473,16 @@ only screen and (max-width:479px) {
 @media handheld,
 tv,
 only screen and (max-width:359px) {
+  a img {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
   body {
     font-size: .813em
+  }
+  img {
+    margin: 1em auto
   }
   .AHead-labels {
     line-height: 0
@@ -2481,11 +2533,9 @@ only screen and (max-width:359px) {
     float: none;
     margin: 0 auto 1.143em
   }
-  .box .js-pica-thumbnail__large img {
-    margin: 0 auto
-  }
-  div .box .js-captioned-thumbnail__large {
-    margin: 0 auto 1em
+  .js-captioned-thumbnail__large,
+  .js-pica-thumbnail__large img {
+    margin: 0 auto 1em!important
   }
 }
 @media handheld,
@@ -2708,6 +2758,10 @@ only screen and (max-width:240px) {
   }
   img {
     filter: brightness(85%)
+  }
+  img:focus,
+  img:hover {
+    filter: none
   }
   input:placeholder-shown,
   textarea:placeholder-shown {
@@ -2943,21 +2997,13 @@ only screen and (max-width:240px) {
     break-inside: avoid-column
   }
   .js-generated-link-in-blockquote,
-  blockquote:before {
-    margin: 0 0 1em
-  }
-  .hscroll,
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
-  .note,
-  blockquote:after,
-  blockquote:before,
-  h1,
-  h2,_:in-range,_:not(:root) {
-    -webkit-column-span: all
+  blockquote:before,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
+    margin: 0 0 2em
   }
   .js-generated-cite-in-blockquote,
-  blockquote:after {
+  blockquote:after,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
     margin: 1em 0 0
   }
   .AHead,
@@ -2987,6 +3033,19 @@ only screen and (max-width:240px) {
   .ABody blockquote,_:in-range,_:not(:root) {
     -webkit-column-span: all;
     -webkit-column-count: 2
+  }
+  .ABody blockquote blockquote,_:in-range,_:not(:root) {
+    -webkit-column-span: none;
+    -webkit-column-count: 1;
+    margin: 0 0 1em
+  }
+  .hscroll,
+  .note,
+  blockquote:after,
+  blockquote:before,
+  h1,
+  h2,_:in-range,_:not(:root) {
+    -webkit-column-span: all
   }
   .ABody,
   .ABody blockquote {
@@ -3056,13 +3115,40 @@ only screen and (max-width:240px) {
   .SearchResult-multi div:first-child h3 {
     margin-top: 0
   }
+  
+  blockquote > *,_:in-range,_:not(:root) {
+    margin-top: 0
+  }
   .js-pica-thumbnail__large {
     display: block
   }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
-    .hscroll,
-    .js-generated-cite-in-blockquote,
     .js-generated-link-in-blockquote,
+    blockquote:before {
+      -moz-column-span: all;
+      column-span: all;
+      margin: 0 0 2em
+    }
+    .js-generated-cite-in-blockquote,
+    blockquote:after {
+      -moz-column-span: all;
+      column-span: all;
+      margin: 1em 0 0
+    }
+    .ABody blockquote {
+      -moz-column-span: all;
+      column-span: all;
+      -moz-column-count: 2;
+      column-count: 2
+    }
+    .ABody blockquote blockquote {
+      -moz-column-span: none;
+      column-span: none;
+      -moz-column-count: 1;
+      column-count: 1;
+      margin: 0 0 1em
+    }
+    .hscroll,
     .js-pica-thumbnail__large,
     .note,
     blockquote:after,
@@ -3072,11 +3158,8 @@ only screen and (max-width:240px) {
       -moz-column-span: all;
       column-span: all
     }
-    .ABody blockquote {
-      -moz-column-span: all;
-      column-span: all;
-      -moz-column-count: 2;
-      column-count: 2
+    blockquote > * {
+      margin-top: 0
     }
   }
   .js-pica-thumbnail__large,_:in-range,_:not(:root) {
@@ -3173,7 +3256,8 @@ only screen and (max-width:240px) {
   table {
     margin: 1em 0
   }
-  code .typ,
+  .kwd,
+  .typ,
   th {
     font-weight: 700
   }
@@ -3185,7 +3269,9 @@ only screen and (max-width:240px) {
   a {
     color: #666
   }
+  .kwd,
   .ribbon :link,
+  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -3307,7 +3393,7 @@ only screen and (max-width:240px) {
     padding: 1em 0
   }
   .AHead-labels,
-  code .pln {
+  .pln {
     color: #000
   }
   .AHead-labels i {
@@ -3377,30 +3463,25 @@ only screen and (max-width:240px) {
   .prettyprint {
     line-height: 1
   }
-  code .atv,
-  code .str {
+  .atv,
+  .str {
     color: #060
   }
-  code .kwd,
-  code .tag {
-    color: #006;
-    font-weight: 700
-  }
-  code .com {
+  .com {
     color: #600;
     font-style: italic
   }
-  code .atn,
-  code .typ {
+  .atn,
+  .typ {
     color: #404
   }
-  code .lit {
+  .lit {
     color: #044
   }
-  code .pun {
+  .pun {
     color: #440
   }
-  code .dec {
+  .dec {
     color: #003
   }
   @-moz-document url-prefix() {
@@ -3458,7 +3539,7 @@ only screen and (-ms-high-contrast:active) {
     text-decoration: underline!important
   }
   img {
-    filter: brightness(100%)
+    filter: none
   }
   td,
   tfoot td {
