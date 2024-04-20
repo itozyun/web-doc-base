@@ -7,7 +7,7 @@
     @if( $UA_Modern ){
         @include media(pc) {
             @supports (position:sticky) {
-                .#{$Prefix}lW, .#{$Prefix}lS {
+                .#{$Prefix}lW, .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} .#{$Prefix}lS {
                     overflow : visible; // for Chrome 114
                 }
                 .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} ##{$COMMON_ELEMENT_ID_SUB_COLUMN} > * { // :not(##{$COMMON_ELEMENT_ID_SUB_COLUMN}barFixer)
