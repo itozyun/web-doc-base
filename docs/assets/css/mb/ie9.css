@@ -40,6 +40,8 @@ dl iframe,
 dl img,
 li iframe,
 li img,
+tr .box > p:first-of-type,
+tr .box > p:first-of-type kbd,
 tr iframe,
 tr img,
 tr ol,
@@ -1378,11 +1380,11 @@ blockquote[cite]:after {
 .box > p:first-of-type {
   margin-top: -.225em
 }
+.box > p:first-of-type kbd {
+  margin-top: .225em
+}
 .box > p:first-of-type rt {
   padding-top: 1em
-}
-tr .box > p:first-of-type {
-  margin-top: auto
 }
 tr .box > p:first-of-type rt {
   padding-top: 0
