@@ -106,8 +106,8 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
     if( !m_isIE4DOM ){
         targetNode.appendChild( elm );
 
-        if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_setTextContentForModern( elm, textContent );
+        if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
+            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -127,8 +127,8 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
     if( !m_isIE4DOM ){
         DOM_getParentNode( targetNode ).insertBefore( elm, targetNode );
 
-        if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_setTextContentForModern( elm, textContent );
+        if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
+            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -153,8 +153,8 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
             p_DOM_getParentNode( targetNode ).appendChild( elm );
         };
     
-        if( DOM_hasMemoryLeakInOrderOfAppend ){
-            textContent != null && DOM_setTextContentForModern( elm, textContent );
+        if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
+            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -230,9 +230,9 @@ function DOM_remove( elm ){
         elm.outerHTML = '';
         return;
     } else {
-        if( p_Trident < 5.5 ){
+        if( p_Trident < 5.5 && elm.nodeType === 1 ){
             // https://outcloud.blogspot.com/2016/03/ms-filter.html
-            elm.style.filter = ''; // filter の利いたまま要素の削除を行うと IE5 では不具合に見舞われます。
+            /** @type {!Element} */ (elm).style.filter = ''; // filter の利いたまま要素の削除を行うと IE5 では不具合に見舞われます。
         };
         p_DOM_getParentNode( elm ).removeChild( elm );
         return elm;
