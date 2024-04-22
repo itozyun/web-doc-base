@@ -21,14 +21,26 @@ p_loadExternalCSS = function( url, onCompleteCallback, testIdAndClassName, opt_e
         return;
     };
 
-    var elmLink = opt_elmLink || p_DOM_insertElement(
-            p_head, 'link',
-            {
-                type  : 'text/css',
-                rel   : 'stylesheet'
-            }
-        ),
-        elmTest, widthBeforeCSSLoaded;
+    var elmLink, elmTest, widthBeforeCSSLoaded;
+
+    if( opt_elmLink ){
+        // https://github.com/itozyun/web-doc-base/issues/37
+        if( p_Chromium && opt_elmLink.href ){
+            elmLink = opt_elmLink.cloneNode();
+            opt_elmLink.parentNode.insertBefore( elmLink, opt_elmLink );
+            p_DOM_remove( opt_elmLink );
+        } else {
+            elmLink = opt_elmLink;
+        };
+    } else {
+        elmLink = p_DOM_insertElement(
+                p_head, 'link',
+                {
+                    type  : 'text/css',
+                    rel   : 'stylesheet'
+                }
+            );
+    };
 
     if( !ExternalCSSLoader_GODD ){
         elmTest = /** @type {!HTMLDivElement|undefined} */ (p_DOM_getElementById( testIdAndClassName ));
