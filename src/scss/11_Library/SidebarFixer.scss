@@ -2,6 +2,9 @@
     @if( $LAYOUT_BY_DISPLAY_TABLE ){
         .#{$Prefix}lS {
             overflow : hidden;
+            @include override-float-layout(){
+                overflow : visible; /** for Safari 4.0.5 でサイドバーが消える */
+            }
         }
     }
     @if( $UA_Modern ){
