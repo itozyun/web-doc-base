@@ -71,7 +71,7 @@
             }
         }
 
-        table {
+        tbody {
             @if( $Option_mobileOnly ){
                 @include media(screen) {
                     white-space : nowrap;
