@@ -3,6 +3,17 @@ pre,
 textarea {
   overflow: auto
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+input,
+li .box,
+textarea,
+tr .box {
+  margin: 0
+}
 *,
 [type=submit]:focus {
   border-style: solid
@@ -52,6 +63,7 @@ tbody th {
 .aa {
   font-family: monospace,monospace
 }
+.AMeta,
 blockquote,
 pre {
   padding: 1em
@@ -95,8 +107,7 @@ img {
 .js-generated-link-in-blockquote,
 blockquote:before {
   font-size: .875em;
-  color: #24c;
-  margin: 0
+  color: #24c
 }
 .ADesc,
 .baseColor :link .RichLink-meta,
@@ -110,8 +121,7 @@ blockquote:after {
   display: block;
   font-size: .875em;
   text-align: right;
-  color: #777;
-  margin: 0
+  color: #777
 }
 body,
 input,
@@ -232,18 +242,6 @@ pre {
 }
 del {
   text-decoration: line-through
-}
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
-h2,
-input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
 }
 .links,
 .mspacer,
@@ -443,6 +441,7 @@ textarea {
   padding: .45em .4em
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em;
@@ -453,7 +452,7 @@ h2 {
 }
 hr {
   height: 0;
-  margin: 2em 1em;
+  margin: 2em;
   display: -moz-inline-box
 }
 tr hr {
@@ -482,7 +481,7 @@ thead th {
   border-width: 0 0 1px .1em;
   background: #777;
   color: #f8fbf8;
-  border-color: #ddd #818181
+  border-color: #ddd #8b8b8b
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -556,6 +555,7 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -1232,33 +1232,27 @@ dl.note dd {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta {
-  padding: .5em 0
-}
 .AMeta div {
-  margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
 }
 .Pager {
   color: #f8fbf8;
   display: table;
-  table-layout: fixed
+  table-layout: fixed;
+  padding: 0 1em
 }
 .Pager span {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-next {
-  padding: 1.5em 0 1.5em .5em
-}
 .Pager-top {
   padding: 1.5em .5em;
   text-align: center
 }
+.Pager-next,
 .Pager-prev {
-  padding: 1.5em .5em 1.5em 0;
-  text-align: right
+  padding: 1.5em 0
 }
 .Pager i:after,
 .Pager i:before {
@@ -1286,8 +1280,8 @@ dl.note dd {
   font-size: 1em
 }
 .SocialBtns {
-  padding: 1em 0 .5em;
-  color: #f8fbf8
+  color: #f8fbf8;
+  padding: 1em 1em .5em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1591,6 +1585,7 @@ div .box .js-captioned-thumbnail__large {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 3%
   }

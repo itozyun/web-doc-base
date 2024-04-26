@@ -88,7 +88,7 @@ pre {
   white-space: -moz-pre-wrap
 }
 .links,
-.nojs .hscroll table,
+.nojs .hscroll tbody,
 pre {
   white-space: pre-wrap
 }
@@ -563,7 +563,7 @@ thead th {
   border-width: 0 0 1px .1em;
   background: #777;
   color: #f8fbf8;
-  border-color: #ddd #818181
+  border-color: #ddd #8b8b8b
 }
 .Magazine-date,
 .Magazine-main,
@@ -637,11 +637,15 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.c {
+.Pager-top,
+.SocialBtns,
+.c,
+.caption {
   text-align: center
 }
 .uc {
@@ -1273,7 +1277,6 @@ blockquote[cite]:after {
 }
 .caption {
   display: block;
-  text-align: center;
   font-size: .875em;
   max-width: 100%
 }
@@ -1417,10 +1420,9 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0
+  padding: 1em 3%
 }
 .AMeta div {
-  margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
 }
@@ -1428,22 +1430,19 @@ dl.note dd {
   color: #f8fbf8;
   display: table;
   width: 100%;
-  table-layout: fixed
+  table-layout: fixed;
+  padding: 0 3%
 }
 .Pager span {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-next {
-  padding: 1.5em 0 1.5em .5em
-}
 .Pager-top {
-  padding: 1.5em .5em;
-  text-align: center
+  padding: 1.5em .5em
 }
+.Pager-next,
 .Pager-prev {
-  padding: 1.5em .5em 1.5em 0;
-  text-align: right
+  padding: 1.5em 0
 }
 .Pager i {
   display: inline-block;
@@ -1473,9 +1472,8 @@ dl.note dd {
   border-color: #fff transparent
 }
 .SocialBtns {
-  padding: 1em 0 .5em;
   color: #f8fbf8;
-  text-align: center
+  padding: 1em 3% .5em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1669,7 +1667,7 @@ div .box .js-captioned-thumbnail__large {
     overflow: auto;
     white-space: pre
   }
-  .hscroll table {
+  .hscroll tbody {
     white-space: nowrap
   }
   blockquote .tl tr code,

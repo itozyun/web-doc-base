@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+figure,
+li .box,
+textarea,
+tr .box {
+  margin: 0
+}
 .SocialBtns .hb:active,
 .SocialBtns .hb:focus,
 .SocialBtns .ln:active,
@@ -81,6 +91,7 @@ tbody th,
 td {
   vertical-align: top
 }
+.AMeta,
 blockquote,
 pre {
   padding: 1em
@@ -126,8 +137,7 @@ img {
 .js-generated-link-in-blockquote,
 blockquote:before {
   font-size: .875em;
-  color: #24c;
-  margin: 0
+  color: #24c
 }
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
@@ -141,8 +151,7 @@ blockquote:after {
   display: block;
   font-size: .875em;
   text-align: right;
-  color: #777;
-  margin: 0
+  color: #777
 }
 .BlogArchive th,
 .Magazine-date {
@@ -321,15 +330,6 @@ ins {
 del {
   text-decoration: line-through
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-figure,
-li .box,
-tr .box {
-  margin: 0
-}
 .links,
 .mspacer,
 blockquote,
@@ -356,8 +356,7 @@ tr p {
   line-height: 1.2
 }
 textarea {
-  overflow: auto;
-  margin: 0
+  overflow: auto
 }
 * {
   border-style: solid;
@@ -587,7 +586,7 @@ hr {
   border-width: 0 0 1px;
   height: 1px;
   border-color: transparent;
-  margin: 2em 1em;
+  margin: 2em;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzExMTExMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMTExMTEiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
 }
 tr hr {
@@ -648,7 +647,7 @@ thead th {
   border-width: 0 0 1px .1em;
   background: #777;
   color: #f8fbf8;
-  border-color: #ddd #818181
+  border-color: #ddd #8b8b8b
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -707,6 +706,7 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -1520,11 +1520,7 @@ dl.note dd {
   background: #3079ed!important;
   color: #fff
 }
-.AMeta {
-  padding: .5em 0
-}
 .AMeta div {
-  margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
 }
@@ -1532,22 +1528,21 @@ dl.note dd {
   color: #f8fbf8;
   display: table;
   width: 100%;
-  table-layout: fixed
+  table-layout: fixed;
+  box-sizing: border-box;
+  padding: 0 1em
 }
 .Pager span {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-next {
-  padding: 1.5em 0 1.5em .5em
-}
 .Pager-top {
   padding: 1.5em .5em;
   text-align: center
 }
+.Pager-next,
 .Pager-prev {
-  padding: 1.5em .5em 1.5em 0;
-  text-align: right
+  padding: 1.5em 0
 }
 .Pager i {
   display: inline-block;
@@ -1575,8 +1570,8 @@ dl.note dd {
   border-color: #fff transparent
 }
 .SocialBtns {
-  padding: 1em 0 .5em;
-  color: #f8fbf8
+  color: #f8fbf8;
+  padding: 1em 1em .5em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1886,6 +1881,7 @@ screen and (max-width:953px) {
   h6 {
     margin: 1.5em 1.5% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 3%
   }
@@ -1991,6 +1987,10 @@ screen and (max-width:953px) {
   .lW {
     display: block
   }
+  .Header,
+  .SocialBtns {
+    text-align: center
+  }
   table {
     width: 94%
   }
@@ -2034,10 +2034,6 @@ screen and (max-width:953px) {
     padding: 0 0 .571em;
     font-size: 1em
   }
-  .Header,
-  .SocialBtns {
-    text-align: center
-  }
   #lH .lMi {
     padding-bottom: 0
   }
@@ -2050,11 +2046,17 @@ screen and (max-width:953px) {
     overflow-x: auto;
     overflow-y: hidden
   }
-  .hscroll table {
+  .hscroll tbody {
     white-space: nowrap
   }
-  .nojs .hscroll table {
+  .nojs .hscroll tbody {
     white-space: pre-wrap
+  }
+  .Pager {
+    padding: 0 3%
+  }
+  .SocialBtns {
+    padding: 1em 3% .5em
   }
 }
 @media screen and (max-width:740px) {
@@ -2089,6 +2091,7 @@ screen and (max-width:953px) {
   h6 {
     margin: 1.5em 1% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 2%
   }
@@ -2114,6 +2117,7 @@ screen and (max-width:953px) {
     padding-bottom: 2em
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2220,6 +2224,9 @@ screen and (max-width:953px) {
   .note blockquote ul {
     margin-right: 2%
   }
+  .SocialBtns {
+    padding: 1em 2% .5em
+  }
 }
 @media screen and (max-width:479px) {
   .AHead,
@@ -2254,6 +2261,7 @@ screen and (max-width:953px) {
   h6 {
     margin: 1.5em .5% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 1%
   }
@@ -2284,6 +2292,7 @@ screen and (max-width:953px) {
     margin: 1.5em 1% .7em
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2359,6 +2368,9 @@ screen and (max-width:953px) {
   }
   .Pager-prev i {
     margin-left: .2em
+  }
+  .SocialBtns {
+    padding: 1em 1% .5em
   }
 }
 @media screen and (max-width:359px) {
@@ -2551,6 +2563,7 @@ screen and (max-width:953px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  .AMeta,
   pre {
     padding: 1em 2px
   }
@@ -2631,13 +2644,11 @@ screen and (max-width:953px) {
   thead th {
     background: #999;
     color: #000;
-    border-color: #222 #8d8d8d
+    border-color: #222 #818181
   }
   .BlogArchive,
   .BlogArchive tbody :hover td,
   .Label div,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
@@ -2767,11 +2778,19 @@ screen and (max-width:953px) {
   .note blockquote ul {
     margin-right: 0
   }
+  .Pager {
+    padding: 0 2px;
+    color: #000
+  }
   .Pager i {
     border-color: transparent #999
   }
   .Pager-top i {
     border-color: #999 transparent
+  }
+  .SocialBtns {
+    padding: 1em 2px .5em;
+    color: #000
   }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,

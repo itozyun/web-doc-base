@@ -69,7 +69,7 @@ textarea {
   overflow: auto
 }
 .links,
-.nojs .hscroll table,
+.nojs .hscroll tbody,
 pre {
   white-space: pre-wrap
 }
@@ -573,7 +573,7 @@ thead th {
   border-width: 0 0 1px .1em;
   background: #777;
   color: #f8fbf8;
-  border-color: #ddd #818181
+  border-color: #ddd #8b8b8b
 }
 .Magazine-date,
 .Magazine-main,
@@ -640,11 +640,16 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.c {
+.Pager-top,
+.SocialBtns,
+.c,
+.caption,
+.links [href]:before {
   text-align: center
 }
 .uc {
@@ -1260,7 +1265,6 @@ blockquote[cite]:after {
   content: attr(cite)
 }
 .caption {
-  text-align: center;
   font-size: .875em;
   max-width: 100%
 }
@@ -1340,7 +1344,6 @@ a:focus var {
   position: relative;
   left: -.5em;
   width: 1em;
-  text-align: center;
   font-weight: 700
 }
 .note {
@@ -1403,10 +1406,9 @@ dl.note dd {
   color: #fff
 }
 .AMeta {
-  padding: .5em 0
+  padding: 1em 3%
 }
 .AMeta div {
-  margin: .5em 0;
   padding-left: 1.2em;
   text-indent: -1.2em
 }
@@ -1414,22 +1416,20 @@ dl.note dd {
   color: #f8fbf8;
   display: table;
   width: 100%;
-  table-layout: fixed
+  table-layout: fixed;
+  box-sizing: border-box;
+  padding: 0 3%
 }
 .Pager span {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-next {
-  padding: 1.5em 0 1.5em .5em
-}
 .Pager-top {
-  padding: 1.5em .5em;
-  text-align: center
+  padding: 1.5em .5em
 }
+.Pager-next,
 .Pager-prev {
-  padding: 1.5em .5em 1.5em 0;
-  text-align: right
+  padding: 1.5em 0
 }
 .Pager i {
   display: inline-block;
@@ -1456,9 +1456,8 @@ dl.note dd {
   border-color: #fff transparent
 }
 .SocialBtns {
-  padding: 1em 0 .5em;
   color: #f8fbf8;
-  text-align: center
+  padding: 1em 3% .5em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1645,7 +1644,7 @@ projection {
     overflow: auto;
     white-space: pre
   }
-  .hscroll table {
+  .hscroll tbody {
     white-space: nowrap
   }
   blockquote .tl tr code,
@@ -1723,6 +1722,7 @@ screen and (max-width:740px) {
   h6 {
     margin: 1.5em 1% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 2%
   }
@@ -1748,6 +1748,7 @@ screen and (max-width:740px) {
     padding-bottom: 2em
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -1854,6 +1855,9 @@ screen and (max-width:740px) {
   .note blockquote ul {
     margin-right: 2%
   }
+  .SocialBtns {
+    padding: 1em 2% .5em
+  }
 }
 @media handheld,
 screen and (max-width:479px) {
@@ -1889,6 +1893,7 @@ screen and (max-width:479px) {
   h6 {
     margin: 1.5em .5% .8em
   }
+  .AMeta,
   pre {
     padding: 1em 1%
   }
@@ -1919,6 +1924,7 @@ screen and (max-width:479px) {
     margin: 1.5em 1% .7em
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -1991,6 +1997,9 @@ screen and (max-width:479px) {
   }
   .Pager-prev i {
     margin-left: .2em
+  }
+  .SocialBtns {
+    padding: 1em 1% .5em
   }
 }
 @media handheld,
@@ -2194,6 +2203,7 @@ screen and (max-width:240px) {
   h6 {
     margin: 1.5em 0 .8em
   }
+  .AMeta,
   pre {
     padding: 1em 2px
   }
@@ -2272,13 +2282,11 @@ screen and (max-width:240px) {
   thead th {
     background: #999;
     color: #000;
-    border-color: #222 #8d8d8d
+    border-color: #222 #818181
   }
   .BlogArchive,
   .BlogArchive tbody :hover td,
   .Label div,
-  .Pager,
-  .SocialBtns,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
@@ -2402,11 +2410,19 @@ screen and (max-width:240px) {
   .note blockquote ul {
     margin-right: 0
   }
+  .Pager {
+    padding: 0 2px;
+    color: #000
+  }
   .Pager i {
     border-color: transparent #999
   }
   .Pager-top i {
     border-color: #999 transparent
+  }
+  .SocialBtns {
+    padding: 1em 2px .5em;
+    color: #000
   }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
