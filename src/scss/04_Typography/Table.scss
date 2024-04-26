@@ -178,10 +178,20 @@ table {
         border-color : $casual_fill;
     }
 
+    thead { // For Firefox 124, no effect on Chrome 124
+        @if( $UA_Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    background : mix( $casual_text, $casual_fill, 80% );
+                }
+            }
+        }
+    }
+
     thead th, thead td {
         background : $casual_text;
         color      : $fill;
-        @include table-cell-border-color($casual_fill mix( $casual_text, $casual_fill, 90% ));
+        @include table-cell-border-color($casual_fill mix( $casual_text, $casual_fill, 80% ));
     }
     thead {
         :link,
