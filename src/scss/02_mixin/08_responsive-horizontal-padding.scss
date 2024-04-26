@@ -1,23 +1,33 @@
-@mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom){
-    & {
-        padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
+@mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom, $skipPrintMedia : false){
+    @if( $Option_mobileOnly == false ){
+        & {
+            padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
+        }
     }
 
-    @include media(tablet_print) {
-        & {
-            padding : $paddingTop $TABLET_HORIZONTAL_MARGIN $paddingBottom;
+    @if( $skipPrintMedia ){
+        @include media(tablet) {
+            & {
+                padding : $paddingTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+            }
+        }
+    } @else {
+        @include media(tablet_print) {
+            & {
+                padding : $paddingTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+            }
         }
     }
 
     @include media(phablet) {
         & {
-            padding : $paddingTop $PHABLET_HORIZONTAL_MARGIN $paddingBottom;
+            padding : $paddingTop math.div($PHABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
         }
     }
 
     @include media(phone) {
         & {
-            padding : $paddingTop $PHONE_HORIZONTAL_MARGIN $paddingBottom;
+            padding : $paddingTop math.div($PHONE_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
         }
     }
 

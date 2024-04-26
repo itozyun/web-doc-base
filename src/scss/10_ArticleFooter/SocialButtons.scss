@@ -5,11 +5,10 @@
 --------------------------------------------------------------------------------------*/
 @if( $Option_SocialBtns ){
     .#{$Prefix}SocialBtns {
-        @include article-footer-item;
-
-        padding : 1em 0 0.5em;
         @if( $IS_LTE_WIN_IE7 ){
-            padding : 1em 0;
+            @include article-footer-item(1em, 1em, true);
+        } @else {
+            @include article-footer-item(1em, 0.5em, true);
         }
         color : $COLOR_Light_fill; /* , を消す */
 
@@ -59,12 +58,6 @@
                     border-color : $COLOR_Dark_fill !important;
                 }
             }
-        }
-
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            display : none;
         }
     }
 }

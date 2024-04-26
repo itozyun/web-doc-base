@@ -13,13 +13,16 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
 
 @if( $Option_blog ){
     .#{$Prefix}Pager {
-        @include article-footer-item;
+        @include article-footer-item(0, 0, true, $PAGER_LAYOUT_BY_DISPLAY_TABLE == false);
         color : $COLOR_Light_fill; /* , を消す */
 
         @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
             display      : table;
             width        : 100%;
             table-layout : fixed;
+            @if( $CANUSE_CSS_MEDIA_QUERY ){
+                @include box-sizing(border-box);
+            }
         } @else {
             @include clearfix;
         }
@@ -62,9 +65,21 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
                 zoom : 1;
             }
         }
-        @at-root #{&}-next { padding : 1.5em 0 1.5em 0.5em; }
-        @at-root #{&}-top  { padding : 1.5em 0.5em;        text-align : center; }
-        @at-root #{&}-prev { padding : 1.5em 0.5em 1.5em 0;text-align : right; }
+
+        @at-root #{&}-top  { padding : 1.5em 0.5em; text-align : center; }
+
+        @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+            @at-root #{&}-next { padding : 1.5em 0; }
+            @at-root #{&}-prev { padding : 1.5em 0; text-align : right; }
+        } @else {
+            @if( $Option_mobileOnly ){
+                @at-root #{&}-next { padding : 1.5em 0 1.5em $TABLET_HORIZONTAL_MARGIN; }
+                @at-root #{&}-prev { padding : 1.5em $TABLET_HORIZONTAL_MARGIN 1.5em 0; text-align : right; }
+            } @else {
+                @at-root #{&}-next { padding : 1.5em 0 1.5em 1em; }
+                @at-root #{&}-prev { padding : 1.5em 1em 1.5em 0; text-align : right; }
+            }
+        }
 
         i { /* i を絶対配置にすると、Opera mini で表示されない */
             @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
@@ -248,12 +263,6 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
             @at-root #{&}-top i {
                 border-color : $COLOR_Dark_casual_text transparent;
             }
-        }
-
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            display : none;
         }
     }
 }
