@@ -1,7 +1,7 @@
 @if( $Option_blog2slide ){
     @if( $UA_Modern ){
         ##{$COMMON_BLOG_2_SLIDE__ID_START} button {
-            @include responsive-horizontal-margin(1, 1em, 1em);
+            @include responsive-horizontal-margin(1, 1em, 1em, true);
         }
 
         ##{$COMMON_BLOG_2_SLIDE__ID_ROOT} {

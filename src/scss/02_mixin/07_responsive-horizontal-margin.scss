@@ -1,23 +1,29 @@
-@mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $zeroHorizontalMarginWhenXGA : 0){
+@mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $noPrint : false, $zeroHorizontalMarginWhenXGA : false){
     @if( $Option_mobileOnly == false ){
-        @if 1 < $ratio {
-            & {
-                margin  : $marginTop 0 $marginBottom;
-            }
-        } @else if $zeroHorizontalMarginWhenXGA == 1 {
-            & {
-                margin  : $marginTop 0 $marginBottom;
+        @if( 1 < $ratio or $zeroHorizontalMarginWhenXGA ){
+            @if( $marginTop != 0 or $marginBottom != 0 ){
+                & {
+                    margin  : $marginTop 0 $marginBottom;
+                }
             }
         } @else {
             & {
-                margin  : $marginTop 1em $marginBottom;
+                margin  : $marginTop math.div(1em, $ratio) $marginBottom;
             } 
         }
     }
 
-    @include media(tablet_print) {
-        & {
-            margin : $marginTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+    @if( $noPrint ){
+        @include media(tablet) {
+            & {
+                margin : $marginTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+            }
+        }
+    } @else {
+        @include media(tablet_print) {
+            & {
+                margin : $marginTop math.div($TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+            }
         }
     }
 

@@ -62,7 +62,7 @@ $CaptionedObjectFontSize : 0.875;
     }
 
     p, dl, ul, ol {
-        @include responsive-horizontal-margin(1, 0, 1em, 1);
+        @include responsive-horizontal-margin(1, 0, 1em, false, true);
     }
     ul, ol {
         list-style-position : inside;
