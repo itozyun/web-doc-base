@@ -169,7 +169,7 @@ $SEARCH_BTN_WIDTH : 3em;
        2. ie5.5 以下は、[type=submit] [type=text] 共に border-box。
     */
     .#{$Prefix}btn {
-        white-space : nowrap;
+        white-space : pre;
 
         @if( $UA_Opera8 == false ){
             padding-left  : 0;
