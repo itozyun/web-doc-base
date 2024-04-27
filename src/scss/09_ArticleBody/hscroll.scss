@@ -19,7 +19,10 @@
             margin      : 0 0 0.5em;
             overflow    : auto;
             white-space : pre;
-            @if( $UA_IE5 ){
+            @at-root .hscroll tr pre {
+                @include pre-wrap;
+            }
+            @if( $UA_IE5 and $Option_IT ){
                 code, samp { width : auto; }
             }
         }
@@ -72,15 +75,9 @@
         }
 
         tbody {
-            @if( $Option_mobileOnly ){
-                @include media(screen) {
-                    white-space : nowrap;
-                }
-            } @else {
-                white-space : nowrap;
-            }
+            white-space : pre;
             .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} & {
-                white-space : pre-wrap; // nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解決するが、未だ TODO
+                @include pre-wrap; // nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解決するが、未だ TODO
             }
         }
     }
