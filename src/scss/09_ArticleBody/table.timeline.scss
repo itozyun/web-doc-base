@@ -1,11 +1,23 @@
 .tl {
     border-width : 0;
 
+    thead {
+        @if( $UA_Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    background : none;
+                }
+            }
+        }
+    }
+
     thead,               // for Firefox
     thead td, thead th { // for Chrome
         @if( $UA_Modern ){
             @include media(pc) {
-                position : static; // stop sticky
+                @supports (position:sticky) {
+                    position : static; // stop sticky
+                }
             }
         }
     }
