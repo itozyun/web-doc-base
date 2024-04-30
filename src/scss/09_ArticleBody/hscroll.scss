@@ -77,7 +77,9 @@
         tbody {
             white-space : pre;
             .#{$COMMON_CLASSNAME_NO_JAVASCRIPT} & {
-                @include pre-wrap; // nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解決するが、未だ TODO
+                @if( $UA_Modern ){
+                    @include pre-wrap; // TODO nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解消する
+                }
             }
         }
     }
