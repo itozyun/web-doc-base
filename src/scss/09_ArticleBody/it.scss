@@ -3,6 +3,8 @@
 @if( $Option_IT ){
     code, var, kbd, samp /* , pre, tt */ {
         @extend %CodingFontFamily;
+        // https://github.com/itozyun/web-doc-base/issues/38
+        @include unbreak-box-by-long-text;
     }
 
     kbd {
