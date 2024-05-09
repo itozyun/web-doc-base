@@ -65,7 +65,6 @@
     "COMMON_WEBFONT__FILE_STEM": "web-doc-base",
     "COMMON_WEBFONT__SVG_FONT_ID": "web-doc-base",
     "COMMON_WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY": "js-myIconFont-testCssReady",
-    "COMMON_WEBFONT__CLASSNAME_TEST_RENDERING": "js-myIconFont-testRendering",
 
     "COMMON_VECTOR_ICON__CLASSNAME": "ico",
     "COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME": "VectorIconFallback",

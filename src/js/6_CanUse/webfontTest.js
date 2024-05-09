@@ -14,17 +14,15 @@
 /**
  * @param {!function(number):void} onCompleteHandler
  * @param {string} targetWebFontName
- * @param {string} classNameTestRendering
  * @param {!Array.<number|string>=} opt_fontTypeAndFontCSSURIPairs
  * @param {string=} opt_idAndClassNameTestCSSReady
  * @param {string=} opt_ligatureTestString
  * @param {string=} opt_ligatureTestChar
  * @param {number=} opt_intervalTime
  */
-p_webFontTest = function( onCompleteHandler, targetWebFontName, classNameTestRendering, opt_fontTypeAndFontCSSURIPairs, opt_idAndClassNameTestCSSReady, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
+p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndFontCSSURIPairs, opt_idAndClassNameTestCSSReady, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
     webFontTest_onCompleteHandler  = onCompleteHandler;
     webFontTest_targetWebFontName  = targetWebFontName;
-    webFontTest_classNameTestRendering = classNameTestRendering;
     webFontTest_fontTypeAndFontCSSURIPairs = opt_fontTypeAndFontCSSURIPairs;
     webFontTest_idAndClassNameTestCSSReady = opt_idAndClassNameTestCSSReady;
     webFontTest_ligatureTestString = opt_ligatureTestString;
@@ -142,7 +140,6 @@ var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKL
 
 var webFontTest_onCompleteHandler,
     webFontTest_targetWebFontName,
-    webFontTest_classNameTestRendering,
     webFontTest_fontTypeAndFontCSSURIPairs,
     webFontTest_idAndClassNameTestCSSReady,
     webFontTest_ligatureTestString,
@@ -188,7 +185,7 @@ var webFontTest_onCompleteHandler,
         if( webFontTest_elmLink && !result ){
             p_DOM_remove( webFontTest_elmLink );
         };
-        webFontTest_onCompleteHandler = webFontTest_targetWebFontName = webFontTest_classNameTestRendering =
+        webFontTest_onCompleteHandler = webFontTest_targetWebFontName =
         webFontTest_fontTypeAndFontCSSURIPairs = webFontTest_idAndClassNameTestCSSReady =
         webFontTest_ligatureTestString = webFontTest_ligatureTestChar =
         webFontTest_isMeasuringCSSFonts =
@@ -304,9 +301,26 @@ var webFontTest_onCompleteHandler,
             p_Trident < 5 ? 'div' : 'span',
             {
                 'aria-hidden' : 'true',
-                className     : webFontTest_classNameTestRendering
+                // https://github.com/itozyun/web-doc-base/issues/39
+                // Element measurement fails without inline style in Firefox
+                style         : {
+                    position   : 'absolute',
+                    top        : 0,
+                    left       : 0,
+                    visibility : 'hidden',
+                    // we test using 72px font size, we may use any size. I guess larger the better.
+                    fontSize   : '72px',
+                    '-webkit-font-feature-settings' : '"liga"',
+                    // https://caniuse.com/?search=-moz-font-feature-settings
+                    //   > From Gecko 2.0 (Firefox 4.0) to Gecko 14.0 (Firefox 14.0) included, Gecko supported an older syntax,
+                    //   > slightly different from the modern one
+                       '-moz-font-feature-settings' : p_Gecko < 15 ? '"liga=1"' :  '"liga"',
+                        '-ms-font-feature-settings' : '"liga" 1',
+                         '-o-font-feature-settings' : '"liga"',
+                            'font-feature-settings' : '"liga"'
+                }
             },
-        //we use m or w because these two characters take up the maximum width.
+        // we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
             webFontTest_TEST_STRING
         )
