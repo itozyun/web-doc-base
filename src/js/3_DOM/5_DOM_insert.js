@@ -107,7 +107,7 @@ function DOM_insertElement( targetNode, tag, attrs, textContent, isSVG ){
         targetNode.appendChild( elm );
 
         if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
-            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
+            p_Trident < 8 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -128,7 +128,7 @@ function DOM_insertElementBefore( targetNode, tag, attrs, textContent, isSVG ){
         DOM_getParentNode( targetNode ).insertBefore( elm, targetNode );
 
         if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
-            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
+            p_Trident < 8 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
@@ -154,7 +154,7 @@ function DOM_insertElementAfter( targetNode, tag, attrs, textContent, isSVG ){
         };
     
         if( DOM_hasMemoryLeakInOrderOfAppend && textContent != null ){
-            p_Trident < 5.5 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
+            p_Trident < 8 ? DOM_insertTextNode( elm, textContent ) : DOM_setTextContentForModern( elm, textContent );
         };
     };
     return elm;
