@@ -8,7 +8,6 @@
 
         th {
             @include unbreak-word;
-
         }
 
         @if( $CANUSE_HOVER_PSEUDO_CLASS ){
