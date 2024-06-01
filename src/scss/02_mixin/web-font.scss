@@ -1,4 +1,4 @@
-@mixin web-font-face($WEBFONT_NAME, $WEBFONT_PATH, $WEBFONT_ID, $WEBFONT_TEST_ID_AND_CLASSNAME){
+@mixin web-font-face($WEBFONT_NAME, $WEBFONT_PATH, $WEBFONT_ID, $WEBFONT_TEST_ID_AND_CLASSNAME: ""){
     @if( $MAYBE_CAN_USE_WEBFONT ){
         @font-face {
             font-family : #{$WEBFONT_NAME};
@@ -15,7 +15,7 @@
             }
         }
 
-        @if( $UA_Modern or $UA_IE9 ){
+        @if( $WEBFONT_TEST_ID_AND_CLASSNAME and ( $UA_Modern or $UA_IE9 ) ){
             .#{$WEBFONT_TEST_ID_AND_CLASSNAME} {
                 @include check-css-ready;
             }
