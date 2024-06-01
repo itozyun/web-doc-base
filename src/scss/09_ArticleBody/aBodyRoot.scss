@@ -49,10 +49,12 @@
                 color     : $COLOR_Print_link;
             }
 
-            // content : attr(href) をボックス幅で改行する, Firefox では不要だった
             @at-root {
                 body {
-                    @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
+                    @if( $UA_Modern or $UA_IE9 ){
+                        // content : attr(href) をボックス幅で改行する, Firefox, IE8 では不要だった
+                        @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
+                    }
                 }
                 [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
                 [href*="/blogger.googleusercontent.com/img/"]:after, /* 新しい Blogger 画像の url 置き場 */

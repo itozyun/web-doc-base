@@ -52,10 +52,20 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
     @include unbreak-page-after;
 }
 
-@mixin unbreak-box-with-long-text { // block レベル要素
-    @if( $UA_MacIE5 == false and $IS_OLD_GECKO == false and $IS_OLD_OPERA == false ){
-        word-break : break-all; /* IE 5+ */
+@mixin word-break($enum) {
+    @if( $UA_IE5 or $UA_IE55 or $UA_IE6 or $UA_IE7 or $UA_IE8 or $UA_IE9 or $UA_Modern ){
+        word-break : $enum;
     }
+}
+
+@mixin word-wrap($enum) {
+    @if( $UA_IE55 or $UA_IE6 or $UA_IE7 or $UA_IE8 or $UA_IE9 or $UA_Modern ){
+        word-wrap : $enum;
+    }
+}
+
+@mixin unbreak-box-with-long-text { // block レベル要素
+    @include word-break(break-all); /* IE 5+ */
     @if( $UA_Modern ){
         @-moz-document url-prefix() { /* override Gecko 1.8~ */
             word-wrap : break-word; // for Firefox 3.6, 6
@@ -63,20 +73,19 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
     }
 }
 
-@mixin unbreak-box-by-long-text { // inline レベル要素
-    @if( $UA_IE55 or $UA_IE6 or $UA_IE7 or $UA_IE8 or $UA_IE9 or $UA_Modern ){
-        word-wrap : break-word; /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
-    }
+@mixin unbreak-box-for-inline-element { // inline レベル要素
+    @include word-wrap(break-word); /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+
     @if( $UA_Modern ){
         // overflow-wrap : anywhere;
     }
 }
 
+@mixin reset-unbreak-box-for-inline-element() {
+    @include word-wrap(normal);
+}
+
 @mixin unbreak-word {
-    @if( $UA_MacIE5 == false and $IS_OLD_GECKO == false and $IS_OLD_OPERA == false ){
-        word-break : normal;
-    }
-    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 or $UA_IE6 or $UA_IE55 ){
-        word-wrap  : normal;
-    }
+    @include word-break(normal);
+    @include word-wrap(normal);
 }

@@ -22,8 +22,13 @@
             @at-root .hscroll tr pre {
                 @include pre-wrap;
             }
-            @if( $UA_IE5 and $Option_IT ){
-                code, samp { width : auto; }
+            @if( $Option_IT ){
+                code, var, kbd, samp {
+                    @include reset-unbreak-box-for-inline-element;
+                }
+                @if( $UA_IE5 ){
+                    code, samp { width : auto; }
+                }
             }
         }
     }

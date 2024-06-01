@@ -5,7 +5,7 @@
     margin : 1em;
 
     @if( $IS_LTE_WIN_IE7 ){
-        word-break : break-all;
+        @include unbreak-box-with-long-text;
     }
 
     #lF .lM &, .#{$Prefix}lS & {

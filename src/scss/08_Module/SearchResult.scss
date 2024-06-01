@@ -25,7 +25,7 @@
                 }
             cite {
                 color      : #006621;
-                @include unbreak-box-by-long-text;
+                @include unbreak-box-for-inline-element;
             }
             div p {
                 margin : 0.2em 0 0;
