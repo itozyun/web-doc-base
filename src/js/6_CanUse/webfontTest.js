@@ -382,7 +382,7 @@ var webFontTest_onCompleteHandler,
                     widthList[ i ] = width;
                 };
                 if( width !== webFontTest_defaultWidthList[ i ] ){
-                    if( p_Trident < 8 ){
+                    if( p_Trident < 9 ){
                         result = width ? webFontTest_RESULT_AVAILABLE : webFontTest_RESULT_NONE;
                     } else {
                         result = webFontTest_RESULT_AVAILABLE;
