@@ -14,6 +14,7 @@
 <style>
     html, body { height : 100%; }
 </style>
+<style id="static"></style>
 <script>
 var SRC_DYNAMIC_EXTERNAL_CSS = './css/cssom.css';
 
@@ -65,6 +66,10 @@ function cssomHack3(){
     style.innerText = '*{color:#09f}';
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( style );
+};
+function cssomHack4(){
+    var style = document.getElementById( 'static' );
+    style.innerText = '*{color:#b3b}';
 };
 function cssomTrident(){
     var styleSheet = document.createStyleSheet();
@@ -130,6 +135,7 @@ if( sheet ){
 <button onclick="cssomHack();">dynamic CSSOM hack div.lastChild</button>,
 <button onclick="cssomHack2();">dynamic CSSOM hack2 div.firstChild</button>
 <button onclick="cssomHack3();">dynamic CSSOM hack3 style + innerText</button>
+<button onclick="cssomHack4();">dynamic CSSOM hack4 static style + innerText</button>
 <button onclick="cssomTrident();">dynamic CSSOM Trident&lt;11 createStyleSheet</button>
 <button onclick="cssomTrident2();">dynamic CSSOM Trident&lt;11 - 2 style</button>
 <button onclick="cssomGecko08();">dynamic CSS Gecko&lt;0.8.1</button>
