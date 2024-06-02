@@ -20,9 +20,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
             display      : table;
             width        : 100%;
             table-layout : fixed;
-            @if( $CANUSE_CSS_MEDIA_QUERY ){
-                @include box-sizing(border-box);
-            }
+            @include box-sizing(border-box);
         } @else {
             @include clearfix;
         }
@@ -60,24 +58,24 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
             }
         }
 
-        a { /* この指定が無いとフォーカス時の塗りが汚い */
-            @if( $UA_IE7 or $UA_IE6 ){
+        a { /* この指定が無いとフォーカス時の塗りが汚い, padding-top, bottom が不正(IE5.5) */
+            @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
                 zoom : 1;
             }
         }
 
-        @at-root #{&}-top  { padding : 1.5em 0.5em; text-align : center; }
-
         @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
             @at-root #{&}-next { padding : 1.5em 0; }
+            @at-root #{&}-top  { padding : 1.5em 0.5em; text-align : center; }
             @at-root #{&}-prev { padding : 1.5em 0; text-align : right; }
         } @else {
+            @at-root #{&}-top { a { padding : 1.5em 0.5em; } text-align : center; }
             @if( $Option_mobileOnly ){
-                @at-root #{&}-next { padding : 1.5em 0 1.5em $TABLET_HORIZONTAL_MARGIN; }
-                @at-root #{&}-prev { padding : 1.5em $TABLET_HORIZONTAL_MARGIN 1.5em 0; text-align : right; }
+                @at-root #{&}-next a { padding : 1.5em 0 1.5em $TABLET_HORIZONTAL_MARGIN; }
+                @at-root #{&}-prev { a { padding : 1.5em $TABLET_HORIZONTAL_MARGIN 1.5em 0; } text-align : right; }
             } @else {
-                @at-root #{&}-next { padding : 1.5em 0 1.5em 1em; }
-                @at-root #{&}-prev { padding : 1.5em 1em 1.5em 0; text-align : right; }
+                @at-root #{&}-next a { padding : 1.5em 0 1.5em 1em; }
+                @at-root #{&}-prev { a { padding : 1.5em 1em 1.5em 0; } text-align : right; }
             }
         }
 
@@ -166,7 +164,12 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
             }
         }
         @at-root #{&}-prev i {
-            margin-left  : 0.5em;
+            /* IE7 以下は <!--[if lte IE 7]> <![endif]--><i></i> で対処する…
+             *            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             */
+            @if( $IS_LTE_WIN_IE7 == false ){
+                margin-left : 0.5em;
+            }
             @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
                 &:after {
                     content : " ▶";
@@ -182,9 +185,6 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : $IS_LTE_WIN_IE6; /* ie6 以下では font-siz
                 border-width : 8px 0 8px 11px;
             } @else {
                 border-width : 0.5em 0 0.5em 0.7em;
-            }
-            @if( $IS_LTE_WIN_IE7 ){
-                left : 0.5em;
             }
         }
 

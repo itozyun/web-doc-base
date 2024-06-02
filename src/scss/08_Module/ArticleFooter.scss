@@ -4,6 +4,13 @@
  * .AFoot
  *    articleFooterItem
 --------------------------------------------------------------------------------------*/
+
+.AFoot {
+    @if( $UA_IE6 or $UA_IE55 ){
+        zoom : 1; /* border の描画に必要 */
+    }
+}
+
 @mixin article-footer-item($paddingTop, $paddingBottom, $noprint : false, $skipPadding : false) {
     @if( $skipPadding == false ){
         @include responsive-horizontal-padding(1, $paddingTop, $paddingBottom, $noprint);
@@ -23,7 +30,7 @@
     --------------------------------------------------------------------------------------*/
     @include media(print) {
         @if( $noprint ){
-            display : none;      
+            display : none;
         }
     }
 }

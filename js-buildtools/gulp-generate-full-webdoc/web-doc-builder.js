@@ -921,19 +921,18 @@ ${page.articleBody}
         `<div class="Pager" role="navigation">
             ${ page.prev ?
                 '<span class="Pager-next">' +
-                    '<i></i>' +
-                    createElement( 'a', { href : getRelativePath( page.path, page.prev.path || '' ) }, page.prev.title ) +
+                    createElement( 'a', { href : getRelativePath( page.path, page.prev.path || '' ) }, '<i></i>' + page.prev.title ) +
                 ',</span>' : '<span></span>'
             }
             ${
                 '<span class="Pager-top">' +
-                    '<i></i>' + createElement( 'a', { href : '#top' }, 'トップへ' ) +
+                    createElement( 'a', { href : '#top' }, '<i></i>トップへ' ) +
+                ( page.next ? ',' : '' ) +
                 '</span>'
             }
             ${ page.next ?
-                '<span class="Pager-prev">,' +
-                    createElement( 'a', { href : getRelativePath( page.path, page.next.path || '' ) }, page.next.title ) +
-                    '<i></i>' +
+                '<span class="Pager-prev">' +
+                    createElement( 'a', { href : getRelativePath( page.path, page.next.path || '' ) }, page.next.title + '<!--[if lte IE 7]> <![endif]--><i></i>' ) +
                 '</span>' : '<span></span>'
             }
         </div>` : '';
