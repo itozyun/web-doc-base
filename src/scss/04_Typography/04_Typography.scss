@@ -137,25 +137,12 @@
         margin-bottom : .3em;
     }
 
-    li, dd, dt {
+    li, dl {
         @include unbreak-inside;
     }
 
 /*  Nesting
 --------------------------------------------------------------------------------------*/
-    ul, ol {
-        li &, dl & {
-            padding-left : 1em;
-        }
-    }
-
-    tr blockquote {
-        p, pre {
-            @include responsive-horizontal-margin(1, 1em, 1em);
-        }
-    }
-
-    // (li|dd) > tr > (ol|ul) が来ることは無いので tr が先で tr > (li|dd) > (ol|ul) の場合にスタイルを上書きする
     tr {
         ol, ul {
             margin-top    : 0;
@@ -164,21 +151,29 @@
         p, pre, blockquote, dl {
             margin : 0 0 .5em;
         }
-        blockquote p {
-            margin : .5em 0;
+        blockquote {
+            pre {
+                margin : 1em 0;
+            }
+            p {
+                margin : .5em 0;
+            }
         }
     }
 
-    li, dd {
+    li, dl {
         ol, ul {
+            padding-left  : 1em;
             margin-top    : 0;
             margin-bottom : 0;
         }
         p, pre, blockquote, dl, table {
             margin : 0 0 .5em;
         }
-        blockquote p {
-            margin : .5em 0;
+        blockquote {
+            p {
+                margin : .5em 0;
+            }
         }
     }
 
@@ -195,7 +190,7 @@
     dt {
         margin-top : #{$PARAGRAPH_LINE_HEIGHT_PHONE_EM - $BASE_LINE_HEIGHT_EM};
     }
-    dd, li {
+    li, dd {
         margin-bottom : .2em;
     }
 }

@@ -1,16 +1,16 @@
-@mixin column-span-all($column-count:1) {
+@mixin column-span-all($child-column-count:1) {
     @include supports(column-span){
         -moz-column-span : all;
              column-span : all;
-        @if($column-count == 2){
-            -moz-column-count : 2;
-                 column-count : 2;
+        @if($child-column-count != 1){
+            -moz-column-count : $child-column-count;
+                 column-count : $child-column-count;
         }
     }
     @include supports(-webkit-column-span){
         -webkit-column-span : all;
-        @if($column-count == 2){
-            -webkit-column-count : 2;
+        @if($child-column-count != 1){
+            -webkit-column-count : $child-column-count;
         }
     }
 }

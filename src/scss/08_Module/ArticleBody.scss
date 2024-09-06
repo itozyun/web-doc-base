@@ -41,11 +41,11 @@
     --------------------------------------------------------------------------------------*/
     h2 {
         @include responsive-horizontal-margin(2, 2em, 1em);
-        font-size      : 1.5em;
-        border-width   : 0.2em 0 0;
-        padding        : 1.4em 0 .6em;
-        border-color   : $COLOR_ACCENT;
-        color          : $COLOR_ACCENT;
+        font-size    : 1.5em;
+        border-width : 0.2em 0 0;
+        padding      : 1.4em 0 .6em;
+        border-color : $COLOR_ACCENT;
+        color        : $COLOR_ACCENT;
         @if( $UA_IE5 ){
             height : 1px; // <= 線が消えるのを防ぐ
         } @else if( $UA_IE55 or $UA_IE6 ){
@@ -69,10 +69,10 @@
     --------------------------------------------------------------------------------------*/
     h3 {
         @include responsive-horizontal-margin(2, 2.4em, 1.2em);
-        font-weight    : bold;
-        font-size      : 1.25em;
-        border-width   : 0.1em 0 0;
-        padding        : 1.4em 0 .6em;
+        font-weight  : bold;
+        font-size    : 1.25em;
+        border-width : 0.1em 0 0;
+        padding      : 1.4em 0 .6em;
     }
 
     /*  WSXGA, print
