@@ -42,12 +42,10 @@
                 margin-bottom : -1px;
             }
 
-        #lH
-        /* //_{@ie55 */
-        , #lB
-        /* //_}@ie55 */
-        {
-            width : 100%;
+        #lH { width : 100%; }
+
+        @if( $UA_IE55 ){
+            #lB { width : 100%; }
         }
     }
 

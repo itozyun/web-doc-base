@@ -20,6 +20,9 @@
     @if type-of($fg) == 'list' {
         $fg-boxflex : nth($fg, 1);
     }
+    // https://wemo.tech/tips/2345
+    // -webkit-box-flex:1;
+    // -ms-flex:1;
     /* clean-css ignore:start */
     -webkit-box  : $fg-boxflex;
     -moz-box     : $fg-boxflex;

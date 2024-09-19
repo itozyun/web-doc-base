@@ -1,7 +1,7 @@
 
 //  Unnecessary spaces in IE8, https://github.com/itozyun/web-doc-base/issues/40
 @if( $UA_IE8 ){
-    a[id="top"] {
+    #top {
         display  : block;
         overflow : hidden;
     }

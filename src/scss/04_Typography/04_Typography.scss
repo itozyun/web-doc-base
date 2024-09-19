@@ -98,24 +98,16 @@
             }
 
             @include media(tablet_print) {
-                & {
-                    max-width : #{100% - $TABLET_HORIZONTAL_MARGIN * 2};
-                }
+                max-width : #{100% - $TABLET_HORIZONTAL_MARGIN * 2};
             }
             @include media(phablet) {
-                & {
-                    max-width : #{100% - $PHABLET_HORIZONTAL_MARGIN * 2};
-                }
+                max-width : #{100% - $PHABLET_HORIZONTAL_MARGIN * 2};
             }
             @include media(phone) {
-                & {
-                    max-width : #{100% - $PHONE_HORIZONTAL_MARGIN * 2};
-                }
+                max-width : #{100% - $PHONE_HORIZONTAL_MARGIN * 2};
             }
             @include media(watch) {
-                & {
-                    max-width : 100%;
-                }
+                max-width : 100%;
             }
         }
     }
