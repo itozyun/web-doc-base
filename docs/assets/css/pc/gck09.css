@@ -55,6 +55,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 [type=submit],
 tbody th {
   background: #ddd
@@ -102,6 +106,11 @@ pre {
 .tl thead th a:focus,
 a:focus {
   background-color: #f1f4f1!important
+}
+.Pager,
+input,
+textarea {
+  -moz-box-sizing: border-box
 }
 .Cover img,
 .caption,
@@ -242,9 +251,6 @@ strong,
 var {
   font-style: normal
 }
-pre {
-  margin: 1em 0
-}
 del {
   text-decoration: line-through
 }
@@ -257,8 +263,6 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em
 }
@@ -409,23 +413,16 @@ ul {
 li {
   margin-top: .3em
 }
-.links a,
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
 .js-captioned-thumbnail__large a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -437,21 +434,21 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
 input,
 textarea {
-  -moz-box-sizing: border-box;
   border-width: .1em;
   padding: .45em .4em
 }
@@ -569,7 +566,6 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -1011,7 +1007,7 @@ kbd {
   right: 0;
   width: 3em;
   height: 1.9em;
-  white-space: nowrap;
+  white-space: pre;
   overflow: hidden
 }
 .Search-txt {
@@ -1193,6 +1189,9 @@ pre var {
 .links [href*="/web.archive."]:before {
   content: "*"
 }
+.links a {
+  padding-left: 1em
+}
 .note {
   padding-left: 25%;
   margin: 1em
@@ -1257,13 +1256,16 @@ dl.note dd {
   vertical-align: middle;
   display: table-cell
 }
+.Pager-next {
+  padding: 1.5em 0
+}
 .Pager-top {
   padding: 1.5em .5em;
   text-align: center
 }
-.Pager-next,
 .Pager-prev {
-  padding: 1.5em 0
+  padding: 1.5em 0;
+  text-align: right
 }
 .Pager i:after,
 .Pager i:before {
@@ -1491,6 +1493,9 @@ div .box .js-captioned-thumbnail__large {
     overflow: auto;
     white-space: pre
   }
+  .hscroll tr pre {
+    white-space: -moz-pre-wrap
+  }
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
@@ -1602,8 +1607,6 @@ div .box .js-captioned-thumbnail__large {
   img,
   ol,
   p,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 3%
   }

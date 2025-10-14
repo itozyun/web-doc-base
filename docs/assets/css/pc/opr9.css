@@ -51,6 +51,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 .ico svg,
 sub,
 sup {
@@ -264,9 +268,6 @@ strong,
 var {
   font-style: normal
 }
-pre {
-  margin: 1em 0
-}
 del {
   text-decoration: line-through
 }
@@ -279,8 +280,6 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em
 }
@@ -452,22 +451,16 @@ ul {
 li {
   margin-top: .3em
 }
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
 .js-captioned-thumbnail__large a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -479,15 +472,16 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -634,7 +628,6 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
@@ -1113,7 +1106,7 @@ kbd {
   z-index: 1
 }
 .Search .btn {
-  white-space: nowrap;
+  white-space: pre;
   padding-left: 0;
   padding-right: 0;
   width: 3em;
@@ -1379,13 +1372,16 @@ dl.note dd {
   vertical-align: middle;
   display: table-cell
 }
+.Pager-next {
+  padding: 1.5em 0
+}
 .Pager-top {
   padding: 1.5em .5em;
   text-align: center
 }
-.Pager-next,
 .Pager-prev {
-  padding: 1.5em 0
+  padding: 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -1627,6 +1623,9 @@ projection {
     overflow: auto;
     white-space: pre
   }
+  .hscroll tr pre {
+    white-space: pre-wrap
+  }
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
@@ -1691,8 +1690,6 @@ screen and (max-width:953px) {
   ol,
   p,
   table,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 3%
   }
@@ -1867,10 +1864,7 @@ screen and (max-width:953px) {
     overflow: auto
   }
   .hscroll tbody {
-    white-space: nowrap
-  }
-  .nojs .hscroll tbody {
-    white-space: pre-wrap
+    white-space: pre
   }
   .Pager {
     padding: 0 3%
@@ -1902,8 +1896,6 @@ screen and (max-width:740px) {
   ol,
   p,
   table,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 2%
   }
@@ -2070,8 +2062,6 @@ screen and (max-width:479px) {
   ol,
   p,
   table,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 1%
   }
@@ -2288,8 +2278,6 @@ screen and (max-width:240px) {
   ol,
   p,
   table,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 0
   }
@@ -2648,8 +2636,7 @@ screen and (max-width:240px) {
   .caption,
   .commonForm-pair,
   .h1,
-  dd,
-  dt,
+  dl,
   h1,
   h2,
   h3,

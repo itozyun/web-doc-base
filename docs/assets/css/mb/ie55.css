@@ -35,6 +35,11 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+.ADesc,
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 .lM1,
 .lM2,
 .lS1,
@@ -52,6 +57,12 @@ td,
 th {
   word-break: break-all
 }
+.Cover-img,
+.Magazine-main,
+.Search,
+:hover img {
+  position: relative
+}
 .links,
 .note,
 blockquote,
@@ -61,10 +72,12 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em 3%
+}
+.Search .btn,
+.hscroll tbody {
+  white-space: pre
 }
 code,
 kbd,
@@ -81,7 +94,6 @@ td {
   color: #24c;
   margin: 0 1.5%
 }
-.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -105,7 +117,8 @@ code,
 kbd,
 samp,
 var {
-  font-family: "Courier New",monospace
+  font-family: "Courier New",monospace;
+  word-wrap: break-word
 }
 *,
 blockquote :link img,
@@ -120,7 +133,6 @@ a:active img {
   border-color: #3079ed!important
 }
 :hover img {
-  position: relative;
   top: 2px
 }
 .LinkList a,
@@ -225,8 +237,9 @@ strong,
 var {
   font-style: normal
 }
+.AMeta,
+.SocialBtns,
 pre {
-  margin: 1em 0;
   padding: 1em 3%
 }
 del {
@@ -386,22 +399,16 @@ ul {
 li {
   margin-top: .3em
 }
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
 .js-captioned-thumbnail__large a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -413,15 +420,16 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -517,10 +525,12 @@ blockquote tfoot td,
 blockquote tfoot th {
   border-color: #111 #ddd
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .c {
   text-align: center
 }
@@ -542,8 +552,10 @@ em {
 strong {
   background: #6cf
 }
+.AFoot,
 .BreadcrumbList a,
 .Magazine-snippet,
+.Pager a,
 .TxtNavi a,
 .lMi,
 .lSi,
@@ -681,18 +693,6 @@ kbd {
 .lS .mspacer {
   margin: .6em .5em
 }
-.js-myIconFont-testRendering {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 72px;
-  visibility: hidden
-}
-.Cover-img,
-.Magazine-main,
-.Search {
-  position: relative
-}
 .ico {
   font-family: web-doc-base,serif!important
 }
@@ -721,10 +721,6 @@ tr .box {
 .ABody {
   margin: 3.5em 0 2em
 }
-.ADesc,
-.AHead {
-  margin: 1em 0
-}
 .ABody h1 {
   font-size: 2em;
   margin: 3em 1.5%
@@ -747,6 +743,10 @@ tr .box {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
+}
+.AHead {
+  color: #777;
+  margin: 1em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -867,6 +867,7 @@ pre var {
   background: 0 0!important
 }
 .Cover h3 {
+  word-break: break-all;
   font-size: 1.33em;
   margin: 0;
   background: #fff
@@ -1024,7 +1025,6 @@ kbd {
   z-index: 1
 }
 .Search .btn {
-  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
   width: 3em;
@@ -1174,9 +1174,6 @@ div .caption img {
   overflow-x: auto;
   overflow-y: hidden
 }
-.nojs .hscroll tbody {
-  white-space: pre-wrap
-}
 kbd {
   cursor: pointer;
   letter-spacing: -1px;
@@ -1250,9 +1247,6 @@ dl.note dd {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta {
-  padding: 1em 3%
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1265,16 +1259,14 @@ dl.note dd {
   float: left;
   width: 33%
 }
-.Pager-top {
-  padding: 1.5em .5em;
-  text-align: center
+.Pager-top a {
+  padding: 1.5em .5em
 }
-.Pager-next {
+.Pager-next a {
   padding: 1.5em 0 1.5em 3%
 }
-.Pager-prev {
-  padding: 1.5em 3% 1.5em 0;
-  text-align: right
+.Pager-prev a {
+  padding: 1.5em 3% 1.5em 0
 }
 .Pager i {
   height: 0;
@@ -1292,9 +1284,7 @@ dl.note dd {
   border-width: 8px 11px 8px 0
 }
 .Pager-prev i {
-  margin-left: .5em;
-  border-width: 8px 0 8px 11px;
-  left: .5em
+  border-width: 8px 0 8px 11px
 }
 .Pager-top i {
   margin-right: .5em;
@@ -1306,8 +1296,7 @@ dl.note dd {
 }
 .SocialBtns {
   color: #f8fbf8;
-  text-align: center;
-  padding: 1em 3%
+  text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1516,8 +1505,14 @@ div .box .js-captioned-thumbnail__large {
     overflow: auto;
     white-space: pre
   }
-  .hscroll tbody {
-    white-space: nowrap
+  .hscroll tr pre {
+    word-break: break-all
+  }
+  .hscroll pre code,
+  .hscroll pre kbd,
+  .hscroll pre samp,
+  .hscroll pre var {
+    word-wrap: normal
   }
   blockquote .tl tr code,
   blockquote .tl tr var,

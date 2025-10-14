@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .AMeta,
+.SocialBtns,
 blockquote,
 pre {
   padding: 1em
@@ -13,8 +14,6 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em
 }
@@ -63,6 +62,10 @@ tr ol,
 tr ul {
   margin-top: 0
 }
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 .Magazine-label,
 .Magazine-main,
 .RichLink b,
@@ -84,6 +87,16 @@ th {
 .btn,
 input {
   line-height: 1
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Pager i,
+.Search,
+.lW,
+kbd:hover {
+  position: relative
 }
 code,
 kbd,
@@ -136,7 +149,8 @@ code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace;
+  word-wrap: break-word
 }
 .AHead-labels :active,
 .Subscribe .atom:active,
@@ -261,9 +275,6 @@ samp,
 strong,
 var {
   font-style: normal
-}
-pre {
-  margin: 1em 0
 }
 del {
   text-decoration: line-through
@@ -435,22 +446,16 @@ ul {
 li {
   margin-top: .3em
 }
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
 .js-captioned-thumbnail__large a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -462,15 +467,16 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -540,6 +546,7 @@ tfoot td {
 .BlogArchive,
 .BlogArchive tbody :hover td,
 .Pager,
+.SocialBtns,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -582,10 +589,12 @@ tbody :hover th a:active {
   background: #fff!important;
   color: #3079ed!important
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
+.Pager-top,
 .btn,
 .c {
   text-align: center
@@ -726,23 +735,6 @@ kbd {
 #lF .lM .mspacer,
 .lS .mspacer {
   margin: .6em .5em
-}
-.js-myIconFont-testRendering {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 72px;
-  visibility: hidden
-}
-#jsMain,
-#jsSide,
-.Cover-img,
-.Magazine-main,
-.Pager i,
-.Search,
-.lW,
-kbd:hover {
-  position: relative
 }
 .ico {
   font-family: web-doc-base,serif!important
@@ -910,6 +902,7 @@ pre var {
   background: 0 0!important
 }
 .Cover h3 {
+  word-break: break-all;
   font-size: 1.33em;
   margin: 0;
   background: #fff
@@ -1055,7 +1048,7 @@ kbd {
   z-index: 1
 }
 .Search .btn {
-  white-space: nowrap;
+  white-space: pre;
   padding-left: 0;
   padding-right: 0;
   width: 3.2em;
@@ -1279,16 +1272,14 @@ dl.note dd {
   float: left;
   width: 33%
 }
-.Pager-top {
-  padding: 1.5em .5em;
-  text-align: center
+.Pager-top a {
+  padding: 1.5em .5em
 }
-.Pager-next {
+.Pager-next a {
   padding: 1.5em 0 1.5em 1em
 }
-.Pager-prev {
-  padding: 1.5em 1em 1.5em 0;
-  text-align: right
+.Pager-prev a {
+  padding: 1.5em 1em 1.5em 0
 }
 .Pager i {
   height: 0;
@@ -1305,9 +1296,7 @@ dl.note dd {
   border-width: .5em .7em .5em 0
 }
 .Pager-prev i {
-  margin-left: .5em;
-  border-width: .5em 0 .5em .7em;
-  left: .5em
+  border-width: .5em 0 .5em .7em
 }
 .Pager-top i {
   margin-right: .5em;
@@ -1316,10 +1305,6 @@ dl.note dd {
 }
 .Pager-top :active i {
   border-color: #fff transparent
-}
-.SocialBtns {
-  color: #f8fbf8;
-  padding: 1em
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1525,6 +1510,15 @@ div .box .js-captioned-thumbnail__large {
     overflow: auto;
     white-space: pre
   }
+  .hscroll tr pre {
+    word-break: break-all
+  }
+  .hscroll pre code,
+  .hscroll pre kbd,
+  .hscroll pre samp,
+  .hscroll pre var {
+    word-wrap: normal
+  }
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
@@ -1651,8 +1645,6 @@ div .box .js-captioned-thumbnail__large {
   img,
   ol,
   p,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 3%
   }

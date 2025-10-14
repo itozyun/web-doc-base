@@ -76,8 +76,11 @@ tr p {
 textarea {
   overflow: auto
 }
+.Search .btn,
+.hscroll tbody {
+  white-space: pre
+}
 .links,
-.nojs .hscroll tbody,
 pre {
   white-space: pre-wrap
 }
@@ -94,7 +97,6 @@ blockquote:before {
   color: #24c;
   margin: 0 1.5%
 }
-.AHead,
 .baseColor :link .RichLink-meta,
 .baseColor :visited .RichLink-meta,
 a,
@@ -251,6 +253,12 @@ h6,
 th {
   font-weight: 400
 }
+.AAuthor,
+.ADesc,
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 blockquote,
 q {
   quotes: none
@@ -291,8 +299,8 @@ strong,
 var {
   font-style: normal
 }
+.AMeta,
 pre {
-  margin: 1em 0;
   padding: 1em 3%
 }
 del {
@@ -319,8 +327,6 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em 3%
 }
@@ -472,23 +478,16 @@ ul {
 li {
   margin-top: .3em
 }
-.links a,
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
 .js-captioned-thumbnail__large a,
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -500,15 +499,16 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -654,16 +654,12 @@ tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .Search,
-.SocialBtns,
 .c,
-.caption,
 .links [href]:before {
   text-align: center
 }
@@ -837,11 +833,6 @@ kbd {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor,
-.ADesc,
-.AHead {
-  margin: 1em 0
-}
 #lF .lM .mspacer,
 .lS .mspacer {
   margin: .6em .5em
@@ -879,6 +870,10 @@ kbd {
   text-align: center;
   padding-left: 1.5%;
   padding-right: 1.5%
+}
+.AHead {
+  color: #777;
+  margin: 1em 0
 }
 .AHead h1 {
   font-size: 2em;
@@ -1149,7 +1144,6 @@ kbd {
 .Search .btn {
   padding-left: .5em;
   padding-right: .5em;
-  white-space: nowrap;
   overflow: hidden
 }
 .SearchResult {
@@ -1261,6 +1255,7 @@ blockquote[cite]:after {
 }
 .caption {
   display: block;
+  text-align: center;
   font-size: .875em;
   max-width: 100%
 }
@@ -1320,6 +1315,9 @@ a:focus var {
   position: relative;
   text-align: center;
   text-decoration: none
+}
+.links a {
+  padding-left: 1em
 }
 .note {
   padding-left: 25%
@@ -1381,9 +1379,6 @@ dl.note dd {
   background: #3079ed!important;
   color: #fff
 }
-.AMeta {
-  padding: 1em 3%
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1393,6 +1388,7 @@ dl.note dd {
   display: table;
   width: 100%;
   table-layout: fixed;
+  box-sizing: border-box;
   padding: 0 3%
 }
 .Pager-next i,
@@ -1404,12 +1400,16 @@ dl.note dd {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-top {
-  padding: 1.5em .5em
-}
-.Pager-next,
-.Pager-prev {
+.Pager-next {
   padding: 1.5em 0
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -1442,6 +1442,7 @@ dl.note dd {
 .SocialBtns {
   border-width: 0 0 1px;
   color: #f8fbf8;
+  text-align: center;
   padding: 1em 3% .5em
 }
 .SocialBtns .tw:link {
@@ -1630,8 +1631,8 @@ projection {
     overflow: auto;
     white-space: pre
   }
-  .hscroll tbody {
-    white-space: nowrap
+  .hscroll tr pre {
+    white-space: pre-wrap
   }
   blockquote .tl tr code,
   blockquote .tl tr var,
@@ -1718,8 +1719,6 @@ projection {
   ol,
   p,
   table,
-  tr blockquote p,
-  tr blockquote pre,
   ul {
     margin: 1em 0
   }
@@ -2215,8 +2214,7 @@ projection {
   .caption,
   .commonForm-pair,
   .h1,
-  dd,
-  dt,
+  dl,
   h1,
   h2,
   h3,

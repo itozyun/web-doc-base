@@ -146,8 +146,15 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
             }
         }
         @include css-hack(onlyIE10To11){
-            @at-root #{&}-sep-inner {
+            @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
                 display : block !important;
+            }
+        }
+        @if( $UA_Modern ){
+            @supports (display: -moz-box) {
+                @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
+                    display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
+                }
             }
         }
 

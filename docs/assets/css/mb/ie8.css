@@ -33,6 +33,13 @@ dd,
 li {
   margin-bottom: .3em
 }
+.AAuthor,
+.ADesc,
+.AHead,
+pre,
+tr blockquote pre {
+  margin: 1em 0
+}
 .aBodyRoot > :first-child,
 .aBodyRoot > :first-child > :first-child,
 .aBodyRoot > :first-child > a:first-child > img:first-child,
@@ -48,17 +55,6 @@ tr img,
 tr ol,
 tr ul {
   margin-top: 0
-}
-.Cover-img,
-.Magazine-main,
-.Search,
-.links [href]:before,
-.links a,
-.tl td,
-[colspan],
-h2,
-kbd:hover {
-  position: relative
 }
 .Magazine-label,
 .Magazine-main,
@@ -80,6 +76,17 @@ tbody th {
 .lS2 {
   width: 48.5%
 }
+.Cover-img,
+.Magazine-main,
+.Search,
+.links [href]:before,
+.links a,
+.tl td,
+[colspan],
+h2,
+kbd:hover {
+  position: relative
+}
 .links,
 .note,
 blockquote,
@@ -89,11 +96,10 @@ img,
 ol,
 p,
 table,
-tr blockquote p,
-tr blockquote pre,
 ul {
   margin: 1em 3%
 }
+#top,
 .AAuthor,
 .Comment p,
 .Cover,
@@ -107,6 +113,10 @@ ul {
 .lX {
   overflow: hidden
 }
+.Search .btn,
+.hscroll tbody {
+  white-space: pre
+}
 code,
 kbd,
 var {
@@ -117,7 +127,6 @@ var {
   font-family: web-doc-base,serif!important
 }
 .links,
-.nojs .hscroll tbody,
 pre {
   white-space: pre-wrap
 }
@@ -180,7 +189,8 @@ code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace;
+  word-wrap: break-word
 }
 *,
 blockquote .tl tbody td:after,
@@ -328,8 +338,8 @@ strong,
 var {
   font-style: normal
 }
+.AMeta,
 pre {
-  margin: 1em 0;
   padding: 1em 3%
 }
 .BlogArchive :link:hover,
@@ -486,6 +496,7 @@ h2:after {
   line-height: 0;
   border-style: solid;
   display: block;
+  position: absolute;
   content: " ";
   height: 0
 }
@@ -493,6 +504,7 @@ iframe,
 img {
   max-width: 94%
 }
+#top,
 .Magazine-mm,
 .Magazine-yy,
 .commonForm,
@@ -507,22 +519,15 @@ ul {
 li {
   margin-top: .3em
 }
-.links a,
-dl ol,
-dl ul,
-li ol,
-li ul {
-  padding-left: 1em
-}
 tr ol,
 tr ul {
   margin-bottom: .5em
 }
-dd blockquote,
-dd dl,
-dd p,
-dd pre,
-dd table,
+dl blockquote,
+dl dl,
+dl p,
+dl pre,
+dl table,
 li blockquote,
 li dl,
 li p,
@@ -534,15 +539,16 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
-dd blockquote p,
+dl blockquote p,
 li blockquote p,
 tr blockquote p {
   margin: .5em 0
 }
-dd ol,
-dd ul,
+dl ol,
+dl ul,
 li ol,
 li ul {
+  padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
 }
@@ -559,7 +565,6 @@ h2 {
 }
 h2:after {
   width: 5em;
-  position: absolute;
   left: 0;
   bottom: -2px;
   border-width: 2px 0 0
@@ -577,7 +582,6 @@ tr hr {
 }
 [colspan]:after,
 [colspan]:before {
-  position: absolute;
   bottom: -1px;
   left: .5em;
   right: .5em;
@@ -692,16 +696,11 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
-.SocialBtns,
-.c,
-.caption,
-.links [href]:before {
+.c {
   text-align: center
 }
 .uc {
@@ -874,21 +873,9 @@ kbd {
 .mspacer {
   margin: 1em .5em!important
 }
-.AAuthor,
-.ADesc,
-.AHead {
-  margin: 1em 0
-}
 #lF .lM .mspacer,
 .lS .mspacer {
   margin: .6em .5em
-}
-.js-myIconFont-testRendering {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 72px;
-  visibility: hidden
 }
 @font-face {
   font-family: web-doc-base;
@@ -1043,6 +1030,7 @@ pre var {
   background: 0 0!important
 }
 .Cover h3 {
+  word-break: break-all;
   font-size: 1.33em;
   margin: 0;
   background: #fff
@@ -1209,7 +1197,6 @@ kbd {
   z-index: 1
 }
 .Search .btn {
-  white-space: nowrap;
   padding-left: 0;
   padding-right: 0;
   width: 3em;
@@ -1330,6 +1317,7 @@ blockquote[cite]:after {
 }
 .caption {
   display: block;
+  text-align: center;
   font-size: .875em;
   max-width: 100%
 }
@@ -1423,10 +1411,14 @@ pre var {
 .icoLinks [href*="//github.com"]:before {
   content: "\eab0"
 }
+.links a {
+  padding-left: 1em
+}
 .links [href]:before {
   content: ">";
   left: -.5em;
-  width: 1em
+  width: 1em;
+  text-align: center
 }
 .links [href*="/web.archive."]:before {
   content: "*"
@@ -1514,9 +1506,6 @@ dl.note dd {
   background: #3079ed!important;
   color: #fff
 }
-.AMeta {
-  padding: 1em 3%
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1526,18 +1515,23 @@ dl.note dd {
   display: table;
   width: 100%;
   table-layout: fixed;
+  box-sizing: border-box;
   padding: 0 3%
 }
 .Pager span {
   vertical-align: middle;
   display: table-cell
 }
-.Pager-top {
-  padding: 1.5em .5em
-}
-.Pager-next,
-.Pager-prev {
+.Pager-next {
   padding: 1.5em 0
+}
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
+}
+.Pager-prev {
+  padding: 1.5em 0;
+  text-align: right
 }
 .Pager i {
   display: inline-block;
@@ -1566,6 +1560,7 @@ dl.note dd {
 }
 .SocialBtns {
   color: #f8fbf8;
+  text-align: center;
   padding: 1em 3% .5em
 }
 .SocialBtns .tw:link {
@@ -1754,8 +1749,15 @@ div .box .js-captioned-thumbnail__large {
     overflow: auto;
     white-space: pre
   }
-  .hscroll tbody {
-    white-space: nowrap
+  .hscroll tr pre {
+    white-space: pre-wrap;
+    word-break: break-all
+  }
+  .hscroll pre code,
+  .hscroll pre kbd,
+  .hscroll pre samp,
+  .hscroll pre var {
+    word-wrap: normal
   }
   blockquote .tl tr code,
   blockquote .tl tr var,
@@ -1808,8 +1810,7 @@ div .box .js-captioned-thumbnail__large {
   .caption,
   .commonForm-pair,
   .h1,
-  dd,
-  dt,
+  dl,
   h1,
   h2,
   h3,
@@ -2042,9 +2043,6 @@ div .box .js-captioned-thumbnail__large {
     content: " (" attr(href) ") ";
     font-size: .875em;
     color: #006
-  }
-  body {
-    word-break: break-all
   }
   code,
   var {
