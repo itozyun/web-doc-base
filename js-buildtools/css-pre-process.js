@@ -22,7 +22,7 @@ return require( 'through2' )
             if( file.isStream() ) return cb( new PluginError( 'gulp-csshack', 'Streaming not supported' ) );
 
             const css = PostCSS.parse( file.contents.toString( encoding ) ),
-                  cssForForcedColors = PostCSS.parse('@charset "UTF-8"');
+                  cssForForcedColors = PostCSS.parse('@charset "UTF-8"'),
                   rulesAddToEndOfForcedColorsCSS = [], mediaBlocksMoveToEndOfCSS = [];
 
             let isCreateCSSForForcedColors, isUpdateCurrentFile,

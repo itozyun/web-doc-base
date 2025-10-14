@@ -37,7 +37,7 @@ p_listenLoadEvent(
             img, result;
 
         if( p_Presto < 12 || // img.width で <img> 要素の画面上のサイズが返る?
-            p_WebKit < 532   // Windows XP + Safari 4.0.5 で判定に失敗する為こちらへ
+            p_WebKit < 532   // Windows XP + Safari 4.0.5 で判定に失敗する為こちらへ // interval が関係?
         ){
             testForPresto();
         } else {
