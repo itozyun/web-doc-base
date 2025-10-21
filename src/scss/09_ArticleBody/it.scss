@@ -39,11 +39,19 @@
         pre & {
             padding : 0;
             margin  : 0;
-            background : none !important;
         }
 
         @include media(screen) {
             background : $COLOR_Light_casual_fill;
+
+            pre & {
+                background : none !important;
+            }
+
+            // test -> https://outcloud.blogspot.com/2021/08/richlink.html
+            blockquote pre & {
+                color : $COLOR_Light_text;
+            }
 
             blockquote &, tbody th &, blockquote .tl tr & {
                 background : $COLOR_Light_casual_text;
@@ -76,6 +84,10 @@
         }
         code, var {
             background : $COLOR_Dark_casual_fill;
+
+            blockquote pre & {
+                color : $COLOR_Dark_text;
+            }
 
             blockquote &, tbody th &, blockquote .tl tr & {
                 background : $COLOR_Dark_casual_text;
