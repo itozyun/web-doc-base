@@ -1,6 +1,10 @@
 hr {
     border-width : 0 0 1px; /* for high contrast mode */
-    @if( $UA_IE9 or $UA_Modern ){
+    @if( $UA_Modern ){
+        height       : 1.5px; /* 1.5px <= 1px: for Gecko 45 */
+        border-color : transparent;
+    }
+    @if( $UA_IE9 ){
         height       : 1px;
         border-color : transparent;
     }
