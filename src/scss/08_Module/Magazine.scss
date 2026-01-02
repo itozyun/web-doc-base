@@ -131,29 +131,39 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
                     width   : 100%;
                     padding : 0 !important;
                 }
-                    @at-root #{&}-item {
-                        @include display-flex;
-                        height  : 100%;
-                        padding : 0;
+                    /*
+                     * flexboxのベンダープレフィックスまとめ
+                     * https://wemo.tech/tips/2345
+                     */
+                    @at-root #{&}-main {
+                        -webkit-flex-grow : 1;
+                        -ms-flex-positive : 1;
+                                flex-grow : 1;
                     }
-        // }
-        // @include media(WSXGA) { // for Safari 3.2, Chrome 1
-            @at-root #{&}-sep-inner:first-child #{&}-main {
-                padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
-            }
-            @at-root #{&}-sep-inner:not(:first-child) #{&}-date {
-                padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
-            }
-        }
-        @include css-hack(onlyIE10To11){
-            @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
-                display : block !important;
-            }
-        }
-        @if( $UA_Modern ){
-            @supports (display: -moz-box) {
+                    @at-root #{&}-sep-inner:first-child #{&}-main {
+                        padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
+                    }
+                    @at-root #{&}-sep-inner:not(:first-child) #{&}-date {
+                        padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
+                    }
+                        @at-root #{&}-item {
+                            @include display-flex;
+                            height  : 100%;
+                            padding : 0;
+                        }
+
+            /*  patch
+            --------------------------------------------------------------------------------------*/
+            @include css-hack(onlyIE10To11){
                 @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
-                    display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
+                    display : block !important;
+                }
+            }
+            @if( $UA_Modern ){
+                @supports (display: -moz-box) {
+                    @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
+                        display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
+                    }
                 }
             }
         }
