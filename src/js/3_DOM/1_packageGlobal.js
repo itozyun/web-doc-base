@@ -43,4 +43,4 @@ var p_DOM_getElementById,
     p_DOM_setCssText,
     p_DOM_getCssText;
 
-var p_IMPLICITLY_FOCUSABLE = '-0';
+var p_IMPLICITLY_FOCUSABLE = p_Presto < 7.2 ? '-0' : p_Presto < 8 ? '0' : '-0';

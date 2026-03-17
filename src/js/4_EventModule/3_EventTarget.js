@@ -22,11 +22,11 @@ var EventTarget_passiveSupported = !p_Trident && !p_Tasman && (new Function(
         '}catch(e){}'
     ))();
 
-/** @const {!Object<string, !Array.<!EventTarget|!function(this:EventTarget, !Event):void>>} */
-var EventTarget_ALL_PAIRS        = {};
-var EventTarget_USE_ATTACH       = false; // 5 <= p_Trident && p_Trident < 9,
+/** @const {!Object<string, !Array.<!EventTarget|!function(this:EventTarget, !Event):void|boolean>>} */
+var EventTarget_ALL_TRIO        = {};
+var EventTarget_USE_ATTACH       = false; // 5 <= p_Trident && p_Trident < 9
 var EventTarget_PATCH_OLD_WEBKIT = p_WebKit < 525.13; // Safari <3
-var EventTarget_USE_STANDERD     = !EventTarget_PATCH_OLD_WEBKIT && !p_Tasman && window.addEventListener;
+var EventTarget_USE_STANDERD     = !EventTarget_PATCH_OLD_WEBKIT && !p_Tasman && p_body.addEventListener;
 var EventTarget_busy             = 0;
 var EventTarget_LAZY_REMOVALS    = [];
 var EventTarget_safariPreventDefault;
@@ -34,39 +34,44 @@ var EventTarget_safariPreventDefault;
 /** 1.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {!function(this:EventTarget, !Event):void} callback
- * @param {!AddEventListenerOptions|boolean=} option
+ * @param {!function(this:EventTarget, !Event):void} listener
+ * @param {!AddEventListenerOptions|boolean=} options
  */
-function EventTraget_addEventListener( eventTarget, type, callback, option ){
+function EventTraget_addEventListener( eventTarget, type, listener, options ){
     if( EventTarget_USE_STANDERD ){
-        eventTarget.addEventListener( type, callback,
-            option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
+        eventTarget.addEventListener(
+            type, listener,
+            options ? ( EventTarget_passiveSupported ? options : ( options.capture || options === true ) ) : false
+        );
     } else {
-        var pairs  = EventTarget_ALL_PAIRS[ type ],
-            onType = 'on' + type,
+        var trioList   = EventTarget_ALL_TRIO[ type ],
+            useCapture = !!options === options ? options : options ? !!options.capture : false,
+            onType     = 'on' + type,
             i, l, tempCallback;
 
-        if( pairs ){
-            for( i = 0, l = pairs.length; i < l; i += 2 ){
-                if( pairs[ i ] === eventTarget && pairs[ i + 1 ] === callback ){
+        if( trioList ){
+            for( i = 0, l = trioList.length; i < l; i += 3 ){
+                if( trioList[ i ] === eventTarget && trioList[ i + 1 ] === listener && trioList[ i + 2 ] === useCapture ){
                     return;
                 };
             };
-            pairs.push( eventTarget, callback );
+            trioList.push( eventTarget, listener, useCapture );
         } else {
-            pairs = EventTarget_ALL_PAIRS[ type ] = [ eventTarget, callback ];
+            trioList = EventTarget_ALL_TRIO[ type ] = [ eventTarget, listener, useCapture ];
         };
 
         if( EventTarget_USE_ATTACH ){
             eventTarget.attachEvent( onType, EventTraget_dispatchProxy ); // TODO 2度呼ばれた場合?
         } else {
-            // DOM0 で追加されていた callback を listener に加える
-            // 実際には js-inline の onload コールバックを EventTarget_ALL_PAIRS 配下に移す
+            // DOM0 で追加されていた listener を trioList に加える
+            // 実際には js-inline の onload コールバックを EventTarget_ALL_TRIO 配下に移す
             tempCallback = eventTarget[ onType ];
-            if( tempCallback !== EventTraget_dispatchProxy && typeof tempCallback === 'function' ){
-                pairs.unshift( eventTarget, tempCallback );
+            if( tempCallback !== EventTraget_dispatchProxy ){
+                if( typeof tempCallback === 'function' ){
+                    trioList.unshift( eventTarget, tempCallback, false );
+                };
+                eventTarget[ onType ] = EventTraget_dispatchProxy;
             };
-            eventTarget[ onType ] = EventTraget_dispatchProxy;
         };
     };
 };
@@ -74,26 +79,29 @@ function EventTraget_addEventListener( eventTarget, type, callback, option ){
 /** 2.
  * @param {!EventTarget} eventTarget
  * @param {string} type
- * @param {!function(this:EventTarget, !Event):void} callback
- * @param {!AddEventListenerOptions|boolean=} option
+ * @param {!function(this:EventTarget, !Event):void} listener
+ * @param {!AddEventListenerOptions|boolean=} options
  */
-function EventTraget_removeEventListener( eventTarget, type, callback, option ){
+function EventTraget_removeEventListener( eventTarget, type, listener, options ){
     if( EventTarget_USE_STANDERD ){
-        eventTarget.removeEventListener( type, callback,
-            option ? ( EventTarget_passiveSupported ? option : ( option.capture || option === true ) ) : false );
+        eventTarget.removeEventListener(
+            type, listener,
+            options ? ( EventTarget_passiveSupported ? options : ( options.capture || options === true ) ) : false
+        );
     } else {
-        var pairs  = EventTarget_ALL_PAIRS[ type ],
-            onType = 'on' + type,
+        var trioList   = EventTarget_ALL_TRIO[ type ],
+            useCapture = !!options === options ? options : options ? !!options.capture : false,
+            onType     = 'on' + type,
             i, l, skipRemoveListener;
 
-        if( pairs ){
+        if( trioList ){
             if( EventTarget_busy ){
-                EventTarget_LAZY_REMOVALS.push( eventTarget, type, callback );
+                EventTarget_LAZY_REMOVALS.push( eventTarget, type, listener, options );
             } else {
-                for( i = 0, l = pairs.length; i < l; i += 2 ){
-                    if( pairs[ i ] === eventTarget ){
-                        if( pairs[ i + 1 ] === callback ){
-                            pairs.splice( i, 1 );
+                for( i = 0, l = trioList.length; i < l; i += 3 ){
+                    if( trioList[ i ] === eventTarget ){
+                        if( trioList[ i + 1 ] === listener && trioList[ i + 2 ] === useCapture ){
+                            trioList.splice( i, 3 );
                         } else {
                             skipRemoveListener = true;
                         };
@@ -123,12 +131,12 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
     function EventTraget_dispatchProxy( _e ){
         var e             = _e || event,
             type          = e.type,
-            pairs         = EventTarget_ALL_PAIRS[ type ],
+            trioList      = EventTarget_ALL_TRIO[ type ],
             onType        = 'on' + type,
             currentTarget = this,
             i = 0,
-            l = pairs.length,
-            eventTarget, stopPropagation, callback, lazyRemovals;
+            l = trioList.length,
+            eventTarget, stopPropagation, listener, lazyRemovals;
 
         ++EventTarget_busy;
 
@@ -161,18 +169,18 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         };
 
         for( ; i < l; i += 2 ){
-            eventTarget = pairs[ i ];
+            eventTarget = trioList[ i ];
             if( eventTarget === currentTarget ){
-                callback = /** @type {!function(this:EventTarget, !Event):void} */ (pairs[ i + 1 ]);
+                listener = /** @type {!function(this:EventTarget, !Event):void} */ (trioList[ i + 1 ]);
                 if( p_Trident < 5.5 ){ // .apply の polyfill が低速かつ、プロパティを追加するため、こちらを使用する
-                    eventTarget[ onType ] = callback;
+                    eventTarget[ onType ] = listener;
                     eventTarget[ onType ]( e );
                     eventTarget[ onType ] = EventTraget_dispatchProxy;
                 } else {
-                    callback.call( eventTarget, e );
+                    listener.call( eventTarget, e );
                 };
             } else if( p_Presto < 7.2 && currentTarget === document && eventTarget === window ){
-                /** @type {!function(this:EventTarget, !Event):void} */ (pairs[ i + 1 ]).call( eventTarget, e );
+                /** @type {!function(this:EventTarget, !Event):void} */ (trioList[ i + 1 ]).call( eventTarget, e );
             };
         };
 
@@ -196,7 +204,7 @@ function EventTraget_removeEventListener( eventTarget, type, callback, option ){
         if( EventTarget_busy === 0 ){
             lazyRemovals = EventTarget_LAZY_REMOVALS;
             while( lazyRemovals.length ){
-                EventTraget_removeEventListener( lazyRemovals.shift(), lazyRemovals.shift(), lazyRemovals.shift() );
+                EventTraget_removeEventListener( lazyRemovals.shift(), lazyRemovals.shift(), lazyRemovals.shift(), lazyRemovals.shift() );
             };
         };
     };

@@ -44,7 +44,7 @@ function DOM_getAttribute( elm, name, opt_skipPolyfill ){
     };
     var value = elm.getAttribute( name );
     if( !opt_skipPolyfill && p_Presto && name === 'tabindex' ){
-        return value === p_IMPLICITLY_FOCUSABLE ? '' : value === '' ? '-1' : value;
+        return value === p_IMPLICITLY_FOCUSABLE ? '' : value === '0' ? '' : value === '' ? '-1' : value;
     };
     return value || '';
 };
@@ -71,7 +71,11 @@ function DOM_setAttribute( elm, name, value, opt_skipPolyfill ){
         };
     };
     if( p_Presto < 8 || p_Trident < 5.5 ){
-        name = p_toCamelCase( name );
+        if( 7.2 <= p_Presto && name === 'tabindex' ){
+            name = 'tabIndex'; // 何故か tabIndex でないと、シーケンシャルフォーカスナビゲーションが働かない
+        } else {
+            name = p_toCamelCase( name );
+        };
     };
     elm.setAttribute( name, value );
 };
@@ -100,6 +104,12 @@ function DOM_removeAttribute( elm, name, opt_skipPolyfill ){
     elm.removeAttribute( name );
 };
 
+// Boolean attribute
+// https://meiert.com/en/blog/boolean-attributes-of-html/
+var BooleanAttributes = {
+    disabled : true
+};
+
 /** 5.
  * @param {Element} elm
  * @param {string} name
@@ -110,7 +120,27 @@ function DOM_hasAttribute( elm, name, opt_skipPolyfill ){
         return DOM_getAttribute( elm, name, true ) !== p_IMPLICITLY_FOCUSABLE;
     };
     if( p_Presto < 8 || p_Trident < 5.5 ){
-        name = p_toCamelCase( name );
+        // <a href=""> .hasAttribute で使用可能な属性なら true, .getAttribute('tabindex') == '0' になっている。デフォルト値をリストして Falthy でないものは outerHTML を使ってテストする
+        if( p_Presto && BooleanAttributes[ name ] ){
+            var outerHTML = elm.outerHTML.split( '>' )[ 0 ] + '>'; // ( elm.lastChild ? elm.cloneNode() : elm ).outerHTML
+
+            return outerHTML.indexOf( ' ' + name + '>' ) !== -1 || outerHTML.indexOf( ' ' + name + '=' ) !== -1 || outerHTML.indexOf( ' ' + name + ' ' ) !== -1;
+        } else if( p_Presto && name === 'tabindex' ){
+            return elm.getAttribute( name ) !== '0';
+        } else if( p_Presto ){
+            return !!elm[ p_toCamelCase( name ) ];
+        } else {
+            name = p_toCamelCase( name );
+        };
+    };
+    /**
+     * https://uupaa.hatenadiary.org/entry/20080919/1221834168
+     *   > IE7以下にはhasAttributeがないため…
+     *   > こんなコードでなんとかpointを稼いだが完全解決はできなかった。
+     */
+    if( 6 <= p_Trident && p_Trident < 8 ){
+        var attr = elm.getAttributeNode( name );
+        return attr && attr.specified;
     };
     return elm.hasAttribute ? elm.hasAttribute( name ) : elm.getAttribute( name ) != null; // TODO outerHTML
 };
