@@ -1,0 +1,11 @@
+﻿@use "./options" as opt;
+@use "./common.generated" as common;
+
+/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| 5. Path
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
+$CSS_DIR_TO_CURRENT_DEVICE_CSS_DIR : if(opt.$MobileOnly, common.$CSS_DIR_TO_MOBILE_CSS_DIR, common.$CSS_DIR_TO_DESKTOP_CSS_DIR);
+
+$ASSET_PATH_WEBFONT : "#{if(common.$ASSET_DIR_TO_CSS_DIR != '', '../', '') + if($CSS_DIR_TO_CURRENT_DEVICE_CSS_DIR != '', '../', '') + if(common.$ASSET_DIR_TO_WEBFONT_DIR != '', common.$ASSET_DIR_TO_WEBFONT_DIR + '/', '')}";

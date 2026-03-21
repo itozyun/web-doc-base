@@ -1,0 +1,15 @@
+/* IE8~11 のハイコントラストモードでクリックするたびに要素に枠線が付くので個別に指定する
+ *   a, input, textarea, select, button
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/size" as size;
+
+@use "../../02_mixin/active-focus-pseudo-class" as *;
+
+@mixin reset-outline {
+    @if( ua.$Modern or ua.$IE8to9 ){
+        @include active-focus-pseudo-class {
+            outline : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
+        }
+    }
+}

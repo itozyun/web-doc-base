@@ -1,23 +1,37 @@
 /*  Google Code Prettify
---------------------------------------------------------------------------------------*/
-@if( $Option_GoogleCodePrettify ){
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/color" as color;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+
+@use "../04_typography/pre" as *;
+@use "../04_typography/code" as *;
+
+@if ua.$Script {
     .prettyprint {
+        border-width : 1px;
+        border-color : #333;
+
         @include media(screen) {
             background : #333;
             color      : #fff;
             :link, :link * {
-                color : $COLOR_Dark_link;
+                color : color.$Dark_link;
             }
             :visited, :visited * {
-                color : $COLOR_Dark_visited;
+                color : color.$Dark_visited;
             }
         }
-        border-width : 1px;
-        border-color : #333;
         @include media(print) {
             line-height : 1;
         }
-        code {
+        & code {
             font-size : 0.875em;
         }
     }
@@ -42,7 +56,7 @@
     ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */
     li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { /* list-style-type: none */ }
     /* Alternate shading for lines */
-    li.L1,li.L3,li.L5,li.L7,li.L9 { }
+    li.L1,li.L3,li.L5,li.L7,li.L9 {}
 
     @include media(print) {
         .str { color: #060; }

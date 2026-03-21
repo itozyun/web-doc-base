@@ -30,6 +30,9 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
+.RichLink a {
+  border-width: 0
+}
 table {
   border-spacing: 2px;
   border-collapse: separate
@@ -53,9 +56,6 @@ tfoot tr:first-child td,
 tfoot tr:first-child th {
   position: relative;
   top: -3px
-}
-.RichLink a {
-  border-width: 0
 }
 .tl tbody td:after {
   top: 1.2em;

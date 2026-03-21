@@ -1,0 +1,86 @@
+/* Sub Column のコンテンツを2列にしたり、1列にする
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/size" as size;
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+
+.#{opt.$Prefix}lM {
+    @at-root #{&}i {
+        @include clearfix;
+    }
+        @at-root #{&}1 {
+            float : left;
+        }
+        @at-root #{&}2 {
+            float : right;
+        }
+    @if( opt.$MobileOnly == false ){
+        @at-root #{&}1, #{&}2 {
+            width : 50% - 100% * math.div(math.div(size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO * 2) , 2);
+        }
+    }
+
+/*  WQXGA
+------------------------------------------------------------------------------------- */
+    @include media(WQXGA) {
+        @at-root #{&}1 {
+            padding-right : math.div(size.$WQXGA_COLUMN_GAP_EM, 2);
+        }
+        @at-root #{&}2 {
+            padding-left : math.div(size.$WQXGA_COLUMN_GAP_EM, 2);
+        }
+    }
+
+/*  WSXGA landscape Print
+------------------------------------------------------------------------------------- */
+    @include media(WSXGA_landscapePrint) {
+        @at-root #{&}1, #{&}2 {
+            width      : 50%;
+            box-sizing : border-box;
+        }
+    }
+
+/*  WSXGA
+------------------------------------------------------------------------------------- */
+    @include media(WSXGA) {
+        @at-root #{&}1 {
+            padding-right : math.div(size.$WSXGA_COLUMN_GAP_EM, 2);
+        }
+        @at-root #{&}2 {
+            padding-left : math.div(size.$WSXGA_COLUMN_GAP_EM, 2);
+        }
+    }
+
+/*  landscape Print
+------------------------------------------------------------------------------------- */
+    @include media(landscapePrint) {
+        @at-root #{&}1 {
+            padding-right : math.div(size.$PRINT_COLUMN_GAP_EM, 2);
+        }
+        @at-root #{&}2 {
+            padding-left : math.div(size.$PRINT_COLUMN_GAP_EM, 2);
+        }
+    }
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+    @include media(tablet) {
+        @at-root #{&}1, #{&}2 {
+            width : 50% - size.$TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
+    }
+
+/*  Phablet
+------------------------------------------------------------------------------------- */
+    @include media(phablet) {
+    /* clear 2column */
+        @at-root #{&}1, #{&}2 {
+            float : none;
+            width : auto;
+        }
+    }
+}

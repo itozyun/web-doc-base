@@ -20,6 +20,9 @@ tfoot td {
 .RichLink-sep :hover {
   text-decoration: underline!important
 }
+.RichLink a {
+  border-width: 0
+}
 table {
   border-spacing: 2px;
   border-collapse: separate
@@ -38,9 +41,6 @@ thead th {
 }
 tbody td {
   border-width: 0 0 1px
-}
-.RichLink a {
-  border-width: 0
 }
 .tl {
   border-collapse: collapse

@@ -1,0 +1,10 @@
+/* for <code>, <kbd>, <samp>, <var> // <pre>, <tt>
+------------------------------------------------------------------------------------- */
+@use "../../02_mixin/font-family-japanese" as *;
+@use "../../02_mixin/unbreak" as *;
+
+%ITStyle {
+    @extend %CodingFontFamily;
+    // https://github.com/itozyun/web-doc-base/issues/38
+    @include unbreak-box-for-inline-element;
+}

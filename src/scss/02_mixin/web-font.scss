@@ -1,21 +1,27 @@
+@use "../01_var/ua" as ua;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/common.generated" as common;
+
+@use "check-css-ready" as *;
+
 @mixin web-font-face($WEBFONT_NAME, $WEBFONT_PATH, $WEBFONT_ID, $WEBFONT_TEST_ID_AND_CLASSNAME: ""){
-    @if( $MAYBE_CAN_USE_WEBFONT ){
+    @if( canuse.$WEBFONT ){
         @font-face {
             font-family : #{$WEBFONT_NAME};
             font-weight : normal;
             font-style  : normal;
             src         : url('#{$WEBFONT_PATH}.eot?rw1juc');
-            @if( $UA_Modern ){
-                src:url('#{$WEBFONT_PATH}.eot?rw1juc#iefix') format('#{$WEBFONT_FORMAT_EOT}'),
-                    url('#{$WEBFONT_PATH}.woff2?rw1juc') format('#{$WEBFONT_FORMAT_WOFF2}'),
-                    url('#{$WEBFONT_PATH}.woff?rw1juc') format('#{$WEBFONT_FORMAT_WOFF}'),
-                    url('#{$WEBFONT_PATH}.ttf?rw1juc') format('#{$WEBFONT_FORMAT_TTF}'),
-                    // url('#{$WEBFONT_PATH}.otf?rw1juc') format('#{$WEBFONT_FORMAT_OTF}'),
-                    url('#{$WEBFONT_PATH}.svg?rw1juc##{$WEBFONT_ID}') format('#{$WEBFONT_FORMAT_SVG}');
+            @if( ua.$Modern ){
+                src:url('#{$WEBFONT_PATH}.eot?rw1juc#iefix') format('#{common.$WEBFONT_FORMAT_EOT}'),
+                    url('#{$WEBFONT_PATH}.woff2?rw1juc') format('#{common.$WEBFONT_FORMAT_WOFF2}'),
+                    url('#{$WEBFONT_PATH}.woff?rw1juc') format('#{common.$WEBFONT_FORMAT_WOFF}'),
+                    url('#{$WEBFONT_PATH}.ttf?rw1juc') format('#{common.$WEBFONT_FORMAT_TTF}'),
+                    // url('#{$WEBFONT_PATH}.otf?rw1juc') format('#{common.$WEBFONT_FORMAT_OTF}'),
+                    url('#{$WEBFONT_PATH}.svg?rw1juc##{$WEBFONT_ID}') format('#{common.$WEBFONT_FORMAT_SVG}');
             }
         }
 
-        @if( $WEBFONT_TEST_ID_AND_CLASSNAME and ( $UA_Modern or $UA_IE9 ) ){
+        @if( $WEBFONT_TEST_ID_AND_CLASSNAME and ( ua.$Modern or ua.$IE9 ) ){
             .#{$WEBFONT_TEST_ID_AND_CLASSNAME} {
                 @include check-css-ready;
             }
@@ -29,10 +35,10 @@
  *   参考: https://outcloud.blogspot.com/2023/10/webfont.html#ligature
  */
 @mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important", $enableLigatures : true) {
-    @if( $MAYBE_CAN_USE_WEBFONT ){
+    @if( canuse.$WEBFONT ){
         font-family : #{$WEBFONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
-        
-        @if( $UA_Modern ){
+
+        @if( ua.$Modern ){
             // https://caniuse.com/?search=text-rendering
             //   > From version 3 to 4.3, there is a serious bug where text-rendering: optimizeLegibility
             //   > causes custom web fonts to not render. This was fixed in version 4.4.

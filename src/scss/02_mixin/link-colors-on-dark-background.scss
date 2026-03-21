@@ -1,16 +1,18 @@
-@mixin link-colors-on-dark-background($visited_color:$COLOR_Dark_visited) {
+@use "../01_var/color" as color;
+
+@mixin link-colors-on-dark-background($visited_color : color.$Dark_visited) {
     :link {
-        color : $COLOR_Dark_link;
+        color : color.$Dark_link;
     }
     :visited {
         color : $visited_color;
     }
     :link:hover {
-        color        : $COLOR_Dark_hover;
-        border-color : $COLOR_Dark_hover;
+        color        : color.$Dark_hover;
+        border-color : color.$Dark_hover;
     }
     :visited:hover {
-        color        : $COLOR_Dark_visited_hover;
-        border-color : $COLOR_Dark_visited_hover;
+        color        : color.$Dark_visited_hover;
+        border-color : color.$Dark_visited_hover;
     }
 }

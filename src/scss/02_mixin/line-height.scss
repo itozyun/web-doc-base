@@ -1,12 +1,16 @@
-@mixin line-height($height, $onlyChildren) {
-    $VALID_LINEHEIGHT : if($UA_IE5, false, true);
+/*  IE5 には line-height が子孫要素に継承されないバグがあるので、
+    この mixin を使う
+    子のテキストには lineHeight 指定が不要な場合、$descendantElementOnly:1 にする
+------------------------------------------------------------------------------------- */
+@use "../01_var/quirks" as quirks;
 
-    @if $VALID_LINEHEIGHT or $onlyChildren == 0 {
+@mixin line-height($height, $descendantElementOnly : false) {
+    @if quirks.$INVALID_LINEHEIGHT == false or $descendantElementOnly == false {
         & {
             line-height : $height;
         }
     }
-    @if $VALID_LINEHEIGHT == false {
+    @if quirks.$INVALID_LINEHEIGHT {
         * {
             line-height : $height;
         }

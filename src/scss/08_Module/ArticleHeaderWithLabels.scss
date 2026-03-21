@@ -1,0 +1,110 @@
+/* [module] ArticleHeader
+ *  出現位置は #lE .lMf | #lB .lMz .lMf
+ *
+ *  div.AHead
+ *    h1
+ *    div
+ *    +ArticleLabels
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+@use "../01_var/quirks" as quirks;
+
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/media" as *;
+
+@use "../07_parts/_/ButtonBase" as *;
+@use "../07_parts/_/apply-button-colors" as *;
+
+@use "./ArticleHeader";
+
+.#{opt.$Prefix}AHead {
+/* =====================================================================================
+ * .AHead-labels
+ *   i.ico-label
+ *   a
+------------------------------------------------------------------------------------- */
+    @at-root #{&}-labels {
+        margin-top : 0.5em;
+    /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
+        @if( ua.$IE7 or ua.$IE8 ){
+            font-family : Meiryo, "MS PGothic", sans-serif;
+        }
+        @if( ua.$WinIELte6 ){
+            font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
+        }
+        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+            color : color.$Sidebar_fill;
+        } @else {
+            color : color.$Ribbon_fill; /* , を消す */
+        }
+        @if( ua.$Modern ){
+            vertical-align : middle; /* ie11 のガタツキを修正 */
+        }
+        i {
+            display : none;
+        }
+
+        a {
+            @extend %ButtonBase;
+            margin : 0 0 0.5em;
+        }
+        * {
+            @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+                @include apply-button-colors( color.$Light_link, color.$Light_casual_text, color.$Sidebar_fill );
+            } @else {
+                @include apply-button-colors( color.$Ribbon_link, color.$Ribbon_casual_text, color.$Ribbon_fill );
+            }
+        }
+        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false ){
+            :link:hover { /* .ribbon :link:hover の上書き */
+                border-color : color.$Ribbon_link;
+                color        : color.$Ribbon_fill;
+            }
+        }
+
+        /*  Phone-
+        ------------------------------------------------------------------------------------- */
+        @include media(smallphone) {
+            line-height : 0;
+            a {
+                display    : block;
+                text-align : center;
+                margin     : 0.5em;
+            }
+        }
+
+        /*  Print
+        ------------------------------------------------------------------------------------- */
+        @include media(print) {
+            color : color.$Print_text;
+            @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+                i {
+                    @if( canuse.$DISPLAY_INLINE_BLOCK ){
+                        @include inline-block;
+                    }
+                }
+            }
+
+            a {
+                @if( canuse.$DISPLAY_INLINE_BLOCK ){
+                    display : inline;
+                }
+                border-width : 0;
+                padding      : 0;
+                margin       : 0;
+            }
+            a:link {
+                color      : color.$Print_link;
+                background : none;
+            }
+            a:visited {
+                color      : color.$Print_visited;
+                background : none;
+            }
+        }
+    }
+}

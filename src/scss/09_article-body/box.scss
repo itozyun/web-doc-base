@@ -1,0 +1,211 @@
+/* object with caption
+ * ------------------------------------------------------------------------------------*
+ *  div.box
+ *    span.caption[style=width:XXpx]
+ *       figure
+ *         img|emned|
+ *         figcaption
+ */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/css-hack" as *;
+
+@use "../08_module/ArticleBody";
+
+$_CAPTIONED_OBJ_FONTSIZE : 0.875;
+
+.#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+    @include unbreak-box-with-long-text;
+    @include unbreak-inside;
+    display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
+    text-align : center;
+    font-size  : 1em * $_CAPTIONED_OBJ_FONTSIZE;
+ 
+    @if( canuse.$MAX_AND_MIN_SIZES ){
+        max-width : 100%;
+    }
+}
+
+/*  box
+------------------------------------------------------------------------------------- */
+.box {
+    @include clearfix;
+    @include unbreak-inside;
+
+    margin : 1em 1em 0;
+
+    li &, dl &, tr &, .note & {
+        margin : 0;
+    }
+
+    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+        & > p:first-of-type {
+            margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_EM + 1em, 4);
+            @if( opt.$UseITStyles ){
+                kbd {
+                    margin-top : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 4);
+                }
+            }
+            rt {
+                padding-top : 1em; // ruby が見えなくなるのを防ぐ
+            }
+            tr & {
+                @if( ua.$Modern ){
+                    margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
+                } @else {
+                    margin-top : 0;
+                }
+                @if( opt.$UseITStyles ){
+                    kbd {
+                        margin-top : 0;
+                    }
+                }
+                rt {
+                    padding-top : 0;
+                }
+            }
+        }
+    }
+
+    p, dl, ul, ol {
+        @include responsive-horizontal-margin(1, 0, 1em, false, true);
+    }
+    ul, ol {
+        list-style-position : inside;
+    }
+
+    img, iframe
+    //, embed, object, video
+    {
+        float : left;
+        @if( ua.$IE5 ){
+            margin : 0 0.5em 1em 0;
+        } @else {
+            margin : 0 1em 1em 0;
+        }
+    }
+    img, iframe {
+        @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if( opt.$MobileOnly ){
+                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
+            } @else if( canuse.$CSS_MEDIA_QUERY ){
+                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
+            };
+        }
+    }
+    .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+        float : left;
+        @if( ua.$IE5 ){
+            margin : 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
+        } @else {
+            margin : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
+        }
+    }
+    @at-root div .#{common.$CAPTIONED_OBJECT__CLASSNAME} img, div .#{common.$CAPTIONED_OBJECT__CLASSNAME} iframe { // div で詳細度を上げる .box img の上書き
+        margin : 0 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE);
+        float  : none;
+    }
+}
+
+@if( ua.$GeckoLte19 ){
+    hr { display: -moz-inline-box; } // .box 内の hr が img に重なるのを妨げる
+}
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+@include media(tablet_print) {
+    .box {
+        margin : 1em 0 0;
+
+        img, iframe
+        //, embed, object, video
+        {
+            margin  : 0 1em 1em size.$TABLET_HORIZONTAL_MARGIN;
+        }
+        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+}
+
+/*  Phablet
+------------------------------------------------------------------------------------- */
+@include media(phablet) {
+    .box {
+        img, iframe
+        //, embed, object, video
+        {
+            margin  : 0 1em 1em size.$PHABLET_HORIZONTAL_MARGIN;
+        }
+        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$PHABLET_HORIZONTAL_MARGIN;
+        }
+    }
+}
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+@include media(phone) {
+    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+        .box > p:first-of-type {
+            margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
+        }
+    }
+    .box {
+        img, iframe
+        //, embed, object, video
+        {
+            margin  : 0 1em 1em size.$PHONE_HORIZONTAL_MARGIN;
+        }
+        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$PHONE_HORIZONTAL_MARGIN;
+        }
+    }
+}
+
+/*  Phone-
+------------------------------------------------------------------------------------- */
+@include media(smallphone) {
+    .box {
+        img, iframe
+        //, embed, object, video
+        {
+            float  : none;
+            margin : 0 auto 1em;
+        }
+        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+            float  : none;
+            margin : 0 auto math.div(1em, $_CAPTIONED_OBJ_FONTSIZE);
+        }
+    }
+}
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+@include media(watch) {
+    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+        .box > p:first-of-type {
+            margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);
+        }
+    }
+}
+
+/*  patch for Safari 3.2.3, Chrome 7
+Safari 3.1-5.0, Chrome 9- (& old versions of Chrome 10 before 10.0.64)
+------------------------------------------------------------------------------------- */
+.box > p:first-of-type {
+    @include css-hack(chromeLte9SafariLte5){
+        margin-top : auto;
+    }
+}

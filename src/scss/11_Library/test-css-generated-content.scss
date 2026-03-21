@@ -1,0 +1,19 @@
+/* Test CSS generated content
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+
+// https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
+@if( ua.$Modern ){
+    ##{common.$ELEMENT_ID_TEST_CSS_GENERATED_CONTENT} {
+        font : 0/0 a;
+    }
+    ##{common.$ELEMENT_ID_TEST_CSS_GENERATED_CONTENT}:after {
+        content    : ':)';
+        visibility : hidden;
+        font       : 7px/1 a
+    }
+}

@@ -1,0 +1,5 @@
+@use "../../01_var/target" with (
+    $TargetBrowser : "gecko0.7"
+);
+
+@use "../pc";

@@ -1,0 +1,187 @@
+/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| <a href> のインタラクション
+||
+||  リンクテキストのインタラクションを整理する
+||    https://outcloud.blogspot.com/2016/10/link-interaction.html
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
+@use "../01_var/ua" as ua;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/options" as opt;
+@use "../01_var/color" as color;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/link-colors-on-dark-background" as *;
+@use "../02_mixin/animate-colors" as *;
+
+@use "../03_reset/a";
+
+/* a タグの下線
+------------------------------------------------------------------------------------- */
+/* 記事の外では 下線なし -> hover -> 下線あり */
+:link, :visited { text-decoration : none; }
+
+@if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+    :hover { text-decoration : underline; }
+} @else if( canuse.$HOVER_PSEUDO_CLASS ){
+    :link:hover, :visited:hover { text-decoration : underline; }
+}
+
+@if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
+    a:active { text-decoration : none; }
+    a:active:hover { text-decoration : underline; }
+} @else if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
+    a:active { text-decoration : underline; }
+}
+@if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
+    a:focus { text-decoration : none; }
+    a:focus:hover { text-decoration : underline; }
+}
+
+/*  transition
+------------------------------------------------------------------------------------- */
+@if( ua.$Modern ){
+    :link, :visited {
+        background-color : transparent;
+    }
+    :link, :link *,
+    :visited, :visited * {
+        @include animate-colors;
+    }
+}
+
+/* a タグの色
+------------------------------------------------------------------------------------- */
+a {
+    color        : color.$Light_casual_text;
+    border-color : color.$Light_fill;
+}
+:link {
+    color : color.$Light_link;
+}
+:visited {
+    color : color.$Light_text;
+}
+@if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+    :link:hover {
+        color        : color.$Light_hover;
+        border-color : color.$Light_hover;
+    }
+    :visited:hover {
+        color        : color.$Light_visited_hover;
+        border-color : color.$Light_visited_hover;
+    }
+}
+
+@if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    .#{opt.$Prefix}ribbon {
+        a {
+            color        : color.$Ribbon_casual_text;
+            border-color : color.$Ribbon_fill;
+        }
+        :link {
+            color : color.$Ribbon_link;
+        }
+        :visited {
+            color : color.$Ribbon_text;
+        }
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+            :link:hover    {
+                color        : color.$Ribbon_hover;
+                border-color : color.$Ribbon_hover;
+            }
+            :visited:hover {
+                color        : color.$Ribbon_visited_hover;
+                border-color : color.$Ribbon_visited_hover;
+            }
+        }
+    }
+}
+
+/* :active, :focus 時の配色は同じ
+------------------------------------------------------------------------------------- */
+@if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+    a:active {
+        background-color : color.$ACCENT !important;
+        color            : #fff        !important;
+        & * { color : #fff !important; }
+    }
+    a:focus {
+        background-color : Highlight !important;
+        & * { color : HighlightText !important; }
+        @if( opt.$UseRibbon ){
+            .#{opt.$Prefix}ribbon & {
+                outline  : HighlightText solid size.$FORCED_COLORS_FOCUS_BORDER_WIDTH; // Highlight 色が暗いので ,ribbon の中では白いアウトラインをつける
+            }
+        }
+    }
+} @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+    a:focus {
+        background-color : color.$Sidebar_fill !important;
+    }
+} @else {
+    @if( ua.$IE5 ){
+        /* :link, :visited {
+            height : 1px; // hasLayout を有効にしないと背景色の塗りが微妙, しかし PicaThumbnail で問題が起きるので諦める
+        } */
+    }
+    a {
+        @include active-focus-pseudo-class {
+            background-color : color.$ACCENT !important;
+            color            : #fff        !important;
+    
+            & * {
+                color : #fff !important;
+            }
+        }
+    }
+}
+
+/* :target
+------------------------------------------------------------------------------------- */
+@if( canuse.$TARGET_PSEUDO_CLASS ){
+    :target, :target * {
+        background   : color.$ACCENT !important;
+        color        : #fff !important;
+        border-color : #fff !important;
+    }
+    th:target, td:target {
+        border-color : inherit !important;
+    }
+    :target th, :target td {
+        border-color : color.$ACCENT !important;
+    }
+    li:target {
+        color : inherit !important; // Light mode でだけ :target 時に <li> のリスト項目の箇条書き記号が見えにくくなる <li id=""><p>.... とすること
+    }
+}
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+@include media(dark_theme) {
+    a {
+        color        : color.$Dark_casual_text;
+        border-color : color.$Dark_fill;
+    }
+    @include link-colors-on-dark-background(color.$Dark_text);
+}
+
+/*  Print
+------------------------------------------------------------------------------------- */
+@include media(print) {
+    a        { color : color.$Print_casual_text; }
+    :link    { color : color.$Print_link; }
+    :visited { color : color.$Print_visited; }
+
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        .#{opt.$Prefix}ribbon {
+            a        { color : color.$Print_casual_text; }
+            :link    { color : color.$Print_link; }
+            :visited { color : color.$Print_visited; }
+        }
+    }
+}

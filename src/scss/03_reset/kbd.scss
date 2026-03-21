@@ -1,0 +1,9 @@
+/*  reset <kbd>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options.scss" as opt;
+
+kbd {
+    @if( opt.$UseITStyles ){
+        font-style : normal;
+    }
+}

@@ -1,0 +1,66 @@
+/* Sub Column のコンテンツを2列にしたり、1列にする
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/size" as size;
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+
+@if( opt.$MaxLayoutColumns < 2 ){
+    @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
+}
+
+.#{opt.$Prefix}lS {
+    @at-root #{&}i {
+        @include clearfix;
+    }
+
+/*  WQXGA
+------------------------------------------------------------------------------------- */
+    @include media(WQXGA) {
+        @at-root #{&}1 {
+            float : left;
+            width : 50% - math.div(size.$WQXGA_COLUMN_GAP_PCT, size.$WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
+        @at-root #{&}2 {
+            float : right;
+            width : 50% - math.div(size.$WQXGA_COLUMN_GAP_PCT, size.$WQXGA_SUB_COLUMN_RATIO) * 0.5;
+        }
+    }
+
+/*  Tablet Print
+------------------------------------------------------------------------------------- */
+    @include media(tablet_print) {
+        @at-root #{&}1 {
+            float : left;
+            width : 50% - size.$TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
+        @at-root #{&}2 {
+            float : right;
+            width : 50% - size.$TABLET_HORIZONTAL_MARGIN * 0.5;
+        }
+        @at-root #lB #{&}1 {
+            width        : 50% - size.$TABLET_HORIZONTAL_MARGIN * 1.5;
+            padding-left : size.$TABLET_HORIZONTAL_MARGIN;
+        }
+        @at-root #lB #{&}2 {
+            width         : 50% - size.$TABLET_HORIZONTAL_MARGIN * 1.5;
+            padding-right : size.$TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+
+/*  Phablet
+------------------------------------------------------------------------------------- */
+    @include media(phablet) {
+        @at-root #{&}1, #{&}2 {
+            float : none;
+            width : auto;
+        }
+        @at-root #lB #{&}1, #lB #{&}2 {
+            width   : auto;
+            padding : 0;
+        }
+    }
+}

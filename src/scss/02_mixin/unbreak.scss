@@ -1,0 +1,95 @@
+@use "../01_var/ua" as ua;
+
+@use "./media" as *;
+
+/**
+https://caniuse.com/?search=page-break
+https://developer.mozilla.org/ja/docs/Web/CSS/break-after
+ */
+@mixin unbreak-column-inside {
+    @if( ua.$Modern ){
+        -webkit-column-break-inside : avoid;
+        break-inside                : avoid-column;
+    }
+}
+
+@mixin unbreak-page-inside {
+    @include media(print){
+        @if( ua.$Modern ){
+            break-inside : avoid-page;
+        }
+        @if( ua.$Modern or ua.$OperaLte9 or ua.$IE8to9 ){
+            page-break-inside : avoid;
+        }
+    }
+}
+
+@mixin unbreak-inside {
+    @include media(WSXGA_landscapePrint) {
+        @include unbreak-column-inside;
+    }
+    @include unbreak-page-inside;
+}
+
+@mixin unbreak-column-after {
+    @if( ua.$Modern ){
+        -webkit-column-break-after : avoid;
+        break-after                : avoid-column;
+    }
+}
+
+@mixin unbreak-page-after {
+    @include media(print){
+        @if( ua.$Modern ){
+            break-after : avoid-page;
+        }
+        @if( ua.$Modern or ua.$OperaLte9 or ua.$IE8to9 ){
+            page-break-after : avoid;
+        }
+    }
+}
+
+@mixin unbreak-after {
+    @include media(WSXGA_landscapePrint) {
+        @include unbreak-column-after;
+    }
+    @include unbreak-page-after;
+}
+
+@mixin word-break($enum) {
+    @if( ua.$IE5 or ua.$IE55 or ua.$IE6 or ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$Modern ){
+        word-break : $enum;
+    }
+}
+
+@mixin word-wrap($enum) {
+    @if( ua.$IE55 or ua.$IE6 or ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$Modern ){
+        word-wrap : $enum;
+    }
+}
+
+@mixin unbreak-box-with-long-text { // block レベル要素
+    @include word-break(break-all); /* IE 5+ */
+    @if( ua.$Modern ){
+        @-moz-document url-prefix() { /* override Gecko 1.8~ */
+            word-wrap : break-word; // for Firefox 3.6, 6
+        }
+    }
+}
+
+@mixin unbreak-box-for-inline-element { // inline レベル要素
+    @include word-wrap(break-word); /* IE 5.5+, Firefox3.5, Safari 1, Opera 10.5 */
+
+    @if( ua.$Modern ){
+        // overflow-wrap : anywhere;
+    }
+}
+
+@mixin reset-unbreak-box-for-inline-element() {
+    @include word-wrap(normal);
+}
+
+@mixin unbreak-word {
+    @include word-break(normal);
+    @include word-wrap(normal);
+}

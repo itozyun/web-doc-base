@@ -1,0 +1,54 @@
+@use "sass:math";
+
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+
+@use "./media" as *;
+
+@mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $noPrint : false, $zeroHorizontalMarginWhenXGA : false){
+    @if( opt.$MobileOnly == false ){
+        @if( 1 < $ratio or $zeroHorizontalMarginWhenXGA ){
+            @if( $marginTop != 0 or $marginBottom != 0 ){
+                & {
+                    margin  : $marginTop 0 $marginBottom;
+                }
+            }
+        } @else {
+            & {
+                margin  : $marginTop math.div(1em, $ratio) $marginBottom;
+            } 
+        }
+    }
+
+    @if( $noPrint ){
+        @include media(tablet) {
+            & {
+                margin : $marginTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+            }
+        }
+    } @else {
+        @include media(tablet_print) {
+            & {
+                margin : $marginTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+            }
+        }
+    }
+
+    @include media(phablet) {
+        & {
+            margin : $marginTop math.div(size.$PHABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+        }
+    }
+
+    @include media(phone) {
+        & {
+            margin : $marginTop math.div(size.$PHONE_HORIZONTAL_MARGIN, $ratio) $marginBottom;
+        }
+    }
+
+    @include media(watch) {
+        & {
+            margin : $marginTop 0 $marginBottom;
+        }
+    }
+}

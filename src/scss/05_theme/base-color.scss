@@ -1,0 +1,101 @@
+/* Base color
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+
+@if( opt.$UseRibbon ){
+    body {
+        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+            background : color.$Sidebar_fill;
+        } @else {
+            background : color.$Ribbon_fill;
+        }
+        color : color.$Light_text;
+    }
+    .#{opt.$Prefix}baseColor {
+        background : color.$Light_fill;
+    }
+} @else {
+    body {
+        background : color.$Light_fill;
+        color      : color.$Light_text;
+    }
+}
+
+* {
+    border-color : color.$Light_casual_fill;
+}
+
+@if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    .#{opt.$Prefix}ribbon {
+        color : color.$Ribbon_text;
+        @if( ua.$Gecko08 ){
+            background : color.$Sidebar_fill; // Only for Gecko 0.8.1
+        }
+        * {
+            border-color : color.$Ribbon_casual_fill;
+        }
+    }
+}
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+@include media(tablet) {
+    @if( 1 < opt.$MaxLayoutColumns ){
+        #lB .#{opt.$Prefix}lS {
+            border-width : 1px 0 0;
+            background   : color.$Sidebar_fill;
+        }
+    }
+}
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+@include media(dark_theme) {
+    * {
+        border-color : color.$Dark_casual_fill;
+    }
+    @if( opt.$UseRibbon ){
+        body {
+            color : color.$Dark_text;
+        }
+        .#{opt.$Prefix}baseColor {
+            background : color.$Dark_fill;
+        }
+    } @else {
+        body {
+            background : color.$Dark_fill;
+            color      : color.$Dark_text;
+        }
+    }
+    @if( 1 < opt.$MaxLayoutColumns ){
+        #lB .#{opt.$Prefix}lS {
+            background : color.$Dark_fill;
+        }
+    }
+}
+
+/*  Print
+------------------------------------------------------------------------------------- */
+@include media(print) {
+    body, .#{opt.$Prefix}baseColor {
+        background : color.$Print_fill;
+        color      : color.$Print_text;
+    }
+    * {
+        border-color : color.$Print_casual_fill;
+    }
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        .#{opt.$Prefix}ribbon {
+            background : color.$Print_fill;
+            color      : color.$Print_text;
+            * {
+                border-color : color.$Print_casual_fill;
+            }
+        }
+    }
+}

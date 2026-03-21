@@ -1,0 +1,16 @@
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+
+@mixin active-focus-pseudo-class($isLink : true) {
+    @if( canuse.$ACTIVE_PSEUDO_CLASS or ($isLink and canuse.$LIMITED_ACTIVE_PSEUDO_CLASS) ){
+        &:active {
+            @content;
+        }
+    }
+
+    @if( canuse.$FOCUS_PSEUDO_CLASS or ( $isLink and canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false ) ){
+        &:focus {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+/*  <ul>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/column" as *;
+
+@use "../04_typography/ul" as *;
+
+@use "../08_module/ArticleBody";
+
+.#{opt.$Prefix}ABody {
+    li {
+        blockquote {
+            @include column-count(1);
+        }
+    }
+}

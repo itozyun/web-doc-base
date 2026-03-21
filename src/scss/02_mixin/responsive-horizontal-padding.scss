@@ -1,0 +1,46 @@
+@use "sass:math";
+
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+
+@use "./media" as *;
+
+@mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom, $skipPrintMedia : false){
+    @if( opt.$MobileOnly == false ){
+        & {
+            padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
+        }
+    }
+
+    @if( $skipPrintMedia ){
+        @include media(tablet) {
+            & {
+                padding : $paddingTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+            }
+        }
+    } @else {
+        @include media(tablet_print) {
+            & {
+                padding : $paddingTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+            }
+        }
+    }
+
+    @include media(phablet) {
+        & {
+            padding : $paddingTop math.div(size.$PHABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+        }
+    }
+
+    @include media(phone) {
+        & {
+            padding : $paddingTop math.div(size.$PHONE_HORIZONTAL_MARGIN, $ratio) $paddingBottom;
+        }
+    }
+
+    @include media(watch) {
+        & {
+            padding : $paddingTop 2px $paddingBottom;
+        }
+    }   
+}

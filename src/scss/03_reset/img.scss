@@ -1,0 +1,19 @@
+/*  reset <img>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+@if( ua.$IE9 ){
+    svg {
+        overflow : hidden;
+    }
+    img:not([src$=".svg"]):not([src*=".svg?"]){ // svg だと height が狂う, 併せて要 viewBox 属性, svg 圧縮ツールで削らないこと
+        height : auto;
+    }
+} @else {
+    img {
+        @if( ua.$IE7 ){
+            -ms-interpolation-mode : bicubic;
+        }
+        height : auto;
+    }
+}

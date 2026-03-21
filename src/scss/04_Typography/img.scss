@@ -1,0 +1,44 @@
+/*  <img>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/media" as *;
+
+@use "../03_reset/img";
+
+@use "./_/InteractiveObjectStyle" as *;
+@use "./_/ReplaceElementStyle" as *;
+
+img { //, embed, object, video
+    @extend %InteractiveObjectStyle;
+    @extend %ReplaceElementStyle;
+
+    @include unbreak-inside;
+
+/*  Phone-
+------------------------------------------------------------------------------------- */
+    @include media(smallphone) {
+        margin : 1em auto;
+    }
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        @if( ua.$Modern ){
+            filter : brightness(85%);
+            :link &, :visited & {
+                border-color : transparent; // filter: brightness(85%); の影響を避ける
+            }
+            &:hover, &:focus {
+                filter : none;
+            }
+        }
+    }
+
+/*  Forced colors
+------------------------------------------------------------------------------------- */
+    @include media(forced_colors_native_or_ms){
+        filter : none;
+    }
+}

@@ -1,98 +1,36 @@
-/*
- * https://qiita.com/tmiame/items/8816d970eacaf450911f
- * Mixin for placeholder
- * @include placeholder-color(#00ff00);
- */
-@mixin placeholder-color($color) {
-    @if( $UA_Modern ){
-        &:placeholder-shown {
-            color : $color;
-        }
-        &::-webkit-input-placeholder {
-            color : $color;
-        }
-        &:-moz-placeholder {
-            color   : $color;
-            opacity : 1;
-        }
-        &::-moz-placeholder {
-            color   : $color;
-            opacity : 1;
-        }
-        &:-ms-input-placeholder {
-            color : $color;
-        }
-    }
-}
+/* <form>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/active-focus-pseudo-class" as *;
+
+@use "../03_reset/form";
 
 form * {
     @include active-focus-pseudo-class( false ) {
-        color        : $COLOR_ACCENT;
-        border-color : $COLOR_ACCENT;
+        color        : color.$ACCENT;
+        border-color : color.$ACCENT;
     }
 
     &:focus {
-        @if( $IS_Opera7x ){
-            color : $COLOR_ACCENT;
-            @if( $UA_Opera70 ){
-                border-color : $COLOR_ACCENT;
+        @if( ua.$Opera7x ){
+            color : color.$ACCENT;
+            @if( ua.$Opera70 ){
+                border-color : color.$ACCENT;
             }
         }
     }
     &:invalid {
-        @if( $UA_Modern ){
-            color : $COLOR_WARN;
+        @if( ua.$Modern ){
+            color : color.$WARN;
         }
     }
-}
-
-textarea, input {
-    @extend %UDFontFamily;
-    @include placeholder-color( $COLOR_Light_casual_text );
-
-    @if( $UA_Opera72 == false ){
-        border-width : $INPUT_BORDER_WIDTH;
-        @if( $LIMITED_STYLING_OF_ITEMS_IN_FORM ){
-            border-color : $COLOR_Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
-        }
-    }
-
-    @if( $IS_OLD_OPERA == false ){
-        padding : math.div($PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) $FORM_ITEM_PADDING_LR;
-    }
-
-    &:hover {
-        @if( $UA_IE7 ){
-            border-color : $COLOR_ACCENT; // IE7, form :focus が使えない代わり
-        }
-    }
-}
-
-@if( $CANUSE_ATTRIBUTE_SELECTOR and $LIMITED_STYLING_OF_ITEMS_IN_FORM == false ){
-    [type=submit] {
-        background : $COLOR_Light_casual_fill;
-    }
-}
-
-/*  Dark theme
---------------------------------------------------------------------------------------*/
-@include media(dark_theme) {
-    textarea, input {
-        background : $COLOR_Dark_fill;
-        color      : $COLOR_Dark_text;
-        @include placeholder-color( $COLOR_Dark_casual_text );
-    }
-    @if( $CANUSE_ATTRIBUTE_SELECTOR ){
-        [type=submit] {
-            background : $COLOR_Dark_casual_fill;
-        }
-    }
-}
 
 /*  Forced colors
---------------------------------------------------------------------------------------*/
-@include media(forced_colors_native_or_fallback){
-    form * {
+------------------------------------------------------------------------------------- */
+    @include media(forced_colors_native_or_fallback){
         @include active-focus-pseudo-class {
             border-style : dotted;
         }

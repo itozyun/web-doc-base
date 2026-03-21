@@ -1,5 +1,5 @@
 /*  font-family japanese
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
 // 「ウェブサイトでシステムフォント」
 //    https://terkel.jp/archives/2016/05/system-fonts-on-website/
 
@@ -54,7 +54,11 @@
  *          https://getbootstrap.com/docs/4.0/content/reboot/#native-font-stack
  */
 
-@if( $UA_Modern ){
+@use "../01_var/ua" as ua;
+
+@use "./css-hack" as *;
+
+@if( ua.$Modern ){
     // (1)
     @font-face {
         font-family : "YuGothic M";
@@ -62,7 +66,10 @@
                       local("Yu Gothic");
         font-weight : 500;
     }
-    %UDFontFamily {
+}
+
+%UDFontFamily {
+    @if( ua.$Modern ){
         font-family :
             -apple-system, BlinkMacSystemFont,
             ".SFNSDisplay-Regular", // (8)
@@ -78,32 +85,50 @@
             sans-serif;
 
         @include css-hack(onlyFirefoxOS22) {
-            & {
-                font-family : sans-serif;
-            }
+            font-family : sans-serif;
         }
-        
         @include css-hack(onlySafari) {
-            & {
-                font-family :
-                    -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-                    "Helvetica Neue", /* Helvetica, Arial, (3) */ Verdana,
-                    Roboto, // (2)
-                    "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
-                    "游ゴシック体", YuGothic, "YuGothic M", // (1)
-                    "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-                    "メイリオ", Meiryo,
-                    "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
-            }
+            font-family :
+                -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+                "Helvetica Neue", /* Helvetica, Arial, (3) */ Verdana,
+                Roboto, // (2)
+                "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+                "游ゴシック体", YuGothic, "YuGothic M", // (1)
+                "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+                "メイリオ", Meiryo,
+                "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
         }
         @include css-hack(onlyIE10To11){
-            & {
-                font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif; // (4)
-            }
+            font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif; // (4)
         }
-    }
+    } @else if( ua.$LegacyOperaOrGecko or ua.$MacIE5 ){
+        font-family :
+            "-apple-system", BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+            "Helvetica Neue", Helvetica, Arial, Verdana,
+            // Roboto,
+            // "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            // "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
+            "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+            "メイリオ", Meiryo,
+            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
+    } @else if( ua.$IE9 ){
+        font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
 
-    %MinchoFontFamily {
+        %SerifFontFamily {
+            font-family   : /* "BIZ UD明朝", "BIZ UDMincho", */
+                            "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+            -ms-transform : rotate(.03deg); // (5)
+            font-weight   : 700;
+        }
+    } @else if( ua.$IE7 or ua.$IE8 ){
+        font-family : Arial, Meiryo, "MS PGothic", sans-serif;
+    } @else if( ua.$WinIELte6 ){
+        font-family : Arial, "MS PGothic", sans-serif;
+    }
+}
+
+%SerifFontFamily {
+    @if( ua.$Modern ){
         font-family :
             /* "BIZ UD明朝", "BIZ UDMincho", */
             "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
@@ -114,51 +139,24 @@
                 font-weight : 700;
             }
         }
-    }
-}
-
-@if( $IS_LEGACY or $UA_MacIE5 ){
-    %UDFontFamily {
-        font-family :
-            "-apple-system", BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-            "Helvetica Neue", Helvetica, Arial, Verdana,
-            // Roboto,
-            // "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
-            // "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
-            "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-            "メイリオ", Meiryo,
-            "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
-    }   
-}
-
-@if( $UA_IE9 ){
-    %UDFontFamily {
-        font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
-    }
-    %MinchoFontFamily {
+    } @else if( ua.$LegacyOperaOrGecko or ua.$MacIE5 ){
+         
+    } @else if( ua.$IE9 ){
         font-family   : /* "BIZ UD明朝", "BIZ UDMincho", */
                         "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
         -ms-transform : rotate(.03deg); // (5)
         font-weight   : 700;
-    }
-}
+    } @else if( ua.$IE7 or ua.$IE8 ){
 
-@if( $UA_IE7 or $UA_IE8 ){
-    %UDFontFamily {
-        font-family : Arial, Meiryo, "MS PGothic", sans-serif;
-    }
-}
+    } @else if( ua.$WinIELte6 ){
 
-@if( $IS_LTE_WIN_IE6 ){
-    %UDFontFamily {
-        font-family : Arial, "MS PGothic", sans-serif;
     }
 }
 
 /*  IT
---------------------------------------------------------------------------------------*/
-@if( $UA_IE7 or $UA_IE8 or $UA_IE9 or $IS_NOT_IE or $UA_MacIE5 ){
-    %CodingFontFamily {
+------------------------------------------------------------------------------------- */
+%CodingFontFamily {
+    @if( ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$NotIE or ua.$MacIE5 ){
         font-family : // (6) 注意事項
             SFMono-Regular,
             'Liberation Mono',
@@ -169,11 +167,7 @@
             Meiryo,                      /* 和文コメント用：Windows Vista(2006年) */
             /* 'Courier New', Courier, */
             monospace;
-    }
-}
-
-@if( $IS_LTE_WIN_IE6 ){
-    %CodingFontFamily {
+    } @else {
         font-family : 'Courier New', monospace;
     }
 }

@@ -2,23 +2,29 @@
  *  出現位置は #lB .lMh 下で固定
  *
  *  div.CmtForm
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}CmtForm { 
-        @if( $UA_Modern or $UA_IE9 ){
-        
-            padding    : 1em 0;
-            text-align : center;
-            iframe {
-                width  : 100%;
-                margin : 0;
-                height : 400px;
-            }
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+
+@use "../02_mixin/media" as *;
+
+// Google 提供のコメントフォームの実態は <iframe> 内
+@use "../04_typography/iframe";
+
+.#{opt.$Prefix}CmtForm { 
+    @if( ua.$Modern or ua.$IE9 ){
+    
+        padding    : 1em 0;
+        text-align : center;
+        iframe {
+            width  : 100%;
+            margin : 0;
+            height : 400px;
         }
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            display : none;
-        }
+    }
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        display : none;
     }
 }

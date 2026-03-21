@@ -1,0 +1,26 @@
+/* [parts] button
+ *
+ * .btn:link, このファイルは .btn[type=submit] からも呼ばれます
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+
+@use "./_/ButtonBase" as *;
+@use "./_/apply-button-colors" as *;
+
+.#{opt.$Prefix}btn {
+    @extend %ButtonBase;
+    @include apply-button-colors( color.$Ribbon_link, color.$Ribbon_text, color.$Ribbon_fill );
+
+    .#{opt.$Prefix}baseColor & {
+        @include apply-button-colors( color.$Light_link, color.$Light_text, color.$Light_fill );
+
+        /*  Dark theme
+        ------------------------------------------------------------------------------------- */
+        @include media(dark_theme) {
+            @include apply-button-colors( color.$Dark_link, color.$Dark_text, color.$Dark_fill );
+        }
+    }
+}

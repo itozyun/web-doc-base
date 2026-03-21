@@ -1,0 +1,29 @@
+/*
+ * https://qiita.com/tmiame/items/8816d970eacaf450911f
+ * Mixin for placeholder
+ * @include placeholder-color(#00ff00);
+ *
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+@mixin placeholder-color($color) {
+    @if( ua.$Modern ){
+        &:placeholder-shown {
+            color : $color;
+        }
+        &::-webkit-input-placeholder {
+            color : $color;
+        }
+        &:-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &::-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &:-ms-input-placeholder {
+            color : $color;
+        }
+    }
+}

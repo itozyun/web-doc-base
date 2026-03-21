@@ -1,0 +1,309 @@
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/create-css-generated-block" as *;
+@use "../02_mixin/border-radius" as *;
+@use "../02_mixin/css-hack" as *;
+
+@use "../04_typography/table" as *;
+
+@use "../08_module/ArticleBody";
+
+.tl {
+    border-width : 0;
+
+    thead {
+        @if( ua.$Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    background : none;
+                }
+            }
+        }
+    }
+
+    thead,               // for Firefox
+    thead td, thead th { // for Chrome
+        @if( ua.$Modern ){
+            @include media(pc) {
+                @supports (position:sticky) {
+                    position : static; // stop sticky
+                }
+            }
+        }
+    }
+
+    th, td {
+        background : none !important;
+    }
+    
+    thead th, thead td, tbody th {
+        color : color.$Light_text;
+    }
+
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+        thead th a:focus, thead td a:focus, tbody th a:focus {
+            background-color : color.$Sidebar_fill !important;
+        }
+    }
+
+    thead th {
+        border-width : 0 0 1px 0;
+    }
+    thead td {
+        border-width : 0 0 1px .3em;
+    }
+
+    thead th, thead td {
+        border-color   : color.$Light_casual_fill;
+        padding-top    : .5em;
+        padding-bottom : .5em;
+    }
+
+    th {
+        padding        : .5em .8em .5em .5em;
+        border-width   : 0;
+        text-align     : left;
+        vertical-align : top;
+    }
+    td {
+        @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+            position : relative;
+        }
+        padding        : .5em .8em;
+        border-width   : 0 0 0 .3em;
+        border-color   : color.$Light_casual_fill;
+        border-style   : solid;
+
+        @if( canuse.$FIRST_CHILD_PSEUDO_CLASS ){
+            & > *:first-child {
+                margin-top : 0;
+            }
+        } @else {
+            & * {
+                margin-top : 0;
+            }
+        }
+    }
+
+    @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+        tbody td:before, tbody td:after {
+            @include create-css-generated-block;
+            text-indent  : -1em;
+            position     : absolute;
+            border-width : .3em;
+            border-style : solid;
+        }
+        @if( canuse.$EMPTY_PSEUDO_CLASS ){
+            tbody :empty:before, tbody :empty:after {
+                display : none; /* for iOS4 content : none だけでは消えない */
+            }
+        }
+        /* td に対する絶対配置は Iron14 と Windows Safari 5.1.1 で動作, Iron8 では不可 body が親になる. */
+        /* Webkit 534.51, 535 が可, ~534.? が不可ということ? */
+        /* td に対する絶対配置は Opera 10.54 で動作, Opera ~10 では非表示. */
+        tbody td:before {
+            top          : .6em;
+            left         : -0.75em;
+            width        : 0;
+            height       : 0;
+            border-width : .6em;
+            border-color : color.$Light_casual_fill;
+            @include border-radius(.6em);
+        }
+        tbody td:after {
+            top          : .85em;
+            left         : -0.5em;
+            width        : 0;
+            height       : 0;
+            border-width : .35em;
+            border-color : color.$Light_fill;
+            @include border-radius(.35em);
+            @if( ua.$Modern ){
+                /*  Forced colors
+                ------------------------------------------------------------------------------------- */
+                @include media(forced_colors_native_or_ms){
+                    & { border-color : Window; }
+                }
+                @include media(forced_colors_fallback){
+                    & { filter : invert(1); }
+                }
+            }@else if( ua.$IE8 or ua.$IE9 ){
+                @include media(forced_colors_fallback){
+                    & {
+                        top          : 1.2em;
+                        left         : -.13em;
+                        border-width : 0;
+                        outline      : .35em solid invert;
+                    }
+                }
+            }
+        }
+    }
+
+    /*  patch for Safari ~4.x
+    ------------------------------------------------------------------------------------- */
+    @include css-hack(chromeLte5SafariLte4){
+        td:before, td:after {
+            display : none !important; // tebla-cell に対して絶対配置が出来ない
+        }
+    }
+
+    tfoot th {
+        border-width : 1px 0 0;
+    }
+    tfoot td {
+        border-width : 1px 0 0 .3em;
+        border-style : solid dotted;
+    }
+    tfoot th, tfoot td {
+        border-color   : color.$Light_casual_fill;
+        padding-top    : .5em;
+        padding-bottom : .5em;
+    }
+
+    @if( canuse.$HOVER_PSEUDO_CLASS ){
+        tbody :hover th,
+        tbody :hover td {
+            border-color : color.$ACCENT;
+        }
+        @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+            tbody :hover td:before {
+                border-color : color.$ACCENT;
+            }
+        }
+        tbody :hover th {
+            background : color.$ACCENT !important;
+            color      : #fff;
+        }
+        tbody :hover th {
+            :link, :visited {
+                color : #fff;
+            }
+        }
+    }
+
+    thead tr { /* tr で詳細度を上げる */
+        :link {
+            color : color.$Light_link;
+        }
+        :visited {
+            color : color.$Light_visited;
+        }
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+            :visited:hover {
+                color : color.$Light_visited_hover;
+            }
+        }
+    }
+
+    blockquote & {
+        thead th, thead td,
+        td,
+        tfoot th, tfoot td {
+            border-color : color.$Light_casual_text;
+        }
+        
+        @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+            tbody td:before {
+                border-color : color.$Light_casual_text;
+            }
+            tbody td:after {
+                border-color : color.$Light_casual_fill;
+            }
+        }
+        tbody tr th { /* tr で詳細度を上げる */
+            :link {
+                color : color.$Light_link;
+            }
+            :visited {
+                color : color.$Light_visited;
+            }
+        }
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        thead th, thead td, tbody th {
+            color : color.$Dark_text;
+        }
+
+        thead th, thead td,
+        td,
+        tfoot th, tfoot td {
+            border-color : color.$Dark_casual_fill;
+        }
+        @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+            tbody td:before {
+                border-color : color.$Dark_casual_fill;
+            }
+            tbody td:after {
+                border-color : color.$Dark_fill;
+            }
+        }
+
+        thead tr, tbody tr th { /* tr で詳細度を上げる */
+            :link {
+                color : color.$Dark_link;
+            }
+            :visited {
+                color : color.$Dark_visited;
+            }
+            @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+                :visited:hover {
+                    color : color.$Dark_visited_hover;
+                }
+            }
+        }
+        blockquote & {
+            thead th, thead td,
+            td,
+            tfoot th, tfoot td {
+                border-color : color.$Dark_casual_text;
+            }
+            @if( canuse.$GOOD_CSS_GENERATED_BLOCK ){
+                tbody td:before {
+                    border-color : color.$Dark_casual_text;
+                }
+                tbody td:after {
+                    border-color : color.$Dark_casual_fill;
+                }
+            }
+            tbody tr th { /* tr で詳細度を上げる */
+                :link {
+                    color : color.$Dark_link;
+                }
+                :visited {
+                    color : color.$Dark_visited;
+                }
+            }
+        }  
+    }
+
+    /*  Forced colors
+    ------------------------------------------------------------------------------------- */
+    @include media(forced_colors_native_or_fallback){
+        border-collapse : collapse;
+    }
+    @include media(forced_colors_native_or_ms){
+        td, tfoot td {
+            border-color : currentColor;
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        &, blockquote & {
+            tbody td:after {
+                border-color :#fff;
+            }
+        }
+    }
+}

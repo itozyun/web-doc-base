@@ -1,0 +1,34 @@
+/*  Vertical margins
+----------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/media" as *;
+
+@include media(screen) {
+    #lB .#{opt.$Prefix}lM {
+        padding-bottom : 4em;
+        @if( ua.$GeckoLte09 or ua.$Gecko12 ){
+            padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
+        }
+    }
+    #lB .#{opt.$Prefix}lS {
+        padding-bottom : 1em;
+    }    
+}
+
+/*  WQXGA
+------------------------------------------------------------------------------------- */
+@include media(WQXGA) {
+    #lB .#{opt.$Prefix}lS {
+        padding-bottom : 2em;
+    }
+}
+
+/*  Phablet
+------------------------------------------------------------------------------------- */
+@include media(phablet) {
+    #lB .#{opt.$Prefix}lS {
+        padding-bottom : 2em;
+    }
+}

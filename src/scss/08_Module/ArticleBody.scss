@@ -2,14 +2,22 @@
  *  出現位置は #lB .lMz 下で固定
  *
  *  div.ABody
---------------------------------------------------------------------------------------*/
-.#{$Prefix}ABody {
-    @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/size" as size;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/column" as *;
+
+.#{opt.$Prefix}ABody {
+    @if( canuse.$FIRST_CHILD_PSEUDO_CLASS ){
         // https://twitter.com/itozyun/status/1588802003261870080
         // margin にすると Gecko 106 でも塗りが乱れる。
         padding : 3.5em 0 2em;
 
-        @at-root .#{$Prefix + $COMMON_CLASSNAME_ARTICLE_BODY_ROOT} > *:first-child {
+        @at-root .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} > *:first-child {
             margin-top : 0;
             > *:first-child {
                 margin-top : 0;
@@ -22,160 +30,28 @@
         margin : 3.5em 0 2em;
     }
 
-    /*  明朝
-    --------------------------------------------------------------------------------------*/
-    @if( $UA_Modern or $UA_IE9 ){
-        h1, h2, h3, h4, h5, h6 {
-            @extend %MinchoFontFamily;
-        }
-    }
-
-    /*  h1 は、blockquote の下に出現する
-    --------------------------------------------------------------------------------------*/
-    h1 {
-        @include responsive-horizontal-margin(2, 3em, 3em);
-        font-size : 2em;
-    }
-
-    /*  h2
-    --------------------------------------------------------------------------------------*/
-    h2 {
-        @include responsive-horizontal-margin(2, 2em, 1em);
-        font-size    : 1.5em;
-        border-width : 0.2em 0 0;
-        padding      : 1.4em 0 .6em;
-        border-color : $COLOR_ACCENT;
-        color        : $COLOR_ACCENT;
-        @if( $UA_IE5 ){
-            height : 1px; // <= 線が消えるのを防ぐ
-        } @else if( $UA_IE55 or $UA_IE6 ){
-            zoom : 1; // <= 線が消えるのを防ぐ
-        }
-        @if( $CANUSE_CSS_GENERATED_BLOCK ){
-            &:after {
-                @if( $IS_Opera7x or $UA_Opera8 ){
-                    width : 0;      /* for Opera 7-8 */
-                } @else {
-                    display : none; /* for iOS4 content:none では消えない */
-                }
-            }
-        }
-        * {
-            border-color : $COLOR_ACCENT;
-        }
-    }
-
-    /*  h3
-    --------------------------------------------------------------------------------------*/
-    h3 {
-        @include responsive-horizontal-margin(2, 2.4em, 1.2em);
-        font-weight  : bold;
-        font-size    : 1.25em;
-        border-width : 0.1em 0 0;
-        padding      : 1.4em 0 .6em;
-    }
-
     /*  WSXGA, print
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(WSXGA_landscapePrint) {
         @include column-count(2);
-
-        blockquote {
-            @include column-span-all(2);
-            blockquote {
-                @include column-span-none;
-                @include supports(column-span){
-                    margin : 0 0 1em;
-                }
-                @include supports(-webkit-column-span){
-                    margin : 0 0 1em;
-                }
-            }
-        }
-        li, dl, tr {
-            blockquote {
-                @include column-count(1);
-            }
-        }
-        @at-root {
-            h1, h2,
-            blockquote:before, blockquote:after {
-                @include column-span-all;
-            }
-        }
     }
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
     @include media(WSXGA) {
-        &, & blockquote {
-            -webkit-column-gap : $WSXGA_COLUMN_GAP_EM;
-               -moz-column-gap : $WSXGA_COLUMN_GAP_EM;
-                    column-gap : $WSXGA_COLUMN_GAP_EM;
-        }
-        h1, h2 {
-            text-align : center;
-        }
+        @include column-gap(size.$WSXGA_COLUMN_GAP_EM);
     }
-
-    /*  Tablet
-    --------------------------------------------------------------------------------------*/
-    @include media(tablet_print) {
-        h1, h2, h3 {
-            text-align    : center;
-            padding-left  : math.div($TABLET_HORIZONTAL_MARGIN, 2);
-            padding-right : math.div($TABLET_HORIZONTAL_MARGIN, 2);
-        }
-    }
-
-    /*  PHABLET
-    --------------------------------------------------------------------------------------*/
-    @include media(phablet) {
-        h1, h2, h3 {
-            padding-left   : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
-            padding-right  : math.div($PHABLET_HORIZONTAL_MARGIN, 2);
-        }
-    }
-
-    /*  Phone
-    --------------------------------------------------------------------------------------*/
-    @include media(phone) {
-        h1 {
-            font-size : 1.5em;
-        }
-        h2 {
-            font-size : 1.25em;
-        }
-        h1, h2, h3 {
-            padding-left  : math.div($PHONE_HORIZONTAL_MARGIN, 2);
-            padding-right : math.div($PHONE_HORIZONTAL_MARGIN, 2);
-        }
-    }
-
-    /*  Watch
-    --------------------------------------------------------------------------------------*/
-    @include media(watch) {
-        h1, h2, h3 {
-            padding-left  : 0;
-            padding-right : 0;
-        }
-    }
-
     /*  Print
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(print) {
-        @if( $CANUSE_1ST_CHILD_PSEUDO_CLASS ){
+        @if( canuse.$FIRST_CHILD_PSEUDO_CLASS ){
             padding : 0 0 2em;
         } @else {
             margin : 0 0 2em;
         }
     }
-
+    /*  landscape Print
+    ------------------------------------------------------------------------------------- */
     @include media(landscapePrint){
-        &, & blockquote {
-            -webkit-column-gap : $PRINT_COLUMN_GAP_EM;
-               -moz-column-gap : $PRINT_COLUMN_GAP_EM;
-                    column-gap : $PRINT_COLUMN_GAP_EM;
-        }
-        h1, h2, h3 {
-            text-align : left;
-        }
+        @include column-gap(size.$PRINT_COLUMN_GAP_EM);
     }
 }

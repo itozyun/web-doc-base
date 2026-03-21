@@ -1,0 +1,42 @@
+/*  h1 は、blockquote の下に出現する
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/column" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/h1";
+
+@use "../08_module/ArticleBody";
+
+@use "./_/HeadingBase" as *;
+
+.#{opt.$Prefix}ABody {
+    h1 {
+        @extend %HeadingBase;
+        @include responsive-horizontal-margin(2, 3em, 3em);
+        font-size : 2em;
+
+    /*  WSXGA, print
+    ------------------------------------------------------------------------------------- */
+        @include media(WSXGA_landscapePrint) {
+            @at-root h1 {
+                @include column-span-all;
+            }
+        }
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+        @include media(WSXGA) {
+            @at-root h1 {
+                text-align : center;
+            }
+        }
+
+    /*  Phone
+    ------------------------------------------------------------------------------------- */
+        @include media(phone) {
+            font-size : 1.5em;
+        }
+    }
+}

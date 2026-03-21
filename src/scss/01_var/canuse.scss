@@ -1,0 +1,67 @@
+﻿@use "./ua" as ua;
+
+/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| 3. can use
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
+
+// ;hover
+    $LIMITED_HOVER_PSEUDO_CLASS : ua.$WinIELte6; // :hover は a[href] にしか働かない
+    $HOVER_PSEUDO_CLASS         : ua.$Modern or ua.$GeckoLte19 or ua.$OperaLte9 or ua.$IE8to9 or ua.$IE7;
+
+// :active
+    $LIMITED_ACTIVE_PSEUDO_CLASS : ua.$WinIELte7;
+    $ACTIVE_PSEUDO_CLASS         : ua.$Modern or ua.$Gecko19 or ua.$IE8to9 or ua.$MacIE5;
+
+// :focus
+    $LIMITED_FOCUS_PSEUDO_CLASS : ua.$IE7 or ua.$Opera72; // :focus は a[href] にしか働かない
+    $FOCUS_PSEUDO_CLASS         : ua.$Modern or ua.$GeckoLte19 or ua.$Opera70 or ua.$Opera8 or ua.$Opera9 or ua.$IE8to9 or ua.$MacIE5;
+
+// outline
+    $LIMITED_OUTLINE : ua.$Opera7x; // 動的疑似クラスで(色の)変更が出来ない
+    $OUTLINE         : ua.$Modern or ua.$Gecko19 or ua.$Opera8 or ua.$Opera9 or ua.$IE8to9 or ua.$MacIE5; // IE8+, Gecko 1.8+, Opera 8+
+
+// styling
+    $TRANSPARENT_BORDER_COLOR : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
+
+// @media
+    $CSS_MEDIA_QUERY : ua.$Modern or ua.$IE9 or ua.$Opera9;
+    $FORCED_COLORS   : ua.$Modern or ua.$WinIELte9 or ua.$Gecko19;
+
+// webfont
+    $WEBFONT : ua.$Modern or ua.$WinIELte9;
+
+// SVG
+    $SVG_TINY    : ua.$Opera8;
+    $DYNAMIC_SVG : ua.$Gecko13 or ua.$Gecko19; // Gecko 1.8+
+    $SVG         : ua.$Modern or $SVG_TINY or ua.$Opera9 or $DYNAMIC_SVG or ua.$IE9;
+
+// CSS Generated Content
+    $CSS_GENERATED_CONTENT    : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9;
+    $CSS_GENERATED_BLOCK      : $CSS_GENERATED_CONTENT and ua.$GeckoLte19 == false and ua.$Opera70 == false;
+    $GOOD_CSS_GENERATED_BLOCK : ua.$Modern or ua.$IE8to9;
+
+// Useful CSS Properties
+    $MAX_AND_MIN_SIZES    : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
+    $OVERFLOW_X_AND_Y     : ua.$Modern or ua.$WinIELte9 or ua.$MacIE5;
+    $MARGIN_AUTO          : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7 or ua.$IE6 or ua.$IE55;
+    $DISPLAY_INLINE_BLOCK : ua.$Modern or ua.$Gecko09 or ua.$Gecko12 or ua.$Gecko13to19 or ua.$OperaLte9 or ua.$IE8to9 or ua.$MacIE5; // Gecko 0.9.4.1~
+    $BOX_SIZING           : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9;
+
+// Useful CSS Selectors
+    $ATTRIBUTE_SELECTOR         : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
+    $CUSTOM_ATTRIBUTE_SELECTOR  : ua.$Modern or ua.$GeckoLte19 or ua.$Opera72 or ua.$Opera8 or ua.$Opera9 or ua.$IE8to9 or ua.$IE7;
+    $ALL_ATTRIBUTE_SELECTORS    : ua.$Modern or ( ua.$GeckoLte19 and ua.$Gecko07 == false ) or ua.$Opera9 or ua.$IE8to9 or ua.$IE7;
+    $EMPTY_PSEUDO_CLASS         : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE9;
+    $TARGET_PSEUDO_CLASS        : ua.$Modern or ua.$Gecko13to19 or ua.$IE9;
+    $FIRST_CHILD_PSEUDO_CLASS   : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7 or ua.$MacIE5;
+    $LAST_CHILD_PSEUDO_CLASS    : ua.$Modern or ua.$GeckoLte19 or ua.$IE9;
+    $NEGATIVE_PSEUDO_CLASS      : ua.$Modern or ua.$GeckoLte19 or ua.$Opera9 or ua.$IE9; // Opera 9, @media 内に :not() を含むと、そのメディアブロックのスタイルがあたる
+    $FIRST_OF_TYPE_PSEUDO_CLASS : ua.$Modern or ua.$IE8to9;
+
+    $ADJACENT_SIBLING_COMBINATOR : ua.$WinIELte6 == false and ua.$MacIE5 == false;
+    $CHILD_COMBINATOR            : ua.$WinIELte6 == false and ua.$MacIE5 == false;
+
+// layout
+    $DISPLAY_TABLE_FOR_2COL_LAYOUT : ua.$WinIELte7 == false and ua.$GeckoLte09 == false and ua.$Opera7x == false and ua.$Opera8 == false;

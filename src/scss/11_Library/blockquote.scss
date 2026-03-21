@@ -1,14 +1,30 @@
-.#{$Prefix + $COMMON_BLOCKQUOT__CLASSNAME_LINK} {
-    @extend %BlockquoteLink;
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        @if( $CANUSE_CSS_GENERATED_CONTENT ){
-            a:after {
-                display : none; /* for iOS4 content : none だけでは消えない */
+/* <blockquot> extension
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/media" as *;
+
+@use "../09_article-body/blockquote" as *;
+
+@if ua.$Script {
+    .#{opt.$Prefix + common.$BLOCKQUOT__CLASSNAME_LINK} {
+        @extend %link-in-blockquote;
+
+        /*  Print
+        ------------------------------------------------------------------------------------- */
+        @include media(print) {
+            @if( canuse.$CSS_GENERATED_CONTENT ){
+                & a:after {
+                    display : none; /* for iOS4 content : none だけでは消えない */
+                }
             }
         }
     }
-}
 
-.#{$Prefix + $COMMON_BLOCKQUOT__CLASSNAME_CITE} { @extend %BlockquoteCite; }
+    .#{opt.$Prefix + common.$BLOCKQUOT__CLASSNAME_CITE} {
+        @extend %cite-in-blockquote;
+    }
+}

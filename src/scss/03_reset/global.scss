@@ -1,0 +1,78 @@
+/*  reset
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/media" as *;
+
+@use "./_/reset-outline" as *;
+
+/* (forced-colors:active) のフォールバックが出来ない場合も、フォーカスのアウトラインが消えないように無色で塗ります
+    */
+@if( canuse.$OUTLINE ){
+    @if( ua.$Modern or ua.$IE8to9 ){
+        * {
+            @include active-focus-pseudo-class {
+                outline : 0;
+            }
+        }
+    } @else {
+        * {
+            @include active-focus-pseudo-class( false ) {
+                outline : 0;
+                /*  Forced colors
+                ------------------------------------------------------------------------------------- */
+                @include media(forced_colors_fallback){
+                    @if( ua.$Gecko19 ){
+                        outline : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH solid; // Gecko 1.8 transparent 不可
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*  html & body
+------------------------------------------------------------------------------------- */
+html {
+    font-size : 100%;
+
+    @if( opt.$MobileOnly == false and ua.$IE6 ){
+        overflow-x : hidden;
+    }
+
+    @if( ua.$Modern ){
+        // https://shanabrian.com/web/html-css-js-technics/other-ie10-11-bug-01.php
+        //   IE10、IE11、Windows 8 Edgeでページ全体のスクロールバーがコンテンツと重なる
+        // https://qumeru.com/magazine/libraries/stylesheet/posts/60
+        //   スクロール中のみスクロールバーを表示
+        -ms-overflow-style       : -ms-autohiding-scrollbar;
+        -webkit-text-size-adjust : 100%;
+            -moz-text-size-adjust : 100%;
+            -ms-text-size-adjust : 100%;
+            /* text-size-adjust : 100%; */
+        // 次のコードは以下から
+        //   https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L29
+        // 
+        // text-rendering: optimizeLegibility breaks glyph spacing when font substitution occurs 
+        //   https://issues.chromium.org/issues/40286561
+        //   > Note two problems with Chrome 21 on Windows XP and the following reduction:
+        /* text-rendering           : optimizeLegibility !important; */
+            -webkit-font-smoothing  : antialiased !important;
+        -moz-osx-font-smoothing  : grayscale;
+    }
+}
+
+html,
+body {
+    margin : 0;    /* body のみ? */
+    height : 100%; /* body のみ? */
+}
+body {
+    @if( ua.$Opera8 or ua.$Opera7x ){
+        padding : 0; /* Opera 7~8 */
+    }
+}

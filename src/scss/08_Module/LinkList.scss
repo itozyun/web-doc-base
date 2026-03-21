@@ -4,50 +4,65 @@
  *  div.LinkList
  *   div
  *    a
---------------------------------------------------------------------------------------*/
-.#{$Prefix}LinkList {
-    @extend %LinkListItemBase;
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/a";
+
+@use "./_/LinkListBase" as *;
+@use "./_/stackable-module" as *;
+
+.#{opt.$Prefix}LinkList {
+    @extend %LinkListBase;
     @include stackableModule;
     a {
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
     }
-    @if( $ACTIVE_ON_LINK_BEHAVES_FOCUS ){
+    @if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
         :active:hover { text-decoration : underline !important; }
-    } @else if( $CANUSE_ACTIVE_PSEUDO_CLASS or $ACTIVE_PSEUDO_CLASS_ONLY_LINK ){
+    } @else if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
         :active { text-decoration : underline !important; }
     }
-    @if( $CANUSE_FOCUS_PSEUDO_CLASS or ($FOCUS_PSEUDO_CLASS_ONLY_LINK and $ACTIVE_ON_LINK_BEHAVES_FOCUS == false) ){
+    @if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
         :focus:hover { text-decoration : underline !important; }
     }
 
     /*  WSXGA
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(WSXGA) {
         .lM & {
             @include stackableModule(.2em);
 
             div {
                 display : inline-block;
-                margin  : $FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
+                margin  : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
             }
         }
     }
 
     /*  Phablet
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(phablet) {
         text-align : center;
         @include stackableModule(.2em);
 
         div {
             @include inline-block;
-            margin  : $FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
+            margin  : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
         }
     }
 
     /*  Watch
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(watch) {
         a {
             padding : 0.5em 0;

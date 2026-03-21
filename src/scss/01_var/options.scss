@@ -1,0 +1,27 @@
+﻿/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| 2. Options
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
+@use "./mobile-only" as mob;
+
+// WSXGA 以上のレイアウトを有効にします
+    $EnableWideLayout : true !default;
+
+    $MobileOnly : mob.$MobileOnly;
+
+// 16 以上の値を設定した場合、タブレット以上の ViewPort に対してこのフォントサイズを使用します
+    $BaseFontSize     : 18 !default;
+
+// レイアウトのカラム数 1~3 を指定する
+    $MaxLayoutColumns : 2 !default;
+// シンプルな組込みヘッダーを使用する
+    $UseBuiltinHeader : false !default;
+// 濃い色のテーマカラーを背景にする
+    $UseRibbon        : true !default;
+
+// <code>, <var>, <kbd>, <samp> 用のスタイルを有効にする
+    $UseITStyles      : false !default;
+
+// for minify
+    $Prefix           : "" !default;

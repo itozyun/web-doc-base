@@ -1,0 +1,40 @@
+﻿@use "ua" as ua;
+
+/* _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+||
+|| 4. quirks
+||
+|_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
+
+// :active
+    // a:active を実装するがそのふるまいは a:focus
+    $ACTIVE_ACTS_AS_FOCUS        : ua.$WinIELte7;
+    // Gecko ~1.7, :focus のスタイルが :active にも適用される.
+    $FOCUS_STYLES_LEAK_TO_ACTIVE : ua.$GeckoLte09 or ua.$Gecko12 or ua.$Gecko13;
+
+// :focus
+    // Opera 8~9.0, The :focus color cannot be changed from the system color.
+    $FOCUS_COLOR_SYSTEM_FIXED      : ua.$Opera8 or ua.$Opera9;
+    // :focus 要素のテキストカラーの変更が出来ない
+    $UNCHANGEABLE_TEXT_COLOR_FOCUS : ua.$GeckoLte09 or ua.$Gecko12;
+
+// etc
+    $FORM_STYLING_LIMITED    : ua.$OperaLte9 or ua.$WinIELte7;
+    $BORDER_PARSER_BUG_OPERA : ua.$Opera7x or ua.$Opera8;
+    $IE5X_ALWAYS_BORDER_BOX  : ua.$IE5 or ua.$IE55;
+    $INVALID_LINEHEIGHT      : ua.$IE5;
+
+    /* ie5 では dotted なボーダーの抜き部分に背景色が塗られない */
+    $LIMITED_DASHED_BOREDER_PAINTING : ua.$IE5 or ua.$IE55;
+
+    // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
+    $FORM_COLOR_UNSPECIFIED_FORCED_IN_HC : ua.$NotIE;
+
+    /* Opera 7.54u2,「スモール・スクリーン・レンダリング」によってコンテンツが左に寄る問題を回避, ~7.2x では発生しない
+     | Opera 7.20~7.5x は親要素の text-align : center でセンタリング
+     | https://twitter.com/itozyun/status/1496632445567115264
+     | Opera 7.54u2, margin が反映されないので padding を使う
+     | https://twitter.com/itozyun/status/1496641802740600832
+     ----------------------------------------------------------------------- */
+    $OPERA75_SSR_BUG_WORKAROUND : ua.$Opera72;
+

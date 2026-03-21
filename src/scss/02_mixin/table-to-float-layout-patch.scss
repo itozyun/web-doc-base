@@ -1,0 +1,16 @@
+@use "../01_var/ua" as ua;
+
+@use "../02_mixin/css-hack" as *;
+
+@mixin table-to-float-layout-patch(){
+    /*  patch for Safari 3.2~4, Chrome 1~8
+     *    table-layout のままだと
+     *      1. main が sidebar より低い時に、横スクロールが発生する
+     *      2. viewPort の下端に白い線が入る
+    ------------------------------------------------------------------------------------- */
+    @if( ua.$Modern ){
+        @include css-hack(chromeLte9SafariLte5){
+            @content;
+        }
+    }
+}

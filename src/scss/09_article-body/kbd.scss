@@ -1,0 +1,46 @@
+/* <kbd>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/border-radius" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/kbd";
+
+@use "../08_module/ArticleBody";
+
+@if( opt.$UseITStyles ){
+    kbd {
+        @include inline-block;
+        @include border-radius(3px);
+
+        border-width   : 1px;
+        border-color   : color.$Light_text;
+        cursor         : pointer;
+        letter-spacing : -1px;
+        padding        : 0 .4em;
+        margin         : 0 .1em;
+        @if( canuse.$HOVER_PSEUDO_CLASS ){
+            &:hover {
+                position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
+                top      : -2px;
+            }
+        }
+        /*  Dark theme
+        ------------------------------------------------------------------------------------- */
+        @include media(dark_theme) {
+            border-color : color.$Dark_text;
+        }
+
+        /*  Print
+        ------------------------------------------------------------------------------------- */
+        @include media(print) {
+            border-color : color.$Print_text;
+        }
+    }
+} @else {
+    @error "Option Error: ";
+}

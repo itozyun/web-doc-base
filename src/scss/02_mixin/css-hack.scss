@@ -1,0 +1,103 @@
+@use "../01_var/ua" as ua;
+
+$_COMMENT_OUT : (
+    'onlyEdgeHTML'         : if(ua.$Modern , 1, 0),
+    'ie10ToEdgeHTML'       : if(ua.$Modern , 1, 0),
+    'onlyIE10To11'         : if(ua.$Modern , 1, 0),
+    'onlyOpera'            : if(ua.$Modern , 1, 0),
+    'onlySafari'           : if(ua.$Modern , 1, 0),
+    'chromeLte5SafariLte4' : if(ua.$Modern , 1, 0),
+    'chromeLte9SafariLte5' : if(ua.$Modern , 1, 0),
+    'chromeGte2To5'        : if(ua.$Modern , 1, 0),
+    'chromeGte53'          : if(ua.$Modern , 1, 0),
+    'chrome1Safari3'       : if(ua.$Modern , 1, 0),
+    'gecko120To121'        : if(ua.$Gecko12, 1, 0),
+    'onlyFirefoxOS22'      : if(ua.$Modern , 1, 0)
+) !default;
+
+@mixin css-hack($targetGroup) {
+    @if map-get($_COMMENT_OUT, $targetGroup) == 1 {
+        @if $targetGroup == 'onlyEdgeHTML' { // EdgeHTML 12~18
+            & [_lazyhack_="_:-ms-lang(x)|_:-webkit-full-screen"] {
+                @content;
+            }
+        }
+        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
+        @else if $targetGroup == 'ie10ToEdgeHTML' { // IE10 ~ EdgeHTML 18
+            & [_lazyhack_="_:-ms-lang(x)"] {
+                @content;
+            }
+        }
+        // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
+        @else if $targetGroup == 'onlyIE10To11' {
+            @media all\0 {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'onlyOpera' {
+            @media not aural and (1) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'onlySafari' {
+            @media all and (-webkit-min-device-pixel-ratio:0) {
+                @content;
+            }
+        }
+        /* for Firefox OS 2.2 (Gecko 37)
+         *   form browserstrangeness.github.io, https://browserstrangeness.github.io/css_hacks.html
+         *
+         * for Firefox 37
+         *   > @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) { .selector { property:value; } }
+         * for Mac OS X 10.8 Yosemite (Firefox 24+)
+         *   > @media screen and (-moz-overlay-scrollbars) { @supports (not (text-align-last:auto)) { .selector { property:value; } } }
+         */
+        @else if $targetGroup == 'onlyFirefoxOS22' {
+            @supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)){
+                @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars){
+                    @content;
+                }
+            }
+        }
+        @else if $targetGroup == 'chrome1Safari3' { // Chrome 1, Safari 3.x
+            @media screen and (min-width:0\-){
+                & [_lazyhack_="_:not(:root:root)"] {
+                    @content;
+                }
+            }
+        }
+        @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome ~5, Safari ~4.1
+            @media all and (min-width:0\-) {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeLte9SafariLte5' { // Chrome ~9, Safari ~5
+            & [_lazyhack_="body[n0]:nth-child(n0)"]{
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeGte2To5' { // Chrome 2~5
+            & [_lazyhack_="_:increment|_:not(*:root)"] {
+                @content;
+            }
+        }
+        @else if $targetGroup == 'chromeGte53' { // Chrome 53+
+            @supports (-webkit-appearance:none) and (font-variant-caps:normal) and (not (-ms-accelerator:true)) and (not (overflow:-webkit-marquee)) and (not (-moz-appearance:none)){
+                @content;
+            }
+        }
+        @else if $targetGroup == 'gecko120To121' { // Gecko 1.2.0~1.2.1
+            & [_lazyhack_="_:lang(x)"] {
+                @content;
+            }
+        }
+    }
+    @else if map-get($_COMMENT_OUT, $targetGroup) != 0 {
+        body {
+            color : pink !important;
+        }
+        body:before {
+            content : "@css-hack() : error-arg! #{$targetGroup}";
+        }
+    }
+}

@@ -1,0 +1,19 @@
+/*  reset <pre>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/pre-wrap" as *;
+
+pre {
+    @include pre-wrap;
+
+    @if( ua.$GeckoLte19 ){
+        overflow : auto;
+    }
+    code, samp {
+        @if( ua.$IE5 and opt.$UseITStyles ){
+            width : 100%;
+        }
+    }
+}

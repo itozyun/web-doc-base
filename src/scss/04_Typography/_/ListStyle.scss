@@ -1,0 +1,36 @@
+/*  <ListStyle>
+------------------------------------------------------------------------------------- */
+@use "../../02_mixin/responsive-horizontal-margin" as *;
+@use "../../02_mixin/unbreak" as *;
+@use "../../02_mixin/media" as *;
+
+@use "./nesting" as *;
+
+%ListStyle {
+    @include responsive-horizontal-margin(1, 1em, 1em);
+
+    padding-left : 2em;
+}
+
+li {
+    @extend %nesting-list-item;
+
+    @include unbreak-inside;
+
+    margin-top    : .3em;
+    margin-bottom : .3em;
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        margin-top    : .2em;
+        margin-bottom : .2em;
+    }
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        margin-top    : .1em;
+        margin-bottom : .1em;
+    }
+}

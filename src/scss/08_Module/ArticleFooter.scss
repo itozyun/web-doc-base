@@ -3,34 +3,17 @@
  *
  * .AFoot
  *    articleFooterItem
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
 
 .AFoot {
-    @if( $UA_IE6 or $UA_IE55 ){
+    @if( ua.$IE6 or ua.$IE55 ){
         zoom : 1; /* border の描画に必要 */
-    }
-}
-
-@mixin article-footer-item($paddingTop, $paddingBottom, $noprint : false, $skipPadding : false) {
-    @if( $skipPadding == false ){
-        @include responsive-horizontal-padding(1, $paddingTop, $paddingBottom, $noprint);
-    }
-
-    border-width : 0 0 1px;
-
-    /*  Forced colors
-    --------------------------------------------------------------------------------------*/
-    @include media(forced_colors_native_or_fallback){
-        & {
-            border-style : dotted;
-        }
-    }
-
-    /*  Print
-    --------------------------------------------------------------------------------------*/
-    @include media(print) {
-        @if( $noprint ){
-            display : none;
-        }
     }
 }

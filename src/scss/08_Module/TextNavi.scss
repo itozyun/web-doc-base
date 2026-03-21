@@ -1,38 +1,44 @@
 /* [module] Text Navi
  *  出現位置は #lE|#lB .lXi 下で固定
  *
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}TxtNavi {
-        padding     : 1em 0;
-        text-align  : right;
-        color       : $COLOR_Light_fill; /* , を消す */
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+@use "../01_var/quirks" as quirks;
 
-        a {
-            @if( $IS_LTE_GECKO09 == false and $IS_Opera7x == false ){
-                @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
-            }
-            @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
-                zoom : 1;
-            }
-        }
+@use "../02_mixin/media" as *;
+@use "../02_mixin/inline-block" as *;
 
-        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-            .#{$Prefix}ribbon & {
-                color : $COLOR_Ribbon_fill; /* , を消す */
-            }
-        }
+.#{opt.$Prefix}TxtNavi {
+    padding     : 1em 0;
+    text-align  : right;
+    color       : color.$Light_fill; /* , を消す */
 
-        /*  Dark theme
-        --------------------------------------------------------------------------------------*/
-        @include media(dark_theme) {
-            color : $COLOR_Dark_fill; /* , を消す */
+    a {
+        @if( ua.$GeckoLte09 == false and ua.$Opera7x == false ){
+            @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
         }
+        @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
+            zoom : 1;
+        }
+    }
 
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            display : none;
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        .#{opt.$Prefix}ribbon & {
+            color : color.$Ribbon_fill; /* , を消す */
         }
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        color : color.$Dark_fill; /* , を消す */
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        display : none;
     }
 }

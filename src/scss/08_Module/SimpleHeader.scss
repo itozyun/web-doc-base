@@ -1,13 +1,23 @@
 /* [module] Header
  *  出現位置は #lH .lMi 下で固定
  *
---------------------------------------------------------------------------------------*/
-@if( $Option_simpleHeader ){
-    .#{$Prefix}Header {
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/media" as *;
+
+@if( opt.$UseBuiltinHeader ){
+    .#{opt.$Prefix}Header {
         @at-root #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
                  #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
             padding-top : 1em;
-            @if( $UA_IE5 == false and $UA_IE55 == false ){
+            @if( ua.$IE5 == false and ua.$IE55 == false ){
                 padding-bottom : 1em;
             }
         }
@@ -16,45 +26,45 @@
             border-width : 1px 0 0;
         }
 
-        @include line-height(1, 1);
+        @include line-height(1, true);
 
         @at-root .h1, & h1 {
-            @if( $Option_mobileOnly == false ){
+            @if( opt.$MobileOnly == false ){
                 display : inline;
             }
             font-size : 1.5em;
             margin    : 0 0.5em 0 0;
-            @if( $UA_IE5 ){
+            @if( ua.$IE5 ){
                 height : 1px; // <= hasLayout = true
             }
         }
         h1 {
-            @include line-height(1, 0);
+            @include line-height(1);
             padding : 0;
         }
         span {
-            @if( $UA_IE5 ){
+            @if( ua.$IE5 ){
                 padding : 0 0 .5em;
                 height  : 1px; // <= hasLayout = true
             } 
         }
 
         /*  WSXGA
-        --------------------------------------------------------------------------------------*/
+        ------------------------------------------------------------------------------------- */
         @include media(WSXGA) {
             text-align : center;
         }
 
         /*  Tablet
-        --------------------------------------------------------------------------------------*/
+        ------------------------------------------------------------------------------------- */
         @include media(tablet) {
             @at-root #lH .lMi {
-                @if( $UA_IE5 == false ){
+                @if( ua.$IE5 == false ){
                     padding-bottom : 0;
                 }
             }
 
-            @if( $Option_mobileOnly ){
+            @if( opt.$MobileOnly ){
                 @include media(screen) {
                     text-align : center;
                 }
@@ -62,7 +72,7 @@
                 text-align : center;
             }
             @at-root .h1, & h1 {
-                @if( $Option_mobileOnly == false ){
+                @if( opt.$MobileOnly == false ){
                     display : block;
                 }
                 margin : 0 0 0.5em;
@@ -70,7 +80,7 @@
         }
 
         /*  Phone
-        --------------------------------------------------------------------------------------*/
+        ------------------------------------------------------------------------------------- */
         @include media(phone) {
             @at-root .h1, & h1 {
                 font-size : 1.2em;
@@ -78,7 +88,7 @@
         }
 
         /*  Print
-        --------------------------------------------------------------------------------------*/
+        ------------------------------------------------------------------------------------- */
         @include media(print) {
             @at-root #lH {
                 font-size : 0.875em;
@@ -93,11 +103,11 @@
             // 記事でない場合、サイトタイトルをセンタリング
             h1 {
                 text-align : center;
-                @if( $Option_mobileOnly == false ){
+                @if( opt.$MobileOnly == false ){
                     display : block;
                 }
                 margin : 0 0 0.5em;
-                @if( $CANUSE_ADJACENT_SIBLING_COMBINATOR ){
+                @if( canuse.$ADJACENT_SIBLING_COMBINATOR ){
                     &+span {
                         display    : block;
                         text-align : center;
@@ -106,4 +116,6 @@
             }
         }
     }
+} @else {
+    @error "Option Error: `SimpleHeader.scss` included, but `$UseBuiltinHeader: false`!";
 }

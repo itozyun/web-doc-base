@@ -20,6 +20,9 @@ table,
 tfoot td {
   border-width: 2px 0 0
 }
+.ico path {
+  fill: currentColor
+}
 .LinkList,
 .RichLink-sep {
   padding: 2px
@@ -29,6 +32,9 @@ tfoot td {
 .RichLink-sep :link:hover,
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
+}
+.RichLink a {
+  border-width: 0
 }
 table {
   border-spacing: 2px;
@@ -48,12 +54,6 @@ thead th {
 tbody td,
 tbody td[colspan]:after {
   border-width: 0 0 1px
-}
-.ico path {
-  fill: currentColor
-}
-.RichLink a {
-  border-width: 0
 }
 .tl tbody td:after {
   top: 1.2em;

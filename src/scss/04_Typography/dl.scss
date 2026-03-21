@@ -1,0 +1,54 @@
+/*  <dl>
+------------------------------------------------------------------------------------- */
+@use "../01_var/size" as size;
+
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/media" as *;
+
+@use "../03_reset/dl";
+
+@use "./_/nesting" as *;
+
+dl {
+    @include responsive-horizontal-margin(1, 1em, 1em);
+    @include unbreak-inside;
+
+    @extend %nesting-list-item;
+}
+
+dt {
+    @include unbreak-after;
+
+    margin-top : #{size.$PARAGRAPH_LINE_HEIGHT_EM - size.$BASE_LINE_HEIGHT_EM};
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        margin-top : #{size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM - size.$BASE_LINE_HEIGHT_EM};
+    }
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        margin-top : #{size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM - size.$BASE_LINE_HEIGHT_EM};
+    }
+}
+
+dd {
+    margin-bottom : .3em;
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        margin-left   : 1em;
+        margin-bottom : .2em;
+    }
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        margin-left   : 0.5em;
+        margin-bottom : .1em;
+    }
+}

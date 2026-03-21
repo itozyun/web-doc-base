@@ -1,0 +1,96 @@
+/* [parts] commonForm
+ *
+ * form.commonForm
+ *   div.commonForm-pair
+ *     label
+ *     span.commonForm-wrap
+ *       input[type=text]|textarea
+ *    .commonForm-send
+ *       input[type=submit].btn
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/form";
+
+.#{opt.$Prefix}commonForm {
+    display : block;
+
+    @at-root #{&}-pair {
+        @if( ua.$IE5 == false ){
+            @include clearfix;
+        }
+        @include unbreak-inside;
+        margin-bottom : 1em;
+    }
+        & label {
+            @if( ua.$IE5 == false ){
+                float   : left;
+                width   : 7em;
+                padding : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0;
+                @if( ua.$GeckoLte09 ){
+                    @if( ua.$Gecko09 ){
+                        float : none; // Gecko 0.9+ でラベルが消えるので左右に並べない
+                        width : auto;
+                    }
+                } @else {
+                    display : block; // Gecko 0.9.4 でフォームが消える!
+                }
+            }
+        }
+
+        @at-root #{&}-wrap {
+            display : block;
+            @if( ua.$LegacyOperaOrGecko ){
+                @if( ua.$Gecko09 ){
+                    margin : 0.5em 1em;
+                } @else {
+                    margin : 0 0 1em 8em;
+                }
+            } @else if( ua.$IE5 == false ){
+                margin : 0 #{(size.$INPUT_BORDER_WIDTH + size.$FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+            } @else {
+                margin : 0.5em 1em;
+            }
+
+            * {
+                width : 100%;
+                @if( ua.$IE7 or ua.$IE6 ){
+                    float : left; /* 上に出来る余白を消す、ie5 はカラムが壊れる */
+                }
+                @if( ua.$GeckoLte09 ){
+                    display : block; /* 上に出来る余白を消す */
+                }
+            }
+        }
+
+        @at-root #{&}-send {
+            text-align : right;
+        }
+
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WSXGA) {
+        max-width : 40em;
+    }
+    /*  Phone
+    ------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        & label {
+            float   : none;
+            width   : auto;
+        }
+
+        @at-root #{&}-wrap {
+            margin-left : 0;
+        }
+    }
+}

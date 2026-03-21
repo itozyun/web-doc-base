@@ -1,0 +1,37 @@
+/*  input[type=text], textarea
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/canuse" as canuse;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/box-sizing" as *;
+@use "../../02_mixin/media" as *;
+
+@use "./reset-moz-focus-inner" as *;
+@use "./reset-outline" as *;
+
+%TextInputResetter {
+    font-size : 1em;
+
+    @include reset-outline;
+
+    @if( ua.$GeckoLte19 ){
+        @include box-sizing(border-box);
+    }
+    // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
+    @if( quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC ){
+        @include media(screen) {
+            @if( ua.$Opera70 ){
+                background : #fff;
+                color      : color.$Light_text;
+            } @else if( ua.$Opera72 ){
+                background : Window;
+                color      : WindowText;
+            } @else {
+                background : color.$Light_fill;
+                color      : color.$Light_text;
+            }
+        }
+    }
+}

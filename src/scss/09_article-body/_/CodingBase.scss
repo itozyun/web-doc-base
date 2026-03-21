@@ -1,0 +1,89 @@
+/* CodingBase
+ *   for <code>, <var>
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/quirks" as quirks;
+@use "../../01_var/size" as size;
+@use "../../01_var/color" as color;
+
+@use "../../02_mixin/active-focus-pseudo-class" as *;
+@use "../../02_mixin/media" as *;
+
+%CodingBase {
+    margin : 0 .1em;
+
+    @if( ua.$IE5 ){
+        padding     : 0 .4em;
+        line-height : 1;
+        height      : 1px; // hasLayout=true にしないと塗りがランダムかつ頻繁に欠落する
+    } @else {
+        padding : .1em .4em;
+    }
+
+    pre & {
+        padding : 0;
+        margin  : 0;
+    }
+
+    @include media(screen) {
+        background : color.$Light_casual_fill;
+
+        pre & {
+            background : none !important;
+        }
+
+        // test -> https://outcloud.blogspot.com/2021/08/richlink.html
+        blockquote pre & {
+            color : color.$Light_text;
+        }
+
+        blockquote &, tbody th &, blockquote .tl tr & {
+            background : color.$Light_casual_text;
+            color      : color.$Light_fill;
+        }
+        thead &, blockquote tbody th &, .tl tr & {
+            background : color.$Light_casual_fill;
+            color      : color.$Light_text;
+        }
+    }
+
+    a & {
+        @include active-focus-pseudo-class {
+            @if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+                background : Highlight;
+            } @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false ){
+                background : color.$ACCENT;
+            }
+        }
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        background : color.$Dark_casual_fill;
+
+        blockquote pre & {
+            color : color.$Dark_text;
+        }
+
+        blockquote &, tbody th &, blockquote .tl tr & {
+            background : color.$Dark_casual_text;
+            color      : color.$Dark_fill;
+        }
+        thead &, blockquote tbody th &, .tl tr & {
+            background : color.$Dark_casual_fill;
+            color      : color.$Dark_text;
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        border-width : 1px;
+        border-color : color.$Print_casual_fill;
+
+        blockquote &, tbody th &, thead & {
+            border-color : color.$Print_casual_text;
+        }
+    }
+}

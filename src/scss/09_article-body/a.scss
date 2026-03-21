@@ -1,0 +1,101 @@
+/* a タグの下線
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/unbreak" as *;
+
+@use "../04_typography/a";
+@use "../08_module/ArticleBody";
+
+/* 下線あり -> hover -> 下線なし 但し, focus:hover active では下線が付く*/
+.#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} {
+    :link, :visited { text-decoration : underline; }
+
+    @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+        :hover { text-decoration : none !important; } // 詳細度を上げないと上書きできない(IE6-)
+    } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+        :link:hover, :visited:hover { text-decoration : none; }
+    }
+
+    a {
+        @include active-focus-pseudo-class {
+            text-decoration : none;
+        }
+    }
+
+    @if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+            // :active:hover { text-decoration : underline !important; } // 上書きできない!(IE6-)
+        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+            a:active:hover { text-decoration : underline; }
+        }
+    }
+    @if( canuse.$FOCUS_PSEUDO_CLASS or ( canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false ) ){
+        a:focus:hover { text-decoration : underline; }
+    }
+
+    /* .aBodyRoot 内では訪問済のリンクは紫になる */
+    :visited       { color : color.$Light_visited; }
+    :visited:hover { color : color.$Light_visited_hover; }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        /* .aBodyRoot 内では訪問済のリンクは紫になる */
+        :visited       { color : color.$Dark_visited; }
+        :visited:hover { color : color.$Dark_visited_hover; }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        @if( canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS ){
+            & a[href]:after {
+                content   : " ("attr(href)") ";
+                font-size : 0.875em;
+                color     : color.$Print_link;
+            }
+
+            @at-root {
+                body {
+                    @if( ua.$Modern or ua.$IE9 ){
+                        // content:attr(href) をボックス幅で改行する, Firefox, IE8 では不要だった
+                        // @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
+                        // ↓
+                        @include word-break(break-all); // Firefox 用の上書きが不要のためこちらを使う
+                    }
+                }
+                [href*="/viewer.diagrams.net/?"]:after, /* draw.io のデータの埋め込まれた url */
+                [href*="/blogger.googleusercontent.com/img/"]:after, /* 新しい Blogger 画像の url 置き場 */
+                [href$=".jpeg"]:after,
+                [href$=".JPEG"]:after,
+                [href$=".JPG"]:after,
+                [href$=".jpg"]:after,
+                [href$=".gif"]:after,
+                [href$=".GIF"]:after,
+                [href$=".png"]:after,
+                [href$=".PNG"]:after {
+                    display : none; /* for iOS4 content : none だけでは消えない */
+                }
+    
+                @if( ua.$IE8 == false ){
+                    [href^="#"]:after, /* 文書内リンクは非表示 */
+                    [href^="mailto:"]:after,
+                    [href^="tel:"]:after {
+                        display : none; /* for iOS4 content : none だけでは消えない */
+                    }
+                }
+            }
+        }
+    }
+}

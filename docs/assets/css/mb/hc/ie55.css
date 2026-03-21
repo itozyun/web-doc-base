@@ -3,22 +3,38 @@
 .Pager,
 .SocialBtns,
 a:active img,
+a:focus img,
 blockquote,
 form :active,
+form :focus,
 td {
   border-style: dotted
+}
+thead td,
+thead td[colspan]:after,
+thead th,
+thead th[colspan]:after {
+  border-width: 0 0 2px
 }
 table,
 tfoot td {
   border-width: 2px 0 0
 }
+.ico path {
+  fill: currentColor
+}
 .LinkList,
 .RichLink-sep {
   padding: 2px
 }
-.LinkList :hover,
-.RichLink-sep :hover {
+.LinkList :link:hover,
+.LinkList :visited:hover,
+.RichLink-sep :link:hover,
+.RichLink-sep :visited:hover {
   text-decoration: underline!important
+}
+.RichLink a {
+  border-width: 0
 }
 table {
   border-spacing: 2px;
@@ -33,14 +49,17 @@ td {
 }
 thead td,
 thead th {
-  border-width: 0 0 2px;
   padding: .5em
 }
-tbody td {
+tbody td,
+tbody td[colspan]:after {
   border-width: 0 0 1px
 }
-.RichLink a {
-  border-width: 0
+.tl tbody td:after {
+  top: 1.2em;
+  left: -.13em;
+  border-width: 0;
+  outline: solid .35em
 }
 .tl {
   border-collapse: collapse
@@ -52,9 +71,12 @@ tbody td {
 }
 .Pager span {
   position: static;
-  display: inline;
-  width: auto
+  display: inline
 }
 .Pager i {
   display: none
+}
+.js-pica-thumbnail:active,
+.js-pica-thumbnail:focus {
+  outline: 0
 }

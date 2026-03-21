@@ -1,0 +1,9 @@
+/*  <dfn>
+------------------------------------------------------------------------------------- */
+@use "./_/HelpContentStyle" as *;
+
+@use "../03_reset/dfn";
+
+dfn {
+    @extend %HelpContentStyle;
+}

@@ -1,0 +1,9 @@
+/* <input>
+------------------------------------------------------------------------------------- */
+@use "../03_reset/input";
+
+@use "./_/TextInputStyle" as *;
+
+input {
+    @extend %TextInputStyle;
+}

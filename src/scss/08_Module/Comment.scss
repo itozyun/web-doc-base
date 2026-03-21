@@ -2,28 +2,36 @@
  *  出現位置は #lB .lMh 下で固定
  *  div.Comment
  *  
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}Comment {
-        @include stackableModule;
-        h3 {
-            margin-bottom : 0;
-        }
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
 
-        h3, div {
-            font-size    : 1em;
-            margin-left  : 3%;
-        }
-        div {
-            color     : $COLOR_Light_casual_text;
-            font-size : 93%;
-        }
-        p {
-            @include clearfix;
-            
-            padding      : 0 3% .5em;
-            border-width : 0 0 1px;
-            margin-top   : 0;
-        }
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+
+@use "./_/stackable-module" as *;
+
+.#{opt.$Prefix}Comment {
+    @include stackableModule;
+    h3 {
+        margin-bottom : 0;
+    }
+
+    h3, div {
+        font-size    : 1em;
+        margin-left  : 3%;
+    }
+    div {
+        color     : color.$Light_casual_text;
+        font-size : 93%;
+    }
+    p {
+        @include clearfix;
+        
+        padding      : 0 3% .5em;
+        border-width : 0 0 1px;
+        margin-top   : 0;
     }
 }

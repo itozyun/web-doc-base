@@ -1,0 +1,7 @@
+/*  blockquote
+------------------------------------------------------------------------------------- */
+@use "./_/QuoteResetter" as *;
+
+blockquote {
+    @extend %QuoteResetter;
+}

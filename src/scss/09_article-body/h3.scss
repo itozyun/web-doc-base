@@ -1,0 +1,22 @@
+/*  <h3>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/responsive-horizontal-margin" as *;
+
+@use "../04_typography/h3";
+
+@use "../08_module/ArticleBody";
+
+@use "./_/HeadingBase" as *;
+
+.#{opt.$Prefix}ABody {
+    h3 {
+        @extend %HeadingBase;
+        @include responsive-horizontal-margin(2, 2.4em, 1.2em);
+        font-weight  : bold;
+        font-size    : 1.25em;
+        border-width : 0.1em 0 0;
+        padding      : 1.4em 0 .6em;
+    }
+}

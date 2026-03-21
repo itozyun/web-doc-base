@@ -1,0 +1,15 @@
+/*  reset <form>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+form {
+    @if( ua.$OperaLte9 or ua.$GeckoLte19 ){
+        margin : 0;
+    }
+
+    :invalid {
+        @if( ua.$Modern ){
+            box-shadow : none; /* firefox45 */
+        }
+    }
+}

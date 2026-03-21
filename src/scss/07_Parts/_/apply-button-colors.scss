@@ -1,0 +1,24 @@
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/active-focus-pseudo-class" as *;
+
+@mixin apply-button-colors( $link, $visited, $fill ){
+    &:link {
+        background   : $link;
+        border-color : $link;
+        color        : $fill;
+    }
+    &:visited {
+        background   : $fill;
+        border-color : $visited;
+        color        : $visited;
+    }
+
+   @if( quirks.$LIMITED_DASHED_BOREDER_PAINTING == false ){
+        & {
+            @include active-focus-pseudo-class{
+                border-color : $fill;
+            }
+        }
+    }
+}

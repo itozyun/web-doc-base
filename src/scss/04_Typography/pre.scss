@@ -1,0 +1,10 @@
+/*  <pre>
+------------------------------------------------------------------------------------- */
+@use "../02_mixin/responsive-horizontal-padding" as *;
+
+@use "../03_reset/pre";
+
+pre {
+    @include responsive-horizontal-padding(1, 1em, 1em);
+    margin : 1em 0;
+}

@@ -1,0 +1,80 @@
+
+/* [parts] medal
+ *  出現位置は RichLink 内
+ *
+ *  :.lM
+ *     .RichLink-item
+ *       h3
+ *         img, span.medal
+ *       div, p
+ *  :.lS
+ *      .RichLink-item
+*         img, span.medal
+ *        b
+------------------------------------------------------------------------------------- */
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+
+@use "./RichLink";
+
+.medal, .medal-gold, .medal-silver, .medal-bronze {
+    display      : block;
+    float        : left;
+    margin       : 0 0.6em 1em 0;
+    border-width : 1px; /* for high contrast mode */
+
+    text-align   : center;
+    font-style   : normal;
+    font-weight  : bold;
+
+    width        : 1.6em;
+    height       : 1.6em;
+    line-height  : 1.6;
+}
+
+/*  color
+------------------------------------------------------------------------------------- */
+.medal {
+    border-color : color.$Light_fill;
+    background   : color.$Light_fill;
+    color        : color.$Light_text;
+}
+
+:link .medal, :visited .medal {
+    border-color : color.$Light_text;
+    background   : color.$Light_text;
+    color        : color.$Light_fill;
+}
+
+.medal-gold {
+    border-color : #e7bd2c;
+    background   : #e7bd2c;
+    color        : #4b4406;
+}
+.medal-silver {
+    border-color : #d3d6d6;
+    background   : #d3d6d6;
+    color        : #3b3f41;
+}
+.medal-bronze {
+    border-color : #C47222;
+    background   : #C47222;
+    color        : #f8e9be;
+}
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+@include media(dark_theme) {
+    .medal {
+        border-color : color.$Dark_casual_fill;
+        background   : color.$Dark_casual_fill;
+        color        : color.$Dark_text;
+    }
+    
+    :link .medal, :visited .medal {
+        border-color : color.$Dark_casual_text;
+        background   : color.$Dark_casual_text;
+        color        : color.$Dark_fill;
+    }
+}

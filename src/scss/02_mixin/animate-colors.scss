@@ -1,5 +1,8 @@
+@use "../01_var/ua" as ua;
+@use "css-hack" as *;
+
 @mixin animate-colors() {
-    @if( $UA_Modern ){
+    @if( ua.$Modern ){
         /* clean-css ignore:start */
         -webkit-transition-property : background-color, color, border-color;
         -webkit-transition          : 0.3s ease-in;

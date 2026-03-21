@@ -1,29 +1,36 @@
 /* [module] Article Author
  *  出現位置は #lE .lSi 下で固定
  *
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}AAuthor {
-        @include clearfix;
-        margin  : 2em 0.5em;
-        
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/p";
+@use "../04_typography/a";
+@use "../04_typography/img";
+
+.#{opt.$Prefix}AAuthor {
+    @include clearfix;
+    margin  : 2em 0.5em;
+    
+    img {
+        float  : right;
+        margin : 0 0 1em 1em;
+    }
+    p {
+        margin : 0;
+    }
+
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @include media(tablet_print) {
+        margin  : 1em 0;
+
         img {
-            float  : right;
-            margin : 0 0 1em 1em;
-        }
-        p {
-            margin : 0;
-        }
-
-        /*  Tablet
-        --------------------------------------------------------------------------------------*/
-        @include media(tablet_print) {
-            margin  : 1em 0;
-
-            img {
-                float  : left;
-                margin : 0 1em 1em 0;
-            }
+            float  : left;
+            margin : 0 1em 1em 0;
         }
     }
 }

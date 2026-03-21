@@ -1,0 +1,84 @@
+@use "./options" as opt;
+@use "./ua" as ua;
+@use "./common.generated" as common;
+
+/*  font-size
+------------------------------------------------------------------------------------- */
+$FONTSIZE_DEFAULT : 16;
+
+$FONTSIZE_UPPER_TABLET : if($FONTSIZE_DEFAULT < opt.$BaseFontSize, opt.$BaseFontSize, $FONTSIZE_DEFAULT) !default;
+
+/*  line-height
+------------------------------------------------------------------------------------- */
+$BASE_LINE_HEIGHT               : 1.2 !default;
+$BASE_LINE_HEIGHT_EM            : 1em * $BASE_LINE_HEIGHT;
+
+$PARAGRAPH_LINE_HEIGHT          : 1.9 !default;
+$PARAGRAPH_LINE_HEIGHT_EM       : 1em * $PARAGRAPH_LINE_HEIGHT;
+
+$PARAGRAPH_LINE_HEIGHT_PHONE    : 1.6 !default;
+$PARAGRAPH_LINE_HEIGHT_PHONE_EM : 1em * $PARAGRAPH_LINE_HEIGHT_PHONE;
+
+$PARAGRAPH_LINE_HEIGHT_WATCH    : 1.4 !default;
+$PARAGRAPH_LINE_HEIGHT_WATCH_EM : 1em * $PARAGRAPH_LINE_HEIGHT_WATCH;
+
+$PARAGRAPH_LINE_HEIGHT_PRINT    : 1.5 !default;
+
+/*  column sizes
+------------------------------------------------------------------------------------- */
+// pc
+$PC_SUB_COLUMN_RATIO  : 0.3 !default;
+$PC_MAIN_COLUMN_RATIO : 1 - $PC_SUB_COLUMN_RATIO;
+$PC_COLUMN_GAP_RATIO  : 0.027 !default;
+$PC_MAX_WIDTH_EM      : 70em !default;
+$PC_WIDTH_PERCENT     : 98% !default;
+
+// WSXGA 1600×1024
+$WSXGA_SUB_COLUMN_RATIO  : 0.2 !default;
+$WSXGA_MAIN_COLUMN_RATIO : 1 - $WSXGA_SUB_COLUMN_RATIO;
+$WSXGA_COLUMN_GAP_PCT    : 1.5% !default;
+$WSXGA_COLUMN_GAP_EM     : 2.6em !default;
+$WSXGA_MIN_WIDTH_EM      : 96em !default;
+$WSXGA_MAX_WIDTH_EM      : 108em !default;
+$WSXGA_WIDTH_PERCENT     : 96% !default;
+
+// WQXGA 2560x1600
+$WQXGA_SUB_COLUMN_RATIO  : 0.3 !default;
+$WQXGA_MAIN_COLUMN_RATIO : 1 - $WQXGA_SUB_COLUMN_RATIO;
+$WQXGA_COLUMN_GAP_PCT    : 2% !default;
+$WQXGA_COLUMN_GAP_EM     : 2.6em !default;
+$WQXGA_MIN_WIDTH_EM      : 126em !default;
+$WQXGA_MAX_WIDTH_EM      : 150em !default;
+$WQXGA_WIDTH_PERCENT     : 94% !default;
+
+// tablet
+$TABLET_MAX_WIDTH_EM      : 50em !default;
+$TABLET_MAX_WIDTH         : if($FONTSIZE_DEFAULT < $FONTSIZE_UPPER_TABLET, 953, 943) !default;
+$TABLET_HORIZONTAL_MARGIN : 3% !default;
+
+// phablet
+$PHABLET_MAX_WIDTH         : 740 !default;
+$PHABLET_HORIZONTAL_MARGIN : 2% !default;
+
+// phone
+$PHONE_MAX_WIDTH         : 479 !default;
+$PHONE_HORIZONTAL_MARGIN : 1% !default;
+
+// small phone
+$SMALL_PHONE_MAX_WIDTH    : 359 !default;
+$SMALL_PHONE_MAX_PX_WIDTH : #{common.$SMALL_PHONE_MAX_WIDTH}px !default;
+
+// watch
+$WATCH_MAX_PX_WIDTH : 240px !default;
+
+// print
+$PRINT_COLUMN_GAP_EM : 2em !default;
+
+/*  border, outline
+------------------------------------------------------------------------------------- */
+$BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
+
+$INPUT_BORDER_WIDTH   : if(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5, 0.1em, 2px) !default;
+$FORM_ITEM_PADDING_LR : if(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5, 0.4em, 8px) !default;
+
+$FORCED_COLORS_FOCUS_BORDER_WIDTH : 2px !default;

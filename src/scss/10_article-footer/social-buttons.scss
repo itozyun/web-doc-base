@@ -1,0 +1,79 @@
+/* [ArticleFooter Item] SocialBtns
+ *
+ * .SocialBtns
+ *   a
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/active-focus-pseudo-class" as *;
+
+@use "../07_parts/_/apply-button-colors" as *;
+@use "../07_parts/_/ButtonBase" as *;
+
+@use "../08_module/ArticleFooter";
+@use "./_/article-footer-item" as *;
+
+.#{opt.$Prefix}SocialBtns {
+    @if( ua.$WinIELte7 ){
+        @include article-footer-item(1em, 1em, true);
+    } @else {
+        @include article-footer-item(1em, 0.5em, true);
+    }
+    color : color.$Light_fill; /* , を消す */
+
+    a {
+        @extend %ButtonBase;
+        margin : 0 0 0.5em;
+    }
+
+    .tw {
+        @include apply-button-colors( #1B95E0, #1B95E0, color.$Light_fill );
+    }
+    .fb {
+        @include apply-button-colors( #3B5999, #3B5999, #fff );
+    }
+    .hb {
+        @include apply-button-colors( #008FDE, #008FDE, color.$Light_fill );
+    }
+    .pt {
+        @include apply-button-colors( #BD081C, #BD081C, #fff );
+    }
+    .pk {
+        @include apply-button-colors( #EE4056, #EE4056, color.$Light_fill );
+    }
+    .ln {
+        @include apply-button-colors( #00C300, #00C300, color.$Light_fill );
+    }
+
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @include media(tablet) {
+        text-align : center;
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        color : color.$Dark_fill; /* , を消す */
+
+        .tw, .fb, .hb, .pt, .ok, .ln {
+            :link {
+                color : color.$Dark_fill !important;
+            }
+            :visited {
+                background : color.$Dark_fill !important;
+            }
+            @include active-focus-pseudo-class {
+                border-color : color.$Dark_fill !important;
+            }
+        }
+    }
+}

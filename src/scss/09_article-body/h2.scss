@@ -1,0 +1,66 @@
+/*  <h2>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/color" as color;
+@use "../01_var/ua" as ua;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/column" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/h2";
+
+@use "../08_module/ArticleBody";
+
+@use "./_/HeadingBase" as *;
+
+.#{opt.$Prefix}ABody {
+    h2 {
+        @extend %HeadingBase;
+        @include responsive-horizontal-margin(2, 2em, 1em);
+        font-size    : 1.5em;
+        border-width : 0.2em 0 0;
+        padding      : 1.4em 0 .6em;
+        color        : color.$ACCENT;
+        &, & * {
+            border-color : color.$ACCENT;
+        }
+
+        @if( ua.$IE5 ){
+            height : 1px; // <= 線が消えるのを防ぐ
+        } @else if( ua.$IE55 or ua.$IE6 ){
+            zoom : 1; // <= 線が消えるのを防ぐ
+        }
+        @if( canuse.$CSS_GENERATED_BLOCK ){
+            &:after {
+                @if( ua.$Opera7x or ua.$Opera8 ){
+                    width : 0;      /* for Opera 7-8 */
+                } @else {
+                    display : none; /* for iOS4 content:none では消えない */
+                }
+            }
+        }
+
+    /*  WSXGA, print
+    ------------------------------------------------------------------------------------- */
+        @include media(WSXGA_landscapePrint) {
+            @at-root h2 {
+                @include column-span-all;
+            }
+        }
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+        @include media(WSXGA) {
+            @at-root h2 {
+                text-align : center;
+            }
+        }
+
+    /*  Phone
+    ------------------------------------------------------------------------------------- */
+        @include media(phone) {
+            font-size : 1.25em;
+        }
+    }
+}

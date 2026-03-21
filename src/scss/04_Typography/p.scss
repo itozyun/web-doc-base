@@ -1,0 +1,45 @@
+/*  <p>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/responsive-horizontal-margin" as *;
+
+p {
+    @include responsive-horizontal-margin(1, 1em, 1em);
+
+    line-height : size.$PARAGRAPH_LINE_HEIGHT;
+    margin      : 1em 0;
+
+    @if( ua.$IE5 ){
+        * {
+            vertical-align : text-top;
+            line-height    : 1;
+        }
+    }
+
+    tr, li, dd {
+        & {
+            line-height : size.$BASE_LINE_HEIGHT;
+        }
+    }
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        line-height : size.$PARAGRAPH_LINE_HEIGHT_PHONE;
+    }
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        line-height : size.$PARAGRAPH_LINE_HEIGHT_WATCH;
+    }
+
+/*  Print
+------------------------------------------------------------------------------------- */
+    @include media(print) {
+        line-height : size.$PARAGRAPH_LINE_HEIGHT_PRINT;/* for paper saving */
+    }
+}

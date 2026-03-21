@@ -1,0 +1,9 @@
+/*  reset <var>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options.scss" as opt;
+
+var {
+    @if( opt.$UseITStyles ){
+        font-style : normal;
+    }
+}

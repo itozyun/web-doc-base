@@ -1,0 +1,28 @@
+/*  <pre role=image>
+------------------------------------------------------------------------------------- */
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/font-family-monospace" as *;
+@use "../02_mixin/link-colors-on-dark-background" as *;
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/pre" as *;
+
+@use "../08_module/ArticleBody";
+
+.aa {
+    @include line-height(1);
+    @include font-family-monospace;
+
+    margin       : 1em 0;
+    border-width : 1px;
+    border-color : #0A0809;
+
+    @include media(screen) {
+        @include link-colors-on-dark-background;
+
+        background : #0A0809;
+        &, & code, & var {
+            color : #00ac06;
+        }
+    }
+}

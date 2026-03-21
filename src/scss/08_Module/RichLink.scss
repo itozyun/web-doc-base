@@ -20,31 +20,55 @@
  *        (span.medal[-*])
  *        b
  *      br
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/css-hack" as *;
+@use "../02_mixin/inline-block" as *;
+
+@use "../04_typography/a";
+// @use "../04_typography/h3";
+@use "../04_typography/img";
+@use "../04_typography/br";
+
+@use "./_/LinkListBase" as *;
+@use "./_/stackable-module" as *;
+
 $RICHLINK_TEXT_SIZE : 0.875;
 
-.#{$Prefix}RichLink {
+.#{opt.$Prefix}RichLink {
     @include stackableModule;
-    @if( $UA_Modern ){
+    @if( ua.$Modern ){
         /* Opera 9.52~9.64 横スクロールバーの出現を抑止
            https://twitter.com/itozyun/status/1496758538772824064 */
         overflow-x : hidden;
     }
-    @at-root .#{$COMMON_RICHLINK__CLASSNAME_SEPARATOR} {
-        @extend %LinkListItemBase;
+    @at-root .#{common.$RICHLINK__CLASSNAME_SEPARATOR} {
+        @extend %LinkListBase;
     }
         a {
             @include clearfix;
 
-            @if( $UA_IE7 or $UA_IE6 ){
+            @if( ua.$IE7 or ua.$IE6 ){
                 padding : 1em 0.5em;
             } @else {
                 padding : 1em 0.5em 0;
             }
 
             border-width : 0 0 1px;
-            @if( /* $IS_LTE_GECKO09 or img が欠ける不具合! */
-                 $UA_Gecko12 ){
+            @if( /* ua.$GeckoLte09 or img が欠ける不具合! */
+                 ua.$Gecko12 ){
                 overflow : hidden; /* カラム幅が増えるのを抑止 */
             }
         }
@@ -58,38 +82,38 @@ $RICHLINK_TEXT_SIZE : 0.875;
             }
 
     a {
-        border-color : $COLOR_Ribbon_casual_fill !important;
-        .#{$Prefix}baseColor & {
-            border-color : $COLOR_Light_casual_fill !important;
+        border-color : color.$Ribbon_casual_fill !important;
+        .#{opt.$Prefix}baseColor & {
+            border-color : color.$Light_casual_fill !important;
             @include media(dark_theme) { 
-                border-color : $COLOR_Dark_casual_fill !important;
+                border-color : color.$Dark_casual_fill !important;
             }
         }
     }
 
     @at-root #{&}-meta {
-        color : $COLOR_Ribbon_casual_fill;
+        color : color.$Ribbon_casual_fill;
         @include css-hack(chromeLte5SafariLte4){
             background : transparent !important; // Chrome 1~5 で塗りが乱れる問題の修正, 8 では解消
         }
     }
     @at-root :link #{&}-meta,
              :visited #{&}-meta {
-        color : $COLOR_Ribbon_casual_text;
+        color : color.$Ribbon_casual_text;
     }
 
 
-    @at-root .#{$Prefix}baseColor #{&}-meta {
-        color : $COLOR_Light_casual_fill;
+    @at-root .#{opt.$Prefix}baseColor #{&}-meta {
+        color : color.$Light_casual_fill;
     }
 
-    @at-root .#{$Prefix}baseColor :link #{&}-meta,
-             .#{$Prefix}baseColor :visited #{&}-meta {
-        color : $COLOR_Light_casual_text;
+    @at-root .#{opt.$Prefix}baseColor :link #{&}-meta,
+             .#{opt.$Prefix}baseColor :visited #{&}-meta {
+        color : color.$Light_casual_text;
     }
 
 /*  layout Main
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
     h3 {
         font-size : 1.5em;
         margin    : 0 0 0.4em;
@@ -101,7 +125,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
         img {
             float  : left;
 
-            @if( $IS_LTE_GECKO09 ){
+            @if( ua.$GeckoLte09 ){
                 padding : 0 .6em 1em 0;
                 margin  : 0;
             } @else {
@@ -109,21 +133,21 @@ $RICHLINK_TEXT_SIZE : 0.875;
             }
             // Fix : Rect of <img> becomes box-width in Opera7.x.
             // https://twitter.com/itozyun/status/1496619343698096129
-            @if $IS_Opera7x {
+            @if ua.$Opera7x {
                 width : auto;
-                @if $UA_Opera72 {
+                @if ua.$Opera72 {
                     line-height: 0;
                 }
             }
         }
-        @if( $IS_LTE_GECKO09 ){
+        @if( ua.$GeckoLte09 ){
             a img {
                 border-width : 0;
             }
         }
 
     @at-root #{&}-meta {
-        @include line-height(1.4, 1);
+        @include line-height(1.4, true);
         font-size : 1em * $RICHLINK_TEXT_SIZE;
         margin    : math.div(1em, $RICHLINK_TEXT_SIZE) 0;
         span {
@@ -136,11 +160,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  layout Sub
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
 
-    .#{$Prefix}lS & img {
+    .#{opt.$Prefix}lS & img {
         float  : right;
-        @if( $IS_LTE_GECKO09 ){
+        @if( ua.$GeckoLte09 ){
             padding : 0 0 1em 0.6em;
         } @else {
             margin : 0 0 1em 0.6em;
@@ -148,20 +172,20 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
     b {
         font-size : 1em * $RICHLINK_TEXT_SIZE;
-        @if( $UA_IE7 or $UA_IE6 ){
+        @if( ua.$IE7 or ua.$IE6 ){
             padding : 0;
         } @else {
             padding : 0 0 math.div(1em, $RICHLINK_TEXT_SIZE);
         }
-        @if( $IS_LTE_GECKO09 ){
+        @if( ua.$GeckoLte09 ){
             display : block; // img に文字が重なるのを防ぐ
         }
     }
 
     /*  WSXGA
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(WSXGA_landscapePrint) {
-        @at-root .lM .#{$COMMON_RICHLINK__CLASSNAME_SEPARATOR} {
+        @at-root .lM .#{common.$RICHLINK__CLASSNAME_SEPARATOR} {
             display      : table;
             table-layout : fixed;
             margin       : 1em 0;
@@ -182,11 +206,11 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Tablet
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(tablet) {
-        .#{$Prefix}lS & {
+        .#{opt.$Prefix}lS & {
             a {
-                @if( $UA_IE7 or $UA_IE6 ){
+                @if( ua.$IE7 or ua.$IE6 ){
                     padding : 0.7em 0.5em;
                 } @else {
                     padding : 0.7em 0.5em 0;
@@ -204,7 +228,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Phablet
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(phablet) {
         h3 {
             font-size : 1.3em;
@@ -215,7 +239,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Phone
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(phone) {
         /*.lM */ & a {
             padding-left  : 1%;
@@ -230,7 +254,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Phone-
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(smallphone) {
         h3 {
             font-size : 1em;
@@ -246,7 +270,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Watch
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(watch) {
         /*.lM */ & a {
             padding-left  : 0;
@@ -255,19 +279,19 @@ $RICHLINK_TEXT_SIZE : 0.875;
     }
 
     /*  Dark theme
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(dark_theme) {
-        @at-root .#{$Prefix}baseColor #{&}-meta {
-            color : $COLOR_Dark_casual_fill;
+        @at-root .#{opt.$Prefix}baseColor #{&}-meta {
+            color : color.$Dark_casual_fill;
         }
-        @at-root .#{$Prefix}baseColor :link #{&}-meta,
-                 .#{$Prefix}baseColor :visited #{&}-meta {
-            color : $COLOR_Dark_casual_text;
+        @at-root .#{opt.$Prefix}baseColor :link #{&}-meta,
+                 .#{opt.$Prefix}baseColor :visited #{&}-meta {
+            color : color.$Dark_casual_text;
         }
     }
 
     /*  Forced colors
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(forced_colors_native_or_fallback){
         a {
             border-width : 0;

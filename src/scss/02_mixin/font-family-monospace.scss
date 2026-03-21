@@ -1,7 +1,9 @@
 /*  font-family monospace
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
 @mixin font-family-monospace {
-    @if( $IS_WIN_IE or $UA_MacIE5 or $IS_OLD_OPERA ){
+    @if( ua.$WinIELte9 or ua.$MacIE5 or ua.$OperaLte9 ){
         font-family : monospace;
     } @else {
         /**

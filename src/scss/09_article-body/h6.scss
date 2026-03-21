@@ -1,0 +1,19 @@
+/*  <h6>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+
+@use "../02_mixin/font-family-japanese" as *;
+
+@use "../04_typography/h6";
+@use "../08_module/ArticleBody";
+
+.#{opt.$Prefix}ABody {
+    h6 {
+    /*  Serif
+    ------------------------------------------------------------------------------------- */
+        @if( ua.$Modern or ua.$IE9 ){
+            @extend %SerifFontFamily;
+        }
+    }
+}

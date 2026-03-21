@@ -1,42 +1,58 @@
-@if( $Option_blog2slide ){
-    @if( $UA_Modern ){
-        ##{$COMMON_BLOG_2_SLIDE__ID_START} button {
-            @include responsive-horizontal-margin(1, 1em, 1em, true);
-        }
+/* blog2slide
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/common.generated" as common;
+@use "../01_var/color" as color;
 
-        ##{$COMMON_BLOG_2_SLIDE__ID_ROOT} {
-            margin   : 0 auto;
-            overflow : auto;
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/column" as *;
+@use "../02_mixin/css-hack" as *;
 
-            & > div {
-                height    : 100%;
-                width     : 98%;
-                max-width : $PC_MAX_WIDTH_EM * 1.5;
-                display   : table;
-                margin    : auto;
-                & > * {
-                    display : none;
-                }
-            }
-            /*  WSXGA
-            --------------------------------------------------------------------------------------*/
-            @include media(WSXGA) {
-                @include column-count(1);
-            }
-        }
+@use "../04_typography/button";
 
-        @include css-hack(onlyIE10To11){
-            ##{$COMMON_BLOG_2_SLIDE__ID_ROOT}:-ms-fullscreen {
-                background : $COLOR_Light_fill;
-            }
-        }
-            ##{$COMMON_BLOG_2_SLIDE__ID_CURRENT} {
-                font-size      : 2em;
-                display        : table-cell !important;
-                vertical-align : middle;
-                @at-root h1#{&}{
-                    font-size : 4em;
-                }
-            }
+@if( ua.$Modern ){
+    ##{common.$BLOG_2_SLIDE__ID_START} button {
+        @include responsive-horizontal-margin(1, 1em, 1em, true);
     }
+
+    ##{common.$BLOG_2_SLIDE__ID_ROOT} {
+        margin   : 0 auto;
+        overflow : auto;
+
+        & > div {
+            height    : 100%;
+            width     : 98%;
+            max-width : size.$PC_MAX_WIDTH_EM * 1.5;
+            display   : table;
+            margin    : auto;
+            & > * {
+                display : none;
+            }
+        }
+        /*  WSXGA
+        ------------------------------------------------------------------------------------- */
+        @include media(WSXGA) {
+            @include column-count(1);
+        }
+    }
+
+    @include css-hack(onlyIE10To11){
+        ##{common.$BLOG_2_SLIDE__ID_ROOT}:-ms-fullscreen {
+            background : color.$Light_fill;
+        }
+    }
+        ##{common.$BLOG_2_SLIDE__ID_CURRENT} {
+            font-size      : 2em;
+            display        : table-cell !important;
+            vertical-align : middle;
+            @at-root h1#{&}{
+                font-size : 4em;
+            }
+        }
 }

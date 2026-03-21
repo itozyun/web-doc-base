@@ -65,6 +65,12 @@
     "COMMON_WEBFONT__FILE_STEM": "web-doc-base",
     "COMMON_WEBFONT__SVG_FONT_ID": "web-doc-base",
     "COMMON_WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY": "js-myIconFont-testCssReady",
+    "COMMON_WEBFONT_FORMAT_EOT": "embedded-opentype",
+    "COMMON_WEBFONT_FORMAT_WOFF2": "woff2",
+    "COMMON_WEBFONT_FORMAT_WOFF": "woff",
+    "COMMON_WEBFONT_FORMAT_TTF": "truetype",
+    "COMMON_WEBFONT_FORMAT_OTF": "opentype",
+    "COMMON_WEBFONT_FORMAT_SVG": "svg",
 
     "COMMON_VECTOR_ICON__CLASSNAME": "ico",
     "COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME": "VectorIconFallback",

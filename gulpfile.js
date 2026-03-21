@@ -307,7 +307,6 @@ gulp.task( 'js', gulp.series(
 gulp.task( 'css',
     function(){
         const plumber     = require( 'gulp-plumber' ),
-              izpp        = require( 'gulp-iz-preprocessor' ),
               sass        = require( 'gulp-sass' )( require( 'sass' ) ),
               gcm         = require( 'gulp-group-css-media-queries' ),
               cleanCSS    = require( 'gulp-clean-css' ),
@@ -325,26 +324,10 @@ gulp.task( 'css',
 
         return gulp.src(
                 [
-                    './src/scss/01_Variables/01_BuildTargets.scss',
-                    // './src/scss.docs/docs_color.scss',
-                    './src/scss/**/*.scss',
-                   '!./src/scss/07_Parts/icons.scss',
-                   // '!./src/scss/09_ArticleBody/links.scss',
-                    './src/scss.docs/MinimumDataURIWebFont.scss'
-                ]
+                    './src/scss/targets/*/**/*.scss'
+                ], { base: './src/scss/targets' }
             ).pipe(
                 plumber()
-            ).pipe(
-                connect( COMMON_VARS )
-            ).pipe(
-                izpp({
-                    log      : true,
-                    fileType : 'scss',
-                    tasks    : [
-                        { name : 'desktop', imports : [ 'baseFontSize18', 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : COMMON_VARS.COMMON_CSS_DIR_TO_DESKTOP_CSS_DIR },
-                        { name : 'mobile',  imports : [ 'mobileOnly'    , 'Magazine', 'blog', 'aa', 'it', 'ArticleLabels', 'SocialBtns', 'GoogleCodePrettify', 'simpleHeader', 'blog2slide' ], dir : COMMON_VARS.COMMON_CSS_DIR_TO_MOBILE_CSS_DIR }
-                    ]
-                })
             ).pipe(
                 sass()
             ).pipe(

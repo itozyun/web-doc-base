@@ -1,54 +1,44 @@
 /* ClearFix
  *   https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
---------------------------------------------------------------------------------------*/
-
-@mixin create-CSS-generated-block() {
-    & {
-        /* Gecko <=1.9.0 do not support CSS-P. */
-        /* Opera <7.20, do not support CSS-P. */
-        @if( $CANUSE_CSS_GENERATED_BLOCK ){
-            content : " ";
-            display : block;
-        }
-    }
-}
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
 
 @mixin clearfix {
-    @if( $UA_Modern or $UA_IE9 or $UA_IE8 or $UA_IE7 ){
+    @if( ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 ){
         overflow : hidden;
-    } @else if( $UA_IE6 or $UA_IE55 ){
+    } @else if( ua.$IE6 or ua.$IE55 ){
         zoom : 1;
-    } @else if( $UA_IE5 ){
+    } @else if( ua.$IE5 ){
         height : 1px;
-    } @else if( $UA_MacIE5 ){
+    } @else if( ua.$MacIE5 ){
         display : inline-table;
     } @else {
-        @if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
+        @if( ua.$GeckoLte09 or ua.$Gecko12 ){
             position : relative; /* for Gecko 0.9.4.1, 1.0.2 */
         }
         &:after {
             clear : both;
-            @if( $IS_OLD_OPERA ){
+            @if( ua.$OperaLte9 ){
                 content    : "";
                 display    : block;
                 visibility : hidden;
                 clear      : both;
-                @if( $UA_Opera9 ){
+                @if( ua.$Opera9 ){
                     height : 0; /* for Gecko 0.9~1.7.5 & Opera 9~11(+contentEditable) */
                 }
-            } @else if( $IS_LTE_GECKO09 or $UA_Gecko12 ){
+            } @else if( ua.$GeckoLte09 or ua.$Gecko12 ){
                 content : "";
                 clear   : both;
-                @if( $IS_LTE_GECKO09 ){ /* この指定が無いとマージンが消える */
+                @if( ua.$GeckoLte09 ){ /* この指定が無いとマージンが消える */
                     display : block;
                     height  : 0.1px;
                 }
-            } @else if( $IS_GECKO13_TO_19 ){
+            } @else if( ua.$Gecko13to19 ){
                 content    : ".";   /* for Gecko 1.3~1.5 */
                 height     : 0;     /* for Gecko 0.9~1.7.5 */
                 display    : block; /* for Gecko & Opera */
                 visibility : hidden;
-                @if( $UA_Gecko19 ){
+                @if( ua.$Gecko19 ){
                     font-size  : 0.1px; /* for Gecko 1.7.5 で発生する隙間を削除, 0 の場合マージンが消える */
                     @-moz-document url-prefix() { /* override Gecko 1.8~ */
                         content : "";

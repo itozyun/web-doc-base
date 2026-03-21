@@ -1,0 +1,5 @@
+@use "../../01_var/target" with (
+    $TargetBrowser : "opera7.0"
+);
+
+@use "../pc";

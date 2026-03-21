@@ -1,7 +1,10 @@
 /*  justify ie5 ff1, opera10 以降,
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "css-hack" as *;
+
 @mixin text-justify {
-    @if( $IS_WIN_IE ){
+    @if( ua.$WinIELte9 ){
         /* ie11(ie5 モード)で英日交じりの文字組が酷いので、外す -> inter-word にしたら良さげ */
         & {
             // text-justify : inter-ideograph;
@@ -11,7 +14,7 @@
         }
     }
 
-    @if( $UA_Modern ){
+    @if( ua.$Modern ){
         /* ie10 ~ Edge */
         /* https://spyweb.media/2017/12/04/ie-edge-css-hacks/ */
         @include css-hack(ie10ToEdgeHTML) {

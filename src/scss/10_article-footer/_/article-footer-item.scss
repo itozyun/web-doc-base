@@ -1,0 +1,28 @@
+/* article footer item
+------------------------------------------------------------------------------------- */
+@use "../../02_mixin/responsive-horizontal-padding" as *;
+@use "../../02_mixin/media" as *;
+
+@mixin article-footer-item($paddingTop, $paddingBottom, $noprint : false, $skipPadding : false) {
+    @if( $skipPadding == false ){
+        @include responsive-horizontal-padding(1, $paddingTop, $paddingBottom, $noprint);
+    }
+
+    border-width : 0 0 1px;
+
+    /*  Forced colors
+    ------------------------------------------------------------------------------------- */
+    @include media(forced_colors_native_or_fallback){
+        & {
+            border-style : dotted;
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        @if( $noprint ){
+            display : none;
+        }
+    }
+}

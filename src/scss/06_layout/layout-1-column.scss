@@ -1,0 +1,156 @@
+/* .lX
+ *    .lXi
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/inline-block" as *;
+
+.#{opt.$Prefix}lX { // clearfix を同時に指定するために screen の外へ
+    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+        @include clearfix;
+    }
+    /* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
+    @if( ua.$IE8to9 or ua.$Modern ){
+        overflow : hidden; /* この指定が無いと塗りがはみ出る */
+    }
+    @if( ua.$IE5 ){
+        width      : 100%; /* この指定が無いと横スクロールが出る  */
+        overflow-x : hidden;
+    }
+
+    @include media(screen) {
+        @if( opt.$MobileOnly == false ){
+            width : size.$PC_WIDTH_PERCENT;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : size.$PC_MAX_WIDTH_EM;
+            }
+            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+                @if( canuse.$MARGIN_AUTO ){
+                    margin : 0 auto;
+                }
+            }
+
+            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @include inline-block;
+                text-align : left;
+                @at-root body {
+                    text-align : center;
+                }
+            }
+
+        /*  inner
+        ------------------------------------------------------------------------------------- */
+            @at-root #{&}i {
+                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    padding : 0 100% * size.$PC_COLUMN_GAP_RATIO;
+                } @else {
+                    margin : 0 100% * size.$PC_COLUMN_GAP_RATIO;
+                }
+            }
+        }
+
+        /*  1, 2
+        ------------------------------------------------------------------------------------- */
+        @at-root #{&}1 {
+            float : left;
+        }
+        @at-root #{&}2 {
+            float : right;
+        }
+    }
+
+    /*  WQXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WQXGA) {
+        width     : size.$WQXGA_WIDTH_PERCENT;
+        max-width : size.$WQXGA_MAX_WIDTH_EM;
+
+        @at-root #{&}i {
+            margin : 0 size.$WQXGA_COLUMN_GAP_PCT;
+        }
+    }
+
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WSXGA) {
+        width     : size.$WSXGA_WIDTH_PERCENT;
+        max-width : size.$WSXGA_MAX_WIDTH_EM;
+
+        @at-root #{&}i {
+            margin : 0 size.$WSXGA_COLUMN_GAP_PCT;
+        }
+    }
+
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @if( opt.$MobileOnly == false ){
+        @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
+            width : 100%;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+
+            @at-root #{&}i {
+                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    // padding : 0;
+                } @else {
+                    margin : 0;
+                }
+            }
+        }
+        @include media(tablet_print) {
+            @at-root #{&}i {
+                padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+            }
+        }
+    } @else {
+        @include media(screen) {
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : size.$TABLET_MAX_WIDTH_EM;
+                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    @include inline-block;
+                    text-align : left;
+                } @else {
+                    margin : 0 auto;
+                }
+            }
+        }
+        @at-root #{&}i {
+            padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+
+    @at-root #{&}i {
+        /*  PHABLET
+        ------------------------------------------------------------------------------------- */
+        @include media(phablet) {
+            padding : 0 size.$PHABLET_HORIZONTAL_MARGIN;
+        }
+
+        /*  Phone
+        ------------------------------------------------------------------------------------- */
+        @include media(phone) {
+            padding : 0 size.$PHONE_HORIZONTAL_MARGIN;
+        }
+
+        /*  Watch
+        ------------------------------------------------------------------------------------- */
+        @include media(watch) {
+            padding : 0;
+        }
+
+        /*  landscape Print
+        ------------------------------------------------------------------------------------- */
+        @include media(landscapePrint) {
+            padding : 0 math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
+        }
+    }
+}

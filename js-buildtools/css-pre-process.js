@@ -75,7 +75,8 @@ return require( 'through2' )
                 this.push(
                     new Vinyl(
                         {
-                            path     : ( ( file.dirname !== '\\' && file.dirname !== '/' ) ? file.dirname : '.' ) + '/' + COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + file.basename,
+                            base     : file.base,
+                            path     : file.path.split( file.basename ).join( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + file.basename ),
                             contents : Buffer.from( cssForForcedColors.toString() )
                         }
                     )

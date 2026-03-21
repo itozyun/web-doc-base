@@ -1,0 +1,7 @@
+/*  <acronym>
+------------------------------------------------------------------------------------- */
+@use "./_/HelpContentStyle" as *;
+
+acronym {
+    @extend %HelpContentStyle;
+}

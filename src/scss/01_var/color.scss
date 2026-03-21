@@ -1,0 +1,56 @@
+@use "./common.generated" as common;
+
+$ACCENT : #3079ed !default;
+$WARN   : red !default;
+
+$Sidebar_fill : #f1f4f1 !default;
+
+/*  白系統のボディーメイン用カラー
+------------------------------------------------------------------------------------- */
+$Light_fill          : #f8fbf8 !default;
+$Light_text          : common.$LIGHT_COLOR_SCHEME_TEXT_COLOR !default;
+$Light_casual_fill   : #ddd !default;
+$Light_casual_text   : #777 !default;
+$Light_accent        : $ACCENT !default;
+
+$Light_link          : #24c !default;
+$Light_visited       : #717 !default;
+$Light_hover         : $ACCENT !default;
+$Light_visited_hover : #515 !default;
+
+/*  黒系統のリボン用カラー(フッターとページ上部のアクセント)
+------------------------------------------------------------------------------------- */
+$Ribbon_fill          : #1a1a1a !default;
+$Ribbon_text          : #fff !default;
+$Ribbon_casual_fill   : #2a2a2a !default;
+$Ribbon_casual_text   : #bbb !default;
+$Ribbon_accent        : $ACCENT !default;
+
+$Ribbon_link          : #bbe !default;
+$Ribbon_visited       : $Ribbon_text !default;
+$Ribbon_hover         : $ACCENT !default;
+$Ribbon_visited_hover : #c8e !default;
+
+/*  ダークモード用のボディーのメイン用カラー
+------------------------------------------------------------------------------------- */
+$Dark_fill          : #000 !default;
+$Dark_text          : #eee !default;
+$Dark_casual_fill   : #222 !default;
+$Dark_casual_text   : #999 !default;
+$Dark_accent        : $ACCENT !default;
+
+$Dark_link          : $Ribbon_link !default;
+$Dark_visited       : #eae !default;
+$Dark_hover         : $Ribbon_hover !default;
+$Dark_visited_hover : $Ribbon_visited_hover !default;
+
+/*  印刷用カラー
+------------------------------------------------------------------------------------- */
+$Print_fill          : #fff !default;
+$Print_text          : #000 !default;
+$Print_casual_fill   : #ccc !default;
+$Print_casual_text   : #666 !default;
+$Print_accent        : $ACCENT !default;
+
+$Print_link          : #006 !default;
+$Print_visited       : #606 !default;

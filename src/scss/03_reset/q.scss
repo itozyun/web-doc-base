@@ -1,0 +1,17 @@
+/*  reset <q>
+------------------------------------------------------------------------------------- */
+@use "./_/QuoteResetter" as *;
+
+q {
+    @extend %QuoteResetter;
+
+    font-style : normal;
+}
+
+/* @if( canuse.$CSS_GENERATED_CONTENT ){
+    q:before,
+    q:after {
+        content : '';
+        content : none;
+    }
+} */

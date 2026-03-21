@@ -1,140 +1,153 @@
 /*  PicaThumbnail
---------------------------------------------------------------------------------------*/
-@include media(forced_colors_native_or_fallback){
-    @if( $CANUSE_OUTLINE ){
-        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
-            @include active-focus-pseudo-class{
-                outline : 0;
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/common.generated" as common;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/column" as *;
+@use "../02_mixin/box-sizing" as *;
+
+@use "../04_typography/img";
+@use "../04_typography/figure";
+
+$_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE5X_ALWAYS_BORDER_BOX == false; // IE6~7
+
+@if ua.$Script {
+    @include media(forced_colors_native_or_fallback){
+        @if( canuse.$OUTLINE ){
+            .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
+                @include active-focus-pseudo-class {
+                    outline : 0;
+                }
             }
         }
     }
-}
-
-.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} img,
-.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} { /* onload 時に transition してしまうと transition 中の offsetWidth を取得してしまう．
-                                                              これを避けるために、動的に追加する .js-captioned-thumbnail に transition を設定する */
-    @if( $UA_Modern ){
+    /* onload 時に transition してしまうと transition 中の offsetWidth を取得してしまう．
+    これを避けるために、動的に追加する .js-captioned-thumbnail に transition を設定する */
+    .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} img,
+    .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_TARGET} {
+        @if( ua.$Modern ){
+            /* clean-css ignore:start */
+            -webkit-transition-property : width, margin;
+                    -webkit-transition :       0.3s ease-in;
+            /* clean-css ignore:end */
+                        -moz-transition : width 0.3s ease-in, margin 0.3s ease-in;
+                        -o-transition : width 0.3s ease-in, margin 0.3s ease-in;
+                            transition : width 0.3s ease-in, margin 0.3s ease-in;
+            @media (prefers-reduced-motion: reduce) {
+                transition : none;
+            }
+        }
+    }
+    .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
         /* clean-css ignore:start */
-        -webkit-transition-property : width, margin;
-                 -webkit-transition :       0.3s ease-in;
+        @if( ua.$Modern ){
+            cursor : -webkit-zoom-in;
+        }
+        @if( ua.$Modern or ua.$Gecko19 ){ // Gecko 1.4+
+            cursor : -moz-zoom-in;
+        }
+        @if( ua.$Modern ){
+            cursor : zoom-in;
+        }
         /* clean-css ignore:end */
-                    -moz-transition : width 0.3s ease-in, margin 0.3s ease-in;
-                      -o-transition : width 0.3s ease-in, margin 0.3s ease-in;
-                         transition : width 0.3s ease-in, margin 0.3s ease-in;
-        @media (prefers-reduced-motion: reduce) {
-            transition : none;
+    }
+    .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_TARGET} {
+        @if( ua.$Modern ){
+            width : 100%; /* for animation */
         }
     }
-}
+    .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} {
+        @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 ){
+            margin : 0 0 1em;
+        }
+        /* clean-css ignore:start */
+        @if( ua.$Modern ){
+            cursor : -webkit-zoom-out;
+        }
+        @if( ua.$Modern or ua.$Gecko19 ){ // Gecko 1.4+
+            cursor : -moz-zoom-out;
+        }
+        @if( ua.$Modern ){
+            cursor : zoom-out;
+        }
+        /* clean-css ignore:end */
 
-.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
-    /* clean-css ignore:start */
-    @if( $UA_Modern ){
-        cursor : -webkit-zoom-in;
-    }
-    @if( $UA_Modern or $UA_Gecko19 ){ // Gecko 1.4+
-        cursor : -moz-zoom-in;
-    }
-    @if( $UA_Modern ){
-        cursor : zoom-in;
-    }
-    /* clean-css ignore:end */
-}
-.#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_TARGET} {
-    @if( $UA_Modern ){
-        width : 100%; /* for animation */
-    }
-}
+        @include media(WSXGA_landscapePrint) {
+            display : block;
+            @include column-span-all;
+        }
 
-$FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX_ALLWAYS == false; // IE6~7
+        @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){ // IE6~7
+            /* box-sizing が使えないための処置 a.#{opt.$Prefix}js-pica-thumbnail__large 側でアウトラインを表示 */
+            display : block;
+            clear   : both; /* ギャラリーでの回り込みの解除 */
+            padding : #{size.$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+            @if( ua.$IE7 or ua.$IE6 ){
+                zoom : 1;
+            }
+            &:hover {
+                top : 2px;
+                img {
+                    top : 0;
+                }
+            }
+            & img {
+                border-width : 0;
+            }
+        } @else {
+            @if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+                &:active, &:focus {
+                    background : transparent !important;
+                }
+            } @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+                &:focus {
+                    background : transparent !important;
+                }
+            } @else {
+                @include active-focus-pseudo-class {
+                    background : transparent !important;
+                }
+            }
+            & img {
+                @include box-sizing(border-box);
+            }
+        }
 
-.#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
-    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
+        & img {
+            width : 100%;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+            @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 ){
+                margin : 0;
+            } @else {
+                margin : 0 0 1em;
+            }
+            /* box.scss の @media ブロックを上書きするために詳細度を上げる */
+            .box & {
+                margin : 0 0 1em;
+                @if( ua.$Modern ){
+                    float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
+                }
+            }
+        }
+    }
+    .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {
         margin : 0 0 1em;
-    }
-    /* clean-css ignore:start */
-    @if( $UA_Modern ){
-        cursor : -webkit-zoom-out;
-    }
-    @if( $UA_Modern or $UA_Gecko19 ){ // Gecko 1.4+
-        cursor : -moz-zoom-out;
-    }
-    @if( $UA_Modern ){
-        cursor : zoom-out;
-    }
-    /* clean-css ignore:end */
-
-    @include media(WSXGA_landscapePrint) {
-        display : block;
-        @include column-span-all;
-    }
-
-    @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){ // IE6~7
-        /* box-sizing が使えないための処置 a.#{$Prefix}js-pica-thumbnail__large 側でアウトラインを表示 */
-        display : block;
-        clear   : both; /* ギャラリーでの回り込みの解除 */
-        padding : #{$COMMON_BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
-        @if( $UA_IE7 or $UA_IE6 ){
-            zoom : 1;
-        }
-        img {
-            border-width : 0;
-        }
-        &:hover {
-            top : 2px;
-            img {
-                top : 0;
-            }
-        }
-    } @else {
-        @if( $FOCUSED_COLOR_FIXED_AT_SYSTEM_COLOR ){
-            &:active, &:focus {
-                background : transparent !important;
-            }
-        } @else if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
-            &:focus {
-                background : transparent !important;
-            }
-        } @else {
-            @include active-focus-pseudo-class {
-                background : transparent !important;
-            }
-        }
-        img {
-            @include box-sizing(border-box);
-        }
-    }
-
-    img {
-        width : 100%;
-        @if( $CANUSE_MAX_AND_MIN_SIZES ){
-            max-width : 100%;
-        }
-        @if( $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or $UA_IE55 or $UA_IE5 ){
-            margin : 0;
-        } @else {
-            margin : 0 0 1em;
-        }
-        /* box.scss の @media ブロックを上書きするために詳細度を上げる */
-        .box & {
-            margin : 0 0 1em;
-            @if( $UA_Modern ){
-                float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
-            }
-        }
-    }
-}
-
-    .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
-        @if( $UA_IE8 or $UA_Gecko07 ){
+        @if( ua.$IE8 or ua.$Gecko07 ){
             width : 100%;
         }
-        margin : 0 0 1em;
-        a {
+        & a {
             margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
         }
-        @if( $UA_Modern or $UA_IE9 ){
-            figcaption {
+        & figcaption {
+            @if( ua.$Modern or ua.$IE9 ){
                 width  : 80%;
                 margin : 0 auto;
             }
@@ -142,48 +155,46 @@ $FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : $CANUSE_BOX_SIZING == false and $BORDER_BOX
         /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         div .box & {
             margin : 0 0 1em;
-            @if( $UA_Modern ){
+            @if( ua.$Modern ){
                 float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
             }
         }
     }
-
 /*  Phone-
---------------------------------------------------------------------------------------*/
-@include media(smallphone) {
-    @if( $UA_Modern ){ // アニメーション用の指定
-        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} img,
-        .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
-            margin : 0 auto 1em !important; /* 左配置指定を上書き 中央から transition */
+------------------------------------------------------------------------------------- */
+    @include media(smallphone) {
+        @if( ua.$Modern ){ // アニメーション用の指定
+            .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} img,
+            .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {
+                margin : 0 auto 1em !important; /* 左配置指定を上書き 中央から transition */
+            }
         }
     }
-}
-
-
 /* IE5, 5.5
---------------------------------------------------------------------------------------*/
-@if( $UA_IE55 or $UA_IE5 ){
-    @if( $UA_IE5 ){
-        .box .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
-            overflow : hidden; /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
-            display  : block;  /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
+------------------------------------------------------------------------------------- */
+    @if( ua.$IE55 or ua.$IE5 ){
+        @if( ua.$IE5 ){
+            .box .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
+                overflow : hidden; /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
+                display  : block;  /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
+            }
+            .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} {
+                height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
+            }
+            .jsPica:active {
+                background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
+            }
+        } @else {
+            .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
+                display : block;
+            }
+            .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} {
+                zoom : 1; /* この指定が無いとギャラリーで margin が無くなる */
+            }
         }
-        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
-            height  : auto; /* この指定が無いとギャラリーで他の画像に隠れる */
+        .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE},
+        .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {
+            clear : both; /* ギャラリーでの回り込みの解除 */
         }
-        .jsPica:active {
-            background-color : transparent !important; /* フォーカス時の塗りが汚いので a:active の塗りを外す */
-        }
-    } @else {
-        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_TARGET} {
-            display : block;
-        }
-        .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE} {
-            zoom : 1; /* この指定が無いとギャラリーで margin が無くなる */
-        }
-    }
-    .#{$Prefix + $COMMON_PICA_THUMBNAIL__CLASSNAME_LARGE},
-    .#{$Prefix + $COMMON_CAPTIONED_OBJECT__CLASSNAME_LARGE} {
-        clear : both; /* ギャラリーでの回り込みの解除 */
     }
 }

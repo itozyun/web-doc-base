@@ -1,0 +1,8 @@
+/*  Reset <button>
+------------------------------------------------------------------------------------- */
+@use "./_/reset-moz-focus-inner" as *;
+@use "./_/reset-outline" as *;
+
+button {
+    @include reset-outline;
+}

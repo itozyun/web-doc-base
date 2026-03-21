@@ -1,0 +1,69 @@
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/font-family-japanese" as *;
+
+@use "../03_reset/global";
+
+/*  global
+------------------------------------------------------------------------------------- */
+    @if( ua.$Opera72 ){
+        h2, h3, h4, h5, h6,
+        div, p, blockquote, pre,
+        a, b, hr, img, code, var, kbd,
+        table, th, td {
+            border-style : solid;
+            border-width : 0;
+        }
+    } @else {
+        * {
+            border-style : solid;
+            border-width : 0;
+        }
+    }
+
+/*  ダイナミックタイプ対応
+ *  https://ics.media/entry/210604/
+------------------------------------------------------------------------------------- */
+    /* iOS と iPadOS だけに適用する
+        (font: -apple-system-body) の条件だと macOS Safari も適用されてしまうため、
+        (-webkit-touch-callout: none) で絞っている */
+    @if( ua.$Modern ){
+        @supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
+            :root {
+                font : -apple-system-body;
+            }
+        }
+    }
+
+/*  body
+------------------------------------------------------------------------------------- */
+body {
+    @if( size.$FONTSIZE_DEFAULT < size.$FONTSIZE_UPPER_TABLET and ua.$Modern ){
+        /* メディアクエリに対応し、phablet より大きい画面で 18px に */
+        @media only screen and (min-width : #{(size.$PHABLET_MAX_WIDTH + 1)}px) {
+            font-size : math.div(size.$FONTSIZE_UPPER_TABLET, size.$FONTSIZE_DEFAULT) * 1em
+        }
+    }
+
+    @extend %UDFontFamily;
+
+    @include line-height(1);
+
+/*  Phone-
+------------------------------------------------------------------------------------- */
+    @include media(smallphone) {
+        font-size : 0.8125em;
+    }
+
+/*  Watch
+------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        font-size : 0.75em;
+    }
+}

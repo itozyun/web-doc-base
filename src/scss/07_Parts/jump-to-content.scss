@@ -1,0 +1,9 @@
+@use "../01_var/ua" as ua;
+
+//  Unnecessary spaces in IE8, https://github.com/itozyun/web-doc-base/issues/40
+#top {
+    @if( ua.$IE8 ){
+        display  : block;
+        overflow : hidden;
+    }
+}

@@ -4,8 +4,13 @@
  *  div.mR
  *    small
  *     a
---------------------------------------------------------------------------------------*/
-.#{$Prefix}Attribution {
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../06_layout/footer";
+@use "../06_layout/layout-1-column";
+
+.#{opt.$Prefix}Attribution {
     padding    : 1em 0;
     text-align : center;
 

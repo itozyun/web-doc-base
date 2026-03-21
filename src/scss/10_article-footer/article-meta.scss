@@ -1,0 +1,35 @@
+/* [ArticleFooter Item] ArticleMeta
+ *
+ * .AMeta
+ *   div
+ *     icon
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/color" as color;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/media" as *;
+
+@use "../08_module/ArticleFooter";
+@use "./_/article-footer-item" as *;
+
+.#{opt.$Prefix}AMeta {
+    @include article-footer-item(1em, 1em);
+
+    div {
+        padding-left : 1.2em;
+        text-indent  : -1.2em;
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        @if( canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS ){
+            @at-root #{&}-cita:after {
+                content   : " ("attr(href)") ";
+                font-size : 0.875em;
+                color     : color.$Print_link;
+            }
+        }
+    }
+}

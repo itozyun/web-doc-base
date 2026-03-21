@@ -1,0 +1,17 @@
+/*  <table>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/column" as *;
+
+@use "../04_typography/table";
+
+@use "../08_module/ArticleBody";
+
+.#{opt.$Prefix}ABody {
+    tr {
+        blockquote {
+            @include column-count(1);
+        }
+    }
+}

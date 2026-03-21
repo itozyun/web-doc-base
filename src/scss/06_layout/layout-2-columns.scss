@@ -1,0 +1,326 @@
+/* .lW
+ *   .lM
+ *     .lMi|.lMz
+ *        .lMf + .lMh
+ *        .lM1 + .lM2
+ *   .lS
+ *     .lSi
+ *        .lS1, ls2
+ *
+ * 1. "display:table"-layout
+ *    * ie8+, Opera 9+, Gecko 1+, WebKit
+ * 2. "float"-layout
+ *    * 上記以外のブラウザ 
+ *
+------------------------------------------------------------------------------------- */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/quirks" as quirks;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/table-to-float-layout-patch" as *;
+
+@if( opt.$MobileOnly == false ){
+    @if( opt.$MaxLayoutColumns < 2 ){
+        @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
+    }
+
+    .#{opt.$Prefix}lW { // clearfix を同時に指定するために screen の外へ
+        @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT == false and quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+            @include clearfix;
+        }
+        @include table-to-float-layout-patch {
+            @include clearfix;
+        }
+    }
+
+    @include media(screen) {
+        .#{opt.$Prefix}lW {
+            width : size.$PC_WIDTH_PERCENT;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : size.$PC_MAX_WIDTH_EM;
+            }
+            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+                @if( canuse.$MARGIN_AUTO ){
+                    margin : 0 auto;
+                }
+            }
+            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @include inline-block;
+                text-align : left;
+            }
+        }
+
+/*  main
+------------------------------------------------------------------------------------- */
+            .#{opt.$Prefix}lM {
+                @if( ua.$WinIELte6 ){
+                    overflow-x : hidden; /* カラム落ち対策 */
+                }
+                @at-root #{&}i, #{&}z {
+                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                        padding-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                    } @else {
+                        margin-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                    }
+                }
+            }
+
+/*  sub
+------------------------------------------------------------------------------------- */
+            .#{opt.$Prefix}lS {
+                width : 100% * size.$PC_SUB_COLUMN_RATIO;
+                @at-root #{&}i {
+                    @if( ua.$IE6 ){
+                        width  : 82%;
+                    }
+                    @if( ua.$IE55 ){
+                        width  : 100%;
+                    }
+                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                        padding : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
+                    } @else {
+                        margin : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
+                    }
+                }
+            }
+
+        @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+            .#{opt.$Prefix}lW {
+                display      : table;
+                table-layout : fixed;
+                @include table-to-float-layout-patch {
+                    display : block;
+                }
+            }
+                .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
+                    display        : table-cell;
+                    vertical-align : top; /* Safari 3.2, ie8 で大切 */
+                    @include table-to-float-layout-patch {
+                        display : block;
+                    }
+                }
+                .#{opt.$Prefix}lM {
+                    width : 100% * size.$PC_MAIN_COLUMN_RATIO;
+                    @include table-to-float-layout-patch {
+                        width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
+                        float : left;
+                    }
+                    @at-root #{&}i, #{&}z {
+                        margin-right : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                        @include table-to-float-layout-patch {
+                            margin-right : 0;
+                        }
+                    }
+                }
+                .#{opt.$Prefix}lS {
+                    @include table-to-float-layout-patch {
+                        float : right;
+                    }
+                }
+
+        } @else {
+       /* memo : サイドバーを塗りたい場合
+        * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
+        * 高さを求めて32767px 
+        */
+            .#{opt.$Prefix}lM {
+                width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
+                float : left;
+            }
+            .#{opt.$Prefix}lS {
+                float : right;
+            }
+        }
+    }
+/*  Print
+------------------------------------------------------------------------------------- */
+    @include media(print) {
+        .#{opt.$Prefix}lSi {
+            @if( ua.$IE6 ){
+                width : 100%;
+            }
+        }
+    }
+}
+
+/*  WQXGA
+------------------------------------------------------------------------------------- */
+@include media(WQXGA) {
+    .#{opt.$Prefix}lW {
+        width     : size.$WQXGA_WIDTH_PERCENT;
+        max-width : size.$WQXGA_MAX_WIDTH_EM;
+    }
+        .#{opt.$Prefix}lM {
+            width : 100% * size.$WQXGA_MAIN_COLUMN_RATIO;
+            @at-root #{&}i, #{&}z {
+                margin : 0 size.$WQXGA_COLUMN_GAP_EM 0 math.div(size.$WQXGA_COLUMN_GAP_PCT, size.$WQXGA_MAIN_COLUMN_RATIO);
+            }
+            @at-root #{&}h {
+                margin-left  : 50%;
+                padding-left : math.div(size.$WQXGA_COLUMN_GAP_EM, 2);
+            }
+        }
+
+        .#{opt.$Prefix}lS {
+            width : 100% * size.$WQXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}i {
+                margin : 0 math.div(size.$WQXGA_COLUMN_GAP_PCT, size.$WQXGA_SUB_COLUMN_RATIO);
+            }
+        }
+}
+
+/*  WSXGA
+------------------------------------------------------------------------------------- */
+@include media(WSXGA) {
+    .#{opt.$Prefix}lW {
+        width     : size.$WSXGA_WIDTH_PERCENT;
+        max-width : size.$WSXGA_MAX_WIDTH_EM;
+    }
+        .#{opt.$Prefix}lM {
+            width : 100% * size.$WSXGA_MAIN_COLUMN_RATIO;
+            @at-root #{&}i, #{&}z {
+                margin : 0 size.$WSXGA_COLUMN_GAP_EM 0 math.div(size.$WSXGA_COLUMN_GAP_PCT, size.$WSXGA_MAIN_COLUMN_RATIO);
+            }
+            @at-root #{&}h {
+                margin-left  : 50%;
+                padding-left : math.div(size.$WSXGA_COLUMN_GAP_EM, 2);
+            }
+        }
+        .#{opt.$Prefix}lS {
+            width : 100% * size.$WSXGA_SUB_COLUMN_RATIO;
+            @at-root #{&}i {
+                margin : 0 math.div(size.$WSXGA_COLUMN_GAP_PCT, size.$WSXGA_SUB_COLUMN_RATIO);
+            }
+        }
+}
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+@if( opt.$MobileOnly == false ){
+    @include media(tablet) { /* float-layout -> table-layout も併せて変更 */
+        .#{opt.$Prefix}lW {
+            width : 100%;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+            @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+                display : block;
+            }
+        }
+            .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
+                width : auto;
+                @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+                    display : block;
+                } @else {
+                    float : none;
+                }
+            }
+                .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
+                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                        padding : 0;
+                    } @else {
+                        margin : 0;
+                    }
+                }
+    }
+}
+
+/*  mobileOnly は始めから Tablet
+------------------------------------------------------------------------------------- */
+@if( opt.$MobileOnly ){
+    .#{opt.$Prefix}lW {
+        @if( ua.$IE8 or ua.$Modern ){
+            overflow : hidden; /* この指定が無いと塗りがはみ出る */
+        }
+        @if( ua.$IE5 ){
+            width      : 100%; /* この指定が無いと横スクロールが出る  */
+            overflow-x : hidden;
+        }
+    }
+    @include media(screen) {
+        .#{opt.$Prefix}lW {
+            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                text-align : center;
+            }
+        }
+        .#{opt.$Prefix}lM, .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lSi {
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : size.$TABLET_MAX_WIDTH_EM;
+                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    @include inline-block;
+                    text-align : left;
+                } @else {
+                    margin : 0 auto;
+                }
+            }
+        }
+        #lB .#{opt.$Prefix}lS {
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+        }
+    }
+}
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+@if( opt.$MobileOnly ){
+    .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
+        padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+    }
+} @else {
+    @include media(tablet_print) {
+        .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
+            padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+        }
+    }
+    @include media(tablet) {
+        #lB .#{opt.$Prefix}lSi {
+            padding : 0;
+        }
+    }
+}
+
+.#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi, #lB .#{opt.$Prefix}lSi {
+    /*  PHABLET
+    ------------------------------------------------------------------------------------- */
+    @include media(phablet) {
+        padding : 0 size.$PHABLET_HORIZONTAL_MARGIN;
+    }
+
+    /*  Phone
+    ------------------------------------------------------------------------------------- */
+    @include media(phone) {
+        padding : 0 size.$PHONE_HORIZONTAL_MARGIN;
+    }
+
+    /*  Watch
+    ------------------------------------------------------------------------------------- */
+    @include media(watch) {
+        padding : 0;
+    }
+}
+
+/*  Print
+------------------------------------------------------------------------------------- */
+@include media(print) {
+    #lH .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lS, #lF .#{opt.$Prefix}lW {
+        display : none;
+    }
+}
+
+/*  landscape Print
+------------------------------------------------------------------------------------- */
+@include media(landscapePrint) {
+    .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMh {
+        padding : 0 math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
+    }
+}

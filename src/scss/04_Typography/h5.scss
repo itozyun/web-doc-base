@@ -1,0 +1,23 @@
+@use "../01_var/color" as color;
+
+@use "../02_mixin/media" as *;
+@use "../02_mixin/responsive-horizontal-margin" as *;
+
+@use "./_/HeadingStyle" as *;
+
+h5 {
+    @extend %HeadingStyle;
+    @include responsive-horizontal-margin(2, 1.5em, 0.8em);
+
+    font-weight  : normal;
+    font-size    : 1em;
+    border-width : 0 0 0 0.5em;
+    border-color : color.$Light_casual_text;
+    padding      : 0 0 0 0.5em;
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        border-color : color.$Dark_casual_text;
+    }
+}

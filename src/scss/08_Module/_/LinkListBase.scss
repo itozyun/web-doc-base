@@ -1,0 +1,178 @@
+@use "../../01_var/ua" as ua;
+@use "../../01_var/canuse" as canuse;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+@use "../../01_var/options" as opt;
+@use "../../01_var/size" as size;
+
+@use "../../02_mixin/unbreak" as *;
+@use "../../02_mixin/media" as *;
+
+%LinkListBase {
+    a {
+        @include unbreak-page-inside;
+        display         : block;
+        cursor          : pointer;
+        text-decoration : none !important;
+
+        @if( ua.$Modern ){ // https://twitter.com/itozyun/status/1499739713884016642
+            overflow : hidden;   // Opera 9.6-
+            height   : auto;     // Opera 9.6-
+            &:focus ::selection { // Opera 9.5+
+                background-color : transparent;
+            }
+        }
+    }
+    @if( canuse.$NEGATIVE_PSEUDO_CLASS == false or ua.$Opera9 ){
+        a {
+            background : color.$Light_text;
+            color      : color.$Light_fill;
+        }
+        :link {
+            @if( ua.$Opera70 ){
+                background : color.$Light_fill;
+            } @else {
+                background : transparent;
+            }
+            color : color.$Light_link;
+        }
+        a:visited {
+            @if( ua.$Opera70 ){
+                background : color.$Light_fill;
+            } @else {
+                background : transparent;
+            }
+            color : color.$Light_text;
+        }
+    } @else {
+        a:not([href]) {
+            /* href がない場合 current を示す塗りになる */
+            background : color.$Light_text;
+            color      : color.$Light_fill;
+        }
+        :visited {
+            // color : color.$Light_text;
+        }
+    }
+
+    @include media(screen){
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+            a:hover {
+                background : color.$Light_casual_fill;
+                color      : color.$Light_text;
+            }
+        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+            :link:hover, :visited:hover {
+                background : color.$Light_casual_fill;
+                color      : color.$Light_text;
+            }
+        }
+    }
+
+    /*  ribbon
+    ------------------------------------------------------------------------------------- */
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        @if( canuse.$NEGATIVE_PSEUDO_CLASS == false ){
+            .#{opt.$Prefix}ribbon a {
+                background : color.$Ribbon_text;
+                color      : color.$Ribbon_fill;
+            }
+            .#{opt.$Prefix}ribbon & :link {
+                @if( ua.$Opera70 ){
+                    background : color.$Ribbon_fill;
+                } @else {
+                    background : transparent;
+                }
+                color : color.$Ribbon_link;
+            }
+            .#{opt.$Prefix}ribbon & :visited {
+                @if( ua.$Opera70 ){
+                    background : color.$Ribbon_fill;
+                } @else {
+                    background : transparent;
+                }
+                color : color.$Ribbon_text;
+            }
+        } @else {
+            .#{opt.$Prefix}ribbon & a:not([href]) {
+                /* href がない場合 current を示す塗りになる */
+                background : color.$Ribbon_text;
+                color      : color.$Ribbon_fill;
+            }
+            .#{opt.$Prefix}ribbon & :visited {
+                // color : color.$Ribbon_text;
+            }
+        }
+
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+            .#{opt.$Prefix}ribbon & :hover {
+                background : color.$Ribbon_casual_fill;
+                color      : color.$Ribbon_text;
+            }
+        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+            .#{opt.$Prefix}ribbon & :link:hover,
+            .#{opt.$Prefix}ribbon & :visited:hover {
+                background : color.$Ribbon_casual_fill;
+                color      : color.$Ribbon_text;
+            }
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        @if( canuse.$NEGATIVE_PSEUDO_CLASS == false ){
+            :link {
+                color : color.$Print_link;
+            }
+            :visited {
+                color : color.$Print_text;
+            }
+        }
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        /* href がない場合 current カラーになる */
+        @if( ua.$Opera9 ){ // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
+            & a {
+                background : color.$Dark_casual_text;
+                color      : color.$Dark_fill;
+            }
+            & :link {
+                background : transparent;
+                color      : color.$Dark_link;
+            }
+            & :visited {
+                background : transparent;
+                color      : color.$Dark_text;
+            }
+        } @else {
+            & a:not([href]) {
+                background : color.$Dark_casual_text;
+                color      : color.$Dark_fill;
+            }
+        }
+        & :link:hover, & :visited:hover {
+            background : color.$Dark_casual_fill;
+            color      : color.$Dark_text;
+        }
+    }
+
+    /*  Forced colors
+    ------------------------------------------------------------------------------------- */
+    @include media(forced_colors_native_or_fallback){
+        padding : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH;
+
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+            :hover {
+                text-decoration : underline !important;
+            }
+        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+            :link:hover, :visited:hover {
+                text-decoration : underline !important;
+            }
+        }
+    }
+}

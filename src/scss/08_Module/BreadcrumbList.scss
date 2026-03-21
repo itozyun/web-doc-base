@@ -1,37 +1,48 @@
 /* [module] BreadcrumbList
  *  出現位置は #lE .lMi 下で固定
  *
---------------------------------------------------------------------------------------*/
-.#{$Prefix}BreadcrumbList {
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/ua" as ua;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/media" as *;
+
+// <a>
+@use "../04_typography/a";
+
+.#{opt.$Prefix}BreadcrumbList {
     padding : 1em 0;
-    color   : $COLOR_Light_casual_text;
+    color   : color.$Light_casual_text;
 
     a {
-        @if( $IS_LTE_GECKO09 == false and $IS_Opera7x == false ){
+        @if( ua.$GeckoLte09 == false and ua.$Opera7x == false ){
             @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
         }
-        @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
+        @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
             zoom : 1;
         }
     }
 
-    @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS == false and $Option_useRibbon ){
-        .#{$Prefix}ribbon & {
-            color : $COLOR_Ribbon_casual_text;
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        .#{opt.$Prefix}ribbon & {
+            color : color.$Ribbon_casual_text;
         }
     }
 
     /*  Dark theme
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(dark_theme) {
-        color : $COLOR_Dark_casual_text;
+        color : color.$Dark_casual_text;
     }
 
     /*  Print
-    --------------------------------------------------------------------------------------*/
+    ------------------------------------------------------------------------------------- */
     @include media(print) {
         font-size : .83em;
         padding   : 0.5em 0;
-        color     : $COLOR_Print_casual_text !important;
+        color     : color.$Print_casual_text !important;
     }
 }

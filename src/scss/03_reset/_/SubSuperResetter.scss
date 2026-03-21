@@ -1,0 +1,10 @@
+/*  sub, sup
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+
+%SubSuperResetter {
+    font-size      : 75%;
+    line-height    : 0;
+    position       : relative;
+    vertical-align : baseline;
+}

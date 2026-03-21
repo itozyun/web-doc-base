@@ -1,0 +1,27 @@
+/* <code>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+
+@use "../02_mixin/media" as *;
+
+@use "../04_typography/code";
+
+@use "../08_module/ArticleBody";
+
+@use "./_/CodingBase" as *;
+
+@if( opt.$UseITStyles ){
+    code {
+        @extend %CodingBase;
+
+        /*  Print
+        ------------------------------------------------------------------------------------- */
+        @include media(print) {
+            pre & {
+                border : 0;
+            }
+        }
+    }
+} @else {
+    @error "Option Error: ";
+}

@@ -1,29 +1,33 @@
 /* [module] Article Description
  *  出現位置は #lE .lSi 下で固定
  *
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}ADesc {
-        margin : 2em .5em;
-        @if( $CANT_CHANGE_TEXT_COLOR_WHEN_FOCUS ){
-            color : $COLOR_Light_casual_text;
-        } @else {
-            color : $COLOR_Ribbon_casual_text;
-        }
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../01_var/color" as color;
+@use "../01_var/quirks" as quirks;
 
-        p {
-            margin : 0;
-        }
+@use "../02_mixin/media" as *;
 
-        /*  Tablet
-        --------------------------------------------------------------------------------------*/
-        @include media(tablet_print) {
-            margin : 1em 0;
-        }
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            color : $COLOR_Print_casual_text;
-        }
+.#{opt.$Prefix}ADesc {
+    margin : 2em .5em;
+    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+        color : color.$Light_casual_text;
+    } @else {
+        color : color.$Ribbon_casual_text;
+    }
+
+    p {
+        margin : 0;
+    }
+
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @include media(tablet_print) {
+        margin : 1em 0;
+    }
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        color : color.$Print_casual_text;
     }
 }

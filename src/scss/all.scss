@@ -1,0 +1,145 @@
+@use "./01_var/options" with (
+    $EnableWideLayout : true,
+    $BaseFontSize     : 18,
+    $MaxLayoutColumns : 2,
+    $UseBuiltinHeader : true,
+    $UseRibbon        : true,
+    $UseITStyles      : true,
+    $Prefix           : ""
+);
+
+@use "./04_typography/global";
+// @use "./04_typography/a";
+// @use "./04_typography/abbr";
+// @use "./04_typography/acronym";
+// @use "./04_typography/blockquote";
+@use "./04_typography/br";
+// @use "./04_typography/button";
+@use "./04_typography/cite";
+// @use "./04_typography/code";
+@use "./04_typography/del";
+@use "./04_typography/dfn";
+// @use "./04_typography/dl";
+// @use "./04_typography/em";
+@use "./04_typography/figure";
+@use "./04_typography/form";
+// @use "./04_typography/h1";
+// @use "./04_typography/h2";
+// @use "./04_typography/h3";
+// @use "./04_typography/h4";
+// @use "./04_typography/h5";
+// @use "./04_typography/h6";
+// @use "./04_typography/hr";
+@use "./04_typography/iframe";
+@use "./04_typography/img";
+@use "./04_typography/input";
+@use "./04_typography/input-type-hidden";
+@use "./04_typography/input-type-submit";
+@use "./04_typography/ins";
+// @use "./04_typography/kbd";
+// @use "./04_typography/ol";
+@use "./04_typography/p";
+@use "./04_typography/pre";
+@use "./04_typography/q";
+@use "./04_typography/samp";
+// @use "./04_typography/select";
+@use "./04_typography/small";
+// @use "./04_typography/strong";
+@use "./04_typography/sub";
+@use "./04_typography/sup";
+// @use "./04_typography/table";
+@use "./04_typography/text-align";
+@use "./04_typography/textarea";
+// @use "./04_typography/ul";
+@use "./04_typography/uppercase";
+// @use "./04_typography/var";
+
+@use "./05_theme/base-color";
+@use "./05_theme/em";
+@use "./05_theme/hr";
+@use "./05_theme/strong";
+
+@use "./06_layout/layout-1-column";
+@use "./06_layout/layout-2-columns";
+@use "./06_layout/columnize-main-pane";
+@use "./06_layout/columnize-sub-pane";
+@use "./06_layout/footer";
+@use "./06_layout/ie6-max-width-fix";
+@use "./06_layout/vertical-margins";
+
+@use "./07_parts/apply-button-style-to-a";
+@use "./07_parts/apply-button-style-to-input";
+@use "./07_parts/common-form";
+@use "./07_parts/jump-to-content";
+@use "./07_parts/module-spacer";
+@use "./07_parts/noprint";
+@use "./07_parts/vector-icon";
+
+@use "./08_module/ArticleAuthor";
+@use "./08_module/ArticleBody";
+@use "./08_module/ArticleDescription";
+@use "./08_module/ArticleFooter";
+@use "./08_module/ArticleHeaderWithLabels";
+@use "./08_module/Attribution";
+@use "./08_module/BlogArchive";
+@use "./08_module/BreadcrumbList";
+@use "./08_module/Comment";
+@use "./08_module/CommentForm";
+@use "./08_module/Cover";
+@use "./08_module/Label";
+@use "./08_module/LinkList";
+@use "./08_module/Magazine";
+@use "./08_module/RichLinkWithMedal";
+@use "./08_module/Search";
+@use "./08_module/SearchResult";
+@use "./08_module/SimpleHeader";
+@use "./08_module/Subscribe";
+@use "./08_module/TextNavi";
+
+@use "./09_article-body/a";
+@use "./09_article-body/aa";
+// @use "./09_article-body/blockquote";
+@use "./09_article-body/box";
+// @use "./09_article-body/chat";
+@use "./09_article-body/code";
+@use "./09_article-body/dl";
+@use "./09_article-body/h1";
+@use "./09_article-body/h2";
+@use "./09_article-body/h3";
+@use "./09_article-body/h4";
+@use "./09_article-body/h5";
+@use "./09_article-body/h6";
+@use "./09_article-body/hscroll";
+@use "./09_article-body/ico-links";
+@use "./09_article-body/kbd";
+@use "./09_article-body/note";
+@use "./09_article-body/ol";
+// @use "./09_article-body/table";
+@use "./09_article-body/timeline";
+@use "./09_article-body/ul";
+@use "./09_article-body/var";
+
+@use "./10_article-footer/article-meta";
+@use "./10_article-footer/pager";
+@use "./10_article-footer/social-buttons";
+
+@use "./11_library/blockquote";
+@use "./11_library/blog2slide";
+@use "./11_library/GoogleCodePrettify";
+@use "./11_library/PicaThumbnail";
+@use "./11_library/SidebarFixer";
+@use "./11_library/test-css-generated-content";
+
+
+@use "./01_var/color" as color;
+@use "./02_mixin/media" as *;
+
+#lE {
+    border-top : 0.3em solid color.$ACCENT;
+}
+
+@include media(screen) {
+    #lF {
+        border-top : 0.3em solid color.$ACCENT;
+    }
+}

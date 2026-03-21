@@ -1,18 +1,24 @@
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/media" as *;
+
 hr {
     border-width : 0 0 1px; /* for high contrast mode */
-    @if( $UA_Modern ){
+    @if( ua.$Modern ){
         height       : 1.5px; /* 1.5px <= 1px: for Gecko 45 */
         border-color : transparent;
     }
-    @if( $UA_IE9 ){
+    @if( ua.$IE9 ){
         height       : 1px;
         border-color : transparent;
     }
-    @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
+    @if( ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko ){
         height       : 0;
-        border-color : $COLOR_Light_casual_fill;
+        border-color : color.$Light_casual_fill;
         blockquote & {
-            border-color : $COLOR_Light_casual_text;
+            border-color : color.$Light_casual_text;
         }       
     }
     @include responsive-horizontal-margin(.5, 2em, 2em);
@@ -23,13 +29,13 @@ tr hr {
 }
 
 /*  Dark theme
---------------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------- */
 @include media(dark_theme) {
     hr {
-        @if( $IS_LTE_WIN_IE8 or $UA_MacIE5 or $IS_LEGACY ){
-            border-color : $COLOR_Dark_casual_fill;
+        @if( ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko ){
+            border-color : color.$Dark_casual_fill;
             blockquote & {
-                border-color : $COLOR_Dark_casual_text;
+                border-color : color.$Dark_casual_text;
             }
         }
     }

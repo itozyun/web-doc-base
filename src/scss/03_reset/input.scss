@@ -1,0 +1,37 @@
+/*  Reset <input>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/box-sizing" as *;
+
+@use "./_/TextInputResetter" as *;
+
+/*  input
+------------------------------------------------------------------------------------- */
+input {
+    @extend %TextInputResetter;
+
+    @if( ua.$Modern ){
+        -webkit-border-radius : 0;
+           -moz-border-radius : 0;
+                border-radius : 0;
+        -webkit-appearance    : none;
+                appearance    : none;
+    }
+
+    @if( ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 ){
+        @include box-sizing(content-box);
+        line-height : 1;
+        height      : 1em;
+    }
+    @if( ua.$IE55 or ua.$IE5 or ua.$GeckoLte19 or ua.$OperaLte9 ){
+        height : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
+        @if( ua.$Opera7x == false ){
+            line-height : 1; // Opera 7.x input[type=text] に触れなくなる
+        }
+    }
+    @if( ua.$NotIE ){
+        margin : 0;
+    }
+}

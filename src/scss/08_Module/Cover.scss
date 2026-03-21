@@ -12,225 +12,236 @@
  *       i
  *     p
  *     
---------------------------------------------------------------------------------------*/
-@if( $Option_blog ){
-    .#{$Prefix}Cover {
-        @include clearfix;
-        margin  : 3.52em 0;
-        /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+@use "../01_var/common.generated" as common;
 
-        @at-root #{&}-img {
-            position : relative;
-            margin   : 0 0 0.6em;
-            @if( $UA_IE5 == false ){
-                height : 100%;
-            }
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/unbreak" as *;
+
+.#{opt.$Prefix}Cover {
+    @include clearfix;
+    margin  : 3.52em 0;
+    /* padding : 0 1px 1em 0;  1px -> 0px だとEdgeでボタンにフォーカスした際に要素がズレるのを回避 */
+
+    @at-root #{&}-img {
+        position : relative;
+        margin   : 0 0 0.6em;
+        @if( ua.$IE5 == false ){
+            height : 100%;
         }
-            img {
-                margin  : 0;
-                display : block;
-                width   : 100%;
-                @if( $CANUSE_MAX_AND_MIN_SIZES ){
-                    max-width : 100%;
-                }
-            }
-            .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} {
-                div {
-                    @include media(screen){
-                        position : absolute;
-                        left     : 0;
-                        width    : 100%;
-                        @if( $UA_IE5 ){
-                            top : 0;
-                        } @else {
-                            bottom : 0;
-                        }
-                    }
-                    @if( $UA_IE5 ){
-                        @include clearfix; // clearfix を同時に指定するために screen の外へ
-                    }
-                }
-                h2 {
-                    @if( $UA_IE5 ){
-                        float : left;
-                    }
-                }
-            }
-
-                h2 {
-                    @include inline-block;
-                    background   : $COLOR_ACCENT;
-                    border       : 1px solid $COLOR_ACCENT; /* for high contrast mode */
-                    color        : $COLOR_Light_fill;
-                    font-size    : 0.825em;
-                    padding      : 0.6em;
-                    @if( $UA_IE7 or $UA_IE6 or $UA_IE55 ){
-                        display : inline;
-                        zoom    : 1;
-                    }
-                    @if( $UA_IE5 ){
-                        display : inline;
-                        height  : 2.2em;
-                    }
-                    @if( $CANUSE_CSS_GENERATED_BLOCK ){
-                        &:after {
-                            @if( $UA_Opera72 or $UA_Opera8 ){
-                                width : 0;      /* for Opera 7.2-8 */
-                            } @else {
-                                display : none; /* for iOS4 content:none では消えない */
-                            }
-                        }
-                    }
-                }
-                h3 {
-                    @include unbreak-box-with-long-text;
-                    font-size : 1.33em;
-                    margin    : 0;
-                    /* clean-css ignore:start */
-                    @if( $UA_IE9 == false ){
-                        background : #fff;
-                    }
-                    @if( $UA_Modern or $UA_IE9 or $UA_Gecko19 ){
-                        background : rgba( 255, 255, 255, .75);
-                    }
-                    /* clean-css ignore:end */
-                }
-                a {
-                    display : block;
-                    padding : 0.37em;
-                }
-        @at-root #{&}-meta {
-            @include line-height(1.4, 1);
+    }
+        img {
+            margin  : 0;
             display : block;
-            color   : $COLOR_Light_casual_text;
-            margin  : 0 0.5em;
-            span {
+            width   : 100%;
+            @if( canuse.$MAX_AND_MIN_SIZES ){
+                max-width : 100%;
+            }
+        }
+        .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} {
+            div {
+                @include media(screen){
+                    position : absolute;
+                    left     : 0;
+                    width    : 100%;
+                    @if( ua.$IE5 ){
+                        top : 0;
+                    } @else {
+                        bottom : 0;
+                    }
+                }
+                @if( ua.$IE5 ){
+                    @include clearfix; // clearfix を同時に指定するために screen の外へ
+                }
+            }
+            h2 {
+                @if( ua.$IE5 ){
+                    float : left;
+                }
+            }
+        }
+
+            h2 {
                 @include inline-block;
-            }
-        }
-        p {
-            line-height : 1.4;
-            margin      : 0.6em 0.5em;
-        }
-
-        /*  WSXGA
-        --------------------------------------------------------------------------------------*/
-        @include media(WSXGA) {
-            img {
-                width  : auto;
-                float  : left;
-                margin : 0 1em 1em 0;
-            }
-                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
-                    position : static;
-                    padding  : 0 0 1em;
+                background   : color.$ACCENT;
+                border       : 1px solid color.$ACCENT; /* for high contrast mode */
+                color        : color.$Light_fill;
+                font-size    : 0.825em;
+                padding      : 0.6em;
+                @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
+                    display : inline;
+                    zoom    : 1;
                 }
-                @at-root #{&}-img div {
-                    padding : 1em;
+                @if( ua.$IE5 ){
+                    display : inline;
+                    height  : 2.2em;
                 }
-                    h2 {
-                        font-size : 1em;
-                        padding   : 0.5em;
+                @if( canuse.$CSS_GENERATED_BLOCK ){
+                    &:after {
+                        @if( ua.$Opera72 or ua.$Opera8 ){
+                            width : 0;      /* for Opera 7.2-8 */
+                        } @else {
+                            display : none; /* for iOS4 content:none では消えない */
+                        }
                     }
-                    h3 {
-                        background : transparent;
-                        color      : $COLOR_Light_text;
-                    }
-                    a {
-                        padding : 0.77em 0 0 0;
-                    }
-            @at-root #{&}-meta, & p {
-                margin-right : 1em;
-            }
-        }
-
-        /*  WQXGA
-        --------------------------------------------------------------------------------------*/
-        @include media(WQXGA) {
-            img {
-                margin : 0 2em 1em 0;
-            }
-                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
-                    padding : 0 0 2em;
                 }
-                    h3 {
-                        font-size : 1.5em;
-                    }
-                    a {
-                        padding : 0.67em 0 0 0;
-                    }
-            @at-root #{&}-meta, & p {
-                margin-right : 2em;
             }
-        }
-        /*  Tablet
-        --------------------------------------------------------------------------------------*/
-        @include media(tablet_print) {
-            margin : 2em auto;
-        }
-
-        /*  Phablet
-        --------------------------------------------------------------------------------------*/
-        @include media(phablet) {
-            max-width : 400px;
-        }
-
-        /*  Phone-
-        --------------------------------------------------------------------------------------*/
-        @include media(smallphone) {
-            img {
-                width  : auto;
-                margin : 0 1em 1em 0;
-            }
-                .#{$Prefix + $COMMON_CLASSNAME_IMAGE_LOADED} div {
-                    position : static;
-                    padding  : 0;
-                }
-                    h2 {
-                        /* float      : left; */
-                        @include inline-block;
-                        font-size : 1em;
-                        padding   : 0.5em;
-                        margin    : 0 .5em .5em 0;
-                    }
-                    h3 {
-                        background : transparent;
-                        color      : $COLOR_Light_text;
-                        font-size  : 1.5em;
-                    }
-                    a {
-                        padding : 0 0 0.33em;
-                    }
-            @at-root #{&}-meta, & p {
-                margin-left  : 0;
-                margin-right : 0;
-            }
-        }
-
-        /*  Dark theme
-        --------------------------------------------------------------------------------------*/
-        @include media(dark_theme) {
             h3 {
+                @include unbreak-box-with-long-text;
+                font-size : 1.33em;
+                margin    : 0;
                 /* clean-css ignore:start */
-                @if( $UA_IE9 == false ){
-                    background : #000;
+                @if( ua.$IE9 == false ){
+                    background : #fff;
                 }
-                @if( $UA_Modern or $UA_IE9 ){
-                    background : rgba( 0, 0, 0, .75);
+                @if( ua.$Modern or ua.$IE9 or ua.$Gecko19 ){
+                    background : rgba( 255, 255, 255, .75);
                 }
                 /* clean-css ignore:end */
-            }    
-            @at-root #{&}-meta {
-                color : $COLOR_Dark_casual_text;
             }
+            a {
+                display : block;
+                padding : 0.37em;
+            }
+    @at-root #{&}-meta {
+        @include line-height(1.4, true);
+        display : block;
+        color   : color.$Light_casual_text;
+        margin  : 0 0.5em;
+        span {
+            @include inline-block;
         }
+    }
+    p {
+        line-height : 1.4;
+        margin      : 0.6em 0.5em;
+    }
 
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(print) {
-            h2 {
-                margin-top : 1em;
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WSXGA) {
+        img {
+            width  : auto;
+            float  : left;
+            margin : 0 1em 1em 0;
+        }
+            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                position : static;
+                padding  : 0 0 1em;
             }
+            @at-root #{&}-img div {
+                padding : 1em;
+            }
+                h2 {
+                    font-size : 1em;
+                    padding   : 0.5em;
+                }
+                h3 {
+                    background : transparent;
+                    color      : color.$Light_text;
+                }
+                a {
+                    padding : 0.77em 0 0 0;
+                }
+        @at-root #{&}-meta, & p {
+            margin-right : 1em;
+        }
+    }
+
+    /*  WQXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WQXGA) {
+        img {
+            margin : 0 2em 1em 0;
+        }
+            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                padding : 0 0 2em;
+            }
+                h3 {
+                    font-size : 1.5em;
+                }
+                a {
+                    padding : 0.67em 0 0 0;
+                }
+        @at-root #{&}-meta, & p {
+            margin-right : 2em;
+        }
+    }
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @include media(tablet_print) {
+        margin : 2em auto;
+    }
+
+    /*  Phablet
+    ------------------------------------------------------------------------------------- */
+    @include media(phablet) {
+        max-width : 400px;
+    }
+
+    /*  Phone-
+    ------------------------------------------------------------------------------------- */
+    @include media(smallphone) {
+        img {
+            width  : auto;
+            margin : 0 1em 1em 0;
+        }
+            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                position : static;
+                padding  : 0;
+            }
+                h2 {
+                    /* float      : left; */
+                    @include inline-block;
+                    font-size : 1em;
+                    padding   : 0.5em;
+                    margin    : 0 .5em .5em 0;
+                }
+                h3 {
+                    background : transparent;
+                    color      : color.$Light_text;
+                    font-size  : 1.5em;
+                }
+                a {
+                    padding : 0 0 0.33em;
+                }
+        @at-root #{&}-meta, & p {
+            margin-left  : 0;
+            margin-right : 0;
+        }
+    }
+
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        h3 {
+            /* clean-css ignore:start */
+            @if( ua.$IE9 == false ){
+                background : #000;
+            }
+            @if( ua.$Modern or ua.$IE9 ){
+                background : rgba( 0, 0, 0, .75);
+            }
+            /* clean-css ignore:end */
+        }    
+        @at-root #{&}-meta {
+            color : color.$Dark_casual_text;
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(print) {
+        h2 {
+            margin-top : 1em;
         }
     }
 }

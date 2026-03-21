@@ -1,0 +1,314 @@
+/* Chat
+ *-----------------------------------------------------------------------------
+ *  div.chat
+ *    div.chatTitle
+ *    p / h2~h6
+ *    div.chatR / .chatL
+ *      span / p
+---------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/common.generated" as common;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/css-hack" as *;
+@use "../02_mixin/inline-block" as *;
+@use "../02_mixin/border-radius" as *;
+@use "../02_mixin/create-css-generated-block" as *;
+
+@use "../08_module/ArticleBody";
+
+$_CAHT_HORIZONTAL_MARGIN : 2% !default;
+
+.chat {
+    @include media(screen) {
+        color      : #fff;
+        background : #7493C2;
+    }
+    border-color   : color.$Light_fill;
+    border-width   : 1px;
+    padding-bottom : 1em;
+    margin         : 1em 0;
+    text-align     : center;
+}
+    .chatTitle {
+        @include unbreak-after;
+        @include media(screen) {
+            background : #273248;
+        }
+        border-color : #273248;
+        border-width : 0 0 1px;
+        padding      : 1em $_CAHT_HORIZONTAL_MARGIN;
+    }
+    .chat p,
+    .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
+        @include unbreak-inside;
+        @include unbreak-after;
+        
+        @include media(screen) {
+            color      : #fff;
+            background : #5D769E;
+        }
+        border-color : #5D769E;
+        border-width : 1px;
+        font-size    : 1em;
+        margin       : 1em $_CAHT_HORIZONTAL_MARGIN;
+        padding      : .4em $_CAHT_HORIZONTAL_MARGIN;
+        @include inline-block;
+        @include border-radius(.4em);
+    }
+    .chat p {
+        @include line-height(1.2);
+    }
+    .chatL, .chatR {
+        position   : relative;
+        margin     : 1em 0;
+        text-align : left;
+    }
+    .chatL {
+        padding : 0 20% 0 4em;
+    }
+    .chatR {
+        padding : 0 4em 0 20%;
+    }
+        .chatR p, .chatL p {
+            margin     : .4em 0;
+            display    : block;
+            text-align : left;
+            color      : #111;
+            @if( canuse.$CSS_GENERATED_BLOCK ){
+                position : relative;
+            }
+        }
+
+        @if( canuse.$CSS_GENERATED_BLOCK ){
+            .chatR p:after, .chatL p:after {
+                @include create-css-generated-block;
+                border-style : solid;
+                position     : absolute;
+                top          : .7em;
+                width        : 0;
+                height       : 0;
+            }
+            .chatL p:after {
+                border-color : transparent #fff;
+                border-width : .3em .6em .3em 0;
+                left         : -0.6em;
+            }
+            .chatR p:after {
+                border-color : transparent #85E445;
+                border-width : .3em 0 .3em 0.6em;
+                right        : -0.6em;
+            }
+            /*  Forced colors
+            ------------------------------------------------------------------------------------- */
+            @include media(forced_colors_native_or_ms){
+                .chatL p:after, .chatR p:after {
+                    border-color : Window currentColor;
+                }
+            }
+            @if( ua.$IE8 == false ){ /* 疑似要素に Transform が効かない */
+                @include media(forced_colors_fallback){
+                    /* //_{^@ie9 */
+                    .chatL p:after, .chatR p:after {
+                        display : none;
+                    }
+                    .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
+                    /* //_}^@ie9 */
+                        .chatL p:after, .chatR p:after {
+                            width  : .4em;
+                            height : .4em;
+                            /* border-color : #fff; */
+                            @if( ua.$IE9 == false ){
+                                display : block;
+                            }
+                            @if( ua.$Modern ){
+                                -moz-transform : rotate(-45deg);
+                                        transform : rotate(-45deg);
+                            }
+                            @if( ua.$IE9 ){
+                                -ms-transform : rotate(-45deg);
+                            }
+                        }
+                        .chatL p:after {
+                            border-width : 1px 0 0 1px;
+                            left         : -0.3em;
+                        }
+                        .chatR p:after {
+                            border-width : 0 1px 1px 0;
+                            right        : -0.3em;
+                        }
+                    /* //_{^@ie9 */
+                    }
+                    /* //_}^@ie9 */
+                }
+            }
+        }
+
+        .chatL p, .chatL .chatMember {
+            @include media(screen) {
+                background   : #fff;
+                border-color : #fff;
+            }
+        }
+        .chatR p, .chatR .chatMember {
+            @include media(screen) {
+                background : #85E445;
+            }
+            border-color : #85E445;
+        }
+
+        .chatMember {
+            @include unbreak-after;
+            position     : absolute;
+            top          : -0.414em;
+            overflow     : hidden;
+            text-align   : center !important;
+            width        : 2em;
+            height       : 1em;
+            line-height  : 1;
+            border-width : 1px;
+            padding      : 0.914em 0.414em;
+            color        : #111;
+            @include border-radius(1.414em);
+        }
+
+        .chatL .chatMember { 
+            left : 0.4em;
+        }
+        .chatR .chatMember {
+            right : 0.4em;
+        }
+
+/*  Phone
+------------------------------------------------------------------------------------- */
+@include media(phone) {
+    .chatL {
+        padding : 0 9% 0 4em;
+    }
+    .chatR {
+        padding : 0 4em 0 9%;
+    }
+}
+
+/*  Phone-
+------------------------------------------------------------------------------------- */
+@include media(smallphone) {
+    .chatMember {
+        position : static;
+        @include inline-block;
+    }
+    .chatL {
+        padding : 0 9% 0 $_CAHT_HORIZONTAL_MARGIN;
+    }
+    .chatR {
+        text-align : right;
+        padding    : 0 $_CAHT_HORIZONTAL_MARGIN 0 9%;
+    }
+    .chatR p, .chatL p {
+        margin : 0 0 .4em;
+    }
+    .chatL p:after, .chatR p:after {
+        top          : -.5em;
+        border-width : 0 .4em .55em;
+    }
+    .chatL p:after {
+        border-color : #fff transparent;
+        left         : 1em;
+    }
+    .chatR p:after {
+        border-color : #85E445 transparent;
+        right        : 1em;
+    }
+}
+
+@if ua.$Modern {
+    @media only screen and (-ms-high-contrast:active) and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH) {
+        .chatL p:after, .chatR p:after {
+            border-color : inherit transparent !important;
+        }
+    }
+    @media only screen and (forced-colors:active) and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){
+        .chatL p:after, .chatR p:after {
+            border-color : inherit Window !important;
+        }
+    }
+}
+
+@if( ua.$IE9 or ua.$Modern ){
+    @media only use-polyfill and (forced-colors:active) and (max-width:size.$SMALL_PHONE_MAX_PX_WIDTH) {
+        /* //_{^@ie9 */
+        .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
+        /* //_}^@ie9 */
+            .chatL p:after, .chatR p:after {
+                width  : .3em;
+                height : .3em;
+            }
+            .chatL p:after {
+                border-width : 1px 1px 0 0;
+                top          : -.35em;
+                left         : 1.15em;
+            }
+            .chatR p:after {
+                border-width : 1px 1px 0 0;
+                top          : -.35em;
+                right        : 1.15em;
+            }
+        /* //_{^@ie9 */
+        }
+        /* //_}^@ie9 */
+    }
+}
+
+/*  Dark theme
+------------------------------------------------------------------------------------- */
+@include media(dark_theme) {
+    .chat {
+        border-color : color.$Dark_fill;
+    }
+}
+
+/*  Print
+------------------------------------------------------------------------------------- */
+@include media(print) {
+    .chat {
+        border-color : color.$Print_casual_text;
+    }
+        .chat p,
+        .chat h2, .chat h3, .chat h4, .chat h5, .chat h6,
+        .chatR p, .chatL p, .chat .chatMember {
+            border-color : color.$Print_casual_text;
+        }
+
+        @if( canuse.$CSS_GENERATED_BLOCK ){
+            .chatR p:before, .chatL p:before {
+                border-color : color.$Print_fill color.$Print_casual_text;
+            }
+            .chatL p:before {
+                border-width : 4px 7px 4px 0;
+                left         : -7px;
+            }
+            .chatR p:before {
+                border-width : 4px 0 4px 7px;
+                right        : -7px;
+            }
+            .chatL p:after, .chatR p:after {
+                border-color : transparent color.$Print_fill;
+            }
+            .chatL p:after {
+                border-width : 4px 7px 4px 0;
+                left         : -6px;
+            }
+            .chatR p:after {
+                border-width : 4px 0 4px 7px;
+                right        : -6px;
+            }
+        }
+}

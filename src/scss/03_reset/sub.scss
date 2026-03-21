@@ -1,0 +1,13 @@
+/*  reset <sub>
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+@use "./_/SubSuperResetter" as *;
+
+sub {
+    @if( ua.$NotIE ){
+        @extend %SubSuperResetter;
+
+        bottom : -0.25em;
+    }
+}

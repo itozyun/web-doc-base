@@ -1,0 +1,76 @@
+
+$BASE_FONT_SIZE_IS_18PX: true;
+$LIGHT_COLOR_SCHEME_TEXT_COLOR : #111;
+
+$ELEMENT_ID_MAIN_COLUMN: "jsMain";
+$ELEMENT_ID_SUB_COLUMN: "jsSide";
+$ELEMENT_ID_TEST_CSS_GENERATED_CONTENT: "jsCanUseContent";
+
+$CLASSNAME_NO_JAVASCRIPT: "nojs";
+$CLASSNAME_IMAGE_LOADED: "js-image-has-been-loaded";
+$CLASSNAME_ARTICLE_BODY_ROOT: "aBodyRoot";
+$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE: "js-canuse-css-rotate-when-forced-colors-mode";
+
+$BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2;
+$SMALL_PHONE_MAX_WIDTH           : 359;
+
+$ASSET_DIR_TO_JS_DIR : "js";
+$ASSET_DIR_TO_CSS_DIR : "css";
+$ASSET_DIR_TO_WEBFONT_DIR : "iconfont";
+$CSS_DIR_TO_DESKTOP_CSS_DIR : "pc";
+$CSS_DIR_TO_MOBILE_CSS_DIR : "mb";
+$CSS_DIR_TO_FORCED_COLORS_CSS_DIR : "hc";
+
+$CSS_FILE_STEM__MODERN : "modern";
+$CSS_FILE_STEM__MACIE5 : "ie5mac";
+$CSS_FILE_STEM__IE5 : "ie5win";
+$CSS_FILE_STEM__IE55 : "ie55";
+$CSS_FILE_STEM__IE6 : "ie6";
+$CSS_FILE_STEM__IE7 : "ie7";
+$CSS_FILE_STEM__IE8 : "ie8";
+$CSS_FILE_STEM__IE9 : "ie9";
+$CSS_FILE_STEM__OPERA70 : "opr70";
+$CSS_FILE_STEM__OPERA72 : "opr72";
+$CSS_FILE_STEM__OPERA8 : "opr8";
+$CSS_FILE_STEM__OPERA9 : "opr9";
+$CSS_FILE_STEM__GECKO07 : "gck07";
+$CSS_FILE_STEM__GECKO08 : "gck08";
+$CSS_FILE_STEM__GECKO09 : "gck09";
+$CSS_FILE_STEM__GECKO12 : "gck12";
+$CSS_FILE_STEM__GECKO13 : "gck13";
+$CSS_FILE_STEM__GECKO19 : "gck19";
+
+$RICHLINK__CLASSNAME_SEPARATOR: "RichLink-sep";
+
+$BLOCKQUOT__CLASSNAME_LINK: "js-generated-link-in-blockquote";
+$BLOCKQUOT__CLASSNAME_CITE: "js-generated-cite-in-blockquote";
+
+$BLOG_2_SLIDE__ID_START: "blog2slide-start";
+$BLOG_2_SLIDE__ID_ROOT: "blog2slide-root";
+$BLOG_2_SLIDE__ID_CURRENT: "blog2slide-current";
+
+$PICA_THUMBNAIL__CLASSNAME_TARGET: "js-pica-thumbnail";
+$PICA_THUMBNAIL__CLASSNAME_LARGE: "js-pica-thumbnail__large";
+$CAPTIONED_OBJECT__CLASSNAME: "caption";
+$CAPTIONED_OBJECT__CLASSNAME_TARGET: "js-captioned-thumbnail";
+$CAPTIONED_OBJECT__CLASSNAME_LARGE: "js-captioned-thumbnail__large";
+
+$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER: "jsSidebarFixer";
+$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL: "jsSidebarFixer1";
+$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL: "jsSidebarFixer2";
+
+$WEBFONT__FONT_NAME: "web-doc-base";
+$WEBFONT__FILE_STEM: "web-doc-base";
+$WEBFONT__SVG_FONT_ID: "web-doc-base";
+$WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY: "js-myIconFont-testCssReady";
+
+$WEBFONT_FORMAT_EOT: "embedded-opentype";
+$WEBFONT_FORMAT_WOFF2: "woff2";
+$WEBFONT_FORMAT_WOFF: "woff";
+$WEBFONT_FORMAT_TTF: "truetype";
+$WEBFONT_FORMAT_OTF: "opentype";
+$WEBFONT_FORMAT_SVG: "svg";
+
+$VECTOR_ICON__CLASSNAME: "ico";
+$VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME: "VectorIconFallback";
+$VECTOR_ICON__SVG_FALLBACK_FILE_STEM: "vector-icon-svg-fallback"

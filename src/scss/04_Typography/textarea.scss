@@ -1,0 +1,9 @@
+/* <textarea>
+------------------------------------------------------------------------------------- */
+@use "../03_reset/textarea";
+
+@use "./_/TextInputStyle" as *;
+
+textarea {
+    @extend %TextInputStyle;
+}

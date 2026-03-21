@@ -1,0 +1,15 @@
+/* <var>
+------------------------------------------------------------------------------------- */
+@use "../01_var/options" as opt;
+@use "../04_typography/var";
+@use "../08_module/ArticleBody";
+
+@use "./_/CodingBase" as *;
+
+@if( opt.$UseITStyles ){
+    var {
+        @extend %CodingBase;
+    }
+} @else {
+    @error "Option Error: ";
+}

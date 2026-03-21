@@ -17,237 +17,252 @@
  *           .Magazine-label
  *           .Magazine-snippet
  *         a.btn
---------------------------------------------------------------------------------------*/
-$MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : $IS_LTE_WIN_IE7 == false;
+------------------------------------------------------------------------------------- */
+@use "sass:math";
 
-@if( $Option_Magazine ){
-    .#{$Prefix}Magazine {
-        @at-root #{&}-item {
-            @include unbreak-inside;
-            padding : 1em 0;
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/color" as color;
+@use "../01_var/quirks" as quirks;
+@use "../01_var/size" as size;
+
+@use "../02_mixin/clearfix" as *;
+@use "../02_mixin/line-height" as *;
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/font-family-monospace" as *;
+@use "../02_mixin/media" as *;
+@use "../02_mixin/flex" as *;
+@use "../02_mixin/css-hack" as *;
+
+$MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
+
+.#{opt.$Prefix}Magazine {
+    @at-root #{&}-item {
+        @include unbreak-inside;
+        padding : 1em 0;
+        @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            display : table;
+        } @else {
+            @include clearfix;
+        }
+    }
+        @at-root #{&}-date {
+            @include unbreak-word;
+            @include line-height(1, true);
+            @include font-family-monospace;
+            padding-right : 1.5em;
+            font-weight   : bold;
             @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                display : table;
+                display        : table-cell;
+                vertical-align : top;
             } @else {
+                display : block;
+                float   : left;
+            }
+        }
+            @at-root #{&}-yy {
+                display   : block;
+                font-size : 2em;
+            }
+            @at-root #{&}-mm {
+                display   : block;
+                font-size : 4em;
+            }
+            @at-root #{&}-dd {
+                font-size : 4em;
+            }
+            @at-root #{&}-mm, #{&}-dd {
+                line-height : .9;
+            }
+            @at-root #{&}-y, #{&}-m {
+                display : none;
+            }
+
+        @at-root #{&}-main {
+            @include unbreak-box-with-long-text;
+            position     : relative;
+            border-width : 0 0 0 .5em;
+            padding-left : 1.5em;
+            border-color : color.$Light_text;
+            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                display        : table-cell;
+                vertical-align : top;
+            } @else {
+                margin-left : 5.5em;
+            }
+            @if( ua.$IE5 ){
+                height : 1px; // <= 区切り線の太さが変わるのを防ぐ
+            } @else if( ua.$IE55 or ua.$IE6 ){
+                zoom : 1; // <= 区切り線が消えるのを防ぐ
+            }
+        }
+            h3 {
+                font-size   : 2em;
+                font-weight : bold;
+                margin      : 0.2em 0 0;
+                padding     : 0;
+            }
+            @at-root #{&}-label {
+                @include unbreak-box-with-long-text;
+                margin : .5em 0 .8em;
+            }
+            @at-root #{&}-snippet {
                 @include clearfix;
+                img {
+                    float  : left;
+                    margin : .4em 1em 1em 0;
+                }
+                p {
+                    line-height : 1.4em;
+                    margin      : 0;
+                }
+            }
+            .btn {
+                position  : absolute;
+                font-size : .83em;
+                left      : math.div(-6em, .83);
+                bottom    : 0;
+                width     : math.div(3.5em, .83);
+                padding   : math.div(0.25em, .83);
+            }
+
+    /*  WSXGA
+    ------------------------------------------------------------------------------------- */
+    @include media(WSXGA_landscapePrint) {
+        @at-root #{&}-sep {
+            margin       : 1em 0;
+            /* clean-css ignore:start */
+            display      : table;  // table layout
+            table-layout : fixed;  // table layout
+            /* clean-css ignore:end */
+            @include display-flex; // flex layout
+            width        : 100%;   // flex layout
+        }
+            @at-root #{&}-sep-inner {
+                display : table-cell;
+                width   : 50%;
+            }
+            @at-root #{&}-only #{&}-sep-inner {
+                width   : 100%;
+                padding : 0 !important;
+            }
+                /*
+                    * flexboxのベンダープレフィックスまとめ
+                    * https://wemo.tech/tips/2345
+                    */
+                @at-root #{&}-main {
+                    -webkit-flex-grow : 1;
+                    -ms-flex-positive : 1;
+                            flex-grow : 1;
+                }
+                @at-root #{&}-sep-inner:first-child #{&}-main {
+                    padding-right : math.div(size.$WSXGA_COLUMN_GAP_EM, 2);
+                }
+                @at-root #{&}-sep-inner:not(:first-child) #{&}-date {
+                    padding-left : math.div(size.$WSXGA_COLUMN_GAP_EM, 2);
+                }
+                    @at-root #{&}-item {
+                        @include display-flex;
+                        height  : 100%;
+                        padding : 0;
+                    }
+
+        /*  patch
+        ------------------------------------------------------------------------------------- */
+        @include css-hack(onlyIE10To11){
+            @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
+                display : block !important;
+            }
+        }
+        @if( ua.$Modern ){
+            @supports (display: -moz-box) {
+                @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
+                    display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
+                }
+            }
+        }
+    }
+
+    /*  Print
+    ------------------------------------------------------------------------------------- */
+    @include media(landscapePrint) {
+        @at-root #{&}-sep-inner:first-child #{&}-main {
+            padding-right : math.div(size.$PRINT_COLUMN_GAP_EM, 2);
+        }
+        @at-root #{&}-sep-inner:last-child #{&}-date {
+            padding-left : math.div(size.$PRINT_COLUMN_GAP_EM, 2);
+        }
+    }
+
+    /*  Tablet
+    ------------------------------------------------------------------------------------- */
+    @include media(tablet) {
+        img {
+            margin-left : 0;
+        }
+    }
+
+    /*  Phablet
+    ------------------------------------------------------------------------------------- */
+    @include media(phablet) {
+        margin       : 1em 0 0;
+        border-width : .5em 0 0;
+        border-color : color.$Light_text;
+
+        @at-root #{&}-item {
+            padding : 1em 0 0;
+            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                display : block;
             }
         }
             @at-root #{&}-date {
-                @include unbreak-word;
-                @include line-height(1, 1);
-                @include font-family-monospace;
-                padding-right : 1.5em;
-                font-weight   : bold;
+                font-family : inherit;
+                width       : auto;
                 @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                    display        : table-cell;
-                    vertical-align : top;
+                    display : block;
                 } @else {
-                    display : block;
-                    float   : left;
+                    float : none;
                 }
             }
-                @at-root #{&}-yy {
-                    display   : block;
-                    font-size : 2em;
-                }
-                @at-root #{&}-mm {
-                    display   : block;
-                    font-size : 4em;
-                }
-                @at-root #{&}-dd {
-                    font-size : 4em;
-                }
-                @at-root #{&}-mm, #{&}-dd {
-                    line-height : .9;
-                }
-                @at-root #{&}-y, #{&}-m {
-                    display : none;
-                }
+            @at-root #{&}-yy {
+                display   : inline;
+                font-size : 1em;
+            }
+            @at-root #{&}-mm {
+                display   : inline;
+                font-size : 1em;
+            }
+            @at-root #{&}-dd {
+                font-size : 1em;
+            }
+            @at-root #{&}-y, #{&}-m {
+                display : inline;
+            }
 
-            @at-root #{&}-main {
-                @include unbreak-box-with-long-text;
-                position     : relative;
-                border-width : 0 0 0 .5em;
-                padding-left : 1.5em;
-                border-color : $COLOR_Light_text;
-                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                    display        : table-cell;
-                    vertical-align : top;
-                } @else {
-                    margin-left : 5.5em;
-                }
-                @if( $UA_IE5 ){
-                    height : 1px; // <= 区切り線の太さが変わるのを防ぐ
-                } @else if( $UA_IE55 or $UA_IE6 ){
-                    zoom : 1; // <= 区切り線が消えるのを防ぐ
-                }
-            }
-                h3 {
-                    font-size   : 2em;
-                    font-weight : bold;
-                    margin      : 0.2em 0 0;
-                    padding     : 0;
-                }
-                @at-root #{&}-label {
-                    @include unbreak-box-with-long-text;
-                    margin : .5em 0 .8em;
-                }
-                @at-root #{&}-snippet {
-                    @include clearfix;
-                    img {
-                        float  : left;
-                        margin : .4em 1em 1em 0;
-                    }
-                    p {
-                        line-height : 1.4em;
-                        margin      : 0;
-                    }
-                }
-                .btn {
-                    position  : absolute;
-                    font-size : .83em;
-                    left      : math.div(-6em, .83);
-                    bottom    : 0;
-                    width     : math.div(3.5em, .83);
-                    padding   : math.div(0.25em, .83);
-                }
-
-        /*  WSXGA
-        --------------------------------------------------------------------------------------*/
-        @include media(WSXGA_landscapePrint) {
-            @at-root #{&}-sep {
-                margin       : 1em 0;
-                /* clean-css ignore:start */
-                display      : table;  // table layout
-                table-layout : fixed;  // table layout
-                /* clean-css ignore:end */
-                @include display-flex; // flex layout
-                width        : 100%;   // flex layout
-            }
-                @at-root #{&}-sep-inner {
-                    display : table-cell;
-                    width   : 50%;
-                }
-                @at-root #{&}-only #{&}-sep-inner {
-                    width   : 100%;
-                    padding : 0 !important;
-                }
-                    /*
-                     * flexboxのベンダープレフィックスまとめ
-                     * https://wemo.tech/tips/2345
-                     */
-                    @at-root #{&}-main {
-                        -webkit-flex-grow : 1;
-                        -ms-flex-positive : 1;
-                                flex-grow : 1;
-                    }
-                    @at-root #{&}-sep-inner:first-child #{&}-main {
-                        padding-right : math.div($WSXGA_COLUMN_GAP_EM, 2);
-                    }
-                    @at-root #{&}-sep-inner:not(:first-child) #{&}-date {
-                        padding-left : math.div($WSXGA_COLUMN_GAP_EM, 2);
-                    }
-                        @at-root #{&}-item {
-                            @include display-flex;
-                            height  : 100%;
-                            padding : 0;
-                        }
-
-            /*  patch
-            --------------------------------------------------------------------------------------*/
-            @include css-hack(onlyIE10To11){
-                @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
-                    display : block !important;
-                }
-            }
-            @if( $UA_Modern ){
-                @supports (display: -moz-box) {
-                    @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
-                        display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
-                    }
-                }
+        @at-root #{&}-main {
+            border-width : 0 0 .5em;
+            padding      : 0 0 1em;
+            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                display : block;
             }
         }
-
-        /*  Print
-        --------------------------------------------------------------------------------------*/
-        @include media(landscapePrint) {
-            @at-root #{&}-sep-inner:first-child #{&}-main {
-                padding-right : math.div($PRINT_COLUMN_GAP_EM, 2);
+            h3 {
+                font-size : 1.3em;
             }
-            @at-root #{&}-sep-inner:last-child #{&}-date {
-                padding-left : math.div($PRINT_COLUMN_GAP_EM, 2);
+            .btn {
+                position  : static;
+                width     : auto;
+                font-size : 1em;
+                padding   : .5em 1em;
             }
-        }
+    }
 
-        /*  Tablet
-        --------------------------------------------------------------------------------------*/
-        @include media(tablet) {
-            img {
-                margin-left : 0;
-            }
-        }
-
-        /*  Phablet
-        --------------------------------------------------------------------------------------*/
-        @include media(phablet) {
-            margin       : 1em 0 0;
-            border-width : .5em 0 0;
-            border-color : $COLOR_Light_text;
-
-            @at-root #{&}-item {
-                padding : 1em 0 0;
-                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                    display : block;
-                }
-            }
-                @at-root #{&}-date {
-                    font-family : inherit;
-                    width       : auto;
-                    @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                        display : block;
-                    } @else {
-                        float : none;
-                    }
-                }
-                @at-root #{&}-yy {
-                    display   : inline;
-                    font-size : 1em;
-                }
-                @at-root #{&}-mm {
-                    display   : inline;
-                    font-size : 1em;
-                }
-                @at-root #{&}-dd {
-                    font-size : 1em;
-                }
-                @at-root #{&}-y, #{&}-m {
-                    display : inline;
-                }
-
-            @at-root #{&}-main {
-                border-width : 0 0 .5em;
-                padding      : 0 0 1em;
-                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
-                    display : block;
-                }
-            }
-                h3 {
-                    font-size : 1.3em;
-                }
-                .btn {
-                    position  : static;
-                    width     : auto;
-                    font-size : 1em;
-                    padding   : .5em 1em;
-                }
-        }
-
-        /*  Dark theme
-        --------------------------------------------------------------------------------------*/
-        @include media(dark_theme) {
-            @at-root #{&}-main, & {
-                border-color : $COLOR_Dark_text;
-            }
+    /*  Dark theme
+    ------------------------------------------------------------------------------------- */
+    @include media(dark_theme) {
+        @at-root #{&}-main, & {
+            border-color : color.$Dark_text;
         }
     }
 }

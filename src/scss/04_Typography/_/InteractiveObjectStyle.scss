@@ -1,0 +1,78 @@
+/*  :link img, video?, audio?
+------------------------------------------------------------------------------------- */
+@use "../../01_var/options" as opt;
+@use "../../01_var/ua" as ua;
+@use "../../01_var/size" as size;
+@use "../../01_var/color" as color;
+@use "../../01_var/canuse" as canuse;
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/media" as *;
+@use "../../02_mixin/box-sizing" as *;
+
+%InteractiveObjectStyle {
+    a & {
+        border-color : color.$Light_fill;
+        @include media(screen){ // 印刷には border は無しで縦横4px大きく
+            border-width : #{size.$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
+        }
+/*  Phone-
+--------------------------------------------------------------------------------- */
+        @include media(smallphone) {
+            @include box-sizing(border-box);
+        }
+    }
+
+    :link &, :visited & {
+        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+            .#{opt.$Prefix}ribbon & {
+                border-color : color.$Ribbon_fill;
+            }
+        }
+
+        blockquote & {
+            border-color : color.$Light_casual_fill;
+        /*  Dark theme
+        ----------------------------------------------------------------------------- */
+            @include media(dark_theme) {
+                border-color : transparent;
+            }
+        }
+    }
+
+    @if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
+        a:active & {
+            border-color : color.$ACCENT !important;
+        /*  Forced colors
+        ----------------------------------------------------------------------------- */
+            @include media(forced_colors_native_or_fallback){
+                border-style : dotted;
+            }
+        }
+    }
+    @if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
+        a:focus & {
+            border-color : color.$ACCENT !important;
+        /*  Forced colors
+        ----------------------------------------------------------------------------- */
+            @include media(forced_colors_native_or_fallback){
+                border-style : dotted;
+            }
+        }
+    }
+
+    // :hover
+    @if( ua.$GeckoLte09 == false and ua.$Gecko12 == false ){ /* 下ではチラツキが激しい */
+        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+            :hover & {
+                position : relative;
+                top      : 2px;
+            }
+        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+            :link:hover &, :visited:hover & {
+                position : relative;
+                top      : 2px;
+            }
+        }
+    }
+}
