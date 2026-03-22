@@ -19,10 +19,11 @@
     @if( common.$WEBFONT__FONT_NAME ){
         @include web-font-face(common.$WEBFONT__FONT_NAME, path.$ASSET_PATH_WEBFONT + common.$WEBFONT__FILE_STEM, common.$WEBFONT__SVG_FONT_ID, common.$WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY);
     }
-
     @include web-font(common.$WEBFONT__FONT_NAME);
 
-    @if( canuse.$SVG ){
+    font-style : normal;
+
+    @if( canuse.$SVG and ua.$Script ){
         svg {
             vertical-align : baseline;
         }

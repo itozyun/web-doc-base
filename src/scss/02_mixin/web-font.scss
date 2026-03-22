@@ -21,7 +21,7 @@
             }
         }
 
-        @if( $WEBFONT_TEST_ID_AND_CLASSNAME and ( ua.$Modern or ua.$IE9 ) ){
+        @if( $WEBFONT_TEST_ID_AND_CLASSNAME and ( ua.$Modern or ua.$IE9 ) and ua.$Script ){
             .#{$WEBFONT_TEST_ID_AND_CLASSNAME} {
                 @include check-css-ready;
             }

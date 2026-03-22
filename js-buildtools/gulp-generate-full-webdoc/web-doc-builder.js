@@ -204,7 +204,7 @@ module.exports = function( page, pages ){
 return '' +
 `<!--[if !IE]><!-->
 <noscript><style type="text/css" media="screen,handheld,projection,tv,print">` +
-`/*\\*//*/@import "${dir}assets/css/pc/ie5mac.css";/**/ /*\\*/@import "${dir}assets/css/pc/modern.css";/**/` +
+`/*\\*//*/@import "${dir}assets/css/pc/ie5mac.css";/**/ /*\\*/@import "${dir}assets/css/pc/noscript.css";/**/` +
 `</style></noscript><!--<![endif]-->
 <!--[if IE 9]><link href="${dir}assets/css/pc/ie9.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if IE 8]><link href="${dir}assets/css/pc/ie8.css" rel="stylesheet" type="text/css"><![endif]-->

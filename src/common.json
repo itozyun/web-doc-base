@@ -23,6 +23,7 @@
     "COMMON_CSS_DIR_TO_MOBILE_CSS_DIR" : "mb",
     "COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR" : "hc",
 
+    "COMMON_CSS_FILE_STEM__NOSCRIPT" : "noscript",
     "COMMON_CSS_FILE_STEM__MODERN" : "modern",
     "COMMON_CSS_FILE_STEM__MACIE5" : "ie5mac",
     "COMMON_CSS_FILE_STEM__IE5" : "ie5win",

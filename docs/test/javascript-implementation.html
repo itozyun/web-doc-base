@@ -117,6 +117,7 @@ function clear(){
 <a href="check-css-ready.html">Detect completion of CSS loading</a>,
 <a href="check-image-loading.html">Detect completion of image loading</a>,
 <a href="clearfix.html">Clearfix</a>,
+<a href="cover-img.html">Cover Image(object-fit:cover)</a>,
 <a href="css-hack-for-svg-font.html">Finding the best CSS hacks for SVG fonts</a>,
 <a href="cssGeneratedContent.html">Test CSS Generated Content</a>,
 <a href="cssom.html">CSSOM</a>,
@@ -134,9 +135,9 @@ Javascript 実装状況と深刻なバグ,
 <h1>Javascript 実装状況と深刻なバグ</h1>
 
 <a name="iife"></a>
-<h2 id="iife">IIFE</h2>
+<h2 id="iife">Function expression under grouping operator</h2>
 <div>
-<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 1">
+<input type="button" onclick="exec(this);" value="exec" title="FEUP Bug 1">
 <pre>(function(){
     var a = {};
     (function(){
@@ -153,7 +154,7 @@ Javascript 実装状況と深刻なバグ,
 </div>
 
 <div>
-<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 2">
+<input type="button" onclick="exec(this);" value="exec" title="FEUP Bug 2">
 <pre>(function(){
     var a = {};
     (function(){
@@ -199,7 +200,7 @@ Javascript 実装状況と深刻なバグ,
 </div>
 
 <div>
-<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 3">
+<input type="button" onclick="exec(this);" value="exec" title="FEUP Bug 3">
 <pre>(function(){
     var a = {}, i = 0;
     (function b(){
@@ -214,7 +215,7 @@ Javascript 実装状況と深刻なバグ,
 </div>
 
 <div>
-<input type="button" onclick="exec(this);" value="exec" title="IIFE Bug 4">
+<input type="button" onclick="exec(this);" value="exec" title="FEUP Bug 4">
 <pre>var Y, db, F = window;
 (function(qa){
     (Y = function(I) {

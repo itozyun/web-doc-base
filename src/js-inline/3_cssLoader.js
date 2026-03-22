@@ -64,7 +64,7 @@ function cssAndJsLoader_onload(){
     for( ; i < l; ++i ){
         noscript = noscripts[ i ];
         content  = noscript.textContent;
-        end      = content.indexOf( COMMON_CSS_FILE_STEM__MODERN + '.css"' );
+        end      = content.indexOf( COMMON_CSS_FILE_STEM__NOSCRIPT + '.css"' );
         start    = content.lastIndexOf( '@import "', end ); // @import が2つある為、先に end を調べる
         if( 0 <= start && 0 < end ){
             dir = content.substring( start + 9, end );

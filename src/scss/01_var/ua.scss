@@ -23,7 +23,6 @@
     $Opera8       : false; // 7.5~8.0
     $Opera9       : false; // ~9.0.x
     $Modern       : false; // ie10+, gecko 1.9.1+, opera 9.5+, webkit
-    $Noscript     : false;
     $FirstViewCSS : false;
 
     @if        tgt.$TargetBrowser == "macie5" {
@@ -60,24 +59,22 @@
         $Opera8 : true;
     } @else if tgt.$TargetBrowser == "opera9" {
         $Opera9 : true;
-    } @else if tgt.$TargetBrowser == "modern" {
+    } @else if tgt.$TargetBrowser == "modern" or tgt.$TargetBrowser == "noscript" {
         $Modern : true;
-    } @else if tgt.$TargetBrowser == "noscript" {
-        $Noscript : true;
     } @else if tgt.$TargetBrowser == "1st-view-css" {
         $FirstViewCSS : true;
     } @else {
         @error 'Tearget Error: Set "macie5"|"ie5"|"ie5.5"|"ie6"|"ie7"|"ie8"|"ie9"|"gecko0.7"|"gecko0.8"|"gecko0.9"|"gecko1.2"|"gecko1.3"|"gecko1.9"|"opera7.0"|"opera7.2"|"opera8"|"opera9"|"modern"|"noscript" to `tgt.$TargetBrowser`!';
     }
 
-    $Script             : $Noscript == false;
+    $Script             : tgt.$TargetBrowser != "noscript";
     $Opera7x            : $Opera70 or $Opera72;
     $OperaLte9          : $Opera7x or $Opera8 or $Opera9;
     $GeckoLte09         : $Gecko07 or $Gecko08 or $Gecko09;
     $Gecko13to19        : $Gecko13 or $Gecko19;
     $GeckoLte19         : $GeckoLte09 or $Gecko12 or $Gecko13to19;
     $LegacyOperaOrGecko : $OperaLte9 or $GeckoLte19;
-    $NotIE              : $LegacyOperaOrGecko or $Modern or $Noscript;
+    $NotIE              : $LegacyOperaOrGecko or $Modern;
     $WinIELte6          : $IE5 or $IE55 or $IE6;
     $WinIELte7          : $WinIELte6 or $IE7;
     $WinIELte8          : $WinIELte7 or $IE8;

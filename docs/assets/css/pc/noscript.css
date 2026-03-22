@@ -44,6 +44,7 @@ a:focus {
 .Magazine-main,
 .RichLink b,
 .caption,
+blockquote:after,
 pre,
 td,
 th {
@@ -58,9 +59,7 @@ th {
 .box,
 .commonForm-pair,
 .lMi,
-.lS,
 .lSi,
-.lW,
 .lX {
   overflow: hidden
 }
@@ -68,8 +67,6 @@ th {
 .lW,body[n0]:nth-child(n0) {
   overflow: hidden
 }
-#jsMain,
-#jsSide,
 .Cover-img,
 .Magazine-main,
 .Search,
@@ -604,17 +601,14 @@ h5 {
   padding: .45em 0;
   display: block
 }
-#jsSidebarFixer,
 .Cover img,
-.commonForm-wrap *,
-.js-captioned-thumbnail {
+.commonForm-wrap * {
   width: 100%
 }
 .commonForm-wrap {
   display: block;
   margin: 0 20px 0 8em
 }
-#blog2slide-start button,
 .mspacer,
 .note,
 blockquote,
@@ -660,28 +654,6 @@ li {
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
   src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
-.ico .js-myIconFont-testCssReady {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  visibility: hidden
-}
-.ico svg {
-  vertical-align: baseline
-}
-.ico path {
-  fill: #111
-}
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path,
-:target .ico path {
-  fill: #fff
-}
 .AAuthor img {
   float: right;
   margin: 0 0 1em 1em
@@ -720,7 +692,6 @@ tbody th,
 td {
   vertical-align: top
 }
-#blog2slide-root > div > *,
 .ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
@@ -746,7 +717,6 @@ kbd {
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a,
-.js-captioned-thumbnail__large a,
 dl blockquote,
 dl dl,
 dl p,
@@ -783,8 +753,7 @@ kbd {
   padding: 1em 0;
   text-align: center
 }
-.Attribution small,
-.prettyprint code {
+.Attribution small {
   font-size: .875em
 }
 .BlogArchive,
@@ -831,11 +800,6 @@ thead :link:hover {
   padding: 0 3% .5em;
   border-width: 0 0 1px;
   margin-top: 0
-}
-.CmtForm iframe {
-  width: 100%;
-  margin: 0;
-  height: 400px
 }
 .Cover {
   margin: 3.52em 0
@@ -963,12 +927,8 @@ th {
   line-height: 1
 }
 .Magazine-dd,
-.Magazine-mm,
-h1#blog2slide-current {
-  font-size: 4em
-}
-.Magazine-dd,
 .Magazine-mm {
+  font-size: 4em;
   line-height: .9
 }
 .Magazine-main {
@@ -1064,11 +1024,6 @@ dt {
 .lS .RichLink img {
   float: right;
   margin: 0 0 1em .6em
-}
-.box .js-pica-thumbnail__large img,
-div .box .js-captioned-thumbnail__large {
-  float: none;
-  margin: 0 0 1em
 }
 .RichLink b {
   font-size: .875em;
@@ -1283,8 +1238,7 @@ tr .box > p:first-of-type rt {
 .box dl,
 .box ol,
 .box p,
-.box ul,
-.js-captioned-thumbnail__large {
+.box ul {
   margin: 0 0 1em
 }
 .box ol,
@@ -1377,12 +1331,6 @@ h2:after {
 }
 .wn:after {
   background: red!important
-}
-.js-pica-thumbnail__large:active,
-.js-pica-thumbnail__large:focus,
-.tl td,
-.tl th {
-  background: 0 0!important
 }
 .ABody h2 {
   font-size: 1.5em;
@@ -1575,6 +1523,10 @@ tbody :hover th a:focus {
   background: #fff!important;
   color: #3079ed!important
 }
+.tl td,
+.tl th {
+  background: 0 0!important
+}
 .tl thead td {
   border-width: 0 0 1px .3em
 }
@@ -1759,14 +1711,11 @@ tbody :hover th a:focus {
   border-color: #00c300;
   color: #00c300
 }
-.js-generated-link-in-blockquote,
 blockquote:before {
   font-size: .875em;
   color: #24c
 }
-.js-generated-cite-in-blockquote,
 blockquote:after {
-  word-break: break-all;
   display: block;
   font-size: .875em;
   text-align: right;
@@ -1778,7 +1727,6 @@ blockquote:after {
   .Magazine-main,
   .RichLink b,
   .caption,
-  .js-generated-cite-in-blockquote,
   blockquote:after,
   pre,
   td,
@@ -1792,72 +1740,6 @@ blockquote[title]:before {
 }
 blockquote[cite]:after {
   content: attr(cite)
-}
-#blog2slide-root {
-  margin: 0 auto;
-  overflow: auto
-}
-#blog2slide-root > div {
-  height: 100%;
-  width: 98%;
-  max-width: 105em;
-  display: table;
-  margin: auto
-}
-#blog2slide-current {
-  font-size: 2em;
-  display: table-cell!important;
-  vertical-align: middle
-}
-.prettyprint {
-  border-width: 1px;
-  border-color: #333
-}
-ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #aeaeae
-}
-.js-captioned-thumbnail,
-.js-pica-thumbnail img {
-  -webkit-transition-property: width,margin;
-  -webkit-transition: .3s ease-in;
-  -moz-transition: width .3s ease-in,margin .3s ease-in;
-  -o-transition: width .3s ease-in,margin .3s ease-in;
-  transition: width .3s ease-in,margin .3s ease-in
-}
-.js-pica-thumbnail {
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in
-}
-.js-pica-thumbnail__large {
-  cursor: -webkit-zoom-out;
-  cursor: -moz-zoom-out;
-  cursor: zoom-out
-}
-.js-pica-thumbnail__large img {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 0 1em
-}
-.js-captioned-thumbnail__large figcaption {
-  width: 80%;
-  margin: 0 auto
-}
-.lS,body[n0]:nth-child(n0) {
-  overflow: visible
-}
-#jsCanUseContent {
-  font: 0/0 a
-}
-#jsCanUseContent:after {
-  content: ":)";
-  visibility: hidden;
-  font: 7px/1 a
 }
 #lE {
   border-top: .3em solid #3079ed
@@ -1969,14 +1851,10 @@ tv {
   .aa {
     background: #0a0809
   }
-  .aa :link,
-  .prettyprint :link,
-  .prettyprint :link * {
+  .aa :link {
     color: #bbe
   }
-  .aa :visited,
-  .prettyprint :visited,
-  .prettyprint :visited * {
+  .aa :visited {
     color: #eae
   }
   .aa :link:hover {
@@ -2034,38 +1912,6 @@ tv {
   .hscroll pre samp,
   .hscroll pre var {
     word-wrap: normal
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
-  }
-  .atv,
-  .str {
-    color: #65b042
-  }
-  .kwd {
-    color: #e28964
-  }
-  .com {
-    color: #aeaeae;
-    font-style: italic
-  }
-  .tag,
-  .typ {
-    color: #89bdff
-  }
-  .dec,
-  .lit {
-    color: #3387cc
-  }
-  .pun {
-    color: #dbdbdb
-  }
-  .pln {
-    color: #d4d4d4
-  }
-  .atn {
-    color: #bdb76b
   }
   #lF {
     border-top: .3em solid #3079ed
@@ -2126,55 +1972,6 @@ tv {
     .tl thead th {
       position: static
     }
-    .lW,
-    .nojs .lS {
-      overflow: visible
-    }
-    .nojs #jsSide > * {
-      position: sticky;
-      top: 0
-    }
-  }
-  #jsSidebarFixer {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition-property: transform;
-    -webkit-transition: .3s ease-in;
-    -moz-transition: transform .3s ease-in;
-    -o-transition: transform .3s ease-in;
-    transition: transform .3s ease-in
-  }
-  #jsSidebarFixer1:hover *,
-  #jsSidebarFixer2:hover * {
-    border-color: #111
-  }
-  h2 {
-    -webkit-transition-property: background-color,color,border-color;
-    -webkit-transition: .3s ease-in;
-    -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
-    -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
-    transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
-  }
-}
-@media only screen and (min-width:53em) and (prefers-reduced-motion:reduce) {
-  #jsSidebarFixer,
-  h2 {
-    transition: none
-  }
-}
-@media only screen and (min-width:53em) and (min-width:0\-) {
-  h2 {
-    -webkit-transition: none
-  }
-  h2,_:increment,_:not(:root) {
-    -webkit-transition: .3s ease-in
-  }
-}
-@media (min-width:53em) and (prefers-color-scheme:dark) {
-  #jsSidebarFixer1:hover *,
-  #jsSidebarFixer2:hover * {
-    border-color: #fff
   }
 }
 @media only screen and (min-width:96em),
@@ -2298,12 +2095,10 @@ print and (orientation:landscape) {
   h2,_:in-range,_:not(:root) {
     -webkit-column-span: all
   }
-  .js-generated-link-in-blockquote,
   blockquote:before,_:in-range,_:not(:root) {
     -webkit-column-span: all;
     margin: 0 0 2em
   }
-  .js-generated-cite-in-blockquote,
   blockquote:after,_:in-range,_:not(:root) {
     -webkit-column-span: all;
     margin: 1em 0 0
@@ -2317,13 +2112,8 @@ print and (orientation:landscape) {
     -webkit-column-count: 1;
     margin: 0 0 1em
   }
-  .js-pica-thumbnail__large {
-    display: block
-  }
   @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
     .hscroll,
-    .js-generated-link-in-blockquote,
-    .js-pica-thumbnail__large,
     .note,
     blockquote:after,
     blockquote:before,
@@ -2332,11 +2122,9 @@ print and (orientation:landscape) {
       -moz-column-span: all;
       column-span: all
     }
-    .js-generated-link-in-blockquote,
     blockquote:before {
       margin: 0 0 2em
     }
-    .js-generated-cite-in-blockquote,
     blockquote:after {
       -moz-column-span: all;
       column-span: all;
@@ -2358,9 +2146,6 @@ print and (orientation:landscape) {
       column-count: 1;
       margin: 0 0 1em
     }
-  }
-  .js-pica-thumbnail__large,_:in-range,_:not(:root) {
-    -webkit-column-span: all
   }
 }
 @media only screen and (min-width:96em) {
@@ -2448,11 +2233,6 @@ print and (orientation:landscape) {
   .hscroll > *,
   .hscroll table {
     margin: 2em auto
-  }
-  #blog2slide-root {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1
   }
 }
 @media only screen and (min-width:126em) {
@@ -2625,8 +2405,6 @@ only screen and (max-width:953px) {
   caption {
     margin: 1.5em 3% .7em
   }
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0 1.5%
@@ -2736,9 +2514,6 @@ only screen and (max-width:953px) {
   .SocialBtns {
     padding: 1em 3% .5em
   }
-  #blog2slide-start button {
-    margin: 1em 3%
-  }
   @-moz-document url-prefix() {
     .nojs .hscroll tbody {
       word-wrap: break-word
@@ -2754,7 +2529,6 @@ only screen and (max-width:740px) {
   h2 {
     text-align: center
   }
-  #blog2slide-start button,
   .note,
   blockquote,
   dl,
@@ -2904,8 +2678,6 @@ only screen and (max-width:740px) {
   .SocialBtns {
     padding: 1em 2% .5em
   }
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0 1%
@@ -2914,7 +2686,6 @@ only screen and (max-width:740px) {
 @media handheld,
 tv,
 only screen and (max-width:479px) {
-  #blog2slide-start button,
   .note,
   blockquote,
   dl,
@@ -3043,8 +2814,6 @@ only screen and (max-width:479px) {
   .SocialBtns {
     padding: 1em 1% .5em
   }
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0 .5%
@@ -3113,14 +2882,9 @@ only screen and (max-width:359px) {
     float: none;
     margin: 0 auto 1.143em
   }
-  .js-captioned-thumbnail__large,
-  .js-pica-thumbnail__large img {
-    margin: 0 auto 1em!important
-  }
 }
 @media handheld,
 only screen and (max-width:240px) {
-  #blog2slide-start button,
   .note,
   blockquote,
   dl,
@@ -3168,8 +2932,6 @@ only screen and (max-width:240px) {
     padding-right: 0
   }
   .SearchResult div div,
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0
@@ -3337,7 +3099,6 @@ only screen and (max-width:240px) {
     border-color: #000
   }
   .SearchResult :visited,
-  .js-generated-link-in-blockquote,
   .tl tbody tr th :link,
   .tl thead tr :link,
   :link,
@@ -3367,9 +3128,6 @@ only screen and (max-width:240px) {
   .tl tbody td:after,
   tbody th[colspan]:after {
     border-color: #000
-  }
-  .ico path {
-    fill: #eee
   }
   .AHead,
   .BreadcrumbList,
@@ -3580,9 +3338,6 @@ only screen and (max-width:240px) and (min-width:53em) {
     transform: rotate(.03deg);
     font-weight: 700
   }
-  #blog2slide-root:-ms-fullscreen {
-    background: #f8fbf8
-  }
 }
 @media print {
   .LinkList a,
@@ -3623,11 +3378,6 @@ only screen and (max-width:240px) and (min-width:53em) {
   table {
     margin: 1em 0
   }
-  .kwd,
-  .typ,
-  th {
-    font-weight: 700
-  }
   p {
     line-height: 1.5
   }
@@ -3652,7 +3402,6 @@ only screen and (max-width:240px) and (min-width:53em) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -3691,9 +3440,7 @@ only screen and (max-width:240px) and (min-width:53em) {
   a {
     color: #666
   }
-  .kwd,
   .ribbon :link,
-  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -3706,10 +3453,6 @@ only screen and (max-width:240px) and (min-width:53em) {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .ico path,
-  .ribbon .ico path {
-    fill: #000
   }
   .ABody {
     padding: 0 0 2em
@@ -3724,8 +3467,7 @@ only screen and (max-width:240px) and (min-width:53em) {
     color: #000!important;
     padding: 1em 0
   }
-  .AHead-labels,
-  .pln {
+  .AHead-labels {
     color: #000
   }
   .AHead-labels i {
@@ -3794,6 +3536,9 @@ only screen and (max-width:240px) and (min-width:53em) {
   table {
     width: 100%
   }
+  th {
+    font-weight: 700
+  }
   thead td,
   thead th {
     background: #ccc;
@@ -3848,30 +3593,6 @@ only screen and (max-width:240px) and (min-width:53em) {
   blockquote pre {
     margin: 1em
   }
-  .prettyprint {
-    line-height: 1
-  }
-  .atv,
-  .str {
-    color: #060
-  }
-  .com {
-    color: #600;
-    font-style: italic
-  }
-  .atn,
-  .typ {
-    color: #404
-  }
-  .lit {
-    color: #044
-  }
-  .pun {
-    color: #440
-  }
-  .dec {
-    color: #003
-  }
 }
 @media only print and (orientation:landscape) {
   .AHead,
@@ -3902,8 +3623,6 @@ only screen and (max-width:240px) and (min-width:53em) {
   }
 }
 @media (prefers-reduced-motion:reduce) {
-  .js-captioned-thumbnail,
-  .js-pica-thumbnail img,
   :link,
   :link *,
   :visited,
@@ -3941,9 +3660,6 @@ only screen and (-ms-high-contrast:active) {
   }
   img {
     filter: none
-  }
-  .ico path {
-    fill: currentColor
   }
   .LinkList,
   .RichLink-sep {
@@ -3995,10 +3711,6 @@ only screen and (-ms-high-contrast:active) {
   }
   .Pager i {
     border-color: Window currentColor
-  }
-  .js-pica-thumbnail:active,
-  .js-pica-thumbnail:focus {
-    outline: 0
   }
 }
 @media only screen and (forced-colors:active) {

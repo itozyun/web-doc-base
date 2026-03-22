@@ -10,6 +10,7 @@
 <a href="../test/check-css-ready.html">Detect completion of CSS loading</a>,
 <a href="../test/check-image-loading.html">Detect completion of image loading</a>,
 <a href="../test/clearfix.html">Clearfix</a>,
+<a href="../test/cover-img.html">Cover Image(object-fit:cover)</a>,
 <a href="../test/css-hack-for-svg-font.html">Finding the best CSS hacks for SVG fonts</a>,
 <a href="../test/cssGeneratedContent.html">Test CSS Generated Content</a>,
 <a href="../test/cssom.html">CSSOM</a>,

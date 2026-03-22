@@ -1,16 +1,14 @@
 @charset "UTF-8";
-.Header,
-.Header h1,
-.aa,
-body,
-input {
-  line-height: 1
+@supports (-webkit-touch-callout:none) and (font:-apple-system-body) {
+  :root {
+    font: -apple-system-body
+  }
 }
 .AAuthor p,
 .ADesc p,
 .note .box,
 dl .box,
-form,
+figure,
 input,
 li .box,
 textarea,
@@ -29,6 +27,7 @@ tr .box {
 .Label :visited:hover,
 .aBodyRoot :link:hover,
 .aBodyRoot :visited:hover,
+.aBodyRoot a:active,
 .aBodyRoot a:focus,
 :link,
 :visited,
@@ -37,14 +36,45 @@ dfn,
 ins {
   text-decoration: none
 }
-.ico svg,
-sub,
-sup {
-  vertical-align: baseline
+a:active,
+a:focus {
+  background-color: #3079ed!important
+}
+.BlogArchive th,
+.Magazine-date {
+  word-break: normal;
+  word-wrap: normal
+}
+.Cover h3,
+.Magazine-label,
+.Magazine-main,
+.RichLink b,
+.caption,
+.nojs .hscroll tbody,
+blockquote:after,
+pre,
+td,
+th {
+  word-break: break-all
+}
+.AAuthor,
+.Comment p,
+.Cover,
+.Magazine-snippet,
+.RichLink a,
+.Search .btn,
+.box,
+.commonForm-pair,
+.lMi,
+.lSi,
+.lW,
+.lX {
+  overflow: hidden
 }
 .Cover-img,
 .Magazine-main,
 .Search,
+.tl td,
 [colspan],
 h2,
 kbd:hover,
@@ -52,43 +82,75 @@ sub,
 sup {
   position: relative
 }
-.Magazine-date,
-.aa {
-  font-family: monospace
-}
-.hscroll,
-textarea {
-  overflow: auto
-}
 .Search .btn,
 .hscroll tbody {
   white-space: pre
 }
-.ico,
-cite,
-code,
-dfn,
-kbd,
-q,
-var {
-  font-style: normal
+.nojs .hscroll tbody,
+pre {
+  white-space: -webkit-pre-wrap;
+  white-space: pre-wrap
+}
+[type=submit],
+hr,
+tbody th {
+  background: #ddd
+}
+.Cover h2,
+a code:active,
+a code:focus,
+a var:active,
+a var:focus,
+tbody :hover th {
+  background: #3079ed
+}
+@font-face {
+  font-family: "YuGothic M";
+  src: local("Yu Gothic Medium"),local("Yu Gothic");
+  font-weight: 500
 }
 body,
 input,
 textarea {
-  font-family: "-apple-system",BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  font-family: -apple-system,BlinkMacSystemFont,".SFNSDisplay-Regular","Avenir Next",Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic","游ゴシック体",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" sans-serif
+}
+@supports (-moz-appearance:none) and (display:contents) and (not (ruby-position:over)) and (not (-moz-osx-font-smoothing:auto)) and (not (text-align-last:auto)) {
+  @media (-moz-os-version:windows-win8) and (-moz-overlay-scrollbars) {
+    body,
+    input,
+    textarea {
+      font-family: sans-serif
+    }
+  }
+}
+.ABody h1,
+.ABody h2,
+.ABody h3,
+.ABody h4,
+.ABody h5,
+.ABody h6,
+.AHead h1 {
+  font-family: "游明朝",YuMincho,"ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif
 }
 code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
+  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace;
+  word-wrap: break-word
 }
+:active,
 :focus {
   outline: 0
 }
 html {
-  font-size: 100%
+  font-size: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale
 }
 body,
 html {
@@ -98,6 +160,27 @@ html {
 * {
   border-style: solid;
   border-width: 0
+}
+.Header,
+.Header h1,
+.aa,
+body,
+input {
+  line-height: 1
+}
+.ico,
+.icoLinks [href]:before {
+  font-family: web-doc-base,serif!important;
+  text-rendering: auto!important
+}
+.ico,
+cite,
+code,
+dfn,
+kbd,
+q,
+var {
+  font-style: normal
 }
 body {
   background: #1a1a1a;
@@ -130,8 +213,13 @@ dd,
 li {
   margin-bottom: .3em
 }
+form :invalid {
+  box-shadow: none;
+  color: red
+}
 .ribbon :link:hover,
 :link:hover,
+form :active,
 form :focus {
   color: #3079ed;
   border-color: #3079ed
@@ -159,6 +247,7 @@ dl iframe,
 dl img,
 li iframe,
 li img,
+tr .box > p:first-of-type kbd,
 tr iframe,
 tr img {
   margin-top: 0
@@ -166,10 +255,15 @@ tr img {
 img {
   height: auto
 }
+.SocialBtns .hb:active,
 .SocialBtns .hb:focus,
+.SocialBtns .ln:active,
 .SocialBtns .ln:focus,
+.SocialBtns .pk:active,
 .SocialBtns .pk:focus,
+.SocialBtns .tw:active,
 .SocialBtns .tw:focus,
+.baseColor .btn:active,
 .baseColor .btn:focus,
 .medal,
 a img,
@@ -177,29 +271,37 @@ tbody th,
 tbody th[colspan]:after {
   border-color: #f8fbf8
 }
+.AHead-labels :active,
 .AHead-labels :focus,
+.Subscribe .atom:active,
 .Subscribe .atom:focus,
+.Subscribe .fl:active,
 .Subscribe .fl:focus,
+.Subscribe .rss:active,
 .Subscribe .rss:focus,
+.Subscribe .stm:active,
 .Subscribe .stm:focus,
+.btn:active,
 .btn:focus,
 .ribbon :link img,
 .ribbon :visited img {
   border-color: #1a1a1a
 }
 *,
+blockquote .tl tbody td:after,
 blockquote :link img,
 blockquote :visited img,
 blockquote tbody th[colspan]:after,
 blockquote thead td[colspan]:after,
 blockquote thead th[colspan]:after,
-input,
 td[colspan]:after,
-textarea,
 thead td[colspan]:after,
 thead th[colspan]:after {
   border-color: #ddd
 }
+:target td,
+:target th,
+a:active img,
 a:focus img {
   border-color: #3079ed!important
 }
@@ -208,21 +310,68 @@ a:focus img {
   position: relative;
   top: 2px
 }
+::-moz-focus-inner {
+  border: 0
+}
 input,
 textarea {
   font-size: 1em;
-  border-width: .1em
+  border-width: 2px;
+  padding: .45em 8px
 }
 small,
 sub,
 sup {
   font-size: 75%
 }
-input {
-  height: 2.1em
+a:active,
+a:focus,
+button:active,
+button:focus,
+input:active,
+input:focus,
+textarea:active,
+textarea:focus {
+  outline: transparent solid 2px
 }
-[type=submit] {
-  border-style: solid
+input {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 1em
+}
+input:placeholder-shown,
+textarea:placeholder-shown {
+  color: #777
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #777
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #777
+}
+[type=submit]::-webkit-search-decoration {
+  display: none
+}
+[type=submit]:focus {
+  outline-offset: -2px
 }
 p {
   line-height: 1.9
@@ -233,7 +382,6 @@ p tr {
   line-height: 1.2
 }
 pre {
-  white-space: pre-wrap;
   margin: 1em 0;
   padding: 1em 3%
 }
@@ -245,6 +393,7 @@ q[cite],
 q[title] {
   border-bottom: 1px dotted
 }
+blockquote .tl tbody td:before,
 blockquote .tl td,
 blockquote .tl tfoot td,
 blockquote .tl tfoot th,
@@ -267,7 +416,8 @@ table {
 }
 sub,
 sup {
-  line-height: 0
+  line-height: 0;
+  vertical-align: baseline
 }
 sub {
   bottom: -.25em
@@ -282,6 +432,11 @@ sup {
 .c {
   text-align: center
 }
+textarea {
+  overflow: auto;
+  resize: vertical;
+  background-image: none
+}
 .uc {
   text-transform: uppercase
 }
@@ -293,6 +448,8 @@ sup {
 .ribbon :visited,
 .tl tbody :hover th :link,
 .tl tbody :hover th :visited,
+blockquote:target:after,
+tbody :hover th,
 tbody :hover th :link,
 tbody :hover th :visited {
   color: #fff
@@ -306,24 +463,11 @@ tbody :hover th :visited {
 em {
   background: #ff6
 }
+blockquote hr {
+  background: #777
+}
 strong {
   background: #6cf
-}
-.AAuthor:after,
-.Comment p:after,
-.Cover:after,
-.Magazine-snippet:after,
-.RichLink a:after,
-.box:after,
-.commonForm-pair:after,
-.lMi:after,
-.lSi:after,
-.lX:after {
-  content: "";
-  display: block;
-  visibility: hidden;
-  clear: both;
-  height: 0
 }
 .lMi,
 .lMz .lMh,
@@ -347,16 +491,29 @@ strong {
   width: 45.5%;
   padding-right: 3%
 }
+:link,
+:visited {
+  background-color: transparent
+}
 .aBodyRoot :link,
 .aBodyRoot :visited,
 .aBodyRoot a:focus:hover,
 :link:hover,
 :visited:hover,
-a:focus:hover {
+a:active,
+a:focus:hover,
+input.btn:hover {
   text-decoration: underline
 }
-a:focus {
-  background-color: Highlight!important
+:link,
+:link *,
+:visited,
+:visited * {
+  -webkit-transition-property: background-color,color,border-color;
+  -webkit-transition: .3s ease-in;
+  -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
+  -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
+  transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
 }
 a {
   color: #777;
@@ -381,8 +538,12 @@ blockquote .tl tbody tr th :link {
   color: #bbb;
   border-color: #1a1a1a
 }
+:target,
+:target *,
 a:active,
-a:active * {
+a:active *,
+a:focus,
+a:focus * {
   color: #fff!important
 }
 .ribbon :link {
@@ -392,34 +553,41 @@ a:active * {
   color: #c8e;
   border-color: #c8e
 }
-a:active {
-  background-color: #3079ed!important
+:target,
+:target * {
+  background: #3079ed!important;
+  border-color: #fff!important
 }
-a:focus * {
-  color: HighlightText!important
+td:target,
+th:target {
+  border-color: inherit!important
 }
-.ribbon a:focus {
-  outline: HighlightText solid 2px
+li:target {
+  color: inherit!important
 }
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a,
 .btn {
   display: inline-block;
-  line-height: 1.9;
-  padding: 0 1em;
-  border-width: .1em;
+  line-height: 1;
+  padding: .45em 1em;
+  vertical-align: top;
+  border-width: 2px;
   cursor: pointer;
-  text-align: center;
-  height: 2.1em
+  text-align: center
 }
 .Magazine-main,
 h5 {
   border-width: 0 0 0 .5em
 }
+.AHead-labels a:active,
 .AHead-labels a:focus,
+.SocialBtns a:active,
 .SocialBtns a:focus,
+.Subscribe a:active,
 .Subscribe a:focus,
+.btn:active,
 .btn:focus {
   border-color: #3079ed;
   color: #3079ed;
@@ -469,7 +637,7 @@ h5 {
 }
 .commonForm-wrap {
   display: block;
-  margin: 0 0 1em 8em
+  margin: 0 20px 0 8em
 }
 .mspacer {
   margin: 1em .5em!important
@@ -477,6 +645,7 @@ h5 {
 .AAuthor,
 .ADesc,
 .AHead,
+.aa,
 tr blockquote pre {
   margin: 1em 0
 }
@@ -484,22 +653,24 @@ tr blockquote pre {
 .lS .mspacer {
   margin: .6em .5em
 }
+.ico {
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga"
+}
 .Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
+.aa {
+  font-family: monospace,monospace
 }
-.ico path {
-  fill: #111
-}
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path {
-  fill: #fff
+@font-face {
+  font-family: web-doc-base;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../../iconfont/web-doc-base.eot?rw1juc);
+  src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
 .AAuthor img {
   float: left;
@@ -508,6 +679,7 @@ a:focus .ico path {
 .ABody {
   padding: 3.5em 0 2em
 }
+.RichLink b,
 h1,
 h2,
 h3,
@@ -516,12 +688,15 @@ h6,
 th {
   font-weight: 400
 }
+.ABody h3,
+.Magazine h3,
+.Magazine-date,
+dt {
+  font-weight: 700
+}
 .AHead,
-.Comment div,
-.Cover-meta,
 .baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-h6 {
+.baseColor :visited .RichLink-meta {
   color: #777
 }
 .AHead h1 {
@@ -533,21 +708,15 @@ h6 {
 }
 .AHead-labels {
   margin-top: .5em;
-  color: #1a1a1a
+  color: #1a1a1a;
+  vertical-align: middle
 }
-.BlogArchive,
-.BlogArchive tbody :hover td,
-.Cover h2,
-.Label div,
-.aBodyRoot blockquote tbody th :visited,
-.aBodyRoot blockquote tbody th :visited:hover,
-.aBodyRoot thead :visited,
-.aBodyRoot thead :visited:hover,
-blockquote tbody th :link,
-blockquote tbody th :link:hover,
-thead :link,
-thead :link:hover {
-  color: #f8fbf8
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th,
+td {
+  vertical-align: top
 }
 .ABody h2:after,
 .AHead-labels i,
@@ -555,14 +724,25 @@ thead :link:hover {
 .Magazine-m,
 .Magazine-y,
 .RichLink br,
+.tl tbody :empty:after,
+.tl tbody :empty:before,
 tfoot [colspan]:after,
 tfoot [colspan]:before {
   display: none
 }
+.BlogArchive a,
+.BreadcrumbList a,
+.Cover-meta span,
+.Label a,
+.RichLink-meta span,
+.TxtNavi a,
+.icoLinks a,
+kbd {
+  display: inline-block
+}
 .AHead-labels a,
 .SocialBtns a,
 .Subscribe a,
-.js-captioned-thumbnail__large a,
 dl blockquote,
 dl dl,
 dl p,
@@ -594,39 +774,40 @@ kbd {
   border-color: #bbe;
   color: #1a1a1a
 }
-.Attribution {
+.Attribution,
+.CmtForm {
   padding: 1em 0;
   text-align: center
 }
-.Attribution small,
-.prettyprint code {
+.Attribution small {
   font-size: .875em
 }
 .BlogArchive,
 .Comment,
 .Label,
 .LinkList,
-.RichLink,
 .Subscribe {
   padding: 0 0 1em
 }
-.BlogArchive a,
-.Label a {
+.BlogArchive,
+.BlogArchive tbody :hover td,
+.aBodyRoot blockquote tbody th :visited,
+.aBodyRoot blockquote tbody th :visited:hover,
+.aBodyRoot thead :visited,
+.aBodyRoot thead :visited:hover,
+blockquote tbody th :link,
+blockquote tbody th :link:hover,
+thead :link,
+thead :link:hover {
+  color: #f8fbf8
+}
+.BlogArchive a {
   border-width: 0 0 1px;
-  line-height: 2.8
+  margin: 0 0 1em
 }
 .BreadcrumbList {
   padding: 1em 0;
   color: #777
-}
-.BreadcrumbList a,
-.Cover h2,
-.Cover-meta span,
-.RichLink-meta span,
-.TxtNavi a,
-.icoLinks a,
-kbd {
-  display: inline-block
 }
 .Comment h3,
 .SearchResult h3 {
@@ -638,6 +819,7 @@ kbd {
   margin-left: 3%
 }
 .Comment div {
+  color: #777;
   font-size: 93%
 }
 .Comment p {
@@ -662,15 +844,29 @@ kbd {
   max-width: 100%
 }
 .Cover h2 {
-  background: #3079ed;
+  display: inline-block;
   border: 1px solid #3079ed;
+  color: #f8fbf8;
   font-size: .825em;
   padding: .6em
+}
+.AMeta,
+.Label a,
+.Pager,
+.RichLink a,
+.SocialBtns,
+.tl thead th,
+tbody th,
+tbody th[colspan]:after,
+th,
+th[colspan]:after {
+  border-width: 0 0 1px
 }
 .Cover h3 {
   font-size: 1.33em;
   margin: 0;
-  background: #fff
+  background: #fff;
+  background: rgba(255,255,255,.75)
 }
 .Magazine h3,
 .Magazine-yy {
@@ -682,38 +878,45 @@ kbd {
 }
 .Cover-meta {
   display: block;
+  color: #777;
   line-height: 1.4
 }
 .Cover p {
   line-height: 1.4;
   margin: .6em .5em
 }
+.Label div {
+  color: #f8fbf8;
+  text-align: justify
+}
 .Subscribe div,
 .ribbon .Label div,
 .ribbon .TxtNavi {
   color: #1a1a1a
 }
+.Label a {
+  margin: 0 0 1.7em
+}
 #lF .Label a,
 .lS .Label a {
-  line-height: 2.4
+  margin: 0 0 1.3em
 }
 .LinkList a,
 .RichLink-sep a {
   display: block;
   cursor: pointer;
   text-decoration: none!important;
+  overflow: hidden;
+  height: auto
+}
+.LinkList a:focus ::selection,
+.RichLink-sep a:focus ::selection {
+  background-color: transparent
+}
+.LinkList a:not([href]),
+.RichLink-sep a:not([href]) {
   background: #111;
   color: #f8fbf8
-}
-.LinkList :link,
-.RichLink-sep :link {
-  background: 0 0;
-  color: #24c
-}
-.LinkList a:visited,
-.RichLink-sep a:visited {
-  background: 0 0;
-  color: #111
 }
 .ribbon .LinkList a:not([href]),
 .ribbon .RichLink-sep a:not([href]) {
@@ -731,6 +934,7 @@ kbd {
   line-height: 1.1;
   padding: 1em .5em .8em
 }
+.LinkList :active,
 .LinkList :focus:hover {
   text-decoration: underline!important
 }
@@ -740,7 +944,6 @@ kbd {
 }
 .Magazine-date {
   padding-right: 1.5em;
-  font-weight: 700;
   display: table-cell;
   line-height: 1
 }
@@ -758,7 +961,6 @@ kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-weight: 700;
   margin: .2em 0 0;
   padding: 0
 }
@@ -784,14 +986,18 @@ kbd {
 .Magazine img {
   margin-left: 0
 }
+.RichLink {
+  padding: 0 0 1em;
+  overflow-x: hidden
+}
 .RichLink a {
   padding: 1em .5em 0;
-  border-width: 0 0 1px;
   border-color: #2a2a2a!important
 }
 .ABody h2,
 .ABody h2 *,
 .tl tbody :hover td,
+.tl tbody :hover td:before,
 .tl tbody :hover th,
 blockquote tbody :hover td[colspan]:after,
 h2:after,
@@ -833,7 +1039,6 @@ tbody :hover td[colspan]:after {
   margin: 0 .5em .6em 0
 }
 .RichLink b {
-  font-weight: 400;
   padding: 0 0 .571em;
   font-size: 1em
 }
@@ -879,7 +1084,7 @@ tbody :hover td[colspan]:after {
 }
 .Search {
   height: 1.9em;
-  padding: 0 3em 0 0;
+  margin: 0 3em 0 22px;
   width: auto
 }
 .Search input {
@@ -888,11 +1093,12 @@ tbody :hover td[colspan]:after {
 }
 .Search-txt {
   width: 100%;
-  box-sizing: content-box;
-  height: 1.7em;
-  line-height: 1.7em;
-  left: .05em
+  left: -22px
 }
+.Search-txt:invalid {
+  color: #777
+}
+.Search input:active,
 .Search input:focus,
 .Search input:hover {
   z-index: 1
@@ -901,8 +1107,8 @@ tbody :hover td[colspan]:after {
   padding-left: 0;
   padding-right: 0;
   width: 3em;
-  right: .05em;
-  overflow: hidden
+  right: -3em;
+  text-overflow: ellipsis
 }
 .SearchResult {
   margin-bottom: 2em
@@ -914,7 +1120,8 @@ tbody :hover td[colspan]:after {
   color: #1a0dab
 }
 .SearchResult cite {
-  color: #006621
+  color: #006621;
+  word-wrap: break-word
 }
 .SearchResult div p {
   margin: .2em 0 0;
@@ -1002,13 +1209,34 @@ blockquote .tl tbody tr th :visited {
   color: #515
 }
 .aa {
-  margin: 1em 0;
   border-color: #0a0809
 }
 .caption {
   text-align: center;
   font-size: .875em;
   max-width: 100%
+}
+.box {
+  margin: 1em 0 0
+}
+.box > p:first-of-type {
+  margin-top: -.225em
+}
+.box > p:first-of-type kbd {
+  margin-top: .225em
+}
+.box > p:first-of-type rt {
+  padding-top: 1em
+}
+
+tr .box > p:first-of-type {
+  margin-top: auto
+}
+.box > p:first-of-type,body[n0]:nth-child(n0) {
+  margin-top: auto
+}
+tr .box > p:first-of-type rt {
+  padding-top: 0
 }
 .box dl,
 .box ol,
@@ -1035,9 +1263,6 @@ div .caption img {
   margin: 0 0 .571em;
   float: none
 }
-.box {
-  margin: 1em 0 0
-}
 code,
 var {
   padding: .1em .4em
@@ -1047,12 +1272,7 @@ pre var {
   padding: 0;
   margin: 0
 }
-a code:focus,
-a var:focus {
-  background: Highlight
-}
 dt {
-  font-weight: 700;
   margin-top: .7em
 }
 tr ol,
@@ -1072,6 +1292,12 @@ li ul {
   padding-left: 1em;
   margin-top: 0;
   margin-bottom: 0
+}
+.ABody dl blockquote,
+.ABody li blockquote {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1
 }
 .ABody h1,
 .ABody h2,
@@ -1095,12 +1321,11 @@ th {
 [colspan]:after,
 [colspan]:before,
 h2:after {
+  font-size: .1em;
+  line-height: 0;
   content: " ";
   display: block;
   position: absolute;
-  height: 0;
-  font-size: .1em;
-  line-height: 0;
   border-style: solid
 }
 h2 {
@@ -1117,6 +1342,7 @@ h6 {
 }
 h2:after {
   width: 5em;
+  height: 0;
   left: 0;
   bottom: -2px;
   border-width: 2px 0 0
@@ -1131,7 +1357,6 @@ h2:after {
   margin: 2em 1.5% 1em
 }
 .ABody h3 {
-  font-weight: 700;
   font-size: 1.25em;
   border-width: .1em 0 0;
   margin: 2.4em 1.5% 1.2em
@@ -1144,15 +1369,28 @@ h4 {
   border-width: 0 0 0 .7em;
   padding: 0 0 0 .3em
 }
-.tl td,
-h6 {
-  border-width: 0 0 0 .3em
-}
 h5 {
   padding: 0 0 0 .5em
 }
 h6 {
+  border-width: 0 0 0 .3em;
+  color: #777;
   padding: 0 0 0 .7em
+}
+.hscroll {
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch
+}
+.hscroll::-webkit-scrollbar {
+  height: 5px
+}
+.hscroll::-webkit-scrollbar-track {
+  background: #f1f1f1
+}
+.hscroll::-webkit-scrollbar-thumb {
+  background: #bcbcbc
 }
 .icoLinks {
   list-style: none
@@ -1163,14 +1401,42 @@ h6 {
   width: 1em;
   text-align: center;
   text-decoration: none;
-  content: ">";
-  font-weight: 700
+  height: 1.2em;
+  line-height: 1.2;
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  content: "🔗"
+}
+.icoLinks [href^="/"]:not([href^="//"]):before {
+  content: "🏠"
 }
 .icoLinks [href*="//archive."]:before,
 .icoLinks [href*="//web.archive."]:before {
-  content: "*"
+  content: "🏛"
+}
+.icoLinks [href*="//youtu.be"]:before,
+.icoLinks [href*="//youtube."]:before {
+  content: "📺"
+}
+.icoLinks [href*="//m.twitter."]:before,
+.icoLinks [href*="//t.co"]:before,
+.icoLinks [href*="//twitter."]:before,
+.icoLinks [href*="//x.com"]:before {
+  content: "🕊"
+}
+.icoLinks [href*=".github.io"]:before,
+.icoLinks [href*="//github.com"]:before {
+  content: "\eab0"
 }
 kbd {
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em
@@ -1210,6 +1476,7 @@ dl.note dd {
 }
 ol,
 ul {
+  list-style-position: outside;
   padding-left: 2em
 }
 li {
@@ -1220,6 +1487,7 @@ li {
   bottom: -1px;
   left: .5em;
   right: .5em;
+  height: 0;
   border-width: 0 0 1px
 }
 table {
@@ -1228,16 +1496,6 @@ table {
   border-spacing: 0;
   width: 94%;
   border-color: #ddd
-}
-.AMeta,
-.Pager,
-.SocialBtns,
-.tl thead th,
-tbody th,
-tbody th[colspan]:after,
-th,
-th[colspan]:after {
-  border-width: 0 0 1px
 }
 caption {
   margin: 1.5em 3% .7em
@@ -1260,14 +1518,14 @@ thead th {
 tbody td {
   border-width: 0 .5em 1px
 }
+tbody:not(:last-child) > tr:last-child > * {
+  border-bottom-width: 0
+}
 tfoot th {
   border-width: 2px 0 0
 }
 tfoot td {
   border-width: 2px .5em 0
-}
-tbody th {
-  background: #ddd
 }
 tfoot td,
 tfoot th {
@@ -1293,16 +1551,15 @@ blockquote tfoot th {
 blockquote tbody :hover td {
   border-color: #ddd #ddd #3079ed
 }
-tbody :hover th {
-  background: #3079ed;
-  color: #fff
-}
 tbody :hover td {
   border-color: #f8fbf8 #f8fbf8 #3079ed;
   color: #3079ed
 }
-.js-pica-thumbnail__large:active,
-.js-pica-thumbnail__large:focus,
+tbody :hover th a:active,
+tbody :hover th a:focus {
+  background: #fff!important;
+  color: #3079ed!important
+}
 .tl td,
 .tl th {
   background: 0 0!important
@@ -1323,8 +1580,41 @@ tbody :hover td {
 }
 .tl td {
   padding: .5em .8em;
+  border-width: 0 0 0 .3em;
   border-color: #ddd;
   border-style: solid
+}
+.tl tbody td:after,
+.tl tbody td:before {
+  content: " ";
+  display: block;
+  text-indent: -1em;
+  position: absolute;
+  border-style: solid
+}
+.tl tbody td:before {
+  top: .6em;
+  left: -.75em;
+  width: 0;
+  height: 0;
+  border-width: .6em;
+  border-color: #ddd;
+  -khtml-border-radius: .6em;
+  -webkit-border-radius: .6em;
+  -moz-border-radius: .6em;
+  border-radius: .6em
+}
+.tl tbody td:after {
+  top: .85em;
+  left: -.5em;
+  width: 0;
+  height: 0;
+  border-width: .35em;
+  border-color: #f8fbf8;
+  -khtml-border-radius: .35em;
+  -webkit-border-radius: .35em;
+  -moz-border-radius: .35em;
+  border-radius: .35em
 }
 .tl tfoot td {
   border-width: 1px 0 0 .3em;
@@ -1346,6 +1636,8 @@ tbody :hover td {
   display: table;
   width: 100%;
   table-layout: fixed;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 3%
 }
@@ -1366,9 +1658,9 @@ tbody :hover td {
 }
 .Pager i {
   display: inline-block;
-  vertical-align: text-top;
   border-color: transparent #777
 }
+.Pager :active i,
 .Pager :focus i {
   border-color: transparent #fff
 }
@@ -1385,6 +1677,7 @@ tbody :hover td {
   border-width: 0 .45em .9em;
   border-color: #777 transparent
 }
+.Pager-top :active i,
 .Pager-top :focus i {
   border-color: #fff transparent
 }
@@ -1413,7 +1706,9 @@ tbody :hover td {
   border-color: #3b5999;
   color: #3b5999
 }
+.SocialBtns .fb:active,
 .SocialBtns .fb:focus,
+.SocialBtns .pt:active,
 .SocialBtns .pt:focus {
   border-color: #fff
 }
@@ -1457,19 +1752,31 @@ tbody :hover td {
   border-color: #00c300;
   color: #00c300
 }
-.js-generated-link-in-blockquote,
 blockquote:before {
   font-size: .875em;
   color: #24c;
   margin: 0 1.5%
 }
-.js-generated-cite-in-blockquote,
 blockquote:after {
   display: block;
   font-size: .875em;
   text-align: right;
   color: #777;
   margin: 0 1.5%
+}
+@-moz-document url-prefix() {
+  .Cover h3,
+  .Magazine-label,
+  .Magazine-main,
+  .RichLink b,
+  .caption,
+  .nojs .hscroll tbody,
+  blockquote:after,
+  pre,
+  td,
+  th {
+    word-wrap: break-word
+  }
 }
 blockquote {
   padding: 1em 1px;
@@ -1482,32 +1789,13 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.prettyprint {
-  border-width: 1px;
-  border-color: #333
-}
-ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #aeaeae
-}
-.js-pica-thumbnail__large img {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 0 1em
-}
-.box .js-pica-thumbnail__large img,
-.js-captioned-thumbnail__large,
-div .box .js-captioned-thumbnail__large {
-  margin: 0 0 1em
-}
 #lE {
   border-top: .3em solid #3079ed
 }
 @media screen,
 handheld,
-projection {
+projection,
+tv {
   a img {
     border-width: 2px
   }
@@ -1567,14 +1855,10 @@ projection {
   .aa {
     background: #0a0809
   }
-  .aa :link,
-  .prettyprint :link,
-  .prettyprint :link * {
+  .aa :link {
     color: #bbe
   }
-  .aa :visited,
-  .prettyprint :visited,
-  .prettyprint :visited * {
+  .aa :visited {
     color: #eae
   }
   .aa :link:hover {
@@ -1623,46 +1907,54 @@ projection {
     white-space: pre
   }
   .hscroll tr pre {
-    white-space: pre-wrap
+    white-space: -webkit-pre-wrap;
+    white-space: pre-wrap;
+    word-break: break-all
   }
-  .prettyprint {
-    background: #333;
-    color: #fff
-  }
-  .atv,
-  .str {
-    color: #65b042
-  }
-  .kwd {
-    color: #e28964
-  }
-  .com {
-    color: #aeaeae;
-    font-style: italic
-  }
-  .tag,
-  .typ {
-    color: #89bdff
-  }
-  .dec,
-  .lit {
-    color: #3387cc
-  }
-  .pun {
-    color: #dbdbdb
-  }
-  .pln {
-    color: #d4d4d4
-  }
-  .atn {
-    color: #bdb76b
+  .hscroll pre code,
+  .hscroll pre kbd,
+  .hscroll pre samp,
+  .hscroll pre var {
+    word-wrap: normal
   }
   #lF {
     border-top: .3em solid #3079ed
   }
+  @-moz-document url-prefix() {
+    .hscroll tr pre {
+      word-wrap: break-word
+    }
+  }
+}
+@media all and (min-width:0\-) {
+  :link,
+  :link *,
+  :visited,
+  :visited * {
+    -webkit-transition: none
+  }
+  :link *,
+  :link,
+  :visited *,
+  :visited,_:increment,_:not(:root) {
+    -webkit-transition: .3s ease-in
+  }
+  .RichLink-meta {
+    background: 0 0!important
+  }
+  .tl td:after,
+  .tl td:before {
+    display: none!important
+  }
+}
+@media only screen and (min-width:741px) {
+  body {
+    font-size: 1.125em
+  }
 }
 @media handheld,
-screen and (max-width:740px) {
+tv,
+only screen and (max-width:740px) {
   .Label div,
   .LinkList,
   .Subscribe div,
@@ -1818,15 +2110,14 @@ screen and (max-width:740px) {
   .SocialBtns {
     padding: 1em 2% .5em
   }
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0 1%
   }
 }
 @media handheld,
-screen and (max-width:479px) {
+tv,
+only screen and (max-width:479px) {
   .note,
   blockquote,
   dl,
@@ -1894,6 +2185,9 @@ screen and (max-width:479px) {
   .box ul {
     margin: 0 1% 1em
   }
+  .box > p:first-of-type {
+    margin-top: -.15em
+  }
   .box iframe,
   .box img {
     margin: 0 1em 1em 1%
@@ -1952,19 +2246,20 @@ screen and (max-width:479px) {
   .SocialBtns {
     padding: 1em 1% .5em
   }
-  .js-generated-cite-in-blockquote,
-  .js-generated-link-in-blockquote,
   blockquote:after,
   blockquote:before {
     margin: 0 .5%
   }
 }
 @media handheld,
-screen and (max-width:359px) {
+tv,
+only screen and (max-width:359px) {
   body {
     font-size: .813em
   }
   a img {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box
   }
   img {
@@ -2021,7 +2316,7 @@ screen and (max-width:359px) {
   }
 }
 @media handheld,
-screen and (max-width:240px) {
+only screen and (max-width:240px) {
   .note,
   blockquote,
   dl,
@@ -2033,50 +2328,12 @@ screen and (max-width:240px) {
   ul {
     margin: 1em 0
   }
-  .AHead h1,
-  .medal,
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  :visited,
-  blockquote,
-  blockquote pre code,
-  blockquote pre var,
-  blockquote th em,
-  blockquote th strong,
-  body,
-  thead em,
-  thead strong {
-    color: #eee
-  }
-  :link:hover,
-  blockquote tbody :hover td[colspan]:after,
-  tbody :hover td[colspan]:after {
-    border-color: #3079ed
-  }
   body {
     font-size: .75em
   }
   iframe,
   img {
     max-width: 100%
-  }
-  blockquote :link img,
-  blockquote :visited img {
-    border-color: transparent
-  }
-  input,
-  textarea {
-    background: #000;
-    color: #eee
-  }
-  .medal,
-  [type=submit],
-  blockquote,
-  code,
-  tbody th,
-  var {
-    background: #222
   }
   p {
     line-height: 1.4
@@ -2085,33 +2342,6 @@ screen and (max-width:240px) {
   pre {
     padding: 1em 2px
   }
-  *,
-  .medal,
-  .tl td,
-  .tl tfoot td,
-  .tl tfoot th,
-  .tl thead td,
-  .tl thead th,
-  blockquote tbody th[colspan]:after,
-  blockquote thead td[colspan]:after,
-  blockquote thead th[colspan]:after,
-  table,
-  td[colspan]:after,
-  thead td[colspan]:after,
-  thead th[colspan]:after {
-    border-color: #222
-  }
-  #lB .lS,
-  .Cover h3,
-  .baseColor {
-    background: #000
-  }
-  em {
-    background: #4e4e1f
-  }
-  strong {
-    background: #1c3a49
-  }
   #lB .lSi,
   .lMi,
   .lMz .lMh,
@@ -2119,123 +2349,11 @@ screen and (max-width:240px) {
   .lXi {
     padding: 0
   }
-  a {
-    color: #999;
-    border-color: #000
-  }
-  .SearchResult :visited,
-  .tl tbody tr th :link,
-  .tl thead tr :link,
-  :link,
-  blockquote .tl tbody tr th :link {
-    color: #bbe
-  }
-  :link:hover {
-    color: #3079ed
-  }
-  :visited:hover {
-    color: #c8e;
-    border-color: #c8e
-  }
-  .baseColor .btn:link {
-    background: #bbe;
-    border-color: #bbe;
-    color: #000
-  }
-  .Magazine,
-  .Magazine-main,
-  blockquote h3,
-  h4,
-  kbd {
-    border-color: #eee
-  }
-  .baseColor .btn:visited {
-    background: #000;
-    border-color: #eee;
-    color: #eee
-  }
-  .AHead,
-  .BreadcrumbList,
-  .Cover-meta,
-  .baseColor :link .RichLink-meta,
-  .baseColor :visited .RichLink-meta,
-  h6 {
-    color: #999
-  }
-  .baseColor .btn:focus,
-  tbody th,
-  tbody th[colspan]:after {
-    border-color: #000
-  }
   .mspacer {
     margin: .6em 0!important
   }
-  .ico path {
-    fill: #eee
-  }
-  .BlogArchive,
-  .BlogArchive tbody :hover td,
-  .Label div,
-  .TxtNavi,
-  .aBodyRoot blockquote tbody th :visited,
-  .aBodyRoot blockquote tbody th :visited:hover,
-  .aBodyRoot thead :visited,
-  .aBodyRoot thead :visited:hover,
-  blockquote tbody th :link,
-  blockquote tbody th :link:hover,
-  thead :link,
-  thead :link:hover {
-    color: #000
-  }
-  .LinkList a,
-  .RichLink-sep a,
-  blockquote code,
-  blockquote var,
-  tbody th code,
-  tbody th var {
-    background: #999;
-    color: #000
-  }
-  .LinkList :link,
-  .RichLink-sep :link {
-    background: 0 0;
-    color: #bbe
-  }
-  .LinkList :visited,
-  .RichLink-sep :visited {
-    background: 0 0;
-    color: #eee
-  }
-  .LinkList :link:hover,
-  .LinkList :visited:hover,
-  .RichLink-sep :link:hover,
-  .RichLink-sep :visited:hover,
-  .tl tr code,
-  .tl tr var,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    background: #222;
-    color: #eee
-  }
   .LinkList a {
     padding: .5em 0
-  }
-  blockquote .tl td,
-  blockquote .tl tfoot td,
-  blockquote .tl tfoot th,
-  blockquote .tl thead td,
-  blockquote .tl thead th,
-  blockquote blockquote,
-  blockquote table,
-  blockquote td[colspan]:after,
-  h5,
-  h6 {
-    border-color: #999
-  }
-  .baseColor .RichLink a {
-    border-color: #222!important
   }
   .ABody h1,
   .ABody h2,
@@ -2245,36 +2363,10 @@ screen and (max-width:240px) {
     padding-left: 0;
     padding-right: 0
   }
-  .baseColor .RichLink-meta {
-    color: #222
-  }
-  :link .medal,
-  :visited .medal {
-    border-color: #999;
-    background: #999;
-    color: #000
-  }
   .SearchResult div div,
-  .js-generated-cite-in-blockquote,
-  blockquote:after {
+  blockquote:after,
+  blockquote:before {
     margin: 0
-  }
-  .SearchResult div p {
-    color: grey
-  }
-  .SearchResult div span {
-    color: #545454
-  }
-  .aBodyRoot :visited,
-  .tl tbody tr th :visited,
-  .tl thead tr :visited,
-  blockquote .tl tbody tr th :visited {
-    color: #eae
-  }
-  .aBodyRoot :visited:hover,
-  .tl tbody tr th :visited:hover,
-  .tl thead tr :visited:hover {
-    color: #c8e
   }
   .box dl,
   .box ol,
@@ -2282,10 +2374,8 @@ screen and (max-width:240px) {
   .box ul {
     margin: 0 0 1em
   }
-  h4,
-  h5,
-  h6 {
-    margin: 1.5em 0 .8em
+  .box > p:first-of-type {
+    margin-top: -.1em
   }
   dd,
   li {
@@ -2306,6 +2396,11 @@ screen and (max-width:240px) {
   .ABody h3 {
     margin: 2.4em 0 1.2em
   }
+  h4,
+  h5,
+  h6 {
+    margin: 1.5em 0 .8em
+  }
   .note blockquote dl,
   .note blockquote ol,
   .note blockquote p,
@@ -2321,11 +2416,253 @@ screen and (max-width:240px) {
   caption {
     margin: 1.5em 0 .7em
   }
+  .Pager {
+    padding: 0 2px
+  }
+  .SocialBtns {
+    padding: 1em 2px .5em
+  }
+}
+@media handheld,
+only screen and (prefers-color-scheme:dark),
+only screen and (max-width:240px) {
+  :link:hover,
+  blockquote tbody :hover td[colspan]:after,
+  tbody :hover td[colspan]:after {
+    border-color: #3079ed
+  }
+  :link img,
+  :visited img,
+  blockquote :link img,
+  blockquote :visited img {
+    border-color: transparent
+  }
+  img {
+    filter: brightness(85%)
+  }
+  img:focus,
+  img:hover {
+    filter: none
+  }
+  input,
+  textarea {
+    background: #000;
+    color: #eee
+  }
+  input:placeholder-shown,
+  textarea:placeholder-shown {
+    color: #999
+  }
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #999
+  }
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #999;
+    opacity: 1
+  }
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: #999;
+    opacity: 1
+  }
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #999
+  }
+  [type=submit],
+  code,
+  var {
+    background: #222
+  }
+  *,
+  .medal,
+  .tl tbody td:before,
+  .tl td,
+  .tl tfoot td,
+  .tl tfoot th,
+  .tl thead td,
+  .tl thead th,
+  blockquote .tl tbody td:after,
+  blockquote tbody th[colspan]:after,
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after,
+  table,
+  td[colspan]:after,
+  thead td[colspan]:after,
+  thead th[colspan]:after {
+    border-color: #222
+  }
+  .AHead h1,
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  :visited,
+  blockquote pre code,
+  blockquote pre var,
+  blockquote th em,
+  blockquote th strong,
+  body,
+  thead em,
+  thead strong {
+    color: #eee
+  }
+  #lB .lS,
+  .baseColor {
+    background: #000
+  }
+  em {
+    background: #4e4e1f
+  }
+  strong {
+    background: #1c3a49
+  }
+  a {
+    color: #999;
+    border-color: #000
+  }
+  .SearchResult :visited,
+  .tl tbody tr th :link,
+  .tl thead tr :link,
+  :link,
+  blockquote .tl tbody tr th :link,
+  blockquote:before {
+    color: #bbe
+  }
+  :link:hover {
+    color: #3079ed
+  }
+  :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
+  .baseColor .btn:link {
+    background: #bbe;
+    border-color: #bbe;
+    color: #000
+  }
+  .baseColor .btn:visited {
+    background: #000;
+    border-color: #eee;
+    color: #eee
+  }
+  .baseColor .btn:active,
+  .baseColor .btn:focus,
+  .tl tbody td:after,
+  tbody th[colspan]:after {
+    border-color: #000
+  }
+  .AHead,
+  .BreadcrumbList,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  h6 {
+    color: #999
+  }
+  .BlogArchive,
+  .BlogArchive tbody :hover td,
+  .Label div,
+  .Pager,
+  .SocialBtns,
+  .TxtNavi,
+  .aBodyRoot blockquote tbody th :visited,
+  .aBodyRoot blockquote tbody th :visited:hover,
+  .aBodyRoot thead :visited,
+  .aBodyRoot thead :visited:hover,
+  blockquote tbody th :link,
+  blockquote tbody th :link:hover,
+  thead :link,
+  thead :link:hover {
+    color: #000
+  }
+  .Cover h3 {
+    background: #000;
+    background: rgba(0,0,0,.75)
+  }
+  .LinkList a:not([href]),
+  .RichLink-sep a:not([href]),
+  blockquote code,
+  blockquote var,
+  tbody th code,
+  tbody th var {
+    background: #999;
+    color: #000
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .medal,
+  .tl tr code,
+  .tl tr var,
+  blockquote,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  thead code,
+  thead var {
+    color: #eee;
+    background: #222
+  }
+  .Magazine,
+  .Magazine-main,
+  blockquote h3,
+  h4,
+  kbd {
+    border-color: #eee
+  }
+  blockquote .tl tbody td:before,
+  blockquote .tl td,
+  blockquote .tl tfoot td,
+  blockquote .tl tfoot th,
+  blockquote .tl thead td,
+  blockquote .tl thead th,
+  blockquote blockquote,
+  blockquote table,
+  blockquote td[colspan]:after,
+  h5,
+  h6 {
+    border-color: #999
+  }
+  .baseColor .RichLink a {
+    border-color: #222!important
+  }
+  .baseColor .RichLink-meta {
+    color: #222
+  }
+  :link .medal,
+  :visited .medal {
+    border-color: #999;
+    background: #999;
+    color: #000
+  }
+  .SearchResult div p {
+    color: grey
+  }
+  .SearchResult div span {
+    color: #545454
+  }
+  .aBodyRoot :visited,
+  .tl tbody tr th :visited,
+  .tl thead tr :visited,
+  blockquote .tl tbody tr th :visited {
+    color: #eae
+  }
+  .aBodyRoot :visited:hover,
+  .tl tbody tr th :visited:hover,
+  .tl thead tr :visited:hover {
+    color: #c8e
+  }
   thead td,
   thead th {
     background: #999;
     color: #000;
     border-color: #222 #818181
+  }
+  tbody th {
+    background: #222;
+    border-color: #000
   }
   td {
     border-color: #000 #000 #222
@@ -2357,19 +2694,11 @@ screen and (max-width:240px) {
   tbody :hover td {
     border-color: #000 #000 #3079ed
   }
-  .Pager {
-    padding: 0 2px;
-    color: #000
-  }
   .Pager i {
     border-color: transparent #999
   }
   .Pager-top i {
     border-color: #999 transparent
-  }
-  .SocialBtns {
-    padding: 1em 2px .5em;
-    color: #000
   }
   .SocialBtns .fb :link,
   .SocialBtns .hb :link,
@@ -2387,18 +2716,240 @@ screen and (max-width:240px) {
   .SocialBtns .tw :visited {
     background: #000!important
   }
+  .SocialBtns .fb:active,
   .SocialBtns .fb:focus,
+  .SocialBtns .hb:active,
   .SocialBtns .hb:focus,
+  .SocialBtns .ln:active,
   .SocialBtns .ln:focus,
+  .SocialBtns .ok:active,
   .SocialBtns .ok:focus,
+  .SocialBtns .pt:active,
   .SocialBtns .pt:focus,
+  .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #000!important
   }
-  .js-generated-link-in-blockquote,
-  blockquote:before {
-    margin: 0;
-    color: #bbe
+}
+@media all and (-webkit-min-device-pixel-ratio:0) {
+  body,
+  input,
+  textarea {
+    font-family: -apple-system,BlinkMacSystemFont,"Avenir Next",Avenir,"Open Sans","Helvetica Neue",Verdana,Roboto,"UD Digi Kyokasho NP-R",YuKyokasho,"游ゴシック体",YuGothic,"YuGothic M","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic","M+ 1p",sans-serif
+  }
+}
+@media all\0 {
+  body,
+  input,
+  textarea {
+    font-family: Verdana,Arial,"UD Digi Kyokasho NP-R",Meiryo,sans-serif
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3,
+  .ABody h4,
+  .ABody h5,
+  .ABody h6,
+  .AHead h1 {
+    transform: rotate(.03deg);
+    font-weight: 700
+  }
+}
+@media only print and (orientation:landscape) {
+  .Magazine-item,
+  .SearchResult div div,
+  .box,
+  .caption,
+  .commonForm-pair,
+  .h1,
+  dl,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  li,
+  tr {
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid-column
+  }
+  .h1,
+  caption,
+  dt,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  thead {
+    -webkit-column-break-after: avoid;
+    break-after: avoid-column
+  }
+  .AHead,
+  .lMh,
+  .lMi,
+  .lXi {
+    padding: 0 1.5%
+  }
+  .lM1,
+  .lM2 {
+    width: 50%;
+    box-sizing: border-box
+  }
+  .Magazine-sep-inner:first-child .Magazine-main,
+  .lM1 {
+    padding-right: 1em
+  }
+  .Magazine-sep-inner:last-child .Magazine-date,
+  .lM2 {
+    padding-left: 1em
+  }
+  .ABody,
+  .SearchResult-multi {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
+  }
+  .Magazine-item {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    padding: 0
+  }
+  .Magazine-sep,
+  .lM .RichLink-sep {
+    display: table;
+    table-layout: fixed;
+    margin: 1em 0
+  }
+  .Magazine-sep {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%
+  }
+  .Magazine-sep-inner {
+    display: table-cell;
+    width: 50%
+  }
+  .Magazine-only .Magazine-sep-inner {
+    width: 100%;
+    padding: 0!important
+  }
+  .Magazine-main {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+  }
+  .Magazine-sep-inner:not(:first-child) .Magazine-date {
+    padding-left: 1.3em
+  }
+  @supports (display:-moz-box) {
+    .Magazine-date,
+    .Magazine-main,
+    .Magazine-sep-inner {
+      display: block!important
+    }
+  }
+  .lM .RichLink-sep a {
+    display: table-cell;
+    vertical-align: top;
+    width: 33.3%
+  }
+  .lM .RichLink a {
+    border-width: 0;
+    padding: 1em
+  }
+  .RichLink-meta {
+    font-size: 1em
+  }
+  .SearchResult-multi div:first-child h3 {
+    margin-top: 0
+  }
+  
+  blockquote > *,_:in-range,_:not(:root) {
+    margin-top: 0
+  }
+  .ABody h1,
+  .ABody h2,
+  .ABody h3 {
+    text-align: left
+  }
+  .hscroll,
+  .note,
+  blockquote:after,
+  blockquote:before,
+  h1,
+  h2,_:in-range,_:not(:root) {
+    -webkit-column-span: all
+  }
+  blockquote:before,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
+    margin: 0 0 2em
+  }
+  blockquote:after,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
+    margin: 1em 0 0
+  }
+  blockquote,_:in-range,_:not(:root) {
+    -webkit-column-span: all;
+    -webkit-column-count: 2
+  }
+  blockquote blockquote,_:in-range,_:not(:root) {
+    -webkit-column-span: none;
+    -webkit-column-count: 1;
+    margin: 0 0 1em
+  }
+  @supports (column-span:all) or (-moz-column-span:all) or (-webkit-column-span:all) {
+    .hscroll,
+    .note,
+    blockquote:after,
+    blockquote:before,
+    h1,
+    h2 {
+      -moz-column-span: all;
+      column-span: all
+    }
+    blockquote:before {
+      margin: 0 0 2em
+    }
+    blockquote:after {
+      -moz-column-span: all;
+      column-span: all;
+      margin: 1em 0 0
+    }
+    blockquote > * {
+      margin-top: 0
+    }
+    blockquote {
+      -moz-column-span: all;
+      column-span: all;
+      -moz-column-count: 2;
+      column-count: 2
+    }
+    blockquote blockquote {
+      -moz-column-span: none;
+      column-span: none;
+      -moz-column-count: 1;
+      column-count: 1;
+      margin: 0 0 1em
+    }
+  }
+  blockquote {
+    -webkit-column-gap: 2em;
+    -moz-column-gap: 2em;
+    column-gap: 2em
   }
 }
 @media print {
@@ -2420,6 +2971,7 @@ screen and (max-width:240px) {
   img,
   li,
   tr {
+    break-inside: avoid-page;
     page-break-inside: avoid
   }
   .h1,
@@ -2432,16 +2984,12 @@ screen and (max-width:240px) {
   h5,
   h6,
   thead {
+    break-after: avoid-page;
     page-break-after: avoid
   }
   blockquote,
   table {
     margin: 1em 0
-  }
-  .kwd,
-  .typ,
-  th {
-    font-weight: 700
   }
   p {
     line-height: 1.5
@@ -2467,7 +3015,6 @@ screen and (max-width:240px) {
   .Pager,
   .SocialBtns,
   .TxtNavi,
-  .js-generated-link-in-blockquote a:after,
   .noprint,
   [href$=".GIF"]:after,
   [href$=".JPEG"]:after,
@@ -2506,9 +3053,7 @@ screen and (max-width:240px) {
   a {
     color: #666
   }
-  .kwd,
   .ribbon :link,
-  .tag,
   :link,
   blockquote tbody th :link,
   blockquote thead th :link,
@@ -2521,10 +3066,6 @@ screen and (max-width:240px) {
   blockquote thead th :visited,
   thead :visited {
     color: #606
-  }
-  .ico path,
-  .ribbon .ico path {
-    fill: #000
   }
   .ABody {
     padding: 0 0 2em
@@ -2539,9 +3080,11 @@ screen and (max-width:240px) {
     color: #000!important;
     padding: 1em 0
   }
-  .AHead-labels,
-  .pln {
+  .AHead-labels {
     color: #000
+  }
+  .AHead-labels i {
+    display: inline-block
   }
   .AHead-labels a {
     display: inline;
@@ -2589,6 +3132,9 @@ screen and (max-width:240px) {
     font-size: .875em;
     color: #006
   }
+  body {
+    word-break: break-all
+  }
   code,
   var {
     border-width: 1px
@@ -2602,6 +3148,9 @@ screen and (max-width:240px) {
   }
   table {
     width: 100%
+  }
+  th {
+    font-weight: 700
   }
   thead td,
   thead th {
@@ -2657,28 +3206,100 @@ screen and (max-width:240px) {
   blockquote pre {
     margin: 1em
   }
-  .prettyprint {
-    line-height: 1
+}
+@media (prefers-reduced-motion:reduce) {
+  :link,
+  :link *,
+  :visited,
+  :visited * {
+    transition: none
   }
-  .atv,
-  .str {
-    color: #060
+}
+@media only screen and (-ms-high-contrast:active) {
+  .Pager-top i {
+    border-color: currentColor transparent
   }
-  .com {
-    color: #600;
-    font-style: italic
+}
+@media only screen and (forced-colors:active),
+only screen and (-ms-high-contrast:active) {
+  .AMeta,
+  .Pager,
+  .SocialBtns,
+  a:active img,
+  a:focus img,
+  blockquote,
+  form :active,
+  form :focus,
+  td {
+    border-style: dotted
   }
-  .atn,
-  .typ {
-    color: #404
+  thead td,
+  thead td[colspan]:after,
+  thead th,
+  thead th[colspan]:after {
+    border-width: 0 0 2px
   }
-  .lit {
-    color: #044
+  table,
+  tfoot td {
+    border-width: 2px 0 0
   }
-  .pun {
-    color: #440
+  img {
+    filter: none
   }
-  .dec {
-    color: #003
+  .LinkList,
+  .RichLink-sep {
+    padding: 2px
+  }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover {
+    text-decoration: underline!important
+  }
+  .RichLink a {
+    border-width: 0
+  }
+  td,
+  tfoot td {
+    border-color: currentColor Window
+  }
+  .tl td,
+  .tl tfoot td,
+  td[colspan]:after,
+  tfoot td[colspan]:after {
+    border-color: currentColor
+  }
+  table {
+    border-spacing: 2px;
+    border-collapse: separate
+  }
+  th,
+  thead {
+    font-weight: 700
+  }
+  td {
+    padding: .5em .25em
+  }
+  thead td,
+  thead th {
+    padding: .5em
+  }
+  tbody td,
+  tbody td[colspan]:after {
+    border-width: 0 0 1px
+  }
+  .tl tbody td:after {
+    border-color: Window
+  }
+  .tl {
+    border-collapse: collapse
+  }
+  .Pager i {
+    border-color: Window currentColor
+  }
+}
+@media only screen and (forced-colors:active) {
+  .Pager-top i {
+    border-color: currentColor Window
   }
 }

@@ -79,7 +79,7 @@
 @use "./08_module/ArticleBody";
 @use "./08_module/ArticleDescription";
 @use "./08_module/ArticleFooter";
-@use "./08_module/ArticleHeaderWithLabels";
+@use "./08_module/ArticleHeaderWithLabels"; // or @use "./08_module/ArticleHeader";
 @use "./08_module/Attribution";
 @use "./08_module/BlogArchive";
 @use "./08_module/BreadcrumbList";
@@ -89,7 +89,7 @@
 @use "./08_module/Label";
 @use "./08_module/LinkList";
 @use "./08_module/Magazine";
-@use "./08_module/RichLinkWithMedal";
+@use "./08_module/RichLinkWithMedal"; // or @use "./08_module/RichLink";
 @use "./08_module/Search";
 @use "./08_module/SearchResult";
 @use "./08_module/SimpleHeader";

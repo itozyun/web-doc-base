@@ -16,7 +16,7 @@
 
 @use "../04_typography/button";
 
-@if( ua.$Modern ){
+@if( ua.$Modern and ua.$Script ){
     ##{common.$BLOG_2_SLIDE__ID_START} button {
         @include responsive-horizontal-margin(1, 1em, 1em, true);
     }
