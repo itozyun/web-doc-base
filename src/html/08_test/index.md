@@ -20,7 +20,7 @@
 <a href="../test/form.html">フォーム部品の実装状況</a>,
 <a href="../test/icon.html">アイコンとスプラッシュ画面のテスト</a>,
 <a href="../test/importHack.html">import hack</a>,
-<a href="../test/javascript-implementation.html">Javascript 実装状況と深刻なバグ</a>,
+<a href="../test/javascript-implementation.html">JavaScript 実装状況と深刻なバグ</a>,
 <a href="../test/richlink.html">RichLinkのテスト</a>,
 <a href="../test/white-space.html">white space のテスト</a>
 <!-- end of insert menu -->

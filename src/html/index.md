@@ -2,7 +2,7 @@
 {
     "title" : "web-doc-baseによるウェブ文書開発",
     "templete" : "page",
-    "mainJavascriptFilename" : "debug.js"
+    "mainJavaScriptFilename" : "debug.js"
 }
 </script>
 <p id="logger"></p>

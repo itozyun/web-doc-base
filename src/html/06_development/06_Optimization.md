@@ -1,4 +1,4 @@
-# HTML, Javascript, CSS の圧縮
+# HTML, JavaScript, CSS の圧縮
 
 工事中です。
 

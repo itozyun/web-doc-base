@@ -69,7 +69,7 @@ Web サイトの強制カラーモード(旧名、ハイコントラストモー
 
 1. ネイティブサポート Chromium Edge 79+, Firefox 89+(81+), Chrome 89+(79+)
 2. `(-ms-high-contrast:*)` のサポート IE 10+, EdgeHTML 12+
-3. Web 文書へのモードの反映とこれを Javascript で検出 IE5+, Gecko 1.8.1+(文書読み込み時点のモードを反映)
+3. Web 文書へのモードの反映とこれを JavaScript で検出 IE5+, Gecko 1.8.1+(文書読み込み時点のモードを反映)
 
 `light-on-dark`, `dark-on-light` の検出は、`(-ms-high-contrast:*)` と `(forced-colors:*)` を非サポートの環境に限定する?
 

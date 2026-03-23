@@ -1,4 +1,4 @@
-# 5. CSS, Javascript のビルド
+# 5. CSS, JavaScript のビルド
 
 工事中です。
 
