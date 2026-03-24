@@ -8,7 +8,7 @@
         * https://www.tohoho-web.com/css/prop/quotes.htm
         *   IE8+, Gecko 1.7+, Opera 4+
         */
-    @if( ua.$WinIELte7 == false and ua.$GeckoLte09 == false and ua.$Gecko12 == false and ua.$Gecko13 == false ){
+    @if ua.$WinIELte7 == false and ua.$GeckoLte09 == false and ua.$Gecko12 == false and ua.$Gecko13 == false {
         quotes : none;
     }
 }

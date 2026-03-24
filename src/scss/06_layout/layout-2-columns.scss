@@ -27,13 +27,13 @@
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/table-to-float-layout-patch" as *;
 
-@if( opt.$MobileOnly == false ){
-    @if( opt.$MaxLayoutColumns < 2 ){
+@if opt.$MobileOnly == false {
+    @if opt.$MaxLayoutColumns < 2 {
         @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
     }
 
     .#{opt.$Prefix}lW { // clearfix を同時に指定するために screen の外へ
-        @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT == false and quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT == false and quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
             @include clearfix;
         }
         @include table-to-float-layout-patch {
@@ -44,15 +44,15 @@
     @include media(screen) {
         .#{opt.$Prefix}lW {
             width : size.$PC_WIDTH_PERCENT;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$PC_MAX_WIDTH_EM;
             }
-            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
-                @if( canuse.$MARGIN_AUTO ){
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
+                @if canuse.$MARGIN_AUTO {
                     margin : 0 auto;
                 }
             }
-            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 @include inline-block;
                 text-align : left;
             }
@@ -61,11 +61,11 @@
 /*  main
 ------------------------------------------------------------------------------------- */
             .#{opt.$Prefix}lM {
-                @if( ua.$WinIELte6 ){
+                @if ua.$WinIELte6 {
                     overflow-x : hidden; /* カラム落ち対策 */
                 }
                 @at-root #{&}i, #{&}z {
-                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                         padding-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
                     } @else {
                         margin-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
@@ -78,13 +78,13 @@
             .#{opt.$Prefix}lS {
                 width : 100% * size.$PC_SUB_COLUMN_RATIO;
                 @at-root #{&}i {
-                    @if( ua.$IE6 ){
+                    @if ua.$IE6 {
                         width  : 82%;
                     }
-                    @if( ua.$IE55 ){
+                    @if ua.$IE55 {
                         width  : 100%;
                     }
-                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                         padding : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
                     } @else {
                         margin : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
@@ -92,7 +92,7 @@
                 }
             }
 
-        @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
             .#{opt.$Prefix}lW {
                 display      : table;
                 table-layout : fixed;
@@ -144,7 +144,7 @@
 ------------------------------------------------------------------------------------- */
     @include media(print) {
         .#{opt.$Prefix}lSi {
-            @if( ua.$IE6 ){
+            @if ua.$IE6 {
                 width : 100%;
             }
         }
@@ -204,27 +204,27 @@
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-@if( opt.$MobileOnly == false ){
+@if opt.$MobileOnly == false {
     @include media(tablet) { /* float-layout -> table-layout も併せて変更 */
         .#{opt.$Prefix}lW {
             width : 100%;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
             }
-            @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+            @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
                 display : block;
             }
         }
             .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
                 width : auto;
-                @if( canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT ){
+                @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
                     display : block;
                 } @else {
                     float : none;
                 }
             }
                 .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
-                    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                         padding : 0;
                     } @else {
                         margin : 0;
@@ -235,26 +235,26 @@
 
 /*  mobileOnly は始めから Tablet
 ------------------------------------------------------------------------------------- */
-@if( opt.$MobileOnly ){
+@if opt.$MobileOnly {
     .#{opt.$Prefix}lW {
-        @if( ua.$IE8 or ua.$Modern ){
+        @if ua.$IE8 or ua.$Modern {
             overflow : hidden; /* この指定が無いと塗りがはみ出る */
         }
-        @if( ua.$IE5 ){
+        @if ua.$IE5 {
             width      : 100%; /* この指定が無いと横スクロールが出る  */
             overflow-x : hidden;
         }
     }
     @include media(screen) {
         .#{opt.$Prefix}lW {
-            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 text-align : center;
             }
         }
         .#{opt.$Prefix}lM, .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lSi {
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$TABLET_MAX_WIDTH_EM;
-                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     @include inline-block;
                     text-align : left;
                 } @else {
@@ -263,7 +263,7 @@
             }
         }
         #lB .#{opt.$Prefix}lS {
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
             }
         }
@@ -272,7 +272,7 @@
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-@if( opt.$MobileOnly ){
+@if opt.$MobileOnly {
     .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
         padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
     }

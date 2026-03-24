@@ -12,7 +12,7 @@
 %HeadingBase {
 /*  Serif
 ------------------------------------------------------------------------------------- */
-    @if( ua.$Modern or ua.$IE9 ){
+    @if ua.$Modern or ua.$IE9 {
         @extend %SerifFontFamily;
     }
 

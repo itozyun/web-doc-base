@@ -6,13 +6,13 @@
 @use "./media" as *;
 
 @mixin responsive-horizontal-padding($ratio, $paddingTop, $paddingBottom, $skipPrintMedia : false){
-    @if( opt.$MobileOnly == false ){
+    @if opt.$MobileOnly == false {
         & {
             padding : $paddingTop math.div(1em, $ratio) $paddingBottom;
         }
     }
 
-    @if( $skipPrintMedia ){
+    @if $skipPrintMedia {
         @include media(tablet) {
             & {
                 padding : $paddingTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $paddingBottom;

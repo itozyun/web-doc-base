@@ -24,23 +24,23 @@
     div {
         color : color.$Light_fill; /* , を消す */
     
-        @if( ua.$WinIELte9 ){
+        @if ua.$WinIELte9 {
             text-justify : inter-ideograph;
             line-break   : normal;
         }
-        @if( ua.$Modern or ua.$IE9 or ua.$WinIELte7 ){
+        @if ua.$Modern or ua.$IE9 or ua.$WinIELte7 {
             text-align   : justify;
             /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
         }
     }
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
         .#{opt.$Prefix}ribbon & div {
             color : color.$Ribbon_fill; /* , を消す */
         }
     }
         a {
             border-width : 0 0 1px;
-            @if( ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK ){
+            @if ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK {
                 @include inline-block;
                 margin : 0 0 1.7em;
             } @else {
@@ -48,11 +48,11 @@
             }
         }
 
-        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+        @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
             :hover {
                 text-decoration : none;
             }
-        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+        } @else if canuse.$HOVER_PSEUDO_CLASS {
             :link:hover, :visited:hover { /* 詳細度の為に a: が必要 */
                 text-decoration : none;
             }
@@ -60,7 +60,7 @@
 
         .#{opt.$Prefix}lS & a,
         #lF & a {
-            @if( ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK ){
+            @if ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK {
                 margin : 0 0 1.3em;
             } @else {
                 line-height : 2.4;

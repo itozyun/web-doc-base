@@ -3,7 +3,7 @@
 @use "../01_var/ua" as ua;
 
 br {
-    @if( ua.$Opera8 or ua.$Opera7x ){
+    @if ua.$Opera8 or ua.$Opera7x {
         display : block;
     }
 }

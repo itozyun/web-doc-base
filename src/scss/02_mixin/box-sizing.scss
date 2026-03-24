@@ -2,14 +2,14 @@
 @use "../01_var/canuse" as canuse;
 
 @mixin box-sizing($value) {
-    @if( canuse.$BOX_SIZING ){
-        @if( ua.$Modern or ua.$GeckoLte19 ){
+    @if canuse.$BOX_SIZING {
+        @if ua.$Modern or ua.$GeckoLte19 {
             -moz-box-sizing : $value; /* firefox 4 でもこちら */
         }
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             -webkit-box-sizing : $value;
         }
-        @if( ua.$GeckoLte19 == false ){
+        @if ua.$GeckoLte19 == false {
             box-sizing : $value;
         }
     }

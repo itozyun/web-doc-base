@@ -12,7 +12,7 @@
 @use "../02_mixin/column" as *;
 
 .#{opt.$Prefix}ABody {
-    @if( canuse.$FIRST_CHILD_PSEUDO_CLASS ){
+    @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
         // https://twitter.com/itozyun/status/1588802003261870080
         // margin にすると Gecko 106 でも塗りが乱れる。
         padding : 3.5em 0 2em;
@@ -43,7 +43,7 @@
     /*  Print
     ------------------------------------------------------------------------------------- */
     @include media(print) {
-        @if( canuse.$FIRST_CHILD_PSEUDO_CLASS ){
+        @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
             padding : 0 0 2em;
         } @else {
             margin : 0 0 2em;

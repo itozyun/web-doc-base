@@ -24,7 +24,7 @@
     /*  Print
     ------------------------------------------------------------------------------------- */
     @include media(print) {
-        @if( canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS ){
+        @if canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS {
             @at-root #{&}-cita:after {
                 content   : " ("attr(href)") ";
                 font-size : 0.875em;

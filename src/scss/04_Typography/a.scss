@@ -25,26 +25,26 @@
 /* 記事の外では 下線なし -> hover -> 下線あり */
 :link, :visited { text-decoration : none; }
 
-@if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+@if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
     :hover { text-decoration : underline; }
-} @else if( canuse.$HOVER_PSEUDO_CLASS ){
+} @else if canuse.$HOVER_PSEUDO_CLASS {
     :link:hover, :visited:hover { text-decoration : underline; }
 }
 
-@if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
+@if quirks.$ACTIVE_ACTS_AS_FOCUS {
     a:active { text-decoration : none; }
     a:active:hover { text-decoration : underline; }
-} @else if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
+} @else if canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS {
     a:active { text-decoration : underline; }
 }
-@if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
+@if canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) {
     a:focus { text-decoration : none; }
     a:focus:hover { text-decoration : underline; }
 }
 
 /*  transition
 ------------------------------------------------------------------------------------- */
-@if( ua.$Modern ){
+@if ua.$Modern {
     :link, :visited {
         background-color : transparent;
     }
@@ -66,7 +66,7 @@ a {
 :visited {
     color : color.$Light_text;
 }
-@if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+@if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
     :link:hover {
         color        : color.$Light_hover;
         border-color : color.$Light_hover;
@@ -77,7 +77,7 @@ a {
     }
 }
 
-@if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+@if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
     .#{opt.$Prefix}ribbon {
         a {
             color        : color.$Ribbon_casual_text;
@@ -89,7 +89,7 @@ a {
         :visited {
             color : color.$Ribbon_text;
         }
-        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+        @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
             :link:hover    {
                 color        : color.$Ribbon_hover;
                 border-color : color.$Ribbon_hover;
@@ -104,7 +104,7 @@ a {
 
 /* :active, :focus 時の配色は同じ
 ------------------------------------------------------------------------------------- */
-@if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+@if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
     a:active {
         background-color : color.$ACCENT !important;
         color            : #fff        !important;
@@ -113,18 +113,18 @@ a {
     a:focus {
         background-color : Highlight !important;
         & * { color : HighlightText !important; }
-        @if( opt.$UseRibbon ){
+        @if opt.$UseRibbon {
             .#{opt.$Prefix}ribbon & {
                 outline  : HighlightText solid size.$FORCED_COLORS_FOCUS_BORDER_WIDTH; // Highlight 色が暗いので ,ribbon の中では白いアウトラインをつける
             }
         }
     }
-} @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+} @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
     a:focus {
         background-color : color.$Sidebar_fill !important;
     }
 } @else {
-    @if( ua.$IE5 ){
+    @if ua.$IE5 {
         /* :link, :visited {
             height : 1px; // hasLayout を有効にしないと背景色の塗りが微妙, しかし PicaThumbnail で問題が起きるので諦める
         } */
@@ -143,7 +143,7 @@ a {
 
 /* :target
 ------------------------------------------------------------------------------------- */
-@if( canuse.$TARGET_PSEUDO_CLASS ){
+@if canuse.$TARGET_PSEUDO_CLASS {
     :target, :target * {
         background   : color.$ACCENT !important;
         color        : #fff !important;
@@ -177,7 +177,7 @@ a {
     :link    { color : color.$Print_link; }
     :visited { color : color.$Print_visited; }
 
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
         .#{opt.$Prefix}ribbon {
             a        { color : color.$Print_casual_text; }
             :link    { color : color.$Print_link; }

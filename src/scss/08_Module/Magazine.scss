@@ -41,7 +41,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
     @at-root #{&}-item {
         @include unbreak-inside;
         padding : 1em 0;
-        @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+        @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
             display : table;
         } @else {
             @include clearfix;
@@ -53,7 +53,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             @include font-family-monospace;
             padding-right : 1.5em;
             font-weight   : bold;
-            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
@@ -85,15 +85,15 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             border-width : 0 0 0 .5em;
             padding-left : 1.5em;
             border-color : color.$Light_text;
-            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
                 margin-left : 5.5em;
             }
-            @if( ua.$IE5 ){
+            @if ua.$IE5 {
                 height : 1px; // <= 区切り線の太さが変わるのを防ぐ
-            } @else if( ua.$IE55 or ua.$IE6 ){
+            } @else if ua.$IE55 or ua.$IE6 {
                 zoom : 1; // <= 区切り線が消えるのを防ぐ
             }
         }
@@ -175,7 +175,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
                 display : block !important;
             }
         }
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             @supports (display: -moz-box) {
                 @at-root #{&}-date, #{&}-main, #{&}-sep-inner {
                     display : block !important; // for Gecko 45, @support 22+, display:flex 20+ なので、20~21 にパッチが当たらない?
@@ -212,14 +212,14 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
         @at-root #{&}-item {
             padding : 1em 0 0;
-            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
                 display : block;
             }
         }
             @at-root #{&}-date {
                 font-family : inherit;
                 width       : auto;
-                @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+                @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
                     display : block;
                 } @else {
                     float : none;
@@ -243,7 +243,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
         @at-root #{&}-main {
             border-width : 0 0 .5em;
             padding      : 0 0 1em;
-            @if( $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE ){
+            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
                 display : block;
             }
         }

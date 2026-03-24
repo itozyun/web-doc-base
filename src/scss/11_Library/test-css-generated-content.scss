@@ -7,7 +7,7 @@
 @use "../02_mixin/line-height" as *;
 
 // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/generatedcontent.js
-@if( ua.$Modern and ua.$Script ){
+@if ua.$Modern and ua.$Script {
     ##{common.$ELEMENT_ID_TEST_CSS_GENERATED_CONTENT} {
         font : 0/0 a;
     }

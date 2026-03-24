@@ -15,21 +15,21 @@
 @use "../04_typography/input-type-submit";
 
 input.#{opt.$Prefix}btn {
-    @if( ua.$IE5 or ua.$IE55 ){
+    @if ua.$IE5 or ua.$IE55 {
         padding : .3em 1em #{size.$PARAGRAPH_LINE_HEIGHT_EM - 1.3em};
     }
-    @if( ua.$IE7 or ua.$IE6 ){
+    @if ua.$IE7 or ua.$IE6 {
         height  : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
         padding : .25em 1em #{size.$PARAGRAPH_LINE_HEIGHT_EM - 1.25em};
     }
-    @if( ua.$Opera7x ){
+    @if ua.$Opera7x {
         padding : 0; // for Opera 7.x
     }
-    @if( ua.$GeckoLte19 ){
-        @if( ua.$GeckoLte09 ){
+    @if ua.$GeckoLte19 {
+        @if ua.$GeckoLte09 {
             line-height : 1;
             height      : size.$PARAGRAPH_LINE_HEIGHT_EM;
-            @if( ua.$Gecko09 ){
+            @if ua.$Gecko09 {
                 padding : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 1em;
             } @else {
                 padding : 0;
@@ -40,7 +40,7 @@ input.#{opt.$Prefix}btn {
         }
     }
 
-    @if( canuse.$HOVER_PSEUDO_CLASS and ua.$OperaLte9 == false ){
+    @if canuse.$HOVER_PSEUDO_CLASS and ua.$OperaLte9 == false {
         &:hover {
             text-decoration : underline;
         }

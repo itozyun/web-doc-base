@@ -8,11 +8,11 @@
 pre {
     @include pre-wrap;
 
-    @if( ua.$GeckoLte19 ){
+    @if ua.$GeckoLte19 {
         overflow : auto;
     }
     code, samp {
-        @if( ua.$IE5 and opt.$UseITStyles ){
+        @if ua.$IE5 and opt.$UseITStyles {
             width : 100%;
         }
     }

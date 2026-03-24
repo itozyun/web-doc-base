@@ -6,7 +6,7 @@
 
 @use "./_/CodingBase" as *;
 
-@if( opt.$UseITStyles ){
+@if opt.$UseITStyles {
     var {
         @extend %CodingBase;
     }

@@ -33,13 +33,11 @@ $_COMMENT_OUT : (
             @media all\0 {
                 @content;
             }
-        }
-        @else if $targetGroup == 'onlyOpera' {
+        } @else if $targetGroup == 'onlyOpera' {
             @media not aural and (1) {
                 @content;
             }
-        }
-        @else if $targetGroup == 'onlySafari' {
+        } @else if $targetGroup == 'onlySafari' {
             @media all and (-webkit-min-device-pixel-ratio:0) {
                 @content;
             }
@@ -58,41 +56,34 @@ $_COMMENT_OUT : (
                     @content;
                 }
             }
-        }
-        @else if $targetGroup == 'chrome1Safari3' { // Chrome 1, Safari 3.x
+        } @else if $targetGroup == 'chrome1Safari3' { // Chrome 1, Safari 3.x
             @media screen and (min-width:0\-){
                 & [_lazyhack_="_:not(:root:root)"] {
                     @content;
                 }
             }
-        }
-        @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome ~5, Safari ~4.1
+        } @else if $targetGroup == 'chromeLte5SafariLte4' { // Chrome ~5, Safari ~4.1
             @media all and (min-width:0\-) {
                 @content;
             }
-        }
-        @else if $targetGroup == 'chromeLte9SafariLte5' { // Chrome ~9, Safari ~5
+        } @else if $targetGroup == 'chromeLte9SafariLte5' { // Chrome ~9, Safari ~5
             & [_lazyhack_="body[n0]:nth-child(n0)"]{
                 @content;
             }
-        }
-        @else if $targetGroup == 'chromeGte2To5' { // Chrome 2~5
+        } @else if $targetGroup == 'chromeGte2To5' { // Chrome 2~5
             & [_lazyhack_="_:increment|_:not(*:root)"] {
                 @content;
             }
-        }
-        @else if $targetGroup == 'chromeGte53' { // Chrome 53+
+        } @else if $targetGroup == 'chromeGte53' { // Chrome 53+
             @supports (-webkit-appearance:none) and (font-variant-caps:normal) and (not (-ms-accelerator:true)) and (not (overflow:-webkit-marquee)) and (not (-moz-appearance:none)){
                 @content;
             }
-        }
-        @else if $targetGroup == 'gecko120To121' { // Gecko 1.2.0~1.2.1
+        } @else if $targetGroup == 'gecko120To121' { // Gecko 1.2.0~1.2.1
             & [_lazyhack_="_:lang(x)"] {
                 @content;
             }
         }
-    }
-    @else if map-get($_COMMENT_OUT, $targetGroup) != 0 {
+    } @else if map-get($_COMMENT_OUT, $targetGroup) != 0 {
         body {
             color : pink !important;
         }

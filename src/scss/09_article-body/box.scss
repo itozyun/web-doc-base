@@ -32,7 +32,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
     text-align : center;
     font-size  : 1em * $_CAPTIONED_OBJ_FONTSIZE;
  
-    @if( canuse.$MAX_AND_MIN_SIZES ){
+    @if canuse.$MAX_AND_MIN_SIZES {
         max-width : 100%;
     }
 }
@@ -49,10 +49,10 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
         margin : 0;
     }
 
-    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         & > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_EM + 1em, 4);
-            @if( opt.$UseITStyles ){
+            @if opt.$UseITStyles {
                 kbd {
                     margin-top : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 4);
                 }
@@ -61,12 +61,12 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
                 padding-top : 1em; // ruby が見えなくなるのを防ぐ
             }
             tr & {
-                @if( ua.$Modern ){
+                @if ua.$Modern {
                     margin-top : auto; // Windown XP Safari 3.2.3 で 0 だとレイアウトが崩れる
                 } @else {
                     margin-top : 0;
                 }
-                @if( opt.$UseITStyles ){
+                @if opt.$UseITStyles {
                     kbd {
                         margin-top : 0;
                     }
@@ -89,24 +89,24 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
     //, embed, object, video
     {
         float : left;
-        @if( ua.$IE5 ){
+        @if ua.$IE5 {
             margin : 0 0.5em 1em 0;
         } @else {
             margin : 0 1em 1em 0;
         }
     }
     img, iframe {
-        @if( canuse.$MAX_AND_MIN_SIZES ){
-            @if( opt.$MobileOnly ){
+        @if canuse.$MAX_AND_MIN_SIZES {
+            @if opt.$MobileOnly {
                 max-width : 100%; // 4_Typography/04_Typography.scss を上書き
-            } @else if( canuse.$CSS_MEDIA_QUERY ){
+            } @else if canuse.$CSS_MEDIA_QUERY {
                 max-width : 100%; // 4_Typography/04_Typography.scss を上書き
             };
         }
     }
     .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
         float : left;
-        @if( ua.$IE5 ){
+        @if ua.$IE5 {
             margin : 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
         } @else {
             margin : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
@@ -118,7 +118,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
     }
 }
 
-@if( ua.$GeckoLte19 ){
+@if ua.$GeckoLte19 {
     hr { display: -moz-inline-box; } // .box 内の hr が img に重なるのを妨げる
 }
 
@@ -157,7 +157,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 /*  Phone
 ------------------------------------------------------------------------------------- */
 @include media(phone) {
-    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         .box > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
         }
@@ -194,7 +194,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 /*  Watch
 ------------------------------------------------------------------------------------- */
 @include media(watch) {
-    @if( canuse.$FIRST_OF_TYPE_PSEUDO_CLASS ){
+    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         .box > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);
         }

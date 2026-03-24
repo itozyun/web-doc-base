@@ -19,7 +19,7 @@ h2 {
     padding      : 1.5em 0.45em 0.5em;
     font-size    : 1.1em;
 
-    @if( canuse.$CSS_GENERATED_BLOCK ){
+    @if canuse.$CSS_GENERATED_BLOCK {
         position : relative;
         
         &:after {
@@ -45,7 +45,7 @@ h2 {
             }
         }
 
-        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
             .#{opt.$Prefix}ribbon &:after {
                 @if color.$Light_accent != color.$Ribbon_accent {
                     border-color : color.$Ribbon_accent;
@@ -80,7 +80,7 @@ h2 {
 .#{opt.$Prefix}wn {
     color : color.$WARN !important;
 
-    @if( canuse.$CSS_GENERATED_BLOCK ){
+    @if canuse.$CSS_GENERATED_BLOCK {
         &:after {
             background : color.$WARN !important;
             color      : color.$WARN !important;

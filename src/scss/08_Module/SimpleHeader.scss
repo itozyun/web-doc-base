@@ -12,12 +12,12 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/media" as *;
 
-@if( opt.$UseBuiltinHeader ){
+@if opt.$UseBuiltinHeader {
     .#{opt.$Prefix}Header {
         @at-root #lH .lMi,  /* .lM に対して padding : 1em 0; とすると IE で h1 の文字が消える */
                  #lH .lSi { /* .lSi に余白が無いと検索ボックスの枠線が消える */
             padding-top : 1em;
-            @if( ua.$IE5 == false and ua.$IE55 == false ){
+            @if ua.$IE5 == false and ua.$IE55 == false {
                 padding-bottom : 1em;
             }
         }
@@ -29,12 +29,12 @@
         @include line-height(1, true);
 
         @at-root .h1, & h1 {
-            @if( opt.$MobileOnly == false ){
+            @if opt.$MobileOnly == false {
                 display : inline;
             }
             font-size : 1.5em;
             margin    : 0 0.5em 0 0;
-            @if( ua.$IE5 ){
+            @if ua.$IE5 {
                 height : 1px; // <= hasLayout = true
             }
         }
@@ -43,7 +43,7 @@
             padding : 0;
         }
         span {
-            @if( ua.$IE5 ){
+            @if ua.$IE5 {
                 padding : 0 0 .5em;
                 height  : 1px; // <= hasLayout = true
             } 
@@ -59,12 +59,12 @@
         ------------------------------------------------------------------------------------- */
         @include media(tablet) {
             @at-root #lH .lMi {
-                @if( ua.$IE5 == false ){
+                @if ua.$IE5 == false {
                     padding-bottom : 0;
                 }
             }
 
-            @if( opt.$MobileOnly ){
+            @if opt.$MobileOnly {
                 @include media(screen) {
                     text-align : center;
                 }
@@ -72,7 +72,7 @@
                 text-align : center;
             }
             @at-root .h1, & h1 {
-                @if( opt.$MobileOnly == false ){
+                @if opt.$MobileOnly == false {
                     display : block;
                 }
                 margin : 0 0 0.5em;
@@ -103,11 +103,11 @@
             // 記事でない場合、サイトタイトルをセンタリング
             h1 {
                 text-align : center;
-                @if( opt.$MobileOnly == false ){
+                @if opt.$MobileOnly == false {
                     display : block;
                 }
                 margin : 0 0 0.5em;
-                @if( canuse.$ADJACENT_SIBLING_COMBINATOR ){
+                @if canuse.$ADJACENT_SIBLING_COMBINATOR {
                     &+span {
                         display    : block;
                         text-align : center;

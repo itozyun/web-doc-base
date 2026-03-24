@@ -8,8 +8,8 @@
 
 @use "../03_reset/input-type-submit";
 
-@if( canuse.$ATTRIBUTE_SELECTOR and quirks.$FORM_STYLING_LIMITED == false ){
-    [type=submit] {
+@if canuse.$ATTRIBUTE_SELECTOR and quirks.$FORM_STYLING_LIMITED == false {
+    [type="submit"] {
         background : color.$Light_casual_fill;
     }
 }
@@ -17,8 +17,8 @@
 /*  Dark theme
 ------------------------------------------------------------------------------------- */
 @include media(dark_theme) {
-    @if( canuse.$ATTRIBUTE_SELECTOR ){
-        [type=submit] {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        [type="submit"] {
             background : color.$Dark_casual_fill;
         }
     }

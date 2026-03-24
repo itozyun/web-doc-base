@@ -12,7 +12,7 @@
 
 @use "../08_module/ArticleBody";
 
-@if( opt.$UseITStyles ){
+@if opt.$UseITStyles {
     kbd {
         @include inline-block;
         @include border-radius(3px);
@@ -23,7 +23,7 @@
         letter-spacing : -1px;
         padding        : 0 .4em;
         margin         : 0 .1em;
-        @if( canuse.$HOVER_PSEUDO_CLASS ){
+        @if canuse.$HOVER_PSEUDO_CLASS {
             &:hover {
                 position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
                 top      : -2px;

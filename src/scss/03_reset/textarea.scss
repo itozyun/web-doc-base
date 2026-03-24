@@ -10,11 +10,11 @@ textarea {
     overflow  : auto;
     margin    : 0;
 
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         resize           : vertical;
         background-image : none; /* Android Firefox */
     }
-    @if( ua.$Opera70 ){
+    @if ua.$Opera70 {
         background : Window; // TODO 不要?
     }
 }

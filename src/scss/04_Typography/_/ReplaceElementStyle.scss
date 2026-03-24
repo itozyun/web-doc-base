@@ -10,13 +10,13 @@
 
 %ReplaceElementStyle {
     @include responsive-horizontal-margin(1, 1em, 1em);
-    @if( canuse.$MARGIN_AUTO ){
+    @if canuse.$MARGIN_AUTO {
         margin : 1em auto;
     } @else {
         margin : 1em 0;
     }
     a & {
-        @if( ua.$IE5 == false ){
+        @if ua.$IE5 == false {
             display : block; /* focus 時の塗りを適切にする */
         }
     }
@@ -24,8 +24,8 @@
         margin-top : 0;
     }
 
-    @if( canuse.$MAX_AND_MIN_SIZES ){
-        @if( opt.$MobileOnly == false ){
+    @if canuse.$MAX_AND_MIN_SIZES {
+        @if opt.$MobileOnly == false {
             max-width : 100%;
         }
 

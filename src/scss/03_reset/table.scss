@@ -3,7 +3,7 @@
 @use "../01_var/ua" as ua;
 
 table {
-    @if( ua.$IE5 or ua.$IE55 ){
+    @if ua.$IE5 or ua.$IE55 {
         font-size : 1em;
     }
 }

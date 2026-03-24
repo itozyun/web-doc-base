@@ -24,7 +24,7 @@
     }
 
     :link &, :visited & {
-        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
             .#{opt.$Prefix}ribbon & {
                 border-color : color.$Ribbon_fill;
             }
@@ -40,7 +40,7 @@
         }
     }
 
-    @if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
+    @if canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS {
         a:active & {
             border-color : color.$ACCENT !important;
         /*  Forced colors
@@ -50,7 +50,7 @@
             }
         }
     }
-    @if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
+    @if canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) {
         a:focus & {
             border-color : color.$ACCENT !important;
         /*  Forced colors
@@ -62,13 +62,13 @@
     }
 
     // :hover
-    @if( ua.$GeckoLte09 == false and ua.$Gecko12 == false ){ /* 下ではチラツキが激しい */
-        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+    @if ua.$GeckoLte09 == false and ua.$Gecko12 == false { /* 下ではチラツキが激しい */
+        @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
             :hover & {
                 position : relative;
                 top      : 2px;
             }
-        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+        } @else if canuse.$HOVER_PSEUDO_CLASS {
             :link:hover &, :visited:hover & {
                 position : relative;
                 top      : 2px;

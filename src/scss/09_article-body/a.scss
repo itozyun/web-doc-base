@@ -21,9 +21,9 @@
 .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} {
     :link, :visited { text-decoration : underline; }
 
-    @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+    @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
         :hover { text-decoration : none !important; } // 詳細度を上げないと上書きできない(IE6-)
-    } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+    } @else if canuse.$HOVER_PSEUDO_CLASS {
         :link:hover, :visited:hover { text-decoration : none; }
     }
 
@@ -33,14 +33,14 @@
         }
     }
 
-    @if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
-        @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+    @if quirks.$ACTIVE_ACTS_AS_FOCUS {
+        @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
             // :active:hover { text-decoration : underline !important; } // 上書きできない!(IE6-)
-        } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+        } @else if canuse.$HOVER_PSEUDO_CLASS {
             a:active:hover { text-decoration : underline; }
         }
     }
-    @if( canuse.$FOCUS_PSEUDO_CLASS or ( canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false ) ){
+    @if canuse.$FOCUS_PSEUDO_CLASS or ( canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false ) {
         a:focus:hover { text-decoration : underline; }
     }
 
@@ -59,7 +59,7 @@
     /*  Print
     ------------------------------------------------------------------------------------- */
     @include media(print) {
-        @if( canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS ){
+        @if canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS {
             & a[href]:after {
                 content   : " ("attr(href)") ";
                 font-size : 0.875em;
@@ -68,7 +68,7 @@
 
             @at-root {
                 body {
-                    @if( ua.$Modern or ua.$IE9 ){
+                    @if ua.$Modern or ua.$IE9 {
                         // content:attr(href) をボックス幅で改行する, Firefox, IE8 では不要だった
                         // @include unbreak-box-with-long-text; // for Blink 98, IE9. https://twitter.com/itozyun/status/1506759032928833541
                         // ↓
@@ -88,7 +88,7 @@
                     display : none; /* for iOS4 content : none だけでは消えない */
                 }
     
-                @if( ua.$IE8 == false ){
+                @if ua.$IE8 == false {
                     [href^="#"]:after, /* 文書内リンクは非表示 */
                     [href^="mailto:"]:after,
                     [href^="tel:"]:after {

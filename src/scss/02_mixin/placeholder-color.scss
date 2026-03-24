@@ -7,7 +7,7 @@
 @use "../01_var/ua" as ua;
 
 @mixin placeholder-color($color) {
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         &:placeholder-shown {
             color : $color;
         }

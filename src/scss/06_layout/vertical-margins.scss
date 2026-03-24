@@ -8,7 +8,7 @@
 @include media(screen) {
     #lB .#{opt.$Prefix}lM {
         padding-bottom : 4em;
-        @if( ua.$GeckoLte09 or ua.$Gecko12 ){
+        @if ua.$GeckoLte09 or ua.$Gecko12 {
             padding-top : 2em; // .ABody の h2 等の margin-top が効かない為
         }
     }

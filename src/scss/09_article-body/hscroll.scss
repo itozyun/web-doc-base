@@ -18,7 +18,7 @@
     @include media(screen) {
         margin : 1em 0;
 
-        @if( ua.$IE5 or ua.$IE55 ){
+        @if ua.$IE5 or ua.$IE55 {
             width : 100%;
         }
 
@@ -35,11 +35,11 @@
             @at-root .hscroll tr pre {
                 @include pre-wrap;
             }
-            @if( opt.$UseITStyles ){
+            @if opt.$UseITStyles {
                 code, var, kbd, samp {
                     @include reset-unbreak-box-for-inline-element;
                 }
-                @if( ua.$IE5 ){
+                @if ua.$IE5 {
                     code, samp { width : auto; }
                 }
             }
@@ -62,8 +62,8 @@
     @include media(tablet) {
         // https://t.co/dDQoerU1IO
         //   > Android2.xでoverflow:scrollやautoが効かない（overflow:hiddenとして処理される）
-        @if( canuse.$OVERFLOW_X_AND_Y ){
-            @if( ua.$Modern ){
+        @if canuse.$OVERFLOW_X_AND_Y {
+            @if ua.$Modern {
                 overflow : auto;
             }
             overflow-x : auto;
@@ -72,7 +72,7 @@
             overflow : auto;
         }
 
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             // https://www.cloudconsul.jp/webkit-overflow-scrolling-touch
             //   「-webkit-overflow-scrolling: touch;」を使い、スマホでtableの理想的な横スクロールを実現する
             // https://caniuse.com/?search=-webkit-overflow-scrolling
@@ -95,7 +95,7 @@
         tbody {
             white-space : pre;
             .#{common.$CLASSNAME_NO_JAVASCRIPT} & {
-                @if( ua.$Modern ){
+                @if ua.$Modern {
                     @include pre-wrap; // TODO nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解消する
                 }
             }

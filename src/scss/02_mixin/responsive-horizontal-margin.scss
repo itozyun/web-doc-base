@@ -6,9 +6,9 @@
 @use "./media" as *;
 
 @mixin responsive-horizontal-margin($ratio, $marginTop, $marginBottom, $noPrint : false, $zeroHorizontalMarginWhenXGA : false){
-    @if( opt.$MobileOnly == false ){
-        @if( 1 < $ratio or $zeroHorizontalMarginWhenXGA ){
-            @if( $marginTop != 0 or $marginBottom != 0 ){
+    @if opt.$MobileOnly == false {
+        @if 1 < $ratio or $zeroHorizontalMarginWhenXGA {
+            @if $marginTop != 0 or $marginBottom != 0 {
                 & {
                     margin  : $marginTop 0 $marginBottom;
                 }
@@ -20,7 +20,7 @@
         }
     }
 
-    @if( $noPrint ){
+    @if $noPrint {
         @include media(tablet) {
             & {
                 margin : $marginTop math.div(size.$TABLET_HORIZONTAL_MARGIN, $ratio) $marginBottom;

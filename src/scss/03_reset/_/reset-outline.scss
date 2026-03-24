@@ -7,7 +7,7 @@
 @use "../../02_mixin/active-focus-pseudo-class" as *;
 
 @mixin reset-outline {
-    @if( ua.$Modern or ua.$IE8to9 ){
+    @if ua.$Modern or ua.$IE8to9 {
         @include active-focus-pseudo-class {
             outline : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH solid transparent;
         }

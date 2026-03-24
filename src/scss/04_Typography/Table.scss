@@ -17,15 +17,15 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
 
-@use "../03_reset/table.scss";
+@use "../03_reset/table";
 
 @use "./_/nesting" as *;
 
 @mixin _table-cell-border-width($border-width){
     border-width : $border-width;
 
-    @if( canuse.$CSS_GENERATED_BLOCK ){
-        @if( $border-width != "0 0 1px" ){
+    @if canuse.$CSS_GENERATED_BLOCK {
+        @if $border-width != "0 0 1px" {
             &[colspan]:after {
                 border-width : $border-width;
             }
@@ -36,9 +36,9 @@
 @mixin _table-cell-border-color($border-color){
     border-color : $border-color;
 
-    @if( canuse.$CSS_GENERATED_BLOCK ){
+    @if canuse.$CSS_GENERATED_BLOCK {
         &[colspan]:after {
-            @if(length($border-color) < 3){
+            @if length($border-color) < 3{
                 border-color : nth($border-color, 1);
             } @else {
                 border-color : nth($border-color, 3);
@@ -52,7 +52,7 @@
  *  screenshot
  *    https://x.com/itozyun/status/1756414646381408399
 ------------------------------------------------------------------------------------- */
-@if( canuse.$CSS_GENERATED_BLOCK ){
+@if canuse.$CSS_GENERATED_BLOCK {
     [colspan] {
         position : relative;
     }
@@ -106,7 +106,7 @@ table {
     empty-cells     : show;
     border-spacing  : 0;
     @include responsive-horizontal-margin(1, 1em, 1em);
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         @include media(pc) {
             @supports (position:sticky) {
                 position : relative;
@@ -124,7 +124,7 @@ table {
     thead,               // for Firefox
     thead td, thead th { // for Chrome
         // https://qiita.com/orangain/items/6268b6528ab33b27f8f2
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             @include media(pc) {
                 @supports (position:sticky) {
                     position : -webkit-sticky;
@@ -176,7 +176,7 @@ table {
         border-width : 0 0.5em 1px;
     }
 
-    @if( canuse.$LAST_CHILD_PSEUDO_CLASS and canuse.$NEGATIVE_PSEUDO_CLASS ){
+    @if canuse.$LAST_CHILD_PSEUDO_CLASS and canuse.$NEGATIVE_PSEUDO_CLASS {
         tbody:not(:last-child) > tr:last-child > * { /* tfoot を持つ場合に最後の行の線を消す */
             border-bottom-width : 0;
         }
@@ -194,14 +194,14 @@ table {
 ------------------------------------------------------------------------------------- */
 @mixin _table-colors( $text, $fill, $casual_text, $casual_fill ){
     table {
-        @if( ua.$IE5 or ua.$IE55 ){
+        @if ua.$IE5 or ua.$IE55 {
             color : $text;
         }
         border-color : $casual_fill;
     }
 
     thead { // For Firefox 124, no effect on Chrome 124
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             @include media(pc) {
                 @supports (position:sticky) {
                     background : mix( $casual_text, $casual_fill, 80% );
@@ -219,7 +219,7 @@ table {
         :link,
         .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
             color : $fill;
-            @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
                 &:hover {
                     color : $fill;
                 }
@@ -255,7 +255,7 @@ table {
             :link,
             .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
                 color : $fill;
-                @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS ){
+                @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
                     &:hover {
                         color : $fill;
                     }
@@ -270,7 +270,7 @@ table {
             border-color : $text $casual_fill;
         }
 
-        @if( canuse.$HOVER_PSEUDO_CLASS ){
+        @if canuse.$HOVER_PSEUDO_CLASS {
             tbody :hover td {
                 @include _table-cell-border-color($casual_fill $casual_fill color.$ACCENT);
             }
@@ -280,7 +280,7 @@ table {
 
 @include _table-colors( color.$Light_text, color.$Light_fill, color.$Light_casual_text, color.$Light_casual_fill );
 
-@if( canuse.$HOVER_PSEUDO_CLASS ){
+@if canuse.$HOVER_PSEUDO_CLASS {
     tbody :hover th {
         background : color.$ACCENT;
         color      : #fff;
@@ -294,9 +294,9 @@ table {
     }
 
     tbody :hover th a {
-        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
             background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
-        } @else if( quirks.$FOCUS_COLOR_SYSTEM_FIXED == false ){
+        } @else if quirks.$FOCUS_COLOR_SYSTEM_FIXED == false {
             @include active-focus-pseudo-class {
                 background : #fff !important;
                 color      : color.$ACCENT !important;
@@ -305,7 +305,7 @@ table {
     }
 }
 
-@if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+@if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
     thead a:focus,
     blockquote tbody th a:focus {
         background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
@@ -348,7 +348,7 @@ table {
     tbody td {
         @include _table-cell-border-width(0 0 1px);
     }
-    @if( canuse.$LAST_CHILD_PSEUDO_CLASS == false and canuse.$FIRST_CHILD_PSEUDO_CLASS ){ // 該当は ie8 だけ
+    @if canuse.$LAST_CHILD_PSEUDO_CLASS == false and canuse.$FIRST_CHILD_PSEUDO_CLASS { // 該当は ie8 だけ
          /* tfoot を持つ場合に最後の行の線を消す */
         tfoot tr:first-child th,
         tfoot tr:first-child td {

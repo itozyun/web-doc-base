@@ -16,15 +16,15 @@
     color       : color.$Light_fill; /* , を消す */
 
     a {
-        @if( ua.$GeckoLte09 == false and ua.$Opera7x == false ){
+        @if ua.$GeckoLte09 == false and ua.$Opera7x == false {
             @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
         }
-        @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
+        @if ua.$IE7 or ua.$IE6 or ua.$IE55 {
             zoom : 1;
         }
     }
 
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
         .#{opt.$Prefix}ribbon & {
             color : color.$Ribbon_fill; /* , を消す */
         }

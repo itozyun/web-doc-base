@@ -5,7 +5,7 @@
 @use "./_/HelpContentStyle" as *;
 
 abbr[title] {
-    @if( canuse.$ATTRIBUTE_SELECTOR ){
+    @if canuse.$ATTRIBUTE_SELECTOR {
         @extend %HelpContentStyle;
     }
 }

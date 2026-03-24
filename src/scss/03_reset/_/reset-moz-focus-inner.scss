@@ -1,12 +1,12 @@
 @use "../../01_var/ua" as ua;
 
 :-moz-focus-inner /* , button:-moz-focus-inner */ {
-    @if( ua.$GeckoLte09 or ua.$Gecko12 or ua.$Gecko13to19 ){
+    @if ua.$GeckoLte09 or ua.$Gecko12 or ua.$Gecko13to19 {
         border : 0;
     }
 }
 ::-moz-focus-inner /* , button::-moz-focus-inner */ {
-    @if( ua.$Modern or ua.$Gecko19 ){
+    @if ua.$Modern or ua.$Gecko19 {
         border : 0; /* Gecko 1.9.0+ */
     }
 }

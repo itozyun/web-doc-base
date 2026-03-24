@@ -25,19 +25,19 @@
     display : block;
 
     @at-root #{&}-pair {
-        @if( ua.$IE5 == false ){
+        @if ua.$IE5 == false {
             @include clearfix;
         }
         @include unbreak-inside;
         margin-bottom : 1em;
     }
         & label {
-            @if( ua.$IE5 == false ){
+            @if ua.$IE5 == false {
                 float   : left;
                 width   : 7em;
                 padding : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) 0;
-                @if( ua.$GeckoLte09 ){
-                    @if( ua.$Gecko09 ){
+                @if ua.$GeckoLte09 {
+                    @if ua.$Gecko09 {
                         float : none; // Gecko 0.9+ でラベルが消えるので左右に並べない
                         width : auto;
                     }
@@ -49,24 +49,25 @@
 
         @at-root #{&}-wrap {
             display : block;
-            @if( ua.$LegacyOperaOrGecko ){
-                @if( ua.$Gecko09 ){
+            @if ua.$LegacyOperaOrGecko {
+                @if ua.$Gecko09 {
                     margin : 0.5em 1em;
                 } @else {
                     margin : 0 0 1em 8em;
                 }
-            } @else if( ua.$IE5 == false ){
-                margin : 0 #{(size.$INPUT_BORDER_WIDTH + size.$FORM_ITEM_PADDING_LR) * 2} 0 8em; /* 入力エリアのpaddingとborder分pxサイズでマージンを右に取る */
+            } @else if ua.$IE5 == false {
+                /* 入力エリアの padding と border 分 px サイズでマージンを右に取る */
+                margin : 0 #{(size.$INPUT_BORDER_WIDTH + size.$FORM_ITEM_PADDING_LR) * 2} 0 8em;
             } @else {
                 margin : 0.5em 1em;
             }
 
             * {
                 width : 100%;
-                @if( ua.$IE7 or ua.$IE6 ){
+                @if ua.$IE7 or ua.$IE6 {
                     float : left; /* 上に出来る余白を消す、ie5 はカラムが壊れる */
                 }
-                @if( ua.$GeckoLte09 ){
+                @if ua.$GeckoLte09 {
                     display : block; /* 上に出来る余白を消す */
                 }
             }

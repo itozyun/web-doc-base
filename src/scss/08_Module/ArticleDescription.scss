@@ -10,7 +10,7 @@
 
 .#{opt.$Prefix}ADesc {
     margin : 2em .5em;
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
         color : color.$Light_casual_text;
     } @else {
         color : color.$Ribbon_casual_text;

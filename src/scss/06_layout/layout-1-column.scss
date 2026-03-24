@@ -14,31 +14,31 @@
 @use "../02_mixin/inline-block" as *;
 
 .#{opt.$Prefix}lX { // clearfix を同時に指定するために screen の外へ
-    @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
+    @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
         @include clearfix;
     }
     /* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
-    @if( ua.$IE8to9 or ua.$Modern ){
+    @if ua.$IE8to9 or ua.$Modern {
         overflow : hidden; /* この指定が無いと塗りがはみ出る */
     }
-    @if( ua.$IE5 ){
+    @if ua.$IE5 {
         width      : 100%; /* この指定が無いと横スクロールが出る  */
         overflow-x : hidden;
     }
 
     @include media(screen) {
-        @if( opt.$MobileOnly == false ){
+        @if opt.$MobileOnly == false {
             width : size.$PC_WIDTH_PERCENT;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$PC_MAX_WIDTH_EM;
             }
-            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND == false ){
-                @if( canuse.$MARGIN_AUTO ){
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
+                @if canuse.$MARGIN_AUTO {
                     margin : 0 auto;
                 }
             }
 
-            @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 @include inline-block;
                 text-align : left;
                 @at-root body {
@@ -49,7 +49,7 @@
         /*  inner
         ------------------------------------------------------------------------------------- */
             @at-root #{&}i {
-                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     padding : 0 100% * size.$PC_COLUMN_GAP_RATIO;
                 } @else {
                     margin : 0 100% * size.$PC_COLUMN_GAP_RATIO;
@@ -91,15 +91,15 @@
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @if( opt.$MobileOnly == false ){
+    @if opt.$MobileOnly == false {
         @include media(tablet) {/* float-layout -> table-layout も併せて変更 */
             width : 100%;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
             }
 
             @at-root #{&}i {
-                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     // padding : 0;
                 } @else {
                     margin : 0;
@@ -113,9 +113,9 @@
         }
     } @else {
         @include media(screen) {
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$TABLET_MAX_WIDTH_EM;
-                @if( quirks.$OPERA75_SSR_BUG_WORKAROUND ){
+                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     @include inline-block;
                     text-align : left;
                 } @else {

@@ -16,16 +16,17 @@
 
     @include reset-outline;
 
-    @if( ua.$GeckoLte19 ){
+    @if ua.$GeckoLte19 {
         @include box-sizing(border-box);
     }
+
     // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
-    @if( quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC ){
+    @if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
         @include media(screen) {
-            @if( ua.$Opera70 ){
+            @if ua.$Opera70 {
                 background : #fff;
                 color      : color.$Light_text;
-            } @else if( ua.$Opera72 ){
+            } @else if ua.$Opera72 {
                 background : Window;
                 color      : WindowText;
             } @else {

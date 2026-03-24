@@ -14,13 +14,13 @@
 @use "../02_mixin/media" as *;
 
 @include media(screen) {
-    @if( ua.$IE6 or ua.$IE55 ){
+    @if ua.$IE6 or ua.$IE55 {
         .#{opt.$Prefix}e6L {
             float        : left;
             height       : 1px;
             width        : 50%;
             margin-right : math.div(- size.$PC_MAX_WIDTH_EM, 2);
-            @if( opt.$MobileOnly ){
+            @if opt.$MobileOnly {
                 margin-right : math.div(- size.$TABLET_MAX_WIDTH_EM, 2);
             }
         }
@@ -29,7 +29,7 @@
             height      : 1px;
             width       : 50%;
             margin-left : math.div(- size.$PC_MAX_WIDTH_EM, 2);
-            @if( opt.$MobileOnly ){
+            @if opt.$MobileOnly {
                 margin-left : math.div(- size.$TABLET_MAX_WIDTH_EM, 2);
             }
         }
@@ -52,7 +52,7 @@
 
         #lH { width : 100%; }
 
-        @if( ua.$IE55 ){
+        @if ua.$IE55 {
             #lB { width : 100%; }
         }
     }
@@ -61,7 +61,7 @@
     * MaxWidthFix で作られたタグ(div.e6C)と div.lW を組み合わせてセンタリングだけを行う.
     * http://blog.xicolotic.info/css/advent-calendar-2015-css1/
     */
-    @if( ua.$IE5 ){
+    @if ua.$IE5 {
         .#{opt.$Prefix}e6L, .#{opt.$Prefix}e6R, .#{opt.$Prefix}e6BR {
             display : none;
         }

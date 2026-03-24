@@ -3,10 +3,10 @@
 @use "../../01_var/ua" as ua;
 
 %ListResetter {
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         list-style-position : outside; /* android opera12 ?? */
     }
-    @if( ua.$IE5 or ua.$IE55 ){
+    @if ua.$IE5 or ua.$IE55 {
         margin-left : 0;
     }
 }

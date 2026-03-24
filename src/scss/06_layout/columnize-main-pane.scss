@@ -18,7 +18,7 @@
         @at-root #{&}2 {
             float : right;
         }
-    @if( opt.$MobileOnly == false ){
+    @if opt.$MobileOnly == false {
         @at-root #{&}1, #{&}2 {
             width : 50% - 100% * math.div(math.div(size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO * 2) , 2);
         }

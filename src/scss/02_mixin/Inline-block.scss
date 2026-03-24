@@ -2,12 +2,12 @@
 @use "../01_var/canuse" as canuse;
 
 @mixin inline-block {
-    @if( canuse.$DISPLAY_INLINE_BLOCK ){
-        @if( ua.$Opera70 ){
+    @if canuse.$DISPLAY_INLINE_BLOCK {
+        @if ua.$Opera70 {
             display : inline-table;
-        } @else if( ua.$Gecko09 or ua.$Gecko12 or ua.$Gecko13to19 ){
+        } @else if ua.$Gecko09 or ua.$Gecko12 or ua.$Gecko13to19 {
             /* clean-css ignore:start */
-            @if( ua.$Gecko19 ){
+            @if ua.$Gecko19 {
                 display : inline-block; // for Gecko 1.9.0
             }
             display : -moz-inline-box; // display:inline-block の後に書かないと効かない, Gecko 0.9.4.1(Netscape 6.2.3~) ~ 1.8, https://www.brunildo.org/test/inline-block4.html
@@ -16,7 +16,7 @@
         } @else {
             display : inline-block;
         }
-        @if( ua.$Opera8 or ua.$Opera7x ){
+        @if ua.$Opera8 or ua.$Opera7x {
             vertical-align : top;
         }
     }

@@ -10,7 +10,7 @@
 .#{opt.$Prefix}mspacer {
     margin : 1em;
 
-    @if( ua.$WinIELte7 ){
+    @if ua.$WinIELte7 {
         @include unbreak-box-with-long-text;
     }
 

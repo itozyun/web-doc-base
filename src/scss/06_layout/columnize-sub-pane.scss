@@ -8,7 +8,7 @@
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/media" as *;
 
-@if( opt.$MaxLayoutColumns < 2 ){
+@if opt.$MaxLayoutColumns < 2 {
     @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
 }
 

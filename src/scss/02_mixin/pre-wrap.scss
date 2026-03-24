@@ -6,18 +6,18 @@
 
 @mixin pre-wrap {
     // white-space : pre;               /* CSS 2.0 */
-    @if( ua.$Opera7x ){
+    @if ua.$Opera7x {
         // white-space : -pre-wrap;     /* Opera 4-6 */
         white-space : -o-pre-wrap;      /* Opera 7 */
     }
-    @if( ua.$GeckoLte09 or ua.$Gecko12 or ua.$Gecko13to19 ){
+    @if ua.$GeckoLte09 or ua.$Gecko12 or ua.$Gecko13to19 {
         white-space : -moz-pre-wrap;    /* Firefox 1.0-2.0 */
     }
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         white-space : -webkit-pre-wrap; /* Chrome, Safari */
     }
     //  white-space : -hp-pre-wrap;     /* HP Printers */
-    @if( ua.$IE8 or ua.$IE9 or ua.$Modern or ua.$Gecko19 or ua.$Opera8 or ua.$Opera9 ){
+    @if ua.$IE8 or ua.$IE9 or ua.$Modern or ua.$Gecko19 or ua.$Opera8 or ua.$Opera9 {
         white-space : pre-wrap;         /* CSS 2.1, ie8+ */
     }
     //  white-space : pre-line;         /* CSS 3.0 */

@@ -33,7 +33,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     @include article-footer-item(0, 0, true, $PAGER_LAYOUT_BY_DISPLAY_TABLE == false);
     color : color.$Light_fill; /* , を消す */
 
-    @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+    @if $PAGER_LAYOUT_BY_DISPLAY_TABLE {
         display      : table;
         width        : 100%;
         table-layout : fixed;
@@ -51,7 +51,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     }
 
     span {
-        @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+        @if $PAGER_LAYOUT_BY_DISPLAY_TABLE {
             vertical-align : middle;
             display        : table-cell;
         } @else {
@@ -68,7 +68,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
             & {
                 position : static;
                 display  : inline;
-                @if( ua.$IE55 or ua.$IE5 ){
+                @if ua.$IE55 or ua.$IE5 {
                     width : auto;
                 }
             }
@@ -76,18 +76,18 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     }
 
     a { /* この指定が無いとフォーカス時の塗りが汚い, padding-top, bottom が不正(IE5.5) */
-        @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
+        @if ua.$IE7 or ua.$IE6 or ua.$IE55 {
             zoom : 1;
         }
     }
 
-    @if( $PAGER_LAYOUT_BY_DISPLAY_TABLE ){
+    @if $PAGER_LAYOUT_BY_DISPLAY_TABLE {
         @at-root #{&}-next { padding : 1.5em 0; }
         @at-root #{&}-top  { padding : 1.5em 0.5em; text-align : center; }
         @at-root #{&}-prev { padding : 1.5em 0; text-align : right; }
     } @else {
         @at-root #{&}-top { a { padding : 1.5em 0.5em; } text-align : center; }
-        @if( opt.$MobileOnly ){
+        @if opt.$MobileOnly {
             @at-root #{&}-next a { padding : 1.5em 0 1.5em size.$TABLET_HORIZONTAL_MARGIN; }
             @at-root #{&}-prev { a { padding : 1.5em size.$TABLET_HORIZONTAL_MARGIN 1.5em 0; } text-align : right; }
         } @else {
@@ -97,7 +97,7 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     }
 
     i { /* i を絶対配置にすると、Opera mini で表示されない */
-        @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+        @if $CANT_TRIANGULATE_INLINE_ELEMENT {
             &:before, &:after {
                 font-style  : normal;
                 font-family : serif;
@@ -107,24 +107,24 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
             }
         } @else {
             @include inline-block;
-            @if( ua.$LegacyOperaOrGecko ){
+            @if ua.$LegacyOperaOrGecko {
                 vertical-align : text-top; // TODO ?
             }
-            @if( ua.$WinIELte7 ){
+            @if ua.$WinIELte7 {
                 height   : 0;
                 width    : 0;
                 position : relative;
                 top      : -.1em;
-                @if( ua.$WinIELte6 ){
+                @if ua.$WinIELte6 {
                     font-size : 0;
                 }
-                @if( ua.$IE6 or ua.$IE7 ){
+                @if ua.$IE6 or ua.$IE7 {
                     zoom : 1;
                 }
             }
 
-            @if( quirks.$BORDER_PARSER_BUG_OPERA == false ){
-                @if( canuse.$TRANSPARENT_BORDER_COLOR ){
+            @if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                @if canuse.$TRANSPARENT_BORDER_COLOR {
                     border-color : transparent color.$Light_casual_text;
                 } @else {
                     border-color : color.$Light_fill color.$Light_casual_text;
@@ -146,12 +146,12 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     * {
         @include active-focus-pseudo-class {
             i {
-                @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+                @if $CANT_TRIANGULATE_INLINE_ELEMENT {
                     &:before, &:after {
                         color : #fff;
                     }
-                } @else if( quirks.$BORDER_PARSER_BUG_OPERA == false ){
-                    @if( canuse.$TRANSPARENT_BORDER_COLOR ){
+                } @else if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                    @if canuse.$TRANSPARENT_BORDER_COLOR {
                         border-color : transparent #fff;
                     } @else {
                         border-color : color.$ACCENT #fff;
@@ -163,18 +163,18 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
 
     @at-root #{&}-next i {
         margin-right : 0.5em;
-        @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+        @if $CANT_TRIANGULATE_INLINE_ELEMENT {
             &:before {
                 content : "◀ ";
             }
-        } @else if( quirks.$BORDER_PARSER_BUG_OPERA ){
+        } @else if quirks.$BORDER_PARSER_BUG_OPERA {
             border-top    : 0.5em solid transparent;
             border-right  : 0.7em solid color.$Light_casual_text;
             border-bottom : 0.5em solid transparent;
             @include active-focus-pseudo-class {
                 border-right : 0.7em solid #fff;
             }
-        } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+        } @else if $CANT_TRIANGULATE_WITH_EM_SIZE {
             border-width : 8px 11px 8px 0;
         } @else {
             border-width : 0.5em 0.7em 0.5em 0;
@@ -184,21 +184,21 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
         /* IE7 以下は <!--[if lte IE 7]> <![endif]--><i></i> で対処する…
             *            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             */
-        @if( ua.$WinIELte7 == false ){
+        @if ua.$WinIELte7 == false {
             margin-left : 0.5em;
         }
-        @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+        @if $CANT_TRIANGULATE_INLINE_ELEMENT {
             &:after {
                 content : " ▶";
             }
-        } @else if( quirks.$BORDER_PARSER_BUG_OPERA ){
+        } @else if quirks.$BORDER_PARSER_BUG_OPERA {
             border-top    : 0.5em solid transparent;
             border-left   : 0.7em solid color.$Light_casual_text;
             border-bottom : 0.5em solid transparent;
             @include active-focus-pseudo-class {
                 border-left : 0.7em solid #fff;
             }
-        } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+        } @else if $CANT_TRIANGULATE_WITH_EM_SIZE {
             border-width : 8px 0 8px 11px;
         } @else {
             border-width : 0.5em 0 0.5em 0.7em;
@@ -208,12 +208,12 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
     @at-root #{&}-top {
         i {
             margin-right : 0.5em;
-            @if( $CANT_TRIANGULATE_INLINE_ELEMENT ){
+            @if $CANT_TRIANGULATE_INLINE_ELEMENT {
                 &:before {
                     content   : "▲ ";
                     font-size : 1em;
                 }
-            } @else if( quirks.$BORDER_PARSER_BUG_OPERA ){
+            } @else if quirks.$BORDER_PARSER_BUG_OPERA {
                 border-left   : 0.45em solid transparent;
                 border-right  : 0.45em solid transparent;
                 border-bottom : 0.9em solid color.$Light_casual_text;
@@ -221,12 +221,12 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
                     border-left   : 0.45em solid #fff;
                     border-right  : 0.45em solid #fff;
                 }
-            } @else if( $CANT_TRIANGULATE_WITH_EM_SIZE ){
+            } @else if $CANT_TRIANGULATE_WITH_EM_SIZE {
                 border-width : 0 7px 14px;
                 border-color : color.$Light_casual_text color.$Light_fill;
             } @else {
                 border-width : 0 0.45em 0.9em;
-                @if( canuse.$TRANSPARENT_BORDER_COLOR ){
+                @if canuse.$TRANSPARENT_BORDER_COLOR {
                     border-color : color.$Light_casual_text transparent;
                 } @else {
                     border-color : color.$Light_casual_text color.$Light_fill;
@@ -245,9 +245,9 @@ $CANT_TRIANGULATE_WITH_EM_SIZE   : ua.$WinIELte6; /* ie6 以下では font-size 
         * {
             @include active-focus-pseudo-class {
                 i {
-                    @if( $CANT_TRIANGULATE_INLINE_ELEMENT == false ){
-                        @if( quirks.$BORDER_PARSER_BUG_OPERA == false ){
-                            @if( canuse.$TRANSPARENT_BORDER_COLOR ){
+                    @if $CANT_TRIANGULATE_INLINE_ELEMENT == false {
+                        @if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                            @if canuse.$TRANSPARENT_BORDER_COLOR {
                                 border-color : #fff transparent;
                             } @else {
                                 border-color : #fff color.$ACCENT;

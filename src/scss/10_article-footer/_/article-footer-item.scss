@@ -4,7 +4,7 @@
 @use "../../02_mixin/media" as *;
 
 @mixin article-footer-item($paddingTop, $paddingBottom, $noprint : false, $skipPadding : false) {
-    @if( $skipPadding == false ){
+    @if $skipPadding == false {
         @include responsive-horizontal-padding(1, $paddingTop, $paddingBottom, $noprint);
     }
 
@@ -21,7 +21,7 @@
     /*  Print
     ------------------------------------------------------------------------------------- */
     @include media(print) {
-        @if( $noprint ){
+        @if $noprint {
             display : none;
         }
     }

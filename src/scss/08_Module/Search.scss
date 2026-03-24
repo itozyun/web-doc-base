@@ -27,8 +27,8 @@
 $SEARCH_BTN_WIDTH : 3em;
 
 .#{opt.$Prefix}Search {
-    @if( ua.$Opera8 or ua.$Opera7x ){
-        @if( opt.$UseBuiltinHeader ){
+    @if ua.$Opera8 or ua.$Opera7x {
+        @if opt.$UseBuiltinHeader {
             @at-root #lH .lMi, // ここで上書きする...
                      #lH .lSi {
                 padding-bottom : 0.5em;
@@ -44,24 +44,24 @@ $SEARCH_BTN_WIDTH : 3em;
             margin-right : size.$INPUT_BORDER_WIDTH * 2;
         }
         input {
-            @if( ua.$Opera70 ){
+            @if ua.$Opera70 {
                 border-width : 0; // 7.2~ のネイティブの枠線を border-style:solid で上書きし、height を設定するとマウスホバーで要素のサイズが変化するようになる!
                 outline      : color.$Light_casual_fill solid size.$INPUT_BORDER_WIDTH; // 7.0 では枠線を outline で書くことができる
             }
-            @if( ua.$Opera8 ) {
+            @if ua.$Opera8  {
                 border-width : size.$INPUT_BORDER_WIDTH;
             }
         }
         .#{opt.$Prefix}btn {
-            @if( ua.$Opera8 ){
+            @if ua.$Opera8 {
                 padding-left  : 0.5em;
                 padding-right : 0.5em;
             }
         }
-    } @else if( ua.$GeckoLte19 ){
-        @if( opt.$UseBuiltinHeader ){
+    } @else if ua.$GeckoLte19 {
+        @if opt.$UseBuiltinHeader {
             @at-root #lH .lSi {
-                @if( ua.$Gecko09 == false ){
+                @if ua.$Gecko09 == false {
                     padding-right : #{$SEARCH_BTN_WIDTH + size.$INPUT_BORDER_WIDTH * 2};
                 }
             }
@@ -69,14 +69,14 @@ $SEARCH_BTN_WIDTH : 3em;
         height : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
 
         @at-root #{&}-txt {
-            @if( ua.$Gecko09 == false ){
+            @if ua.$Gecko09 == false {
                 width : 100%;
             }
         }
 
-        @if( ua.$GeckoLte09 ){
+        @if ua.$GeckoLte09 {
             // 基準は #lH .lS, .Search-txt は通常配置, .Search .btn は絶対配置
-            @if( opt.$UseBuiltinHeader ){
+            @if opt.$UseBuiltinHeader {
                 @at-root #lH .lSi {
                     position : relative;
                 }
@@ -85,7 +85,7 @@ $SEARCH_BTN_WIDTH : 3em;
                 }
             }
             @at-root #{&}-txt {
-                @if( ua.$Gecko09 ){
+                @if ua.$Gecko09 {
                     // Gecko 0.9.6 だけで起る問題を回避する為に 0.9.x 全てで問題が起きないように書き換えた
                     // https://twitter.com/itozyun/status/1588789146625404928
                     position : absolute;
@@ -96,7 +96,7 @@ $SEARCH_BTN_WIDTH : 3em;
                 height : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
             }
             .#{opt.$Prefix}btn {
-                @if( ua.$Gecko09 ){ // border-box -> content-box
+                @if ua.$Gecko09 { // border-box -> content-box
                     @include box-sizing(content-box); // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
                     padding     : 0;                  // (A) : ~0.9.3 と 0.9.5~ でスタイルを揃える
                     line-height : size.$PARAGRAPH_LINE_HEIGHT;
@@ -106,7 +106,7 @@ $SEARCH_BTN_WIDTH : 3em;
                 width    : $SEARCH_BTN_WIDTH;
                 height   : size.$PARAGRAPH_LINE_HEIGHT_EM;
             }
-        } @else if( ua.$Gecko12 or ua.$Gecko13to19 ){
+        } @else if ua.$Gecko12 or ua.$Gecko13to19 {
             position : relative;
             display  : block;
 
@@ -129,15 +129,15 @@ $SEARCH_BTN_WIDTH : 3em;
         display  : block;
         height   : size.$PARAGRAPH_LINE_HEIGHT_EM;
 
-        @if( ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 ){
+        @if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 {
             margin : 0 $SEARCH_BTN_WIDTH 0 #{size.$INPUT_BORDER_WIDTH * 3 + size.$FORM_ITEM_PADDING_LR * 2};
         } @else {
             padding : 0 $SEARCH_BTN_WIDTH 0 0;
-            @if( ua.$IE5 ){
+            @if ua.$IE5 {
                 width : 100%;
             }
         }
-        @if( ua.$Modern or ua.$Opera9 or ua.$IE9 or ua.$IE8 ){
+        @if ua.$Modern or ua.$Opera9 or ua.$IE9 or ua.$IE8 {
             width : auto;
         }
 
@@ -150,19 +150,19 @@ $SEARCH_BTN_WIDTH : 3em;
             display : block;
             width   : 100%; /* Opera <=8.5 で無視されるので <input size> 指定する */
 
-            @if( ua.$Opera9 ){
+            @if ua.$Opera9 {
                 @include box-sizing(content-box); /* Opera 9.0~9.27 */
                 height      : #{size.$PARAGRAPH_LINE_HEIGHT_EM - size.$INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
                 line-height : #{size.$PARAGRAPH_LINE_HEIGHT_EM - size.$INPUT_BORDER_WIDTH * 2}; /* Opera 9.0~9.27 */
             }
 
-            @if( ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 ){
+            @if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 {
                 left : -#{size.$INPUT_BORDER_WIDTH * 3 + size.$FORM_ITEM_PADDING_LR * 2};
             } @else {
                 left : math.div(size.$INPUT_BORDER_WIDTH, 2);
             }
 
-            @if( ua.$Modern ){
+            @if ua.$Modern {
                 &:invalid {
                     color : color.$Light_casual_text; /* ie10,11 で赤字を上書き */
                 }
@@ -170,12 +170,12 @@ $SEARCH_BTN_WIDTH : 3em;
         }
     }
 
-    @if( ua.$Opera8 == false and ua.$Opera7x == false and ua.$GeckoLte19 == false ){
+    @if ua.$Opera8 == false and ua.$Opera7x == false and ua.$GeckoLte19 == false {
         input {
             @include active-focus-pseudo-class{
                 z-index : 1;
             }
-            @if( canuse.$HOVER_PSEUDO_CLASS ){
+            @if canuse.$HOVER_PSEUDO_CLASS {
                 &:hover {
                     z-index : 1;
                 }
@@ -190,37 +190,37 @@ $SEARCH_BTN_WIDTH : 3em;
     .#{opt.$Prefix}btn {
         white-space : pre;
 
-        @if( ua.$Opera8 == false ){
+        @if ua.$Opera8 == false {
             padding-left  : 0;
             padding-right : 0;
         }
 
-        @if( ua.$Modern or ua.$IE9 or ua.$IE8 ){
+        @if ua.$Modern or ua.$IE9 or ua.$IE8 {
             width : $SEARCH_BTN_WIDTH;
             right : #{- $SEARCH_BTN_WIDTH};
         }
 
-        @if( ua.$IE7 or ua.$IE6 ){
+        @if ua.$IE7 or ua.$IE6 {
             width : #{$SEARCH_BTN_WIDTH + size.$INPUT_BORDER_WIDTH * 2};
             right : -$SEARCH-BTN-WIDTH - math.div(size.$INPUT_BORDER_WIDTH, 2);
         }
 
-        @if( ua.$IE5 or ua.$IE55 ){
+        @if ua.$IE5 or ua.$IE55 {
             width : $SEARCH_BTN_WIDTH;
             right : math.div(size.$INPUT_BORDER_WIDTH, 2);
         }
 
-        @if( ua.$Opera9 ){
+        @if ua.$Opera9 {
             width : $SEARCH_BTN_WIDTH;
             right : math.div(size.$INPUT_BORDER_WIDTH, 2);
         }
 
-        @if( ua.$Opera72 == false ){ // Opera 7.23 でだけ、ボタンの上が欠ける、7.20 では発生しない
+        @if ua.$Opera72 == false { // Opera 7.23 でだけ、ボタンの上が欠ける、7.20 では発生しない
             /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
             overflow : hidden;
         }
 
-        @if( ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 ){
+        @if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 or ua.$IE6 {
             // https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow#browser_compatibility
             text-overflow : ellipsis; // Firefox 7+, ie 6+, Opera 11+, Safari 1.3+, Chrome 1
         };

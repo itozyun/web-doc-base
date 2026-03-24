@@ -10,7 +10,7 @@
 @use "./_/InteractiveObjectStyle" as *;
 @use "./_/ReplaceElementStyle" as *;
 
-img { //, embed, object, video
+img { // , embed, object, video
     @extend %InteractiveObjectStyle;
     @extend %ReplaceElementStyle;
 
@@ -25,7 +25,7 @@ img { //, embed, object, video
 /*  Dark theme
 ------------------------------------------------------------------------------------- */
     @include media(dark_theme) {
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             filter : brightness(85%);
             :link &, :visited & {
                 border-color : transparent; // filter: brightness(85%); の影響を避ける

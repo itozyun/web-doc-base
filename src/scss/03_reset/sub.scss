@@ -5,7 +5,7 @@
 @use "./_/SubSuperResetter" as *;
 
 sub {
-    @if( ua.$NotIE ){
+    @if ua.$NotIE {
         @extend %SubSuperResetter;
 
         bottom : -0.25em;

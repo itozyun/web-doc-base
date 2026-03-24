@@ -8,7 +8,7 @@
      *      1. main が sidebar より低い時に、横スクロールが発生する
      *      2. viewPort の下端に白い線が入る
     ------------------------------------------------------------------------------------- */
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         @include css-hack(chromeLte9SafariLte5){
             @content;
         }

@@ -7,9 +7,9 @@
 
 @use "../02_mixin/media" as *;
 
-@if( opt.$UseRibbon ){
+@if opt.$UseRibbon {
     body {
-        @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
             background : color.$Sidebar_fill;
         } @else {
             background : color.$Ribbon_fill;
@@ -30,10 +30,10 @@
     border-color : color.$Light_casual_fill;
 }
 
-@if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+@if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
     .#{opt.$Prefix}ribbon {
         color : color.$Ribbon_text;
-        @if( ua.$Gecko08 ){
+        @if ua.$Gecko08 {
             background : color.$Sidebar_fill; // Only for Gecko 0.8.1
         }
         * {
@@ -45,7 +45,7 @@
 /*  Tablet
 ------------------------------------------------------------------------------------- */
 @include media(tablet) {
-    @if( 1 < opt.$MaxLayoutColumns ){
+    @if 1 < opt.$MaxLayoutColumns {
         #lB .#{opt.$Prefix}lS {
             border-width : 1px 0 0;
             background   : color.$Sidebar_fill;
@@ -59,7 +59,7 @@
     * {
         border-color : color.$Dark_casual_fill;
     }
-    @if( opt.$UseRibbon ){
+    @if opt.$UseRibbon {
         body {
             color : color.$Dark_text;
         }
@@ -72,7 +72,7 @@
             color      : color.$Dark_text;
         }
     }
-    @if( 1 < opt.$MaxLayoutColumns ){
+    @if 1 < opt.$MaxLayoutColumns {
         #lB .#{opt.$Prefix}lS {
             background : color.$Dark_fill;
         }
@@ -89,7 +89,7 @@
     * {
         border-color : color.$Print_casual_fill;
     }
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
         .#{opt.$Prefix}ribbon {
             background : color.$Print_fill;
             color      : color.$Print_text;

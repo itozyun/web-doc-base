@@ -22,7 +22,7 @@
         @include unbreak-word;
     }
 
-    @if( canuse.$HOVER_PSEUDO_CLASS ){
+    @if canuse.$HOVER_PSEUDO_CLASS {
         &, tbody :hover td {
             color : color.$Light_fill; /* , を消す */
         }
@@ -30,7 +30,7 @@
 
     a {
         border-width : 0 0 1px;
-        @if( ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK ){
+        @if ua.$LegacyOperaOrGecko == false and canuse.$DISPLAY_INLINE_BLOCK {
             @include inline-block;
             margin : 0 0 1em;
         } @else {
@@ -38,11 +38,11 @@
         }
     }
 
-    @if( canuse.$LIMITED_HOVER_PSEUDO_CLASS ){
+    @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
         :hover {
             text-decoration : none;
         }
-    } @else if( canuse.$HOVER_PSEUDO_CLASS ){
+    } @else if canuse.$HOVER_PSEUDO_CLASS {
         :link:hover, :visited:hover {
             text-decoration : none;
         }

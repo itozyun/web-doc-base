@@ -27,7 +27,7 @@
     margin : 2em 0;
 
     h1 {
-        @if( ua.$Modern or ua.$IE9 ){
+        @if ua.$Modern or ua.$IE9 {
             @extend %SerifFontFamily;
         }
         font-size : 2em;
@@ -35,11 +35,11 @@
         padding   : 0 0 2em;
         margin    : 0;
 
-        @if( opt.$MobileOnly == false ){
+        @if opt.$MobileOnly == false {
             text-align : left;
         }
     }
-    @if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon ){
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
         .#{opt.$Prefix}ribbon & {
             color : color.$Ribbon_casual_text;
             h1 {

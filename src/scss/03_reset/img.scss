@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 
-@if( ua.$IE9 ){
+@if ua.$IE9 {
     svg {
         overflow : hidden;
     }
@@ -11,7 +11,7 @@
     }
 } @else {
     img {
-        @if( ua.$IE7 ){
+        @if ua.$IE7 {
             -ms-interpolation-mode : bicubic;
         }
         height : auto;

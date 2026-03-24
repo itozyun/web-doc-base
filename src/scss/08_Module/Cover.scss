@@ -34,7 +34,7 @@
     @at-root #{&}-img {
         position : relative;
         margin   : 0 0 0.6em;
-        @if( ua.$IE5 == false ){
+        @if ua.$IE5 == false {
             height : 100%;
         }
     }
@@ -42,7 +42,7 @@
             margin  : 0;
             display : block;
             width   : 100%;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
             }
         }
@@ -52,18 +52,18 @@
                     position : absolute;
                     left     : 0;
                     width    : 100%;
-                    @if( ua.$IE5 ){
+                    @if ua.$IE5 {
                         top : 0;
                     } @else {
                         bottom : 0;
                     }
                 }
-                @if( ua.$IE5 ){
+                @if ua.$IE5 {
                     @include clearfix; // clearfix を同時に指定するために screen の外へ
                 }
             }
             h2 {
-                @if( ua.$IE5 ){
+                @if ua.$IE5 {
                     float : left;
                 }
             }
@@ -76,17 +76,17 @@
                 color        : color.$Light_fill;
                 font-size    : 0.825em;
                 padding      : 0.6em;
-                @if( ua.$IE7 or ua.$IE6 or ua.$IE55 ){
+                @if ua.$IE7 or ua.$IE6 or ua.$IE55 {
                     display : inline;
                     zoom    : 1;
                 }
-                @if( ua.$IE5 ){
+                @if ua.$IE5 {
                     display : inline;
                     height  : 2.2em;
                 }
-                @if( canuse.$CSS_GENERATED_BLOCK ){
+                @if canuse.$CSS_GENERATED_BLOCK {
                     &:after {
-                        @if( ua.$Opera72 or ua.$Opera8 ){
+                        @if ua.$Opera72 or ua.$Opera8 {
                             width : 0;      /* for Opera 7.2-8 */
                         } @else {
                             display : none; /* for iOS4 content:none では消えない */
@@ -99,11 +99,11 @@
                 font-size : 1.33em;
                 margin    : 0;
                 /* clean-css ignore:start */
-                @if( ua.$IE9 == false ){
+                @if ua.$IE9 == false {
                     background : #fff;
                 }
-                @if( ua.$Modern or ua.$IE9 or ua.$Gecko19 ){
-                    background : rgba( 255, 255, 255, .75);
+                @if ua.$Modern or ua.$IE9 or ua.$Gecko19 {
+                    background : rgb( 255 255 255 / 75%);
                 }
                 /* clean-css ignore:end */
             }
@@ -224,11 +224,11 @@
     @include media(dark_theme) {
         h3 {
             /* clean-css ignore:start */
-            @if( ua.$IE9 == false ){
+            @if ua.$IE9 == false {
                 background : #000;
             }
-            @if( ua.$Modern or ua.$IE9 ){
-                background : rgba( 0, 0, 0, .75);
+            @if ua.$Modern or ua.$IE9 {
+                background : rgb( 0 0 0 / 75%);
             }
             /* clean-css ignore:end */
         }    

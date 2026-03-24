@@ -15,15 +15,15 @@ form * {
     }
 
     &:focus {
-        @if( ua.$Opera7x ){
+        @if ua.$Opera7x {
             color : color.$ACCENT;
-            @if( ua.$Opera70 ){
+            @if ua.$Opera70 {
                 border-color : color.$ACCENT;
             }
         }
     }
     &:invalid {
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             color : color.$WARN;
         }
     }

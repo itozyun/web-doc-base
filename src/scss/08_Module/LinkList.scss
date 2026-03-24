@@ -27,12 +27,12 @@
         line-height : 1.1;
         padding     : 1em 0.5em 0.8em;
     }
-    @if( quirks.$ACTIVE_ACTS_AS_FOCUS ){
+    @if quirks.$ACTIVE_ACTS_AS_FOCUS {
         :active:hover { text-decoration : underline !important; }
-    } @else if( canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS ){
+    } @else if canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS {
         :active { text-decoration : underline !important; }
     }
-    @if( canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) ){
+    @if canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) {
         :focus:hover { text-decoration : underline !important; }
     }
 

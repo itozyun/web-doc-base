@@ -22,14 +22,14 @@
     @include supports(column-span){
         -moz-column-span : all;
              column-span : all;
-        @if($child-column-count != 1){
+        @if $child-column-count != 1 {
             -moz-column-count : $child-column-count;
                  column-count : $child-column-count;
         }
     }
     @include supports(-webkit-column-span){
         -webkit-column-span : all;
-        @if($child-column-count != 1){
+        @if $child-column-count != 1 {
             -webkit-column-count : $child-column-count;
         }
     }

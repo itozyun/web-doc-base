@@ -1,13 +1,13 @@
 @use "../01_var/ua" as ua;
 
 @mixin border-radius($value) {
-    @if( ua.$Modern ){
+    @if ua.$Modern {
 // https://github.com/browserstrangeness/browserstrangeness.github.io/blob/7700dee3256f185fd16af3241e62bbf1e398fdf5/index.html#L51
          -khtml-border-radius : $value; /* some linux browsers */
         -webkit-border-radius : $value;
            -moz-border-radius : $value;
     }
-    @if( ua.$Modern or ua.$IE9 ){
+    @if ua.$Modern or ua.$IE9 {
         border-radius : $value;
     }
 }

@@ -83,12 +83,12 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
             display    : block;
             text-align : left;
             color      : #111;
-            @if( canuse.$CSS_GENERATED_BLOCK ){
+            @if canuse.$CSS_GENERATED_BLOCK {
                 position : relative;
             }
         }
 
-        @if( canuse.$CSS_GENERATED_BLOCK ){
+        @if canuse.$CSS_GENERATED_BLOCK {
             .chatR p:after, .chatL p:after {
                 @include create-css-generated-block;
                 border-style : solid;
@@ -114,7 +114,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
                     border-color : Window currentColor;
                 }
             }
-            @if( ua.$IE8 == false ){ /* 疑似要素に Transform が効かない */
+            @if ua.$IE8 == false { /* 疑似要素に Transform が効かない */
                 @include media(forced_colors_fallback){
                     /* //_{^@ie9 */
                     .chatL p:after, .chatR p:after {
@@ -126,14 +126,14 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
                             width  : .4em;
                             height : .4em;
                             /* border-color : #fff; */
-                            @if( ua.$IE9 == false ){
+                            @if ua.$IE9 == false {
                                 display : block;
                             }
-                            @if( ua.$Modern ){
+                            @if ua.$Modern {
                                 -moz-transform : rotate(-45deg);
                                         transform : rotate(-45deg);
                             }
-                            @if( ua.$IE9 ){
+                            @if ua.$IE9 {
                                 -ms-transform : rotate(-45deg);
                             }
                         }
@@ -242,7 +242,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
     }
 }
 
-@if( ua.$IE9 or ua.$Modern ){
+@if ua.$IE9 or ua.$Modern {
     @media only use-polyfill and (forced-colors:active) and (max-width:size.$SMALL_PHONE_MAX_PX_WIDTH) {
         /* //_{^@ie9 */
         .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
@@ -287,7 +287,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
             border-color : color.$Print_casual_text;
         }
 
-        @if( canuse.$CSS_GENERATED_BLOCK ){
+        @if canuse.$CSS_GENERATED_BLOCK {
             .chatR p:before, .chatL p:before {
                 border-color : color.$Print_fill color.$Print_casual_text;
             }

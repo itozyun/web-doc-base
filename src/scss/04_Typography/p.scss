@@ -12,7 +12,7 @@ p {
     line-height : size.$PARAGRAPH_LINE_HEIGHT;
     margin      : 1em 0;
 
-    @if( ua.$IE5 ){
+    @if ua.$IE5 {
         * {
             vertical-align : text-top;
             line-height    : 1;

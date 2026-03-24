@@ -3,7 +3,7 @@
 @use "../01_var/ua" as ua;
 
 figure {
-    @if( ua.$IE9 or ua.$Modern ){
+    @if ua.$IE9 or ua.$Modern {
         margin : 0;
     }
 }

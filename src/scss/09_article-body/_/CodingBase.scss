@@ -12,7 +12,7 @@
 %CodingBase {
     margin : 0 .1em;
 
-    @if( ua.$IE5 ){
+    @if ua.$IE5 {
         padding     : 0 .4em;
         line-height : 1;
         height      : 1px; // hasLayout=true にしないと塗りがランダムかつ頻繁に欠落する
@@ -49,9 +49,9 @@
 
     a & {
         @include active-focus-pseudo-class {
-            @if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+            @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
                 background : Highlight;
-            } @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false ){
+            } @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false {
                 background : color.$ACCENT;
             }
         }

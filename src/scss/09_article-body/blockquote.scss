@@ -82,10 +82,10 @@ blockquote {
     & h3 {
         border-color : color.$Light_text;
     }
-    @if( canuse.$CSS_GENERATED_CONTENT ){
+    @if canuse.$CSS_GENERATED_CONTENT {
         &[title]:before {
             content : attr(title);
-            @if( canuse.$CSS_GENERATED_BLOCK ){
+            @if canuse.$CSS_GENERATED_BLOCK {
                 display : block;
             }
         }
@@ -97,7 +97,7 @@ blockquote {
         }
         &:after {
             @extend %cite-in-blockquote;
-            @if( canuse.$TARGET_PSEUDO_CLASS ){
+            @if canuse.$TARGET_PSEUDO_CLASS {
                 &:target {
                     color : #fff;
                 }

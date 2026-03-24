@@ -25,7 +25,7 @@
     $Modern       : false; // ie10+, gecko 1.9.1+, opera 9.5+, webkit
     $FirstViewCSS : false;
 
-    @if        tgt.$TargetBrowser == "macie5" {
+    @if       tgt.$TargetBrowser == "macie5" {
         $MacIE5 : true;
     } @else if tgt.$TargetBrowser == "ie5" {
         $IE5 : true;

@@ -13,7 +13,7 @@
 @use "../02_mixin/line-height" as *;
 
 .AFoot {
-    @if( ua.$IE6 or ua.$IE55 ){
+    @if ua.$IE6 or ua.$IE55 {
         zoom : 1; /* border の描画に必要 */
     }
 }

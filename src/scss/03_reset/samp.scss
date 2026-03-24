@@ -3,7 +3,7 @@
 @use "../01_var/options.scss" as opt;
 
 samp {
-    @if( opt.$UseITStyles ){
+    @if opt.$UseITStyles {
         font-style : normal;
     }
 }

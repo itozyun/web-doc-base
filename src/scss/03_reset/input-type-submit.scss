@@ -10,34 +10,34 @@
 
 /*  [type=submit]
 ------------------------------------------------------------------------------------- */
-input[type=submit] {
-    @if( ua.$GeckoLte09 ){
+input[type="submit"] {
+    @if ua.$GeckoLte09 {
         text-align : center;
-        @if( ua.$Gecko09 == false ){
+        @if ua.$Gecko09 == false {
             @include box-sizing(content-box); /* Gecko ~0.8.1 */
         }
     }
 }
 
-[type=submit] {
-    @if( ua.$Opera72 ){
+[type="submit"] {
+    @if ua.$Opera72 {
         // border : 0;
     }
 
     &:focus {
-        @if( ua.$Opera8 ){
+        @if ua.$Opera8 {
             border-style : solid;
         }
-        @if( ua.$GeckoLte09 or ua.$Gecko12 ){
+        @if ua.$GeckoLte09 or ua.$Gecko12 {
             border-style : solid;
         }
     }
 
-    @if( ua.$Opera9 ){
+    @if ua.$Opera9 {
         border-style : solid; /* for Opera 9.x [type=submit] */
     }
 
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48
          * iOSでのデフォルトスタイルをリセット */
         &::-webkit-search-decoration {
@@ -48,11 +48,11 @@ input[type=submit] {
         }
     }
 
-    @if( quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC ){
+    @if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
         @include media(screen) {
             background : color.$Light_casual_fill;
             &:focus {
-                @if( ua.$Opera72 ){
+                @if ua.$Opera72 {
                     top : 0; // プロパティと値は何でも良い, ハイコントラストモード時に、ボタンがフォーカスされた際に背景が黒くなるのを防ぐ
                 }
             }

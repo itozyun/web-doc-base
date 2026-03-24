@@ -6,15 +6,15 @@
 
 hr {
     border-width : 0 0 1px; /* for high contrast mode */
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         height       : 1.5px; /* 1.5px <= 1px: for Gecko 45 */
         border-color : transparent;
     }
-    @if( ua.$IE9 ){
+    @if ua.$IE9 {
         height       : 1px;
         border-color : transparent;
     }
-    @if( ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko ){
+    @if ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko {
         height       : 0;
         border-color : color.$Light_casual_fill;
         blockquote & {
@@ -32,7 +32,7 @@ tr hr {
 ------------------------------------------------------------------------------------- */
 @include media(dark_theme) {
     hr {
-        @if( ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko ){
+        @if ua.$WinIELte8 or ua.$MacIE5 or ua.$LegacyOperaOrGecko {
             border-color : color.$Dark_casual_fill;
             blockquote & {
                 border-color : color.$Dark_casual_text;

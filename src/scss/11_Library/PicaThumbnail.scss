@@ -19,7 +19,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
 
 @if ua.$Script {
     @include media(forced_colors_native_or_fallback){
-        @if( canuse.$OUTLINE ){
+        @if canuse.$OUTLINE {
             .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
                 @include active-focus-pseudo-class {
                     outline : 0;
@@ -31,7 +31,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
     これを避けるために、動的に追加する .js-captioned-thumbnail に transition を設定する */
     .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} img,
     .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_TARGET} {
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             /* clean-css ignore:start */
             -webkit-transition-property : width, margin;
                     -webkit-transition :       0.3s ease-in;
@@ -46,34 +46,34 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
     }
     .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
         /* clean-css ignore:start */
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             cursor : -webkit-zoom-in;
         }
-        @if( ua.$Modern or ua.$Gecko19 ){ // Gecko 1.4+
+        @if ua.$Modern or ua.$Gecko19 { // Gecko 1.4+
             cursor : -moz-zoom-in;
         }
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             cursor : zoom-in;
         }
         /* clean-css ignore:end */
     }
     .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_TARGET} {
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             width : 100%; /* for animation */
         }
     }
     .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} {
-        @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 ){
+        @if $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 {
             margin : 0 0 1em;
         }
         /* clean-css ignore:start */
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             cursor : -webkit-zoom-out;
         }
-        @if( ua.$Modern or ua.$Gecko19 ){ // Gecko 1.4+
+        @if ua.$Modern or ua.$Gecko19 { // Gecko 1.4+
             cursor : -moz-zoom-out;
         }
-        @if( ua.$Modern ){
+        @if ua.$Modern {
             cursor : zoom-out;
         }
         /* clean-css ignore:end */
@@ -83,12 +83,12 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
             @include column-span-all;
         }
 
-        @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT ){ // IE6~7
+        @if $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT { // IE6~7
             /* box-sizing が使えないための処置 a.#{opt.$Prefix}js-pica-thumbnail__large 側でアウトラインを表示 */
             display : block;
             clear   : both; /* ギャラリーでの回り込みの解除 */
             padding : #{size.$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
-            @if( ua.$IE7 or ua.$IE6 ){
+            @if ua.$IE7 or ua.$IE6 {
                 zoom : 1;
             }
             &:hover {
@@ -101,11 +101,11 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
                 border-width : 0;
             }
         } @else {
-            @if( quirks.$FOCUS_COLOR_SYSTEM_FIXED ){
+            @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
                 &:active, &:focus {
                     background : transparent !important;
                 }
-            } @else if( quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS ){
+            } @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
                 &:focus {
                     background : transparent !important;
                 }
@@ -121,10 +121,10 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
 
         & img {
             width : 100%;
-            @if( canuse.$MAX_AND_MIN_SIZES ){
+            @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
             }
-            @if( $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 ){
+            @if $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT or ua.$IE55 or ua.$IE5 {
                 margin : 0;
             } @else {
                 margin : 0 0 1em;
@@ -132,7 +132,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
             /* box.scss の @media ブロックを上書きするために詳細度を上げる */
             .box & {
                 margin : 0 0 1em;
-                @if( ua.$Modern ){
+                @if ua.$Modern {
                     float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
                 }
             }
@@ -140,14 +140,14 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
     }
     .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {
         margin : 0 0 1em;
-        @if( ua.$IE8 or ua.$Gecko07 ){
+        @if ua.$IE8 or ua.$Gecko07 {
             width : 100%;
         }
         & a {
             margin : 0 0 0.5em; // .caption img {margin : 0 0 0.5em} の替わり
         }
         & figcaption {
-            @if( ua.$Modern or ua.$IE9 ){
+            @if ua.$Modern or ua.$IE9 {
                 width  : 80%;
                 margin : 0 auto;
             }
@@ -155,7 +155,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
         /* box.scss の @media ブロックを上書きするために詳細度を上げる */
         div .box & {
             margin : 0 0 1em;
-            @if( ua.$Modern ){
+            @if ua.$Modern {
                 float : none; /* 無いと続くテキストの1文字目が消える Win10 + Firefox58 */
             }
         }
@@ -163,7 +163,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
 /*  Phone-
 ------------------------------------------------------------------------------------- */
     @include media(smallphone) {
-        @if( ua.$Modern ){ // アニメーション用の指定
+        @if ua.$Modern { // アニメーション用の指定
             .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} img,
             .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {
                 margin : 0 auto 1em !important; /* 左配置指定を上書き 中央から transition */
@@ -172,8 +172,8 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
     }
 /* IE5, 5.5
 ------------------------------------------------------------------------------------- */
-    @if( ua.$IE55 or ua.$IE5 ){
-        @if( ua.$IE5 ){
+    @if ua.$IE55 or ua.$IE5 {
+        @if ua.$IE5 {
             .box .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
                 overflow : hidden; /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */
                 display  : block;  /* この指定が無いと複数の画像の並び(ギャラリー)へのマウスホバーで大きな隙間が発生する */

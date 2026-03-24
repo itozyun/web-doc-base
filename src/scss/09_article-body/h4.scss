@@ -13,7 +13,7 @@
     h4 {
     /*  Serif
     ------------------------------------------------------------------------------------- */
-        @if( ua.$Modern or ua.$IE9 ){
+        @if ua.$Modern or ua.$IE9 {
             @extend %SerifFontFamily;
         }
     }

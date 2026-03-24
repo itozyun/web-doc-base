@@ -5,7 +5,7 @@
 @use "../03_reset/q";
 
 q[title], q[cite] {
-    @if( canuse.$ATTRIBUTE_SELECTOR ){
+    @if canuse.$ATTRIBUTE_SELECTOR {
         border-bottom : 1px dotted;
     }
 }

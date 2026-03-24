@@ -58,7 +58,7 @@
 
 @use "./css-hack" as *;
 
-@if( ua.$Modern ){
+@if ua.$Modern {
     // (1)
     @font-face {
         font-family : "YuGothic M";
@@ -69,7 +69,7 @@
 }
 
 %UDFontFamily {
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         font-family :
             -apple-system, BlinkMacSystemFont,
             ".SFNSDisplay-Regular", // (8)
@@ -101,9 +101,9 @@
         @include css-hack(onlyIE10To11){
             font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif; // (4)
         }
-    } @else if( ua.$LegacyOperaOrGecko or ua.$MacIE5 ){
+    } @else if ua.$LegacyOperaOrGecko or ua.$MacIE5 {
         font-family :
-            "-apple-system", BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
+            -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
             // Roboto,
             // "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
@@ -111,7 +111,7 @@
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;
-    } @else if( ua.$IE9 ){
+    } @else if ua.$IE9 {
         font-family : Verdana, Arial, "UD Digi Kyokasho NP-R", Meiryo, sans-serif;
 
         %SerifFontFamily {
@@ -120,15 +120,15 @@
             -ms-transform : rotate(.03deg); // (5)
             font-weight   : 700;
         }
-    } @else if( ua.$IE7 or ua.$IE8 ){
+    } @else if ua.$IE7 or ua.$IE8 {
         font-family : Arial, Meiryo, "MS PGothic", sans-serif;
-    } @else if( ua.$WinIELte6 ){
+    } @else if ua.$WinIELte6 {
         font-family : Arial, "MS PGothic", sans-serif;
     }
 }
 
 %SerifFontFamily {
-    @if( ua.$Modern ){
+    @if ua.$Modern {
         font-family :
             /* "BIZ UD明朝", "BIZ UDMincho", */
             "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
@@ -139,16 +139,16 @@
                 font-weight : 700;
             }
         }
-    } @else if( ua.$LegacyOperaOrGecko or ua.$MacIE5 ){
+    } @else if ua.$LegacyOperaOrGecko or ua.$MacIE5 {
          
-    } @else if( ua.$IE9 ){
+    } @else if ua.$IE9 {
         font-family   : /* "BIZ UD明朝", "BIZ UDMincho", */
                         "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
         -ms-transform : rotate(.03deg); // (5)
         font-weight   : 700;
-    } @else if( ua.$IE7 or ua.$IE8 ){
+    } @else if ua.$IE7 or ua.$IE8 {
 
-    } @else if( ua.$WinIELte6 ){
+    } @else if ua.$WinIELte6 {
 
     }
 }
@@ -156,7 +156,7 @@
 /*  IT
 ------------------------------------------------------------------------------------- */
 %CodingFontFamily {
-    @if( ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$NotIE or ua.$MacIE5 ){
+    @if ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$NotIE or ua.$MacIE5 {
         font-family : // (6) 注意事項
             SFMono-Regular,
             'Liberation Mono',

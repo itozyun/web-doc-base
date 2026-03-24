@@ -22,7 +22,7 @@
 @use "./_/article-footer-item" as *;
 
 .#{opt.$Prefix}SocialBtns {
-    @if( ua.$WinIELte7 ){
+    @if ua.$WinIELte7 {
         @include article-footer-item(1em, 1em, true);
     } @else {
         @include article-footer-item(1em, 0.5em, true);
