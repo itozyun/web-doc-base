@@ -210,10 +210,8 @@ return '' +
 <!--[if IE 8]><link href="${dir}assets/css/pc/ie8.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if (IE 7)|(IEMobile)]><link href="${dir}assets/css/pc/ie7.css" rel="stylesheet" type="text/css"><![endif]-->
 <!--[if IE 6]><link href="${dir}assets/css/pc/ie6.css" rel="stylesheet" type="text/css"><![endif]-->
-<!--[if IE 5]><style type="text/css">` +
-`@media tty{i{content:"\\";/*" "*/}};@import '${dir}assets/css/pc/ie5win.css';{;}/*";}}/* */` +
-`@media tty{i{content:"\\";/*" "*/}}@m;@import '${dir}assets/css/pc/ie55.css';/*";}}/* */` +
-`</style><![endif]-->
+<!--[if (gte IE 5.5000)&(lt IE 6)]><link href="${dir}assets/css/pc/ie55.css" rel="stylesheet" type="text/css"><![endif]-->
+<!--[if lt IE 5.5000]><link href="${dir}assets/css/pc/ie5win.css" rel="stylesheet" type="text/css"><![endif]-->
 `;
         },
         Script : function(){
