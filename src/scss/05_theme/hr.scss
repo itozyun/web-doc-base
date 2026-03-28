@@ -4,7 +4,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 hr {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#111111+50,111111+100&0+0,1+50,0+100 */
@@ -29,7 +29,7 @@ hr {
 
 /*  Dark theme
 ----------------------------------------------------------------------------- */
-    @include media(dark_theme) {
+    @include mq(dark) {
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+50,f8fbf8+100&0+0,1+50,0+100 */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
         @if ua.$IE9 {

@@ -6,7 +6,7 @@
 @use "../../01_var/size" as size;
 
 @use "../../02_mixin/responsive-horizontal-margin" as *;
-@use "../../02_mixin/media" as *;
+@use "../../02_mixin/mq" as *;
 
 %ReplaceElementStyle {
     @include responsive-horizontal-margin(1, 1em, 1em);
@@ -29,16 +29,16 @@
             max-width : 100%;
         }
 
-        @include media(tablet_print) {
+        @include mq(tablet_print) {
             max-width : #{100% - size.$TABLET_HORIZONTAL_MARGIN * 2};
         }
-        @include media(phablet) {
+        @include mq(phablet) {
             max-width : #{100% - size.$PHABLET_HORIZONTAL_MARGIN * 2};
         }
-        @include media(phone) {
+        @include mq(phone) {
             max-width : #{100% - size.$PHONE_HORIZONTAL_MARGIN * 2};
         }
-        @include media(watch) {
+        @include mq(watch) {
             max-width : 100%;
         }
     }

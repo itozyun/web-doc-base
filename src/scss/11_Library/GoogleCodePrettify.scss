@@ -6,6 +6,7 @@
 @use "../01_var/color" as color;
 @use "../01_var/canuse" as canuse;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
@@ -13,30 +14,41 @@
 @use "../04_typography/pre" as *;
 @use "../04_typography/code" as *;
 
-@if ua.$Script {
-    .prettyprint {
-        border-width : 1px;
-        border-color : #333;
+.prettyprint {
+    border-width : 1px;
+    border-color : #333;
 
-        @include media(screen) {
-            background : #333;
-            color      : #fff;
-            :link, :link * {
-                color : color.$Dark_link;
-            }
-            :visited, :visited * {
-                color : color.$Dark_visited;
-            }
-        }
-        @include media(print) {
-            line-height : 1;
-        }
-        & code {
-            font-size : 0.875em;
-        }
+    & code {
+        font-size : 0.875em;
     }
 
-    @include media(screen) {
+    @include screen {
+        background : #333;
+        color      : #fff;
+        :link, :link * {
+            color : color.$Dark_link;
+        }
+        :visited, :visited * {
+            color : color.$Dark_visited;
+        }
+    }
+    @include print-fallback {
+        background : #fff;
+        color      : #333;
+        :link, :link * {
+            color : color.$Print_link;
+        }
+        :visited, :visited * {
+            color : color.$Print_visited;
+        }
+    }
+    @include print {
+        @include line-height(1, true);
+    }
+}
+
+@if ua.$Script {
+    @include screen {
         /* Pretty printing styles. Used with prettify.js. */
         /* Vim sunburst theme by David Leibovic */
         .str { color: #65B042; } /* string  - green */
@@ -58,7 +70,7 @@
     /* Alternate shading for lines */
     li.L1,li.L3,li.L5,li.L7,li.L9 {}
 
-    @include media(print) {
+    @include print {
         .str { color: #060; }
         .kwd { color: #006; font-weight: bold; }
         .com { color: #600; font-style: italic; }

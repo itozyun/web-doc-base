@@ -14,7 +14,7 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "./RichLink";
 
@@ -65,7 +65,7 @@
 
 /*  Dark theme
 ------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
+@include mq(dark) {
     .medal {
         border-color : color.$Dark_casual_fill;
         background   : color.$Dark_casual_fill;

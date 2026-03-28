@@ -7,7 +7,7 @@
 
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/column" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../04_typography/h2";
 
@@ -26,7 +26,6 @@
         &, & * {
             border-color : color.$ACCENT;
         }
-
         @if ua.$IE5 {
             height : 1px; // <= 線が消えるのを防ぐ
         } @else if ua.$IE55 or ua.$IE6 {
@@ -44,14 +43,14 @@
 
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */
-        @include media(WSXGA_landscapePrint) {
+        @include mq(WSXGA_landscapePrint) {
             @at-root h2 {
                 @include column-span-all;
             }
         }
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-        @include media(WSXGA) {
+        @include mq(WSXGA) {
             @at-root h2 {
                 text-align : center;
             }
@@ -59,8 +58,13 @@
 
     /*  Phone
     ------------------------------------------------------------------------------------- */
-        @include media(phone) {
+        @include mq(phone) {
             font-size : 1.25em;
+        }
+    }
+    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
+        blockquote > h2:first-of-type {
+            margin-top : 0;
         }
     }
 }

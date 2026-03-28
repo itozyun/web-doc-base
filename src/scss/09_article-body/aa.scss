@@ -17,7 +17,7 @@
     border-width : 1px;
     border-color : #0A0809;
 
-    @include media(screen) {
+    @include screen {
         @include link-colors-on-dark-background;
 
         background : #0A0809;

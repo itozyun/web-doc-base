@@ -23,9 +23,37 @@
 @use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/clearfix" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/table-to-float-layout-patch" as *;
+
+@mixin _reset-layout { /* float-layout -> table-layout も併せて変更 */
+    .#{opt.$Prefix}lW {
+        width : 100%;
+        @if canuse.$MAX_AND_MIN_SIZES {
+            max-width : 100%;
+        }
+        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
+            display : block;
+        }
+    }
+        .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
+            width : auto;
+            @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
+                display : block;
+            } @else {
+                float : none;
+            }
+        }
+            .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
+                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+                    padding : 0;
+                } @else {
+                    margin : 0;
+                }
+            }
+}
 
 @if opt.$MobileOnly == false {
     @if opt.$MaxLayoutColumns < 2 {
@@ -41,7 +69,7 @@
         }
     }
 
-    @include media(screen) {
+    @include screen {
         .#{opt.$Prefix}lW {
             width : size.$PC_WIDTH_PERCENT;
             @if canuse.$MAX_AND_MIN_SIZES {
@@ -91,7 +119,8 @@
                     }
                 }
             }
-
+/*  table or float
+------------------------------------------------------------------------------------- */
         @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
             .#{opt.$Prefix}lW {
                 display      : table;
@@ -142,18 +171,14 @@
     }
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include media(print) {
-        .#{opt.$Prefix}lSi {
-            @if ua.$IE6 {
-                width : 100%;
-            }
-        }
+    @include print-fallback {
+        @include _reset-layout;
     }
 }
 
 /*  WQXGA
 ------------------------------------------------------------------------------------- */
-@include media(WQXGA) {
+@include mq(WQXGA) {
     .#{opt.$Prefix}lW {
         width     : size.$WQXGA_WIDTH_PERCENT;
         max-width : size.$WQXGA_MAX_WIDTH_EM;
@@ -179,7 +204,7 @@
 
 /*  WSXGA
 ------------------------------------------------------------------------------------- */
-@include media(WSXGA) {
+@include mq(WSXGA) {
     .#{opt.$Prefix}lW {
         width     : size.$WSXGA_WIDTH_PERCENT;
         max-width : size.$WSXGA_MAX_WIDTH_EM;
@@ -205,31 +230,8 @@
 /*  Tablet
 ------------------------------------------------------------------------------------- */
 @if opt.$MobileOnly == false {
-    @include media(tablet) { /* float-layout -> table-layout も併せて変更 */
-        .#{opt.$Prefix}lW {
-            width : 100%;
-            @if canuse.$MAX_AND_MIN_SIZES {
-                max-width : 100%;
-            }
-            @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-                display : block;
-            }
-        }
-            .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
-                width : auto;
-                @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-                    display : block;
-                } @else {
-                    float : none;
-                }
-            }
-                .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
-                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                        padding : 0;
-                    } @else {
-                        margin : 0;
-                    }
-                }
+    @include mq(tablet) {
+        @include _reset-layout;
     }
 }
 
@@ -245,7 +247,7 @@
             overflow-x : hidden;
         }
     }
-    @include media(screen) {
+    @include screen {
         .#{opt.$Prefix}lW {
             @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 text-align : center;
@@ -274,15 +276,18 @@
 ------------------------------------------------------------------------------------- */
 @if opt.$MobileOnly {
     .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
-        padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+        @include screen {
+            padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
+        }
+        @include print-fallback {
+            padding : 0;
+        }
     }
 } @else {
-    @include media(tablet_print) {
+    @include mq(tablet) {
         .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
             padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
         }
-    }
-    @include media(tablet) {
         #lB .#{opt.$Prefix}lSi {
             padding : 0;
         }
@@ -292,35 +297,27 @@
 .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi, #lB .#{opt.$Prefix}lSi {
     /*  PHABLET
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         padding : 0 size.$PHABLET_HORIZONTAL_MARGIN;
     }
 
     /*  Phone
     ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         padding : 0 size.$PHONE_HORIZONTAL_MARGIN;
     }
 
     /*  Watch
     ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         padding : 0;
     }
 }
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include media(print) {
+@include print {
     #lH .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lS, #lF .#{opt.$Prefix}lW {
         display : none;
-    }
-}
-
-/*  landscape Print
-------------------------------------------------------------------------------------- */
-@include media(landscapePrint) {
-    .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMh {
-        padding : 0 math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
     }
 }

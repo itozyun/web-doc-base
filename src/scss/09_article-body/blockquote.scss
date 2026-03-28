@@ -6,82 +6,74 @@
 @use "../01_var/canuse" as canuse;
 
 @use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/column" as *;
 @use "../02_mixin/supports" as *;
 @use "../02_mixin/unbreak" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/background-color" as *;
 
 @use "../04_typography/blockquote";
 
 @use "../08_module/ArticleBody";
 
 %link-in-blockquote {
-    @include responsive-horizontal-margin(2, 0, 0);
+    @include text-color-responsive(color.$Light_link);
+    @include responsive-horizontal-margin(2, 0, 1.14em);
+
     font-size : 0.875em;
-    color     : color.$Light_link;
+
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-span-all;
         @include supports(column-span){
-            margin : 0 0 2em;
+            margin : 0 0 2.28em;
         }
         @include supports(-webkit-column-span){
-            margin : 0 0 2em;
+            margin : 0 0 2.28em;
         }
-    }
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        color : color.$Dark_link;
     }
 }
 
 %cite-in-blockquote {
     @include responsive-horizontal-margin(2, 0, 0);
     @include unbreak-box-with-long-text; /* 長い url 用 */
+
     display    : block;
     font-size  : 0.875em;
     text-align : right;
     color      : color.$Light_casual_text;
+
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-span-all;
         @include supports(column-span){
-            margin : 1em 0 0;
+            margin : 1.14em 0 0;
         }
         @include supports(-webkit-column-span){
-            margin : 1em 0 0;
+            margin : 1.14em 0 0;
         }
     }
 }
 
 blockquote {
     @include responsive-horizontal-margin(1, 1em, 1em);
+    @include background-color-responsive(color.$Light_casual_fill);
+
     padding      : 1em;
     border-width : 1px;
-    @include media(screen) {
-        background : color.$Light_casual_fill;
-    }
-    @include media(WSXGA_landscapePrint) {
-        @include supports(column-span){
-            & > * {
-                margin-top : 0;
-            }
-        }
-        @include supports(-webkit-column-span){
-            & > * {
-                margin-top : 0;
-            }
-        }
-    }
+
     & blockquote {
-        border-color : color.$Light_casual_text;
+        @include border-color-responsive(color.$Light_casual_text);
     }
     & h3 {
-        border-color : color.$Light_text;
+        @include border-color-responsive(color.$Light_text);
     }
+
     @if canuse.$CSS_GENERATED_CONTENT {
         &[title]:before {
             content : attr(title);
@@ -106,9 +98,19 @@ blockquote {
     }
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-span-all(2);
 
+        @include supports(column-span){
+            & > * {
+                margin-top : 0;
+            }
+        }
+        @include supports(-webkit-column-span){
+            & > * {
+                margin-top : 0;
+            }
+        }
         &:before, &:after {
             @include column-span-all;
         }
@@ -124,39 +126,28 @@ blockquote {
     }
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         @include column-gap(size.$WSXGA_COLUMN_GAP_EM);
     }
     /* Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet) {
         padding : 1em 1px;
-    }
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        background : color.$Dark_casual_fill;
-        color      : color.$Dark_text;
-        & blockquote {
-            border-color : color.$Dark_casual_text;
-        }
-        h3 {
-            border-color : color.$Dark_text;
-        }
     }
     /*  Forced colors
     ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         border-style : dotted;
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
-        margin : 1em 0;
+    @include print {
+        margin  : 1em 0;
+        padding : 1em;
     }
     /*  landscape Print
     ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint){
+    @include mq(landscapePrint){
         @include column-gap(size.$PRINT_COLUMN_GAP_EM);
     }
 }

@@ -3,7 +3,7 @@
 @use "../01_var/ua" as ua;
 
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../03_reset/img";
 
@@ -18,13 +18,13 @@ img { // , embed, object, video
 
 /*  Phone-
 ------------------------------------------------------------------------------------- */
-    @include media(smallphone) {
+    @include mq(smallphone) {
         margin : 1em auto;
     }
 
 /*  Dark theme
 ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
+    @include mq(dark) {
         @if ua.$Modern {
             filter : brightness(85%);
             :link &, :visited & {
@@ -38,7 +38,9 @@ img { // , embed, object, video
 
 /*  Forced colors
 ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_ms){
+    @include mq(forced_colors_native_or_ms){
         filter : none;
     }
 }
+
+

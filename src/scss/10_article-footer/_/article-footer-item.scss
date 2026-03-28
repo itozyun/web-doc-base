@@ -1,6 +1,7 @@
 /* article footer item
 ------------------------------------------------------------------------------------- */
 @use "../../02_mixin/responsive-horizontal-padding" as *;
+@use "../../02_mixin/mq" as *;
 @use "../../02_mixin/media" as *;
 
 @mixin article-footer-item($paddingTop, $paddingBottom, $noprint : false, $skipPadding : false) {
@@ -12,7 +13,7 @@
 
     /*  Forced colors
     ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         & {
             border-style : dotted;
         }
@@ -20,7 +21,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         @if $noprint {
             display : none;
         }

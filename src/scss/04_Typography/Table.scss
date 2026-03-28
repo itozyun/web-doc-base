@@ -1,6 +1,8 @@
 /*  Table
  *    ie5 は <p> に続く <table> の前に </p> が必要
 ------------------------------------------------------------------------------------- */
+@use "sass:list";
+
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
@@ -9,22 +11,28 @@
 @use "../01_var/color" as color;
 @use "../01_var/quirks" as quirks;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/create-css-generated-block" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/background-color" as *;
+@use "../02_mixin/_/responsive-color" as *;
 
 @use "../03_reset/table";
 
 @use "./_/nesting" as *;
 
-@mixin _table-cell-border-width($border-width){
+// この関数は tfoot のセルには使用しない
+@mixin _cell-border-width($border-width){
     border-width : $border-width;
 
     @if canuse.$CSS_GENERATED_BLOCK {
+        // 下線の太さを取り出して [colspan] 用に設定する
         @if $border-width != "0 0 1px" {
             &[colspan]:after {
                 border-width : $border-width;
@@ -33,15 +41,63 @@
     }
 }
 
-@mixin _table-cell-border-color($border-color){
-    border-color : $border-color;
+@function border-bottom-color($color){
+    @if list.length($color) < 3 {
+        @return list.nth($color, 1);
+    }
+    @return list.nth($color, 3);
+}
+
+// 下線の色を取り出して [colspan] 用に設定する
+@mixin _apply-colspan-bottom-color($color){
+    &[colspan]:after {
+        border-color : border-bottom-color($color);
+    }
+}
+
+// この関数は tfoot のセルには使用しない
+@mixin _cell-border-color($color, $dark-color: false, $print-color: false){
+    border-color : $color;
 
     @if canuse.$CSS_GENERATED_BLOCK {
-        &[colspan]:after {
-            @if length($border-color) < 3{
-                border-color : nth($border-color, 1);
-            } @else {
-                border-color : nth($border-color, 3);
+        @include _apply-colspan-bottom-color($color);
+    }
+    @if $dark-color {
+        @include mq(dark) {
+            @include _cell-border-color($dark-color);
+        }
+    }
+    @if $print-color {
+        @include print {
+            @include _cell-border-color($print-color);
+        }
+    }
+}
+
+@mixin _cell-border-color-responsive($light-color, $print-color: false) {
+    @include border-color-responsive($light-color, $print-color);
+
+    @if canuse.$CSS_GENERATED_BLOCK {
+        @include _apply-colspan-bottom-color($light-color);
+        @if ua.$Modern {
+            @include _apply-colspan-bottom-color(responsive-color-var($light-color));
+        }
+        @include mq(watch) {
+            @if border-bottom-color($light-color) != border-bottom-color(responsive-color-dark($light-color)){
+                @include _apply-colspan-bottom-color(responsive-color-dark($light-color));
+            }
+        }
+        @include print {
+            @if $print-color != noprint {
+                @if $print-color {
+                    @if border-bottom-color($light-color) != border-bottom-color($print-color){
+                        @include _apply-colspan-bottom-color($print-color);
+                    }
+                } @else {
+                    @if border-bottom-color($light-color) != border-bottom-color(responsive-color-print($light-color)){
+                        @include _apply-colspan-bottom-color(responsive-color-print($light-color));
+                    }
+                }
             }
         }
     }
@@ -55,8 +111,8 @@
 @if canuse.$CSS_GENERATED_BLOCK {
     [colspan] {
         position : relative;
-    }
-        [colspan]:before, [colspan]:after {
+
+        &:before, &:after {
             @include create-css-generated-block;
             position     : absolute;
             bottom       : -1px;
@@ -67,110 +123,120 @@
             line-height  : 0;
             border-width : 0 0 1px;
             border-style : solid;
+
+            tfoot & {
+                display : none;
+            }
         }
-        tfoot [colspan]:before, tfoot [colspan]:after {
-            display : none;
+    }
+}
+
+/* :target
+------------------------------------------------------------------------------------- */
+@if canuse.$TARGET_PSEUDO_CLASS {
+    :target, :target * {
+        background   : color.$ACCENT !important;
+        color        : #fff !important;
+        border-color : #fff !important;
+    }
+    th:target, td:target {
+        border-color : inherit !important;
+    }
+    :target th, :target td {
+        border-color : color.$ACCENT !important;
+    }
+}
+
+/* sticky
+------------------------------------------------------------------------------------- */
+@if ua.$Modern {
+    @include mq(pc) {
+        @supports (position:sticky) or (position:-webkit-sticky) { // For Firefox 124, no effect on Chrome 124
+            table {
+                position : relative;
+            }
+            thead,               // for Firefox
+            thead td, thead th { // for Chrome
+            // https://qiita.com/orangain/items/6268b6528ab33b27f8f2
+                position : -webkit-sticky;
+                position : sticky;
+                top      : 0;
+                z-index  : 1;
+            }
+            thead {
+                background: color.mix(color.$Light_casual_text, color.$Light_casual_fill, 80%);
+                @media (prefers-color-scheme:dark) {
+                    background: color.mix(color.$Dark_casual_text, color.$Dark_casual_fill, 80%);
+                }
+                @include mq(forced_colors_native_or_fallback){
+                    td, th {
+                        filter : invert(1);
+                    }
+                }
+            }
         }
+    }
 }
 
 /*  main
 ------------------------------------------------------------------------------------- */
 /* Need 'cellspacing="0"' in the markup for MacIE5 */
 table {
-    @include media(tablet) {
-        & {
-            width : 100% - size.$TABLET_HORIZONTAL_MARGIN * 2;
-        }
-    }
-
-    @include media(phablet) {
-        & {
-            width : 100% - size.$PHABLET_HORIZONTAL_MARGIN * 2;
-        }
-    }
-
-    @include media(phone) {
-        & {
-            width : 100% - size.$PHONE_HORIZONTAL_MARGIN * 2;
-        }
-    }
-
-    @include media(watch) {
-        & {
-            width : 100%;
-        }
-    }
-
+    @include responsive-horizontal-margin(1, 1em, 1em, true);
     border-width    : 1px 0 0;
     border-collapse : collapse;
     empty-cells     : show;
     border-spacing  : 0;
-    @include responsive-horizontal-margin(1, 1em, 1em);
-    @if ua.$Modern {
-        @include media(pc) {
-            @supports (position:sticky) {
-                position : relative;
-            }
-        }
+
+    @include mq(tablet) {
+        width : 100% - size.$TABLET_HORIZONTAL_MARGIN * 2;
+    }
+    @include mq(phablet) {
+        width : 100% - size.$PHABLET_HORIZONTAL_MARGIN * 2;
+    }
+    @include mq(phone) {
+        width : 100% - size.$PHONE_HORIZONTAL_MARGIN * 2;
+    }
+    @include mq(watch) {
+        width : 100%;
     }
 }
-
     caption {
         @include responsive-horizontal-margin(1, 1.5em, #{size.$PARAGRAPH_LINE_HEIGHT_EM - size.$BASE_LINE_HEIGHT_EM}); // size.$PARAGRAPH_LINE_HEIGHT_WATCH
     }
     thead, caption {
         @include unbreak-after;
     }
-    thead,               // for Firefox
-    thead td, thead th { // for Chrome
-        // https://qiita.com/orangain/items/6268b6528ab33b27f8f2
-        @if ua.$Modern {
-            @include media(pc) {
-                @supports (position:sticky) {
-                    position : -webkit-sticky;
-                    position : sticky;
-                    top      : 0;
-                    z-index  : 1;
-                }
-            }
-        }
-    }
 
     tr {
         @include unbreak-inside;
-
         @extend %nesting-table-cell;
     }
+
     th, td {
         @include unbreak-box-with-long-text; /* table がカラムを割るのを防ぐ */
     }
-
     th {
+        @include _cell-border-width(0 0 1px);
         font-weight : normal;
         text-align  : left;
         padding     : 0.5em;
-        @include _table-cell-border-width(0 0 1px);
     }
-
     td {
         padding : 0.5em 0;
     }
-
-    thead td {
+    /* thead td {
         padding : 0.5em 0.25em;
-    }
-
+    } */
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
     }
-
     tbody th, /* tbody */ td {
         vertical-align : top;
     }
-
     tbody th {
-        @include _table-cell-border-width(0 0 1px);
+        @include _cell-border-width(0 0 1px);
     }
     tbody td {
         border-width : 0 0.5em 1px;
@@ -192,115 +258,165 @@ table {
 
 /*  color
 ------------------------------------------------------------------------------------- */
-@mixin _table-colors( $text, $fill, $casual_text, $casual_fill ){
-    table {
-        @if ua.$IE5 or ua.$IE55 {
-            color : $text;
-        }
-        border-color : $casual_fill;
+table {
+    @if ua.$IE5 or ua.$IE55 {
+        color : color.$Light_text;
     }
-
-    thead { // For Firefox 124, no effect on Chrome 124
-        @if ua.$Modern {
-            @include media(pc) {
-                @supports (position:sticky) {
-                    background : mix( $casual_text, $casual_fill, 80% );
+    @include border-color-responsive(color.$Light_casual_fill);
+}
+    thead {
+        th, td {
+            @include background-responsive(color.$Light_casual_text, color.$Print_casual_fill);
+            @include text-color-responsive(color.$Light_fill, color.$Print_text);
+            @include _cell-border-color(
+                color.$Light_casual_fill color.mix(color.$Light_casual_text, color.$Light_casual_fill, 80%),
+                color.$Dark_casual_fill  color.mix(color.$Dark_casual_text , color.$Dark_casual_fill , 80%),
+                color.$Print_casual_text
+            );
+        }
+        :link {
+            @include text-color-responsive(color.$Light_fill, color.$Print_link);
+            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
+                &:hover {
+                    @include text-color-responsive(color.$Light_fill, color.$Print_link);
                 }
             }
         }
-    }
-
-    thead th, thead td {
-        background : $casual_text;
-        color      : $fill;
-        @include _table-cell-border-color($casual_fill mix( $casual_text, $casual_fill, 80% ));
-    }
-    thead {
-        :link,
         .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
-            color : $fill;
+            @include text-color-responsive(color.$Light_fill, color.$Print_visited);
             @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
                 &:hover {
-                    color : $fill;
+                    @include text-color-responsive(color.$Light_fill, color.$Print_visited);
                 }
             }
         }
     }
 
     tbody th {
-        background : $casual_fill;
-        @include _table-cell-border-color($fill);
+        @include background-responsive(color.$Light_casual_fill);
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            border-color : transparent;
+        } @else {
+            border-color : color.$Light_fill;
+        }
+        @include print {
+            border-color : color.$Print_casual_text;
+        }
     }
     td {
-        @include _table-cell-border-color($fill $fill $casual_fill);
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include _cell-border-color-responsive(transparent transparent color.$Light_casual_fill);
+        } @else {
+            @include _cell-border-color-responsive(color.$Light_fill color.$Light_fill color.$Light_casual_fill);
+        }
     }
 
     tfoot th,
     tfoot td {
-        border-color : $casual_text $fill;
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include border-color-responsive(color.$Light_casual_text transparent);
+        } @else {
+            @include border-color-responsive(color.$Light_casual_text color.$Light_fill);
+        }
     }
 
-    blockquote {
-        table {
-            border-color : $casual_text;
+/*  blockquote > table
+------------------------------------------------------------------------------------- */
+blockquote {
+    table {
+        @include border-color-responsive(color.$Light_casual_text);
+    }
+    thead th, thead td {
+        @include background-responsive(color.$Light_text, transparent);
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include _cell-border-color(
+                transparent color.mix(color.$Light_text, color.$Light_casual_fill, 90%),
+                transparent color.mix(color.$Dark_text , color.$Dark_casual_fill , 90%),
+                color.$Print_text
+            );
+        } @else {
+            @include _cell-border-color(
+                color.$Light_casual_fill color.mix(color.$Light_text, color.$Light_casual_fill, 90%),
+                color.$Dark_casual_fill  color.mix(color.$Dark_text , color.$Dark_casual_fill , 90%),
+                color.$Print_text
+            );
         }
-        thead th, thead td {
-            background : $text;
-            @include _table-cell-border-color($casual_fill mix( $text, $casual_fill, 90% ));
+    }
+    tbody th {
+        @include background-responsive(color.$Light_casual_text, transparent);
+        @include text-color-responsive(color.$Light_fill, color.$Print_text);
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include _cell-border-color-responsive(transparent, color.$Print_text);
+        } @else {
+            @include _cell-border-color-responsive(color.$Light_casual_fill, color.$Print_text);
         }
-        tbody th {
-            background : $casual_text;
-            color      : $fill;
-            @include _table-cell-border-color($casual_fill);
-            :link,
-            .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
-                color : $fill;
-                @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
-                    &:hover {
-                        color : $fill;
-                    }
+        :link {
+            @include text-color-responsive(color.$Light_fill, color.$Print_link);
+            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
+                &:hover {
+                    @include text-color-responsive(color.$Light_fill, color.$Print_link);
                 }
             }
         }
-        td {
-            @include _table-cell-border-color($casual_fill $casual_fill $casual_text);
-        }
-        tfoot th,
-        tfoot td {
-            border-color : $text $casual_fill;
-        }
-
-        @if canuse.$HOVER_PSEUDO_CLASS {
-            tbody :hover td {
-                @include _table-cell-border-color($casual_fill $casual_fill color.$ACCENT);
+        .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
+            @include text-color-responsive(color.$Light_fill, color.$Print_visited);
+            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
+                &:hover {
+                    @include text-color-responsive(color.$Light_fill, color.$Print_visited);
+                }
             }
+        }
+    }
+    td {
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include _cell-border-color-responsive(transparent transparent color.$Light_casual_text);
+        } @else {
+            @include _cell-border-color-responsive(
+                color.$Light_casual_fill color.$Light_casual_fill color.$Light_casual_text,
+                color.$Print_fill        color.$Print_fill        color.$Print_casual_text
+            );
+        }
+    }
+    tfoot th,
+    tfoot td {
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            @include border-color-responsive(
+                color.$Light_text        transparent,
+                color.$Print_casual_text transparent
+            );
+        } @else {
+            @include border-color-responsive(
+                color.$Light_text        color.$Light_casual_fill,
+                color.$Print_casual_text color.$Print_fill
+            );
         }
     }
 }
 
-@include _table-colors( color.$Light_text, color.$Light_fill, color.$Light_casual_text, color.$Light_casual_fill );
-
+/* :hover
+------------------------------------------------------------------------------------- */
 @if canuse.$HOVER_PSEUDO_CLASS {
-    tbody :hover th {
-        background : color.$ACCENT;
-        color      : #fff;
-        :link, :visited {
+    tbody :hover {
+        th {
+            @include background-responsive(color.$ACCENT, noprint);
             color : #fff;
-        }
-    }
-    tbody :hover td {
-        @include _table-cell-border-color(color.$Light_fill color.$Light_fill color.$ACCENT);
-        color : color.$ACCENT;
-    }
-
-    tbody :hover th a {
-        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
-            background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
-        } @else if quirks.$FOCUS_COLOR_SYSTEM_FIXED == false {
-            @include active-focus-pseudo-class {
-                background : #fff !important;
-                color      : color.$ACCENT !important;
+            a {
+                @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
+                    background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
+                } @else if quirks.$FOCUS_COLOR_SYSTEM_FIXED == false {
+                    @include active-focus-pseudo-class {
+                        background : #fff !important;
+                        color      : color.$ACCENT !important;
+                    }
+                }
             }
+            :link, :visited {
+                color : #fff;
+            }
+        }
+        td {
+            @include _cell-border-color-responsive(transparent transparent color.$ACCENT, noprint);
+            @include text-color-responsive(color.$ACCENT, noprint);
         }
     }
 }
@@ -308,45 +424,41 @@ table {
 @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
     thead a:focus,
     blockquote tbody th a:focus {
-        background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
+        @include background-responsive(color.$ACCENT !important, noprint); // テキスト色が明るいのでアクセント色で塗る
     }
 }
 
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
-    @include _table-colors(color.$Dark_text, color.$Dark_fill, color.$Dark_casual_text, color.$Dark_casual_fill);
-
-    tbody :hover td {
-        @include _table-cell-border-color(color.$Dark_fill color.$Dark_fill color.$ACCENT);
-    }
-}
 /*  Forced colors
 ------------------------------------------------------------------------------------- */
-@include media(forced_colors_native_or_ms){
-    td, tfoot td {
-        @include _table-cell-border-color(currentColor Window);
+td, tfoot td,
+blockquote td, blockquote tfoot td {
+    @include mq(forced_colors_native){
+        border-color : currentColor Window;
+    }
+    @include mq(forced_colors_ms){
+        border-color : currentColor transparent;
     }
 }
-@include media(forced_colors_native_or_fallback){
+
+@include mq(forced_colors_native_or_fallback){
     table {
         border-width    : 2px 0 0;
         border-spacing  : 2px;
         border-collapse : separate;
     }
+    thead th, thead td {
+        @include _cell-border-width(0 0 2px);
+        padding : 0.5em;
+    }
     thead, th {
         font-weight : bold;
+    }
+    tbody td {
+        @include _cell-border-width(0 0 1px);
     }
     td {
         padding      : 0.5em 0.25em;
         border-style : dotted;
-    }
-    thead th, thead td {
-        @include _table-cell-border-width(0 0 2px);
-        padding : 0.5em;
-    }
-    tbody td {
-        @include _table-cell-border-width(0 0 1px);
     }
     @if canuse.$LAST_CHILD_PSEUDO_CLASS == false and canuse.$FIRST_CHILD_PSEUDO_CLASS { // 該当は ie8 だけ
          /* tfoot を持つ場合に最後の行の線を消す */
@@ -363,76 +475,24 @@ table {
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include media(print) {
+@include print {
     table {
-        margin       : 1em 0;
-        width        : 100%;
-        border-color : color.$Print_casual_fill;
+        margin : 1em 0;
+        width  : 100%;
+    }
+    thead th, thead td {
+        @include _cell-border-width(0 0 1px);
+        padding : 0.5em;
     }
     th {
         font-weight : bold;
-    }
-
-    thead th, thead td {
-        background : color.$Print_casual_fill;
-        color      : color.$Print_text;
-        padding    : 0.5em;
-        @include _table-cell-border-color(color.$Print_casual_text);
-        @include _table-cell-border-width(0 0 1px);
     }    
-    tbody th {
-        background : color.$Print_casual_fill;
-        @include _table-cell-border-color(color.$Print_casual_text);
-    }
-    td {
-        @include _table-cell-border-color(#fff #fff color.$Print_casual_fill);
-    }
-
-    tfoot th,
-    tfoot td {
-        border-color : color.$Print_casual_text #fff;
-    }
-
-    thead {
-        :link {
-            color : color.$Print_link;
-        }
-        :visited {
-            color : color.$Print_visited;
-        }
-    }
 
     blockquote {
-        table {
-            border-color : color.$Print_casual_text;
-        }
         thead th, thead td {
-            background : color.$Print_casual_fill;
-            color      : color.$Print_text;
-            padding    : 0.5em;
-            @include _table-cell-border-color(color.$Print_text);
-            @include _table-cell-border-width(0 0 1px);
-        }
-        tbody th {
-            background : color.$Print_casual_fill;
-            color      : color.$Print_text;
-            @include _table-cell-border-color(color.$Print_text);
-        }
-        td {
-            @include _table-cell-border-color(#fff #fff color.$Print_casual_text);
-        }
-
-        tfoot th, tfoot td {
-            border-color : color.$Print_text #fff;
-        }
-
-        thead, tbody {
-            th :link {
-                color : color.$Print_link;
-            }
-            th :visited {
-                color : color.$Print_visited;
-            }
+            @include _cell-border-width(0 0 1px);
+            color   : color.$Print_text;
+            padding : 0.5em;
         }
     }
 }

@@ -13,7 +13,7 @@
 @use "../01_var/size" as size;
 
 @use "../02_mixin/inline-block" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../04_typography/a";
 
@@ -38,7 +38,7 @@
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         .lM & {
             @include stackableModule(.2em);
 
@@ -51,7 +51,7 @@
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         text-align : center;
         @include stackableModule(.2em);
 
@@ -63,7 +63,7 @@
 
     /*  Watch
     ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         a {
             padding : 0.5em 0;
         }

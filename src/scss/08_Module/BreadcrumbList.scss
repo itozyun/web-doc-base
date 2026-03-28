@@ -8,14 +8,16 @@
 @use "../01_var/color" as color;
 
 @use "../02_mixin/inline-block" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
+@use "../02_mixin/text-color" as *;
 
 // <a>
 @use "../04_typography/a";
 
 .#{opt.$Prefix}BreadcrumbList {
+    @include text-color-responsive(color.$Light_casual_text);
     padding : 1em 0;
-    color   : color.$Light_casual_text;
 
     a {
         @if ua.$GeckoLte09 == false and ua.$Opera7x == false {
@@ -26,23 +28,19 @@
         }
     }
 
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+    @if opt.$UseDarkRibbon {
         .#{opt.$Prefix}ribbon & {
             color : color.$Ribbon_casual_text;
         }
     }
 
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        color : color.$Dark_casual_text;
-    }
-
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         font-size : .83em;
         padding   : 0.5em 0;
-        color     : color.$Print_casual_text !important;
+        @if opt.$UseDarkRibbon {
+            color : color.$Print_casual_text !important;
+        }
     }
 }

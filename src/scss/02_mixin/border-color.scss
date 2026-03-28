@@ -1,0 +1,76 @@
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+
+@use "./mq" as *;
+@use "./media" as *;
+
+@use "./_/responsive-color" as *;
+
+// 印刷メディア用の色だけインクセーブの意図で異なる場合がある
+@mixin border-color-responsive($light-color, $print-color: false) {
+    border-color : $light-color;
+
+    @if responsive-color-var($light-color) {
+        border-color : responsive-color-var($light-color);
+    }
+    @include mq(dark) {
+        @if responsive-color-dark($light-color) {
+            border-color : responsive-color-dark($light-color);
+        }
+    }
+    @include print {
+        @if $print-color == noprint {
+            
+        } @else if $print-color != false {
+            border-color : $print-color;
+        } @else if responsive-color-print($light-color) {
+            border-color : responsive-color-print($light-color);
+        }
+    }
+}
+
+@mixin border-color-screen-print($screen-color, $print-color) {
+    @if $screen-color != $print-color {
+        @if ua.$Script == false or color.$PRINT_DEFAULT_BORDER != $print-color {
+            border-color : $screen-color;
+
+            @include print {
+                border-color : $print-color;
+            }
+        } @else {
+            @include screen {
+                border-color : $screen-color;
+            }
+        }
+    } @else {
+        border-color : $screen-color;
+    }
+}
+
+@mixin border-color-light-dark($light-color, $dark-color, $print-color: false) {
+    @if $light-color != $dark-color {
+        @if ua.$Script == false or color.$DARK_DEFAULT_BORDER != $dark-color {
+            border-color : $light-color;
+
+            @include mq(dark) {
+                border-color : $dark-color;
+                @if ua.$Modern {
+                    // @if responsive-color-var($dark-color) {
+                        // border-color : responsive-color-var($dark-color);
+                    // }
+                }
+            }
+        } @else {
+            @include screen {
+                border-color : $light-color;
+            }
+        }
+    } @else {
+        border-color : $light-color;
+    }
+    @if $print-color and $light-color != $print-color {
+        @include print {
+            border-color : $print-color;
+        }
+    }
+}

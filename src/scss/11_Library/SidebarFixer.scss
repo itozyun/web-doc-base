@@ -10,13 +10,13 @@
 @use "../01_var/color" as color;
 
 @use "../02_mixin/table-to-float-layout-patch" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/animate-colors" as *;
 @use "../02_mixin/css-hack" as *;
 
 @use "../06_layout/layout-2-columns";
 
-@if opt.$MobileOnly == false and ua.$Script {
+@if opt.$MobileOnly == false {
     @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
         .#{opt.$Prefix}lS {
             overflow : hidden;
@@ -26,116 +26,125 @@
         }
     }
     @if ua.$Modern {
-        @include media(pc) {
-            @supports (position:sticky) {
+        @include mq(pc) {
+            @supports (position:sticky) or (position:-webkit-sticky) { // For Firefox 124, no effect on Chrome 124
                 .#{opt.$Prefix}lW, .#{common.$CLASSNAME_NO_JAVASCRIPT} .#{opt.$Prefix}lS {
                     overflow : visible; // for Chrome 114
                 }
                 .#{common.$CLASSNAME_NO_JAVASCRIPT} ##{common.$ELEMENT_ID_SUB_COLUMN} > * { // :not(##{common.$ELEMENT_ID_SUB_COLUMN}barFixer)
+                    position : -webkit-sticky;
                     position : sticky;
                     top      : 0;
                 }
             }
-
-            ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
-                /* http://blog.webcreativepark.net/2012/10/19-161432.html */
-                -webkit-backface-visibility : hidden;
-                   -moz-backface-visibility : hidden;
-                        backface-visibility : hidden;
-                /* clean-css ignore:start */
-                -webkit-transition-property : transform;
-                -webkit-transition          :           0.3s ease-in;
-                /* clean-css ignore:end */
-                   -moz-transition          : transform 0.3s ease-in;
-                     -o-transition          : transform 0.3s ease-in;
-                        transition          : transform 0.3s ease-in;
-                @media (prefers-reduced-motion: reduce) {
-                    transition : none;
-                }
-            }
-            /* :hover で色を変えてスクロール可能であることを知らせる */
-            ##{common.$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
-                border-color : color.$Light_text;
-            }
-            h2 {
-                @include animate-colors;
-            }
         }
-        @media (min-width: #{1em * math.div(size.$TABLET_MAX_WIDTH + 1, size.$FONTSIZE_UPPER_TABLET)}) and (prefers-color-scheme:dark) {
-            ##{common.$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
-                border-color : color.$Ribbon_text;
+        h2 {
+            @include animate-colors;
+        }
+        ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
+            @media (prefers-reduced-motion: reduce) {
+                transition : none;
             }
         }
     }
-    @if ua.$NotIE {
-        ##{common.$ELEMENT_ID_SUB_COLUMN} {
-            position : relative;
-        }
-        .#{opt.$Prefix}lW {
-            @if ua.$GeckoLte09 or ua.$Gecko12 {
-                overflow : visible;
-                @if ua.$Gecko12 {
-                    @include css-hack(gecko120To121) {
-                        overflow : hidden; /* override Gecko 1.2~ */
+
+    @if ua.$Script {
+        @if ua.$Modern {
+            @include mq(pc) {
+                ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
+                    /* http://blog.webcreativepark.net/2012/10/19-161432.html */
+                    -webkit-backface-visibility : hidden;
+                       -moz-backface-visibility : hidden;
+                            backface-visibility : hidden;
+                    /* clean-css ignore:start */
+                    -webkit-transition-property : transform;
+                    -webkit-transition          :           0.3s ease-in;
+                    /* clean-css ignore:end */
+                       -moz-transition          : transform 0.3s ease-in;
+                         -o-transition          : transform 0.3s ease-in;
+                            transition          : transform 0.3s ease-in;
+                }
+                /* :hover で色を変えてスクロール可能であることを知らせる */
+                ##{common.$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
+                    border-color : color.$Light_text;
+                }
+                @media (prefers-color-scheme:dark) {
+                    ##{common.$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
+                        border-color : color.$Ribbon_text;
                     }
                 }
-            } @else {
+            }
+        }
+        @if ua.$NotIE {
+            ##{common.$ELEMENT_ID_SUB_COLUMN} {
+                position : relative;
+            }
+            .#{opt.$Prefix}lW {
+                @if ua.$GeckoLte09 or ua.$Gecko12 {
+                    overflow : visible;
+                    @if ua.$Gecko12 {
+                        @include css-hack(gecko120To121) {
+                            overflow : hidden; /* override Gecko 1.2~ */
+                        }
+                    }
+                } @else {
+                    overflow : hidden;
+                }
+            }
+        }
+        ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
+            @if ua.$Opera7x {
+                position : relative; /* for Opera ~7.27, absolute が不正 */
+            } @else if ua.$Modern or ua.$GeckoLte09 or ua.$Opera8 or ua.$WinIELte6 {
+                width : 100%; // for position:absolute または :fixed の Chrome 1, Safari 3.2 でアニメ―ションを防ぐ
+            }
+        }
+        @if ua.$Modern or ua.$Opera7x or ua.$Opera8 {
+            ##{common.$ELEMENT_ID_MAIN_COLUMN} {
+                position : relative; /* for Opera <9, relativeが無いと位置が取れない, IE10~11, EdheHTML18 でも必要 */
+            }
+        }
+
+        @if ua.$IE9 {
+            // sidebar が header, footer に重なる問題の解決
+            .#{opt.$Prefix}lS {
                 overflow : hidden;
             }
         }
-    }
-    ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} {
-        @if ua.$Opera7x {
-            position : relative; /* for Opera ~7.27, absolute が不正 */
-        } @else if ua.$Modern or ua.$GeckoLte09 or ua.$Opera8 or ua.$WinIELte6 {
-            width : 100%; // for position:absolute または :fixed の Chrome 1, Safari 3.2 でアニメ―ションを防ぐ
+        @if ua.$IE7 {
+            .#{opt.$Prefix}lW {
+                // sidebar が header, footer に重なる問題の解決
+                // https://klutche.org/archives/1061/
+                // 【CSS】IE7の野郎でoverflow:auto内のposition:relative要素がはみ出るバグの対処法
+                position : relative;
+            }
         }
-    }
-    @if ua.$Modern or ua.$Opera7x or ua.$Opera8 {
-        ##{common.$ELEMENT_ID_MAIN_COLUMN} {
-            position : relative; /* for Opera <9, relativeが無いと位置が取れない, IE10~11, EdheHTML18 でも必要 */
+        @if ua.$WinIELte8 {
+            ##{common.$ELEMENT_ID_MAIN_COLUMN}, ##{common.$ELEMENT_ID_SUB_COLUMN} {
+                position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
+            }
         }
-    }
-
-    @if ua.$IE9 {
-        // sidebar が header, footer に重なる問題の解決
-        .#{opt.$Prefix}lS {
-            overflow : hidden;
-        }
-    }
-    @if ua.$IE7 {
-        .#{opt.$Prefix}lW {
-            // sidebar が header, footer に重なる問題の解決
-            // https://klutche.org/archives/1061/
-            // 【CSS】IE7の野郎でoverflow:auto内のposition:relative要素がはみ出るバグの対処法
-            position : relative;
-        }
-    }
-    @if ua.$WinIELte8 {
-        ##{common.$ELEMENT_ID_MAIN_COLUMN}, ##{common.$ELEMENT_ID_SUB_COLUMN} {
-            position : relative; /* ieではrelativeが無いと位置が取れない、だったかな？ */
-        }
-    }
-    @if ua.$WinIELte7 {
-        /**
-         * フォーカス要素のサイドバー上の y 座標の取得に offsetTop を使っているが hasLayout フラグが立っていないと
-         * 文書上の y 座標が返る問題。
-         * 
-         *  offsetTop/offsetLeft/offsetParentの闇
-         *    https://susie-t.hatenadiary.org/entry/20061004/1159942798
-         *    > つまりIEには、offsetParentになる要素の条件について以下があるということです。
-         *    > Y対象要素がposition指定なし(またはstatic)のとき、ノードツリー上方で直近のwidthもしくはheightが指定されている要素。
-         *
-         *  hasLayout
-         *    http://zero.css-happylife.com/property/haslayout.shtml
-         *    > 尚、body, img, object, hr, input, button, textarea, table, tr, th, td, frameset, frame, iframe, marqueeなどは
-         *    > 「true」で固定になっているため変更できません。
-         */
-        ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER}, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} div, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} a {
-            @if ua.$IE5 {
-                height : 1px;
-            } @else {
-                zoom : 1;
+        @if ua.$WinIELte7 {
+            /**
+            * フォーカス要素のサイドバー上の y 座標の取得に offsetTop を使っているが hasLayout フラグが立っていないと
+            * 文書上の y 座標が返る問題。
+            * 
+            *  offsetTop/offsetLeft/offsetParentの闇
+            *    https://susie-t.hatenadiary.org/entry/20061004/1159942798
+            *    > つまりIEには、offsetParentになる要素の条件について以下があるということです。
+            *    > Y対象要素がposition指定なし(またはstatic)のとき、ノードツリー上方で直近のwidthもしくはheightが指定されている要素。
+            *
+            *  hasLayout
+            *    http://zero.css-happylife.com/property/haslayout.shtml
+            *    > 尚、body, img, object, hr, input, button, textarea, table, tr, th, td, frameset, frame, iframe, marqueeなどは
+            *    > 「true」で固定になっているため変更できません。
+            */
+            ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER}, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} div, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_WRAPPER} a {
+                @if ua.$IE5 {
+                    height : 1px;
+                } @else {
+                    zoom : 1;
+                }
             }
         }
     }

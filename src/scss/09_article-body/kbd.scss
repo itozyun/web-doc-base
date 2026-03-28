@@ -6,7 +6,8 @@
 
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/border-radius" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../04_typography/kbd";
 
@@ -16,9 +17,9 @@
     kbd {
         @include inline-block;
         @include border-radius(3px);
+        @include border-color-responsive(color.$Light_text);
 
         border-width   : 1px;
-        border-color   : color.$Light_text;
         cursor         : pointer;
         letter-spacing : -1px;
         padding        : 0 .4em;
@@ -28,17 +29,6 @@
                 position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
                 top      : -2px;
             }
-        }
-        /*  Dark theme
-        ------------------------------------------------------------------------------------- */
-        @include media(dark_theme) {
-            border-color : color.$Dark_text;
-        }
-
-        /*  Print
-        ------------------------------------------------------------------------------------- */
-        @include media(print) {
-            border-color : color.$Print_text;
         }
     }
 } @else {

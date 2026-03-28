@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @use "../01_var/ua" as ua;
 
 /*
@@ -23,7 +25,7 @@
         // Box-Flex only supports a flex-grow value so lets grab the
         // first item in the list and just return that.
         @if type-of($fg) == 'list' {
-            $fg-boxflex : nth($fg, 1);
+            $fg-boxflex : list.nth($fg, 1);
         }
         // https://wemo.tech/tips/2345
         // -webkit-box-flex:1;

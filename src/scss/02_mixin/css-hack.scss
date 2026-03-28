@@ -1,22 +1,24 @@
+@use "sass:map";
+@use "sass:list";
 @use "../01_var/ua" as ua;
 
 $_COMMENT_OUT : (
-    'onlyEdgeHTML'         : if(ua.$Modern , 1, 0),
-    'ie10ToEdgeHTML'       : if(ua.$Modern , 1, 0),
-    'onlyIE10To11'         : if(ua.$Modern , 1, 0),
-    'onlyOpera'            : if(ua.$Modern , 1, 0),
-    'onlySafari'           : if(ua.$Modern , 1, 0),
-    'chromeLte5SafariLte4' : if(ua.$Modern , 1, 0),
-    'chromeLte9SafariLte5' : if(ua.$Modern , 1, 0),
-    'chromeGte2To5'        : if(ua.$Modern , 1, 0),
-    'chromeGte53'          : if(ua.$Modern , 1, 0),
-    'chrome1Safari3'       : if(ua.$Modern , 1, 0),
-    'gecko120To121'        : if(ua.$Gecko12, 1, 0),
-    'onlyFirefoxOS22'      : if(ua.$Modern , 1, 0)
+    'onlyEdgeHTML'         : if(sass(ua.$Modern): 1; else: 0;),
+    'ie10ToEdgeHTML'       : if(sass(ua.$Modern): 1; else: 0;),
+    'onlyIE10To11'         : if(sass(ua.$Modern): 1; else: 0;),
+    'onlyOpera'            : if(sass(ua.$Modern): 1; else: 0;),
+    'onlySafari'           : if(sass(ua.$Modern): 1; else: 0;),
+    'chromeLte5SafariLte4' : if(sass(ua.$Modern): 1; else: 0;),
+    'chromeLte9SafariLte5' : if(sass(ua.$Modern): 1; else: 0;),
+    'chromeGte2To5'        : if(sass(ua.$Modern): 1; else: 0;),
+    'chromeGte53'          : if(sass(ua.$Modern): 1; else: 0;),
+    'chrome1Safari3'       : if(sass(ua.$Modern): 1; else: 0;),
+    'gecko120To121'        : if(sass(ua.$Gecko12): 1; else: 0;),
+    'onlyFirefoxOS22'      : if(sass(ua.$Modern): 1; else: 0;)
 ) !default;
 
 @mixin css-hack($targetGroup) {
-    @if map-get($_COMMENT_OUT, $targetGroup) == 1 {
+    @if map.get($_COMMENT_OUT, $targetGroup) == 1 {
         @if $targetGroup == 'onlyEdgeHTML' { // EdgeHTML 12~18
             & [_lazyhack_="_:-ms-lang(x)|_:-webkit-full-screen"] {
                 @content;
@@ -83,7 +85,7 @@ $_COMMENT_OUT : (
                 @content;
             }
         }
-    } @else if map-get($_COMMENT_OUT, $targetGroup) != 0 {
+    } @else if map.get($_COMMENT_OUT, $targetGroup) != 0 {
         body {
             color : pink !important;
         }

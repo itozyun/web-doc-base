@@ -36,7 +36,7 @@
  */
 @mixin web-font($WEBFONT_NAME, $ALT_FONTFAMILY : "serif !important", $enableLigatures : true) {
     @if canuse.$WEBFONT {
-        font-family : #{$WEBFONT_NAME + if($ALT_FONTFAMILY, ', ' + $ALT_FONTFAMILY, '')};
+        font-family : #{$WEBFONT_NAME + if(sass($ALT_FONTFAMILY): ', ' + $ALT_FONTFAMILY; else: '';)};
 
         @if ua.$Modern {
             // https://caniuse.com/?search=text-rendering

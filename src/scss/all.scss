@@ -138,8 +138,13 @@
     border-top : 0.3em solid color.$ACCENT;
 }
 
-@include media(screen) {
+@include screen {
     #lF {
         border-top : 0.3em solid color.$ACCENT;
+    }
+}
+@include print-fallback {
+    #lF {
+        border : 0;
     }
 }

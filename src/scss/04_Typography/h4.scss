@@ -1,22 +1,17 @@
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "./_/HeadingStyle" as *;
 
 h4 {
     @extend %HeadingStyle;
     @include responsive-horizontal-margin(2, 1.5em, 0.8em);
+    @include border-color-responsive(color.$Light_text);
 
     font-size    : 1em;
     border-width : 0 0 0 0.7em;
-    border-color : color.$Light_text;
     padding      : 0 0 0 0.3em;
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        border-color : color.$Dark_text;
-    }
 }

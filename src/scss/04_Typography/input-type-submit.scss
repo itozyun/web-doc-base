@@ -4,22 +4,13 @@
 @use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/background-color" as *;
 
 @use "../03_reset/input-type-submit";
 
 @if canuse.$ATTRIBUTE_SELECTOR and quirks.$FORM_STYLING_LIMITED == false {
     [type="submit"] {
-        background : color.$Light_casual_fill;
-    }
-}
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
-    @if canuse.$ATTRIBUTE_SELECTOR {
-        [type="submit"] {
-            background : color.$Dark_casual_fill;
-        }
+        @include background-responsive(color.$Light_casual_fill);
     }
 }

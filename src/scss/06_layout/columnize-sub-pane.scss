@@ -6,7 +6,7 @@
 @use "../01_var/options" as opt;
 
 @use "../02_mixin/clearfix" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @if opt.$MaxLayoutColumns < 2 {
     @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
@@ -19,7 +19,7 @@
 
 /*  WQXGA
 ------------------------------------------------------------------------------------- */
-    @include media(WQXGA) {
+    @include mq(WQXGA) {
         @at-root #{&}1 {
             float : left;
             width : 50% - math.div(size.$WQXGA_COLUMN_GAP_PCT, size.$WQXGA_SUB_COLUMN_RATIO) * 0.5;
@@ -32,7 +32,7 @@
 
 /*  Tablet Print
 ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         @at-root #{&}1 {
             float : left;
             width : 50% - size.$TABLET_HORIZONTAL_MARGIN * 0.5;
@@ -53,7 +53,7 @@
 
 /*  Phablet
 ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         @at-root #{&}1, #{&}2 {
             float : none;
             width : auto;

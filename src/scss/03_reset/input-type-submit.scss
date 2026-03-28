@@ -48,9 +48,13 @@ input[type="submit"] {
         }
     }
 
+    // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
     @if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
-        @include media(screen) {
+        @include screen {
             background : color.$Light_casual_fill;
+            @if ua.$Modern {
+                background : var(--color-casual-fill);
+            }
             &:focus {
                 @if ua.$Opera72 {
                     top : 0; // プロパティと値は何でも良い, ハイコントラストモード時に、ボタンがフォーカスされた際に背景が黒くなるのを防ぐ

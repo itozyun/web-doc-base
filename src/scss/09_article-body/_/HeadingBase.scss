@@ -6,7 +6,7 @@
 @use "../../01_var/ua" as ua;
 @use "../../01_var/size" as size;
 
-@use "../../02_mixin/media" as *;
+@use "../../02_mixin/mq" as *;
 @use "../../02_mixin/font-family-japanese" as *;
 
 %HeadingBase {
@@ -18,34 +18,34 @@
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         text-align    : center;
         padding-left  : math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
         padding-right : math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
     }
 /*  PHABLET
 ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         padding-left   : math.div(size.$PHABLET_HORIZONTAL_MARGIN, 2);
         padding-right  : math.div(size.$PHABLET_HORIZONTAL_MARGIN, 2);
     }
 /*  Phone
 ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         padding-left   : math.div(size.$PHABLET_HORIZONTAL_MARGIN, 2);
         padding-right  : math.div(size.$PHABLET_HORIZONTAL_MARGIN, 2);
     }
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         padding-left  : 0;
         padding-right : 0;
     }
 
 /*  landscape Print
 ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint){
+    @include mq(landscapePrint){
         text-align : left;
     }
 }

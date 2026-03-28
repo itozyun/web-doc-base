@@ -6,7 +6,12 @@
 @use "../../01_var/size" as size;
 
 @use "../../02_mixin/unbreak" as *;
+@use "../../02_mixin/mq" as *;
 @use "../../02_mixin/media" as *;
+@use "../../02_mixin/background-color" as *;
+@use "../../02_mixin/text-color" as *;
+
+@use "../../03_reset/a" as *;
 
 %LinkListBase {
     a {
@@ -23,10 +28,11 @@
             }
         }
     }
-    @if canuse.$NEGATIVE_PSEUDO_CLASS == false or ua.$Opera9 {
+    @if canuse.$NEGATIVE_PSEUDO_CLASS == false or
+        ua.$Opera9 { // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
         a {
-            background : color.$Light_text;
-            color      : color.$Light_fill;
+            @include background-light-dark(color.$Light_text, color.$Dark_casual_text);
+            @include text-color-responsive(color.$Light_fill);
         }
         :link {
             @if ua.$Opera70 {
@@ -34,28 +40,25 @@
             } @else {
                 background : transparent;
             }
-            color : color.$Light_link;
+            @include text-color-responsive(color.$Light_link);
         }
-        a:visited {
+        :visited {
             @if ua.$Opera70 {
                 background : color.$Light_fill;
             } @else {
                 background : transparent;
             }
-            color : color.$Light_text;
+            @include text-color-responsive(color.$Light_text);
         }
     } @else {
         a:not([href]) {
             /* href がない場合 current を示す塗りになる */
-            background : color.$Light_text;
-            color      : color.$Light_fill;
-        }
-        :visited {
-            // color : color.$Light_text;
+            @include background-light-dark(color.$Light_text, color.$Dark_casual_text);
+            @include text-color-responsive(color.$Light_fill);
         }
     }
 
-    @include media(screen){
+    @include screen {
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
             a:hover {
                 background : color.$Light_casual_fill;
@@ -63,15 +66,15 @@
             }
         } @else if canuse.$HOVER_PSEUDO_CLASS {
             :link:hover, :visited:hover {
-                background : color.$Light_casual_fill;
-                color      : color.$Light_text;
+                @include background-responsive(color.$Light_casual_fill, noprint);
+                @include text-color-responsive(color.$Light_text,        noprint);
             }
         }
     }
 
     /*  ribbon
     ------------------------------------------------------------------------------------- */
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+    @if opt.$UseDarkRibbon {
         @if canuse.$NEGATIVE_PSEUDO_CLASS == false {
             .#{opt.$Prefix}ribbon a {
                 background : color.$Ribbon_text;
@@ -99,9 +102,6 @@
                 background : color.$Ribbon_text;
                 color      : color.$Ribbon_fill;
             }
-            .#{opt.$Prefix}ribbon & :visited {
-                // color : color.$Ribbon_text;
-            }
         }
 
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
@@ -118,51 +118,9 @@
         }
     }
 
-    /*  Print
-    ------------------------------------------------------------------------------------- */
-    @include media(print) {
-        @if canuse.$NEGATIVE_PSEUDO_CLASS == false {
-            :link {
-                color : color.$Print_link;
-            }
-            :visited {
-                color : color.$Print_text;
-            }
-        }
-    }
-
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        /* href がない場合 current カラーになる */
-        @if ua.$Opera9 { // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
-            & a {
-                background : color.$Dark_casual_text;
-                color      : color.$Dark_fill;
-            }
-            & :link {
-                background : transparent;
-                color      : color.$Dark_link;
-            }
-            & :visited {
-                background : transparent;
-                color      : color.$Dark_text;
-            }
-        } @else {
-            & a:not([href]) {
-                background : color.$Dark_casual_text;
-                color      : color.$Dark_fill;
-            }
-        }
-        & :link:hover, & :visited:hover {
-            background : color.$Dark_casual_fill;
-            color      : color.$Dark_text;
-        }
-    }
-
     /*  Forced colors
     ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         padding : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH;
 
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {

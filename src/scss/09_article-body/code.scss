@@ -14,10 +14,13 @@
     code {
         @extend %CodingBase;
 
+        pre & {
+            padding    : 0;
+            margin     : 0;
+            background : none !important;
         /*  Print
         ------------------------------------------------------------------------------------- */
-        @include media(print) {
-            pre & {
+            @include print {
                 border : 0;
             }
         }

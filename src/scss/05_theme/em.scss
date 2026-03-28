@@ -4,7 +4,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 em {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffff66+0,ffff66+100&0+60,1+61,1+100 */
@@ -25,7 +25,7 @@ em {
 
 /*  Dark theme
 ----------------------------------------------------------------------------- */
-    @include media(dark_theme) {
+    @include mq(dark) {
         background : #4e4e1f;
         thead &, blockquote th & {
             color : color.$Dark_text;

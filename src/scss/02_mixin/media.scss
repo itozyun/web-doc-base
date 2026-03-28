@@ -1,186 +1,33 @@
-@use "sass:math";
-
 @use "../01_var/ua" as ua;
-@use "../01_var/options" as opt;
-@use "../01_var/canuse" as canuse;
-@use "../01_var/size" as size;
 
-$_COMMENT_OUT : (
-    'WQXGA'                : if(opt.$MobileOnly, 0, if(ua.$Modern and opt.$EnableWideLayout, 1, 0)),
-    'WSXGA'                : if(opt.$MobileOnly, 0, if(ua.$Modern and opt.$EnableWideLayout, 1, 0)),
-    'WSXGA_landscapePrint' :                        if(ua.$Modern, 1, 0),
-    'pc'                   : if(opt.$MobileOnly, 0, if(canuse.$CSS_MEDIA_QUERY, 1, 0)),
-    'tablet_print'         : if(opt.$MobileOnly, 2, 1),
-    'tablet'               : if(opt.$MobileOnly, 2, if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0)),
-    'phablet'              :                        if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0),
-    'phone'                :                        if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0),
-    'smallphone'           :                        if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0),
-    'watch'                :                        if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0),
-    'dark_theme'           :                        if(canuse.$CSS_MEDIA_QUERY or ua.$Opera8, 1, 0),
-
-    'screen'               : 1,
-    'print'                : 1,
-    'landscapePrint'       : if(ua.$Modern, 1, 0),
-
-    'forced_colors_native'             : if(ua.$Modern, 1, 0),
-    'forced_colors_ms'                 : if(ua.$Modern, 1, 0),
-    'forced_colors_native_or_ms'       : if(ua.$Modern, 1, 0),
-    'forced_colors_fallback'           : if((ua.$Modern and ua.$Script) or ua.$WinIELte9 or ua.$Gecko19, 1, 0),
-    'forced_colors_native_or_fallback' : if( ua.$Modern                 or ua.$WinIELte9 or ua.$Gecko19, 1, 0)
-) !default;
-
-@mixin media($media) {
-    @if map-get($_COMMENT_OUT, $media) == 2 {
+@mixin screen {
+    @if ua.$Script == false { // noscript 用 CSS に限定
         @content;
-    } @else if map-get($_COMMENT_OUT, $media) == 1 {
-        @if $media == 'pc' {
-            @if ua.$Modern {
-                @media
-                    only // ie9, opera9 には不要
-                    screen and (min-width: #{1em * math.div(size.$TABLET_MAX_WIDTH + 1, size.$FONTSIZE_UPPER_TABLET)})
-                    { @content; }
-            } @else {
-                @media
-                    screen and (min-width: #{1em * math.div(size.$TABLET_MAX_WIDTH + 1, size.$FONTSIZE_UPPER_TABLET)})
-                    { @content; }
-            }
-        } @else if $media == 'WSXGA' {
-            @media only screen and (min-width: size.$WSXGA_MIN_WIDTH_EM){
-                @content;
-            }
-        } @else if $media == 'WQXGA' {
-            @media only screen and (min-width: size.$WQXGA_MIN_WIDTH_EM){
-                @content;
-            }
-        } @else if $media == 'WSXGA_landscapePrint' {
-            @if opt.$MobileOnly or opt.$EnableWideLayout == false {
-                @media only print and (orientation: landscape){
-                    @content;
-                }
-            } @else {
-                @media only screen and (min-width: size.$WSXGA_MIN_WIDTH_EM), print and (orientation: landscape){
-                    @content;
-                }
-            }
-        } @else if $media == 'tablet_print' {
-            @if ua.$IE9 {
-                @media print, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera9 {
-                @media print, handheld, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media print, handheld, tv, only screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera8 {
-                @media print, handheld{ @content; }
-            } @else {
-                @media print{ @content; }
-            }
-        } @else if $media == 'tablet' {
-            @if ua.$IE9 {
-                @media screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, tv, only screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'phablet' {
-            @if ua.$IE9 {
-                @media screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, tv, only screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'phone' {
-            @if ua.$IE9 {
-                @media screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, tv, only screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'smallphone' {
-            @if ua.$IE9 {
-                @media screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, tv, only screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'watch' {
-            @if ua.$IE9 {
-                @media screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, only screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'dark_theme' {
-            @if ua.$IE9 {
-                @media screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera9 {
-                @media handheld, screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if canuse.$CSS_MEDIA_QUERY {
-                @media handheld, only screen and (prefers-color-scheme:dark), only screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
-            } @else if ua.$Opera8 {
-                @media handheld{ @content; }
-            }
-        } @else if $media == 'screen' { // @media print で上書きを失くすために screen で設定する
-            @if ua.$Modern {
-                @media screen,handheld,projection,tv{ @content; }
-            } @else if ua.$Opera9 or ua.$Opera8 {
-                @media screen,handheld,projection{ @content; } // handheld は small screen モードに, projection は full screen モードに必要
-            } @else {
-                @media screen{ @content; }
-            }
-        } @else if $media == 'print' {
-            @media print {
-                @content;
-            }
-        } @else if $media == 'landscapePrint' {
-            @media only print and (orientation: landscape){
-                @content;
-            }
-        } @else if $media == 'forced_colors_native' { // Edge 79+, Chrome 89+, Firefox 89+
-            @media only screen and (forced-colors:active){
-                @content;
-            }
-        } @else if $media == 'forced_colors_ms' { // IE10+, EdgeHTML, Edge 79+
-            @media only screen and (-ms-high-contrast:active){
-                @content;
-            }
-        } @else if $media == 'forced_colors_native_or_ms' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
-            @media only screen and (forced-colors:active),
-                   only screen and (-ms-high-contrast:active){
-                @content;
-            }
-        } @else if $media == 'forced_colors_fallback' { // IE5~9, Gecko 1.8.1~, Goanna
-            @media only use-polyfill and (forced-colors:active){
-                @content;
-            }
-        } @else if $media == 'forced_colors_native_or_fallback' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+, IE5~9, Gecko 1.8.1~, Goanna
-            @if ua.$Modern {
-                @media only screen and (forced-colors:active),
-                       only screen and (-ms-high-contrast:active){
-                    @content;
-                }
-            }
-            @if (ua.$Modern and ua.$Script) or ua.$WinIELte9 or ua.$Gecko19 {
-                @media only use-polyfill and (forced-colors:active){
-                    @content;
-                }
-            }
+    } @else {
+        // @media print で上書きを失くすために screen で設定する
+        @if ua.$Modern {
+            @media handheld,screen,projection,tv { @content; }
+        } @else if ua.$Opera9 or ua.$Opera8 {
+            // handheld は small screen モードに, projection は full screen モードに必要
+            @media handheld,screen,projection { @content; }
+        } @else {
+            @media screen { @content; }
         }
-    } @else if map-get($_COMMENT_OUT, $media) != 0 {
-        @error "Media Type Error: 不正なメディアタイプです! " + $media;
+    }
+}
+
+// @media を使えない環境を含む CSS ビルドで screen 用スタイルの上書きに使用
+@mixin print-fallback {
+    @if ua.$Script == false { // noscript 用 CSS に限定 
+        @media print {
+            @content;
+        }
+    }
+}
+
+// 印刷メディアに固有のスタイル
+@mixin print {
+    @media print {
+        @content;
     }
 }

@@ -4,7 +4,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/font-family-japanese" as *;
 
@@ -14,12 +14,13 @@
 ------------------------------------------------------------------------------------- */
     @if ua.$Opera72 {
         h2, h3, h4, h5, h6,
-        div, p, blockquote, pre,
-        a, b, hr, img, code, var, kbd,
+        div, blockquote, pre,
+        a, hr, img, code, var, kbd,
         table, th, td {
             border-style : solid;
             border-width : 0;
         }
+        // TODO input {border-style:none} では?
     } @else {
         * {
             border-style : solid;
@@ -57,13 +58,13 @@ body {
 
 /*  Phone-
 ------------------------------------------------------------------------------------- */
-    @include media(smallphone) {
+    @include mq(smallphone) {
         font-size : 0.8125em;
     }
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         font-size : 0.75em;
     }
 }

@@ -10,7 +10,7 @@
 
 @use "../07_parts/_/ButtonBase" as *;
 @use "../07_parts/_/apply-button-colors" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "./_/stackable-module" as *;
 
@@ -39,7 +39,7 @@
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         div {
             text-align : center;
         }

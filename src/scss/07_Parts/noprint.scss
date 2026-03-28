@@ -1,5 +1,5 @@
 @use "../02_mixin/media" as *;
 
-@include media(print) {
+@include print {
     .noprint { display : none }
 }

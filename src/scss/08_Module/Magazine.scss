@@ -31,17 +31,24 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/font-family-monospace" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/flex" as *;
 @use "../02_mixin/css-hack" as *;
+@use "../02_mixin/Inline-block" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 
-$MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
+$_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
 .#{opt.$Prefix}Magazine {
+    @if canuse.$MEDIA_QUERY {
+        @include border-color-responsive(color.$Light_text); // phablet で border が出現
+    }
+
     @at-root #{&}-item {
         @include unbreak-inside;
         padding : 1em 0;
-        @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+        @if $_LAYOUT_BY_DISPLAY_TABLE {
             display : table;
         } @else {
             @include clearfix;
@@ -53,7 +60,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             @include font-family-monospace;
             padding-right : 1.5em;
             font-weight   : bold;
-            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+            @if $_LAYOUT_BY_DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
@@ -80,12 +87,13 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             }
 
         @at-root #{&}-main {
+            @include border-color-responsive(color.$Light_text);
             @include unbreak-box-with-long-text;
+
             position     : relative;
             border-width : 0 0 0 .5em;
             padding-left : 1.5em;
-            border-color : color.$Light_text;
-            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+            @if $_LAYOUT_BY_DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
@@ -102,6 +110,14 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
                 font-weight : bold;
                 margin      : 0.2em 0 0;
                 padding     : 0;
+                @if canuse.$OUTLINE {
+                    @include mq(forced_colors_native_or_fallback){
+                        a {
+                            @include inline-block; // :foocus 時の outline の改善
+                            margin-right : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH;
+                        }
+                    }
+                }
             }
             @at-root #{&}-label {
                 @include unbreak-box-with-long-text;
@@ -129,7 +145,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @at-root #{&}-sep {
             margin       : 1em 0;
             /* clean-css ignore:start */
@@ -186,7 +202,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint) {
+    @include mq(landscapePrint) {
         @at-root #{&}-sep-inner:first-child #{&}-main {
             padding-right : math.div(size.$PRINT_COLUMN_GAP_EM, 2);
         }
@@ -197,7 +213,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         img {
             margin-left : 0;
         }
@@ -205,21 +221,20 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         margin       : 1em 0 0;
         border-width : .5em 0 0;
-        border-color : color.$Light_text;
 
         @at-root #{&}-item {
             padding : 1em 0 0;
-            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+            @if $_LAYOUT_BY_DISPLAY_TABLE {
                 display : block;
             }
         }
             @at-root #{&}-date {
                 font-family : inherit;
                 width       : auto;
-                @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+                @if $_LAYOUT_BY_DISPLAY_TABLE {
                     display : block;
                 } @else {
                     float : none;
@@ -243,7 +258,7 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
         @at-root #{&}-main {
             border-width : 0 0 .5em;
             padding      : 0 0 1em;
-            @if $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE {
+            @if $_LAYOUT_BY_DISPLAY_TABLE {
                 display : block;
             }
         }
@@ -256,13 +271,5 @@ $MAGAZINE_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
                 font-size : 1em;
                 padding   : .5em 1em;
             }
-    }
-
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        @at-root #{&}-main, & {
-            border-color : color.$Dark_text;
-        }
     }
 }

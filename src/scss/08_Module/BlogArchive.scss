@@ -9,7 +9,8 @@
 
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/inline-block" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../04_typography/a";
 
@@ -24,7 +25,7 @@
 
     @if canuse.$HOVER_PSEUDO_CLASS {
         &, tbody :hover td {
-            color : color.$Light_fill; /* , を消す */
+            @include text-color-responsive(color.$Light_fill); /* , を消す */
         }
     }
 
@@ -45,14 +46,6 @@
     } @else if canuse.$HOVER_PSEUDO_CLASS {
         :link:hover, :visited:hover {
             text-decoration : none;
-        }
-    }
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        &, tbody :hover td {
-            color : color.$Dark_fill; /* , を消す */
         }
     }
 }

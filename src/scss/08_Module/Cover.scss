@@ -21,10 +21,13 @@
 @use "../01_var/common.generated" as common;
 
 @use "../02_mixin/clearfix" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/background-color" as *;
 
 .#{opt.$Prefix}Cover {
     @include clearfix;
@@ -46,25 +49,27 @@
                 max-width : 100%;
             }
         }
-        .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} {
-            div {
-                @include media(screen){
-                    position : absolute;
-                    left     : 0;
-                    width    : 100%;
+        @if ua.$Script {
+            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} {
+                div {
+                    @include screen{
+                        position : absolute;
+                        left     : 0;
+                        width    : 100%;
+                        @if ua.$IE5 {
+                            top : 0;
+                        } @else {
+                            bottom : 0;
+                        }
+                    }
                     @if ua.$IE5 {
-                        top : 0;
-                    } @else {
-                        bottom : 0;
+                        @include clearfix; // clearfix を同時に指定するために screen の外へ
                     }
                 }
-                @if ua.$IE5 {
-                    @include clearfix; // clearfix を同時に指定するために screen の外へ
-                }
-            }
-            h2 {
-                @if ua.$IE5 {
-                    float : left;
+                h2 {
+                    @if ua.$IE5 {
+                        float : left;
+                    }
                 }
             }
         }
@@ -100,10 +105,10 @@
                 margin    : 0;
                 /* clean-css ignore:start */
                 @if ua.$IE9 == false {
-                    background : #fff;
+                    @include background-light-dark(#fff, #000);
                 }
                 @if ua.$Modern or ua.$IE9 or ua.$Gecko19 {
-                    background : rgb( 255 255 255 / 75%);
+                    @include background-light-dark(rgb( 255 255 255 / 75%), rgb( 0 0 0 / 75%));
                 }
                 /* clean-css ignore:end */
             }
@@ -112,9 +117,9 @@
                 padding : 0.37em;
             }
     @at-root #{&}-meta {
+        @include text-color-responsive(color.$Light_casual_text);
         @include line-height(1.4, true);
         display : block;
-        color   : color.$Light_casual_text;
         margin  : 0 0.5em;
         span {
             @include inline-block;
@@ -127,15 +132,17 @@
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         img {
             width  : auto;
             float  : left;
             margin : 0 1em 1em 0;
         }
-            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
-                position : static;
-                padding  : 0 0 1em;
+            @if ua.$Script {
+                .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                    position : static;
+                    padding  : 0 0 1em;
+                }
             }
             @at-root #{&}-img div {
                 padding : 1em;
@@ -158,12 +165,14 @@
 
     /*  WQXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WQXGA) {
+    @include mq(WQXGA) {
         img {
             margin : 0 2em 1em 0;
         }
-            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
-                padding : 0 0 2em;
+            @if ua.$Script {
+                .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                    padding : 0 0 2em;
+                }
             }
                 h3 {
                     font-size : 1.5em;
@@ -177,26 +186,28 @@
     }
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         margin : 2em auto;
     }
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         max-width : 400px;
     }
 
     /*  Phone-
     ------------------------------------------------------------------------------------- */
-    @include media(smallphone) {
+    @include mq(smallphone) {
         img {
             width  : auto;
             margin : 0 1em 1em 0;
         }
-            .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
-                position : static;
-                padding  : 0;
+            @if ua.$Script {
+                .#{opt.$Prefix + common.$CLASSNAME_IMAGE_LOADED} div {
+                    position : static;
+                    padding  : 0;
+                }
             }
                 h2 {
                     /* float      : left; */
@@ -219,27 +230,9 @@
         }
     }
 
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        h3 {
-            /* clean-css ignore:start */
-            @if ua.$IE9 == false {
-                background : #000;
-            }
-            @if ua.$Modern or ua.$IE9 {
-                background : rgb( 0 0 0 / 75%);
-            }
-            /* clean-css ignore:end */
-        }    
-        @at-root #{&}-meta {
-            color : color.$Dark_casual_text;
-        }
-    }
-
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         h2 {
             margin-top : 1em;
         }

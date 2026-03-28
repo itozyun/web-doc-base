@@ -7,7 +7,7 @@
 @use "../01_var/quirks" as quirks;
 @use "../01_var/common.generated" as common;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
 @use "../02_mixin/column" as *;
 @use "../02_mixin/box-sizing" as *;
@@ -18,7 +18,7 @@
 $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE5X_ALWAYS_BORDER_BOX == false; // IE6~7
 
 @if ua.$Script {
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         @if canuse.$OUTLINE {
             .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_TARGET} {
                 @include active-focus-pseudo-class {
@@ -78,7 +78,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
         }
         /* clean-css ignore:end */
 
-        @include media(WSXGA_landscapePrint) {
+        @include mq(WSXGA_landscapePrint) {
             display : block;
             @include column-span-all;
         }
@@ -162,7 +162,7 @@ $_FOCUS_BORDER_DRAW_AT_LINK_ELEMENT : canuse.$BOX_SIZING == false and quirks.$IE
     }
 /*  Phone-
 ------------------------------------------------------------------------------------- */
-    @include media(smallphone) {
+    @include mq(smallphone) {
         @if ua.$Modern { // アニメーション用の指定
             .#{opt.$Prefix + common.$PICA_THUMBNAIL__CLASSNAME_LARGE} img,
             .#{opt.$Prefix + common.$CAPTIONED_OBJECT__CLASSNAME_LARGE} {

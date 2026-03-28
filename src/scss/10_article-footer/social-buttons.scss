@@ -12,8 +12,9 @@
 
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../07_parts/_/apply-button-colors" as *;
 @use "../07_parts/_/ButtonBase" as *;
@@ -22,12 +23,13 @@
 @use "./_/article-footer-item" as *;
 
 .#{opt.$Prefix}SocialBtns {
+    @include text-color-responsive(color.$Light_fill, noprint); /* , を消す */
+
     @if ua.$WinIELte7 {
         @include article-footer-item(1em, 1em, true);
     } @else {
         @include article-footer-item(1em, 0.5em, true);
     }
-    color : color.$Light_fill; /* , を消す */
 
     a {
         @extend %ButtonBase;
@@ -55,15 +57,13 @@
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         text-align : center;
     }
 
     /*  Dark theme
     ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        color : color.$Dark_fill; /* , を消す */
-
+    @include mq(dark) {
         .tw, .fb, .hb, .pt, .ok, .ln {
             :link {
                 color : color.$Dark_fill !important;

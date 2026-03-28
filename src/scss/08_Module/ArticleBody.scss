@@ -8,6 +8,7 @@
 @use "../01_var/size" as size;
 @use "../01_var/common.generated" as common;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/column" as *;
 
@@ -32,17 +33,17 @@
 
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-count(2);
     }
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         @include column-gap(size.$WSXGA_COLUMN_GAP_EM);
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
             padding : 0 0 2em;
         } @else {
@@ -51,7 +52,7 @@
     }
     /*  landscape Print
     ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint){
+    @include mq(landscapePrint){
         @include column-gap(size.$PRINT_COLUMN_GAP_EM);
     }
 }

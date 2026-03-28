@@ -5,7 +5,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "./_/ButtonBase" as *;
 @use "./_/apply-button-colors" as *;
@@ -19,7 +19,7 @@
 
         /*  Dark theme
         ------------------------------------------------------------------------------------- */
-        @include media(dark_theme) {
+        @include mq(dark) {
             @include apply-button-colors( color.$Dark_link, color.$Dark_text, color.$Dark_fill );
         }
     }

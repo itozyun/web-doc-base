@@ -10,7 +10,7 @@
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/column" as *;
 @use "../02_mixin/css-hack" as *;
 
@@ -37,7 +37,7 @@
         }
         /*  WSXGA
         ------------------------------------------------------------------------------------- */
-        @include media(WSXGA) {
+        @include mq(WSXGA) {
             @include column-count(1);
         }
     }

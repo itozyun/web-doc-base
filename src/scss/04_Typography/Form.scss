@@ -3,7 +3,7 @@
 @use "../01_var/ua" as ua;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
 
 @use "../03_reset/form";
@@ -30,7 +30,7 @@ form * {
 
 /*  Forced colors
 ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         @include active-focus-pseudo-class {
             border-style : dotted;
         }

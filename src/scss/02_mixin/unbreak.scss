@@ -1,7 +1,7 @@
 @use "../01_var/ua" as ua;
 
+@use "./mq" as *;
 @use "./media" as *;
-
 /**
 https://caniuse.com/?search=page-break
 https://developer.mozilla.org/ja/docs/Web/CSS/break-after
@@ -14,7 +14,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-page-inside {
-    @include media(print){
+    @include print {
         @if ua.$Modern {
             break-inside : avoid-page;
         }
@@ -25,7 +25,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-inside {
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include unbreak-column-inside;
     }
     @include unbreak-page-inside;
@@ -39,7 +39,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-page-after {
-    @include media(print){
+    @include print {
         @if ua.$Modern {
             break-after : avoid-page;
         }
@@ -50,7 +50,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-after {
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include unbreak-column-after;
     }
     @include unbreak-page-after;

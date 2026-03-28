@@ -6,7 +6,7 @@
 @use "../01_var/canuse" as canuse;
 
 @use "../02_mixin/responsive-horizontal-margin" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/column" as *;
 
 @use "../08_module/ArticleBody";
@@ -38,25 +38,25 @@
 ------------------------------------------------------------------------------------- */
     blockquote {
         p, ul, ol, dl {
-            @include media(tablet_print) {
+            @include mq(tablet_print) {
                 & {
                     margin-right : size.$TABLET_HORIZONTAL_MARGIN;
                 }
             }
 
-            @include media(phablet) {
+            @include mq(phablet) {
                 & {
                     margin-right : size.$PHABLET_HORIZONTAL_MARGIN;
                 }
             }
 
-            @include media(phone) {
+            @include mq(phone) {
                 & {
                     margin-right : size.$PHONE_HORIZONTAL_MARGIN;
                 }
             }
 
-            @include media(watch) {
+            @include mq(watch) {
                 & {
                     margin-right : 0;
                 }
@@ -66,7 +66,7 @@
 
 /*  WSXGA. print
 ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-span-all;
     }
 }

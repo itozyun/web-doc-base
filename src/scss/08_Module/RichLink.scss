@@ -33,9 +33,11 @@
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/css-hack" as *;
 @use "../02_mixin/inline-block" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../04_typography/a";
 // @use "../04_typography/h3";
@@ -65,11 +67,16 @@ $RICHLINK_TEXT_SIZE : 0.875;
             } @else {
                 padding : 1em 0.5em 0;
             }
-
-            border-width : 0 0 1px;
             @if( /* ua.$GeckoLte09 or img が欠ける不具合! */
                  ua.$Gecko12 ){
                 overflow : hidden; /* カラム幅が増えるのを抑止 */
+            }
+
+            border-width : 0 0 1px;
+            border-color : color.$Ribbon_casual_fill !important;
+
+            .#{opt.$Prefix}baseColor & {
+                @include border-color-responsive(color.$Light_casual_fill !important);
             }
         }
             b {
@@ -80,16 +87,6 @@ $RICHLINK_TEXT_SIZE : 0.875;
             br {
                 display : none;
             }
-
-    a {
-        border-color : color.$Ribbon_casual_fill !important;
-        .#{opt.$Prefix}baseColor & {
-            border-color : color.$Light_casual_fill !important;
-            @include media(dark_theme) { 
-                border-color : color.$Dark_casual_fill !important;
-            }
-        }
-    }
 
     @at-root #{&}-meta {
         color : color.$Ribbon_casual_fill;
@@ -104,12 +101,12 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
 
     @at-root .#{opt.$Prefix}baseColor #{&}-meta {
-        color : color.$Light_casual_fill;
+        @include text-color-responsive(color.$Light_casual_fill);
     }
 
     @at-root .#{opt.$Prefix}baseColor :link #{&}-meta,
              .#{opt.$Prefix}baseColor :visited #{&}-meta {
-        color : color.$Light_casual_text;
+        @include text-color-responsive(color.$Light_casual_text);
     }
 
 /*  layout Main
@@ -140,8 +137,8 @@ $RICHLINK_TEXT_SIZE : 0.875;
                 }
             }
         }
-        @if ua.$GeckoLte09 {
-            a img {
+        a img {
+            @if ua.$GeckoLte09 {
                 border-width : 0;
             }
         }
@@ -184,7 +181,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @at-root .lM .#{common.$RICHLINK__CLASSNAME_SEPARATOR} {
             display      : table;
             table-layout : fixed;
@@ -207,7 +204,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         .#{opt.$Prefix}lS & {
             a {
                 @if ua.$IE7 or ua.$IE6 {
@@ -229,7 +226,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         h3 {
             font-size : 1.3em;
             * {
@@ -240,7 +237,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  Phone
     ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         /*.lM */ & a {
             padding-left  : 1%;
             padding-right : 1%;
@@ -255,7 +252,7 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  Phone-
     ------------------------------------------------------------------------------------- */
-    @include media(smallphone) {
+    @include mq(smallphone) {
         h3 {
             font-size : 1em;
             * {
@@ -271,28 +268,16 @@ $RICHLINK_TEXT_SIZE : 0.875;
 
     /*  Watch
     ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         /*.lM */ & a {
             padding-left  : 0;
             padding-right : 0;
         }
     }
 
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        @at-root .#{opt.$Prefix}baseColor #{&}-meta {
-            color : color.$Dark_casual_fill;
-        }
-        @at-root .#{opt.$Prefix}baseColor :link #{&}-meta,
-                 .#{opt.$Prefix}baseColor :visited #{&}-meta {
-            color : color.$Dark_casual_text;
-        }
-    }
-
     /*  Forced colors
     ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
+    @include mq(forced_colors_native_or_fallback){
         a {
             border-width : 0;
         }

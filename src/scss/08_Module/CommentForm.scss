@@ -6,6 +6,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 
 // Google 提供のコメントフォームの実態は <iframe> 内
@@ -25,7 +26,7 @@
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         display : none;
     }
 }

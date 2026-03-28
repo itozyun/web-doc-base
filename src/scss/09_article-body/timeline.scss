@@ -5,53 +5,43 @@
 @use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/create-css-generated-block" as *;
 @use "../02_mixin/border-radius" as *;
 @use "../02_mixin/css-hack" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../04_typography/table" as *;
 
 @use "../08_module/ArticleBody";
 
 .tl {
-    border-width : 0;
-
-    thead {
-        @if ua.$Modern {
-            @include media(pc) {
-                @supports (position:sticky) {
+/* stop sticky
+------------------------------------------------------------------------------------- */
+    @if ua.$Modern {
+        @include mq(pc) {
+            @supports (position:sticky) or (position:-webkit-sticky) { // For Firefox 124, no effect on Chrome 124
+                thead {
                     background : none;
                 }
-            }
-        }
-    }
-
-    thead,               // for Firefox
-    thead td, thead th { // for Chrome
-        @if ua.$Modern {
-            @include media(pc) {
-                @supports (position:sticky) {
+                thead,               // for Firefox
+                thead td, thead th { // for Chrome
+                    position : -webkit-sticky;
                     position : static; // stop sticky
                 }
             }
         }
     }
 
+/* main
+------------------------------------------------------------------------------------- */
+    border-width : 0;
+
     th, td {
         background : none !important;
     }
-    
-    thead th, thead td, tbody th {
-        color : color.$Light_text;
-    }
-
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
-        thead th a:focus, thead td a:focus, tbody th a:focus {
-            background-color : color.$Sidebar_fill !important;
-        }
-    }
-
     thead th {
         border-width : 0 0 1px 0;
     }
@@ -60,7 +50,6 @@
     }
 
     thead th, thead td {
-        border-color   : color.$Light_casual_fill;
         padding-top    : .5em;
         padding-bottom : .5em;
     }
@@ -77,7 +66,6 @@
         }
         padding        : .5em .8em;
         border-width   : 0 0 0 .3em;
-        border-color   : color.$Light_casual_fill;
         border-style   : solid;
 
         @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
@@ -91,6 +79,20 @@
         }
     }
 
+    tfoot th {
+        border-width : 1px 0 0;
+    }
+    tfoot td {
+        border-width : 1px 0 0 .3em;
+        border-style : solid dotted;
+    }
+    tfoot th, tfoot td {
+        padding-top    : .5em;
+        padding-bottom : .5em;
+    }
+
+/*  〇
+------------------------------------------------------------------------------------- */
     @if canuse.$GOOD_CSS_GENERATED_BLOCK {
         tbody td:before, tbody td:after {
             @include create-css-generated-block;
@@ -113,7 +115,6 @@
             width        : 0;
             height       : 0;
             border-width : .6em;
-            border-color : color.$Light_casual_fill;
             @include border-radius(.6em);
         }
         tbody td:after {
@@ -122,19 +123,18 @@
             width        : 0;
             height       : 0;
             border-width : .35em;
-            border-color : color.$Light_fill;
             @include border-radius(.35em);
             @if ua.$Modern {
                 /*  Forced colors
                 ------------------------------------------------------------------------------------- */
-                @include media(forced_colors_native_or_ms){
+                @include mq(forced_colors_native_or_ms){
                     & { border-color : Window; }
                 }
-                @include media(forced_colors_fallback){
+                @include mq(forced_colors_fallback){
                     & { filter : invert(1); }
                 }
             } @else if ua.$IE8 or ua.$IE9 {
-                @include media(forced_colors_fallback){
+                @include mq(forced_colors_fallback){
                     & {
                         top          : 1.2em;
                         left         : -.13em;
@@ -144,29 +144,17 @@
                 }
             }
         }
-    }
-
-    /*  patch for Safari ~4.x
-    ------------------------------------------------------------------------------------- */
-    @include css-hack(chromeLte5SafariLte4){
-        td:before, td:after {
-            display : none !important; // tebla-cell に対して絶対配置が出来ない
+        /*  patch for Safari ~4.x
+        ------------------------------------------------------------------------------------- */
+        @include css-hack(chromeLte5SafariLte4){
+            td:before, td:after {
+                display : none !important; // tebla-cell に対して絶対配置が出来ない
+            }
         }
     }
 
-    tfoot th {
-        border-width : 1px 0 0;
-    }
-    tfoot td {
-        border-width : 1px 0 0 .3em;
-        border-style : solid dotted;
-    }
-    tfoot th, tfoot td {
-        border-color   : color.$Light_casual_fill;
-        padding-top    : .5em;
-        padding-bottom : .5em;
-    }
-
+/* :hover
+------------------------------------------------------------------------------------- */
     @if canuse.$HOVER_PSEUDO_CLASS {
         tbody :hover th,
         tbody :hover td {
@@ -188,122 +176,87 @@
         }
     }
 
+/* color
+------------------------------------------------------------------------------------- */
+    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
+        th a:focus, thead td a:focus {
+            background-color : color.$Sidebar_fill !important;
+        }
+    }
+
+    thead th, thead td, tbody th {
+        @include text-color-responsive(color.$Light_text);
+    }
+    thead th, thead td,
+    td,
+    tfoot th, tfoot td {
+        @include border-color-responsive(color.$Light_casual_fill);
+    }
+    @if canuse.$GOOD_CSS_GENERATED_BLOCK {
+        tbody td:before {
+            @include border-color-responsive(color.$Light_casual_fill);
+        }
+        tbody td:after {
+            @include border-color-responsive(color.$Light_fill);
+        }
+    }
     thead tr { /* tr で詳細度を上げる */
         :link {
-            color : color.$Light_link;
+            @include text-color-responsive(color.$Light_link);
         }
         :visited {
-            color : color.$Light_visited;
+            @include text-color-responsive(color.$Light_visited);
         }
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
             :visited:hover {
-                color : color.$Light_visited_hover;
+                @include text-color-responsive(color.$Light_visited_hover, noprint);
             }
         }
     }
-
-    blockquote & {
-        thead th, thead td,
-        td,
-        tfoot th, tfoot td {
-            border-color : color.$Light_casual_text;
-        }
-        
-        @if canuse.$GOOD_CSS_GENERATED_BLOCK {
-            tbody td:before {
-                border-color : color.$Light_casual_text;
-            }
-            tbody td:after {
-                border-color : color.$Light_casual_fill;
-            }
-        }
-        tbody tr th { /* tr で詳細度を上げる */
-            :link {
-                color : color.$Light_link;
-            }
-            :visited {
-                color : color.$Light_visited;
-            }
-        }
-    }
-
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        thead th, thead td, tbody th {
-            color : color.$Dark_text;
-        }
-
-        thead th, thead td,
-        td,
-        tfoot th, tfoot td {
-            border-color : color.$Dark_casual_fill;
-        }
-        @if canuse.$GOOD_CSS_GENERATED_BLOCK {
-            tbody td:before {
-                border-color : color.$Dark_casual_fill;
-            }
-            tbody td:after {
-                border-color : color.$Dark_fill;
-            }
-        }
-
-        thead tr, tbody tr th { /* tr で詳細度を上げる */
-            :link {
-                color : color.$Dark_link;
-            }
-            :visited {
-                color : color.$Dark_visited;
-            }
-            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
-                :visited:hover {
+    tbody tr th { /* tr で詳細度を上げる */
+        @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
+            :visited:hover {
+                @include mq(dark) {
                     color : color.$Dark_visited_hover;
                 }
             }
         }
-        blockquote & {
-            thead th, thead td,
-            td,
-            tfoot th, tfoot td {
-                border-color : color.$Dark_casual_text;
-            }
-            @if canuse.$GOOD_CSS_GENERATED_BLOCK {
-                tbody td:before {
-                    border-color : color.$Dark_casual_text;
-                }
-                tbody td:after {
-                    border-color : color.$Dark_casual_fill;
-                }
-            }
-            tbody tr th { /* tr で詳細度を上げる */
-                :link {
-                    color : color.$Dark_link;
-                }
-                :visited {
-                    color : color.$Dark_visited;
-                }
-            }
-        }  
     }
 
-    /*  Forced colors
-    ------------------------------------------------------------------------------------- */
-    @include media(forced_colors_native_or_fallback){
-        border-collapse : collapse;
-    }
-    @include media(forced_colors_native_or_ms){
-        td, tfoot td {
-            border-color : currentColor;
+/* color: blockquote > .tl
+------------------------------------------------------------------------------------- */
+    blockquote & {
+        thead th, thead td,
+        td,
+        tfoot th, tfoot td {
+            @include border-color-responsive(color.$Light_casual_text);
+        }
+        @if canuse.$GOOD_CSS_GENERATED_BLOCK {
+            tbody td:before {
+                @include border-color-responsive(color.$Light_casual_text);
+            }
+            tbody td:after {
+                @include border-color-responsive(color.$Light_casual_fill);
+            }
+        }
+        tbody tr th { /* tr で詳細度を上げる */
+            :link {
+                @include text-color-responsive(color.$Light_link);
+            }
+            :visited {
+                @include text-color-responsive(color.$Light_visited);
+            }
         }
     }
 
-    /*  Print
-    ------------------------------------------------------------------------------------- */
-    @include media(print) {
-        &, blockquote & {
-            tbody td:after {
-                border-color :#fff;
-            }
+/*  Forced colors
+------------------------------------------------------------------------------------- */
+    @include mq(forced_colors_native_or_fallback){
+        border-collapse : collapse;
+    }
+    @include mq(forced_colors_native_or_ms){
+        td, tfoot td {
+            border-color : currentColor;
         }
     }
 }

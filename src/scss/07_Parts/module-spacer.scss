@@ -4,7 +4,7 @@
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/unbreak" as *;
 
 .#{opt.$Prefix}mspacer {
@@ -20,13 +20,13 @@
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         margin : 1em 0.5em !important;
     }
 
     /*  Watch
     ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         margin : 0.6em 0 !important;
     }
 }

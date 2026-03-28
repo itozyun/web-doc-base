@@ -16,7 +16,7 @@
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/column" as *;
 
 .#{opt.$Prefix}SearchResult {
@@ -36,13 +36,13 @@
                     color : #1a0dab;
                 }
             cite {
-                color      : #006621;
                 @include unbreak-box-for-inline-element;
+                color : #006621;
             }
             div p {
+                @include line-height(1.2);
                 margin : 0.2em 0 0;
                 color  : #545454;
-                @include line-height(1.2);
             }
                 div span {
                     color : #808080;
@@ -52,13 +52,13 @@
         margin : 2em 0;
         /*  WSXGA, print
         ------------------------------------------------------------------------------------- */
-        @include media(WSXGA_landscapePrint) {
+        @include mq(WSXGA_landscapePrint) {
             @include column-count(2);
             div:first-child h3 {
                 margin-top : 0;
             }
         }
-        @include media(WSXGA) {
+        @include mq(WSXGA) {
             -webkit-column-gap : size.$WSXGA_COLUMN_GAP_EM;
                -moz-column-gap : size.$WSXGA_COLUMN_GAP_EM;
                     column-gap : size.$WSXGA_COLUMN_GAP_EM;
@@ -67,7 +67,7 @@
 
     /*  Watch
     ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         div div {
             margin : 0;
         }
@@ -75,7 +75,7 @@
 
     /*  Dark theme
     ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
+    @include mq(dark) {
         :visited {
             color : color.$Dark_link;
         }
@@ -89,7 +89,7 @@
 
     /*  landscape Print
     ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint) {
+    @include mq(landscapePrint) {
         @at-root #{&}-multi {
             -webkit-column-gap : size.$PRINT_COLUMN_GAP_EM;
                -moz-column-gap : size.$PRINT_COLUMN_GAP_EM;

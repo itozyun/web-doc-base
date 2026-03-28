@@ -5,7 +5,7 @@
 @use "../01_var/options" as opt;
 
 @use "../02_mixin/clearfix" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../04_typography/p";
 @use "../04_typography/a";
@@ -25,7 +25,7 @@
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         margin  : 1em 0;
 
         img {

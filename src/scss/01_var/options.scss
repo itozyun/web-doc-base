@@ -4,6 +4,7 @@
 ||
 |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_ */
 @use "./mobile-only" as mob;
+@use "./quirks" as quirks;
 
 // WSXGA 以上のレイアウトを有効にします
     $EnableWideLayout : true !default;
@@ -17,8 +18,10 @@
     $MaxLayoutColumns : 2 !default;
 // シンプルな組込みヘッダーを使用する
     $UseBuiltinHeader : false !default;
-// 濃い色のテーマカラーを背景にする
+// リボンと呼ばれるテーマカラーの帯を使用する
     $UseRibbon        : true !default;
+// 暗い色の背景カラーを使用する
+    $UseDarkRibbon    : $UseRibbon and quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false;
 
 // <code>, <var>, <kbd>, <samp> 用のスタイルを有効にする
     $UseITStyles      : false !default;

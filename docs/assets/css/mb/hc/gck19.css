@@ -31,6 +31,11 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
+.Magazine h3 a {
+  display: inline-block;
+  display: -moz-inline-box;
+  margin-right: 2px
+}
 .RichLink a {
   border-width: 0
 }
@@ -38,20 +43,20 @@ table {
   border-spacing: 2px;
   border-collapse: separate
 }
-th,
-thead {
-  font-weight: 700
-}
-td {
-  padding: .5em .25em
-}
 thead td,
 thead th {
   border-width: 0 0 2px;
   padding: .5em
 }
+th,
+thead {
+  font-weight: 700
+}
 tbody td {
   border-width: 0 0 1px
+}
+td {
+  padding: .5em .25em
 }
 .tl {
   border-collapse: collapse
@@ -64,6 +69,10 @@ tbody td {
 .Pager span {
   position: static;
   display: inline
+}
+.Pager a {
+  display: inline-block;
+  display: -moz-inline-box
 }
 .Pager i {
   display: none

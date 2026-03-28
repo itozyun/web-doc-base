@@ -7,35 +7,41 @@
 @use "../../01_var/canuse" as canuse;
 @use "../../01_var/quirks" as quirks;
 
+@use "../../02_mixin/mq" as *;
 @use "../../02_mixin/media" as *;
 @use "../../02_mixin/box-sizing" as *;
+@use "../../02_mixin/border-color" as *;
 
 %InteractiveObjectStyle {
     a & {
-        border-color : color.$Light_fill;
-        @include media(screen){ // 印刷には border は無しで縦横4px大きく
+        @if canuse.$TRANSPARENT_BORDER_COLOR {
+            border-color : transparent;
+        } @else {
+            border-color : color.$Light_fill;
+        }
+        @include screen { // 縦横 4px 大きくなる、印刷には border は無し
             border-width : #{size.$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
         }
-/*  Phone-
---------------------------------------------------------------------------------- */
-        @include media(smallphone) {
+        @include print-fallback {
+            border : 0;
+        }
+        @include mq(smallphone) {
             @include box-sizing(border-box);
         }
     }
 
     :link &, :visited & {
-        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+        @if opt.$UseDarkRibbon {
             .#{opt.$Prefix}ribbon & {
                 border-color : color.$Ribbon_fill;
             }
         }
 
         blockquote & {
-            border-color : color.$Light_casual_fill;
-        /*  Dark theme
-        ----------------------------------------------------------------------------- */
-            @include media(dark_theme) {
+            @if canuse.$TRANSPARENT_BORDER_COLOR {
                 border-color : transparent;
+            } @else {
+                border-color : color.$Light_casual_fill;
             }
         }
     }
@@ -45,7 +51,7 @@
             border-color : color.$ACCENT !important;
         /*  Forced colors
         ----------------------------------------------------------------------------- */
-            @include media(forced_colors_native_or_fallback){
+            @include mq(forced_colors_native_or_fallback){
                 border-style : dotted;
             }
         }
@@ -55,7 +61,7 @@
             border-color : color.$ACCENT !important;
         /*  Forced colors
         ----------------------------------------------------------------------------- */
-            @include media(forced_colors_native_or_fallback){
+            @include mq(forced_colors_native_or_fallback){
                 border-style : dotted;
             }
         }

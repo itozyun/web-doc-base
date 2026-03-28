@@ -2,7 +2,7 @@
 @use "../01_var/options" as opt;
 @use "../01_var/canuse" as canuse;
 
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/create-css-generated-block" as *;
 
 @use "./_/HeadingStyle" as *;

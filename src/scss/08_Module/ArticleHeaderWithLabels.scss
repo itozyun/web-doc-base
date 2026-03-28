@@ -14,7 +14,9 @@
 @use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/inline-block" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../07_parts/_/ButtonBase" as *;
 @use "../07_parts/_/apply-button-colors" as *;
@@ -28,7 +30,11 @@
  *   a
 ------------------------------------------------------------------------------------- */
     @at-root #{&}-labels {
-        margin-top : 0.5em;
+        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
+            @include text-color-screen-print(color.$Sidebar_fill, color.$Print_text); /* , を消す */
+        } @else {
+            @include text-color-screen-print(color.$Ribbon_fill, color.$Print_text); /* , を消す */
+        }
     /* ArticleLabels で英語だけのラベルと日本語を含むラベルで高さが揃わないので body の指定を上書き */
         @if ua.$IE7 or ua.$IE8 {
             font-family : Meiryo, "MS PGothic", sans-serif;
@@ -36,18 +42,14 @@
         @if ua.$WinIELte6 {
             font-family : "MS Gothic", sans-serif; /* ie6-, MacIE5- */
         }
-        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
-            color : color.$Sidebar_fill;
-        } @else {
-            color : color.$Ribbon_fill; /* , を消す */
-        }
         @if ua.$Modern {
             vertical-align : middle; /* ie11 のガタツキを修正 */
         }
+        margin-top : 0.5em;
+
         i {
             display : none;
         }
-
         a {
             @extend %ButtonBase;
             margin : 0 0 0.5em;
@@ -59,7 +61,7 @@
                 @include apply-button-colors( color.$Ribbon_link, color.$Ribbon_casual_text, color.$Ribbon_fill );
             }
         }
-        @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false {
+        @if opt.$UseDarkRibbon {
             :link:hover { /* .ribbon :link:hover の上書き */
                 border-color : color.$Ribbon_link;
                 color        : color.$Ribbon_fill;
@@ -68,7 +70,7 @@
 
         /*  Phone-
         ------------------------------------------------------------------------------------- */
-        @include media(smallphone) {
+        @include mq(smallphone) {
             line-height : 0;
             a {
                 display    : block;
@@ -79,10 +81,9 @@
 
         /*  Print
         ------------------------------------------------------------------------------------- */
-        @include media(print) {
-            color : color.$Print_text;
-            @if canuse.$GOOD_CSS_GENERATED_BLOCK {
-                i {
+        @include print {
+            i {
+                @if canuse.$GOOD_CSS_GENERATED_BLOCK {
                     @if canuse.$DISPLAY_INLINE_BLOCK {
                         @include inline-block;
                     }

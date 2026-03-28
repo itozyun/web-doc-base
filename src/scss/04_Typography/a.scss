@@ -14,9 +14,12 @@
 @use "../01_var/size" as size;
 
 @use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/link-colors-on-dark-background" as *;
 @use "../02_mixin/animate-colors" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../03_reset/a";
 
@@ -57,39 +60,43 @@
 /* a タグの色
 ------------------------------------------------------------------------------------- */
 a {
-    color        : color.$Light_casual_text;
-    border-color : color.$Light_fill;
+    @include text-color-responsive(color.$Light_casual_text);
+    @include border-color-responsive(color.$Light_fill);
 }
 :link {
-    color : color.$Light_link;
+    @include text-color-responsive(color.$Light_link);
 }
 :visited {
-    color : color.$Light_text;
+    // aBodyRoot 下以外の :visited 色は通常色とする
+    @include text-color-responsive(color.$Light_text);
+    //                             ^^^^^^^^^^^^^^^^^
 }
 @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
     :link:hover {
-        color        : color.$Light_hover;
-        border-color : color.$Light_hover;
+        @include text-color-responsive(color.$Light_hover, noprint);
+        @include border-color-responsive(color.$Light_hover, noprint);
     }
     :visited:hover {
-        color        : color.$Light_visited_hover;
-        border-color : color.$Light_visited_hover;
+        @include text-color-responsive(color.$Light_visited_hover, noprint);
+        @include border-color-responsive(color.$Light_visited_hover, noprint);
     }
 }
 
-@if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+@if opt.$UseDarkRibbon {
     .#{opt.$Prefix}ribbon {
         a {
-            color        : color.$Ribbon_casual_text;
-            border-color : color.$Ribbon_fill;
+            @include text-color-screen-print(color.$Ribbon_casual_text, color.$Print_casual_text);
+            @include border-color-screen-print(color.$Ribbon_fill, color.$Print_fill);
         }
         :link {
-            color : color.$Ribbon_link;
+            @include text-color-screen-print(color.$Ribbon_link, color.$Print_link);
         }
         :visited {
-            color : color.$Ribbon_text;
+            @include text-color-screen-print(color.$Ribbon_text, color.$Print_visited);
+            // 但し印刷メディアの :visited は訪問済色とする      ^^^^^^^^^^^^^^^^^^^^
         }
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
+            // :hover 系は印刷メディアの指定がない
             :link:hover    {
                 color        : color.$Ribbon_hover;
                 border-color : color.$Ribbon_hover;
@@ -137,51 +144,6 @@ a {
             & * {
                 color : #fff !important;
             }
-        }
-    }
-}
-
-/* :target
-------------------------------------------------------------------------------------- */
-@if canuse.$TARGET_PSEUDO_CLASS {
-    :target, :target * {
-        background   : color.$ACCENT !important;
-        color        : #fff !important;
-        border-color : #fff !important;
-    }
-    th:target, td:target {
-        border-color : inherit !important;
-    }
-    :target th, :target td {
-        border-color : color.$ACCENT !important;
-    }
-    li:target {
-        color : inherit !important; // Light mode でだけ :target 時に <li> のリスト項目の箇条書き記号が見えにくくなる <li id=""><p>.... とすること
-    }
-}
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
-    a {
-        color        : color.$Dark_casual_text;
-        border-color : color.$Dark_fill;
-    }
-    @include link-colors-on-dark-background(color.$Dark_text);
-}
-
-/*  Print
-------------------------------------------------------------------------------------- */
-@include media(print) {
-    a        { color : color.$Print_casual_text; }
-    :link    { color : color.$Print_link; }
-    :visited { color : color.$Print_visited; }
-
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
-        .#{opt.$Prefix}ribbon {
-            a        { color : color.$Print_casual_text; }
-            :link    { color : color.$Print_link; }
-            :visited { color : color.$Print_visited; }
         }
     }
 }

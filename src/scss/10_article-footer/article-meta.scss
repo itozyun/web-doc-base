@@ -23,7 +23,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         @if canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS {
             @at-root #{&}-cita:after {
                 content   : " ("attr(href)") ";

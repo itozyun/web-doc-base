@@ -26,7 +26,7 @@
     $TRANSPARENT_BORDER_COLOR : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
 
 // @media
-    $CSS_MEDIA_QUERY : ua.$Modern or ua.$IE9 or ua.$Opera9;
+    $MEDIA_QUERY : ua.$Modern or ua.$IE9 or ua.$Opera9;
     $FORCED_COLORS   : ua.$Modern or ua.$WinIELte9 or ua.$Gecko19;
 
 // webfont

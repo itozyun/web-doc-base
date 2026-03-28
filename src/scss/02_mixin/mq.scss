@@ -1,0 +1,175 @@
+@use "sass:math";
+@use "sass:map";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/options" as opt;
+@use "../01_var/canuse" as canuse;
+@use "../01_var/size" as size;
+
+$_COMMENT_OUT : (
+    'WQXGA'                : if(sass(opt.$MobileOnly): 0; else: if(sass(ua.$Modern and opt.$EnableWideLayout): 1; else: 0;)),
+    'WSXGA'                : if(sass(opt.$MobileOnly): 0; else: if(sass(ua.$Modern and opt.$EnableWideLayout): 1; else: 0;)),
+    'WSXGA_landscapePrint' :                                    if(sass(ua.$Modern): 1; else: 0;),
+    'pc'                   : if(sass(opt.$MobileOnly): 0; else: if(sass(canuse.$MEDIA_QUERY): 1; else: 0;)),
+    'tablet_print'         : if(sass(opt.$MobileOnly): 2; else: 1),
+    'tablet'               : if(sass(opt.$MobileOnly): 2; else: if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;)),
+    'phablet'              :                                    if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;),
+    'phone'                :                                    if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;),
+    'smallphone'           :                                    if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;),
+    'watch'                :                                    if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;),
+    'dark'                 :                                    if(sass(canuse.$MEDIA_QUERY or ua.$Opera8): 1; else: 0;),
+    'landscapePrint'       : if(sass(ua.$Modern): 1; else: 0;),
+
+    'forced_colors_native'             : if(sass(ua.$Modern): 1; else: 0;),
+    'forced_colors_ms'                 : if(sass(ua.$Modern): 1; else: 0;),
+    'forced_colors_native_or_ms'       : if(sass(ua.$Modern): 1; else: 0;),
+    'forced_colors_fallback'           : if(sass((ua.$Modern and ua.$Script) or ua.$WinIELte9 or ua.$Gecko19): 1; else: 0;),
+    'forced_colors_native_or_fallback' : if(sass( ua.$Modern                 or ua.$WinIELte9 or ua.$Gecko19): 1; else: 0;)
+) !default;
+
+@mixin mq($media) {
+    @if map.get($_COMMENT_OUT, $media) == 2 {
+        @content;
+    } @else if map.get($_COMMENT_OUT, $media) == 1 {
+        @if $media == 'pc' {
+            @if ua.$Modern {
+                @media
+                    only // ie9, opera9 には不要
+                    screen and (min-width: #{1em * math.div(size.$TABLET_MAX_WIDTH + 1, size.$FONTSIZE_UPPER_TABLET)})
+                    { @content; }
+            } @else {
+                @media
+                    screen and (min-width: #{1em * math.div(size.$TABLET_MAX_WIDTH + 1, size.$FONTSIZE_UPPER_TABLET)})
+                    { @content; }
+            }
+        } @else if $media == 'WSXGA' {
+            @media only screen and (min-width: size.$WSXGA_MIN_WIDTH_EM){
+                @content;
+            }
+        } @else if $media == 'WQXGA' {
+            @media only screen and (min-width: size.$WQXGA_MIN_WIDTH_EM){
+                @content;
+            }
+        } @else if $media == 'WSXGA_landscapePrint' {
+            @if opt.$MobileOnly or opt.$EnableWideLayout == false {
+                @media only print and (orientation: landscape){
+                    @content;
+                }
+            } @else {
+                @media only screen and (min-width: size.$WSXGA_MIN_WIDTH_EM), print and (orientation: landscape){
+                    @content;
+                }
+            }
+        } @else if $media == 'tablet_print' {
+            @if ua.$IE9 {
+                @media print, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera9 {
+                @media print, handheld, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media print, handheld, tv, only screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera8 {
+                @media print, handheld { @content; }
+            } @else {
+                @media print{ @content; }
+            }
+        } @else if $media == 'tablet' {
+            @if ua.$IE9 {
+                @media screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, tv, only screen and (max-width: #{size.$TABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'phablet' {
+            @if ua.$IE9 {
+                @media screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, tv, only screen and (max-width: #{size.$PHABLET_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'phone' {
+            @if ua.$IE9 {
+                @media screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, tv, only screen and (max-width: #{size.$PHONE_MAX_WIDTH}px){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'smallphone' {
+            @if ua.$IE9 {
+                @media screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, tv, only screen and (max-width: size.$SMALL_PHONE_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'watch' {
+            @if ua.$IE9 {
+                @media screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, only screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'dark' {
+            @if ua.$IE9 {
+                @media screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera9 {
+                @media handheld, screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if canuse.$MEDIA_QUERY {
+                @media handheld, only screen and (prefers-color-scheme:dark), only screen and (max-width: size.$WATCH_MAX_PX_WIDTH){ @content; }
+            } @else if ua.$Opera8 {
+                @media handheld { @content; }
+            }
+        } @else if $media == 'landscapePrint' {
+            @media only print and (orientation: landscape){
+                @content;
+            }
+        } @else if $media == 'forced_colors_native' { // Edge 79+, Chrome 89+, Firefox 89+
+            @media only screen and (forced-colors:active),
+                   print and (forced-colors:active) { // Firefox 148
+                @content;
+            }
+        } @else if $media == 'forced_colors_ms' { // IE10+, EdgeHTML, Edge 79+
+            @media only screen and (-ms-high-contrast:active){
+                @content;
+            }
+        } @else if $media == 'forced_colors_native_or_ms' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+
+            @media only screen and (forced-colors:active),
+                   print and (forced-colors:active), // Firefox 148
+                   only screen and (-ms-high-contrast:active){
+                @content;
+            }
+        } @else if $media == 'forced_colors_fallback' { // IE5~9, Gecko 1.8.1~, Goanna
+            @media only use-polyfill and (forced-colors:active){
+                @content;
+            }
+        } @else if $media == 'forced_colors_native_or_fallback' { // IE10+, EdgeHTML, Edge 79+, Chrome 89+, Firefox 89+, IE5~9, Gecko 1.8.1~, Goanna
+            @if ua.$Modern {
+                @media only screen and (forced-colors:active),
+                       print and (forced-colors:active), // Firefox 148
+                       only screen and (-ms-high-contrast:active){
+                    @content;
+                }
+            }
+            @if (ua.$Modern and ua.$Script) or ua.$WinIELte9 or ua.$Gecko19 {
+                @media only use-polyfill and (forced-colors:active){
+                    @content;
+                }
+            }
+        }
+    } @else if map.get($_COMMENT_OUT, $media) != 0 {
+        @error "Media Type Error: 不正なメディアタイプです! " + $media;
+    }
+}

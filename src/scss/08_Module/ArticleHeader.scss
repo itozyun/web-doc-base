@@ -17,21 +17,23 @@
 
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/font-family-japanese" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../04_typography/h1";
 
 .#{opt.$Prefix}AHead {
-    color  : color.$Light_casual_text;
+    @include text-color-responsive(color.$Light_casual_text);
     margin : 2em 0;
 
     h1 {
+        @include text-color-responsive(color.$Light_text);
         @if ua.$Modern or ua.$IE9 {
             @extend %SerifFontFamily;
         }
         font-size : 2em;
-        color     : color.$Light_text;
         padding   : 0 0 2em;
         margin    : 0;
 
@@ -39,7 +41,7 @@
             text-align : left;
         }
     }
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+    @if opt.$UseDarkRibbon {
         .#{opt.$Prefix}ribbon & {
             color : color.$Ribbon_casual_text;
             h1 {
@@ -50,23 +52,23 @@
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         h1 { text-align : center; }
     }
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         margin : 1em 0;
         h1 { text-align : center; }
     }
-    @include media(tablet) {
+    @include mq(tablet) {
         h1 { padding : 2em 0; }
     }
 
     /*  Phone
     ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         text-align : center;
 
         h1 {
@@ -75,31 +77,25 @@
         }
     }
 
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        color : color.$Dark_casual_text;
-        h1 {
-            color : color.$Dark_text;
-        }
-    }
-
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         .lMz & {
             padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
         }
-        color   : color.$Print_casual_text !important;
-
+        @if opt.$UseDarkRibbon {
+            color : color.$Print_casual_text !important;
+        }
         h1 {
-            color   : color.$Print_text !important;
             padding : 1em 0;
+            @if opt.$UseDarkRibbon {
+                color : color.$Print_text !important;
+            }
         }
     }
     /*  landscape Print
     ------------------------------------------------------------------------------------- */
-    @include media(landscapePrint) {
+    @include mq(landscapePrint) {
         padding : 0 math.div(size.$TABLET_HORIZONTAL_MARGIN, 2);
     }
 }

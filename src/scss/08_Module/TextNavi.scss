@@ -9,11 +9,12 @@
 
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
+@use "../02_mixin/text-color" as *;
 
 .#{opt.$Prefix}TxtNavi {
+    @include text-color-responsive(color.$Light_fill); /* , を消す */
     padding     : 1em 0;
     text-align  : right;
-    color       : color.$Light_fill; /* , を消す */
 
     a {
         @if ua.$GeckoLte09 == false and ua.$Opera7x == false {
@@ -24,21 +25,15 @@
         }
     }
 
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+    @if opt.$UseDarkRibbon {
         .#{opt.$Prefix}ribbon & {
             color : color.$Ribbon_fill; /* , を消す */
         }
     }
 
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        color : color.$Dark_fill; /* , を消す */
-    }
-
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         display : none;
     }
 }

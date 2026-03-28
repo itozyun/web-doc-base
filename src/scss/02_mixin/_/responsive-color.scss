@@ -1,0 +1,205 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
+@use "sass:meta";
+
+@use "../../01_var/ua" as ua;
+@use "../../01_var/color" as color;
+@use "../../01_var/canuse" as canuse;
+
+@use "../mq" as *;
+
+@if ua.$Modern {
+    :root {
+        --color-fill          : #{color.$Light_fill};
+        --color-text          : #{color.$Light_text};
+        --color-casual-fill   : #{color.$Light_casual_fill};
+        --color-casual-text   : #{color.$Light_casual_text};
+        --color-accent        : #{color.$Light_accent};
+        --color-link          : #{color.$Light_link};
+        --color-visited       : #{color.$Light_visited};
+        --color-hover         : #{color.$Light_hover};
+        --color-visited-hover : #{color.$Light_visited_hover};
+
+        @include mq(dark) {
+            --color-fill          : #{color.$Dark_fill};
+            --color-text          : #{color.$Dark_text};
+            --color-casual-fill   : #{color.$Dark_casual_fill};
+            --color-casual-text   : #{color.$Dark_casual_text};
+            @if color.$Light_accent != color.$Dark_accent {
+                --color-accent    : #{color.$Dark_accent};
+            }
+            --color-link          : #{color.$Dark_link};
+            --color-visited       : #{color.$Dark_visited};
+            --color-hover         : #{color.$Dark_hover};
+            --color-visited-hover : #{color.$Dark_visited_hover};
+        }
+    }
+}
+
+$_light-to-var: (
+    color.$Light_fill: var(--color-fill),
+    color.$Light_text: var(--color-text),
+    color.$Light_casual_fill: var(--color-casual-fill),
+    color.$Light_casual_text: var(--color-casual-text),
+    color.$Light_accent: var(--color-accent),
+    color.$Light_link: var(--color-link),
+    color.$Light_visited: var(--color-visited),
+    // color.$Light_hover: var(--color-hover),
+    color.$Light_visited_hover: var(--color-visited-hover),
+    color.$Dark_fill: var(--color-fill),
+    color.$Dark_text: var(--color-text),
+    color.$Dark_casual_fill: var(--color-casual-fill),
+    color.$Dark_casual_text: var(--color-casual-text),
+    // color.$Dark_accent: var(--color-accent),
+    color.$Dark_link: var(--color-link),
+    color.$Dark_visited: var(--color-visited),
+    // color.$Dark_hover: var(--color-hover),
+    color.$Dark_visited_hover: var(--color-visited-hover),
+    transparent: transparent
+);
+
+@function -var($c) {
+    // マッピング取得
+    $v: map.get($_light-to-var, $c);
+
+    @if $v == null {
+        @error "Responsive Text Color Error! @var: #{$c}";
+    }
+    @return $v;
+}
+
+@function responsive-color-var($c) {
+    @if ua.$Modern {
+        $len: list.length($c);
+
+        @if 1 < $len {
+            $result: ();
+
+            @for $i from 1 through $len {
+                $v: list.nth($c, $i);
+
+                @if meta.inspect($v) != "!important" {
+                    $v: -var($v);
+
+                    @if $v == false {
+                        @error "Responsive Text Colors Error! var(): #{$c} - #{$v}";
+                    }
+                }
+                $result: list.append($result, $v, space);
+            }
+            @return $result;
+        }
+        @return -var($c);
+    }
+    @return false;
+}
+
+$_light-to-dark: (
+    color.$Light_fill: color.$Dark_fill,
+    color.$Light_text: color.$Dark_text,
+    color.$Light_casual_fill: color.$Dark_casual_fill,
+    color.$Light_casual_text: color.$Dark_casual_text,
+    color.$Light_accent: color.$Dark_accent,
+    color.$Light_link: color.$Dark_link,
+    color.$Light_visited: color.$Dark_visited,
+    // color.$Light_hover: color.$Dark_hover,
+    color.$Light_visited_hover: color.$Dark_visited_hover,
+    transparent: transparent
+);
+
+@function -dark($c, $isSingle: false) {
+    // マッピング取得
+    $v: map.get($_light-to-dark, $c);
+
+    @if $v == null {
+        @error "Responsive Text Color Error! @dark: #{$c} - #{$v}";
+    }
+
+    // Light_accent の特殊処理
+    @if $c == color.$Light_accent {
+        @if $isSingle == false or color.$Light_accent != color.$Dark_accent {
+            @return $v;
+        }
+        @return false;
+    }
+    @return $v;
+}
+
+@function responsive-color-dark($c) {
+    @if canuse.$MEDIA_QUERY or ua.$Opera8 {
+        $len: list.length($c);
+
+        @if 1 < $len {
+        // すべての要素が -dark() で変換できるかチェック
+            $result: ();
+
+            @for $i from 1 through $len {
+                $v: list.nth($c, $i);
+
+                @if meta.inspect($v) != "!important" {
+                    $v: -dark($v);
+
+                    @if $v == false {
+                        @error "Responsive Text Colors Error! dark(): #{$c} - #{$v}";
+                    }
+                }
+                $result: list.append($result, $v, space);
+            }
+            @return $result;
+        }
+        @return -dark($c, true);
+    }
+    @return false;
+}
+
+$_light-to-print: (
+    color.$Light_fill: color.$Print_fill,
+    color.$Light_text: color.$Print_text,
+    color.$Light_casual_fill: color.$Print_casual_fill,
+    color.$Light_casual_text: color.$Print_casual_text,
+    color.$Light_accent: color.$Print_accent,
+    color.$Light_link: color.$Print_link,
+    color.$Light_visited: color.$Print_visited,
+// color.$Light_hover: null, // 元コードが未定義なので null
+    color.$Light_visited_hover: null, // 同上
+    transparent: transparent
+);
+
+@function -print($c, $isSingle: false) {
+    // マッピング取得
+    $v: map.get($_light-to-print, $c);
+
+    @if $v == null {
+        @error "Responsive Text Color Error! @print: #{$c} - #{$v}";
+    }
+    // isSingle の特殊処理
+    @if $isSingle == false or $c != $v {
+        @return $v;
+    }
+    @return false;
+}
+
+@function responsive-color-print($c) {
+    $len: list.length($c);
+
+    @if 1 < $len {
+    // すべての要素が -dark() で変換できるかチェック
+        $result: ();
+
+        @for $i from 1 through $len {
+            $v: list.nth($c, $i);
+
+            @if meta.inspect($v) != "!important" {
+                $v: -print($v);
+
+                @if $v == false {
+                    @error "Responsive Text Colors Error! print(): #{$c} - #{$v}";
+                }
+            }
+            $result: list.append($result, $v, space);
+        }
+        @return $result;
+    }
+    @return -print($c, true);
+}

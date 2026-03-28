@@ -18,7 +18,7 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/css-hack" as *;
 
 @use "../08_module/ArticleBody";
@@ -97,9 +97,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
     }
     img, iframe {
         @if canuse.$MAX_AND_MIN_SIZES {
-            @if opt.$MobileOnly {
-                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
-            } @else if canuse.$CSS_MEDIA_QUERY {
+            @if opt.$MobileOnly or canuse.$MEDIA_QUERY {
                 max-width : 100%; // 4_Typography/04_Typography.scss を上書き
             };
         }
@@ -124,7 +122,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-@include media(tablet_print) {
+@include mq(tablet_print) {
     .box {
         margin : 1em 0 0;
 
@@ -141,7 +139,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
 /*  Phablet
 ------------------------------------------------------------------------------------- */
-@include media(phablet) {
+@include mq(phablet) {
     .box {
         img, iframe
         //, embed, object, video
@@ -156,7 +154,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
 /*  Phone
 ------------------------------------------------------------------------------------- */
-@include media(phone) {
+@include mq(phone) {
     @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         .box > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
@@ -176,7 +174,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
 /*  Phone-
 ------------------------------------------------------------------------------------- */
-@include media(smallphone) {
+@include mq(smallphone) {
     .box {
         img, iframe
         //, embed, object, video
@@ -193,7 +191,7 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-@include media(watch) {
+@include mq(watch) {
     @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         .box > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);

@@ -9,7 +9,8 @@
 @use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/inline-block" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/text-color" as *;
 
 // a > sub, a > sup というマークアップ
 @use "../04_typography/a";
@@ -22,7 +23,7 @@
     @include stackableModule;
 
     div {
-        color : color.$Light_fill; /* , を消す */
+        @include text-color-responsive(color.$Light_fill); /* , を消す */
     
         @if ua.$WinIELte9 {
             text-justify : inter-ideograph;
@@ -33,7 +34,7 @@
             /* ie8 は要素への :hover で画面がガタツク... zoom で回避できる? */
         }
     }
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+    @if opt.$UseDarkRibbon {
         .#{opt.$Prefix}ribbon & div {
             color : color.$Ribbon_fill; /* , を消す */
         }
@@ -69,17 +70,9 @@
 
     /*  Phablet
     ------------------------------------------------------------------------------------- */
-    @include media(phablet) {
+    @include mq(phablet) {
         div {
             text-align : center;
-        }
-    }
-
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        div {
-            color : color.$Dark_fill; /* , を消す */
         }
     }
 }

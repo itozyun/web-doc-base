@@ -5,96 +5,64 @@
 @use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/background-color" as *;
 
-@if opt.$UseRibbon {
-    body {
+body {
+    @if opt.$UseRibbon {
         @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
-            background : color.$Sidebar_fill;
+            @include background-screen-print(color.$Sidebar_fill, color.$PRINT_DEFAULT_BACKGROUND);
         } @else {
-            background : color.$Ribbon_fill;
+            @include background-screen-print(color.$Ribbon_fill, color.$PRINT_DEFAULT_BACKGROUND);
         }
-        color : color.$Light_text;
-    }
-    .#{opt.$Prefix}baseColor {
-        background : color.$Light_fill;
-    }
-} @else {
-    body {
-        background : color.$Light_fill;
-        color      : color.$Light_text;
+        @include text-color-responsive(color.$LIGHT_DEFAULT_TEXT);
+
+        @at-root .#{opt.$Prefix}baseColor {
+            @include background-responsive(color.$LIGHT_DEFAULT_BACKGROUND);
+        /*  Print
+        ------------------------------------------------------------------------------------- */
+            @include print {
+                color : color.$PRINT_DEFAULT_TEXT;
+            }
+        }
+    } @else {
+        @include background-responsive(color.$LIGHT_DEFAULT_BACKGROUND);
+        @include text-color-responsive(color.$LIGHT_DEFAULT_TEXT);
     }
 }
 
 * {
-    border-color : color.$Light_casual_fill;
+    @include border-color-responsive(color.$LIGHT_DEFAULT_BORDER);
 }
 
-@if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
+@if opt.$UseDarkRibbon {
     .#{opt.$Prefix}ribbon {
-        color : color.$Ribbon_text;
+        @include text-color-screen-print(color.$Ribbon_text, color.$PRINT_DEFAULT_TEXT);
+
         @if ua.$Gecko08 {
-            background : color.$Sidebar_fill; // Only for Gecko 0.8.1
+            @include background-screen-print(color.$Sidebar_fill, color.$PRINT_DEFAULT_BACKGROUND); // Only for Gecko 0.8.1
         }
-        * {
-            border-color : color.$Ribbon_casual_fill;
+
+        & * {
+            @include border-color-screen-print(color.$Ribbon_casual_fill, color.$PRINT_DEFAULT_BORDER);
         }
     }
 }
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-@include media(tablet) {
+#lB .#{opt.$Prefix}lS {
     @if 1 < opt.$MaxLayoutColumns {
-        #lB .#{opt.$Prefix}lS {
-            border-width : 1px 0 0;
+        @include mq(tablet) {
             background   : color.$Sidebar_fill;
-        }
-    }
-}
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
-    * {
-        border-color : color.$Dark_casual_fill;
-    }
-    @if opt.$UseRibbon {
-        body {
-            color : color.$Dark_text;
-        }
-        .#{opt.$Prefix}baseColor {
-            background : color.$Dark_fill;
-        }
-    } @else {
-        body {
-            background : color.$Dark_fill;
-            color      : color.$Dark_text;
-        }
-    }
-    @if 1 < opt.$MaxLayoutColumns {
-        #lB .#{opt.$Prefix}lS {
-            background : color.$Dark_fill;
-        }
-    }
-}
-
-/*  Print
-------------------------------------------------------------------------------------- */
-@include media(print) {
-    body, .#{opt.$Prefix}baseColor {
-        background : color.$Print_fill;
-        color      : color.$Print_text;
-    }
-    * {
-        border-color : color.$Print_casual_fill;
-    }
-    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
-        .#{opt.$Prefix}ribbon {
-            background : color.$Print_fill;
-            color      : color.$Print_text;
-            * {
-                border-color : color.$Print_casual_fill;
+            border-width : 1px 0 0;
+            @if ua.$Modern {
+                @media (prefers-color-scheme:dark) {
+                    background : color.$DARK_DEFAULT_BACKGROUND;
+                }
             }
         }
     }

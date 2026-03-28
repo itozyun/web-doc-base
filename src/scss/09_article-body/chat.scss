@@ -17,6 +17,7 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/css-hack" as *;
 @use "../02_mixin/inline-block" as *;
@@ -27,12 +28,56 @@
 
 $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 
+@mixin -chat-tooltip {
+    .chatL p:after, .chatR p:after {
+        width  : .4em;
+        height : .4em;
+        /* border-color : #fff; */
+        @if ua.$IE9 == false {
+            display : block;
+        }
+        @if ua.$Modern {
+            -moz-transform : rotate(-45deg);
+                 transform : rotate(-45deg);
+        }
+        @if ua.$IE9 {
+            -ms-transform : rotate(-45deg);
+        }
+    }
+    .chatL p:after {
+        border-width : 1px 0 0 1px;
+        left         : -0.3em;
+    }
+    .chatR p:after {
+        border-width : 0 1px 1px 0;
+        right        : -0.3em;
+    }
+}
+
+@mixin -chat-tooltip-small {
+    .chatL p:after, .chatR p:after {
+        width  : .3em;
+        height : .3em;
+    }
+    .chatL p:after {
+        border-width : 1px 1px 0 0;
+        top          : -.35em;
+        left         : 1.15em;
+    }
+    .chatR p:after {
+        border-width : 1px 1px 0 0;
+        top          : -.35em;
+        right        : 1.15em;
+    }
+}
+
 .chat {
-    @include media(screen) {
+    @include screen {
         color      : #fff;
         background : #7493C2;
     }
-    border-color   : color.$Light_fill;
+    @include border-color-responsive(color.$Light_fill, color.$Print_casual_text);
+
     border-width   : 1px;
     padding-bottom : 1em;
     margin         : 1em 0;
@@ -40,7 +85,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 }
     .chatTitle {
         @include unbreak-after;
-        @include media(screen) {
+        @include screen {
             background : #273248;
         }
         border-color : #273248;
@@ -51,18 +96,19 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
     .chat h2, .chat h3, .chat h4, .chat h5, .chat h6 {
         @include unbreak-inside;
         @include unbreak-after;
-        
-        @include media(screen) {
+        @include inline-block;
+        @include border-radius(.4em);
+        @include border-color-screen-print(#5D769E, color.$Print_casual_text);
+
+        @include screen {
             color      : #fff;
             background : #5D769E;
         }
-        border-color : #5D769E;
+
         border-width : 1px;
         font-size    : 1em;
         margin       : 1em $_CAHT_HORIZONTAL_MARGIN;
         padding      : .4em $_CAHT_HORIZONTAL_MARGIN;
-        @include inline-block;
-        @include border-radius(.4em);
     }
     .chat p {
         @include line-height(1.2);
@@ -71,102 +117,86 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
         position   : relative;
         margin     : 1em 0;
         text-align : left;
-    }
-    .chatL {
-        padding : 0 20% 0 4em;
-    }
-    .chatR {
-        padding : 0 4em 0 20%;
-    }
-        .chatR p, .chatL p {
+        p {
             margin     : .4em 0;
             display    : block;
             text-align : left;
             color      : #111;
             @if canuse.$CSS_GENERATED_BLOCK {
                 position : relative;
+
+                &:after {
+                    @include create-css-generated-block;
+                    border-style : solid;
+                    position     : absolute;
+                    top          : .7em;
+                    width        : 0;
+                    height       : 0;
+                /*  Forced colors
+                ------------------------------------------------------------------------------------- */
+                    @include mq(forced_colors_native_or_ms){
+                        border-color : Window currentColor;
+                    }
+                }
             }
         }
-
+    }
+    .chatL {
+        padding : 0 20% 0 4em;
         @if canuse.$CSS_GENERATED_BLOCK {
-            .chatR p:after, .chatL p:after {
-                @include create-css-generated-block;
-                border-style : solid;
-                position     : absolute;
-                top          : .7em;
-                width        : 0;
-                height       : 0;
-            }
-            .chatL p:after {
-                border-color : transparent #fff;
+            & p:after {
+                @include border-color-screen-print(transparent #fff, transparent color.$Print_fill);
                 border-width : .3em .6em .3em 0;
                 left         : -0.6em;
             }
-            .chatR p:after {
-                border-color : transparent #85E445;
+        }
+    }
+    .chatR {
+        padding : 0 4em 0 20%;
+        @if canuse.$CSS_GENERATED_BLOCK {
+            & p:after {
+                @include border-color-screen-print(transparent #85E445, transparent color.$Print_fill);
                 border-width : .3em 0 .3em 0.6em;
                 right        : -0.6em;
             }
-            /*  Forced colors
-            ------------------------------------------------------------------------------------- */
-            @include media(forced_colors_native_or_ms){
-                .chatL p:after, .chatR p:after {
-                    border-color : Window currentColor;
-                }
-            }
+        }
+    }
+        @if canuse.$CSS_GENERATED_BLOCK {
             @if ua.$IE8 == false { /* 疑似要素に Transform が効かない */
-                @include media(forced_colors_fallback){
-                    /* //_{^@ie9 */
-                    .chatL p:after, .chatR p:after {
-                        display : none;
-                    }
-                    .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
-                    /* //_}^@ie9 */
+                @include mq(forced_colors_fallback){
+                    @if ua.$IE9 {
+                        @include -chat-tooltip;
+                    } @else {
                         .chatL p:after, .chatR p:after {
-                            width  : .4em;
-                            height : .4em;
-                            /* border-color : #fff; */
-                            @if ua.$IE9 == false {
-                                display : block;
-                            }
-                            @if ua.$Modern {
-                                -moz-transform : rotate(-45deg);
-                                        transform : rotate(-45deg);
-                            }
-                            @if ua.$IE9 {
-                                -ms-transform : rotate(-45deg);
+                            display : none;
+                        }
+                        @if ua.$Script {
+                            .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
+                                @include -chat-tooltip;
                             }
                         }
-                        .chatL p:after {
-                            border-width : 1px 0 0 1px;
-                            left         : -0.3em;
-                        }
-                        .chatR p:after {
-                            border-width : 0 1px 1px 0;
-                            right        : -0.3em;
-                        }
-                    /* //_{^@ie9 */
                     }
-                    /* //_}^@ie9 */
                 }
             }
         }
 
         .chatL p, .chatL .chatMember {
-            @include media(screen) {
+            @include screen {
                 background   : #fff;
-                border-color : #fff;
             }
+            @include border-color-screen-print(#fff, color.$Print_casual_text);
         }
         .chatR p, .chatR .chatMember {
-            @include media(screen) {
+            @include screen {
                 background : #85E445;
             }
-            border-color : #85E445;
+            @include border-color-screen-print(#85E445, color.$Print_casual_text);
         }
 
         .chatMember {
             @include unbreak-after;
+            @include border-radius(1.414em);
+
             position     : absolute;
             top          : -0.414em;
             overflow     : hidden;
@@ -177,7 +207,6 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
             border-width : 1px;
             padding      : 0.914em 0.414em;
             color        : #111;
-            @include border-radius(1.414em);
         }
 
         .chatL .chatMember { 
@@ -189,7 +218,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 
 /*  Phone
 ------------------------------------------------------------------------------------- */
-@include media(phone) {
+@include mq(phone) {
     .chatL {
         padding : 0 9% 0 4em;
     }
@@ -200,7 +229,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 
 /*  Phone-
 ------------------------------------------------------------------------------------- */
-@include media(smallphone) {
+@include mq(smallphone) {
     .chatMember {
         position : static;
         @include inline-block;
@@ -244,71 +273,35 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 
 @if ua.$IE9 or ua.$Modern {
     @media only use-polyfill and (forced-colors:active) and (max-width:size.$SMALL_PHONE_MAX_PX_WIDTH) {
-        /* //_{^@ie9 */
-        .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
-        /* //_}^@ie9 */
-            .chatL p:after, .chatR p:after {
-                width  : .3em;
-                height : .3em;
+        @if ua.$IE9 {
+            @include -chat-tooltip-small;
+        } @else if ua.$Script {
+            .#{opt.$Prefix + common.$CLASSNAME_CANUSE_ROTATE_WHEN_FORCED_COLORS_MODE} {
+                @include -chat-tooltip-small;
             }
-            .chatL p:after {
-                border-width : 1px 1px 0 0;
-                top          : -.35em;
-                left         : 1.15em;
-            }
-            .chatR p:after {
-                border-width : 1px 1px 0 0;
-                top          : -.35em;
-                right        : 1.15em;
-            }
-        /* //_{^@ie9 */
         }
-        /* //_}^@ie9 */
-    }
-}
-
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-@include media(dark_theme) {
-    .chat {
-        border-color : color.$Dark_fill;
     }
 }
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include media(print) {
-    .chat {
-        border-color : color.$Print_casual_text;
+@include print {
+    @if canuse.$CSS_GENERATED_BLOCK {
+        .chatL p:before {
+            border-width : 4px 7px 4px 0;
+            left         : -7px;
+        }
+        .chatR p:before {
+            border-width : 4px 0 4px 7px;
+            right        : -7px;
+        }
+        .chatL p:after {
+            border-width : 4px 7px 4px 0;
+            left         : -6px;
+        }
+        .chatR p:after {
+            border-width : 4px 0 4px 7px;
+            right        : -6px;
+        }
     }
-        .chat p,
-        .chat h2, .chat h3, .chat h4, .chat h5, .chat h6,
-        .chatR p, .chatL p, .chat .chatMember {
-            border-color : color.$Print_casual_text;
-        }
-
-        @if canuse.$CSS_GENERATED_BLOCK {
-            .chatR p:before, .chatL p:before {
-                border-color : color.$Print_fill color.$Print_casual_text;
-            }
-            .chatL p:before {
-                border-width : 4px 7px 4px 0;
-                left         : -7px;
-            }
-            .chatR p:before {
-                border-width : 4px 0 4px 7px;
-                right        : -7px;
-            }
-            .chatL p:after, .chatR p:after {
-                border-color : transparent color.$Print_fill;
-            }
-            .chatL p:after {
-                border-width : 4px 7px 4px 0;
-                left         : -6px;
-            }
-            .chatR p:after {
-                border-width : 4px 0 4px 7px;
-                right        : -6px;
-            }
-        }
 }

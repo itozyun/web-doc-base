@@ -3,17 +3,18 @@
 @use "../01_var/color" as color;
 @use "../01_var/options" as opt;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 
 #lF .#{opt.$Prefix}lX {
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         border-width : 1px 0 0;
     }
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         border-top : 0.15em solid color.$Print_text;
     }
 }

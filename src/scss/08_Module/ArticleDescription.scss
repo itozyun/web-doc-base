@@ -6,6 +6,7 @@
 @use "../01_var/color" as color;
 @use "../01_var/quirks" as quirks;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 
 .#{opt.$Prefix}ADesc {
@@ -22,12 +23,12 @@
 
     /*  Tablet
     ------------------------------------------------------------------------------------- */
-    @include media(tablet_print) {
+    @include mq(tablet_print) {
         margin : 1em 0;
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         color : color.$Print_casual_text;
     }
 }

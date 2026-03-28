@@ -17,7 +17,7 @@
 
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../04_typography/form";
 
@@ -79,12 +79,12 @@
 
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         max-width : 40em;
     }
     /*  Phone
     ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         & label {
             float   : none;
             width   : auto;

@@ -3,6 +3,7 @@
 @use "../01_var/ua" as ua;
 @use "../01_var/size" as size;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
 
@@ -27,19 +28,19 @@ p {
 
 /*  Phone
 ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         line-height : size.$PARAGRAPH_LINE_HEIGHT_PHONE;
     }
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         line-height : size.$PARAGRAPH_LINE_HEIGHT_WATCH;
     }
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include media(print) {
-        line-height : size.$PARAGRAPH_LINE_HEIGHT_PRINT;/* for paper saving */
+    @include print {
+        line-height : size.$PARAGRAPH_LINE_HEIGHT_PRINT; /* for paper saving */
     }
 }

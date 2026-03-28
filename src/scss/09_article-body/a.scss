@@ -11,8 +11,10 @@
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/unbreak" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../04_typography/a";
 @use "../08_module/ArticleBody";
@@ -45,20 +47,12 @@
     }
 
     /* .aBodyRoot 内では訪問済のリンクは紫になる */
-    :visited       { color : color.$Light_visited; }
-    :visited:hover { color : color.$Light_visited_hover; }
-
-    /*  Dark theme
-    ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
-        /* .aBodyRoot 内では訪問済のリンクは紫になる */
-        :visited       { color : color.$Dark_visited; }
-        :visited:hover { color : color.$Dark_visited_hover; }
-    }
+    :visited       { @include text-color-responsive(color.$Light_visited               ); }
+    :visited:hover { @include text-color-responsive(color.$Light_visited_hover, noprint); }
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include media(print) {
+    @include print {
         @if canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS {
             & a[href]:after {
                 content   : " ("attr(href)") ";

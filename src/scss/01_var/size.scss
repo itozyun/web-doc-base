@@ -6,7 +6,7 @@
 ------------------------------------------------------------------------------------- */
 $FONTSIZE_DEFAULT : 16;
 
-$FONTSIZE_UPPER_TABLET : if($FONTSIZE_DEFAULT < opt.$BaseFontSize, opt.$BaseFontSize, $FONTSIZE_DEFAULT) !default;
+$FONTSIZE_UPPER_TABLET : if(sass($FONTSIZE_DEFAULT < opt.$BaseFontSize): opt.$BaseFontSize; else: $FONTSIZE_DEFAULT;) !default;
 
 /*  line-height
 ------------------------------------------------------------------------------------- */
@@ -53,7 +53,7 @@ $WQXGA_WIDTH_PERCENT     : 94% !default;
 
 // tablet
 $TABLET_MAX_WIDTH_EM      : 50em !default;
-$TABLET_MAX_WIDTH         : if($FONTSIZE_DEFAULT < $FONTSIZE_UPPER_TABLET, 953, 943) !default;
+$TABLET_MAX_WIDTH         : if(sass($FONTSIZE_DEFAULT < $FONTSIZE_UPPER_TABLET): 953; else: 943;) !default;
 $TABLET_HORIZONTAL_MARGIN : 3% !default;
 
 // phablet
@@ -78,7 +78,7 @@ $PRINT_COLUMN_GAP_EM : 2em !default;
 ------------------------------------------------------------------------------------- */
 $BORDER_WIDTH_OF_LINK_WITH_IMAGE : 2 !default;
 
-$INPUT_BORDER_WIDTH   : if(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5, 0.1em, 2px) !default;
-$FORM_ITEM_PADDING_LR : if(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5, 0.4em, 8px) !default;
+$INPUT_BORDER_WIDTH   : if(sass(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5): 0.1em; else: 2px;) !default;
+$FORM_ITEM_PADDING_LR : if(sass(ua.$WinIELte7 or ua.$LegacyOperaOrGecko or ua.$MacIE5): 0.4em; else: 8px;) !default;
 
 $FORCED_COLORS_FOCUS_BORDER_WIDTH : 2px !default;

@@ -3,9 +3,10 @@
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 
-@include media(screen) {
+@include screen {
     #lB .#{opt.$Prefix}lM {
         padding-bottom : 4em;
         @if ua.$GeckoLte09 or ua.$Gecko12 {
@@ -19,7 +20,7 @@
 
 /*  WQXGA
 ------------------------------------------------------------------------------------- */
-@include media(WQXGA) {
+@include mq(WQXGA) {
     #lB .#{opt.$Prefix}lS {
         padding-bottom : 2em;
     }
@@ -27,7 +28,7 @@
 
 /*  Phablet
 ------------------------------------------------------------------------------------- */
-@include media(phablet) {
+@include mq(phablet) {
     #lB .#{opt.$Prefix}lS {
         padding-bottom : 2em;
     }

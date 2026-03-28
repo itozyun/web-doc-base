@@ -4,7 +4,7 @@
 
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/unbreak" as *;
-@use "../02_mixin/media" as *;
+@use "../02_mixin/mq" as *;
 
 @use "../03_reset/dl";
 
@@ -24,13 +24,13 @@ dt {
 
 /*  Phone
 ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         margin-top : #{size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM - size.$BASE_LINE_HEIGHT_EM};
     }
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         margin-top : #{size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM - size.$BASE_LINE_HEIGHT_EM};
     }
 }
@@ -40,14 +40,14 @@ dd {
 
 /*  Phone
 ------------------------------------------------------------------------------------- */
-    @include media(phone) {
+    @include mq(phone) {
         margin-left   : 1em;
         margin-bottom : .2em;
     }
 
 /*  Watch
 ------------------------------------------------------------------------------------- */
-    @include media(watch) {
+    @include mq(watch) {
         margin-left   : 0.5em;
         margin-bottom : .1em;
     }

@@ -7,6 +7,7 @@
 @use "../01_var/canuse" as canuse;
 @use "../01_var/common.generated" as common;
 
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/pre-wrap" as *;
 @use "../02_mixin/unbreak" as *;
@@ -15,7 +16,7 @@
 @use "../08_module/ArticleBody";
 
 .hscroll {
-    @include media(screen) {
+    @include screen {
         margin : 1em 0;
 
         @if ua.$IE5 or ua.$IE55 {
@@ -48,10 +49,10 @@
 
 /*  WSXGA. print
 ------------------------------------------------------------------------------------- */
-    @include media(WSXGA_landscapePrint) {
+    @include mq(WSXGA_landscapePrint) {
         @include column-span-all;
     }
-    @include media(WSXGA) {
+    @include mq(WSXGA) {
         & > *, & table {
             margin : 2em auto;
         }
@@ -59,7 +60,7 @@
 
 /*  Tablet
 ------------------------------------------------------------------------------------- */
-    @include media(tablet) {
+    @include mq(tablet) {
         // https://t.co/dDQoerU1IO
         //   > Android2.xでoverflow:scrollやautoが効かない（overflow:hiddenとして処理される）
         @if canuse.$OVERFLOW_X_AND_Y {

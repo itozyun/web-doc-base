@@ -9,7 +9,7 @@
 
 @use "../../02_mixin/font-family-japanese" as *;
 @use "../../02_mixin/placeholder-color" as *;
-@use "../../02_mixin/media" as *;
+@use "../../02_mixin/mq" as *;
 
 %TextInputStyle {
     @extend %UDFontFamily;
@@ -33,7 +33,7 @@
     }
 /*  Dark theme
 ------------------------------------------------------------------------------------- */
-    @include media(dark_theme) {
+    @include mq(dark) {
         background : color.$Dark_fill;
         color      : color.$Dark_text;
         @include placeholder-color( color.$Dark_casual_text );

@@ -13,7 +13,9 @@
 @use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/web-font" as *;
+@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
+@use "../02_mixin/fill" as *;
 
 .#{common.$VECTOR_ICON__CLASSNAME} {
     @if common.$WEBFONT__FONT_NAME {
@@ -29,41 +31,29 @@
         }
         @if canuse.$SVG_TINY == false {
             path {
-                fill : color.$Light_text;
+                @include fill-responsive(color.$Light_text);
+                /*  Forced colors
+                ------------------------------------------------------------------------------------- */
+                @include mq(forced_colors_native_or_fallback){
+                    fill : currentColor;
+                }
 
                 a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
                     fill : color.$Light_fill;
                 }
-                @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
-                    .#{opt.$Prefix}ribbon & {
-                        fill : color.$Ribbon_text;
-                    }
-                }
-                @if canuse.$TARGET_PSEUDO_CLASS {
-                    :target & {
+                :target & {
+                    @if canuse.$TARGET_PSEUDO_CLASS {
                         fill : #fff;
                     }
                 }
-            
-                /*  Dark theme
-                ------------------------------------------------------------------------------------- */
-                @include media(dark_theme) {
-                    fill : color.$Dark_text;
-                }
-                /*  Forced colors
-                ------------------------------------------------------------------------------------- */
-                @include media(forced_colors_native_or_fallback){
-                    fill : currentColor;
-                }
-                /*  Print
-                ------------------------------------------------------------------------------------- */
-                @include media(print) {
-                    fill : color.$Print_text;
-
-                    @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false and opt.$UseRibbon {
-                        .#{opt.$Prefix}ribbon & {
-                            fill : color.$Print_text;
-                        }
+                @if opt.$UseDarkRibbon {
+                    .#{opt.$Prefix}ribbon & {
+                        fill : color.$Ribbon_text;
+                    }
+                    /*  Print
+                    ------------------------------------------------------------------------------------- */
+                    @include print {
+                        fill : color.$Print_text;
                     }
                 }
             }

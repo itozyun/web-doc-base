@@ -16,7 +16,7 @@
 
    @if quirks.$LIMITED_DASHED_BOREDER_PAINTING == false {
         & {
-            @include active-focus-pseudo-class{
+            @include active-focus-pseudo-class {
                 border-color : $fill;
             }
         }

@@ -1,3 +1,5 @@
+@forward "sass:color";
+
 @use "./common.generated" as common;
 
 $ACCENT : #3079ed !default;
@@ -54,3 +56,17 @@ $Print_accent        : $ACCENT !default;
 
 $Print_link          : #006 !default;
 $Print_visited       : #606 !default;
+
+/*  デフォルト色
+------------------------------------------------------------------------------------- */
+$LIGHT_DEFAULT_BACKGROUND : $Light_fill;
+$LIGHT_DEFAULT_BORDER     : $Light_casual_fill;
+$LIGHT_DEFAULT_TEXT       : $Light_text;
+
+$DARK_DEFAULT_BACKGROUND : $Dark_fill;
+$DARK_DEFAULT_BORDER     : $Dark_casual_fill;
+$DARK_DEFAULT_TEXT       : $Dark_text;
+
+$PRINT_DEFAULT_BACKGROUND : $Print_fill;
+$PRINT_DEFAULT_BORDER     : $Print_casual_fill;
+$PRINT_DEFAULT_TEXT       : $Print_text;
