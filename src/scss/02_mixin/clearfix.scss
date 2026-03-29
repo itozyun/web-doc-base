@@ -4,7 +4,13 @@
 @use "../01_var/ua" as ua;
 
 @mixin clearfix {
-    @if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 {
+    @if ua.$Unknown {
+        &:after {
+            content : "";
+            display : block;
+            clear   : both;
+        }
+    } @else if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 {
         overflow : hidden;
     } @else if ua.$IE6 or ua.$IE55 {
         zoom : 1;

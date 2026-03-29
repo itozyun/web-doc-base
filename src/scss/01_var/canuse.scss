@@ -64,4 +64,5 @@
     $CHILD_COMBINATOR            : ua.$WinIELte6 == false and ua.$MacIE5 == false;
 
 // layout
-    $DISPLAY_TABLE_FOR_2COL_LAYOUT : ua.$WinIELte7 == false and ua.$GeckoLte09 == false and ua.$Opera7x == false and ua.$Opera8 == false;
+    $DISPLAY_TABLE                 : ua.$WinIELte7 == false and ua.$Unknown == false;
+    $DISPLAY_TABLE_FOR_2COL_LAYOUT : $DISPLAY_TABLE and ua.$GeckoLte09 == false and ua.$Opera7x == false and ua.$Opera8 == false;

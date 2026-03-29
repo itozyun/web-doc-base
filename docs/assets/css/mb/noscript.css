@@ -69,16 +69,7 @@ td,
 th {
   word-break: break-all
 }
-.AAuthor,
-.Comment p,
-.Cover,
-.Magazine-snippet,
-.RichLink a,
 .Search .btn,
-.box,
-.commonForm-pair,
-.lMi,
-.lSi,
 .lW,
 .lX {
   overflow: hidden
@@ -207,7 +198,6 @@ tbody th {
 .AAuthor,
 .ADesc,
 .AHead,
-.hscroll,
 p,
 pre,
 tr blockquote pre {
@@ -233,9 +223,12 @@ img {
   margin: 1em auto;
   max-width: 94%
 }
+.LinkList a,
+.Magazine-date,
 .Magazine-mm,
 .Magazine-yy,
 .RichLink b,
+.RichLink-sep a,
 .Search,
 .Search-txt,
 .caption,
@@ -409,17 +402,24 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
+.tl th,
+tbody th,
+td {
+  vertical-align: top
+}
 sub {
   bottom: -.25em
 }
 sup {
   top: -.5em
 }
+.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
 .Header,
+.Pager-top,
 .c {
   text-align: center
 }
@@ -468,6 +468,22 @@ blockquote hr {
 }
 strong {
   background: #6cf
+}
+.AAuthor:after,
+.Comment p:after,
+.Cover:after,
+.Magazine-item:after,
+.Magazine-snippet:after,
+.Pager:after,
+.RichLink a:after,
+.box:after,
+.commonForm-pair:after,
+.lMi:after,
+.lSi:after,
+.lX:after {
+  content: "";
+  display: block;
+  clear: both
 }
 .lMi,
 .lMz .lMh,
@@ -734,13 +750,6 @@ dt {
   vertical-align: middle;
   margin-top: .5em
 }
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
 .ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
@@ -810,6 +819,7 @@ tr pre {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
+.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 .aBodyRoot thead :visited,
@@ -926,7 +936,6 @@ th[colspan]:after {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important;
   overflow: hidden;
@@ -991,13 +1000,12 @@ kbd {
   border-color: var(--color-text)
 }
 .Magazine-item {
-  padding: 1em 0;
-  display: table
+  padding: 1em 0
 }
 .Magazine-date {
   line-height: 1;
   padding-right: 1.5em;
-  display: table-cell
+  float: left
 }
 .Magazine-dd,
 .Magazine-mm {
@@ -1006,7 +1014,7 @@ kbd {
 }
 .Magazine-main {
   padding-left: 1.5em;
-  display: table-cell
+  margin-left: 5.5em
 }
 .aa,
 kbd {
@@ -1296,9 +1304,6 @@ blockquote .tl tbody tr th :visited {
   text-align: center;
   font-size: .875em
 }
-.box {
-  margin: 1em 0 0
-}
 .box > p:first-of-type {
   margin-top: -.225em
 }
@@ -1342,6 +1347,9 @@ div .caption iframe,
 div .caption img {
   margin: 0 0 .571em;
   float: none
+}
+.box {
+  margin: 1em 0 0
 }
 code,
 var {
@@ -1447,9 +1455,9 @@ h2:after {
   font-size: .1em;
   line-height: 0;
   content: " ";
-  display: block;
   position: absolute;
-  border-style: solid
+  border-style: solid;
+  display: block
 }
 h2 {
   border-width: 0 0 2px;
@@ -1502,6 +1510,7 @@ h6 {
   padding: 0 0 0 .7em
 }
 .hscroll {
+  margin: 1em 0;
   overflow: auto;
   overflow-x: auto;
   overflow-y: hidden;
@@ -1806,31 +1815,19 @@ tbody :hover td[colspan]:after {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
-.Pager {
-  color: #f8fbf8;
-  color: var(--color-fill);
-  padding: 0 3%;
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box
-}
 .Pager span {
-  vertical-align: middle;
-  display: table-cell
+  display: block;
+  float: left;
+  width: 33%
 }
-.Pager-next {
-  padding: 1.5em 0
+.Pager-top a {
+  padding: 1.5em .5em
 }
-.Pager-top {
-  padding: 1.5em .5em;
-  text-align: center
+.Pager-next a {
+  padding: 1.5em 0 1.5em 3%
 }
-.Pager-prev {
-  padding: 1.5em 0;
-  text-align: right
+.Pager-prev a {
+  padding: 1.5em 3% 1.5em 0
 }
 .Pager-next i {
   margin-right: .5em;
@@ -2030,6 +2027,14 @@ only screen and (max-width:740px) {
   h2 {
     text-align: center
   }
+  .Magazine-date,
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    float: none;
+    width: auto
+  }
   iframe,
   img {
     max-width: 96%
@@ -2039,19 +2044,11 @@ only screen and (max-width:740px) {
     padding: 1em 2%
   }
   #lB .lSi,
-  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
     padding: 0 2%
-  }
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    float: none;
-    width: auto
   }
   #lB .lS1,
   #lB .lS2 {
@@ -2076,13 +2073,10 @@ only screen and (max-width:740px) {
     border-width: .5em 0 0
   }
   .Magazine-item {
-    padding: 1em 0 0;
-    display: block
+    padding: 1em 0 0
   }
   .Magazine-date {
-    font-family: inherit;
-    width: auto;
-    display: block
+    font-family: inherit
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2098,8 +2092,7 @@ only screen and (max-width:740px) {
   }
   .Magazine-main {
     border-width: 0 0 .5em;
-    padding: 0 0 1em;
-    display: block
+    padding: 0 0 1em
   }
   .Magazine h3,
   .RichLink h3 {
@@ -2204,7 +2197,6 @@ only screen and (max-width:479px) {
     padding: 1em 1%
   }
   #lB .lSi,
-  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2477,9 +2469,6 @@ only screen and (max-width:240px) {
   }
   blockquote td[colspan]:after {
     border-color: #999
-  }
-  .Pager {
-    padding: 0 2px
   }
   .SocialBtns {
     padding: 1em 2px .5em
