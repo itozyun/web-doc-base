@@ -26,7 +26,7 @@
 @use "../08_module/ArticleFooter";
 @use "./_/article-footer-item" as *;
 
-$_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false and ua.$Opera70 == false;
+$_LAYOUT_BY_DISPLAY_TABLE : canuse.$DISPLAY_TABLE and ua.$Opera70 == false;
 /** テキストで三角形を描画する */
 $_TEXT_TRIANGULATE        : canuse.$CSS_GENERATED_CONTENT and canuse.$CSS_GENERATED_BLOCK == false;
 /* px size で三角形を定義する、ie6 以下では font-size ベースのレイアウトが出来ない */

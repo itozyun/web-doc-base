@@ -38,8 +38,6 @@
 @use "../02_mixin/text-color" as *;
 @use "../02_mixin/border-color" as *;
 
-$_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
-
 .#{opt.$Prefix}Magazine {
     @if canuse.$MEDIA_QUERY {
         @include border-color-responsive(color.$Light_text); // phablet で border が出現
@@ -48,7 +46,7 @@ $_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
     @at-root #{&}-item {
         @include unbreak-inside;
         padding : 1em 0;
-        @if $_LAYOUT_BY_DISPLAY_TABLE {
+        @if canuse.$DISPLAY_TABLE {
             display : table;
         } @else {
             @include clearfix;
@@ -60,7 +58,7 @@ $_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             @include font-family-monospace;
             padding-right : 1.5em;
             font-weight   : bold;
-            @if $_LAYOUT_BY_DISPLAY_TABLE {
+            @if canuse.$DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
@@ -93,7 +91,7 @@ $_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
             position     : relative;
             border-width : 0 0 0 .5em;
             padding-left : 1.5em;
-            @if $_LAYOUT_BY_DISPLAY_TABLE {
+            @if canuse.$DISPLAY_TABLE {
                 display        : table-cell;
                 vertical-align : top;
             } @else {
@@ -227,14 +225,14 @@ $_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
 
         @at-root #{&}-item {
             padding : 1em 0 0;
-            @if $_LAYOUT_BY_DISPLAY_TABLE {
+            @if canuse.$DISPLAY_TABLE {
                 display : block;
             }
         }
             @at-root #{&}-date {
                 font-family : inherit;
                 width       : auto;
-                @if $_LAYOUT_BY_DISPLAY_TABLE {
+                @if canuse.$DISPLAY_TABLE {
                     display : block;
                 } @else {
                     float : none;
@@ -258,7 +256,7 @@ $_LAYOUT_BY_DISPLAY_TABLE : ua.$WinIELte7 == false;
         @at-root #{&}-main {
             border-width : 0 0 .5em;
             padding      : 0 0 1em;
-            @if $_LAYOUT_BY_DISPLAY_TABLE {
+            @if canuse.$DISPLAY_TABLE {
                 display : block;
             }
         }

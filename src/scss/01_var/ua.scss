@@ -68,6 +68,7 @@
     }
 
     $Script             : tgt.$TargetBrowser != "noscript";
+    $Unknown            : $Script == false and $Modern;
     $Opera7x            : $Opera70 or $Opera72;
     $OperaLte9          : $Opera7x or $Opera8 or $Opera9;
     $GeckoLte09         : $Gecko07 or $Gecko08 or $Gecko09;

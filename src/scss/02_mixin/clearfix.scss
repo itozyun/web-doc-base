@@ -2,9 +2,16 @@
  *   https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
+@use "../01_var/canuse" as canuse;
 
 @mixin clearfix {
-    @if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 {
+    @if ua.$Modern and canuse.$DISPLAY_TABLE == false { // == ua.$Unknown
+        &:after {
+            content : "";
+            display : block;
+            clear   : both;
+        }
+    } @else if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 {
         overflow : hidden;
     } @else if ua.$IE6 or ua.$IE55 {
         zoom : 1;

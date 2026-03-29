@@ -26,8 +26,8 @@
     $TRANSPARENT_BORDER_COLOR : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
 
 // @media
-    $MEDIA_QUERY : ua.$Modern or ua.$IE9 or ua.$Opera9;
-    $FORCED_COLORS   : ua.$Modern or ua.$WinIELte9 or ua.$Gecko19;
+    $MEDIA_QUERY   : ua.$Modern or ua.$IE9 or ua.$Opera9;
+    $FORCED_COLORS : ua.$Modern or ua.$WinIELte9 or ua.$Gecko19;
 
 // webfont
     $WEBFONT : ua.$Modern or ua.$WinIELte9;
@@ -64,4 +64,5 @@
     $CHILD_COMBINATOR            : ua.$WinIELte6 == false and ua.$MacIE5 == false;
 
 // layout
-    $DISPLAY_TABLE_FOR_2COL_LAYOUT : ua.$WinIELte7 == false and ua.$GeckoLte09 == false and ua.$Opera7x == false and ua.$Opera8 == false;
+    $DISPLAY_TABLE                 : ua.$WinIELte7 == false and ua.$Unknown == false;
+    $DISPLAY_TABLE_FOR_2COL_LAYOUT : $DISPLAY_TABLE and ua.$GeckoLte09 == false and ua.$Opera7x == false and ua.$Opera8 == false;
