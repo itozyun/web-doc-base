@@ -311,6 +311,7 @@ gulp.task( 'css',
               gcm         = require( 'gulp-group-css-media-queries' ),
               cleanCSS    = require( 'gulp-clean-css' ),
               cssHack     = require( './js-buildtools/index.js' ),
+              target      = process.argv[ 3 ] || '*',
               CLEAN_CSS_OPTION = {
                   // rebaseTo      : './docs',
                   compatibility : { properties : { ieFilters : true } },
@@ -324,7 +325,7 @@ gulp.task( 'css',
 
         return gulp.src(
                 [
-                    './src/scss/targets/*/**/*.scss'
+                    './src/scss/targets/*/**/' + target.split( '--' ).join( '' ) + '.scss'
                 ], { base: './src/scss/targets' }
             ).pipe(
                 plumber()
