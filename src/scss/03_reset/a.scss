@@ -1,7 +1,18 @@
 /*  Reset <a>
 ------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+@use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/mq" as *;
+
 @use "./_/reset-outline" as *;
 
 a {
     @include reset-outline;
+
+    @include active-focus-pseudo-class {
+        @include mq(forced_colors_native){
+            // filter : invert(1);
+        }
+    }
 }

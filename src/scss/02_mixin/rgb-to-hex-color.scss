@@ -1,0 +1,24 @@
+// sassモジュールの読み込み
+@use 'sass:color';
+@use 'sass:string';
+@use 'sass:math';
+
+// https://canato.net/sass-color-mix-hex/
+// 関数の設定
+// rgb()形式のカラー（0〜255）の数値を、2桁の16進文字列に変換
+@function _toHex($n) {
+    $hexchars: '0123456789abcdef';
+    $n       : math.round($n);
+    $hi      : math.floor(math.div($n, 16)) + 1;
+    $lo      : ($n % 16) + 1;
+    @return string.slice($hexchars, $hi, $hi) + string.slice($hexchars, $lo, $lo);
+}
+
+// https://canato.net/sass-color-mix-hex/
+// #rrggbbを返す関数
+@function rgbToHexColor($c) {
+    $r: color.channel($c, 'red', $space: rgb);
+    $g: color.channel($c, 'green', $space: rgb);
+    $b: color.channel($c, 'blue', $space: rgb);
+    @return string.unquote('#' + _toHex($r) + _toHex($g) + _toHex($b));
+}

@@ -1,4 +1,4 @@
-/*  links
+/*  icoLinks
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
@@ -9,18 +9,20 @@
 @use "../02_mixin/web-font" as *;
 @use "../02_mixin/inline-block" as *;
 
+@use "../04_typography/ol" as *;
+@use "../04_typography/ul" as *;
+
 @use "../08_module/ArticleBody";
 
 .icoLinks {
     @if canuse.$CSS_GENERATED_CONTENT {
-        list-style : none;
-    }
+        padding-left : 1em;
+        list-style   : none;
 
-    a {
-        @include inline-block;
-    }
+        a {
+            @include inline-block;
+        }
 
-    @if canuse.$CSS_GENERATED_CONTENT {
         [href]:before {
             @if canuse.$CSS_GENERATED_BLOCK {
                 position        : relative;

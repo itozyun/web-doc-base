@@ -12,17 +12,22 @@
 .aa {
     @include line-height(1);
     @include font-family-monospace;
+    @include link-colors-on-dark-background;
 
     margin       : 1em 0;
     border-width : 1px;
     border-color : #0A0809;
 
     @include screen {
-        @include link-colors-on-dark-background;
-
         background : #0A0809;
         &, & code, & var {
             color : #00ac06;
+        }
+    }
+    @include print-fallback {
+        background : none;
+        &, & code, & var {
+            color : #002c01;
         }
     }
 }

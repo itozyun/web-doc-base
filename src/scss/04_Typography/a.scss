@@ -16,7 +16,6 @@
 @use "../02_mixin/active-focus-pseudo-class" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
-@use "../02_mixin/link-colors-on-dark-background" as *;
 @use "../02_mixin/animate-colors" as *;
 @use "../02_mixin/text-color" as *;
 @use "../02_mixin/border-color" as *;
@@ -61,7 +60,11 @@
 ------------------------------------------------------------------------------------- */
 a {
     @include text-color-responsive(color.$Light_casual_text);
-    @include border-color-responsive(color.$Light_fill);
+    @if canuse.$TRANSPARENT_BORDER_COLOR {
+        border-color : transparent;
+    } @else {
+        border-color : color.$Light_fill;
+    }
 }
 :link {
     @include text-color-responsive(color.$Light_link);
@@ -86,7 +89,9 @@ a {
     .#{opt.$Prefix}ribbon {
         a {
             @include text-color-screen-print(color.$Ribbon_casual_text, color.$Print_casual_text);
-            @include border-color-screen-print(color.$Ribbon_fill, color.$Print_fill);
+            @if canuse.$TRANSPARENT_BORDER_COLOR == false {
+                @include border-color-screen-print(color.$Ribbon_fill, color.$Print_fill);
+            }
         }
         :link {
             @include text-color-screen-print(color.$Ribbon_link, color.$Print_link);

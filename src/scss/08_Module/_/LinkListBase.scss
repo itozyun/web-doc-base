@@ -1,3 +1,5 @@
+/* LinkList RichLink で使用
+------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
 @use "../../01_var/canuse" as canuse;
 @use "../../01_var/color" as color;
@@ -29,7 +31,8 @@
         }
     }
     @if canuse.$NEGATIVE_PSEUDO_CLASS == false or
-        ua.$Opera9 { // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
+        ua.$Opera9 // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
+    { 
         a {
             @include background-light-dark(color.$Light_text, color.$Dark_casual_text);
             @include text-color-responsive(color.$Light_fill);

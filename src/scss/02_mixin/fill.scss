@@ -58,6 +58,11 @@
 
                 @include mq(dark) {
                     fill : $dark-color;
+                    @if ua.$Modern {
+                        @if responsive-color-var($dark-color) {
+                            color : responsive-color-var($dark-color);
+                        }
+                    }
                 }
             } @else {
                 @include screen {

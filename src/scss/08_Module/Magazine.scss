@@ -108,12 +108,10 @@
                 font-weight : bold;
                 margin      : 0.2em 0 0;
                 padding     : 0;
-                @if canuse.$OUTLINE {
-                    @include mq(forced_colors_native_or_fallback){
-                        a {
-                            @include inline-block; // :foocus 時の outline の改善
-                            margin-right : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH;
-                        }
+                a {
+                    margin-right : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH;
+                    @if canuse.$OUTLINE and ua.$Modern { /* and ua.$GeckoLte19 */
+                        @include inline-block; // ハイコントラストモード :foocus 時の outline の改善 firefox 149, Chrome 146 には不要
                     }
                 }
             }

@@ -1,18 +1,32 @@
+/*  ライトカラースキームでも常に背景がダークなコンテンツボックスで使用
+------------------------------------------------------------------------------------- */
 @use "../01_var/color" as color;
 
+@use "./media" as *;
+
 @mixin link-colors-on-dark-background($visited_color : color.$Dark_visited) {
-    :link {
-        color : color.$Dark_link;
+    @include screen {
+        :link {
+            color : color.$Dark_link;
+        }
+        :visited {
+            color : $visited_color;
+        }
+        :link:hover {
+            color        : color.$Dark_hover;
+            border-color : color.$Dark_hover;
+        }
+        :visited:hover {
+            color        : color.$Dark_visited_hover;
+            border-color : color.$Dark_visited_hover;
+        }
     }
-    :visited {
-        color : $visited_color;
-    }
-    :link:hover {
-        color        : color.$Dark_hover;
-        border-color : color.$Dark_hover;
-    }
-    :visited:hover {
-        color        : color.$Dark_visited_hover;
-        border-color : color.$Dark_visited_hover;
+    @include print-fallback {
+        :link {
+            color : color.$Print_link;
+        }
+        :visited {
+            color : color.$Print_visited;
+        }
     }
 }

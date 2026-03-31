@@ -10,11 +10,14 @@
 @use "../02_mixin/media" as *;
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
+@use "../02_mixin/link-colors-on-dark-background" as *;
 
 @use "../04_typography/pre" as *;
 @use "../04_typography/code" as *;
 
 .prettyprint {
+    @include link-colors-on-dark-background;
+
     border-width : 1px;
     border-color : #333;
 
@@ -25,22 +28,10 @@
     @include screen {
         background : #333;
         color      : #fff;
-        :link, :link * {
-            color : color.$Dark_link;
-        }
-        :visited, :visited * {
-            color : color.$Dark_visited;
-        }
     }
     @include print-fallback {
         background : #fff;
         color      : #333;
-        :link, :link * {
-            color : color.$Print_link;
-        }
-        :visited, :visited * {
-            color : color.$Print_visited;
-        }
     }
     @include print {
         @include line-height(1, true);

@@ -43,7 +43,7 @@
             @include stackableModule(.2em);
 
             div {
-                display : inline-block;
+                @include inline-block;
                 margin  : size.$FORCED_COLORS_FOCUS_BORDER_WIDTH; /* for highContrast */
             }
         }

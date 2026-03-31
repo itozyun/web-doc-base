@@ -1,8 +1,10 @@
 /*  h1~h6
 ------------------------------------------------------------------------------------- */
 @use "../../02_mixin/unbreak" as *;
+@use "../../02_mixin/line-height" as *;
 
 %HeadingStyle {
     @include unbreak-inside;
     @include unbreak-after;
+    @include line-height(1.2, true);
 }

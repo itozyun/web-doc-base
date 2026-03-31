@@ -39,17 +39,17 @@
  *       参考「バグ取りの日々 > font-familyのソースコード用等幅フォント設定まとめ」
  *         https://www.bugbugnow.net/2020/02/font-family-mono.html
  *
- * (6) "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう問題あり
+ * (7) "UD Digi Kyokasho N-R", lang="en" でバックスラッシュを表示できない、￥マークになってしまう問題あり
  *
- * (7) "YuKyokasho" 游教科書体 macOS Catalina (10.15) https://mimi.moe.in/nmp/fonts/fonts
+ * (8) "YuKyokasho" 游教科書体 macOS Catalina (10.15) https://mimi.moe.in/nmp/fonts/fonts
  *
- * (8) 一部記号が正しく表示されないのを直す font-family: ".SFNSDisplay-Regular"; 指定は2016年3月頃に不要になった様子。
+ * (9) 一部記号が正しく表示されないのを直す font-family: ".SFNSDisplay-Regular"; 指定は2016年3月頃に不要になった様子。
  *       「Mac・iOS のシステムフォントを CSS で使う : 「-apple-system」」2017-11-15
  *          https://neos21.net/blog/2017/11/15-01.html
  *       「Apple System Font」
  *          https://neos21.github.io/poc-ios-safari-web/apple-system-fonts-1.html
  *
- * (9) Emoji fonts
+ * (10) Emoji fonts
  *       「bootstrap > 」
  *          https://getbootstrap.com/docs/4.0/content/reboot/#native-font-stack
  */
@@ -72,16 +72,16 @@
     @if ua.$Modern {
         font-family :
             -apple-system, BlinkMacSystemFont,
-            ".SFNSDisplay-Regular", // (8)
+            ".SFNSDisplay-Regular", // (9)
             "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
             Roboto, // (2)
-            "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            "UD Digi Kyokasho NP-R", "YuKyokasho", // (8)
             "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" // (9)
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" // (10)
             sans-serif;
 
         @include css-hack(onlyFirefoxOS22) {
@@ -92,7 +92,7 @@
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
                 "Helvetica Neue", /* Helvetica, Arial, (3) */ Verdana,
                 Roboto, // (2)
-                "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+                "UD Digi Kyokasho NP-R", "YuKyokasho", // (8)
                 "游ゴシック体", YuGothic, "YuGothic M", // (1)
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 "メイリオ", Meiryo,
@@ -106,7 +106,7 @@
             -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
             // Roboto,
-            // "UD Digi Kyokasho NP-R", "YuKyokasho", // (7)
+            // "UD Digi Kyokasho NP-R", "YuKyokasho", // (8)
             // "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
             "メイリオ", Meiryo,
@@ -157,9 +157,9 @@
 ------------------------------------------------------------------------------------- */
 %CodingFontFamily {
     @if ua.$IE7 or ua.$IE8 or ua.$IE9 or ua.$NotIE or ua.$MacIE5 {
-        font-family : // (6) 注意事項
+        font-family : // (6), (7) 注意事項
             SFMono-Regular,
-            'Liberation Mono',
+            /* 'Liberation Mono',           Windows 10 で美しくない, Consolas の方が良い(itozyun)*/
             /* Menlo,                       Mac OS X 10.6(2009年) */
             Consolas,                    /* Windows Vista(2006年) */
             /* Monaco,                      MacOS 9 */

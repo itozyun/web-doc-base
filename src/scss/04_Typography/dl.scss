@@ -5,6 +5,7 @@
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/mq" as *;
+@use "../02_mixin/line-height" as *;
 
 @use "../03_reset/dl";
 
@@ -13,6 +14,7 @@
 dl {
     @include responsive-horizontal-margin(1, 1em, 1em);
     @include unbreak-inside;
+    @include line-height(1.2, true);
 
     @extend %nesting-list-item;
 }

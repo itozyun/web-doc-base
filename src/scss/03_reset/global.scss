@@ -8,8 +8,6 @@
 @use "../02_mixin/active-focus-pseudo-class" as *;
 @use "../02_mixin/mq" as *;
 
-@use "./_/reset-outline" as *;
-
 /* (forced-colors:active) のフォールバックが出来ない場合も、フォーカスのアウトラインが消えないように無色で塗ります
     */
 @if canuse.$OUTLINE {

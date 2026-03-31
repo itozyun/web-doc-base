@@ -55,25 +55,6 @@
     }
 }
 
-// この関数は tfoot のセルには使用しない
-@mixin _cell-border-color($color, $dark-color: false, $print-color: false){
-    border-color : $color;
-
-    @if canuse.$CSS_GENERATED_BLOCK {
-        @include _apply-colspan-bottom-color($color);
-    }
-    @if $dark-color {
-        @include mq(dark) {
-            @include _cell-border-color($dark-color);
-        }
-    }
-    @if $print-color {
-        @include print {
-            @include _cell-border-color($print-color);
-        }
-    }
-}
-
 @mixin _cell-border-color-responsive($light-color, $print-color: false) {
     @include border-color-responsive($light-color, $print-color);
 
@@ -82,7 +63,7 @@
         @if ua.$Modern {
             @include _apply-colspan-bottom-color(responsive-color-var($light-color));
         }
-        @include mq(watch) {
+        @include mq(dark) {
             @if border-bottom-color($light-color) != border-bottom-color(responsive-color-dark($light-color)){
                 @include _apply-colspan-bottom-color(responsive-color-dark($light-color));
             }
@@ -164,13 +145,13 @@
                 z-index  : 1;
             }
             thead {
-                background: color.mix(color.$Light_casual_text, color.$Light_casual_fill, 80%);
-                @media (prefers-color-scheme:dark) {
-                    background: color.mix(color.$Dark_casual_text, color.$Dark_casual_fill, 80%);
+                @include background-responsive(color.$Light_casual_fill, noprint);
+                blockquote & {
+                    @include background-responsive(color.$Light_casual_text, noprint);
                 }
                 @include mq(forced_colors_native_or_fallback){
                     td, th {
-                        filter : invert(1);
+                        // filter : invert(1);
                     }
                 }
             }
@@ -183,6 +164,7 @@
 /* Need 'cellspacing="0"' in the markup for MacIE5 */
 table {
     @include responsive-horizontal-margin(1, 1em, 1em, true);
+    @include line-height(1.2, true);
     border-width    : 1px 0 0;
     border-collapse : collapse;
     empty-cells     : show;
@@ -268,11 +250,7 @@ table {
         th, td {
             @include background-responsive(color.$Light_casual_text, color.$Print_casual_fill);
             @include text-color-responsive(color.$Light_fill, color.$Print_text);
-            @include _cell-border-color(
-                color.$Light_casual_fill color.mix(color.$Light_casual_text, color.$Light_casual_fill, 80%),
-                color.$Dark_casual_fill  color.mix(color.$Dark_casual_text , color.$Dark_casual_fill , 80%),
-                color.$Print_casual_text
-            );
+            @include _cell-border-color-responsive(color.$Light_casual_fill);
         }
         :link {
             @include text-color-responsive(color.$Light_fill, color.$Print_link);
@@ -294,14 +272,7 @@ table {
 
     tbody th {
         @include background-responsive(color.$Light_casual_fill);
-        @if canuse.$TRANSPARENT_BORDER_COLOR {
-            border-color : transparent;
-        } @else {
-            border-color : color.$Light_fill;
-        }
-        @include print {
-            border-color : color.$Print_casual_text;
-        }
+        @include border-color-responsive(color.$Light_fill);
     }
     td {
         @if canuse.$TRANSPARENT_BORDER_COLOR {
@@ -328,19 +299,7 @@ blockquote {
     }
     thead th, thead td {
         @include background-responsive(color.$Light_text, transparent);
-        @if canuse.$TRANSPARENT_BORDER_COLOR {
-            @include _cell-border-color(
-                transparent color.mix(color.$Light_text, color.$Light_casual_fill, 90%),
-                transparent color.mix(color.$Dark_text , color.$Dark_casual_fill , 90%),
-                color.$Print_text
-            );
-        } @else {
-            @include _cell-border-color(
-                color.$Light_casual_fill color.mix(color.$Light_text, color.$Light_casual_fill, 90%),
-                color.$Dark_casual_fill  color.mix(color.$Dark_text , color.$Dark_casual_fill , 90%),
-                color.$Print_text
-            );
-        }
+        @include _cell-border-color-responsive(color.$Light_casual_text, color.$Print_text);
     }
     tbody th {
         @include background-responsive(color.$Light_casual_text, transparent);

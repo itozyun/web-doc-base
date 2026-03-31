@@ -8,6 +8,7 @@
 @use "../../01_var/canuse" as canuse;
 
 @use "../mq" as *;
+@use "../rgb-to-hex-color" as *;
 
 @if ua.$Modern {
     :root {
@@ -20,8 +21,12 @@
         --color-visited       : #{color.$Light_visited};
         --color-hover         : #{color.$Light_hover};
         --color-visited-hover : #{color.$Light_visited_hover};
+        @media only screen and (prefers-contrast:more) {
+            --color-text        : #000;
+            --color-casual-fill : #{rgbToHexColor(color.mix(color.$Light_casual_fill, color.$Light_casual_text, 10%))};
+        }
 
-        @include mq(dark) {
+        @media only screen and (prefers-color-scheme:dark) {
             --color-fill          : #{color.$Dark_fill};
             --color-text          : #{color.$Dark_text};
             --color-casual-fill   : #{color.$Dark_casual_fill};
@@ -33,40 +38,58 @@
             --color-visited       : #{color.$Dark_visited};
             --color-hover         : #{color.$Dark_hover};
             --color-visited-hover : #{color.$Dark_visited_hover};
+            @media only screen and (prefers-contrast:more) {
+                --color-text        : #fff;
+                --color-casual-fill : #{rgbToHexColor(color.mix(color.$Dark_casual_fill, color.$Dark_casual_text, 10%))};
+            }
         }
     }
 }
 
-$_light-to-var: (
-    color.$Light_fill: var(--color-fill),
-    color.$Light_text: var(--color-text),
-    color.$Light_casual_fill: var(--color-casual-fill),
-    color.$Light_casual_text: var(--color-casual-text),
-    color.$Light_accent: var(--color-accent),
-    color.$Light_link: var(--color-link),
-    color.$Light_visited: var(--color-visited),
-    // color.$Light_hover: var(--color-hover),
-    color.$Light_visited_hover: var(--color-visited-hover),
-    color.$Dark_fill: var(--color-fill),
-    color.$Dark_text: var(--color-text),
-    color.$Dark_casual_fill: var(--color-casual-fill),
-    color.$Dark_casual_text: var(--color-casual-text),
-    // color.$Dark_accent: var(--color-accent),
-    color.$Dark_link: var(--color-link),
-    color.$Dark_visited: var(--color-visited),
-    // color.$Dark_hover: var(--color-hover),
-    color.$Dark_visited_hover: var(--color-visited-hover),
-    transparent: transparent
-);
-
 @function -var($c) {
-    // マッピング取得
-    $v: map.get($_light-to-var, $c);
-
-    @if $v == null {
+    @if $c == color.$Light_fill {
+        @return var(--color-fill);
+    } @else if $c == color.$Light_text {
+        @return var(--color-text);
+    } @else if $c == color.$Light_casual_fill {
+        @return var(--color-casual-fill);
+    } @else if $c == color.$Light_casual_text {
+        @return var(--color-casual-text);
+    } @else if $c == color.$Light_accent {
+        @return var(--color-accent);
+    } @else if $c == color.$Light_link {
+        @return var(--color-link);
+    } @else if $c == color.$Light_visited {
+        @return var(--color-visited);
+    } @else if $c == color.$Light_hover {
+        @return var(--color-hover);
+    } @else if $c == color.$Light_visited_hover {
+        @return var(--color-visited-hover);
+    // dark
+    } @else if $c == color.$Dark_fill {
+        @return var(--color-fill);
+    } @else if $c == color.$Dark_text {
+        @return var(--color-text);
+    } @else if $c == color.$Dark_casual_fill {
+        @return var(--color-casual-fill);
+    } @else if $c == color.$Dark_casual_text {
+        @return var(--color-casual-text);
+    } @else if $c == color.$Dark_accent {
+        @return var(--color-accent);
+    } @else if $c == color.$Dark_link {
+        @return var(--color-link);
+    } @else if $c == color.$Dark_visited {
+        @return var(--color-visited);
+    } @else if $c == color.$Dark_hover {
+        @return var(--color-hover);
+    } @else if $c == color.$Dark_visited_hover {
+        @return var(--color-visited-hover);
+    } @else if $c == transparent {
+        @return transparent;
+    } @else {
         @error "Responsive Text Color Error! @var: #{$c}";
     }
-    @return $v;
+    @return false;
 }
 
 @function responsive-color-var($c) {
@@ -95,35 +118,31 @@ $_light-to-var: (
     @return false;
 }
 
-$_light-to-dark: (
-    color.$Light_fill: color.$Dark_fill,
-    color.$Light_text: color.$Dark_text,
-    color.$Light_casual_fill: color.$Dark_casual_fill,
-    color.$Light_casual_text: color.$Dark_casual_text,
-    color.$Light_accent: color.$Dark_accent,
-    color.$Light_link: color.$Dark_link,
-    color.$Light_visited: color.$Dark_visited,
-    // color.$Light_hover: color.$Dark_hover,
-    color.$Light_visited_hover: color.$Dark_visited_hover,
-    transparent: transparent
-);
-
 @function -dark($c, $isSingle: false) {
-    // マッピング取得
-    $v: map.get($_light-to-dark, $c);
-
-    @if $v == null {
-        @error "Responsive Text Color Error! @dark: #{$c} - #{$v}";
-    }
-
-    // Light_accent の特殊処理
-    @if $c == color.$Light_accent {
+    @if $c == color.$Light_fill {
+        @return color.$Dark_fill;
+    } @else if $c == color.$Light_text {
+        @return color.$Dark_text;
+    } @else if $c == color.$Light_casual_fill {
+        @return color.$Dark_casual_fill;
+    } @else if $c == color.$Light_casual_text {
+        @return color.$Dark_casual_text;
+    } @else if $c == color.$Light_accent {
         @if $isSingle == false or color.$Light_accent != color.$Dark_accent {
-            @return $v;
+            @return color.$Dark_accent;
         }
-        @return false;
+    } @else if $c == color.$Light_link {
+        @return color.$Dark_link;
+    } @else if $c == color.$Light_visited {
+        @return color.$Dark_visited;
+    } @else if $c == color.$Light_hover {
+        @return color.$Dark_hover;
+    } @else if $c == color.$Light_visited_hover {
+        @return color.$Dark_visited_hover;
+    } @else if $c == transparent {
+        @return transparent;
     }
-    @return $v;
+    @return false;
 }
 
 @function responsive-color-dark($c) {
@@ -153,29 +172,41 @@ $_light-to-dark: (
     @return false;
 }
 
-$_light-to-print: (
-    color.$Light_fill: color.$Print_fill,
-    color.$Light_text: color.$Print_text,
-    color.$Light_casual_fill: color.$Print_casual_fill,
-    color.$Light_casual_text: color.$Print_casual_text,
-    color.$Light_accent: color.$Print_accent,
-    color.$Light_link: color.$Print_link,
-    color.$Light_visited: color.$Print_visited,
-// color.$Light_hover: null, // 元コードが未定義なので null
-    color.$Light_visited_hover: null, // 同上
-    transparent: transparent
-);
-
 @function -print($c, $isSingle: false) {
-    // マッピング取得
-    $v: map.get($_light-to-print, $c);
+    @if $c == color.$Light_fill {
+        @if $isSingle == false or color.$Light_fill != color.$Print_fill {
+            @return color.$Print_fill;
+        }
+    } @else if $c == color.$Light_text {
+        @if $isSingle == false or color.$Light_text != color.$Print_text {
+            @return color.$Print_text;
+        }
+    } @else if $c == color.$Light_casual_fill {
+        @if $isSingle == false or color.$Light_casual_fill != color.$Print_casual_fill {
+            @return color.$Print_casual_fill;
+        }
+    } @else if $c == color.$Light_casual_text {
+        @if $isSingle == false or color.$Light_casual_text != color.$Print_casual_text {
+            @return color.$Print_casual_text;
+        }
+    } @else if $c == color.$Light_accent {
+        @if $isSingle == false or color.$Light_accent != color.$Print_accent {
+            @return color.$Print_accent;
+        }
+    } @else if $c == color.$Light_link {
+        @if $isSingle == false or color.$Light_link != color.$Print_link {
+            @return color.$Print_link;
+        }
+    } @else if $c == color.$Light_visited {
+        @if $isSingle == false or color.$Light_visited != color.$Print_visited {
+            @return color.$Print_visited;
+        }
+    } @else if $c == color.$Light_hover {
 
-    @if $v == null {
-        @error "Responsive Text Color Error! @print: #{$c} - #{$v}";
-    }
-    // isSingle の特殊処理
-    @if $isSingle == false or $c != $v {
-        @return $v;
+    } @else if $c == color.$Light_visited_hover {
+
+    } @else if $c == transparent {
+        @return transparent;
     }
     @return false;
 }

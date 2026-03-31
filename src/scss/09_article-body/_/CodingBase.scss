@@ -25,34 +25,25 @@
     }
 
     @include screen {
-        @include background-responsive(color.$Light_casual_fill);
-
+        @include background-responsive(color.$Light_casual_fill, noprint);
         // test -> https://outcloud.blogspot.com/2021/08/richlink.html
-        blockquote pre & {
-            color : color.$Light_text;
-            @include mq(dark) {
-                color : color.$Dark_text;
-            }
-        }
 
         blockquote tbody th &,
         thead &,
         .tl tr & {
-            @include background-responsive(color.$Light_casual_fill);
-            color : color.$Light_text; // デフォルト色なので text-color-light-dark() を使えない
-            @include mq(dark) {
-                color : color.$Dark_text;
-            }
+            @include background-responsive(color.$Light_casual_fill, noprint);
+            @include text-color-responsive(color.$Light_text, noprint);
         }
+
         blockquote &,
         blockquote thead &,
         tbody th & {
-            @include background-responsive(color.$Light_casual_text);
-            @include text-color-responsive(color.$Light_fill);
+            @include background-responsive(color.$Light_casual_text, noprint);
+            @include text-color-responsive(color.$Light_fill, noprint);
         }
         blockquote .tl tr & { // 何故か↑と分離しないと blockquote が消えてしまう
-            @include background-responsive(color.$Light_casual_text);
-            @include text-color-responsive(color.$Light_fill);
+            @include background-responsive(color.$Light_casual_text, noprint);
+            @include text-color-responsive(color.$Light_fill, noprint);
         }
     }
     @include print-fallback {

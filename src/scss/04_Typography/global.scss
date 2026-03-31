@@ -20,7 +20,7 @@
             border-style : solid;
             border-width : 0;
         }
-        // TODO input {border-style:none} では?
+        // TODO input, select, textarea {border-style:none} では?
     } @else {
         * {
             border-style : solid;

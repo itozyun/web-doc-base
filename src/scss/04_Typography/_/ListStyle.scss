@@ -5,6 +5,7 @@
 @use "../../02_mixin/responsive-horizontal-margin" as *;
 @use "../../02_mixin/unbreak" as *;
 @use "../../02_mixin/mq" as *;
+@use "../../02_mixin/line-height" as *;
 
 @use "./nesting" as *;
 
@@ -18,6 +19,7 @@ li {
     @extend %nesting-list-item;
 
     @include unbreak-inside;
+    @include line-height(1.2);
 
     margin-top    : .3em;
     margin-bottom : .3em;

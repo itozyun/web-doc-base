@@ -105,10 +105,16 @@
                 margin    : 0;
                 /* clean-css ignore:start */
                 @if ua.$IE9 == false {
-                    @include background-light-dark(#fff, #000);
+                    background : #fff;
+                    @include mq(dark){
+                        background : #000;
+                    };
                 }
                 @if ua.$Modern or ua.$IE9 or ua.$Gecko19 {
-                    @include background-light-dark(rgb( 255 255 255 / 75%), rgb( 0 0 0 / 75%));
+                    background : rgb(255 255 255 / 75%);
+                    @include mq(dark){
+                        background : rgb(0 0 0 / 75%);
+                    };
                 }
                 /* clean-css ignore:end */
             }

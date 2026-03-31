@@ -33,14 +33,14 @@
     :link &, :visited & {
         @if opt.$UseDarkRibbon {
             .#{opt.$Prefix}ribbon & {
-                border-color : color.$Ribbon_fill;
+                @if canuse.$TRANSPARENT_BORDER_COLOR == false {
+                    border-color : color.$Ribbon_fill;
+                }
             }
         }
 
         blockquote & {
-            @if canuse.$TRANSPARENT_BORDER_COLOR {
-                border-color : transparent;
-            } @else {
+            @if canuse.$TRANSPARENT_BORDER_COLOR == false {
                 border-color : color.$Light_casual_fill;
             }
         }

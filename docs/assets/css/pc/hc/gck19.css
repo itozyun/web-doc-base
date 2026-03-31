@@ -31,11 +31,6 @@ tfoot td {
 .RichLink-sep :visited:hover {
   text-decoration: underline!important
 }
-.Magazine h3 a {
-  display: inline-block;
-  display: -moz-inline-box;
-  margin-right: 2px
-}
 .RichLink a {
   border-width: 0
 }
@@ -69,10 +64,6 @@ td {
 .Pager span {
   position: static;
   display: inline
-}
-.Pager a {
-  display: inline-block;
-  display: -moz-inline-box
 }
 .Pager i {
   display: none

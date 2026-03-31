@@ -55,9 +55,9 @@
             @include mq(dark) {
                 border-color : $dark-color;
                 @if ua.$Modern {
-                    // @if responsive-color-var($dark-color) {
-                        // border-color : responsive-color-var($dark-color);
-                    // }
+                    @if responsive-color-var($dark-color) {
+                        border-color : responsive-color-var($dark-color);
+                    }
                 }
             }
         } @else {

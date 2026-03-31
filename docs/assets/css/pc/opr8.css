@@ -56,6 +56,21 @@ sub,
 sup {
   position: relative
 }
+.h1,
+dl,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p dd,
+p li,
+p tr,
+table {
+  line-height: 1.2
+}
 .Search .btn,
 .lW {
   overflow: hidden
@@ -69,7 +84,7 @@ code,
 kbd,
 samp,
 var {
-  font-family: SFMono-Regular,"Liberation Mono",Consolas,Meiryo,monospace
+  font-family: SFMono-Regular,Consolas,Meiryo,monospace
 }
 :focus {
   outline: 0
@@ -141,23 +156,11 @@ tr img {
 img {
   height: auto
 }
+a,
 a img,
-blockquote :link img,
-blockquote :visited img,
-blockquote tbody th[colspan]:after,
-blockquote thead td[colspan]:after,
-blockquote thead th[colspan]:after {
+blockquote tbody th,
+blockquote tbody th[colspan]:after {
   border-color: transparent
-}
-.AHead-labels :focus,
-.Subscribe .atom:focus,
-.Subscribe .fl:focus,
-.Subscribe .rss:focus,
-.Subscribe .stm:focus,
-.btn:focus,
-.ribbon :link img,
-.ribbon :visited img {
-  border-color: #1a1a1a
 }
 a:focus img {
   border-color: #3079ed!important
@@ -187,11 +190,6 @@ input {
 p {
   line-height: 1.9
 }
-p dd,
-p li,
-p tr {
-  line-height: 1.2
-}
 pre {
   white-space: pre-wrap;
   padding: 1em
@@ -203,18 +201,6 @@ q {
 q[cite],
 q[title] {
   border-bottom: 1px dotted
-}
-blockquote .tl td,
-blockquote .tl tfoot td,
-blockquote .tl tfoot th,
-blockquote .tl thead td,
-blockquote .tl thead th,
-blockquote blockquote,
-blockquote table,
-blockquote td[colspan]:after,
-h5,
-h6 {
-  border-color: #777
 }
 #lE,
 #lF,
@@ -231,7 +217,9 @@ table {
 code,
 table,
 td[colspan]:after,
+thead td,
 thead td[colspan]:after,
+thead th,
 thead th[colspan]:after,
 var {
   border-color: #ddd
@@ -308,9 +296,11 @@ a:focus:hover {
 a:focus {
   background-color: Highlight!important
 }
-a {
-  color: #777;
-  border-color: #f8fbf8
+.baseColor :link .RichLink-meta,
+.baseColor :visited .RichLink-meta,
+a,
+h6 {
+  color: #777
 }
 .tl thead tr :link,
 :link,
@@ -327,9 +317,13 @@ blockquote .tl tbody tr th :link {
   color: #515;
   border-color: #515
 }
-.ribbon a {
-  color: #bbb;
-  border-color: #1a1a1a
+.ADesc,
+.ribbon .AHead,
+.ribbon .BreadcrumbList,
+.ribbon a,
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #bbb
 }
 a:active,
 a:active * {
@@ -401,12 +395,13 @@ th {
   border-color: #fff;
   color: #fff
 }
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #bbb
+.AHead-labels :focus,
+.Subscribe .atom:focus,
+.Subscribe .fl:focus,
+.Subscribe .rss:focus,
+.Subscribe .stm:focus,
+.btn:focus {
+  border-color: #1a1a1a
 }
 .baseColor .btn:link {
   background: #24c;
@@ -422,7 +417,9 @@ th {
 .SocialBtns .ln:focus,
 .SocialBtns .pk:focus,
 .SocialBtns .tw:focus,
-.baseColor .btn:focus {
+.baseColor .btn:focus,
+.medal,
+tbody th {
   border-color: #f8fbf8
 }
 .commonForm-pair {
@@ -608,10 +605,6 @@ kbd {
   margin: 0 0 .6em;
   height: 100%
 }
-.Cover-meta,
-.SearchResult div div {
-  margin: 0 .5em
-}
 .Cover img {
   margin: 0;
   display: block;
@@ -630,7 +623,8 @@ kbd {
 }
 .Cover h3 {
   font-size: 1.33em;
-  margin: 0
+  margin: 0;
+  background: #fff
 }
 .Magazine h3,
 .Magazine-yy {
@@ -643,7 +637,8 @@ kbd {
 .Cover-meta {
   color: #777;
   line-height: 1.4;
-  display: block
+  display: block;
+  margin: 0 .5em
 }
 .Cover p {
   line-height: 1.4;
@@ -691,11 +686,6 @@ kbd {
   background: 0 0;
   color: #fff
 }
-.baseColor :link .RichLink-meta,
-.baseColor :visited .RichLink-meta,
-h6 {
-  color: #777
-}
 .ribbon .LinkList :link:hover,
 .ribbon .LinkList :visited:hover,
 .ribbon .RichLink-sep :link:hover,
@@ -739,6 +729,9 @@ kbd {
   font-weight: 700;
   margin: .2em 0 0;
   padding: 0
+}
+.Magazine h3 a {
+  margin-right: 2px
 }
 .Magazine-label {
   margin: .5em 0 .8em
@@ -829,7 +822,6 @@ pre code {
   line-height: 1.6
 }
 .medal {
-  border-color: #f8fbf8;
   background: #f8fbf8;
   color: #111
 }
@@ -870,6 +862,9 @@ pre code {
 }
 .SearchResult p {
   margin: .5em
+}
+.SearchResult div div {
+  margin: 0 .5em
 }
 .SearchResult :visited {
   color: #1a0dab
@@ -1073,6 +1068,20 @@ h2:after {
   border-width: .2em 0 0;
   color: #3079ed
 }
+blockquote .tl td,
+blockquote .tl tfoot td,
+blockquote .tl tfoot th,
+blockquote .tl thead td,
+blockquote .tl thead th,
+blockquote blockquote,
+blockquote table,
+blockquote td[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after,
+h5,
+h6 {
+  border-color: #777
+}
 .ABody h3 {
   margin: 2.4em 0 1.2em;
   font-weight: 700;
@@ -1097,7 +1106,15 @@ h5 {
 h6 {
   padding: 0 0 0 .7em
 }
+ol,
+ul {
+  padding-left: 2em
+}
+li {
+  margin-top: .3em
+}
 .icoLinks {
+  padding-left: 1em;
   list-style: none
 }
 .icoLinks [href]:before {
@@ -1145,13 +1162,6 @@ blockquote {
 dl.note dd {
   margin-left: 1em
 }
-ol,
-ul {
-  padding-left: 2em
-}
-li {
-  margin-top: .3em
-}
 [colspan]:after,
 [colspan]:before {
   bottom: -1px;
@@ -1185,8 +1195,7 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em;
   background: #777;
-  color: #f8fbf8;
-  border-color: #ddd rgb(139.4,139.4,139.4)
+  color: #f8fbf8
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -1198,8 +1207,7 @@ tfoot td {
   border-width: 2px .5em 0
 }
 tbody th {
-  background: #ddd;
-  border-color: transparent
+  background: #ddd
 }
 tfoot td,
 tfoot th {
@@ -1208,12 +1216,11 @@ tfoot th {
 blockquote thead td,
 blockquote thead th {
   background: #111;
-  border-color: transparent rgb(37.4,37.4,37.4)
+  border-color: #777
 }
 blockquote tbody th {
   background: #777;
-  color: #f8fbf8;
-  border-color: transparent
+  color: #f8fbf8
 }
 blockquote td {
   border-color: transparent transparent #777
@@ -1519,9 +1526,6 @@ projection {
     width: 100%;
     bottom: 0
   }
-  .Cover h3 {
-    background: #fff
-  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
@@ -1536,20 +1540,20 @@ projection {
     color: #111
   }
   .aa :link,
-  .prettyprint :link,
-  .prettyprint :link * {
+  .prettyprint :link {
     color: #bbe
   }
   .aa :visited,
-  .prettyprint :visited,
-  .prettyprint :visited * {
+  .prettyprint :visited {
     color: #eae
   }
-  .aa :link:hover {
+  .aa :link:hover,
+  .prettyprint :link:hover {
     color: #3079ed;
     border-color: #3079ed
   }
-  .aa :visited:hover {
+  .aa :visited:hover,
+  .prettyprint :visited:hover {
     color: #c8e;
     border-color: #c8e
   }
@@ -1560,10 +1564,6 @@ projection {
   .aa code,
   .aa var {
     color: #00ac06
-  }
-  blockquote pre code,
-  blockquote pre var {
-    color: #111
   }
   blockquote .tl tr code,
   blockquote .tl tr var,
@@ -1656,8 +1656,6 @@ projection {
   .tl thead td,
   .tl thead th,
   :visited,
-  blockquote pre code,
-  blockquote pre var,
   blockquote th em,
   blockquote th strong,
   body,
@@ -1680,27 +1678,10 @@ projection {
   #lF .lX {
     border-width: 1px 0 0
   }
-  blockquote .tl td,
-  blockquote .tl tfoot td,
-  blockquote .tl tfoot th,
-  blockquote .tl thead td,
-  blockquote .tl thead th,
-  blockquote blockquote,
-  blockquote table,
-  blockquote td[colspan]:after,
-  h5,
-  h6 {
-    border-color: #999
-  }
   .lW,
   .lX,
   table {
     width: 100%
-  }
-  blockquote tbody th,
-  blockquote thead td[colspan]:after,
-  blockquote thead th[colspan]:after {
-    border-color: transparent
   }
   .AHead,
   .AHead h1,
@@ -1746,10 +1727,28 @@ projection {
   code,
   table,
   td[colspan]:after,
+  thead td,
   thead td[colspan]:after,
+  thead th,
   thead th[colspan]:after,
   var {
     border-color: #222
+  }
+  :link .medal,
+  :visited .medal,
+  blockquote .tl td,
+  blockquote .tl tfoot td,
+  blockquote .tl tfoot th,
+  blockquote .tl thead td,
+  blockquote .tl thead th,
+  blockquote blockquote,
+  blockquote table,
+  blockquote td[colspan]:after,
+  blockquote thead td[colspan]:after,
+  blockquote thead th[colspan]:after,
+  h5,
+  h6 {
+    border-color: #999
   }
   em {
     background: #4e4e1f
@@ -1790,9 +1789,14 @@ projection {
     background: #f1f4f1;
     padding-bottom: 2em
   }
-  a {
-    color: #999;
-    border-color: #000
+  .AHead,
+  .BreadcrumbList,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  a,
+  h6 {
+    color: #999
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -1822,7 +1826,8 @@ projection {
     border-color: #eee;
     color: #eee
   }
-  .baseColor .btn:focus {
+  .baseColor .btn:focus,
+  tbody th {
     border-color: #000
   }
   .Magazine img,
@@ -1831,14 +1836,6 @@ projection {
   }
   .mspacer {
     margin: .6em 0!important
-  }
-  .AHead,
-  .BreadcrumbList,
-  .Cover-meta,
-  .baseColor :link .RichLink-meta,
-  .baseColor :visited .RichLink-meta,
-  h6 {
-    color: #999
   }
   .AHead h1 {
     color: #eee;
@@ -1888,6 +1885,7 @@ projection {
     margin: 0 .5em .5em 0
   }
   .Cover h3 {
+    background: #000;
     background: 0 0;
     color: #111;
     font-size: 1.5em
@@ -1902,13 +1900,16 @@ projection {
   }
   .LinkList a,
   .RichLink-sep a,
+  :link .medal,
+  :visited .medal,
   blockquote .tl tr code,
   blockquote .tl tr var,
   blockquote code,
-  blockquote tbody th,
   blockquote var,
   tbody th code,
-  tbody th var {
+  tbody th var,
+  thead td,
+  thead th {
     background: #999;
     color: #000
   }
@@ -2007,12 +2008,6 @@ projection {
     float: none;
     margin: 0 auto 1em
   }
-  :link .medal,
-  :visited .medal {
-    border-color: #999;
-    background: #999;
-    color: #000
-  }
   .SearchResult div p {
     color: grey
   }
@@ -2090,23 +2085,17 @@ projection {
   .hscroll tbody {
     white-space: pre
   }
+  li {
+    margin-top: .1em
+  }
   .note blockquote dl,
   .note blockquote ol,
   .note blockquote p,
   .note blockquote ul {
     margin-right: 0
   }
-  li {
-    margin-top: .1em
-  }
   caption {
     margin: 1.5em 0 .7em
-  }
-  thead td,
-  thead th {
-    background: #999;
-    color: #000;
-    border-color: #222 rgb(129.2,129.2,129.2)
   }
   td {
     border-color: transparent transparent #222
@@ -2118,7 +2107,12 @@ projection {
   blockquote thead td,
   blockquote thead th {
     background: #eee;
-    border-color: transparent rgb(217.6,217.6,217.6)
+    border-color: #999
+  }
+  blockquote tbody th {
+    background: #999;
+    color: #000;
+    border-color: transparent
   }
   blockquote td {
     border-color: transparent transparent #999
@@ -2314,6 +2308,15 @@ handheld {
   .baseColor {
     background: #fff
   }
+  .ADesc,
+  .Cover-meta,
+  .baseColor :link .RichLink-meta,
+  .baseColor :visited .RichLink-meta,
+  .ribbon a,
+  a,
+  h6 {
+    color: #666
+  }
   *,
   .tl td,
   .tl tfoot td,
@@ -2323,16 +2326,15 @@ handheld {
   code,
   table,
   td[colspan]:after,
+  thead td,
+  thead td[colspan]:after,
+  thead th,
+  thead th[colspan]:after,
   var {
     border-color: #ccc
   }
   #lF .lX {
     border-top: .15em solid #000
-  }
-  .ribbon a,
-  a {
-    color: #666;
-    border-color: #fff
   }
   .LinkList :link,
   .RichLink-sep :link,
@@ -2349,13 +2351,6 @@ handheld {
   thead :link,
   thead :link:hover {
     color: #006
-  }
-  .ADesc,
-  .Cover-meta,
-  .baseColor :link .RichLink-meta,
-  .baseColor :visited .RichLink-meta,
-  h6 {
-    color: #666
   }
   .aBodyRoot :visited,
   .aBodyRoot blockquote tbody th :visited,
@@ -2439,14 +2434,9 @@ handheld {
   blockquote var,
   h5,
   h6,
-  tbody th,
   tbody th code,
   tbody th var,
   thead code,
-  thead td,
-  thead td[colspan]:after,
-  thead th,
-  thead th[colspan]:after,
   thead var {
     border-color: #666
   }
@@ -2494,7 +2484,8 @@ handheld {
     padding: .5em
   }
   tbody th {
-    background: #ccc
+    background: #ccc;
+    border-color: #fff
   }
   td {
     border-color: transparent transparent #ccc
