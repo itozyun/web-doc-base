@@ -4,10 +4,10 @@
 
 ## デフォルトのボックスモデルとボックスモデルの制限
 
-* デフォルトの box-sizing : C or B
+* デフォルトの `box-sizing` : C or B
   * B は `border-box`, C は `content-box` です。
 * `box-sizing` の変更は可能か?
-* padding
+* `padding`
 
 <div class="hscroll">
 <table>
@@ -15,7 +15,7 @@
 <tr>
 <th rowspan=2>ブラウザ<th colspan=3>テキスト入力<th colspan=3><code>&lt;textarea&gt;</code><th colspan=3>ボタン<th colspan=3>チェック<th colspan=3>リスト
 <tr>
-<th>デフォルト<th>box-sizing変更<th>padding <th>デフォルト<th>box-sizing変更<th>padding <th>デフォルト<th>box-sizing変更<th>padding <th>デフォルト<th>box-sizing変更<th>padding <th>デフォルト<th>box-sizing変更<th>padding
+<th class=v>デフォルト<th class=v>box-sizing変更<th class=v>padding <th class=v>デフォルト<th class=v>box-sizing変更<th class=v>padding <th class=v>デフォルト<th class=v>box-sizing変更<th class=v>padding <th class=v>デフォルト<th class=v>box-sizing変更<th class=v>padding <th class=v>デフォルト<th class=v>box-sizing変更<th class=v>padding
 <tbody>
 
 <tr>
@@ -47,12 +47,11 @@
 </table>
 </div>
 
-1. 但しファイルのアップロードボタンは border-box
-2. 横方向だけ padding が増える
-3. アップロードボタンは横方向だけ padding が増える
-4. リストボックスは横方向だけ padding が増える
-5. 但し、リストボックスは content-box
-6. 但し、画像送信ボタンは content-box
-7. アップロードボタンは padding が変化しない
-8. border 無し
-
+1. 但しファイルのアップロードボタンは `border-box`
+2. 横方向だけ `padding` が増える
+3. アップロードボタンは横方向だけ `padding` が増える
+4. リストボックスは横方向だけ `padding` が増える
+5. 但し、リストボックスは `content-box`
+6. 但し、画像送信ボタンは `content-box`
+7. アップロードボタンは `padding` が変化しない
+8. `border` 無し
