@@ -1,7 +1,7 @@
 /*  <img>
 ------------------------------------------------------------------------------------- */
-@use "./_/ReplaceElementStyle" as *;
+@use "./_/ReplacedElementStyle" as *;
 
 iframe {
-    @extend %ReplaceElementStyle;
+    @extend %ReplacedElementStyle;
 }

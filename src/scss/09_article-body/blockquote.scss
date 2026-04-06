@@ -67,11 +67,17 @@ blockquote {
     padding      : 1em;
     border-width : 1px;
 
-    & blockquote {
+    & * {
         @include border-color-responsive(color.$Light_casual_text);
     }
     & h3 {
         @include border-color-responsive(color.$Light_text);
+    }
+
+    @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
+        & > *:first-child {
+            margin-top : 0;
+        }
     }
 
     @if canuse.$CSS_GENERATED_CONTENT {

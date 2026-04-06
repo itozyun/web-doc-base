@@ -8,69 +8,22 @@
 
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin border-color-responsive($light-color, $print-color: false) {
-    border-color : $light-color;
-
-    @if responsive-color-var($light-color) {
-        border-color : responsive-color-var($light-color);
-    }
-    @include mq(dark) {
-        @if responsive-color-dark($light-color) {
-            border-color : responsive-color-dark($light-color);
-        }
-    }
-    @include print {
-        @if $print-color == noprint {
-            
-        } @else if $print-color != false {
-            border-color : $print-color;
-        } @else if responsive-color-print($light-color) {
-            border-color : responsive-color-print($light-color);
-        }
-    }
+    @include light-dark(false, border-color, $light-color, responsive-color-dark($light-color), $print-color);
+}
+@mixin border-color-responsive-force($light-color, $print-color: false) {
+    @include light-dark(true, border-color, $light-color, responsive-color-dark($light-color), $print-color);
 }
 
 @mixin border-color-screen-print($screen-color, $print-color) {
-    @if $screen-color != $print-color {
-        @if ua.$Script == false or color.$PRINT_DEFAULT_BORDER != $print-color {
-            border-color : $screen-color;
-
-            @include print {
-                border-color : $print-color;
-            }
-        } @else {
-            @include screen {
-                border-color : $screen-color;
-            }
-        }
-    } @else {
-        border-color : $screen-color;
-    }
+    @include screen-print(false, border-color, $screen-color, $print-color);
+}
+@mixin border-color-screen-print-force($screen-color, $print-color) {
+    @include screen-print(true, border-color, $screen-color, $print-color);
 }
 
 @mixin border-color-light-dark($light-color, $dark-color, $print-color: false) {
-    @if $light-color != $dark-color {
-        @if ua.$Script == false or color.$DARK_DEFAULT_BORDER != $dark-color {
-            border-color : $light-color;
-
-            @include mq(dark) {
-                border-color : $dark-color;
-                @if ua.$Modern {
-                    @if responsive-color-var($dark-color) {
-                        border-color : responsive-color-var($dark-color);
-                    }
-                }
-            }
-        } @else {
-            @include screen {
-                border-color : $light-color;
-            }
-        }
-    } @else {
-        border-color : $light-color;
-    }
-    @if $print-color and $light-color != $print-color {
-        @include print {
-            border-color : $print-color;
-        }
-    }
+    @include light-dark(false, border-color, $light-color, $dark-color, $print-color);
+}
+@mixin border-color-light-dark-force($light-color, $dark-color, $print-color: false) {
+    @include light-dark(true, border-color, $light-color, $dark-color, $print-color);
 }

@@ -53,6 +53,7 @@
 // @use "./04_typography/ul";
 @use "./04_typography/uppercase";
 // @use "./04_typography/var";
+@use "./04_typography/vertical";
 
 @use "./05_theme/base-color";
 @use "./05_theme/em";
@@ -133,14 +134,18 @@
 
 @use "./01_var/color" as color;
 @use "./02_mixin/media" as *;
+@use "./02_mixin/border-color" as *;
 
 #lE {
-    border-top : 0.3em solid color.$ACCENT;
+    border-top-width : 0.3em;
+    @include border-color-responsive(color.$Light_accent, noprint);
 }
-
+#lF {
+    @include border-color-responsive(color.$Light_accent, noprint);
+}
 @include screen {
     #lF {
-        border-top : 0.3em solid color.$ACCENT;
+        border-top-width : 0.3em;
     }
 }
 @include print-fallback {

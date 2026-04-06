@@ -5,20 +5,22 @@
 
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../03_reset/form";
 
 form * {
     @include active-focus-pseudo-class( false ) {
-        color        : color.$ACCENT;
-        border-color : color.$ACCENT;
+        @include text-color-responsive(color.$Light_accent, noprint);
+        @include border-color-responsive(color.$Light_accent, noprint);
     }
 
     &:focus {
         @if ua.$Opera7x {
-            color : color.$ACCENT;
+            color : color.$Light_accent;
             @if ua.$Opera70 {
-                border-color : color.$ACCENT;
+                border-color : color.$Light_accent;
             }
         }
     }

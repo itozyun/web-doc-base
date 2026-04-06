@@ -123,10 +123,10 @@ $RICHLINK_TEXT_SIZE : 0.875;
             float  : left;
 
             @if ua.$GeckoLte09 {
-                padding : 0 .6em 1em 0;
+                padding : 0 1em 1em 0;
                 margin  : 0;
             } @else {
-                margin : 0 .6em 1em 0;
+                margin : 0 1em 1em 0;
             }
             // Fix : Rect of <img> becomes box-width in Opera7.x.
             // https://twitter.com/itozyun/status/1496619343698096129
@@ -232,6 +232,9 @@ $RICHLINK_TEXT_SIZE : 0.875;
             * {
                 font-size : math.div(1em, 1.3);
             }
+        }
+        /*.lM */ & img {
+            margin : 0 0.5em 0.6em 0;
         }
     }
 

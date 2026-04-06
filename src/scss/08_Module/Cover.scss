@@ -27,6 +27,7 @@
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 @use "../02_mixin/background-color" as *;
 
 .#{opt.$Prefix}Cover {
@@ -76,8 +77,9 @@
 
             h2 {
                 @include inline-block;
-                background   : color.$ACCENT;
-                border       : 1px solid color.$ACCENT; /* for high contrast mode */
+                @include background-responsive(color.$Light_accent);
+                @include border-color-responsive(color.$Light_accent);
+                border-width : 1px; /* for high contrast mode */
                 color        : color.$Light_fill;
                 font-size    : 0.825em;
                 padding      : 0.6em;

@@ -224,7 +224,7 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
                         @if canuse.$TRANSPARENT_BORDER_COLOR {
                             border-color : transparent #fff;
                         } @else {
-                            border-color : color.$ACCENT #fff;
+                            @include border-color-responsive(color.$Light_accent #fff, noprint);
                         }
                     }
                 }
@@ -280,7 +280,7 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
                             @if canuse.$TRANSPARENT_BORDER_COLOR {
                                 border-color : #fff transparent;
                             } @else {
-                                border-color : #fff color.$ACCENT;
+                                @include border-color-responsive(#fff color.$Light_accent, noprint);
                             }
                         }
                     }

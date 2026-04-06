@@ -6,6 +6,7 @@
 @use "../02_mixin/font-family-japanese" as *;
 
 @use "../04_typography/h6";
+
 @use "../08_module/ArticleBody";
 
 .#{opt.$Prefix}ABody {

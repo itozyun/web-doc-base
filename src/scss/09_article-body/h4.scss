@@ -2,8 +2,10 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
 
 @use "../02_mixin/font-family-japanese" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../04_typography/h4";
 
@@ -16,5 +18,8 @@
         @if ua.$Modern or ua.$IE9 {
             @extend %SerifFontFamily;
         }
+    }
+    blockquote h4 {
+        @include border-color-responsive(color.$Light_text);
     }
 }

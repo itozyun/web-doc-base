@@ -6,6 +6,8 @@
 
 @use "../02_mixin/mq" as *;
 
+@use "../04_typography/em";
+
 em {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffff66+0,ffff66+100&0+60,1+61,1+100 */
     @if ua.$IE9 {

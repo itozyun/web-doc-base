@@ -116,7 +116,7 @@
 ------------------------------------------------------------------------------------- */
 @if canuse.$TARGET_PSEUDO_CLASS {
     :target, :target * {
-        background   : color.$ACCENT !important;
+        @include background-responsive(color.$Light_accent !important);
         color        : #fff !important;
         border-color : #fff !important;
     }
@@ -124,7 +124,7 @@
         border-color : inherit !important;
     }
     :target th, :target td {
-        border-color : color.$ACCENT !important;
+        @include border-color-responsive(color.$Light_accent !important);
     }
 }
 
@@ -253,18 +253,36 @@ table {
             @include _cell-border-color-responsive(color.$Light_casual_fill);
         }
         :link {
-            @include text-color-responsive(color.$Light_fill, color.$Print_link);
+            color : color.$Dark_link; // 背景が反転するので dark 用のリンク色を使用
+            @include mq(dark) {
+                color : color.$Light_link;
+            }
+            @include print {
+                color : color.$Print_link;
+            }
             @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
                 &:hover {
-                    @include text-color-responsive(color.$Light_fill, color.$Print_link);
+                    color : color.$Dark_hover;
+                    @include mq(dark) {
+                        color : color.$Light_hover;
+                    }
                 }
             }
         }
         .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
-            @include text-color-responsive(color.$Light_fill, color.$Print_visited);
+            color : color.$Dark_visited;
+            @include mq(dark) {
+                color : color.$Light_visited;
+            }
+            @include print {
+                color : color.$Print_visited;
+            }
             @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
                 &:hover {
-                    @include text-color-responsive(color.$Light_fill, color.$Print_visited);
+                    color : color.$Dark_visited_hover;
+                    @include mq(dark) {
+                        color : color.$Light_visited_hover;
+                    }
                 }
             }
         }
@@ -285,9 +303,9 @@ table {
     tfoot th,
     tfoot td {
         @if canuse.$TRANSPARENT_BORDER_COLOR {
-            @include border-color-responsive(color.$Light_casual_text transparent);
+            @include border-color-responsive(color.$Light_casual_fill transparent);
         } @else {
-            @include border-color-responsive(color.$Light_casual_text color.$Light_fill);
+            @include border-color-responsive(color.$Light_casual_fill color.$Light_fill);
         }
     }
 
@@ -339,13 +357,10 @@ blockquote {
     tfoot th,
     tfoot td {
         @if canuse.$TRANSPARENT_BORDER_COLOR {
-            @include border-color-responsive(
-                color.$Light_text        transparent,
-                color.$Print_casual_text transparent
-            );
+            @include border-color-responsive(color.$Light_casual_text transparent);
         } @else {
             @include border-color-responsive(
-                color.$Light_text        color.$Light_casual_fill,
+                color.$Light_casual_text color.$Light_casual_fill,
                 color.$Print_casual_text color.$Print_fill
             );
         }
@@ -357,15 +372,15 @@ blockquote {
 @if canuse.$HOVER_PSEUDO_CLASS {
     tbody :hover {
         th {
-            @include background-responsive(color.$ACCENT, noprint);
+            @include background-responsive(color.$Light_accent, noprint);
             color : #fff;
             a {
                 @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
-                    background : color.$ACCENT !important; // テキスト色が明るいのでアクセント色で塗る
+                    @include background-responsive(color.$Light_accent !important, noprint); // テキスト色が明るいのでアクセント色で塗る
                 } @else if quirks.$FOCUS_COLOR_SYSTEM_FIXED == false {
                     @include active-focus-pseudo-class {
                         background : #fff !important;
-                        color      : color.$ACCENT !important;
+                        @include text-color-responsive(color.$Light_accent !important, noprint);
                     }
                 }
             }
@@ -374,8 +389,8 @@ blockquote {
             }
         }
         td {
-            @include _cell-border-color-responsive(transparent transparent color.$ACCENT, noprint);
-            @include text-color-responsive(color.$ACCENT, noprint);
+            @include _cell-border-color-responsive(transparent transparent color.$Light_accent, noprint);
+            @include text-color-responsive(color.$Light_accent, noprint);
         }
     }
 }
@@ -383,7 +398,7 @@ blockquote {
 @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
     thead a:focus,
     blockquote tbody th a:focus {
-        @include background-responsive(color.$ACCENT !important, noprint); // テキスト色が明るいのでアクセント色で塗る
+        @include border-color-responsive(color.$Light_accent !important, noprint); // テキスト色が明るいのでアクセント色で塗る
     }
 }
 

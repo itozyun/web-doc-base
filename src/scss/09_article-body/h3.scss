@@ -20,9 +20,4 @@
         border-width : 0.1em 0 0;
         padding      : 1.4em 0 .6em;
     }
-    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
-        blockquote > h3:first-of-type {
-            margin-top : 0;
-        }
-    }
 }

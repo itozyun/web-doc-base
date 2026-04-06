@@ -5,6 +5,8 @@
  *       figure
  *         img|emned|
  *         figcaption
+ *    img, iframe
+ *    p, ul, ol, dl
  */
 @use "sass:math";
 
@@ -47,6 +49,15 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
 
     li &, dl &, tr &, .note & {
         margin : 0;
+    }
+
+    @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
+        @at-root .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} > &:first-child,
+        blockquote > &:first-child {            // blockquote の先頭が PicaThumbnail の場合
+            > a:first-child > img:first-child { // ABody の先頭が PicaThumbnail の場合
+                margin-top : 0;
+            }
+        }
     }
 
     @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
@@ -114,10 +125,6 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
         margin : 0 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE);
         float  : none;
     }
-}
-
-@if ua.$GeckoLte19 {
-    hr { display: -moz-inline-box; } // .box 内の hr が img に重なるのを妨げる
 }
 
 /*  Tablet

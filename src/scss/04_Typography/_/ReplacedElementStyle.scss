@@ -1,4 +1,5 @@
-/*  ReplaceElementStyle
+/*  ReplacedElementStyle
+ *    img, iframe, embed, object, video, audio
 ------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
 @use "../../01_var/canuse" as canuse;
@@ -8,7 +9,7 @@
 @use "../../02_mixin/responsive-horizontal-margin" as *;
 @use "../../02_mixin/mq" as *;
 
-%ReplaceElementStyle {
+%ReplacedElementStyle {
     @include responsive-horizontal-margin(1, 1em, 1em);
     @if canuse.$MARGIN_AUTO {
         margin : 1em auto;

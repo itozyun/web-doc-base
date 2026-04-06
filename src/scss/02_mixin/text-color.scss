@@ -8,69 +8,22 @@
 
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin text-color-responsive($light-color, $print-color: false) {
-    color : $light-color;
-
-    @if responsive-color-var($light-color) {
-        color : responsive-color-var($light-color);
-    }
-    @include mq(dark) {
-        @if responsive-color-dark($light-color) {
-            color : responsive-color-dark($light-color);
-        }
-    }
-    @include print {
-        @if $print-color == noprint {
-            
-        } @else if $print-color != false {
-            color : $print-color;
-        } @else if responsive-color-print($light-color) {
-            color : responsive-color-print($light-color);
-        }
-    }
+    @include light-dark(false, color, $light-color, responsive-color-dark($light-color), $print-color);
+}
+@mixin text-color-responsive-force($light-color, $print-color: false) {
+    @include light-dark(true, color, $light-color, responsive-color-dark($light-color), $print-color);
 }
 
 @mixin text-color-screen-print($screen-color, $print-color) {
-    @if $screen-color != $print-color {
-        @if ua.$Script == false or color.$PRINT_DEFAULT_TEXT != $print-color {
-            color : $screen-color;
-
-            @include print {
-                color : $print-color;
-            }
-        } @else {
-            @include screen {
-                color : $screen-color;
-            }
-        }
-    } @else {
-        color : $screen-color;
-    }
+    @include screen-print(false, color, $screen-color, $print-color);
+}
+@mixin text-color-screen-print-force($screen-color, $print-color) {
+    @include screen-print(true, color, $screen-color, $print-color);
 }
 
 @mixin text-color-light-dark($light-color, $dark-color, $print-color: false) {
-    @if $light-color != $dark-color {
-        @if ua.$Script == false or color.$DARK_DEFAULT_TEXT != $dark-color {
-            color : $light-color;
-
-            @include mq(dark) {
-                color : $dark-color;
-                @if ua.$Modern {
-                    @if responsive-color-var($dark-color) {
-                        color : responsive-color-var($dark-color);
-                    }
-                }
-            }
-        } @else {
-            @include screen {
-                color : $light-color;
-            }
-        }
-    } @else {
-        color : $light-color;
-    }
-    @if $print-color and $light-color != $print-color {
-        @include print {
-            color : $print-color;
-        }
-    }
+    @include light-dark(false, color, $light-color, $dark-color, $print-color);
+}
+@mixin text-color-light-dark-force($light-color, $dark-color, $print-color: false) {
+    @include light-dark(true, color, $light-color, $dark-color, $print-color);
 }

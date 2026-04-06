@@ -8,6 +8,8 @@
 
 @use "../../02_mixin/active-focus-pseudo-class" as *;
 @use "../../02_mixin/inline-block" as *;
+@use "../../02_mixin/border-color" as *;
+@use "../../02_mixin/text-color" as *;
 
 @use "../../04_typography/a";
 
@@ -51,14 +53,15 @@
         /* @if( $isLink ){
             &:active {
                 @if( quirks.$LIMITED_DASHED_BOREDER_PAINTING ){
-                    border-color : color.$ACCENT;
+                    border-color : color.$Light_accent;
                 }
             }
         } */
     } @else {
         @include active-focus-pseudo-class /*( $isLink ) */ {
-            border-color : color.$ACCENT;
-            color        : color.$ACCENT;
+            @include border-color-responsive(color.$Light_accent, noprint);
+            @include text-color-responsive(color.$Light_accent, noprint);
+
             @if canuse.$OUTLINE {
                 outline : 0;
             }

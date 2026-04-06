@@ -32,12 +32,15 @@
         thead &,
         .tl tr & {
             @include background-responsive(color.$Light_casual_fill, noprint);
-            @include text-color-responsive(color.$Light_text, noprint);
+            @include text-color-responsive-force(color.$Light_text, noprint);
         }
 
         blockquote &,
-        blockquote thead &,
         tbody th & {
+            @include background-responsive(color.$Light_casual_text, noprint);
+            @include text-color-responsive(color.$Light_fill, noprint);
+        }
+        blockquote thead & { // 何故か↑と分離しないと blockquote が消えてしまう
             @include background-responsive(color.$Light_casual_text, noprint);
             @include text-color-responsive(color.$Light_fill, noprint);
         }
@@ -62,7 +65,7 @@
             @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
                 background : Highlight;
             } @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false {
-                background : color.$ACCENT;
+                @include background-responsive(color.$Light_accent, noprint);
             }
         }
     }

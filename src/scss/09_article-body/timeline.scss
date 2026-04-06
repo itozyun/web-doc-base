@@ -12,6 +12,7 @@
 @use "../02_mixin/css-hack" as *;
 @use "../02_mixin/text-color" as *;
 @use "../02_mixin/border-color" as *;
+@use "../02_mixin/background-color" as *;
 
 @use "../04_typography/table" as *;
 
@@ -158,16 +159,16 @@
     @if canuse.$HOVER_PSEUDO_CLASS {
         tbody :hover th,
         tbody :hover td {
-            border-color : color.$ACCENT;
+            @include border-color-responsive(color.$Light_accent, noprint);
         }
         @if canuse.$GOOD_CSS_GENERATED_BLOCK {
             tbody :hover td:before {
-                border-color : color.$ACCENT;
+                @include border-color-responsive(color.$Light_accent, noprint);
             }
         }
         tbody :hover th {
-            background : color.$ACCENT !important;
-            color      : #fff;
+            @include background-responsive(color.$Light_accent !important, noprint);
+            color : #fff;
         }
         tbody :hover th {
             :link, :visited {
@@ -185,16 +186,16 @@
     }
 
     thead th, thead td, tbody th {
-        @include text-color-responsive(color.$Light_text);
+        @include text-color-responsive-force(color.$Light_text);
     }
     thead th, thead td,
     td,
     tfoot th, tfoot td {
-        @include border-color-responsive(color.$Light_casual_fill);
+        @include border-color-responsive-force(color.$Light_casual_fill);
     }
     @if canuse.$GOOD_CSS_GENERATED_BLOCK {
         tbody td:before {
-            @include border-color-responsive(color.$Light_casual_fill);
+            @include border-color-responsive-force(color.$Light_casual_fill);
         }
         tbody td:after {
             @include border-color-responsive(color.$Light_fill);
@@ -236,7 +237,7 @@
                 @include border-color-responsive(color.$Light_casual_text);
             }
             tbody td:after {
-                @include border-color-responsive(color.$Light_casual_fill);
+                @include border-color-responsive-force(color.$Light_casual_fill);
             }
         }
         tbody tr th { /* tr で詳細度を上げる */

@@ -1,0 +1,13 @@
+/*  vertical text
+------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
+
+.v {
+    // direction : ltr;
+    @if ua.$IE55 or ua.$IE6 or ua.$IE7 or ua.$IE8 or ua.$IE9 {
+        writing-mode : tb-rl;
+    }
+    @if ua.$Modern {
+        writing-mode : vertical-rl;
+    }
+}

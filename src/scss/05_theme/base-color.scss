@@ -7,47 +7,61 @@
 
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
-@use "../02_mixin/text-color" as *;
-@use "../02_mixin/border-color" as *;
 @use "../02_mixin/background-color" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/_/responsive-color" as *;
 
-body {
-    @if opt.$UseRibbon {
+* {
+    @include border-color-responsive-force(color.$LIGHT_DEFAULT_BORDER);
+}
+
+@if opt.$UseRibbon {
+    body {
+        @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
+
         @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
             @include background-screen-print(color.$Sidebar_fill, color.$PRINT_DEFAULT_BACKGROUND);
         } @else {
             @include background-screen-print(color.$Ribbon_fill, color.$PRINT_DEFAULT_BACKGROUND);
-        }
-        @include text-color-responsive(color.$LIGHT_DEFAULT_TEXT);
 
-        @at-root .#{opt.$Prefix}baseColor {
-            @include background-responsive(color.$LIGHT_DEFAULT_BACKGROUND);
-        /*  Print
-        ------------------------------------------------------------------------------------- */
-            @include print {
-                color : color.$PRINT_DEFAULT_TEXT;
+            @at-root .#{opt.$Prefix}ribbon {
+                @include text-color-screen-print(color.$Ribbon_text, color.$PRINT_DEFAULT_TEXT);
+                & * {
+                    @include border-color-screen-print(color.$Ribbon_casual_fill, color.$PRINT_DEFAULT_BORDER);
+                }
             }
         }
-    } @else {
-        @include background-responsive(color.$LIGHT_DEFAULT_BACKGROUND);
-        @include text-color-responsive(color.$LIGHT_DEFAULT_TEXT);
     }
-}
-
-* {
-    @include border-color-responsive(color.$LIGHT_DEFAULT_BORDER);
-}
-
-@if opt.$UseDarkRibbon {
-    .#{opt.$Prefix}ribbon {
-        @include text-color-screen-print(color.$Ribbon_text, color.$PRINT_DEFAULT_TEXT);
-
-        @if ua.$Gecko08 {
-            @include background-screen-print(color.$Sidebar_fill, color.$PRINT_DEFAULT_BACKGROUND); // Only for Gecko 0.8.1
+    .#{opt.$Prefix}baseColor {
+        @include screen {
+            background : color.$LIGHT_DEFAULT_BACKGROUND;
+            @if ua.$Modern {
+                background : responsive-color-var(color.$LIGHT_DEFAULT_BACKGROUND);
+            }
         }
+        @include mq(watch) {
+            background : #000;
+        }
+        @include print-fallback {
+            background : color.$PRINT_DEFAULT_BACKGROUND;
+        }
+    }
+} @else {
+    body {
+        @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
 
-        & * {
-            @include border-color-screen-print(color.$Ribbon_casual_fill, color.$PRINT_DEFAULT_BORDER);
+        @include screen {
+            background : color.$LIGHT_DEFAULT_BACKGROUND;
+            @if ua.$Modern {
+                background : responsive-color-var(color.$LIGHT_DEFAULT_BACKGROUND);
+            }
+        }
+        @include mq(watch) {
+            background : #000;
+        }
+        @include print-fallback {
+            background : color.$PRINT_DEFAULT_BACKGROUND;
         }
     }
 }

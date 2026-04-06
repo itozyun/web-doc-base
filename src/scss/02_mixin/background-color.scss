@@ -9,137 +9,27 @@
 // light-color から自動で dark-color を決定する
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin background-color-responsive($light-color, $print-color: false) {
-    background-color : $light-color;
-
-    @if responsive-color-var($light-color) {
-        background-color : responsive-color-var($light-color);
-    }
-    @include mq(dark) {
-        @if responsive-color-dark($light-color) {
-            background-color : responsive-color-dark($light-color);
-        }
-    }
-    @include print {
-        @if $print-color == noprint {
-            
-        } @else if $print-color != false {
-            background-color : $print-color;
-        } @else if responsive-color-print($light-color) {
-            background-color : responsive-color-print($light-color);
-        }
-    }
+    @include light-dark(false, background-color, $light-color, responsive-color-dark($light-color), $print-color);
 }
 
 // light-color から自動で dark-color を決定する
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin background-responsive($light-color, $print-color: false) {
-    background : $light-color;
-
-    @if responsive-color-var($light-color) {
-        background : responsive-color-var($light-color);
-    }
-    @include mq(dark) {
-        @if responsive-color-dark($light-color) {
-            background : responsive-color-dark($light-color);
-        }
-    }
-    @include print {
-        @if $print-color {
-            background : $print-color;
-        } @else if responsive-color-print($light-color) {
-            background : responsive-color-print($light-color);
-        }
-    }
+    @include light-dark(false, background, $light-color, responsive-color-dark($light-color), $print-color);
 }
 
 @mixin background-color-screen-print($screen-color, $print-color) {
-    @if $screen-color != $print-color {
-        @if ua.$Script == false or color.$PRINT_DEFAULT_BACKGROUND != $print-color {
-            background-color : $screen-color;
-
-            @include print {
-                background-color : $print-color;
-            }
-        } @else {
-            @include screen {
-                background-color : $screen-color;
-            }
-        }
-    } @else {
-        background-color : $screen-color;
-    }
+    @include screen-print(false, background-color, $screen-color, $print-color);
 }
 
 @mixin background-screen-print($screen-color, $print-color) {
-    @if $screen-color != $print-color {
-        @if ua.$Script == false or color.$PRINT_DEFAULT_BACKGROUND != $print-color {
-            background : $screen-color;
-
-            @include print {
-                background : $print-color;
-            }
-        } @else {
-            @include screen {
-                background : $screen-color;
-            }
-        }
-    } @else {
-        background : $screen-color;
-    }
+    @include screen-print(false, background, $screen-color, $print-color);
 }
 
 @mixin background-color-light-dark($light-color, $dark-color, $print-color: false) {
-    @if $light-color != $dark-color {
-        @if ua.$Script == false or color.$DARK_DEFAULT_BACKGROUND != $dark-color {
-            background-color : $light-color;
-
-            @include mq(dark) {
-                background-color : $dark-color;
-                @if ua.$Modern {
-                    @if responsive-color-var($dark-color) {
-                        background-color : responsive-color-var($dark-color);
-                    }
-                }
-            }
-        } @else {
-            @include screen {
-                background-color : $light-color;
-            }
-        }
-    } @else {
-        background-color : $light-color;
-    }
-    @if $print-color and $light-color != $print-color {
-        @include print {
-            background-color : $print-color;
-        }
-    }
+    @include light-dark(false, background-color, $light-color, $dark-color, $print-color);
 }
 
 @mixin background-light-dark($light-color, $dark-color, $print-color: false) {
-    @if $light-color != $dark-color {
-        @if ua.$Script == false or color.$DARK_DEFAULT_BACKGROUND != $dark-color {
-            background : $light-color;
-
-            @include mq(dark) {
-                background : $dark-color;
-                @if ua.$Modern {
-                    @if responsive-color-var($dark-color) {
-                        background : responsive-color-var($dark-color);
-                    }
-                }
-            }
-        } @else {
-            @include screen {
-                background : $light-color;
-            }
-        }
-    } @else {
-        background : $light-color;
-    }
-    @if $print-color and $light-color != $print-color {
-        @include print {
-            background : $print-color;
-        }
-    }
+    @include light-dark(false, background, $light-color, $dark-color, $print-color);
 }

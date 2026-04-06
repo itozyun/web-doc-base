@@ -70,8 +70,8 @@ a {
     @include text-color-responsive(color.$Light_link);
 }
 :visited {
-    // aBodyRoot 下以外の :visited 色は通常色とする
-    @include text-color-responsive(color.$Light_text);
+    // aBodyRoot 外の :visited 色は通常色とする
+    @include text-color-responsive-force(color.$Light_text);
     //                             ^^^^^^^^^^^^^^^^^
 }
 @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
@@ -118,7 +118,7 @@ a {
 ------------------------------------------------------------------------------------- */
 @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
     a:active {
-        background-color : color.$ACCENT !important;
+        background-color : color.$Light_accent !important;
         color            : #fff        !important;
         & * { color : #fff !important; }
     }
@@ -143,7 +143,7 @@ a {
     }
     a {
         @include active-focus-pseudo-class {
-            background-color : color.$ACCENT !important;
+            background-color : color.$Light_accent !important;
             color            : #fff        !important;
     
             & * {

@@ -28,7 +28,7 @@
 
     &:hover {
         @if ua.$IE7 {
-            border-color : color.$ACCENT; // IE7, form :focus が使えない代わり
+            border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
         }
     }
 /*  Dark theme

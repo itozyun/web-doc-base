@@ -8,11 +8,11 @@
 @use "../03_reset/img";
 
 @use "./_/InteractiveObjectStyle" as *;
-@use "./_/ReplaceElementStyle" as *;
+@use "./_/ReplacedElementStyle" as *;
 
 img { // , embed, object, video
     @extend %InteractiveObjectStyle;
-    @extend %ReplaceElementStyle;
+    @extend %ReplacedElementStyle;
 
     @include unbreak-inside;
 

@@ -48,7 +48,7 @@
 
     @if canuse.$ACTIVE_PSEUDO_CLASS or canuse.$LIMITED_ACTIVE_PSEUDO_CLASS {
         a:active & {
-            border-color : color.$ACCENT !important;
+            @include border-color-responsive(color.$Light_accent !important, noprint);
         /*  Forced colors
         ----------------------------------------------------------------------------- */
             @include mq(forced_colors_native_or_fallback){
@@ -58,7 +58,7 @@
     }
     @if canuse.$FOCUS_PSEUDO_CLASS or (canuse.$LIMITED_FOCUS_PSEUDO_CLASS and quirks.$ACTIVE_ACTS_AS_FOCUS == false) {
         a:focus & {
-            border-color : color.$ACCENT !important;
+            @include border-color-responsive(color.$Light_accent !important, noprint);
         /*  Forced colors
         ----------------------------------------------------------------------------- */
             @include mq(forced_colors_native_or_fallback){

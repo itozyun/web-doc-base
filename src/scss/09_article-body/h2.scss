@@ -8,6 +8,8 @@
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/column" as *;
 @use "../02_mixin/mq" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 
 @use "../04_typography/h2";
 
@@ -19,12 +21,13 @@
     h2 {
         @extend %HeadingBase;
         @include responsive-horizontal-margin(2, 2em, 1em);
+        @include text-color-responsive(color.$Light_accent);
+
         font-size    : 1.5em;
         border-width : 0.2em 0 0;
         padding      : 1.4em 0 .6em;
-        color        : color.$ACCENT;
         &, & * {
-            border-color : color.$ACCENT;
+            @include border-color-responsive(color.$Light_accent);
         }
         @if ua.$IE5 {
             height : 1px; // <= 線が消えるのを防ぐ
@@ -60,11 +63,6 @@
     ------------------------------------------------------------------------------------- */
         @include mq(phone) {
             font-size : 1.25em;
-        }
-    }
-    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
-        blockquote > h2:first-of-type {
-            margin-top : 0;
         }
     }
 }

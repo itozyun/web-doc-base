@@ -8,6 +8,7 @@
 @use "../../01_var/canuse" as canuse;
 
 @use "../mq" as *;
+@use "../media" as *;
 @use "../rgb-to-hex-color" as *;
 
 @if ua.$Modern {
@@ -86,8 +87,6 @@
         @return var(--color-visited-hover);
     } @else if $c == transparent {
         @return transparent;
-    } @else {
-        @error "Responsive Text Color Error! @var: #{$c}";
     }
     @return false;
 }
@@ -148,8 +147,9 @@
 @function responsive-color-dark($c) {
     @if canuse.$MEDIA_QUERY or ua.$Opera8 {
         $len: list.length($c);
+        $important: meta.inspect(list.nth($c, $len)) == "!important";
 
-        @if 1 < $len {
+        @if 1 < $len and ($important == false or $len != 2) {
         // すべての要素が -dark() で変換できるかチェック
             $result: ();
 
@@ -166,6 +166,9 @@
                 $result: list.append($result, $v, space);
             }
             @return $result;
+        }
+        @if $important {
+            @return list.append(-dark($c, true), !important, space);
         }
         @return -dark($c, true);
     }
@@ -213,8 +216,9 @@
 
 @function responsive-color-print($c) {
     $len: list.length($c);
+    $important: meta.inspect(list.nth($c, $len)) == "!important";
 
-    @if 1 < $len {
+    @if 1 < $len and ($important == false or $len != 2) {
     // すべての要素が -dark() で変換できるかチェック
         $result: ();
 
@@ -232,5 +236,131 @@
         }
         @return $result;
     }
+    @if $important {
+        @return list.append(-print($c, true), !important, space);
+    }
     @return -print($c, true);
+}
+
+@mixin screen-print($force, $property, $screen-color, $print-color) {
+    // デフォルト色を特定
+    $default-light-color: color.$LIGHT_DEFAULT_TEXT;
+
+    @if $property == "border-color" {
+        $default-light-color: color.$LIGHT_DEFAULT_BORDER;
+    } @else if $property == "background" or $property == "background-color" {
+        $default-light-color: color.$LIGHT_DEFAULT_BACKGROUND;
+    }
+
+    @if $force or $screen-color != $default-light-color {
+        // デフォルト色ではない、または強制上書き
+        @include screen {
+            #{$property} : $screen-color;
+            @if ua.$Modern {
+                @if responsive-color-var($screen-color) {
+                    #{$property} : responsive-color-var($screen-color);
+                }
+            }
+        }
+        // 印刷用
+        @if $screen-color != $print-color {
+            @if $force or $print-color != responsive-color-print($default-light-color) {
+                @include print {
+                    #{$property} : $print-color;
+                }
+            } @else {
+                @include print-fallback {
+                    #{$property} : $print-color;
+                }
+            }
+        }
+    } @else {
+        // 印刷用
+        @if $screen-color != $print-color {
+            @if $print-color != responsive-color-print($screen-color) {
+                @include print {
+                    #{$property} : $print-color;
+                }
+            }
+        }
+    }
+}
+
+@mixin light-dark($force, $property, $light-color, $dark-color, $print-color: false) {
+    // デフォルト色を特定
+    $default-light-color: color.$LIGHT_DEFAULT_TEXT;
+
+    @if $property == "border-color" {
+        $default-light-color: color.$LIGHT_DEFAULT_BORDER;
+    } @else if $property == "background" or $property == "background-color" {
+        $default-light-color: color.$LIGHT_DEFAULT_BACKGROUND;
+    }
+
+    @if $force or $light-color != $default-light-color {
+        // デフォルト色ではない、または強制上書き
+        @include screen {
+            #{$property} : $light-color;
+            @if ua.$Modern {
+                @if responsive-color-var($light-color) {
+                    #{$property} : responsive-color-var($light-color);
+                }
+            }
+        }
+        // 印刷用
+        @if $print-color and $print-color != noprint and $light-color != $print-color {
+            @if $force or $print-color != responsive-color-print($default-light-color) {
+                @include print {
+                    #{$property} : $print-color;
+                }
+            } @else {
+                @include print-fallback {
+                    #{$property} : $print-color;
+                }
+            }
+        }
+        // ダーク用
+        @if $dark-color and $light-color != $dark-color {
+            @if $force or $dark-color != responsive-color-dark($light-color) {
+                @include mq(dark) {
+                    @if ua.$Modern {
+                        @if responsive-color-var($dark-color) {
+                            #{$property} : responsive-color-var($dark-color);
+                        } @else {
+                            #{$property} : $dark-color;
+                        }
+                    }
+                }
+            }
+            @include mq(watch) {
+                #{$property} : $dark-color;
+            }
+        }
+    } @else {
+        // ライト用はデフォルト色
+        // 印刷用
+        @if $print-color and $print-color != noprint and $light-color != $print-color {
+            @if $print-color != responsive-color-print($light-color) {
+                @include print {
+                    #{$property} : $print-color;
+                }
+            }
+        }
+        // ダーク用
+        @if $dark-color and $light-color != $dark-color {
+            @if $dark-color != responsive-color-dark($light-color) {
+                @include mq(dark) {
+                    @if ua.$Modern {
+                        @if responsive-color-var($dark-color) {
+                            #{$property} : responsive-color-var($dark-color);
+                        } @else {
+                            #{$property} : $dark-color;
+                        }
+                    }
+                }
+            }
+            @include mq(watch) {
+                #{$property} : $dark-color;
+            }
+        }
+    }
 }

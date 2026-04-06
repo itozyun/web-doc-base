@@ -10,72 +10,18 @@
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin fill-responsive($light-color, $print-color: false) {
     @if canuse.$SVG {
-        fill : $light-color;
-
-        @if responsive-color-var($light-color) {
-            fill : responsive-color-var($light-color);
-        }
-        @include mq(dark) {
-            @if responsive-color-dark($light-color) {
-                fill : responsive-color-dark($light-color);
-            }
-        }
-        @include print {
-            @if $print-color {
-                fill : $print-color;
-            } @else if responsive-color-print($light-color) {
-                fill : responsive-color-print($light-color);
-            }
-        }
+        @include light-dark(false, fill, $light-color, responsive-color-dark($light-color), $print-color);
     }
 }
 
 @mixin fill-screen-print($screen-color, $print-color) {
     @if canuse.$SVG {
-        @if $screen-color != $print-color {
-            @if ua.$Script == false {
-                fill : $screen-color;
-
-                @include print {
-                    fill : $print-color;
-                }
-            } @else {
-                @include screen {
-                    fill : $screen-color;
-                }
-            }
-        } @else {
-            fill : $screen-color;
-        }
+        @include screen-print(false, fill, $screen-color, $print-color);
     }
 }
 
 @mixin fill-light-dark($light-color, $dark-color, $print-color: false) {
     @if canuse.$SVG {
-        @if $light-color != $dark-color {
-            @if ua.$Script == false {
-                fill : $light-color;
-
-                @include mq(dark) {
-                    fill : $dark-color;
-                    @if ua.$Modern {
-                        @if responsive-color-var($dark-color) {
-                            color : responsive-color-var($dark-color);
-                        }
-                    }
-                }
-            } @else {
-                @include screen {
-                    fill : $light-color;
-                }
-            }
-        } @else {
-            fill : $light-color;
-        }
-        @if $print-color {
-            @include print {
-                fill : $print-color;
-            }
-        }
+       @include light-dark(false, fill, $light-color, $dark-color, $print-color);
     }
 }
