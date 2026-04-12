@@ -289,19 +289,6 @@ a:focus img {
 ::-moz-focus-inner {
   border: 0
 }
-input,
-textarea {
-  font-size: 1em;
-  background: #f8fbf8;
-  color: #111;
-  border-width: 2px;
-  padding: .45em 8px
-}
-small,
-sub,
-sup {
-  font-size: 75%
-}
 a:active,
 a:focus,
 button:active,
@@ -312,6 +299,16 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
+input,
+textarea {
+  font-size: 1em;
+  border-width: 2px;
+  color: #111;
+  color: var(--color-text);
+  background-color: #f8fbf8;
+  background-color: var(--color-fill);
+  padding: .45em 8px
+}
 input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -321,11 +318,13 @@ input {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  height: 1em
+  height: 1em;
+  font-size: 1em
 }
-input:placeholder-shown,
-textarea:placeholder-shown {
-  color: #777
+small,
+sub,
+sup {
+  font-size: 75%
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
@@ -345,11 +344,16 @@ input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #777
 }
-[type=submit]::-webkit-search-decoration {
-  display: none
+input::placeholder,
+textarea::placeholder {
+  color: #777;
+  color: var(--color-casual-text)
 }
 [type=submit]:focus {
   outline-offset: -2px
+}
+[type=submit]::-webkit-search-decoration {
+  display: none
 }
 .LinkList :link:hover,
 .LinkList :visited:hover,
@@ -1379,10 +1383,10 @@ tbody th var {
 pre code {
   background: 0 0!important
 }
-a code:active,
-a code:focus,
-a var:active,
-a var:focus {
+a:active code,
+a:active var,
+a:focus code,
+a:focus var {
   background: #3079ed;
   background: var(--color-accent)
 }
@@ -2421,6 +2425,31 @@ only screen and (max-width:240px) {
   a:focus img {
     border-color: false!important
   }
+  input,
+  textarea {
+    color: #eee;
+    background-color: #000
+  }
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #bbb
+  }
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #bbb
+  }
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: #bbb
+  }
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #bbb
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #bbb
+  }
   [type=submit],
   code,
   tbody th,
@@ -2679,32 +2708,20 @@ only screen and (max-width:240px) {
   img:hover {
     filter: none
   }
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
   input,
-  textarea {
-    background: #111;
-    color: #eee
-  }
-  input:placeholder-shown,
-  textarea:placeholder-shown {
-    color: #bbb
-  }
-  input::-webkit-input-placeholder,
-  textarea::-webkit-input-placeholder {
-    color: #bbb
-  }
-  input:-moz-placeholder,
-  textarea:-moz-placeholder {
-    color: #bbb;
-    opacity: 1
-  }
-  input::-moz-placeholder,
-  textarea::-moz-placeholder {
-    color: #bbb;
-    opacity: 1
-  }
-  input:-ms-input-placeholder,
-  textarea:-ms-input-placeholder {
-    color: #bbb
+  textarea,
+  thead code,
+  thead var {
+    color: var(--color-text)
   }
   *,
   .tl tbody td:before,
@@ -2721,19 +2738,6 @@ only screen and (max-width:240px) {
   thead td[colspan]:after,
   thead th[colspan]:after {
     border-color: #333
-  }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  body,
-  thead code,
-  thead var {
-    color: var(--color-text)
   }
   em {
     background: #4e4e1f
@@ -2930,6 +2934,10 @@ only screen and (max-width:240px) {
   a img,
   pre code {
     border: 0
+  }
+  input,
+  textarea {
+    background-color: #fff
   }
   p {
     line-height: 1.5

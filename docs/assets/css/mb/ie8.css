@@ -207,12 +207,6 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
-input,
-textarea {
-  font-size: 1em;
-  border-width: 2px;
-  padding: .45em 8px
-}
 a:active,
 a:focus,
 button:active,
@@ -223,9 +217,16 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
+input,
+textarea {
+  font-size: 1em;
+  border-width: 2px;
+  padding: .45em 8px
+}
 input {
   box-sizing: content-box;
-  height: 1em
+  height: 1em;
+  font-size: 1em
 }
 p {
   line-height: 1.9
@@ -1497,10 +1498,10 @@ div .box .js-captioned-thumbnail__large {
     background: #d0d0d0
   }
   .Cover h2,
-  a code:active,
-  a code:focus,
-  a var:active,
-  a var:focus,
+  a:active code,
+  a:active var,
+  a:focus code,
+  a:focus var,
   tbody :hover th {
     background: #3079ed
   }

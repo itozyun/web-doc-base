@@ -1,0 +1,56 @@
+@use "../../01_var/ua" as ua;
+@use "../../01_var/size" as size;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/text-color" as *;
+@use "../../02_mixin/_/responsive-color" as *;
+@use "../../02_mixin/media" as *;
+@use "../../02_mixin/mq" as *;
+
+%InputBaseStyle {
+    @if ua.$Opera72 == false {
+        border-width : size.$INPUT_BORDER_WIDTH;
+        @if quirks.$FORM_STYLING_LIMITED {
+            border-color : color.$Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
+        }
+    }
+
+    &:hover {
+        @if ua.$IE7 {
+            border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
+        }
+    }
+
+    @if ua.$Modern {
+        @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
+
+        // textarea は background-image:none しているので
+        @include screen {
+            background-color : color.$LIGHT_DEFAULT_BACKGROUND;
+            @if ua.$Modern {
+                background-color : responsive-color-var(color.$LIGHT_DEFAULT_BACKGROUND);
+            }
+        }
+        @include mq(watch) {
+            background-color : #000;
+        }
+        @include print-fallback {
+            background-color : color.$PRINT_DEFAULT_BACKGROUND;
+        }
+    } @else if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
+    // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
+        @if ua.$Opera72 {
+            @include screen {
+                background : Window;
+                color      : WindowText;
+            }
+        } @else if ua.$Opera70 {
+            background : #fff; // ? <= color.$Light_fill;
+            color      : color.$Light_text;
+        } @else {
+            background : color.$Light_fill;
+            color      : color.$Light_text;
+        }
+    }
+}

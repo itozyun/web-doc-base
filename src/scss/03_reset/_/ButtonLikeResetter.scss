@@ -1,0 +1,42 @@
+/*  Reset <input type=submit or button or reset>
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/box-sizing" as *;
+@use "../../02_mixin/media" as *;
+@use "./reset-moz-focus-inner" as *;
+
+@use "../input";
+
+input {
+    font-size : 1em;
+}
+
+%ButtonLikeResetter {
+    @if ua.$Opera72 {
+        // border : 0;
+    }
+
+    @at-root input#{&} {
+        @if ua.$GeckoLte09 {
+            text-align : center;
+            @if ua.$Gecko09 == false {
+                @include box-sizing(content-box); /* Gecko ~0.8.1 */
+            }
+        }
+    }
+
+    &:focus {
+        @if ua.$Opera72 {
+            top : 0; // プロパティと値は何でも良い, ハイコントラストモード時に、ボタンがフォーカスされた際に背景が黒くなるのを防ぐ
+        }
+        @if ua.$Opera8 or ua.$Opera9 or ua.$GeckoLte09 or ua.$Gecko12 {
+            border-style : solid;
+        }
+        @if ua.$Modern {
+            outline-offset : -2px;
+        }
+    }
+}

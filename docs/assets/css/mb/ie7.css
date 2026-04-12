@@ -181,8 +181,10 @@ textarea {
   padding: .45em .4em
 }
 input {
-  height: 1em
+  height: 1em;
+  font-size: 1em
 }
+[type=submit]:hover,
 input:hover,
 textarea:hover {
   border-color: #3079ed
@@ -307,6 +309,12 @@ pre code {
 .Magazine-main,
 h5 {
   border-width: 0 0 0 .5em
+}
+.AHead-labels a:active,
+.SocialBtns a:active,
+.Subscribe a:active,
+.btn:active {
+  border-style: dotted
 }
 .AHead-labels :link,
 .btn:link {
@@ -1286,6 +1294,13 @@ div .box .js-captioned-thumbnail__large {
   border-top-width: .3em
 }
 @media screen {
+  .aa :link:hover,
+  .prettyprint :link:hover,
+  :link:hover,
+  form :active {
+    color: #3079ed;
+    border-color: #3079ed
+  }
   a img {
     border-width: 2px
   }
@@ -1299,15 +1314,6 @@ div .box .js-captioned-thumbnail__large {
   .tl thead td,
   .tl thead th {
     border-color: #d0d0d0
-  }
-  #lE,
-  #lF,
-  .ABody h2,
-  .ABody h2 *,
-  .Cover h2,
-  .tl tbody :hover td,
-  .tl tbody :hover th {
-    border-color: #3079ed
   }
   body {
     color: #111;
@@ -1372,15 +1378,18 @@ div .box .js-captioned-thumbnail__large {
   thead var {
     color: #111
   }
-  .aa :link:hover,
-  .prettyprint :link:hover,
-  :link:hover {
-    color: #3079ed;
-    border-color: #3079ed
-  }
   :visited:hover {
     color: #515;
     border-color: #515
+  }
+  #lE,
+  #lF,
+  .ABody h2,
+  .ABody h2 *,
+  .Cover h2,
+  .tl tbody :hover td,
+  .tl tbody :hover th {
+    border-color: #3079ed
   }
   .ribbon a {
     color: #bbb
@@ -1389,6 +1398,13 @@ div .box .js-captioned-thumbnail__large {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .AHead-labels a:active,
+  .SocialBtns a:active,
+  .Subscribe a:active,
+  .btn:active {
+    border-color: #3079ed;
+    color: #3079ed
   }
   .AHead-labels {
     color: #1a1a1a
@@ -1412,8 +1428,8 @@ div .box .js-captioned-thumbnail__large {
     bottom: 0
   }
   .Cover h2,
-  a code:active,
-  a var:active,
+  a:active code,
+  a:active var,
   tbody :hover th {
     background: #3079ed
   }

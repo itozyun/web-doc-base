@@ -172,7 +172,7 @@ $SEARCH_BTN_WIDTH : 3em;
 
     @if ua.$Opera8 == false and ua.$Opera7x == false and ua.$GeckoLte19 == false {
         input {
-            @include active-focus-pseudo-class{
+            @include active-focus-pseudo-class {
                 z-index : 1;
             }
             @if canuse.$HOVER_PSEUDO_CLASS {

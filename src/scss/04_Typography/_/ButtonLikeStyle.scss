@@ -1,0 +1,34 @@
+/*  Reset <input type=submit button reset>
+------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/canuse" as canuse;
+@use "../../01_var/quirks" as quirks;
+@use "../../01_var/color" as color;
+
+@use "../../02_mixin/background-color" as *;
+@use "../../02_mixin/media" as *;
+
+@use "./InputBaseStyle" as *;
+@use "../input";
+
+%ButtonLikeStyle {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %InputBaseStyle;
+
+        @if quirks.$FORM_STYLING_LIMITED == false {
+            // Gecko, IE8+, Opera 10+, WebKit
+            @include background-responsive(color.$Light_casual_fill);
+        } @else if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
+            // Opera 9-
+            // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
+            @include screen {
+                background : color.$Light_casual_fill;
+            }
+        }
+        &:hover {
+            @if ua.$IE7 {
+                border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
+            }
+        }
+    }
+}

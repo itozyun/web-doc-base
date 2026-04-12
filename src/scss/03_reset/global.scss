@@ -19,7 +19,7 @@
         }
     } @else {
         * {
-            @include active-focus-pseudo-class( false ) {
+            @include active-focus-pseudo-class {
                 outline : 0;
                 /*  Forced colors
                 ------------------------------------------------------------------------------------- */

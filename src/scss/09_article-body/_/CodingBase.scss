@@ -60,12 +60,16 @@
         }
     }
 
-    a & {
+    $tag: &;
+
+    @at-root a {
         @include active-focus-pseudo-class {
-            @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
-                background : Highlight;
-            } @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false {
-                @include background-responsive(color.$Light_accent, noprint);
+            #{$tag} {
+                @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
+                    background : Highlight;
+                } @else if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false {
+                    @include background-responsive(color.$Light_accent, noprint);
+                }
             }
         }
     }

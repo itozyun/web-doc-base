@@ -1,3 +1,7 @@
+/* [parts] %ButtonBase
+ *
+ * <a href> にボタン状スタイルを当てる
+------------------------------------------------------------------------------------- */
 @use "sass:math";
 
 @use "../../01_var/ua" as ua;
@@ -13,7 +17,7 @@
 
 @use "../../04_typography/a";
 
-%ButtonBase{
+%ButtonBase {
     @if ua.$Opera72 == false {
     // 次のプロパティが [type=submit] に設定されていると
     // Windows Opera 7.2 ハイコントラストモードでフォーカス時にクラッシュ
@@ -48,26 +52,15 @@
         height : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
     }
 
-    /* input.btn に対して適用, a:link, a:visited には上書きされる */
-    @if ua.$WinIELte7 {
-        /* @if( $isLink ){
-            &:active {
-                @if( quirks.$LIMITED_DASHED_BOREDER_PAINTING ){
-                    border-color : color.$Light_accent;
-                }
-            }
-        } */
-    } @else {
-        @include active-focus-pseudo-class /*( $isLink ) */ {
-            @include border-color-responsive(color.$Light_accent, noprint);
-            @include text-color-responsive(color.$Light_accent, noprint);
+    @include active-focus-pseudo-class {
+        @include border-color-responsive(color.$Light_accent, noprint);
+        @include text-color-responsive(color.$Light_accent, noprint);
 
-            @if canuse.$OUTLINE {
-                outline : 0;
-            }
-            @if ua.$Gecko19 == false {
-                border-style : dotted; // Gecko 1.8 で塗りが汚い
-            }
+        @if canuse.$OUTLINE {
+            outline : 0;
+        }
+        @if ua.$Gecko19 == false {
+            border-style : dotted; // Gecko 1.8 で塗りが汚い
         }
     }
 }

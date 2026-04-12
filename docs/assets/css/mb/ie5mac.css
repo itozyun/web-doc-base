@@ -198,6 +198,9 @@ textarea {
   border-width: .1em;
   padding: .45em .4em
 }
+input {
+  font-size: 1em
+}
 .aBodyRoot :link,
 .aBodyRoot :visited,
 .aBodyRoot a:focus:hover,
@@ -1337,10 +1340,10 @@ div .box .js-captioned-thumbnail__large {
     bottom: 0
   }
   .Cover h2,
-  a code:active,
-  a code:focus,
-  a var:active,
-  a var:focus {
+  a:active code,
+  a:active var,
+  a:focus code,
+  a:focus var {
     background: #3079ed
   }
   .Label div,

@@ -168,15 +168,18 @@ input,
 textarea {
   font-size: 1em;
   border-width: .1em;
-  border-color: #d0d0d0
+  border-color: #d0d0d0;
+  background: #fff;
+  color: #111
+}
+input {
+  height: 2.1em;
+  font-size: 1em
 }
 small,
 sub,
 sup {
   font-size: 75%
-}
-input {
-  height: 2.1em
 }
 p {
   line-height: 1.9
@@ -529,10 +532,8 @@ tr pre {
   font-size: .825em;
   padding: .6em
 }
-.AMeta,
 .Pager,
 .RichLink a,
-.SocialBtns,
 .tl thead th,
 tbody th,
 th {
@@ -634,7 +635,6 @@ kbd {
   padding-left: 1.5em
 }
 .aa,
-blockquote,
 kbd {
   border-width: 1px
 }
@@ -979,10 +979,6 @@ kbd:hover {
 .note {
   padding-left: 25%
 }
-.AMeta,
-blockquote {
-  padding: 1em
-}
 .note .box,
 .note blockquote,
 .note dl,
@@ -1075,6 +1071,10 @@ tbody :hover th a:focus {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
+.AMeta {
+  padding: 1em;
+  border-width: 0 0 1px
+}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1107,22 +1107,25 @@ tbody :hover th a:focus {
 .Pager-next i:before {
   content: "◀ "
 }
+.Pager-next :focus i {
+  border-right: .7em solid #fff
+}
 .Pager-prev i {
   margin-left: .5em
 }
 .Pager-prev i:after {
   content: " ▶"
 }
-.Pager-next :focus i,
 .Pager-prev :focus i {
-  border-color: transparent #fff
+  border-left: .7em solid #fff
 }
 .Pager-top i:before {
   content: "▲ ";
   font-size: 1em
 }
 .SocialBtns {
-  padding: 1em 1em .5em
+  padding: 1em 1em .5em;
+  border-width: 0 0 1px
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1200,6 +1203,10 @@ blockquote:after {
   text-align: right;
   color: #777
 }
+blockquote {
+  padding: 1em;
+  border-width: 1px
+}
 blockquote[title]:before {
   content: attr(title)
 }
@@ -1254,11 +1261,6 @@ div .box .js-captioned-thumbnail__large {
   a:focus img {
     border-color: #3079ed!important
   }
-  input,
-  textarea {
-    background: #fff;
-    color: #111
-  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
@@ -1275,8 +1277,8 @@ div .box .js-captioned-thumbnail__large {
     background: #d0d0d0
   }
   .Cover h2,
-  a code:focus,
-  a var:focus,
+  a:focus code,
+  a:focus var,
   tbody :hover th {
     background: #3079ed
   }
@@ -1547,10 +1549,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .tl tbody :hover th {
     background: #3079ed!important
-  }
-  .Pager-next i,
-  .Pager-prev i {
-    border-color: transparent #777
   }
   blockquote {
     background-color: #d0d0d0

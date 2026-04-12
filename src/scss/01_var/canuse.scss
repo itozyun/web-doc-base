@@ -51,7 +51,7 @@
 
 // Useful CSS Selectors
     $ATTRIBUTE_SELECTOR         : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE8to9 or ua.$IE7;
-    $CUSTOM_ATTRIBUTE_SELECTOR  : ua.$Modern or ua.$GeckoLte19 or ua.$Opera72 or ua.$Opera8 or ua.$Opera9 or ua.$IE8to9 or ua.$IE7;
+    $CUSTOM_ATTRIBUTE_SELECTOR  : $ATTRIBUTE_SELECTOR and ua.$Opera70 == false;
     $ALL_ATTRIBUTE_SELECTORS    : ua.$Modern or ( ua.$GeckoLte19 and ua.$Gecko07 == false ) or ua.$Opera9 or ua.$IE8to9 or ua.$IE7;
     $EMPTY_PSEUDO_CLASS         : ua.$Modern or ua.$LegacyOperaOrGecko or ua.$IE9;
     $TARGET_PSEUDO_CLASS        : ua.$Modern or ua.$Gecko13to19 or ua.$IE9;

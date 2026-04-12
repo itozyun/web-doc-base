@@ -11,7 +11,7 @@
 @use "../03_reset/form";
 
 form * {
-    @include active-focus-pseudo-class( false ) {
+    @include active-focus-pseudo-class{
         @include text-color-responsive(color.$Light_accent, noprint);
         @include border-color-responsive(color.$Light_accent, noprint);
     }

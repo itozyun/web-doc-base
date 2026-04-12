@@ -1,9 +1,9 @@
-/* <input type=submit>
+/* <input type=reset>
 ------------------------------------------------------------------------------------- */
-@use "../03_reset/input-type-submit";
+@use "../03_reset/input-type-reset";
 
 @use "./_/ButtonLikeStyle" as *;
 
-[type="submit"] {
+[type="reset"] {
     @extend %ButtonLikeStyle;
 }

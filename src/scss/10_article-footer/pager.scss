@@ -146,52 +146,68 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
 
     /*  ◀
     ------------------------------------------------------------------------------------- */
-    @at-root #{&}-next i {
-        margin-right : 0.5em;
-        @if $_TEXT_TRIANGULATE {
-            &:before {
-                content : "◀ ";
-            }
-        } @else if quirks.$BORDER_PARSER_BUG_OPERA {
-            border-top    : 0.5em solid transparent;
-            border-right  : 0.7em solid color.$Light_casual_text;
-            border-bottom : 0.5em solid transparent;
-            @include active-focus-pseudo-class {
-                border-right : 0.7em solid #fff;
-            }
-        } @else {
-            @if $_TRIANGULATE_PX_SIZE {
-                border-width : 8px 11px 8px 0;
+    @at-root #{&}-next {
+        i {
+            margin-right : 0.5em;
+            @if $_TEXT_TRIANGULATE {
+                &:before {
+                    content : "◀ ";
+                }
+            } @else if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                @if $_TRIANGULATE_PX_SIZE {
+                    border-width : 8px 11px 8px 0;
+                } @else {
+                    border-width : 0.5em 0.7em 0.5em 0;
+                }
             } @else {
-                border-width : 0.5em 0.7em 0.5em 0;
+                border-top    : 0.5em solid transparent;
+                border-right  : 0.7em solid color.$Light_casual_text;
+                border-bottom : 0.5em solid transparent;
+            }
+        }
+        * {
+            @include active-focus-pseudo-class {
+                i {
+                    @if quirks.$BORDER_PARSER_BUG_OPERA {
+                        border-right : 0.7em solid #fff;
+                    }
+                }
             }
         }
     }
     /*  ▶
     ------------------------------------------------------------------------------------- */
-    @at-root #{&}-prev i {
-        /* IE7 以下は <!--[if lte IE 7]> <![endif]--><i></i> で対処する…
-            *            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-            */
-        @if ua.$WinIELte7 == false {
-            margin-left : 0.5em;
-        }
-        @if $_TEXT_TRIANGULATE {
-            &:after {
-                content : " ▶";
+    @at-root #{&}-prev {
+        i {
+            /* IE7 以下は <!--[if lte IE 7]> <![endif]--><i></i> で対処する…
+                *            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                */
+            @if ua.$WinIELte7 == false {
+                margin-left : 0.5em;
             }
-        } @else if quirks.$BORDER_PARSER_BUG_OPERA {
-            border-top    : 0.5em solid transparent;
-            border-left   : 0.7em solid color.$Light_casual_text;
-            border-bottom : 0.5em solid transparent;
-            @include active-focus-pseudo-class {
-                border-left : 0.7em solid #fff;
-            }
-        } @else {
-            @if $_TRIANGULATE_PX_SIZE {
-                border-width : 8px 0 8px 11px;
+            @if $_TEXT_TRIANGULATE {
+                &:after {
+                    content : " ▶";
+                }
+            } @else if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                @if $_TRIANGULATE_PX_SIZE {
+                    border-width : 8px 0 8px 11px;
+                } @else {
+                    border-width : 0.5em 0 0.5em 0.7em;
+                }
             } @else {
-                border-width : 0.5em 0 0.5em 0.7em;
+                border-top    : 0.5em solid transparent;
+                border-left   : 0.7em solid color.$Light_casual_text;
+                border-bottom : 0.5em solid transparent;
+            }
+        }
+        * {
+            @include active-focus-pseudo-class {
+                i {
+                    @if quirks.$BORDER_PARSER_BUG_OPERA {
+                        border-left : 0.7em solid #fff;
+                    }
+                }
             }
         }
     }
@@ -210,7 +226,7 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
         }
     }
     @at-root #{&}-next, #{&}-prev {
-        @if $_TEXT_TRIANGULATE == false and if quirks.$BORDER_PARSER_BUG_OPERA == false {
+        @if $_TEXT_TRIANGULATE == false and quirks.$BORDER_PARSER_BUG_OPERA == false {
             i {
                 @if canuse.$TRANSPARENT_BORDER_COLOR {
                     @include border-color-responsive(transparent color.$Light_casual_text, noprint);
@@ -247,10 +263,6 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
                 border-left   : 0.45em solid transparent;
                 border-right  : 0.45em solid transparent;
                 border-bottom : 0.9em solid color.$Light_casual_text;
-                @include active-focus-pseudo-class {
-                    border-left   : 0.45em solid #fff;
-                    border-right  : 0.45em solid #fff;
-                }
             } @else if $_TRIANGULATE_PX_SIZE {
                 border-width : 0 7px 14px;
                 border-color : color.$Light_casual_text color.$Light_fill;
@@ -276,7 +288,9 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
             @include active-focus-pseudo-class {
                 i {
                     @if $_TEXT_TRIANGULATE == false {
-                        @if quirks.$BORDER_PARSER_BUG_OPERA == false {
+                        @if quirks.$BORDER_PARSER_BUG_OPERA {
+                            border-bottom : 0.9em solid #fff;
+                        } @else {
                             @if canuse.$TRANSPARENT_BORDER_COLOR {
                                 border-color : #fff transparent;
                             } @else {

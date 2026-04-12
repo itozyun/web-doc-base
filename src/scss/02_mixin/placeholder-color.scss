@@ -1,16 +1,17 @@
 /*
- * https://qiita.com/tmiame/items/8816d970eacaf450911f
+ * https://stackoverflow.com/questions/2610497/change-an-html-inputs-placeholder-color-with-css
  * Mixin for placeholder
  * @include placeholder-color(#00ff00);
  *
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 
+@use "./mq" as *;
+@use "./text-color" as *;
+@use "./_/responsive-color" as *;
+
 @mixin placeholder-color($color) {
     @if ua.$Modern {
-        &:placeholder-shown {
-            color : $color;
-        }
         &::-webkit-input-placeholder {
             color : $color;
         }
@@ -24,6 +25,45 @@
         }
         &:-ms-input-placeholder {
             color : $color;
+        }
+        &::placeholder { /* Most modern browsers support this now. */
+            color : $color;
+        }
+    }
+}
+
+@mixin placeholder-color-responsive($color) {
+    @if ua.$Modern {
+        &::-webkit-input-placeholder {
+            color : $color;
+        }
+        &:-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &::-moz-placeholder {
+            color   : $color;
+            opacity : 1;
+        }
+        &:-ms-input-placeholder {
+            color : $color;
+        }
+        @include mq(watch) {
+            &::-webkit-input-placeholder {
+                color : responsive-color-dark($color);
+            }
+            &:-moz-placeholder {
+                color : responsive-color-dark($color);
+            }
+            &::-moz-placeholder {
+                color : responsive-color-dark($color);
+            }
+            &:-ms-input-placeholder {
+                color : responsive-color-dark($color);
+            }
+        }
+        &::placeholder {
+            @include text-color-responsive($color);
         }
     }
 }

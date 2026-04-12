@@ -182,17 +182,18 @@ textarea {
   font-size: 1em;
   -moz-box-sizing: border-box;
   border-width: .1em;
+  background: #f8fbf8;
+  color: #111;
   padding: .45em .4em
+}
+input {
+  height: 2.1em;
+  font-size: 1em
 }
 small,
 sub,
 sup {
   font-size: 75%
-}
-.Search,
-.Search-txt,
-input {
-  height: 2.1em
 }
 input[type=submit] {
   text-align: center;
@@ -696,6 +697,10 @@ kbd {
 .Search-txt {
   width: 100%
 }
+.Search,
+.Search-txt {
+  height: 2.1em
+}
 .medal {
   background: #f8fbf8;
   color: #111
@@ -1145,10 +1150,6 @@ tbody :hover th :visited {
 .Pager-prev i:after {
   content: " ▶"
 }
-.Pager-next :focus i,
-.Pager-prev :focus i {
-  border-color: transparent #fff
-}
 .Pager-top i:before {
   content: "▲ ";
   font-size: 1em
@@ -1291,11 +1292,6 @@ div .box .js-captioned-thumbnail__large {
   blockquote tbody th a:focus,
   thead a:focus {
     border-color: #3079ed!important
-  }
-  input,
-  textarea {
-    background: #f8fbf8;
-    color: #111
   }
   .LinkList :link:hover,
   .LinkList :visited:hover,
@@ -1545,10 +1541,6 @@ div .box .js-captioned-thumbnail__large {
   tbody :hover td {
     border-color: transparent transparent #3079ed;
     color: #3079ed
-  }
-  .Pager-next i,
-  .Pager-prev i {
-    border-color: transparent #777
   }
   blockquote {
     background-color: #d0d0d0

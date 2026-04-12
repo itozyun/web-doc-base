@@ -101,6 +101,10 @@ var {
 html {
   font-size: 100%
 }
+input,
+textarea {
+  font-size: 1em
+}
 body,
 html {
   margin: 0;
@@ -189,17 +193,13 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
-input,
-textarea {
-  font-size: 1em
+input {
+  height: 2.1em
 }
 small,
 sub,
 sup {
   font-size: 75%
-}
-input {
-  height: 2.1em
 }
 .AHead-labels i,
 .Magazine-m,
@@ -209,6 +209,9 @@ input {
 tfoot [colspan]:after,
 tfoot [colspan]:before {
   display: none
+}
+[type=submit]:focus {
+  top: 0
 }
 p {
   line-height: 1.9
@@ -1214,19 +1217,15 @@ tbody :hover th a:focus {
   margin-right: .5em;
   border-right: .7em solid #777
 }
-.Pager-next i:focus {
+.Pager-next :focus i {
   border-right: .7em solid #fff
 }
 .Pager-prev i {
   margin-left: .5em;
   border-left: .7em solid #777
 }
-.Pager-prev i:focus {
-  border-left: .7em solid #fff
-}
-.Pager-next :focus i,
 .Pager-prev :focus i {
-  border-color: transparent #fff
+  border-left: .7em solid #fff
 }
 .Pager-top i {
   margin-right: .5em;
@@ -1234,9 +1233,8 @@ tbody :hover th a:focus {
   border-right: .45em solid transparent;
   border-bottom: .9em solid #777
 }
-.Pager-top i:focus {
-  border-left: .45em solid #fff;
-  border-right: .45em solid #fff
+.Pager-top :focus i {
+  border-bottom: .9em solid #fff
 }
 .SocialBtns {
   padding: 1em 3% .5em;
@@ -1355,6 +1353,13 @@ div .box .js-captioned-thumbnail__large {
   border-top-width: .3em
 }
 @media screen {
+  .aa :link:hover,
+  .prettyprint :link:hover,
+  :link:hover,
+  form :focus {
+    color: #3079ed;
+    border-color: #3079ed
+  }
   a img {
     border-width: 2px
   }
@@ -1382,13 +1387,10 @@ div .box .js-captioned-thumbnail__large {
     background: #d0d0d0
   }
   .Cover h2,
-  a code:focus,
-  a var:focus,
+  a:focus code,
+  a:focus var,
   tbody :hover th {
     background: #3079ed
-  }
-  [type=submit]:focus {
-    top: 0
   }
   *,
   .tl td,
@@ -1467,12 +1469,6 @@ div .box .js-captioned-thumbnail__large {
   thead code,
   thead var {
     color: #111
-  }
-  .aa :link:hover,
-  .prettyprint :link:hover,
-  :link:hover {
-    color: #3079ed;
-    border-color: #3079ed
   }
   :visited:hover {
     color: #515;
@@ -1652,10 +1648,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .tl tbody :hover th {
     background: #3079ed!important
-  }
-  .Pager-next i,
-  .Pager-prev i {
-    border-color: transparent #777
   }
   blockquote {
     background-color: #d0d0d0

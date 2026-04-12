@@ -4,6 +4,12 @@
 
 @use "./_/TextInputStyle" as *;
 
-input {
-    @extend %TextInputStyle;
+@if canuse.$ATTRIBUTE_SELECTOR {
+    [type=text] {
+        @extend %TextInputStyle;
+    }
+} @else {
+    input {
+        @extend %TextInputStyle;
+    }
 }

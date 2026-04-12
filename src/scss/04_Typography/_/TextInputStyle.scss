@@ -11,31 +11,14 @@
 @use "../../02_mixin/placeholder-color" as *;
 @use "../../02_mixin/mq" as *;
 
+@use "./InputBaseStyle" as *;
+
 %TextInputStyle {
     @extend %UDFontFamily;
-    @include placeholder-color( color.$Light_casual_text );
-
-    @if ua.$Opera72 == false {
-        border-width : size.$INPUT_BORDER_WIDTH;
-        @if quirks.$FORM_STYLING_LIMITED {
-            border-color : color.$Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
-        }
-    }
+    @extend %InputBaseStyle;
+    @include placeholder-color-responsive(color.$Light_casual_text);
 
     @if ua.$OperaLte9 == false {
         padding : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) size.$FORM_ITEM_PADDING_LR;
-    }
-
-    &:hover {
-        @if ua.$IE7 {
-            border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
-        }
-    }
-/*  Dark theme
-------------------------------------------------------------------------------------- */
-    @include mq(dark) {
-        background : color.$Dark_fill;
-        color      : color.$Dark_text;
-        @include placeholder-color( color.$Dark_casual_text );
     }
 }
