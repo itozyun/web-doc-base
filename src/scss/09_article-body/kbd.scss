@@ -1,5 +1,6 @@
 /* <kbd>
 ------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
@@ -25,9 +26,14 @@
         padding        : 0 .4em;
         margin         : 0 .1em;
         @if canuse.$HOVER_PSEUDO_CLASS {
+            @if ua.$IE7 == false {
+                position : relative; /** Firefox 149: :hover で指定すると multi column のコンテンツの位置がズレる */
+            }
             &:hover {
-                position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
-                top      : -2px;
+                top : -2px;
+                @if ua.$IE7 {
+                    position : relative; /* ie7:table 下でスクロールする際に relative 指定があると描画が乱れるので :hover に移す */
+                }
             }
         }
     }
