@@ -1,0 +1,9 @@
+@use "../01_var/canuse" as canuse;
+
+@use "./_/InputDateTimeStyle" as *;
+
+[type="date"] {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %InputDateTimeStyle;
+    }
+}

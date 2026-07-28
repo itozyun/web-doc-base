@@ -1,26 +1,29 @@
+/* styles for <textarea>, <input>
+ *
+ *
+ * <input type=*>                             <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <textarea>                                                    <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <input type=button>                                           <- %InputButtonStyle <- %FormItemCommonStyle
+ * <input type=date>   <- %InputDateTimeStyle <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ ------------------------------------------------------------------------------------- */
+@use "sass:math";
+
 @use "../../01_var/ua" as ua;
-@use "../../01_var/size" as size;
 @use "../../01_var/color" as color;
 @use "../../01_var/quirks" as quirks;
+@use "../../01_var/size" as size;
 
-@use "../../02_mixin/text-color" as *;
-@use "../../02_mixin/_/responsive-color" as *;
-@use "../../02_mixin/media" as *;
+@use "../../02_mixin/font-family-japanese" as *;
+@use "../../02_mixin/placeholder-color" as *;
 @use "../../02_mixin/mq" as *;
+@use "../../02_mixin/media" as *;
+@use "../../02_mixin/text-color" as *;
 
-%InputBaseStyle {
-    @if ua.$Opera72 == false {
-        border-width : size.$INPUT_BORDER_WIDTH;
-        @if quirks.$FORM_STYLING_LIMITED {
-            border-color : color.$Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
-        }
-    }
+@use "./FormItemCommonStyle" as *;
 
-    &:hover {
-        @if ua.$IE7 {
-            border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
-        }
-    }
+%TextAreaStyle {
+    @extend %FormItemCommonStyle;
+    @include placeholder-color-responsive(color.$Light_casual_text);
 
     @if ua.$Modern {
         @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);

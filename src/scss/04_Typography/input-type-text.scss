@@ -1,15 +1,15 @@
 /* <input>
 ------------------------------------------------------------------------------------- */
-@use "../03_reset/input";
+@use "../01_var/canuse" as canuse;
 
-@use "./_/TextInputStyle" as *;
+@use "./_/InputTextStyle" as *;
 
 @if canuse.$ATTRIBUTE_SELECTOR {
     [type=text] {
-        @extend %TextInputStyle;
+        @extend %InputTextStyle;
     }
 } @else {
     input {
-        @extend %TextInputStyle;
+        @extend %InputTextStyle;
     }
 }

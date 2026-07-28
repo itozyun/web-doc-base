@@ -1,0 +1,27 @@
+/* styles for <input type=text | url | search | password | email>
+ *
+ * <input type=*>                             <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <textarea>                                                    <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <input type=button>                                           <- %InputButtonStyle <- %FormItemCommonStyle
+ * <input type=date>   <- %InputDateTimeStyle <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ ------------------------------------------------------------------------------------- */
+
+@use "../../01_var/ua" as ua;
+@use "../../01_var/size" as size;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+
+%FormItemCommonStyle {
+    @if ua.$Opera72 == false {
+        border-width : size.$INPUT_BORDER_WIDTH;
+        @if quirks.$FORM_STYLING_LIMITED == false {
+            border-color : color.$Light_casual_fill; // ButtonFace の色の変更が出来ない場合、システムカラーを使用, Opera 7.2 は除外
+        }
+    }
+
+    &:hover {
+        @if ua.$IE7 {
+            border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
+        }
+    }
+}

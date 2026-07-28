@@ -1,7 +1,7 @@
 /*  Reset <input type=button>
 ------------------------------------------------------------------------------------- */
-@use "./_/ButtonLikeResetter" as *;
+@use "./_/InputButtonResetter" as *;
 
 [type="button"] {
-    @extend %ButtonLikeResetter;
+    @extend %InputButtonResetter;
 }

@@ -1,9 +1,13 @@
 /* <input type=button>
 ------------------------------------------------------------------------------------- */
+@use "../01_var/canuse" as canuse;
+
 @use "../03_reset/input-type-button";
 
-@use "./_/ButtonLikeStyle" as *;
+@use "./_/InputButtonStyle" as *;
 
 [type="button"] {
-    @extend %ButtonLikeStyle;
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %InputButtonStyle;
+    }
 }

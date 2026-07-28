@@ -1,0 +1,24 @@
+/* styles for <input type=datetime-local date>
+ *
+ * <input type=*>                             <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <textarea>                                                    <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <input type=button>                                           <- %InputButtonStyle <- %FormItemCommonStyle
+ * <input type=date>   <- %InputDateTimeStyle <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ ------------------------------------------------------------------------------------- */
+@use "../../01_var/ua" as ua;
+
+@use "../../02_mixin/mq" as *;
+
+@use "./InputTextStyle" as *;
+
+%InputDateTimeStyle {
+    @extend %InputTextStyle;
+
+    @include mq(dark) {
+        @if ua.$Modern {
+            &::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
+        }
+    }
+}

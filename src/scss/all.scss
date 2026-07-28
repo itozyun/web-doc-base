@@ -32,7 +32,22 @@
 // @use "./04_typography/hr";
 @use "./04_typography/iframe";
 @use "./04_typography/img";
-@use "./04_typography/input";
+
+/*
+@use "./04_typography/input-type-button";
+@use "./04_typography/input-type-checkbox";
+@use "./04_typography/input-type-date";
+@use "./04_typography/input-type-datetime-local";
+@use "./04_typography/input-type-email";
+@use "./04_typography/input-type-number";
+@use "./04_typography/input-type-password";
+@use "./04_typography/input-type-reset";
+@use "./04_typography/input-type-search";
+@use "./04_typography/input-type-time";
+@use "./04_typography/input-type-url";
+*/
+
+@use "./04_typography/input-type-text";
 @use "./04_typography/input-type-hidden";
 @use "./04_typography/input-type-submit";
 @use "./04_typography/ins";

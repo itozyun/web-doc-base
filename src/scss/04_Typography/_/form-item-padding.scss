@@ -1,0 +1,10 @@
+@use "sass:math";
+
+@use "../../01_var/ua" as ua;
+@use "../../01_var/size" as size;
+
+@mixin form-item-padding {
+    @if ua.$OperaLte9 == false {
+        padding : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 2) size.$FORM_ITEM_PADDING_LR;
+    }
+}

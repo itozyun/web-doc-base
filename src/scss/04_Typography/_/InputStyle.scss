@@ -1,0 +1,29 @@
+@use "../../01_var/ua" as ua;
+@use "../../01_var/color" as color;
+@use "../../01_var/quirks" as quirks;
+@use "../../01_var/size" as size;
+
+@use "../../02_mixin/font-family-japanese" as *;
+@use "../../02_mixin/box-sizing" as *;
+@use "../../02_mixin/mq" as *;
+
+@use "./form-item-padding" as *;
+
+input {
+    @extend %UDFontFamily;
+    @include form-item-padding;
+
+    @if ua.$Opera7x == false {
+        line-height : 1; // Opera 7.x input[type=text] に触れなくなる
+    }
+
+    @if ua.$GeckoLte19 or ua.$OperaLte9 or quirks.$IE5X_ALWAYS_BORDER_BOX {
+        @if ua.$GeckoLte19 {
+            @include box-sizing(border-box);
+        }
+        height : #{size.$PARAGRAPH_LINE_HEIGHT_EM + size.$INPUT_BORDER_WIDTH * 2};
+    } @else {
+        @include box-sizing(content-box);
+        height : 1em;
+    }
+}

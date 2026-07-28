@@ -1,0 +1,48 @@
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/rgb-to-hex-color" as *;
+
+@use "./_/InputTextStyle" as *;
+
+[type="number"] {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %InputTextStyle;
+
+        @if ua.$Modern {
+            &:focus-visible {
+                outline-color : color.$Light_accent;
+            }
+            &:focus-visible::selection {
+                background : color.$Light_accent;
+            }
+
+            /** firefox(144) で ↕ コントロールの色が明るいままの問題のパッチ */
+            @include mq(dark) {
+                @at-root input#{&}::-webkit-inner-spin-button {
+                    filter: invert(1);
+                }
+
+                @-moz-document url-prefix() {
+                    &::placeholder {
+                        color : rgbToHexColor(color.invert(color.$Dark_casual_text, 100%));
+                    }
+
+                    filter       : invert(1); /** invert するので明るい色を設定 */
+                    color        : rgbToHexColor(color.invert(color.$Dark_text, 100%));
+                    background   : rgbToHexColor(color.invert(color.$Dark_fill, 100%));
+                    border-color : rgbToHexColor(color.invert(color.$Dark_casual_fill, 100%));
+
+                    &:focus-visible {
+                        outline-color : rgbToHexColor(color.invert(color.$Dark_accent, 100%));
+                    }
+                    &:focus-visible::selection {
+                        background : rgbToHexColor(color.invert(color.$Dark_accent, 100%));
+                    }
+                }
+            }
+        }
+    }
+}

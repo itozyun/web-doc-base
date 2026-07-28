@@ -2,11 +2,15 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 
-@use "./_/TextInputResetter" as *;
+@use "../02_mixin/box-sizing" as *;
+
+@use "./_/reset-outline" as *;
+@use "./_/reset-moz-focus-inner" as *;
 
 textarea {
-    @extend %TextInputResetter;
+    @include reset-outline;
 
+    font-size : 1em;
     overflow  : auto;
     margin    : 0;
 
@@ -16,5 +20,8 @@ textarea {
     }
     @if ua.$Opera70 {
         background : Window; // TODO 不要?
+    }
+    @if ua.$GeckoLte19 {
+        @include box-sizing(border-box);
     }
 }

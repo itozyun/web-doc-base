@@ -1,5 +1,10 @@
 /*  Reset <input type=submit button reset>
-------------------------------------------------------------------------------------- */
+ *
+ * <input type=*>                             <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <textarea>                                                    <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <input type=button>                                           <- %InputButtonStyle <- %FormItemCommonStyle
+ * <input type=date>   <- %InputDateTimeStyle <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ ------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
 @use "../../01_var/canuse" as canuse;
 @use "../../01_var/quirks" as quirks;
@@ -8,12 +13,12 @@
 @use "../../02_mixin/background-color" as *;
 @use "../../02_mixin/media" as *;
 
-@use "./InputBaseStyle" as *;
-@use "../input";
+@use "./FormItemCommonStyle" as *;
+@use "./InputStyle";
 
-%ButtonLikeStyle {
+%InputButtonStyle {
     @if canuse.$ATTRIBUTE_SELECTOR {
-        @extend %InputBaseStyle;
+        @extend %FormItemCommonStyle;
 
         @if quirks.$FORM_STYLING_LIMITED == false {
             // Gecko, IE8+, Opera 10+, WebKit
@@ -23,11 +28,6 @@
             // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
             @include screen {
                 background : color.$Light_casual_fill;
-            }
-        }
-        &:hover {
-            @if ua.$IE7 {
-                border-color : color.$Light_accent; // IE7, form :focus が使えない代わり
             }
         }
     }

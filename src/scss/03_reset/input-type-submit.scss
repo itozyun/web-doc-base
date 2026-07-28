@@ -2,10 +2,10 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 
-@use "./_/ButtonLikeResetter" as *;
+@use "./_/InputButtonResetter" as *;
 
 [type="submit"] {
-    @extend %ButtonLikeResetter;
+    @extend %InputButtonResetter;
 
     @if ua.$Modern {
         /* https://qiita.com/_upto_me_/items/b35f405a87a2dc56fd48

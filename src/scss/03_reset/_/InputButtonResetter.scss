@@ -8,13 +8,9 @@
 @use "../../02_mixin/media" as *;
 @use "./reset-moz-focus-inner" as *;
 
-@use "../input";
+@use "./InputResetter";
 
-input {
-    font-size : 1em;
-}
-
-%ButtonLikeResetter {
+%InputButtonResetter {
     @if ua.$Opera72 {
         // border : 0;
     }

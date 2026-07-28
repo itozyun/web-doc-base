@@ -1,13 +1,11 @@
-/* <input type=reset>
+/* <input>
 ------------------------------------------------------------------------------------- */
 @use "../01_var/canuse" as canuse;
 
-@use "../03_reset/input-type-reset";
+@use "./_/InputTextStyle" as *;
 
-@use "./_/InputButtonStyle" as *;
-
-[type="reset"] {
+[type="url"] {
     @if canuse.$ATTRIBUTE_SELECTOR {
-        @extend %InputButtonStyle;
+        @extend %InputTextStyle;
     }
 }

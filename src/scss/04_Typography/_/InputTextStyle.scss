@@ -1,0 +1,16 @@
+/* styles for <input type=text | url | search | password | email | time>
+ *
+ *
+ * <input type=*>                             <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <textarea>                                                    <- %TextAreaStyle    <- %FormItemCommonStyle
+ * <input type=button>                                           <- %InputButtonStyle <- %FormItemCommonStyle
+ * <input type=date>   <- %InputDateTimeStyle <- %InputTextStyle <- %TextAreaStyle    <- %FormItemCommonStyle
+ ------------------------------------------------------------------------------------- */
+@use "./TextAreaStyle" as *;
+@use "./InputStyle";
+
+@use "../../03_reset/input";
+
+%InputTextStyle {
+    @extend %TextAreaStyle;
+}

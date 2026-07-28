@@ -1,0 +1,9 @@
+@use "../01_var/canuse" as canuse;
+
+@use "./_/InputTextStyle" as *;
+
+[type="email"] {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %InputTextStyle;
+    }
+}

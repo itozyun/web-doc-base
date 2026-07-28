@@ -1,9 +1,15 @@
 /* <textarea>
 ------------------------------------------------------------------------------------- */
+@use "../02_mixin/font-family-japanese" as *;
+
 @use "../03_reset/textarea";
 
-@use "./_/TextInputStyle" as *;
+@use "./_/TextAreaStyle" as *;
+@use "./_/form-item-padding" as *;
 
 textarea {
-    @extend %TextInputStyle;
+    @extend %UDFontFamily;
+    @extend %TextAreaStyle;
+
+    @include form-item-padding;
 }

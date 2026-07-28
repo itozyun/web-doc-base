@@ -1,0 +1,45 @@
+@use "../01_var/canuse" as canuse;
+@use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
+
+@use "../02_mixin/mq" as *;
+@use "../02_mixin/rgb-to-hex-color" as *;
+@use "../02_mixin/background-color" as *;
+@use "../02_mixin/border-color" as *;
+@use "../02_mixin/text-color" as *;
+
+@use "./_/InputStyle";
+@use "./_/FormItemCommonStyle";
+
+[type="checkbox"] {
+    @if canuse.$ATTRIBUTE_SELECTOR {
+        @extend %FormItemCommonStyle;
+
+        width          : 1.5em;
+        height         : 1.5em;
+        vertical-align : bottom;
+
+        @if ua.$Modern {
+            -webkit-appearance: none;
+               -moz-appearance: none;
+                    appearance: none;
+            position : relative;
+            overflow : hidden;
+
+            &:checked {
+                @include background-responsive(color.$Light_text);
+                @include border-color-responsive(color.$Light_text);
+            }
+            &:checked:after {
+                @include text-color-responsive(color.$Light_fill);
+                content     : "✓";
+                position    : absolute;
+                left        : -.1em;
+                top         : -.1em;
+                line-height : 1;
+                font-weight : bold;
+                font-size   : 1.6em;
+            }
+        }
+    }
+}

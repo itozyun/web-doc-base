@@ -1,22 +1,28 @@
-/*  input[type=text], textarea
+/*  input[type=?] 共通
 ------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
-@use "../../01_var/canuse" as canuse;
-@use "../../01_var/color" as color;
-@use "../../01_var/quirks" as quirks;
 
 @use "../../02_mixin/box-sizing" as *;
-@use "../../02_mixin/media" as *;
 
-@use "./reset-moz-focus-inner" as *;
 @use "./reset-outline" as *;
 
-%TextInputResetter {
+input {
     @include reset-outline;
 
     font-size : 1em;
 
     @if ua.$GeckoLte19 {
         @include box-sizing(border-box);
+    }
+
+    @if ua.$Modern {
+        -webkit-border-radius : 0;
+           -moz-border-radius : 0;
+                border-radius : 0;
+        -webkit-appearance    : none;
+                appearance    : none;
+    }
+    @if ua.$NotIE {
+        margin : 0;
     }
 }
