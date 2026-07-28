@@ -15,7 +15,6 @@
 @use "../02_mixin/media" as *;
 @use "../02_mixin/create-css-generated-block" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
-@use "../02_mixin/unbreak" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
 @use "../02_mixin/text-color" as *;
@@ -186,17 +185,9 @@ table {
     caption {
         @include responsive-horizontal-margin(1, 1.5em, #{size.$PARAGRAPH_LINE_HEIGHT_EM - size.$BASE_LINE_HEIGHT_EM}); // size.$PARAGRAPH_LINE_HEIGHT_WATCH
     }
-    thead, caption {
-        @include unbreak-after;
-    }
 
     tr {
-        @include unbreak-inside;
         @extend %nesting-table-cell;
-    }
-
-    th, td {
-        @include unbreak-box-with-long-text; /* table がカラムを割るのを防ぐ */
     }
     th {
         @include _cell-border-width(0 0 1px);
@@ -207,18 +198,13 @@ table {
     td {
         padding : 0.5em 0;
     }
-    /* thead td {
-        padding : 0.5em 0.25em;
-    } */
     thead th, thead td {
         padding      : 0.5em 0.5em 0.5em 0.4em;
         border-width : 0 0 1px 0.1em;
     }
-    tbody th, /* tbody */ td {
-        vertical-align : top;
-    }
     tbody th {
         @include _cell-border-width(0 0 1px);
+        vertical-align : top;
     }
     tbody td {
         border-width : 0 0.5em 1px;
