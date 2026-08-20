@@ -427,7 +427,7 @@ gulp.task( 'ico',
                     './.icomoon/minimum-font/fonts/*.eot'
                 ]
             ).pipe(
-                require( './js-buildtools/web-font.js' ).scssVariable( COMMON_VARS, '04_MinimumDataURIWebFont.generated.scss' )
+                require( './js-buildtools/web-font.js' ).scssVariable( COMMON_VARS )
             ).pipe( gulp.dest( 'src/scss/01_Variables' ) );
         },
         'css'
