@@ -31,29 +31,31 @@
         }
         @if canuse.$SVG_TINY == false {
             path {
-                @include fill-responsive(color.$Light_text);
+                @include fill-responsive-force(color.$Light_text);
                 /*  Forced colors
                 ------------------------------------------------------------------------------------- */
                 @include mq(forced_colors_native_or_fallback){
                     fill : currentColor;
                 }
 
-                a:focus &, a:active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
-                    fill : color.$Light_fill;
+                @if ua.$Modern or ua.$IE9 {
+                    body :focus &, body :active & { /* :focus だけでは ie11- で body:focus に反応してしまう, :active も */
+                        fill : #fff !important;
+                    }
+                } @else {
+                    :focus &, :active & {
+                        fill : #fff !important;
+                    }
                 }
+
                 :target & {
                     @if canuse.$TARGET_PSEUDO_CLASS {
-                        fill : #fff;
+                        fill : #fff !important;
                     }
                 }
                 @if opt.$UseDarkRibbon {
                     .#{opt.$Prefix}ribbon & {
-                        fill : color.$Ribbon_text;
-                    }
-                    /*  Print
-                    ------------------------------------------------------------------------------------- */
-                    @include print {
-                        fill : color.$Print_text;
+                        @include fill-screen-print-force(color.$Ribbon_text, color.$Print_text);
                     }
                 }
             }

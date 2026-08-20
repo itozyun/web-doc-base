@@ -223,12 +223,14 @@ function createPathList( cb ){
             const glyphList  = font.glyph;
             const glyphMap   = {};
 
+            const toSVGTiny = require( './svg-to-svgtiny.js' );
+
             for( let i = 0, l = glyphList.length; i < l; ++i ){
                 const glyph = glyphList[ i ].$;
                 // 文字列を1文字ずつ配列化（サロゲートペアを考慮）
                 // https://qiita.com/sounisi5011/items/aa2d747322aad4850fe7
                 if( glyph.d && glyph.unicode && Array.from( glyph.unicode ).length === 1 ){
-                    glyphMap[ glyph.unicode ] = createOptimaizedPath( targetSize, glyph.d, width, ascent, descent );
+                    glyphMap[ glyph.unicode ] = createOptimaizedPath( targetSize, toSVGTiny( glyph.d ), width, ascent, descent );
                 };
             };
             require( 'fs' ).writeFile(

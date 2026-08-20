@@ -8,15 +8,15 @@
 @use "./_/responsive-color" as *;
 
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
-@mixin fill-responsive($light-color, $print-color: false) {
+@mixin fill-responsive-force($light-color, $print-color: false) {
     @if canuse.$SVG {
-        @include light-dark(false, fill, $light-color, responsive-color-dark($light-color), $print-color);
+        @include light-dark(true, fill, $light-color, responsive-color-dark($light-color), $print-color);
     }
 }
 
-@mixin fill-screen-print($screen-color, $print-color) {
+@mixin fill-screen-print-force($screen-color, $print-color) {
     @if canuse.$SVG {
-        @include screen-print(false, fill, $screen-color, $print-color);
+        @include screen-print(true, fill, $screen-color, $print-color);
     }
 }
 
