@@ -2,10 +2,9 @@
  *   https://outcloud.blogspot.com/2020/11/ultimate-clearfix.html
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
-@use "../01_var/canuse" as canuse;
 
 @mixin clearfix {
-    @if ua.$Modern and canuse.$DISPLAY_TABLE == false { // == ua.$Unknown
+    @if ua.$Unknown {
         &:after {
             content : "";
             display : block;

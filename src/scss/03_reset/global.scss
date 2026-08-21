@@ -49,7 +49,7 @@ html {
         //   スクロール中のみスクロールバーを表示
         -ms-overflow-style       : -ms-autohiding-scrollbar;
         -webkit-text-size-adjust : 100%;
-            -moz-text-size-adjust : 100%;
+           -moz-text-size-adjust : 100%;
             -ms-text-size-adjust : 100%;
             /* text-size-adjust : 100%; */
         // 次のコードは以下から
@@ -59,7 +59,7 @@ html {
         //   https://issues.chromium.org/issues/40286561
         //   > Note two problems with Chrome 21 on Windows XP and the following reduction:
         /* text-rendering           : optimizeLegibility !important; */
-            -webkit-font-smoothing  : antialiased !important;
+         -webkit-font-smoothing  : antialiased !important;
         -moz-osx-font-smoothing  : grayscale;
     }
 }
