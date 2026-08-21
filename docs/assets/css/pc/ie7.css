@@ -10,6 +10,10 @@ pre,
 tr blockquote pre {
   margin: 1em 0
 }
+input,
+textarea {
+  padding: .45em .4em
+}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -64,8 +68,7 @@ var {
   font-style: normal
 }
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 .AAuthor,
@@ -176,25 +179,26 @@ a img {
   position: relative;
   top: 2px
 }
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  border-color: #d0d0d0;
-  padding: .45em .4em
+  border-width: .1em
+}
+[type=submit]:hover,
+[type=text]:hover,
+textarea:hover {
+  border-color: #3079ed
 }
 input {
   height: 1em;
   font-size: 1em
 }
-[type=submit]:hover,
-input:hover,
-textarea:hover {
-  border-color: #3079ed
-}
 p {
   line-height: 1.9
 }
+.AMeta,
+.SocialBtns,
+blockquote,
 pre {
   padding: 1em
 }
@@ -221,6 +225,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -556,8 +561,10 @@ tr pre {
   display: inline;
   zoom: 1
 }
+.AMeta,
 .Pager,
 .RichLink a,
+.SocialBtns,
 .tl thead th,
 tbody th,
 th {
@@ -657,6 +664,7 @@ th {
   margin-left: 5.5em
 }
 .aa,
+blockquote,
 kbd {
   border-width: 1px
 }
@@ -1081,11 +1089,6 @@ tbody :hover th a:active {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta,
-.SocialBtns {
-  padding: 1em;
-  border-width: 0 0 1px
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1202,10 +1205,6 @@ tbody :hover th a:active {
   font-size: .875em;
   text-align: right;
   color: #777
-}
-blockquote {
-  padding: 1em;
-  border-width: 1px
 }
 .prettyprint {
   border-width: 1px;

@@ -68,8 +68,7 @@ kbd {
   cursor: pointer
 }
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 body,
@@ -166,12 +165,6 @@ tr img {
 img {
   height: auto
 }
-blockquote :link img,
-blockquote :visited img,
-input,
-textarea {
-  border-color: #d0d0d0
-}
 .AHead-labels :active,
 .Subscribe .atom:active,
 .Subscribe .fl:active,
@@ -182,11 +175,14 @@ textarea {
 .ribbon :visited img {
   border-color: #1a1a1a
 }
+blockquote :link img,
+blockquote :visited img {
+  border-color: #d0d0d0
+}
 input,
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  padding: .45em .4em
+  padding: .45em .4em;
+  border-width: .1em
 }
 input {
   height: 1em;
@@ -195,6 +191,9 @@ input {
 p {
   line-height: 1.9
 }
+.AMeta,
+.SocialBtns,
+blockquote,
 pre {
   padding: 1em
 }
@@ -211,6 +210,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -239,6 +239,7 @@ strong {
 .AFoot,
 .BreadcrumbList a,
 .Magazine-snippet,
+.Pager,
 .Pager a,
 .TxtNavi a,
 .lMi,
@@ -535,7 +536,10 @@ tr pre {
   display: inline;
   zoom: 1
 }
+.AMeta,
+.Pager,
 .RichLink a,
+.SocialBtns,
 .tl thead th,
 tbody th,
 th {
@@ -633,6 +637,7 @@ th {
   zoom: 1
 }
 .aa,
+blockquote,
 kbd {
   border-width: 1px
 }
@@ -1052,18 +1057,9 @@ thead :link:hover {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta,
-.SocialBtns {
-  padding: 1em;
-  border-width: 0 0 1px
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
-}
-.Pager {
-  border-width: 0 0 1px;
-  zoom: 1
 }
 .Pager span {
   display: block;
@@ -1176,10 +1172,6 @@ thead :link:hover {
   font-size: .875em;
   text-align: right;
   color: #777
-}
-blockquote {
-  padding: 1em;
-  border-width: 1px
 }
 .prettyprint {
   border-width: 1px;

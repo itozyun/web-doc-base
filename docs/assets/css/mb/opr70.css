@@ -46,7 +46,7 @@ textarea {
 }
 .Cover-img,
 .Magazine-main,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
@@ -173,11 +173,13 @@ a img {
   position: relative;
   top: 2px
 }
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  border-color: #d0d0d0;
+  border-width: .1em
+}
+[type=text],
+textarea {
   background: #fff;
   color: #111
 }
@@ -235,6 +237,7 @@ sup {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   background: Window
 }
 .uc {
@@ -537,6 +540,7 @@ tr pre {
   font-size: .825em;
   padding: .6em
 }
+.AMeta,
 .Pager,
 .RichLink a,
 .tl thead th,
@@ -982,15 +986,22 @@ h6 {
   font-size: 1.25em;
   border-width: .1em 0 0
 }
+.tl,
+.tl th {
+  border-width: 0
+}
 h4 {
   border-width: 0 0 0 .7em;
   padding: 0 0 0 .3em
+}
+.tl td,
+h6 {
+  border-width: 0 0 0 .3em
 }
 h5 {
   padding: 0 0 0 .5em
 }
 h6 {
-  border-width: 0 0 0 .3em;
   padding: 0 0 0 .7em
 }
 ol,
@@ -1066,13 +1077,8 @@ thead th {
   padding: .5em .5em .5em .4em;
   border-width: 0 0 1px .1em
 }
-tbody th,
-td {
+tbody th {
   vertical-align: top
-}
-.tl,
-.tl th {
-  border-width: 0
 }
 tbody td {
   border-width: 0 .5em 1px
@@ -1114,7 +1120,6 @@ tbody :hover th a:focus {
 }
 .tl td {
   padding: .5em .8em;
-  border-width: 0 0 0 .3em;
   border-style: solid
 }
 .tl tfoot td {
@@ -1122,8 +1127,7 @@ tbody :hover th a:focus {
   border-style: solid dotted
 }
 .AMeta {
-  padding: 1em 3%;
-  border-width: 0 0 1px
+  padding: 1em 3%
 }
 .AMeta div {
   padding-left: 1.2em;

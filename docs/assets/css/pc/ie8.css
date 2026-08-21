@@ -10,6 +10,10 @@ pre,
 tr blockquote pre {
   margin: 1em 0
 }
+input,
+textarea {
+  padding: .45em 8px
+}
 a:active,
 a:focus {
   background-color: #3079ed!important
@@ -57,7 +61,7 @@ th {
 .tl td,
 [colspan],
 h2,
-kbd:hover {
+kbd {
   position: relative
 }
 dd,
@@ -82,8 +86,7 @@ var {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 body,
@@ -193,6 +196,17 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
+[type=submit],
+[type=text],
+textarea {
+  border-width: 2px;
+  border-color: #d0d0d0
+}
+input {
+  box-sizing: content-box;
+  height: 1em;
+  font-size: 1em
+}
 a:active,
 a:focus,
 button:active,
@@ -202,17 +216,6 @@ input:focus,
 textarea:active,
 textarea:focus {
   outline: transparent solid 2px
-}
-input,
-textarea {
-  font-size: 1em;
-  border-width: 2px;
-  padding: .45em 8px
-}
-input {
-  box-sizing: content-box;
-  height: 1em;
-  font-size: 1em
 }
 p {
   line-height: 1.9
@@ -250,6 +253,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   margin: 0
 }

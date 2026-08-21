@@ -57,7 +57,7 @@ var {
 .icoLinks [href]:before,
 [colspan],
 h2,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
@@ -169,11 +169,15 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
-input,
+.Search input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  border-color: #d0d0d0;
+  border-width: .1em
+}
+.medal,
+[type=text],
+textarea {
   background: #f8fbf8;
   color: #111
 }
@@ -233,6 +237,7 @@ sup {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto
 }
 .uc {
@@ -415,8 +420,7 @@ th {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 .AAuthor img {
@@ -744,10 +748,6 @@ kbd {
   height: 1.6em;
   line-height: 1.6
 }
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -771,9 +771,6 @@ kbd {
 }
 .Search-txt {
   margin-right: .2em
-}
-.Search input {
-  border-width: .1em
 }
 .Search .btn {
   padding-left: .5em;
@@ -1725,10 +1722,6 @@ projection {
   a img {
     box-sizing: border-box
   }
-  .baseColor .RichLink a,
-  a:focus img {
-    border-color: false!important
-  }
   img {
     margin: 1em auto
   }
@@ -1977,6 +1970,9 @@ projection {
     font-size: 1em;
     padding: .5em 1em
   }
+  .baseColor .RichLink a {
+    border-color: #333!important
+  }
   .baseColor .RichLink-meta {
     color: #333
   }
@@ -2158,9 +2154,6 @@ projection {
   blockquote tfoot td,
   blockquote tfoot th {
     border-color: #bbb transparent
-  }
-  .tl tbody :hover th {
-    background: false!important
   }
   .Pager {
     color: #111;

@@ -1,19 +1,18 @@
 @charset "UTF-8";
+.Pager,
+input,
+textarea {
+  -moz-box-sizing: border-box
+}
 .Header,
 body,
 input {
   line-height: 1
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
 input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
+textarea {
+  margin: 0;
+  padding: .45em .4em
 }
 .lM1,
 .lM2,
@@ -35,6 +34,19 @@ dfn,
 ins {
   text-decoration: none
 }
+.Magazine-date,
+.aa {
+  font-family: monospace,monospace
+}
+.hscroll,
+pre,
+textarea {
+  overflow: auto
+}
+.Search .btn,
+.hscroll tbody {
+  white-space: pre
+}
 .AAuthor,
 .Comment p,
 .Cover,
@@ -48,23 +60,16 @@ ins {
 .lMi,
 .lSi,
 .lX,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
 }
 .Magazine-date,
-.aa {
-  font-family: monospace,monospace
-}
-.hscroll,
-pre,
-textarea {
-  overflow: auto
-}
-.Search .btn,
-.hscroll tbody {
-  white-space: pre
+.Magazine-main,
+.tl th,
+tbody th {
+  vertical-align: top
 }
 .tl th a:focus,
 .tl thead td a:focus,
@@ -83,11 +88,6 @@ q,
 strong,
 var {
   font-style: normal
-}
-.Pager,
-input,
-textarea {
-  -moz-box-sizing: border-box
 }
 body,
 input,
@@ -134,6 +134,15 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+li .box,
+tr .box {
+  margin: 0
+}
 .AAuthor,
 .ADesc,
 .AHead,
@@ -179,16 +188,17 @@ a,
 a img {
   border-color: transparent
 }
-:-moz-focus-inner {
-  border: 0
-}
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
   border-width: .1em;
+  border-color: #d0d0d0
+}
+.medal,
+[type=text],
+textarea {
   background: #f8fbf8;
-  color: #111;
-  padding: .45em .4em
+  color: #111
 }
 input {
   height: 2.1em;
@@ -198,6 +208,9 @@ small,
 sub,
 sup {
   font-size: 75%
+}
+:-moz-focus-inner {
+  border: 0
 }
 [type=submit]:focus {
   border-style: solid
@@ -226,13 +239,6 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
 sub {
   bottom: -.25em
 }
@@ -245,6 +251,9 @@ sup {
 }
 .c {
   text-align: center
+}
+textarea {
+  font-size: 1em
 }
 .uc {
   text-transform: uppercase
@@ -689,10 +698,6 @@ h2 {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
-}
-.medal {
-  background: #f8fbf8;
-  color: #111
 }
 :link .medal,
 :visited .medal {
@@ -1292,9 +1297,7 @@ div .box .js-captioned-thumbnail__large {
   a img {
     border-width: 2px
   }
-  a:focus img,
-  blockquote tbody th a:focus,
-  thead a:focus {
+  a:focus img {
     border-color: #3079ed!important
   }
   .LinkList :link:hover,
@@ -1545,6 +1548,10 @@ div .box .js-captioned-thumbnail__large {
   tbody :hover td {
     border-color: transparent transparent #3079ed;
     color: #3079ed
+  }
+  blockquote tbody th a:focus,
+  thead a:focus {
+    background-color: #3079ed!important
   }
   blockquote {
     background-color: #d0d0d0

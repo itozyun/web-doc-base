@@ -1,0 +1,45 @@
+@charset "UTF-8";
+:root {
+  --color-fill: #f8fbf8;
+  --color-text: #111;
+  --color-casual-fill: #d0d0d0;
+  --color-casual-text: #777;
+  --color-accent: #3079ed;
+  --color-link: #24c;
+  --color-visited: #717;
+  --color-hover: #3079ed;
+  --color-visited-hover: #515
+}
+@media handheld,
+screen,
+projection,
+tv {
+  .test {
+    border-color: #3079ed!important;
+    border-color: var(--color-accent)!important
+  }
+}
+@media only screen and (prefers-contrast:more) {
+  :root {
+    --color-text: #000;
+    --color-casual-fill: #808080
+  }
+}
+@media only screen and (prefers-color-scheme:dark) {
+  :root {
+    --color-fill: #111;
+    --color-text: #eee;
+    --color-casual-fill: #333;
+    --color-casual-text: #bbb;
+    --color-link: #bbe;
+    --color-visited: #eae;
+    --color-hover: #3079ed;
+    --color-visited-hover: #c8e
+  }
+}
+@media only screen and (prefers-color-scheme:dark) and (prefers-contrast:more) {
+  :root {
+    --color-text: #fff;
+    --color-casual-fill: #adadad
+  }
+}

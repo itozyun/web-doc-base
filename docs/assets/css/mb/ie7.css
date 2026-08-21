@@ -12,6 +12,10 @@ pre,
 tr blockquote pre {
   margin: 1em 0
 }
+input,
+textarea {
+  padding: .45em .4em
+}
 .lM1,
 .lM2,
 .lS1,
@@ -85,8 +89,7 @@ var {
   font-style: normal
 }
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 body,
@@ -173,21 +176,19 @@ a img {
   position: relative;
   top: 2px
 }
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  border-color: #d0d0d0;
-  padding: .45em .4em
+  border-width: .1em
+}
+[type=submit]:hover,
+[type=text]:hover,
+textarea:hover {
+  border-color: #3079ed
 }
 input {
   height: 1em;
   font-size: 1em
-}
-[type=submit]:hover,
-input:hover,
-textarea:hover {
-  border-color: #3079ed
 }
 p {
   line-height: 1.9
@@ -226,6 +227,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -1036,8 +1038,8 @@ kbd {
   margin: 0 .1em
 }
 kbd:hover {
-  position: relative;
-  top: -2px
+  top: -2px;
+  position: relative
 }
 .note {
   padding-left: 25%

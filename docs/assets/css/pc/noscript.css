@@ -11,18 +11,14 @@
 h2 {
   -webkit-transition-property: background-color,color,border-color
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-figure,
-h2,
 input,
-li .box,
-pre code,
-textarea,
-tr .box {
-  margin: 0
+textarea {
+  margin: 0;
+  padding: .45em 8px
+}
+[type=submit],
+hr {
+  background: #d0d0d0
 }
 .lW,
 .lX {
@@ -76,7 +72,7 @@ th {
 .tl td,
 [colspan],
 h2,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
@@ -85,6 +81,10 @@ sup {
 pre {
   white-space: -webkit-pre-wrap;
   white-space: pre-wrap
+}
+.tl th,
+tbody th {
+  vertical-align: top
 }
 @font-face {
   font-family: "YuGothic M";
@@ -194,6 +194,17 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+figure,
+h2,
+li .box,
+pre code,
+tr .box {
+  margin: 0
+}
 .hscroll,
 p,
 pre,
@@ -276,8 +287,58 @@ a:focus img {
   position: relative;
   top: 2px
 }
-::-moz-focus-inner {
-  border: 0
+[type=submit],
+[type=text],
+textarea {
+  border-width: 2px;
+  border-color: #d0d0d0
+}
+[type=text]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #777
+}
+[type=text]:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+[type=text]::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+[type=text]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #777
+}
+[type=text]::placeholder,
+textarea::placeholder {
+  color: #777;
+  color: var(--color-casual-text)
+}
+[type=text],
+textarea {
+  color: #111;
+  color: var(--color-text);
+  background-color: #f8fbf8;
+  background-color: var(--color-fill)
+}
+input {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 1em;
+  font-size: 1em;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none
+}
+small,
+sub,
+sup {
+  font-size: 75%
 }
 a:active,
 a:focus,
@@ -289,55 +350,8 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
-input,
-textarea {
-  font-size: 1em;
-  border-width: 2px;
-  color: #111;
-  color: var(--color-text);
-  background-color: #f8fbf8;
-  background-color: var(--color-fill);
-  padding: .45em 8px
-}
-input {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-appearance: none;
-  appearance: none;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 1em;
-  font-size: 1em
-}
-small,
-sub,
-sup {
-  font-size: 75%
-}
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: #777
-}
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: #777;
-  opacity: 1
-}
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: #777;
-  opacity: 1
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: #777
-}
-input::placeholder,
-textarea::placeholder {
-  color: #777;
-  color: var(--color-casual-text)
+::-moz-focus-inner {
+  border: 0
 }
 [type=submit]:focus {
   outline-offset: -2px
@@ -345,12 +359,9 @@ textarea::placeholder {
 [type=submit]::-webkit-search-decoration {
   display: none
 }
-.LinkList :link:hover,
-.LinkList :visited:hover,
-.RichLink-sep :link:hover,
-.RichLink-sep :visited:hover,
 [type=submit] {
-  background: #d0d0d0;
+  color: #111;
+  color: var(--color-text);
   background: var(--color-casual-fill)
 }
 p {
@@ -386,11 +397,6 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
 sub {
   bottom: -.25em
 }
@@ -407,6 +413,7 @@ sup {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   resize: vertical;
   background-image: none
@@ -461,7 +468,6 @@ hr {
   margin: 2em;
   border-width: 0 0 1px;
   height: 1.5px;
-  background: #d0d0d0;
   background: -webkit-gradient(linear,left top,right top,color-stop(0,transparent),color-stop(50%,#111),color-stop(100%,transparent));
   background: -webkit-linear-gradient(left,transparent 0,#111 50%,transparent 100%);
   background: -moz-linear-gradient(left,transparent 0,#111 50%,transparent 100%);
@@ -600,19 +606,25 @@ blockquote .tl tbody tr th :link {
   border-color: #515;
   border-color: var(--color-visited-hover)
 }
-.ribbon a {
-  color: #bbb;
-  color: var(--color-casual-text)
+.ADesc,
+.ribbon .AHead,
+.ribbon .BreadcrumbList,
+.ribbon a,
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #bbb
+}
+.aa :link,
+.prettyprint :link,
+.ribbon :link,
+thead :link {
+  color: #bbe
 }
 a:active,
 a:active *,
 a:focus,
 a:focus * {
   color: #fff!important
-}
-.ribbon :link {
-  color: #bbe;
-  color: var(--color-link)
 }
 .aa :link:hover,
 .prettyprint :link:hover,
@@ -667,13 +679,6 @@ h5 {
   background: #1a1a1a;
   border-color: #fff;
   color: #fff
-}
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #bbb
 }
 .AHead-labels :active,
 .AHead-labels :focus,
@@ -999,6 +1004,13 @@ th {
   color: #f8fbf8;
   color: var(--color-fill)
 }
+.LinkList :link:hover,
+.LinkList :visited:hover,
+.RichLink-sep :link:hover,
+.RichLink-sep :visited:hover {
+  background: #d0d0d0;
+  background: var(--color-casual-fill)
+}
 .ribbon .LinkList a:not([href]),
 .ribbon .RichLink-sep a:not([href]) {
   background: #fff;
@@ -1315,11 +1327,6 @@ blockquote .tl tbody tr th :visited {
   margin: 1em 0;
   border-color: #0a0809;
   background: #0a0809
-}
-.aa :link,
-.prettyprint :link,
-thead :link {
-  color: #bbe
 }
 .aBodyRoot thead :visited,
 .aa :visited,
@@ -1685,6 +1692,11 @@ thead th {
   color: #f8fbf8;
   color: var(--color-fill)
 }
+tbody th {
+  background: #d0d0d0;
+  background: var(--color-casual-fill);
+  border-color: var(--color-fill)
+}
 tbody td {
   border-width: 0 .5em 1px
 }
@@ -1699,11 +1711,6 @@ tfoot td {
 }
 .aBodyRoot thead :visited:hover {
   color: #c8e
-}
-tbody th {
-  background: #d0d0d0;
-  background: var(--color-casual-fill);
-  border-color: var(--color-fill)
 }
 tfoot td,
 tfoot th {
@@ -2999,42 +3006,33 @@ only screen and (max-width:240px) {
   img {
     max-width: 100%
   }
-  .baseColor .RichLink a,
-  :target td,
-  :target th,
-  a:active img,
-  a:focus img {
-    border-color: false!important
+  [type=text]::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #bbb
   }
-  input,
+  [type=text]:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #bbb
+  }
+  [type=text]::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: #bbb
+  }
+  [type=text]:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #bbb
+  }
+  [type=text]::placeholder,
+  textarea::placeholder {
+    color: #bbb
+  }
+  [type=text],
   textarea {
     color: #eee;
     background-color: #000
   }
-  input::-webkit-input-placeholder,
-  textarea::-webkit-input-placeholder {
-    color: #bbb
-  }
-  input:-moz-placeholder,
-  textarea:-moz-placeholder {
-    color: #bbb
-  }
-  input::-moz-placeholder,
-  textarea::-moz-placeholder {
-    color: #bbb
-  }
-  input:-ms-input-placeholder,
-  textarea:-ms-input-placeholder {
-    color: #bbb
-  }
-  input::placeholder,
-  textarea::placeholder {
-    color: #bbb
-  }
-  [type=submit],
-  code,
-  tbody th,
-  var {
+  [type=submit] {
+    color: #eee;
     background: #333
   }
   p {
@@ -3126,6 +3124,11 @@ only screen and (max-width:240px) {
     background: #bbb;
     color: #111
   }
+  code,
+  tbody th,
+  var {
+    background: #333
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
@@ -3153,6 +3156,9 @@ only screen and (max-width:240px) {
   h5,
   h6 {
     border-color: #bbb
+  }
+  .baseColor .RichLink a {
+    border-color: #333!important
   }
   .baseColor .RichLink-meta {
     color: #333
@@ -3220,11 +3226,6 @@ only screen and (max-width:240px) {
   .note blockquote ul {
     margin-right: 0
   }
-  .tl tbody :hover th,
-  :target,
-  :target * {
-    background: false!important
-  }
   table {
     width: 100%
   }
@@ -3254,10 +3255,6 @@ only screen and (max-width:240px) {
   blockquote tfoot td,
   blockquote tfoot th {
     border-color: #bbb transparent
-  }
-  tbody :hover th a:active,
-  tbody :hover th a:focus {
-    color: false!important
   }
   .Pager-next i,
   .Pager-prev i {
@@ -3295,10 +3292,11 @@ only screen and (max-width:240px) {
   .tl tr code,
   .tl tr var,
   :visited,
+  [type=submit],
+  [type=text],
   blockquote tbody th code,
   blockquote tbody th var,
   body,
-  input,
   textarea,
   thead code,
   thead var {
@@ -3540,7 +3538,7 @@ only screen and (max-width:240px) {
   pre code {
     border: 0
   }
-  input,
+  [type=text],
   textarea {
     background-color: #fff
   }

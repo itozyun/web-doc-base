@@ -44,16 +44,6 @@ sub,
 sup {
   vertical-align: baseline
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-[colspan],
-h2,
-kbd:hover,
-sub,
-sup {
-  position: relative
-}
 .Magazine-date,
 .aa {
   font-family: monospace
@@ -76,6 +66,17 @@ q,
 strong,
 var {
   font-style: normal
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.icoLinks [href]:before,
+[colspan],
+h2,
+kbd,
+sub,
+sup {
+  position: relative
 }
 body,
 input,
@@ -180,11 +181,14 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  border-color: #d0d0d0;
+  border-width: .1em
+}
+.medal,
+[type=text],
+textarea {
   background: #f8fbf8;
   color: #111
 }
@@ -243,6 +247,9 @@ sup {
 }
 .c {
   text-align: center
+}
+textarea {
+  font-size: 1em
 }
 .uc {
   text-transform: uppercase
@@ -420,16 +427,12 @@ h5 {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path {
-  fill: #fff
+:active .ico path,
+:focus .ico path {
+  fill: #fff!important
 }
 .AAuthor img,
 .RichLink img {
@@ -736,10 +739,6 @@ kbd {
   width: 1.6em;
   height: 1.6em;
   line-height: 1.6
-}
-.medal {
-  background: #f8fbf8;
-  color: #111
 }
 :link .medal,
 :visited .medal {
@@ -1053,7 +1052,6 @@ li {
   list-style: none
 }
 .icoLinks [href]:before {
-  position: relative;
   left: -.5em;
   width: 1em;
   text-align: center;
@@ -1498,6 +1496,12 @@ projection {
   .btn:focus {
     border-color: #3079ed;
     color: #3079ed
+  }
+  .ico path {
+    fill: #111
+  }
+  .ribbon .ico path {
+    fill: #fff
   }
   .AHead-labels {
     color: #1a1a1a
@@ -2100,10 +2104,6 @@ screen and (max-width:240px) {
   img {
     max-width: 100%
   }
-  .baseColor .RichLink a,
-  a:focus img {
-    border-color: false!important
-  }
   p {
     line-height: 1.4
   }
@@ -2263,6 +2263,9 @@ screen and (max-width:240px) {
   h6 {
     border-color: #bbb
   }
+  .baseColor .RichLink a {
+    border-color: #333!important
+  }
   .baseColor .RichLink-meta {
     color: #333
   }
@@ -2371,9 +2374,6 @@ screen and (max-width:240px) {
   blockquote tfoot td,
   blockquote tfoot th {
     border-color: #bbb transparent
-  }
-  .tl tbody :hover th {
-    background: false!important
   }
   .Pager {
     color: #111;
@@ -2510,7 +2510,7 @@ screen and (max-width:240px) {
   .ribbon :visited {
     color: #606
   }
-  .ico path {
+  .ribbon .ico path {
     fill: #000
   }
   .ABody {

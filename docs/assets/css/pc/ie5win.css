@@ -103,6 +103,10 @@ kbd,
 var {
   padding: 0 .4em
 }
+.tl th,
+tbody th {
+  vertical-align: top
+}
 body,
 input,
 textarea {
@@ -133,12 +137,6 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
-blockquote :link img,
-blockquote :visited img,
-input,
-textarea {
-  border-color: #d0d0d0
-}
 .medal,
 a,
 a img {
@@ -166,14 +164,17 @@ img {
 .ribbon :visited img {
   border-color: #1a1a1a
 }
+blockquote :link img,
+blockquote :visited img {
+  border-color: #d0d0d0
+}
 :hover img {
   top: 2px
 }
 input,
 textarea {
-  font-size: 1em;
-  border-width: .1em;
-  padding: .45em .4em
+  padding: .45em .4em;
+  border-width: .1em
 }
 input {
   height: 2.1em;
@@ -184,11 +185,6 @@ p {
 }
 p * {
   vertical-align: text-top
-}
-.tl th,
-tbody th,
-td {
-  vertical-align: top
 }
 .SearchResult div p,
 .SearchResult div p *,
@@ -208,6 +204,9 @@ p tr,
 table * {
   line-height: 1.2
 }
+.AMeta,
+.SocialBtns,
+blockquote,
 pre {
   padding: 1em
 }
@@ -224,6 +223,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   margin: 0
 }
@@ -519,8 +519,10 @@ tr pre {
   display: inline;
   height: 2.2em
 }
+.AMeta,
 .Pager,
 .RichLink a,
+.SocialBtns,
 .tl thead th,
 tbody th,
 th {
@@ -621,6 +623,7 @@ th {
   height: 1px
 }
 .aa,
+blockquote,
 kbd {
   border-width: 1px
 }
@@ -1054,11 +1057,6 @@ thead :link:hover {
   border-width: 1px 0 0 .3em;
   border-style: solid dotted
 }
-.AMeta,
-.SocialBtns {
-  padding: 1em;
-  border-width: 0 0 1px
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1169,10 +1167,6 @@ thead :link:hover {
   font-size: .875em;
   text-align: right;
   color: #777
-}
-blockquote {
-  padding: 1em;
-  border-width: 1px
 }
 .prettyprint {
   border-width: 1px;

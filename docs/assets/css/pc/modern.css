@@ -4,16 +4,10 @@
     font: -apple-system-body
   }
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-figure,
 input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
+textarea {
+  margin: 0;
+  padding: .45em 8px
 }
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
@@ -82,7 +76,7 @@ th {
 .tl td,
 [colspan],
 h2,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
@@ -188,6 +182,15 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+figure,
+li .box,
+tr .box {
+  margin: 0
+}
 .aa,
 p,
 pre,
@@ -253,8 +256,46 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
-::-moz-focus-inner {
-  border: 0
+[type=submit],
+[type=text],
+textarea {
+  border-width: 2px;
+  border-color: #d0d0d0
+}
+[type=text]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #777
+}
+[type=text]:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+[type=text]::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #777;
+  opacity: 1
+}
+[type=text]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #777
+}
+input {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 1em;
+  font-size: 1em;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none
+}
+small,
+sub,
+sup {
+  font-size: 75%
 }
 a:active,
 a:focus,
@@ -266,46 +307,8 @@ textarea:active,
 textarea:focus {
   outline: transparent solid 2px
 }
-input,
-textarea {
-  font-size: 1em;
-  border-width: 2px;
-  padding: .45em 8px
-}
-input {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-appearance: none;
-  appearance: none;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 1em;
-  font-size: 1em
-}
-small,
-sub,
-sup {
-  font-size: 75%
-}
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: #777
-}
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: #777;
-  opacity: 1
-}
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: #777;
-  opacity: 1
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: #777
+::-moz-focus-inner {
+  border: 0
 }
 [type=submit]:focus {
   outline-offset: -2px
@@ -354,6 +357,7 @@ sup {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto;
   resize: vertical;
   background-image: none
@@ -587,13 +591,10 @@ h5 {
 .ico svg {
   vertical-align: baseline
 }
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path,
-:target .ico path {
-  fill: #fff
+:target .ico path,
+body :active .ico path,
+body :focus .ico path {
+  fill: #fff!important
 }
 .AAuthor img {
   float: right;
@@ -637,8 +638,7 @@ tbody :hover th :visited {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 #blog2slide-root > div > *,
@@ -1756,31 +1756,21 @@ tv {
     border-color: #3079ed!important;
     border-color: var(--color-accent)!important
   }
-  input,
+  [type=text]::placeholder,
+  textarea::placeholder {
+    color: #777;
+    color: var(--color-casual-text)
+  }
+  [type=text],
   textarea {
     color: #111;
     color: var(--color-text);
     background-color: #f8fbf8;
     background-color: var(--color-fill)
   }
-  input::placeholder,
-  textarea::placeholder {
-    color: #777;
-    color: var(--color-casual-text)
-  }
-  .LinkList :link:hover,
-  .LinkList :visited:hover,
-  .RichLink-sep :link:hover,
-  .RichLink-sep :visited:hover,
-  .tl tr code,
-  .tl tr var,
-  [type=submit],
-  blockquote tbody th code,
-  blockquote tbody th var,
-  code,
-  thead code,
-  thead var,
-  var {
+  [type=submit] {
+    color: #111;
+    color: var(--color-text);
     background: #d0d0d0;
     background: var(--color-casual-fill)
   }
@@ -1906,12 +1896,12 @@ tv {
     border-color: var(--color-visited-hover)
   }
   .ribbon a {
-    color: #bbb;
-    color: var(--color-casual-text)
+    color: #bbb
   }
+  .aa :link,
+  .prettyprint :link,
   .ribbon :link {
-    color: #bbe;
-    color: var(--color-link)
+    color: #bbe
   }
   .AHead-labels a:active,
   .AHead-labels a:focus,
@@ -1925,6 +1915,13 @@ tv {
     border-color: var(--color-accent);
     color: #3079ed;
     color: var(--color-accent)
+  }
+  .ico path {
+    fill: #111;
+    fill: var(--color-text)
+  }
+  .ribbon .ico path {
+    fill: #fff
   }
   .AHead-labels {
     color: #1a1a1a
@@ -1961,6 +1958,21 @@ tv {
     color: #f8fbf8;
     color: var(--color-fill)
   }
+  .LinkList :link:hover,
+  .LinkList :visited:hover,
+  .RichLink-sep :link:hover,
+  .RichLink-sep :visited:hover,
+  .tl tr code,
+  .tl tr var,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  code,
+  thead code,
+  thead var,
+  var {
+    background: #d0d0d0;
+    background: var(--color-casual-fill)
+  }
   .ABody blockquote h4,
   .Magazine,
   .Magazine-main,
@@ -1988,10 +2000,6 @@ tv {
   .tl thead tr :visited:hover {
     color: #515;
     color: var(--color-visited-hover)
-  }
-  .aa :link,
-  .prettyprint :link {
-    color: #bbe
   }
   .aa :visited,
   .prettyprint :visited {
@@ -2135,7 +2143,6 @@ tv {
     background: var(--color-casual-text);
     color: #f8fbf8;
     color: var(--color-fill);
-    border-color: transparent;
     border-color: transparent
   }
   blockquote td {
@@ -3304,42 +3311,33 @@ only screen and (max-width:240px) {
   img {
     max-width: 100%
   }
-  .baseColor .RichLink a,
-  :target td,
-  :target th,
-  a:active img,
-  a:focus img {
-    border-color: false!important
+  [type=text]::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #bbb
   }
-  input,
+  [type=text]:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #bbb
+  }
+  [type=text]::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: #bbb
+  }
+  [type=text]:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #bbb
+  }
+  [type=text]::placeholder,
+  textarea::placeholder {
+    color: #bbb
+  }
+  [type=text],
   textarea {
     color: #eee;
     background-color: #000
   }
-  input::-webkit-input-placeholder,
-  textarea::-webkit-input-placeholder {
-    color: #bbb
-  }
-  input:-moz-placeholder,
-  textarea:-moz-placeholder {
-    color: #bbb
-  }
-  input::-moz-placeholder,
-  textarea::-moz-placeholder {
-    color: #bbb
-  }
-  input:-ms-input-placeholder,
-  textarea:-ms-input-placeholder {
-    color: #bbb
-  }
-  input::placeholder,
-  textarea::placeholder {
-    color: #bbb
-  }
-  [type=submit],
-  code,
-  tbody th,
-  var {
+  [type=submit] {
+    color: #eee;
     background: #333
   }
   p {
@@ -3435,6 +3433,11 @@ only screen and (max-width:240px) {
     background: #bbb;
     color: #111
   }
+  code,
+  tbody th,
+  var {
+    background: #333
+  }
   .LinkList :link:hover,
   .LinkList :visited:hover,
   .RichLink-sep :link:hover,
@@ -3462,6 +3465,9 @@ only screen and (max-width:240px) {
   h5,
   h6 {
     border-color: #bbb
+  }
+  .baseColor .RichLink a {
+    border-color: #333!important
   }
   .baseColor .RichLink-meta {
     color: #333
@@ -3530,11 +3536,6 @@ only screen and (max-width:240px) {
   .note blockquote ul {
     margin-right: 0
   }
-  .tl tbody :hover th,
-  :target,
-  :target * {
-    background: false!important
-  }
   table {
     width: 100%
   }
@@ -3564,10 +3565,6 @@ only screen and (max-width:240px) {
   blockquote tfoot td,
   blockquote tfoot th {
     border-color: #bbb transparent
-  }
-  tbody :hover th a:active,
-  tbody :hover th a:focus {
-    color: false!important
   }
   .Pager {
     padding: 0 2px
@@ -3608,10 +3605,11 @@ only screen and (max-width:240px) {
   .tl tr code,
   .tl tr var,
   :visited,
+  [type=submit],
+  [type=text],
   blockquote tbody th code,
   blockquote tbody th var,
   body,
-  input,
   textarea,
   thead code,
   thead var {
@@ -3666,6 +3664,9 @@ only screen and (max-width:240px) {
   .baseColor .btn:active,
   .baseColor .btn:focus {
     border-color: #111
+  }
+  .ico path {
+    fill: var(--color-text)
   }
   .Cover h3 {
     background: #000;
@@ -3888,7 +3889,7 @@ only screen and (max-width:240px) {
   .ribbon :visited {
     color: #606
   }
-  .ico path {
+  .ribbon .ico path {
     fill: #000
   }
   .ABody {

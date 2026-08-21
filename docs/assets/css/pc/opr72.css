@@ -56,7 +56,7 @@ var {
 .icoLinks [href]:before,
 [colspan],
 h2,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
@@ -89,10 +89,6 @@ var {
 }
 html {
   font-size: 100%
-}
-input,
-textarea {
-  font-size: 1em
 }
 body,
 html {
@@ -181,7 +177,8 @@ blockquote tbody th[colspan]:after {
   top: 2px
 }
 input {
-  height: 2.1em
+  height: 2.1em;
+  font-size: 1em
 }
 small,
 sub,
@@ -234,8 +231,7 @@ sup {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
 sub {
@@ -252,6 +248,7 @@ sup {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto
 }
 .uc {
@@ -1324,7 +1321,7 @@ div .box .js-captioned-thumbnail__large {
   a:focus img {
     border-color: #3079ed!important
   }
-  input,
+  [type=text],
   textarea {
     background: Window;
     color: WindowText

@@ -1113,7 +1113,7 @@ Array.prototype.indexOf||(Array.prototype.indexOf=function(c,a){var b=this.lengt
               }
             }
           } else {
-            if (R && !F) {
+            if (R) {
               aa.VectorIconFallback = bz, Nb(xa + "js/vector-icon-svg-fallback.js");
             } else {
               for (; d < m; ++d) {

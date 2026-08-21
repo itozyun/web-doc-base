@@ -1,19 +1,18 @@
 @charset "UTF-8";
+.Pager,
+input,
+textarea {
+  -moz-box-sizing: border-box
+}
 .Header,
 body,
 input {
   line-height: 1
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
 input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
+textarea {
+  margin: 0;
+  padding: .45em .4em
 }
 .lM1,
 .lM2,
@@ -44,13 +43,6 @@ sub,
 sup {
   vertical-align: baseline
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-sub,
-sup {
-  position: relative
-}
 .Magazine-date,
 .aa {
   font-family: monospace,monospace
@@ -64,6 +56,14 @@ textarea {
 .hscroll tbody {
   white-space: pre
 }
+.Cover-img,
+.Magazine-main,
+.Search,
+kbd,
+sub,
+sup {
+  position: relative
+}
 .Pager i:after,
 .Pager i:before,
 .ico,
@@ -76,11 +76,6 @@ q,
 strong,
 var {
   font-style: normal
-}
-.Pager,
-input,
-textarea {
-  -moz-box-sizing: border-box
 }
 body,
 input,
@@ -126,6 +121,15 @@ del {
 dfn {
   border-bottom: 1px dotted;
   cursor: help
+}
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+li .box,
+tr .box {
+  margin: 0
 }
 .AAuthor,
 .ADesc,
@@ -177,16 +181,17 @@ a img {
   position: relative;
   top: 2px
 }
-:-moz-focus-inner {
-  border: 0
-}
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
   border-width: .1em;
+  border-color: #d0d0d0
+}
+.medal,
+[type=text],
+textarea {
   background: #f8fbf8;
-  color: #111;
-  padding: .45em .4em
+  color: #111
 }
 input {
   height: 2.1em;
@@ -196,6 +201,9 @@ small,
 sub,
 sup {
   font-size: 75%
+}
+:-moz-focus-inner {
+  border: 0
 }
 p {
   line-height: 1.9
@@ -232,6 +240,9 @@ sup {
 }
 .c {
   text-align: center
+}
+textarea {
+  font-size: 1em
 }
 .uc {
   text-transform: uppercase
@@ -405,17 +416,13 @@ input.btn {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path,
+:active .ico path,
+:focus .ico path,
 :target .ico path {
-  fill: #fff
+  fill: #fff!important
 }
 .AAuthor img,
 .RichLink img {
@@ -732,10 +739,6 @@ h2 {
   height: 1.6em;
   line-height: 1.6
 }
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -1040,7 +1043,6 @@ kbd {
   margin: 0 .1em
 }
 kbd:hover {
-  position: relative;
   top: -2px
 }
 .note {
@@ -1452,6 +1454,12 @@ div .box .js-captioned-thumbnail__large {
     border-color: #3079ed;
     color: #3079ed
   }
+  .ico path {
+    fill: #111
+  }
+  .ribbon .ico path {
+    fill: #fff
+  }
   .AHead-labels {
     color: #1a1a1a
   }
@@ -1704,7 +1712,7 @@ div .box .js-captioned-thumbnail__large {
   .ribbon :visited {
     color: #606
   }
-  .ico path {
+  .ribbon .ico path {
     fill: #000
   }
   .ABody {

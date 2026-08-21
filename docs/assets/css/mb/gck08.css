@@ -4,16 +4,10 @@ body,
 input {
   line-height: 1
 }
-.AAuthor p,
-.ADesc p,
-.note .box,
-dl .box,
-form,
 input,
-li .box,
-textarea,
-tr .box {
-  margin: 0
+textarea {
+  margin: 0;
+  padding: .45em .4em
 }
 .lM1,
 .lM2,
@@ -61,10 +55,16 @@ textarea {
 .lMi,
 .lSi,
 .lX,
-kbd:hover,
+kbd,
 sub,
 sup {
   position: relative
+}
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th {
+  vertical-align: top
 }
 .tl th a:focus,
 .tl thead td a:focus,
@@ -129,6 +129,15 @@ dfn {
   border-bottom: 1px dotted;
   cursor: help
 }
+.AAuthor p,
+.ADesc p,
+.note .box,
+dl .box,
+form,
+li .box,
+tr .box {
+  margin: 0
+}
 .AAuthor,
 .ADesc,
 .AHead,
@@ -174,30 +183,39 @@ a,
 a img {
   border-color: transparent
 }
-:-moz-focus-inner {
-  border: 0
-}
-input,
+[type=submit],
+[type=text],
 textarea {
-  font-size: 1em;
-  -moz-box-sizing: border-box;
   border-width: .1em;
+  border-color: #d0d0d0
+}
+.medal,
+[type=text],
+textarea {
   background: #f8fbf8;
-  color: #111;
-  padding: .45em .4em
+  color: #111
 }
 input {
+  -moz-box-sizing: border-box;
   height: 2.1em;
-  font-size: 1em
+  font-size: 1em;
+  -moz-box-sizing: border-box
 }
 small,
 sub,
 sup {
   font-size: 75%
 }
+:-moz-focus-inner {
+  border: 0
+}
 input[type=submit] {
   text-align: center;
   -moz-box-sizing: content-box
+}
+.Pager,
+textarea {
+  -moz-box-sizing: border-box
 }
 [type=submit]:focus {
   border-style: solid
@@ -226,13 +244,6 @@ sup {
   line-height: 0;
   vertical-align: baseline
 }
-.Magazine-date,
-.Magazine-main,
-.tl th,
-tbody th,
-td {
-  vertical-align: top
-}
 sub {
   bottom: -.25em
 }
@@ -245,6 +256,9 @@ sup {
 }
 .c {
   text-align: center
+}
+textarea {
+  font-size: 1em
 }
 .uc {
   text-transform: uppercase
@@ -701,10 +715,6 @@ kbd {
 .Search-txt {
   height: 2.1em
 }
-.medal {
-  background: #f8fbf8;
-  color: #111
-}
 :link .medal,
 :visited .medal {
   border-color: #111;
@@ -1112,8 +1122,7 @@ tbody :hover th :visited {
 .Pager {
   padding: 0 3%;
   display: table;
-  table-layout: fixed;
-  -moz-box-sizing: border-box
+  table-layout: fixed
 }
 .Pager span {
   vertical-align: middle;
@@ -1288,9 +1297,7 @@ div .box .js-captioned-thumbnail__large {
   a img {
     border-width: 2px
   }
-  a:focus img,
-  blockquote tbody th a:focus,
-  thead a:focus {
+  a:focus img {
     border-color: #3079ed!important
   }
   .LinkList :link:hover,
@@ -1541,6 +1548,10 @@ div .box .js-captioned-thumbnail__large {
   tbody :hover td {
     border-color: transparent transparent #3079ed;
     color: #3079ed
+  }
+  blockquote tbody th a:focus,
+  thead a:focus {
+    background-color: #3079ed!important
   }
   blockquote {
     background-color: #d0d0d0

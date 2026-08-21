@@ -14,6 +14,10 @@ textarea,
 tr .box {
   margin: 0
 }
+input,
+textarea {
+  padding: .45em 8px
+}
 a:active,
 a:focus {
   background-color: #3079ed!important
@@ -59,7 +63,7 @@ svg {
 .tl td,
 [colspan],
 h2,
-kbd:hover {
+kbd {
   position: relative
 }
 .ico,
@@ -246,6 +250,17 @@ blockquote tbody th[colspan]:after {
   position: relative;
   top: 2px
 }
+[type=submit],
+[type=text],
+textarea {
+  border-width: 2px;
+  border-color: #d0d0d0
+}
+input {
+  box-sizing: content-box;
+  height: 1em;
+  font-size: 1em
+}
 a:active,
 a:focus,
 button:active,
@@ -255,17 +270,6 @@ input:focus,
 textarea:active,
 textarea:focus {
   outline: transparent solid 2px
-}
-input,
-textarea {
-  font-size: 1em;
-  border-width: 2px;
-  padding: .45em 8px
-}
-input {
-  box-sizing: content-box;
-  height: 1em;
-  font-size: 1em
 }
 p {
   line-height: 1.9
@@ -303,6 +307,7 @@ small {
   text-align: center
 }
 textarea {
+  font-size: 1em;
   overflow: auto
 }
 .uc {
@@ -491,17 +496,13 @@ h5 {
 .Magazine-date,
 .Magazine-main,
 .tl th,
-tbody th,
-td {
+tbody th {
   vertical-align: top
 }
-a:active .ico path,
-a:focus .ico path {
-  fill: #f8fbf8
-}
-.ribbon .ico path,
-:target .ico path {
-  fill: #fff
+:target .ico path,
+body :active .ico path,
+body :focus .ico path {
+  fill: #fff!important
 }
 .AAuthor img {
   float: right;
@@ -1682,6 +1683,12 @@ div .box .js-captioned-thumbnail__large {
     border-color: #3079ed;
     color: #3079ed
   }
+  .ico path {
+    fill: #111
+  }
+  .ribbon .ico path {
+    fill: #fff
+  }
   .AHead-labels {
     color: #1a1a1a
   }
@@ -2497,13 +2504,6 @@ screen and (max-width:953px) {
   img {
     max-width: 100%
   }
-  .baseColor .RichLink a,
-  :target td,
-  :target th,
-  a:active img,
-  a:focus img {
-    border-color: false!important
-  }
   [type=submit],
   code,
   var {
@@ -2668,6 +2668,9 @@ screen and (max-width:953px) {
   h6 {
     border-color: #bbb
   }
+  .baseColor .RichLink a {
+    border-color: #333!important
+  }
   .baseColor .RichLink-meta {
     color: #333
   }
@@ -2742,11 +2745,6 @@ screen and (max-width:953px) {
   .note blockquote ul {
     margin-right: 0
   }
-  .tl tbody :hover th,
-  :target,
-  :target * {
-    background: false!important
-  }
   table {
     width: 100%
   }
@@ -2788,10 +2786,6 @@ screen and (max-width:953px) {
   blockquote tfoot td,
   blockquote tfoot th {
     border-color: #bbb transparent
-  }
-  tbody :hover th a:active,
-  tbody :hover th a:focus {
-    color: false!important
   }
   .Pager {
     color: #111;
@@ -2934,7 +2928,7 @@ screen and (max-width:953px) {
   .ribbon :visited {
     color: #606
   }
-  .ico path {
+  .ribbon .ico path {
     fill: #000
   }
   .ABody {
