@@ -50,16 +50,16 @@
         }
         @include mq(watch) {
             &::-webkit-input-placeholder {
-                color : responsive-color-dark($color);
+                color : light-color-to-dark($color);
             }
             &:-moz-placeholder {
-                color : responsive-color-dark($color);
+                color : light-color-to-dark($color);
             }
             &::-moz-placeholder {
-                color : responsive-color-dark($color);
+                color : light-color-to-dark($color);
             }
             &:-ms-input-placeholder {
-                color : responsive-color-dark($color);
+                color : light-color-to-dark($color);
             }
         }
         &::placeholder {

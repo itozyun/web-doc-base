@@ -10,7 +10,7 @@
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin fill-responsive-force($light-color, $print-color: false) {
     @if canuse.$SVG {
-        @include light-dark(true, fill, $light-color, responsive-color-dark($light-color), $print-color);
+        @include light-dark(true, fill, $light-color, light-color-to-dark($light-color), $print-color);
     }
 }
 

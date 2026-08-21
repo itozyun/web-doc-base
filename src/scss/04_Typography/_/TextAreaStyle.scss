@@ -33,7 +33,7 @@
         @include screen {
             background-color : color.$LIGHT_DEFAULT_BACKGROUND;
             @if ua.$Modern {
-                background-color : responsive-color-var(color.$LIGHT_DEFAULT_BACKGROUND);
+                background-color : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
             }
         }
         @include mq(watch) {

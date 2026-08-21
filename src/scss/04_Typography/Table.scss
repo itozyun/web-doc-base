@@ -60,11 +60,11 @@
     @if canuse.$CSS_GENERATED_BLOCK {
         @include _apply-colspan-bottom-color($light-color);
         @if ua.$Modern {
-            @include _apply-colspan-bottom-color(responsive-color-var($light-color));
+            @include _apply-colspan-bottom-color(light-color-to-var($light-color));
         }
         @include mq(dark) {
-            @if border-bottom-color($light-color) != border-bottom-color(responsive-color-dark($light-color)){
-                @include _apply-colspan-bottom-color(responsive-color-dark($light-color));
+            @if border-bottom-color($light-color) != border-bottom-color(light-color-to-dark($light-color)){
+                @include _apply-colspan-bottom-color(light-color-to-dark($light-color));
             }
         }
         @include print {
@@ -74,8 +74,8 @@
                         @include _apply-colspan-bottom-color($print-color);
                     }
                 } @else {
-                    @if border-bottom-color($light-color) != border-bottom-color(responsive-color-print($light-color)){
-                        @include _apply-colspan-bottom-color(responsive-color-print($light-color));
+                    @if border-bottom-color($light-color) != border-bottom-color(light-color-to-print($light-color)){
+                        @include _apply-colspan-bottom-color(light-color-to-print($light-color));
                     }
                 }
             }

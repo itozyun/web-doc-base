@@ -8,10 +8,10 @@
 
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin border-color-responsive($light-color, $print-color: false) {
-    @include light-dark(false, border-color, $light-color, responsive-color-dark($light-color), $print-color);
+    @include light-dark(false, border-color, $light-color, light-color-to-dark($light-color), $print-color);
 }
 @mixin border-color-responsive-force($light-color, $print-color: false) {
-    @include light-dark(true, border-color, $light-color, responsive-color-dark($light-color), $print-color);
+    @include light-dark(true, border-color, $light-color, light-color-to-dark($light-color), $print-color);
 }
 
 @mixin border-color-screen-print($screen-color, $print-color) {
