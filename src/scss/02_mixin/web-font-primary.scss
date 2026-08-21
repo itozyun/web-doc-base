@@ -1,0 +1,20 @@
+@use "../01_var/path" as path;
+@use "../01_var/common.generated" as common;
+
+@use "./_/web-font" as webfont;
+
+@if common.$WEBFONT__FONT_NAME {
+    @include webfont.web-font-face(
+        common.$WEBFONT__FONT_NAME,
+        path.$ASSET_PATH_WEBFONT + common.$WEBFONT__FILE_STEM,
+        common.$WEBFONT__SVG_FONT_ID,
+        common.$WEBFONT__HASH,
+        common.$WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY
+    );
+} @else {
+    @error "common.$WEBFONT__FONT_NAME is undefined!";
+}
+
+@mixin web-font($enable-ligatures: true, $alt-fontfamily : "serif !important") {
+    @include webfont.web-font(common.$WEBFONT__FONT_NAME, $enable-ligatures, $alt-fontfamily);
+}

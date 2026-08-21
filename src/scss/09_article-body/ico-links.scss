@@ -4,9 +4,8 @@
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
-@use "../01_var/common.generated" as common;
 
-@use "../02_mixin/web-font" as *;
+@use "../02_mixin/web-font-primary" as *;
 @use "../02_mixin/inline-block" as *;
 
 @use "../04_typography/ol" as *;
@@ -37,7 +36,7 @@
             }
 
             @if canuse.$WEBFONT {
-                @include web-font(common.$WEBFONT__FONT_NAME);
+                @include web-font(false);
                 content : "🔗";
             } @else {
                 content     : ">";

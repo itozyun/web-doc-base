@@ -5,24 +5,20 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
-@use "../01_var/path" as path;
+
 @use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/common.generated" as common;
 @use "../01_var/color" as color;
 @use "../01_var/quirks" as quirks;
 
-@use "../02_mixin/web-font" as *;
+@use "../02_mixin/web-font-primary" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/fill" as *;
 
 .#{common.$VECTOR_ICON__CLASSNAME} {
-    @if common.$WEBFONT__FONT_NAME {
-        @include web-font-face(common.$WEBFONT__FONT_NAME, path.$ASSET_PATH_WEBFONT + common.$WEBFONT__FILE_STEM, common.$WEBFONT__SVG_FONT_ID, common.$WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY);
-    }
     @include web-font(common.$WEBFONT__FONT_NAME);
-
     font-style : normal;
 
     @if canuse.$SVG and ua.$Script {
