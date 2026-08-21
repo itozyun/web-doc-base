@@ -68,7 +68,7 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
                     };
                 };
             } else { // webFontTest_RESULT_NONE
-                if( VectorIcon_CANUSE_SVG && !VectorIcon_CANUSE_SVGTINY ){
+                if( VectorIcon_CANUSE_SVG ){
                     window[ COMMON_VECTOR_ICON__SVG_FALLBACK_CALLBACK_NAME ] = function(){
                         p_setExternalScriptIsLoaded( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
 
