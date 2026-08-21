@@ -384,7 +384,7 @@ blockquote {
 @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
     thead a:focus,
     blockquote tbody th a:focus {
-        @include border-color-responsive(color.$Light_accent !important, noprint); // テキスト色が明るいのでアクセント色で塗る
+        @include background-color-responsive(color.$Light_accent !important, noprint); // テキスト色が明るいのでアクセント色で塗る
     }
 }
 
