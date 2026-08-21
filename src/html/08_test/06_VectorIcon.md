@@ -7,7 +7,7 @@
 # ベクターアイコン
 
 <style>
-i {
+.ABody i {
     background     : #3Af;
 
     font-style     : normal;
@@ -88,17 +88,19 @@ i {
 
 # ベクターアイコン
 
-<i class="ico">IE</i>, <i class="ico">Safari</i>, <i class="ico">Samsung</i>, <i class="ico">Netscape</i>
+ウェブコンテンツのアクセントになるアイコンは、Web フォントで提供し、動的 SVG でフォールバックする。これ以前は、[Pure CSS Icon](//outcloud.blogspot.com/2018/02/PureCssIcon.html) で提供されていました。しかし、もっさり感が耐えられなくなり、標準的な手段を採用しました。
 
-Web フォントと SVG で提供する
-これ以前は Pure CSS Icon で提供されていました。もっさり感が耐えられなくなりました。
+一方で、現在はインライン SVG による実装が主流のようです。この手法は、SVG に非対応な非力なブラウザに、大量のマークアップをダウンロードさせてしまうことになるため、私はウェブ文書向けのプロジェクトでは採用しません。
+
+<i class="ico">IE</i>, <i class="ico">Safari</i>, <i class="ico">Samsung</i>, <i class="ico">Netscape</i>, <i class="ico">Android</i>, <i class="ico">Apple</i>, <i class="ico">Browser</i>, <i class="ico">Chrome</i>, <i class="ico">Edge</i>, <i class="ico">Firefox</i>, <i class="ico">Github</i>, <i class="ico">Linux</i>, <i class="ico">Opera</i>, <i class="ico">Samsung</i>, <i class="ico">Twitter</i>, <i class="ico">Windows</i>, <i class="ico">YouTube</i>
+<i class="ico">&#x2699;</i>, <i class="ico">&#x1f3db;</i>, <i class="ico">&#x1f3e0;</i>, <i class="ico">&#x1f3f3;</i>, <i class="ico">&#x1f3f7;</i>, <i class="ico">&#x1f464;</i>, <i class="ico">&#x1f4ac;</i>, <i class="ico">&#x1f4bd;</i>, <i class="ico">&#x1f4c5;</i>, <i class="ico">&#x1f4fb;</i>, <i class="ico">&#x1f517;</i>, <i class="ico">&#x1f58a;</i>
 
 <ul class="icoLinks">
 <li><a href="https://youtube.com">YouTube</a>
-<li><a href="https://youtu.be">YouTube</a>
+<li><a href="https://youtu.be">YouTube(short URL)</a>
 <li><a href="https://twitter.com">Twitter</a>
-<li><a href="https://m.twitter.com">Twitter</a>
-<li><a href="https://t.co">Twitter</a>
+<li><a href="https://m.twitter.com">Mobile Twitter</a>
+<li><a href="https://t.co">Twitter(short URL)</a>
 <li><a href="https://github.com">github</a>
 <li><a href="https://itozyun.github.io/">github / itozyun</a>
 </ul>
