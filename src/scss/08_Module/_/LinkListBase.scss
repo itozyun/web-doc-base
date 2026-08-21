@@ -31,8 +31,7 @@
         }
     }
     @if canuse.$NEGATIVE_PSEUDO_CLASS == false or
-        ua.$Opera9 // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
-    { 
+        ua.$Opera9 { // :not が存在する @media はタイプとクエリを無視して全てのスタイルが適用される
         a {
             @include background-light-dark(color.$Light_text, color.$Dark_casual_text);
             @include text-color-responsive(color.$Light_fill);
