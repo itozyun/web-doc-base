@@ -122,7 +122,6 @@ module.exports = function( page, pages ){
         return '\n<html' +
         /** lang  */ createAttribute( 'lang', page.lang || site.lang, !!( page.lang || site.lang ) ) +
         /** dir   */ createAttribute( 'dir' , page.dir  || site.lang, !!( page.dir  || site.dir  ) ) +
-        /** class */ createAttribute( 'class', 'nojs' ) +
         /** amp   */ 
         /** VML   */ createAttribute( 'xmlns:v', 'urn:schemas-microsoft-com:vml', !!page.vml || ( site.vml && page.vml === undefined ) ) +
         '>' + [].slice.call( arguments ).join( '\n' ) +
@@ -139,7 +138,9 @@ module.exports = function( page, pages ){
         /** viewport, see http://outcloud.blogspot.com/2016/02/viewport2016.html */
                         createElement( 'meta', { name : 'viewport', content : page.viewport || site.viewport || 'width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no' } ) +
         /** inlin style */
-                        '<style>/*<!--*/\n@media only screen and(prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>' +
+                        '<style>/*<!--*/\n@media only screen and (prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>' +
+        /** 1st view style */
+                        createElement( 'link', { rel : 'stylesheet', href : `${dir}assets/css/pc/1st-view-css.css`, type : 'text/css' } ) +
         /** inlin javascript */
                         createElement( 'script', null, '<!--\n' + page.inlineScript + '//-->', !!page.inlineScript ) +
                         createElement( 'script', null, '<!--\n' + site.inlineScript + '//-->', !!site.inlineScript ) +

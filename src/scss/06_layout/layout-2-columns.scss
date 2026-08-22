@@ -35,6 +35,10 @@
         }
         @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
             display : block;
+        } @else {
+            @include media-noscript-patch {
+                display : block;
+            }
         }
     }
         .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
@@ -43,6 +47,9 @@
                 display : block;
             } @else {
                 float : none;
+                @include media-noscript-patch {
+                    display : table;
+                }
             }
         }
             .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
@@ -52,6 +59,41 @@
                     margin : 0;
                 }
             }
+}
+
+@mixin -table-layout {
+    .#{opt.$Prefix}lW {
+        display      : table;
+        table-layout : fixed;
+        @include table-to-float-layout-patch {
+            display : block;
+        }
+    }
+        .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
+            display        : table-cell;
+            vertical-align : top; /* Safari 3.2, ie8 で大切 */
+            @include table-to-float-layout-patch {
+                display : block;
+            }
+        }
+        .#{opt.$Prefix}lM {
+            width : 100% * size.$PC_MAIN_COLUMN_RATIO;
+            @include table-to-float-layout-patch {
+                width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
+                float : left;
+            }
+            @at-root #{&}i, #{&}z {
+                margin-right : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                @include table-to-float-layout-patch {
+                    margin-right : 0;
+                }
+            }
+        }
+        .#{opt.$Prefix}lS {
+            @include table-to-float-layout-patch {
+                float : right;
+            }
+        }
 }
 
 @if opt.$MobileOnly == false {
@@ -121,39 +163,7 @@
 /*  table or float
 ------------------------------------------------------------------------------------- */
         @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-            .#{opt.$Prefix}lW {
-                display      : table;
-                table-layout : fixed;
-                @include table-to-float-layout-patch {
-                    display : block;
-                }
-            }
-                .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
-                    display        : table-cell;
-                    vertical-align : top; /* Safari 3.2, ie8 で大切 */
-                    @include table-to-float-layout-patch {
-                        display : block;
-                    }
-                }
-                .#{opt.$Prefix}lM {
-                    width : 100% * size.$PC_MAIN_COLUMN_RATIO;
-                    @include table-to-float-layout-patch {
-                        width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
-                        float : left;
-                    }
-                    @at-root #{&}i, #{&}z {
-                        margin-right : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
-                        @include table-to-float-layout-patch {
-                            margin-right : 0;
-                        }
-                    }
-                }
-                .#{opt.$Prefix}lS {
-                    @include table-to-float-layout-patch {
-                        float : right;
-                    }
-                }
-
+            @include -table-layout;
         } @else {
        /* memo : サイドバーを塗りたい場合
         * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
@@ -165,6 +175,12 @@
             }
             .#{opt.$Prefix}lS {
                 float : right;
+            }
+            @include media-noscript-patch {
+                .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
+                    float : none;
+                }
+                @include -table-layout;
             }
         }
     }

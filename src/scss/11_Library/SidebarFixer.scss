@@ -10,33 +10,45 @@
 
 @use "../02_mixin/table-to-float-layout-patch" as *;
 @use "../02_mixin/mq" as *;
+@use "../02_mixin/media" as *;
 @use "../02_mixin/animate-colors" as *;
 @use "../02_mixin/css-hack" as *;
 
 @use "../06_layout/layout-2-columns";
 
-@if opt.$MobileOnly == false {
-    @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-        .#{opt.$Prefix}lS {
-            overflow : hidden;
-            @include table-to-float-layout-patch {
-                overflow : visible; /** for Safari 4.0.5 でサイドバーが消える */
-            }
+@mixin -table-layout {
+    .#{opt.$Prefix}lS {
+        overflow : hidden;
+        @include table-to-float-layout-patch {
+            overflow : visible; /** for Safari 4.0.5 でサイドバーが消える */
         }
     }
-    @if ua.$Modern {
+}
+
+@if opt.$MobileOnly == false {
+    @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
+        @include -table-layout;
+    } @else {
+        @include media-noscript-patch {
+            @include -table-layout;
+        }
+    }
+
+    @if ua.$Unknown {
         @include mq(pc) {
             @supports (position:sticky) or (position:-webkit-sticky) { // For Firefox 124, no effect on Chrome 124
-                .#{opt.$Prefix}lW, .#{common.$CLASSNAME_NO_JAVASCRIPT} .#{opt.$Prefix}lS {
+                .#{opt.$Prefix}lW, .#{opt.$Prefix}lS {
                     overflow : visible; // for Chrome 114
                 }
-                .#{common.$CLASSNAME_NO_JAVASCRIPT} ##{common.$ELEMENT_ID_SUB_COLUMN} > * { // :not(##{common.$ELEMENT_ID_SUB_COLUMN}barFixer)
+                ##{common.$ELEMENT_ID_SUB_COLUMN} > * { // :not(##{common.$ELEMENT_ID_SUB_COLUMN}barFixer)
                     position : -webkit-sticky;
                     position : sticky;
                     top      : 0;
                 }
             }
         }
+    }
+    @if ua.$Modern {
         h2 {
             @include animate-colors;
         }

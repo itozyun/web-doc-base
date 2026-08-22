@@ -94,10 +94,9 @@
 
         tbody {
             white-space : pre;
-            .#{common.$CLASSNAME_NO_JAVASCRIPT} & {
-                @if ua.$Modern {
-                    @include pre-wrap; // TODO nojs の場合、Android 2.x で横スクロールが出来なくなる．js で解消する
-                }
+
+            @if ua.$Unknown {
+                @include pre-wrap; // TODO noscript の場合、Android 2.x で横スクロールが出来なくなる．js で解消する
             }
         }
     }

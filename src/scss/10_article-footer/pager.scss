@@ -17,6 +17,7 @@
 @use "../02_mixin/box-sizing" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/mq" as *;
+@use "../02_mixin/media" as *;
 @use "../02_mixin/clearfix" as *;
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
@@ -32,47 +33,53 @@ $_TEXT_TRIANGULATE        : canuse.$CSS_GENERATED_CONTENT and canuse.$CSS_GENERA
 /* px size で三角形を定義する、ie6 以下では font-size ベースのレイアウトが出来ない */
 $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
 
+@mixin -table-layout {
+    display      : table;
+    width        : 100%;
+    table-layout : fixed;
+    @include box-sizing(border-box);
+
+    span {
+        vertical-align : middle;
+        display        : table-cell;
+    }
+}
 
 .#{opt.$Prefix}Pager {
     @include text-color-responsive(color.$Light_fill, noprint); /* , を消す */
     @include article-footer-item(0, 0, true, $_LAYOUT_BY_DISPLAY_TABLE == false);
 
     @if $_LAYOUT_BY_DISPLAY_TABLE {
-        display      : table;
-        width        : 100%;
-        table-layout : fixed;
-        @include box-sizing(border-box);
+        @include -table-layout;
     } @else {
         @include clearfix;
-    }
 
-    @include mq(forced_colors_fallback){
-        text-align : center;
-        height     : auto;
-        padding    : 1em 0;
-    }
-
-    span {
-        @if $_LAYOUT_BY_DISPLAY_TABLE {
-            vertical-align : middle;
-            display        : table-cell;
-        } @else {
+        span {
             display : block;
             float   : left;
             width   : 33%;
         }
+
+        @include media-noscript-patch {
+            @include -table-layout;
+            span {
+                float : none;
+            }
+        }
+    }
+
+    @include mq(forced_colors_fallback){
+        text-align : center;
+        padding    : 1em 0;
+
+        span {
         /* http://tacamy.hatenablog.com/entry/2014/02/19/141948 */
         /* overflow      : hidden; */
         /* white-space   : nowrap; */
         /* text-overflow : ellipsis; */
-
-        @include mq(forced_colors_fallback){
-            & {
-                position : static;
-                display  : inline;
-                @if ua.$IE55 or ua.$IE5 {
-                    width : auto;
-                }
+            display  : inline;
+            @if ua.$IE55 or ua.$IE5 {
+                width : auto;
             }
         }
     }

@@ -31,6 +31,7 @@
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/font-family-monospace" as *;
 @use "../02_mixin/mq" as *;
+@use "../02_mixin/media" as *;
 @use "../02_mixin/flex" as *;
 @use "../02_mixin/css-hack" as *;
 @use "../02_mixin/inline-block" as *;
@@ -48,6 +49,10 @@
             display : table;
         } @else {
             @include clearfix;
+
+            @include media-noscript-patch {
+                display : table;
+            }
         }
     }
         @at-root #{&}-date {
@@ -62,6 +67,12 @@
             } @else {
                 display : block;
                 float   : left;
+
+                @include media-noscript-patch {
+                    float          : none;
+                    display        : table-cell;
+                    vertical-align : top;
+                }
             }
         }
             @at-root #{&}-yy {
@@ -94,6 +105,12 @@
                 vertical-align : top;
             } @else {
                 margin-left : 5.5em;
+
+                @include media-noscript-patch {
+                    margin-left    : 0;
+                    display        : table-cell;
+                    vertical-align : top;
+                }
             }
             @if ua.$IE5 {
                 height : 1px; // <= 区切り線の太さが変わるのを防ぐ
@@ -223,6 +240,10 @@
             padding : 1em 0 0;
             @if canuse.$DISPLAY_TABLE {
                 display : block;
+            } @else {
+                @include media-noscript-patch {
+                    display : block;
+                }
             }
         }
             @at-root #{&}-date {
@@ -232,6 +253,10 @@
                     display : block;
                 } @else {
                     float : none;
+
+                    @include media-noscript-patch {
+                        display : block;
+                    }
                 }
             }
             @at-root #{&}-yy {
@@ -254,6 +279,10 @@
             padding      : 0 0 1em;
             @if canuse.$DISPLAY_TABLE {
                 display : block;
+            } @else {
+                @include media-noscript-patch {
+                    display : block;
+                }
             }
         }
             h3 {

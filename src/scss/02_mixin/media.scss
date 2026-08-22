@@ -26,6 +26,15 @@
     }
 }
 
+// @media を使えない環境を含む CSS ビルドで screen 用スタイルの上書きに使用
+@mixin media-noscript-patch {
+    @if ua.$Unknown {
+        @media screen {
+            @content;
+        }
+    }
+}
+
 // 印刷メディアに固有のスタイル
 @mixin media-print {
     @media print {
