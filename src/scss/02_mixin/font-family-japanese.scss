@@ -72,16 +72,16 @@
     @if ua.$Modern {
         font-family :
             -apple-system, BlinkMacSystemFont,
-            ".SFNSDisplay-Regular", // (9)
+            ".SFNSDisplay-Regular", 
             "Avenir Next", Avenir, "Open Sans",
             "Helvetica Neue", Helvetica, Arial, Verdana,
-            Roboto, // (2)
-            "UD Digi Kyokasho NP-R", "YuKyokasho", // (8)
-            "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, // (1)
+            Roboto, 
+            "UD Digi Kyokasho NP-R", YuKyokasho, 
+            "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体" , YuGothic, 
             "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
             "メイリオ", Meiryo,
             "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p",
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" // (10)
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" 
             sans-serif;
 
         @include css-hack(onlyFirefoxOS22) {
@@ -90,10 +90,10 @@
         @include css-hack(onlySafari) {
             font-family :
                 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Open Sans",
-                "Helvetica Neue", /* Helvetica, Arial, (3) */ Verdana,
-                Roboto, // (2)
-                "UD Digi Kyokasho NP-R", "YuKyokasho", // (8)
-                "游ゴシック体", YuGothic, "YuGothic M", // (1)
+                "Helvetica Neue",  Verdana,
+                Roboto, 
+                "UD Digi Kyokasho NP-R", YuKyokasho, 
+                "游ゴシック体", YuGothic, "YuGothic M", 
                 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
                 "メイリオ", Meiryo,
                 "ＭＳ Ｐゴシック", "MS PGothic", "M+ 1p", sans-serif;

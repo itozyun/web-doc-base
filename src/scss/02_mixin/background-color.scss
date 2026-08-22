@@ -1,9 +1,3 @@
-@use "../01_var/ua" as ua;
-@use "../01_var/color" as color;
-
-@use "./mq" as *;
-@use "./media" as *;
-
 @use "./_/responsive-color" as *;
 
 // light-color から自動で dark-color を決定する

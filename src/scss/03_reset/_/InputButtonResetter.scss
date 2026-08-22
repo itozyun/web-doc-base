@@ -1,11 +1,8 @@
 /*  Reset <input type=submit or button or reset>
 ------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
-@use "../../01_var/color" as color;
-@use "../../01_var/quirks" as quirks;
 
 @use "../../02_mixin/box-sizing" as *;
-@use "../../02_mixin/media" as *;
 @use "./reset-moz-focus-inner" as *;
 
 @use "./InputResetter";

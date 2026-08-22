@@ -21,7 +21,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         @if $noprint {
             display : none;
         }

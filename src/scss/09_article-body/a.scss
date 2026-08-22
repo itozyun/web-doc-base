@@ -2,16 +2,12 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
-@use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 @use "../01_var/common.generated" as common;
 
-@use "../02_mixin/clearfix" as *;
-@use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
-@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/text-color" as *;
@@ -52,7 +48,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         @if canuse.$CSS_GENERATED_CONTENT and canuse.$ALL_ATTRIBUTE_SELECTORS {
             & a[href]:after {
                 content   : " ("attr(href)") ";

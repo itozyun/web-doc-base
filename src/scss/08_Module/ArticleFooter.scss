@@ -5,12 +5,6 @@
  *    articleFooterItem
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
-@use "../01_var/options" as opt;
-@use "../01_var/size" as size;
-@use "../01_var/canuse" as canuse;
-
-@use "../02_mixin/clearfix" as *;
-@use "../02_mixin/line-height" as *;
 
 .AFoot {
     @if ua.$IE6 or ua.$IE55 {

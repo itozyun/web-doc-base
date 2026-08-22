@@ -5,7 +5,6 @@
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
 @use "../01_var/color" as color;
-@use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
@@ -33,7 +32,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         display : none;
     }
 }

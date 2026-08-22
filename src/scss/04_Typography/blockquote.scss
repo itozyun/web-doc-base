@@ -7,7 +7,7 @@
 blockquote pre {
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         margin : 1em;
     }
 }

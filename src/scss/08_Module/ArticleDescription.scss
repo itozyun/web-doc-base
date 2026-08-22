@@ -28,7 +28,7 @@
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         color : color.$Print_casual_text;
     }
 }

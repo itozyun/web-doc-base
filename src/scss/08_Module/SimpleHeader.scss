@@ -4,11 +4,8 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
-@use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
-@use "../01_var/color" as color;
 
-@use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
@@ -66,7 +63,7 @@
             }
 
             @if opt.$MobileOnly {
-                @include screen {
+                @include media-screen {
                     text-align : center;
                 }
             } @else {
@@ -90,7 +87,7 @@
 
         /*  Print
         ------------------------------------------------------------------------------------- */
-        @include print {
+        @include media-print {
             @at-root #lH {
                 font-size : 0.875em;
                 .lMi {
@@ -101,6 +98,7 @@
             @at-root .h1 {
                 font-size : 1em;
             }
+
             // 記事でない場合、サイトタイトルをセンタリング
             h1 {
                 text-align : center;

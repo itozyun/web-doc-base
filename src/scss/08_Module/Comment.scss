@@ -4,12 +4,9 @@
  *  
 ------------------------------------------------------------------------------------- */
 @use "../01_var/options" as opt;
-@use "../01_var/ua" as ua;
-@use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 
 @use "../02_mixin/clearfix" as *;
-@use "../02_mixin/line-height" as *;
 
 @use "./_/stackable-module" as *;
 

@@ -24,7 +24,6 @@
 @use "../01_var/options" as opt;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
-@use "../01_var/quirks" as quirks;
 @use "../01_var/size" as size;
 
 @use "../02_mixin/clearfix" as *;
@@ -34,8 +33,7 @@
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/flex" as *;
 @use "../02_mixin/css-hack" as *;
-@use "../02_mixin/Inline-block" as *;
-@use "../02_mixin/text-color" as *;
+@use "../02_mixin/inline-block" as *;
 @use "../02_mixin/border-color" as *;
 
 .#{opt.$Prefix}Magazine {

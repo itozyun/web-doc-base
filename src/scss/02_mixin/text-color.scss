@@ -1,9 +1,3 @@
-@use "../01_var/ua" as ua;
-@use "../01_var/color" as color;
-
-@use "./mq" as *;
-@use "./media" as *;
-
 @use "./_/responsive-color" as *;
 
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある

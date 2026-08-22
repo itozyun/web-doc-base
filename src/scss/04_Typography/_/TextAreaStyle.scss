@@ -11,9 +11,7 @@
 @use "../../01_var/ua" as ua;
 @use "../../01_var/color" as color;
 @use "../../01_var/quirks" as quirks;
-@use "../../01_var/size" as size;
 
-@use "../../02_mixin/font-family-japanese" as *;
 @use "../../02_mixin/placeholder-color" as *;
 @use "../../02_mixin/mq" as *;
 @use "../../02_mixin/media" as *;
@@ -30,7 +28,7 @@
         @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
 
         // textarea は background-image:none しているので
-        @include screen {
+        @include media-screen {
             background-color : color.$LIGHT_DEFAULT_BACKGROUND;
             @if ua.$Modern {
                 background-color : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
@@ -39,13 +37,13 @@
         @include mq(watch) {
             background-color : #000;
         }
-        @include print-fallback {
+        @include media-print-fallback {
             background-color : color.$PRINT_DEFAULT_BACKGROUND;
         }
     } @else if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
     // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
         @if ua.$Opera72 {
-            @include screen {
+            @include media-screen {
                 background : Window;
                 color      : WindowText;
             }

@@ -1,9 +1,4 @@
-@use "../01_var/ua" as ua;
-@use "../01_var/color" as color;
 @use "../01_var/canuse" as canuse;
-
-@use "./mq" as *;
-@use "./media" as *;
 
 @use "./_/responsive-color" as *;
 

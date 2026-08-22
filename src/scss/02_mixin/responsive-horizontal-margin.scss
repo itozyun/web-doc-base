@@ -13,10 +13,10 @@
                 margin : $marginTop 0 $marginBottom;
             }
         } @else {
-            @include screen {
+            @include media-screen {
                 margin : $marginTop math.div(1em, $ratio) $marginBottom;
             }
-            @include print-fallback {
+            @include media-print-fallback {
                 margin : $marginTop 0 $marginBottom;
             }
         }

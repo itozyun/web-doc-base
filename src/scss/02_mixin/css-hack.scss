@@ -24,12 +24,14 @@ $_COMMENT_OUT : (
                 @content;
             }
         }
+
         // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
         @else if $targetGroup == 'ie10ToEdgeHTML' { // IE10 ~ EdgeHTML 18
             & [_lazyhack_="_:-ms-lang(x)"] {
                 @content;
             }
         }
+
         // https://spyweb.media/2017/12/04/ie-edge-css-hacks/
         @else if $targetGroup == 'onlyIE10To11' {
             @media all\0 {

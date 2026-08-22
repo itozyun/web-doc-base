@@ -1,6 +1,5 @@
 /*  blockquote
 ------------------------------------------------------------------------------------- */
-@use "../01_var/ua" as ua;
 @use "../01_var/size" as size;
 @use "../01_var/color" as color;
 @use "../01_var/canuse" as canuse;
@@ -147,7 +146,7 @@ blockquote {
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         margin  : 1em 0;
         padding : 1em;
     }

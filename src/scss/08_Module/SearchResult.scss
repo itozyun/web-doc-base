@@ -7,13 +7,10 @@
  *      div role=listitem
  *        h3, cite, p
 ------------------------------------------------------------------------------------- */
-@use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
-@use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/mq" as *;

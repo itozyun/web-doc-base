@@ -67,7 +67,7 @@
                 @include _apply-colspan-bottom-color(light-color-to-dark($light-color));
             }
         }
-        @include print {
+        @include media-print {
             @if $print-color != noprint {
                 @if $print-color {
                     @if border-bottom-color($light-color) != border-bottom-color($print-color){
@@ -243,7 +243,7 @@ table {
             @include mq(dark) {
                 color : color.$Light_link;
             }
-            @include print {
+            @include media-print {
                 color : color.$Print_link;
             }
             @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
@@ -260,7 +260,7 @@ table {
             @include mq(dark) {
                 color : color.$Light_visited;
             }
-            @include print {
+            @include media-print {
                 color : color.$Print_visited;
             }
             @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
@@ -435,7 +435,7 @@ blockquote td, blockquote tfoot td {
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include print {
+@include media-print {
     table {
         margin : 1em 0;
         width  : 100%;

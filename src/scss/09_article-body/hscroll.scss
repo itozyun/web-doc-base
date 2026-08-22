@@ -3,7 +3,6 @@
  */
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
-@use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/common.generated" as common;
 
@@ -16,7 +15,7 @@
 @use "../08_module/ArticleBody";
 
 .hscroll {
-    @include screen {
+    @include media-screen {
         margin : 1em 0;
 
         @if ua.$IE5 or ua.$IE55 {

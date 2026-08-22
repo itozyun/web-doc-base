@@ -40,7 +40,7 @@
     }
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         @if canuse.$FIRST_CHILD_PSEUDO_CLASS {
             padding : 0 0 2em;
         } @else {

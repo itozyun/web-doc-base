@@ -27,19 +27,19 @@
 
                 @-moz-document url-prefix() {
                     &::placeholder {
-                        color : rgbToHexColor(color.invert(color.$Dark_casual_text, 100%));
+                        color : rgb-to-hex-color(color.invert(color.$Dark_casual_text, 100%));
                     }
 
                     filter       : invert(1); /** invert するので明るい色を設定 */
-                    color        : rgbToHexColor(color.invert(color.$Dark_text, 100%));
-                    background   : rgbToHexColor(color.invert(color.$Dark_fill, 100%));
-                    border-color : rgbToHexColor(color.invert(color.$Dark_casual_fill, 100%));
+                    color        : rgb-to-hex-color(color.invert(color.$Dark_text, 100%));
+                    background   : rgb-to-hex-color(color.invert(color.$Dark_fill, 100%));
+                    border-color : rgb-to-hex-color(color.invert(color.$Dark_casual_fill, 100%));
 
                     &:focus-visible {
-                        outline-color : rgbToHexColor(color.invert(color.$Dark_accent, 100%));
+                        outline-color : rgb-to-hex-color(color.invert(color.$Dark_accent, 100%));
                     }
                     &:focus-visible::selection {
-                        background : rgbToHexColor(color.invert(color.$Dark_accent, 100%));
+                        background : rgb-to-hex-color(color.invert(color.$Dark_accent, 100%));
                     }
                 }
             }

@@ -11,12 +11,8 @@
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
-@use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
-@use "../01_var/quirks" as quirks;
 
-@use "../02_mixin/clearfix" as *;
-@use "../02_mixin/line-height" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/font-family-japanese" as *;
@@ -79,7 +75,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         .lMz & {
             padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
         }

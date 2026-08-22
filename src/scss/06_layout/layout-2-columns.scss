@@ -16,7 +16,6 @@
 @use "sass:math";
 
 @use "../01_var/ua" as ua;
-@use "../01_var/color" as color;
 @use "../01_var/options" as opt;
 @use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
@@ -69,7 +68,7 @@
         }
     }
 
-    @include screen {
+    @include media-screen {
         .#{opt.$Prefix}lW {
             width : size.$PC_WIDTH_PERCENT;
             @if canuse.$MAX_AND_MIN_SIZES {
@@ -171,7 +170,7 @@
     }
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include print-fallback {
+    @include media-print-fallback {
         @include _reset-layout;
     }
 }
@@ -247,7 +246,7 @@
             overflow-x : hidden;
         }
     }
-    @include screen {
+    @include media-screen {
         .#{opt.$Prefix}lW {
             @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 text-align : center;
@@ -276,10 +275,10 @@
 ------------------------------------------------------------------------------------- */
 @if opt.$MobileOnly {
     .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz .#{opt.$Prefix}lMh, .#{opt.$Prefix}lSi {
-        @include screen {
+        @include media-screen {
             padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
         }
-        @include print-fallback {
+        @include media-print-fallback {
             padding : 0;
         }
     }
@@ -316,7 +315,7 @@
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include print {
+@include media-print {
     #lH .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lS, #lF .#{opt.$Prefix}lW {
         display : none;
     }

@@ -19,10 +19,10 @@
         } @else {
             border-color : color.$Light_fill;
         }
-        @include screen { // 縦横 4px 大きくなる、印刷には border は無し
+        @include media-screen { // 縦横 4px 大きくなる、印刷には border は無し
             border-width : #{size.$BORDER_WIDTH_OF_LINK_WITH_IMAGE}px;
         }
-        @include print-fallback {
+        @include media-print-fallback {
             border : 0;
         }
         @include mq(smallphone) {

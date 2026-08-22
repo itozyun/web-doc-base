@@ -20,7 +20,7 @@
             background : none !important;
         /*  Print
         ------------------------------------------------------------------------------------- */
-            @include print {
+            @include media-print {
                 border : 0;
             }
         }

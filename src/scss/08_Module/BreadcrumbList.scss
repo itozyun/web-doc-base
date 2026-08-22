@@ -4,11 +4,9 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
-@use "../01_var/quirks" as quirks;
 @use "../01_var/color" as color;
 
 @use "../02_mixin/inline-block" as *;
-@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/text-color" as *;
 
@@ -36,7 +34,7 @@
 
     /*  Print
     ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         font-size : .83em;
         padding   : 0.5em 0;
         @if opt.$UseDarkRibbon {

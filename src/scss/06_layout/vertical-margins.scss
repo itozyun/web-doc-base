@@ -6,7 +6,7 @@
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 
-@include screen {
+@include media-screen {
     #lB .#{opt.$Prefix}lM {
         padding-bottom : 4em;
         @if ua.$GeckoLte09 or ua.$Gecko12 {

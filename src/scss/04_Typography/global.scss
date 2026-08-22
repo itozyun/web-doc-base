@@ -1,7 +1,6 @@
 @use "sass:math";
 
 @use "../01_var/ua" as ua;
-@use "../01_var/options" as opt;
 @use "../01_var/size" as size;
 
 @use "../02_mixin/mq" as *;
@@ -20,6 +19,7 @@
             border-style : solid;
             border-width : 0;
         }
+
         // TODO input, select, textarea {border-style:none} では?
     } @else {
         * {

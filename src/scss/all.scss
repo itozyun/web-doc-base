@@ -9,20 +9,25 @@
 );
 
 @use "./04_typography/global";
+
 // @use "./04_typography/a";
 // @use "./04_typography/abbr";
 // @use "./04_typography/acronym";
 // @use "./04_typography/blockquote";
 @use "./04_typography/br";
+
 // @use "./04_typography/button";
 @use "./04_typography/cite";
+
 // @use "./04_typography/code";
 @use "./04_typography/del";
 @use "./04_typography/dfn";
+
 // @use "./04_typography/dl";
 // @use "./04_typography/em";
 @use "./04_typography/figure";
 @use "./04_typography/form";
+
 // @use "./04_typography/h1";
 // @use "./04_typography/h2";
 // @use "./04_typography/h3";
@@ -51,22 +56,28 @@
 @use "./04_typography/input-type-hidden";
 @use "./04_typography/input-type-submit";
 @use "./04_typography/ins";
+
 // @use "./04_typography/kbd";
 // @use "./04_typography/ol";
 @use "./04_typography/p";
 @use "./04_typography/pre";
 @use "./04_typography/q";
 @use "./04_typography/samp";
+
 // @use "./04_typography/select";
 @use "./04_typography/small";
+
 // @use "./04_typography/strong";
 @use "./04_typography/sub";
 @use "./04_typography/sup";
+
 // @use "./04_typography/table";
 @use "./04_typography/text-align";
 @use "./04_typography/textarea";
+
 // @use "./04_typography/ul";
 @use "./04_typography/uppercase";
+
 // @use "./04_typography/var";
 @use "./04_typography/vertical";
 
@@ -114,8 +125,10 @@
 
 @use "./09_article-body/a";
 @use "./09_article-body/aa";
+
 // @use "./09_article-body/blockquote";
 @use "./09_article-body/box";
+
 // @use "./09_article-body/chat";
 @use "./09_article-body/code";
 @use "./09_article-body/dl";
@@ -130,6 +143,7 @@
 @use "./09_article-body/kbd";
 @use "./09_article-body/note";
 @use "./09_article-body/ol";
+
 // @use "./09_article-body/table";
 @use "./09_article-body/timeline";
 @use "./09_article-body/ul";
@@ -158,12 +172,12 @@
 #lF {
     @include border-color-responsive(color.$Light_accent, noprint);
 }
-@include screen {
+@include media-screen {
     #lF {
         border-top-width : 0.3em;
     }
 }
-@include print-fallback {
+@include media-print-fallback {
     #lF {
         border : 0;
     }

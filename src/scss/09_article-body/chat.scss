@@ -13,15 +13,14 @@
 @use "../01_var/common.generated" as common;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/unbreak" as *;
 @use "../02_mixin/responsive-horizontal-margin" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
-@use "../02_mixin/css-hack" as *;
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/border-radius" as *;
+@use "../02_mixin/border-color" as *;
 @use "../02_mixin/create-css-generated-block" as *;
 
 @use "../08_module/ArticleBody";
@@ -72,7 +71,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 }
 
 .chat {
-    @include screen {
+    @include media-screen {
         color      : #fff;
         background : #7493C2;
     }
@@ -85,7 +84,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 }
     .chatTitle {
         @include unbreak-after;
-        @include screen {
+        @include media-screen {
             background : #273248;
         }
         border-color : #273248;
@@ -100,7 +99,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
         @include border-radius(.4em);
         @include border-color-screen-print(#5D769E, color.$Print_casual_text);
 
-        @include screen {
+        @include media-screen {
             color      : #fff;
             background : #5D769E;
         }
@@ -181,13 +180,13 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
         }
 
         .chatL p, .chatL .chatMember {
-            @include screen {
+            @include media-screen {
                 background   : #fff;
             }
             @include border-color-screen-print(#fff, color.$Print_casual_text);
         }
         .chatR p, .chatR .chatMember {
-            @include screen {
+            @include media-screen {
                 background : #85E445;
             }
             @include border-color-screen-print(#85E445, color.$Print_casual_text);
@@ -285,7 +284,7 @@ $_CAHT_HORIZONTAL_MARGIN : 2% !default;
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-@include print {
+@include media-print {
     @if canuse.$CSS_GENERATED_BLOCK {
         .chatL p:before {
             border-width : 4px 7px 4px 0;

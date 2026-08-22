@@ -5,6 +5,7 @@
 
 %ITStyle {
     @extend %CodingFontFamily;
+
     // https://github.com/itozyun/web-doc-base/issues/38
     @include unbreak-box-for-inline-element;
 }

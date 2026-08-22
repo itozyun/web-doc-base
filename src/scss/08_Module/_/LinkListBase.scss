@@ -3,7 +3,6 @@
 @use "../../01_var/ua" as ua;
 @use "../../01_var/canuse" as canuse;
 @use "../../01_var/color" as color;
-@use "../../01_var/quirks" as quirks;
 @use "../../01_var/options" as opt;
 @use "../../01_var/size" as size;
 
@@ -60,7 +59,7 @@
         }
     }
 
-    @include screen {
+    @include media-screen {
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS {
             a:hover {
                 background : color.$Light_casual_fill;

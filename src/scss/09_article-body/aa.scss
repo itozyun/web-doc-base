@@ -18,13 +18,13 @@
     border-width : 1px;
     border-color : #0A0809;
 
-    @include screen {
+    @include media-screen {
         background : #0A0809;
         &, & code, & var {
             color : #00ac06;
         }
     }
-    @include print-fallback {
+    @include media-print-fallback {
         background : none;
         &, & code, & var {
             color : #002c01;

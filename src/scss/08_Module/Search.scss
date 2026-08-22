@@ -13,8 +13,6 @@
 @use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/clearfix" as *;
-@use "../02_mixin/line-height" as *;
 @use "../02_mixin/active-focus-pseudo-class" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/box-sizing" as *;

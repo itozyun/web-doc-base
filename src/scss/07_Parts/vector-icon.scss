@@ -6,15 +6,12 @@
 @use "../01_var/options" as opt;
 @use "../01_var/ua" as ua;
 
-@use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/common.generated" as common;
 @use "../01_var/color" as color;
-@use "../01_var/quirks" as quirks;
 
 @use "../02_mixin/web-font-primary" as *;
 @use "../02_mixin/mq" as *;
-@use "../02_mixin/media" as *;
 @use "../02_mixin/fill" as *;
 
 .#{common.$VECTOR_ICON__CLASSNAME} {

@@ -34,7 +34,7 @@
         }
     }
     .#{opt.$Prefix}baseColor {
-        @include screen {
+        @include media-screen {
             background : color.$LIGHT_DEFAULT_BACKGROUND;
             @if ua.$Modern {
                 background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
@@ -43,7 +43,7 @@
         @include mq(watch) {
             background : #000;
         }
-        @include print-fallback {
+        @include media-print-fallback {
             background : color.$PRINT_DEFAULT_BACKGROUND;
         }
     }
@@ -51,7 +51,7 @@
     body {
         @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
 
-        @include screen {
+        @include media-screen {
             background : color.$LIGHT_DEFAULT_BACKGROUND;
             @if ua.$Modern {
                 background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
@@ -60,7 +60,7 @@
         @include mq(watch) {
             background : #000;
         }
-        @include print-fallback {
+        @include media-print-fallback {
             background : color.$PRINT_DEFAULT_BACKGROUND;
         }
     }

@@ -1,14 +1,8 @@
 /*  Google Code Prettify
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
-@use "../01_var/options" as opt;
-@use "../01_var/size" as size;
-@use "../01_var/color" as color;
-@use "../01_var/canuse" as canuse;
 
-@use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
-@use "../02_mixin/clearfix" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/link-colors-on-dark-background" as *;
 
@@ -25,21 +19,21 @@
         font-size : 0.875em;
     }
 
-    @include screen {
+    @include media-screen {
         background : #333;
         color      : #fff;
     }
-    @include print-fallback {
+    @include media-print-fallback {
         background : #fff;
         color      : #333;
     }
-    @include print {
+    @include media-print {
         @include line-height(1, true);
     }
 }
 
 @if ua.$Script {
-    @include screen {
+    @include media-screen {
         /* Pretty printing styles. Used with prettify.js. */
         /* Vim sunburst theme by David Leibovic */
         .str { color: #65B042; } /* string  - green */
@@ -61,7 +55,7 @@
     /* Alternate shading for lines */
     li.L1,li.L3,li.L5,li.L7,li.L9 {}
 
-    @include print {
+    @include media-print {
         .str { color: #060; }
         .kwd { color: #006; font-weight: bold; }
         .com { color: #600; font-style: italic; }

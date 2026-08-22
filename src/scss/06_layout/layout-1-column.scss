@@ -29,7 +29,7 @@
     }
 
     @if opt.$MobileOnly == false {
-        @include screen {
+        @include media-screen {
             width : size.$PC_WIDTH_PERCENT;
 
             @if canuse.$MAX_AND_MIN_SIZES {
@@ -47,7 +47,7 @@
                 }
             }
         }
-        @include print-fallback {
+        @include media-print-fallback {
             width : 100%;
             @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : 100%;
@@ -95,7 +95,7 @@
             }
         }
     } @else {
-        @include screen {
+        @include media-screen {
             @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$TABLET_MAX_WIDTH_EM;
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
@@ -106,31 +106,31 @@
                 }
             }
         }
-        @include print-fallback {
+        @include media-print-fallback {
             max-width : 100%;
         }
     }
 
     @at-root #{&}i {
         @if opt.$MobileOnly == false {
-            @include screen {
+            @include media-screen {
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     padding : 0 100% * size.$PC_COLUMN_GAP_RATIO;
                 } @else {
                     margin : 0 100% * size.$PC_COLUMN_GAP_RATIO;
                 }
             }
-            @include print-fallback {
+            @include media-print-fallback {
                 margin : 0;
             }
             @include mq(tablet) {
                 padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
             }
         } @else {
-            @include screen {
+            @include media-screen {
                 padding : 0 size.$TABLET_HORIZONTAL_MARGIN;
             }
-            @include print-fallback {
+            @include media-print-fallback {
                 padding : 0;
             }
         }

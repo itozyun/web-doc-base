@@ -3,11 +3,9 @@
 ------------------------------------------------------------------------------------- */
 @use "../../01_var/ua" as ua;
 @use "../../01_var/quirks" as quirks;
-@use "../../01_var/size" as size;
 @use "../../01_var/color" as color;
 
 @use "../../02_mixin/active-focus-pseudo-class" as *;
-@use "../../02_mixin/mq" as *;
 @use "../../02_mixin/media" as *;
 @use "../../02_mixin/text-color" as *;
 @use "../../02_mixin/border-color" as *;
@@ -24,8 +22,9 @@
         padding : .1em .4em;
     }
 
-    @include screen {
+    @include media-screen {
         @include background-responsive(color.$Light_casual_fill, noprint);
+
         // test -> https://outcloud.blogspot.com/2021/08/richlink.html
 
         blockquote tbody th &,
@@ -49,10 +48,10 @@
             @include text-color-responsive(color.$Light_fill, noprint);
         }
     }
-    @include print-fallback {
+    @include media-print-fallback {
         background : color.$Print_fill;
     }
-    @include print {
+    @include media-print {
         border-width : 1px;
 
         blockquote &, tbody th &, thead & {

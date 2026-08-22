@@ -14,7 +14,7 @@
     }
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         border-top : 0.15em solid color.$Print_text;
     }
 }

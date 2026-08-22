@@ -13,7 +13,7 @@
 
 @use "../02_mixin/media" as *;
 
-@include screen {
+@include media-screen {
     @if ua.$IE6 or ua.$IE55 {
         .#{opt.$Prefix}e6L {
             float        : left;

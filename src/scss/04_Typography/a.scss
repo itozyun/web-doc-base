@@ -14,8 +14,6 @@
 @use "../01_var/size" as size;
 
 @use "../02_mixin/active-focus-pseudo-class" as *;
-@use "../02_mixin/mq" as *;
-@use "../02_mixin/media" as *;
 @use "../02_mixin/animate-colors" as *;
 @use "../02_mixin/text-color" as *;
 @use "../02_mixin/border-color" as *;
@@ -72,6 +70,7 @@ a {
 :visited {
     // aBodyRoot 外の :visited 色は通常色とする
     @include text-color-responsive-force(color.$Light_text);
+
     //                             ^^^^^^^^^^^^^^^^^
 }
 @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
@@ -98,6 +97,7 @@ a {
         }
         :visited {
             @include text-color-screen-print(color.$Ribbon_text, color.$Print_visited);
+
             // 但し印刷メディアの :visited は訪問済色とする      ^^^^^^^^^^^^^^^^^^^^
         }
         @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {

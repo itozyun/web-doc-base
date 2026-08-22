@@ -40,7 +40,7 @@ p {
 
 /*  Print
 ------------------------------------------------------------------------------------- */
-    @include print {
+    @include media-print {
         line-height : size.$PARAGRAPH_LINE_HEIGHT_PRINT; /* for paper saving */
     }
 }

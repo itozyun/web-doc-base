@@ -16,7 +16,7 @@
 
 // https://canato.net/sass-color-mix-hex/
 // #rrggbbを返す関数
-@function rgbToHexColor($c) {
+@function rgb-to-hex-color($c) {
     $r: color.channel($c, 'red', $space: rgb);
     $g: color.channel($c, 'green', $space: rgb);
     $b: color.channel($c, 'blue', $space: rgb);

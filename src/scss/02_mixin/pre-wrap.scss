@@ -16,10 +16,12 @@
     @if ua.$Modern {
         white-space : -webkit-pre-wrap; /* Chrome, Safari */
     }
+
     //  white-space : -hp-pre-wrap;     /* HP Printers */
     @if ua.$IE8 or ua.$IE9 or ua.$Modern or ua.$Gecko19 or ua.$Opera8 or ua.$Opera9 {
         white-space : pre-wrap;         /* CSS 2.1, ie8+ */
     }
+
     //  white-space : pre-line;         /* CSS 3.0 */
     @include unbreak-box-with-long-text;
 }

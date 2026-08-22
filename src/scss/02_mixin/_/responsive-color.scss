@@ -24,7 +24,7 @@
         --color-visited-hover : #{color.$Light_visited_hover};
         @media only screen and (prefers-contrast:more) {
             --color-text        : #000;
-            --color-casual-fill : #{rgbToHexColor(color.mix(color.$Light_casual_fill, color.$Light_casual_text, 10%))};
+            --color-casual-fill : #{rgb-to-hex-color(color.mix(color.$Light_casual_fill, color.$Light_casual_text, 10%))};
         }
 
         @media only screen and (prefers-color-scheme:dark) {
@@ -41,7 +41,7 @@
             --color-visited-hover : #{color.$Dark_visited_hover};
             @media only screen and (prefers-contrast:more) {
                 --color-text        : #fff;
-                --color-casual-fill : #{rgbToHexColor(color.mix(color.$Dark_casual_fill, color.$Dark_casual_text, 10%))};
+                --color-casual-fill : #{rgb-to-hex-color(color.mix(color.$Dark_casual_fill, color.$Dark_casual_text, 10%))};
             }
         }
     }
@@ -221,11 +221,11 @@
     $default-base-color: -property-to-default-light-color($property);
 
     @if $force or $print-color != light-color-to-print($default-base-color) {
-        @include print {
+        @include media-print {
             #{$property} : $print-color;
         }
     } @else if $base-color != $print-color {
-        @include print-fallback {
+        @include media-print-fallback {
             #{$property} : $print-color;
         }
     }
@@ -311,10 +311,11 @@
 
     @if $force or $screen-color != $default-light-color {
         // デフォルト色ではない、または強制上書き
-        @include screen {
+        @include media-screen {
             #{$property} : $screen-color;
         }
     }
+
     // 印刷用
     @include -print-media-block-common($force, $property, $screen-color, $print-color);
 }
@@ -325,7 +326,7 @@
 
     @if $force or $light-color != $default-light-color {
         // デフォルト色ではない、または強制上書き
-        @include screen {
+        @include media-screen {
             #{$property} : $light-color;
             @if ua.$Modern and -is-transparent($light-color) == false {
                 $var: light-color-to-var($light-color);
@@ -335,10 +336,12 @@
             }
         }
     }
+
     // 印刷用
     @if $print-color and $print-color != noprint {
         @include -print-media-block-common($force, $property, $light-color, $print-color);
     }
+
     // ダーク用
     @if $dark-color {
         @if ua.$Modern {

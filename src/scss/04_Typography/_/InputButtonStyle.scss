@@ -25,12 +25,13 @@
             @if ua.$Modern {
                 @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
             }
+
             // Gecko, IE8+, Opera 10+, WebKit
             @include background-responsive(color.$Light_casual_fill);
         } @else if quirks.$FORM_COLOR_UNSPECIFIED_FORCED_IN_HC {
             // Opera 9-
             // ハイコントラストモードでフォーム部品の色設定の無いプロパティにだけシステムカラーが適用されて、著しく視認性を損なうのを防ぐ
-            @include screen {
+            @include media-screen {
                 background : color.$Light_casual_fill;
             }
         }

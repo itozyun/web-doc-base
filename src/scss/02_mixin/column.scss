@@ -35,7 +35,7 @@
     }
 }
 
-@mixin column-span-none() {
+@mixin column-span-none {
     @include supports(column-span){
          -moz-column-span : none;
               column-span : none;

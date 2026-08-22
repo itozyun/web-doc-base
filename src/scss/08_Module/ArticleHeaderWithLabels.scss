@@ -8,7 +8,6 @@
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
-@use "../01_var/size" as size;
 @use "../01_var/canuse" as canuse;
 @use "../01_var/color" as color;
 @use "../01_var/quirks" as quirks;
@@ -81,7 +80,7 @@
 
         /*  Print
         ------------------------------------------------------------------------------------- */
-        @include print {
+        @include media-print {
             i {
                 @if canuse.$GOOD_CSS_GENERATED_BLOCK {
                     @if canuse.$DISPLAY_INLINE_BLOCK {

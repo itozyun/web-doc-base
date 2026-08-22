@@ -3,6 +3,7 @@
 @use "../../01_var/ua" as ua;
 
 @use "../../02_mixin/box-sizing" as *;
+@use "../../02_mixin/border-radius" as *;
 
 @use "./reset-outline" as *;
 
@@ -16,9 +17,8 @@ input {
     }
 
     @if ua.$Modern {
-        -webkit-border-radius : 0;
-           -moz-border-radius : 0;
-                border-radius : 0;
+        @include border-radius(0);
+
         -webkit-appearance    : none;
                 appearance    : none;
     }

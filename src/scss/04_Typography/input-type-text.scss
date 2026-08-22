@@ -5,7 +5,7 @@
 @use "./_/InputTextStyle" as *;
 
 @if canuse.$ATTRIBUTE_SELECTOR {
-    [type=text] {
+    [type="text"] {
         @extend %InputTextStyle;
     }
 } @else {

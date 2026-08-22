@@ -14,7 +14,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-page-inside {
-    @include print {
+    @include media-print {
         @if ua.$Modern {
             break-inside : avoid-page;
         }
@@ -39,7 +39,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/break-after
 }
 
 @mixin unbreak-page-after {
-    @include print {
+    @include media-print {
         @if ua.$Modern {
             break-after : avoid-page;
         }
