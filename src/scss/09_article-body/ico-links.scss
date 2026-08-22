@@ -23,13 +23,15 @@
         }
 
         [href]:before {
-            @if canuse.$CSS_GENERATED_BLOCK {
+            @if canuse.$GOOD_CSS_GENERATED_BLOCK {
                 position        : relative;
                 left            : -0.5em;
                 width           : 1em;
                 text-align      : center;
                 text-decoration : none;
                 @if ua.$Modern {
+                    @include inline-block; // アイコンの下線を消す　Firefox 153, Chrome 151
+
                     height      : size.$BASE_LINE_HEIGHT_EM; /* for iOS8 */
                     line-height : size.$BASE_LINE_HEIGHT; /* for iOS8 */
                 }
