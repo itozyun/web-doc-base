@@ -6,10 +6,18 @@
     @include light-dark(false, background-color, $light-color, light-color-to-dark($light-color), $print-color);
 }
 
+@mixin background-color-responsive-force($light-color, $print-color: false) {
+    @include light-dark(true, background-color, $light-color, light-color-to-dark($light-color), $print-color);
+}
+
 // light-color から自動で dark-color を決定する
 // 印刷メディア用の色だけインクセーブの意図で異なる場合がある
 @mixin background-responsive($light-color, $print-color: false) {
     @include light-dark(false, background, $light-color, light-color-to-dark($light-color), $print-color);
+}
+
+@mixin background-responsive-force($light-color, $print-color: false) {
+    @include light-dark(true, background, $light-color, light-color-to-dark($light-color), $print-color);
 }
 
 @mixin background-color-screen-print($screen-color, $print-color) {

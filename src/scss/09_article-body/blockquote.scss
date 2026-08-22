@@ -69,6 +69,9 @@ blockquote {
     & * {
         @include border-color-responsive(color.$Light_casual_text);
     }
+    & pre {
+        @include background-responsive-force(color.$Light_fill, noprint);
+    }
     & h3 {
         @include border-color-responsive(color.$Light_text);
     }

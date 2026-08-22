@@ -1,10 +1,12 @@
 /*  Google Code Prettify
 ------------------------------------------------------------------------------------- */
 @use "../01_var/ua" as ua;
+@use "../01_var/color" as color;
 
 @use "../02_mixin/media" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/link-colors-on-dark-background" as *;
+@use "../02_mixin/background-color" as *;
 
 @use "../04_typography/pre" as *;
 @use "../04_typography/code" as *;
@@ -13,19 +15,25 @@
     @include link-colors-on-dark-background;
 
     border-width : 1px;
-    border-color : #333;
+    border-color : color.$Light_casual_text;
 
     & code {
         font-size : 0.875em;
     }
 
     @include media-screen {
-        background : #333;
-        color      : #fff;
+        background : color.$Light_text;
+        color      : color.$Light_fill;
+        & code {
+            color : color.$Light_fill;
+        }
     }
     @include media-print-fallback {
-        background : #fff;
-        color      : #333;
+        background : color.$Print_fill;
+        color      : color.$Print_text;
+        & code {
+            color : color.$Print_text;
+        }
     }
     @include media-print {
         @include line-height(1, true);

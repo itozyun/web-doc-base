@@ -1,8 +1,10 @@
 /* <code>
 ------------------------------------------------------------------------------------- */
 @use "../01_var/options" as opt;
+@use "../01_var/color" as color;
 
 @use "../02_mixin/media" as *;
+@use "../02_mixin/text-color" as *;
 
 @use "../04_typography/code";
 
@@ -22,6 +24,10 @@
         ------------------------------------------------------------------------------------- */
             @include media-print {
                 border : 0;
+            }
+
+            blockquote & {
+                @include text-color-responsive-force(color.$Light_text);
             }
         }
     }
