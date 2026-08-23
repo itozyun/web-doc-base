@@ -1,8 +1,8 @@
-@use "../01_var/ua" as ua;
+@use "../../01_var/ua" as ua;
 
-@use "../02_mixin/css-hack" as *;
+@use "../../02_mixin/css-hack" as *;
 
-@mixin table-to-float-layout-patch(){
+@mixin table-to-float-layout-patch {
     /*  patch for Safari 3.2~4, Chrome 1~8
      *    table-layout のままだと
      *      1. main が sidebar より低い時に、横スクロールが発生する

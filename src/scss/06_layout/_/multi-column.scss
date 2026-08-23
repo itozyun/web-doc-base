@@ -1,0 +1,190 @@
+/**
+ *  マルチカラムレイアウト
+ *
+ *     display:table, または float によるレガシーなレイアウト
+ *
+ *   1. float のみ
+ *      -> IE5~7, gecko0.6~0.9, opera7~8
+ *   2. display:table のみ
+ *      -> modern, IE8~9, gecko1.2~1.9, opera9
+ *   3. float -> display:table
+ *      -> unknown
+ *
+ *   -----------------------------------------------------
+ *   次は、メインペーン + (スライドする)サイドバー の組み合わせで必要
+ *
+ *   4. display:table -> 初期 WebKit のみ float
+ *      -> modern
+ *   5. float -> display:table -> 初期 WebKit のみ float
+ *      -> unknown
+ */
+@use "../../01_var/ua" as ua;
+@use "../../01_var/canuse" as canuse;
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/media" as *;
+@use "../../02_mixin/clearfix" as *;
+
+@use "./table-to-float-layout-patch" as *;
+@use "./opera7.5-ssr-bug-workaround" as *;
+
+@mixin -table-layout($legacy-webkit-patch,
+    $container,
+    $left-column , $left-table-cell-width , $left-float-block-width,
+    $right-column, $right-table-cell-width, $right-float-block-width) {
+
+    #{$container} {
+        display      : table;
+        table-layout : fixed;
+    }
+    #{$left-column} {
+        display        : table-cell;
+        vertical-align : top; /* Safari 3.2, ie8 で大切 */
+        width          : $left-table-cell-width;
+    }
+    @if $right-column {
+        #{$right-column} {
+            display        : table-cell;
+            vertical-align : top; /* Safari 3.2, ie8 で大切 */
+            width          : $right-table-cell-width;
+        }
+    }
+    @if $legacy-webkit-patch { // 初期 WebKit のみ float
+        #{$container} {
+            @include table-to-float-layout-patch {
+                overflow : hidden; // <= @include clearfix;
+                display  : block;
+            }
+        }
+        #{$left-column} {
+            @include table-to-float-layout-patch {
+                width   : $left-float-block-width;
+                float   : left;
+                display : block;
+            }
+        }
+        @if $right-column {
+            #{$right-column} {
+                @include table-to-float-layout-patch {
+                    width   : $right-float-block-width;
+                    float   : right;
+                    display : block;
+                }
+            }
+        }
+    }
+}
+
+@mixin multi-column($has-slider, $is-table-layput,
+    $container, $container-width, $container-max-width,
+    $left-column        , $left-table-cell-width        , $left-float-block-width,
+    $right-column: false, $right-table-cell-width: false, $right-float-block-width: false) {
+
+    @if $container-width {
+        #{$container} {
+            width : $container-width;
+            @if canuse.$MAX_AND_MIN_SIZES {
+                max-width : $container-max-width;
+            }
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+                @include opera75-ssr-bug-workaround;
+            } @else {
+                @if canuse.$MARGIN_AUTO {
+                    margin : 0 auto;
+                }
+            }
+        }
+    }
+
+    @if $is-table-layput {
+        @include -table-layout($has-slider and ua.$Modern, $container,
+            $left-column , $left-table-cell-width , $left-float-block-width,
+            $right-column, $right-table-cell-width, $right-float-block-width);
+    } @else {
+        @at-root (without: media) { // clearfix を同時に指定するために screen の外へ
+            #{$container} {
+                @include clearfix;
+            }
+        }
+        #{$left-column} {
+            width : $left-float-block-width;
+            float : left;
+            @if $has-slider and ua.$WinIELte6 {
+                overflow-x : hidden; /* カラム落ち対策 */
+            }
+        }
+        @if $right-column {
+            #{$right-column} {
+                width : $right-float-block-width;
+                float : right;
+            }
+        }
+        @include media-noscript-patch { // float -> display:table, @media ブロック対応ブラウザのみ
+            #{$left-column} {
+                float : none;
+            }
+            @if $right-column {
+                #{$right-column} {
+                    float : none;
+                }
+            }
+            @include -table-layout($has-slider, $container,
+                $left-column , $left-table-cell-width , $left-float-block-width,
+                $right-column, $right-table-cell-width, $right-float-block-width);
+        }
+    }
+}
+
+@mixin -table-layout-reset($legacy-webkit-patch, $container, $left-column , $right-column) {
+    #{$container}, #{$left-column} {
+        display : block;
+    }
+    @if $right-column {
+        #{$right-column} { display : block; }
+    }
+    @if $legacy-webkit-patch { // 初期 WebKit のみ float
+        #{$left-column} {
+            @include table-to-float-layout-patch {
+                float : none;
+            }
+        }
+        @if $right-column {
+            #{$right-column} {
+                @include table-to-float-layout-patch {
+                    float : none;
+                }
+            }
+        }
+    }
+}
+
+@mixin multi-column-reset($has-slider, $is-table-layput,
+    $container, $container-width,
+    $left-column,
+    $right-column: false) {
+
+    @if $container-width {
+        #{$container} {
+            width : 100%;
+            @if canuse.$MAX_AND_MIN_SIZES {
+                max-width : 100%;
+            }
+        }
+    }
+    #{$left-column} { width : auto; }
+    @if $right-column {
+        #{$right-column} { width : auto; }
+    }
+
+    @if $is-table-layput {
+        @include -table-layout-reset($has-slider and ua.$Modern, $container, $left-column, $right-column);
+    } @else {
+        #{$left-column} { float : none; }
+        @if $right-column {
+            #{$right-column} { float : none; }
+        }
+        @include media-noscript-patch { // float -> display:table, @media ブロック対応ブラウザのみ
+            @include -table-layout-reset($has-slider, $container, $left-column, $right-column);
+        }
+    }
+}

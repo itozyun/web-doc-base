@@ -25,75 +25,29 @@
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
-@use "../02_mixin/table-to-float-layout-patch" as *;
 
-@mixin _reset-layout { /* float-layout -> table-layout も併せて変更 */
-    .#{opt.$Prefix}lW {
-        width : 100%;
-        @if canuse.$MAX_AND_MIN_SIZES {
-            max-width : 100%;
-        }
-        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-            display : block;
+@use "./_/table-to-float-layout-patch" as *;
+@use "./_/multi-column" as *;
+@use "./_/opera7.5-ssr-bug-workaround" as *;
+
+@mixin -reset-layout {
+    @include multi-column-reset(true, canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT,
+            #{"." + opt.$Prefix + "lW"}, size.$PC_WIDTH_PERCENT,
+            #{"." + opt.$Prefix + "lM"},
+            #{"." + opt.$Prefix + "lS"});
+
+    .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
+        @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+            padding : 0;
         } @else {
-            @include media-noscript-patch {
-                display : block;
-            }
+            margin : 0;
         }
     }
-        .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
-            width : auto;
-            @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-                display : block;
-            } @else {
-                float : none;
-                @include media-noscript-patch {
-                    display : table;
-                }
-            }
-        }
-            .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz, .#{opt.$Prefix}lSi {
-                @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                    padding : 0;
-                } @else {
-                    margin : 0;
-                }
-            }
-}
-
-@mixin -table-layout {
-    .#{opt.$Prefix}lW {
-        display      : table;
-        table-layout : fixed;
-        @include table-to-float-layout-patch {
-            display : block;
+    .#{opt.$Prefix}lSi {
+        @if ua.$IE6 {
+            width  : 100%;
         }
     }
-        .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
-            display        : table-cell;
-            vertical-align : top; /* Safari 3.2, ie8 で大切 */
-            @include table-to-float-layout-patch {
-                display : block;
-            }
-        }
-        .#{opt.$Prefix}lM {
-            width : 100% * size.$PC_MAIN_COLUMN_RATIO;
-            @include table-to-float-layout-patch {
-                width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
-                float : left;
-            }
-            @at-root #{&}i, #{&}z {
-                margin-right : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
-                @include table-to-float-layout-patch {
-                    margin-right : 0;
-                }
-            }
-        }
-        .#{opt.$Prefix}lS {
-            @include table-to-float-layout-patch {
-                float : right;
-            }
-        }
 }
 
 @if opt.$MobileOnly == false {
@@ -101,93 +55,61 @@
         @error "Layout Error! opt.$MaxLayoutColumns: " + opt.$MaxLayoutColumns;
     }
 
-    .#{opt.$Prefix}lW { // clearfix を同時に指定するために screen の外へ
-        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT == false and quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
-            @include clearfix;
-        }
-        @include table-to-float-layout-patch {
-            @include clearfix;
-        }
-    }
-
     @include media-screen {
-        .#{opt.$Prefix}lW {
-            width : size.$PC_WIDTH_PERCENT;
-            @if canuse.$MAX_AND_MIN_SIZES {
-                max-width : size.$PC_MAX_WIDTH_EM;
-            }
-            @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
-                @if canuse.$MARGIN_AUTO {
-                    margin : 0 auto;
-                }
-            }
-            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                @include inline-block;
-                text-align : left;
-            }
-        }
-
-/*  main
-------------------------------------------------------------------------------------- */
-            .#{opt.$Prefix}lM {
-                @if ua.$WinIELte6 {
-                    overflow-x : hidden; /* カラム落ち対策 */
-                }
-                @at-root #{&}i, #{&}z {
-                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                        padding-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
-                    } @else {
-                        margin-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
-                    }
-                }
-            }
-
-/*  sub
-------------------------------------------------------------------------------------- */
-            .#{opt.$Prefix}lS {
-                width : 100% * size.$PC_SUB_COLUMN_RATIO;
-                @at-root #{&}i {
-                    @if ua.$IE6 {
-                        width  : 82%;
-                    }
-                    @if ua.$IE55 {
-                        width  : 100%;
-                    }
-                    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                        padding : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
-                    } @else {
-                        margin : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
-                    }
-                }
-            }
 /*  table or float
 ------------------------------------------------------------------------------------- */
-        @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-            @include -table-layout;
-        } @else {
        /* memo : サイドバーを塗りたい場合
         * http://geckotang.tumblr.com/post/134453564281/ac2015-css-2
         * 高さを求めて32767px 
         */
-            .#{opt.$Prefix}lM {
-                width : 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO );
-                float : left;
-            }
-            .#{opt.$Prefix}lS {
-                float : right;
-            }
-            @include media-noscript-patch {
-                .#{opt.$Prefix}lM, .#{opt.$Prefix}lS {
-                    float : none;
+        @include multi-column(
+            true, canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT,
+            #{"." + opt.$Prefix + "lW"}, size.$PC_WIDTH_PERCENT           , size.$PC_MAX_WIDTH_EM,
+            #{"." + opt.$Prefix + "lM"}, 100% * size.$PC_MAIN_COLUMN_RATIO, 100% * ( size.$PC_MAIN_COLUMN_RATIO - size.$PC_COLUMN_GAP_RATIO ),
+            #{"." + opt.$Prefix + "lS"}, 100% * size.$PC_SUB_COLUMN_RATIO , 100% * size.$PC_SUB_COLUMN_RATIO
+        );
+/*  main
+------------------------------------------------------------------------------------- */
+        .#{opt.$Prefix}lMi, .#{opt.$Prefix}lMz {
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+                padding-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+            } @else {
+                margin-left : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
+                    margin-right : math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_MAIN_COLUMN_RATIO);
+                    @include table-to-float-layout-patch {
+                        margin-right : 0;
+                    }
                 }
-                @include -table-layout;
+            }
+        }
+
+/*  sub
+------------------------------------------------------------------------------------- */
+        .#{opt.$Prefix}lSi {
+            @if ua.$IE6 {
+                width : 100% - math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO) * 2;
+            }
+            @if ua.$IE55 {
+                width : 100%;
+            }
+            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+                padding : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
+            } @else {
+                margin : 0 math.div(100% * size.$PC_COLUMN_GAP_RATIO, size.$PC_SUB_COLUMN_RATIO);
             }
         }
     }
 /*  Print
 ------------------------------------------------------------------------------------- */
     @include media-print-fallback {
-        @include _reset-layout;
+        @include -reset-layout;
+    }
+
+/*  Tablet
+------------------------------------------------------------------------------------- */
+    @include mq(tablet) {
+        @include -reset-layout;
     }
 }
 
@@ -242,14 +164,6 @@
         }
 }
 
-/*  Tablet
-------------------------------------------------------------------------------------- */
-@if opt.$MobileOnly == false {
-    @include mq(tablet) {
-        @include _reset-layout;
-    }
-}
-
 /*  mobileOnly は始めから Tablet
 ------------------------------------------------------------------------------------- */
 @if opt.$MobileOnly {
@@ -263,17 +177,11 @@
         }
     }
     @include media-screen {
-        .#{opt.$Prefix}lW {
-            @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                text-align : center;
-            }
-        }
         .#{opt.$Prefix}lM, .#{opt.$Prefix}lS, #lB .#{opt.$Prefix}lSi {
             @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$TABLET_MAX_WIDTH_EM;
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                    @include inline-block;
-                    text-align : left;
+                    @include opera75-ssr-bug-workaround;
                 } @else {
                     margin : 0 auto;
                 }

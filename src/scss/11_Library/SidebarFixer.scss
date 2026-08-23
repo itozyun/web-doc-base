@@ -8,12 +8,12 @@
 @use "../01_var/common.generated" as common;
 @use "../01_var/color" as color;
 
-@use "../02_mixin/table-to-float-layout-patch" as *;
 @use "../02_mixin/mq" as *;
 @use "../02_mixin/media" as *;
 @use "../02_mixin/animate-colors" as *;
 @use "../02_mixin/css-hack" as *;
 
+@use "../06_layout/_/table-to-float-layout-patch" as *;
 @use "../06_layout/layout-2-columns";
 
 @mixin -table-layout {

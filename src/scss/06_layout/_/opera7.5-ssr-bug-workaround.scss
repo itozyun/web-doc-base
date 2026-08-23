@@ -1,0 +1,14 @@
+@use "../../01_var/quirks" as quirks;
+
+@use "../../02_mixin/Inline-block" as *;
+
+body {
+    @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
+        text-align : center;
+    }
+}
+
+@mixin opera75-ssr-bug-workaround {
+    @include inline-block;
+    text-align : left;
+}

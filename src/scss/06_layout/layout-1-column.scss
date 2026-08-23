@@ -15,10 +15,13 @@
 @use "../02_mixin/media" as *;
 @use "../02_mixin/inline-block" as *;
 
+@use "./_/opera7.5-ssr-bug-workaround" as *;
+
 .#{opt.$Prefix}lX { // clearfix を同時に指定するために screen の外へ
-    @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
+    // @if quirks.$OPERA75_SSR_BUG_WORKAROUND == false {
         @include clearfix;
-    }
+    // }
+
     /* #lB > .lX の際に #lF 側へ塗りがはみ出さないようにする  */
     @if ua.$IE8to9 or ua.$Modern {
         overflow : hidden; /* この指定が無いと塗りがはみ出る */
@@ -36,11 +39,7 @@
                 max-width : size.$PC_MAX_WIDTH_EM;
             }
             @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                @include inline-block;
-                text-align : left;
-                @at-root body {
-                    text-align : center;
-                }
+                @include opera75-ssr-bug-workaround;
             } @else {
                 @if canuse.$MARGIN_AUTO {
                     margin : 0 auto;
@@ -99,8 +98,7 @@
             @if canuse.$MAX_AND_MIN_SIZES {
                 max-width : size.$TABLET_MAX_WIDTH_EM;
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
-                    @include inline-block;
-                    text-align : left;
+                    @include opera75-ssr-bug-workaround;
                 } @else {
                     margin : 0 auto;
                 }
