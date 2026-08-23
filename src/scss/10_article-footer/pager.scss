@@ -24,6 +24,8 @@
 @use "../02_mixin/text-color" as *;
 @use "../02_mixin/border-color" as *;
 
+@use "../06_layout/_/multi-column" as *;
+
 @use "../08_module/ArticleFooter";
 @use "./_/article-footer-item" as *;
 
@@ -33,38 +35,21 @@ $_TEXT_TRIANGULATE        : canuse.$CSS_GENERATED_CONTENT and canuse.$CSS_GENERA
 /* px size で三角形を定義する、ie6 以下では font-size ベースのレイアウトが出来ない */
 $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
 
-@mixin -table-layout {
-    display      : table;
-    width        : 100%;
-    table-layout : fixed;
-    @include box-sizing(border-box);
-
-    span {
-        vertical-align : middle;
-        display        : table-cell;
-    }
-}
+@include multi-column(
+    false, false, $_LAYOUT_BY_DISPLAY_TABLE,
+    #{"." + opt.$Prefix + "Pager"}, 100%, false,
+    #{"." + opt.$Prefix + "Pager span"}, 33%, 33%
+);
 
 .#{opt.$Prefix}Pager {
     @include text-color-responsive(color.$Light_fill, noprint); /* , を消す */
     @include article-footer-item(0, 0, true, $_LAYOUT_BY_DISPLAY_TABLE == false);
 
     @if $_LAYOUT_BY_DISPLAY_TABLE {
-        @include -table-layout;
-    } @else {
-        @include clearfix;
+        @include box-sizing(border-box);
 
         span {
-            display : block;
-            float   : left;
-            width   : 33%;
-        }
-
-        @include media-noscript-patch {
-            @include -table-layout;
-            span {
-                float : none;
-            }
+            vertical-align : middle;
         }
     }
 

@@ -706,7 +706,8 @@ tr pre {
   border-width: 0 0 1px;
   margin: 0 0 1em
 }
-.BreadcrumbList {
+.BreadcrumbList,
+.TxtNavi {
   padding: 1em 0
 }
 .Comment h3,
@@ -807,7 +808,6 @@ th {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important;
   overflow: hidden;
@@ -1047,9 +1047,7 @@ div .box .js-captioned-thumbnail__large {
 }
 .Header h1,
 .h1 {
-  display: inline;
-  font-size: 1.5em;
-  margin: 0 .5em 0 0
+  display: inline
 }
 .Header h1 {
   line-height: 1;
@@ -1098,10 +1096,6 @@ div .box .js-captioned-thumbnail__large {
   background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
-}
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
 }
 .aa {
   line-height: 1;
@@ -1485,17 +1479,19 @@ tbody :hover td[colspan]:after {
   text-indent: -1.2em
 }
 .Pager {
-  padding: 0 1em;
-  display: table;
   width: 100%;
+  margin: 0 auto;
+  display: table;
   table-layout: fixed;
+  padding: 0 1em;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
 .Pager span {
-  vertical-align: middle;
-  display: table-cell
+  display: table-cell;
+  width: 33%;
+  vertical-align: middle
 }
 .Pager-next {
   padding: 1.5em 0
@@ -1706,11 +1702,6 @@ ol.linenums {
 screen,
 projection,
 tv {
-  .lW,
-  .lX {
-    width: 98%;
-    max-width: 70em
-  }
   #blog2slide-start button,
   .note,
   blockquote,
@@ -1770,47 +1761,29 @@ tv {
     border-color: #d0d0d0;
     border-color: var(--color-casual-fill)
   }
-  body {
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote pre code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
+  thead code,
+  thead var {
     color: #111;
-    color: var(--color-text);
-    background: #1a1a1a
-  }
-  .ribbon,
-  .ribbon :visited {
-    color: #fff
+    color: var(--color-text)
   }
   .ribbon * {
     border-color: #363636
   }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8;
+  .baseColor {
     background: var(--color-fill)
   }
   hr {
     margin: 2em
-  }
-  .lX {
-    margin: 0 auto
-  }
-  .lXi {
-    margin: 0 2.7%
-  }
-  .lW {
-    margin: 0 auto;
-    display: table;
-    table-layout: fixed
-  }
-  .lM,
-  .lS {
-    display: table-cell;
-    vertical-align: top
-  }
-  .lM {
-    width: 70%
-  }
-  .lS {
-    width: 30%
   }
   .lW,body[n0]:nth-child(n0) {
     overflow: hidden;
@@ -1827,16 +1800,8 @@ tv {
     display: block
   }
   .lMi,
-  .lMz {
-    margin-left: 3.857%;
-    margin-right: 3.857%
-  }
-  .lMi,
   .lMz,body[n0]:nth-child(n0) {
     margin-right: 0
-  }
-  .lSi {
-    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em
@@ -1861,20 +1826,6 @@ tv {
     color: #24c;
     color: var(--color-link)
   }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote pre code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    color: #111;
-    color: var(--color-text)
-  }
   :visited:hover {
     color: #515;
     color: var(--color-visited-hover);
@@ -1888,6 +1839,9 @@ tv {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .ribbon :visited {
+    color: #fff
   }
   .AHead-labels a:active,
   .AHead-labels a:focus,
@@ -2168,6 +2122,10 @@ tv {
   blockquote {
     background-color: #d0d0d0;
     background-color: var(--color-casual-fill)
+  }
+  blockquote pre {
+    background: #f8fbf8;
+    background: var(--color-fill)
   }
   .prettyprint {
     background: #111
@@ -2489,11 +2447,6 @@ print and (orientation:landscape) {
   .lMh {
     padding-left: 1.3em
   }
-  .lW,
-  .lX {
-    width: 96%;
-    max-width: 108em
-  }
   .lXi {
     margin: 0 1.5%
   }
@@ -2580,11 +2533,6 @@ print and (orientation:landscape) {
   .lM2,
   .lMh {
     padding-left: 1.3em
-  }
-  .lW,
-  .lX {
-    width: 94%;
-    max-width: 150em
   }
   .lXi {
     margin: 0 2%
@@ -2679,20 +2627,6 @@ only screen and (max-width:953px) {
   }
   hr {
     margin: 2em 6%
-  }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
-  .lM,
-  .lS {
-    width: auto
-  }
-  .lM,
-  .lS,
-  .lW {
-    display: block
   }
   .lM,
   .lS,body[n0]:nth-child(n0) {
@@ -3822,6 +3756,14 @@ only screen and (max-width:240px) {
   p {
     line-height: 1.5
   }
+  body {
+    background: #fff;
+    word-break: break-all
+  }
+  .pln,
+  .ribbon {
+    color: #000
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -3932,9 +3874,6 @@ only screen and (max-width:240px) {
     font-size: .875em;
     color: #006
   }
-  body {
-    word-break: break-all
-  }
   code,
   var {
     border-width: 1px
@@ -4018,9 +3957,6 @@ only screen and (max-width:240px) {
   }
   .pun {
     color: #440
-  }
-  .pln {
-    color: #000
   }
   .dec {
     color: #003

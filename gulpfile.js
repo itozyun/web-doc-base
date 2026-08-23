@@ -453,6 +453,26 @@ gulp.task( '__html', gulp.series(
             }
         );
     },
+    function( cb ){
+        if( isDebug ){
+            pageBase.site.inlineStyle = '@import "/assets/css/pc/1st-view-css.css"';
+            cb();
+        } else {
+            require( 'fs' ).readFile( './docs/assets/css/pc/1st-view-css.css',
+                function( error, buffer ){
+                    if( !error ){
+                        var CleanCSS = require('clean-css');
+                        var input = buffer.toString( 'utf-8' );
+                        var options = { /* options */ };
+                        pageBase.site.inlineStyle = new CleanCSS(options).minify(input).styles;
+                        cb();
+                    } else {
+                        throw error;
+                    };
+                }
+            );
+        };
+    },
     function(){
         return gulp.src(
                         [

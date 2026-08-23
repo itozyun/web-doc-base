@@ -1,7 +1,54 @@
+@media handheld,
+screen,
+projection,
+tv {
+  .baseColor {
+    background: #f8fbf8
+  }
+  #lB .lSi,
+  .lM,
+  .lS,
+  .lX {
+    max-width: 50em;
+    margin: 0 auto
+  }
+  #lB .lS {
+    max-width: 100%
+  }
+}
+@media handheld,
+only screen and (prefers-color-scheme:dark),
+only screen and (max-width:240px) {
+  body {
+    color: hsl(0,0%,93.333%)
+  }
+  .baseColor {
+    background: hsl(0,0%,6.667%)
+  }
+}
 html {
   font-size: 100%
 }
 body {
   margin: 0;
-  height: 100%
+  height: 100%;
+  background: #1a1a1a
+}
+pre {
+  white-space: pre-wrap
+}
+.ribbon {
+  color: #fff
+}
+.LinkList a,
+.RichLink-sep a {
+  display: block
+}
+.Header h1,
+.h1 {
+  font-size: 1.5em;
+  margin: 0 .5em 0 0
+}
+.TxtNavi {
+  text-align: right
 }

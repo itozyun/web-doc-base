@@ -472,7 +472,8 @@ tr pre {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.BreadcrumbList {
+.BreadcrumbList,
+.TxtNavi {
   padding: 1em 0
 }
 .Comment h3,
@@ -549,7 +550,6 @@ th {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important
 }
@@ -765,9 +765,7 @@ pre code {
 }
 .Header h1,
 .h1 {
-  display: inline;
-  font-size: 1.5em;
-  margin: 0 .5em 0 0
+  display: inline
 }
 .Header h1 {
   line-height: 1;
@@ -819,10 +817,6 @@ pre code {
   background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
-}
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
 }
 .aa {
   line-height: 1;
@@ -1066,13 +1060,15 @@ tbody :hover th :visited {
   text-indent: -1.2em
 }
 .Pager {
-  padding: 0 1em;
+  margin: 0 auto;
   display: table;
-  table-layout: fixed
+  table-layout: fixed;
+  padding: 0 1em
 }
 .Pager span {
-  vertical-align: middle;
-  display: table-cell
+  display: table-cell;
+  width: 33%;
+  vertical-align: middle
 }
 .Pager-next {
   padding: 1.5em 0
@@ -1282,21 +1278,8 @@ div .box .js-captioned-thumbnail__large {
     color: #111;
     background: #f1f4f1
   }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8
-  }
   hr {
     margin: 2em
-  }
-  .lW,
-  .lX {
-    width: 98%;
-    max-width: 70em;
-    margin: 0 auto
-  }
-  .lXi {
-    margin: 0 2.7%
   }
   .lM {
     width: 67.3%;
@@ -1305,13 +1288,6 @@ div .box .js-captioned-thumbnail__large {
   .lS {
     width: 30%;
     float: right
-  }
-  .lMi,
-  .lMz {
-    margin-left: 3.857%
-  }
-  .lSi {
-    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em;
@@ -1523,6 +1499,9 @@ div .box .js-captioned-thumbnail__large {
   }
   blockquote {
     background-color: #d0d0d0
+  }
+  blockquote pre {
+    background: #f8fbf8
   }
   .atv,
   .str {

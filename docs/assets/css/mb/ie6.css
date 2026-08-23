@@ -4,6 +4,7 @@
   top: 2px
 }
 .Header,
+.Header h1,
 body,
 input {
   line-height: 1
@@ -69,6 +70,11 @@ q,
 strong,
 var {
   font-style: normal
+}
+.LinkList a,
+.RichLink-sep a,
+kbd {
+  cursor: pointer
 }
 .tl th,
 tbody th {
@@ -194,9 +200,7 @@ small {
 .AHead h1,
 .Attribution,
 .Pager-top,
-.SocialBtns,
-.c,
-.caption {
+.c {
   text-align: center
 }
 textarea {
@@ -230,7 +234,6 @@ strong {
 .AFoot,
 .BreadcrumbList a,
 .Magazine-snippet,
-.Pager,
 .Pager a,
 .TxtNavi a,
 .lMi,
@@ -384,6 +387,7 @@ input.btn {
 .note .box,
 dl .box,
 li .box,
+pre code,
 tr .box {
   margin: 0
 }
@@ -425,8 +429,10 @@ th {
   display: none
 }
 .AHead-labels a,
+.Header h1,
 .SocialBtns a,
 .Subscribe a,
+.h1,
 .js-captioned-thumbnail__large a,
 dl blockquote,
 dl dl,
@@ -454,7 +460,8 @@ tr pre {
   color: #1a1a1a
 }
 .Attribution,
-.BreadcrumbList {
+.BreadcrumbList,
+.TxtNavi {
   padding: 1em 0
 }
 .Attribution small,
@@ -555,11 +562,6 @@ th {
 #lF .Label a,
 .lS .Label a {
   line-height: 2.4
-}
-.LinkList a,
-.RichLink-sep a {
-  display: block;
-  cursor: pointer
 }
 .LinkList :link,
 .LinkList :visited,
@@ -696,6 +698,10 @@ h2 {
   padding: 0 0 .571em;
   font-size: 1em
 }
+.Header h1,
+pre code {
+  padding: 0
+}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -793,15 +799,6 @@ h2 {
   padding-top: 1em;
   padding-bottom: 1em
 }
-.Header h1,
-.h1 {
-  font-size: 1.5em;
-  margin: 0 0 .5em
-}
-.Header h1 {
-  line-height: 1;
-  padding: 0
-}
 #lH .lMi {
   padding-bottom: 0
 }
@@ -845,10 +842,6 @@ h2 {
   border-color: #8bc53f;
   color: #8bc53f
 }
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
-}
 .aa {
   line-height: 1;
   margin: 1em 0;
@@ -856,6 +849,7 @@ h2 {
 }
 .caption {
   display: block;
+  text-align: center;
   font-size: .875em
 }
 .box {
@@ -897,10 +891,6 @@ div .caption img {
 code,
 var {
   padding: .1em .4em
-}
-pre code {
-  padding: 0;
-  margin: 0
 }
 dt {
   margin-top: .7em
@@ -998,7 +988,6 @@ li {
   margin-top: .3em
 }
 kbd {
-  cursor: pointer;
   letter-spacing: -1px;
   padding: 0 .4em;
   margin: 0 .1em
@@ -1099,10 +1088,14 @@ thead :link:hover {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
+.Pager {
+  width: 100%;
+  margin: 0 auto;
+  zoom: 1
+}
 .Pager span {
-  display: block;
-  float: left;
-  width: 33%
+  width: 33%;
+  float: left
 }
 .Pager-top a {
   padding: 1.5em .5em
@@ -1136,6 +1129,9 @@ thead :link:hover {
   margin-right: .5em;
   border-width: 0 7px 14px;
   border-color: #777 #f8fbf8
+}
+.SocialBtns {
+  text-align: center
 }
 .SocialBtns .tw:link {
   background: #1b95e0;
@@ -1288,13 +1284,19 @@ div .box .js-captioned-thumbnail__large {
   .tl thead th {
     border-color: #d0d0d0
   }
-  body {
-    color: #111;
-    background: #1a1a1a
-  }
-  .ribbon,
-  .ribbon :visited {
-    color: #fff
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote pre code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
+  thead code,
+  thead var {
+    color: #111
   }
   .AHead,
   .BreadcrumbList,
@@ -1307,10 +1309,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .ribbon * {
     border-color: #363636
-  }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8
   }
   .lMi,
   .lMz .lMh,
@@ -1350,19 +1348,6 @@ div .box .js-captioned-thumbnail__large {
   blockquote .tl tbody tr th :link {
     color: #24c
   }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote pre code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    color: #111
-  }
   :visited:hover {
     color: #515;
     border-color: #515
@@ -1382,6 +1367,9 @@ div .box .js-captioned-thumbnail__large {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .ribbon :visited {
+    color: #fff
   }
   .AHead-labels a:active,
   .SocialBtns a:active,
@@ -1565,6 +1553,9 @@ div .box .js-captioned-thumbnail__large {
   blockquote {
     background-color: #d0d0d0
   }
+  blockquote pre {
+    background: #f8fbf8
+  }
   .atv,
   .str {
     color: #65b042
@@ -1605,6 +1596,13 @@ div .box .js-captioned-thumbnail__large {
   }
   p {
     line-height: 1.5
+  }
+  body {
+    background: #fff
+  }
+  .pln,
+  .ribbon {
+    color: #000
   }
   #lB .lS,
   #lF .lW,
@@ -1759,9 +1757,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .pun {
     color: #440
-  }
-  .pln {
-    color: #000
   }
   .dec {
     color: #003

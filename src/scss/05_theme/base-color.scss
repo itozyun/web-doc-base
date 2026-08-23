@@ -1,5 +1,7 @@
 /* Base color
 ------------------------------------------------------------------------------------- */
+@use 'sass:color' as c;
+
 @use "../01_var/ua" as ua;
 @use "../01_var/options" as opt;
 @use "../01_var/quirks" as quirks;
@@ -16,45 +18,91 @@
     @include border-color-responsive-force(color.$LIGHT_DEFAULT_BORDER);
 }
 
-@if opt.$UseRibbon {
-    body {
-        @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
+@function hex-to-hsl($hex){
+    @return hsl(c.channel($hex, "hue", $space: hsl), c.channel($hex, "saturation", $space: hsl), c.channel($hex, "lightness", $space: hsl));
+}
 
+body {
+    // 1st-view-css
+    @include media-1st-view-css {
+        @include mq(dark) {
+            color : hex-to-hsl(color.$DARK_DEFAULT_TEXT);
+        }
+    }
+    @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
+
+    @if opt.$UseRibbon {
         @if quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS {
             @include background-screen-print(color.$Sidebar_fill, color.$PRINT_DEFAULT_BACKGROUND);
         } @else {
-            @include background-screen-print(color.$Ribbon_fill, color.$PRINT_DEFAULT_BACKGROUND);
+            // 1st-view-css
+            @include media-1st-view-css {
+                background : color.$Ribbon_fill;
+            }
+
+            @include media-print {
+                background : color.$PRINT_DEFAULT_BACKGROUND;
+            }
 
             @at-root .#{opt.$Prefix}ribbon {
-                @include text-color-screen-print(color.$Ribbon_text, color.$PRINT_DEFAULT_TEXT);
+                // 1st-view-css
+                @include media-1st-view-css {
+                    color : color.$Ribbon_text;
+                }
+                @include media-print {
+                    color : color.$PRINT_DEFAULT_TEXT;
+                }
+
                 & * {
                     @include border-color-screen-print(color.$Ribbon_casual_fill, color.$PRINT_DEFAULT_BORDER);
                 }
             }
-        }
-    }
-    .#{opt.$Prefix}baseColor {
-        @include media-screen {
-            background : color.$LIGHT_DEFAULT_BACKGROUND;
-            @if ua.$Modern {
-                background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
+            @at-root .#{opt.$Prefix}baseColor {
+                @include media-screen {
+                    // 1st-view-css
+                    @include media-1st-view-css {
+                        background : color.$LIGHT_DEFAULT_BACKGROUND;
+                        @include mq(dark) {
+                            background : hex-to-hsl(color.$DARK_DEFAULT_BACKGROUND);
+                        }
+                    }
+                    @if opt.$UseFirstViewCSS {
+                        @if ua.$Unknown {
+                            @at-root (without: media) {
+                                background : color.$LIGHT_DEFAULT_BACKGROUND;
+                            }
+                        }
+                        @if ua.$Modern {
+                            background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
+                        }
+                    }
+                }
+                @include mq(watch) {
+                    background : #000;
+                }
+                @include media-print-fallback {
+                    background : color.$PRINT_DEFAULT_BACKGROUND;
+                }
             }
         }
-        @include mq(watch) {
-            background : #000;
-        }
-        @include media-print-fallback {
-            background : color.$PRINT_DEFAULT_BACKGROUND;
-        }
-    }
-} @else {
-    body {
-        @include text-color-responsive-force(color.$LIGHT_DEFAULT_TEXT);
-
+    } @else {
         @include media-screen {
-            background : color.$LIGHT_DEFAULT_BACKGROUND;
-            @if ua.$Modern {
-                background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
+            // 1st-view-css
+            @include media-1st-view-css {
+                background : color.$LIGHT_DEFAULT_BACKGROUND;
+                @include mq(dark) {
+                    color : hex-to-hsl(color.$DARK_DEFAULT_BACKGROUND);
+                }
+            }
+            @if opt.$UseFirstViewCSS {
+                @if ua.$Unknown {
+                    @at-root (without: media) {
+                        background : color.$LIGHT_DEFAULT_BACKGROUND;
+                    }
+                }
+                @if ua.$Modern {
+                    background : light-color-to-var(color.$LIGHT_DEFAULT_BACKGROUND);
+                }
             }
         }
         @include mq(watch) {

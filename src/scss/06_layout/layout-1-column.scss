@@ -33,16 +33,21 @@
 
     @if opt.$MobileOnly == false {
         @include media-screen {
-            width : size.$PC_WIDTH_PERCENT;
-
-            @if canuse.$MAX_AND_MIN_SIZES {
-                max-width : size.$PC_MAX_WIDTH_EM;
+            // 1st-view-css
+            @include media-1st-view-css {
+                width : size.$PC_WIDTH_PERCENT;
+                @if canuse.$MAX_AND_MIN_SIZES {
+                    max-width : size.$PC_MAX_WIDTH_EM;
+                }
             }
             @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                 @include opera75-ssr-bug-workaround;
             } @else {
-                @if canuse.$MARGIN_AUTO {
-                    margin : 0 auto;
+                // 1st-view-css
+                @include media-1st-view-css {
+                    @if canuse.$MARGIN_AUTO {
+                        margin : 0 auto;
+                    }
                 }
             }
         }
@@ -57,9 +62,10 @@
     /*  WQXGA
     ------------------------------------------------------------------------------------- */
     @include mq(WQXGA) {
-        width     : size.$WQXGA_WIDTH_PERCENT;
-        max-width : size.$WQXGA_MAX_WIDTH_EM;
-
+        @include media-1st-view-css {
+            width     : size.$WQXGA_WIDTH_PERCENT;
+            max-width : size.$WQXGA_MAX_WIDTH_EM;
+        }
         @at-root #{&}i {
             margin : 0 size.$WQXGA_COLUMN_GAP_PCT;
         }
@@ -68,9 +74,10 @@
     /*  WSXGA
     ------------------------------------------------------------------------------------- */
     @include mq(WSXGA) {
-        width     : size.$WSXGA_WIDTH_PERCENT;
-        max-width : size.$WSXGA_MAX_WIDTH_EM;
-
+        @include media-1st-view-css {
+            width     : size.$WSXGA_WIDTH_PERCENT;
+            max-width : size.$WSXGA_MAX_WIDTH_EM;
+        }
         @at-root #{&}i {
             margin : 0 size.$WSXGA_COLUMN_GAP_PCT;
         }
@@ -79,10 +86,12 @@
     /*  Tablet
     ------------------------------------------------------------------------------------- */
     @if opt.$MobileOnly == false {
-        @include mq(tablet) {/* float-layout -> table-layout も併せて変更 */
-            width : 100%;
-            @if canuse.$MAX_AND_MIN_SIZES {
-                max-width : 100%;
+        @include mq(tablet) {
+            @include media-1st-view-css {
+                width : 100%;
+                @if canuse.$MAX_AND_MIN_SIZES {
+                    max-width : 100%;
+                }
             }
 
             @at-root #{&}i {
@@ -96,11 +105,15 @@
     } @else {
         @include media-screen {
             @if canuse.$MAX_AND_MIN_SIZES {
-                max-width : size.$TABLET_MAX_WIDTH_EM;
+                @include media-1st-view-css {
+                    max-width : size.$TABLET_MAX_WIDTH_EM;
+                }
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     @include opera75-ssr-bug-workaround;
                 } @else {
-                    margin : 0 auto;
+                    @include media-1st-view-css {
+                        margin : 0 auto;
+                    }
                 }
             }
         }
@@ -115,7 +128,9 @@
                 @if quirks.$OPERA75_SSR_BUG_WORKAROUND {
                     padding : 0 100% * size.$PC_COLUMN_GAP_RATIO;
                 } @else {
-                    margin : 0 100% * size.$PC_COLUMN_GAP_RATIO;
+                    @include media-1st-view-css {
+                        margin : 0 100% * size.$PC_COLUMN_GAP_RATIO;
+                    }
                 }
             }
             @include media-print-fallback {

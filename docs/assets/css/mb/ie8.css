@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .Header,
+.Header h1,
 body,
 input {
   line-height: 1
@@ -512,8 +513,10 @@ kbd {
   display: inline-block
 }
 .AHead-labels a,
+.Header h1,
 .SocialBtns a,
 .Subscribe a,
+.h1,
 dl blockquote,
 dl dl,
 dl p,
@@ -559,7 +562,8 @@ tr pre {
   border-width: 0 0 1px;
   margin: 0 0 1em
 }
-.BreadcrumbList {
+.BreadcrumbList,
+.TxtNavi {
   padding: 1em 0
 }
 .Comment h3,
@@ -661,7 +665,6 @@ kbd {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important
 }
@@ -780,6 +783,10 @@ kbd {
   padding: 0 0 .571em;
   font-size: 1em
 }
+.Header h1,
+pre code {
+  padding: 0
+}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -881,15 +888,6 @@ kbd {
   padding-top: 1em;
   padding-bottom: 1em
 }
-.Header h1,
-.h1 {
-  font-size: 1.5em;
-  margin: 0 0 .5em
-}
-.Header h1 {
-  line-height: 1;
-  padding: 0
-}
 #lH .lMi {
   padding-bottom: 0
 }
@@ -932,10 +930,6 @@ kbd {
   background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
-}
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
 }
 .aa {
   line-height: 1;
@@ -1000,7 +994,6 @@ var {
   padding: .1em .4em
 }
 pre code {
-  padding: 0;
   margin: 0;
   background: 0 0!important
 }
@@ -1297,15 +1290,17 @@ tbody :hover th a:focus {
   text-indent: -1.2em
 }
 .Pager {
-  padding: 0 3%;
-  display: table;
   width: 100%;
+  margin: 0 auto;
+  display: table;
   table-layout: fixed;
+  padding: 0 3%;
   box-sizing: border-box
 }
 .Pager span {
-  vertical-align: middle;
-  display: table-cell
+  display: table-cell;
+  width: 33%;
+  vertical-align: middle
 }
 .Pager-next {
   padding: 1.5em 0
@@ -1509,13 +1504,19 @@ div .box .js-captioned-thumbnail__large {
   blockquote .tl tbody td:after {
     border-color: #d0d0d0
   }
-  body {
-    color: #111;
-    background: #1a1a1a
-  }
-  .ribbon,
-  .ribbon :visited {
-    color: #fff
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote pre code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
+  thead code,
+  thead var {
+    color: #111
   }
   .AHead,
   .BreadcrumbList,
@@ -1529,17 +1530,6 @@ div .box .js-captioned-thumbnail__large {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8
-  }
-  #lB .lSi,
-  .lM,
-  .lS,
-  .lX {
-    max-width: 50em;
-    margin: 0 auto
-  }
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -1550,7 +1540,6 @@ div .box .js-captioned-thumbnail__large {
     padding-bottom: 4em
   }
   #lB .lS {
-    max-width: 100%;
     padding-bottom: 1em
   }
   .LinkList :link,
@@ -1561,19 +1550,6 @@ div .box .js-captioned-thumbnail__large {
   blockquote .tl tbody tr th :link,
   blockquote:before {
     color: #24c
-  }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote pre code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    color: #111
   }
   :visited:hover {
     color: #515;
@@ -1597,6 +1573,9 @@ div .box .js-captioned-thumbnail__large {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .ribbon :visited {
+    color: #fff
   }
   .AHead-labels a:active,
   .AHead-labels a:focus,
@@ -1781,6 +1760,9 @@ div .box .js-captioned-thumbnail__large {
   blockquote {
     background-color: #d0d0d0
   }
+  blockquote pre {
+    background: #f8fbf8
+  }
   .atv,
   .str {
     color: #65b042
@@ -1853,6 +1835,13 @@ div .box .js-captioned-thumbnail__large {
   }
   p {
     line-height: 1.5
+  }
+  body {
+    background: #fff
+  }
+  .pln,
+  .ribbon {
+    color: #000
   }
   #lB .lS,
   #lF .lW,
@@ -2041,9 +2030,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .pun {
     color: #440
-  }
-  .pln {
-    color: #000
   }
   .dec {
     color: #003

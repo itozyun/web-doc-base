@@ -20,11 +20,6 @@ textarea {
 hr {
   background: #d0d0d0
 }
-.lW,
-.lX {
-  width: 98%;
-  max-width: 70em
-}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -81,10 +76,6 @@ sup {
 pre {
   white-space: -webkit-pre-wrap;
   white-space: pre-wrap
-}
-.tl th,
-tbody th {
-  vertical-align: top
 }
 @font-face {
   font-family: "YuGothic M";
@@ -176,10 +167,14 @@ p tr,
 table {
   line-height: 1.2
 }
+.tl tbody th,
+.tl thead td,
+.tl thead th,
+:visited,
+blockquote pre code,
 body {
   color: #111;
-  color: var(--color-text);
-  background: #1a1a1a
+  color: var(--color-text)
 }
 del {
   text-decoration: line-through
@@ -238,6 +233,7 @@ img {
   max-width: 100%
 }
 .Magazine-mm,
+.Magazine-yy,
 .commonForm,
 a iframe,
 a img {
@@ -402,12 +398,10 @@ sub {
 sup {
   top: -.5em
 }
-.Pager-prev,
 .commonForm-send,
 .r {
   text-align: right
 }
-.Pager-top,
 .c {
   text-align: center
 }
@@ -436,16 +430,6 @@ thead td[colspan]:after,
 thead th[colspan]:after {
   border-color: #d0d0d0;
   border-color: var(--color-casual-fill)
-}
-.ribbon,
-.ribbon .AHead h1,
-.ribbon :visited,
-.tl tbody :hover th :link,
-.tl tbody :hover th :visited,
-blockquote:target:after,
-tbody :hover th :link,
-tbody :hover th :visited {
-  color: #fff
 }
 .ribbon * {
   border-color: #363636
@@ -493,26 +477,20 @@ strong {
 .AAuthor:after,
 .Comment p:after,
 .Cover:after,
-.Magazine-item:after,
 .Magazine-snippet:after,
-.Pager:after,
 .RichLink a:after,
 .box:after,
 .commonForm-pair:after,
 .lMi:after,
 .lSi:after,
-.lW:after,
 .lX:after {
   content: "";
-  display: block;
+  display: table;
   clear: both
 }
+.lS,
 .lX {
-  overflow: hidden;
-  margin: 0 auto
-}
-.lXi {
-  margin: 0 2.7%
+  overflow: hidden
 }
 .lM1,
 .lX1 {
@@ -522,23 +500,34 @@ strong {
 .lX2 {
   float: right
 }
-.lW {
-  margin: 0 auto
+.lW,body[n0]:nth-child(n0) {
+  overflow: hidden;
+  display: block
 }
-.lM {
+.lM,body[n0]:nth-child(n0) {
   width: 67.3%;
-  float: left
+  float: left;
+  display: block
 }
-.lS {
+.lS,body[n0]:nth-child(n0) {
   width: 30%;
-  float: right
+  float: right;
+  display: block
+}
+
+.note .box,
+.note blockquote,
+.note dl,
+.note iframe,
+.note img,
+.note ol,
+.note p,
+.note ul {
+  margin-right: 0
 }
 .lMi,
-.lMz {
-  margin-left: 3.857%
-}
-.lSi {
-  margin: 0 9%
+.lMz,body[n0]:nth-child(n0) {
+  margin-right: 0
 }
 .lM1,
 .lM2 {
@@ -587,14 +576,6 @@ blockquote .tl tbody tr th :link {
   color: #24c;
   color: var(--color-link)
 }
-.tl tbody th,
-.tl thead td,
-.tl thead th,
-:visited,
-blockquote pre code {
-  color: #111;
-  color: var(--color-text)
-}
 :visited:hover {
   color: #515;
   color: var(--color-visited-hover);
@@ -620,6 +601,15 @@ a:active *,
 a:focus,
 a:focus * {
   color: #fff!important
+}
+.ribbon .AHead h1,
+.ribbon :visited,
+.tl tbody :hover th :link,
+.tl tbody :hover th :visited,
+blockquote:target:after,
+tbody :hover th :link,
+tbody :hover th :visited {
+  color: #fff
 }
 .aa :link:hover,
 .prettyprint :link:hover,
@@ -797,6 +787,12 @@ th {
   vertical-align: middle;
   margin-top: .5em
 }
+.Magazine-date,
+.Magazine-main,
+.tl th,
+tbody th {
+  vertical-align: top
+}
 .ABody h2:after,
 .AHead-labels i,
 .Cover h2:after,
@@ -867,7 +863,6 @@ tr pre {
 }
 .BlogArchive,
 .BlogArchive tbody :hover td,
-.Pager,
 .aBodyRoot blockquote tbody th :visited,
 .aBodyRoot blockquote tbody th :visited:hover,
 blockquote tbody th :link,
@@ -943,6 +938,10 @@ th[colspan]:after {
   background: #fff;
   background: rgba(255,255,255,.75)
 }
+.Magazine h3,
+.Magazine-yy {
+  font-size: 2em
+}
 .Cover a {
   display: block;
   padding: .37em
@@ -981,7 +980,6 @@ th {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important;
   overflow: hidden;
@@ -1046,18 +1044,14 @@ kbd {
   border-color: var(--color-text)
 }
 .Magazine-item {
-  padding: 1em 0
+  padding: 1em 0;
+  display: table
 }
 .Magazine-date {
   line-height: 1;
   padding-right: 1.5em;
   font-weight: 700;
-  display: block;
-  float: left
-}
-.Magazine-yy {
-  display: block;
-  font-size: 2em
+  display: table-cell
 }
 .Magazine-dd,
 .Magazine-mm {
@@ -1066,14 +1060,13 @@ kbd {
 }
 .Magazine-main {
   padding-left: 1.5em;
-  margin-left: 5.5em
+  display: table-cell
 }
 .aa,
 kbd {
   border-width: 1px
 }
 .Magazine h3 {
-  font-size: 2em;
   font-weight: 700;
   margin: .2em 0 0;
   padding: 0
@@ -1263,9 +1256,7 @@ pre code {
 }
 .Header h1,
 .h1 {
-  display: inline;
-  font-size: 1.5em;
-  margin: 0 .5em 0 0
+  display: inline
 }
 .ABody h2,
 .ABody h3 {
@@ -1314,8 +1305,7 @@ pre code {
 .TxtNavi {
   color: #f8fbf8;
   color: var(--color-fill);
-  padding: 1em 0;
-  text-align: right
+  padding: 1em 0
 }
 .aBodyRoot :visited,
 .tl thead tr :visited,
@@ -1481,10 +1471,10 @@ h2:after {
   font-size: .1em;
   line-height: 0;
   content: " ";
+  display: block;
   position: absolute;
   border-style: solid;
-  height: 0;
-  display: block
+  height: 0
 }
 h2 {
   border-width: 0 0 2px;
@@ -1623,16 +1613,6 @@ kbd:hover {
 }
 .note {
   padding-left: 25%
-}
-.note .box,
-.note blockquote,
-.note dl,
-.note iframe,
-.note img,
-.note ol,
-.note p,
-.note ul {
-  margin-right: 0
 }
 .note .box iframe,
 .note .box img,
@@ -1823,19 +1803,33 @@ tbody :hover td {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
+.Pager {
+  width: 100%;
+  margin: 0 auto;
+  display: table;
+  table-layout: fixed;
+  color: #f8fbf8;
+  color: var(--color-fill);
+  padding: 0 1em;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
 .Pager span {
-  display: block;
-  float: left;
-  width: 33%
+  display: table-cell;
+  width: 33%;
+  vertical-align: middle
 }
-.Pager-top a {
-  padding: 1.5em .5em
+.Pager-next {
+  padding: 1.5em 0
 }
-.Pager-next a {
-  padding: 1.5em 0 1.5em 1em
+.Pager-top {
+  padding: 1.5em .5em;
+  text-align: center
 }
-.Pager-prev a {
-  padding: 1.5em 1em 1.5em 0
+.Pager-prev {
+  padding: 1.5em 0;
+  text-align: right
 }
 .Pager-next i {
   margin-right: .5em;
@@ -1989,68 +1983,8 @@ blockquote[cite]:after {
   font-size: .875em;
   color: #f8fbf8
 }
-@media screen {
-  .Pager,
-  .lW {
-    table-layout: fixed
-  }
-  .Magazine-date,
-  .Pager span {
-    float: none;
-    display: table-cell
-  }
-  .Magazine-item,
-  .lW {
-    display: table
-  }
-  .Magazine-main,
-  .lM,
-  .lS {
-    display: table-cell;
-    vertical-align: top
-  }
-  .lM,
-  .lS {
-    float: none
-  }
-  .lM {
-    width: 70%
-  }
-  .lS {
-    width: 30%;
-    overflow: hidden
-  }
-  .lW,body[n0]:nth-child(n0) {
-    overflow: hidden;
-    display: block
-  }
-  .lM,body[n0]:nth-child(n0) {
-    width: 67.3%;
-    float: left;
-    display: block
-  }
-  .lS,body[n0]:nth-child(n0) {
-    width: 30%;
-    float: right;
-    display: block;
-    overflow: visible
-  }
-  .Magazine-date {
-    vertical-align: top
-  }
-  .Magazine-main {
-    margin-left: 0
-  }
-  .Pager {
-    display: table;
-    width: 100%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-  }
-  .Pager span {
-    vertical-align: middle
-  }
+.lS,body[n0]:nth-child(n0) {
+  overflow: visible
 }
 @media all and (min-width:0\-) {
   :link,
@@ -2307,11 +2241,6 @@ print and (orientation:landscape) {
   .lMh {
     padding-left: 1.3em
   }
-  .lW,
-  .lX {
-    width: 96%;
-    max-width: 108em
-  }
   .lXi {
     margin: 0 1.5%
   }
@@ -2390,11 +2319,6 @@ print and (orientation:landscape) {
   .lMh {
     padding-left: 1.3em
   }
-  .lW,
-  .lX {
-    width: 94%;
-    max-width: 150em
-  }
   .lXi {
     margin: 0 2%
   }
@@ -2447,6 +2371,7 @@ print and (orientation:landscape) {
 @media handheld,
 tv,
 only screen and (max-width:953px) {
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -2484,14 +2409,8 @@ only screen and (max-width:953px) {
   hr {
     margin: 2em 6%
   }
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
   .lM,
-  .lS {
-    width: auto;
+  .lS,body[n0]:nth-child(n0) {
     float: none
   }
   #lB .lSi {
@@ -2670,17 +2589,6 @@ only screen and (max-width:953px) and (prefers-color-scheme:dark) {
     background: #111
   }
 }
-@media only screen and (max-width:953px) {
-  .lM,
-  .lS,
-  .lW {
-    display: block
-  }
-  .lM,
-  .lS,body[n0]:nth-child(n0) {
-    float: none
-  }
-}
 @media handheld,
 tv,
 only screen and (max-width:740px) {
@@ -2689,14 +2597,6 @@ only screen and (max-width:740px) {
   .Subscribe div,
   h2 {
     text-align: center
-  }
-  .Magazine-date,
-  .lM1,
-  .lM2,
-  .lS1,
-  .lS2 {
-    float: none;
-    width: auto
   }
   .note,
   blockquote,
@@ -2721,11 +2621,19 @@ only screen and (max-width:740px) {
     margin: 2em 4%
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
   .lXi {
     padding: 0 2%
+  }
+  .lM1,
+  .lM2,
+  .lS1,
+  .lS2 {
+    float: none;
+    width: auto
   }
   #lB .lS1,
   #lB .lS2 {
@@ -2750,10 +2658,13 @@ only screen and (max-width:740px) {
     border-width: .5em 0 0
   }
   .Magazine-item {
-    padding: 1em 0 0
+    padding: 1em 0 0;
+    display: block
   }
   .Magazine-date {
-    font-family: inherit
+    font-family: inherit;
+    width: auto;
+    display: block
   }
   .Magazine-mm,
   .Magazine-yy {
@@ -2769,7 +2680,8 @@ only screen and (max-width:740px) {
   }
   .Magazine-main {
     border-width: 0 0 .5em;
-    padding: 0 0 1em
+    padding: 0 0 1em;
+    display: block
   }
   .Magazine h3,
   .RichLink h3 {
@@ -2848,13 +2760,6 @@ only screen and (max-width:740px) {
     margin: 0 1%
   }
 }
-@media only screen and (max-width:740px) {
-  .Magazine-date,
-  .Magazine-item,
-  .Magazine-main {
-    display: block
-  }
-}
 @media handheld,
 tv,
 only screen and (max-width:479px) {
@@ -2888,6 +2793,7 @@ only screen and (max-width:479px) {
     margin: 2em 2%
   }
   #lB .lSi,
+  .Pager,
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -3170,23 +3076,24 @@ only screen and (max-width:240px) {
   blockquote pre code {
     color: #eee
   }
-  :visited:hover {
-    color: #c8e;
-    border-color: #c8e
-  }
-  .mspacer {
-    margin: .6em 0!important
-  }
   .BlogArchive,
   .BlogArchive tbody :hover td,
   .Label div,
   .Pager,
+  .SocialBtns,
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #111
+  }
+  :visited:hover {
+    color: #c8e;
+    border-color: #c8e
+  }
+  .mspacer {
+    margin: .6em 0!important
   }
   .LinkList a:not([href]),
   .RichLink-sep a:not([href]),
@@ -3336,12 +3243,14 @@ only screen and (max-width:240px) {
   blockquote tfoot th {
     border-color: #bbb transparent
   }
+  .Pager {
+    padding: 0 2px
+  }
   .Pager-next i,
   .Pager-prev i {
     border-color: transparent #bbb
   }
   .SocialBtns {
-    color: #111;
     padding: 1em 2px .5em
   }
   blockquote:before {
@@ -3604,7 +3513,6 @@ only screen and (max-width:240px) {
     break-after: avoid-page;
     page-break-after: avoid
   }
-  .lW,
   .lX,
   table {
     width: 100%
@@ -3649,7 +3557,6 @@ only screen and (max-width:240px) {
   hr {
     margin: 2em 0
   }
-  .lW,
   .lX {
     max-width: 100%
   }
@@ -3660,8 +3567,7 @@ only screen and (max-width:240px) {
     margin: 0
   }
   .lM,
-  .lS {
-    width: auto;
+  .lS,body[n0]:nth-child(n0) {
     float: none
   }
   #lB .lS,

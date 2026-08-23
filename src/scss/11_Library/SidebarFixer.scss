@@ -16,21 +16,13 @@
 @use "../06_layout/_/table-to-float-layout-patch" as *;
 @use "../06_layout/layout-2-columns";
 
-@mixin -table-layout {
-    .#{opt.$Prefix}lS {
-        overflow : hidden;
-        @include table-to-float-layout-patch {
-            overflow : visible; /** for Safari 4.0.5 でサイドバーが消える */
-        }
-    }
-}
-
 @if opt.$MobileOnly == false {
     @if canuse.$DISPLAY_TABLE_FOR_2COL_LAYOUT {
-        @include -table-layout;
-    } @else {
-        @include media-noscript-patch {
-            @include -table-layout;
+        .#{opt.$Prefix}lS {
+            overflow : hidden;
+            @include table-to-float-layout-patch {
+                overflow : visible; /** for Safari 4.0.5 でサイドバーが消える */
+            }
         }
     }
 

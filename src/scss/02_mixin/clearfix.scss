@@ -7,7 +7,7 @@
     @if ua.$Unknown {
         &:after {
             content : "";
-            display : block;
+            display : table; // for Firedfox 153
             clear   : both;
         }
     } @else if ua.$Modern or ua.$IE9 or ua.$IE8 or ua.$IE7 {

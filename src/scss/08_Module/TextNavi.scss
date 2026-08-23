@@ -12,8 +12,11 @@
 
 .#{opt.$Prefix}TxtNavi {
     @include text-color-responsive(color.$Light_fill); /* , を消す */
-    padding     : 1em 0;
-    text-align  : right;
+    @include media-1st-view-css {
+        text-align : right;
+    }
+
+    padding : 1em 0;
 
     a {
         @if ua.$GeckoLte09 == false and ua.$Opera7x == false {

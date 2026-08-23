@@ -30,8 +30,10 @@
             @if opt.$MobileOnly == false {
                 display : inline;
             }
-            font-size : 1.5em;
-            margin    : 0 0.5em 0 0;
+            @include media-1st-view-css {
+                font-size : 1.5em;
+                margin    : 0 0.5em 0 0;
+            }
             @if ua.$IE5 {
                 height : 1px; // <= hasLayout = true
             }

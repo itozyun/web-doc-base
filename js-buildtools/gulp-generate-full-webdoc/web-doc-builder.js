@@ -137,10 +137,8 @@ module.exports = function( page, pages ){
         /** title   */ '\n<title>' + page.title + '</title>' +
         /** viewport, see http://outcloud.blogspot.com/2016/02/viewport2016.html */
                         createElement( 'meta', { name : 'viewport', content : page.viewport || site.viewport || 'width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no' } ) +
-        /** inlin style */
-                        '<style>/*<!--*/\n@media only screen and (prefers-color-scheme:dark){body{background:hsl(0,0%,0%);color:hsl(0,0%,100%)}}/*-->*/</style>' +
         /** 1st view style */
-                        createElement( 'link', { rel : 'stylesheet', href : `${dir}assets/css/pc/1st-view-css.css`, type : 'text/css' } ) +
+                        createElement( 'style', null, site.inlineStyle ) +
         /** inlin javascript */
                         createElement( 'script', null, '<!--\n' + page.inlineScript + '//-->', !!page.inlineScript ) +
                         createElement( 'script', null, '<!--\n' + site.inlineScript + '//-->', !!site.inlineScript ) +

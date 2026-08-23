@@ -4,10 +4,8 @@
 .note .box,
 dl .box,
 form,
-h2,
 input,
 li .box,
-pre code,
 textarea,
 tr .box {
   margin: 0
@@ -369,8 +367,7 @@ h5 {
   border-color: #f8fbf8
 }
 .Header h1,
-input.btn,
-pre code {
+input.btn {
   padding: 0
 }
 .commonForm-pair {
@@ -438,8 +435,10 @@ tbody :hover th :visited {
   display: none
 }
 .AHead-labels a,
+.Header h1,
 .SocialBtns a,
 .Subscribe a,
+.h1,
 .js-captioned-thumbnail__large a,
 dl blockquote,
 dl dl,
@@ -494,7 +493,8 @@ tr pre {
   border-width: 0 0 1px;
   line-height: 2.8
 }
-.BreadcrumbList {
+.BreadcrumbList,
+.TxtNavi {
   padding: 1em 0
 }
 .Comment h3,
@@ -583,7 +583,6 @@ kbd {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important
 }
@@ -812,11 +811,6 @@ pre code {
   padding-top: 1em;
   padding-bottom: 1em
 }
-.Header h1,
-.h1 {
-  font-size: 1.5em;
-  margin: 0 0 .5em
-}
 #lH .lMi {
   padding-bottom: 0
 }
@@ -859,10 +853,6 @@ pre code {
   background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
-}
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
 }
 .aa {
   margin: 1em 0;
@@ -914,6 +904,10 @@ code,
 var {
   padding: .1em .4em
 }
+pre code {
+  padding: 0;
+  margin: 0
+}
 dt {
   margin-top: .7em
 }
@@ -955,6 +949,7 @@ th {
   font-size: 2em
 }
 h2 {
+  margin: 0;
   border-width: 0 0 2px;
   padding: 1.5em .45em .5em;
   font-size: 1.1em
@@ -1125,10 +1120,13 @@ tbody :hover th a:focus {
   padding-left: 1.2em;
   text-indent: -1.2em
 }
+.Pager {
+  width: 100%;
+  margin: 0 auto
+}
 .Pager span {
-  display: block;
-  float: left;
-  width: 33%
+  width: 33%;
+  float: left
 }
 .Pager-top a {
   padding: 1.5em .5em
@@ -1327,13 +1325,19 @@ div .box .js-captioned-thumbnail__large {
   .tl thead th {
     border-color: #d0d0d0
   }
-  body {
-    color: #111;
-    background: #1a1a1a
-  }
-  .ribbon,
-  .ribbon :visited {
-    color: #fff
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote pre code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
+  thead code,
+  thead var {
+    color: #111
   }
   .AHead,
   .BreadcrumbList,
@@ -1347,17 +1351,6 @@ div .box .js-captioned-thumbnail__large {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8
-  }
-  #lB .lSi,
-  .lM,
-  .lS,
-  .lX {
-    max-width: 50em;
-    margin: 0 auto
-  }
   .lMi,
   .lMz .lMh,
   .lSi,
@@ -1368,7 +1361,6 @@ div .box .js-captioned-thumbnail__large {
     padding-bottom: 4em
   }
   #lB .lS {
-    max-width: 100%;
     padding-bottom: 1em
   }
   .LinkList :link,
@@ -1379,19 +1371,6 @@ div .box .js-captioned-thumbnail__large {
   blockquote .tl tbody tr th :link,
   blockquote:before {
     color: #24c
-  }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote pre code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    color: #111
   }
   :visited:hover {
     color: #515;
@@ -1413,6 +1392,9 @@ div .box .js-captioned-thumbnail__large {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .ribbon :visited {
+    color: #fff
   }
   .AHead-labels a:focus,
   .SocialBtns a:focus,
@@ -1579,6 +1561,9 @@ div .box .js-captioned-thumbnail__large {
   blockquote {
     background-color: #d0d0d0
   }
+  blockquote pre {
+    background: #f8fbf8
+  }
   .atv,
   .str {
     color: #65b042
@@ -1651,6 +1636,13 @@ div .box .js-captioned-thumbnail__large {
   }
   p {
     line-height: 1.5
+  }
+  body {
+    background: #fff
+  }
+  .pln,
+  .ribbon {
+    color: #000
   }
   #lB .lS,
   #lF .lW,
@@ -1801,9 +1793,6 @@ div .box .js-captioned-thumbnail__large {
   }
   .pun {
     color: #440
-  }
-  .pln {
-    color: #000
   }
   .dec {
     color: #003

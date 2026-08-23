@@ -23,6 +23,7 @@ return require( 'through2' )
 
             let css = PostCSS.parse( file.contents.toString( encoding ) );
             let isUpdateCurrentFile;
+            let firstMediaBlock, screenMediaBlock;
 
             // 1. @ media first-view-css {} 内のスタイルだけの CSS を作る
             if( COMMON_VARS.COMMON_CSS_FILE_STEM__1ST_VIEW_CSS === file.stem ){
@@ -48,8 +49,7 @@ return require( 'through2' )
             } else {
                 const cssForForcedColors = PostCSS.parse('@charset "UTF-8"'),
                       rulesAddToEndOfForcedColorsCSS = [], mediaBlocksMoveToEndOfCSS = [];
-                let isCreateCSSForForcedColors,
-                    firstMediaBlock, screenMediaBlock;
+                let isCreateCSSForForcedColors;
 
                 css.walkAtRules( function( rule ){
                     if( rule.name === 'media' ){
@@ -78,16 +78,6 @@ return require( 'through2' )
                             mediaBlocksMoveToEndOfCSS.push( rule );
                             rule.remove();
                             isUpdateCurrentFile = true;
-                        } else {
-                    // 4. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
-                            if( !firstMediaBlock && rule.parent.name !== 'supports' ){
-                                firstMediaBlock = rule;
-                            };
-                            const mediaList = mediaQuery.replace( /\s/g, '' ).split( ',' );
-                            if( 0 <= mediaList.indexOf( 'screen' ) && mediaList.indexOf( 'print' ) === -1 && mediaQuery.indexOf( '(' ) === -1 ){
-                                screenMediaBlock = rule;
-                                isUpdateCurrentFile = true;
-                            };
                         };
                     };
                 });
@@ -106,15 +96,30 @@ return require( 'through2' )
                         )
                     );
                 };
-                if( firstMediaBlock && screenMediaBlock && firstMediaBlock !== screenMediaBlock ){
-                    firstMediaBlock.before( screenMediaBlock ); // 4. @media screen {} を @media の先頭へ!
-                };
     
                 if( mediaBlocksMoveToEndOfCSS.length ){
                     while( mediaBlocksMoveToEndOfCSS.length ){
                         css.append( mediaBlocksMoveToEndOfCSS.shift() );
                     };
                 };
+            };
+        // 4. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
+            css.walkAtRules( function( rule ){
+                if( rule.name === 'media' ){
+                    const mediaQuery = rule.params;
+
+                    if( !firstMediaBlock && rule.parent.name !== 'supports' ){
+                        firstMediaBlock = rule;
+                    };
+                    const mediaList = mediaQuery.replace( /\s/g, '' ).split( ',' );
+                    if( 0 <= mediaList.indexOf( 'screen' ) && mediaList.indexOf( 'print' ) === -1 && mediaQuery.indexOf( '(' ) === -1 ){
+                        screenMediaBlock = rule;
+                        isUpdateCurrentFile = true;
+                    };
+                };
+            });
+            if( firstMediaBlock && screenMediaBlock && firstMediaBlock !== screenMediaBlock ){
+                firstMediaBlock.before( screenMediaBlock ); // 4. @media screen {} を @media の先頭へ!
             };
 
             if( isUpdateCurrentFile ){

@@ -4,8 +4,13 @@
 @use "../01_var/options" as opt;
 
 @use "../02_mixin/pre-wrap" as *;
+@use "../02_mixin/media" as *;
 
 pre {
+    @include media-1st-view-css {
+        white-space : pre-wrap; // レイアウト崩れを抑止
+    }
+
     @include pre-wrap;
 
     @if ua.$GeckoLte19 {

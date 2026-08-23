@@ -125,6 +125,7 @@ html {
   border-width: 0
 }
 .Header,
+.Header h1,
 body,
 input {
   line-height: 1
@@ -349,6 +350,9 @@ sup {
 .r {
   text-align: right
 }
+.AHead h1,
+.Attribution,
+.CmtForm,
 .c {
   text-align: center
 }
@@ -613,7 +617,6 @@ dt {
 .AHead h1 {
   font-size: 2em;
   margin: 0;
-  text-align: center;
   padding: 2em 0
 }
 .ribbon .AHead h1,
@@ -663,8 +666,10 @@ kbd {
   display: inline-block
 }
 .AHead-labels a,
+.Header h1,
 .SocialBtns a,
 .Subscribe a,
+.h1,
 dl blockquote,
 dl dl,
 dl p,
@@ -691,9 +696,10 @@ tr pre {
   color: #1a1a1a
 }
 .Attribution,
-.CmtForm {
-  padding: 1em 0;
-  text-align: center
+.BreadcrumbList,
+.CmtForm,
+.TxtNavi {
+  padding: 1em 0
 }
 .Attribution small,
 .prettyprint code {
@@ -709,9 +715,6 @@ tr pre {
 .BlogArchive a {
   border-width: 0 0 1px;
   margin: 0 0 1em
-}
-.BreadcrumbList {
-  padding: 1em 0
 }
 .Comment h3,
 .SearchResult h3 {
@@ -807,7 +810,6 @@ th[colspan]:after {
 }
 .LinkList a,
 .RichLink-sep a {
-  display: block;
   cursor: pointer;
   text-decoration: none!important;
   overflow: hidden;
@@ -928,6 +930,10 @@ kbd {
   padding: 0 0 .571em;
   font-size: 1em
 }
+.Header h1,
+pre code {
+  padding: 0
+}
 .medal,
 .medal-bronze,
 .medal-gold,
@@ -1031,15 +1037,6 @@ kbd {
   padding-top: 1em;
   padding-bottom: 1em
 }
-.Header h1,
-.h1 {
-  font-size: 1.5em;
-  margin: 0 0 .5em
-}
-.Header h1 {
-  line-height: 1;
-  padding: 0
-}
 #lH .lMi {
   padding-bottom: 0
 }
@@ -1082,10 +1079,6 @@ kbd {
   background: #1a1a1a;
   border-color: #8bc53f;
   color: #8bc53f
-}
-.TxtNavi {
-  padding: 1em 0;
-  text-align: right
 }
 .aa {
   line-height: 1;
@@ -1158,7 +1151,6 @@ var {
   padding: .1em .4em
 }
 pre code {
-  padding: 0;
   margin: 0;
   background: 0 0!important
 }
@@ -1517,17 +1509,19 @@ tbody :hover td[colspan]:after {
   text-indent: -1.2em
 }
 .Pager {
-  padding: 0 3%;
-  display: table;
   width: 100%;
+  margin: 0 auto;
+  display: table;
   table-layout: fixed;
+  padding: 0 3%;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
 .Pager span {
-  vertical-align: middle;
-  display: table-cell
+  display: table-cell;
+  width: 33%;
+  vertical-align: middle
 }
 .Pager-next {
   padding: 1.5em 0
@@ -1802,29 +1796,26 @@ tv {
     border-color: #d0d0d0;
     border-color: var(--color-casual-fill)
   }
-  body {
+  .tl tbody th,
+  .tl thead td,
+  .tl thead th,
+  .tl tr code,
+  .tl tr var,
+  :visited,
+  blockquote pre code,
+  blockquote tbody th code,
+  blockquote tbody th var,
+  body,
+  thead code,
+  thead var {
     color: #111;
-    color: var(--color-text);
-    background: #1a1a1a
-  }
-  .ribbon,
-  .ribbon :visited {
-    color: #fff
+    color: var(--color-text)
   }
   .ribbon * {
     border-color: #363636
   }
-  .baseColor,
-  blockquote pre {
-    background: #f8fbf8;
+  .baseColor {
     background: var(--color-fill)
-  }
-  #lB .lSi,
-  .lM,
-  .lS,
-  .lX {
-    max-width: 50em;
-    margin: 0 auto
   }
   .lMi,
   .lMz .lMh,
@@ -1836,7 +1827,6 @@ tv {
     padding-bottom: 4em
   }
   #lB .lS {
-    max-width: 100%;
     padding-bottom: 1em
   }
   .AHead,
@@ -1856,20 +1846,6 @@ tv {
     color: #24c;
     color: var(--color-link)
   }
-  .tl tbody th,
-  .tl thead td,
-  .tl thead th,
-  .tl tr code,
-  .tl tr var,
-  :visited,
-  blockquote pre code,
-  blockquote tbody th code,
-  blockquote tbody th var,
-  thead code,
-  thead var {
-    color: #111;
-    color: var(--color-text)
-  }
   :visited:hover {
     color: #515;
     color: var(--color-visited-hover);
@@ -1883,6 +1859,9 @@ tv {
   .prettyprint :link,
   .ribbon :link {
     color: #bbe
+  }
+  .ribbon :visited {
+    color: #fff
   }
   .AHead-labels a:active,
   .AHead-labels a:focus,
@@ -2163,6 +2142,10 @@ tv {
   blockquote {
     background-color: #d0d0d0;
     background-color: var(--color-casual-fill)
+  }
+  blockquote pre {
+    background: #f8fbf8;
+    background: var(--color-fill)
   }
   .prettyprint {
     background: #111
@@ -3382,6 +3365,14 @@ only screen and (max-width:240px) {
   p {
     line-height: 1.5
   }
+  body {
+    background: #fff;
+    word-break: break-all
+  }
+  .pln,
+  .ribbon {
+    color: #000
+  }
   #lB .lS,
   #lF .lW,
   #lH .lS,
@@ -3492,9 +3483,6 @@ only screen and (max-width:240px) {
     font-size: .875em;
     color: #006
   }
-  body {
-    word-break: break-all
-  }
   code,
   var {
     border-width: 1px
@@ -3578,9 +3566,6 @@ only screen and (max-width:240px) {
   }
   .pun {
     color: #440
-  }
-  .pln {
-    color: #000
   }
   .dec {
     color: #003
