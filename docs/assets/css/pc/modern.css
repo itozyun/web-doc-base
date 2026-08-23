@@ -64,23 +64,6 @@ th {
 .lX {
   overflow: hidden
 }
-
-.lW,body[n0]:nth-child(n0) {
-  overflow: hidden
-}
-#jsMain,
-#jsSide,
-.Cover-img,
-.Magazine-main,
-.Search,
-.tl td,
-[colspan],
-h2,
-kbd,
-sub,
-sup {
-  position: relative
-}
 @font-face {
   font-family: "YuGothic M";
   src: local("Yu Gothic Medium"),local("Yu Gothic");
@@ -121,18 +104,12 @@ var {
   outline: 0
 }
 html {
-  font-size: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 * {
   border-style: solid;
@@ -286,6 +263,7 @@ input {
   box-sizing: content-box;
   height: 1em;
   font-size: 1em;
+  -khtml-border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -341,6 +319,7 @@ table {
 sub,
 sup {
   line-height: 0;
+  position: relative;
   vertical-align: baseline
 }
 sub {
@@ -568,13 +547,24 @@ h5 {
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
   src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
-.ico .js-myIconFont-testCssReady {
+.js-myIconFont-testCssReady {
   position: absolute;
   top: 0;
   left: 0;
   width: 1px;
   height: 1px;
   visibility: hidden
+}
+#jsMain,
+#jsSide,
+.Cover-img,
+.Magazine-main,
+.Search,
+.tl td,
+[colspan],
+h2,
+kbd {
+  position: relative
 }
 .ico {
   -moz-font-feature-settings: "liga=1";
@@ -1295,14 +1285,9 @@ li :target {
   width: 1em;
   text-align: center;
   text-decoration: none;
+  display: inline-block;
   height: 1.2em;
   line-height: 1.2;
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
   content: "🔗"
 }
 .icoLinks [href^="/"]:not([href^="//"]):before {
@@ -1666,7 +1651,7 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333
+  border-color: #777
 }
 ol.linenums {
   margin-top: 0;
@@ -1797,7 +1782,8 @@ tv {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8;
     background: var(--color-fill)
   }
@@ -1815,21 +1801,6 @@ tv {
     display: table;
     table-layout: fixed
   }
-  .lMi,
-  .lMz {
-    margin-left: 3.857%
-  }
-  .lS {
-    width: 30%
-  }
-  .lSi {
-    margin: 0 9%
-  }
-  .lM,
-  .lS,
-  .lW,body[n0]:nth-child(n0) {
-    display: block
-  }
   .lM,
   .lS {
     display: table-cell;
@@ -1838,20 +1809,34 @@ tv {
   .lM {
     width: 70%
   }
+  .lS {
+    width: 30%
+  }
+  .lW,body[n0]:nth-child(n0) {
+    overflow: hidden;
+    display: block
+  }
   .lM,body[n0]:nth-child(n0) {
     width: 67.3%;
-    float: left
+    float: left;
+    display: block
+  }
+  .lS,body[n0]:nth-child(n0) {
+    width: 30%;
+    float: right;
+    display: block
   }
   .lMi,
   .lMz {
+    margin-left: 3.857%;
     margin-right: 3.857%
   }
   .lMi,
   .lMz,body[n0]:nth-child(n0) {
     margin-right: 0
   }
-  .lS,body[n0]:nth-child(n0) {
-    float: right
+  .lSi {
+    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em
@@ -1882,6 +1867,7 @@ tv {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -2061,6 +2047,10 @@ tv {
     color: #3079ed;
     color: var(--color-accent)
   }
+  .prettyprint,
+  .prettyprint code {
+    color: #f8fbf8
+  }
   blockquote *,
   blockquote .tl tbody td:before,
   blockquote .tl td,
@@ -2180,8 +2170,7 @@ tv {
     background-color: var(--color-casual-fill)
   }
   .prettyprint {
-    background: #333;
-    color: #fff
+    background: #111
   }
   .atv,
   .str {
@@ -2286,15 +2275,6 @@ tv {
     .tl thead td,
     .tl thead th {
       position: static
-    }
-    .lW,
-    .nojs .lS {
-      overflow: visible
-    }
-    .nojs #jsSide > * {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0
     }
   }
   #jsSidebarFixer {
@@ -2661,11 +2641,6 @@ print and (orientation:landscape) {
 @media handheld,
 tv,
 only screen and (max-width:953px) {
-  .lW,
-  .lX {
-    width: 100%;
-    max-width: 100%
-  }
   .Pager,
   .lMi,
   .lMz .lMh,
@@ -2676,11 +2651,6 @@ only screen and (max-width:953px) {
   #lB .lS,
   #lF .lX {
     border-width: 1px 0 0
-  }
-  .lM,
-  .lS,
-  .lW {
-    display: block
   }
   .Header,
   .SocialBtns {
@@ -2710,9 +2680,23 @@ only screen and (max-width:953px) {
   hr {
     margin: 2em 6%
   }
+  .lW,
+  .lX {
+    width: 100%;
+    max-width: 100%
+  }
   .lM,
   .lS {
     width: auto
+  }
+  .lM,
+  .lS,
+  .lW {
+    display: block
+  }
+  .lM,
+  .lS,body[n0]:nth-child(n0) {
+    float: none
   }
   #lB .lSi {
     padding: 0
@@ -2787,11 +2771,6 @@ only screen and (max-width:953px) {
   .hscroll tbody {
     white-space: pre
   }
-  .nojs .hscroll tbody {
-    white-space: -webkit-pre-wrap;
-    white-space: pre-wrap;
-    word-break: break-all
-  }
   table {
     width: 94%
   }
@@ -2811,11 +2790,6 @@ only screen and (max-width:953px) {
   }
   blockquote {
     padding: 1em 1px
-  }
-  @-moz-document url-prefix() {
-    .nojs .hscroll tbody {
-      word-wrap: break-word
-    }
   }
 }
 @media print,
@@ -3392,7 +3366,8 @@ only screen and (max-width:240px) {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  blockquote pre code {
     color: #eee
   }
   .BlogArchive,
@@ -3584,6 +3559,9 @@ only screen and (max-width:240px) {
   blockquote {
     background-color: #333
   }
+  blockquote pre {
+    background: #111
+  }
 }
 @media handheld,
 only screen and (prefers-color-scheme:dark),
@@ -3607,6 +3585,7 @@ only screen and (max-width:240px) {
   :visited,
   [type=submit],
   [type=text],
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   body,
@@ -3744,6 +3723,9 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #111!important
+  }
+  blockquote pre {
+    background: var(--color-fill)
   }
 }
 @media all and (-webkit-min-device-pixel-ratio:0) {

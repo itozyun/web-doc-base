@@ -54,7 +54,6 @@ var {
 #jsSide,
 .Cover-img,
 .Magazine-main,
-.icoLinks [href]:before,
 [colspan],
 h2,
 kbd,
@@ -94,14 +93,6 @@ var {
 }
 :focus {
   outline: 0
-}
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 .Header h1,
 body,
@@ -1005,10 +996,6 @@ li {
   list-style: none
 }
 .icoLinks [href]:before {
-  left: -.5em;
-  width: 1em;
-  text-align: center;
-  text-decoration: none;
   content: ">";
   font-weight: 700
 }
@@ -1283,7 +1270,7 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333
+  border-color: #777
 }
 ol.linenums {
   margin-top: 0;
@@ -1378,7 +1365,8 @@ projection {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   hr {
@@ -1393,22 +1381,20 @@ projection {
   .lXi {
     margin: 0 2.7%
   }
-  .lMi,
-  .lMz {
-    margin-left: 3.857%
-  }
-  .lS {
-    width: 30%
-  }
-  .lSi {
-    margin: 0 9%
-  }
   .lM {
     width: 67.3%;
     float: left
   }
   .lS {
+    width: 30%;
     float: right
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lSi {
+    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em
@@ -1431,6 +1417,7 @@ projection {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1477,6 +1464,7 @@ projection {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1488,7 +1476,8 @@ projection {
     bottom: 0
   }
   .LinkList a,
-  .RichLink-sep a {
+  .RichLink-sep a,
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1619,10 +1608,6 @@ projection {
   blockquote {
     background-color: #d0d0d0
   }
-  .prettyprint {
-    background: #333;
-    color: #fff
-  }
   .atv,
   .str {
     color: #65b042
@@ -1674,6 +1659,7 @@ projection {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote pre code,
   blockquote th em,
   blockquote th strong,
   body,
@@ -2202,6 +2188,9 @@ projection {
   blockquote {
     background-color: #333;
     padding: 1em 1px
+  }
+  blockquote pre {
+    background: #111
   }
 }
 @media print,

@@ -99,14 +99,6 @@ samp,
 var {
   font-family: SFMono-Regular,Consolas,Meiryo,monospace
 }
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
-}
 * {
   border-style: solid;
   border-width: 0
@@ -1206,7 +1198,7 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333
+  border-color: #777
 }
 ol.linenums {
   margin-top: 0;
@@ -1300,7 +1292,8 @@ div .box .js-captioned-thumbnail__large {
     color: #111;
     background: #f1f4f1
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   hr {
@@ -1317,16 +1310,6 @@ div .box .js-captioned-thumbnail__large {
     display: table;
     table-layout: fixed
   }
-  .lMi,
-  .lMz {
-    margin-left: 3.857%
-  }
-  .lS {
-    width: 30%
-  }
-  .lSi {
-    margin: 0 9%
-  }
   .lM,
   .lS {
     display: table-cell;
@@ -1335,9 +1318,16 @@ div .box .js-captioned-thumbnail__large {
   .lM {
     width: 70%
   }
+  .lS {
+    width: 30%
+  }
   .lMi,
   .lMz {
+    margin-left: 3.857%;
     margin-right: 3.857%
+  }
+  .lSi {
+    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em;
@@ -1359,6 +1349,7 @@ div .box .js-captioned-thumbnail__large {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1396,6 +1387,7 @@ div .box .js-captioned-thumbnail__large {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1407,7 +1399,8 @@ div .box .js-captioned-thumbnail__large {
     bottom: 0
   }
   .LinkList a:not([href]),
-  .RichLink-sep a:not([href]) {
+  .RichLink-sep a:not([href]),
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1546,10 +1539,6 @@ div .box .js-captioned-thumbnail__large {
   }
   blockquote {
     background-color: #d0d0d0
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
   }
   .atv,
   .str {

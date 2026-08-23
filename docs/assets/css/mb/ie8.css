@@ -115,14 +115,6 @@ var {
 :focus {
   outline: 0
 }
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
-}
 * {
   border-style: solid;
   border-width: 0
@@ -620,6 +612,12 @@ h2:after,
 tfoot th {
   border-width: 2px 0 0
 }
+.aa,
+.prettyprint,
+blockquote,
+kbd {
+  border-width: 1px
+}
 .Cover h3 {
   font-size: 1.33em;
   margin: 0;
@@ -720,10 +718,6 @@ tfoot th {
 .Magazine-main {
   padding-left: 1.5em;
   display: table-cell
-}
-.aa,
-kbd {
-  border-width: 1px
 }
 .Magazine h3 {
   margin: .2em 0 0;
@@ -1227,6 +1221,12 @@ thead td[colspan]:after,
 thead th[colspan]:after {
   border-color: #d0d0d0
 }
+.prettyprint,
+blockquote td[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after {
+  border-color: #777
+}
 thead :link {
   color: #bbe
 }
@@ -1235,11 +1235,6 @@ thead :link {
 }
 .aBodyRoot thead :visited:hover {
   color: #c8e
-}
-blockquote td[colspan]:after,
-blockquote thead td[colspan]:after,
-blockquote thead th[colspan]:after {
-  border-color: #777
 }
 tbody :hover th a:active,
 tbody :hover th a:focus {
@@ -1430,7 +1425,6 @@ blockquote:after {
   color: #777
 }
 blockquote {
-  border-width: 1px;
   padding: 1em 1px
 }
 blockquote[title]:before {
@@ -1439,10 +1433,6 @@ blockquote[title]:before {
 }
 blockquote[cite]:after {
   content: attr(cite)
-}
-.prettyprint {
-  border-width: 1px;
-  border-color: #333
 }
 ol.linenums {
   margin-top: 0;
@@ -1539,7 +1529,8 @@ div .box .js-captioned-thumbnail__large {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   #lB .lSi,
@@ -1577,6 +1568,7 @@ div .box .js-captioned-thumbnail__large {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1628,6 +1620,7 @@ div .box .js-captioned-thumbnail__large {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1639,7 +1632,8 @@ div .box .js-captioned-thumbnail__large {
     bottom: 0
   }
   .LinkList a,
-  .RichLink-sep a {
+  .RichLink-sep a,
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1786,10 +1780,6 @@ div .box .js-captioned-thumbnail__large {
   }
   blockquote {
     background-color: #d0d0d0
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
   }
   .atv,
   .str {

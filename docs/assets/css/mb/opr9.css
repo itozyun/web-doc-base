@@ -70,7 +70,6 @@ var {
 .Cover-img,
 .Magazine-main,
 .Search,
-.icoLinks [href]:before,
 [colspan],
 h2,
 kbd,
@@ -91,14 +90,6 @@ var {
 }
 :focus {
   outline: 0
-}
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 * {
   border-style: solid;
@@ -560,6 +551,7 @@ kbd {
 }
 .Cover h2,
 .aa,
+.prettyprint,
 kbd {
   border-width: 1px
 }
@@ -1052,10 +1044,6 @@ li {
   list-style: none
 }
 .icoLinks [href]:before {
-  left: -.5em;
-  width: 1em;
-  text-align: center;
-  text-decoration: none;
   content: ">";
   font-weight: 700
 }
@@ -1153,6 +1141,12 @@ thead td[colspan]:after,
 thead th[colspan]:after {
   border-color: #d0d0d0
 }
+.prettyprint,
+blockquote td[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after {
+  border-color: #777
+}
 thead :link {
   color: #bbe
 }
@@ -1161,11 +1155,6 @@ thead :link {
 }
 .aBodyRoot thead :visited:hover {
   color: #c8e
-}
-blockquote td[colspan]:after,
-blockquote thead td[colspan]:after,
-blockquote thead th[colspan]:after {
-  border-color: #777
 }
 .js-pica-thumbnail__large:active,
 .js-pica-thumbnail__large:focus,
@@ -1338,10 +1327,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.prettyprint {
-  border-width: 1px;
-  border-color: #333
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1424,7 +1409,8 @@ projection {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   #lB .lSi,
@@ -1462,6 +1448,7 @@ projection {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1514,6 +1501,7 @@ projection {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1525,7 +1513,8 @@ projection {
     bottom: 0
   }
   .LinkList a,
-  .RichLink-sep a {
+  .RichLink-sep a,
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1661,10 +1650,6 @@ projection {
   }
   blockquote {
     background-color: #d0d0d0
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
   }
   .atv,
   .str {
@@ -2090,6 +2075,7 @@ screen and (max-width:240px) {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote pre code,
   blockquote th em,
   blockquote th strong,
   body,
@@ -2418,6 +2404,9 @@ screen and (max-width:240px) {
   }
   blockquote {
     background-color: #333
+  }
+  blockquote pre {
+    background: #111
   }
 }
 @media print {

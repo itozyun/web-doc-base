@@ -62,15 +62,6 @@ th {
 svg {
   overflow: hidden
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-.tl td,
-[colspan],
-h2,
-kbd {
-  position: relative
-}
 .Search .btn,
 .hscroll tbody {
   white-space: pre
@@ -158,14 +149,6 @@ var {
 :active,
 :focus {
   outline: 0
-}
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 * {
   border-style: solid;
@@ -501,13 +484,22 @@ h5 {
   font-style: normal;
   src: url(../../iconfont/web-doc-base.eot?rw1juc)
 }
-.ico .js-myIconFont-testCssReady {
+.js-myIconFont-testCssReady {
   position: absolute;
   top: 0;
   left: 0;
   width: 1px;
   height: 1px;
   visibility: hidden
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.tl td,
+[colspan],
+h2,
+kbd {
+  position: relative
 }
 .Magazine-date,
 .aa {
@@ -783,6 +775,7 @@ th[colspan]:after {
   display: table-cell
 }
 .aa,
+.prettyprint,
 kbd {
   border-width: 1px
 }
@@ -1308,6 +1301,12 @@ thead td[colspan]:after,
 thead th[colspan]:after {
   border-color: #d0d0d0
 }
+.prettyprint,
+blockquote td[colspan]:after,
+blockquote thead td[colspan]:after,
+blockquote thead th[colspan]:after {
+  border-color: #777
+}
 thead :link {
   color: #bbe
 }
@@ -1316,11 +1315,6 @@ thead :link {
 }
 .aBodyRoot thead :visited:hover {
   color: #c8e
-}
-blockquote td[colspan]:after,
-blockquote thead td[colspan]:after,
-blockquote thead th[colspan]:after {
-  border-color: #777
 }
 tbody :hover th a:active,
 tbody :hover th a:focus {
@@ -1524,10 +1518,6 @@ blockquote[title]:before {
 blockquote[cite]:after {
   content: attr(cite)
 }
-.prettyprint {
-  border-width: 1px;
-  border-color: #333
-}
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
@@ -1623,7 +1613,8 @@ div .box .js-captioned-thumbnail__large {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   #lB .lSi,
@@ -1659,6 +1650,7 @@ div .box .js-captioned-thumbnail__large {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1716,6 +1708,7 @@ div .box .js-captioned-thumbnail__large {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1727,7 +1720,8 @@ div .box .js-captioned-thumbnail__large {
     bottom: 0
   }
   .LinkList a:not([href]),
-  .RichLink-sep a:not([href]) {
+  .RichLink-sep a:not([href]),
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1877,10 +1871,6 @@ div .box .js-captioned-thumbnail__large {
   }
   blockquote {
     background-color: #d0d0d0
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
   }
   .atv,
   .str {
@@ -2303,6 +2293,7 @@ div .box .js-captioned-thumbnail__large {
   .tl thead td,
   .tl thead th,
   :visited,
+  blockquote pre code,
   blockquote th em,
   blockquote th strong,
   body,
@@ -2649,6 +2640,9 @@ div .box .js-captioned-thumbnail__large {
   }
   blockquote {
     background-color: #333
+  }
+  blockquote pre {
+    background: #111
   }
 }
 @media print {

@@ -68,11 +68,9 @@ tfoot tr:first-child th {
 }
 .Pager {
   text-align: center;
-  height: auto;
   padding: 1em 0
 }
 .Pager span {
-  position: static;
   display: inline
 }
 .Pager i {

@@ -86,14 +86,6 @@ samp,
 var {
   font-family: SFMono-Regular,Consolas,Meiryo,monospace
 }
-html {
-  font-size: 100%
-}
-body,
-html {
-  margin: 0;
-  height: 100%
-}
 * {
   border-style: solid;
   border-width: 0
@@ -1199,7 +1191,7 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333
+  border-color: #777
 }
 ol.linenums {
   margin-top: 0;
@@ -1286,7 +1278,8 @@ ol.linenums {
     color: #111;
     background: #f1f4f1
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8
   }
   hr {
@@ -1301,22 +1294,20 @@ ol.linenums {
   .lXi {
     margin: 0 2.7%
   }
-  .lMi,
-  .lMz {
-    margin-left: 3.857%
-  }
-  .lS {
-    width: 30%
-  }
-  .lSi {
-    margin: 0 9%
-  }
   .lM {
     width: 67.3%;
     float: left
   }
   .lS {
+    width: 30%;
     float: right
+  }
+  .lMi,
+  .lMz {
+    margin-left: 3.857%
+  }
+  .lSi {
+    margin: 0 9%
   }
   #lB .lM {
     padding-bottom: 4em;
@@ -1338,6 +1329,7 @@ ol.linenums {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -1375,6 +1367,7 @@ ol.linenums {
   .TxtNavi,
   .aBodyRoot blockquote tbody th :visited,
   .aBodyRoot blockquote tbody th :visited:hover,
+  .prettyprint code,
   blockquote tbody th :link,
   blockquote tbody th :link:hover {
     color: #f8fbf8
@@ -1386,7 +1379,8 @@ ol.linenums {
     bottom: 0
   }
   .LinkList a:not([href]),
-  .RichLink-sep a:not([href]) {
+  .RichLink-sep a:not([href]),
+  .prettyprint {
     background: #111;
     color: #f8fbf8
   }
@@ -1525,10 +1519,6 @@ ol.linenums {
   }
   blockquote {
     background-color: #d0d0d0
-  }
-  .prettyprint {
-    background: #333;
-    color: #fff
   }
   .atv,
   .str {

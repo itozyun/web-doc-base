@@ -55,6 +55,8 @@ a:focus {
 .Magazine-main,
 .RichLink b,
 .caption,
+.hscroll tbody,
+.hscroll tr pre,
 blockquote:after,
 pre,
 td,
@@ -77,10 +79,10 @@ sub,
 sup {
   position: relative
 }
-.Search .btn,
-.hscroll pre,
-.hscroll tbody {
-  white-space: pre
+.hscroll tr pre,
+pre {
+  white-space: -webkit-pre-wrap;
+  white-space: pre-wrap
 }
 .tl th,
 tbody th {
@@ -126,18 +128,12 @@ var {
   outline: 0
 }
 html {
-  font-size: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 * {
   border-style: solid;
@@ -339,6 +335,7 @@ input {
   box-sizing: content-box;
   height: 1em;
   font-size: 1em;
+  -khtml-border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -377,9 +374,8 @@ textarea:focus {
 p {
   line-height: 1.9
 }
+.AMeta,
 pre {
-  white-space: -webkit-pre-wrap;
-  white-space: pre-wrap;
   padding: 1em 3%
 }
 blockquote,
@@ -395,6 +391,10 @@ blockquote tbody th,
 blockquote tbody th[colspan]:after,
 hr {
   border-color: transparent
+}
+h5,
+h6 {
+  border-color: #777
 }
 #lB .lS,
 #lE,
@@ -464,7 +464,8 @@ tbody :hover th :visited {
 .ribbon * {
   border-color: #363636
 }
-.baseColor {
+.baseColor,
+blockquote pre {
   background: #f8fbf8;
   background: var(--color-fill)
 }
@@ -577,7 +578,8 @@ blockquote .tl tbody tr th :link {
 .tl tbody th,
 .tl thead td,
 .tl thead th,
-:visited {
+:visited,
+blockquote pre code {
   color: #111;
   color: var(--color-text)
 }
@@ -834,8 +836,7 @@ tr pre {
   padding: 1em 0;
   text-align: center
 }
-.Attribution small,
-.prettyprint code {
+.Attribution small {
   font-size: .875em
 }
 .BlogArchive,
@@ -1005,11 +1006,22 @@ th[colspan]:after {
 }
 .ABody blockquote h4,
 .Magazine,
+blockquote h3 {
+  border-color: #111;
+  border-color: var(--color-text)
+}
 .Magazine-main,
-blockquote h3,
 h4,
 kbd {
-  border-color: #111;
+  border-color: #111
+}
+h5,
+h6 {
+  border-color: var(--color-casual-text)
+}
+.Magazine-main,
+h4,
+kbd {
   border-color: var(--color-text)
 }
 .Magazine-item {
@@ -1178,6 +1190,7 @@ pre code {
   z-index: 1
 }
 .Search .btn {
+  white-space: pre;
   padding-left: 0;
   padding-right: 0;
   width: 3em;
@@ -1511,15 +1524,11 @@ h4 {
   padding: 0 0 0 .3em
 }
 h5 {
-  border-color: #777;
-  border-color: var(--color-casual-text);
   padding: 0 0 0 .5em
 }
 h6 {
   color: #777;
   color: var(--color-casual-text);
-  border-color: #777;
-  border-color: var(--color-casual-text);
   border-width: 0 0 0 .3em;
   padding: 0 0 0 .7em
 }
@@ -1535,13 +1544,8 @@ h6 {
 }
 .hscroll pre {
   margin: 0 0 .5em;
-  overflow: auto
-}
-.hscroll tr pre,
-.nojs .hscroll tbody {
-  white-space: -webkit-pre-wrap;
-  white-space: pre-wrap;
-  word-break: break-all
+  overflow: auto;
+  white-space: pre
 }
 .hscroll pre code,
 .hscroll pre kbd,
@@ -1557,6 +1561,11 @@ h6 {
 }
 .hscroll::-webkit-scrollbar-thumb {
   background: #bcbcbc
+}
+.hscroll tbody {
+  white-space: pre;
+  white-space: -webkit-pre-wrap;
+  white-space: pre-wrap
 }
 ol,
 ul {
@@ -1579,14 +1588,9 @@ li :target {
   width: 1em;
   text-align: center;
   text-decoration: none;
+  display: inline-block;
   height: 1.2em;
   line-height: 1.2;
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
   content: "🔗"
 }
 .icoLinks [href^="/"]:not([href^="//"]):before {
@@ -1829,9 +1833,6 @@ tbody :hover td {
   border-color: #f8fbf8;
   border-color: var(--color-fill)
 }
-.AMeta {
-  padding: 1em 3%
-}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1970,8 +1971,8 @@ blockquote:after {
   .Magazine-main,
   .RichLink b,
   .caption,
+  .hscroll tbody,
   .hscroll tr pre,
-  .nojs .hscroll tbody,
   blockquote:after,
   pre,
   td,
@@ -1994,13 +1995,46 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333;
-  background: #333;
-  color: #fff
+  border-color: #777;
+  background: #111;
+  color: #f8fbf8
 }
 #lE,
 #lF {
   border-top-width: .3em
+}
+.prettyprint code {
+  font-size: .875em;
+  color: #f8fbf8
+}
+@media screen {
+  .Magazine-date,
+  .Magazine-main {
+    vertical-align: top
+  }
+  .Magazine-date,
+  .Pager span {
+    float: none;
+    display: table-cell
+  }
+  .Magazine-item {
+    display: table
+  }
+  .Magazine-main {
+    margin-left: 0;
+    display: table-cell
+  }
+  .Pager {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+  }
+  .Pager span {
+    vertical-align: middle
+  }
 }
 @media all and (min-width:0\-) {
   :link,
@@ -2193,6 +2227,13 @@ only screen and (max-width:740px) {
   }
   blockquote:after {
     margin: 0 1%
+  }
+}
+@media only screen and (max-width:740px) {
+  .Magazine-date,
+  .Magazine-item,
+  .Magazine-main {
+    display: block
   }
 }
 @media handheld,
@@ -2506,7 +2547,8 @@ only screen and (max-width:240px) {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  blockquote pre code {
     color: #eee
   }
   :visited:hover {
@@ -2690,6 +2732,9 @@ only screen and (max-width:240px) {
   blockquote {
     background-color: #333
   }
+  blockquote pre {
+    background: #111
+  }
 }
 @media handheld,
 only screen and (prefers-color-scheme:dark),
@@ -2713,6 +2758,7 @@ only screen and (max-width:240px) {
   :visited,
   [type=submit],
   [type=text],
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   body,
@@ -2840,6 +2886,9 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:focus {
     border-color: #111!important
   }
+  blockquote pre {
+    background: var(--color-fill)
+  }
 }
 @media all and (-webkit-min-device-pixel-ratio:0) {
   body,
@@ -2944,6 +2993,7 @@ only screen and (max-width:240px) {
     word-break: break-all
   }
   .AHead-labels,
+  .prettyprint code,
   .ribbon {
     color: #000
   }
@@ -3141,7 +3191,7 @@ only screen and (max-width:240px) {
   }
   .prettyprint {
     background: #fff;
-    color: #333;
+    color: #000;
     line-height: 1
   }
 }

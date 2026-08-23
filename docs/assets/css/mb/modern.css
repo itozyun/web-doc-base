@@ -50,7 +50,6 @@ a:focus * {
 .Magazine-main,
 .RichLink b,
 .caption,
-.nojs .hscroll tbody,
 pre,
 td,
 th {
@@ -70,25 +69,9 @@ th {
 .lX {
   overflow: hidden
 }
-.Cover-img,
-.Magazine-main,
-.Search,
-.tl td,
-[colspan],
-h2,
-kbd,
-sub,
-sup {
-  position: relative
-}
 .Search .btn,
 .hscroll tbody {
   white-space: pre
-}
-.nojs .hscroll tbody,
-pre {
-  white-space: -webkit-pre-wrap;
-  white-space: pre-wrap
 }
 @font-face {
   font-family: "YuGothic M";
@@ -130,18 +113,12 @@ var {
   outline: 0
 }
 html {
-  font-size: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased!important;
   -moz-osx-font-smoothing: grayscale
-}
-body,
-html {
-  margin: 0;
-  height: 100%
 }
 * {
   border-style: solid;
@@ -301,6 +278,7 @@ input {
   box-sizing: content-box;
   height: 1em;
   font-size: 1em;
+  -khtml-border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -334,8 +312,9 @@ textarea:focus {
 p {
   line-height: 1.9
 }
-.AMeta,
 pre {
+  white-space: -webkit-pre-wrap;
+  white-space: pre-wrap;
   padding: 1em 3%
 }
 blockquote,
@@ -357,6 +336,7 @@ table {
 sub,
 sup {
   line-height: 0;
+  position: relative;
   vertical-align: baseline
 }
 sub {
@@ -570,13 +550,22 @@ h5 {
   src: url(../../iconfont/web-doc-base.eot?rw1juc);
   src: url(../../iconfont/web-doc-base.eot?rw1juc#iefix) format("embedded-opentype"),url(../../iconfont/web-doc-base.woff2?rw1juc) format("woff2"),url(../../iconfont/web-doc-base.woff?rw1juc) format("woff"),url(../../iconfont/web-doc-base.ttf?rw1juc) format("truetype"),url(../../iconfont/web-doc-base.svg?rw1juc#web-doc-base) format("svg")
 }
-.ico .js-myIconFont-testCssReady {
+.js-myIconFont-testCssReady {
   position: absolute;
   top: 0;
   left: 0;
   width: 1px;
   height: 1px;
   visibility: hidden
+}
+.Cover-img,
+.Magazine-main,
+.Search,
+.tl td,
+[colspan],
+h2,
+kbd {
+  position: relative
 }
 .ico {
   -moz-font-feature-settings: "liga=1";
@@ -1318,14 +1307,9 @@ li :target {
   width: 1em;
   text-align: center;
   text-decoration: none;
+  display: inline-block;
   height: 1.2em;
   line-height: 1.2;
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga";
-  font-feature-settings: "liga";
   content: "🔗"
 }
 .icoLinks [href^="/"]:not([href^="//"]):before {
@@ -1525,6 +1509,9 @@ tbody :hover td[colspan]:after {
   -moz-border-radius: .35em;
   border-radius: .35em
 }
+.AMeta {
+  padding: 1em 3%
+}
 .AMeta div {
   padding-left: 1.2em;
   text-indent: -1.2em
@@ -1666,7 +1653,6 @@ blockquote:after {
   .RichLink b,
   .caption,
   .js-generated-cite-in-blockquote,
-  .nojs .hscroll tbody,
   blockquote:after,
   pre,
   td,
@@ -1703,7 +1689,7 @@ blockquote[cite]:after {
 }
 .prettyprint {
   border-width: 1px;
-  border-color: #333
+  border-color: #777
 }
 ol.linenums {
   margin-top: 0;
@@ -1828,7 +1814,8 @@ tv {
   .ribbon * {
     border-color: #363636
   }
-  .baseColor {
+  .baseColor,
+  blockquote pre {
     background: #f8fbf8;
     background: var(--color-fill)
   }
@@ -1875,6 +1862,7 @@ tv {
   .tl tr code,
   .tl tr var,
   :visited,
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   thead code,
@@ -2057,6 +2045,10 @@ tv {
     color: #3079ed;
     color: var(--color-accent)
   }
+  .prettyprint,
+  .prettyprint code {
+    color: #f8fbf8
+  }
   blockquote *,
   blockquote .tl tbody td:before,
   blockquote .tl td,
@@ -2173,8 +2165,7 @@ tv {
     background-color: var(--color-casual-fill)
   }
   .prettyprint {
-    background: #333;
-    color: #fff
+    background: #111
   }
   .atv,
   .str {
@@ -2737,7 +2728,8 @@ only screen and (max-width:240px) {
   .tl tbody th,
   .tl thead td,
   .tl thead th,
-  :visited {
+  :visited,
+  blockquote pre code {
     color: #eee
   }
   .BlogArchive,
@@ -2929,6 +2921,9 @@ only screen and (max-width:240px) {
   blockquote {
     background-color: #333
   }
+  blockquote pre {
+    background: #111
+  }
 }
 @media handheld,
 only screen and (prefers-color-scheme:dark),
@@ -2952,6 +2947,7 @@ only screen and (max-width:240px) {
   :visited,
   [type=submit],
   [type=text],
+  blockquote pre code,
   blockquote tbody th code,
   blockquote tbody th var,
   body,
@@ -3081,6 +3077,9 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #111!important
+  }
+  blockquote pre {
+    background: var(--color-fill)
   }
 }
 @media all and (-webkit-min-device-pixel-ratio:0) {
