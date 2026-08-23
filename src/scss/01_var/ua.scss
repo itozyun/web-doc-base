@@ -63,8 +63,9 @@
         $Modern : true;
     } @else if tgt.$TargetBrowser == "1st-view-css" {
         $FirstViewCSS : true;
+        $Modern : true;
     } @else {
-        @error 'Tearget Error: Set "macie5"|"ie5"|"ie5.5"|"ie6"|"ie7"|"ie8"|"ie9"|"gecko0.7"|"gecko0.8"|"gecko0.9"|"gecko1.2"|"gecko1.3"|"gecko1.9"|"opera7.0"|"opera7.2"|"opera8"|"opera9"|"modern"|"noscript" to `tgt.$TargetBrowser`!';
+        @error 'Tearget Error: Set "macie5"|"ie5"|"ie5.5"|"ie6"|"ie7"|"ie8"|"ie9"|"gecko0.7"|"gecko0.8"|"gecko0.9"|"gecko1.2"|"gecko1.3"|"gecko1.9"|"opera7.0"|"opera7.2"|"opera8"|"opera9"|"modern"|"noscript|1st-view-css" to `tgt.$TargetBrowser`!';
     }
 
     $Script             : tgt.$TargetBrowser != "noscript";

@@ -41,3 +41,16 @@
         @content;
     }
 }
+
+@mixin media-1st-view-css {
+    @if ua.$FirstViewCSS {
+        @if opt.$UseFirstViewCSS == false {
+            @error 'Target Env "1st-view-css" found, but opt.$UseFirstViewCSS is false!';
+        }
+        @media (first-view-css:1) {
+            @content;
+        }
+    } @else if opt.$UseFirstViewCSS == false {
+        @content;
+    }
+}

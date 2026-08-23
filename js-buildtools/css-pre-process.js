@@ -1,8 +1,8 @@
 /**
- * 1. 強制カラーモード用の別 CSS を作る
- * 2. メディアクエリ有の screen メディアタイプのブロックを screen ブロック下に移動する
- *    この時に forced-colors は -ms-high-contrast より後ろになるようにする
- * 3. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
+ * 1. @ media first-view-css {} 内のスタイルだけの CSS を作る
+ * 2. 強制カラーモード用の別 CSS を作る
+ * 3. forced-colors は -ms-high-contrast より後ろになるようにする
+ * 4. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
  */
 module.exports = function( _COMMON_VARS ){
 
@@ -21,71 +21,93 @@ return require( 'through2' )
 
             if( file.isStream() ) return cb( new PluginError( 'gulp-csshack', 'Streaming not supported' ) );
 
-            const css = PostCSS.parse( file.contents.toString( encoding ) ),
-                  cssForForcedColors = PostCSS.parse('@charset "UTF-8"'),
-                  rulesAddToEndOfForcedColorsCSS = [], mediaBlocksMoveToEndOfCSS = [];
+            let css = PostCSS.parse( file.contents.toString( encoding ) );
+            let isUpdateCurrentFile;
 
-            let isCreateCSSForForcedColors, isUpdateCurrentFile,
-                firstMediaBlock, screenMediaBlock;
+            // 1. @ media first-view-css {} 内のスタイルだけの CSS を作る
+            if( COMMON_VARS.COMMON_CSS_FILE_STEM__1ST_VIEW_CSS === file.stem ){
+                const cssFor1stView = PostCSS.parse('/** 1st view CSS! **/');
 
-            css.walkAtRules( function( rule ){
-                if( rule.name === 'media' ){
-                    const mediaQuery = rule.params;
-                // 1. 強制カラーモード用の別 CSS を作る
-                    if( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR ){
-                        if( mediaQuery === TARGET_FORCED_COLORS_MEDIA_QUERY ){
-                            rule.clone().walkRules( function( r ){
-                                cssForForcedColors.append( r );
-                            } );
-                            rule.remove();
-                            isCreateCSSForForcedColors = isUpdateCurrentFile = true;
-                            return;
+                css.walkAtRules(
+                    function( rule ){
+                        if( rule.name === 'media' ){
+                            if( rule.params == '(first-view-css:1)' ){
+                                rule.walkRules( function( r ){
+                                    cssFor1stView.append( r );
+                                } );
+                                rule.remove();
+                            } else if( 0 < rule.params.indexOf(' and (first-view-css:1)') ){
+                                rule.params = rule.params.split( ' and (first-view-css:1)' ).join( '' );
+                                cssFor1stView.append( rule );
+                            };
                         };
-                        if( mediaQuery === TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY ){
-                            rule.params = 'screen and (max-width' + mediaQuery.split( 'max-width' )[ 1 ];
-                            rulesAddToEndOfForcedColorsCSS.push( rule.clone() );
-                            rule.remove();
-                            isCreateCSSForForcedColors = isUpdateCurrentFile = true;
-                            return;
-                        };
-                    };
-
-                    if( 0 <= mediaQuery.indexOf( 'only screen and (forced-colors:' ) ){ // -ms-high-contrast:active より後へ
-                        mediaBlocksMoveToEndOfCSS.push( rule );
-                        rule.remove();
-                        isUpdateCurrentFile = true;
-                    } else {
-                // 3. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
-                        if( !firstMediaBlock && rule.parent.name !== 'supports' ){
-                            firstMediaBlock = rule;
-                        };
-                        const mediaList = mediaQuery.replace( /\s/g, '' ).split( ',' );
-                        if( 0 <= mediaList.indexOf( 'screen' ) && mediaList.indexOf( 'print' ) === -1 && mediaQuery.indexOf( '(' ) === -1 ){
-                            screenMediaBlock = rule;
-                            isUpdateCurrentFile = true;
-                        };
-                    };
-                };
-            });
-
-            if( isCreateCSSForForcedColors ){
-                while( rulesAddToEndOfForcedColorsCSS.length ){
-                    cssForForcedColors.append( rulesAddToEndOfForcedColorsCSS.shift() );
-                };
-                this.push(
-                    new Vinyl(
-                        {
-                            base     : file.base,
-                            path     : file.path.split( file.basename ).join( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + file.basename ),
-                            contents : Buffer.from( cssForForcedColors.toString() )
-                        }
-                    )
+                    }
                 );
-            };
+                css = cssFor1stView;
+                isUpdateCurrentFile = true;
+            } else {
+                const cssForForcedColors = PostCSS.parse('@charset "UTF-8"'),
+                      rulesAddToEndOfForcedColorsCSS = [], mediaBlocksMoveToEndOfCSS = [];
+                let isCreateCSSForForcedColors,
+                    firstMediaBlock, screenMediaBlock;
 
-            if( isUpdateCurrentFile ){
+                css.walkAtRules( function( rule ){
+                    if( rule.name === 'media' ){
+                        const mediaQuery = rule.params;
+                    // 2. 強制カラーモード用の別 CSS を作る
+                        if( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR ){
+                            if( mediaQuery === TARGET_FORCED_COLORS_MEDIA_QUERY ){
+                                rule.clone().walkRules( function( r ){
+                                    cssForForcedColors.append( r );
+                                } );
+                                rule.remove();
+                                isCreateCSSForForcedColors = isUpdateCurrentFile = true;
+                                return;
+                            };
+                            // モバイル用クエリから不要なクエリを除去する
+                            if( mediaQuery === TARGET_FORCED_COLORS_SMALLPHONE_MEDIA_QUERY ){
+                                rule.params = 'screen and (max-width' + mediaQuery.split( 'max-width' )[ 1 ];
+                                rulesAddToEndOfForcedColorsCSS.push( rule.clone() );
+                                rule.remove();
+                                isCreateCSSForForcedColors = isUpdateCurrentFile = true;
+                                return;
+                            };
+                        };
+                    // 3. forced-colors は -ms-high-contrast より後ろになるようにする
+                        if( 0 <= mediaQuery.indexOf( 'only screen and (forced-colors:' ) ){
+                            mediaBlocksMoveToEndOfCSS.push( rule );
+                            rule.remove();
+                            isUpdateCurrentFile = true;
+                        } else {
+                    // 4. screen(,handheld,projection,tv) ブロックが全てのブロックの先頭になるようにする
+                            if( !firstMediaBlock && rule.parent.name !== 'supports' ){
+                                firstMediaBlock = rule;
+                            };
+                            const mediaList = mediaQuery.replace( /\s/g, '' ).split( ',' );
+                            if( 0 <= mediaList.indexOf( 'screen' ) && mediaList.indexOf( 'print' ) === -1 && mediaQuery.indexOf( '(' ) === -1 ){
+                                screenMediaBlock = rule;
+                                isUpdateCurrentFile = true;
+                            };
+                        };
+                    };
+                });
+
+                if( isCreateCSSForForcedColors ){
+                    while( rulesAddToEndOfForcedColorsCSS.length ){
+                        cssForForcedColors.append( rulesAddToEndOfForcedColorsCSS.shift() );
+                    };
+                    this.push(
+                        new Vinyl(
+                            {
+                                base     : file.base,
+                                path     : file.path.split( file.basename ).join( COMMON_VARS.COMMON_CSS_DIR_TO_FORCED_COLORS_CSS_DIR + '/' + file.basename ),
+                                contents : Buffer.from( cssForForcedColors.toString() )
+                            }
+                        )
+                    );
+                };
                 if( firstMediaBlock && screenMediaBlock && firstMediaBlock !== screenMediaBlock ){
-                    firstMediaBlock.before( screenMediaBlock ); // @media screen {} を @media の先頭へ!
+                    firstMediaBlock.before( screenMediaBlock ); // 4. @media screen {} を @media の先頭へ!
                 };
     
                 if( mediaBlocksMoveToEndOfCSS.length ){
@@ -93,6 +115,9 @@ return require( 'through2' )
                         css.append( mediaBlocksMoveToEndOfCSS.shift() );
                     };
                 };
+            };
+
+            if( isUpdateCurrentFile ){
                 file.contents = Buffer.from( css.toString() );
             };
             this.push( file );

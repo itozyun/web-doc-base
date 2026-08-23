@@ -6,25 +6,27 @@
 @use "./mobile-only" as mob;
 @use "./quirks" as quirks;
 
-// WSXGA 以上のレイアウトを有効にします
-    $EnableWideLayout : true !default;
+    $UseFirstViewCSS : false !default;
 
-    $MobileOnly : mob.$MobileOnly;
+// WSXGA 以上のレイアウトを有効にします
+    $EnableWideLayout: true !default;
+
+    $MobileOnly      : mob.$MobileOnly;
 
 // 16 以上の値を設定した場合、タブレット以上の ViewPort に対してこのフォントサイズを使用します
-    $BaseFontSize     : 18 !default;
+    $BaseFontSize    : 18 !default;
 
 // レイアウトのカラム数 1~3 を指定する
-    $MaxLayoutColumns : 2 !default;
+    $MaxLayoutColumns: 2 !default;
 // シンプルな組込みヘッダーを使用する
-    $UseBuiltinHeader : false !default;
+    $UseBuiltinHeader: false !default;
 // リボンと呼ばれるテーマカラーの帯を使用する
-    $UseRibbon        : true !default;
+    $UseRibbon       : true !default;
 // 暗い色の背景カラーを使用する
-    $UseDarkRibbon    : $UseRibbon and quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false;
+    $UseDarkRibbon   : $UseRibbon and quirks.$UNCHANGEABLE_TEXT_COLOR_FOCUS == false;
 
 // <code>, <var>, <kbd>, <samp> 用のスタイルを有効にする
-    $UseITStyles      : false !default;
+    $UseITStyles     : false !default;
 
 // for minify
-    $Prefix           : "" !default;
+    $Prefix          : "" !default;

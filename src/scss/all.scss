@@ -1,4 +1,5 @@
 @use "./01_var/options" with (
+    $UseFirstViewCSS  : true,
     $EnableWideLayout : true,
     $BaseFontSize     : 18,
     $MaxLayoutColumns : 2,

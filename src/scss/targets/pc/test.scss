@@ -1,0 +1,10 @@
+@use "../../01_var/target" with (
+    $TargetBrowser : "modern"
+);
+
+@use "../../01_var/color" as color;
+@use "../../02_mixin/border-color" as *;
+
+.test {
+    @include border-color-responsive(color.$Light_accent !important, noprint);
+}
