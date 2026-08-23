@@ -17,6 +17,8 @@ src/scss を `size.$PARAGRAPH_LINE_HEIGHT` で検索すると、\<p> とフォ�
 
 これらのプロパティは `@media screen` 内に書くことで、`@media print` での上書きが不要になり、CSS ファイルサイズが小さくなります。しかし、NetSerf では `@media screen` 内に書いたスタイルが無視されるので悩ましいところです。
 
+web-doc-base では、JavaScript が無効の時に読み込まれる noscript.css を NetSurf 試験対応としました。日本語の折り返しが出来ないため、試験対応です。noscript.css だけに有効な印刷メディア用スタイルは `@include media-print-fallback{}` 内に、書きます。
+
 ## `border` 系の下準備を全ての要素にしておく
 
 `border` を使うデザインを多用するので、あらかじめ全称セレクタで `border-style`, `border-color` などを設定しておきます。
