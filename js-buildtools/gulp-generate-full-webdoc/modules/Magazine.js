@@ -37,7 +37,7 @@ function createMagazineItem( site, currentPage, link, isCurrentPage ){
             Firefox, Web開発, クロスブラウザ, テキストブラウザ
         </div>
         <div class="Magazine-snippet">
-            <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 125, 125 ) }" width="125" height="125">
+            <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 125, 125 ) }" width="125" height="125" fetchpriority="low">
             <p aria-hidden="true">${ snippetFromArticleText( link.articleText, 200 ) }
         </div>
     </div>

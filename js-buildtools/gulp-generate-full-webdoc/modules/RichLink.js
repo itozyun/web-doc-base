@@ -22,7 +22,7 @@ function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrent
         return '' +
 `<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}>
 <h3>
-    <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 125, 125 ) }" width="125" height="125">
+    <img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 125, 125 ) }" width="125" height="125" fetchpriority="low">
     ${link.title}
 </h3>
 <div class="RichLink-meta">
@@ -49,7 +49,7 @@ function createRichLinkItem( underMainColmun, site, currentPage, link, isCurrent
     // console.dir( link )
     return '' +
 `<a role="listitem"${createAttribute( 'href', getRelativePath( currentPage.path, link.path ), !isCurrentPage)}>
-<img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 50, 50 ) }" width="50" height="50">
+<img alt="" role="presentation" src="${ resizeImage( link.image || site.ALT_THUMBNAIL_IMAGE, 50, 50 ) }" width="50" height="50" fetchpriority="low">
 <b>${link.title}</b>
 </a>`;
 };

@@ -43,7 +43,7 @@ module.exports = function( pageBase, BASE_PATH, jsdomOptions ){
         var page = {};
 
         for( var k in pageBase ){
-            page[ k ] = pageBase[ k ];
+            page[ k ] = JSON.parse( JSON.stringify( pageBase[ k ] ) );
         };
         return page;
     };

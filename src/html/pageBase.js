@@ -16,8 +16,9 @@ const site = {
     vml                        : false,
     charset                    : '',
     viewport                   : '',
-    preloadStyles              : [],
-    preloadScripts             : [],
+    preloadStyles              : [ '${dir}assets/css/pc/noscript.css' ],
+    preloadScripts             : [ '${dir}assets/js/main.js' ],
+    preloadFonts               : [ '${dir}assets/iconfont/web-doc-base.woff2' ],
     dnsPrefetchUrls            : [],
     searchBoxPlaceholderText   : '文書を検索する',
     searchButtonLabel          : '検索',
@@ -59,7 +60,7 @@ const site = {
 
 module.exports = {
     site            : site,
-    _path            : '',
+    _path           : '',
 
     lang            : '',
     dir             : '',
@@ -68,6 +69,7 @@ module.exports = {
     viewport        : '',
     preloadStyles   : [],
     preloadScripts  : [],
+    preloadFonts    : [],
     dnsPrefetchUrls : [],
     inlineScript    : '',
 

@@ -128,6 +128,10 @@ module.exports = function( page, pages ){
         '\n</html>';
     };
 
+    site.preloadStyles.forEach( ( url, i, ary ) => page.preloadStyles.push( url.split( '${dir}' ).join( dir ) ) );
+    site.preloadScripts.forEach( ( url, i, ary ) => page.preloadScripts.push( url.split( '${dir}' ).join( dir ) ) );
+    site.preloadFonts.forEach( ( url, i, ary ) => page.preloadFonts.push( url.split( '${dir}' ).join( dir ) ) );
+
     function HEAD(){
         return '\n<head' +
         /** OGP     */  createAttribute( 'prefix', 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#', !!page.ogp
@@ -143,8 +147,9 @@ module.exports = function( page, pages ){
                         createElement( 'script', null, '<!--\n' + page.inlineScript + '//-->', !!page.inlineScript ) +
                         createElement( 'script', null, '<!--\n' + site.inlineScript + '//-->', !!site.inlineScript ) +
 
-        /** preload */  createElementList( 'link', 'href', page.preloadStyles, { rel : 'preload', as : 'style'  } ) +
+        /** preload */  createElementList( 'link', 'href', page.preloadStyles , { rel : 'preload', as : 'style'  } ) +
                         createElementList( 'link', 'href', page.preloadScripts, { rel : 'preload', as : 'script' } ) +
+                        createElementList( 'link', 'href', page.preloadFonts  , { rel : 'preload', as : 'font', type : 'font/woff2' } ) +
         /** dns-prefetch */
                         createElement( 'meta', { 'http-equiv' : 'x-dns-prefetch-control', content : 'on' }, '', !!page.dnsPrefetchUrls && page.dnsPrefetchUrls.length ) +
                         createElementList( 'link', 'href', page.dnsPrefetchUrls, { rel : 'dns-prefetch' } ) +
@@ -214,7 +219,7 @@ return '' +
 `;
         },
         Script : function(){
-            return `<script src="${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}"></script>`;
+            return `<script src="${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}" async></script>`;
         }
     };
 
@@ -761,7 +766,7 @@ return '' +
 
             return '' +
 `<div class='AAuthor'>
-    <img src='${resizeImage( page.author.photo, 50 )}' alt=''/>
+    <img src='${resizeImage( page.author.photo, 50 )}' alt='' width='50' height='50'>
     <!-- i class='ico' expr:title='data:messages.postedBy'>&#x1f464;</i-->
     <p><a href='${page.author.profileURL}' rel='author' title='author profile' target='_blank'>
         ${page.author.name}
