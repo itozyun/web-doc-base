@@ -2,28 +2,39 @@
 @use "../../01_var/canuse" as canuse;
 @use "../../01_var/common.generated" as common;
 
-@use "../check-css-ready" as *;
-
 @mixin web-font-face($name, $path, $id, $hash, $test-id-and-classname: ""){
     @if canuse.$WEBFONT {
         @font-face {
             font-family : #{$name};
             font-weight : normal;
             font-style  : normal;
-            src         : url('#{$path}.eot?#{$hash}');
             @if ua.$Modern {
-                src:url('#{$path}.eot?#{$hash}#iefix') format('#{common.$WEBFONT_FORMAT_EOT}'),
-                    url('#{$path}.woff2?#{$hash}') format('#{common.$WEBFONT_FORMAT_WOFF2}'),
+                font-display : swap;
+
+                src:url('#{$path}.woff2?#{$hash}') format('#{common.$WEBFONT_FORMAT_WOFF2}'),
                     url('#{$path}.woff?#{$hash}') format('#{common.$WEBFONT_FORMAT_WOFF}'),
                     url('#{$path}.ttf?#{$hash}') format('#{common.$WEBFONT_FORMAT_TTF}'),
+                    // url('#{$path}.eot?#{$hash}') format('#{common.$WEBFONT_FORMAT_EOT}'), // IE10+
                     // url('#{$path}.otf?rw1juc') format('#{common.$WEBFONT_FORMAT_OTF}'),
                     url('#{$path}.svg?#{$hash}##{$id}') format('#{common.$WEBFONT_FORMAT_SVG}');
+            } @else if ua.$IE9 {
+                src : url('#{$path}.woff?#{$hash}'); // IE9
+            } @else {
+                // https://bobcorn.caldis.me/wiki/ja/eot.html
+                src : url('#{$path}.eot?#{$hash}'); // IE8-
             }
         }
-
+        /*  CSS の読み込みチェックから、DATA URI スキームの Web font が使えるか？のチェック。
+            TODO : インライン style 化した上で、チェックが終わったら要素を削除できる
+        ------------------------------------------------------------------------------------- */
         @if $test-id-and-classname and ( ua.$Modern or ua.$IE9 ) and ua.$Script {
             .#{$test-id-and-classname} {
-                @include check-css-ready;
+                position    : absolute;
+                top         : 0;
+                left        : 0;
+                width       : 1px;
+                height      : 1px;
+                visibility  : hidden;
             }
         }
     }
