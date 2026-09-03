@@ -77,8 +77,9 @@ function cssAndJsLoader_createElement( media ){
 
     link.href  = '${dir}assets/css/pc/' + cssName;
     link.rel   = 'stylesheet';
-    // link.type  = 'text/css';
+ // link.type  = 'text/css';
     link.media = media;
+    link[ 'fetchPriority' ] = 'high';
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 
