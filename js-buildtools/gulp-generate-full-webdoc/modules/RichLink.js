@@ -2,14 +2,14 @@ const { createAttribute, createElement, createElementList, resizeImage, getRelat
 const dateTime = require( '../util/datetime.js' );
 
 module.exports = function( underMainColmun, maxLink, site, currentPage, links, opt_numberOfMedal ){
-    var html = '\n<div class="RichLink">\n<div class="RichLink-sep">';
+    var html = '\n<div class="RichLink">\n<div class="RichLink-sep" role="list">';
 
     if( !links ) return 'NO LINKS!';
 
     for( var i = 0, l = Math.min( links.length, maxLink), link; i < l; ++i ){
         link = links[ i ];
         if( underMainColmun && i !== 0 && i % 3 === l % 3 ){
-            html += '\n</div>\n<div class="RichLink-sep">';
+            html += '\n</div>\n<div class="RichLink-sep" role="list">';
         };
         // console.dir( link );
         html += createRichLinkItem( underMainColmun, site, currentPage, link, link === currentPage, opt_numberOfMedal );
