@@ -16,7 +16,7 @@ const site = {
     vml                        : false,
     charset                    : '',
     viewport                   : '',
-    preloadStyles              : [ '${dir}assets/css/pc/noscript.css' ],
+    preloadStyles              : [],
     preloadScripts             : [ '${dir}assets/js/main.js' ],
     preloadFonts               : [ '${dir}assets/iconfont/web-doc-base.woff2' ],
     dnsPrefetchUrls            : [],

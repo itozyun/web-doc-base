@@ -144,9 +144,8 @@ module.exports = function( page, pages ){
         /** 1st view style */
                         createElement( 'style', null, site.inlineStyle ) +
         /** inlin javascript */
-                        createElement( 'script', null, '<!--\n' + page.inlineScript + '//-->', !!page.inlineScript ) +
-                        createElement( 'script', null, '<!--\n' + site.inlineScript + '//-->', !!site.inlineScript ) +
-
+                        createElement( 'script', null, '<!--\n' + page.inlineScript.split( '${dir}' ).join( dir ) + '//-->', !!page.inlineScript ) +
+                        createElement( 'script', null, '<!--\n' + site.inlineScript.split( '${dir}' ).join( dir ) + '//-->', !!site.inlineScript ) +
         /** preload */  createElementList( 'link', 'href', page.preloadStyles , { rel : 'preload', as : 'style'  } ) +
                         createElementList( 'link', 'href', page.preloadScripts, { rel : 'preload', as : 'script' } ) +
                         createElementList( 'link', 'href', page.preloadFonts  , { rel : 'preload', as : 'font', type : 'font/woff2' } ) +
@@ -219,7 +218,7 @@ return '' +
 `;
         },
         Script : function(){
-            return `<script src="${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}" async></script>`;
+            return `<script src="${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}"></script>`;
         }
     };
 

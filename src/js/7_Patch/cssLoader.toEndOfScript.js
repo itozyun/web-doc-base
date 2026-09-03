@@ -23,12 +23,13 @@ if(
             '>'
         );
     } else if(
-        p_Presto       < 9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
+     /* p_Presto       < 9.5 || // Windows XP + Presto 9.27   , noscript 下のコンテンツが取れない
         p_Gecko        < 1.5 || // Windows XP + Gecko  1.4.1  , noscript 下のコンテンツが取れない
         p_WebKit       < 534 || // Windows XP + Safari 4.0.5- , noscript 下のコンテンツが取れない.
         p_SafariMobile < 5   || // 多分
         p_Chromium     < 7   || // Windows XP + Chrome(Iron)6-, noscript 下のコンテンツが取れない
-        p_AOSP         < 3   || // AOSP 2.2 WebKit 433.1      , noscript 下のコンテンツが取れない.
+        p_AOSP         < 3   || // AOSP 2.2 WebKit 433.1      , noscript 下のコンテンツが取れない. */
+        p_WebKit       < 419.13 ||  // Safari 2-
         !DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS
     ){
         p_listenLoadEvent(
@@ -45,5 +46,21 @@ if(
                 );
             }
         );
+    } else {
+        // ロード確認
+        /* p_listenLoadEvent(
+            function(){
+                var linkList = p_DOM_getElementsByTagName( p_head, 'link' ), link;
+
+                while( link = linkList.shift() ){
+                    if( link.rel === 'stylesheet' && link.href.indexOf( p_assetUrl + p_cssDir + p_screenModeDir + p_cssName ) ){
+                        if( link.media === 'print' ){
+                            link.media = 'screen,handheld,projection,tv,print';
+                        };
+                        break;
+                    };
+                };
+            }
+        ); */
     };
 };
