@@ -4,17 +4,6 @@
     font: -apple-system-body
   }
 }
-input,
-textarea {
-  margin: 0;
-  padding: .45em 8px
-}
-.lM1,
-.lM2,
-.lS1,
-.lS2 {
-  width: 48.5%
-}
 .BlogArchive :link:hover,
 .BlogArchive :visited:hover,
 .Label :link:hover,
@@ -29,6 +18,17 @@ a:focus,
 dfn,
 ins {
   text-decoration: none
+}
+input,
+textarea {
+  margin: 0;
+  padding: .45em 8px
+}
+.lM1,
+.lM2,
+.lS1,
+.lS2 {
+  width: 48.5%
 }
 a:active,
 a:focus {
@@ -273,6 +273,13 @@ textarea::-moz-placeholder {
 textarea:-ms-input-placeholder {
   color: #777
 }
+.ADesc,
+.ribbon .AHead,
+.ribbon .BreadcrumbList,
+:link .RichLink-meta,
+:visited .RichLink-meta {
+  color: #bbb
+}
 input {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -325,6 +332,10 @@ q {
 q[cite],
 q[title] {
   border-bottom: 1px dotted
+}
+.Magazine-main,
+h5 {
+  border-width: 0 0 0 .5em
 }
 #lB .lS,
 #lE,
@@ -408,9 +419,31 @@ strong {
   width: 45.5%;
   padding-right: 3%
 }
-:link,
-:visited {
-  background-color: transparent
+.AHead-labels a,
+.Search .btn,
+.SocialBtns a,
+.Subscribe a,
+input.btn {
+  display: inline-block;
+  line-height: 1;
+  padding: .45em 1em;
+  vertical-align: top;
+  border-width: 2px;
+  cursor: pointer;
+  text-align: center
+}
+.AHead-labels a:active,
+.AHead-labels a:focus,
+.Search .btn:active,
+.Search .btn:focus,
+.SocialBtns a:active,
+.SocialBtns a:focus,
+.Subscribe a:active,
+.Subscribe a:focus,
+input.btn:active,
+input.btn:focus {
+  outline: 0;
+  border-style: dotted
 }
 .aBodyRoot :link,
 .aBodyRoot :visited,
@@ -421,106 +454,6 @@ a:active,
 a:focus:hover,
 input.btn:hover {
   text-decoration: underline
-}
-:link,
-:link *,
-:visited,
-:visited * {
-  -webkit-transition-property: background-color,color,border-color;
-  -webkit-transition: .3s ease-in;
-  -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
-  -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
-  transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
-}
-.ribbon :link:hover {
-  color: #3079ed;
-  border-color: #3079ed
-}
-.ribbon :visited:hover {
-  color: #c8e;
-  border-color: #c8e
-}
-.AHead-labels a,
-.SocialBtns a,
-.Subscribe a,
-.btn {
-  display: inline-block;
-  line-height: 1;
-  padding: .45em 1em;
-  vertical-align: top;
-  border-width: 2px;
-  cursor: pointer;
-  text-align: center
-}
-.Magazine-main,
-h5 {
-  border-width: 0 0 0 .5em
-}
-.AHead-labels a:active,
-.AHead-labels a:focus,
-.SocialBtns a:active,
-.SocialBtns a:focus,
-.Subscribe a:active,
-.Subscribe a:focus,
-.btn:active,
-.btn:focus {
-  outline: 0;
-  border-style: dotted
-}
-.AHead-labels :link,
-.btn:link {
-  background: #bbe;
-  border-color: #bbe;
-  color: #1a1a1a
-}
-.btn:visited {
-  background: #1a1a1a;
-  border-color: #fff;
-  color: #fff
-}
-.ADesc,
-.ribbon .AHead,
-.ribbon .BreadcrumbList,
-:link .RichLink-meta,
-:visited .RichLink-meta {
-  color: #bbb
-}
-.AHead-labels :active,
-.AHead-labels :focus,
-.Subscribe .atom:active,
-.Subscribe .atom:focus,
-.Subscribe .fl:active,
-.Subscribe .fl:focus,
-.Subscribe .rss:active,
-.Subscribe .rss:focus,
-.Subscribe .stm:active,
-.Subscribe .stm:focus,
-.btn:active,
-.btn:focus {
-  border-color: #1a1a1a
-}
-.baseColor .btn:link {
-  background: #24c;
-  border-color: #24c;
-  color: #f8fbf8
-}
-.baseColor .btn:visited {
-  background: #f8fbf8;
-  border-color: #111;
-  color: #111
-}
-.SocialBtns .hb:active,
-.SocialBtns .hb:focus,
-.SocialBtns .ln:active,
-.SocialBtns .ln:focus,
-.SocialBtns .pk:active,
-.SocialBtns .pk:focus,
-.SocialBtns .tw:active,
-.SocialBtns .tw:focus,
-.baseColor .btn:active,
-.baseColor .btn:focus,
-.medal {
-  border-color: #f8fbf8
 }
 .commonForm-pair {
   margin-bottom: 1em
@@ -590,6 +523,28 @@ kbd {
 body :active .ico path,
 body :focus .ico path {
   fill: #fff!important
+}
+:link,
+:visited {
+  background-color: transparent
+}
+:link,
+:link *,
+:visited,
+:visited * {
+  -webkit-transition-property: background-color,color,border-color;
+  -webkit-transition: .3s ease-in;
+  -moz-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
+  -o-transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in;
+  transition: background-color .3s ease-in,color .3s ease-in,border-color .3s ease-in
+}
+.ribbon :link:hover {
+  color: #3079ed;
+  border-color: #3079ed
+}
+.ribbon :visited:hover {
+  color: #c8e;
+  border-color: #c8e
 }
 .AAuthor img,
 .RichLink img {
@@ -686,10 +641,27 @@ tr p,
 tr pre {
   margin: 0 0 .5em
 }
+.AHead-labels :link {
+  background: #bbe;
+  border-color: #bbe;
+  color: #1a1a1a
+}
 .AHead-labels :visited {
   background: #1a1a1a;
   border-color: #bbb;
   color: #bbb
+}
+.AHead-labels :active,
+.AHead-labels :focus,
+.Subscribe .atom:active,
+.Subscribe .atom:focus,
+.Subscribe .fl:active,
+.Subscribe .fl:focus,
+.Subscribe .rss:active,
+.Subscribe .rss:focus,
+.Subscribe .stm:active,
+.Subscribe .stm:focus {
+  border-color: #1a1a1a
 }
 .AHead-labels :link:hover {
   border-color: #bbe;
@@ -950,6 +922,7 @@ pre code {
   line-height: 1.6
 }
 .medal {
+  border-color: #f8fbf8;
   background: #f8fbf8;
   color: #111
 }
@@ -1570,6 +1543,16 @@ tbody :hover td[colspan]:after {
   border-color: #1b95e0;
   color: #1b95e0
 }
+.SocialBtns .hb:active,
+.SocialBtns .hb:focus,
+.SocialBtns .ln:active,
+.SocialBtns .ln:focus,
+.SocialBtns .pk:active,
+.SocialBtns .pk:focus,
+.SocialBtns .tw:active,
+.SocialBtns .tw:focus {
+  border-color: #f8fbf8
+}
 .SocialBtns .fb:link {
   background: #3b5999;
   border-color: #3b5999;
@@ -1829,6 +1812,30 @@ tv {
   #lB .lS {
     padding-bottom: 1em
   }
+  .AHead-labels a:active,
+  .AHead-labels a:focus,
+  .Search .btn:active,
+  .Search .btn:focus,
+  .SocialBtns a:active,
+  .SocialBtns a:focus,
+  .Subscribe a:active,
+  .Subscribe a:focus,
+  input.btn:active,
+  input.btn:focus {
+    background: #f8fbf8;
+    background: var(--color-fill);
+    border-color: #3079ed;
+    border-color: var(--color-accent);
+    color: #3079ed;
+    color: var(--color-accent)
+  }
+  .ico path {
+    fill: #111;
+    fill: var(--color-text)
+  }
+  .ribbon .ico path {
+    fill: #fff
+  }
   .AHead,
   .BreadcrumbList,
   .Cover-meta,
@@ -1862,26 +1869,6 @@ tv {
   }
   .ribbon :visited {
     color: #fff
-  }
-  .AHead-labels a:active,
-  .AHead-labels a:focus,
-  .SocialBtns a:active,
-  .SocialBtns a:focus,
-  .Subscribe a:active,
-  .Subscribe a:focus,
-  .btn:active,
-  .btn:focus {
-    border-color: #3079ed;
-    border-color: var(--color-accent);
-    color: #3079ed;
-    color: var(--color-accent)
-  }
-  .ico path {
-    fill: #111;
-    fill: var(--color-text)
-  }
-  .ribbon .ico path {
-    fill: #fff
   }
   .AHead-labels {
     color: #1a1a1a
@@ -2702,6 +2689,25 @@ only screen and (max-width:240px) {
   .lXi {
     padding: 0
   }
+  .AHead-labels a:active,
+  .AHead-labels a:focus,
+  .Search .btn:active,
+  .Search .btn:focus,
+  .SocialBtns a:active,
+  .SocialBtns a:focus,
+  .Subscribe a:active,
+  .Subscribe a:focus,
+  blockquote pre,
+  input.btn:active,
+  input.btn:focus {
+    background: #111
+  }
+  .mspacer {
+    margin: .6em 0!important
+  }
+  .ico path {
+    fill: #eee
+  }
   .tl thead tr :link,
   :link,
   blockquote .tl tbody tr th :link {
@@ -2730,12 +2736,6 @@ only screen and (max-width:240px) {
   :visited:hover {
     color: #c8e;
     border-color: #c8e
-  }
-  .mspacer {
-    margin: .6em 0!important
-  }
-  .ico path {
-    fill: #eee
   }
   .LinkList a:not([href]),
   .RichLink-sep a:not([href]),
@@ -2904,9 +2904,6 @@ only screen and (max-width:240px) {
   blockquote {
     background-color: #333
   }
-  blockquote pre {
-    background: #111
-  }
 }
 @media handheld,
 only screen and (prefers-color-scheme:dark),
@@ -2939,6 +2936,13 @@ only screen and (max-width:240px) {
   thead var {
     color: var(--color-text)
   }
+  .medal,
+  blockquote th em,
+  blockquote th strong,
+  thead em,
+  thead strong {
+    color: #eee
+  }
   *,
   .tl tbody td:before,
   .tl td,
@@ -2958,28 +2962,21 @@ only screen and (max-width:240px) {
   em {
     background: #4e4e1f
   }
-  blockquote th em,
-  blockquote th strong,
-  thead em,
-  thead strong {
-    color: #eee
-  }
   strong {
     background: #1c3a49
   }
-  .baseColor .btn:link {
-    background: #bbe;
-    border-color: #bbe;
-    color: #111
-  }
-  .baseColor .btn:visited {
-    background: #111;
-    border-color: #eee;
-    color: #eee
-  }
-  .baseColor .btn:active,
-  .baseColor .btn:focus {
-    border-color: #111
+  .AHead-labels a:active,
+  .AHead-labels a:focus,
+  .Search .btn:active,
+  .Search .btn:focus,
+  .SocialBtns a:active,
+  .SocialBtns a:focus,
+  .Subscribe a:active,
+  .Subscribe a:focus,
+  blockquote pre,
+  input.btn:active,
+  input.btn:focus {
+    background: var(--color-fill)
   }
   .ico path {
     fill: var(--color-text)
@@ -2993,8 +2990,7 @@ only screen and (max-width:240px) {
     background: var(--color-casual-text)
   }
   .medal {
-    background: #333;
-    color: #eee
+    background: #333
   }
   :link .medal,
   :visited .medal {
@@ -3060,9 +3056,6 @@ only screen and (max-width:240px) {
   .SocialBtns .tw:active,
   .SocialBtns .tw:focus {
     border-color: #111!important
-  }
-  blockquote pre {
-    background: var(--color-fill)
   }
 }
 @media all and (-webkit-min-device-pixel-ratio:0) {
@@ -3400,6 +3393,9 @@ only screen and (max-width:240px) {
   #lF .lX {
     border-top: .15em solid #000
   }
+  .ribbon .ico path {
+    fill: #000
+  }
   .ADesc,
   .ribbon a {
     color: #666
@@ -3421,9 +3417,6 @@ only screen and (max-width:240px) {
   .aBodyRoot thead :visited,
   .ribbon :visited {
     color: #606
-  }
-  .ribbon .ico path {
-    fill: #000
   }
   .ABody {
     padding: 0 0 2em
