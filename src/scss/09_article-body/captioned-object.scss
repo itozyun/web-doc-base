@@ -1,0 +1,76 @@
+/* object with caption
+ * ------------------------------------------------------------------------------------*
+ *  div.box
+ *    span.caption[style=width:XXpx]
+ *       figure
+ *         img|iframe
+ *         figcaption
+ *    p, ul, ol, dl, hr, br
+ */
+@use "sass:math";
+
+@use "../01_var/ua" as ua;
+@use "../01_var/common.generated" as common;
+@use "../01_var/size" as size;
+@use "../01_var/canuse" as canuse;
+
+@use "../02_mixin/unbreak" as *;
+@use "../02_mixin/mq" as *;
+
+@use "./box";
+
+$-figcaption-font-size : 0.875;
+
+.#{common.$CAPTIONED_OBJECT__CLASSNAME} {
+    @include unbreak-box-with-long-text;
+    @include unbreak-inside;
+    display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
+    text-align : center;
+    font-size  : 1em * $-figcaption-font-size;
+ 
+    @if canuse.$MAX_AND_MIN_SIZES {
+        max-width : 100%;
+    }
+
+    div & { // div で詳細度を上げる .box img の上書き
+        img, iframe
+        //, embed, object, video
+        {
+            @if canuse.$MARGIN_AUTO {
+                margin : 0 auto math.div(.5em, $-figcaption-font-size); // 縦長画像の場合、センタリング
+            } @else {
+                margin : 0 0 math.div(.5em, $-figcaption-font-size);
+            }
+            float  : none;
+        }
+    }
+
+    .box & {
+        float : left;
+
+        @if ua.$IE5 {
+            margin : 0 math.div(.5em, $-figcaption-font-size) math.div(1em, $-figcaption-font-size) 0;
+        } @else {
+            margin : 0 math.div(1em, $-figcaption-font-size) math.div(1em, $-figcaption-font-size) 0;
+        }
+
+        /*  Phablet
+        ------------------------------------------------------------------------------------- */
+        @include mq(phablet) {
+            margin : 0 math.div(1em, $-figcaption-font-size) math.div(1em, $-figcaption-font-size) size.$PHABLET_HORIZONTAL_MARGIN;
+        }
+
+        /*  Phone
+        ------------------------------------------------------------------------------------- */
+        @include mq(phone) {
+            margin : 0 math.div(1em, $-figcaption-font-size) math.div(1em, $-figcaption-font-size) size.$PHONE_HORIZONTAL_MARGIN;
+        }
+
+        /*  Phone-
+        ------------------------------------------------------------------------------------- */
+        @include mq(smallphone) {
+            float  : none;
+            margin : 0 auto math.div(1em, $-figcaption-font-size);
+        }
+    }
+}

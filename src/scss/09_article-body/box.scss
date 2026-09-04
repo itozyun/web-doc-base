@@ -1,11 +1,7 @@
-/* object with caption
+/* .box
  * ------------------------------------------------------------------------------------*
  *  div.box
- *    span.caption[style=width:XXpx]
- *       figure
- *         img|emned|
- *         figcaption
- *    img, iframe
+ *    img, iframe, captioned-object
  *    p, ul, ol, dl
  */
 @use "sass:math";
@@ -23,20 +19,6 @@
 @use "../02_mixin/css-hack" as *;
 
 @use "../08_module/ArticleBody";
-
-$_CAPTIONED_OBJ_FONTSIZE : 0.875;
-
-.#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-    @include unbreak-box-with-long-text;
-    @include unbreak-inside;
-    display    : block; /* CSS が無効の環境での閲覧性の為に、span でマークアップする */
-    text-align : center;
-    font-size  : 1em * $_CAPTIONED_OBJ_FONTSIZE;
- 
-    @if canuse.$MAX_AND_MIN_SIZES {
-        max-width : 100%;
-    }
-}
 
 /*  box
 ------------------------------------------------------------------------------------- */
@@ -62,6 +44,19 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
     @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
         & > p:first-of-type {
             margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_EM + 1em, 4);
+            /*  patch for Safari 3.2.3, Chrome 7
+                Safari 3.1-5.0, Chrome 9- (& old versions of Chrome 10 before 10.0.64)
+            ------------------------------------------------------------------------------------- */
+            @include css-hack(chromeLte9SafariLte5){
+                margin-top : auto;
+            }
+            @include mq(phone) {
+                margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
+            }
+            @include mq(watch) {
+                margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);
+            }
+
             @if opt.$UseITStyles {
                 kbd {
                     margin-top : math.div(size.$PARAGRAPH_LINE_HEIGHT_EM - 1em, 4);
@@ -92,124 +87,48 @@ $_CAPTIONED_OBJ_FONTSIZE : 0.875;
         @include responsive-horizontal-margin(1, 0, 1em, false, true);
     }
     ul, ol {
-        list-style-position : inside;
+        list-style-position : inside; // TODO img{float:right} にしたら、不要
     }
 
     img, iframe
     //, embed, object, video
     {
         float : left;
+
         @if ua.$IE5 {
             margin : 0 0.5em 1em 0;
         } @else {
             margin : 0 1em 1em 0;
         }
-    }
-    img, iframe {
         @if canuse.$MAX_AND_MIN_SIZES {
-            @if opt.$MobileOnly or canuse.$MEDIA_QUERY {
-                max-width : 100%; // 4_Typography/04_Typography.scss を上書き
+            @if opt.$MobileOnly or canuse.$MEDIA_QUERY or ua.$Opera8 {
+                max-width : 100%; // 04_typography/_/ReplacedElementStyle.scss を上書き
             };
         }
-    }
-    .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-        float : left;
-        @if ua.$IE5 {
-            margin : 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
-        } @else {
-            margin : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) 0;
-        }
-    }
-    @at-root div .#{common.$CAPTIONED_OBJECT__CLASSNAME} img, div .#{common.$CAPTIONED_OBJECT__CLASSNAME} iframe { // div で詳細度を上げる .box img の上書き
-        margin : 0 0 math.div(.5em, $_CAPTIONED_OBJ_FONTSIZE);
-        float  : none;
-    }
-}
 
-/*  Tablet
-------------------------------------------------------------------------------------- */
-@include mq(tablet_print) {
-    .box {
-        margin : 1em 0 0;
+        /*  Tablet
+        ------------------------------------------------------------------------------------- */
+        @include mq(tablet_print) {
+            margin : 0 1em 1em size.$TABLET_HORIZONTAL_MARGIN;
+        }
 
-        img, iframe
-        //, embed, object, video
-        {
-            margin  : 0 1em 1em size.$TABLET_HORIZONTAL_MARGIN;
+        /*  Phablet
+        ------------------------------------------------------------------------------------- */
+        @include mq(phablet) {
+            margin : 0 1em 1em size.$PHABLET_HORIZONTAL_MARGIN;
         }
-        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$TABLET_HORIZONTAL_MARGIN;
-        }
-    }
-}
 
-/*  Phablet
-------------------------------------------------------------------------------------- */
-@include mq(phablet) {
-    .box {
-        img, iframe
-        //, embed, object, video
-        {
-            margin  : 0 1em 1em size.$PHABLET_HORIZONTAL_MARGIN;
+        /*  Phone
+        ------------------------------------------------------------------------------------- */
+        @include mq(phone) {
+            margin : 0 1em 1em size.$PHONE_HORIZONTAL_MARGIN;
         }
-        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$PHABLET_HORIZONTAL_MARGIN;
-        }
-    }
-}
 
-/*  Phone
-------------------------------------------------------------------------------------- */
-@include mq(phone) {
-    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
-        .box > p:first-of-type {
-            margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_PHONE_EM + 1em, 4);
-        }
-    }
-    .box {
-        img, iframe
-        //, embed, object, video
-        {
-            margin  : 0 1em 1em size.$PHONE_HORIZONTAL_MARGIN;
-        }
-        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-            margin  : 0 math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) math.div(1em, $_CAPTIONED_OBJ_FONTSIZE) size.$PHONE_HORIZONTAL_MARGIN;
-        }
-    }
-}
-
-/*  Phone-
-------------------------------------------------------------------------------------- */
-@include mq(smallphone) {
-    .box {
-        img, iframe
-        //, embed, object, video
-        {
+        /*  Phone-
+        ------------------------------------------------------------------------------------- */
+        @include mq(smallphone) {
             float  : none;
             margin : 0 auto 1em;
         }
-        .#{common.$CAPTIONED_OBJECT__CLASSNAME} {
-            float  : none;
-            margin : 0 auto math.div(1em, $_CAPTIONED_OBJ_FONTSIZE);
-        }
-    }
-}
-
-/*  Watch
-------------------------------------------------------------------------------------- */
-@include mq(watch) {
-    @if canuse.$FIRST_OF_TYPE_PSEUDO_CLASS {
-        .box > p:first-of-type {
-            margin-top : math.div(- size.$PARAGRAPH_LINE_HEIGHT_WATCH_EM + 1em, 4);
-        }
-    }
-}
-
-/*  patch for Safari 3.2.3, Chrome 7
-Safari 3.1-5.0, Chrome 9- (& old versions of Chrome 10 before 10.0.64)
-------------------------------------------------------------------------------------- */
-.box > p:first-of-type {
-    @include css-hack(chromeLte9SafariLte5){
-        margin-top : auto;
     }
 }
