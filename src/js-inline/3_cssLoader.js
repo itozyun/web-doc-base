@@ -79,7 +79,7 @@ function cssAndJsLoader_createElement( media ){
     link.rel   = 'stylesheet';
  // link.type  = 'text/css';
     link.media = media;
-    link[ 'fetchPriority' ] = 'high';
+ // link[ 'fetchPriority' ] = 'high';
 
     document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
 

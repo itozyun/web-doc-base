@@ -141,14 +141,17 @@ module.exports = function( page, pages ){
         /** title   */ '\n<title>' + page.title + '</title>' +
         /** viewport, see http://outcloud.blogspot.com/2016/02/viewport2016.html */
                         createElement( 'meta', { name : 'viewport', content : page.viewport || site.viewport || 'width=device-width,target-densitydpi=medium-dpi,initial-scale=1,minimum-scale=1,shrink-to-fit=no' } ) +
+
+        /** preload */  createElementList( 'link', 'href', page.preloadStyles , { rel : 'preload', as : 'style'  } ) +
         /** 1st view style */
-                        createElement( 'style', null, site.inlineStyle ) +
+                        createElement( 'style', { media : 'screen,handheld,projection,tv,print' }, '/*<!--*/' + site.inlineStyle + '/*-->*/' ) +
+
         /** inlin javascript */
                         createElement( 'script', null, '<!--\n' + page.inlineScript.split( '${dir}' ).join( dir ) + '//-->', !!page.inlineScript ) +
                         createElement( 'script', null, '<!--\n' + site.inlineScript.split( '${dir}' ).join( dir ) + '//-->', !!site.inlineScript ) +
-        /** preload */  createElementList( 'link', 'href', page.preloadStyles , { rel : 'preload', as : 'style'  } ) +
-                        createElementList( 'link', 'href', page.preloadScripts, { rel : 'preload', as : 'script' } ) +
-                        createElementList( 'link', 'href', page.preloadFonts  , { rel : 'preload', as : 'font', type : 'font/woff2' } ) +
+
+        /** preload */  createElementList( 'link', 'href', page.preloadScripts, { rel : 'preload', as : 'script' } ) +
+                        createElementList( 'link', 'href', page.preloadFonts  , { rel : 'preload', as : 'font', type : 'font/woff2', crossorigin : true } ) +
         /** dns-prefetch */
                         createElement( 'meta', { 'http-equiv' : 'x-dns-prefetch-control', content : 'on' }, '', !!page.dnsPrefetchUrls && page.dnsPrefetchUrls.length ) +
                         createElementList( 'link', 'href', page.dnsPrefetchUrls, { rel : 'dns-prefetch' } ) +
