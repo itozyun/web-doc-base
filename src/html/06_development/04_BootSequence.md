@@ -25,23 +25,25 @@ var
 
 ### 2.1. インライン javascript で CSS ローダーを使う設定で main.js とインライン js をビルドする
 
-|  | js enabled | js disabled |
-|:--|:--|:--|
-| IE 5~9 | 2 | 2 |
-| modern browsers | 3 | 1 |
-| Mac IE 5 | 3 | 1 |
-| Gecko <1.5, Opera <9.5, Safari <=4.0.5 | 4 | 1 |
+|                               | js enabled | js disabled |
+|:------------------------------|:-----------|:------------|
+| IE 5~9                        | 2          | 2           |
+| Modern Browsers               | 3          | 1           |
+| Mac IE 5                      | 3          | 1           |
+| Gecko 1~1.9.0, Opera 9        | 3          | 1           |
+| Gecko <1, Opera <9, Safari <3 | 4          | 1           |
 
 ### 2.2. インライン javascript の CSS ローダーを使わない設定で main.js をビルドする
 
 CSS ライブラリプロジェクト等では、インライン javascript と main.js の共働が不適当な場合があります。このようなケースでは CSS ローダーを使わない設定で main.js をビルドします。
 
-|  | js enabled | js disabled |
-|:--|:--|:--|
-| IE 5~9 | 2 | 2 |
-| modern browsers | 4 | 1 |
-| Mac IE 5 | 4 | 1 |
-| Gecko <1.5, Opera <9.5, Safari <=4.0.5 | 4 | 1 |
+|                               | js enabled | js disabled |
+|:------------------------------|:-----------|:------------|
+| IE 5~9                        | 2          | 2           |
+| Modern Browsers               | 4          | 1           |
+| Mac IE 5                      | 4          | 1           |
+| Gecko 1~1.9.0, Opera 9        | 4          | 1           |
+| Gecko <1, Opera <9, Safari <3 | 4          | 1           |
 
 ## 3. CSS の読み込みと文書のパフォーマンス
 
