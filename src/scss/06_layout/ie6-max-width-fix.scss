@@ -1,9 +1,9 @@
 /* max-width for ie6 + ie5.5
- *   http://css-eblog.com/csstechnique/max-width-for-ie6.html
+ *   https://web.archive.org/web/20200202011040/http://css-eblog.com/csstechnique/max-width-for-ie6.html
  *
  *  <!--[if lte IE 6]><div><div class="e6L"></div><div class="e6R"></div><div class="e6C"><![endif]-->
  *    <div class="lW" />
- *  <!--[if lte IE 6]></div><br clear="all"></div><![endif]-->
+ *  <!--[if lte IE 6]></div><br class="e6BR"></div><![endif]-->
 ------------------------------------------------------------------------------------- */
 @use "sass:math";
 
