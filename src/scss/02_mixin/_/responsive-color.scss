@@ -116,7 +116,7 @@
                         $var: -dark-to-var($var);
                     }
                     @if $var == false {
-                        @error "Responsive Text Colors Error! var(): #{$colors} - #{$var}";
+                        @error "Responsive Colors Error! var(): #{$colors} - #{$var}";
                     }
                 }
                 $result: list.append($result, $var, space);
@@ -240,45 +240,49 @@
 }
 
 @function light-color-to-dark($c) {
-    @if canuse.$MEDIA_QUERY or ua.$Opera8 {
-        $len: list.length($c);
-        $important: meta.inspect(list.nth($c, $len)) == "!important";
+    $len: list.length($c);
+    $important: meta.inspect(list.nth($c, $len)) == "!important";
 
-        @if 1 < $len and ($important == false or $len != 2) {
-        // すべての要素が -light-to-dark() で変換できるかチェック
-            $result: ();
-
-            @for $i from 1 through $len {
-                $v: list.nth($c, $i);
-
-                @if meta.inspect($v) != "!important" {
-                    $v: -light-to-dark($v);
-
-                    @if $v == false {
-                        @error "Responsive Text Colors Error! dark(): #{$c} - #{$v}";
-                    }
-                }
-                $result: list.append($result, $v, space);
-            }
-            @return $result;
-        }
-        @if $important {
+    @if 1 < $len {
+        @if $important and $len == 2 {
             $dark: -light-to-dark(list.nth($c, 1), true);
             @if $dark == false {
                 @return false;
             }
             @return list.append($dark, !important, space);
         }
-        @return -light-to-dark($c, true);
+    // すべての要素が -light-to-dark() で変換できるかチェック
+        $result: ();
+
+        @for $i from 1 through $len {
+            $v: list.nth($c, $i);
+
+            @if meta.inspect($v) != "!important" {
+                $-v: -light-to-dark($v);
+
+                @if $-v {
+                    $v: $-v;
+                }
+            }
+            $result: list.append($result, $v, space);
+        }
+        @return $result;
     }
-    @return false;
+    @return -light-to-dark($c, true);
 }
 
 @function light-color-to-print($c) {
     $len: list.length($c);
     $important: meta.inspect(list.nth($c, $len)) == "!important";
 
-    @if 1 < $len and ($important == false or $len != 2) {
+    @if 1 < $len {
+        @if $important and $len == 2 {
+            $print: -light-to-print(list.nth($c, 1), true);
+            @if $print == false {
+                @return false;
+            }
+            @return list.append($print, !important, space);
+        }
     // すべての要素が -light-to-print() で変換できるかチェック
         $result: ();
 
@@ -286,18 +290,15 @@
             $v: list.nth($c, $i);
 
             @if meta.inspect($v) != "!important" {
-                $v: -light-to-print($v);
+                $-v: -light-to-print($v);
 
-                @if $v == false {
-                    @error "Responsive Text Colors Error! print(): #{$c} - #{$v}";
+                @if $-v {
+                    $v: $-v;
                 }
             }
             $result: list.append($result, $v, space);
         }
         @return $result;
-    }
-    @if $important {
-        @return list.append(-light-to-print(list.nth($c, 1), true), !important, space);
     }
     @return -light-to-print($c, true);
 }

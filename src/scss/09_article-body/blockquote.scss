@@ -38,13 +38,13 @@
 }
 
 %cite-in-blockquote {
+    @include text-color-responsive(color.$Light_casual_text);
     @include responsive-horizontal-margin(2, 0, 0);
     @include unbreak-box-with-long-text; /* 長い url 用 */
 
     display    : block;
     font-size  : 0.875em;
     text-align : right;
-    color      : color.$Light_casual_text;
 
     /*  WSXGA, print
     ------------------------------------------------------------------------------------- */

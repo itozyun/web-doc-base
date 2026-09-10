@@ -1,6 +1,9 @@
 /*  ライトカラースキームでも常に背景がダークなコンテンツボックスで使用
 ------------------------------------------------------------------------------------- */
+@use "../01_var/ua" as ua;
 @use "../01_var/color" as color;
+
+@use "../02_mixin/_/responsive-color" as *;
 
 @use "./media" as *;
 
@@ -8,17 +11,31 @@
     @include media-screen {
         :link {
             color : color.$Dark_link;
+            @if ua.$Modern {
+                color : dark-color-to-var(color.$Dark_link);
+            }
         }
         :visited {
             color : $visited_color;
+            @if ua.$Modern and dark-color-to-var($visited_color) {
+                color : dark-color-to-var($visited_color);
+            }
         }
         :link:hover {
             color        : color.$Dark_hover;
-            border-color : color.$Dark_hover;
+            //border-color : color.$Dark_hover;
+            @if ua.$Modern and dark-color-to-var(color.$Dark_hover) {
+                color        : dark-color-to-var(color.$Dark_hover);
+                //border-color : dark-color-to-var(color.$Dark_hover);
+            }
         }
         :visited:hover {
             color        : color.$Dark_visited_hover;
-            border-color : color.$Dark_visited_hover;
+            //border-color : color.$Dark_visited_hover;
+            @if ua.$Modern and dark-color-to-var(color.$Dark_visited_hover) {
+                color        : dark-color-to-var(color.$Dark_visited_hover);
+                //border-color : dark-color-to-var(color.$Dark_visited_hover);
+            }
         }
     }
     @include media-print-fallback {

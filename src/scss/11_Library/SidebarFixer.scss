@@ -73,7 +73,7 @@
                 }
                 @media (prefers-color-scheme:dark) {
                     ##{common.$SIDEBAR_FIXER_ELEMENT_ID_1ST_WHEEL}:hover *, ##{common.$SIDEBAR_FIXER_ELEMENT_ID_2ND_WHEEL}:hover * {
-                        border-color : color.$Ribbon_text;
+                        border-color : color.$Dark_text;
                     }
                 }
             }

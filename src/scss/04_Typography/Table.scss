@@ -83,6 +83,45 @@
     }
 }
 
+// 背景が反転するので dark 用のリンク色を使用
+@mixin -invert-link-colors($light-color, $light-hover-color){
+    $dark-color      : light-color-to-dark($light-color);
+    $dark-hover-color: light-color-to-dark($light-hover-color);
+    $print-color     : light-color-to-print($light-color);
+
+    @include media-screen {
+        color : $dark-color;
+        @if ua.$Modern {
+            color : dark-color-to-var($dark-color);
+        }
+        @include mq(dark) {
+            color : $light-color;
+            @if ua.$Modern {
+                color : light-color-to-var($light-color);
+            }
+        }
+    }
+    @include media-print-fallback {
+        @if $print-color {
+            color : $print-color;
+        }
+    }
+    @if $dark-hover-color and (canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS) {
+        &:hover {
+            color : $dark-hover-color;
+            @if ua.$Modern {
+                color : dark-color-to-var($dark-hover-color);
+            }
+            @include mq(dark) {
+                color : $light-hover-color;
+                @if ua.$Modern {
+                    color : light-color-to-var($light-hover-color);
+                }
+            }
+        }
+    }
+}
+
 /*  colspan
  *    .tl では colspan を使わない為、上書きは必要なし
  *  screenshot
@@ -223,7 +262,6 @@ table {
         border-width : 2px 0.5em 0;
     }
 
-
 /*  color
 ------------------------------------------------------------------------------------- */
 table {
@@ -239,38 +277,12 @@ table {
             @include _cell-border-color-responsive(color.$Light_casual_fill);
         }
         :link {
-            color : color.$Dark_link; // 背景が反転するので dark 用のリンク色を使用
-            @include mq(dark) {
-                color : color.$Light_link;
-            }
-            @include media-print {
-                color : color.$Print_link;
-            }
-            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
-                &:hover {
-                    color : color.$Dark_hover;
-                    @include mq(dark) {
-                        color : color.$Light_hover;
-                    }
-                }
-            }
+            // 背景が反転するので dark 用のリンク色を使用
+            @include -invert-link-colors(color.$Light_link, color.$Light_hover);
         }
         .#{opt.$Prefix + common.$CLASSNAME_ARTICLE_BODY_ROOT} & :visited {
-            color : color.$Dark_visited;
-            @include mq(dark) {
-                color : color.$Light_visited;
-            }
-            @include media-print {
-                color : color.$Print_visited;
-            }
-            @if canuse.$LIMITED_HOVER_PSEUDO_CLASS or canuse.$HOVER_PSEUDO_CLASS {
-                &:hover {
-                    color : color.$Dark_visited_hover;
-                    @include mq(dark) {
-                        color : color.$Light_visited_hover;
-                    }
-                }
-            }
+            // 背景が反転するので dark 用のリンク色を使用
+            @include -invert-link-colors(color.$Light_visited, color.$Light_visited_hover);
         }
     }
 

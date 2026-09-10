@@ -6,6 +6,8 @@
 @use "../02_mixin/media" as *;
 @use "../02_mixin/line-height" as *;
 @use "../02_mixin/link-colors-on-dark-background" as *;
+@use "../02_mixin/text-color" as *;
+@use "../02_mixin/border-color" as *;
 @use "../02_mixin/background-color" as *;
 
 @use "../04_typography/pre" as *;
@@ -13,28 +15,17 @@
 
 .prettyprint {
     @include link-colors-on-dark-background;
+    @include background-screen-print(color.$Light_text, color.$Print_fill);
+    @include border-color-screen-print(color.$Light_casual_text, color.$Print_casual_text);
+    @include text-color-screen-print(color.$Light_fill, color.$Print_text);
 
     border-width : 1px;
-    border-color : color.$Light_casual_text;
 
     & code {
         font-size : 0.875em;
+        @include text-color-screen-print(color.$Light_fill, color.$Print_text);
     }
 
-    @include media-screen {
-        background : color.$Light_text;
-        color      : color.$Light_fill;
-        & code {
-            color : color.$Light_fill;
-        }
-    }
-    @include media-print-fallback {
-        background : color.$Print_fill;
-        color      : color.$Print_text;
-        & code {
-            color : color.$Print_text;
-        }
-    }
     @include media-print {
         @include line-height(1, true);
     }
