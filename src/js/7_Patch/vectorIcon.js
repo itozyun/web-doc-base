@@ -10,6 +10,7 @@ p_listenCssAvailabilityChange(
         p_webFontTest(
             /** @type {!function(number):void} */ (VectorIcon_onTestComplete), // 1.
             COMMON_WEBFONT__FONT_NAME, // 2.
+            'mmmmmmmmmmlliiiiiiiii', // 3.
             [
                 webFontTest_IS_WOFF2, p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/woff2.css',
                 webFontTest_IS_WOFF , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/woff.css',
@@ -18,9 +19,9 @@ p_listenCssAvailabilityChange(
                 webFontTest_IS_EOT  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/eot.css',
                 webFontTest_IS_SVG  , p_assetUrl + COMMON_ASSET_DIR_TO_WEBFONT_DIR + '/svg.css'
             ],
-            COMMON_WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY, // 4.
-            m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST//, 5. 6.
-            // 5000 7. test interval ms
+            COMMON_WEBFONT__ID_AND_CLASSNAME_TEST_CSS_READY, // 5.
+            m_LIGATURE_FOR_TEST, m_TO_CHAR_FOR_TEST//, 6. 7.
+            // 5000 8. test interval ms
         );
 
         VectorIcon_onTestComplete = undefined;
@@ -74,7 +75,7 @@ var VectorIcon_onTestComplete = function( webFontTestResult ){
 
                         return [ m_LIGATURE_TO_CHAR, elmIcons, p_DOM_insertElement, p_DOM_getText, VectorIcon_CANUSE_SVGTINY ];
                     };
-                    p_loadExternalScript( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js' );
+                    p_loadExternalScript( p_assetUrl + COMMON_ASSET_DIR_TO_JS_DIR + '/' + COMMON_VECTOR_ICON__SVG_FALLBACK_FILE_STEM + '.js', true );
                 } else {
                     for( ; i < l; ++i ){
                         p_DOM_remove( elmIcons[ i ] );

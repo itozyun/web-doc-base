@@ -14,15 +14,17 @@
 /**
  * @param {!function(number):void} onCompleteHandler
  * @param {string} targetWebFontName
+ * @param {string=} opt_testString
  * @param {!Array.<number|string>=} opt_fontTypeAndFontCSSURIPairs
  * @param {string=} opt_idAndClassNameTestCSSReady
  * @param {string=} opt_ligatureTestString
  * @param {string=} opt_ligatureTestChar
  * @param {number=} opt_intervalTime
  */
-p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_fontTypeAndFontCSSURIPairs, opt_idAndClassNameTestCSSReady, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
+p_webFontTest = function( onCompleteHandler, targetWebFontName, opt_testString, opt_fontTypeAndFontCSSURIPairs, opt_idAndClassNameTestCSSReady, opt_ligatureTestString, opt_ligatureTestChar, opt_intervalTime ){
     webFontTest_onCompleteHandler  = onCompleteHandler;
     webFontTest_targetWebFontName  = targetWebFontName;
+    webFontTest_testString         = opt_testString || webFontTest_TEST_STRING;
     webFontTest_fontTypeAndFontCSSURIPairs = opt_fontTypeAndFontCSSURIPairs;
     webFontTest_idAndClassNameTestCSSReady = opt_idAndClassNameTestCSSReady;
     webFontTest_ligatureTestString = opt_ligatureTestString;
@@ -140,6 +142,7 @@ var webFontTest_QUEUE                    = !p_FONTFACE_UNAVAILABLE_DUE_TO_BLOCKL
 
 var webFontTest_onCompleteHandler,
     webFontTest_targetWebFontName,
+    webFontTest_testString,
     webFontTest_fontTypeAndFontCSSURIPairs,
     webFontTest_idAndClassNameTestCSSReady,
     webFontTest_ligatureTestString,
@@ -322,7 +325,7 @@ var webFontTest_onCompleteHandler,
             },
         // we use m or w because these two characters take up the maximum width.
         // And we use a LLi so that the same matching fonts can get separated
-            webFontTest_TEST_STRING
+            webFontTest_testString
         )
     };
 
@@ -432,7 +435,7 @@ var webFontTest_onCompleteHandler,
             width = webFontTest_elmSpan.offsetWidth;
             webFontTest_elmSpan.textContent = webFontTest_ligatureTestChar;
             result = width === webFontTest_elmSpan.offsetWidth ? webFontTest_RESULT_LIGATURE : webFontTest_RESULT_AVAILABLE;
-            webFontTest_elmSpan.textContent = webFontTest_TEST_STRING;
+            webFontTest_elmSpan.textContent = webFontTest_testString;
         };
         webFontTest_elmSpan = p_DOM_remove( webFontTest_elmSpan );
         if( opt_intervalTime && DEFINE_WEB_DOC_BASE__DEBUG ){
