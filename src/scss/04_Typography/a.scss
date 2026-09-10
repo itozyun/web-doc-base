@@ -119,7 +119,7 @@ a {
 @if quirks.$FOCUS_COLOR_SYSTEM_FIXED {
     a:active {
         background-color : color.$Light_accent !important;
-        color            : #fff        !important;
+        color            : #fff              !important;
         & * { color : #fff !important; }
     }
     a:focus {

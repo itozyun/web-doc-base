@@ -73,6 +73,9 @@ $_TRIANGULATE_PX_SIZE     : ua.$WinIELte6;
         @if ua.$IE7 or ua.$IE6 or ua.$IE55 {
             zoom : 1;
         }
+        @if ua.$IE5 {
+            height : 1px;
+        }
         @if canuse.$OUTLINE and ua.$Modern { /* and ua.$GeckoLte19 */
             @include inline-block; // ハイコントラストモード :foocus 時の outline の改善 firefox 149, Chrome 146 には不要
         }

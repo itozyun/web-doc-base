@@ -1,0 +1,9 @@
+@use "../../01_var/ua" as ua;
+
+@mixin inline-block-for-ie5 {
+    @if ua.$IE5 {
+        height         : 1px;
+        padding-top    : 0.3em;
+        padding-bottom : 0.3em;
+    }
+}

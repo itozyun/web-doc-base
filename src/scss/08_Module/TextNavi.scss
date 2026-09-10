@@ -10,6 +10,8 @@
 @use "../02_mixin/inline-block" as *;
 @use "../02_mixin/text-color" as *;
 
+@use "./_/inline-block-for-ie5" as *;
+
 .#{opt.$Prefix}TxtNavi {
     @include text-color-responsive(color.$Light_fill); /* , を消す */
     @include media-1st-view-css {
@@ -23,7 +25,11 @@
             @include inline-block; /* Gecko 0.9.7, Opera 7.0 だけ崩れる */
         }
         @if ua.$IE7 or ua.$IE6 or ua.$IE55 {
-            zoom : 1;
+            // zoom : 1; IE7 で文字の上下が消える
+            height : 1em;
+        }
+        @if ua.$IE5 {
+            @include inline-block-for-ie5;
         }
     }
 

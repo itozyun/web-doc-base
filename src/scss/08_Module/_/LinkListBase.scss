@@ -52,7 +52,7 @@
             } @else {
                 background : transparent;
             }
-            @include text-color-responsive(color.$Light_text);
+            @include text-color-responsive-force(color.$Light_text);
         }
     } @else {
         a:not([href]) {
