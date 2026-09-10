@@ -17,8 +17,8 @@ if( DEFINE_WEB_DOC_BASE__USE_CSS_LOADER_OF_INLINE_JS ){
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Fennec       );
 
         if(
-            cssAndJsLoader_gecko  < 1 || // document.write
-            cssAndJsLoader_presto < 9 || // document.write
+            cssAndJsLoader_gecko  && ua.conpare( engineVersion, '0.9.6' ) < 0               || // document.write
+            cssAndJsLoader_presto < 9                                                         || // document.write
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_Trident       ) < 10 ||
             cssAndJsLoader_getEngineVersionOf( WHAT_BROWSER_AM_I__ENGINE_TridentMobile ) < 10 ||
             // Re: onLoad doesn't work with Safari?
@@ -67,7 +67,7 @@ function cssAndJsLoader_createElement( media ){
         cssName = (
                 cssAndJsLoader_tasman                       ? COMMON_CSS_FILE_STEM__MACIE5 :
                 cssAndJsLoader_presto                 < 9.5 ? COMMON_CSS_FILE_STEM__OPERA9 :
-             // cssAndJsLoader_gecko && engineVersion < 1   ? COMMON_CSS_FILE_STEM__GECKO09 :
+                cssAndJsLoader_gecko && engineVersion < 1   ? COMMON_CSS_FILE_STEM__GECKO09 :
                 cssAndJsLoader_gecko && engineVersion < 1.3 ? COMMON_CSS_FILE_STEM__GECKO12 :
                 cssAndJsLoader_gecko && engineVersion < 1.4 ? COMMON_CSS_FILE_STEM__GECKO13 :
                 cssAndJsLoader_gecko &&

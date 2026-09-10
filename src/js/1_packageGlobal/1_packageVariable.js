@@ -87,7 +87,7 @@ var p_emptyFunction  = emptyFunction, // || new Function(),
                 ) + '.css',
     p_isSecure = location.href.indexOf( 'https' ) === 0,
 
-    p_scripts, p_assetUrl,
+    p_scripts, p_currentScript, p_assetUrl,
     p_cssDir = COMMON_ASSET_DIR_TO_CSS_DIR ? COMMON_ASSET_DIR_TO_CSS_DIR + '/' : '',
     p_isMobile, p_screenModeDir = '',
     p_useMobile = p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDS    ) || p_getPlatformVersionOf( WHAT_BROWSER_AM_I__PLATFORM_NDSi   ) ||

@@ -153,7 +153,7 @@ module.exports = function( page, pages ){
         /** preload */  createElementList( 'link', 'href', page.preloadScripts, { rel : 'preload', as : 'script' } ) +
                         createElementList( 'link', 'href', page.preloadFonts  , { rel : 'preload', as : 'font', type : 'font/woff2', crossorigin : true } ) +
         /** dns-prefetch */
-                        createElement( 'meta', { 'http-equiv' : 'x-dns-prefetch-control', content : 'on' }, '', !!page.dnsPrefetchUrls && page.dnsPrefetchUrls.length ) +
+                        // createElement( 'meta', { 'http-equiv' : 'x-dns-prefetch-control', content : 'on' }, '', !!page.dnsPrefetchUrls && page.dnsPrefetchUrls.length ) +
                         createElementList( 'link', 'href', page.dnsPrefetchUrls, { rel : 'dns-prefetch' } ) +
         
         /** description */
@@ -221,7 +221,7 @@ return '' +
 `;
         },
         Script : function(){
-            return `<script src="${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}"></script>`;
+            return `<script>(function(d,s,_,$){d.currentScript?($=d.createElement(_),$.defer=!0,$.src=s,d.body.appendChild($)):d.write('<'+_+' src="'+s+'"></'+_+'>')})(document,'${dir}assets/js/${page.mainJavascriptFilename || site.mainJavascriptFilename}','script')</script>`;
         }
     };
 
@@ -708,9 +708,7 @@ return '' +
             };
             return '' +
 `<div class="BreadcrumbList" itemscope itemtype="http://schema.org/BreadcrumbList">
-    <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        ${html}
-    </span>
+    ${html}
 </div>`;
         },
         TextNavi : function(){

@@ -47,14 +47,16 @@ p_loadEventCallbacks.splice( 0, 0, // onload の一番最初に追加
                             break;
                         case 'SCRIPT' :
                             // json-ld を削除しない!
-                            if( p_GoogleBot || p_DOM_hasAttribute( kid, 'async' ) ) break;
+                            if( p_GoogleBot ) break;
+                            // currentScript 以外の async, defer は削除しない
+                            if( kid !== p_currentScript && ( p_DOM_hasAttribute( kid, 'async' ) || p_DOM_hasAttribute( kid, 'defer' ) ) ) break;
                             if( noRemoveScriptTag ){
                                 kid.innerText = ''; // Only for Opera 7.2x
                                 noRemoveScriptTag = false;
                                 break;
                             };
                         case 'NOSCRIPT' : //'NOFRAMES' //'NOEMBED' //'NOLAYER'
-                            if( p_DOM_hasAttribute( kid, 'skip-cleanup' ) ) break;
+                            // if( p_DOM_hasAttribute( kid, 'skip-cleanup' ) ) break;
                         case '!' :
                             nodesBeRemoved.push( kid );
                             break;

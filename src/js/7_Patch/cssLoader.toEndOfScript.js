@@ -8,10 +8,10 @@ if(
 /**
  * ie11 の ie5 モード で css が読み込まれない問題の対策
  */
-    ( p_IEVersion === 11 && p_Trident === 5 )
+    ( false && p_IEVersion === 11 && p_Trident === 5 )
 ){
     if( p_Presto < 9 || // document.write でないと、コンテンツ量によって CSS が一部しか適用されない不具合に遭遇する
-        p_Gecko  < 1 || // Gecko 0.9.4 以下で確認 0.9.6 では発生しない document.write でないと css が適用されない
+        p_Gecko && ua.conpare( p_engineVersion, '0.9.6' ) < 0 || // Gecko 0.9.4 以下で確認 0.9.6 では発生しない document.write でないと css が適用されない
         !p_Tasman && !window.addEventListener // Tasman 以外で addEventListener をサポートしないブラウザ, Opera 7.x (未確認)
     ){
         document.write(
